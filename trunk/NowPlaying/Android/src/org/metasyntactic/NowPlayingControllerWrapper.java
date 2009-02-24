@@ -31,17 +31,17 @@ import org.metasyntactic.utilities.LogUtilities;
 import static org.metasyntactic.utilities.SetUtilities.any;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class NowPlayingControllerWrapper {
-  private static final Set<Activity> activities = new LinkedHashSet<Activity>();
-  private static final Set<Object> retainedActivityObjects = new IdentityHashSet<Object>();
+  private static final Collection<Activity> activities = new LinkedHashSet<Activity>();
+  private static final Collection<Object> retainedActivityObjects = new IdentityHashSet<Object>();
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
 

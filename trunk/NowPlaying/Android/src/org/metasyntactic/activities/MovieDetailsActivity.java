@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import org.metasyntactic.NowPlayingControllerWrapper;
@@ -59,7 +59,7 @@ public class MovieDetailsActivity extends ListActivity {
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final Button scoreImg = (Button) findViewById(R.id.score);
+    final View scoreImg = findViewById(R.id.score);
     final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
@@ -81,9 +81,9 @@ public class MovieDetailsActivity extends ListActivity {
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
     populateMovieDetailEntries();
-    final MovieAdapter movieAdapter = new MovieAdapter();
+    final ListAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
-    final Button showtimes = (Button) findViewById(R.id.showtimes);
+    final View showtimes = findViewById(R.id.showtimes);
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent();
@@ -99,7 +99,7 @@ public class MovieDetailsActivity extends ListActivity {
     if (movieDetailEntries == null || movieDetailEntries.isEmpty()) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
-      // Add title and synopsis
+      // Add title and Synopsis
       {
         final String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
         final String value;
@@ -109,25 +109,23 @@ public class MovieDetailsActivity extends ListActivity {
           value = synopsis;
         }
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis),
-          value, MovieDetailItemType.POSTER_SYNOPSIS, null, false);
+          value, MovieDetailItemType.Synopsis, null, false);
         movieDetailEntries.add(entry);
       }
-      {
-        // Add release Date
-        final Date releaseDate = movie.getReleaseDate();
-        if (releaseDate != null) {
-          final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(
-            releaseDate);
-          final MovieDetailEntry entry = new MovieDetailEntry(res
-            .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
-            null, false);
-          movieDetailEntries.add(entry);
-        }
+      // Add release Date
+      final Date releaseDate = movie.getReleaseDate();
+      if (releaseDate != null) {
+        final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(
+          releaseDate);
+        final MovieDetailEntry entry = new MovieDetailEntry(res
+          .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.Data,
+          null, false);
+        movieDetailEntries.add(entry);
       }
       {
         // Add cast
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast_colon),
-          MovieViewUtilities.formatListToString(movie.getCast()), MovieDetailItemType.DATA,
+          MovieViewUtilities.formatListToString(movie.getCast()), MovieDetailItemType.Data,
           null, false);
         movieDetailEntries.add(entry);
       }
@@ -135,13 +133,13 @@ public class MovieDetailsActivity extends ListActivity {
       final List<String> directors = movie.getDirectors();
       if (directors != null && !directors.isEmpty()) {
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director_colon),
-          MovieViewUtilities.formatListToString(directors), MovieDetailItemType.DATA, null, false);
+          MovieViewUtilities.formatListToString(directors), MovieDetailItemType.Data, null, false);
         movieDetailEntries.add(entry);
       }
       {
         // Add header
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options),
-          null, MovieDetailItemType.HEADER, null, false);
+          null, MovieDetailItemType.Header, null, false);
         movieDetailEntries.add(entry);
       }
       // Add trailer
@@ -150,7 +148,7 @@ public class MovieDetailsActivity extends ListActivity {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(trailer_url), "video/*");
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
-          null, MovieDetailItemType.ACTION, intent, true);
+          null, MovieDetailItemType.Action, intent, true);
         movieDetailEntries.add(entry);
       }
       // Add reviews
@@ -161,7 +159,7 @@ public class MovieDetailsActivity extends ListActivity {
         intent.putParcelableArrayListExtra("reviews", arrayReviews);
         intent.setClass(this, AllReviewsActivity.class);
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.read_reviews),
-          null, MovieDetailItemType.ACTION, intent, true);
+          null, MovieDetailItemType.Action, intent, true);
         movieDetailEntries.add(entry);
       }
       // Add IMDb link
@@ -169,7 +167,7 @@ public class MovieDetailsActivity extends ListActivity {
       if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
         final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
         final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null,
-          MovieDetailItemType.ACTION, intent, true);
+          MovieDetailItemType.Action, intent, true);
         movieDetailEntries.add(entry);
       }
     }
@@ -228,7 +226,7 @@ public class MovieDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       final MovieDetailEntry entry = movieDetailEntries.get(position);
       switch (entry.type) {
-        case POSTER_SYNOPSIS:
+        case Synopsis:
           convertView = inflater.inflate(R.layout.moviepostersynopsis, null);
           final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
           final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
@@ -242,7 +240,7 @@ public class MovieDetailsActivity extends ListActivity {
           if (synopsis.length() > 0) {
             final TextPaint paint = text1.getPaint();
             final int orientation = getResources().getConfiguration().orientation;
-            int textViewWidth;
+            final int textViewWidth;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
               // textViewWidth = screenWidth - posterWidth - paddingLeft -
               // paddingRight - spaceBetweenPosterAndTextView
@@ -250,18 +248,18 @@ public class MovieDetailsActivity extends ListActivity {
             } else {
               textViewWidth = 320 - 126 - 5 - 5 - 5;
             }
-            final android.text.Layout l = new StaticLayout(synopsis, paint, textViewWidth,
+            final Layout layout = new StaticLayout(synopsis, paint, textViewWidth,
               Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
             // height of poster is 182px
-            final int line = l.getLineForVertical(182);
-            final int off = l.getLineStart(line + 1);
+            final int line = layout.getLineForVertical(182);
+            final int off = layout.getLineStart(line + 1);
             final String desc1_text = synopsis.substring(0, off);
             final String desc2_text = synopsis.substring(off, synopsis.length());
             text1.setText(desc1_text);
             text2.setText(desc2_text);
           }
           break;
-        case DATA:
+        case Data:
           convertView = inflater.inflate(R.layout.moviedetails_item, null);
           // Creates a MovieViewHolder and store references to the
           // children views we want to bind data to.
@@ -271,12 +269,12 @@ public class MovieDetailsActivity extends ListActivity {
           holder.name.setText(entry.name);
           holder.value.setText(entry.value);
           break;
-        case HEADER:
+        case Header:
           convertView = inflater.inflate(R.layout.headerview, null);
           final TextView headerView = (TextView) convertView.findViewById(R.id.name);
           headerView.setText(entry.name);
           break;
-        case ACTION:
+        case Action:
           convertView = inflater.inflate(R.layout.dataview, null);
           final TextView actionView = (TextView) convertView.findViewById(R.id.name);
           actionView.setText(entry.name);
@@ -347,7 +345,7 @@ public class MovieDetailsActivity extends ListActivity {
   }
 
   private enum MovieDetailItemType {
-    POSTER_SYNOPSIS, DATA, ACTION, HEADER
+    Synopsis, Data, Action, Header
   }
 
   @Override

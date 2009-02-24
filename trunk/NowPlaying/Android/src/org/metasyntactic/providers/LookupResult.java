@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LookupResult {
-  public final List<Movie> movies;
-  public final List<Theater> theaters;
+  private final List<Movie> movies;
+  private final List<Theater> theaters;
   // theater name -> movie name -> [ { showtime, showid } ]
-  public final Map<String, Map<String, List<Performance>>> performances;
+  private final Map<String, Map<String, List<Performance>>> performances;
   // theater name -> date
-  public final Map<String, Date> synchronizationData;
+  private final Map<String, Date> synchronizationData;
 
   public LookupResult(final List<Movie> movies, final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances,
     final Map<String, Date> synchronizationData) {
@@ -39,11 +39,27 @@ public class LookupResult {
   }
 
   public boolean containsFavorite(final FavoriteTheater favorite) {
-    for (final Theater theater : this.theaters) {
+    for (final Theater theater : getTheaters()) {
       if (theater.getName().equals(favorite.getName())) {
         return true;
       }
     }
     return false;
+  }
+
+  public List<Movie> getMovies() {
+    return movies;
+  }
+
+  public List<Theater> getTheaters() {
+    return theaters;
+  }
+
+  public Map<String, Map<String, List<Performance>>> getPerformances() {
+    return performances;
+  }
+
+  public Map<String, Date> getSynchronizationData() {
+    return synchronizationData;
   }
 }

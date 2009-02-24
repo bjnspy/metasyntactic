@@ -33,17 +33,17 @@ public class BoundedPrioritySet<T> {
   }
 
   public void add(final T value) {
-    synchronized (this.lock) {
+    synchronized (lock) {
       addNoLock(value);
     }
   }
 
   private void addNoLock(final T value) {
-    this.set.remove(value);
-    this.set.add(value);
+    set.remove(value);
+    set.add(value);
 
     if (maxSize > 0) {
-      if (this.set.size() > this.maxSize) {
+      if (set.size() > maxSize) {
         removeAny();
       }
     }
@@ -58,12 +58,12 @@ public class BoundedPrioritySet<T> {
   }
 
   public T removeAny() {
-    synchronized (this.lock) {
-      if (this.set.isEmpty()) {
+    synchronized (lock) {
+      if (set.isEmpty()) {
         return null;
       }
 
-      final Iterator<T> iterator = this.set.iterator();
+      final Iterator<T> iterator = set.iterator();
       final T value = iterator.next();
       iterator.remove();
 
@@ -72,7 +72,7 @@ public class BoundedPrioritySet<T> {
   }
 
   public T removeAny(final Set<T> lowPriorityValues) {
-    synchronized (this.lock) {
+    synchronized (lock) {
       T value = removeAny();
       if (value != null) {
         return value;

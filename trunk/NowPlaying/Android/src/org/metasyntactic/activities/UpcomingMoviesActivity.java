@@ -25,7 +25,6 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -156,7 +155,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int whichButton) {
-          UpcomingMoviesActivity.this.finish();
+          finish();
         }
       }).show();
     }
@@ -275,12 +274,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     if (search == null) {
       bottomBar.setVisibility(View.GONE);
     }
-    final Button UpcomingMovies = (Button) findViewById(R.id.all_movies);
+    final View UpcomingMovies = findViewById(R.id.all_movies);
     UpcomingMovies.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent();
         intent.setClass(UpcomingMoviesActivity.this, UpcomingMoviesActivity.class);
-        UpcomingMoviesActivity.this.startActivity(intent);
+        startActivity(intent);
       }
     });
     grid = (CustomGridView) findViewById(R.id.grid);
@@ -331,7 +330,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
+  public static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
@@ -480,7 +479,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     final float centerY = view.getHeight() / 2.0f;
     // Create a new 3D rotation with the supplied parameter
     // The animation listener is used to trigger the next animation
-    final Rotate3dAnimation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
+    final Animation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
     rotation.setDuration(20);
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {

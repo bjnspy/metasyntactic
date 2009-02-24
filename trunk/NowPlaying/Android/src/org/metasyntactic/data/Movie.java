@@ -45,19 +45,19 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
   private final List<String> genres;
 
   public void persistTo(final PersistableOutputStream out) throws IOException {
-    out.writeString(this.identifier);
-    out.writeString(this.canonicalTitle);
-    out.writeString(this.displayTitle);
-    out.writeString(this.rating);
-    out.writeInt(this.length);
-    out.writeString(this.imdbAddress);
-    out.writeDate(this.releaseDate);
-    out.writeString(this.poster);
-    out.writeString(this.synopsis);
-    out.writeString(this.studio);
-    out.writeStringCollection(this.directors);
-    out.writeStringCollection(this.cast);
-    out.writeStringCollection(this.genres);
+    out.writeString(identifier);
+    out.writeString(canonicalTitle);
+    out.writeString(displayTitle);
+    out.writeString(rating);
+    out.writeInt(length);
+    out.writeString(imdbAddress);
+    out.writeDate(releaseDate);
+    out.writeString(poster);
+    out.writeString(synopsis);
+    out.writeString(studio);
+    out.writeStringCollection(directors);
+    out.writeStringCollection(cast);
+    out.writeStringCollection(genres);
   }
 
   public static final Reader<Movie> reader = new AbstractReader<Movie>() {
@@ -108,55 +108,55 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
   }
 
   public String getIdentifier() {
-    return this.identifier;
+    return identifier;
   }
 
   public String getCanonicalTitle() {
-    return this.canonicalTitle;
+    return canonicalTitle;
   }
 
   public String getDisplayTitle() {
-    return this.displayTitle;
+    return displayTitle;
   }
 
   public String getRating() {
-    return this.rating;
+    return rating;
   }
 
   public int getLength() {
-    return this.length;
+    return length;
   }
 
   public String getIMDbAddress() {
-    return this.imdbAddress;
+    return imdbAddress;
   }
 
   public Date getReleaseDate() {
-    return this.releaseDate;
+    return releaseDate;
   }
 
   public String getPoster() {
-    return this.poster;
+    return poster;
   }
 
   public String getSynopsis() {
-    return this.synopsis;
+    return synopsis;
   }
 
   public String getStudio() {
-    return this.studio;
+    return studio;
   }
 
   public List<String> getDirectors() {
-    return Collections.unmodifiableList(this.directors);
+    return Collections.unmodifiableList(directors);
   }
 
   public List<String> getCast() {
-    return Collections.unmodifiableList(this.cast);
+    return Collections.unmodifiableList(cast);
   }
 
   public List<String> getGenres() {
-    return Collections.unmodifiableList(this.genres);
+    return Collections.unmodifiableList(genres);
   }
 
   @Override
@@ -170,7 +170,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
 
     final Movie movie = (Movie) o;
 
-    if (this.canonicalTitle != null ? !this.canonicalTitle.equals(
+    if (canonicalTitle != null ? !canonicalTitle.equals(
       movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
     }
@@ -180,16 +180,16 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
 
   @Override
   public int hashCode() {
-    return this.canonicalTitle != null ? this.canonicalTitle.hashCode() : 0;
+    return canonicalTitle != null ? canonicalTitle.hashCode() : 0;
   }
 
   @Override
   public String toString() {
-    return this.canonicalTitle;
+    return canonicalTitle;
   }
 
-  private final static String[] prefixArticles;
-  private final static String[] suffixArticles;
+  private static final String[] prefixArticles;
+  private static final String[] suffixArticles;
 
   static {
     final String[] articles = {"Der", "Das", "Ein", "Eine", "The", "A", "An", "La", "Las", "Le", "Les", "Los", "El", "Un", "Une", "Una", "Il", "O", "Het", "De", "Os", "Az", "Den", "Al", "En", "L'"};
@@ -234,19 +234,19 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
   }
 
   public void writeToParcel(final Parcel dest, final int flags) {
-    dest.writeString(this.identifier);
-    dest.writeString(this.canonicalTitle);
-    dest.writeString(this.displayTitle);
-    dest.writeString(this.rating);
-    dest.writeInt(this.length);
-    dest.writeString(this.imdbAddress);
-    dest.writeValue(this.releaseDate);
-    dest.writeString(this.poster);
-    dest.writeString(this.synopsis);
-    dest.writeString(this.studio);
-    dest.writeStringList(this.directors);
-    dest.writeStringList(this.cast);
-    dest.writeStringList(this.genres);
+    dest.writeString(identifier);
+    dest.writeString(canonicalTitle);
+    dest.writeString(displayTitle);
+    dest.writeString(rating);
+    dest.writeInt(length);
+    dest.writeString(imdbAddress);
+    dest.writeValue(releaseDate);
+    dest.writeString(poster);
+    dest.writeString(synopsis);
+    dest.writeString(studio);
+    dest.writeStringList(directors);
+    dest.writeStringList(cast);
+    dest.writeStringList(genres);
   }
 
   public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -281,12 +281,12 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     return getCanonicalTitle().compareTo(movie.getCanonicalTitle());
   }
 
-  public final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+  public static final Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
     }
   };
-  public final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+  public static final Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       final Calendar c1 = Calendar.getInstance();
       c1.set(1900, 11, 11);
@@ -301,7 +301,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       return d2.compareTo(d1);
     }
   };
-  public final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+  public static final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       int value1 = 0;
       final Score s1 = NowPlayingControllerWrapper.getScore(m1);

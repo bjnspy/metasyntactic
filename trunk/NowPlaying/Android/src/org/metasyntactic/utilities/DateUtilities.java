@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtilities {
-  private final static Date today;
+  private static final Date today;
 
   static {
     final Date dt = new Date();

@@ -77,6 +77,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private String[] score;
   private TextView progressUpdate;
   private RelativeLayout bottomBar;
+
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -114,7 +115,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
 
   private void showNoInformationFoundDialog() {
-    new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
+    new AlertDialog.Builder(this).setMessage(R.string.no_information)
       .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int whichButton) {
         }
@@ -384,7 +385,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     for (i = 0; i < alphabets.size(); i++) {
       if (alphaMoviePositionsMap.get(i) == null) {
         if (i == 0) {
-          alphaMoviePositionsMap.put(i, 0);
+          alphaMoviePositionsMap.put(0, 0);
         } else {
           alphaMoviePositionsMap.put(i, alphaMoviePositionsMap.get(i - 1));
         }
@@ -410,7 +411,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     for (i = 0; i < scores.size(); i++) {
       if (scoreMoviePositionsMap.get(i) == null) {
         if (i == 0) {
-          scoreMoviePositionsMap.put(i, 0);
+          scoreMoviePositionsMap.put(0, 0);
         } else {
           scoreMoviePositionsMap.put(i, scoreMoviePositionsMap.get(i - 1));
         }

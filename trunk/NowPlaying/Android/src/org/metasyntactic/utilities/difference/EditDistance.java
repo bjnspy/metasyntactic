@@ -118,7 +118,7 @@ public class EditDistance {
     return diff <= threshold;
   }
 
-  static int threshold(final String string) {
+  static int threshold(final CharSequence string) {
     return Math.max(string.length() / 4, 1);
   }
 

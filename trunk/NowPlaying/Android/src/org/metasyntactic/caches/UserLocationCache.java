@@ -14,6 +14,7 @@
 package org.metasyntactic.caches;
 
 import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.io.Persistable;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
@@ -38,7 +39,7 @@ public class UserLocationCache {
       }
     };
 
-    performOnBackgroundThread("Download User Address", runnable, this.lock, true/* visible */);
+    performOnBackgroundThread("Download User Address", runnable, lock, true/* visible */);
   }
 
   public static Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
@@ -62,7 +63,7 @@ public class UserLocationCache {
     return location;
   }
 
-  private static boolean containsNumber(final String string) {
+  private static boolean containsNumber(final CharSequence string) {
     for (int i = 0; i < string.length(); i++) {
       final char c = string.charAt(i);
       if (c >= '0' && c <= '9') {
@@ -73,7 +74,7 @@ public class UserLocationCache {
     return false;
   }
 
-  private static String userCountryISO() {
+  private static Object userCountryISO() {
     return Locale.getDefault().getCountry();
   }
 
@@ -168,7 +169,7 @@ public class UserLocationCache {
     return new File(NowPlayingApplication.userLocationsDirectory, FileUtilities.sanitizeFileName(address));
   }
 
-  private static void saveLocation(final Location location, final String address) {
+  private static void saveLocation(final Persistable location, final String address) {
     if (location == null || isNullOrEmpty(address)) {
       return;
     }
@@ -176,7 +177,7 @@ public class UserLocationCache {
     FileUtilities.writePersistable(location, locationFile(address));
   }
 
-  public static void reportLocationForAddress(final Location location, final String address) {
+  public static void reportLocationForAddress(final Persistable location, final String address) {
     saveLocation(location, address);
   }
 }

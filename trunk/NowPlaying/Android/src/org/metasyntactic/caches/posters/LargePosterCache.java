@@ -233,7 +233,7 @@ public class LargePosterCache extends AbstractCache {
     }
   }
 
-  private final static int MAX_DIMENSION = 240;
+  private static final int MAX_DIMENSION = 240;
 
   private static byte[] resizePoster(final byte[] bytes) {
     final BitmapFactory.Options options1 = new BitmapFactory.Options();

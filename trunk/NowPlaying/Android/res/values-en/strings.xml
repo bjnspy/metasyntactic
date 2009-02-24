@@ -237,7 +237,7 @@
   <string name="no_listings_found_for_string_on_string">No listings found for '%s' on %s</string>
   <!--No results found for '%@'-->
   <string name="no_results_found_for_string">No results found for '%s'</string>
-  <!--No synopsis available.-->
+  <!--No Synopsis available.-->
   <string name="no_synopsis_available_dot">No synopsis available.</string>
   <!--None-->
   <string name="none">None</string>

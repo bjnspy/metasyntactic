@@ -33,7 +33,6 @@ public class PosterCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private final BoundedPrioritySet<Movie> moviesWithoutLinks = new BoundedPrioritySet<Movie>();
   private final BoundedPrioritySet<Movie> moviesWithLinks = new BoundedPrioritySet<Movie>();
-  private final Object lock = new Object();
 
   public PosterCache(final NowPlayingModel model) {
     super(model);
@@ -54,7 +53,7 @@ public class PosterCache extends AbstractCache {
     return new File(NowPlayingApplication.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
   }
 
-  public void update(final List<Movie> movies) {
+  public void update(final Iterable<Movie> movies) {
     synchronized (lock) {
       for (final Movie movie : movies) {
         if (isNullOrEmpty(movie.getPoster())) {
@@ -64,7 +63,7 @@ public class PosterCache extends AbstractCache {
         }
       }
 
-      lock.notify();
+      lock.notifyAll();
     }
   }
 
@@ -161,7 +160,7 @@ public class PosterCache extends AbstractCache {
   public void prioritizeMovie(final Movie movie) {
     synchronized (lock) {
       prioritizedMovies.add(movie);
-      lock.notify();
+      lock.notifyAll();
     }
   }
 

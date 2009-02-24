@@ -45,6 +45,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Collection;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private static class MovieAndMap {
@@ -73,26 +74,26 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   public final void createDirectory() {
-    this.providerDirectory.mkdirs();
-    this.reviewsDirectory.mkdirs();
+    providerDirectory.mkdirs();
+    reviewsDirectory.mkdirs();
   }
 
   protected abstract String getProviderName();
 
   protected NowPlayingModel getModel() {
-    return this.model;
+    return model;
   }
 
   private File scoresFile() {
-    return new File(this.providerDirectory, "Scores");
+    return new File(providerDirectory, "Scores");
   }
 
   private File hashFile() {
-    return new File(this.providerDirectory, "Hash");
+    return new File(providerDirectory, "Hash");
   }
 
   private File movieMapFile() {
-    return new File(this.providerDirectory, "MovieMap");
+    return new File(providerDirectory, "MovieMap");
   }
 
   private Map<String, Score> loadScores() {
@@ -120,24 +121,24 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   public Map<String, Score> getScores() {
-    if (this.scores == null) {
-      this.scores = loadScores();
+    if (scores == null) {
+      scores = loadScores();
     }
-    return Collections.unmodifiableMap(this.scores);
+    return Collections.unmodifiableMap(scores);
   }
 
   private String getHash() {
-    if (this.hash == null) {
-      this.hash = loadHash();
+    if (hash == null) {
+      hash = loadHash();
     }
-    return this.hash;
+    return hash;
   }
 
   private Map<String, String> getMovieMap() {
-    if (this.movieMap_doNotAccessDirectly == null) {
-      this.movieMap_doNotAccessDirectly = loadMovieMap();
+    if (movieMap_doNotAccessDirectly == null) {
+      movieMap_doNotAccessDirectly = loadMovieMap();
     }
-    return this.movieMap_doNotAccessDirectly;
+    return movieMap_doNotAccessDirectly;
   }
 
   public void update() {
@@ -145,20 +146,20 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void updateScores() {
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     final long start = System.currentTimeMillis();
     Map<String, Score> map = updateScoresWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
 
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     if (map == null) {
       map = loadScores();
     }
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     updateReviewsWorker(map);
@@ -218,8 +219,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private void reportResultOnMainThread(final String hash, final Map<String, Score> scores) {
     this.hash = hash;
     this.scores = scores;
-    this.movieMap_doNotAccessDirectly = null;
-    this.movies = null;
+    movieMap_doNotAccessDirectly = null;
+    movies = null;
 
     NowPlayingApplication.refresh(true);
   }
@@ -240,7 +241,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
           regenerateMovieMap(movies, localScores);
         }
       };
-      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, this.movieMapLock, true);
+      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, true);
     }
   }
 
@@ -254,7 +255,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     for (final Movie movie : movies) {
-      if (this.shutdown) {
+      if (shutdown) {
         return;
       }
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
@@ -282,7 +283,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void reportMovieMap(final Map<String, String> result, final List<Movie> movies) {
-    this.movieMap_doNotAccessDirectly = result;
+    movieMap_doNotAccessDirectly = result;
     this.movies = movies;
     NowPlayingApplication.refresh(true);
   }
@@ -292,11 +293,11 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   protected abstract Map<String, Score> lookupServerScores();
 
   private File reviewsFile(final String title) {
-    return new File(this.reviewsDirectory, FileUtilities.sanitizeFileName(title));
+    return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title));
   }
 
   private File reviewsHashFile(final String title) {
-    return new File(this.reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
+    return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
   }
 
   private void updateReviewsWorker(final Map<String, Score> scoresMap) {
@@ -329,11 +330,11 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     do {
       score = getNextScore(scores, scoresMap);
       downloadReviews(score, location);
-    } while (score != null && !this.shutdown);
+    } while (score != null && !shutdown);
   }
 
   private Score getNextScore(final Set<Score> scores, final Map<String, Score> scoresMap) {
-    final MovieAndMap movieAndMap = this.prioritizedMovies.removeAny();
+    final MovieAndMap movieAndMap = prioritizedMovies.removeAny();
     if (movieAndMap != null) {
       final Movie movie = movieAndMap.movie;
       final Map<String, String> movieMap = movieAndMap.movieMap;
@@ -356,7 +357,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
     ensureMovieMap(movies);
-    this.prioritizedMovies.add(new MovieAndMap(movie, getMovieMap()));
+    prioritizedMovies.add(new MovieAndMap(movie, getMovieMap()));
   }
 
   private static String serverReviewsAddress(final Location location, final Score score) {
@@ -441,7 +442,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return result;
   }
 
-  private void save(final String title, final List<Review> reviews, final String serverHash) {
+  private void save(final String title, final Collection<Review> reviews, final String serverHash) {
     FileUtilities.writePersistableCollection(reviews, reviewsFile(title));
 
     // do this last. it marks us being complete.
@@ -460,11 +461,12 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
   @Override
   protected List<File> getCacheDirectories() {
-    return Collections.singletonList(this.reviewsDirectory);
+    return Collections.singletonList(reviewsDirectory);
   }
 
   @Override
   public void onLowMemory() {
+    super.onLowMemory();
     movieMap_doNotAccessDirectly = null;
   }
 }

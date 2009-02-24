@@ -19,7 +19,7 @@ public class ExceptionUtilities {
   private ExceptionUtilities() {
   }
 
-  public static void log(final Class<?> clazz, final String method, final Exception e) {
+  public static void log(final Class<?> clazz, final String method, final Throwable e) {
     Log.e(clazz.getName(), method, e);
   }
 }

@@ -94,7 +94,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
-      // Add title and synopsis
+      // Add title and Synopsis
       {
         final String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
         final String value;
@@ -107,17 +107,15 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
           value, MovieDetailItemType.POSTER_SYNOPSIS, null, false);
         movieDetailEntries.add(entry);
       }
-      {
-        // Add release Date
-        final Date releaseDate = movie.getReleaseDate();
-        if (releaseDate != null) {
-          final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(
-            releaseDate);
-          final MovieDetailEntry entry = new MovieDetailEntry(res
-            .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
-            null, false);
-          movieDetailEntries.add(entry);
-        }
+      // Add release Date
+      final Date releaseDate = movie.getReleaseDate();
+      if (releaseDate != null) {
+        final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(
+          releaseDate);
+        final MovieDetailEntry entry = new MovieDetailEntry(res
+          .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
+          null, false);
+        movieDetailEntries.add(entry);
       }
       {
         // Add cast
@@ -214,7 +212,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
           if (synopsis.length() > 0) {
             final TextPaint paint = text1.getPaint();
             final int orientation = getResources().getConfiguration().orientation;
-            int textViewWidth;
+            final int textViewWidth;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
               // textViewWidth = screenWidth - posterWidth - paddingLeft -
               // paddingRight - spaceBetweenPosterAndTextView
@@ -222,11 +220,11 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
             } else {
               textViewWidth = 320 - 126 - 5 - 5 - 5;
             }
-            final android.text.Layout l = new StaticLayout(synopsis, paint, textViewWidth,
+            final Layout layout = new StaticLayout(synopsis, paint, textViewWidth,
               Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
             // height of poster is 182px
-            final int line = l.getLineForVertical(182);
-            final int off = l.getLineStart(line + 1);
+            final int line = layout.getLineForVertical(182);
+            final int off = layout.getLineStart(line + 1);
             final String desc1_text = synopsis.substring(0, off);
             final String desc2_text = synopsis.substring(off, synopsis.length());
             text1.setText(desc1_text);
@@ -248,12 +246,11 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
           final TextView headerView = (TextView) convertView.findViewById(R.id.name);
           headerView.setText(entry.name);
           break;
-        case ACTION: {
+        case ACTION:
           convertView = inflater.inflate(R.layout.dataview, null);
           final TextView view = (TextView) convertView.findViewById(R.id.name);
           view.setText(entry.name);
           break;
-        }
       }
       return convertView;
     }

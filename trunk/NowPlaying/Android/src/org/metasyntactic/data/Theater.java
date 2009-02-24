@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -72,7 +73,7 @@ public class Theater extends AbstractPersistable implements Parcelable {
     this.phoneNumber = nonNullString(phoneNumber);
     this.location = location;
     this.originatingLocation = originatingLocation;
-    this.movieTitles = movieTitles;
+    this.movieTitles = new HashSet<String>(movieTitles);
   }
 
   @Override
@@ -181,7 +182,7 @@ public class Theater extends AbstractPersistable implements Parcelable {
     return showtime;
   }
 
-  public final static Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
+  public static final Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
       return m1.getName().compareTo(m2.getName());
     }

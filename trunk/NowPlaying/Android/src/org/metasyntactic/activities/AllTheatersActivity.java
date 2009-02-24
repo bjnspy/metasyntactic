@@ -56,7 +56,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
   };
   // Define comparators for theater listings sort.
-  private final Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
+  private static final Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
       return m1.getName().compareTo(m2.getName());
     }
@@ -141,7 +141,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     for (i = 0; i < alphabets.size(); i++) {
       if (alphaTheaterPositionsMap.get(i) == null) {
         if (i == 0) {
-          alphaTheaterPositionsMap.put(i, 0);
+          alphaTheaterPositionsMap.put(0, 0);
         } else {
           alphaTheaterPositionsMap.put(i, alphaTheaterPositionsMap.get(i - 1));
         }
@@ -164,8 +164,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     int prevLevel = 0;
     final List<String> distances = Arrays.asList(distance);
     for (final Theater theater : theaters) {
-      final double distance = userLocation.distanceTo(theater.getLocation());
-      final int distanceLevel = MovieViewUtilities.getDistanceLevel(distance);
+      final double localDistance = userLocation.distanceTo(theater.getLocation());
+      final int distanceLevel = MovieViewUtilities.getDistanceLevel(localDistance);
       distanceTheaterSectionsMap.put(i, distanceLevel);
       if (prevLevel == 0 || distanceLevel != prevLevel) {
         distanceTheaterPositionsMap.put(distanceLevel, i);
@@ -176,7 +176,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     for (i = 0; i < distances.size(); i++) {
       if (distanceTheaterPositionsMap.get(i) == null) {
         if (i == 0) {
-          distanceTheaterPositionsMap.put(i, 0);
+          distanceTheaterPositionsMap.put(0, 0);
         } else {
           distanceTheaterPositionsMap.put(i, distanceTheaterPositionsMap.get(i - 1));
         }
@@ -259,8 +259,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       }
     }
 
-    public void refreshTheaters(final List<Theater> new_theaters) {
-      theaters = new_theaters;
+    public void refreshTheaters(final List<Theater> localTheaters) {
+      theaters = new ArrayList<Theater>(localTheaters);
       notifyDataSetChanged();
     }
 

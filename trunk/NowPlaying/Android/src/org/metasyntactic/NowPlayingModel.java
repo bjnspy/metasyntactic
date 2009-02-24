@@ -24,12 +24,12 @@ import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
@@ -44,18 +44,18 @@ import java.util.List;
 import java.util.Locale;
 
 public class NowPlayingModel {
-  private final static String PERSISTANCE_VERSION = "15";
-  private final static String VERSION_KEY = "VERSION";
-  private final static String USER_ADDRESS_KEY = "userAddress";
-  private final static String SEARCH_DATE_KEY = "searchDate";
-  private final static String SEARCH_DISTANCE_KEY = "searchDistance";
-  private final static String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
-  private final static String ALL_MOVIES_SELECTED_SORT_INDEX_KEY = "allMoviesSelectedSortIndex";
-  private final static String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
-  private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
-  private final static String SCORE_TYPE_KEY = "scoreType";
-  private final static String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
-  private final static String CLEAR_CACHE_KEY = "clearCache";
+  private static final String PERSISTANCE_VERSION = "15";
+  private static final String VERSION_KEY = "VERSION";
+  private static final String USER_ADDRESS_KEY = "userAddress";
+  private static final String SEARCH_DATE_KEY = "searchDate";
+  private static final String SEARCH_DISTANCE_KEY = "searchDistance";
+  private static final String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
+  private static final String ALL_MOVIES_SELECTED_SORT_INDEX_KEY = "allMoviesSelectedSortIndex";
+  private static final String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
+  private static final String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
+  private static final String SCORE_TYPE_KEY = "scoreType";
+  private static final String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
+  private static final String CLEAR_CACHE_KEY = "clearCache";
   // SharedPreferences is not threadsafe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
@@ -275,7 +275,7 @@ public class NowPlayingModel {
     }
   }
 
-  public void setScoreType(final ScoreType scoreType) {
+  public void setScoreType(final Object scoreType) {
     synchronized (preferencesLock) {
       final SharedPreferences.Editor editor = preferences.edit();
       editor.putString(SCORE_TYPE_KEY, scoreType.toString());
@@ -334,7 +334,7 @@ public class NowPlayingModel {
     return UpcomingCache.getCast(movie);
   }
 
-  private final static byte[] EMPTY_BYTES = new byte[0];
+  private static final byte[] EMPTY_BYTES = new byte[0];
 
   public static byte[] getPoster(final Movie movie) {
     byte[] bytes = PosterCache.getPoster(movie);
@@ -448,7 +448,7 @@ public class NowPlayingModel {
     return dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 
-  public static void reportLocationForAddress(final Location location, final String address) {
+  public static void reportLocationForAddress(final Persistable location, final String address) {
     UserLocationCache.reportLocationForAddress(location, address);
   }
 

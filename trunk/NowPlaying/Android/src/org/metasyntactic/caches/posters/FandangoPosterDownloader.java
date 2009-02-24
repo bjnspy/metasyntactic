@@ -104,7 +104,7 @@ public class FandangoPosterDownloader {
   }
 
   private static String trimPostalCode(final String postalCode) {
-    final StringBuilder buffer = new StringBuilder();
+    final StringBuilder buffer = new StringBuilder(postalCode.length());
     for (final char c : postalCode.toCharArray()) {
       if (Character.isLetterOrDigit(c)) {
         buffer.append(c);

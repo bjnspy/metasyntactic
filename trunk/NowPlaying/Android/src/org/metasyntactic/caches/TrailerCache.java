@@ -65,7 +65,7 @@ public class TrailerCache extends AbstractCache {
     return Collections.singletonList(NowPlayingApplication.trailersDirectory);
   }
 
-  public void update(final List<Movie> movies) {
+  public void update(final Iterable<Movie> movies) {
     final Runnable runnable = new Runnable() {
       public void run() {
         addMovies(movies);
@@ -74,7 +74,7 @@ public class TrailerCache extends AbstractCache {
     ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, lock, false/* visible */);
   }
 
-  private void addMovies(final List<Movie> movies) {
+  private void addMovies(final Iterable<Movie> movies) {
     synchronized (lock) {
       final long now = new Date().getTime();
 
@@ -91,7 +91,7 @@ public class TrailerCache extends AbstractCache {
           moviesWithoutTrailers.add(movie);
         }
 
-        lock.notify();
+        lock.notifyAll();
       }
     }
   }
@@ -192,7 +192,7 @@ public class TrailerCache extends AbstractCache {
   public void prioritizeMovie(final Movie movie) {
     synchronized (lock) {
       prioritizedMovies.add(movie);
-      lock.notify();
+      lock.notifyAll();
     }
   }
 

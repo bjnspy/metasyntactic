@@ -17,16 +17,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Member;
 
 public abstract class ScoreType implements Parcelable {
   private ScoreType() {
 
   }
 
-  private Field findField() {
+  private Member findField() {
     for (final Field field : ScoreType.class.getFields()) {
       try {
-        if (this.equals(field.get(null))) {
+        if (equals(field.get(null))) {
           return field;
         }
       } catch (IllegalAccessException e) {
@@ -50,7 +51,7 @@ public abstract class ScoreType implements Parcelable {
     return findField().getName();
   }
 
-  public static ScoreType valueOf(final String name) {
+  public static ScoreType valueOf(final Object name) {
     for (final Field field : ScoreType.class.getFields()) {
       if (field.getName().equals(name)) {
         try {
@@ -91,7 +92,7 @@ public abstract class ScoreType implements Parcelable {
     final Field[] fields = ScoreType.class.getFields();
     for (int i = 0; i < fields.length; i++) {
       try {
-        if (this.equals(fields[i].get(null))) {
+        if (equals(fields[i].get(null))) {
           return i;
         }
       } catch (IllegalAccessException e) {

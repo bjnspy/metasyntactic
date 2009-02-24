@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import org.metasyntactic.NowPlayingControllerWrapper;
@@ -27,6 +27,7 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ShowtimesDetailsActivity extends ListActivity {
@@ -34,7 +35,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
   private Movie movie;
   private final List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
   private List<Performance> performances = new ArrayList<Performance>();
-  private final List<String> showtimes = new ArrayList<String>();
+  private final Collection<String> showtimes = new ArrayList<String>();
   private final List<String> showtimes_url = new ArrayList<String>();
 
   private enum TheaterDetailItemType {
@@ -66,11 +67,11 @@ public class ShowtimesDetailsActivity extends ListActivity {
       }
     }
     populateTheaterDetailItem();
-    final TheaterAdapter theaterAdapter = new TheaterAdapter();
+    final ListAdapter theaterAdapter = new TheaterAdapter();
     setListAdapter(theaterAdapter);
     final TextView theaterTxt = (TextView) findViewById(R.id.theater);
     theaterTxt.setText(theater.getName());
-    final Button orderTickets = (Button) findViewById(R.id.showtimes);
+    final View orderTickets = findViewById(R.id.showtimes);
     orderTickets.setOnClickListener(new OnClickListener() {
       public void onClick(final View v) {
         showDialog(1);

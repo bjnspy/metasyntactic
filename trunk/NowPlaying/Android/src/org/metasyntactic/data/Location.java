@@ -128,8 +128,8 @@ public class Location extends AbstractPersistable implements Parcelable {
   }
 
   public static final double UNKNOWN_DISTANCE = Float.MAX_VALUE;
-  private final static double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
-  private final static double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
+  private static final double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
+  private static final double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
 
   public double distanceTo(final Location to) {
 
@@ -137,10 +137,10 @@ public class Location extends AbstractPersistable implements Parcelable {
       return UNKNOWN_DISTANCE;
     }
 
-    final double lat1 = (this.latitude / 180) * PI;
-    final double lng1 = (this.longitude / 180) * PI;
-    final double lat2 = (to.latitude / 180) * PI;
-    final double lng2 = (to.longitude / 180) * PI;
+    final double lat1 = latitude / 180 * PI;
+    final double lng1 = longitude / 180 * PI;
+    final double lat2 = to.latitude / 180 * PI;
+    final double lng2 = to.longitude / 180 * PI;
 
     double diff = lng1 - lng2;
 

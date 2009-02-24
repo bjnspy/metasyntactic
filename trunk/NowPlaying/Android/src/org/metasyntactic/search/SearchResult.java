@@ -35,22 +35,22 @@ public class SearchResult {
   }
 
   public int getRequestId() {
-    return this.requestId;
+    return requestId;
   }
 
   public String getValue() {
-    return this.value;
+    return value;
   }
 
   public List<Movie> getMovies() {
-    return this.movies;
+    return movies;
   }
 
   public List<Theater> getTheaters() {
-    return this.theaters;
+    return theaters;
   }
 
   public List<Movie> getUpcomingMovies() {
-    return this.upcomingMovies;
+    return upcomingMovies;
   }
 }

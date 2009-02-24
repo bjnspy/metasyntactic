@@ -28,17 +28,17 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class NowPlayingApplication extends Application {
-  public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
-  public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS = "NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS";
-  public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
-  public final static String NOW_PLAYING_UPDATING_LOCATION_START = "NOW_PLAYING_UPDATING_LOCATION_START";
-  public final static String NOW_PLAYING_UPDATING_LOCATION_STOP = "NOW_PLAYING_UPDATING_LOCATION_STOP";
-  public final static String SCROLLING_INTENT = "SCROLLING_INTENT";
-  public final static String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
-  public final static String host =
+  public static final String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
+  public static final String NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS = "NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS";
+  public static final String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
+  public static final String NOW_PLAYING_UPDATING_LOCATION_START = "NOW_PLAYING_UPDATING_LOCATION_START";
+  public static final String NOW_PLAYING_UPDATING_LOCATION_STOP = "NOW_PLAYING_UPDATING_LOCATION_STOP";
+  public static final String SCROLLING_INTENT = "SCROLLING_INTENT";
+  public static final String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
+  public static final String host =
     /*
      * "metaboxoffice6"; /
      */
@@ -82,10 +82,6 @@ public class NowPlayingApplication extends Application {
     }
   }
 
-  public NowPlayingApplication() {
-
-  }
-
   public static String getName(final Resources resources) {
     return resources.getString(R.string.application_name);
   }
@@ -118,9 +114,9 @@ public class NowPlayingApplication extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
-    this.registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
-    this.registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
-    this.registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
+    registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
+    registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
+    registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
   }
 
 
@@ -134,9 +130,9 @@ public class NowPlayingApplication extends Application {
   public static void initialize() {
   }
 
-  private static List<File> directories() {
+  private static Iterable<File> directories() {
     try {
-      final List<File> directories = new ArrayList<File>();
+      final Collection<File> directories = new ArrayList<File>();
       for (final Field field : NowPlayingApplication.class.getFields()) {
         if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;

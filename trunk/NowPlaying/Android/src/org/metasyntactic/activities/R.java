@@ -530,7 +530,7 @@ public final class R {
         /** No results found for '%@'
          */
         public static final int no_results_found_for_string=0x7f07009b;
-        /** No synopsis available.
+        /** No Synopsis available.
          */
         public static final int no_synopsis_available_dot=0x7f07009c;
         /** No Thanks

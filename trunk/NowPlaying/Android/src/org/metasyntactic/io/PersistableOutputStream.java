@@ -17,27 +17,15 @@ import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
 public class PersistableOutputStream {
   private final DataOutputStream out;
-  private byte[] bytes;
-  private ByteBuffer byteBuffer;
-  private CharBuffer charBuffer;
-
-  private void initializeBuffers(final int byteCount) {
-    bytes = new byte[byteCount];
-    byteBuffer = ByteBuffer.wrap(bytes);
-    charBuffer = byteBuffer.asCharBuffer();
-  }
 
   public PersistableOutputStream(final DataOutputStream out) {
     this.out = out;
-    initializeBuffers(1 << 11);
   }
 
   public void close() throws IOException {
