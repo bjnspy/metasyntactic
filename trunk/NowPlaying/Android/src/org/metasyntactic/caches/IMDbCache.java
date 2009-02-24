@@ -64,9 +64,7 @@ public class IMDbCache extends AbstractCache {
     while (!shutdown) {
       Movie movie = null;
       synchronized (lock) {
-        while (!shutdown &&
-          (movie = prioritizedMovies.removeAny()) == null &&
-          (movie = normalMovies.removeAny()) == null) {
+        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = normalMovies.removeAny()) == null) {
           lock.wait();
         }
       }
@@ -98,8 +96,8 @@ public class IMDbCache extends AbstractCache {
       }
     }
 
-    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q="
-      + StringUtilities.urlEncode(movie.getCanonicalTitle());
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities
+      .urlEncode(movie.getCanonicalTitle());
 
     final String imdbAddress = NetworkUtilities.downloadString(url, false);
     if (imdbAddress == null) {

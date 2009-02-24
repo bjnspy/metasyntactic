@@ -82,12 +82,10 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
-        && mTask.getStatus() != UserTask.Status.RUNNING) {
+      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() != UserTask.Status.RUNNING) {
         mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute();
       }
-      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())
-        && mTask.getStatus() == UserTask.Status.RUNNING) {
+      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() == UserTask.Status.RUNNING) {
         mTask.cancel(true);
       }
     }
@@ -445,21 +443,21 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-      new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
+      .setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes")).setAlphabeticShortcut('s');
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
+      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes")).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
-        NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).setPositiveButton(
-        android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this)
+        .setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference)
+        .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;

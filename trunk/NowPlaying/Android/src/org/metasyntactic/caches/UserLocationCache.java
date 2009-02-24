@@ -14,8 +14,8 @@
 package org.metasyntactic.caches;
 
 import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.data.Location;
+import org.metasyntactic.io.Persistable;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
 import org.metasyntactic.utilities.ExceptionUtilities;
@@ -140,8 +140,8 @@ public class UserLocationCache {
       if (isNullOrEmpty(result.getPostalCode())) {
         final Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
         if (!isNullOrEmpty(resultLocation.getPostalCode())) {
-          return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(), result.getState(), resultLocation
-            .getPostalCode(), result.getCountry());
+          return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(), result.getState(),
+            resultLocation.getPostalCode(), result.getCountry());
         }
       }
     }

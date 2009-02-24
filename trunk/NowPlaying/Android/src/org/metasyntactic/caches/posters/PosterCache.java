@@ -71,10 +71,8 @@ public class PosterCache extends AbstractCache {
     while (!shutdown) {
       Movie movie = null;
       synchronized (lock) {
-        while (!shutdown &&
-          (movie = prioritizedMovies.removeAny()) == null &&
-          (movie = moviesWithLinks.removeAny()) == null &&
-          (movie = moviesWithoutLinks.removeAny()) == null) {
+        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithLinks
+          .removeAny()) == null && (movie = moviesWithoutLinks.removeAny()) == null) {
           lock.wait();
         }
       }

@@ -65,8 +65,8 @@ public class Theater extends AbstractPersistable implements Parcelable {
     }
   };
 
-  public Theater(final String identifier, final String name, final String address, final String phoneNumber,
-    final Location location, final Location originatingLocation, final Set<String> movieTitles) {
+  public Theater(final String identifier, final String name, final String address, final String phoneNumber, final Location location,
+    final Location originatingLocation, final Set<String> movieTitles) {
     this.identifier = identifier;
     this.name = nonNullString(name);
     this.address = nonNullString(address);
@@ -148,15 +148,12 @@ public class Theater extends AbstractPersistable implements Parcelable {
       final String address = source.readString();
       final String phoneNumber = source.readString();
 
-      final Location location = source.readParcelable(
-        NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
-      final Location originatingLocation = source.readParcelable(
-        NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+      final Location location = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+      final Location originatingLocation = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
       final List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 
-      return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
-        new LinkedHashSet<String>(movieTitles));
+      return new Theater(identifier, name, address, phoneNumber, location, originatingLocation, new LinkedHashSet<String>(movieTitles));
     }
 
     public Theater[] newArray(final int size) {

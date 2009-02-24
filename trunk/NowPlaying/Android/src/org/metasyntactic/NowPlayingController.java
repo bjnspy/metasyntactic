@@ -80,8 +80,8 @@ public class NowPlayingController {
     if (context == null) {
       return;
     }
-    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
-      new DialogInterface.OnClickListener() {
+    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
+      .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialogInterface, final int i) {
         }
       }).show();

@@ -310,9 +310,9 @@ public class DataProvider {
     final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
     int days = Days.daysBetween(DateUtilities.getToday(), model.getSearchDate());
     days = min(max(days, 0), 7);
-    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode="
-      + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
-      + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode=" + location
+      .getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location
+      .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;

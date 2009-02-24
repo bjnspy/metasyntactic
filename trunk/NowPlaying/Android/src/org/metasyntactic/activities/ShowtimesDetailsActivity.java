@@ -135,8 +135,8 @@ public class ShowtimesDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.showtimes_item, null);
       final Resources res = getResources();
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(R.id.label), (ImageView) convertView
-        .findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(R.id.label),
+        (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (detailItems.get(position).getType()) {
         case NAME_SHOWTIMES:
@@ -162,8 +162,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
           detailItems.get(position).setIntent(intent2);
           break;
         case ADDRESS:
-          final String address = theater.getAddress() + ", "
-            + theater.getLocation().getCity();
+          final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
           holder.data.setText(address);
           holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_map));
           holder.label.setText(res.getString(R.string.location));
@@ -229,10 +228,10 @@ public class ShowtimesDetailsActivity extends ListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-      new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
+      .setIntent(new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
+      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 

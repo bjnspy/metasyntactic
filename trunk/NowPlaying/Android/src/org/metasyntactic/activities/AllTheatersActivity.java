@@ -186,11 +186,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-      new Intent(this, AllTheatersActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
+      .setIntent(new Intent(this, AllTheatersActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_theaters).setIcon(R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
+      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -236,8 +236,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address), (TextView) convertView
-        .findViewById(R.id.title));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address),
+        (TextView) convertView.findViewById(R.id.title));
       // Bind the data efficiently with the holder.
       final Theater theater = theaters.get(position);
       holder.title.setText(theater.getName());

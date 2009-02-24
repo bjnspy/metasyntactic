@@ -117,10 +117,8 @@ public class TrailerCache extends AbstractCache {
     while (!shutdown) {
       Movie movie = null;
       synchronized (lock) {
-        while (!shutdown &&
-          (movie = prioritizedMovies.removeAny()) == null &&
-          (movie = moviesWithoutTrailers.removeAny()) == null &&
-          (movie = moviesWithTrailers.removeAny()) == null) {
+        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithoutTrailers
+          .removeAny()) == null && (movie = moviesWithTrailers.removeAny()) == null) {
           lock.wait();
         }
       }

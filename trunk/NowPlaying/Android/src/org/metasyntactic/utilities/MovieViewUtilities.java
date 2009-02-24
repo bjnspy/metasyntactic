@@ -23,9 +23,9 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Collection;
 
 public class MovieViewUtilities {
   public static final int MENU_SORT = 1;
