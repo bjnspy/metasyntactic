@@ -23,6 +23,7 @@
 
     BOOL running;
     BOOL firstTime;
+    BOOL userInvoked;
 }
 
 + (LocationManager*) managerWithController:(Controller*) controller;

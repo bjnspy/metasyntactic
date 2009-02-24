@@ -14,6 +14,7 @@
 
 #import "LocationManager.h"
 
+#import "AlertUtilities.h"
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "Controller.h"
@@ -99,28 +100,30 @@
 }
 
 
-- (void) startUpdatingSpinner {
+- (void) startUpdatingSpinner:(BOOL) userInvoked_ {
+    userInvoked = userInvoked_;
     buttonItem.style = UIBarButtonItemStyleDone;
     [self updateSpinnerImage:[NSNumber numberWithInt:1]];
 }
 
 
 - (void) stopUpdatingSpinner {
+    userInvoked = NO;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     buttonItem.style = UIBarButtonItemStylePlain;
     buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
 }
 
 
-- (void) startUpdatingLocation {
+- (void) startUpdatingLocation:(BOOL) userInvoked_ {
     if (running) {
         // the user may have stopped the spinner, and then started it up
         // again while the current request is still running.
-        [self startUpdatingSpinner];
+        [self startUpdatingSpinner:userInvoked_];
         return;
     }
     running = YES;
-    [self startUpdatingSpinner];
+    [self startUpdatingSpinner:userInvoked_];
 
     [locationManager startUpdatingLocation];
 }
@@ -128,13 +131,15 @@
 
 - (void) autoUpdateLocation {
     if (self.model.autoUpdateLocation) {
-        [self startUpdatingLocation];
+        [self startUpdatingLocation:NO];
     }
 }
 
 
 - (void) enqueueUpdateRequest:(NSInteger) delay {
-    [self performSelector:@selector(autoUpdateLocation) withObject:nil afterDelay:delay];
+    [self performSelector:@selector(autoUpdateLocation)
+               withObject:nil
+               afterDelay:delay];
 }
 
 
@@ -147,6 +152,10 @@
 
 - (void) locationManager:(CLLocationManager*) manager
         didFailWithError:(NSError*) error {
+    if (userInvoked) {
+        [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
+    }
+    
     [self stopAll];
 
     // intermittent failures are not uncommon. retry in a minute.
@@ -207,7 +216,7 @@
         [self stopUpdatingSpinner];
     } else {
         // start up the whole shebang.
-        [self startUpdatingLocation];
+        [self startUpdatingLocation:YES];
     }
 }
 
