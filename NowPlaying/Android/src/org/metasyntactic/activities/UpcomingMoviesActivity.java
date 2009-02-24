@@ -84,7 +84,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
         && mTask.getStatus() != UserTask.Status.RUNNING) {
-        mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute(null);
+        mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute();
       }
       if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())
         && mTask.getStatus() == UserTask.Status.RUNNING) {
