@@ -42,7 +42,7 @@ public class TheaterDetailsActivity extends ListActivity {
     theater = getIntent().getExtras().getParcelable("theater");
     movies = NowPlayingControllerWrapper.getMoviesAtTheater(theater);
     populateTheaterDetailEntries();
-    final TextView titleView = (TextView) findViewById(R.id.theater);
+    final TextView titleView = (TextView)findViewById(R.id.theater);
     titleView.setText(theater.getName());
     setListAdapter(new TheaterDetailsAdapter());
   }
@@ -84,7 +84,7 @@ public class TheaterDetailsActivity extends ListActivity {
   }
 
   private void populateTheaterDetailEntries() {
-    theaterDetailEntries = (List<TheaterDetailEntry>) getLastNonConfigurationInstance();
+    theaterDetailEntries = (List<TheaterDetailEntry>)getLastNonConfigurationInstance();
     if (theaterDetailEntries == null || theaterDetailEntries.isEmpty()) {
       theaterDetailEntries = new ArrayList<TheaterDetailEntry>();
       final Resources res = getResources();
@@ -131,7 +131,7 @@ public class TheaterDetailsActivity extends ListActivity {
         performance = performance.substring(0, performance.length() - 2);
         final Intent movieIntent = new Intent();
         movieIntent.setClass(this, MovieDetailsActivity.class);
-        movieIntent.putExtra("movie", (Parcelable) movie);
+        movieIntent.putExtra("movie", (Parcelable)movie);
         final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance, TheaterDetailItemType.DATA, null, movieIntent, true);
         theaterDetailEntries.add(entry);
       }
@@ -165,21 +165,21 @@ public class TheaterDetailsActivity extends ListActivity {
       switch (entry.type) {
         case DATA:
           convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-          final TextView movieView = (TextView) convertView.findViewById(R.id.label);
+          final TextView movieView = (TextView)convertView.findViewById(R.id.label);
           movieView.setText(entry.data);
-          final TextView showtimesView = (TextView) convertView.findViewById(R.id.data);
+          final TextView showtimesView = (TextView)convertView.findViewById(R.id.data);
           showtimesView.setText(entry.data2);
           break;
         case HEADER:
           convertView = inflater.inflate(R.layout.headerview, null);
-          final TextView headerView = (TextView) convertView.findViewById(R.id.name);
+          final TextView headerView = (TextView)convertView.findViewById(R.id.name);
           headerView.setText(entry.data);
           break;
         case ACTION:
           convertView = inflater.inflate(R.layout.theaterdetails_icon_item, null);
-          final TextView actionView = (TextView) convertView.findViewById(R.id.data);
+          final TextView actionView = (TextView)convertView.findViewById(R.id.data);
           actionView.setText(entry.data);
-          final ImageView actionIcon = (ImageView) convertView.findViewById(R.id.icon);
+          final ImageView actionIcon = (ImageView)convertView.findViewById(R.id.icon);
           actionIcon.setImageDrawable(entry.icon);
           break;
       }

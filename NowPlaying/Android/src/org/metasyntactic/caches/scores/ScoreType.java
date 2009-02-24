@@ -55,7 +55,7 @@ public abstract class ScoreType implements Parcelable {
     for (final Field field : ScoreType.class.getFields()) {
       if (field.getName().equals(name)) {
         try {
-          return (ScoreType) field.get(null);
+          return (ScoreType)field.get(null);
         } catch (IllegalAccessException e) {
           throw new RuntimeException(e);
         }
@@ -71,7 +71,7 @@ public abstract class ScoreType implements Parcelable {
 
       for (final Field field : ScoreType.class.getFields()) {
         try {
-          final ScoreType scoreType = (ScoreType) field.get(null);
+          final ScoreType scoreType = (ScoreType)field.get(null);
           if (scoreType.getIndex() == index) {
             return scoreType;
           }

@@ -69,7 +69,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     populateTheaterDetailItem();
     final ListAdapter theaterAdapter = new TheaterAdapter();
     setListAdapter(theaterAdapter);
-    final TextView theaterTxt = (TextView) findViewById(R.id.theater);
+    final TextView theaterTxt = (TextView)findViewById(R.id.theater);
     theaterTxt.setText(theater.getName());
     final View orderTickets = findViewById(R.id.showtimes);
     orderTickets.setOnClickListener(new OnClickListener() {
@@ -135,8 +135,8 @@ public class ShowtimesDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.showtimes_item, null);
       final Resources res = getResources();
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(R.id.label),
-        (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView)convertView.findViewById(R.id.label),
+        (ImageView)convertView.findViewById(R.id.icon), (TextView)convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (detailItems.get(position).getType()) {
         case NAME_SHOWTIMES:

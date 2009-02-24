@@ -50,10 +50,10 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
     final Resources res = getResources();
-    final TextView title = (TextView) findViewById(R.id.title);
+    final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
+    final TextView ratingLengthLabel = (TextView)findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
@@ -90,7 +90,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   }
 
   private void populateMovieDetailEntries() {
-    movieDetailEntries = (List<MovieDetailEntry>) getLastNonConfigurationInstance();
+    movieDetailEntries = (List<MovieDetailEntry>)getLastNonConfigurationInstance();
     if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
@@ -191,9 +191,9 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       switch (entry.type) {
         case POSTER_SYNOPSIS:
           convertView = inflater.inflate(R.layout.moviepostersynopsis, null);
-          final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
-          final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
-          final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
+          final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
+          final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
+          final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
           final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
           if (bytes.length > 0) {
             posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
@@ -225,19 +225,19 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
           convertView = inflater.inflate(R.layout.moviedetails_item, null);
           // Creates a MovieViewHolder and store references to the
           // children views we want to bind data to.
-          final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.name),
-            (TextView) convertView.findViewById(R.id.value), (ImageView) convertView.findViewById(R.id.divider));
+          final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.name),
+            (TextView)convertView.findViewById(R.id.value), (ImageView)convertView.findViewById(R.id.divider));
           holder.name.setText(entry.name);
           holder.value.setText(entry.value);
           break;
         case HEADER:
           convertView = inflater.inflate(R.layout.headerview, null);
-          final TextView headerView = (TextView) convertView.findViewById(R.id.name);
+          final TextView headerView = (TextView)convertView.findViewById(R.id.name);
           headerView.setText(entry.name);
           break;
         case ACTION:
           convertView = inflater.inflate(R.layout.dataview, null);
-          final TextView view = (TextView) convertView.findViewById(R.id.name);
+          final TextView view = (TextView)convertView.findViewById(R.id.name);
           view.setText(entry.name);
           break;
       }

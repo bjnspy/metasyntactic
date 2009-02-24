@@ -268,7 +268,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     getAlphabet(this);
     getScores(this);
     setContentView(R.layout.moviegrid_anim);
-    bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
+    bottomBar = (RelativeLayout)findViewById(R.id.bottom_bar);
     if (search == null) {
       bottomBar.setVisibility(View.GONE);
     }
@@ -280,7 +280,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         startActivity(intent);
       }
     });
-    grid = (CustomGridView) findViewById(R.id.grid);
+    grid = (CustomGridView)findViewById(R.id.grid);
     grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
         selectedMovie = movies.get(position);
@@ -349,12 +349,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         convertView = inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(R.id.poster));
+        holder = new ViewHolder((TextView)convertView.findViewById(R.id.title), (ImageView)convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
         // and the ImageView.
-        holder = (ViewHolder) convertView.getTag();
+        holder = (ViewHolder)convertView.getTag();
       }
       final Movie movie = movies.get(position % movies.size());
       NowPlayingControllerWrapper.prioritizeMovie(movie);
@@ -482,7 +482,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        intent.putExtra("movie", (Parcelable) selectedMovie);
+        intent.putExtra("movie", (Parcelable)selectedMovie);
         startActivity(intent);
       }
 

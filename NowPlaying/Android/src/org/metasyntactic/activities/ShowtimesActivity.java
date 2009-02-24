@@ -34,8 +34,8 @@ public class ShowtimesActivity extends ListActivity {
   protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Intent intent = new Intent();
     intent.setClass(this, ShowtimesDetailsActivity.class);
-    intent.putExtra("movie", (Parcelable) movie);
-    intent.putExtra("theater", (Parcelable) theaters.get(position));
+    intent.putExtra("movie", (Parcelable)movie);
+    intent.putExtra("theater", (Parcelable)theaters.get(position));
     startActivity(intent);
     super.onListItemClick(listView, view, position, id);
   }
@@ -85,11 +85,11 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void bindView() {
-    final TextView title = (TextView) findViewById(R.id.title);
+    final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final View scoreImg = (Button) findViewById(R.id.score);
-    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
+    final View scoreImg = (Button)findViewById(R.id.score);
+    final TextView scoreLbl = (TextView)findViewById(R.id.scorelbl);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
@@ -102,7 +102,7 @@ public class ShowtimesActivity extends ListActivity {
     if (scoreValue != -1) {
       scoreLbl.setText(scoreValue + "%");
     }
-    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
+    final TextView ratingLengthLabel = (TextView)findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
@@ -119,8 +119,8 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(R.id.label),
-        (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView)convertView.findViewById(R.id.label),
+        (TextView)convertView.findViewById(R.id.data));
       final Theater theater = theaters.get(position);
       holder.label.setText(theater.getName());
       final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);

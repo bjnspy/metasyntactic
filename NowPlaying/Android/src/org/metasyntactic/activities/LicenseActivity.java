@@ -12,7 +12,7 @@ public class LicenseActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.license);
     NowPlayingControllerWrapper.addActivity(this);
-    final WebView license = (WebView) findViewById(R.id.license);
+    final WebView license = (WebView)findViewById(R.id.license);
     license.loadUrl("file:///android_asset/License.html");
   }
 

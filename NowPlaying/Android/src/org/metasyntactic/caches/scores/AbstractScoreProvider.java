@@ -367,8 +367,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault()
-      .getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location
-      .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+      .getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int)(location
+      .getLatitude() * 1000000) + "&longitude=" + (int)(location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {

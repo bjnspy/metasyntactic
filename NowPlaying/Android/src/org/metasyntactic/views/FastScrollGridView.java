@@ -140,7 +140,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       final Paint paint = mPaint;
       final float descent = paint.descent();
       final RectF rectF = mOverlayPos;
-      canvas.drawText(mSectionText, (int) (rectF.left + rectF.right) / 2, (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
+      canvas.drawText(mSectionText, (int)(rectF.left + rectF.right) / 2, (int)(rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
@@ -160,7 +160,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     pos.right = pos.left + mOverlaySize;
     pos.top = h / 10; // 10% from top
     pos.bottom = pos.top + mOverlaySize;
-    mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
+    mOverlayDrawable.setBounds((int)pos.left, (int)pos.top, (int)pos.right, (int)pos.bottom);
   }
 
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
@@ -199,18 +199,18 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   public static void getSections() {
     Adapter adapter = mGrid.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
-      mGridOffset = ((HeaderViewListAdapter) adapter).getHeadersCount();
-      adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();
+      mGridOffset = ((HeaderViewListAdapter)adapter).getHeadersCount();
+      adapter = ((HeaderViewListAdapter)adapter).getWrappedAdapter();
     }
     if (adapter instanceof SectionIndexer) {
-      mGridAdapter = (BaseAdapter) adapter;
-      mSections = ((SectionIndexer) mGridAdapter).getSections();
+      mGridAdapter = (BaseAdapter)adapter;
+      mSections = ((SectionIndexer)mGridAdapter).getSections();
     }
   }
 
   public void onChildViewAdded(final View parent, final View child) {
     if (child instanceof GridView) {
-      mGrid = (GridView) child;
+      mGrid = (GridView)child;
       mGrid.setOnScrollListener(this);
       getSections();
     }
@@ -242,12 +242,12 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     int sectionIndex;
     if (sections != null && sections.length > 1) {
       final int nSections = sections.length;
-      int section = (int) (position * nSections);
+      int section = (int)(position * nSections);
       if (section >= nSections) {
         section = nSections - 1;
       }
       sectionIndex = section;
-      final SectionIndexer baseAdapter = (SectionIndexer) mGridAdapter;
+      final SectionIndexer baseAdapter = (SectionIndexer)mGridAdapter;
       int index = baseAdapter.getPositionForSection(section);
       // Given the expected section and index, the following code will
       // try to account for missing sections (no names starting with..)
@@ -289,16 +289,16 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       // Compute the beginning and ending scroll range percentage of the
       // currently visible letter. This could be equal to or greater than
       // (1 / nSections).
-      final float fPrev = (float) prevSection / nSections;
-      final float fNext = (float) nextSection / nSections;
-      index = prevIndex + (int) ((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
+      final float fPrev = (float)prevSection / nSections;
+      final float fNext = (float)nextSection / nSections;
+      index = prevIndex + (int)((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
       // Don't overflow
       if (index > count - 1) {
         index = count - 1;
       }
       mGrid.setSelection(index + mGridOffset);
     } else {
-      final int index = (int) (position * count);
+      final int index = (int)(position * count);
       mGrid.setSelection(index + mGridOffset);
       sectionIndex = -1;
     }
@@ -339,7 +339,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
       if (mDragging) {
         final int viewHeight = getHeight();
-        mThumbY = (int) me.getY() - mThumbH + 10;
+        mThumbY = (int)me.getY() - mThumbH + 10;
         if (mThumbY < 0) {
           mThumbY = 0;
         } else if (mThumbY + mThumbH > viewHeight) {
@@ -347,7 +347,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
         }
         // If the previous scrollTo is still pending
         if (mScrollCompleted) {
-          scrollTo((float) mThumbY / (viewHeight - mThumbH));
+          scrollTo((float)mThumbY / (viewHeight - mThumbH));
         }
         return true;
       }
@@ -377,7 +377,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       if (now > mStartTime + mFadeDuration) {
         alpha = 0;
       } else {
-        alpha = (int) (ALPHA_MAX - (now - mStartTime) * ALPHA_MAX / mFadeDuration);
+        alpha = (int)(ALPHA_MAX - (now - mStartTime) * ALPHA_MAX / mFadeDuration);
       }
       return alpha;
     }

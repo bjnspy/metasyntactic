@@ -261,7 +261,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ShowtimeProto) {
-          return mergeFrom((NowPlaying.ShowtimeProto) other);
+          return mergeFrom((NowPlaying.ShowtimeProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -676,7 +676,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.AllShowtimesProto) {
-          return mergeFrom((NowPlaying.AllShowtimesProto) other);
+          return mergeFrom((NowPlaying.AllShowtimesProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1268,7 +1268,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.MovieProto) {
-          return mergeFrom((NowPlaying.MovieProto) other);
+          return mergeFrom((NowPlaying.MovieProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -2120,7 +2120,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.TheaterProto) {
-          return mergeFrom((NowPlaying.TheaterProto) other);
+          return mergeFrom((NowPlaying.TheaterProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -2696,7 +2696,7 @@ public final class NowPlaying {
           @Override
           public Builder mergeFrom(final com.google.protobuf.Message other) {
             if (other instanceof NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto) {
-              return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto) other);
+              return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto)other);
             } else {
               super.mergeFrom(other);
               return this;
@@ -3003,7 +3003,7 @@ public final class NowPlaying {
         @Override
         public Builder mergeFrom(final com.google.protobuf.Message other) {
           if (other instanceof NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto) {
-            return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto) other);
+            return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto)other);
           } else {
             super.mergeFrom(other);
             return this;
@@ -3350,7 +3350,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.TheaterListingsProto) {
-          return mergeFrom((NowPlaying.TheaterListingsProto) other);
+          return mergeFrom((NowPlaying.TheaterListingsProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -3822,7 +3822,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ReviewProto) {
-          return mergeFrom((NowPlaying.ReviewProto) other);
+          return mergeFrom((NowPlaying.ReviewProto)other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -4266,7 +4266,7 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ReviewsListProto) {
-          return mergeFrom((NowPlaying.ReviewsListProto) other);
+          return mergeFrom((NowPlaying.ReviewsListProto)other);
         } else {
           super.mergeFrom(other);
           return this;

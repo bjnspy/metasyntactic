@@ -254,7 +254,7 @@ public class DataProvider {
     for (final Movie movie : lookupResult.getMovies()) {
       movieTitles.add(movie.getCanonicalTitle());
     }
-    for (final Location location : (Set<Location>) locationToMissingTheaterNames.keySet()) {
+    for (final Location location : (Set<Location>)locationToMissingTheaterNames.keySet()) {
       final Collection<String> theaterNames = locationToMissingTheaterNames.getCollection(location);
       final LookupResult favoritesLookupResult = lookupLocation(location, theaterNames);
       if (favoritesLookupResult == null) {
@@ -311,8 +311,8 @@ public class DataProvider {
     int days = Days.daysBetween(DateUtilities.getToday(), model.getSearchDate());
     days = min(max(days, 0), 7);
     final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode=" + location
-      .getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location
-      .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
+      .getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int)(location
+      .getLatitude() * 1000000) + "&longitude=" + (int)(location.getLongitude() * 1000000) + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;

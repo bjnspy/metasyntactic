@@ -236,8 +236,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address),
-        (TextView) convertView.findViewById(R.id.title));
+      final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.address),
+        (TextView)convertView.findViewById(R.id.title));
       // Bind the data efficiently with the holder.
       final Theater theater = theaters.get(position);
       holder.title.setText(theater.getName());
@@ -334,7 +334,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     final Theater theater = theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);
-    intent.putExtra("theater", (Parcelable) theater);
+    intent.putExtra("theater", (Parcelable)theater);
     startActivity(intent);
     super.onListItemClick(listView, view, position, id);
   }

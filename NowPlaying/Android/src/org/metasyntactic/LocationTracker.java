@@ -34,7 +34,7 @@ public class LocationTracker implements LocationListener {
 
   public LocationTracker(final NowPlayingController controller, final Context context) {
     this.controller = controller;
-    locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+    locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
     autoUpdateLocation();
   }
 

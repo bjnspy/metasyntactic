@@ -82,7 +82,7 @@ public class FileUtilities {
         result.append(c);
       } else {
         result.append('-');
-        result.append((int) c);
+        result.append((int)c);
         result.append('-');
       }
     }
@@ -118,7 +118,7 @@ public class FileUtilities {
         return null;
       }
       final ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
-      return (T) in.readObject();
+      return (T)in.readObject();
     } catch (final IOException ignored) {
       return null;
     } catch (final ClassNotFoundException e) {
@@ -589,7 +589,7 @@ public class FileUtilities {
     }
 
     try {
-      final int length = (int) file.length();
+      final int length = (int)file.length();
 
       final byte[] bytes = new byte[length];
       final FileInputStream in = new FileInputStream(file);

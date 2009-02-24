@@ -194,26 +194,26 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        ((NowPlayingPreferenceDialog) dialog).setTextView(textEntryView);
+        ((NowPlayingPreferenceDialog)dialog).setTextView(textEntryView);
         break;
       case 2:
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
         final String[] distanceValues = getResources().getStringArray(R.array.entries_search_distance_preference);
-        ((NowPlayingPreferenceDialog) dialog).setItems(distanceValues);
+        ((NowPlayingPreferenceDialog)dialog).setItems(distanceValues);
         break;
       case 4:
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        ((NowPlayingPreferenceDialog) dialog).setEntries(R.array.entries_reviews_provider_preference);
+        ((NowPlayingPreferenceDialog)dialog).setEntries(R.array.entries_reviews_provider_preference);
         break;
       case 0:
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        dialog = ((NowPlayingPreferenceDialog) dialog).setEntries(R.array.entries_auto_update_preference);
+        dialog = ((NowPlayingPreferenceDialog)dialog).setEntries(R.array.entries_auto_update_preference);
     }
   }
 
@@ -306,9 +306,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.settings_item, null);
-      final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView.findViewById(R.id.label),
-        (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data),
-        (TextView) convertView.findViewById(R.id.data2), (CheckBox) convertView.findViewById(R.id.check));
+      final SettingsViewHolder holder = new SettingsViewHolder((TextView)convertView.findViewById(R.id.label),
+        (ImageView)convertView.findViewById(R.id.icon), (TextView)convertView.findViewById(R.id.data), (TextView)convertView.findViewById(R.id.data2),
+        (CheckBox)convertView.findViewById(R.id.check));
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);

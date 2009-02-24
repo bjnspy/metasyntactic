@@ -88,9 +88,9 @@ public class AllReviewsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.reviewview, null);
-      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
-        (TextView) convertView.findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source),
-        (TextView) convertView.findViewById(R.id.desc));
+      final MovieViewHolder holder = new MovieViewHolder((ImageView)convertView.findViewById(R.id.score),
+        (TextView)convertView.findViewById(R.id.author), (TextView)convertView.findViewById(R.id.source),
+        (TextView)convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = reviews.get(position);
       holder.author.setText(review.getAuthor());
