@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -32,7 +33,6 @@ import android.widget.Toast;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.UserTask;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
@@ -58,7 +58,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
   private Intent intent;
   private Movie selectedMovie;
-  private PostersAdapter postersAdapter;
   private boolean isGridSetup;
   private List<Movie> movies;
   private int lastPosition;
@@ -67,29 +66,53 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMoviePositionsMap = new HashMap<Integer, Integer>();
-  private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
   private RelativeLayout bottomBar;
-  /* This task is controlled by the TaskManager based on the scrolling state */
-  private UserTask<?, ?, ?> mTask;
+
+
+  private PostersAdapter postersAdapter;
+  private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
+  private boolean scrolling;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
-      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() != UserTask.Status.RUNNING) {
-        mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute();
-      }
-      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() == UserTask.Status.RUNNING) {
-        mTask.cancel(true);
+    @Override public void onReceive(final Context context, final Intent intent) {
+      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())) {
+        scrolling = true;
+      } else if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())) {
+        scrolling = false;
+        postersAdapter.notifyDataSetChanged();
       }
     }
   };
+
+  private Bitmap getPoster(final Movie movie) {
+    final String key = movie.getCanonicalTitle();
+    final SoftReference<Bitmap> reference = postersMap.get(key);
+    Bitmap bitmap = null;
+    if (reference != null) {
+      bitmap = reference.get();
+    }
+    if (bitmap == null) {
+      final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movie);
+      if (file != null) {
+        final byte[] bytes = FileUtilities.readBytes(file);
+        if (bytes != null && bytes.length > 0) {
+          bitmap = createBitmap(bytes);
+          if (bitmap != null) {
+            postersMap.put(movie.getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
+          }
+        }
+      }
+    }
+
+    return bitmap;
+  }
 
   /**
    * Updates display of the list of movies.
@@ -105,13 +128,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
-      postersAdapter.refreshMovies();
+      postersAdapter.notifyDataSetChanged();
     }
-    // cancel task so that it doesnt try to load old set of movies
-    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-      mTask.cancel(true);
-    }
-    mTask = new LoadPostersTask().execute(null);
   }
 
   private List<Movie> getMatchingMoviesList(final String search2) {
@@ -163,13 +181,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
-
+    scrolling = false;
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
     registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
     if (isGridSetup) {
       grid.setVisibility(View.VISIBLE);
-      postersAdapter.refreshMovies();
+      postersAdapter.notifyDataSetChanged();
     }
   }
 
@@ -179,9 +197,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
     unregisterReceiver(broadcastReceiver);
     unregisterReceiver(scrollStatebroadcastReceiver);
-    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-      mTask.cancel(true);
-    }
     super.onPause();
   }
 
@@ -190,9 +205,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
-    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-      mTask.cancel(true);
-    }
     clearBitmaps();
     super.onDestroy();
   }
@@ -232,20 +244,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + search, Toast.LENGTH_SHORT).show();
       } else {
         movies = matchingMovies;
-        // cancel task so that it doesnt try to load the complete set of movies.
-        if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-          mTask.cancel(true);
-        }
       }
     }
   }
 
   private static void clearBitmaps() {
     for (final SoftReference<Bitmap> reference : postersMap.values()) {
-      final Bitmap drawable = reference.get();
-      if (drawable != null) {
-        reference.clear();
-      }
+      reference.clear();
     }
   }
 
@@ -328,14 +333,22 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  public static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
+  private static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
+
+  private enum ViewState {
+    Blank,
+    Loading,
+    Loaded
+  }
 
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
+    private final Drawable loadingDrawable;
 
     private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
+      loadingDrawable = getResources().getDrawable(R.drawable.loader2);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
@@ -345,31 +358,62 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // no need to reinflate it. We only inflate a new View when the
       // convertView
       // supplied by GridView is null.
+      final Movie movie = movies.get(position % movies.size());
       if (convertView == null) {
         convertView = inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder((TextView)convertView.findViewById(R.id.title), (ImageView)convertView.findViewById(R.id.poster));
+        holder = new ViewHolder(movie, (TextView)convertView.findViewById(R.id.title), (ImageView)convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
         // and the ImageView.
         holder = (ViewHolder)convertView.getTag();
       }
-      final Movie movie = movies.get(position % movies.size());
+
       NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
-      // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = postersMap.get(movies.get(position).getCanonicalTitle());
-      Bitmap bitmap = null;
-      if (reference != null) {
-        bitmap = reference.get();
+
+      // decide what image to show if we're scrolling or not.
+      if (scrolling) {
+        if (movie == holder.movie) {
+          // ok, we're scrolling, and we're still on the same movie.  Keep the
+          // poster if it's been loaded.  But if we have no poster yet, just show
+          // the 'loading' poster.
+          if (holder.viewState == ViewState.Blank) {
+            holder.poster.setImageDrawable(loadingDrawable);
+            holder.viewState = ViewState.Loading;
+          }
+        } else {
+          // we're scrolling, and we're reusing a view for a different movie.
+          // show the 'loading' poster if it's not already up.
+          if (holder.viewState != ViewState.Loading) {
+            holder.poster.setImageDrawable(loadingDrawable);
+            holder.viewState = ViewState.Loading;
+          }
+        }
+      } else {
+        // ok.  we've stopped scrolling.  either we're reusing this view for a
+        // new movie, or we haven't loaded the image for this movie yet.  in
+        // either case try to load it.  if we can, then we're done and don't
+        // need to do anything else now.
+        if (movie != holder.movie || holder.viewState != ViewState.Loaded) {
+          final Bitmap bitmap = getPoster(movie);
+          if (bitmap == null) {
+            if (holder.viewState != ViewState.Loading) {
+              holder.poster.setImageDrawable(loadingDrawable);
+              holder.viewState = ViewState.Loading;
+            }
+          } else {
+            holder.poster.setImageBitmap(bitmap);
+            holder.viewState = ViewState.Loaded;
+          }
+        }
       }
-      if (bitmap != null) {
-        holder.poster.setImageBitmap(bitmap);
-      }
+
+      holder.movie = movie;
+
       convertView.setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
@@ -378,9 +422,14 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       private final TextView title;
       private final ImageView poster;
 
-      private ViewHolder(final TextView title, final ImageView poster) {
+      private Movie movie;
+      private ViewState viewState;
+
+      private ViewHolder(final Movie movie, final TextView title, final ImageView poster) {
+        this.movie = movie;
         this.title = title;
         this.poster = poster;
+        viewState = ViewState.Blank;
       }
     }
 
@@ -398,10 +447,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
     public final long getItemId(final int position) {
       return position;
-    }
-
-    public void refreshMovies() {
-      notifyDataSetChanged();
     }
 
     public int getPositionForSection(final int section) {
@@ -493,40 +538,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       }
     });
     view.startAnimation(rotation);
-  }
-
-  private class LoadPostersTask extends UserTask<Void, Void, Void> {
-    @Override
-    public Void doInBackground(final Void... params) {
-      Bitmap bitmap = null;
-      for (final Movie movie : movies) {
-        final SoftReference<Bitmap> reference = UpcomingMoviesActivity.postersMap.get(movie.getCanonicalTitle());
-        if (reference != null) {
-          bitmap = reference.get();
-        }
-        if (reference == null || bitmap == null) {
-          final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movie);
-          if (file != null) {
-            final byte[] bytes = FileUtilities.readBytes(file);
-            if (bytes != null && bytes.length > 0) {
-              bitmap = createBitmap(bytes);
-              if (bitmap != null) {
-                UpcomingMoviesActivity.postersMap.put(movie.getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
-              }
-            }
-          }
-        }
-      }
-      return null;
-    }
-
-    @Override
-    public void onPostExecute(final Void result) {
-      super.onPostExecute(result);
-      if (postersAdapter != null) {
-        postersAdapter.refreshMovies();
-      }
-    }
   }
 
   private static Bitmap createBitmap(final byte[] bytes) {
