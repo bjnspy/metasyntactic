@@ -24,13 +24,13 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -164,8 +164,8 @@ public abstract class UserTask<Params, Progress, Result> {
       return new Thread(r, "UserTask #" + mCount.getAndIncrement());
     }
   };
-  private static final Executor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
-    sWorkQueue, sThreadFactory);
+  private static final Executor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS, sWorkQueue,
+    sThreadFactory);
   private static final int MESSAGE_POST_RESULT = 0x1;
   private static final int MESSAGE_POST_PROGRESS = 0x2;
   private static final int MESSAGE_POST_CANCEL = 0x3;
@@ -190,8 +190,7 @@ public abstract class UserTask<Params, Progress, Result> {
     /**
      * Indicates that {@link UserTask#onPostExecute(Object)} has finished.
      */
-    FINISHED,
-  }
+    FINISHED, }
 
   /**
    * Creates a new user task. This constructor must be invoked on the UI thread.

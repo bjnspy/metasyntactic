@@ -36,6 +36,7 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +46,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Collection;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private static class MovieAndMap {
@@ -366,9 +366,9 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       country = location.getCountry();
     }
 
-    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language="
-      + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude="
-      + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault()
+      .getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location
+      .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {

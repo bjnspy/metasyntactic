@@ -76,15 +76,14 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       final List<String> cast = in.readStringList();
       final List<String> genres = in.readStringList();
 
-      return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
-        synopsis, studio, directors, cast, genres);
+      return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster, synopsis, studio, directors, cast,
+        genres);
     }
   };
 
-  private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating,
-    final int length, final String imdbAddress, final Date releaseDate, final String poster,
-    final String synopsis, final String studio, final List<String> directors, final List<String> cast,
-    final List<String> genres) {
+  private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating, final int length,
+    final String imdbAddress, final Date releaseDate, final String poster, final String synopsis, final String studio, final List<String> directors,
+    final List<String> cast, final List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
@@ -100,11 +99,11 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     this.displayTitle = displayTitle;
   }
 
-  public Movie(final String identifier, final String title, final String rating, final int length,
-    final String imdbAddress, final Date releaseDate, final String poster, final String synopsis,
-    final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
-    this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
-      synopsis, studio, directors, cast, genres);
+  public Movie(final String identifier, final String title, final String rating, final int length, final String imdbAddress, final Date releaseDate,
+    final String poster, final String synopsis, final String studio, final List<String> directors, final List<String> cast,
+    final List<String> genres) {
+    this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster, synopsis, studio, directors, cast,
+      genres);
   }
 
   public String getIdentifier() {
@@ -170,8 +169,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
 
     final Movie movie = (Movie) o;
 
-    if (canonicalTitle != null ? !canonicalTitle.equals(
-      movie.canonicalTitle) : movie.canonicalTitle != null) {
+    if (canonicalTitle != null ? !canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
     }
 
@@ -268,8 +266,8 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       final List<String> genres = new ArrayList<String>();
       source.readStringList(genres);
 
-      return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
-        synopsis, studio, directors, cast, genres);
+      return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster, synopsis, studio, directors, cast,
+        genres);
     }
 
     public Movie[] newArray(final int size) {

@@ -20,9 +20,9 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Collection;
 
 public class SearchEngine {
   // only accessed from the main thread. needs no lock.

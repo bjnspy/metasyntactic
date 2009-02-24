@@ -12,34 +12,10 @@ public final class NowPlaying {
   private static final com.google.protobuf.Descriptors.FileDescriptor descriptor = buildDescriptor();
 
   private static com.google.protobuf.Descriptors.FileDescriptor buildDescriptor() {
-    final java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T"
-      + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021"
-      + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven"
-      + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP"
-      + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022"
-      + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen"
-      + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati"
-      + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t"
-      + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb"
-      + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa"
-      + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030"
-      + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001"
-      + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta"
-      + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 "
-      + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001"
-      + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim"
-      + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi"
-      + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The"
-      + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA"
-      + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto"
-      + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002"
-      + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n"
-      + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut"
-      + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr"
-      + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
+    final java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T" + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021" + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven" + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP" + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022" + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen" + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati" + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t" + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb" + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa" + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030" + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001" + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta" + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 " + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001" + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim" + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi" + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The" + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA" + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto" + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002" + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n" + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut" + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr" + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
     try {
-      return com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[]{});
+      return com.google.protobuf.Descriptors.FileDescriptor
+        .internalBuildGeneratedFileFrom(descriptorData, new com.google.protobuf.Descriptors.FileDescriptor[]{});
     } catch (final Exception e) {
       throw new RuntimeException("Failed to parse protocol buffer descriptor for " + "\"NowPlaying.proto\".", e);
     }
@@ -181,8 +157,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ShowtimeProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -600,8 +575,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -619,8 +593,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(final java.io.InputStream input,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws java.io.IOException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -1185,8 +1158,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -1213,8 +1185,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.CodedInputStream input,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws java.io.IOException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -2051,8 +2022,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.TheaterProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -2862,8 +2832,7 @@ public final class NowPlaying {
       // .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
       // MovieAndShowtimes = 4;
       private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimes_ = java.util
-        .Collections
-        .emptyList();
+        .Collections.emptyList();
 
       public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> getMovieAndShowtimesList() {
         return this.movieAndShowtimes_;
@@ -3091,8 +3060,7 @@ public final class NowPlaying {
               }
               case 34: {
                 final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder subBuilder = NowPlaying
-                  .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
-                  .newBuilder();
+                  .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.newBuilder();
                 input.readMessage(subBuilder, extensionRegistry);
                 addMovieAndShowtimes(subBuilder.buildPartial());
                 break;
@@ -3296,8 +3264,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.TheaterListingsProto parseFrom(final java.io.InputStream input,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws java.io.IOException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -3440,8 +3407,7 @@ public final class NowPlaying {
             }
             case 50: {
               final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto
-                .TheaterAndMovieShowtimesProto
-                .newBuilder();
+                .TheaterAndMovieShowtimesProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addTheaterAndMovieShowtimes(subBuilder.buildPartial());
               break;
@@ -3758,8 +3724,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -3786,8 +3751,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.CodedInputStream input,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws java.io.IOException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -4201,8 +4165,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(final com.google.protobuf.ByteString data,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -4220,8 +4183,7 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(final java.io.InputStream input,
-      final com.google.protobuf.ExtensionRegistry extensionRegistry)
-      throws java.io.IOException {
+      final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -4418,17 +4380,18 @@ public final class NowPlaying {
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_AllShowtimesProto_descriptor = getDescriptor().getMessageTypes()
     .get(1);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_AllShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-    internal_static_AllShowtimesProto_descriptor, new java.lang.String[]{"Showtimes", "Vendor", "Captioning",},
-    NowPlaying.AllShowtimesProto.class, NowPlaying.AllShowtimesProto.Builder.class);
+    internal_static_AllShowtimesProto_descriptor, new java.lang.String[]{"Showtimes", "Vendor", "Captioning",}, NowPlaying.AllShowtimesProto.class,
+    NowPlaying.AllShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_MovieProto_descriptor = getDescriptor().getMessageTypes().get(2);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_MovieProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-    internal_static_MovieProto_descriptor, new java.lang.String[]{"Identifier", "Title", "Length", "Language", "Genre", "Description",
-      "RawRating", "Score", "IMDbUrl", "Director", "Cast", "Dubbed", "Subtitled", "ReleaseDate",}, NowPlaying.MovieProto.class,
-    NowPlaying.MovieProto.Builder.class);
+    internal_static_MovieProto_descriptor,
+    new java.lang.String[]{"Identifier", "Title", "Length", "Language", "Genre", "Description", "RawRating", "Score", "IMDbUrl", "Director", "Cast", "Dubbed", "Subtitled", "ReleaseDate",},
+    NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor().getMessageTypes().get(3);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-    internal_static_TheaterProto_descriptor, new java.lang.String[]{"Identifier", "Name", "StreetAddress", "City", "State", "PostalCode",
-      "Country", "Phone", "Latitude", "Longitude",}, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
+    internal_static_TheaterProto_descriptor,
+    new java.lang.String[]{"Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",},
+    NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor().getMessageTypes()
     .get(4);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
@@ -4438,19 +4401,18 @@ public final class NowPlaying {
     .getNestedTypes().get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
     internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor, new java.lang.String[]{"Theater", "MovieAndShowtimes",},
-    NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.class,
-    NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder.class);
+    NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.class, NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
     .getNestedTypes().get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor, new java.lang.String[]{
-      "MovieIdentifier", "Showtimes",}, NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.class,
+    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor,
+    new java.lang.String[]{"MovieIdentifier", "Showtimes",},
+    NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.class,
     NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewProto_descriptor = getDescriptor().getMessageTypes().get(5);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-    internal_static_ReviewProto_descriptor,
-    new java.lang.String[]{"Title", "Url", "Rating", "Snippet", "Content", "Publisher", "Author", "Date",}, NowPlaying.ReviewProto.class,
-    NowPlaying.ReviewProto.Builder.class);
+    internal_static_ReviewProto_descriptor, new java.lang.String[]{"Title", "Url", "Rating", "Snippet", "Content", "Publisher", "Author", "Date",},
+    NowPlaying.ReviewProto.class, NowPlaying.ReviewProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewsListProto_descriptor = getDescriptor().getMessageTypes()
     .get(6);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewsListProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(

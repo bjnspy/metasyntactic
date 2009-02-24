@@ -31,9 +31,9 @@ import org.w3c.dom.Element;
 
 import java.io.File;
 import static java.lang.String.valueOf;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -182,8 +182,8 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String localHash = getHash();
-    final String serverHash1 = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host
-      + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
+    final String serverHash1 = NetworkUtilities
+      .downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
     final String serverHash2 = serverHash1 == null ? "0" : serverHash1;
 
     if (localHash.equals(serverHash2)) {
@@ -191,8 +191,8 @@ public class UpcomingCache extends AbstractCache {
     }
 
     long start = System.currentTimeMillis();
-    final Element resultElement = NetworkUtilities.downloadXml(
-      "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
+    final Element resultElement = NetworkUtilities
+      .downloadXml("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
     if (shutdown) {
       return;
@@ -350,8 +350,8 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String trailersString = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host
-      + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey, false);
+    final String trailersString = NetworkUtilities
+      .downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey, false);
 
     if (isNullOrEmpty(trailersString)) {
       return;
@@ -375,8 +375,8 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String result = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host
-      + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey, false);
+    final String result = NetworkUtilities.downloadString(
+      "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey, false);
 
     if (isNullOrEmpty(result)) {
       return;
@@ -434,8 +434,8 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String imdbAddress = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q="
-      + StringUtilities.urlEncode(movie.getCanonicalTitle()), false);
+    final String imdbAddress = NetworkUtilities.downloadString(
+      "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(movie.getCanonicalTitle()), false);
 
     if (isNullOrEmpty(imdbAddress)) {
       return;
