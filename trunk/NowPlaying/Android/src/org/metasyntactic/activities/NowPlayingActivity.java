@@ -447,14 +447,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
       // decide what image to show if we're scrolling or not.
       if (scrolling) {
-        // ok, if we're scrolling, and we've loaded an image for a movie that is
-        // *not* the current movie, then replace it with the stock loading image
         if (movie == holder.movie) {
+          // ok, we're scrolling, and we're still on the same movie.  Keep the
+          // poster if it's been loaded.  But if we have no poster yet, just show
+          // the 'loading' poster.
           if (holder.viewState == ViewState.Blank) {
             holder.poster.setImageDrawable(loadingDrawable);
             holder.viewState = ViewState.Loading;
           }
         } else {
+          // we're scrolling, and we're reusing a view for a different movie.
+          // show the 'loading' poster if it's not already up.
           if (holder.viewState != ViewState.Loading) {
             holder.poster.setImageDrawable(loadingDrawable);
             holder.viewState = ViewState.Loading;
