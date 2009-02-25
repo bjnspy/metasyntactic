@@ -13,6 +13,12 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
@@ -23,11 +29,6 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
 
 public class PosterCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
@@ -50,7 +51,7 @@ public class PosterCache extends AbstractCache {
   }
 
   private static File posterFile(final Movie movie) {
-    return new File(NowPlayingApplication.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
+    return new File(NowPlayingApplication.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()) + ".jpg");
   }
 
   public void update(final Iterable<Movie> movies) {
@@ -72,7 +73,7 @@ public class PosterCache extends AbstractCache {
       Movie movie = null;
       synchronized (lock) {
         while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithLinks
-          .removeAny()) == null && (movie = moviesWithoutLinks.removeAny()) == null) {
+            .removeAny()) == null && (movie = moviesWithoutLinks.removeAny()) == null) {
           lock.wait();
         }
       }

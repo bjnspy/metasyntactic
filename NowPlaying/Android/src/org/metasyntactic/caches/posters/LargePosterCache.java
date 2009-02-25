@@ -13,20 +13,8 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import static org.apache.commons.collections.CollectionUtils.size;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.AbstractCache;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.CollectionUtilities;
 import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -39,6 +27,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractCache;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -185,8 +187,8 @@ public class LargePosterCache extends AbstractCache {
   private List<String> getPosterUrlsForYear(final Movie movie, final int year) {
     List<String> result;
     if (size(result = getPosterUrlsForYearWorker(movie, year)) > 0 || size(result = getPosterUrlsForYearWorker(movie, year - 1)) > 0 || size(
-      result = getPosterUrlsForYearWorker(movie, year - 2)) > 0 || size(result = getPosterUrlsForYearWorker(movie, year + 1)) > 0 || size(
-      result = getPosterUrlsForYearWorker(movie, year + 2)) > 0) {
+        result = getPosterUrlsForYearWorker(movie, year - 2)) > 0 || size(result = getPosterUrlsForYearWorker(movie, year + 1)) > 0 || size(
+            result = getPosterUrlsForYearWorker(movie, year + 2)) > 0) {
       return result;
     }
 
@@ -210,7 +212,7 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private static File posterFile(final Movie movie, final int index) {
-    return new File(NowPlayingApplication.postersLargeDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + '-' + index + ".jpg"));
+    return new File(NowPlayingApplication.postersLargeDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()) + '-' + index + ".jpg");
   }
 
   private static void downloadPosterForMovie(final Movie movie, final List<String> urls, final int index) {

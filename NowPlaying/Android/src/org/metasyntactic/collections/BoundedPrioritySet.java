@@ -13,15 +13,16 @@
 // limitations under the License.
 package org.metasyntactic.collections;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 public class BoundedPrioritySet<T> {
   private final Object lock = new Object();
-  private final HashSet<T> set = new LinkedHashSet<T>();
+  private final ArrayList<T> list = new ArrayList<T>();
+  private final HashSet<T> set = new HashSet<T>();
   private final int maxSize;
 
   public BoundedPrioritySet(final int maxSize) {
@@ -39,12 +40,12 @@ public class BoundedPrioritySet<T> {
   }
 
   private void addNoLock(final T value) {
-    set.remove(value);
-    set.add(value);
-
-    if (maxSize > 0) {
-      if (set.size() > maxSize) {
-        removeAny();
+    if (set.add(value)) {
+      list.add(value);
+      if (maxSize > 0) {
+        if (set.size() > maxSize) {
+          removeAnyNoLock();
+        }
       }
     }
   }
@@ -59,21 +60,22 @@ public class BoundedPrioritySet<T> {
 
   public T removeAny() {
     synchronized (lock) {
-      if (set.isEmpty()) {
-        return null;
-      }
-
-      final Iterator<T> iterator = set.iterator();
-      final T value = iterator.next();
-      iterator.remove();
-
-      return value;
+      return removeAnyNoLock();
     }
+  }
+
+  private T removeAnyNoLock() {
+    if (list.isEmpty()) {
+      return null;
+    }
+    final T value = list.remove(0);
+    set.remove(value);
+    return value;
   }
 
   public T removeAny(final Set<T> lowPriorityValues) {
     synchronized (lock) {
-      T value = removeAny();
+      T value = removeAnyNoLock();
       if (value != null) {
         return value;
       }
