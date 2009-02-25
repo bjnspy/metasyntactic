@@ -980,12 +980,26 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (BOOL) tooSoon:(NSString*) file {
+    if ([FileUtilities fileExists:file]) {
+        NSDate* date = [FileUtilities modificationDate:file];
+        if (date != nil) {
+            if (ABS(date.timeIntervalSinceNow) < ONE_WEEK) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+
 - (void) updateRatings:(Movie*) movie {
     NSString* userRatingsFile = [self userRatingsFile:movie];
     NSString* predictedRatingsFile = [self predictedRatingsFile:movie];
 
-    if ([FileUtilities fileExists:userRatingsFile] &&
-        [FileUtilities fileExists:predictedRatingsFile]) {
+    if ([self tooSoon:predictedRatingsFile] &&
+        [self tooSoon:userRatingsFile]) {
         return;
     }
 
