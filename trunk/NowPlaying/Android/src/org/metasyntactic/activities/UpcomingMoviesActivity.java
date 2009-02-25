@@ -1,5 +1,29 @@
 package org.metasyntactic.activities;
 
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.views.Rotate3dAnimation;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -18,41 +42,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-import org.metasyntactic.views.Rotate3dAnimation;
-
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -344,11 +345,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
     private final Drawable loadingDrawable;
+    private final Drawable backgroundDrawable;
 
     private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
       loadingDrawable = getResources().getDrawable(R.drawable.loader2);
+      backgroundDrawable = getResources().getDrawable(R.drawable.gallery_background_1);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
@@ -365,13 +368,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         // views we want to bind data to.
         holder = new ViewHolder(movie, (TextView)convertView.findViewById(R.id.title), (ImageView)convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
+        convertView.setBackgroundDrawable(backgroundDrawable);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
         // and the ImageView.
         holder = (ViewHolder)convertView.getTag();
       }
 
-      NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
 
@@ -394,6 +397,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
           }
         }
       } else {
+        NowPlayingControllerWrapper.prioritizeMovie(movie);
         // ok.  we've stopped scrolling.  either we're reusing this view for a
         // new movie, or we haven't loaded the image for this movie yet.  in
         // either case try to load it.  if we can, then we're done and don't
@@ -414,7 +418,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
       holder.movie = movie;
 
-      convertView.setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -489,11 +492,11 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-      .setIntent(new Intent(this, NowPlayingActivity.class));
+    .setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes")).setAlphabeticShortcut('s');
+    .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes")).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -501,8 +504,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this)
-        .setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference)
-        .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      .setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference)
+      .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
