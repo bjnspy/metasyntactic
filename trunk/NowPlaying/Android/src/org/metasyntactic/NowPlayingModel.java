@@ -13,8 +13,18 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
@@ -31,17 +41,11 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
-import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 
 public class NowPlayingModel {
   private static final String PERSISTANCE_VERSION = "15";
@@ -463,4 +467,31 @@ public class NowPlayingModel {
   public DataProvider.State getDataProviderState() {
     return dataProvider.getState();
   }
+
+  public boolean isStale(final Theater theater) {
+    Boolean stale = theater.isStale();
+    if (stale == null) {
+      stale = dataProvider.isStale(theater);
+      theater.setStale(stale);
+    }
+
+    return stale;
+  }
+
+  public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
+    if (isStale(theater)) {
+      final Date date = dataProvider.synchronizationDateForTheater(theater);
+      if (date == null) {
+        return "";
+      }
+      return resources.getString(R.string.theater_last_reported_show_times_on_string_dot, DateUtilities.formatLongDate(date));
+    } else {
+      return resources.getString(R.string.show_times_retrieved_on_string_dot, DateUtilities.formatLongDate(DateUtilities.getToday()));
+    }
+  }
+
+  //public boolean
+
+  //- (BOOL) isStale:(Theater*) theater;
+  //- (NSString*) showtimesRetrievedOnString:(Theater*) theater;
 }

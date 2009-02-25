@@ -13,9 +13,15 @@
 // limitations under the License.
 package org.metasyntactic;
 
-import android.app.Activity;
-import android.content.Context;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import static org.metasyntactic.utilities.SetUtilities.any;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.collections.IdentityHashSet;
 import org.metasyntactic.data.Location;
@@ -28,13 +34,10 @@ import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.utilities.LogUtilities;
-import static org.metasyntactic.utilities.SetUtilities.any;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -304,6 +307,16 @@ public class NowPlayingControllerWrapper {
   public static void setSearchDate(final Date date) {
     checkInstance();
     instance.setSearchDate(date);
+  }
+
+  public boolean isStale(final Theater theater) {
+    checkInstance();
+    return instance.isStale(theater);
+  }
+
+  public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
+    checkInstance();
+    return instance.getShowtimesRetrievedOnString(theater, resources);
   }
 
   public static void onLowMemory() {

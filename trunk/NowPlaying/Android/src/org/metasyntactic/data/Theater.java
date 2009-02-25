@@ -40,6 +40,7 @@ public class Theater extends AbstractPersistable implements Parcelable {
   private final Location location;
   private final Location originatingLocation;
   private final Set<String> movieTitles;
+  private Boolean isStale;
 
   public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(identifier);
@@ -125,6 +126,14 @@ public class Theater extends AbstractPersistable implements Parcelable {
 
   public Set<String> getMovieTitles() {
     return Collections.unmodifiableSet(movieTitles);
+  }
+
+  public Boolean isStale() {
+    return isStale;
+  }
+
+  public void setStale(final boolean stale) {
+    isStale = stale;
   }
 
   public int describeContents() {

@@ -13,11 +13,14 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtilities {
   private static final Date today;
+  private static final DateFormat longFormat = DateFormat.getDateInstance(DateFormat.LONG);
+  private static final Object lock = new Object();
 
   static {
     final Date dt = new Date();
@@ -45,5 +48,28 @@ public class DateUtilities {
 
   public static boolean use24HourTime() {
     return false;
+  }
+
+  public static boolean isToday(final Date date) {
+    return isSameDay(getToday(), date);
+  }
+
+  public static boolean isSameDay(final Date d1, final Date d2) {
+    final Calendar c1 = Calendar.getInstance();
+    final Calendar c2 = Calendar.getInstance();
+
+    c1.setTime(d1);
+    c2.setTime(d2);
+
+    return
+    c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
+    c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) &&
+    c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH);
+  }
+
+  public static String formatLongDate(final Date date) {
+    synchronized (lock) {
+      return longFormat.format(date);
+    }
   }
 }

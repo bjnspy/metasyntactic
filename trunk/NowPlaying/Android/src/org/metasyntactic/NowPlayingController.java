@@ -13,9 +13,12 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -27,11 +30,11 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.io.File;
-import java.util.Date;
-import java.util.List;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 
 public class NowPlayingController {
   private final NowPlayingModel model;
@@ -81,10 +84,10 @@ public class NowPlayingController {
       return;
     }
     new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
-      .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-        public void onClick(final DialogInterface dialogInterface, final int i) {
-        }
-      }).show();
+    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+      public void onClick(final DialogInterface dialogInterface, final int i) {
+      }
+    }).show();
   }
 
   public String getUserAddress() {
@@ -236,5 +239,13 @@ public class NowPlayingController {
 
   public DataProvider.State getDataProviderState() {
     return model.getDataProviderState();
+  }
+
+  public boolean isStale(final Theater theater) {
+    return model.isStale(theater);
+  }
+
+  public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
+    return model.getShowtimesRetrievedOnString(theater, resources);
   }
 }
