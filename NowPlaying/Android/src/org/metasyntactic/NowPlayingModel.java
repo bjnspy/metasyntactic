@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.IMDbCache;
@@ -42,6 +43,7 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.FileUtilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -49,6 +51,8 @@ import android.content.res.Resources;
 
 public class NowPlayingModel {
   private static final String PERSISTANCE_VERSION = "15";
+
+  // These keys *MUST* end with "KEY"
   private static final String VERSION_KEY = "VERSION";
   private static final String USER_ADDRESS_KEY = "userAddress";
   private static final String SEARCH_DATE_KEY = "searchDate";
@@ -60,6 +64,7 @@ public class NowPlayingModel {
   private static final String SCORE_TYPE_KEY = "scoreType";
   private static final String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
   private static final String CLEAR_CACHE_KEY = "clearCache";
+
   // SharedPreferences is not threadsafe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
@@ -71,6 +76,8 @@ public class NowPlayingModel {
   private final PosterCache posterCache = new PosterCache(this);
   private final LargePosterCache largePosterCache = new LargePosterCache(this);
   private final IMDbCache imdbCache = new IMDbCache(this);
+
+  private Map<String, FavoriteTheater> favoriteTheaters;
 
   public NowPlayingModel(final Context applicationContext) {
     preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
@@ -309,8 +316,44 @@ public class NowPlayingModel {
     return dataProvider.getTheaters();
   }
 
-  public static List<FavoriteTheater> getFavoriteTheaters() {
-    return Collections.emptyList();
+  private File getFavoriteTheatersFile() {
+    return new File(NowPlayingApplication.dataDirectory, "FavoriteTheaters");
+  }
+
+  private void saveFavoriteTheaters() {
+    FileUtilities.writeStringToPersistableMap(favoriteTheaters, getFavoriteTheatersFile());
+  }
+
+  private void ensureFavoriteTheaters() {
+    if (favoriteTheaters == null) {
+      favoriteTheaters = FileUtilities.readStringToPersistableMap(FavoriteTheater.reader, getFavoriteTheatersFile());
+      if (favoriteTheaters == null) {
+        favoriteTheaters = Collections.emptyMap();
+      }
+    }
+  }
+
+  public Collection<FavoriteTheater> getFavoriteTheaters() {
+    ensureFavoriteTheaters();
+    return favoriteTheaters.values();
+  }
+
+  public void addFavoriteTheater(final Theater theater) {
+    ensureFavoriteTheaters();
+    final FavoriteTheater favorite = new FavoriteTheater(theater.getName(), theater.getOriginatingLocation());
+    favoriteTheaters.put(favorite.getName(), favorite);
+    saveFavoriteTheaters();
+  }
+
+  public void removeFavoriteTheater(final Theater theater) {
+    ensureFavoriteTheaters();
+    favoriteTheaters.remove(theater.getName());
+    saveFavoriteTheaters();
+  }
+
+  public boolean isFavoriteTheater(final Theater theater) {
+    ensureFavoriteTheaters();
+    return favoriteTheaters.containsKey(theater.getName());
   }
 
   public static String getTrailer(final Movie movie) {
