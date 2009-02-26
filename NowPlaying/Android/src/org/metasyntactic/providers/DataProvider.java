@@ -227,7 +227,7 @@ public class DataProvider {
       if (isEmpty(oldPerformances)) {
         continue;
       }
-      final Date syncDate = synchronizationDateForTheater(theater.getName());
+      final Date syncDate = synchronizationDateForTheater(theater);
       if (Math.abs(syncDate.getTime() - new Date().getTime()) > Constants.FOUR_WEEKS) {
         continue;
       }
