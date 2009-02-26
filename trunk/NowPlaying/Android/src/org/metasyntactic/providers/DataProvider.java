@@ -243,7 +243,7 @@ public class DataProvider {
     if (lookupResult == null) {
       return;
     }
-    final List<FavoriteTheater> favoriteTheaters = NowPlayingModel.getFavoriteTheaters();
+    final Collection<FavoriteTheater> favoriteTheaters = model.getFavoriteTheaters();
     if (favoriteTheaters.isEmpty()) {
       return;
     }

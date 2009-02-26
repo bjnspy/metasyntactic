@@ -90,7 +90,6 @@ static NSString** STRING_KEYS_TO_MIGRATE[] = {
 };
 
 static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
-
 };
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
@@ -314,19 +313,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (NSString*) netflixKey {
-    //return @"T10v6ZHFebf6KWFBdAr.5xOQlezhfD5FkwloL4L2Dsf69jBwr3gh4jtDTLTRa0l77CK83SUaIeCBSOqLXWWp60Ug--";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
 }
 
 
 - (NSString*) netflixSecret {
-    //return @"nhW7BKyZWTH4";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
 }
 
 
 -(NSString*) netflixUserId {
-    //return @"T1rkk6acm91SZluDiWQhEI9Flb6UBAn6afbFYw9n.msV0-";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
 }
 
