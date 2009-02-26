@@ -51,8 +51,8 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"1.4.0";
-static NSString* persistenceVersion = @"104";
+static NSString* currentVersion = @"1.5.0";
+static NSString* persistenceVersion = @"105";
 
 static NSString* VERSION = @"version";
 
@@ -65,6 +65,7 @@ static NSString* NETFLIX_FIRST_NAME                     = @"netflixFirstName";
 static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
 static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
 static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
+static NSString* NETFLIX_UPDATED_APPLICATION_KEYS       = @"netflixUpdatedApplicationKeys";
 
 
 static NSString** ALL_KEYS[] = {
@@ -94,6 +95,7 @@ static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &NETFLIX_CAN_INSTANT_WATCH,
+&NETFLIX_UPDATED_APPLICATION_KEYS,
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
@@ -272,10 +274,23 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (void) updateNetflixKeys {
+    BOOL updatedNetflixApplicationKeys = [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_UPDATED_APPLICATION_KEYS];
+    if (updatedNetflixApplicationKeys) {
+        return;
+    }
+    
+    [self setNetflixKey:nil secret:nil userId:nil];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NETFLIX_UPDATED_APPLICATION_KEYS];
+    [self synchronize];
+}
+
+
 - (id) init {
     if (self = [super init]) {
         [self checkCountry];
         [self loadData];
+        [self updateNetflixKeys];
 
         self.personPosterCache = [PersonPosterCache cacheWithModel:self];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
