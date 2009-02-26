@@ -94,6 +94,21 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) netflixKey {
+    return @"szqxavgvm6s3ywed2cnwmt69";
+}
+
+
++ (NSString*) netflixSecret {
+    return @"52EWSSQFrJ";
+}
+
+
++ (NSString*) netflixApplicationName {
+    return @"PocketFlicks";
+}
+
+
 + (void) deleteDirectories {
     [gate lock];
     {
