@@ -80,7 +80,7 @@
         width -= 10;
     }
 
-    CGSize size = CGSizeMake(width, 2000);
+    CGSize size = CGSizeMake(width, 8000);
     size = [title sizeWithFont:[UIFont boldSystemFontOfSize:20]
             constrainedToSize:size
             lineBreakMode:UILineBreakModeWordWrap];
