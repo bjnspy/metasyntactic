@@ -27,6 +27,7 @@
 - (void)dealloc {
     self.title = nil;
     self.label = nil;
+    
     [super dealloc];
 }
 
@@ -34,32 +35,38 @@
 - (id) initWithTitle:(NSString*) title_ {
     if (self = [super initWithFrame:CGRectZero]) {
         self.title = title_;
-
+        
         self.label = [[[UILabel alloc] init] autorelease];
         label.text = title;
         label.numberOfLines = 0;
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.font = [UIFont boldSystemFontOfSize:20];
-
+        
         [self.contentView addSubview:label];
     }
-
+    
     return self;
+}
+
+
+- (void) setFont:(UIFont*) font {
+    label.font = font;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
     CGRect frame = self.contentView.frame;
-
-    label.frame = CGRectMake(10, 10, frame.size.width - 20, [WrappableCell height:title accessoryType:self.accessoryType] - 20);
+    
+    CGFloat height =  [WrappableCell height:title accessoryType:self.accessoryType font:label.font] - 20;
+    label.frame = CGRectMake(10, 10, frame.size.width - 20, height);
 }
 
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    if (selected) {
+    
+    if (selected && self.selectionStyle != UITableViewCellSelectionStyleNone) {
         label.textColor = [UIColor whiteColor];
     } else {
         label.textColor = [UIColor blackColor];
@@ -67,7 +74,9 @@
 }
 
 
-+ (CGFloat) height:(NSString*) title accessoryType:(UITableViewCellAccessoryType) accessoryType {
++ (CGFloat)  height:(NSString*) text
+      accessoryType:(UITableViewCellAccessoryType) accessoryType 
+               font:(UIFont*) font { 
     double width;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
@@ -75,17 +84,22 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
     width -= 20; // normal content view
-
+    
     if (accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
         width -= 10;
     }
-
-    CGSize size = CGSizeMake(width, 8000);
-    size = [title sizeWithFont:[UIFont boldSystemFontOfSize:20]
+    
+    CGSize size = CGSizeMake(width, 10000);
+    size = [text sizeWithFont:font
             constrainedToSize:size
-            lineBreakMode:UILineBreakModeWordWrap];
-
+                lineBreakMode:UILineBreakModeWordWrap];
+    
     return size.height + 20;
+}
+
+
++ (CGFloat) height:(NSString*) text accessoryType:(UITableViewCellAccessoryType) accessoryType { 
+    return [self height:text accessoryType:accessoryType font:[UIFont boldSystemFontOfSize:20]];
 }
 
 

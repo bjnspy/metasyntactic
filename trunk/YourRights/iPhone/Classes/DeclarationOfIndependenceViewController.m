@@ -11,6 +11,7 @@
 #import "ConstitutionSignersViewController.h"
 #import "DateUtilities.h"
 #import "DeclarationOfIndependence.h"
+#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
 @interface DeclarationOfIndependenceViewController()
@@ -36,6 +37,8 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.declaration = declaration_;
+        self.title = NSLocalizedString(@"Declaration of Independence", nil);
+        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
     
     return self;

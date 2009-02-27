@@ -14,11 +14,14 @@
 
 @interface Section : NSObject {
 @private
+    NSString* title;
     NSString* text;
 }
 
+@property (readonly, copy) NSString* title;
 @property (readonly, copy) NSString* text;
 
 + (Section*) sectionWithText:(NSString*) text;
++ (Section*) sectionWithTitle:(NSString*) title text:(NSString*) text;
 
 @end

@@ -22,6 +22,7 @@
 #import "DeclarationOfIndependenceViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
+#import "FederalistPapersViewController.h"
 #import "Model.h"
 #import "QuestionsViewController.h"
 #import "ToughQuestionsViewController.h"
@@ -47,7 +48,7 @@
     self.navigationController = nil;
     self.tableView = nil;
     self.creditsViewController = nil;
-
+    
     [super dealloc];
 }
 
@@ -62,17 +63,17 @@
         self.navigationController = navigationController_;
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
-
+        
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
         button.frame = frame;
-
+        
         [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
-
+    
     return self;
 }
 
@@ -81,7 +82,7 @@
     if (creditsViewController != nil) {
         return;
     }
-
+    
     self.creditsViewController = [[[CreditsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
     self.creditsViewController.view.frame = tableView.frame;
 }
@@ -89,11 +90,11 @@
 
 - (void) flipView:(id) sender {
     [self createCreditsView];
-
+    
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:1];
-
+        
         if (tableView.superview) {
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                                    forView:self.view
@@ -116,22 +117,22 @@
     UITableView* table = [[[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain] autorelease];
     table.delegate = self;
     table.dataSource = self;
-
+    
     // add the subviews and set their resize behavior
     table.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    
     return table;
 }
 
 
 - (void) loadView {
     CGRect rect = [UIScreen mainScreen].bounds;
-
+    
     self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
     self.view.autoresizesSubviews = YES;
-
+    
     self.tableView = [self createTableView:rect];
-
+    
     [self.view addSubview:tableView];
 }
 
@@ -166,7 +167,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.model.constitutions.count + 1;
+        return 4;
     } else if (section == 1) {
         return 4;
     } else {
@@ -177,11 +178,15 @@
 
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row < self.model.constitutions.count) {
+        if (indexPath.row == 0) {
             return [NSString stringWithFormat:NSLocalizedString(@"%@ Constitution", nil),
-                    [[self.model.constitutions objectAtIndex:indexPath.row] country]];
-        } else {
+                    self.model.unitedStatesConstitution.country];
+        } else if (indexPath.row == 1) {
             return NSLocalizedString(@"Declaration of Independence", nil);
+        } else if (indexPath.row == 2) {
+            return NSLocalizedString(@"Articles of Confederation", nil);
+        } else {
+            return NSLocalizedString(@"Federalist Papers", nil);
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -211,14 +216,14 @@
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+        
         return cell;
     } else {
         text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-
+        
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+        
         return cell;
     }
 }
@@ -227,7 +232,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
-
+    
     if (indexPath.section == 0) {
         return tableView.rowHeight;
     } else if (indexPath.section == 1) {
@@ -242,15 +247,28 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row < self.model.constitutions.count) {
-            Constitution* constitution = [self.model.constitutions objectAtIndex:indexPath.row];
-            UnitedStatesConstitutionViewController* controller = [[[UnitedStatesConstitutionViewController alloc] initWithNavigationController:navigationController
-                                                                                                                              constitution:constitution] autorelease];
+        NSString* title = [self titleForIndexPath:indexPath];
+        if (indexPath.row == 0) {
+            Constitution* constitution = self.model.unitedStatesConstitution;
+            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
+                                                                                                          constitution:constitution
+                                                                                                                 title:title] autorelease];
             [navigationController pushViewController:controller animated:YES];
-        } else {
+        } else if (indexPath.row == 1) {
             DeclarationOfIndependenceViewController* controller = [[[DeclarationOfIndependenceViewController alloc] initWithNavigationController:navigationController
                                                                                                                                      declaration:self.model.declarationOfIndependence] autorelease];
             [navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 2) {
+            Constitution* constitution = self.model.articlesOfConfederation;
+            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
+                                                                                                          constitution:constitution
+                                                                                                                 title:title] autorelease];
+            [navigationController pushViewController:controller animated:YES];            
+        } else {
+            Constitution* constitution = self.model.federalistPapers;
+            FederalistPapersViewController* controller = [[[FederalistPapersViewController alloc] initWithNavigationController:navigationController
+                                                                                                                  constitution:constitution] autorelease];
+            [navigationController pushViewController:controller animated:YES];            
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -284,7 +302,7 @@
     } else {
         return NSLocalizedString(@"Encountering Law Enforcement", nil);
     }
-
+    
     return nil;
 }
 

@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface WrappableCell : UITableViewCell {
+@interface FederalistPapersViewController : UITableViewController {
 @private
-    NSString* title;
-    UILabel* label;
+    YourRightsNavigationController* navigationController;
+    Constitution* constitution;
 }
 
-- (id) initWithTitle:(NSString*) title;
-+ (CGFloat) height:(NSString*) text accessoryType:(UITableViewCellAccessoryType) accessoryType;
-+ (CGFloat) height:(NSString*) text accessoryType:(UITableViewCellAccessoryType) accessoryType font:(UIFont*) font;
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
+                       constitution:(Constitution*) constitution;
 
 @end

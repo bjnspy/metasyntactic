@@ -18,6 +18,7 @@
     NSString* preamble;
     NSArray* articles;
     NSArray* amendments;
+    NSString* conclusion;
     MultiDictionary* signers;
 }
 
@@ -25,12 +26,14 @@
 @property (readonly, copy) NSString* preamble;
 @property (readonly, retain) NSArray* articles;
 @property (readonly, retain) NSArray* amendments;
+@property (readonly, copy) NSString* conclusion;
 @property (readonly, retain) MultiDictionary* signers;
 
 + (Constitution*) constitutionWithCountry:(NSString*) country
                                  preamble:(NSString*) preamble
                                  articles:(NSArray*) articles
                                amendments:(NSArray*) amendments
+                               conclusion:(NSString*) conclusion
                                   signers:(MultiDictionary*) signers;
 
 @end

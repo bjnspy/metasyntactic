@@ -24,6 +24,7 @@
 @class MultiDictionary;
 @class Pulser;
 @class RSSCache;
+@class Section;
 @class SectionViewController;
 @class XmlDocument;
 @class XmlElement;

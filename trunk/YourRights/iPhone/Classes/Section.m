@@ -15,22 +15,28 @@
 #import "Section.h"
 
 @interface Section()
+@property (copy) NSString* title;
 @property (copy) NSString* text;
 @end
 
 
 @implementation Section
 
+@synthesize title;
 @synthesize text;
 
 - (void) dealloc {
+    self.title = nil;
     self.text = nil;
+    
     [super dealloc];
 }
 
 
-- (id) initWithText:(NSString*) text_ {
+- (id) initWithTitle:(NSString*) title_
+                text:(NSString*) text_ {
     if (self = [super init]) {
+        self.title = title_;
         self.text = text_;
     }
     
@@ -38,8 +44,14 @@
 }
 
 
++ (Section*) sectionWithTitle:(NSString*) title
+                         text:(NSString*) text {
+    return [[[Section alloc] initWithTitle:title text:text] autorelease];
+}
+
+
 + (Section*) sectionWithText:(NSString*) text {
-    return [[[Section alloc] initWithText:text] autorelease];
+    return [[[Section alloc] initWithTitle:@"" text:text] autorelease];
 }
 
 @end

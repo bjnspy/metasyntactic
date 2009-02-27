@@ -25,7 +25,7 @@
     label.textColor = [UIColor whiteColor];
     label.shadowColor = [UIColor darkGrayColor];
     label.font = [UIFont boldSystemFontOfSize:20];
-    label.textAlignment = UITextAlignmentCenter;
+    //label.textAlignment = UITextAlignmentCenter;
     label.minimumFontSize = 14;
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     label.text = text;
