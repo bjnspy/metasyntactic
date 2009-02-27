@@ -20,6 +20,7 @@
 #import "Decision.h"
 #import "LocaleUtilities.h"
 #import "MultiDictionary.h"
+#import "Person.h"
 #import "RSSCache.h"
 #import "Section.h"
 #import "Utilities.h"
@@ -48,6 +49,11 @@ static NSArray* constitutions;
 
 + (NSString*) version {
     return currentVersion;
+}
+
+
+Person* person(NSString* name, NSString* link) {
+    return [Person personWithName:name link:link];
 }
 
 
@@ -450,18 +456,56 @@ static NSArray* constitutions;
      amendment26, amendment27, nil];
     
     MultiDictionary* signers = [MultiDictionary dictionary];
-    [signers addObjects:[NSArray arrayWithObjects:@"G. Washington", @"John Blair", @"James Madison Jr.", nil] forKey:@"Virginia"];
-    [signers addObjects:[NSArray arrayWithObjects:@"John Langdon", @"Nicholas Gilman", nil] forKey:@"New Hampshire"];
-    [signers addObjects:[NSArray arrayWithObjects:@"Nathaniel Gorham", @"Rufus King", nil] forKey:@"Massachusetts"];
-    [signers addObjects:[NSArray arrayWithObjects:@"Wm: Saml. Johnson", @"Roger Sherman", nil] forKey:@"Connecticut"];
-    [signers addObject:@"Alexander Hamilton" forKey:@"New York"];
-    [signers addObjects:[NSArray arrayWithObjects:@"Wil: Livingston", @"David Brearly", @"Wm. Paterson", @"Jona: Dayton", nil] forKey:@"New Jersey"];
-    [signers addObjects:[NSArray arrayWithObjects:@"B. Franklin", @"Thomas Mifflin", @"Robt. Morris", @"Geo. Clymer", @"Thos. FitzSimons", @"Jared Ingersoll", @"James Wilson", @"Gouv Morris", nil] forKey:@"Pennsylvania"];
-    [signers addObjects:[NSArray arrayWithObjects:@"Geo: Read", @"Gunning Bedford jun", @"John Dickinson", @"Richard Bassett", @"Jaco: Broom", nil] forKey:@"Delaware"];
-    [signers addObjects:[NSArray arrayWithObjects:@"James McHenry", @"Dan of St Thos. Jenifer", @"Danl Carroll", nil] forKey:@"Maryland"];
-    [signers addObjects:[NSArray arrayWithObjects:@"Wm. Blount", @"Richd. Dobbs Spaight", @"Hu Williamson", nil] forKey:@"North Carolina"];
-    [signers addObjects:[NSArray arrayWithObjects:@"J. Rutledge", @"Charles Cotesworth Pinckney", @"Charles Pinckney", @"Pierce Butler", nil] forKey:@"South Carolina"];
-    [signers addObjects:[NSArray arrayWithObjects:@"William Few", @"Abr Baldwin", nil] forKey:@"Georgia"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"George Washington", @"http://en.wikipedia.org/wiki/George_Washington"),
+                         person(@"John Blair", @"http://en.wikipedia.org/wiki/John_Blair"),
+                         person(@"James Madison Jr.", @"http://en.wikipedia.org/wiki/James_Madison"), nil] forKey:@"Virginia"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"John Langdon", @"http://en.wikipedia.org/wiki/John_Langdon"),
+                         person(@"Nicholas Gilman", @"http://en.wikipedia.org/wiki/Nicholas_Gilman"), nil] forKey:@"New Hampshire"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"Nathaniel Gorham", @"http://en.wikipedia.org/wiki/Nathaniel_Gorham"),
+                         person(@"Rufus King", @"http://en.wikipedia.org/wiki/Rufus_King"), nil] forKey:@"Massachusetts"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"William Samuel Johnson", @"http://en.wikipedia.org/wiki/William_Samuel_Johnson"), 
+                         person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"), nil] forKey:@"Connecticut"];
+    [signers addObject:person(@"Alexander Hamilton", @"http://en.wikipedia.org/wiki/Alexander_Hamilton") forKey:@"New York"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"William Livingston", @"http://en.wikipedia.org/wiki/William_Livingston"),
+                         person(@"David Brearly", @"http://en.wikipedia.org/wiki/David_Brearly"),
+                         person(@"William Paterson", @"http://en.wikipedia.org/wiki/William_Paterson_(judge)"),
+                         person(@"Jonathan Dayton", @"http://en.wikipedia.org/wiki/Jonathan_Dayton"), nil] forKey:@"New Jersey"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"Benjamin Franklin", @"http://en.wikipedia.org/wiki/Benjamin_franklin"),
+                         person(@"Thomas Mifflin", @"http://en.wikipedia.org/wiki/Thomas_Mifflin"), 
+                         person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
+                         person(@"George Clymer", @"http://en.wikipedia.org/wiki/George_Clymer"),
+                         person(@"Thomas FitzSimons", @"http://en.wikipedia.org/wiki/Thomas_Fitzsimons"),
+                         person(@"Jared Ingersoll", @"http://en.wikipedia.org/wiki/Jared_Ingersoll"),
+                         person(@"James Wilson", @"http://en.wikipedia.org/wiki/James_Wilson"),
+                         person(@"Gouverneur Morris", @"http://en.wikipedia.org/wiki/Gouverneur_Morris"), nil] forKey:@"Pennsylvania"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"George Read", @"http://en.wikipedia.org/wiki/George_Read_(signer)"),
+                         person(@"Gunning Bedford Jr.", @"http://en.wikipedia.org/wiki/Gunning_Bedford,_Jr."),
+                         person(@"John Dickinson", @"http://en.wikipedia.org/wiki/John_Dickinson_(delegate)"),
+                         person(@"Richard Bassett", @"http://en.wikipedia.org/wiki/Richard_Bassett"),
+                         person(@"Jacob Broom", @"http://en.wikipedia.org/wiki/Jacob_Broom"), nil] forKey:@"Delaware"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"James McHenry", @"http://en.wikipedia.org/wiki/James_McHenry"),
+                         person(@"Daniel of St. Thomas Jenifer", @"http://en.wikipedia.org/wiki/Daniel_of_St._Thomas_Jenifer"),
+                         person(@"Daniel Carroll", @"http://en.wikipedia.org/wiki/Daniel_Carroll"), nil] forKey:@"Maryland"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"William Blount", @"http://en.wikipedia.org/wiki/William_Blount"),
+                         person(@"Richard Dobbs Spaight", @"http://en.wikipedia.org/wiki/Richard_Dobbs_Spaight"),
+                         person(@"Hugh Williamson", @"http://en.wikipedia.org/wiki/Hugh_Williamson"), nil] forKey:@"North Carolina"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"John Rutledge", @"http://en.wikipedia.org/wiki/John_Rutledge"),
+                         person(@"Charles Cotesworth Pinckney", @"http://en.wikipedia.org/wiki/Charles_Cotesworth_Pinckney"),
+                         person(@"Charles Pinckney", @"http://en.wikipedia.org/wiki/Charles_Pinckney_(governor)"),
+                         person(@"Pierce Butler", @"http://en.wikipedia.org/wiki/Pierce_Butler"), nil] forKey:@"South Carolina"];
+    [signers addObjects:[NSArray arrayWithObjects:
+                         person(@"William Few", @"http://en.wikipedia.org/wiki/William_Few"),
+                         person(@"Abraham Baldwin", @"http://en.wikipedia.org/wiki/Abraham_Baldwin"), nil] forKey:@"Georgia"];
 
     return [Constitution constitutionWithCountry:country
                                         preamble:NSLocalizedString(@"We the people of the United States, in order to form a more perfect union, establish justice, insure domestic tranquility, provide for the common defense, promote the general welfare, and secure the blessings of liberty to ourselves and our posterity, do ordain and establish this Constitution for the United States of America.", nil)

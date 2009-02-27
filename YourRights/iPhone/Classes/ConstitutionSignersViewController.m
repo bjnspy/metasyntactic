@@ -15,10 +15,13 @@
 #import "ConstitutionSignersViewController.h"
 
 #import "Article.h"
+#import "AutoResizingCell.h"
 #import "MultiDictionary.h"
+#import "Person.h"
 #import "Section.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface ConstitutionSignersViewController()
 @property (assign) YourRightsNavigationController* navigationController;
@@ -68,22 +71,30 @@
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[signers objectsForKey:[keys objectAtIndex:section]] count];
 }
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:signer] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* reuseIdentifier = @"reuseIdentifier";
+    AutoResizingCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    cell.text = signer.name;
     
     return cell;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+
+    [navigationController pushBrowser:signer.link animated:YES];
 }
 
 
@@ -95,9 +106,9 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     
-    return [WrappableCell height:signer accessoryType:UITableViewCellAccessoryNone];
+    return [WrappableCell height:signer.name accessoryType:UITableViewCellAccessoryNone];
 }
 
 @end

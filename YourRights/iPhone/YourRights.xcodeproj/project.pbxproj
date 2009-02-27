@@ -77,6 +77,7 @@
 		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
 		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
 		74954FE30F38EAA900E79E24 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FE20F38EAA900E79E24 /* FontCache.m */; };
+		74D3892B0F58608A00B7A51C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3892A0F58608A00B7A51C /* Person.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +227,8 @@
 		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
 		74954FE10F38EAA900E79E24 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
 		74954FE20F38EAA900E79E24 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
+		74D389290F58608A00B7A51C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		74D3892A0F58608A00B7A51C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -530,6 +533,8 @@
 				743D96FE0F3FADB800BA0784 /* Section.m */,
 				740E8D690F3FE93A00798E0C /* Amendment.h */,
 				740E8D6A0F3FE93A00798E0C /* Amendment.m */,
+				74D389290F58608A00B7A51C /* Person.h */,
+				74D3892A0F58608A00B7A51C /* Person.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
 				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
 				7442261C0F44870600787F33 /* AbstractCache.m in Sources */,
+				74D3892B0F58608A00B7A51C /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
