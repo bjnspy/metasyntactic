@@ -43,7 +43,6 @@
 
 - (Constitution*) unitedStatesConstitution;
 - (DeclarationOfIndependence*) declarationOfIndependence;
-- (Constitution*) articlesOfConfederation;
 //+ (NSArray*)
 
 @end
