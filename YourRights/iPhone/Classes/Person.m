@@ -8,6 +8,10 @@
 
 #import "Person.h"
 
+Person* person(NSString* name, NSString* link) {
+    return [Person personWithName:name link:link];
+}
+
 @interface Person()
 @property (copy) NSString* name;
 @property (copy) NSString* link;

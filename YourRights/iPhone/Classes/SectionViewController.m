@@ -17,6 +17,7 @@
 #import "ACLUInfoViewController.h"
 #import "ACLUNewsViewController.h"
 #import "AutoResizingCell.h"
+#import "ArticlesOfConfederation.h"
 #import "Constitution.h"
 #import "ConstitutionViewController.h"
 #import "CreditsViewController.h"
@@ -260,7 +261,7 @@
                                                                                                                                      declaration:self.model.declarationOfIndependence] autorelease];
             [navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 2) {
-            Constitution* constitution = self.model.articlesOfConfederation;
+            Constitution* constitution = [ArticlesOfConfederation articlesOfConfederation];
             ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
                                                                                                           constitution:constitution
                                                                                                                  title:title] autorelease];

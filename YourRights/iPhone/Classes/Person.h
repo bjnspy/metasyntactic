@@ -18,3 +18,5 @@
 + (Person*) personWithName:(NSString*) name link:(NSString*) link;
 
 @end
+
+Person* person(NSString* name, NSString* link);
