@@ -21,6 +21,7 @@
 #import "ConstitutionViewController.h"
 #import "CreditsViewController.h"
 #import "DeclarationOfIndependenceViewController.h"
+#import "FederalistPapers.h"
 #import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
 #import "FederalistPapersViewController.h"
@@ -265,7 +266,7 @@
                                                                                                                  title:title] autorelease];
             [navigationController pushViewController:controller animated:YES];            
         } else {
-            Constitution* constitution = self.model.federalistPapers;
+            Constitution* constitution = [FederalistPapers federalistPapers];
             FederalistPapersViewController* controller = [[[FederalistPapersViewController alloc] initWithNavigationController:navigationController
                                                                                                                   constitution:constitution] autorelease];
             [navigationController pushViewController:controller animated:YES];            
