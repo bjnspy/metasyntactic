@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
@@ -31,11 +33,12 @@ public class ShowtimesActivity extends ListActivity {
   private Movie movie;
 
   @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  protected void onListItemClick(final ListView listView, final View view, final int position,
+      final long id) {
     final Intent intent = new Intent();
     intent.setClass(this, ShowtimesDetailsActivity.class);
-    intent.putExtra("movie", (Parcelable)movie);
-    intent.putExtra("theater", (Parcelable)theaters.get(position));
+    intent.putExtra("movie", (Parcelable) movie);
+    intent.putExtra("theater", (Parcelable) theaters.get(position));
     startActivity(intent);
     super.onListItemClick(listView, view, position, id);
   }
@@ -45,7 +48,6 @@ public class ShowtimesActivity extends ListActivity {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
-
     setContentView(R.layout.theaters_movie);
     movie = getIntent().getExtras().getParcelable("movie");
   }
@@ -54,7 +56,6 @@ public class ShowtimesActivity extends ListActivity {
   protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
-
     bindView();
     // populateTheaterDetailItems();
     final ListAdapter theaterAdapter = new TheaterListAdapter();
@@ -70,7 +71,6 @@ public class ShowtimesActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
@@ -85,11 +85,11 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void bindView() {
-    final TextView title = (TextView)findViewById(R.id.title);
+    final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final View scoreImg = (Button)findViewById(R.id.score);
-    final TextView scoreLbl = (TextView)findViewById(R.id.scorelbl);
+    final View scoreImg = (Button) findViewById(R.id.score);
+    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
@@ -98,11 +98,12 @@ public class ShowtimesActivity extends ListActivity {
     } else {
     }
     final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
+    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType,
+        res));
     if (scoreValue != -1) {
       scoreLbl.setText(scoreValue + "%");
     }
-    final TextView ratingLengthLabel = (TextView)findViewById(R.id.ratingLength);
+    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
@@ -119,17 +120,25 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView)convertView.findViewById(R.id.label),
-        (TextView)convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
+          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
       final Theater theater = theaters.get(position);
       holder.label.setText(theater.getName());
-      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+          movie, theater);
       if (CollectionUtilities.size(list) > 0) {
         String performance = "";
         for (final Performance per : list) {
           performance += per.getTime() + ", ";
         }
         performance = performance.substring(0, performance.length() - 2);
+        if (NowPlayingControllerWrapper.isStale(theater)) {
+          LinearLayout l = (LinearLayout) convertView.findViewById(R.id.warning);
+          l.setVisibility(View.VISIBLE);
+          TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
+          warningText.setText(NowPlayingControllerWrapper.getShowtimesRetrievedOnString(theater,
+              ShowtimesActivity.this.getResources()));
+        }
         holder.data.setText(performance);
       } else {
         holder.data.setText("Unknown.");
@@ -170,10 +179,11 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-      .setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 }
