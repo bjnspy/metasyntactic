@@ -85,6 +85,7 @@
 		74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74CF65580F58A0EA00417ED5 /* Localizable.strings */; };
 		74CF656C0F58A17F00417ED5 /* FederalistPapers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF656B0F58A17F00417ED5 /* FederalistPapers.m */; };
 		74CF657A0F58A29500417ED5 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */; };
+		74CF65B60F58A44800417ED5 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */; };
 		74D3892B0F58608A00B7A51C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3892A0F58608A00B7A51C /* Person.m */; };
 		74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */; };
 /* End PBXBuildFile section */
@@ -251,6 +252,8 @@
 		74CF656B0F58A17F00417ED5 /* FederalistPapers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapers.m; sourceTree = "<group>"; };
 		74CF65780F58A29500417ED5 /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
 		74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
+		74CF65B40F58A44800417ED5 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
+		74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
 		74D389290F58608A00B7A51C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		74D3892A0F58608A00B7A51C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 				74CF656B0F58A17F00417ED5 /* FederalistPapers.m */,
 				74CF65780F58A29500417ED5 /* ArticlesOfConfederation.h */,
 				74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */,
+				74CF65B40F58A44800417ED5 /* UnitedStatesConstitution.h */,
+				74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -749,6 +754,7 @@
 				74CF65470F58A08A00417ED5 /* ConstitutionViewController.m in Sources */,
 				74CF656C0F58A17F00417ED5 /* FederalistPapers.m in Sources */,
 				74CF657A0F58A29500417ED5 /* ArticlesOfConfederation.m in Sources */,
+				74CF65B60F58A44800417ED5 /* UnitedStatesConstitution.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
