@@ -12,21 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ConstitutionArticleViewController.h"
+#import "FederalistPapersArticleViewController.h"
 
 #import "Article.h"
+#import "FederalistPapersSectionViewController.h"
 #import "Section.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 
-@interface ConstitutionArticleViewController()
+@interface FederalistPapersArticleViewController()
 @property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Article* article;
 @end
 
 
-@implementation ConstitutionArticleViewController
+@implementation FederalistPapersArticleViewController
 
 @synthesize navigationController;
 @synthesize article;
@@ -44,8 +45,8 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.article = article_;
-        self.navigationItem.titleView =
-        [ViewControllerUtilities viewControllerTitleLabel:article.title];
+        self.title = article.title;
+        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
     
     return self;
@@ -59,87 +60,48 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return article.sections.count + 1;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section < article.sections.count) {
-        return 1;
-    } else {
-        if (article.link.length > 0) {
-            return 1;
-        }
-    }
-    
-    return 0;
+    return article.sections.count;
 }
 
 
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
     Section* section = [article.sections objectAtIndex:row];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.title] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    return cell;
-}
-
-
-- (UITableViewCell*) cellForLinksRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-    cell.text = @"Wikipedia";
     return cell;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section < article.sections.count) {
-        return [self cellForSectionRow:indexPath.section];
-    } else {
-        return [self cellForLinksRow:indexPath.row];
-    }
+    return [self cellForSectionRow:indexPath.row];
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section < article.sections.count) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    } else {
-        [navigationController pushBrowser:article.link animated:YES];
-    }
+    Section* section = [article.sections objectAtIndex:indexPath.row];
+    FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithNavigationController:navigationController section:section] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section < article.sections.count) {
-        if (article.sections.count > 1) {
-            return [NSString stringWithFormat:NSLocalizedString(@"Section %d", nil), section + 1];
-        }
-    } else {
-        if (article.link.length > 0) {
-            return NSLocalizedString(@"Links", nil);
-        }
-    }
-    
     return nil;
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < article.sections.count) {
-        Section* section = [article.sections objectAtIndex:indexPath.section];
-        
-        NSString* text = section.text;
-        
-        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
-    } else {
-        return tableView.rowHeight;
-    }
+    Section* section = [article.sections objectAtIndex:indexPath.row];
+    
+    return [WrappableCell height:section.title accessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
-
-
 
 @end

@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface UnitedStatesConstitutionViewController : UITableViewController {
+@interface ConstitutionViewController : UITableViewController {
 @private
     YourRightsNavigationController* navigationController;
     Constitution* constitution;
 }
 
 - (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                       constitution:(Constitution*) constitution;
+                       constitution:(Constitution*) constitution
+                              title:(NSString*) title;
 
 @end

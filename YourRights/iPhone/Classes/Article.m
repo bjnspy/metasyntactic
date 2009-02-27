@@ -57,4 +57,17 @@
                                   sections:sections] autorelease];
 }
 
+
++ (Article*) articleWithTitle:(NSString*) title
+                         link:(NSString*) link
+                      section:(Section*) section {
+    return [Article articleWithTitle:title link:link sections:[NSArray arrayWithObject:section]];
+}
+
+
++ (Article*) articleWithTitle:(NSString*) title
+                      section:(Section*) section {
+    return [Article articleWithTitle:title link:@"" section:section];
+}
+
 @end

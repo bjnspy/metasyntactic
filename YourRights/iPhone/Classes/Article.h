@@ -27,4 +27,11 @@
                          link:(NSString*) link
                      sections:(NSArray*) sections;
 
++ (Article*) articleWithTitle:(NSString*) title
+                         link:(NSString*) link
+                      section:(Section*) section;
+
++ (Article*) articleWithTitle:(NSString*) title
+                      section:(Section*) section;
+
 @end

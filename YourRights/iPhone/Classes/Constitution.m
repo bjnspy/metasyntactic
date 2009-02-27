@@ -19,6 +19,7 @@
 @property (copy) NSString* preamble;
 @property (retain) NSArray* articles;
 @property (retain) NSArray* amendments;
+@property (copy) NSString* conclusion;
 @property (retain) MultiDictionary* signers;
 @end
 
@@ -28,6 +29,7 @@
 @synthesize preamble;
 @synthesize articles;
 @synthesize amendments;
+@synthesize conclusion;
 @synthesize signers;
 
 - (void) dealloc {
@@ -35,6 +37,7 @@
     self.preamble = nil;
     self.articles = nil;
     self.amendments = nil;
+    self.conclusion = nil;
     self.signers = nil;
     
     [super dealloc];
@@ -45,12 +48,14 @@
               preamble:(NSString*) preamble_
               articles:(NSArray*) articles_
             amendments:(NSArray*) amendments_ 
+            conclusion:(NSString*) conclusion_
                signers:(MultiDictionary*) signers_ {
     if (self = [super init]) {
         self.country = country_;
         self.preamble = preamble_;
         self.articles = articles_;
         self.amendments = amendments_;
+        self.conclusion = conclusion_;
         self.signers = signers_;
     }
     
@@ -62,11 +67,13 @@
                                  preamble:(NSString*) preamble_
                                  articles:(NSArray*) articles_
                                amendments:(NSArray*) amendments_ 
+                               conclusion:(NSString*) conclusion_
                                   signers:(MultiDictionary*) signers_ {
     return [[[Constitution alloc] initWithCountry:country_
                                          preamble:preamble_
                                          articles:articles_
                                        amendments:amendments_
+                                       conclusion:conclusion_
                                           signers:signers_] autorelease];
 }
 

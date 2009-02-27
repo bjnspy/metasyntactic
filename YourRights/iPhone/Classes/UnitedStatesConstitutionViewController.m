@@ -21,14 +21,15 @@
 #import "ConstitutionAmendmentViewController.h"
 #import "ConstitutionArticleViewController.h"
 #import "ConstitutionSignersViewController.h"
+#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
-@interface UnitedStatesConstitutionViewController()
+@interface ConstitutionViewController()
 @property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Constitution* constitution;
 @end
 
-@implementation UnitedStatesConstitutionViewController
+@implementation ConstitutionViewController
 
 @synthesize navigationController;
 @synthesize constitution;
@@ -41,11 +42,13 @@
 
 
 - (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                       constitution:(Constitution*) constitution_ {
+                       constitution:(Constitution*) constitution_
+                              title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.constitution = constitution_;
-        self.title = constitution.country;
+        self.title = title_;
+        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
     
     return self;
@@ -59,7 +62,7 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 
@@ -72,6 +75,12 @@
     } else if (section == 2) {
         return constitution.amendments.count;
     } else if (section == 3) {
+        if (constitution.conclusion.length > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else if (section == 4) {
         return 1;
     }
     
@@ -117,6 +126,14 @@
 }
 
 
+- (UITableViewCell*) cellForConclusionRow:(NSInteger) row {
+    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:constitution.conclusion] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+
 - (UITableViewCell*) cellForInformationRow:(NSInteger) row {
     static NSString *reuseIdentifier = @"reuseIdentifier";
     
@@ -139,6 +156,8 @@
         return [self cellForArticlesRow:indexPath.row];
     } else if (indexPath.section == 2) {
         return [self cellForAmendmentsRow:indexPath.row];
+    } else if (indexPath.section == 3) {
+        return [self cellForConclusionRow:indexPath.row];
     } else {
         return [self cellForInformationRow:indexPath.row];
     }
@@ -164,6 +183,11 @@
 }
 
 
+- (void) didSelectConclusionRow:(NSInteger) row {
+    
+}
+
+
 - (void) didSelectInformationRow:(NSInteger) row {
     ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithNavigationController:navigationController signers:constitution.signers] autorelease];
     [navigationController pushViewController:controller animated:YES];
@@ -177,6 +201,8 @@
         [self didSelectArticlesRow:indexPath.row];
     } else if (indexPath.section == 2) {
         [self didSelectAmendmentsRow:indexPath.row];
+    } else if (indexPath.section == 3) {
+        [self didSelectConclusionRow:indexPath.row];
     } else {
         [self didSelectInformationRow:indexPath.row];
     }
@@ -190,7 +216,13 @@
     } else if (section == 1) {
         return NSLocalizedString(@"Articles", nil);
     } else if (section == 2) {
-        return NSLocalizedString(@"Amendments", nil);
+        if (constitution.amendments.count > 0) {
+            return NSLocalizedString(@"Amendments", nil);
+        }
+    } else if (section == 3) {
+        if (constitution.conclusion.length > 0) {
+            return NSLocalizedString(@"Conclusions", nil);
+        }
     } else {
         return NSLocalizedString(@"Information", nil);
     }
@@ -203,6 +235,8 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [WrappableCell height:constitution.preamble accessoryType:UITableViewCellAccessoryNone];
+    } else if (indexPath.section == 3) {
+        return [WrappableCell height:constitution.conclusion accessoryType:UITableViewCellAccessoryNone];
     } else {
         return tableView.rowHeight;
     }
