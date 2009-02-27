@@ -16,8 +16,10 @@
 
 #import "ACLUInfoViewController.h"
 #import "ACLUNewsViewController.h"
+#import "AutoResizingCell.h"
 #import "Constitution.h"
 #import "CreditsViewController.h"
+#import "DeclarationOfIndependenceViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
 #import "Model.h"
@@ -164,7 +166,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.model.constitutions.count;
+        return self.model.constitutions.count + 1;
     } else if (section == 1) {
         return 4;
     } else {
@@ -175,7 +177,12 @@
 
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return [[self.model.constitutions objectAtIndex:indexPath.row] country];
+        if (indexPath.row < self.model.constitutions.count) {
+            return [NSString stringWithFormat:NSLocalizedString(@"%@ Constitution", nil),
+                    [[self.model.constitutions objectAtIndex:indexPath.row] country]];
+        } else {
+            return NSLocalizedString(@"Declaration of Independence", nil);
+        }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             return NSLocalizedString(@"ACLU News", nil);
@@ -196,7 +203,8 @@
     NSString* text = [self titleForIndexPath:indexPath];
     
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
+        UITableViewCell *cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+        cell.text = text;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
@@ -216,12 +224,12 @@
 }
 
 
-- (CGFloat)         tableView:(UITableView*) tableView
+- (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
 
     if (indexPath.section == 0) {
-        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        return tableView.rowHeight;
     } else if (indexPath.section == 1) {
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
@@ -234,10 +242,16 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        Constitution* constitution = [self.model.constitutions objectAtIndex:indexPath.row];
-        UnitedStatesConstitutionViewController* controller = [[[UnitedStatesConstitutionViewController alloc] initWithNavigationController:navigationController
+        if (indexPath.row < self.model.constitutions.count) {
+            Constitution* constitution = [self.model.constitutions objectAtIndex:indexPath.row];
+            UnitedStatesConstitutionViewController* controller = [[[UnitedStatesConstitutionViewController alloc] initWithNavigationController:navigationController
                                                                                                                               constitution:constitution] autorelease];
-        [navigationController pushViewController:controller animated:YES];
+            [navigationController pushViewController:controller animated:YES];
+        } else {
+            DeclarationOfIndependenceViewController* controller = [[[DeclarationOfIndependenceViewController alloc] initWithNavigationController:navigationController
+                                                                                                                                     declaration:self.model.declarationOfIndependence] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+        }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             ACLUNewsViewController* controller = [[[ACLUNewsViewController alloc] initWithNavigationController:navigationController] autorelease];
@@ -264,7 +278,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Constitutions", nil);
+        return NSLocalizedString(@"Documents", nil);
     } else if (section == 1) {
         return NSLocalizedString(@"ACLU Information", nil);
     } else {

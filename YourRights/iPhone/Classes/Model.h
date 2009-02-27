@@ -42,6 +42,7 @@
 - (NSString*) feedbackUrl;
 
 - (NSArray*) constitutions;
+- (DeclarationOfIndependence*) declarationOfIndependence;
 //+ (NSArray*)
 
 @end

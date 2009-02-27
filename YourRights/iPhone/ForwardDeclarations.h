@@ -17,6 +17,7 @@
 @class Constitution;
 @class CreditsViewController;
 @class Decision;
+@class DeclarationOfIndependence;
 @class GreatestHitsViewController;
 @class Item;
 @class Model;

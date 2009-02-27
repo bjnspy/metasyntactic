@@ -77,7 +77,10 @@
 		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
 		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
 		74954FE30F38EAA900E79E24 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FE20F38EAA900E79E24 /* FontCache.m */; };
+		74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */; };
+		74CF63070F5871D400417ED5 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF63060F5871D400417ED5 /* DateUtilities.m */; };
 		74D3892B0F58608A00B7A51C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3892A0F58608A00B7A51C /* Person.m */; };
+		74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,8 +230,14 @@
 		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
 		74954FE10F38EAA900E79E24 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
 		74954FE20F38EAA900E79E24 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
+		74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
+		74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
+		74CF63050F5871D400417ED5 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateUtilities.h; path = ../../iPhoneShared/Classes/DateUtilities.h; sourceTree = SOURCE_ROOT; };
+		74CF63060F5871D400417ED5 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateUtilities.m; path = ../../iPhoneShared/Classes/DateUtilities.m; sourceTree = SOURCE_ROOT; };
 		74D389290F58608A00B7A51C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		74D3892A0F58608A00B7A51C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
+		74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -352,6 +361,8 @@
 		742DC0660F1337D40079E6B0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74CF63050F5871D400417ED5 /* DateUtilities.h */,
+				74CF63060F5871D400417ED5 /* DateUtilities.m */,
 				74954E070F38DBF100E79E24 /* StringUtilities.h */,
 				74954E080F38DBF100E79E24 /* StringUtilities.m */,
 				74954D890F38D4B000E79E24 /* NetworkUtilities.h */,
@@ -447,6 +458,8 @@
 				740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */,
 				740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */,
 				740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */,
+				74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */,
+				74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -535,6 +548,8 @@
 				740E8D6A0F3FE93A00798E0C /* Amendment.m */,
 				74D389290F58608A00B7A51C /* Person.h */,
 				74D3892A0F58608A00B7A51C /* Person.m */,
+				74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */,
+				74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -666,6 +681,9 @@
 				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
 				7442261C0F44870600787F33 /* AbstractCache.m in Sources */,
 				74D3892B0F58608A00B7A51C /* Person.m in Sources */,
+				74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */,
+				74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */,
+				74CF63070F5871D400417ED5 /* DateUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
