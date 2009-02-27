@@ -16,7 +16,6 @@
 		740101A50F26EB0B00258353 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 740101A40F26EB0B00258353 /* AlertUtilities.m */; };
 		740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740101C00F26EB8300258353 /* CFNetwork.framework */; };
 		7401029E0F276D2700258353 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401029D0F276D2700258353 /* Application.m */; };
-		740E8C760F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */; };
 		740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */; };
 		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
 		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
@@ -82,6 +81,8 @@
 		74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */; };
 		74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */; };
 		74CF64B60F5896DA00417ED5 /* FederalistPapersSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64B50F5896DA00417ED5 /* FederalistPapersSectionViewController.m */; };
+		74CF65470F58A08A00417ED5 /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */; };
+		74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74CF65580F58A0EA00417ED5 /* Localizable.strings */; };
 		74D3892B0F58608A00B7A51C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3892A0F58608A00B7A51C /* Person.m */; };
 		74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */; };
 /* End PBXBuildFile section */
@@ -101,8 +102,6 @@
 		740101C00F26EB8300258353 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7401029C0F276D2700258353 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		7401029D0F276D2700258353 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		740E8C740F3FD7A700798E0C /* UnitedStatesConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitutionViewController.h; sourceTree = "<group>"; };
-		740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitutionViewController.m; sourceTree = "<group>"; };
 		740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
 		740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
 		740E8D690F3FE93A00798E0C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
@@ -243,6 +242,9 @@
 		74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersArticleViewController.m; sourceTree = "<group>"; };
 		74CF64B40F5896DA00417ED5 /* FederalistPapersSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersSectionViewController.h; sourceTree = "<group>"; };
 		74CF64B50F5896DA00417ED5 /* FederalistPapersSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersSectionViewController.m; sourceTree = "<group>"; };
+		74CF65450F58A08A00417ED5 /* ConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionViewController.h; sourceTree = "<group>"; };
+		74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionViewController.m; sourceTree = "<group>"; };
+		74CF65590F58A0EA00417ED5 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74D389290F58608A00B7A51C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		74D3892A0F58608A00B7A51C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74CF65580F58A0EA00417ED5 /* Localizable.strings */,
 				746295390F135CF90073F830 /* License.txt */,
 				742DB84C0F129F070079E6B0 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -569,8 +572,8 @@
 		74CF647B0F58939100417ED5 /* Constitution */ = {
 			isa = PBXGroup;
 			children = (
-				740E8C740F3FD7A700798E0C /* UnitedStatesConstitutionViewController.h */,
-				740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */,
+				74CF65450F58A08A00417ED5 /* ConstitutionViewController.h */,
+				74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */,
 				740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */,
 				740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */,
 				740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */,
@@ -622,6 +625,13 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "YourRights" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -639,6 +649,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
 				7462953A0F135CF90073F830 /* License.txt in Resources */,
+				74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +715,6 @@
 				743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */,
 				743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */,
 				743D96FF0F3FADB800BA0784 /* Section.m in Sources */,
-				740E8C760F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m in Sources */,
 				740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */,
 				740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */,
 				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
@@ -718,10 +728,22 @@
 				74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */,
 				74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */,
 				74CF64B60F5896DA00417ED5 /* FederalistPapersSectionViewController.m in Sources */,
+				74CF65470F58A08A00417ED5 /* ConstitutionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		74CF65580F58A0EA00417ED5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74CF65590F58A0EA00417ED5 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
