@@ -44,7 +44,6 @@
 - (Constitution*) unitedStatesConstitution;
 - (DeclarationOfIndependence*) declarationOfIndependence;
 - (Constitution*) articlesOfConfederation;
-- (Constitution*) federalistPapers;
 //+ (NSArray*)
 
 @end
