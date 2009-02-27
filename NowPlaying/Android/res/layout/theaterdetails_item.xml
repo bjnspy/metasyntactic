@@ -19,8 +19,29 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="8dip"
-        android:paddingBottom="2dip"
         android:gravity="center_vertical"
         android:singleLine="false"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+    <LinearLayout
+        android:id="@+id/warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:visibility="gone"
+        android:paddingBottom = "2dip"
+        android:orientation="horizontal">
+        <ImageView 
+        android:src = "@drawable/ic_bullet_key_permission"
+        android:id="@+id/warningImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+         <TextView
+        android:id="@+id/warningText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"        
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+   
+    </LinearLayout>
 </LinearLayout>

@@ -309,12 +309,12 @@ public class NowPlayingControllerWrapper {
     instance.setSearchDate(date);
   }
 
-  public boolean isStale(final Theater theater) {
+  public static boolean isStale(final Theater theater) {
     checkInstance();
     return instance.isStale(theater);
   }
 
-  public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
+  public static String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
     checkInstance();
     return instance.getShowtimesRetrievedOnString(theater, resources);
   }
