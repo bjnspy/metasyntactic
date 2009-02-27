@@ -29,6 +29,7 @@
 #import "Model.h"
 #import "QuestionsViewController.h"
 #import "ToughQuestionsViewController.h"
+#import "UnitedStatesConstitution.h"
 #import "WrappableCell.h"
 #import "ViewControllerUtilities.h"
 #import "YourRightsNavigationController.h"
@@ -181,8 +182,7 @@
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return [NSString stringWithFormat:NSLocalizedString(@"%@ Constitution", nil),
-                    self.model.unitedStatesConstitution.country];
+            return NSLocalizedString(@"United States Constitution", nil);
         } else if (indexPath.row == 1) {
             return NSLocalizedString(@"Declaration of Independence", nil);
         } else if (indexPath.row == 2) {
@@ -251,7 +251,7 @@
     if (indexPath.section == 0) {
         NSString* title = [self titleForIndexPath:indexPath];
         if (indexPath.row == 0) {
-            Constitution* constitution = self.model.unitedStatesConstitution;
+            Constitution* constitution = [UnitedStatesConstitution unitedStatesConstitution];
             ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
                                                                                                           constitution:constitution
                                                                                                                  title:title] autorelease];
