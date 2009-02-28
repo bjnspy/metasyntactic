@@ -31,12 +31,12 @@
     self.title = nil;
     self.link = nil;
     self.sections = nil;
-    
+
     [super dealloc];
 }
 
 
-- (id) initWithTitle:(NSString*) title_ 
+- (id) initWithTitle:(NSString*) title_
                 link:(NSString*) link_
             sections:(NSArray*) sections_ {
     if (self = [super init]) {
@@ -44,7 +44,7 @@
         self.link = link_;
         self.sections = sections_;
     }
-    
+
     return self;
 }
 

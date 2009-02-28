@@ -51,7 +51,7 @@
         self.title = title_;
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
-    
+
     return self;
 }
 
@@ -90,7 +90,7 @@
     } else if (section == 4) {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -98,37 +98,37 @@
 - (UITableViewCell*) cellForPreambleRow:(NSInteger) row {
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:constitution.preamble] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
 }
 
 
 - (UITableViewCell*) cellForArticlesRow:(NSInteger) row {
     static NSString *reuseIdentifier = @"reuseIdentifier";
-    
+
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     Article* article = [constitution.articles objectAtIndex:row];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, article.title];
-    
+
     return cell;
 }
 
 
 - (UITableViewCell*) cellForAmendmentsRow:(NSInteger) row {
     static NSString *reuseIdentifier = @"reuseIdentifier";
-    
+
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     Amendment* amendment = [constitution.amendments objectAtIndex:row];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, amendment.synopsis];
-    
+
     return cell;
 }
 
@@ -136,21 +136,21 @@
 - (UITableViewCell*) cellForConclusionRow:(NSInteger) row {
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:constitution.conclusion] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
 }
 
 
 - (UITableViewCell*) cellForInformationRow:(NSInteger) row {
     static NSString *reuseIdentifier = @"reuseIdentifier";
-    
+
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     cell.text = NSLocalizedString(@"Signers", nil);
-    
+
     return cell;
 }
 
@@ -172,7 +172,7 @@
 
 
 - (void) didSelectPreambleRow:(NSInteger) row {
-    
+
 }
 
 
@@ -191,7 +191,7 @@
 
 
 - (void) didSelectConclusionRow:(NSInteger) row {
-    
+
 }
 
 
@@ -233,7 +233,7 @@
     } else {
         return NSLocalizedString(@"Information", nil);
     }
-    
+
     return nil;
 }
 

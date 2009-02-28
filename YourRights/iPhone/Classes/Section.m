@@ -28,7 +28,7 @@
 - (void) dealloc {
     self.title = nil;
     self.text = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
         self.title = title_;
         self.text = text_;
     }
-    
+
     return self;
 }
 

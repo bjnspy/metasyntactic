@@ -30,7 +30,7 @@
     self.text = nil;
     self.signers = nil;
     self.date = nil;
-    
+
     [super dealloc];
 }
 
@@ -43,13 +43,13 @@
         self.signers = signers_;
         self.date = date_;
     }
-    
+
     return self;
 }
 
 
 + (DeclarationOfIndependence*) declarationWithText:(NSString*) text_
-                                           signers:(MultiDictionary*) signers_ 
+                                           signers:(MultiDictionary*) signers_
                                               date:(NSDate*) date_ {
     return [[[DeclarationOfIndependence alloc] initWithText:text_
                                                     signers:signers_

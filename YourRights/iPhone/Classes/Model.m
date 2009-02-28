@@ -67,7 +67,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
       NSLocalizedString(@"Why is the ACLU against drug testing of employees?", nil),
       NSLocalizedString(@"Why does the ACLU help rapists and child molesters?", nil),
       NSLocalizedString(@"Why did the ACLU defend NAMBLA?", nil), nil] retain];
-    
+
     toughAnswers =
     [[NSArray arrayWithObjects:
       NSLocalizedString(@"The ACLU’s client is the Bill of Rights, not any particular person or group. We defend its principles – basic "
@@ -176,44 +176,44 @@ static DeclarationOfIndependence* declarationOfIndependence;
     @"Nor have We been wanting in attentions to our British brethren. We have warned them from time to time of attempts by their legislature to extend an unwarrantable jurisdiction over us. We have reminded them of the circumstances of our emigration and settlement here. We have appealed to their native justice and magnanimity, and we have conjured them by the ties of our common kindred to disavow these usurpations, which would inevitably interrupt our connections and correspondence. They too have been deaf to the voice of justice and of consanguinity. We must, therefore, acquiesce in the necessity, which denounces our Separation, and hold them, as we hold the rest of mankind, Enemies in War, in Peace Friends.\n\n"
     @"We, therefore, the Representatives of the united States of America, in General Congress, Assembled, appealing to the Supreme Judge of the world for the rectitude of our intentions, do, in the Name, and by Authority of the good People of these Colonies, solemnly publish and declare, That these united Colonies are, and of Right ought to be Free and Independent States, that they are Absolved from all Allegiance to the British Crown, and that all political connection between them and the State of Great Britain, is and ought to be totally dissolved; and that as Free and Independent States, they have full Power to levy War, conclude Peace, contract Alliances, establish Commerce, and to do all other Acts and Things which Independent States may of right do. — And for the support of this Declaration, with a firm reliance on the protection of Divine Providence, we mutually pledge to each other our Lives, our Fortunes, and our sacred Honor.\n\n"
     @"— John Hancock";
-    
+
     MultiDictionary* signers = [MultiDictionary dictionary];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Josiah Bartlett", @"http://en.wikipedia.org/wiki/Josiah_Bartlett"),
                          person(@"William Whipple", @"http://en.wikipedia.org/wiki/William_Whipple"),
                          person(@"Matthew Thornton", @"http://en.wikipedia.org/wiki/Matthew_Thornton"), nil] forKey:@"New Hampshire"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"John Hancock", @"http://en.wikipedia.org/wiki/John_Hancock"),
                          person(@"Samuel Adams", @"http://en.wikipedia.org/wiki/Samuel_adams"),
                          person(@"John Adams", @"http://en.wikipedia.org/wiki/John_Adams"),
                          person(@"Robert Treat Paine", @"http://en.wikipedia.org/wiki/Robert_Treat_Paine"),
                          person(@"Elbridge Gerry", @"http://en.wikipedia.org/wiki/Elbridge_Gerry"), nil] forKey:@"Massachusetts"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Stephen Hopkins", @"http://en.wikipedia.org/wiki/Stephen_Hopkins_(politician)"),
                          person(@"William Ellery", @"http://en.wikipedia.org/wiki/William_Ellery"), nil] forKey:@"Rhode Island"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"),
                          person(@"Samuel Huntington", @"http://en.wikipedia.org/wiki/Samuel_Huntington_(statesman)"),
                          person(@"William Williams", @"http://en.wikipedia.org/wiki/William_Williams_(signer)"),
                          person(@"Oliver Wolcott", @"http://en.wikipedia.org/wiki/Oliver_Wolcott"), nil] forKey:@"Connecticut"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"William Floyd", @"http://en.wikipedia.org/wiki/William_Floyd"),
                          person(@"Philip Livingston", @"http://en.wikipedia.org/wiki/Philip_Livingston"),
                          person(@"Francis Lewis", @"http://en.wikipedia.org/wiki/Francis_Lewis"),
                          person(@"Lewis Morris", @"http://en.wikipedia.org/wiki/Lewis_Morris"), nil] forKey:@"New York"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Richard Stockton", @"http://en.wikipedia.org/wiki/Richard_Stockton_(1730-1781)"),
                          person(@"John Witherspoon", @"http://en.wikipedia.org/wiki/John_Witherspoon"),
                          person(@"Francis Hopkinson", @"http://en.wikipedia.org/wiki/Francis_Hopkinson"),
                          person(@"John Hart", @"http://en.wikipedia.org/wiki/John_Hart"),
                          person(@"Abraham Clark", @"http://en.wikipedia.org/wiki/Abraham_Clark"), nil] forKey:@"New Jersey"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
                          person(@"Benjamin Rush", @"http://en.wikipedia.org/wiki/Benjamin_Rush"),
@@ -224,18 +224,18 @@ static DeclarationOfIndependence* declarationOfIndependence;
                          person(@"George Taylor", @"http://en.wikipedia.org/wiki/George_Taylor_(delegate)"),
                          person(@"James Wilson", @"http://en.wikipedia.org/wiki/James_Wilson"),
                          person(@"George Ross", @"http://en.wikipedia.org/wiki/George_Ross_(delegate)"), nil] forKey:@"Pennsylvania"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Caesar Rodney", @"http://en.wikipedia.org/wiki/Caesar_Rodney"),
                          person(@"George Read", @"http://en.wikipedia.org/wiki/George_Read_(signer)"),
                          person(@"Thomas McKean", @"http://en.wikipedia.org/wiki/Thomas_McKean"), nil] forKey:@"Delaware"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Samuel Chase", @"http://en.wikipedia.org/wiki/Samuel_Chase"),
                          person(@"William Paca", @"http://en.wikipedia.org/wiki/William_Paca"),
                          person(@"Thomas Stone", @"http://en.wikipedia.org/wiki/Thomas_Stone"),
                          person(@"Charles Carroll of Carrollton", @"http://en.wikipedia.org/wiki/Charles_Carroll_of_Carrollton"), nil] forKey:@"Maryland"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"George Wythe", @"http://en.wikipedia.org/wiki/George_Wythe"),
                          person(@"Richard Henry Lee", @"http://en.wikipedia.org/wiki/Richard_Henry_Lee"),
@@ -244,25 +244,25 @@ static DeclarationOfIndependence* declarationOfIndependence;
                          person(@"Thomas Nelson Jr.", @"http://en.wikipedia.org/wiki/Thomas_Nelson,_Jr."),
                          person(@"Francis Lightfoot Lee", @"http://en.wikipedia.org/wiki/Francis_Lightfoot_Lee"),
                          person(@"Carter Braxton", @"http://en.wikipedia.org/wiki/Carter_Braxton"), nil] forKey:@"Virginia"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"William Hooper", @"http://en.wikipedia.org/wiki/William_Hooper"),
                          person(@"Joseph Hewes", @"http://en.wikipedia.org/wiki/Joseph_Hewes"),
                          person(@"John Penn", @"http://en.wikipedia.org/wiki/John_Penn_(delegate)"), nil] forKey:@"North Carolina"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Edward Rutledge", @"http://en.wikipedia.org/wiki/Edward_Rutledge"),
                          person(@"Thomas Heyward Jr.", @"http://en.wikipedia.org/wiki/Thomas_Heyward"),
                          person(@"Thomas Lynch Jr.", @"http://en.wikipedia.org/wiki/Thomas_Lynch,_Jr."),
                          person(@"Arthur Middleton", @"http://en.wikipedia.org/wiki/Arthur_Middleton"), nil] forKey:@"South Carolina"];
-    
+
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Button Gwinnett", @"http://en.wikipedia.org/wiki/Button_Gwinnett"),
                          person(@"Lyman Hall", @"http://en.wikipedia.org/wiki/Lyman_Hall"),
                          person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] forKey:@"Georgia"];
-    
+
     NSDate* date = [NSDate dateWithNaturalLanguageString:@"July 4, 1776"];
-    
+
     declarationOfIndependence = [[DeclarationOfIndependence declarationWithText:text signers:signers date:date] retain];
 }
 
@@ -271,7 +271,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
     if (self == [Model class]) {
         [self setupToughQuestions];
         [self setupDeclarationOfIndependence];
-        
+
         sectionTitles = [[NSArray arrayWithObjects:
                           NSLocalizedString(@"Questioning", nil),
                           NSLocalizedString(@"Stops and Arrests", nil),
@@ -279,7 +279,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                           NSLocalizedString(@"Additional Information for Non-Citizens", nil),
                           NSLocalizedString(@"Rights at Airports and Other Ports of Entry into the United States", nil),
                           NSLocalizedString(@"Charitable Donations and Religious Practices", nil), nil] retain];
-        
+
         shortSectionTitles = [[NSArray arrayWithObjects:
                                NSLocalizedString(@"Questioning", nil),
                                NSLocalizedString(@"Stops and Arrests", nil),
@@ -287,8 +287,8 @@ static DeclarationOfIndependence* declarationOfIndependence;
                                NSLocalizedString(@"Info for Non-Citizens", nil),
                                NSLocalizedString(@"Rights at Airports", nil),
                                NSLocalizedString(@"Charitable Donations", nil), nil] retain];
-        
-        
+
+
         preambles = [[NSArray arrayWithObjects:
                       @"",
                       @"",
@@ -311,7 +311,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                                         @"can stop you based on citizenship or travel itinerary at the border and search "
                                         @"all bags.", nil),
                       @"", nil] retain];
-        
+
         otherResources = [[NSArray arrayWithObjects:
                            [NSArray array],
                            [NSArray array],
@@ -342,7 +342,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                                               @"Immigration and Customs Enforcement (ICE), U.S. Border "
                                               @"Patrol, Customs and Border Protection, and National Guard.", nil), nil],
                            [NSArray array], nil] retain];
-        
+
         sectionLinks = [[NSArray arrayWithObjects:
                          [NSArray array],
                          [NSArray array],
@@ -355,7 +355,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                           @"airconsumer@ost.dot.gov",
                           @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
                          [NSArray array], nil] retain];
-        
+
         NSArray* questioningQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What kind of law enforcement officers might try to question me?", nil),
@@ -368,7 +368,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"subpoena is a written order for youabout information you may have.)", nil),
          NSLocalizedString(@"What if I am asked to meet with officers for a "
                            @"“counter-terrorism interview”?", nil), nil];
-        
+
         NSArray* questioningAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You could be questioned by a variety of law enforcement "
@@ -428,7 +428,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"for any reason, you have the right to remain silent. No matter what, "
                            @"assume that nothing you say is off the record. And remember that it is a "
                            @"criminal offense to knowingly lie to an officer.", nil), nil];
-        
+
         NSArray* stopsAndArrestsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What if law enforcement officers stop me on the street?", nil),
@@ -436,7 +436,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
          NSLocalizedString(@"What should I do if law enforcement officers arrest me?", nil),
          NSLocalizedString(@"Do I have to answer questions if I have been arrested?", nil),
          NSLocalizedString(@"What if I am treated badly by law enforcement officers?", nil), nil];
-        
+
         NSArray* stopsAndArrestsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You do not have to answer any questions. You can say, “I do "
@@ -494,8 +494,8 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"can. Call a lawyer or contact your local ACLU office. You should also "
                            @"make a complaint to the law enforcement office responsible for the "
                            @"treatment.", nil), nil];
-        
-        
+
+
         NSArray* searchesAndWarrantsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can law enforcement officers search my home or office?", nil),
@@ -508,7 +508,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
          NSLocalizedString(@"What if law enforcement officers do not have a search "
                            @"warrant, but they insist on searching my home even "
                            @"after I object?", nil), nil];
-        
+
         NSArray* searchesAndWarrantsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Law enforcement officers can search your home only if they "
@@ -585,8 +585,8 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"that you are not giving permission for the search. Call your "
                            @"lawyer as soon as possible. Take note of the names and badge "
                            @"numbers of the searching officers", nil), nil];
-        
-        
+
+
         NSArray* nonCitizensQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What types of law enforcement officers may try to question me?", nil),
@@ -612,7 +612,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"leave the U.S. before the hearing is over?", nil),
          NSLocalizedString(@"What should I do if I want to contact immigration officials?", nil),
          NSLocalizedString(@"What if I am charged with a crime?", nil), nil];
-        
+
         NSArray* nonCitizensAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Different kinds of law enforcement officers might question you or ask "
@@ -752,7 +752,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"have on your immigration status. Do not agree to a plea bargain without "
                            @"understanding if it could make you deportable or ineligible for relief or "
                            @"for citizenship.", nil), nil];
-        
+
         NSArray* portsOfEntryQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What types of officers could I encounter at the airport and at the border?", nil),
@@ -779,7 +779,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"employees singled me out because of my race, ethnicity, "
                            @"or religion or that I was mistreated in other ways, what "
                            @"information should I record during and after the incident?", nil), nil];
-        
+
         NSArray* portsOfEntryAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You may encounter any of the full range of law enforcement "
@@ -871,7 +871,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"and file a complaint with the U.S. Department of "
                            @"Transportation at "
                            @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm.", nil), nil];
-        
+
         NSArray* portsOfEntryLinks =
         [NSArray arrayWithObjects:
          [NSArray array],
@@ -886,7 +886,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
          [NSArray arrayWithObjects:@"http://www.tsa.gov/travelers/customer/redress/index.shtm", @"http://www.aclu.org/noflycomplaint", nil],
          [NSArray arrayWithObjects:@"http://www.aclu.org/airlineprofiling", @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
          nil];
-        
+
         NSArray* charitableDonationsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can I give to a charity organization without becoming a "
@@ -894,7 +894,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
          NSLocalizedString(@"Is it safe for me to practice my religion in religious "
                            @"institutions or public places?", nil),
          NSLocalizedString(@"What else can I do to be prepared?", nil), nil];
-        
+
         NSArray* charitableDonationsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Yes. You should continue to give money to the causes you believe "
@@ -914,13 +914,13 @@ static DeclarationOfIndependence* declarationOfIndependence;
                            @"relative that anyone in the family can call if they need help, as well "
                            @"as the number of an attorney. If you are a non-citizen, remember to "
                            @"carry your immigration documents with you.", nil), nil];
-        
+
         NSArray* charitableDonationsLinks =
         [NSArray arrayWithObjects:
          [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
          [NSArray array],
          [NSArray array], nil];
-        
+
         questions = [[NSArray arrayWithObjects:
                       questioningQuestions,
                       stopsAndArrestsQuestions,
@@ -935,7 +935,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                     nonCitizensAnswers,
                     portsOfEntryAnswers,
                     charitableDonationsAnswers, nil] retain];
-        
+
         links = [[NSArray arrayWithObjects:
                   [NSArray array],
                   [NSArray array],
@@ -957,16 +957,16 @@ static DeclarationOfIndependence* declarationOfIndependence;
 
 - (void) updateCaches:(NSNumber*) number {
     NSInteger value = [number integerValue];
-    
+
     switch (value) {
         case 0:
             [rssCache update];
             break;
-            
+
         default:
             return;
     }
-    
+
     [self performSelector:@selector(updateCaches:)
                withObject:[NSNumber numberWithInt:value + 1]
                afterDelay:1];
@@ -978,7 +978,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
         self.rssCache = [RSSCache cacheWithModel:self];
         [self updateCaches:[NSNumber numberWithInt:0]];
     }
-    
+
     return self;
 }
 
@@ -1021,7 +1021,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
 - (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificAnswers = [self answersForSectionTitle:sectionTitle];
-    
+
     return [specificAnswers objectAtIndex:[questions indexOfObject:question]];
 }
 
@@ -1029,7 +1029,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
 NSInteger compareLinks(id link1, id link2, void* context) {
     NSRange range1 = [link1 rangeOfString:@"@"];
     NSRange range2 = [link2 rangeOfString:@"@"];
-    
+
     if (range1.length > 0 && range2.length == 0) {
         return NSOrderedDescending;
     } else if (range2.length > 0 && range1.length == 0) {
@@ -1052,7 +1052,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
     if (specificLinks.count == 0) {
         return [NSArray array];
     }
-    
+
     NSArray* result = [specificLinks objectAtIndex:[questions indexOfObject:question]];
     return [result sortedArrayUsingFunction:compareLinks context:NULL];
 }
@@ -1074,7 +1074,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 
 - (void) setGreatestHitsSortIndex:(NSInteger) index {
-    
+
 }
 
 
@@ -1083,9 +1083,9 @@ NSInteger compareLinks(id link1, id link2, void* context) {
                       currentVersion,
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
-    
+
     NSString* subject = @"Your%20Rights%20Feedback";
-    
+
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;

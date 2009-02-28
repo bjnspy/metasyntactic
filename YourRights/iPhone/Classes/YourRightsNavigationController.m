@@ -79,7 +79,7 @@
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton {
     WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:address showSafariButton:showSafariButton] autorelease];
-    [self pushViewController:controller animated:animated];   
+    [self pushViewController:controller animated:animated];
 }
 
 @end

@@ -35,7 +35,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.article = nil;
-    
+
     [super dealloc];
 }
 
@@ -48,7 +48,7 @@
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:article.title];
     }
-    
+
     return self;
 }
 
@@ -79,7 +79,7 @@
             return 1;
         }
     }
-    
+
     return 0;
 }
 
@@ -88,7 +88,7 @@
     Section* section = [article.sections objectAtIndex:row];
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
 }
 
@@ -129,7 +129,7 @@
             return NSLocalizedString(@"Links", nil);
         }
     }
-    
+
     return nil;
 }
 
@@ -138,9 +138,9 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < article.sections.count) {
         Section* section = [article.sections objectAtIndex:indexPath.section];
-        
+
         NSString* text = section.text;
-        
+
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
     } else {
         return tableView.rowHeight;

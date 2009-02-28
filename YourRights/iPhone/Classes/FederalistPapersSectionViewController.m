@@ -35,7 +35,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.section = nil;
-    
+
     [super dealloc];
 }
 
@@ -48,7 +48,7 @@
         self.title = section.title;
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
-    
+
     return self;
 }
 
@@ -85,7 +85,7 @@
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.font = [self font];
-    
+
     return cell;
 }
 

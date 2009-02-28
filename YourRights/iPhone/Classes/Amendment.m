@@ -51,7 +51,7 @@
         self.link = link_;
         self.sections = sections_;
     }
-    
+
     return self;
 }
 
@@ -59,7 +59,7 @@
 + (Amendment*) amendmentWithSynopsis:(NSString*) synopsis
                                 year:(NSInteger) year
                                 link:(NSString*) link
-                            sections:(NSArray*) sections { 
+                            sections:(NSArray*) sections {
     return [[[Amendment alloc] initWithSynopsis:synopsis
                                            year:year
                                            link:link

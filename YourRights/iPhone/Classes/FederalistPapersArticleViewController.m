@@ -36,7 +36,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.article = nil;
-    
+
     [super dealloc];
 }
 
@@ -49,7 +49,7 @@
         self.title = article.title;
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
-    
+
     return self;
 }
 
@@ -112,7 +112,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     Section* section = [article.sections objectAtIndex:indexPath.row];
-    
+
     return [WrappableCell height:section.title
                    accessoryType:UITableViewCellAccessoryDisclosureIndicator
                             font:self.font];
