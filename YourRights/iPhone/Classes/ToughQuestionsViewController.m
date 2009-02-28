@@ -53,13 +53,13 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+- (void) majorRefresh {
+    [self.tableView reloadData];
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
 
