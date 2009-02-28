@@ -16,6 +16,7 @@
 
 #import "ArticleBodyCell.h"
 #import "ArticleTitleCell.h"
+#import "GlobalActivityIndicator.h"
 #import "Item.h"
 #import "Model.h"
 #import "RSSCache.h"
@@ -66,8 +67,9 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 

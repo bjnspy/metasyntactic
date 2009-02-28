@@ -15,6 +15,7 @@
 #import "ToughQuestionsViewController.h"
 
 #import "AnswerViewController.h"
+#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "ToughAnswerViewController.h"
 #import "ViewControllerUtilities.h"
@@ -69,6 +70,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 

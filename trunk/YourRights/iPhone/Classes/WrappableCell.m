@@ -89,7 +89,7 @@
         width -= 10;
     }
     
-    CGSize size = CGSizeMake(width, 10000);
+    CGSize size = CGSizeMake(width, 20000);
     size = [text sizeWithFont:font
             constrainedToSize:size
                 lineBreakMode:UILineBreakModeWordWrap];
