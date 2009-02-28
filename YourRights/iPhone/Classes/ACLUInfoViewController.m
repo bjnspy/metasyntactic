@@ -14,6 +14,7 @@
 
 #import "ACLUInfoViewController.h"
 
+#import "GlobalActivityIndicator.h"
 #import "WrappableCell.h"
 
 @interface ACLUInfoViewController()
@@ -101,6 +102,12 @@
     }
 
     return self;
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
 

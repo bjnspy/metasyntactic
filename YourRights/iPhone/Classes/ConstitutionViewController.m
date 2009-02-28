@@ -21,6 +21,7 @@
 #import "ConstitutionAmendmentViewController.h"
 #import "ConstitutionArticleViewController.h"
 #import "ConstitutionSignersViewController.h"
+#import "GlobalActivityIndicator.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
@@ -52,6 +53,12 @@
     }
     
     return self;
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
 

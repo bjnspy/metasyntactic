@@ -18,6 +18,7 @@
 #import "Model.h"
 #import "MultiDictionary.h"
 #import "Decision.h"
+#import "GlobalActivityIndicator.h"
 #import "WebViewController.h"
 #import "YourRightsNavigationController.h"
 
@@ -212,9 +213,10 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self majorRefresh];
+- (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [self majorRefresh];
 }
 
 

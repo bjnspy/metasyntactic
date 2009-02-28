@@ -16,6 +16,7 @@
 
 #import "Article.h"
 #import "AutoResizingCell.h"
+#import "GlobalActivityIndicator.h"
 #import "MultiDictionary.h"
 #import "Person.h"
 #import "Section.h"
@@ -56,6 +57,12 @@
     }
     
     return self;
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
 

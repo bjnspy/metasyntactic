@@ -16,6 +16,7 @@
 
 #import "Article.h"
 #import "FederalistPapersSectionViewController.h"
+#import "GlobalActivityIndicator.h"
 #import "Section.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
@@ -53,6 +54,12 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
@@ -70,11 +77,16 @@
 }
 
 
+- (UIFont*) font {
+    return [UIFont boldSystemFontOfSize:18];
+}
+
+
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
     Section* section = [article.sections objectAtIndex:row];
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.title] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.font = self.font;
     return cell;
 }
 
@@ -101,7 +113,9 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     Section* section = [article.sections objectAtIndex:indexPath.row];
     
-    return [WrappableCell height:section.title accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    return [WrappableCell height:section.title
+                   accessoryType:UITableViewCellAccessoryDisclosureIndicator
+                            font:self.font];
 }
 
 @end
