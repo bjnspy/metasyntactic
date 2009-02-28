@@ -21,6 +21,14 @@
 
 @implementation WrappableCell
 
+static UIFont* defaultFont;
+
++ (void) initialize {
+    if (self == [WrappableCell class]) {
+        defaultFont = [[UIFont boldSystemFontOfSize:18] retain];
+    }
+}
+
 @synthesize title;
 @synthesize label;
 
@@ -40,7 +48,7 @@
         label.text = title;
         label.numberOfLines = 0;
         label.lineBreakMode = UILineBreakModeWordWrap;
-        label.font = [UIFont boldSystemFontOfSize:20];
+        label.font = defaultFont;
 
         [self.contentView addSubview:label];
     }
@@ -99,7 +107,7 @@
 
 
 + (CGFloat) height:(NSString*) text accessoryType:(UITableViewCellAccessoryType) accessoryType {
-    return [self height:text accessoryType:accessoryType font:[UIFont boldSystemFontOfSize:20]];
+    return [self height:text accessoryType:accessoryType font:defaultFont];
 }
 
 

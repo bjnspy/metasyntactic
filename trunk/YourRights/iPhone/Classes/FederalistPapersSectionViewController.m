@@ -59,9 +59,19 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (void) majorRefresh {
+    [self.tableView reloadData];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self majorRefresh];
 }
 
 
@@ -76,15 +86,9 @@
 }
 
 
-- (UIFont*) font {
-    return [UIFont boldSystemFontOfSize:18];
-}
-
-
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.font = [self font];
 
     return cell;
 }
@@ -108,8 +112,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     return [WrappableCell height:section.text
-                   accessoryType:UITableViewCellAccessoryNone
-                            font:self.font];
+                   accessoryType:UITableViewCellAccessoryNone];
 }
 
 @end
