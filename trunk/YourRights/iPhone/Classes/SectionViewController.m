@@ -51,7 +51,7 @@
     self.navigationController = nil;
     self.tableView = nil;
     self.creditsViewController = nil;
-    
+
     [super dealloc];
 }
 
@@ -66,17 +66,17 @@
         self.navigationController = navigationController_;
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
-        
+
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
         button.frame = frame;
-        
+
         [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
-        
+
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
-    
+
     return self;
 }
 
@@ -85,7 +85,7 @@
     if (creditsViewController != nil) {
         return;
     }
-    
+
     self.creditsViewController = [[[CreditsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
     self.creditsViewController.view.frame = tableView.frame;
 }
@@ -93,11 +93,11 @@
 
 - (void) flipView:(id) sender {
     [self createCreditsView];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:1];
-        
+
         if (tableView.superview) {
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                                    forView:self.view
@@ -120,22 +120,22 @@
     UITableView* table = [[[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain] autorelease];
     table.delegate = self;
     table.dataSource = self;
-    
+
     // add the subviews and set their resize behavior
     table.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+
     return table;
 }
 
 
 - (void) loadView {
     CGRect rect = [UIScreen mainScreen].bounds;
-    
+
     self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
     self.view.autoresizesSubviews = YES;
-    
+
     self.tableView = [self createTableView:rect];
-    
+
     [self.view addSubview:tableView];
 }
 
@@ -208,24 +208,24 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
-    
+
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
         cell.text = text;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     } else {
         text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-        
+
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     }
 }
@@ -234,7 +234,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
-    
+
     if (indexPath.section == 0) {
         return tableView.rowHeight;
     } else if (indexPath.section == 1) {
@@ -265,12 +265,12 @@
             ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
                                                                                                           constitution:constitution
                                                                                                                  title:title] autorelease];
-            [navigationController pushViewController:controller animated:YES];            
+            [navigationController pushViewController:controller animated:YES];
         } else {
             Constitution* constitution = [FederalistPapers federalistPapers];
             FederalistPapersViewController* controller = [[[FederalistPapersViewController alloc] initWithNavigationController:navigationController
                                                                                                                   constitution:constitution] autorelease];
-            [navigationController pushViewController:controller animated:YES];            
+            [navigationController pushViewController:controller animated:YES];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -304,7 +304,7 @@
     } else {
         return NSLocalizedString(@"Encountering Law Enforcement", nil);
     }
-    
+
     return nil;
 }
 

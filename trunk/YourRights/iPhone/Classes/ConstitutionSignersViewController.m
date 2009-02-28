@@ -41,7 +41,7 @@
     self.navigationController = nil;
     self.signers = nil;
     self.keys = nil;
-    
+
     [super dealloc];
 }
 
@@ -52,10 +52,10 @@
         self.navigationController = navigationController_;
         self.signers = signers_;
         self.title = NSLocalizedString(@"Signers", nil);
-        
+
         self.keys = [signers.allKeys sortedArrayUsingSelector:@selector(compare:)];
     }
-    
+
     return self;
 }
 
@@ -90,10 +90,10 @@
         cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     cell.text = signer.name;
-    
+
     return cell;
 }
 
@@ -114,7 +114,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    
+
     return [WrappableCell height:signer.name accessoryType:UITableViewCellAccessoryNone];
 }
 

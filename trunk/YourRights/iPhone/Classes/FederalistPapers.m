@@ -24,8 +24,8 @@
 static Constitution* federalistPapers;
 
 + (void) setupFederalistPapers {
-    NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:@"US"];    
-    
+    NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:@"US"];
+
     NSArray* articles =
     [NSArray arrayWithObjects:
      [Article articleWithTitle:NSLocalizedString(@"Importance of the Union", nil)
@@ -390,7 +390,7 @@ static Constitution* federalistPapers;
      [Article articleWithTitle:NSLocalizedString(@"Arguments for the Constitution", nil)
                           link:nil
                       sections:[NSArray arrayWithObjects:
-                                
+
                                 [Section sectionWithTitle:@"The Necessity of a Government as Energetic as the One Proposed to the Preservation of the Union" text:
                                  @"THE necessity of a Constitution, at least equally energetic with the one proposed, to the preservation of the Union, is the point at the examination of which we are now arrived.\n\n"
                                  @"This inquiry will naturally divide itself into three branches the objects to be provided for by the federal government, the quantity of power necessary to the accomplishment of those objects, the persons upon whom that power ought to operate. Its distribution and organization will more properly claim our attention under the succeeding head.\n\n"
@@ -1203,7 +1203,7 @@ static Constitution* federalistPapers;
      [Article articleWithTitle:NSLocalizedString(@"The Judicial Branch", nil)
                           link:nil
                       sections:[NSArray arrayWithObjects:
-                                
+
                                 [Section sectionWithTitle:@"The Judiciary Department (1)" text:
                                  @"WE PROCEED now to an examination of the judiciary department of the proposed government.\n\n"
                                  @"In unfolding the defects of the existing Confederation, the utility and necessity of a federal judicature have been clearly pointed out. It is the less necessary to recapitulate the considerations there urged, as the propriety of the institution in the abstract is not disputed; the only questions which have been raised being relative to the manner of constituting it, and to its extent. To these points, therefore, our observations shall be confined.\n\n"
@@ -1366,10 +1366,10 @@ static Constitution* federalistPapers;
                                  @"In opposition to the probability of subsequent amendments, it has been urged that the persons delegated to the administration of the national government will always be disinclined to yield up any portion of the authority of which they were once possessed. For my own part I acknowledge a thorough conviction that any amendments which may, upon mature consideration, be thought useful, will be applicable to the organization of the government, not to the mass of its powers; and on this account alone, I think there is no weight in the observation just stated. I also think there is little weight in it on another account. The intrinsic difficulty of governing thirteen States at any rate, independent of calculations upon an ordinary degree of public spirit and integrity, will, in my opinion constantly impose on the national rulers the necessity of a spirit of accommodation to the reasonable expectations of their constituents. But there is yet a further consideration, which proves beyond the possibility of a doubt, that the observation is futile. It is this that the national rulers, whenever nine States concur, will have no option upon the subject. By the fifth article of the plan, the Congres will be obliged 'on the application of the legislatures of two thirds of the States Uwhich at present amount to ninee, to call a convention for proposing amendments, which shall be valid, to all intents and purposes, as part of the Constitution, when ratified by the legislatures of three fourths of the States, or by conventions in three fourths thereof.' The words of this article are peremptory. The Congress 'shall call a convention.' Nothing in this particular is left to the discretion of that body. And of consequence, all the declamation about the disinclination to a change vanishes in air. Nor however difficult it may be supposed to unite two thirds or three fourths of the State legislatures, in amendments which may affect local interests, can there be any room to apprehend any such difficulty in a union on points which are merely relative to the general liberty or security of the people. We may safely rely on the disposition of the State legislatures to erect barriers against the encroachments of the national authority. If the foregoing argument is a fallacy, certain it is that I am myself deceived by it, for it is, in my conception, one of those rare instances in which a political truth can be brought to the test of a mathematical demonstration. Those who see the matter in the same light with me, however zealous they may be for amendments, must agree in the propriety of a previous adoption, as the most direct road to their own object.\n\n"
                                  @"The zeal for attempts to amend, prior to the establishment of the Constitution, must abate in every man who is ready to accede to the truth of the following observations of a writer equally solid and ingenious: 'To balance a large state or society Usays hee, whether monarchical or republican, on general laws, is a work of so great difficulty, that no human genius, however comprehensive, is able, by the mere dint of reason and reflection, to effect it. The judgments of many must unite in the work; experience must guide their labor; time must bring it to perfection, and the feeling of inconveniences must correct the mistakes which they INEVITABLY fall into in their first trials and experiments.'3 These judicious reflections contain a lesson of moderation to all the sincere lovers of the Union, and ought to put them upon their guard against hazarding anarchy, civil war, a perpetual alienation of the States from each other, and perhaps the military despotism of a victorious demagogue, in the pursuit of what they are not likely to obtain, but from time and experience. It may be in me a defect of political fortitude, but I acknowledge that I cannot entertain an equal tranquillity with those who affect to treat the dangers of a longer continuance in our present situation as imaginary. A nation, without a national government, is, in my view, an awful spectacle. The establishment of a Constitution, in time of profound peace, by the voluntary ocnsent of a whole people, is a prodigy, to the completion of which I look forward with trembling anxiety. I can reconcile it to no rules of prudence to let go the hold we now have, in so arduous an enterprise, upon seven out of the thirteen States, and after having passed over so considerable a part of the ground, to recommence the course. I dread the more the consequences of new attempts, because I know that powerful individuals, in this and in other States, are enemies to a general national government in every possible shape."],
                                 nil]], nil];
-    
+
     MultiDictionary* signers = [MultiDictionary dictionary];
-    
-    federalistPapers = 
+
+    federalistPapers =
     [[Constitution constitutionWithCountry:country
                                   preamble:@""
                                   articles:articles

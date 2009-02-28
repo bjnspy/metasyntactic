@@ -51,7 +51,7 @@
         self.title = NSLocalizedString(@"Federalist Papers", nil);
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
-    
+
     return self;
 }
 
@@ -82,16 +82,16 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"reuseIdentifier";
-    
+
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     Article* article = [constitution.articles objectAtIndex:indexPath.row];
     cell.text = article.title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 

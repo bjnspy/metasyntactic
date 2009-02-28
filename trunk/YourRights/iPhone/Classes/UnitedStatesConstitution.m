@@ -1,16 +1,10 @@
-// Copyright 2008 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  UnitedStatesConstitution.m
+//  YourRights
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//  Created by Cyrus Najmabadi on 2/27/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 #import "UnitedStatesConstitution.h"
 
@@ -84,7 +78,7 @@ static Constitution* unitedStatesConstitution;
                                [Section sectionWithText:NSLocalizedString(@"No state shall enter into any treaty, alliance, or confederation; grant letters of marque and reprisal; coin money; emit bills of credit; make anything but gold and silver coin a tender in payment of debts; pass any bill of attainder, ex post facto law, or law impairing the obligation of contracts, or grant any title of nobility.\n\n"
                                                                           @"No state shall, without the consent of the Congress, lay any imposts or duties on imports or exports, except what may be absolutely necessary for executing it's inspection laws: and the net produce of all duties and imposts, laid by any state on imports or exports, shall be for the use of the treasury of the United States; and all such laws shall be subject to the revision and control of the Congress.\n\n"
                                                                           @"No state shall, without the consent of Congress, lay any duty of tonnage, keep troops, or ships of war in time of peace, enter into any agreement or compact with another state, or with a foreign power, or engage in war, unless actually invaded, or in such imminent danger as will not admit of delay.", nil)], nil]];
-    
+
     Article* article2 =
     [Article articleWithTitle:NSLocalizedString(@"The Presidency", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Two_of_the_United_States_Constitution"
@@ -96,13 +90,13 @@ static Constitution* unitedStatesConstitution;
                                                                           @"No person except a natural born citizen, or a citizen of the United States, at the time of the adoption of this Constitution, shall be eligible to the office of President; neither shall any person be eligible to that office who shall not have attained to the age of thirty five years, and been fourteen Years a resident within the United States.\n\n"
                                                                           @"In case of the removal of the President from office, or of his death, resignation, or inability to discharge the powers and duties of the said office, the same shall devolve on the Vice President, and the Congress may by law provide for the case of removal, death, resignation or inability, both of the President and Vice President, declaring what officer shall then act as President, and such officer shall act accordingly, until the disability be removed, or a President shall be elected.\n\n"
                                                                           @"The President shall, at stated times, receive for his services, a compensation, which shall neither be increased nor diminished during the period for which he shall have been elected, and he shall not receive within that period any other emolument from the United States, or any of them.\n\n"
-                                                                          @"Before he enter on the execution of his office, he shall take the following oath or affirmation:--'I do solemnly swear (or affirm) that I will faithfully execute the office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States.'", nil)],           
+                                                                          @"Before he enter on the execution of his office, he shall take the following oath or affirmation:--'I do solemnly swear (or affirm) that I will faithfully execute the office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States.'", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The President shall be commander in chief of the Army and Navy of the United States, and of the militia of the several states, when called into the actual service of the United States; he may require the opinion, in writing, of the principal officer in each of the executive departments, upon any subject relating to the duties of their respective offices, and he shall have power to grant reprieves and pardons for offenses against the United States, except in cases of impeachment.\n\n"
                                                                           @"He shall have power, by and with the advice and consent of the Senate, to make treaties, provided two thirds of the Senators present concur; and he shall nominate, and by and with the advice and consent of the Senate, shall appoint ambassadors, other public ministers and consuls, judges of the Supreme Court, and all other officers of the United States, whose appointments are not herein otherwise provided for, and which shall be established by law: but the Congress may by law vest the appointment of such inferior officers, as they think proper, in the President alone, in the courts of law, or in the heads of departments.\n\n"
                                                                           @"The President shall have power to fill up all vacancies that may happen during the recess of the Senate, by granting commissions which shall expire at the end of their next session.", nil)],
-                               [Section sectionWithText:NSLocalizedString(@"He shall from time to time give to the Congress information of the state of the union, and recommend to their consideration such measures as he shall judge necessary and expedient; he may, on extraordinary occasions, convene both Houses, or either of them, and in case of disagreement between them, with respect to the time of adjournment, he may adjourn them to such time as he shall think proper; he shall receive ambassadors and other public ministers; he shall take care that the laws be faithfully executed, and shall commission all the officers of the United States.", nil)], 
+                               [Section sectionWithText:NSLocalizedString(@"He shall from time to time give to the Congress information of the state of the union, and recommend to their consideration such measures as he shall judge necessary and expedient; he may, on extraordinary occasions, convene both Houses, or either of them, and in case of disagreement between them, with respect to the time of adjournment, he may adjourn them to such time as he shall think proper; he shall receive ambassadors and other public ministers; he shall take care that the laws be faithfully executed, and shall commission all the officers of the United States.", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The President, Vice President and all civil officers of the United States, shall be removed from office on impeachment for, and conviction of, treason, bribery, or other high crimes and misdemeanors.", nil)], nil]];
-    
+
     Article* article3 =
     [Article articleWithTitle:NSLocalizedString(@"The Judiciary", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Three_of_the_United_States_Constitution"
@@ -114,7 +108,7 @@ static Constitution* unitedStatesConstitution;
                                [Section sectionWithText:NSLocalizedString(@"Treason against the United States, shall consist only in levying war against them, or in adhering to their enemies, giving them aid and comfort. No person shall be convicted of treason unless on the testimony of two witnesses to the same overt act, or on confession in open court.\n\n"
                                                                           @"The Congress shall have power to declare the punishment of treason, but no attainder of treason shall work corruption of blood, or forfeiture except during the life of the person attainted.", nil)],
                                nil]];
-    
+
     Article* article4 =
     [Article articleWithTitle:NSLocalizedString(@"The States", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Four_of_the_United_States_Constitution"
@@ -127,24 +121,24 @@ static Constitution* unitedStatesConstitution;
                                                                           @"The Congress shall have power to dispose of and make all needful rules and regulations respecting the territory or other property belonging to the United States; and nothing in this Constitution shall be so construed as to prejudice any claims of the United States, or of any particular state.", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The United States shall guarantee to every state in this union a republican form of government, and shall protect each of them against invasion; and on application of the legislature, or of the executive (when the legislature cannot be convened) against domestic violence.", nil)],
                                nil]];
-    
+
     Article* article5 =
     [Article articleWithTitle:NSLocalizedString(@"The Amendment Process", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Five_of_the_United_States_Constitution"
                       section:[Section sectionWithText:NSLocalizedString(@"The Congress, whenever two thirds of both houses shall deem it necessary, shall propose amendments to this Constitution, or, on the application of the legislatures of two thirds of the several states, shall call a convention for proposing amendments, which, in either case, shall be valid to all intents and purposes, as part of this Constitution, when ratified by the legislatures of three fourths of the several states, or by conventions in three fourths thereof, as the one or the other mode of ratification may be proposed by the Congress; provided that no amendment which may be made prior to the year one thousand eight hundred and eight shall in any manner affect the first and fourth clauses in the ninth section of the first article; and that no state, without its consent, shall be deprived of its equal suffrage in the Senate.", nil)]];
-    
+
     Article* article6 =
     [Article articleWithTitle:NSLocalizedString(@"Legal Status of the Constitution", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Six_of_the_United_States_Constitution"
                       section:[Section sectionWithText:NSLocalizedString(@"All debts contracted and engagements entered into, before the adoption of this Constitution, shall be as valid against the United States under this Constitution, as under the Confederation.\n\n"
                                                                          @"This Constitution, and the laws of the United States which shall be made in pursuance thereof; and all treaties made, or which shall be made, under the authority of the United States, shall be the supreme law of the land; and the judges in every state shall be bound thereby, anything in the Constitution or laws of any State to the contrary notwithstanding.\n\n"
                                                                          @"The Senators and Representatives before mentioned, and the members of the several state legislatures, and all executive and judicial officers, both of the United States and of the several states, shall be bound by oath or affirmation, to support this Constitution; but no religious test shall ever be required as a qualification to any office or public trust under the United States.", nil)]];
-    
+
     Article* article7 =
     [Article articleWithTitle:NSLocalizedString(@"Ratification", nil)
                          link:@"http://en.wikipedia.org/wiki/Article_Seven_of_the_United_States_Constitution"
                       section:[Section sectionWithText:NSLocalizedString(@"The ratification of the conventions of nine states, shall be sufficient for the establishment of this Constitution between the states so ratifying the same.", nil)]];
-    
+
     Amendment* amendment1 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Religion, Speech, Press", nil)
                                 year:1791
@@ -289,7 +283,7 @@ static Constitution* unitedStatesConstitution;
                                       [Section sectionWithText:NSLocalizedString(@"The District constituting the seat of government of the United States shall appoint in such manner as the Congress may direct:\n\n"
                                                                                  @"A number of electors of President and Vice President equal to the whole number of Senators and Representatives in Congress to which the District would be entitled if it were a state, but in no event more than the least populous state; they shall be in addition to those appointed by the states, but they shall be considered, for the purposes of the election of President and Vice President, to be electors appointed by a state; and they shall meet in the District and perform such duties as provided by the twelfth article of amendment.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress shall have power to enforce this article by appropriate legislation.", nil)], nil]];
-    
+
     Amendment* amendment24 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Poll Tax", nil)
                                 year:1964
@@ -319,9 +313,9 @@ static Constitution* unitedStatesConstitution;
                                 year:1992
                                 link:@"http://en.wikipedia.org/wiki/Twenty-seventh_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"No law, varying the compensation for the services of the Senators and Representatives, shall take effect, until an election of Representatives shall have intervened.", nil)];
-    
+
     NSArray* articles = [NSArray arrayWithObjects:article1, article2, article3, article4, article5, article6, article7, nil];
-    
+
     NSArray* amendments =
     [NSArray arrayWithObjects:amendment1, amendment2, amendment3, amendment4, amendment5,
      amendment6, amendment7, amendment8, amendment9, amendment10,
@@ -329,7 +323,7 @@ static Constitution* unitedStatesConstitution;
      amendment16, amendment17, amendment18, amendment19, amendment20,
      amendment21, amendment22, amendment23, amendment24, amendment25,
      amendment26, amendment27, nil];
-    
+
     MultiDictionary* signers = [MultiDictionary dictionary];
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"George Washington", @"http://en.wikipedia.org/wiki/George_Washington"),
@@ -342,7 +336,7 @@ static Constitution* unitedStatesConstitution;
                          person(@"Nathaniel Gorham", @"http://en.wikipedia.org/wiki/Nathaniel_Gorham"),
                          person(@"Rufus King", @"http://en.wikipedia.org/wiki/Rufus_King"), nil] forKey:@"Massachusetts"];
     [signers addObjects:[NSArray arrayWithObjects:
-                         person(@"William Samuel Johnson", @"http://en.wikipedia.org/wiki/William_Samuel_Johnson"), 
+                         person(@"William Samuel Johnson", @"http://en.wikipedia.org/wiki/William_Samuel_Johnson"),
                          person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"), nil] forKey:@"Connecticut"];
     [signers addObject:person(@"Alexander Hamilton", @"http://en.wikipedia.org/wiki/Alexander_Hamilton") forKey:@"New York"];
     [signers addObjects:[NSArray arrayWithObjects:
@@ -352,7 +346,7 @@ static Constitution* unitedStatesConstitution;
                          person(@"Jonathan Dayton", @"http://en.wikipedia.org/wiki/Jonathan_Dayton"), nil] forKey:@"New Jersey"];
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"Benjamin Franklin", @"http://en.wikipedia.org/wiki/Benjamin_franklin"),
-                         person(@"Thomas Mifflin", @"http://en.wikipedia.org/wiki/Thomas_Mifflin"), 
+                         person(@"Thomas Mifflin", @"http://en.wikipedia.org/wiki/Thomas_Mifflin"),
                          person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
                          person(@"George Clymer", @"http://en.wikipedia.org/wiki/George_Clymer"),
                          person(@"Thomas FitzSimons", @"http://en.wikipedia.org/wiki/Thomas_Fitzsimons"),
@@ -381,7 +375,7 @@ static Constitution* unitedStatesConstitution;
     [signers addObjects:[NSArray arrayWithObjects:
                          person(@"William Few", @"http://en.wikipedia.org/wiki/William_Few"),
                          person(@"Abraham Baldwin", @"http://en.wikipedia.org/wiki/Abraham_Baldwin"), nil] forKey:@"Georgia"];
-    
+
     unitedStatesConstitution =
     [[Constitution constitutionWithCountry:country
                                         preamble:NSLocalizedString(@"We the people of the United States, in order to form a more perfect union, establish justice, insure domestic tranquility, provide for the common defense, promote the general welfare, and secure the blessings of liberty to ourselves and our posterity, do ordain and establish this Constitution for the United States of America.", nil)

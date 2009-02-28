@@ -39,7 +39,7 @@
     self.amendments = nil;
     self.conclusion = nil;
     self.signers = nil;
-    
+
     [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 - (id) initWithCountry:(NSString*) country_
               preamble:(NSString*) preamble_
               articles:(NSArray*) articles_
-            amendments:(NSArray*) amendments_ 
+            amendments:(NSArray*) amendments_
             conclusion:(NSString*) conclusion_
                signers:(MultiDictionary*) signers_ {
     if (self = [super init]) {
@@ -58,7 +58,7 @@
         self.conclusion = conclusion_;
         self.signers = signers_;
     }
-    
+
     return self;
 }
 
@@ -66,7 +66,7 @@
 + (Constitution*) constitutionWithCountry:(NSString*) country_
                                  preamble:(NSString*) preamble_
                                  articles:(NSArray*) articles_
-                               amendments:(NSArray*) amendments_ 
+                               amendments:(NSArray*) amendments_
                                conclusion:(NSString*) conclusion_
                                   signers:(MultiDictionary*) signers_ {
     return [[[Constitution alloc] initWithCountry:country_
