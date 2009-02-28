@@ -86,7 +86,8 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < amendment.sections.count) {
         Section* section = [amendment.sections objectAtIndex:indexPath.section];
         WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
@@ -96,6 +97,7 @@
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
         cell.text = @"Wikipedia";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
 }

@@ -123,7 +123,8 @@
 
     Article* article = [constitution.articles objectAtIndex:row];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, article.title];
-
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -138,6 +139,7 @@
 
     Amendment* amendment = [constitution.amendments objectAtIndex:row];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, amendment.synopsis];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -160,6 +162,7 @@
     }
 
     cell.text = NSLocalizedString(@"Signers", nil);
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }

@@ -89,6 +89,7 @@
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
 
     return cell;
 }
