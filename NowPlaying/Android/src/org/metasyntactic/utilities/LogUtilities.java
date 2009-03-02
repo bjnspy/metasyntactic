@@ -3,7 +3,7 @@ package org.metasyntactic.utilities;
 import android.util.Log;
 
 public class LogUtilities {
-  private static final boolean isLogging = false;
+  private static final boolean isLogging = true;
 
   private LogUtilities() {
 
