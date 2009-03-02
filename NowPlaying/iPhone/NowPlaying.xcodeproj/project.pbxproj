@@ -2496,7 +2496,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Roberts";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -2513,7 +2513,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CC983AB4-CCF9-42DD-A673-354A77C39FC7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65E01D02-B422-4254-B516-2A32850B36E6";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;

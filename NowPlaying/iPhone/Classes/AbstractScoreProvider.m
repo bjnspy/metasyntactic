@@ -452,7 +452,7 @@
     self.hashData = hash;
     self.movieMapData = nil;
     self.movies = nil;
-    [AppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh];
 }
 
 
@@ -515,7 +515,7 @@
     self.movieMapData = map;
     self.movies = localMovies;
 
-    [AppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh];
 }
 
 

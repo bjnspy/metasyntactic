@@ -267,7 +267,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (void) emptyTrashBackgroundEntryPoint {
     for (NSString* path in [FileUtilities directoryContentsPaths:[self trashDirectory]]) {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+        }
+        [pool release];
     }
 }
 
@@ -294,7 +298,7 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData:(NSString*) directory {
++ (void) clearStaleDataWorker:(NSString*) directory {
     NSArray* names = [FileUtilities directoryContentsNames:directory];
     for (NSString* name in names) {
         // clear 5% of the old directories
@@ -315,6 +319,15 @@ static DifferenceEngine* differenceEngine = nil;
             }
         }
     }
+}
+
+
++ (void) clearStaleData:(NSString*) directory {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        [self clearStaleDataWorker:directory];
+    }
+    [pool release];
 }
 
 

@@ -612,7 +612,8 @@ const NSInteger POSTER_TAG = -1;
             return NSLocalizedString(@"Netflix", nil);
         }
     } else if (section == 2 && theatersArray.count > 0) {
-        if ([DateUtilities isToday:self.model.searchDate]) {
+        if (self.model.isSearchDateToday) {
+            //[DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
         } else {
             return [DateUtilities formatFullDate:self.model.searchDate];

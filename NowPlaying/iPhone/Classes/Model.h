@@ -36,6 +36,7 @@ enum ViewControllerType {
     MutableNetflixCache* netflixCache;
 
     NSInteger searchRadius;
+    NSNumber* isSearchDateTodayData;
 
     NSMutableSet* bookmarkedTitlesData;
     NSMutableDictionary* favoriteTheatersData;
@@ -156,6 +157,7 @@ enum ViewControllerType {
 
 - (NSDate*) searchDate;
 - (void) setSearchDate:(NSDate*) date;
+- (BOOL) isSearchDateToday;
 
 - (NSArray*) movies;
 - (NSArray*) theaters;

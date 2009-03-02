@@ -72,6 +72,7 @@
 @property (retain) NSMutableSet* bookmarkedTitlesData;
 @property (retain) NSMutableDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
+@property (retain) NSNumber* isSearchDateTodayData;
 @end
 
 @implementation Model
@@ -217,8 +218,10 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 @synthesize dataProvider;
+
 @synthesize bookmarkedTitlesData;
 @synthesize favoriteTheatersData;
+@synthesize isSearchDateTodayData;
 
 @synthesize userLocationCache;
 @synthesize blurayCache;
@@ -238,6 +241,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.dataProvider = nil;
     self.bookmarkedTitlesData = nil;
     self.favoriteTheatersData = nil;
+    self.isSearchDateTodayData = nil;
 
     self.userLocationCache = nil;
     self.blurayCache = nil;
@@ -983,7 +987,17 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) setSearchDate:(NSDate*) date {
+    self.isSearchDateTodayData = nil;
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
+}
+
+
+- (BOOL) isSearchDateToday {
+    if (isSearchDateTodayData == nil) {
+        self.isSearchDateTodayData = [NSNumber numberWithBool:[DateUtilities isToday:self.searchDate]];
+    }
+    
+    return isSearchDateTodayData.boolValue;
 }
 
 
