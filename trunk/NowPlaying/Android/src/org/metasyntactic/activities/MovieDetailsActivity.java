@@ -1,7 +1,25 @@
 package org.metasyntactic.activities;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -15,26 +33,12 @@ import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -45,9 +49,15 @@ public class MovieDetailsActivity extends ListActivity {
    */
   private List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
   private Movie movie;
+  private MovieAdapter movieAdapter;
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(final Context context, final Intent intent) {
+      movieAdapter.notifyDataSetChanged();
+    }
+  };
+
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -56,17 +66,17 @@ public class MovieDetailsActivity extends ListActivity {
     movie = extras.getParcelable("movie");
     NowPlayingControllerWrapper.prioritizeMovie(movie);
     final Resources res = getResources();
-    final TextView title = (TextView)findViewById(R.id.title);
+    final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
     final View scoreImg = findViewById(R.id.score);
-    final TextView scoreLbl = (TextView)findViewById(R.id.scorelbl);
+    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
     if (score != null && !StringUtilities.isNullOrEmpty(score.getValue())) {
       scoreValue = Integer.parseInt(score.getValue());
-    } else {
     }
+
     final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
     scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
     if (scoreValue != -1) {
@@ -75,39 +85,32 @@ public class MovieDetailsActivity extends ListActivity {
     if (scoreType != ScoreType.RottenTomatoes) {
       scoreLbl.setTextColor(Color.BLACK);
     }
-    final TextView ratingLengthLabel = (TextView)findViewById(R.id.ratingLength);
+    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
     populateMovieDetailEntries();
-    final ListAdapter movieAdapter = new MovieAdapter();
+    movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
     final View showtimes = findViewById(R.id.showtimes);
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent();
         intent.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
-        intent.putExtra("movie", (Parcelable)movie);
+        intent.putExtra("movie", (Parcelable) movie);
         startActivity(intent);
       }
     });
   }
 
   private void populateMovieDetailEntries() {
-    movieDetailEntries = (List<MovieDetailEntry>)getLastNonConfigurationInstance();
+    movieDetailEntries = (List<MovieDetailEntry>) getLastNonConfigurationInstance();
     if (movieDetailEntries == null || movieDetailEntries.isEmpty()) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
       // Add title and Synopsis
       {
-        final String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
-        final String value;
-        if (StringUtilities.isNullOrEmpty(synopsis)) {
-          value = res.getString(R.string.no_synopsis_available_dot);
-        } else {
-          value = synopsis;
-        }
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis), value, MovieDetailItemType.Synopsis, null, false);
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis), null, MovieDetailItemType.Synopsis, null, false);
         movieDetailEntries.add(entry);
       }
       // Add release Date
@@ -115,20 +118,20 @@ public class MovieDetailsActivity extends ListActivity {
       if (releaseDate != null) {
         final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(releaseDate);
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.Data,
-          null, false);
+            null, false);
         movieDetailEntries.add(entry);
       }
       {
         // Add cast
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast_colon),
-          MovieViewUtilities.formatListToString(movie.getCast()), MovieDetailItemType.Data, null, false);
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast_colon), MovieViewUtilities
+            .formatListToString(movie.getCast()), MovieDetailItemType.Data, null, false);
         movieDetailEntries.add(entry);
       }
       // Add director
       final List<String> directors = movie.getDirectors();
       if (directors != null && !directors.isEmpty()) {
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director_colon), MovieViewUtilities.formatListToString(directors),
-          MovieDetailItemType.Data, null, false);
+            MovieDetailItemType.Data, null, false);
         movieDetailEntries.add(entry);
       }
       {
@@ -164,28 +167,29 @@ public class MovieDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
+
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
-  @Override
-  protected void onPause() {
-    super.onPause();
+  @Override protected void onPause() {
     LogUtilities.i(getClass().getSimpleName(), "onPause");
+
+    unregisterReceiver(broadcastReceiver);
+
+    super.onPause();
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
   }
 
-  @Override
-  public Object onRetainNonConfigurationInstance() {
+  @Override public Object onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = movieDetailEntries;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
@@ -193,13 +197,11 @@ public class MovieDetailsActivity extends ListActivity {
   }
 
   private class MovieAdapter extends BaseAdapter {
-    @Override
-    public boolean areAllItemsEnabled() {
+    @Override public boolean areAllItemsEnabled() {
       return false;
     }
 
-    @Override
-    public boolean isEnabled(final int position) {
+    @Override public boolean isEnabled(final int position) {
       return movieDetailEntries.get(position).isSelectable();
     }
 
@@ -217,58 +219,67 @@ public class MovieDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       final MovieDetailEntry entry = movieDetailEntries.get(position);
       switch (entry.type) {
-        case Synopsis:
-          convertView = inflater.inflate(R.layout.moviepostersynopsis, null);
-          final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
-          final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
-          final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
-          final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
-          if (bytes.length > 0) {
-            posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-            posterImage.setBackgroundResource(R.drawable.image_frame);
-          }
-          final String synopsis = entry.value;
-          if (synopsis.length() > 0) {
-            final TextPaint paint = text1.getPaint();
-            final int orientation = getResources().getConfiguration().orientation;
-            final int textViewWidth;
-            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-              // textViewWidth = screenWidth - posterWidth - paddingLeft -
-              // paddingRight - spaceBetweenPosterAndTextView
-              textViewWidth = 480 - 126 - 5 - 5 - 5;
-            } else {
-              textViewWidth = 320 - 126 - 5 - 5 - 5;
-            }
-            final Layout layout = new StaticLayout(synopsis, paint, textViewWidth, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
-            // height of poster is 182px
-            final int line = layout.getLineForVertical(182);
-            final int off = layout.getLineStart(line + 1);
-            final String desc1_text = synopsis.substring(0, off);
-            final String desc2_text = synopsis.substring(off, synopsis.length());
-            text1.setText(desc1_text);
-            text2.setText(desc2_text);
-          }
-          break;
-        case Data:
-          convertView = inflater.inflate(R.layout.moviedetails_item, null);
-          // Creates a MovieViewHolder and store references to the
-          // children views we want to bind data to.
-          final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.name),
-            (TextView)convertView.findViewById(R.id.value), (ImageView)convertView.findViewById(R.id.divider));
-          holder.name.setText(entry.name);
-          holder.value.setText(entry.value);
-          break;
-        case Header:
-          convertView = inflater.inflate(R.layout.headerview, null);
-          final TextView headerView = (TextView)convertView.findViewById(R.id.name);
-          headerView.setText(entry.name);
-          break;
-        case Action:
-          convertView = inflater.inflate(R.layout.dataview, null);
-          final TextView actionView = (TextView)convertView.findViewById(R.id.name);
-          actionView.setText(entry.name);
-          break;
+      case Synopsis:
+        convertView = setupPosterAndSynopsisView(entry);
+        break;
+      case Data:
+        convertView = inflater.inflate(R.layout.moviedetails_item, null);
+        // Creates a MovieViewHolder and store references to the
+        // children views we want to bind data to.
+        final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.name), (TextView) convertView
+            .findViewById(R.id.value), (ImageView) convertView.findViewById(R.id.divider));
+        holder.name.setText(entry.name);
+        holder.value.setText(entry.value);
+        break;
+      case Header:
+        convertView = inflater.inflate(R.layout.headerview, null);
+        final TextView headerView = (TextView) convertView.findViewById(R.id.name);
+        headerView.setText(entry.name);
+        break;
+      case Action:
+        convertView = inflater.inflate(R.layout.dataview, null);
+        final TextView actionView = (TextView) convertView.findViewById(R.id.name);
+        actionView.setText(entry.name);
+        break;
       }
+      return convertView;
+    }
+
+    private View setupPosterAndSynopsisView(final MovieDetailEntry entry) {
+      final View convertView = inflater.inflate(R.layout.moviepostersynopsis, null);
+      final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
+      final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
+      final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
+      if (bytes.length > 0) {
+        posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+        posterImage.setBackgroundResource(R.drawable.image_frame);
+      }
+
+      String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
+      if (StringUtilities.isNullOrEmpty(synopsis)) {
+        synopsis = getResources().getString(R.string.no_synopsis_available_dot);
+      }
+
+      final TextPaint paint = text1.getPaint();
+      final int orientation = getResources().getConfiguration().orientation;
+      final int textViewWidth;
+      if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        // textViewWidth = screenWidth - posterWidth - paddingLeft -
+        // paddingRight - spaceBetweenPosterAndTextView
+        textViewWidth = 480 - 126 - 5 - 5 - 5;
+      } else {
+        textViewWidth = 320 - 126 - 5 - 5 - 5;
+      }
+      final Layout layout = new StaticLayout(synopsis, paint, textViewWidth, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
+      // height of poster is 182px
+      final int line = layout.getLineForVertical(182);
+      final int off = layout.getLineStart(line + 1);
+      final String desc1_text = synopsis.substring(0, off);
+      final String desc2_text = synopsis.substring(off, synopsis.length());
+      text1.setText(desc1_text);
+      text2.setText(desc2_text);
+
       return convertView;
     }
 
@@ -323,12 +334,11 @@ public class MovieDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-      .setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
+        new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -336,8 +346,7 @@ public class MovieDetailsActivity extends ListActivity {
     Synopsis, Data, Action, Header
   }
 
-  @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Intent intent = movieDetailEntries.get(position).intent;
     if (intent != null) {
       startActivity(intent);

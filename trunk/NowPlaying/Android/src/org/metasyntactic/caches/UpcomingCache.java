@@ -30,8 +30,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingApplication;
@@ -50,14 +48,30 @@ import org.w3c.dom.Element;
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
   private final DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+
+  private final BoundedPrioritySet<Movie> normalMovies = new BoundedPrioritySet<Movie>();
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
+
+
   private String hash;
   private List<Movie> movies;
   private Map<String, String> studioKeys;
   private Map<String, String> titleKeys;
+  private boolean updated;
 
   public UpcomingCache(final NowPlayingModel model) {
     super(model);
+
+    final Runnable runnable = new Runnable() {
+      public void run() {
+        try {
+          updateDetailsBackgroundEntryPoint();
+        } catch (final InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, null, false);
   }
 
   private static File hashFile() {
@@ -135,21 +149,11 @@ public class UpcomingCache extends AbstractCache {
       return;
     }
 
+    if (updated) {
+      return;
+    }
+    updated = true;
     updateIndex();
-  }
-
-  private void updateDetails() {
-    final List<Movie> localMovies = getMovies();
-    final Map<String, String> localStudioKeys = getStudioKeys();
-    final Map<String, String> localTitleKeys = getTitleKeys();
-    if (shutdown) { return; }
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        updateDetailsBackgroundEntryPoint(localMovies, localStudioKeys, localTitleKeys);
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, lock, false);
   }
 
   private void updateIndex() {
@@ -158,7 +162,7 @@ public class UpcomingCache extends AbstractCache {
         updateIndexBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, lock, true);
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, null, true);
   }
 
   private void updateIndexBackgroundEntryPoint() {
@@ -166,7 +170,10 @@ public class UpcomingCache extends AbstractCache {
     updateIndexBackgroundEntryPointWorker();
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
 
-    updateDetails();
+    synchronized (lock) {
+      normalMovies.addAll(getMovies());
+      lock.notifyAll();
+    }
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
@@ -203,9 +210,7 @@ public class UpcomingCache extends AbstractCache {
     start = System.currentTimeMillis();
     processResultElement(resultElement, localMovies, localStudioKeys, localTitleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Process Xml", start);
-    if (shutdown) {
-      return;
-    }
+    if (shutdown) { return; }
     if (localMovies.isEmpty()) {
       return;
     }
@@ -297,34 +302,39 @@ public class UpcomingCache extends AbstractCache {
     return result;
   }
 
-  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys,
-      final Map<String, String> titleKeys) {
-    final long start = System.currentTimeMillis();
-    updateDetailsBackgroundEntryPointWorker(movies, studioKeys, titleKeys);
-    LogUtilities.logTime(UpcomingCache.class, "Update Details", start);
+  private void updateDetailsBackgroundEntryPoint() throws InterruptedException {
+    while (!shutdown) {
+      Movie movie = null;
+      synchronized (lock) {
+        while (!shutdown &&
+            (movie = prioritizedMovies.removeAny()) == null &&
+            (movie = normalMovies.removeAny()) == null) {
+          lock.wait();
+        }
+      }
+
+      updateDetails(movie);
+      Thread.sleep(1000);
+    }
   }
 
-  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys,
-      final Map<String, String> titleKeys) {
-    if (movies.isEmpty()) {
+  private void updateDetails(final Movie movie) {
+    if (movie == null) {
       return;
     }
+    final String studioKey = getStudioKeys().get(movie.getCanonicalTitle());
+    final String titleKey = getTitleKeys().get(movie.getCanonicalTitle());
 
-    final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
-    Movie movie;
-    do {
-      movie = prioritizedMovies.removeAny(moviesSet);
-      if (movie != null) {
-        updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
-      }
-    } while (movie != null && !shutdown);
+    updateDetails(movie, studioKey, titleKey);
   }
 
-  private static void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
-    updateImdb(movie);
+  private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
     updatePoster(movie);
-    updateSynopsisAndCast(movie, studioKey, titleKey);
-    updateTrailers(movie, studioKey, titleKey);
+    if (!isNullOrEmpty(studioKey) && !isNullOrEmpty(titleKey)) {
+      updateSynopsisAndCast(movie, studioKey, titleKey);
+      updateTrailers(movie, studioKey, titleKey);
+    }
+    updateImdb(movie);
   }
 
   private static File getCastFile(final Movie movie) {
@@ -359,8 +369,7 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String trailersString = NetworkUtilities
-    .downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey, false);
+    final String trailersString = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey, false);
 
     if (isNullOrEmpty(trailersString)) {
       return;
@@ -400,13 +409,19 @@ public class UpcomingCache extends AbstractCache {
     final Collection<String> cast = new ArrayList<String>(values.length - 1);
     cast.addAll(Arrays.asList(values).subList(1, values.length));
 
+    boolean refresh = false;
     if (!synopsis.startsWith("No Synopsis")) {
       FileUtilities.writeString(synopsis, file);
-      NowPlayingApplication.refresh();
+      refresh = true;
     }
 
     if (!cast.isEmpty()) {
       FileUtilities.writeStringCollection(cast, getCastFile(movie));
+      refresh = true;
+    }
+
+    if (refresh) {
+      NowPlayingApplication.refresh();
     }
   }
 
@@ -472,7 +487,10 @@ public class UpcomingCache extends AbstractCache {
   }
 
   public void prioritizeMovie(final Movie movie) {
-    prioritizedMovies.add(movie);
+    synchronized (lock) {
+      prioritizedMovies.add(movie);
+      lock.notifyAll();
+    }
   }
 
   @Override
