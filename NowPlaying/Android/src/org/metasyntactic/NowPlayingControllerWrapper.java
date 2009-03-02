@@ -326,17 +326,17 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public void addFavoriteTheater(final Theater theater) {
+  public static void addFavoriteTheater(final Theater theater) {
     checkInstance();
     instance.addFavoriteTheater(theater);
   }
 
-  public void removeFavoriteTheater(final Theater theater) {
+  public static void removeFavoriteTheater(final Theater theater) {
     checkInstance();
     instance.removeFavoriteTheater(theater);
   }
 
-  public boolean isFavoriteTheater(final Theater theater) {
+  public static boolean isFavoriteTheater(final Theater theater) {
     checkInstance();
     return instance.isFavoriteTheater(theater);
   }
