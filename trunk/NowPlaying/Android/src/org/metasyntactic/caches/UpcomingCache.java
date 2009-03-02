@@ -142,7 +142,7 @@ public class UpcomingCache extends AbstractCache {
     final List<Movie> localMovies = getMovies();
     final Map<String, String> localStudioKeys = getStudioKeys();
     final Map<String, String> localTitleKeys = getTitleKeys();
-
+    if (shutdown) { return; }
     final Runnable runnable = new Runnable() {
       public void run() {
         updateDetailsBackgroundEntryPoint(localMovies, localStudioKeys, localTitleKeys);
