@@ -183,16 +183,13 @@ public class UpcomingCache extends AbstractCache {
 
     final File indexFile = hashFile();
     if (indexFile.exists()) {
-      final long lastModifiedTime = indexFile.lastModified();
-
-      if (Math.abs(lastModifiedTime - new Date().getTime()) < 3 * Constants.ONE_DAY) {
+      if (FileUtilities.daysSinceNow(indexFile) < 3) {
         return;
       }
     }
 
     final String localHash = getHash();
-    final String serverHash1 = NetworkUtilities
-    .downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
+    final String serverHash1 = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
     final String serverHash2 = serverHash1 == null ? "0" : serverHash1;
 
     if (localHash.equals(serverHash2)) {
@@ -200,8 +197,7 @@ public class UpcomingCache extends AbstractCache {
     }
 
     long start = System.currentTimeMillis();
-    final Element resultElement = NetworkUtilities
-    .downloadXml("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
+    final Element resultElement = NetworkUtilities.downloadXml("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
     if (shutdown) {
       return;
@@ -364,7 +360,7 @@ public class UpcomingCache extends AbstractCache {
   private static void updateTrailers(final Movie movie, final String studioKey, final String titleKey) {
     final File file = getTrailersFile(movie);
     if (file.exists()) {
-      if (Math.abs(file.lastModified() - new Date().getTime()) < 3 * Constants.ONE_DAY) {
+      if (FileUtilities.daysSinceNow(file) < 3) {
         return;
       }
     }

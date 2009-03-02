@@ -13,16 +13,6 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +21,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.collections.BoundedPrioritySet;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
 
 public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
@@ -82,9 +81,8 @@ public class TrailerCache extends AbstractCache {
         final File file = trailerFilePath(movie);
         if (file.exists()) {
           final long writeTime = file.lastModified();
-          final long span = Math.abs(writeTime - now);
 
-          if (span > 3 * Constants.ONE_DAY) {
+          if (FileUtilities.daysSinceNow(file) > 3) {
             moviesWithTrailers.add(movie);
           }
         } else {
@@ -118,7 +116,7 @@ public class TrailerCache extends AbstractCache {
       Movie movie = null;
       synchronized (lock) {
         while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithoutTrailers
-          .removeAny()) == null && (movie = moviesWithTrailers.removeAny()) == null) {
+            .removeAny()) == null && (movie = moviesWithTrailers.removeAny()) == null) {
           lock.wait();
         }
       }
