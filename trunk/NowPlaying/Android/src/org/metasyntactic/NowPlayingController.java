@@ -22,6 +22,7 @@ import java.util.List;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
@@ -247,5 +248,17 @@ public class NowPlayingController {
 
   public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
     return model.getShowtimesRetrievedOnString(theater, resources);
+  }
+
+  public void addFavoriteTheater(final Theater theater) {
+    model.addFavoriteTheater(theater);
+  }
+
+  public void removeFavoriteTheater(final Theater theater) {
+    model.removeFavoriteTheater(theater);
+  }
+
+  public boolean isFavoriteTheater(final Theater theater) {
+    return model.isFavoriteTheater(theater);
   }
 }

@@ -325,4 +325,19 @@ public class NowPlayingControllerWrapper {
       instance.onLowMemory();
     }
   }
+
+  public void addFavoriteTheater(final Theater theater) {
+    checkInstance();
+    instance.addFavoriteTheater(theater);
+  }
+
+  public void removeFavoriteTheater(final Theater theater) {
+    checkInstance();
+    instance.removeFavoriteTheater(theater);
+  }
+
+  public boolean isFavoriteTheater(final Theater theater) {
+    checkInstance();
+    return instance.isFavoriteTheater(theater);
+  }
 }
