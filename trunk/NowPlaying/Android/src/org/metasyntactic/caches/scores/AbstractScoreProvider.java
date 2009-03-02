@@ -13,7 +13,22 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import org.metasyntactic.Constants;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import static org.metasyntactic.utilities.XmlUtilities.children;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
@@ -25,27 +40,11 @@ import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.CollectionUtilities;
-import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private static class MovieAndMap {
@@ -142,33 +141,24 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   public void update() {
-    updateScores();
-  }
-
-  private void updateScores() {
-    if (shutdown) {
-      return;
-    }
+    if (shutdown) { return; }
     final long start = System.currentTimeMillis();
     Map<String, Score> map = updateScoresWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
 
-    if (shutdown) {
-      return;
-    }
+    if (shutdown) { return; }
     if (map == null) {
       map = loadScores();
     }
-    if (shutdown) {
-      return;
-    }
-    updateReviewsWorker(map);
+
+    if (shutdown) { return; }
+    updateReviews(map);
   }
 
   private Map<String, Score> updateScoresWorker() {
     final File hashFile = hashFile();
     if (hashFile.exists()) {
-      if (Math.abs(hashFile.lastModified() - new Date().getTime()) < Constants.ONE_DAY) {
+      if (FileUtilities.daysSinceNow(hashFile) < 1) {
         return null;
       }
     }
@@ -255,9 +245,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     for (final Movie movie : movies) {
-      if (shutdown) {
-        return;
-      }
+      if (shutdown) { return; }
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
       final int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
 
@@ -278,7 +266,6 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
         reportMovieMap(result, movies);
       }
     };
-
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
@@ -300,14 +287,14 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
   }
 
-  private void updateReviewsWorker(final Map<String, Score> scoresMap) {
+  private void updateReviews(final Map<String, Score> scoresMap) {
     final Set<Score> scoresWithoutReviews = new TreeSet<Score>();
     final Set<Score> scoresWithReviews = new TreeSet<Score>();
 
     for (final Map.Entry<String, Score> entry : scoresMap.entrySet()) {
       final File file = reviewsFile(entry.getKey());
       if (file.exists()) {
-        if (FileUtilities.daysSinceNow(file) > 2 * Constants.ONE_DAY) {
+        if (FileUtilities.daysSinceNow(file) > 2) {
           scoresWithReviews.add(entry.getValue());
         }
       } else {
@@ -367,8 +354,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault()
-      .getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int)(location
-      .getLatitude() * 1000000) + "&longitude=" + (int)(location.getLongitude() * 1000000);
+    .getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int)(location
+        .getLatitude() * 1000000) + "&longitude=" + (int)(location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {

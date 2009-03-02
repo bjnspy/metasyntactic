@@ -13,6 +13,12 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
@@ -20,15 +26,12 @@ import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-
 public class ScoreCache extends AbstractCache {
   private final ScoreProvider rottenTomatoesScoreProvider;
   private final ScoreProvider metacriticScoreProvider;
   private final ScoreProvider googleScoreProvider;
   private final ScoreProvider noneScoreProvider;
+  private boolean updated;
 
   public ScoreCache(final NowPlayingModel model) {
     super(model);
@@ -79,19 +82,24 @@ public class ScoreCache extends AbstractCache {
   }
 
   public void update() {
+    if (isNullOrEmpty(model.getUserAddress())) {
+      return;
+    }
+
+    if (updated) {
+      return;
+    }
+    updated = true;
+
     final ScoreType scoreType = model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
-        if (shutdown) {
-          return;
-        }
+        if (shutdown) { return; }
         final ScoreProvider primaryScoreProvider = getScoreProvider(scoreType);
         primaryScoreProvider.update();
 
         for (final ScoreProvider provider : getProviders()) {
-          if (shutdown) {
-            return;
-          }
+          if (shutdown) { return; }
           if (provider != primaryScoreProvider) {
             provider.update();
           }
@@ -99,7 +107,7 @@ public class ScoreCache extends AbstractCache {
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, null, false);
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
