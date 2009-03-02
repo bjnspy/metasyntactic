@@ -746,7 +746,7 @@ static NSDictionary* availabilityMap = nil;
         }
     }
     
-    if (movies.count > 0 || saved.count > 0) {
+    if (element != nil) {
         Queue* queue = [Queue queueWithFeed:feed
                                        etag:etag
                                      movies:movies
