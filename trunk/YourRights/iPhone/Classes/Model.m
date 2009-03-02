@@ -17,6 +17,7 @@
 #import "Amendment.h"
 #import "Article.h"
 #import "Constitution.h"
+#import "DateUtilities.h"
 #import "Decision.h"
 #import "DeclarationOfIndependence.h"
 #import "LocaleUtilities.h"
@@ -44,7 +45,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.4.0";
+static NSString* currentVersion = @"1.5.0";
 
 static Constitution* federalistPapers;
 static DeclarationOfIndependence* declarationOfIndependence;
@@ -261,7 +262,7 @@ static DeclarationOfIndependence* declarationOfIndependence;
                          person(@"Lyman Hall", @"http://en.wikipedia.org/wiki/Lyman_Hall"),
                          person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] forKey:@"Georgia"];
 
-    NSDate* date = [NSDate dateWithNaturalLanguageString:@"July 4, 1776"];
+    NSDate* date = [DateUtilities dateWithNaturalLanguageString:@"July 4, 1776"];
 
     declarationOfIndependence = [[DeclarationOfIndependence declarationWithText:text signers:signers date:date] retain];
 }

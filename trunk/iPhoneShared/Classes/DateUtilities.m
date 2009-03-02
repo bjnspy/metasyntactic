@@ -43,11 +43,13 @@ static BOOL use24HourTime;
 
         timeDifferenceMap = [[NSMutableDictionary dictionary] retain];
         calendar = [[NSCalendar currentCalendar] retain];
-        NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+        {
+            NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                         fromDate:[NSDate date]];
-        todayComponents.hour = 12;
-        today = [[calendar dateFromComponents:todayComponents] retain];
-
+            todayComponents.hour = 12;
+            today = [[calendar dateFromComponents:todayComponents] retain];
+        }
+        
         yearsAgoMap = [[NSMutableDictionary dictionary] retain];
         monthsAgoMap = [[NSMutableDictionary dictionary] retain];
         weeksAgoMap = [[NSMutableDictionary dictionary] retain];
@@ -186,11 +188,7 @@ static BOOL use24HourTime;
 
 
 + (NSDate*) today {
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                               fromDate:[NSDate date]];
-    [components setHour:12];
-    return [calendar dateFromComponents:components];
+    return today;
 }
 
 
@@ -199,7 +197,7 @@ static BOOL use24HourTime;
     components.day = 1;
 
     return [[NSCalendar currentCalendar] dateByAddingComponents:components
-                                                         toDate:[DateUtilities today]
+                                                         toDate:today
                                                         options:0];
 }
 
@@ -220,7 +218,7 @@ static BOOL use24HourTime;
 
 
 + (BOOL) isToday:(NSDate*) date {
-    return [DateUtilities isSameDay:[NSDate date] date:date];
+    return [DateUtilities isSameDay:today date:date];
 }
 
 
