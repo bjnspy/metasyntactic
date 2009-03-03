@@ -1633,7 +1633,11 @@ static NSDictionary* availabilityMap = nil;
     
     NSString* synopsis = [self synopsisForMovieWorker:movie];
     if (synopsis.length == 0) {
-        return NSLocalizedString(@"Downloading information.", nil);
+        if ([NetworkUtilities isNetworkAvailable]) {
+            return NSLocalizedString(@"Downloading information.", nil);
+        } else {
+            return NSLocalizedString(@"No synopsis available.", nil);
+        }
     }
     
     return synopsis;
