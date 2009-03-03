@@ -182,8 +182,10 @@
     [request setParameters:parameters];
     [request prepare];
 
+    NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+                                                              important:YES
+                                                               response:&response];
 
     [self checkApiResult:element];
 
@@ -503,7 +505,7 @@
     [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:movie.identifier]];
     [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:queue.etag]];
     if (position >= 0) {
-        [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position]]];
+        [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]]];
     }
 
     [request setParameters:parameters];
