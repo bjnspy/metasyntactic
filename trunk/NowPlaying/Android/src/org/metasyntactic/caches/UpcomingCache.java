@@ -199,9 +199,7 @@ public class UpcomingCache extends AbstractCache {
     long start = System.currentTimeMillis();
     final Element resultElement = NetworkUtilities.downloadXml("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
-    if (shutdown) {
-      return;
-    }
+    if (shutdown) { return; }
 
     start = System.currentTimeMillis();
     processResultElement(resultElement, localMovies, localStudioKeys, localTitleKeys);

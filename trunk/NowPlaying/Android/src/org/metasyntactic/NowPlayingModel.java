@@ -19,8 +19,8 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,6 +42,7 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 
@@ -327,8 +328,8 @@ public class NowPlayingModel {
   private void ensureFavoriteTheaters() {
     if (favoriteTheaters == null) {
       favoriteTheaters = FileUtilities.readStringToPersistableMap(FavoriteTheater.reader, getFavoriteTheatersFile());
-      if (favoriteTheaters == null) {
-        favoriteTheaters = Collections.emptyMap();
+      if (CollectionUtilities.isEmpty(favoriteTheaters)) {
+        favoriteTheaters = new HashMap<String,FavoriteTheater>();
       }
     }
   }
