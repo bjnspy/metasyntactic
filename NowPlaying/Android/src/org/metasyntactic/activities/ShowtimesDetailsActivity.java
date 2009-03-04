@@ -78,17 +78,21 @@ public class ShowtimesDetailsActivity extends ListActivity {
     theaterTxt.setText(theater.getName());
     final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.header);
     final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
+    final Resources res = ShowtimesDetailsActivity.this.getResources();
+    if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
+      ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
+    } else {
+      ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
+    }
     linearLayout.setClickable(true);
     linearLayout.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View view) {
         if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
-          ratingImage.setImageDrawable(ShowtimesDetailsActivity.this.getResources().getDrawable(
-              R.drawable.rate_star_big_off));
+          ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
           NowPlayingControllerWrapper.removeFavoriteTheater(theater);
         } else {
-          ratingImage.setImageDrawable(ShowtimesDetailsActivity.this.getResources().getDrawable(
-              R.drawable.rate_star_big_on));
+          ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
           NowPlayingControllerWrapper.addFavoriteTheater(theater);
         }
       }
