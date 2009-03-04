@@ -266,7 +266,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getScores(final Context context) {
+  private void getScores() {
     score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
       score[index] = i + "%";
@@ -275,7 +275,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   private void setup() {
     getAlphabet(this);
-    getScores(this);
+    getScores();
     setContentView(R.layout.moviegrid_anim);
     bottomBar = (RelativeLayout)findViewById(R.id.bottom_bar);
     if (search == null) {
@@ -291,7 +291,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     });
     grid = (CustomGridView)findViewById(R.id.grid);
     grid.setOnItemClickListener(new OnItemClickListener() {
-      public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
+      public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
@@ -337,6 +337,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
+  @SuppressWarnings("unchecked")
   private static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private enum ViewState {
