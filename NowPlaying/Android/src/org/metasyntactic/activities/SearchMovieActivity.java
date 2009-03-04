@@ -1,5 +1,9 @@
 package org.metasyntactic.activities;
 
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -9,9 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.StringUtilities;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
@@ -75,25 +76,25 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
     menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
-      .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-        public boolean onMenuItemClick(final MenuItem item) {
-          performSearch();
-          return true;
-        }
-      });
+    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+      public boolean onMenuItemClick(final MenuItem item) {
+        performSearch();
+        return true;
+      }
+    });
     return true;
   }
 
   private void performSearch() {
     final String searchTerm = mSearchText.getText().toString();
-    privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
+    privatePerformSearch(this, searchTerm, null);
   }
 
-  public static void performLabel(final Context activity, final CharSequence label, final String title) {
-    privatePerformSearch(activity, title, null, label);
+  public static void performLabel(final Context activity, final CharSequence label) {
+    privatePerformSearch(activity, null, label);
   }
 
-  private static void privatePerformSearch(final Context activity, final String title, final String search, final CharSequence label) {
+  private static void privatePerformSearch(final Context activity, final String search, final CharSequence label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       final Intent intent = new Intent();
       if ("NowPlayingActivity".equals(activityName)) {

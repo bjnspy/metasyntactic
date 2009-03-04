@@ -109,7 +109,10 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   }
 
   private void populateMovieDetailEntries() {
-    movieDetailEntries = (List<MovieDetailEntry>)getLastNonConfigurationInstance();
+    @SuppressWarnings("unchecked") final
+    List<MovieDetailEntry> entries = (List<MovieDetailEntry>)getLastNonConfigurationInstance();
+    movieDetailEntries = entries;
+
     if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
@@ -202,14 +205,14 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       final MovieDetailEntry entry = movieDetailEntries.get(position);
       switch (entry.type) {
       case POSTER_SYNOPSIS:
-        convertView = setupPosterAndSynopsisView(entry);
+        convertView = setupPosterAndSynopsisView();
         break;
       case DATA:
         convertView = inflater.inflate(R.layout.moviedetails_item, null);
         // Creates a MovieViewHolder and store references to the
         // children views we want to bind data to.
         final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.name),
-            (TextView)convertView.findViewById(R.id.value), (ImageView)convertView.findViewById(R.id.divider));
+            (TextView)convertView.findViewById(R.id.value));
         holder.name.setText(entry.name);
         holder.value.setText(entry.value);
         break;
@@ -227,7 +230,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       return convertView;
     }
 
-    private View setupPosterAndSynopsisView(final MovieDetailEntry entry) {
+    private View setupPosterAndSynopsisView() {
       final View convertView = inflater.inflate(R.layout.moviepostersynopsis, null);
       final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
       final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
@@ -273,7 +276,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       private final TextView name;
       private final TextView value;
 
-      private MovieViewHolder(final TextView name, final TextView value, final ImageView divider) {
+      private MovieViewHolder(final TextView name, final TextView value) {
         this.name = name;
         this.value = value;
       }

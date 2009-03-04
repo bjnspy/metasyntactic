@@ -164,7 +164,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
       final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
           .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
           (TextView) convertView.findViewById(R.id.data));
-      final int theaterIndex = position / TheaterDetailItemType.values().length;
+
       switch (detailItems.get(position).getType()) {
       case NAME_SHOWTIMES:
         holder.label.setText(res.getString(R.string.showtimes_for, movie.getCanonicalTitle(),

@@ -359,7 +359,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     });
     grid = (CustomGridView)findViewById(R.id.grid);
     grid.setOnItemClickListener(new OnItemClickListener() {
-      public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
+      public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
@@ -421,6 +421,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
+  @SuppressWarnings("unchecked")
   public static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private enum ViewState {
