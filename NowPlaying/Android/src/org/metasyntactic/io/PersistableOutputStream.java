@@ -13,13 +13,13 @@
 // limitations under the License.
 package org.metasyntactic.io;
 
-import org.metasyntactic.utilities.StringUtilities;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+
+import org.metasyntactic.utilities.StringUtilities;
 
 public class PersistableOutputStream {
   private final DataOutputStream out;
@@ -50,8 +50,8 @@ public class PersistableOutputStream {
     out.writeDouble(d);
   }
 
-  public void writeString(final String string) throws IOException {
-    final String s = StringUtilities.nonNullString(string);
+  public void writeString(String string) throws IOException {
+    string = StringUtilities.nonNullString(string);
     out.writeUTF(string);
   }
 
