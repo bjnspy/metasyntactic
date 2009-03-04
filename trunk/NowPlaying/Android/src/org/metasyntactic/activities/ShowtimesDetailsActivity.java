@@ -1,5 +1,17 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -11,25 +23,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -78,7 +79,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     theaterTxt.setText(theater.getName());
     final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.header);
     final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
-    final Resources res = ShowtimesDetailsActivity.this.getResources();
+    final Resources res = getResources();
     if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
     } else {
@@ -86,8 +87,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     }
     linearLayout.setClickable(true);
     linearLayout.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View view) {
+      public void onClick(final View view) {
         if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
           NowPlayingControllerWrapper.removeFavoriteTheater(theater);
@@ -264,7 +264,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+            new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -274,11 +274,11 @@ public class ShowtimesDetailsActivity extends ListActivity {
     showtimes.toArray(criteria);
     return new AlertDialog.Builder(this).setTitle(R.string.order_tickets).setItems(criteria,
         new DialogInterface.OnClickListener() {
-          public void onClick(final DialogInterface dialog, final int which) {
-            final String order_url = showtimes_url.get(which);
-            final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
-            startActivity(intent);
-          }
-        }).create();
+      public void onClick(final DialogInterface dialog, final int which) {
+        final String order_url = showtimes_url.get(which);
+        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
+        startActivity(intent);
+      }
+    }).create();
   }
 }

@@ -1,22 +1,9 @@
 package org.metasyntactic.activities;
 
-import android.app.ListActivity;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -29,17 +16,29 @@ import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class ShowtimesActivity extends ListActivity {
   private List<Theater> localTheaters;
-  private List<TheaterWrapper> theaterWrapperList = new ArrayList<TheaterWrapper>();
+  private final List<TheaterWrapper> theaterWrapperList = new ArrayList<TheaterWrapper>();
   private Movie movie;
   private Location userLocation;
 
@@ -99,7 +98,7 @@ public class ShowtimesActivity extends ListActivity {
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final View scoreImg = (Button) findViewById(R.id.score);
+    final View scoreImg = findViewById(R.id.score);
     final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
@@ -150,10 +149,12 @@ public class ShowtimesActivity extends ListActivity {
     public int compare(final Theater m1, final Theater m2) {
       final boolean isFavoriteM1 = NowPlayingControllerWrapper.isFavoriteTheater(m1);
       final boolean isFavoriteM2 = NowPlayingControllerWrapper.isFavoriteTheater(m2);
-      if ((isFavoriteM1 && isFavoriteM2) || (!isFavoriteM1 && !isFavoriteM2))
+      if (isFavoriteM1 && isFavoriteM2 || !isFavoriteM1 && !isFavoriteM2) {
         return 0;
-      if (isFavoriteM1)
+      }
+      if (isFavoriteM1) {
         return -1;
+      }
       return 1;
     }
   };
@@ -175,21 +176,20 @@ public class ShowtimesActivity extends ListActivity {
         final Theater theater = theaterWrapper.theater;
         holder.label.setText(theater.getName());
         final List<Performance> list = NowPlayingControllerWrapper
-            .getPerformancesForMovieAtTheater(movie, theater);
+        .getPerformancesForMovieAtTheater(movie, theater);
         if (CollectionUtilities.size(list) > 0) {
-          String performance = buildPerformanceString(list);
+          final String performance = buildPerformanceString(list);
           showStaleShowtimesWarning(convertView, theater);
           holder.data.setText(performance);
         }
         if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
-          ImageView ratingImage = (ImageView) convertView.findViewById(R.id.ratingImage);
+          final ImageView ratingImage = (ImageView) convertView.findViewById(R.id.ratingImage);
           ratingImage.setVisibility(View.VISIBLE);
         }
       } else {
         convertView = inflater.inflate(R.layout.headerview, null);
         final TextView header = (TextView) convertView.findViewById(R.id.name);
-        header.setText(ShowtimesActivity.this.getResources().getString(
-            R.string.theaters_out_of_range));
+        header.setText(getResources().getString(R.string.theaters_out_of_range));
       }
       return convertView;
     }
@@ -203,13 +203,13 @@ public class ShowtimesActivity extends ListActivity {
       return performance;
     }
 
-    private void showStaleShowtimesWarning(View convertView, final Theater theater) {
+    private void showStaleShowtimesWarning(final View convertView, final Theater theater) {
       if (NowPlayingControllerWrapper.isStale(theater)) {
-        LinearLayout l = (LinearLayout) convertView.findViewById(R.id.warning);
+        final LinearLayout l = (LinearLayout) convertView.findViewById(R.id.warning);
         l.setVisibility(View.VISIBLE);
-        TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
+        final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
         warningText.setText(NowPlayingControllerWrapper.getShowtimesRetrievedOnString(theater,
-            ShowtimesActivity.this.getResources()));
+            getResources()));
       }
     }
 
@@ -245,8 +245,8 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private class TheaterWrapper {
-    private Theater theater;
-    private int type; // 1 = theater, 2 = header
+    private final Theater theater;
+    private final int type; // 1 = theater, 2 = header
 
     private TheaterWrapper(final Theater theater, final int type) {
       this.theater = theater;
@@ -260,7 +260,7 @@ public class ShowtimesActivity extends ListActivity {
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+            new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 }
