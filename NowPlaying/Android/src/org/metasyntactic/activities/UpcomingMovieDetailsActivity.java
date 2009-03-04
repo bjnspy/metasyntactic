@@ -1,20 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,6 +21,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -108,10 +106,13 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     return result;
   }
 
+  @SuppressWarnings("unchecked")
+  @Override public List<MovieDetailEntry> getLastNonConfigurationInstance() {
+    return (List<MovieDetailEntry>)super.getLastNonConfigurationInstance();
+  }
+
   private void populateMovieDetailEntries() {
-    @SuppressWarnings("unchecked") final
-    List<MovieDetailEntry> entries = (List<MovieDetailEntry>)getLastNonConfigurationInstance();
-    movieDetailEntries = entries;
+    movieDetailEntries = getLastNonConfigurationInstance();
 
     if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();

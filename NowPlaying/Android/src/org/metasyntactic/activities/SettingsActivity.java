@@ -1,22 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -30,18 +13,33 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -190,7 +188,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   @Override
-  protected void onPrepareDialog(final int id, Dialog dialog) {
+  protected void onPrepareDialog(final int id, final Dialog dialog) {
     super.onPrepareDialog(id, dialog);
     switch (id) {
     case 1:
@@ -218,7 +216,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
-      dialog = ((NowPlayingPreferenceDialog)dialog).setEntries(R.array.entries_auto_update_preference);
+      ((NowPlayingPreferenceDialog)dialog).setEntries(R.array.entries_auto_update_preference);
     }
   }
 
@@ -272,7 +270,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_distance));
     final int distance = NowPlayingControllerWrapper.getSearchDistance();
-    // TODO Remove hardcoded values once the controller method for distance
+    
     // units is available.
     settings.setData(distance + " " + res.getString(R.string.miles));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);

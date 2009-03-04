@@ -75,11 +75,9 @@ public class GlobalActivityIndicator {
           startNetworkIndicator();
         }
       });
-
-      return;
+    } else {
+      // Do work here
     }
-
-    // Do work here
   }
 
   private static void stopNetworkIndicator() {
@@ -89,11 +87,9 @@ public class GlobalActivityIndicator {
           stopNetworkIndicator();
         }
       });
-
-      return;
+    } else {
+      // Do work here
     }
-
-    // Do work here
   }
 
   public static void addBackgroundTask(final boolean visible) {

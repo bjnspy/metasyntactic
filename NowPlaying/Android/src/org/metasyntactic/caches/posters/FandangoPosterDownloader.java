@@ -24,6 +24,7 @@ import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -80,7 +81,7 @@ public class FandangoPosterDownloader {
     processFandangoElement(element);
   }
 
-  private static void processFandangoElement(final Element element) {
+  private static void processFandangoElement(final Node element) {
     final Map<String, String> result = new HashMap<String, String>();
 
     final Element dataElement = XmlUtilities.element(element, "data");

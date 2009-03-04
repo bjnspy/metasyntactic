@@ -13,7 +13,12 @@
 // limitations under the License.
 package org.metasyntactic.utilities;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.lang.ref.SoftReference;
@@ -21,13 +26,6 @@ import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-
-import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
-
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 
 public class MovieViewUtilities {
   public static final int MENU_SORT = 1;
@@ -193,31 +191,6 @@ public class MovieViewUtilities {
       return null;
     }
     return null;
-  }
-
-  public static int getDistanceLevel(final double distance) {
-    // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
-    if (distance <= 2 && distance >= 0) {
-      return 0;
-    }
-    if (distance <= 5 && distance >= 2) {
-      return 1;
-    }
-    if (distance <= 10 && distance >= 5) {
-      return 2;
-    }
-    if (distance <= 25 && distance >= 10) {
-      return 3;
-    }
-    if (distance <= 50 && distance >= 25) {
-
-      return 4;
-    }
-    if (distance <= 100 && distance >= 50) {
-      return 5;
-    }
-
-    return 5;
   }
 
   public static void cleanUpDrawables() {

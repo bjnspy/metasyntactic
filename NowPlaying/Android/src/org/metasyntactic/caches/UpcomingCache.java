@@ -13,11 +13,25 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import static java.lang.String.valueOf;
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.collections.BoundedPrioritySet;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.utilities.XmlUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.io.File;
+import static java.lang.String.valueOf;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,20 +44,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.utilities.XmlUtilities;
-import org.w3c.dom.Element;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
@@ -245,7 +245,7 @@ public class UpcomingCache extends AbstractCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(final Element resultElement, final Collection<Movie> movies, final Map<String, String> studioKeys,
+  private void processResultElement(final Node resultElement, final Collection<Movie> movies, final Map<String, String> studioKeys,
       final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
       if (shutdown) {
@@ -255,7 +255,7 @@ public class UpcomingCache extends AbstractCache {
     }
   }
 
-  private String massageTitle(final String title) {
+  private static String massageTitle(final String title) {
     if (title == null) {
       return null;
     }
@@ -288,7 +288,7 @@ public class UpcomingCache extends AbstractCache {
     titleKeys.put(movie.getCanonicalTitle(), titleKey);
   }
 
-  private static List<String> processArray(final Element element) {
+  private static List<String> processArray(final Node element) {
     final List<String> result = new ArrayList<String>();
     for (final Element child : children(element)) {
       result.add(child.getAttribute("value"));
@@ -322,7 +322,7 @@ public class UpcomingCache extends AbstractCache {
     updateDetails(movie, studioKey, titleKey);
   }
 
-  private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
+  private static void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
     updatePoster(movie);
     if (!isNullOrEmpty(studioKey) && !isNullOrEmpty(titleKey)) {
       updateSynopsisAndCast(movie, studioKey, titleKey);

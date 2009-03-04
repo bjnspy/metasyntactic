@@ -1,21 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -27,11 +11,24 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -126,11 +123,9 @@ public class ShowtimesActivity extends ListActivity {
     Collections.sort(localTheaters, DISTANCE_ORDER);
     Collections.sort(localTheaters, RATING_ORDER);
     boolean isHeaderAdded = false;
-    for (int i = 0; i < localTheaters.size(); i++) {
-      final Theater theater = localTheaters.get(i);
-      if (userLocation.distanceTo(theater.getLocation()) > NowPlayingControllerWrapper
-          .getSearchDistance()
-          && !NowPlayingControllerWrapper.isFavoriteTheater(theater) && !isHeaderAdded) {
+    for (final Theater theater : localTheaters) {
+      if (userLocation.distanceTo(theater.getLocation()) > NowPlayingControllerWrapper.getSearchDistance() && !NowPlayingControllerWrapper
+        .isFavoriteTheater(theater) && !isHeaderAdded) {
         theaterWrapperList.add(new TheaterWrapper(null, 2));
         isHeaderAdded = true;
       }
@@ -183,7 +178,7 @@ public class ShowtimesActivity extends ListActivity {
           holder.data.setText(performance);
         }
         if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
-          final ImageView ratingImage = (ImageView) convertView.findViewById(R.id.ratingImage);
+          final View ratingImage = convertView.findViewById(R.id.ratingImage);
           ratingImage.setVisibility(View.VISIBLE);
         }
       } else {
@@ -194,7 +189,7 @@ public class ShowtimesActivity extends ListActivity {
       return convertView;
     }
 
-    private String buildPerformanceString(final List<Performance> list) {
+    private String buildPerformanceString(final Iterable<Performance> list) {
       String performance = "";
       for (final Performance per : list) {
         performance += per.getTime() + ", ";
@@ -205,8 +200,8 @@ public class ShowtimesActivity extends ListActivity {
 
     private void showStaleShowtimesWarning(final View convertView, final Theater theater) {
       if (NowPlayingControllerWrapper.isStale(theater)) {
-        final LinearLayout l = (LinearLayout) convertView.findViewById(R.id.warning);
-        l.setVisibility(View.VISIBLE);
+        final View warningView = convertView.findViewById(R.id.warning);
+        warningView.setVisibility(View.VISIBLE);
         final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
         warningText.setText(NowPlayingControllerWrapper.getShowtimesRetrievedOnString(theater,
             getResources()));
@@ -244,7 +239,7 @@ public class ShowtimesActivity extends ListActivity {
     }
   }
 
-  private class TheaterWrapper {
+  private static class TheaterWrapper {
     private final Theater theater;
     private final int type; // 1 = theater, 2 = header
 

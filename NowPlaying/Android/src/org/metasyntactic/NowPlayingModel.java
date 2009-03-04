@@ -13,18 +13,9 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import static org.metasyntactic.utilities.CollectionUtilities.size;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
@@ -43,12 +34,19 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.CollectionUtilities;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.FileUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class NowPlayingModel {
   private static final String PERSISTANCE_VERSION = "15";
@@ -317,7 +315,7 @@ public class NowPlayingModel {
     return dataProvider.getTheaters();
   }
 
-  private File getFavoriteTheatersFile() {
+  private static File getFavoriteTheatersFile() {
     return new File(NowPlayingApplication.dataDirectory, "FavoriteTheaters");
   }
 

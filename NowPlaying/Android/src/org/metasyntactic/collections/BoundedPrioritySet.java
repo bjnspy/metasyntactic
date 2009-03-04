@@ -18,11 +18,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Collection;
 
 public class BoundedPrioritySet<T> {
   private final Object lock = new Object();
   private final ArrayList<T> list = new ArrayList<T>();
-  private final HashSet<T> set = new HashSet<T>();
+  private final Collection<T> set = new HashSet<T>();
   private final int maxSize;
 
   public BoundedPrioritySet(final int maxSize) {

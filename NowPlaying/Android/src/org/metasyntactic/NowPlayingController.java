@@ -13,12 +13,10 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -28,13 +26,14 @@ import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
+import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 public class NowPlayingController {
   private final NowPlayingModel model;
@@ -183,7 +182,7 @@ public class NowPlayingController {
     return model.getScoreType();
   }
 
-  public void setScoreType(final ScoreType scoreType) {
+  public void setScoreType(final Object scoreType) {
     model.setScoreType(scoreType);
     update();
   }
@@ -225,7 +224,7 @@ public class NowPlayingController {
     update();
   }
 
-  public static void reportLocationForAddress(final Location location, final String displayString) {
+  public static void reportLocationForAddress(final Persistable location, final String displayString) {
     NowPlayingModel.reportLocationForAddress(location, displayString);
   }
 

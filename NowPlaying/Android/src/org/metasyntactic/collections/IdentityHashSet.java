@@ -36,8 +36,7 @@ public class IdentityHashSet<T> extends AbstractSet<T> {
     return map.isEmpty();
   }
 
-  @Override
-  public boolean contains(final Object o) {
+  @Override public boolean contains(final Object o) {
     return map.containsKey(o);
   }
 

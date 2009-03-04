@@ -16,10 +16,11 @@ public class WebViewActivity extends Activity {
     setContentView(R.layout.license);
     NowPlayingControllerWrapper.addActivity(this);
     final WebView webView = (WebView)findViewById(R.id.license);
-    if (this.getIntent().getExtras().getString("type").equals("license"))
-    webView.loadUrl("file:///android_asset/License.html");
-    else
+    if ("license".equals(getIntent().getExtras().getString("type"))) {
+      webView.loadUrl("file:///android_asset/License.html");
+    } else {
       webView.loadUrl("file:///android_asset/credits.html");
+    }
   }
 
   @Override

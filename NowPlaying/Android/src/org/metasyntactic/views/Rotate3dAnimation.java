@@ -32,37 +32,38 @@ public class Rotate3dAnimation extends Animation {
    * @param toDegrees   the end angle of the 3D rotation
    * @param centerX     the X center of the 3D rotation
    * @param centerY     the Y center of the 3D rotation
+   * @param depthZ      the z depth
    * @param reverse     true if the translation should be reversed, false otherwise
    */
   public Rotate3dAnimation(final float fromDegrees, final float toDegrees, final float centerX, final float centerY, final float depthZ,
     final boolean reverse) {
-    this.mFromDegrees = fromDegrees;
-    this.mToDegrees = toDegrees;
-    this.mCenterX = centerX;
-    this.mCenterY = centerY;
-    this.mDepthZ = depthZ;
-    this.mReverse = reverse;
+    mFromDegrees = fromDegrees;
+    mToDegrees = toDegrees;
+    mCenterX = centerX;
+    mCenterY = centerY;
+    mDepthZ = depthZ;
+    mReverse = reverse;
   }
 
   @Override
   public void initialize(final int width, final int height, final int parentWidth, final int parentHeight) {
     super.initialize(width, height, parentWidth, parentHeight);
-    this.mCamera = new Camera();
+    mCamera = new Camera();
   }
 
   @Override
   protected void applyTransformation(final float interpolatedTime, final Transformation t) {
-    final float fromDegrees = this.mFromDegrees;
-    final float degrees = fromDegrees + (this.mToDegrees - fromDegrees) * interpolatedTime;
-    final float centerX = this.mCenterX;
-    final float centerY = this.mCenterY;
-    final Camera camera = this.mCamera;
+    final float fromDegrees = mFromDegrees;
+    final float degrees = fromDegrees + (mToDegrees - fromDegrees) * interpolatedTime;
+    final float centerX = mCenterX;
+    final float centerY = mCenterY;
+    final Camera camera = mCamera;
     final Matrix matrix = t.getMatrix();
     camera.save();
-    if (this.mReverse) {
-      camera.translate(0.0f, 0.0f, this.mDepthZ * interpolatedTime);
+    if (mReverse) {
+      camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);
     } else {
-      camera.translate(0.0f, 0.0f, this.mDepthZ * (1.0f - interpolatedTime));
+      camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));
     }
     camera.rotateY(degrees);
     camera.getMatrix(matrix);
