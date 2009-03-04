@@ -1,24 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.FastScrollView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -30,11 +11,29 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.FastScrollView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -196,7 +195,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       final String sectionTitle;
 
       if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
-        sectionTitle = "\u2605";
+        sectionTitle = "★";
       } else {
         sectionTitle = theater.getName().substring(0, 1);
       }
@@ -251,7 +250,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       final String sectionTitle;
 
       if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
-        sectionTitle = "\u2605";
+        sectionTitle = "★";
       } else {
         final double distance = userLocation.distanceTo(theater.getLocation());
         sectionTitle = getDistances().get(getDistanceLevel(distance));
