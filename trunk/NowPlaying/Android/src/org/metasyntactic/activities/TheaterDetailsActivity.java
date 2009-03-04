@@ -111,7 +111,10 @@ public class TheaterDetailsActivity extends ListActivity {
   }
 
   private void populateTheaterDetailEntries() {
-    theaterDetailEntries = (List<TheaterDetailEntry>) getLastNonConfigurationInstance();
+    @SuppressWarnings("unchecked") final
+    List<TheaterDetailEntry> entries = (List<TheaterDetailEntry>) getLastNonConfigurationInstance();
+    theaterDetailEntries = entries;
+
     if (theaterDetailEntries == null || theaterDetailEntries.isEmpty()) {
       theaterDetailEntries = new ArrayList<TheaterDetailEntry>();
       final Resources res = getResources();
