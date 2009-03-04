@@ -35,6 +35,7 @@
     <string name="theaters_out_of_range">Theaters out of search distance range</string>
     <string name="show_theaters_out_of_range">Show theaters out of range</string>
     <string name="show_theaters_in_range">Show theaters in range</string>
+    <string name="credits">Credits</string>
     
      <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,

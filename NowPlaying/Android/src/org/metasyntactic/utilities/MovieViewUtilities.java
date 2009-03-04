@@ -40,6 +40,8 @@ public class MovieViewUtilities {
   public static final int MENU_SEARCH = 10;
   public static final int MENU_SEND_FEEDBACK = 11;
   public static final int MENU_LICENSE = 12;
+  public static final int MENU_CREDITS = 13;
+  
   // Constants for movies sort
   private static final int MovieTitle = 0;
   private static final int Release = 1;

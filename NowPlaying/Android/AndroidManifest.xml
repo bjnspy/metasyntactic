@@ -61,8 +61,8 @@
             android:name="AllReviewsActivity">
         </activity>
          <activity
-            android:label="License"
-            android:name="LicenseActivity">
+            android:label="@string/application_name"
+            android:name="WebViewActivity">
         </activity>
         <activity
             android:label="@string/application_name"
