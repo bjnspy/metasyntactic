@@ -22,12 +22,12 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private int intValue;
   private TextView textView;
   private final INowPlaying context;
-  DialogInterface.OnClickListener positiveButtonListener;
+  private DialogInterface.OnClickListener positiveButtonListener;
 
-  public NowPlayingPreferenceDialog(final Context context) {
+  public <T extends Context & INowPlaying> NowPlayingPreferenceDialog(final T context) {
     super(context);
     builder = new AlertDialog.Builder(context);
-    this.context = (INowPlaying)context;
+    this.context = context;
   }
 
   public Dialog create() {
@@ -184,15 +184,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private final List<ScoreType> scoreTypes = Arrays.asList(ScoreType.Google, ScoreType.Metacritic, ScoreType.RottenTomatoes);
   private final List<Boolean> autoUpdate = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
 
-  @Override
-  public void setTitle(final CharSequence title) {
+  @Override public void setTitle(final CharSequence title) {
     // TODO Auto-generated method stub
     super.setTitle(title);
     builder.setTitle(title);
   }
 
-  @Override
-  public void setTitle(final int titleId) {
+  @Override public void setTitle(final int titleId) {
     // TODO Auto-generated method stub
     super.setTitle(titleId);
     builder.setTitle(titleId);
