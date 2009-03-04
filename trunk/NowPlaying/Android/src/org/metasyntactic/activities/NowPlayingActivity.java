@@ -1,33 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-import org.metasyntactic.views.Rotate3dAnimation;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -48,19 +20,44 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.views.Rotate3dAnimation;
+
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -103,7 +100,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-  private final boolean trackScrollingPerformance = false;
+  private static final boolean trackScrollingPerformance = false;
   private boolean firstTime = true;
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
@@ -350,7 +347,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (search == null) {
       bottomBar.setVisibility(View.GONE);
     }
-    final Button allMovies = (Button)findViewById(R.id.all_movies);
+    final View allMovies = findViewById(R.id.all_movies);
     allMovies.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent().setClass(NowPlayingActivity.this, NowPlayingActivity.class);
@@ -422,7 +419,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   @SuppressWarnings("unchecked")
-  public static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
+  private static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private enum ViewState {
     Blank,
@@ -645,7 +642,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final float centerY = view.getHeight() / 2.0f;
     // Create a new 3D rotation with the supplied parameter
     // The animation listener is used to trigger the next animation
-    final Rotate3dAnimation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
+    final Animation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
     rotation.setDuration(20);
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {

@@ -13,9 +13,26 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractCache;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.collections.BoundedPrioritySet;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.CollectionUtilities;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.children;
+import org.metasyntactic.utilities.difference.EditDistance;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,23 +45,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.AbstractCache;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
-import org.w3c.dom.Element;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private static class MovieAndMap {
@@ -404,7 +404,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return extractReviews(element);
   }
 
-  private static List<Review> extractReviews(final Element element) {
+  private static List<Review> extractReviews(final Node element) {
     final List<Review> result = new ArrayList<Review>();
     for (final Element reviewElement : children(element)) {
       final String text = reviewElement.getAttribute("text");

@@ -357,7 +357,6 @@ public class FileUtilities {
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
         ExceptionUtilities.log(FileUtilities.class, "writeStringCollection", e);
-        ;
       }
     } else {
       writeObject(collection, file);

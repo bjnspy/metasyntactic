@@ -1,15 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,13 +10,21 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -50,7 +48,7 @@ public class TheaterDetailsActivity extends ListActivity {
     populateTheaterDetailEntries();
     final TextView titleView = (TextView) findViewById(R.id.theater);
     titleView.setText(theater.getName());
-    final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.header);
+    final View linearLayout = findViewById(R.id.header);
     final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
     final Resources res = getResources();
     if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
@@ -110,10 +108,13 @@ public class TheaterDetailsActivity extends ListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
+  @SuppressWarnings("unchecked")
+  @Override public List<TheaterDetailEntry> getLastNonConfigurationInstance() {
+    return (List<TheaterDetailEntry>)super.getLastNonConfigurationInstance();
+  }
+
   private void populateTheaterDetailEntries() {
-    @SuppressWarnings("unchecked") final
-    List<TheaterDetailEntry> entries = (List<TheaterDetailEntry>) getLastNonConfigurationInstance();
-    theaterDetailEntries = entries;
+    theaterDetailEntries = getLastNonConfigurationInstance();
 
     if (theaterDetailEntries == null || theaterDetailEntries.isEmpty()) {
       theaterDetailEntries = new ArrayList<TheaterDetailEntry>();
@@ -210,30 +211,50 @@ public class TheaterDetailsActivity extends ListActivity {
       final TheaterDetailEntry entry = theaterDetailEntries.get(position);
       switch (entry.type) {
       case DATA:
-        convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-        final TextView movieView = (TextView) convertView.findViewById(R.id.label);
-        movieView.setText(entry.data);
-        final TextView showtimesView = (TextView) convertView.findViewById(R.id.data);
-        showtimesView.setText(entry.data2);
+        convertView = getDataView(entry);
         break;
       case HEADER:
-        convertView = inflater.inflate(R.layout.headerview, null);
-        final TextView headerView = (TextView) convertView.findViewById(R.id.name);
-        headerView.setText(entry.data);
+        convertView = getHeaderView(entry);
         break;
       case ACTION:
-        convertView = inflater.inflate(R.layout.theaterdetails_icon_item, null);
-        final TextView actionView = (TextView) convertView.findViewById(R.id.data);
-        actionView.setText(entry.data);
-        final ImageView actionIcon = (ImageView) convertView.findViewById(R.id.icon);
-        actionIcon.setImageDrawable(entry.icon);
+        convertView = getActionView(entry);
         break;
       case WARNING:
-        convertView = inflater.inflate(R.layout.warning_item, null);
-        final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
-        warningText.setText(entry.data);
+        convertView = getWarningView(entry);
         break;
       }
+      return convertView;
+    }
+
+    private View getWarningView(final TheaterDetailEntry entry) {
+      final View convertView = inflater.inflate(R.layout.warning_item, null);
+      final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
+      warningText.setText(entry.data);
+      return convertView;
+    }
+
+    private View getActionView(final TheaterDetailEntry entry) {
+      final View convertView = inflater.inflate(R.layout.theaterdetails_icon_item, null);
+      final TextView actionView = (TextView) convertView.findViewById(R.id.data);
+      actionView.setText(entry.data);
+      final ImageView actionIcon = (ImageView) convertView.findViewById(R.id.icon);
+      actionIcon.setImageDrawable(entry.icon);
+      return convertView;
+    }
+
+    private View getHeaderView(final TheaterDetailEntry entry) {
+      final View convertView = inflater.inflate(R.layout.headerview, null);
+      final TextView headerView = (TextView) convertView.findViewById(R.id.name);
+      headerView.setText(entry.data);
+      return convertView;
+    }
+
+    private View getDataView(final TheaterDetailEntry entry) {
+      final View convertView = inflater.inflate(R.layout.theaterdetails_item, null);
+      final TextView movieView = (TextView) convertView.findViewById(R.id.label);
+      movieView.setText(entry.data);
+      final TextView showtimesView = (TextView) convertView.findViewById(R.id.data);
+      showtimesView.setText(entry.data2);
       return convertView;
     }
 

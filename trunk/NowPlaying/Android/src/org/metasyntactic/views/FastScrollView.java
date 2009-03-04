@@ -20,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
+import android.widget.WrapperListAdapter;
 import android.widget.AbsListView.OnScrollListener;
 
 /**
@@ -37,8 +38,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
   private int mThumbY;
   private RectF mOverlayPos;
   // Hard coding these for now
-  private final int mOverlayWidth = 310;
-  private final int mOverlayHeight = 85;
+  private static final int mOverlayWidth = 310;
+  private static final int mOverlayHeight = 85;
   private boolean mDragging;
   private static ListView mList;
   private boolean mScrollCompleted;
@@ -118,7 +119,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     }
     final int y = mThumbY;
     final int viewWidth = getWidth();
-    final FastScrollView.ScrollFade scrollFade = mScrollFade;
+    final ScrollFade scrollFade = mScrollFade;
     int alpha = -1;
     if (scrollFade.mStarted) {
       alpha = scrollFade.getAlpha();
@@ -194,7 +195,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     Adapter adapter = mList.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
       mListOffset = ((HeaderViewListAdapter)adapter).getHeadersCount();
-      adapter = ((HeaderViewListAdapter)adapter).getWrappedAdapter();
+      adapter = ((WrapperListAdapter)adapter).getWrappedAdapter();
     }
     if (adapter instanceof SectionIndexer) {
       mListAdapter = (BaseAdapter)adapter;
@@ -304,7 +305,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     }
   }
 
-  private void cancelFling() {
+  private static void cancelFling() {
     // Cancel the list fling
     final MotionEvent cancelFling = MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0, 0, 0);
     mList.onTouchEvent(cancelFling);
@@ -349,12 +350,12 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     return super.onTouchEvent(me);
   }
 
-  public class ScrollFade implements Runnable {
-    long mStartTime;
-    long mFadeDuration;
-    boolean mStarted;
-    static final int ALPHA_MAX = 255;
-    static final long FADE_DURATION = 200;
+  private class ScrollFade implements Runnable {
+    private long mStartTime;
+    private long mFadeDuration;
+    private boolean mStarted;
+    private static final int ALPHA_MAX = 255;
+    private static final long FADE_DURATION = 200;
 
     void startFade() {
       mFadeDuration = FADE_DURATION;
@@ -366,7 +367,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       if (!mStarted) {
         return ALPHA_MAX;
       }
-      int alpha;
+      final int alpha;
       final long now = SystemClock.uptimeMillis();
       if (now > mStartTime + mFadeDuration) {
         alpha = 0;

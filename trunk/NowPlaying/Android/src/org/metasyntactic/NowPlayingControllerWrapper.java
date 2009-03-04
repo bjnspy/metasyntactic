@@ -13,15 +13,10 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import static org.metasyntactic.utilities.SetUtilities.any;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.collections.IdentityHashSet;
 import org.metasyntactic.data.Location;
@@ -34,10 +29,13 @@ import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.utilities.LogUtilities;
+import static org.metasyntactic.utilities.SetUtilities.any;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
+import java.io.File;
+import java.util.Collection;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -60,7 +58,7 @@ public class NowPlayingControllerWrapper {
     return instance.getDataProviderState();
   }
 
-  public static void onRetainNonConfigurationInstance(final Activity activity, final Object result) {
+  public static void onRetainNonConfigurationInstance(final Object activity, final Object result) {
     checkThread();
     LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "onRetainNonConfigurationInstance:" + activity.getClass().getSimpleName());
     retainedActivityObjects.add(result);
@@ -260,7 +258,7 @@ public class NowPlayingControllerWrapper {
     return instance.getScoreType();
   }
 
-  public static void setScoreType(final ScoreType scoreType) {
+  public static void setScoreType(final Object scoreType) {
     checkInstance();
     instance.setScoreType(scoreType);
   }

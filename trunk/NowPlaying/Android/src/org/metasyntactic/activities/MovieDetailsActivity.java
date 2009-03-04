@@ -1,20 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,12 +18,26 @@ import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -103,10 +102,13 @@ public class MovieDetailsActivity extends ListActivity {
     });
   }
 
+  @SuppressWarnings("unchecked")
+  @Override public List<MovieDetailEntry> getLastNonConfigurationInstance() {
+    return (List<MovieDetailEntry>)super.getLastNonConfigurationInstance();
+  }
+
   private void populateMovieDetailEntries() {
-    @SuppressWarnings("unchecked") final
-    List<MovieDetailEntry> entries = (List<MovieDetailEntry>) getLastNonConfigurationInstance();
-    movieDetailEntries = entries;
+    movieDetailEntries = getLastNonConfigurationInstance();
     if (movieDetailEntries == null || movieDetailEntries.isEmpty()) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();

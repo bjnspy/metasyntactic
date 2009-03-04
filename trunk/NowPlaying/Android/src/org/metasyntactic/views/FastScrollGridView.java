@@ -20,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.HeaderViewListAdapter;
+import android.widget.WrapperListAdapter;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.activities.R;
 
@@ -31,28 +32,28 @@ import org.metasyntactic.activities.R;
  * {@link GridView}, with an adapter that is derived from {@link BaseAdapter}.
  */
 public class FastScrollGridView extends FrameLayout implements OnScrollListener, OnHierarchyChangeListener {
-  private Drawable mCurrentThumb;
-  private Drawable mOverlayDrawable;
-  private int mThumbH;
-  private int mThumbW;
-  private int mThumbY;
-  private RectF mOverlayPos;
+  private Drawable currentThumb;
+  private Drawable overlayDrawable;
+  private int thumbHeight;
+  private int thumbWidth;
+  private int thumbY;
+  private RectF overlayPosition;
   // Hard coding these for now
-  private final int mOverlaySize = 104;
-  private boolean mDragging;
-  private static GridView mGrid;
-  private boolean mScrollCompleted;
-  private boolean mThumbVisible;
-  private int mVisibleItem;
-  private Paint mPaint;
-  private static int mGridOffset;
-  private static Object[] mSections;
-  private String mSectionText;
-  private boolean mDrawOverlay;
-  private ScrollFade mScrollFade;
-  private final Handler mHandler = new Handler();
-  private static BaseAdapter mGridAdapter;
-  private boolean mChangedBounds;
+  private static final int overlaySize = 104;
+  private boolean dragging;
+  private static GridView grid;
+  private boolean scrollCompleted;
+  private boolean thumbVisible;
+  private int visibleItem;
+  private Paint paint;
+  private static int gridOffset;
+  private static Object[] sections;
+  private String sectionText;
+  private boolean drawOverlay;
+  private ScrollFade scrollFade;
+  private final Handler handler = new Handler();
+  private static BaseAdapter gridAdapter;
+  private boolean changedBounds;
   private Context context;
 
   public interface SectionIndexer {
@@ -79,10 +80,10 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   private void useThumbDrawable(final Drawable drawable) {
-    mCurrentThumb = drawable;
-    mThumbW = 64; // mCurrentThumb.getIntrinsicWidth();
-    mThumbH = 52; // mCurrentThumb.getIntrinsicHeight();
-    mChangedBounds = true;
+    currentThumb = drawable;
+    thumbWidth = 64; // currentThumb.getIntrinsicWidth();
+    thumbHeight = 52; // currentThumb.getIntrinsicHeight();
+    changedBounds = true;
   }
 
   private void init(final Context context) {
@@ -90,23 +91,23 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     this.context = context;
     final Resources res = context.getResources();
     useThumbDrawable(res.getDrawable(R.drawable.scrollbar_handle_accelerated_anim2));
-    mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
-    mScrollCompleted = true;
+    overlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
+    scrollCompleted = true;
     setWillNotDraw(false);
     // Need to know when the GridView is added
     setOnHierarchyChangeListener(this);
-    mOverlayPos = new RectF();
-    mScrollFade = new ScrollFade();
-    mPaint = new Paint();
-    mPaint.setAntiAlias(true);
-    mPaint.setTextAlign(Paint.Align.CENTER);
-    mPaint.setTextSize(mOverlaySize / 3);
-    mPaint.setColor(0xFFFFFFFF);
-    mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+    overlayPosition = new RectF();
+    scrollFade = new ScrollFade();
+    paint = new Paint();
+    paint.setAntiAlias(true);
+    paint.setTextAlign(Paint.Align.CENTER);
+    paint.setTextSize(overlaySize / 3);
+    paint.setColor(0xFFFFFFFF);
+    paint.setStyle(Paint.Style.FILL_AND_STROKE);
   }
 
   private void removeThumb() {
-    mThumbVisible = false;
+    thumbVisible = false;
     // Draw one last time to remove thumb
     invalidate();
   }
@@ -114,57 +115,57 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   @Override
   public void draw(final Canvas canvas) {
     super.draw(canvas);
-    if (!mThumbVisible) {
+    if (!thumbVisible) {
       // No need to draw the rest
       return;
     }
-    final int y = mThumbY;
+    final int y = thumbY;
     final int viewWidth = getWidth();
-    final FastScrollGridView.ScrollFade scrollFade = mScrollFade;
+    final ScrollFade localScrollFade = scrollFade;
     int alpha = -1;
-    if (scrollFade.mStarted) {
-      alpha = scrollFade.getAlpha();
+    if (localScrollFade.started) {
+      alpha = localScrollFade.getAlpha();
       if (alpha < ScrollFade.ALPHA_MAX / 2) {
-        mCurrentThumb.setAlpha(alpha * 2);
+        currentThumb.setAlpha(alpha * 2);
       }
-      final int left = viewWidth - mThumbW * alpha / ScrollFade.ALPHA_MAX;
-      mCurrentThumb.setBounds(left, 0, viewWidth, mThumbH);
-      mChangedBounds = true;
+      final int left = viewWidth - thumbWidth * alpha / ScrollFade.ALPHA_MAX;
+      currentThumb.setBounds(left, 0, viewWidth, thumbHeight);
+      changedBounds = true;
     }
     canvas.translate(0, y);
-    mCurrentThumb.draw(canvas);
+    currentThumb.draw(canvas);
     canvas.translate(0, -y);
     // If user is dragging the scroll bar, draw the alphabet overlay
-    if (mDragging && mDrawOverlay) {
-      mOverlayDrawable.draw(canvas);
-      final Paint paint = mPaint;
-      final float descent = paint.descent();
-      final RectF rectF = mOverlayPos;
-      canvas.drawText(mSectionText, (int)(rectF.left + rectF.right) / 2, (int)(rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
+    if (dragging && drawOverlay) {
+      overlayDrawable.draw(canvas);
+      final Paint localPaint = paint;
+      final float descent = localPaint.descent();
+      final RectF rectF = overlayPosition;
+      canvas.drawText(sectionText, (int)(rectF.left + rectF.right) / 2, (int)(rectF.bottom + rectF.top) / 2 + overlaySize / 6 - descent, localPaint);
     } else if (alpha == 0) {
-      scrollFade.mStarted = false;
+      localScrollFade.started = false;
       removeThumb();
     } else {
-      invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
+      invalidate(viewWidth - thumbWidth, y, viewWidth, y + thumbHeight);
     }
   }
 
   @Override
   protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    if (mCurrentThumb != null) {
-      mCurrentThumb.setBounds(w - mThumbW, 0, w, mThumbH);
+    if (currentThumb != null) {
+      currentThumb.setBounds(w - thumbWidth, 0, w, thumbHeight);
     }
-    final RectF pos = mOverlayPos;
-    pos.left = (w - mOverlaySize) / 2;
-    pos.right = pos.left + mOverlaySize;
+    final RectF pos = overlayPosition;
+    pos.left = (w - overlaySize) / 2;
+    pos.right = pos.left + overlaySize;
     pos.top = h / 10; // 10% from top
-    pos.bottom = pos.top + mOverlaySize;
-    mOverlayDrawable.setBounds((int)pos.left, (int)pos.top, (int)pos.right, (int)pos.bottom);
+    pos.bottom = pos.top + overlaySize;
+    overlayDrawable.setBounds((int)pos.left, (int)pos.top, (int)pos.right, (int)pos.bottom);
   }
 
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
-    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+    if (scrollState == SCROLL_STATE_IDLE) {
       context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
     } else {
       context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
@@ -172,63 +173,63 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
-    if (totalItemCount - visibleItemCount > 0 && !mDragging) {
-      mThumbY = (getHeight() - mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
-      if (mChangedBounds) {
+    if (totalItemCount - visibleItemCount > 0 && !dragging) {
+      thumbY = (getHeight() - thumbHeight) * firstVisibleItem / (totalItemCount - visibleItemCount);
+      if (changedBounds) {
         final int viewWidth = getWidth();
-        mCurrentThumb.setBounds(viewWidth - mThumbW, 0, viewWidth, mThumbH);
-        mChangedBounds = false;
+        currentThumb.setBounds(viewWidth - thumbWidth, 0, viewWidth, thumbHeight);
+        changedBounds = false;
       }
     }
-    mScrollCompleted = true;
-    if (firstVisibleItem == mVisibleItem) {
+    scrollCompleted = true;
+    if (firstVisibleItem == visibleItem) {
       return;
     }
-    mVisibleItem = firstVisibleItem;
-    if (!mThumbVisible || mScrollFade.mStarted) {
-      mThumbVisible = true;
-      mCurrentThumb.setAlpha(ScrollFade.ALPHA_MAX);
+    visibleItem = firstVisibleItem;
+    if (!thumbVisible || scrollFade.started) {
+      thumbVisible = true;
+      currentThumb.setAlpha(ScrollFade.ALPHA_MAX);
     }
-    mHandler.removeCallbacks(mScrollFade);
-    mScrollFade.mStarted = false;
-    if (!mDragging) {
-      mHandler.postDelayed(mScrollFade, 1500);
+    handler.removeCallbacks(scrollFade);
+    scrollFade.started = false;
+    if (!dragging) {
+      handler.postDelayed(scrollFade, 1500);
     }
   }
 
   public static void getSections() {
-    Adapter adapter = mGrid.getAdapter();
+    Adapter adapter = grid.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
-      mGridOffset = ((HeaderViewListAdapter)adapter).getHeadersCount();
-      adapter = ((HeaderViewListAdapter)adapter).getWrappedAdapter();
+      gridOffset = ((HeaderViewListAdapter)adapter).getHeadersCount();
+      adapter = ((WrapperListAdapter)adapter).getWrappedAdapter();
     }
     if (adapter instanceof SectionIndexer) {
-      mGridAdapter = (BaseAdapter)adapter;
-      mSections = ((SectionIndexer)mGridAdapter).getSections();
+      gridAdapter = (BaseAdapter)adapter;
+      sections = ((SectionIndexer)gridAdapter).getSections();
     }
   }
 
   public void onChildViewAdded(final View parent, final View child) {
     if (child instanceof GridView) {
-      mGrid = (GridView)child;
-      mGrid.setOnScrollListener(this);
+      grid = (GridView)child;
+      grid.setOnScrollListener(this);
       getSections();
     }
   }
 
   public void onChildViewRemoved(final View parent, final View child) {
-    if (child == mGrid) {
-      mGrid = null;
-      mGridAdapter = null;
-      mSections = null;
+    if (child == grid) {
+      grid = null;
+      gridAdapter = null;
+      sections = null;
     }
   }
 
   @Override
   public boolean onInterceptTouchEvent(final MotionEvent ev) {
-    if (mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
-      if (ev.getX() > getWidth() - mThumbW && ev.getY() >= mThumbY && ev.getY() <= mThumbY + mThumbH) {
-        mDragging = true;
+    if (thumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
+      if (ev.getX() > getWidth() - thumbWidth && ev.getY() >= thumbY && ev.getY() <= thumbY + thumbHeight) {
+        dragging = true;
         return true;
       }
     }
@@ -236,18 +237,18 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   private void scrollTo(final float position) {
-    final int count = mGrid.getCount();
-    mScrollCompleted = false;
-    final Object[] sections = mSections;
+    final int count = grid.getCount();
+    scrollCompleted = false;
+    final Object[] localSections = sections;
     int sectionIndex;
-    if (sections != null && sections.length > 1) {
-      final int nSections = sections.length;
+    if (localSections != null && localSections.length > 1) {
+      final int nSections = localSections.length;
       int section = (int)(position * nSections);
       if (section >= nSections) {
         section = nSections - 1;
       }
       sectionIndex = section;
-      final SectionIndexer baseAdapter = (SectionIndexer)mGridAdapter;
+      final SectionIndexer baseAdapter = (SectionIndexer)gridAdapter;
       int index = baseAdapter.getPositionForSection(section);
       // Given the expected section and index, the following code will
       // try to account for missing sections (no names starting with..)
@@ -296,58 +297,58 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       if (index > count - 1) {
         index = count - 1;
       }
-      mGrid.setSelection(index + mGridOffset);
+      grid.setSelection(index + gridOffset);
     } else {
       final int index = (int)(position * count);
-      mGrid.setSelection(index + mGridOffset);
+      grid.setSelection(index + gridOffset);
       sectionIndex = -1;
     }
     if (sectionIndex >= 0) {
-      final String text = mSectionText = sections[sectionIndex].toString();
-      mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
+      final String text = sectionText = localSections[sectionIndex].toString();
+      drawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < localSections.length;
     } else {
-      mDrawOverlay = false;
+      drawOverlay = false;
     }
   }
 
-  private void cancelFling() {
+  private static void cancelFling() {
     // Cancel the list fling
     final MotionEvent cancelFling = MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0, 0, 0);
-    mGrid.onTouchEvent(cancelFling);
+    grid.onTouchEvent(cancelFling);
     cancelFling.recycle();
   }
 
   @Override
   public boolean onTouchEvent(final MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
-      if (me.getX() > getWidth() - mThumbW && me.getY() >= mThumbY && me.getY() <= mThumbY + mThumbH) {
-        mDragging = true;
-        if (mGridAdapter == null && mGrid != null) {
+      if (me.getX() > getWidth() - thumbWidth && me.getY() >= thumbY && me.getY() <= thumbY + thumbHeight) {
+        dragging = true;
+        if (gridAdapter == null && grid != null) {
           getSections();
         }
         cancelFling();
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_UP) {
-      if (mDragging) {
-        mDragging = false;
-        final Handler handler = mHandler;
-        handler.removeCallbacks(mScrollFade);
-        handler.postDelayed(mScrollFade, 1000);
+      if (dragging) {
+        dragging = false;
+        final Handler localHandler = handler;
+        localHandler.removeCallbacks(scrollFade);
+        localHandler.postDelayed(scrollFade, 1000);
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
-      if (mDragging) {
+      if (dragging) {
         final int viewHeight = getHeight();
-        mThumbY = (int)me.getY() - mThumbH + 10;
-        if (mThumbY < 0) {
-          mThumbY = 0;
-        } else if (mThumbY + mThumbH > viewHeight) {
-          mThumbY = viewHeight - mThumbH;
+        thumbY = (int)me.getY() - thumbHeight + 10;
+        if (thumbY < 0) {
+          thumbY = 0;
+        } else if (thumbY + thumbHeight > viewHeight) {
+          thumbY = viewHeight - thumbHeight;
         }
         // If the previous scrollTo is still pending
-        if (mScrollCompleted) {
-          scrollTo((float)mThumbY / (viewHeight - mThumbH));
+        if (scrollCompleted) {
+          scrollTo((float)thumbY / (viewHeight - thumbHeight));
         }
         return true;
       }
@@ -355,44 +356,44 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     return super.onTouchEvent(me);
   }
 
-  public class ScrollFade implements Runnable {
-    long mStartTime;
-    long mFadeDuration;
-    boolean mStarted;
+  private class ScrollFade implements Runnable {
+    private long startTime;
+    private long fadeDuration;
+    private boolean started;
     static final int ALPHA_MAX = 255;
     static final long FADE_DURATION = 200;
 
     void startFade() {
-      mFadeDuration = FADE_DURATION;
-      mStartTime = SystemClock.uptimeMillis();
-      mStarted = true;
+      fadeDuration = FADE_DURATION;
+      startTime = SystemClock.uptimeMillis();
+      started = true;
     }
 
     int getAlpha() {
-      if (!mStarted) {
+      if (!started) {
         return ALPHA_MAX;
       }
-      int alpha;
+      final int alpha;
       final long now = SystemClock.uptimeMillis();
-      if (now > mStartTime + mFadeDuration) {
+      if (now > startTime + fadeDuration) {
         alpha = 0;
       } else {
-        alpha = (int)(ALPHA_MAX - (now - mStartTime) * ALPHA_MAX / mFadeDuration);
+        alpha = (int)(ALPHA_MAX - (now - startTime) * ALPHA_MAX / fadeDuration);
       }
       return alpha;
     }
 
     public void run() {
-      if (!mStarted) {
+      if (!started) {
         startFade();
         invalidate();
       }
       if (getAlpha() > 0) {
-        final int y = mThumbY;
+        final int y = thumbY;
         final int viewWidth = getWidth();
-        invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
+        invalidate(viewWidth - thumbWidth, y, viewWidth, y + thumbHeight);
       } else {
-        mStarted = false;
+        started = false;
         removeThumb();
       }
     }

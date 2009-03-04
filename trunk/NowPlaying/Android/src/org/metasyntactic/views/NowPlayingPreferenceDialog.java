@@ -17,16 +17,16 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NowPlayingPreferenceDialog extends AlertDialog {
-  private final AlertDialog.Builder builder;
+  private final Builder builder;
   private PreferenceKeys prefKey;
   private int intValue;
   private TextView textView;
   private final INowPlaying context;
-  private DialogInterface.OnClickListener positiveButtonListener;
+  private OnClickListener positiveButtonListener;
 
   public <T extends Context & INowPlaying> NowPlayingPreferenceDialog(final T context) {
     super(context);
-    builder = new AlertDialog.Builder(context);
+    builder = new Builder(context);
     this.context = context;
   }
 
@@ -46,13 +46,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
 
   public NowPlayingPreferenceDialog setEntries(final int items) {
     intValue = getIntPreferenceValue();
-    final DialogInterface.OnClickListener radioButtonListener = new DialogInterface.OnClickListener() {
+    final OnClickListener radioButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         intValue = which;
       }
     };
     setSingleChoiceItems(items, getIntPreferenceValue(), radioButtonListener);
-    positiveButtonListener = new DialogInterface.OnClickListener() {
+    positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(intValue);
         context.refresh();
@@ -61,13 +61,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
+  private Object setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
     builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
 
   public NowPlayingPreferenceDialog setItems(final String[] distanceValues) {
-    final DialogInterface.OnClickListener listItemListener = new DialogInterface.OnClickListener() {
+    final OnClickListener listItemListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
         context.refresh();
@@ -76,14 +76,6 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     builder.setItems(distanceValues, listItemListener);
     return this;
   }
-
-  /*
-   * public NowPlayingPreferenceDialog setTitle(final int title) {
-   * this.builder.setTitle(title); return this; }
-   *
-   * public NowPlayingPreferenceDialog setTitle(final CharSequence title) {
-   * this.builder.setTitle(title); return this; }
-   */
 
   public NowPlayingPreferenceDialog setPositiveButton(final int textId) {
     builder.setPositiveButton(textId, positiveButtonListener);
@@ -123,7 +115,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     return 0;
   }
 
-  private String getStringPreferenceValue() {
+  private CharSequence getStringPreferenceValue() {
     switch (prefKey) {
     case LOCATION:
       return NowPlayingControllerWrapper.getUserLocation();
@@ -185,13 +177,11 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private final List<Boolean> autoUpdate = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
 
   @Override public void setTitle(final CharSequence title) {
-    // TODO Auto-generated method stub
     super.setTitle(title);
     builder.setTitle(title);
   }
 
   @Override public void setTitle(final int titleId) {
-    // TODO Auto-generated method stub
     super.setTitle(titleId);
     builder.setTitle(titleId);
   }
