@@ -32,7 +32,10 @@
     <string name="downloading_theater_information">Downloading theater information...</string>
     <string name="downloading_local_performances">Downloading local performances...</string>
     <string name="finding_favorites">Finding favorites...</string>
-
+    <string name="theaters_out_of_range">Theaters out of search distance range</string>
+    <string name="show_theaters_out_of_range">Show theaters out of range</string>
+    <string name="show_theaters_in_range">Show theaters in range</string>
+    
      <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,
         please rearrange the alphabet here to be whatever is correct (e.g. Norwegian

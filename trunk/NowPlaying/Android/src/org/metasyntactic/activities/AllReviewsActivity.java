@@ -20,6 +20,9 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 
 import java.util.List;
 
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
 

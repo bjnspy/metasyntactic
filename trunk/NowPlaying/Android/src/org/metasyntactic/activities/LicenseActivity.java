@@ -6,6 +6,9 @@ import android.webkit.WebView;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.utilities.LogUtilities;
 
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class LicenseActivity extends Activity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {

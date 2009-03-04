@@ -32,7 +32,7 @@
                     android:textSize="14px"
                     android:textStyle="bold"
                     android:paddingLeft="2px"
-                    android:paddingTop="7px"
+                    android:paddingTop="2px"
                     android:textColor="#FFFFFF"
                     android:layout_gravity="center"
                     android:gravity="center" />
