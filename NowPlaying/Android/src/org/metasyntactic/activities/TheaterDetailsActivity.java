@@ -1,5 +1,15 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -17,17 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -53,7 +52,7 @@ public class TheaterDetailsActivity extends ListActivity {
     titleView.setText(theater.getName());
     final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.header);
     final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
-    final Resources res = TheaterDetailsActivity.this.getResources();
+    final Resources res = getResources();
     if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
     } else {
@@ -61,8 +60,7 @@ public class TheaterDetailsActivity extends ListActivity {
     }
     linearLayout.setClickable(true);
     linearLayout.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View view) {
+      public void onClick(final View view) {
         if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
           NowPlayingControllerWrapper.removeFavoriteTheater(theater);
@@ -153,7 +151,7 @@ public class TheaterDetailsActivity extends ListActivity {
         // Add warning
         if (NowPlayingControllerWrapper.isStale(theater)) {
           final TheaterDetailEntry entry = new TheaterDetailEntry(NowPlayingControllerWrapper
-              .getShowtimesRetrievedOnString(theater, TheaterDetailsActivity.this.getResources()),
+              .getShowtimesRetrievedOnString(theater, getResources()),
               null, TheaterDetailItemType.WARNING, null, null, false);
           theaterDetailEntries.add(entry);
         }
@@ -167,7 +165,7 @@ public class TheaterDetailsActivity extends ListActivity {
       for (final Movie movie : movies) {
         final String movieTitle = movie.getDisplayTitle();
         final List<Performance> list = NowPlayingControllerWrapper
-            .getPerformancesForMovieAtTheater(movie, theater);
+        .getPerformancesForMovieAtTheater(movie, theater);
         String performance = "";
         for (final Performance aList : list) {
           performance += aList.getTime() + ", ";
@@ -263,7 +261,7 @@ public class TheaterDetailsActivity extends ListActivity {
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+            new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 

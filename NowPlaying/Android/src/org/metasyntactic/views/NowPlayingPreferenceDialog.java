@@ -1,19 +1,20 @@
 package org.metasyntactic.views;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.view.View;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.TextView;
+import java.util.Arrays;
+import java.util.List;
+
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
 
-import java.util.Arrays;
-import java.util.List;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NowPlayingPreferenceDialog extends AlertDialog {
   private final AlertDialog.Builder builder;
@@ -25,43 +26,43 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
 
   public NowPlayingPreferenceDialog(final Context context) {
     super(context);
-    this.builder = new AlertDialog.Builder(context);
+    builder = new AlertDialog.Builder(context);
     this.context = (INowPlaying)context;
   }
 
   public Dialog create() {
-    return this.builder.create();
+    return builder.create();
   }
 
   public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
-    this.builder.setNegativeButton(textId, listener);
+    builder.setNegativeButton(textId, listener);
     return this;
   }
 
   public NowPlayingPreferenceDialog setOnItemSelectedListener(final OnItemSelectedListener listener) {
-    this.builder.setOnItemSelectedListener(listener);
+    builder.setOnItemSelectedListener(listener);
     return this;
   }
 
   public NowPlayingPreferenceDialog setEntries(final int items) {
-    NowPlayingPreferenceDialog.this.intValue = getIntPreferenceValue();
+    intValue = getIntPreferenceValue();
     final DialogInterface.OnClickListener radioButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
-        NowPlayingPreferenceDialog.this.intValue = which;
+        intValue = which;
       }
     };
     setSingleChoiceItems(items, getIntPreferenceValue(), radioButtonListener);
-    this.positiveButtonListener = new DialogInterface.OnClickListener() {
+    positiveButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
-        setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
-        NowPlayingPreferenceDialog.this.context.refresh();
+        setIntPreferenceValue(intValue);
+        context.refresh();
       }
     };
     return this;
   }
 
   private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
-    this.builder.setSingleChoiceItems(items, checkedItem, listener);
+    builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
 
@@ -69,10 +70,10 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     final DialogInterface.OnClickListener listItemListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
-        NowPlayingPreferenceDialog.this.context.refresh();
+        context.refresh();
       }
     };
-    this.builder.setItems(distanceValues, listItemListener);
+    builder.setItems(distanceValues, listItemListener);
     return this;
   }
 
@@ -85,79 +86,79 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
    */
 
   public NowPlayingPreferenceDialog setPositiveButton(final int textId) {
-    this.builder.setPositiveButton(textId, this.positiveButtonListener);
+    builder.setPositiveButton(textId, positiveButtonListener);
     return this;
   }
 
   public NowPlayingPreferenceDialog setNegativeButton(final int textId) {
-    this.builder.setNegativeButton(textId, null);
+    builder.setNegativeButton(textId, null);
     return this;
   }
 
   public NowPlayingPreferenceDialog setKey(final PreferenceKeys key) {
-    this.prefKey = key;
+    prefKey = key;
     return this;
   }
 
   @Override
   public void show() {
-    this.builder.show();
+    builder.show();
   }
 
   private int getIntPreferenceValue() {
-    switch (this.prefKey) {
-      case MOVIES_SORT:
-        return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
-      case UPCOMING_MOVIES_SORT:
-        return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
-      case THEATERS_SORT:
-        return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
-      case SEARCH_DISTANCE:
-        return NowPlayingControllerWrapper.getSearchDistance();
-      case REVIEWS_PROVIDER:
-        return this.scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
-      case AUTO_UPDATE_LOCATION:
-        return this.autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+    switch (prefKey) {
+    case MOVIES_SORT:
+      return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+    case UPCOMING_MOVIES_SORT:
+      return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
+    case THEATERS_SORT:
+      return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
+    case SEARCH_DISTANCE:
+      return NowPlayingControllerWrapper.getSearchDistance();
+    case REVIEWS_PROVIDER:
+      return scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
+    case AUTO_UPDATE_LOCATION:
+      return autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
     }
     return 0;
   }
 
   private String getStringPreferenceValue() {
-    switch (this.prefKey) {
-      case LOCATION:
-        return NowPlayingControllerWrapper.getUserLocation();
+    switch (prefKey) {
+    case LOCATION:
+      return NowPlayingControllerWrapper.getUserLocation();
     }
     return null;
   }
 
   private void setIntPreferenceValue(final int prefValue) {
-    switch (this.prefKey) {
-      case MOVIES_SORT:
-        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
-        break;
-      case UPCOMING_MOVIES_SORT:
-        NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
-        break;
-      case THEATERS_SORT:
-        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
-        break;
-      case SEARCH_DISTANCE:
-        NowPlayingControllerWrapper.setSearchDistance(prefValue);
-        break;
-      case REVIEWS_PROVIDER:
-        NowPlayingControllerWrapper.setScoreType(this.scoreTypes.get(prefValue));
-        break;
-      case AUTO_UPDATE_LOCATION:
-        NowPlayingControllerWrapper.setAutoUpdateEnabled(this.autoUpdate.get(prefValue));
-        break;
+    switch (prefKey) {
+    case MOVIES_SORT:
+      NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
+      break;
+    case UPCOMING_MOVIES_SORT:
+      NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
+      break;
+    case THEATERS_SORT:
+      NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
+      break;
+    case SEARCH_DISTANCE:
+      NowPlayingControllerWrapper.setSearchDistance(prefValue);
+      break;
+    case REVIEWS_PROVIDER:
+      NowPlayingControllerWrapper.setScoreType(scoreTypes.get(prefValue));
+      break;
+    case AUTO_UPDATE_LOCATION:
+      NowPlayingControllerWrapper.setAutoUpdateEnabled(autoUpdate.get(prefValue));
+      break;
     }
   }
 
   private void setStringPreferenceValue(final String prefValue) {
-    switch (this.prefKey) {
-      case LOCATION:
-        NowPlayingControllerWrapper.setUserLocation(prefValue);
-        break;
+    switch (prefKey) {
+    case LOCATION:
+      NowPlayingControllerWrapper.setUserLocation(prefValue);
+      break;
     }
   }
 
@@ -166,13 +167,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   }
 
   public NowPlayingPreferenceDialog setTextView(final View textEntryView) {
-    this.textView = (TextView)textEntryView.findViewById(R.id.dialogEdit);
-    this.textView.setText(getStringPreferenceValue());
-    this.builder.setView(textEntryView);
-    this.positiveButtonListener = new OnClickListener() {
+    textView = (TextView)textEntryView.findViewById(R.id.dialogEdit);
+    textView.setText(getStringPreferenceValue());
+    builder.setView(textEntryView);
+    positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
-        setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
-        NowPlayingPreferenceDialog.this.context.refresh();
+        setStringPreferenceValue(textView.getText().toString());
+        context.refresh();
       }
     };
     return this;
@@ -187,13 +188,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   public void setTitle(final CharSequence title) {
     // TODO Auto-generated method stub
     super.setTitle(title);
-    this.builder.setTitle(title);
+    builder.setTitle(title);
   }
 
   @Override
   public void setTitle(final int titleId) {
     // TODO Auto-generated method stub
     super.setTitle(titleId);
-    this.builder.setTitle(titleId);
+    builder.setTitle(titleId);
   }
 }
