@@ -9,14 +9,17 @@ import org.metasyntactic.utilities.LogUtilities;
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class LicenseActivity extends Activity {
+public class WebViewActivity extends Activity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.license);
     NowPlayingControllerWrapper.addActivity(this);
-    final WebView license = (WebView)findViewById(R.id.license);
-    license.loadUrl("file:///android_asset/License.html");
+    final WebView webView = (WebView)findViewById(R.id.license);
+    if (this.getIntent().getExtras().getString("type").equals("license"))
+    webView.loadUrl("file:///android_asset/License.html");
+    else
+      webView.loadUrl("file:///android_asset/credits.html");
   }
 
   @Override
