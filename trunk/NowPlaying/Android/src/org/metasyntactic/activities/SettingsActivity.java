@@ -417,7 +417,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_LICENSE, 0, R.string.license).setIcon(android.R.drawable.ic_menu_send);
+    menu.add(0, MovieViewUtilities.MENU_LICENSE, 0, R.string.license).setIcon(android.R.drawable.ic_menu_info_details);
+    menu.add(0, MovieViewUtilities.MENU_CREDITS, 0, R.string.credits).setIcon(R.drawable.ic_menu_star);
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -425,7 +426,15 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_LICENSE) {
       final Intent localIntent = new Intent();
-      localIntent.setClass(this, LicenseActivity.class);
+      localIntent.setClass(this, WebViewActivity.class);
+      localIntent.putExtra("type","license");
+      startActivity(localIntent);
+      return true;
+    }
+    if (item.getItemId() == MovieViewUtilities.MENU_CREDITS) {
+      final Intent localIntent = new Intent();
+      localIntent.setClass(this, WebViewActivity.class);
+      localIntent.putExtra("type","credits");
       startActivity(localIntent);
       return true;
     }
