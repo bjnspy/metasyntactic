@@ -62,6 +62,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
   private Intent intent;

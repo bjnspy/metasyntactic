@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -8,7 +9,7 @@
     android:orientation="vertical">
     <TextView
         android:id="@+id/label"
-        android:layout_width="wrap_content"
+        android:layout_width="250dip"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
         android:singleLine="true"
@@ -19,15 +20,26 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="8dip"
+        android:layout_below="@id/label"
         android:gravity="center_vertical"
         android:singleLine="false"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+        <ImageView 
+        android:src = "@drawable/rate_star_big_on"
+        android:id="@+id/ratingImage"
+        android:layout_toRightOf="@id/label"
+        android:visibility = "gone"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        />
     <LinearLayout
         android:id="@+id/warning"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"        
         android:visibility="gone"
-        android:paddingBottom = "2dip"
+        android:layout_below="@id/data"
+        android:paddingBottom = "5dip"
         android:orientation="horizontal">
         <ImageView 
         android:src = "@drawable/ic_bullet_key_permission"
@@ -44,4 +56,4 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
    
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
@@ -26,6 +29,9 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class TheaterDetailsActivity extends ListActivity {
   /**
    * Called when the activity is first created.
@@ -45,6 +51,27 @@ public class TheaterDetailsActivity extends ListActivity {
     populateTheaterDetailEntries();
     final TextView titleView = (TextView) findViewById(R.id.theater);
     titleView.setText(theater.getName());
+    final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.header);
+    final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
+    final Resources res = TheaterDetailsActivity.this.getResources();
+    if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
+      ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
+    } else {
+      ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
+    }
+    linearLayout.setClickable(true);
+    linearLayout.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
+          ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
+          NowPlayingControllerWrapper.removeFavoriteTheater(theater);
+        } else {
+          ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
+          NowPlayingControllerWrapper.addFavoriteTheater(theater);
+        }
+      }
+    });
     setListAdapter(new TheaterDetailsAdapter());
   }
 

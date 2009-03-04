@@ -41,6 +41,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class SettingsActivity extends ListActivity implements INowPlaying {
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
