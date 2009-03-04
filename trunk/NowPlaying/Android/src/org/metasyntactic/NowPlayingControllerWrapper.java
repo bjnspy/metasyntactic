@@ -62,6 +62,7 @@ public class NowPlayingControllerWrapper {
 
   public static void onRetainNonConfigurationInstance(final Activity activity, final Object result) {
     checkThread();
+    LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "onRetainNonConfigurationInstance:" + activity.getClass().getSimpleName());
     retainedActivityObjects.add(result);
   }
 

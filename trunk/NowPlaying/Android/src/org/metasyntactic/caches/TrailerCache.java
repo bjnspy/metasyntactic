@@ -17,7 +17,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,13 +74,9 @@ public class TrailerCache extends AbstractCache {
 
   private void addMovies(final Iterable<Movie> movies) {
     synchronized (lock) {
-      final long now = new Date().getTime();
-
       for (final Movie movie : movies) {
         final File file = trailerFilePath(movie);
         if (file.exists()) {
-          final long writeTime = file.lastModified();
-
           if (FileUtilities.daysSinceNow(file) > 3) {
             moviesWithTrailers.add(movie);
           }

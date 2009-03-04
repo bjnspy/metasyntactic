@@ -13,12 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.utilities;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.lang.ref.SoftReference;
@@ -26,6 +21,13 @@ import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 
 public class MovieViewUtilities {
   public static final int MENU_SORT = 1;
@@ -41,14 +43,11 @@ public class MovieViewUtilities {
   public static final int MENU_SEND_FEEDBACK = 11;
   public static final int MENU_LICENSE = 12;
   public static final int MENU_CREDITS = 13;
-  
+
   // Constants for movies sort
   private static final int MovieTitle = 0;
   private static final int Release = 1;
   // constants for Theaters sort
-  private static final int TheaterName = 0;
-  private static final int Distance = 1;
-  private static String currentHeader;
   private static SoftReference<Drawable> rotten_full_drawable;
   private static SoftReference<Drawable> rating_unknown_drawable;
   private static SoftReference<Drawable> fresh_drawable;
@@ -167,31 +166,31 @@ public class MovieViewUtilities {
 
   public static String getHeader(final List<Movie> movies, final int position, final int sortIndex) {
     switch (sortIndex) {
-      case MovieTitle:
-        if (position == 0) {
-          return String.valueOf(movies.get(0).getDisplayTitle().charAt(0));
-        }
-        if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
-          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-        }
-        break;
-      case Release:
-        final Date d1 = movies.get(position).getReleaseDate();
-        final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-        final String dateStr;
-        if (d1 != null) {
-          dateStr = df.format(d1);
-        } else {
-          dateStr = null;
-        }
-        if (position == 0) {
-          return dateStr;
-        }
-        final Date d2 = movies.get(position - 1).getReleaseDate();
-        if (d2 != null && d1 != null && !d1.equals(d2)) {
-          return dateStr;
-        }
-        return null;
+    case MovieTitle:
+      if (position == 0) {
+        return String.valueOf(movies.get(0).getDisplayTitle().charAt(0));
+      }
+      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
+        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+      }
+      break;
+    case Release:
+      final Date d1 = movies.get(position).getReleaseDate();
+      final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+      final String dateStr;
+      if (d1 != null) {
+        dateStr = df.format(d1);
+      } else {
+        dateStr = null;
+      }
+      if (position == 0) {
+        return dateStr;
+      }
+      final Date d2 = movies.get(position - 1).getReleaseDate();
+      if (d2 != null && d1 != null && !d1.equals(d2)) {
+        return dateStr;
+      }
+      return null;
     }
     return null;
   }
