@@ -12,14 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface TrailerCache : AbstractCache {
+@interface TrailerCache : AbstractMovieCache {
 @private
-    LinkedSet* prioritizedMovies;
-    LinkedSet* moviesWithoutTrailers;
-    LinkedSet* moviesWithTrailers;
-
+    DifferenceEngine* engine;
     NSDictionary* index;
     NSArray* indexKeys;
 }
@@ -29,7 +26,5 @@
 - (void) update:(NSArray*) movies;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
-
-- (void) prioritizeMovie:(Movie*) movie;
 
 @end

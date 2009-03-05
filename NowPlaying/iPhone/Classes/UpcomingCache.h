@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface UpcomingCache : AbstractCache {
+@interface UpcomingCache : AbstractMovieCache {
 @private
     NSString* hashData;
     NSDictionary* movieMapData;
@@ -22,8 +22,6 @@
     NSDictionary* titleKeysData;
 
     BOOL updated;
-    LinkedSet* normalMovies;
-    LinkedSet* prioritizedMovies;
 
     NSMutableDictionary* bookmarksData;
 }
@@ -43,8 +41,6 @@
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
-
-- (void) prioritizeMovie:(Movie*) movie;
 
 - (void) addBookmark:(NSString*) canonicalTitle;
 - (void) removeBookmark:(NSString*) canonicalTitle;

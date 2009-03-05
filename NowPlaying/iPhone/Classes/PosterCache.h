@@ -12,22 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface PosterCache : AbstractCache {
+@interface PosterCache : AbstractMovieCache {
 @private
-    LinkedSet* moviesWithLinks;
-    LinkedSet* moviesWithoutLinks;
-    LinkedSet* prioritizedMovies;
 }
 
 + (PosterCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
+- (void) updateMovie:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
-
-- (void) prioritizeMovie:(Movie*) movie;
 
 @end

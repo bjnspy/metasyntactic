@@ -37,8 +37,6 @@
 @interface AbstractDVDBlurayCache()
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
-@property (retain) LinkedSet* normalMovies;
-@property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSMutableDictionary* bookmarksData;
 @end
 
@@ -47,15 +45,11 @@
 
 @synthesize moviesSetData;
 @synthesize moviesData;
-@synthesize normalMovies;
-@synthesize prioritizedMovies;
 @synthesize bookmarksData;
 
 - (void) dealloc {
     self.moviesSetData = nil;
     self.moviesData = nil;
-    self.normalMovies = nil;
-    self.prioritizedMovies = nil;
     self.bookmarksData = nil;
 
     [super dealloc];
@@ -64,13 +58,6 @@
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.normalMovies = [LinkedSet set];
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        
-        [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
 
     return self;
@@ -398,12 +385,7 @@
         movies = [self loadMovies];
     }
     
-    [gate lock];
-    {
-        [normalMovies addObjectsFromArray:movies];
-        [gate broadcast];
-    }
-    [gate unlock];
+    [self addPrimaryMovies:movies];
 }
 
 
@@ -442,25 +424,8 @@
 }
 
 
-- (void) updateVideoPoster:(Movie*) movie {
-    NSString* file = [self posterFile:movie set:nil];
-    if ([FileUtilities fileExists:file]) {
-        return;
-    }
-
-    if (movie.poster.length == 0) {
-        [model.largePosterCache downloadFirstPosterForMovie:movie];
-        return;
-    }
-
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
-                         [Application host], [StringUtilities stringByAddingPercentEscapes:movie.poster]];
-
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:file];
-        [AppDelegate minorRefresh];
-    }
+- (void) updatePoster:(Movie*) movie {
+    [model.posterCache updateMovie:movie];
 }
 
 
@@ -484,39 +449,16 @@
         return;
     }
 
-    [gate lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [gate broadcast];
-    }
-    [gate unlock];
+    [super prioritizeMovie:movie];
 }
 
 
-- (void) updateDetailsBackgroundEntryPoint {
-    while (YES) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            Movie* movie = nil;
-            [gate lock];
-            {
-                while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                       (movie = [normalMovies removeLastObjectAdded]) == nil) {
-                    [gate wait];
-                }
-            }
-            [gate unlock];
-            
-            if (movie != nil) {
-                [self updateVideoPoster:movie];
-                [self updateNetflix:movie];
-                [self updateIMDb:movie];
-                [self updateWikipedia:movie];
-                [self updateAmazon:movie];
-            }
-        }
-        [pool release];
-    }
+- (void) updateMovieDetails:(Movie*) movie {
+    [self updatePoster:movie];
+    [self updateNetflix:movie];
+    [self updateIMDb:movie];
+    [self updateWikipedia:movie];
+    [self updateAmazon:movie];
 }
 
 

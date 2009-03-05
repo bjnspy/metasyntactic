@@ -12,16 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface AbstractDVDBlurayCache : AbstractCache {
+@interface AbstractDVDBlurayCache : AbstractMovieCache {
 @private
     PointerSet* moviesSetData;
     NSArray* moviesData;
 
     BOOL updated;
-    LinkedSet* prioritizedMovies;
-    LinkedSet* normalMovies;
 
     NSMutableDictionary* bookmarksData;
 }
