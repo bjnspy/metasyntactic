@@ -36,8 +36,6 @@
 @property (retain) NSDictionary* movieMapData;
 @property (retain) NSDictionary* studioKeysData;
 @property (retain) NSDictionary* titleKeysData;
-@property (retain) LinkedSet* normalMovies;
-@property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSMutableDictionary* bookmarksData;
 @end
 
@@ -48,8 +46,6 @@
 @synthesize movieMapData;
 @synthesize studioKeysData;
 @synthesize titleKeysData;
-@synthesize normalMovies;
-@synthesize prioritizedMovies;
 @synthesize bookmarksData;
 
 - (void) dealloc {
@@ -57,8 +53,6 @@
     self.movieMapData = nil;
     self.studioKeysData = nil;
     self.titleKeysData = nil;
-    self.normalMovies = nil;
-    self.prioritizedMovies = nil;
     self.bookmarksData = nil;
 
     [super dealloc];
@@ -67,8 +61,6 @@
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.normalMovies = [LinkedSet set];
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
     return self;
@@ -376,12 +368,7 @@
         movies = [[self loadMovies] allValues];
     }
     
-    [gate lock];
-    {
-        [normalMovies addObjectsFromArray:movies];
-        [gate broadcast];
-    }
-    [gate unlock];
+    [self addPrimaryMovies:movies];
 }
 
 
@@ -477,6 +464,10 @@
 - (void) updateSynopsisAndCast:(Movie*) movie
                         studio:(NSString*) studio
                          title:(NSString*) title {
+    if (studio.length == 0 || title.length == 0) {
+        return;
+    }
+    
     NSString* synopsisFile = [self synopsisFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
@@ -517,6 +508,10 @@
 - (void) updateTrailers:(Movie*) movie
                  studio:(NSString*) studio
                   title:(NSString*) title {
+    if (studio.length == 0 || title.length == 0) {
+        return;
+    }
+
     NSString* trailersFile = [self trailersFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
 
@@ -550,7 +545,9 @@
 }
 
 
-- (void) updateDetails:(Movie*) movie studio:(NSString*) studio title:(NSString*) title {
+- (void) updateMovieDetails:(Movie*) movie
+                studio:(NSString*) studio
+                 title:(NSString*) title {
     [self updatePoster:movie];
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
@@ -561,48 +558,13 @@
 }
 
 
-- (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-
-    if (movie != nil) {
-        return movie;
-    }
-
-    if (movies.count > 0) {
-        movie = [[[movies lastObject] retain] autorelease];
-        [movies removeLastObject];
-        return movie;
-    }
-
-    return nil;
-}
-
-
-- (void) updateDetailsInBackgroundEntryPoint {
-    NSArray* movies = [[self loadMovies] allValues];
-    if (movies.count == 0) {
-        return;
-    }
-
-    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
-    NSDictionary* studios = [self loadStudioKeys];
-    NSDictionary* titles = [self loadTitleKeys];
-
-    Movie* movie;
-    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
-        NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-        {
-            [self updateDetails:movie
-                         studio:[studios objectForKey:movie.canonicalTitle]
-                          title:[titles objectForKey:movie.canonicalTitle]];
-        }
-        [autoreleasePool release];
-    }
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMovies addObject:movie];
+- (void) updateMovieDetails:(Movie*) movie {
+    NSString* studio = [self.studioKeys objectForKey:movie.canonicalTitle];
+    NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
+    
+    [self updateMovieDetails:movie
+                 studio:studio
+                  title:title];
 }
 
 

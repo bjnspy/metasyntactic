@@ -25,9 +25,7 @@
 #import "ThreadingUtilities.h"
 
 @interface TrailerCache()
-@property (retain) LinkedSet* prioritizedMovies;
-@property (retain) LinkedSet* moviesWithoutTrailers;
-@property (retain) LinkedSet* moviesWithTrailers;
+@property (retain) DifferenceEngine* engine;
 @property (retain) NSDictionary* index;
 @property (retain) NSArray* indexKeys;
 @end
@@ -35,16 +33,12 @@
 
 @implementation TrailerCache
 
-@synthesize prioritizedMovies;
-@synthesize moviesWithoutTrailers;
-@synthesize moviesWithTrailers;
+@synthesize engine;
 @synthesize index;
 @synthesize indexKeys;
 
 - (void) dealloc {
-    self.prioritizedMovies = nil;
-    self.moviesWithoutTrailers = nil;
-    self.moviesWithTrailers = nil;
+    self.engine = nil;
     self.index = nil;
     self.indexKeys = nil;
 
@@ -54,14 +48,7 @@
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.moviesWithoutTrailers = [LinkedSet set];
-        self.moviesWithTrailers = [LinkedSet set];
-
-        [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
+        self.engine = [DifferenceEngine engine];
     }
 
     return self;
@@ -89,32 +76,33 @@
 
 
 - (void) updateBackgroundEntryPoint:(NSArray*) movies {
-    [gate lock];
-    {
-        for (Movie* movie in movies) {
-            NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
+    NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
+    NSMutableArray* moviesWithTrailers = [NSMutableArray array];
 
-            if (downloadDate == nil) {
-                [moviesWithoutTrailers addObject:movie];
-            } else {
-                if (ABS(downloadDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
-                    [moviesWithTrailers addObject:movie];
-                }
+    for (Movie* movie in movies) {
+        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
+        
+        if (downloadDate == nil) {
+            [moviesWithoutTrailers addObject:movie];
+        } else {
+            if (ABS(downloadDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
+                [moviesWithTrailers addObject:movie];
             }
         }
-
-        [gate signal];
     }
-    [gate unlock];
+    
+    [self addPrimaryMovies:moviesWithoutTrailers];
+    [self addSecondaryMovies:moviesWithTrailers];
 }
 
 
-- (void) downloadTrailersWorker:(Movie*) movie
-                         engine:(DifferenceEngine*) engine {
-    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
+- (void) updateMovieDetails:(Movie*) movie {
+    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
+                                                 inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
-        [FileUtilities writeObject:[NSArray array] toFile:[self trailerFile:movie]];
+        [FileUtilities writeObject:[NSArray array]
+                            toFile:[self trailerFile:movie]];
         return;
     }
 
@@ -146,16 +134,6 @@
 }
 
 
-- (void) prioritizeMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
-}
-
-
 - (void) generateIndex:(NSString*) indexText {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
@@ -179,11 +157,11 @@
 }
 
 
-- (void) downloadTrailers:(Movie*) movie engine:(DifferenceEngine*) engine {
-    if (movie == nil) {
+- (void) updateMovieDetails:(Movie*) movie isPriority:(BOOL) isPriority {
+    if (isPriority && [FileUtilities fileExists:[self trailerFile:movie]]) {
         return;
     }
-
+    
     if (index == nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
         NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
@@ -194,46 +172,7 @@
         [self generateIndex:indexText];
     }
 
-    [self downloadTrailersWorker:movie
-                          engine:engine];
-}
-
-
-- (void) backgroundEntryPoint {
-    DifferenceEngine* engine = [DifferenceEngine engine];
-
-    while (YES) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            Movie* movie = nil;
-            BOOL isPriority = NO;
-            [gate lock];
-            {
-                NSInteger count = prioritizedMovies.count;
-                while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                       (movie = [moviesWithoutTrailers removeLastObjectAdded]) == nil &&
-                       (movie = [moviesWithTrailers removeLastObjectAdded]) == nil) {
-                    [gate wait];
-                }
-
-                isPriority = prioritizedMovies.count != count;
-            }
-            [gate unlock];
-
-            // we enqueue lots of priority movies when the user scrolls.  but to
-            // be easy on the disk, we only check if we need to do anything when
-            // we're on the background.
-            BOOL skip = isPriority && [FileUtilities fileExists:[self trailerFile:movie]];
-            if (!skip) {
-                [self downloadTrailers:movie engine:engine];
-            }
-
-            if (!isPriority) {
-                [NSThread sleepForTimeInterval:0.25];
-            }
-        }
-        [pool release];
-    }
+    [self updateMovieDetails:movie];
 }
 
 

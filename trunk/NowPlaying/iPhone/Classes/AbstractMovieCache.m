@@ -54,23 +54,31 @@
 }
 
 
+- (void) updateMovieDetails:(Movie*) movie isPriority:(BOOL) isPriority {
+    [self updateMovieDetails:movie];
+}
+
+
 - (void) updateDetailsBackgroundEntryPoint {
     while (YES) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             Movie* movie = nil;
+            BOOL isPriority = NO;
             [gate lock];
             {
+                NSInteger count = prioritizedMovies.count;
                 while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
                        (movie = [primaryMovies removeLastObjectAdded]) == nil &&
                        (movie = [secondaryMovies removeLastObjectAdded]) == nil) {
                     [gate wait];
                 }
+                isPriority = count != prioritizedMovies.count;
             }
             [gate unlock];
             
             if (movie != nil) {
-                [self updateMovieDetails:movie];
+                [self updateMovieDetails:movie isPriority:isPriority];
             }
             
             [NSThread sleepForTimeInterval:1];
