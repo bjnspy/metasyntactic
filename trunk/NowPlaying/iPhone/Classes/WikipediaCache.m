@@ -26,33 +26,18 @@
 #import "Utilities.h"
 
 @interface WikipediaCache()
-@property (retain) LinkedSet* prioritizedMovies;
-@property (retain) LinkedSet* normalMovies;
 @end
 
 
 @implementation WikipediaCache
 
-@synthesize prioritizedMovies;
-@synthesize normalMovies;
-
 - (void) dealloc {
-    self.prioritizedMovies = nil;
-    self.normalMovies = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.normalMovies = [LinkedSet set];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
 
     return self;
@@ -71,26 +56,16 @@
 
 
 - (void) update:(NSArray*) movies {
-    [gate lock];
-    {
-        [normalMovies addObjectsFromArray:movies];
-        [gate signal];
-    }
-    [gate unlock];
+    [self addPrimaryMovies:movies];
 }
 
 
 - (void) updateMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [normalMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
+    [self addPrimaryMovie:movie];
 }
 
 
-- (void) updateAddress:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self wikipediaFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
 
@@ -119,40 +94,6 @@
     if (wikipediaAddress.length > 0) {
         [AppDelegate minorRefresh];
     }
-}
-
-
-- (void) updateAddressBackgroundEntryPoint {
-    while (YES) {
-        Movie* movie = nil;
-        BOOL isPriority = NO;
-        [gate lock];
-        {
-            NSInteger count = prioritizedMovies.count;
-            while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                   (movie = [normalMovies removeLastObjectAdded]) == nil) {
-                [gate wait];
-            }
-            isPriority = count != prioritizedMovies.count;
-        }
-        [gate unlock];
-
-        [self updateAddress:movie];
-
-        if (!isPriority) {
-            [NSThread sleepForTimeInterval:0.25];
-        }
-    }
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
 }
 
 
