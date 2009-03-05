@@ -44,17 +44,17 @@ public final class CodedOutputStream {
   public static final int DEFAULT_BUFFER_SIZE = 4096;
 
   private CodedOutputStream(final byte[] buffer, final int offset, final int length) {
-    this.output = null;
+    output = null;
     this.buffer = buffer;
-    this.position = offset;
-    this.limit = offset + length;
+    position = offset;
+    limit = offset + length;
   }
 
   private CodedOutputStream(final OutputStream output, final byte[] buffer) {
     this.output = output;
     this.buffer = buffer;
-    this.position = 0;
-    this.limit = buffer.length;
+    position = 0;
+    limit = buffer.length;
   }
 
   /**
@@ -290,63 +290,63 @@ public final class CodedOutputStream {
    *               Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
   public void writeField(final Descriptors.FieldDescriptor.Type type, final int number, final Object value)
-      throws IOException {
+  throws IOException {
     switch (type) {
-      case DOUBLE:
-        writeDouble(number, (Double) value);
-        break;
-      case FLOAT:
-        writeFloat(number, (Float) value);
-        break;
-      case INT64:
-        writeInt64(number, (Long) value);
-        break;
-      case UINT64:
-        writeUInt64(number, (Long) value);
-        break;
-      case INT32:
-        writeInt32(number, (Integer) value);
-        break;
-      case FIXED64:
-        writeFixed64(number, (Long) value);
-        break;
-      case FIXED32:
-        writeFixed32(number, (Integer) value);
-        break;
-      case BOOL:
-        writeBool(number, (Boolean) value);
-        break;
-      case STRING:
-        writeString(number, (String) value);
-        break;
-      case GROUP:
-        writeGroup(number, (Message) value);
-        break;
-      case MESSAGE:
-        writeMessage(number, (Message) value);
-        break;
-      case BYTES:
-        writeBytes(number, (ByteString) value);
-        break;
-      case UINT32:
-        writeUInt32(number, (Integer) value);
-        break;
-      case SFIXED32:
-        writeSFixed32(number, (Integer) value);
-        break;
-      case SFIXED64:
-        writeSFixed64(number, (Long) value);
-        break;
-      case SINT32:
-        writeSInt32(number, (Integer) value);
-        break;
-      case SINT64:
-        writeSInt64(number, (Long) value);
-        break;
+    case DOUBLE:
+      writeDouble(number, (Double) value);
+      break;
+    case FLOAT:
+      writeFloat(number, (Float) value);
+      break;
+    case INT64:
+      writeInt64(number, (Long) value);
+      break;
+    case UINT64:
+      writeUInt64(number, (Long) value);
+      break;
+    case INT32:
+      writeInt32(number, (Integer) value);
+      break;
+    case FIXED64:
+      writeFixed64(number, (Long) value);
+      break;
+    case FIXED32:
+      writeFixed32(number, (Integer) value);
+      break;
+    case BOOL:
+      writeBool(number, (Boolean) value);
+      break;
+    case STRING:
+      writeString(number, (String) value);
+      break;
+    case GROUP:
+      writeGroup(number, (Message) value);
+      break;
+    case MESSAGE:
+      writeMessage(number, (Message) value);
+      break;
+    case BYTES:
+      writeBytes(number, (ByteString) value);
+      break;
+    case UINT32:
+      writeUInt32(number, (Integer) value);
+      break;
+    case SFIXED32:
+      writeSFixed32(number, (Integer) value);
+      break;
+    case SFIXED64:
+      writeSFixed64(number, (Long) value);
+      break;
+    case SINT32:
+      writeSInt32(number, (Integer) value);
+      break;
+    case SINT64:
+      writeSInt64(number, (Long) value);
+      break;
 
-      case ENUM:
-        writeEnum(number, ((Descriptors.EnumValueDescriptor) value).getNumber());
-        break;
+    case ENUM:
+      writeEnum(number, ((Descriptors.EnumValueDescriptor) value).getNumber());
+      break;
     }
   }
 
@@ -504,8 +504,8 @@ public final class CodedOutputStream {
    */
   public static int computeMessageSetExtensionSize(final int fieldNumber, final Message value) {
     return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
-                                                                               fieldNumber) + computeMessageSize(
-        WireFormat.MESSAGE_SET_MESSAGE, value);
+        fieldNumber) + computeMessageSize(
+            WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**
@@ -514,8 +514,8 @@ public final class CodedOutputStream {
    */
   public static int computeRawMessageSetExtensionSize(final int fieldNumber, final ByteString value) {
     return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
-                                                                               fieldNumber) + computeBytesSize(
-        WireFormat.MESSAGE_SET_MESSAGE, value);
+        fieldNumber) + computeBytesSize(
+            WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**
@@ -528,45 +528,45 @@ public final class CodedOutputStream {
    *               Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
   public static int computeFieldSize(final Descriptors.FieldDescriptor.Type type, final int number,
-                                     final Object value) {
+      final Object value) {
     switch (type) {
-      case DOUBLE:
-        return computeDoubleSize(number, (Double) value);
-      case FLOAT:
-        return computeFloatSize(number, (Float) value);
-      case INT64:
-        return computeInt64Size(number, (Long) value);
-      case UINT64:
-        return computeUInt64Size(number, (Long) value);
-      case INT32:
-        return computeInt32Size(number, (Integer) value);
-      case FIXED64:
-        return computeFixed64Size(number, (Long) value);
-      case FIXED32:
-        return computeFixed32Size(number, (Integer) value);
-      case BOOL:
-        return computeBoolSize(number, (Boolean) value);
-      case STRING:
-        return computeStringSize(number, (String) value);
-      case GROUP:
-        return computeGroupSize(number, (Message) value);
-      case MESSAGE:
-        return computeMessageSize(number, (Message) value);
-      case BYTES:
-        return computeBytesSize(number, (ByteString) value);
-      case UINT32:
-        return computeUInt32Size(number, (Integer) value);
-      case SFIXED32:
-        return computeSFixed32Size(number, (Integer) value);
-      case SFIXED64:
-        return computeSFixed64Size(number, (Long) value);
-      case SINT32:
-        return computeSInt32Size(number, (Integer) value);
-      case SINT64:
-        return computeSInt64Size(number, (Long) value);
+    case DOUBLE:
+      return computeDoubleSize(number, (Double) value);
+    case FLOAT:
+      return computeFloatSize(number, (Float) value);
+    case INT64:
+      return computeInt64Size(number, (Long) value);
+    case UINT64:
+      return computeUInt64Size(number, (Long) value);
+    case INT32:
+      return computeInt32Size(number, (Integer) value);
+    case FIXED64:
+      return computeFixed64Size(number, (Long) value);
+    case FIXED32:
+      return computeFixed32Size(number, (Integer) value);
+    case BOOL:
+      return computeBoolSize(number, (Boolean) value);
+    case STRING:
+      return computeStringSize(number, (String) value);
+    case GROUP:
+      return computeGroupSize(number, (Message) value);
+    case MESSAGE:
+      return computeMessageSize(number, (Message) value);
+    case BYTES:
+      return computeBytesSize(number, (ByteString) value);
+    case UINT32:
+      return computeUInt32Size(number, (Integer) value);
+    case SFIXED32:
+      return computeSFixed32Size(number, (Integer) value);
+    case SFIXED64:
+      return computeSFixed64Size(number, (Long) value);
+    case SINT32:
+      return computeSInt32Size(number, (Integer) value);
+    case SINT64:
+      return computeSInt64Size(number, (Long) value);
 
-      case ENUM:
-        return computeEnumSize(number, ((Descriptors.EnumValueDescriptor) value).getNumber());
+    case ENUM:
+      return computeEnumSize(number, ((Descriptors.EnumValueDescriptor) value).getNumber());
     }
 
     throw new RuntimeException("There is no way to get here, but the compiler thinks otherwise.");
@@ -579,22 +579,22 @@ public final class CodedOutputStream {
    * when this returns.
    */
   private void refreshBuffer() throws IOException {
-    if (this.output == null) {
+    if (output == null) {
       // We're writing to a single buffer.
       throw new OutOfSpaceException();
     }
 
     // Since we have an output stream, this is our buffer
     // and buffer offset == 0
-    this.output.write(this.buffer, 0, this.position);
-    this.position = 0;
+    output.write(buffer, 0, position);
+    position = 0;
   }
 
   /**
    * Flushes the stream and forces any buffered bytes to be written.  This does not flush the underlying OutputStream.
    */
   public void flush() throws IOException {
-    if (this.output != null) {
+    if (output != null) {
       refreshBuffer();
     }
   }
@@ -604,8 +604,8 @@ public final class CodedOutputStream {
    * UnsupportedOperationException}.
    */
   public int spaceLeft() {
-    if (this.output == null) {
-      return this.limit - this.position;
+    if (output == null) {
+      return limit - position;
     } else {
       throw new UnsupportedOperationException(
           "spaceLeft() can only be called on CodedOutputStreams that are " + "writing to a flat array.");
@@ -639,11 +639,11 @@ public final class CodedOutputStream {
    * Write a single byte.
    */
   public void writeRawByte(final byte value) throws IOException {
-    if (this.position == this.limit) {
+    if (position == limit) {
       refreshBuffer();
     }
 
-    this.buffer[this.position++] = value;
+    buffer[position++] = value;
   }
 
   /**
@@ -664,30 +664,30 @@ public final class CodedOutputStream {
    * Write part of an array of bytes.
    */
   public void writeRawBytes(final byte[] value, int offset, int length) throws IOException {
-    if (this.limit - this.position >= length) {
+    if (limit - position >= length) {
       // We have room in the current buffer.
-      System.arraycopy(value, offset, this.buffer, this.position, length);
-      this.position += length;
+      System.arraycopy(value, offset, buffer, position, length);
+      position += length;
     } else {
       // Write extends past current buffer.  Fill the rest of this buffer and
       // flush.
-      final int bytesWritten = this.limit - this.position;
-      System.arraycopy(value, offset, this.buffer, this.position, bytesWritten);
+      final int bytesWritten = limit - position;
+      System.arraycopy(value, offset, buffer, position, bytesWritten);
       offset += bytesWritten;
       length -= bytesWritten;
-      this.position = this.limit;
+      position = limit;
       refreshBuffer();
 
       // Now deal with the rest.
       // Since we have an output stream, this is our buffer
       // and buffer offset == 0
-      if (length <= this.limit) {
+      if (length <= limit) {
         // Fits in new buffer.
-        System.arraycopy(value, offset, this.buffer, 0, length);
-        this.position = length;
+        System.arraycopy(value, offset, buffer, 0, length);
+        position = length;
       } else {
         // Write is very big.  Let's do it all at once.
-        this.output.write(value, offset, length);
+        output.write(value, offset, length);
       }
     }
   }
