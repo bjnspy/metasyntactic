@@ -21,6 +21,8 @@
     NSDictionary* studioKeysData;
     NSDictionary* titleKeysData;
 
+    BOOL updated;
+    LinkedSet* normalMovies;
     LinkedSet* prioritizedMovies;
 
     NSMutableDictionary* bookmarksData;

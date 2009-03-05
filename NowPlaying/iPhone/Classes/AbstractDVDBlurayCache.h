@@ -19,7 +19,9 @@
     PointerSet* moviesSetData;
     NSArray* moviesData;
 
+    BOOL updated;
     LinkedSet* prioritizedMovies;
+    LinkedSet* normalMovies;
 
     NSMutableDictionary* bookmarksData;
 }

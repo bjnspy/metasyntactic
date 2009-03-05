@@ -36,6 +36,7 @@
 @property (retain) NSDictionary* movieMapData;
 @property (retain) NSDictionary* studioKeysData;
 @property (retain) NSDictionary* titleKeysData;
+@property (retain) LinkedSet* normalMovies;
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSMutableDictionary* bookmarksData;
 @end
@@ -47,6 +48,7 @@
 @synthesize movieMapData;
 @synthesize studioKeysData;
 @synthesize titleKeysData;
+@synthesize normalMovies;
 @synthesize prioritizedMovies;
 @synthesize bookmarksData;
 
@@ -55,6 +57,7 @@
     self.movieMapData = nil;
     self.studioKeysData = nil;
     self.titleKeysData = nil;
+    self.normalMovies = nil;
     self.prioritizedMovies = nil;
     self.bookmarksData = nil;
 
@@ -64,6 +67,7 @@
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
+        self.normalMovies = [LinkedSet set];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -323,12 +327,12 @@
 }
 
 
-- (void) updateIndexBackgroundEntryPointWorker {
+- (NSArray*) updateIndexBackgroundEntryPointWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
+            return nil;
         }
     }
 
@@ -342,7 +346,7 @@
 
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
-        return;
+        return nil;
     }
 
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
@@ -352,23 +356,32 @@
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
-        return;
+        return nil;
     }
 
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
 
     NSArray* arguments = [NSArray arrayWithObjects:serverHash, movies, studioKeys, titleKeys, nil];
-    [self performSelectorOnMainThread:@selector(reportIndex:) withObject:arguments waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportIndex:)
+                           withObject:arguments
+                        waitUntilDone:NO];
+    
+    return movies;
 }
 
 
 - (void) updateIndexBackgroundEntryPoint {
-    [self updateIndexBackgroundEntryPointWorker];
-
-    [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:gate
-                                   visible:NO];
+    NSArray* movies = [self updateIndexBackgroundEntryPointWorker];
+    if (movies.count == 0) {
+        movies = [[self loadMovies] allValues];
+    }
+    
+    [gate lock];
+    {
+        [normalMovies addObjectsFromArray:movies];
+        [gate broadcast];
+    }
+    [gate unlock];
 }
 
 
@@ -380,10 +393,15 @@
     if (!model.upcomingEnabled) {
         return;
     }
+    
+    if (updated) {
+        return;
+    }
+    updated = YES;
 
     [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
                                   onTarget:self
-                                      gate:gate
+                                      gate:nil
                                    visible:YES];
 }
 

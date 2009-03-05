@@ -37,6 +37,7 @@
 @interface AbstractDVDBlurayCache()
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
+@property (retain) LinkedSet* normalMovies;
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSMutableDictionary* bookmarksData;
 @end
@@ -46,12 +47,14 @@
 
 @synthesize moviesSetData;
 @synthesize moviesData;
+@synthesize normalMovies;
 @synthesize prioritizedMovies;
 @synthesize bookmarksData;
 
 - (void) dealloc {
     self.moviesSetData = nil;
     self.moviesData = nil;
+    self.normalMovies = nil;
     self.prioritizedMovies = nil;
     self.bookmarksData = nil;
 
@@ -61,7 +64,13 @@
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.prioritizedMovies = [LinkedSet set];
+        self.normalMovies = [LinkedSet set];
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
+        
+        [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:NO];
     }
 
     return self;
@@ -167,10 +176,15 @@
     if (!model.dvdBlurayEnabled) {
         return;
     }
+    
+    if (updated) {
+        return;
+    }
+    updated = YES;
 
     [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
                                   onTarget:self
-                                      gate:gate
+                                      gate:nil
                                    visible:YES];
 }
 
@@ -301,22 +315,22 @@
 
 
 - (NSString*) posterFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies == nil || [movies containsObject:movie]) {
+    if (movies != nil && ![movies containsObject:movie]) {
+        return nil;
+    }
+    
         return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@".jpg"];
-    }
-
-    return nil;
 }
 
 
 - (NSString*) smallPosterFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies == nil || [movies containsObject:movie]) {
+    if (movies != nil && ![movies containsObject:movie]) {
+        return nil;
+    }
+    
         return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-small.png"];
-    }
-
-    return nil;
 }
 
 
@@ -347,11 +361,11 @@
 }
 
 
-- (void) updateMoviesBackgroundEntryPointWorker {
+- (NSArray*) updateMoviesBackgroundEntryPointWorker {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
     if (lastUpdateDate != nil) {
         if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
+            return nil;
         }
     }
 
@@ -359,13 +373,13 @@
                                                            important:YES];
 
     if (element == nil) {
-        return;
+        return nil;
     }
 
     NSDictionary* map = [self processElement:element];
 
     if (map.count == 0) {
-        return;
+        return nil;
     }
 
     [self saveData:map];
@@ -373,17 +387,23 @@
     [self performSelectorOnMainThread:@selector(reportResults:)
                            withObject:map
                         waitUntilDone:NO];
+    
+    return map.allKeys;
 }
 
 
 - (void) updateMoviesBackgroundEntryPoint {
-    [self updateMoviesBackgroundEntryPointWorker];
-
-    [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
-                                  onTarget:self
-                                  argument:nil
-                                      gate:gate
-                                   visible:NO];
+    NSArray* movies = [self updateMoviesBackgroundEntryPointWorker];
+    if (movies.count == 0) {
+        movies = [self loadMovies];
+    }
+    
+    [gate lock];
+    {
+        [normalMovies addObjectsFromArray:movies];
+        [gate broadcast];
+    }
+    [gate unlock];
 }
 
 
@@ -409,9 +429,10 @@
             [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
+    
     [self saveBookmarks];
-
     [self setMovies:movies];
+    
     [AppDelegate majorRefresh];
 }
 
@@ -458,44 +479,41 @@
 }
 
 
-- (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-
-    if (movie != nil) {
-        return movie;
-    }
-
-    if (movies.count > 0) {
-        movie = [[[movies lastObject] retain] autorelease];
-        [movies removeLastObject];
-        return movie;
-    }
-
-    return nil;
-}
-
-
 - (void) prioritizeMovie:(Movie*) movie {
     if (![self.moviesSet containsObject:movie]) {
         return;
     }
 
-    [prioritizedMovies addObject:movie];
+    [gate lock];
+    {
+        [prioritizedMovies addObject:movie];
+        [gate broadcast];
+    }
+    [gate unlock];
 }
 
 
 - (void) updateDetailsBackgroundEntryPoint {
-    NSMutableArray* videos = [NSMutableArray arrayWithArray:[self loadMovies]];
-
-    Movie* movie;
-    while ((movie = [self getNextMovie:videos]) != nil) {
+    while (YES) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self updateVideoPoster:movie];
-            [self updateNetflix:movie];
-            [self updateIMDb:movie];
-            [self updateWikipedia:movie];
-            [self updateAmazon:movie];
+            Movie* movie = nil;
+            [gate lock];
+            {
+                while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
+                       (movie = [normalMovies removeLastObjectAdded]) == nil) {
+                    [gate wait];
+                }
+            }
+            [gate unlock];
+            
+            if (movie != nil) {
+                [self updateVideoPoster:movie];
+                [self updateNetflix:movie];
+                [self updateIMDb:movie];
+                [self updateWikipedia:movie];
+                [self updateAmazon:movie];
+            }
         }
         [pool release];
     }
