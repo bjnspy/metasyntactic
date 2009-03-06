@@ -13,6 +13,8 @@
     LinkedSet* prioritizedMovies;
     LinkedSet* primaryMovies;
     LinkedSet* secondaryMovies;
+    
+    NSMutableSet* successfullyUpdatedMovies;
 }
 
 - (void) prioritizeMovie:(Movie*) movie;
@@ -23,5 +25,9 @@
 - (void) addSecondaryMovie:(Movie*) movie;
 - (void) addPrimaryMovies:(NSArray*) movies;
 - (void) addSecondaryMovies:(NSArray*) movies;
+
+- (BOOL) successfullyUpdatedMoviesContains:(Movie*) movie;
+- (void) addSuccessfullyUpdatedMovie:(Movie*) movie;
+- (void) clearSuccessfullyUpdatedMovies;
 
 @end

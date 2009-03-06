@@ -352,6 +352,7 @@
     }
 
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
+    [self clearSuccessfullyUpdatedMovies];
 
     NSArray* arguments = [NSArray arrayWithObjects:serverHash, movies, studioKeys, titleKeys, nil];
     [self performSelectorOnMainThread:@selector(reportIndex:)
@@ -422,7 +423,7 @@
     self.movieMapData = movieMap;
     self.studioKeysData = [arguments objectAtIndex:2];
     self.titleKeysData = [arguments objectAtIndex:3];
-
+    
     [AppDelegate majorRefresh];
 }
 

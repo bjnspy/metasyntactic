@@ -595,6 +595,22 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (void) didReceiveMemoryWarning {
+    [userLocationCache didReceiveMemoryWarning];
+    [largePosterCache didReceiveMemoryWarning];
+    [imdbCache didReceiveMemoryWarning];
+    [amazonCache didReceiveMemoryWarning];
+    [wikipediaCache didReceiveMemoryWarning];
+    [trailerCache didReceiveMemoryWarning];
+    [blurayCache didReceiveMemoryWarning];
+    [dvdCache didReceiveMemoryWarning];
+    [posterCache didReceiveMemoryWarning];
+    [scoreCache didReceiveMemoryWarning];
+    [upcomingCache didReceiveMemoryWarning];
+    [netflixCache didReceiveMemoryWarning];  
+}
+
+
 + (Model*) model {
     return [[[Model alloc] init] autorelease];
 }

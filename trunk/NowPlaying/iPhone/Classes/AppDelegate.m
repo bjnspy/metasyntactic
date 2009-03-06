@@ -164,4 +164,9 @@ static AppDelegate* appDelegate = nil;
     return appDelegate.globalActivityView;
 }
 
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [model didReceiveMemoryWarning];
+}
+
 @end
