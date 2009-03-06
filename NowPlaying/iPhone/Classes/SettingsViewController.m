@@ -131,7 +131,8 @@
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
+    //NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Vote for Icon", nil)];
     cell.text = text;
 
     return cell;
@@ -392,7 +393,7 @@
 
 
 - (void) didSelectCreditsRow:(NSInteger) row {
-    CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
+    CreditsViewController* controller = [[[CreditsViewController alloc] initWithNavigationController:navigationController] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }
 

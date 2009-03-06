@@ -14,13 +14,14 @@
 
 #import "CreditsViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "Application.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
 
 @interface CreditsViewController()
-@property (retain) Model* model;
+@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* languages;
 @property (retain) NSDictionary* localizers;
 @end
@@ -29,6 +30,7 @@
 @implementation CreditsViewController
 
 typedef enum {
+    VoteForIconSection,
     WrittenBySection,
     MyOtherApplicationsSection,
     GraphicsBySection,
@@ -42,12 +44,12 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-@synthesize model;
+@synthesize navigationController;
 @synthesize languages;
 @synthesize localizers;
 
 - (void) dealloc {
-    self.model = nil;
+    self.navigationController = nil;
     self.languages = nil;
     self.localizers = nil;
 
@@ -63,9 +65,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (id) initWithModel:(Model*) model_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.model = model_;
+        self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -114,7 +116,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == WrittenBySection) {
+    if (section == VoteForIconSection) {
+        return 1;
+    } else if (section == WrittenBySection) {
         return 3;
     } else if (section == MyOtherApplicationsSection) {
         return 3;
@@ -229,6 +233,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
+    } else if (section == VoteForIconSection) {
+        cell.text = NSLocalizedString(@"Vote for Icon", nil);
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     } else if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
@@ -303,7 +310,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
+    if (indexPath.section == VoteForIconSection) {
+        return UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
@@ -331,9 +340,68 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
+- (Model*) model {
+    return navigationController.model;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == LocalizedBySection) {
+    
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    if (section == VoteForIconSection) {
+        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
+        [navigationController pushBrowser:url showSafariButton:NO animated:YES];
+    } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
+        NSString* url = nil;
+        if (section == WrittenBySection) {
+            if (row == 0) {
+                url = [self.model feedbackUrl];
+            } else if (row == 1) {
+                url = @"http://metasyntactic.googlecode.com";
+            } else {
+                url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+            }
+        } else if (section == MyOtherApplicationsSection) {
+            if (row == 0) {
+                url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+            } else if (row == 1) {
+                url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
+            } else {
+                url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
+            }
+        } else if (section == GraphicsBySection) {
+            url = @"http://www.jeffnee.com";
+        } else if (section == ReviewsBySection) {
+            if (row == 0) {
+                url = @"http://www.rottentomatoes.com";
+            } else {
+                url = @"http://www.metacritic.com";
+            }
+        } else if (section == TicketSalesBySection) {
+            url = @"http://www.fandango.com";
+        } else if (section == MovieDetailsBySection) {
+            url = @"http://www.trynt.com";
+        } else if (section == GeolocationServicesBySection) {
+            if (row == 0) {
+                url = @"http://www.yahoo.com";
+            } else if (row == 1) {
+                url = @"http://www.geonames.org";
+            } else {
+                url = @"http://geocoder.ca";
+            }
+        } else if (section == DVDDetailsSection) {
+            if (row == 0) {
+                url = @"http://www.videoeta.com";
+            } else {
+                url = @"http://www.netflix.com";
+            }
+        }
+        
+        [Application openBrowser:url];
+    } else if (indexPath.section == LocalizedBySection) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else if (indexPath.section == LicenseSection) {
         [self licenseCellTapped];
@@ -343,59 +411,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-
-    NSString* url = nil;
-    if (section == WrittenBySection) {
-        if (row == 0) {
-            url = [self.model feedbackUrl];
-        } else if (row == 1) {
-            url = @"http://metasyntactic.googlecode.com";
-        } else {
-            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
-        }
-    } else if (section == MyOtherApplicationsSection) {
-        if (row == 0) {
-            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
-        } else if (row == 1) {
-            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
-        } else {
-            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
-        }
-    } else if (section == GraphicsBySection) {
-        url = @"http://www.jeffnee.com";
-    } else if (section == ReviewsBySection) {
-        if (row == 0) {
-            url = @"http://www.rottentomatoes.com";
-        } else {
-            url = @"http://www.metacritic.com";
-        }
-    } else if (section == TicketSalesBySection) {
-        url = @"http://www.fandango.com";
-    } else if (section == MovieDetailsBySection) {
-        url = @"http://www.trynt.com";
-    } else if (section == GeolocationServicesBySection) {
-        if (row == 0) {
-            url = @"http://www.yahoo.com";
-        } else if (row == 1) {
-            url = @"http://www.geonames.org";
-        } else {
-            url = @"http://geocoder.ca";
-        }
-    } else if (section == DVDDetailsSection) {
-        if (row == 0) {
-            url = @"http://www.videoeta.com";
-        } else {
-            url = @"http://www.netflix.com";
-        }
-    } else if (section == LocalizedBySection) {
-        return;
-    } else if (section == LicenseSection) {
-        return;
-    }
-
-    [Application openBrowser:url];
+    return [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 

@@ -14,11 +14,11 @@
 
 @interface CreditsViewController : UITableViewController {
 @private
-    Model* model;
+    AbstractNavigationController* navigationController;
     NSArray* languages;
     NSDictionary* localizers;
 }
 
-- (id) initWithModel:(Model*) model;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

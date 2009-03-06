@@ -124,12 +124,12 @@
             [controller navigateToLastViewedPage];
             
             if ([NetworkUtilities isNetworkAvailable]) {
-                //if (!self.model.votedForIcon) {
+                if (!self.model.votedForIcon) {
                     [self.model setVotedForIcon];
                     
                     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
                     [controller pushBrowser:url showSafariButton:NO animated:YES];
-                //}
+                }
             }
         }
 
