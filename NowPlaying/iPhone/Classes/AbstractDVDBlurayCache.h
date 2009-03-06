@@ -33,9 +33,6 @@
 
 - (DVD*) detailsForMovie:(Movie*) movie;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
-
 - (void) addBookmark:(NSString*) canonicalTitle;
 - (void) removeBookmark:(NSString*) canonicalTitle;
 
