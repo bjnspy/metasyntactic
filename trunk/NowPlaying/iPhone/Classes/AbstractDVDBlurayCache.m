@@ -301,40 +301,6 @@
 }
 
 
-- (NSString*) posterFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies != nil && ![movies containsObject:movie]) {
-        return nil;
-    }
-    
-        return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@".jpg"];
-}
-
-
-- (NSString*) smallPosterFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies != nil && ![movies containsObject:movie]) {
-        return nil;
-    }
-    
-        return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@"-small.png"];
-}
-
-
-- (NSString*) posterFile:(Movie*) movie {
-    NSAssert([NSThread isMainThread], @"");
-
-    return [self posterFile:movie set:self.moviesSet];
-}
-
-
-- (NSString*) smallPosterFile:(Movie*) movie {
-    NSAssert([NSThread isMainThread], @"");
-
-    return [self smallPosterFile:movie set:self.moviesSet];
-}
-
-
 - (void) saveData:(NSDictionary*) dictionary {
     NSArray* videos = dictionary.allKeys;
 
@@ -460,30 +426,6 @@
     [self updateIMDb:movie];
     [self updateWikipedia:movie];
     [self updateAmazon:movie];
-}
-
-
-- (UIImage*) posterForMovie:(Movie*) movie {
-    return [UIImage imageWithData:[FileUtilities readData:[self posterFile:movie]]];
-}
-
-
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
-    NSString* smallPosterPath = [self smallPosterFile:movie];
-    NSData* smallPosterData;
-
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-
-        [FileUtilities writeData:smallPosterData
-                          toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
-
-    return [UIImage imageWithData:smallPosterData];
 }
 
 

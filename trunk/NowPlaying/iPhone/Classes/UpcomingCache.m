@@ -295,20 +295,6 @@
 }
 
 
-- (NSString*) posterFile:(Movie*) movie {
-    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    fileName = [fileName stringByAppendingPathExtension:@"jpg"];
-    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
-}
-
-
-- (NSString*) smallPosterFile:(Movie*) movie {
-    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    fileName = [fileName stringByAppendingString:@"-small.png"];
-    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
-}
-
-
 - (NSString*) synopsisFile:(Movie*) movie {
     return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
@@ -444,21 +430,7 @@
 
 
 - (void) updatePoster:(Movie*) movie {
-    if (movie.poster.length == 0) {
-        [model.largePosterCache downloadFirstPosterForMovie:movie];
-        return;
-    }
-
-    NSString* posterFile = [self posterFile:movie];
-    if ([FileUtilities fileExists:posterFile]) {
-        return;
-    }
-
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster
-                                                     important:NO];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:posterFile];
-    }
+    [model.posterCache updateMovie:movie];
 }
 
 
@@ -596,31 +568,6 @@
 
 - (NSArray*) genresForMovie:(Movie*) movie {
     return [[self.movieMap objectForKey:movie.canonicalTitle] genres];
-}
-
-
-- (UIImage*) posterForMovie:(Movie*) movie {
-    NSData* data = [FileUtilities readData:[self posterFile:movie]];
-    return [UIImage imageWithData:data];
-}
-
-
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
-    NSString* smallPosterPath = [self smallPosterFile:movie];
-    NSData* smallPosterData;
-
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-
-        [FileUtilities writeData:smallPosterData
-                          toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
-
-    return [UIImage imageWithData:smallPosterData];
 }
 
 

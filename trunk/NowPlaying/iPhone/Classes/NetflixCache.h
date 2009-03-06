@@ -62,8 +62,6 @@
 - (NSArray*) moviesForRSSTitle:(NSString*) title;
 - (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
