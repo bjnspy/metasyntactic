@@ -82,25 +82,34 @@ const int START_YEAR = 1912;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index {
+                      index:(NSInteger) index
+                   compress:(BOOL) compress {
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     UIImage* image = [UIImage imageWithData:data];
 
-    CGSize size = image.size;
-    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-        NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                    toHeight:FULL_SCREEN_POSTER_HEIGHT];
-        image = [UIImage imageWithData:data];
-        [FileUtilities writeData:resizedData toFile:path];
-    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-        NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                    toHeight:FULL_SCREEN_POSTER_WIDTH];
-        image = [UIImage imageWithData:data];
-        [FileUtilities writeData:resizedData toFile:path];
+    if (compress) {
+        CGSize size = image.size;
+        if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+            NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                        toHeight:FULL_SCREEN_POSTER_HEIGHT];
+            image = [UIImage imageWithData:data];
+            [FileUtilities writeData:resizedData toFile:path];
+        } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+            NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                        toHeight:FULL_SCREEN_POSTER_WIDTH];
+            image = [UIImage imageWithData:data];
+            [FileUtilities writeData:resizedData toFile:path];
+        }
     }
 
     return image;
+}
+
+
+- (UIImage*) posterForMovie:(Movie*) movie
+                      index:(NSInteger) index {
+    return [self posterForMovie:movie index:index compress:YES];
 }
 
 
