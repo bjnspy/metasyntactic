@@ -26,6 +26,7 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
+- (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index compress:(BOOL) compress;
 - (BOOL) posterExistsForMovie:(Movie*) movie index:(NSInteger) index;
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie;
