@@ -39,25 +39,21 @@
 
 + (NSString*) dvdDirectory;
 + (NSString*) dvdDetailsDirectory;
-+ (NSString*) dvdPostersDirectory;
 
 + (NSString*) blurayDirectory;
 + (NSString*) blurayDetailsDirectory;
-+ (NSString*) blurayPostersDirectory;
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixDetailsDirectory;
 + (NSString*) netflixSearchDirectory;
 + (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
-+ (NSString*) netflixPostersDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 + (NSString*) netflixRSSDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;
-+ (NSString*) upcomingPostersDirectory;
 + (NSString*) upcomingSynopsesDirectory;
 + (NSString*) upcomingTrailersDirectory;
 
