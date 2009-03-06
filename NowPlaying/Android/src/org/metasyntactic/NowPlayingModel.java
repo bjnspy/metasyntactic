@@ -159,6 +159,10 @@ public class NowPlayingModel {
     return userLocationCache;
   }
 
+  public PosterCache getPosterCache() {
+    return posterCache;
+  }
+
   public String getUserAddress() {
     synchronized (preferencesLock) {
       return preferences.getString(USER_ADDRESS_KEY, "");
@@ -389,10 +393,6 @@ public class NowPlayingModel {
     if (size(bytes) > 0) {
       return bytes;
     }
-    bytes = UpcomingCache.getPoster(movie);
-    if (size(bytes) > 0) {
-      return bytes;
-    }
     bytes = LargePosterCache.getPoster(movie);
     if (size(bytes) > 0) {
       return bytes;
@@ -402,11 +402,6 @@ public class NowPlayingModel {
 
   public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
     File file = PosterCache.getPosterFile_safeToCallFromBackground(movie);
-    if (file != null && file.exists()) {
-      return file;
-    }
-
-    file = UpcomingCache.getPosterFile_safeToCallFromBackground(movie);
     if (file != null && file.exists()) {
       return file;
     }

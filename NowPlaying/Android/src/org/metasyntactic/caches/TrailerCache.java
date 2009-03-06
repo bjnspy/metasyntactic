@@ -13,6 +13,14 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,33 +29,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
-
-public class TrailerCache extends AbstractCache {
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-  private final BoundedPrioritySet<Movie> moviesWithTrailers = new BoundedPrioritySet<Movie>();
-  private final BoundedPrioritySet<Movie> moviesWithoutTrailers = new BoundedPrioritySet<Movie>();
-
+public class TrailerCache extends AbstractMovieCache {
   public TrailerCache(final NowPlayingModel model) {
     super(model);
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        try {
-          updateBackgroundEntryPoint();
-        } catch (final InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, null, false);
   }
 
   private static String trailerFileName(final Movie movie) {
@@ -73,20 +57,22 @@ public class TrailerCache extends AbstractCache {
   }
 
   private void addMovies(final Iterable<Movie> movies) {
-    synchronized (lock) {
-      for (final Movie movie : movies) {
-        final File file = trailerFilePath(movie);
-        if (file.exists()) {
-          if (FileUtilities.daysSinceNow(file) > 3) {
-            moviesWithTrailers.add(movie);
-          }
-        } else {
-          moviesWithoutTrailers.add(movie);
-        }
+    final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
+    final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
 
-        lock.notifyAll();
+    for (final Movie movie : movies) {
+      final File file = trailerFilePath(movie);
+      if (file.exists()) {
+        if (FileUtilities.daysSinceNow(file) > 3) {
+          moviesWithTrailers.add(movie);
+        }
+      } else {
+        moviesWithoutTrailers.add(movie);
       }
     }
+
+    addPrimaryMovies(moviesWithoutTrailers);
+    addSecondaryMovies(moviesWithTrailers);
   }
 
   private static Map<String, List<String>> index;
@@ -106,22 +92,7 @@ public class TrailerCache extends AbstractCache {
     return result;
   }
 
-  private void updateBackgroundEntryPoint() throws InterruptedException {
-    while (!shutdown) {
-      Movie movie = null;
-      synchronized (lock) {
-        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithoutTrailers
-            .removeAny()) == null && (movie = moviesWithTrailers.removeAny()) == null) {
-          lock.wait();
-        }
-      }
-
-      downloadMovieTrailer(movie);
-      Thread.sleep(1000);
-    }
-  }
-
-  private static void downloadMovieTrailer(final Movie movie) {
+  @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;
     }
@@ -131,16 +102,16 @@ public class TrailerCache extends AbstractCache {
       return;
     }
 
-    final Map<String, List<String>> index = getIndex();
+    final Map<String, List<String>> localIndex = getIndex();
 
-    final String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
+    final String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), localIndex.keySet());
     if (bestKey == null) {
       // no trailer for this movie. record that fact. we'll try again later
       FileUtilities.writeStringCollection(new ArrayList<String>(), trailerFilePath(movie));
       return;
     }
 
-    final List<String> studioAndLocation = index.get(bestKey);
+    final List<String> studioAndLocation = localIndex.get(bestKey);
     final String studio = studioAndLocation.get(0);
     final String location = studioAndLocation.get(1);
 
@@ -178,13 +149,6 @@ public class TrailerCache extends AbstractCache {
 
   public static String getTrailer(final Movie movie) {
     return FileUtilities.readString(trailerFilePath(movie));
-  }
-
-  public void prioritizeMovie(final Movie movie) {
-    synchronized (lock) {
-      prioritizedMovies.add(movie);
-      lock.notifyAll();
-    }
   }
 
   @Override

@@ -1,5 +1,8 @@
 package org.metasyntactic.views;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.activities.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
@@ -23,9 +25,6 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.WrapperListAdapter;
 import android.widget.AbsListView.OnScrollListener;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.activities.R;
-
 /**
  * FastScrollView is meant for embedding {@link GridView}s that contain a large
  * number of items that can be indexed in some fashion. It displays a special
@@ -34,7 +33,7 @@ import org.metasyntactic.activities.R;
  * {@link GridView}, with an adapter that is derived from {@link BaseAdapter}.
  */
 public class FastScrollGridView extends FrameLayout implements OnScrollListener,
-    OnHierarchyChangeListener {
+OnHierarchyChangeListener {
   private Drawable currentThumb;
   private Drawable overlayDrawable;
   private int thumbHeight;
@@ -178,7 +177,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-   
+
   public void onScroll(final AbsListView view, final int firstVisibleItem,
       final int visibleItemCount, final int totalItemCount) {
     if (totalItemCount - visibleItemCount > 0 && !dragging) {
@@ -316,11 +315,11 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     if (sectionIndex >= 0) {
       final String text = sectionText = localSections[sectionIndex].toString();
       drawOverlay = (text.length() != 1 || text.charAt(0) != ' ')
-          && sectionIndex < localSections.length;
+      && sectionIndex < localSections.length;
     } else {
       drawOverlay = false;
     }
-    
+
   }
 
   private static void cancelFling() {

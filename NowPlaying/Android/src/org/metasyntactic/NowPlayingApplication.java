@@ -59,7 +59,6 @@ public class NowPlayingApplication extends Application {
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
   public static final File upcomingCastDirectory = new File(upcomingDirectory, "Cast");
   public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
-  public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
   private static Pulser pulser;

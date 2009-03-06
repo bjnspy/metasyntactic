@@ -15,9 +15,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -26,23 +24,10 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-public class IMDbCache extends AbstractCache {
-  private final BoundedPrioritySet<Movie> normalMovies = new BoundedPrioritySet<Movie>();
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>();
+public class IMDbCache extends AbstractMovieCache {
 
   public IMDbCache(final NowPlayingModel model) {
     super(model);
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        try {
-          updateBackgroundEntryPoint();
-        } catch (final InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update IMDb", runnable, null, false);
   }
 
   private static String movieFileName(final Movie movie) {
@@ -54,27 +39,10 @@ public class IMDbCache extends AbstractCache {
   }
 
   public void update(final List<Movie> movies) {
-    synchronized (lock) {
-      normalMovies.addAll(movies);
-      lock.notifyAll();
-    }
+    addPrimaryMovies(movies);
   }
 
-  private void updateBackgroundEntryPoint() throws InterruptedException {
-    while (!shutdown) {
-      Movie movie = null;
-      synchronized (lock) {
-        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = normalMovies.removeAny()) == null) {
-          lock.wait();
-        }
-      }
-
-      downloadIMDbAddress(movie);
-      Thread.sleep(1000);
-    }
-  }
-
-  private static void downloadIMDbAddress(final Movie movie) {
+  @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;
     }
