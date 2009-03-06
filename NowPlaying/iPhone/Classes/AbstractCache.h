@@ -18,6 +18,8 @@
     Model* model;
 }
 
+- (void) didReceiveMemoryWarning;
+
 /* @protected */
 - (id) initWithModel:(Model*) model;
 

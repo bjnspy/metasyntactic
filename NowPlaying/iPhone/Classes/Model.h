@@ -65,6 +65,8 @@ enum ViewControllerType {
 
 + (NSString*) version;
 
+- (void) didReceiveMemoryWarning;
+
 - (void) update;
 - (void) updateDVDCache;
 - (void) updateUpcomingCache;

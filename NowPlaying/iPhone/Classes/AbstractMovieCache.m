@@ -15,6 +15,7 @@
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) LinkedSet* primaryMovies;
 @property (retain) LinkedSet* secondaryMovies;
+@property (retain) NSMutableSet* successfullyUpdatedMovies;
 @end
 
 
@@ -23,11 +24,13 @@
 @synthesize prioritizedMovies;
 @synthesize primaryMovies;
 @synthesize secondaryMovies;
+@synthesize successfullyUpdatedMovies;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
     self.primaryMovies = nil;
     self.secondaryMovies = nil;
+    self.successfullyUpdatedMovies = nil;
 
     [super dealloc];
 }
@@ -38,6 +41,7 @@
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.primaryMovies = [LinkedSet set];
         self.secondaryMovies = [LinkedSet set];
+        self.successfullyUpdatedMovies = [NSMutableSet set];
         
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
@@ -46,6 +50,12 @@
     }
     
     return self;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    [self clearSuccessfullyUpdatedMovies];
 }
 
 
@@ -78,7 +88,10 @@
             [gate unlock];
             
             if (movie != nil) {
-                [self updateMovieDetails:movie isPriority:isPriority];
+                if (![self successfullyUpdatedMoviesContains:movie]) {
+                    [self updateMovieDetails:movie isPriority:isPriority];
+                    [self addSuccessfullyUpdatedMovie:movie];
+                }
             }
             
             [NSThread sleepForTimeInterval:1];
@@ -88,11 +101,39 @@
 }
 
 
+- (BOOL) successfullyUpdatedMoviesContains:(Movie*) movie {
+    BOOL value;
+    [gate lock];
+    {
+        value = [successfullyUpdatedMovies containsObject:movie];
+    }
+    [gate unlock];
+    return value;
+}
+
+
+- (void) addSuccessfullyUpdatedMovie:(Movie*) movie {
+    [gate lock];
+    {
+        [successfullyUpdatedMovies addObject:movie];
+    }
+    [gate unlock];
+}
+
+
+- (void) clearSuccessfullyUpdatedMovies {
+    [gate lock];
+    {
+        [successfullyUpdatedMovies removeAllObjects];
+    }
+    [gate unlock];
+}
+
+
 - (void) addMovie:(Movie*) movie set:(LinkedSet*) set {
     [gate lock];
     {
-        [set addObject:movie];
-        [gate broadcast];
+        [set removeAllObjects];
     }
     [gate unlock];
 }
