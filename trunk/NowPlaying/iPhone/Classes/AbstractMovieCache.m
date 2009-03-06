@@ -131,9 +131,14 @@
 
 
 - (void) addMovie:(Movie*) movie set:(LinkedSet*) set {
+    if ([self successfullyUpdatedMoviesContains:movie]) {
+        return;
+    }
+    
     [gate lock];
     {
-        [set removeAllObjects];
+        [set addObject:movie];
+        [gate broadcast];
     }
     [gate unlock];
 }
