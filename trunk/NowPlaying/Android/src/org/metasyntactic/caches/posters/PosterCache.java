@@ -13,41 +13,24 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractMovieCache;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.AbstractCache;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-
-public class PosterCache extends AbstractCache {
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-  private final BoundedPrioritySet<Movie> moviesWithoutLinks = new BoundedPrioritySet<Movie>();
-  private final BoundedPrioritySet<Movie> moviesWithLinks = new BoundedPrioritySet<Movie>();
-
+public class PosterCache extends AbstractMovieCache {
   public PosterCache(final NowPlayingModel model) {
     super(model);
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        try {
-          updateBackgroundEntryPoint();
-        } catch (final InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, null, false);
   }
 
   private static File posterFile(final Movie movie) {
@@ -55,7 +38,9 @@ public class PosterCache extends AbstractCache {
   }
 
   public void update(final Iterable<Movie> movies) {
-    synchronized (lock) {
+    final List<Movie> moviesWithoutLinks = new ArrayList<Movie>();
+    final List<Movie> moviesWithLinks = new ArrayList<Movie>();
+
       for (final Movie movie : movies) {
         if (isNullOrEmpty(movie.getPoster())) {
           moviesWithoutLinks.add(movie);
@@ -64,26 +49,11 @@ public class PosterCache extends AbstractCache {
         }
       }
 
-      lock.notifyAll();
-    }
+    addPrimaryMovies(moviesWithLinks);
+    addSecondaryMovies(moviesWithoutLinks);
   }
 
-  private void updateBackgroundEntryPoint() throws InterruptedException {
-    while (!shutdown) {
-      Movie movie = null;
-      synchronized (lock) {
-        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = moviesWithLinks
-            .removeAny()) == null && (movie = moviesWithoutLinks.removeAny()) == null) {
-          lock.wait();
-        }
-      }
-
-      downloadPoster(movie);
-      Thread.sleep(1000);
-    }
-  }
-
-  private void downloadPoster(final Movie movie) {
+  @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;
     }
@@ -156,18 +126,15 @@ public class PosterCache extends AbstractCache {
     return posterFile(movie);
   }
 
-  public void prioritizeMovie(final Movie movie) {
-    synchronized (lock) {
-      prioritizedMovies.add(movie);
-      lock.notifyAll();
-    }
-  }
-
   @Override
   public void onLowMemory() {
     super.onLowMemory();
     ApplePosterDownloader.onLowMemory();
     FandangoPosterDownloader.onLowMemory();
     ImdbPosterDownloader.onLowMemory();
+  }
+
+  public void updateMovie(final Movie movie) {
+    addPrimaryMovie(movie);
   }
 }

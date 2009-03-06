@@ -13,25 +13,11 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
+import static java.lang.String.valueOf;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.utilities.XmlUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import java.io.File;
-import static java.lang.String.valueOf;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,13 +31,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class UpcomingCache extends AbstractCache {
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.utilities.XmlUtilities;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+public class UpcomingCache extends AbstractMovieCache {
   private static int identifier;
   private final DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-
-  private final BoundedPrioritySet<Movie> normalMovies = new BoundedPrioritySet<Movie>();
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-
 
   private String hash;
   private List<Movie> movies;
@@ -61,17 +57,6 @@ public class UpcomingCache extends AbstractCache {
 
   public UpcomingCache(final NowPlayingModel model) {
     super(model);
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        try {
-          updateDetailsBackgroundEntryPoint();
-        } catch (final InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, null, false);
   }
 
   private static File hashFile() {
@@ -170,10 +155,8 @@ public class UpcomingCache extends AbstractCache {
     updateIndexBackgroundEntryPointWorker();
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
 
-    synchronized (lock) {
-      normalMovies.addAll(getMovies());
-      lock.notifyAll();
-    }
+    updatedMoviesClear();
+    addPrimaryMovies(getMovies());
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
@@ -296,23 +279,7 @@ public class UpcomingCache extends AbstractCache {
     return result;
   }
 
-  private void updateDetailsBackgroundEntryPoint() throws InterruptedException {
-    while (!shutdown) {
-      Movie movie = null;
-      synchronized (lock) {
-        while (!shutdown &&
-            (movie = prioritizedMovies.removeAny()) == null &&
-            (movie = normalMovies.removeAny()) == null) {
-          lock.wait();
-        }
-      }
-
-      updateDetails(movie);
-      Thread.sleep(1000);
-    }
-  }
-
-  private void updateDetails(final Movie movie) {
+  @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;
     }
@@ -322,7 +289,7 @@ public class UpcomingCache extends AbstractCache {
     updateDetails(movie, studioKey, titleKey);
   }
 
-  private static void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
+  private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
     updatePoster(movie);
     if (!isNullOrEmpty(studioKey) && !isNullOrEmpty(titleKey)) {
       updateSynopsisAndCast(movie, studioKey, titleKey);
@@ -337,14 +304,6 @@ public class UpcomingCache extends AbstractCache {
 
   private static File getIMDbFile(final Movie movie) {
     return new File(NowPlayingApplication.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
-  }
-
-  private static File getPosterFile(final Movie movie) {
-    return new File(NowPlayingApplication.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
-  }
-
-  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
-    return getPosterFile(movie);
   }
 
   private static File getSynopsisFile(final Movie movie) {
@@ -419,24 +378,8 @@ public class UpcomingCache extends AbstractCache {
     }
   }
 
-  private static void updatePoster(final Movie movie) {
-    if (isNullOrEmpty(movie.getPoster())) {
-      return;
-    }
-
-    final File file = getPosterFile(movie);
-    if (file.exists()) {
-      return;
-    }
-
-    final byte[] data = NetworkUtilities.download(movie.getPoster(), false);
-    if (data == null) {
-      return;
-    }
-
-    FileUtilities.writeBytes(data, file);
-
-    NowPlayingApplication.refresh();
+  private void updatePoster(final Movie movie) {
+    model.getPosterCache().updateMovie(movie);
   }
 
   private static void updateImdb(final Movie movie) {
@@ -467,11 +410,6 @@ public class UpcomingCache extends AbstractCache {
   public static String getTrailer(final Movie movie) {
     return FileUtilities.readString(getTrailersFile(movie));
   }
-
-  public static byte[] getPoster(final Movie movie) {
-    return FileUtilities.readBytes(getPosterFile(movie));
-  }
-
   public static String getSynopsis(final Movie movie) {
     return FileUtilities.readString(getSynopsisFile(movie));
   }
@@ -480,17 +418,10 @@ public class UpcomingCache extends AbstractCache {
     return FileUtilities.readString(getIMDbFile(movie));
   }
 
-  public void prioritizeMovie(final Movie movie) {
-    synchronized (lock) {
-      prioritizedMovies.add(movie);
-      lock.notifyAll();
-    }
-  }
-
   @Override
   protected List<File> getCacheDirectories() {
     return Arrays.asList(NowPlayingApplication.upcomingCastDirectory, NowPlayingApplication.upcomingImdbDirectory,
-        NowPlayingApplication.upcomingPostersDirectory, NowPlayingApplication.upcomingSynopsesDirectory,
+        NowPlayingApplication.upcomingSynopsesDirectory,
         NowPlayingApplication.upcomingTrailersDirectory);
   }
 
