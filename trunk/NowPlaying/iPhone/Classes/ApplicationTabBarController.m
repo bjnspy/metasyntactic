@@ -15,11 +15,13 @@
 #import "ApplicationTabBarController.h"
 
 #import "AllMoviesViewController.h"
+#import "Application.h"
 #import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "NetworkUtilities.h"
 #import "SettingsNavigationController.h"
 #import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
@@ -120,6 +122,15 @@
 
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
+            
+            if ([NetworkUtilities isNetworkAvailable]) {
+                //if (!self.model.votedForIcon) {
+                    [self.model setVotedForIcon];
+                    
+                    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
+                    [controller pushBrowser:url showSafariButton:NO animated:YES];
+                //}
+            }
         }
 
         self.delegate = self;
