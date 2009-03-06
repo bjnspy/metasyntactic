@@ -122,7 +122,7 @@ static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
 static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
 static NSString* NETFLIX_THEME                          = @"netflixTheme";
 static NSString* SHOW_POSTERS_IMMEDIATELY               = @"showPostersImmediately";
-static NSString* VOTE_FOR_ICON                          = @"voteForIcon";
+static NSString* VOTED_FOR_ICON                         = @"votedForIcon";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -162,7 +162,7 @@ static NSString** ALL_KEYS[] = {
 &UPCOMING_DISABLED,
 &NETFLIX_THEME,
 &SHOW_POSTERS_IMMEDIATELY,
-&VOTE_FOR_ICON,
+&VOTED_FOR_ICON,
 };
 
 
@@ -200,7 +200,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
 &SHOW_POSTERS_IMMEDIATELY,
-&VOTE_FOR_ICON,
+&VOTED_FOR_ICON,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -561,22 +561,14 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
 }
 
 
-- (void) iconVote {
-    BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:VOTE_FOR_ICON];
-    if (hasShown) {
-        return;
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VOTE_FOR_ICON];
+- (BOOL) votedForIcon {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VOTED_FOR_ICON];
+}
+
+
+- (void) setVotedForIcon {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VOTED_FOR_ICON];
     [self synchronize];
-    
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
-                                                     message:NSLocalizedString(@"Based on the feedback I've received about all my icons, I've decided to have a public vote to determine which icon Now Playing should use.\n\nTapping the button below will allow you, and the rest of the community, to decide which direction the app goes in.\n\nThanks so much!\n(this will only be shown once)", nil)
-                                                    delegate:self
-                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
-                                           otherButtonTitles:NSLocalizedString(@"Vote", nil), nil] autorelease];
-    alert.tag = ICON_VOTE_ALERT_VIEW_TAG;
-    [alert show];
 }
 
 
@@ -585,7 +577,6 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
         [self checkCountry];
         [self loadData];
         [self checkDate];
-        [self iconVote];
 
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];

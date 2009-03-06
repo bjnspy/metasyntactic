@@ -67,6 +67,9 @@ enum ViewControllerType {
 
 - (void) didReceiveMemoryWarning;
 
+- (BOOL) votedForIcon;
+- (void) setVotedForIcon;
+
 - (void) update;
 - (void) updateDVDCache;
 - (void) updateUpcomingCache;
