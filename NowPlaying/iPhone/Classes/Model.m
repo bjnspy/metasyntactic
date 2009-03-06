@@ -122,6 +122,7 @@ static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
 static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
 static NSString* NETFLIX_THEME                          = @"netflixTheme";
 static NSString* SHOW_POSTERS_IMMEDIATELY               = @"showPostersImmediately";
+static NSString* VOTE_FOR_ICON                          = @"voteForIcon";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -161,6 +162,7 @@ static NSString** ALL_KEYS[] = {
 &UPCOMING_DISABLED,
 &NETFLIX_THEME,
 &SHOW_POSTERS_IMMEDIATELY,
+&VOTE_FOR_ICON,
 };
 
 
@@ -198,6 +200,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
 &SHOW_POSTERS_IMMEDIATELY,
+&VOTE_FOR_ICON,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -481,6 +484,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         return;
     }
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    [self synchronize];
 
     NSString* warning =
     [NSString stringWithFormat:
@@ -490,6 +494,10 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     [AlertUtilities showOkAlert:warning];
 }
+
+
+const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
+const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
 
 
 - (void) checkDate {
@@ -523,15 +531,52 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
                                                     delegate:self
                                            cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
                                            otherButtonTitles:NSLocalizedString(@"Write Review", nil), nil] autorelease];
-
+    alert.tag = CHECK_DATE_ALERT_VIEW_TAG;
     [alert show];
 }
 
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void) didDismissCheckDateAlert:(UIAlertView*) alertView
+                  withButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
         [Application openBrowser:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8"];
     }
+}
+
+
+- (void) didDismissIconVoteAlert:(UIAlertView*) alertView
+                  withButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+    } 
+}
+
+
+- (void)              alertView:(UIAlertView*) alertView
+      didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == CHECK_DATE_ALERT_VIEW_TAG) {
+        [self didDismissCheckDateAlert:alertView withButtonIndex:buttonIndex];
+    } else if (alertView.tag == ICON_VOTE_ALERT_VIEW_TAG) {
+        [self didDismissIconVoteAlert:alertView withButtonIndex:buttonIndex];
+    }
+}
+
+
+- (void) iconVote {
+    BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:VOTE_FOR_ICON];
+    if (hasShown) {
+        return;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VOTE_FOR_ICON];
+    [self synchronize];
+    
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
+                                                     message:NSLocalizedString(@"Based on the feedback I've received about all my icons, I've decided to have a public vote to determine which icon Now Playing should use.\n\nTapping the button below will allow you, and the rest of the community, to decide which direction the app goes in.\n\nThanks so much!\n(this will only be shown once)", nil)
+                                                    delegate:self
+                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
+                                           otherButtonTitles:NSLocalizedString(@"Vote", nil), nil] autorelease];
+    alert.tag = ICON_VOTE_ALERT_VIEW_TAG;
+    [alert show];
 }
 
 
@@ -540,6 +585,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         [self checkCountry];
         [self loadData];
         [self checkDate];
+        [self iconVote];
 
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
