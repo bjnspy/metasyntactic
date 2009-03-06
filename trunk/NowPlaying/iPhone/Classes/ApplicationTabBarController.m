@@ -119,7 +119,7 @@
             } else {
                 controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
             }
-
+            
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
             
