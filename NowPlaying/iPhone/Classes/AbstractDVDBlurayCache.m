@@ -336,7 +336,7 @@
     }
 
     [self saveData:map];
-    [self clearSuccessfullyUpdatedMovies];
+    [self clearUpdatedMovies];
 
     [self performSelectorOnMainThread:@selector(reportResults:)
                            withObject:map

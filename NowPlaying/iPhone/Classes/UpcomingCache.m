@@ -338,7 +338,7 @@
     }
 
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
-    [self clearSuccessfullyUpdatedMovies];
+    [self clearUpdatedMovies];
 
     NSArray* arguments = [NSArray arrayWithObjects:serverHash, movies, studioKeys, titleKeys, nil];
     [self performSelectorOnMainThread:@selector(reportIndex:)
