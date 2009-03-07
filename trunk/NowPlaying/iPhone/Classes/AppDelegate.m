@@ -93,6 +93,7 @@ static AppDelegate* appDelegate = nil;
     [window makeKeyAndVisible];
     self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
 
+    // Ok.  We've set up all our global state.  Now get the ball rolling.
     [controller start];
 }
 
@@ -151,12 +152,12 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void)application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
+- (void) application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
     [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
 }
 
 
-- (void)application:(UIApplication*) application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
+- (void) application:(UIApplication*) application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
     [notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
 }
 
@@ -165,7 +166,7 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void)applicationDidReceiveMemoryWarning:(UIApplication*) application {
+- (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
     [model didReceiveMemoryWarning];
 }
 

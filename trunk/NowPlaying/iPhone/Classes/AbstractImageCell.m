@@ -165,7 +165,7 @@
     imageView.image = nil;
     imageView.alpha = 0;
     imageLoadingView.alpha = 1;
-    
+
     if (!model.delayPosterLoading) {
         [self loadImage];
     }

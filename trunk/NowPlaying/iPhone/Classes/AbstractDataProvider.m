@@ -543,8 +543,8 @@
     if (theaterSyncDate == nil) {
         return NO;
     }
-    
-    return ![DateUtilities isToday:theaterSyncDate];    
+
+    return ![DateUtilities isToday:theaterSyncDate];
 #endif
 }
 

@@ -347,10 +347,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    
+
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == VoteForIconSection) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
         [navigationController pushBrowser:url showSafariButton:NO animated:YES];
@@ -399,7 +399,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
                 url = @"http://www.netflix.com";
             }
         }
-        
+
         [Application openBrowser:url];
     } else if (indexPath.section == LocalizedBySection) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];

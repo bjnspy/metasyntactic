@@ -163,7 +163,7 @@
     if (!model.dvdBlurayEnabled) {
         return;
     }
-    
+
     if (updated) {
         return;
     }
@@ -341,7 +341,7 @@
     [self performSelectorOnMainThread:@selector(reportResults:)
                            withObject:map
                         waitUntilDone:NO];
-    
+
     return map.allKeys;
 }
 
@@ -351,7 +351,7 @@
     if (movies.count == 0) {
         movies = [self loadMovies];
     }
-    
+
     [self addPrimaryMovies:movies];
 }
 
@@ -378,10 +378,10 @@
             [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
-    
+
     [self saveBookmarks];
     [self setMovies:movies];
-    
+
     [AppDelegate majorRefresh];
 }
 

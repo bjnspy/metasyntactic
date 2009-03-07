@@ -329,7 +329,7 @@ const double LOAD_DELAY = 1;
 
     UIActivityIndicatorView* savingActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     [savingActivityIndicator startAnimating];
-    
+
     [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingActivityIndicator] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
@@ -517,7 +517,7 @@ const double LOAD_DELAY = 1;
             [self performSelectorOnMainThread:@selector(reportSingleSave:) withObject:[NSNumber numberWithInteger:index] waitUntilDone:NO];
         }
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (void*)nextIndex);
-    } 
+    }
 }
 
 
@@ -525,7 +525,7 @@ const double LOAD_DELAY = 1;
       didFinishSavingWithError:(NSError*) error
                    contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
-    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:) 
+    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
                                   onTarget:self
                                   argument:[NSNumber numberWithInteger:nextIndex]
                                       gate:nil

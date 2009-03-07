@@ -49,7 +49,7 @@ static BOOL use24HourTime;
             todayComponents.hour = 12;
             today = [[calendar dateFromComponents:todayComponents] retain];
         }
-        
+
         yearsAgoMap = [[NSMutableDictionary dictionary] retain];
         monthsAgoMap = [[NSMutableDictionary dictionary] retain];
         weeksAgoMap = [[NSMutableDictionary dictionary] retain];

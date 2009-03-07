@@ -213,7 +213,7 @@
         [serverHash isEqual:@"0"]) {
         return;
     }
-    
+
     if ([serverHash isEqual:localHash]) {
         // rewrite the hash so we don't this for another day.
         [FileUtilities writeObject:serverHash toFile:self.hashFile];
@@ -355,7 +355,7 @@
         [serverHash isEqual:@"0"]) {
         return;
     }
-    
+
     NSString* title = score.canonicalTitle;
     if ([serverHash isEqual:localHash]) {
         // save the hash again so we don't check for 3 more days.

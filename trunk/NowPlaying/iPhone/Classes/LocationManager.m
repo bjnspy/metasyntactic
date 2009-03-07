@@ -155,7 +155,7 @@
     if (userInvoked) {
         [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
     }
-    
+
     [self stopAll];
 
     // intermittent failures are not uncommon. retry in a minute.

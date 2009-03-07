@@ -13,7 +13,7 @@
     LinkedSet* prioritizedMovies;
     LinkedSet* primaryMovies;
     LinkedSet* secondaryMovies;
-    
+
     NSMutableSet* successfullyUpdatedMovies;
 }
 

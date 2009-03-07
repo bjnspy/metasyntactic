@@ -42,13 +42,13 @@
         self.primaryMovies = [LinkedSet set];
         self.secondaryMovies = [LinkedSet set];
         self.successfullyUpdatedMovies = [NSMutableSet set];
-        
+
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
                                        visible:NO];
     }
-    
+
     return self;
 }
 
@@ -86,14 +86,14 @@
                 isPriority = count != prioritizedMovies.count;
             }
             [gate unlock];
-            
+
             if (movie != nil) {
                 if (![self successfullyUpdatedMoviesContains:movie]) {
                     [self updateMovieDetails:movie isPriority:isPriority];
                     [self addSuccessfullyUpdatedMovie:movie];
                 }
             }
-            
+
             [NSThread sleepForTimeInterval:1];
         }
         [pool release];
@@ -134,7 +134,7 @@
     if ([self successfullyUpdatedMoviesContains:movie]) {
         return;
     }
-    
+
     [gate lock];
     {
         [set addObject:movie];
