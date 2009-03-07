@@ -103,13 +103,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Section* section = [article.sections objectAtIndex:indexPath.row];
     FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithNavigationController:navigationController section:section] autorelease];
-    [navigationController pushViewController:controller animated:YES];
-}
-
-
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-    return nil;
+    [navigationController pushViewController:controller
+                                    animated:YES];
 }
 
 

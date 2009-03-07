@@ -837,36 +837,6 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSString*) moviePosterFile:(Movie*) movie {
-    return
-    [[[Application netflixPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"jpg"];
-}
-
-
-- (NSString*) smallMoviePosterFile:(Movie*) movie {
-    return
-    [[[Application netflixPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"-small.png"];
-}
-
-
-- (void) updateMoviePoster:(Movie*) movie {
-    if (movie.poster.length == 0) {
-        return;
-    }
-    
-    NSString* path = [self moviePosterFile:movie];
-    if ([FileUtilities fileExists:path]) {
-        return;
-    }
-    
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
-    if (data.length > 0) {
-        [FileUtilities writeData:data toFile:path];
-        [AppDelegate minorRefresh];
-    }
-}
-
-
 - (void) updatePersonPoster:(Person*) person {
     [model.personPosterCache update:person];
 }
@@ -1261,7 +1231,7 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
-    [self updateMoviePoster:movie];
+    [model.posterCache updateMovie:movie];
     //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
     [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats"];
     [self updateRatings:movie];
@@ -1478,35 +1448,6 @@ static NSDictionary* availabilityMap = nil;
     }
     
     [AppDelegate majorRefresh];
-}
-
-
-- (UIImage*) posterForMovie:(Movie*) movie {
-    movie = [self promoteDiscToSeries:movie];
-    
-    NSData* data = [FileUtilities readData:[self moviePosterFile:movie]];
-    return [UIImage imageWithData:data];
-}
-
-
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
-    movie = [self promoteDiscToSeries:movie];
-    
-    NSString* smallPosterPath = [self smallMoviePosterFile:movie];
-    NSData* smallPosterData;
-    
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self moviePosterFile:movie]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-        
-        [FileUtilities writeData:smallPosterData
-                          toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
-    
-    return [UIImage imageWithData:smallPosterData];
 }
 
 

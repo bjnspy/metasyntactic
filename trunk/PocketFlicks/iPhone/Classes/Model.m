@@ -461,14 +461,14 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, netflixCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
                        selector:@selector(posterForMovie:)];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, netflixCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
                        selector:@selector(smallPosterForMovie:)];
 }
 

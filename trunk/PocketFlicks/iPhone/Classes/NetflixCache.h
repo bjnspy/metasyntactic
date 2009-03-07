@@ -18,21 +18,21 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     // people whose details we want to update
     LinkedSet* prioritizedPeople;
     LinkedSet* searchPeople;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
-
+    
 @protected
     NSMutableDictionary* presubmitRatings;
 }
@@ -62,8 +62,6 @@
 - (NSArray*) moviesForRSSTitle:(NSString*) title;
 - (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
