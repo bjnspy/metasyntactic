@@ -242,7 +242,7 @@
         }/* else if (row == 8) {
             text = NSLocalizedString(@"Delay Poster Loading", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.delayPosterLoading;
-            selector = @selector(onDelayPosterLoadingChanged:);            
+            selector = @selector(onDelayPosterLoadingChanged:);
         }
          */
 

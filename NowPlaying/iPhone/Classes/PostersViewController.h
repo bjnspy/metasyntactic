@@ -28,7 +28,7 @@
     UIToolbar* toolbar;
 
     BOOL shutdown;
-    
+
     BOOL saving;
     UILabel* savingLabel;
 }

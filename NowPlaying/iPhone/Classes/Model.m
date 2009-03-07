@@ -80,88 +80,91 @@
 static NSString* currentVersion = @"3.4.0";
 static NSString* persistenceVersion = @"104";
 
-static NSString* VERSION = @"version";
-
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
-static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
-static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
-static NSString* BOOKMARKED_UPCOMING                    = @"bookmarkedUpcoming";
-static NSString* BOOKMARKED_DVD                         = @"bookmarkedDVD";
 static NSString* BOOKMARKED_BLURAY                      = @"bookmarkedBluray";
-static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
-static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
+static NSString* BOOKMARKED_DVD                         = @"bookmarkedDVD";
+static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
+static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
+static NSString* BOOKMARKED_UPCOMING                    = @"bookmarkedUpcoming";
+static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
 static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
-static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
+static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
+static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
+static NSString* FIRST_LAUNCH_DATE                      = @"firstLaunchDate";
+static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewRequest";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
+static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
+static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
+static NSString* NETFLIX_FIRST_NAME                     = @"netflixFirstName";
+static NSString* NETFLIX_KEY                            = @"netflixKey";
+static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
+static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
+static NSString* NETFLIX_SECRET                         = @"netflixSecret";
+static NSString* NETFLIX_THEME                          = @"netflixTheme";
+static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
 static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
+static NSString* RUN_COUNT                              = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                   = @"scoreProviderIndex";
+static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
-static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
-static NSString* USER_ADDRESS                           = @"userLocation";
-static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
-static NSString* RUN_COUNT                              = @"runCount";
-static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
-static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
-static NSString* NETFLIX_KEY                            = @"netflixKey";
-static NSString* NETFLIX_SECRET                         = @"netflixSecret";
-static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
-static NSString* NETFLIX_FIRST_NAME                     = @"netflixFirstName";
-static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
-static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
-static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
-static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
-static NSString* FIRST_LAUNCH_DATE                      = @"firstLaunchDate";
-static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewRequest";
-static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
-static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
-static NSString* NETFLIX_THEME                          = @"netflixTheme";
 static NSString* SHOW_POSTERS_IMMEDIATELY               = @"showPostersImmediately";
+static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
+static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
+static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
+static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
+static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
+static NSString* USER_ADDRESS                           = @"userLocation";
+static NSString* VERSION                                = @"version";
 static NSString* VOTED_FOR_ICON                         = @"votedForIcon";
 
 static NSString** ALL_KEYS[] = {
-&VERSION,
 &ALL_MOVIES_SELECTED_SEGMENT_INDEX,
 &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
 &AUTO_UPDATE_LOCATION,
-&BOOKMARKED_TITLES,
-&BOOKMARKED_MOVIES,
-&BOOKMARKED_UPCOMING,
-&BOOKMARKED_DVD,
 &BOOKMARKED_BLURAY,
-&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-&DVD_MOVIES_HIDE_DVDS,
+&BOOKMARKED_DVD,
+&BOOKMARKED_MOVIES,
+&BOOKMARKED_TITLES,
+&BOOKMARKED_UPCOMING,
+&DVD_BLURAY_DISABLED,
 &DVD_MOVIES_HIDE_BLURAY,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
+&DVD_MOVIES_HIDE_DVDS,
+&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
 &FAVORITE_THEATERS,
+&FIRST_LAUNCH_DATE,
+&HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &NAVIGATION_STACK_TYPES,
 &NAVIGATION_STACK_VALUES,
+&NETFLIX_CAN_INSTANT_WATCH,
+&NETFLIX_ENABLED,
+&NETFLIX_FIRST_NAME,
+&NETFLIX_KEY,
+&NETFLIX_LAST_NAME,
+&NETFLIX_PREFERRED_FORMATS,
+&NETFLIX_SECRET,
+&NETFLIX_THEME,
+&NETFLIX_USER_ID,
 &PRIORITIZE_BOOKMARKS,
+&RUN_COUNT,
 &SCORE_PROVIDER_INDEX,
+&SCREEN_ROTATION_DISABLED,
 &SEARCH_DATE,
 &SEARCH_RADIUS,
 &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-&USER_ADDRESS,
-&USE_NORMAL_FONTS,
-&RUN_COUNT,
-&NETFLIX_ENABLED,
-&NETFLIX_KEY,
-&NETFLIX_SECRET,
-&NETFLIX_USER_ID,
-&NETFLIX_FIRST_NAME,
-&NETFLIX_LAST_NAME,
-&NETFLIX_CAN_INSTANT_WATCH,
-&NETFLIX_PREFERRED_FORMATS,
-&DVD_BLURAY_DISABLED,
-&UPCOMING_DISABLED,
-&NETFLIX_THEME,
 &SHOW_POSTERS_IMMEDIATELY,
+&UNSUPPORTED_COUNTRY,
+&UPCOMING_AND_DVD_HIDE_UPCOMING,
+&UPCOMING_DISABLED,
+&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
+&USE_NORMAL_FONTS,
+&USER_ADDRESS,
+&VERSION,
 &VOTED_FOR_ICON,
 };
 
@@ -447,7 +450,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [defaults removeObjectForKey:key];
         }
 
-        // And delete and stored state
+        // And delete any stored state
         [Application resetDirectories];
 
         // Now restore the saved preferences.
@@ -495,10 +498,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [AlertUtilities showOkAlert:warning];
 }
 
-
 const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
-const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
-
 
 - (void) checkDate {
     NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
@@ -536,27 +536,10 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
 }
 
 
-- (void) didDismissCheckDateAlert:(UIAlertView*) alertView
-                  withButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        [Application openBrowser:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8"];
-    }
-}
-
-
-- (void) didDismissIconVoteAlert:(UIAlertView*) alertView
-                  withButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != alertView.cancelButtonIndex) {
-    } 
-}
-
-
 - (void)              alertView:(UIAlertView*) alertView
       didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == CHECK_DATE_ALERT_VIEW_TAG) {
-        [self didDismissCheckDateAlert:alertView withButtonIndex:buttonIndex];
-    } else if (alertView.tag == ICON_VOTE_ALERT_VIEW_TAG) {
-        [self didDismissIconVoteAlert:alertView withButtonIndex:buttonIndex];
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        [Application openBrowser:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8"];
     }
 }
 
@@ -643,7 +626,7 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
     [posterCache didReceiveMemoryWarning];
     [scoreCache didReceiveMemoryWarning];
     [upcomingCache didReceiveMemoryWarning];
-    [netflixCache didReceiveMemoryWarning];  
+    [netflixCache didReceiveMemoryWarning];
 }
 
 
@@ -989,7 +972,7 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
 
 
 - (BOOL) delayPosterLoading {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:SHOW_POSTERS_IMMEDIATELY]; 
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:SHOW_POSTERS_IMMEDIATELY];
 }
 
 
@@ -1048,7 +1031,7 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
     if (isSearchDateTodayData == nil) {
         self.isSearchDateTodayData = [NSNumber numberWithBool:[DateUtilities isToday:self.searchDate]];
     }
-    
+
     return isSearchDateTodayData.boolValue;
 }
 
@@ -1390,15 +1373,10 @@ const NSInteger ICON_VOTE_ALERT_VIEW_TAG = 2;
 }
 
 
-- (BOOL) isStaleWorker:(Theater*) theater {
-    return [dataProvider isStale:theater];
-}
-
-
 - (BOOL) isStale:(Theater*) theater {
     NSNumber* stale = theater.isStale;
     if (stale == nil) {
-        stale = [NSNumber numberWithBool:[self isStaleWorker:theater]];
+        stale = [NSNumber numberWithBool:[dataProvider isStale:theater]];
         theater.isStale = stale;
     }
 
@@ -1794,7 +1772,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                       [LocaleUtilities englishLanguage]];
 
     if (self.netflixEnabled) {
-        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
+        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+                [StringUtilities nonNilString:self.netflixUserId],
+                [StringUtilities nonNilString:self.netflixKey],
+                [StringUtilities nonNilString:self.netflixSecret]];
     }
 
     NSString* subject;

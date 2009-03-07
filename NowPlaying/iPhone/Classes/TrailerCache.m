@@ -81,7 +81,7 @@
 
     for (Movie* movie in movies) {
         NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-        
+
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
@@ -90,7 +90,7 @@
             }
         }
     }
-    
+
     [self addPrimaryMovies:moviesWithoutTrailers];
     [self addSecondaryMovies:moviesWithTrailers];
 }
@@ -161,7 +161,7 @@
     if (isPriority && [FileUtilities fileExists:[self trailerFile:movie]]) {
         return;
     }
-    
+
     if (index == nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
         NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];

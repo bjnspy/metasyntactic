@@ -344,7 +344,7 @@
     [self performSelectorOnMainThread:@selector(reportIndex:)
                            withObject:arguments
                         waitUntilDone:NO];
-    
+
     return movies;
 }
 
@@ -354,7 +354,7 @@
     if (movies.count == 0) {
         movies = [[self loadMovies] allValues];
     }
-    
+
     [self addPrimaryMovies:movies];
 }
 
@@ -367,7 +367,7 @@
     if (!model.upcomingEnabled) {
         return;
     }
-    
+
     if (updated) {
         return;
     }
@@ -409,7 +409,7 @@
     self.movieMapData = movieMap;
     self.studioKeysData = [arguments objectAtIndex:2];
     self.titleKeysData = [arguments objectAtIndex:3];
-    
+
     [AppDelegate majorRefresh];
 }
 
@@ -440,7 +440,7 @@
     if (studio.length == 0 || title.length == 0) {
         return;
     }
-    
+
     NSString* synopsisFile = [self synopsisFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
@@ -534,7 +534,7 @@
 - (void) updateMovieDetails:(Movie*) movie {
     NSString* studio = [self.studioKeys objectForKey:movie.canonicalTitle];
     NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
-    
+
     [self updateMovieDetails:movie
                  studio:studio
                   title:title];

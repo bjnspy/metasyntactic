@@ -253,105 +253,6 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) emptyTrashBackgroundEntryPoint {
-    for (NSString* path in [FileUtilities directoryContentsPaths:[self trashDirectory]]) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-        }
-        [pool release];
-    }
-}
-
-
-+ (void) resetDirectories {
-    [gate lock];
-    {
-        [self deleteDirectories];
-        [self createDirectories];
-    }
-    [gate unlock];
-}
-
-
-+ (void) resetNetflixDirectories {
-    [gate lock];
-    {
-        [self moveItemToTrash:netflixUserRatingsDirectory];
-        [self moveItemToTrash:netflixPredictedRatingsDirectory];
-        [self moveItemToTrash:netflixQueuesDirectory];
-        [self createDirectories];
-    }
-    [gate unlock];
-}
-
-
-+ (void) clearStaleDataWorker:(NSString*) directory {
-    NSArray* names = [FileUtilities directoryContentsNames:directory];
-    for (NSString* name in names) {
-        // clear 5% of the old directories
-        if ((rand() % 1000) < 50) {
-            NSString* path = [directory stringByAppendingPathComponent:name];
-            NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
-
-            if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-                // don't delete folders
-                continue;
-            }
-
-            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
-            if (lastModifiedDate != nil) {
-                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                    [self moveItemToTrash:path];
-                }
-            }
-        }
-    }
-}
-
-
-+ (void) clearStaleData:(NSString*) directory {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-        [self clearStaleDataWorker:directory];
-    }
-    [pool release];
-}
-
-
-+ (void) clearStaleData {
-    [gate lock];
-    {
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-            if ([netflixRSSDirectory isEqual:directory] ||
-                [userLocationsDirectory isEqual:directory]) {
-                continue;
-            }
-
-            [self clearStaleData:directory];
-        }
-
-        for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
-            if ([FileUtilities isDirectory:path]) {
-                [self clearStaleData:path];
-            }
-        }
-    }
-    [gate unlock];
-}
-
-
-+ (void) moveItemToTrash:(NSString*) path {
-    [gate lock];
-    {
-        NSString* trashPath = [self uniqueTrashDirectory];
-        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-    }
-    [gate unlock];
-}
-
-
 + (NSString*) cacheDirectory {
     return cacheDirectory;
 }
@@ -512,6 +413,115 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (void) removeItem:(NSString*) item {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        if ([FileUtilities isDirectory:item]) {
+            for (NSString* child in [FileUtilities directoryContentsPaths:item]) {
+                [[NSFileManager defaultManager] removeItemAtPath:child error:NULL];
+                [NSThread sleepForTimeInterval:1];
+            }
+        }
+
+        [[NSFileManager defaultManager] removeItemAtPath:item error:NULL];
+    }
+    [pool release];
+}
+
+
++ (void) emptyTrashBackgroundEntryPoint {
+    [self removeItem:[self trashDirectory]];
+}
+
+
++ (void) resetDirectories {
+    [gate lock];
+    {
+        [self deleteDirectories];
+        [self createDirectories];
+    }
+    [gate unlock];
+}
+
+
++ (void) resetNetflixDirectories {
+    [gate lock];
+    {
+        [self moveItemToTrash:netflixUserRatingsDirectory];
+        [self moveItemToTrash:netflixPredictedRatingsDirectory];
+        [self moveItemToTrash:netflixQueuesDirectory];
+        [self createDirectories];
+    }
+    [gate unlock];
+}
+
+
++ (void) clearStaleDataWorker:(NSString*) directory {
+    NSArray* names = [FileUtilities directoryContentsNames:directory];
+    for (NSString* name in names) {
+        // clear 5% of the old directories
+        if ((rand() % 1000) < 50) {
+            NSString* path = [directory stringByAppendingPathComponent:name];
+            NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
+
+            if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+                // don't delete folders
+                continue;
+            }
+
+            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
+            if (lastModifiedDate != nil) {
+                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                    [self moveItemToTrash:path];
+                }
+            }
+        }
+    }
+}
+
+
++ (void) clearStaleData:(NSString*) directory {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        [self clearStaleDataWorker:directory];
+    }
+    [pool release];
+}
+
+
++ (void) clearStaleData {
+    [gate lock];
+    {
+        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
+            NSString* directory = *directories[i];
+            if ([netflixRSSDirectory isEqual:directory] ||
+                [userLocationsDirectory isEqual:directory]) {
+                continue;
+            }
+
+            [self clearStaleData:directory];
+        }
+
+        for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
+            if ([FileUtilities isDirectory:path]) {
+                [self clearStaleData:path];
+            }
+        }
+    }
+    [gate unlock];
+}
+
+
++ (void) moveItemToTrash:(NSString*) path {
+    [gate lock];
+    {
+        NSString* trashPath = [self uniqueTrashDirectory];
+        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
+    }
+    [gate unlock];
+}
+
+
 + (NSString*) randomString {
     NSMutableString* string = [NSMutableString string];
     for (int i = 0; i < 8; i++) {
@@ -595,7 +605,7 @@ static DifferenceEngine* differenceEngine = nil;
 #if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    //*
+    /*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";

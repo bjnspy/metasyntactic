@@ -106,12 +106,6 @@
 }
 
 
-- (void) spawnModelUpdateThread {
-    NSAssert([NSThread isMainThread], nil);
-    [self.model update];
-}
-
-
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context {
     // Save the results.
     [self.model.dataProvider saveResult:lookupResult];
@@ -138,7 +132,6 @@
 
 - (void) spawnScoresLookupThread {
     NSAssert([NSThread isMainThread], nil);
-    [self.model.scoreCache update];
 }
 
 
@@ -151,23 +144,11 @@
 }
 
 
-- (void) spawnNetflixThread {
-    NSAssert([NSThread isMainThread], nil);
-    [self.model.netflixCache update];
-}
-
-
-- (void) spawnUpdateRemainderThreads {
-    NSAssert([NSThread isMainThread], nil);
-    [self spawnScoresLookupThread];
-    [self spawnNetflixThread];
-    [self spawnModelUpdateThread];
-}
-
-
 - (void) onDataProviderUpdateComplete {
     NSAssert([NSThread isMainThread], nil);
-    [self spawnUpdateRemainderThreads];
+    [self.model.scoreCache update];
+    [self.model.netflixCache update];
+    [self.model update];
 }
 
 
@@ -275,13 +256,13 @@
     [appDelegate.tabBarController resetTabs:YES];
     [Application resetNetflixDirectories];
     [AppDelegate majorRefresh];
-    [self spawnNetflixThread];
+    [self.model.netflixCache update];
 }
 
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [self.model setNetflixKey:key secret:secret userId:userId];
-    [self spawnNetflixThread];
+    [self.model.netflixCache update];
 }
 
 @end
