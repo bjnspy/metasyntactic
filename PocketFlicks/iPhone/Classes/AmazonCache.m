@@ -26,35 +26,20 @@
 #import "Utilities.h"
 
 @interface AmazonCache()
-@property (retain) LinkedSet* prioritizedMovies;
-@property (retain) LinkedSet* normalMovies;
 @end
 
 
 @implementation AmazonCache
 
-@synthesize prioritizedMovies;
-@synthesize normalMovies;
-
 - (void) dealloc {
-    self.prioritizedMovies = nil;
-    self.normalMovies = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.normalMovies = [LinkedSet set];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
-
+    
     return self;
 }
 
@@ -71,89 +56,44 @@
 
 
 - (void) update:(NSArray*) movies {
-    [gate lock];
-    {
-        [normalMovies addObjectsFromArray:movies];
-        [gate signal];
-    }
-    [gate unlock];
+    [self addPrimaryMovies:movies];
 }
 
 
 - (void) updateMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [normalMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
+    [self addPrimaryMovie:movie];
 }
 
 
-- (void) updateAddress:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self amazonFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-
+    
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-
+        
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* amazonAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (amazonAddress == nil) {
         return;
     }
-
+    
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:amazonAddress toFile:path];
     if (amazonAddress.length > 0) {
         [AppDelegate minorRefresh];
     }
-}
-
-
-- (void) updateAddressBackgroundEntryPoint {
-    NSAssert(![NSThread isMainThread], nil);
-    while (YES) {
-        Movie* movie = nil;
-        BOOL isPriority = NO;
-        [gate lock];
-        {
-            NSInteger count = prioritizedMovies.count;
-            while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                   (movie = [normalMovies removeLastObjectAdded]) == nil) {
-                [gate wait];
-            }
-            isPriority = count != prioritizedMovies.count;
-        }
-        [gate unlock];
-
-        [self updateAddress:movie];
-
-        if (!isPriority) {
-            [NSThread sleepForTimeInterval:0.25];
-        }
-    }
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
 }
 
 

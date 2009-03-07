@@ -149,6 +149,7 @@
 		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
 		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
+		7497B0BC0F632483002595EF /* AbstractMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7497B0BB0F632483002595EF /* AbstractMovieCache.m */; };
 		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
@@ -519,6 +520,8 @@
 		749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicator.m; sourceTree = "<group>"; };
 		749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
 		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
+		7497B0BA0F632483002595EF /* AbstractMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieCache.h; sourceTree = "<group>"; };
+		7497B0BB0F632483002595EF /* AbstractMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieCache.m; sourceTree = "<group>"; };
 		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
 		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1083,16 +1086,13 @@
 				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				747DA1630EF83B0D0066B881 /* Netflix */,
 				7474FE8F0E63595400BAA43D /* Posters */,
+				7497B0BE0F6324A2002595EF /* Websites */,
 				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
 				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
-				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
-				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
+				7497B0BA0F632483002595EF /* AbstractMovieCache.h */,
+				7497B0BB0F632483002595EF /* AbstractMovieCache.m */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
-				749D34B10F075F8F006E7C7D /* WikipediaCache.h */,
-				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
-				742C07B10F08B0890087F4E0 /* AmazonCache.h */,
-				742C07B20F08B0890087F4E0 /* AmazonCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1135,6 +1135,19 @@
 				74616DD50F15D9BA0004B610 /* PointerSet.m */,
 			);
 			name = Collections;
+			sourceTree = "<group>";
+		};
+		7497B0BE0F6324A2002595EF /* Websites */ = {
+			isa = PBXGroup;
+			children = (
+				742C07B10F08B0890087F4E0 /* AmazonCache.h */,
+				742C07B20F08B0890087F4E0 /* AmazonCache.m */,
+				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
+				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
+				749D34B10F075F8F006E7C7D /* WikipediaCache.h */,
+				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
+			);
+			name = Websites;
 			sourceTree = "<group>";
 		};
 		74A863EE0E64F23E003A2249 /* Movies */ = {
@@ -1556,6 +1569,7 @@
 				7476FEF80F2A66DF00D71F36 /* PersonCell.m in Sources */,
 				7476FEFC0F2A671900D71F36 /* AbstractImageCell.m in Sources */,
 				7425BFAF0F2A8AA9007A3BBD /* PersonPosterCache.m in Sources */,
+				7497B0BC0F632483002595EF /* AbstractMovieCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,19 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface IMDbCache : AbstractCache {
+@interface IMDbCache : AbstractMovieCache {
 @private
-    LinkedSet* prioritizedMovies;
-    LinkedSet* normalMovies;
 }
 
 + (IMDbCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;
-- (void) prioritizeMovie:(Movie*) movie;
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 

@@ -38,7 +38,6 @@
 + (NSString*) netflixSearchDirectory;
 + (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
-+ (NSString*) netflixPostersDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 + (NSString*) netflixRSSDirectory;
