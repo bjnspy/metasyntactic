@@ -182,7 +182,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         static NSString* reuseIdentifier = @"movieReuseIdentifier";
 

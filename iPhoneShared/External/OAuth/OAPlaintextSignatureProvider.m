@@ -29,11 +29,11 @@
 
 @implementation OAPlaintextSignatureProvider
 
-- (NSString *)name {
+- (NSString*) name {
     return @"PLAINTEXT";
 }
 
-- (NSString*) signClearText:(NSString*) text withSecret:(NSString *)secret {
+- (NSString*) signClearText:(NSString*) text withSecret:(NSString*) secret {
     return secret;
 }
 
