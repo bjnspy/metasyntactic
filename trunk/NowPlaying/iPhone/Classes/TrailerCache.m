@@ -75,6 +75,11 @@
 }
 
 
+- (BOOL) tooSoon:(NSDate*) date {
+    return date.timeIntervalSinceNow < (3 * ONE_DAY);
+}
+
+
 - (void) updateBackgroundEntryPoint:(NSArray*) movies {
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
@@ -85,7 +90,7 @@
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            if (ABS(downloadDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
+            if (![self tooSoon:downloadDate]) {
                 [moviesWithTrailers addObject:movie];
             }
         }
@@ -96,7 +101,14 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetailsWorker:(Movie*) movie {
+    NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
+    if (downloadDate != nil) {
+        if ([self tooSoon:downloadDate]) {
+            return;
+        }
+    }
+    
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
                                                  inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
@@ -157,11 +169,7 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie isPriority:(BOOL) isPriority {
-    if (isPriority && [FileUtilities fileExists:[self trailerFile:movie]]) {
-        return;
-    }
-
+- (void) updateMovieDetails:(Movie*) movie {
     if (index == nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
         NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
@@ -172,7 +180,7 @@
         [self generateIndex:indexText];
     }
 
-    [self updateMovieDetails:movie];
+    [self updateMovieDetailsWorker:movie];
 }
 
 

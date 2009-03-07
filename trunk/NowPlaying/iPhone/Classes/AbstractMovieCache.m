@@ -15,7 +15,7 @@
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) LinkedSet* primaryMovies;
 @property (retain) LinkedSet* secondaryMovies;
-@property (retain) NSMutableSet* successfullyUpdatedMovies;
+@property (retain) NSMutableSet* updateMovies;
 @end
 
 
@@ -24,13 +24,13 @@
 @synthesize prioritizedMovies;
 @synthesize primaryMovies;
 @synthesize secondaryMovies;
-@synthesize successfullyUpdatedMovies;
+@synthesize updateMovies;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
     self.primaryMovies = nil;
     self.secondaryMovies = nil;
-    self.successfullyUpdatedMovies = nil;
+    self.updateMovies = nil;
 
     [super dealloc];
 }
@@ -41,7 +41,7 @@
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.primaryMovies = [LinkedSet set];
         self.secondaryMovies = [LinkedSet set];
-        self.successfullyUpdatedMovies = [NSMutableSet set];
+        self.updateMovies = [NSMutableSet set];
 
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
@@ -55,7 +55,7 @@
 
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    [self clearSuccessfullyUpdatedMovies];
+    [self clearUpdatedMovies];
 }
 
 
@@ -64,8 +64,37 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie isPriority:(BOOL) isPriority {
-    [self updateMovieDetails:movie];
+- (BOOL) updateMoviesContainsNoLock:(Movie*) movie {
+    return [updatedMovies containsObject:movie];
+}
+
+
+- (BOOL) updateMoviesContains:(Movie*) movie {
+    BOOL value;
+    [gate lock];
+    {
+        value = [self updateMoviesContainsNoLock:movie];
+    }
+    [gate unlock];
+    return value;
+}
+
+
+- (void) addUpdatedMovie:(Movie*) movie {
+    [gate lock];
+    {
+        [updatedMovies addObject:movie];
+    }
+    [gate unlock];
+}
+
+
+- (void) clearUpdatedMovies {
+    [gate lock];
+    {
+        [updatedMovies removeAllObjects];
+    }
+    [gate unlock];
 }
 
 
@@ -74,23 +103,20 @@
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             Movie* movie = nil;
-            BOOL isPriority = NO;
             [gate lock];
             {
-                NSInteger count = prioritizedMovies.count;
                 while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
                        (movie = [primaryMovies removeLastObjectAdded]) == nil &&
                        (movie = [secondaryMovies removeLastObjectAdded]) == nil) {
                     [gate wait];
                 }
-                isPriority = count != prioritizedMovies.count;
             }
             [gate unlock];
 
             if (movie != nil) {
-                if (![self successfullyUpdatedMoviesContains:movie]) {
-                    [self updateMovieDetails:movie isPriority:isPriority];
-                    [self addSuccessfullyUpdatedMovie:movie];
+                if (![self updateMoviesContains:movie]) {
+                    [self addUpdatedMovie:movie];
+                    [self updateMovieDetails:movie];
                 }
             }
 
@@ -101,50 +127,21 @@
 }
 
 
-- (BOOL) successfullyUpdatedMoviesContains:(Movie*) movie {
-    BOOL value;
+- (void) addMovie:(Movie*) movie
+              set:(LinkedSet*) set {
     [gate lock];
     {
-        value = [successfullyUpdatedMovies containsObject:movie];
-    }
-    [gate unlock];
-    return value;
-}
-
-
-- (void) addSuccessfullyUpdatedMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [successfullyUpdatedMovies addObject:movie];
+        if (![self updateMoviesContainsNoLock:movie]) {
+            [set addObject:movie];
+            [gate broadcast];
+        }
     }
     [gate unlock];
 }
 
 
-- (void) clearSuccessfullyUpdatedMovies {
-    [gate lock];
-    {
-        [successfullyUpdatedMovies removeAllObjects];
-    }
-    [gate unlock];
-}
-
-
-- (void) addMovie:(Movie*) movie set:(LinkedSet*) set {
-    if ([self successfullyUpdatedMoviesContains:movie]) {
-        return;
-    }
-
-    [gate lock];
-    {
-        [set addObject:movie];
-        [gate broadcast];
-    }
-    [gate unlock];
-}
-
-
-- (void) addMovies:(NSArray*) movies set:(LinkedSet*) set {
+- (void) addMovies:(NSArray*) movies
+               set:(LinkedSet*) set {
     [gate lock];
     {
         [set addObjectsFromArray:movies];
