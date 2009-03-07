@@ -521,9 +521,9 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void)                 image:(UIImage *)image
-      didFinishSavingWithError:(NSError *)error
-                   contextInfo:(void *)contextInfo {
+- (void)                 image:(UIImage*) image
+      didFinishSavingWithError:(NSError*) error
+                   contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
     [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:) 
                                   onTarget:self
@@ -550,7 +550,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet*) actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }

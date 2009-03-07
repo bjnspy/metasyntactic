@@ -110,7 +110,7 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *) tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }
 
@@ -149,7 +149,7 @@
 }
 
 
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
 
     NSArray* feeds = self.feeds;
