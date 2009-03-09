@@ -113,7 +113,6 @@ static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabl
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
-static NSString* SHOW_POSTERS_IMMEDIATELY               = @"showPostersImmediately";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
 static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
@@ -157,7 +156,6 @@ static NSString** ALL_KEYS[] = {
 &SEARCH_DATE,
 &SEARCH_RADIUS,
 &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&SHOW_POSTERS_IMMEDIATELY,
 &UNSUPPORTED_COUNTRY,
 &UPCOMING_AND_DVD_HIDE_UPCOMING,
 &UPCOMING_DISABLED,
@@ -202,7 +200,6 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
-&SHOW_POSTERS_IMMEDIATELY,
 &VOTED_FOR_ICON,
 };
 
@@ -968,16 +965,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) setAutoUpdateLocation:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:AUTO_UPDATE_LOCATION];
-}
-
-
-- (BOOL) delayPosterLoading {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:SHOW_POSTERS_IMMEDIATELY];
-}
-
-
-- (void) setDelayPosterLoading:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:SHOW_POSTERS_IMMEDIATELY];
 }
 
 

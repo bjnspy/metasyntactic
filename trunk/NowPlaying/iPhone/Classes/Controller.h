@@ -33,7 +33,6 @@
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (void) setAutoUpdateLocation:(BOOL) value;
-- (void) setDelayPosterLoading:(BOOL) value;
 
 - (void) setDvdBlurayEnabled:(BOOL) value;
 - (void) setUpcomingEnabled:(BOOL) value;
