@@ -337,16 +337,6 @@
 }
 
 
-- (void) onDelayPosterLoadingChanged:(id) sender {
-    [self.controller setDelayPosterLoading:!self.model.delayPosterLoading];
-}
-
-
-- (void) onScreenRotationEnabledChanged:(id) sender {
-    [self.model setScreenRotationEnabled:!self.model.screenRotationEnabled];
-}
-
-
 - (void) onUseSmallFontsChanged:(id) sender {
     [self.model setUseSmallFonts:!self.model.useSmallFonts];
 }
