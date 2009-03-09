@@ -58,7 +58,7 @@
 
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         locationManager.distanceFilter = kCLDistanceFilterNone;
 
         self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
@@ -168,14 +168,14 @@
             fromLocation:(CLLocation*) oldLocation {
     NSLog(@"Location found! Timestamp: %@. Accuracy: %f", newLocation.timestamp, newLocation.horizontalAccuracy);
     if (newLocation != nil) {
-        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
+        //if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [locationManager stopUpdatingLocation];
             [ThreadingUtilities backgroundSelector:@selector(findLocationBackgroundEntryPoint:)
                                           onTarget:self
                                           argument:newLocation
                                               gate:gate
                                            visible:YES];
-        }
+        //}
     }
 }
 

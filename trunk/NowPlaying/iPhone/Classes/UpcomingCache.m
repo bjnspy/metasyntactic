@@ -169,9 +169,10 @@
         {
             Movie* movie = [self processMovieElement:movieElement studioKeys:studioKeys titleKeys:titleKeys];
 
-            if (movie != nil &&
-                [cutoff compare:movie.releaseDate] != NSOrderedDescending) {
-                [result addObject:movie];
+            if (movie != nil) {
+                if([cutoff compare:movie.releaseDate] != NSOrderedDescending) {
+                    [result addObject:movie];
+                }
             }
         }
         [pool release];
@@ -318,12 +319,13 @@
     NSString* localHash = self.hash;
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                                important:NO];
-    if (serverHash == nil) {
+    if (serverHash.length == 0) {
         serverHash = @"0";
     }
 
-    if (localHash != nil &&
-        [localHash isEqual:serverHash]) {
+    if ([localHash isEqual:serverHash]) {
+        // save the hash again so we don't check for a few more days.
+        [FileUtilities writeObject:serverHash toFile:self.hashFile];
         return nil;
     }
 

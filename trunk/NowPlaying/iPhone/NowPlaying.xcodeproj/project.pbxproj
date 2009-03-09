@@ -1633,17 +1633,17 @@
 		7491444F0E764D0E00CC42A8 /* Scores */ = {
 			isa = PBXGroup;
 			children = (
+				748F1D370EB513D300DEB5BB /* ScoreCache.h */,
+				748F1D380EB513D300DEB5BB /* ScoreCache.m */,
+				748F1E550EB5261300DEB5BB /* ScoreProvider.h */,
+				748F1E580EB5267D00DEB5BB /* AbstractScoreProvider.h */,
+				748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */,
 				748F1D310EB513D300DEB5BB /* GoogleScoreProvider.h */,
 				748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */,
 				748F1D330EB513D300DEB5BB /* MetacriticScoreProvider.h */,
 				748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */,
 				748F1D350EB513D300DEB5BB /* RottenTomatoesScoreProvider.h */,
 				748F1D360EB513D300DEB5BB /* RottenTomatoesScoreProvider.m */,
-				748F1D370EB513D300DEB5BB /* ScoreCache.h */,
-				748F1D380EB513D300DEB5BB /* ScoreCache.m */,
-				748F1E550EB5261300DEB5BB /* ScoreProvider.h */,
-				748F1E580EB5267D00DEB5BB /* AbstractScoreProvider.h */,
-				748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */,
 				748F1FAA0EB5418D00DEB5BB /* NoneScoreProvider.h */,
 				748F1FAB0EB5418D00DEB5BB /* NoneScoreProvider.m */,
 			);

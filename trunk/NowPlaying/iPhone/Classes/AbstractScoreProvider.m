@@ -132,8 +132,8 @@
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSString* title in encodedScores) {
-        Score* rating = [Score scoreWithDictionary:[encodedScores objectForKey:title]];
-        [result setObject:rating forKey:title];
+        Score* score = [Score scoreWithDictionary:[encodedScores objectForKey:title]];
+        [result setObject:score forKey:title];
     }
 
     return result;
@@ -197,7 +197,7 @@
 }
 
 
-- (void) updateScoresBackgroundEntryPointWorker {
+- (void) updateScoresBackgroundEntryPoint {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
@@ -305,8 +305,10 @@
 }
 
 
-- (NSMutableArray*) downloadReviewContents:(Score*) score location:(Location*) location {
-    NSString* address = [self serverReviewsAddress:location score:score];
+- (NSMutableArray*) downloadReviewContents:(Score*) score
+                                  location:(Location*) location {
+    NSString* address = [self serverReviewsAddress:location
+                                             score:score];
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data == nil) {
         // We couldn't even connect.  Just abort what we're doing.
@@ -324,14 +326,18 @@
 }
 
 
-- (void) saveEncodedReviews:(NSArray*) encodedReviews hash:(NSString*) hash title:(NSString*) title {
+- (void) saveEncodedReviews:(NSArray*) encodedReviews
+                       hash:(NSString*) hash
+                      title:(NSString*) title {
     [FileUtilities writeObject:encodedReviews toFile:[self reviewsFile:title]];
     // do this last.  it marks us being complete.
     [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];
 }
 
 
-- (void) saveReviews:(NSArray*) reviews hash:(NSString*) hash title:(NSString*) title {
+- (void) saveReviews:(NSArray*) reviews
+                hash:(NSString*) hash
+               title:(NSString*) title {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {
         [encodedReviews addObject:review.dictionary];
@@ -358,7 +364,7 @@
 
     NSString* title = score.canonicalTitle;
     if ([serverHash isEqual:localHash]) {
-        // save the hash again so we don't check for 3 more days.
+        // save the hash again so we don't check for a few more days.
         [FileUtilities writeObject:serverHash toFile:[self reviewsHashFile:title]];
         return;
     }
@@ -434,18 +440,14 @@
 }
 
 
-- (void) updateScoresBackgroundEntryPoint {
-    [self updateScoresBackgroundEntryPointWorker];
+- (void) update {
+    [self updateScoresBackgroundEntryPoint];
     [self updateReviewsBackgroundEntryPoint];
 }
 
 
-- (void) update {
-    [self updateScoresBackgroundEntryPoint];
-}
-
-
-- (void) reportResult:(NSDictionary*) result withHash:(NSString*) hash {
+- (void) reportResult:(NSDictionary*) result
+             withHash:(NSString*) hash {
     NSAssert([NSThread isMainThread], nil);
 
     self.scoresData = result;
@@ -472,7 +474,8 @@
 }
 
 
-- (void) regenerateMap:(NSDictionary*) scores forMovies:(NSArray*) localMovies {
+- (void) regenerateMap:(NSDictionary*) scores
+             forMovies:(NSArray*) localMovies {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* keys = scores.allKeys;
@@ -484,23 +487,28 @@
     DifferenceEngine* engine = [DifferenceEngine engine];
 
     for (Movie* movie in localMovies) {
-        NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
-        NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
-        if (index == NSNotFound) {
-            index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
-        }
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
+            NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
+            if (index == NSNotFound) {
+                index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
+            }
 
-        if (index != NSNotFound) {
-            NSString* key = [keys objectAtIndex:index];
-            [result setObject:key forKey:movie.canonicalTitle];
+            if (index != NSNotFound) {
+                NSString* key = [keys objectAtIndex:index];
+                [result setObject:key forKey:movie.canonicalTitle];
+            }
         }
+        [pool release];
     }
 
     if (result.count == 0) {
         return;
     }
 
-    [FileUtilities writeObject:result toFile:self.movieMapFile];
+    [FileUtilities writeObject:result
+                        toFile:self.movieMapFile];
 
     [ThreadingUtilities foregroundSelector:@selector(reportMap:forMovies:)
                                   onTarget:self
@@ -509,17 +517,19 @@
 }
 
 
-- (void) reportMap:(NSDictionary*) map forMovies:(NSArray*) localMovies {
+- (void) reportMap:(NSDictionary*) movieMap
+         forMovies:(NSArray*) movies_ {
     NSAssert([NSThread isMainThread], nil);
 
-    self.movieMapData = map;
-    self.movies = localMovies;
+    self.movieMapData = movieMap;
+    self.movies = movies_;
 
     [AppDelegate majorRefresh];
 }
 
 
-- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
+- (Score*) scoreForMovie:(Movie*) movie
+                inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
 
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
@@ -527,7 +537,8 @@
 }
 
 
-- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
+- (NSArray*) reviewsForMovie:(Movie*) movie
+                    inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
 
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
@@ -546,7 +557,12 @@
 }
 
 
-- (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
+- (void) prioritizeMovie:(Movie*) movie
+                inMovies:(NSArray*) movies_ {
+    if (movie == nil) {
+        return;
+    }
+
     [self ensureMovieMap:movies_];
     NSArray* arguments = [NSArray arrayWithObjects:movie, self.movieMap, nil];
     [prioritizedMovies addObject:arguments];

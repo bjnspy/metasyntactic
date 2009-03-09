@@ -278,7 +278,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     if (updatedNetflixApplicationKeys) {
         return;
     }
-    
+
     [self setNetflixKey:nil secret:nil userId:nil];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NETFLIX_UPDATED_APPLICATION_KEYS];
     [self synchronize];

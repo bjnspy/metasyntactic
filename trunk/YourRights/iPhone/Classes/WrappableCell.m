@@ -97,7 +97,7 @@ static UIFont* defaultFont;
         width -= 10;
     }
 
-    CGSize size = CGSizeMake(width, 20000);
+    CGSize size = CGSizeMake(width, 50000);
     size = [text sizeWithFont:font
             constrainedToSize:size
                 lineBreakMode:UILineBreakModeWordWrap];
