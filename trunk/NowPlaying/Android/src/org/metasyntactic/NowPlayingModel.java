@@ -186,10 +186,6 @@ public class NowPlayingModel {
     return map;
   }
 
-  public void startup() {
-    // update();
-  }
-
   public void onLowMemory() {
     dataProvider.onLowMemory();
     largePosterCache.onLowMemory();
