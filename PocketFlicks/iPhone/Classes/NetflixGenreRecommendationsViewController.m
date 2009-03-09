@@ -46,7 +46,7 @@
     self.genre = nil;
     self.movies = nil;
     self.visibleIndexPaths = nil;
-    
+
     [super dealloc];
 }
 
@@ -57,12 +57,12 @@
         self.navigationController = navigationController_;
         self.genre = genre_;
         self.title = genre_;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = genre;
         self.navigationItem.titleView = label;
     }
-    
+
     return self;
 }
 
@@ -79,7 +79,7 @@
 
 - (void) initializeData {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
         NSArray* genres = movie.genres;
@@ -87,7 +87,7 @@
             [array addObject:movie];
         }
     }
-    
+
     self.movies = array;
 }
 
@@ -101,14 +101,14 @@
 - (void) internalRefresh {
     [self initializeData];
     [self.tableView reloadData];
-    
+
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-        
+
         self.visibleIndexPaths = nil;
     }
 }
@@ -118,7 +118,7 @@
     if (!visible) {
         return;
     }
-    
+
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -147,7 +147,7 @@
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-    
+
     return self.model.screenRotationEnabled;
 }
 
@@ -156,13 +156,13 @@
     if (visible) {
         return;
     }
-    
+
     self.movies = [NSArray array];
-    
+
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-    
+
     [super didReceiveMemoryWarning];
 }
 
@@ -189,10 +189,10 @@
                                              model:self.model] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [cell setMovie:movie owner:self];
-    
+
     return cell;
 }
 
@@ -209,7 +209,7 @@
     if (movies.count == 0) {
         return self.model.netflixCache.noInformationFound;
     }
-    
+
     return nil;
 }
 
