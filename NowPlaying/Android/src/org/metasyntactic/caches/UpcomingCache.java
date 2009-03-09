@@ -380,7 +380,7 @@ public class UpcomingCache extends AbstractMovieCache {
   }
 
   private void updatePoster(final Movie movie) {
-    model.getPosterCache().updateMovie(movie);
+    model.getPosterCache().update(movie);
   }
 
   private static void updateImdb(final Movie movie) {

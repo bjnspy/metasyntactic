@@ -53,6 +53,10 @@ public class PosterCache extends AbstractMovieCache {
     addSecondaryMovies(moviesWithoutLinks);
   }
 
+  public void update(final Movie movie) {
+    addPrimaryMovie(movie);
+  }
+
   @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;
@@ -132,9 +136,5 @@ public class PosterCache extends AbstractMovieCache {
     ApplePosterDownloader.onLowMemory();
     FandangoPosterDownloader.onLowMemory();
     ImdbPosterDownloader.onLowMemory();
-  }
-
-  public void updateMovie(final Movie movie) {
-    addPrimaryMovie(movie);
   }
 }

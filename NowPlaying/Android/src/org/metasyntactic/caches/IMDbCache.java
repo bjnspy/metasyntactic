@@ -42,6 +42,10 @@ public class IMDbCache extends AbstractMovieCache {
     addPrimaryMovies(movies);
   }
 
+  public void update(Movie movie) {
+    addPrimaryMovie(movie);
+  }
+
   @Override protected void updateMovieDetails(final Movie movie) {
     if (movie == null) {
       return;

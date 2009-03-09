@@ -30,6 +30,8 @@ import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.dvd.BlurayCache;
+import org.metasyntactic.caches.dvd.DVDCache;
 import org.metasyntactic.caches.posters.LargePosterCache;
 import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
@@ -84,6 +86,8 @@ public class NowPlayingModel {
   private final PosterCache posterCache;
   private final LargePosterCache largePosterCache;
   private final IMDbCache imdbCache;
+  private final DVDCache dvdCache;
+  private final BlurayCache blurayCache;
 
   private Map<String, FavoriteTheater> favoriteTheaters;
 
@@ -100,6 +104,8 @@ public class NowPlayingModel {
     posterCache = new PosterCache(this);
     largePosterCache = new LargePosterCache(this);
     imdbCache = new IMDbCache(this);
+    dvdCache = new DVDCache(this);
+    blurayCache = new BlurayCache(this);
   }
 
   private void clearCaches() {
@@ -116,6 +122,8 @@ public class NowPlayingModel {
       posterCache.clearStaleData();
       scoreCache.clearStaleData();
       imdbCache.clearStaleData();
+      dvdCache.clearStaleData();
+      blurayCache.clearStaleData();
     }
   }
 
@@ -194,6 +202,8 @@ public class NowPlayingModel {
     posterCache.onLowMemory();
     scoreCache.onLowMemory();
     imdbCache.onLowMemory();
+    dvdCache.onLowMemory();
+    blurayCache.onLowMemory();
   }
 
   public void shutdown() {
@@ -204,6 +214,8 @@ public class NowPlayingModel {
     posterCache.shutdown();
     scoreCache.shutdown();
     imdbCache.shutdown();
+    dvdCache.shutdown();
+    blurayCache.shutdown();
   }
 
   public void update() {
@@ -220,6 +232,8 @@ public class NowPlayingModel {
     posterCache.update(getMovies());
     upcomingCache.update();
     imdbCache.update(getMovies());
+    dvdCache.update();
+    blurayCache.update();
   }
 
   public UserLocationCache getUserLocationCache() {
@@ -600,4 +614,8 @@ public class NowPlayingModel {
 
   //- (BOOL) isStale:(Theater*) theater;
   //- (NSString*) showtimesRetrievedOnString:(Theater*) theater;
+
+  public IMDbCache getIMDbCache() {
+    return imdbCache;
+  }
 }
