@@ -13,10 +13,12 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -29,11 +31,11 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.io.File;
-import java.util.Date;
-import java.util.List;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 
 public class NowPlayingController {
   private final NowPlayingModel model;
@@ -41,10 +43,6 @@ public class NowPlayingController {
 
   public NowPlayingController(final Context applicationContext) {
     model = new NowPlayingModel(applicationContext);
-  }
-
-  public void startup() {
-    model.startup();
     update();
   }
 
