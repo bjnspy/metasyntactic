@@ -13,14 +13,6 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +20,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
 
 public class TrailerCache extends AbstractMovieCache {
   public TrailerCache(final NowPlayingModel model) {
@@ -61,6 +61,7 @@ public class TrailerCache extends AbstractMovieCache {
     final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
 
     for (final Movie movie : movies) {
+      if (shutdown) { return; }
       final File file = trailerFilePath(movie);
       if (file.exists()) {
         if (FileUtilities.daysSinceNow(file) > 3) {

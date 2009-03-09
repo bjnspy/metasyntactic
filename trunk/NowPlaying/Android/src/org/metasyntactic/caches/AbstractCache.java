@@ -20,6 +20,7 @@ import org.metasyntactic.utilities.LogUtilities;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -44,13 +45,17 @@ public abstract class AbstractCache {
   protected static void clearDirectory(final File directory) {
     final long now = new Date().getTime();
 
-    for (final File child : directory.listFiles()) {
-      if (child.exists() && child.isFile()) {
-        final long writeTime = child.lastModified();
-        final long span = Math.abs(writeTime - now);
+    final Random random = new Random();
 
-        if (span > Constants.CACHE_LIMIT) {
-          child.delete();
+    for (final File child : directory.listFiles()) {
+      if (random.nextInt(100) < 20) {
+        if (child.exists() && child.isFile()) {
+          final long writeTime = child.lastModified();
+          final long span = Math.abs(writeTime - now);
+
+          if (span > Constants.CACHE_LIMIT) {
+            child.delete();
+          }
         }
       }
     }
