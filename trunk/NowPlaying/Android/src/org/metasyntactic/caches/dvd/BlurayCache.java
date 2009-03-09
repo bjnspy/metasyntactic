@@ -27,7 +27,7 @@ public class BlurayCache extends AbstractDVDBlurayCache {
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupDVDListings?q=bluray";
   }
 
-  @Override protected File getDiretory() {
+  @Override protected File getDirectory() {
     return NowPlayingApplication.blurayDirectory;
   }
 }

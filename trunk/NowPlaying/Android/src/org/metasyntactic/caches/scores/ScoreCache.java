@@ -101,7 +101,7 @@ public class ScoreCache extends AbstractCache {
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, null, false);
+    ThreadingUtilities.performOnBackgroundThread("ScoreCache-UpdateProviders", runnable, null, false);
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
