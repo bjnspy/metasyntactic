@@ -1,20 +1,7 @@
 package org.metasyntactic.caches.dvd;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.AbstractMovieCache;
-import org.metasyntactic.collections.IdentityHashSet;
-import org.metasyntactic.data.DVD;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.children;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,6 +14,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractMovieCache;
+import org.metasyntactic.collections.IdentityHashSet;
+import org.metasyntactic.data.DVD;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
   private Set<Movie> moviesSet;
@@ -183,11 +184,11 @@ public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
   }
 
   private File getDetailsFile(final Movie movie, final Collection<Movie> movies) {
-    if (movies == null || movies.contains(movie)) {
-      return new File(getDetailsDirectory(), FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    if (movies != null && !movies.contains(movie)) {
+      return null;
     }
 
-    return null;
+    return new File(getDetailsDirectory(), FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   private File getDetailsFile(final Movie movie) {
