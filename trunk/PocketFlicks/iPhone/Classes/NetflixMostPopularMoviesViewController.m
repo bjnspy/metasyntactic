@@ -19,7 +19,6 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
-#import "MutableNetflixCache.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
 #import "NetworkUtilities.h"
@@ -46,23 +45,23 @@
     self.category = nil;
     self.movies = nil;
     self.visibleIndexPaths = nil;
-
+    
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              category:(NSString*) category_ {
+                           category:(NSString*) category_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.category = category_;
         self.title = category_;
-
+        
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = category;
         self.navigationItem.titleView = label;
     }
-
+    
     return self;
 }
 
@@ -83,22 +82,16 @@
 
 
 - (void) majorRefreshWorker {
-    // do nothing.  we don't want to refresh the view (because it causes an
-    // ugly flash).  Instead, just refresh things when teh view becomes visible
-}
-
-
-- (void) internalRefresh {
     [self initializeData];
     [self.tableView reloadData];
-
+    
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-
+        
         self.visibleIndexPaths = nil;
     }
 }
@@ -108,7 +101,7 @@
     if (!visible) {
         return;
     }
-
+    
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -119,7 +112,7 @@
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     self.tableView.rowHeight = 100;
-    [self internalRefresh];
+    [self majorRefresh];
 }
 
 
@@ -137,7 +130,7 @@
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-
+    
     return self.model.screenRotationEnabled;
 }
 
@@ -146,13 +139,13 @@
     if (visible) {
         return;
     }
-
+    
     self.movies = [NSArray array];
-
+    
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
+    
     [super didReceiveMemoryWarning];
 }
 
@@ -179,10 +172,10 @@
                                              model:self.model] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [cell setMovie:movie owner:self];
-
+    
     return cell;
 }
 
@@ -197,9 +190,9 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (movies.count == 0) {
-        return self.model.netflixCache.noInformationFound;
+        return self.model.noInformationFound;
     }
-
+    
     return nil;
 }
 
