@@ -19,6 +19,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "MutableNetflixCache.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
 #import "Model.h"
@@ -45,7 +46,7 @@
     self.genre = nil;
     self.movies = nil;
     self.visibleIndexPaths = nil;
-
+    
     [super dealloc];
 }
 
@@ -56,12 +57,12 @@
         self.navigationController = navigationController_;
         self.genre = genre_;
         self.title = genre_;
-
+        
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = genre;
         self.navigationItem.titleView = label;
     }
-
+    
     return self;
 }
 
@@ -78,7 +79,7 @@
 
 - (void) initializeData {
     NSMutableArray* array = [NSMutableArray array];
-
+    
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
         NSArray* genres = movie.genres;
@@ -86,22 +87,28 @@
             [array addObject:movie];
         }
     }
-
+    
     self.movies = array;
 }
 
 
 - (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+}
+
+
+- (void) internalRefresh {
     [self initializeData];
     [self.tableView reloadData];
-
+    
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-
+        
         self.visibleIndexPaths = nil;
     }
 }
@@ -111,7 +118,7 @@
     if (!visible) {
         return;
     }
-
+    
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -122,7 +129,7 @@
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     self.tableView.rowHeight = 100;
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
@@ -140,7 +147,7 @@
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-
+    
     return self.model.screenRotationEnabled;
 }
 
@@ -149,13 +156,13 @@
     if (visible) {
         return;
     }
-
+    
     self.movies = [NSArray array];
-
+    
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
+    
     [super didReceiveMemoryWarning];
 }
 
@@ -166,7 +173,7 @@
 
 
 // Customize the number of rows in the table view.
-- (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section {
     return movies.count;
 }
 
@@ -178,14 +185,14 @@
     NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                             reuseIdentifier:reuseIdentifier
-                                                       model:self.model] autorelease];
+                                   reuseIdentifier:reuseIdentifier
+                                             model:self.model] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [cell setMovie:movie owner:self];
-
+    
     return cell;
 }
 
@@ -194,6 +201,16 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [navigationController pushMovieDetails:movie animated:YES];
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (movies.count == 0) {
+        return self.model.netflixCache.noInformationFound;
+    }
+    
+    return nil;
 }
 
 @end
