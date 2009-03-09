@@ -241,7 +241,7 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *) tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
     return 2;
 }
 

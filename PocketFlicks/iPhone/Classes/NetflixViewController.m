@@ -161,7 +161,7 @@ typedef enum {
 }
 
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }
 
@@ -358,7 +358,7 @@ typedef enum {
 
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath *) indexPath {
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (self.hasAccount) {
         [self didSelectLoggedInRow:indexPath.row];
     } else {
