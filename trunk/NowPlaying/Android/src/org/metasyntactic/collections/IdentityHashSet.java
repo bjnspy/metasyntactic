@@ -14,12 +14,20 @@
 package org.metasyntactic.collections;
 
 import java.util.AbstractSet;
+import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class IdentityHashSet<T> extends AbstractSet<T> {
   private final Map<T, T> map = new IdentityHashMap<T, T>();
+
+  public IdentityHashSet() {
+  }
+
+  public IdentityHashSet(Collection<T> collection) {
+    addAll(collection);
+  }
 
   @Override
   public Iterator<T> iterator() {

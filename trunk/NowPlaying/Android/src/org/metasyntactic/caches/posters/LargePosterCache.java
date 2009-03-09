@@ -53,7 +53,7 @@ public class LargePosterCache extends AbstractCache {
   public LargePosterCache(final NowPlayingModel model) {
     super(model);
 
-    ThreadingUtilities.performOnBackgroundThread("Update large poster indices", new Runnable() {
+    ThreadingUtilities.performOnBackgroundThread("LargePosterCache-UpdateIndices", new Runnable() {
       public void run() {
         downloadIndices();
       }

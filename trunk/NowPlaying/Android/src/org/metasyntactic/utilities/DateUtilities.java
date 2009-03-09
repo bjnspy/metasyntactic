@@ -61,15 +61,33 @@ public class DateUtilities {
     c1.setTime(d1);
     c2.setTime(d2);
 
-    return
-    c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
-    c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) &&
-    c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH);
+    return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) && c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) && c1.get(Calendar.DAY_OF_MONTH) == c2
+      .get(Calendar.DAY_OF_MONTH);
   }
 
   public static String formatLongDate(final Date date) {
     synchronized (lock) {
       return longFormat.format(date);
     }
+  }
+
+  public static Date parseISO8601Date(final String string) {
+    if (string.length() == 10) {
+      try {
+        final int year = Integer.parseInt(string.substring(0, 4));
+        final int month = Integer.parseInt(string.substring(5, 7));
+        final int day = Integer.parseInt(string.substring(8, 10));
+
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+
+        return calendar.getTime();
+      } catch (NumberFormatException ignored) {
+
+      }
+    }
+    return null;
   }
 }

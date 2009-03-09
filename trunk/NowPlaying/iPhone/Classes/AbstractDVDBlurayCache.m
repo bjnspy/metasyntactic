@@ -79,11 +79,6 @@
 }
 
 
-- (NSString*) postersDirectory {
-    return [self.directory stringByAppendingPathComponent:@"Posters"];
-}
-
-
 - (NSString*) netflixDirectory {
     return [self.directory stringByAppendingPathComponent:@"Netflix"];
 }

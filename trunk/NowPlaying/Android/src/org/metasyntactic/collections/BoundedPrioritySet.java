@@ -59,6 +59,14 @@ public class BoundedPrioritySet<T> {
     }
   }
 
+  public void addAll(final Iterable<T> values) {
+    synchronized (lock) {
+      for (final T value : values) {
+        addNoLock(value);
+      }
+    }
+  }
+
   public T removeAny() {
     synchronized (lock) {
       return removeAnyNoLock();
