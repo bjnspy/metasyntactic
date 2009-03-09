@@ -19,6 +19,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "MutableNetflixCache.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
 #import "NetworkUtilities.h"
@@ -82,6 +83,12 @@
 
 
 - (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+}
+
+
+- (void) internalRefresh {
     [self initializeData];
     [self.tableView reloadData];
     
@@ -112,7 +119,7 @@
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     self.tableView.rowHeight = 100;
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
@@ -190,7 +197,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (movies.count == 0) {
-        return self.model.noInformationFound;
+        return self.model.netflixCache.noInformationFound;
     }
     
     return nil;
