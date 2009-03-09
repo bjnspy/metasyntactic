@@ -681,9 +681,9 @@ const NSInteger POSTER_TAG = -1;
                         cancelButtonTitle:nil
                    destructiveButtonTitle:nil
                         otherButtonTitles:nil] autorelease];
-    
+
     NSArray* formats = [self.model.netflixCache formatsForMovie:netflixMovie];
-    
+
     if ([formats containsObject:@"instant"]) {
         if (formats.count == 1) {
             actionSheet.tag = ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
@@ -700,7 +700,7 @@ const NSInteger POSTER_TAG = -1;
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Disc Queue", nil)];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Disc Queue", nil)];
     }
-    
+
     if ([formats containsObject:@"instant"]) {
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Instant Queue", nil)];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Instant Queue", nil)];
@@ -735,7 +735,7 @@ const NSInteger POSTER_TAG = -1;
                                     withButtonIndex:(NSInteger) buttonIndex {
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
     [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
-    
+
 }
 
 
@@ -759,7 +759,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void)            actionSheet:(UIActionSheet*) actionSheet
-      didDismissWithButtonIndex:(NSInteger) buttonIndex {    
+      didDismissWithButtonIndex:(NSInteger) buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
@@ -770,7 +770,7 @@ const NSInteger POSTER_TAG = -1;
     } else if (actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG) {
         [self didDismissAddToNetflixDiscOrInstantQueueActionSheet:actionSheet
                                          withButtonIndex:buttonIndex];
-        
+
     } else if (actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG) {
         [self didDismissAddToNetflixInstantQueueActionSheet:actionSheet
                                          withButtonIndex:buttonIndex];

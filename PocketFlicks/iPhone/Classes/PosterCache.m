@@ -44,7 +44,7 @@
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 
@@ -66,8 +66,8 @@
 - (void) update:(NSArray*) movies {
     NSMutableArray* moviesWithoutLinks = [NSMutableArray array];
     NSMutableArray* moviesWithLinks = [NSMutableArray array];
-    
-    
+
+
     // movies with poster links download faster. try them first.
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
@@ -76,7 +76,7 @@
             [moviesWithLinks addObject:movie];
         }
     }
-    
+
     [self addPrimaryMovies:moviesWithLinks];
     [self addSecondaryMovies:moviesWithoutLinks];
 }
@@ -100,30 +100,30 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     data = [FandangoPosterDownloader download:movie postalCode:postalCode];
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     [model.largePosterCache downloadFirstPosterForMovie:movie];
-    
+
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time
     if ([NetworkUtilities isNetworkAvailable]) {
         return [NSData data];
     }
-    
+
     return nil;
 }
 
@@ -131,13 +131,13 @@
 - (void) updateMovieDetails:(Movie*) movie
                  postalCode:(NSString*) postalCode {
     NSString* path = [self posterFilePath:movie];
-    
+
     if ([FileUtilities fileExists:path]) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
-        
+
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
@@ -146,12 +146,12 @@
             }
         }
     }
-    
+
     NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];
-    
+
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
-        
+
         if (data.length > 0) {
             [AppDelegate minorRefresh];
         }
@@ -174,17 +174,17 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 

@@ -28,7 +28,7 @@
 - (void) dealloc {
     self.model = nil;
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -38,13 +38,13 @@
         self.model = model_;
         self.gate = [[[NSCondition alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    
+
 }
 
 @end

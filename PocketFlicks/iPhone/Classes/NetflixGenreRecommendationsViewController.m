@@ -209,7 +209,7 @@
     if (movies.count == 0) {
         return self.model.netflixCache.noInformationFound;
     }
-    
+
     return nil;
 }
 
