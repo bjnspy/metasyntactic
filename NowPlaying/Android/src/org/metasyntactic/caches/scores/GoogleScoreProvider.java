@@ -13,7 +13,16 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import com.google.protobuf.InvalidProtocolBufferException;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.UserLocationCache;
@@ -23,15 +32,8 @@ import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 public class GoogleScoreProvider extends AbstractScoreProvider {
   public GoogleScoreProvider(final NowPlayingModel model) {
@@ -58,8 +60,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     days = min(max(days, 0), 7);
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault()
-      .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int)(location.getLatitude() * 1000000) + "&longitude=" + (int)(location
-      .getLongitude() * 1000000);
+    .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int)(location.getLatitude() * 1000000) + "&longitude=" + (int)(location
+        .getLongitude() * 1000000);
   }
 
   @Override
@@ -88,6 +90,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
         ExceptionUtilities.log(GoogleScoreProvider.class, "lookupServerRatings", e);
         return null;
       }
+
+      if (shutdown) { return null; }
 
       final Map<String, Score> ratings = new HashMap<String, Score>();
 

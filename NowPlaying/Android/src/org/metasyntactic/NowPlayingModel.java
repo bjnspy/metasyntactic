@@ -51,7 +51,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 public class NowPlayingModel {
-  private static final String PERSISTANCE_VERSION = "16";
+  private static final String PERSISTANCE_VERSION = "19";
 
   // These keys *MUST* end with "KEY"
   private static final String VERSION_KEY = "VERSION";
@@ -66,17 +66,24 @@ public class NowPlayingModel {
   private static final String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
   private static final String CLEAR_CACHE_KEY = "clearCache";
 
-  // SharedPreferences is not threadsafe. so we need to lock when using it
+  private static final String[] STRING_KEYS_TO_MIGRATE = {USER_ADDRESS_KEY, SCORE_TYPE_KEY};
+
+  private static final String[] INTEGER_KEYS_TO_MIGRATE = {SEARCH_DISTANCE_KEY};
+
+  private static final String[] BOOLEAN_KEYS_TO_MIGRATE = {AUTO_UPDATED_ENABLED_KEY};
+
+  // SharedPreferences is not thread-safe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
-  private final DataProvider dataProvider = new DataProvider(this);
-  private final ScoreCache scoreCache = new ScoreCache(this);
-  private final UserLocationCache userLocationCache = new UserLocationCache();
-  private final TrailerCache trailerCache = new TrailerCache(this);
-  private final UpcomingCache upcomingCache = new UpcomingCache(this);
-  private final PosterCache posterCache = new PosterCache(this);
-  private final LargePosterCache largePosterCache = new LargePosterCache(this);
-  private final IMDbCache imdbCache = new IMDbCache(this);
+
+  private final DataProvider dataProvider;
+  private final ScoreCache scoreCache;
+  private final UserLocationCache userLocationCache;
+  private final TrailerCache trailerCache;
+  private final UpcomingCache upcomingCache;
+  private final PosterCache posterCache;
+  private final LargePosterCache largePosterCache;
+  private final IMDbCache imdbCache;
 
   private Map<String, FavoriteTheater> favoriteTheaters;
 
@@ -84,6 +91,15 @@ public class NowPlayingModel {
     preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
     loadData();
     clearCaches();
+
+    dataProvider = new DataProvider(this);
+    scoreCache = new ScoreCache(this);
+    userLocationCache = new UserLocationCache();
+    trailerCache = new TrailerCache(this);
+    upcomingCache = new UpcomingCache(this);
+    posterCache = new PosterCache(this);
+    largePosterCache = new LargePosterCache(this);
+    imdbCache = new IMDbCache(this);
   }
 
   private void clearCaches() {
@@ -93,7 +109,7 @@ public class NowPlayingModel {
       preferences.edit().putInt(CLEAR_CACHE_KEY, version + 1).commit();
     }
 
-    if (version % 20 == 0) {
+    if (version % 10 == 0) {
       largePosterCache.clearStaleData();
       upcomingCache.clearStaleData();
       trailerCache.clearStaleData();
@@ -106,13 +122,68 @@ public class NowPlayingModel {
   private void loadData() {
     final String lastVersion = preferences.getString(VERSION_KEY, "");
     if (!lastVersion.equals(PERSISTANCE_VERSION)) {
+      final Map<String, Object> currentPreferences = getPreferencesToMigrate();
+
       final SharedPreferences.Editor editor = preferences.edit();
       editor.clear();
       editor.putString(VERSION_KEY, PERSISTANCE_VERSION);
       editor.commit();
+
+      restorePreferences(currentPreferences);
+
       NowPlayingApplication.reset();
-      scoreCache.createDirectories();
     }
+  }
+
+  private void restorePreferences(final Map<String, Object> currentPreferences) {
+    final SharedPreferences.Editor editor = preferences.edit();
+
+    for (final String key : STRING_KEYS_TO_MIGRATE) {
+      final Object value = currentPreferences.get(key);
+      if (value != null && value instanceof String) {
+        editor.putString(key, (String)value);
+      }
+    }
+
+    for (final String key : INTEGER_KEYS_TO_MIGRATE) {
+      final Object value = currentPreferences.get(key);
+      if (value != null && value instanceof Integer) {
+        editor.putInt(key, (Integer)value);
+      }
+    }
+
+    for (final String key : BOOLEAN_KEYS_TO_MIGRATE) {
+      final Object value = currentPreferences.get(key);
+      if (value != null && value instanceof Boolean) {
+        editor.putBoolean(key, (Boolean)value);
+      }
+    }
+
+    editor.commit();
+  }
+
+  private Map<String, Object> getPreferencesToMigrate() {
+    final Map<String, Object> map = new HashMap<String, Object>();
+    for (final String key : STRING_KEYS_TO_MIGRATE) {
+      final String value = preferences.getString(key, null);
+      if (value != null) {
+        map.put(key, value);
+      }
+    }
+
+    for (final String key : INTEGER_KEYS_TO_MIGRATE) {
+      final int value = preferences.getInt(key, -1);
+      if (value != -1) {
+        map.put(key, value);
+      }
+    }
+
+    for (final String key : BOOLEAN_KEYS_TO_MIGRATE) {
+      final boolean value = preferences.getBoolean(key, false);
+      map.put(key, value);
+    }
+
+    return map;
   }
 
   public void startup() {
@@ -333,7 +404,7 @@ public class NowPlayingModel {
     if (favoriteTheaters == null) {
       favoriteTheaters = FileUtilities.readStringToPersistableMap(FavoriteTheater.reader, getFavoriteTheatersFile());
       if (CollectionUtilities.isEmpty(favoriteTheaters)) {
-        favoriteTheaters = new HashMap<String,FavoriteTheater>();
+        favoriteTheaters = new HashMap<String, FavoriteTheater>();
       }
     }
   }

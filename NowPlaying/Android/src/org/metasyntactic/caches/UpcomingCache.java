@@ -174,6 +174,7 @@ public class UpcomingCache extends AbstractMovieCache {
     final String localHash = getHash();
     final String serverHash1 = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
     final String serverHash2 = serverHash1 == null ? "0" : serverHash1;
+    if (shutdown) { return; }
 
     if (localHash.equals(serverHash2)) {
       return;

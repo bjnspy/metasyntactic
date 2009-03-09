@@ -53,12 +53,6 @@ public class ScoreCache extends AbstractCache {
     }
   }
 
-  public void createDirectories() {
-    for (final ScoreProvider provider : getProviders()) {
-      provider.createDirectory();
-    }
-  }
-
   private ScoreProvider getScoreProvider(final Object type) {
     if (type.equals(ScoreType.Google)) {
       return googleScoreProvider;
