@@ -1,7 +1,20 @@
 package org.metasyntactic.caches.dvd;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractMovieCache;
+import org.metasyntactic.collections.IdentityHashSet;
+import org.metasyntactic.data.DVD;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.children;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,20 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.AbstractMovieCache;
-import org.metasyntactic.collections.IdentityHashSet;
-import org.metasyntactic.data.DVD;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
   private Set<Movie> moviesSet;
   private List<Movie> movies;
@@ -37,22 +36,24 @@ public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
 
   protected AbstractDVDBlurayCache(final NowPlayingModel model) {
     super(model);
+    getDirectory().mkdirs();
+    getDetailsDirectory().mkdirs();
   }
 
   protected abstract String getServerAddress();
 
-  protected abstract File getDiretory();
+  protected abstract File getDirectory();
 
   private File getDetailsDirectory() {
-    return new File(getDiretory(), "Details");
+    return new File(getDirectory(), "Details");
   }
 
   private File getMoviesFile() {
-    return new File(getDiretory(), "Movies");
+    return new File(getDirectory(), "Movies");
   }
 
   @Override protected List<File> getCacheDirectories() {
-    return Arrays.asList(getDiretory(), getDetailsDirectory());
+    return Arrays.asList(getDirectory(), getDetailsDirectory());
   }
 
   private static List<Movie> loadMovies(final File file) {

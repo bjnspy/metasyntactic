@@ -56,7 +56,7 @@ public class NowPlayingController {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Controller", runnable, lock, false/* visible */);
+    ThreadingUtilities.performOnBackgroundThread("Controller-Update", runnable, lock, false/* visible */);
   }
 
   private void updateBackgroundEntryPoint() {
