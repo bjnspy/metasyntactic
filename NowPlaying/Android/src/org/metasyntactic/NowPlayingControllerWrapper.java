@@ -234,9 +234,19 @@ public class NowPlayingControllerWrapper {
     return instance.getReviews(movie);
   }
 
+  public static String getAmazonAddress(final Movie movie) {
+    checkInstance();
+    return NowPlayingController.getAmazonAddress(movie);
+  }
+
   public static String getIMDbAddress(final Movie movie) {
     checkInstance();
     return NowPlayingController.getIMDbAddress(movie);
+  }
+
+  public static String getWikipediaAddress(final Movie movie) {
+    checkInstance();
+    return NowPlayingController.getWikipediaAddress(movie);
   }
 
   public static List<Theater> getTheatersShowingMovie(final Movie movie) {

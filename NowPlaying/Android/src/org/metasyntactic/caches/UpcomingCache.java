@@ -13,11 +13,23 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import static java.lang.String.valueOf;
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.utilities.XmlUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.io.File;
+import static java.lang.String.valueOf;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,20 +42,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.utilities.XmlUtilities;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 public class UpcomingCache extends AbstractMovieCache {
   private static int identifier;
@@ -303,10 +301,6 @@ public class UpcomingCache extends AbstractMovieCache {
     return new File(NowPlayingApplication.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private static File getIMDbFile(final Movie movie) {
-    return new File(NowPlayingApplication.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
-  }
-
   private static File getSynopsisFile(final Movie movie) {
     return new File(NowPlayingApplication.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
@@ -383,29 +377,8 @@ public class UpcomingCache extends AbstractMovieCache {
     model.getPosterCache().update(movie);
   }
 
-  private static void updateImdb(final Movie movie) {
-    final File file = getIMDbFile(movie);
-    if (file.exists()) {
-      final String value = FileUtilities.readString(file);
-      if (value.length() > 0) {
-        return;
-      }
-
-      if (FileUtilities.daysSinceNow(file) < 3) {
-        return;
-      }
-    }
-
-    final String imdbAddress = NetworkUtilities.downloadString(
-        "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(movie.getCanonicalTitle()), false);
-
-    if (isNullOrEmpty(imdbAddress)) {
-      return;
-    }
-
-    FileUtilities.writeString(imdbAddress, file);
-
-    NowPlayingApplication.refresh();
+  private void updateImdb(final Movie movie) {
+    model.getIMDbCache().update(movie);
   }
 
   public static String getTrailer(final Movie movie) {
@@ -415,13 +388,9 @@ public class UpcomingCache extends AbstractMovieCache {
     return FileUtilities.readString(getSynopsisFile(movie));
   }
 
-  public static String getIMDbAddress(final Movie movie) {
-    return FileUtilities.readString(getIMDbFile(movie));
-  }
-
   @Override
   protected List<File> getCacheDirectories() {
-    return Arrays.asList(NowPlayingApplication.upcomingCastDirectory, NowPlayingApplication.upcomingImdbDirectory,
+    return Arrays.asList(NowPlayingApplication.upcomingCastDirectory,
         NowPlayingApplication.upcomingSynopsesDirectory,
         NowPlayingApplication.upcomingTrailersDirectory);
   }
