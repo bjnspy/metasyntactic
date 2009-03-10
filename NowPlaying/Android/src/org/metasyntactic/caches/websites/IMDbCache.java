@@ -11,10 +11,11 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-package org.metasyntactic.caches;
+package org.metasyntactic.caches.websites;
 
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractMovieCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;

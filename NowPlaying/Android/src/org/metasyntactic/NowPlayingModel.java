@@ -26,7 +26,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.IMDbCache;
+import org.metasyntactic.caches.websites.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
