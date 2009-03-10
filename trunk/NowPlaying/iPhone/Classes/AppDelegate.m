@@ -32,6 +32,7 @@
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @property (retain) UIView* globalActivityView;
+@property (retain) NSOperationQueue* operationQueue;
 @end
 
 
@@ -47,6 +48,7 @@ static AppDelegate* appDelegate = nil;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
 @synthesize globalActivityView;
+@synthesize operationQueue;
 
 - (void) dealloc {
     self.window = nil;
@@ -57,6 +59,7 @@ static AppDelegate* appDelegate = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
     self.globalActivityView = nil;
+    self.operationQueue = nil;
 
     [super dealloc];
 }
@@ -78,6 +81,7 @@ static AppDelegate* appDelegate = nil;
     }
 
     appDelegate = self;
+    self.operationQueue = [NSOperationQueue new];
 
     [self setupGlobalActivtyIndicator];
 
@@ -168,6 +172,11 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
     [model didReceiveMemoryWarning];
+}
+
+
++ (NSOperationQueue*) operationQueue {
+    return appDelegate.operationQueue;
 }
 
 @end
