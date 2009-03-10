@@ -53,7 +53,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 public class NowPlayingModel {
-  private static final String PERSISTANCE_VERSION = "21";
+  private static final String PERSISTANCE_VERSION = "22";
 
   // These keys *MUST* end with "KEY"
   private static final String VERSION_KEY = "VERSION";
