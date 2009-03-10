@@ -13,6 +13,10 @@
 //limitations under the License.
 package org.metasyntactic.caches.websites;
 
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractMovieCache;
@@ -21,13 +25,9 @@ import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
+public class AmazonCache extends AbstractMovieCache {
 
-public class IMDbCache extends AbstractMovieCache {
-
-  public IMDbCache(final NowPlayingModel model) {
+  public AmazonCache(final NowPlayingModel model) {
     super(model);
   }
 
@@ -36,7 +36,7 @@ public class IMDbCache extends AbstractMovieCache {
   }
 
   private static File movieFilePath(final Movie movie) {
-    return new File(NowPlayingApplication.imdbDirectory, movieFileName(movie));
+    return new File(NowPlayingApplication.amazonDirectory, movieFileName(movie));
   }
 
   public void update(final List<Movie> movies) {
@@ -52,11 +52,6 @@ public class IMDbCache extends AbstractMovieCache {
       return;
     }
 
-    // Nothing to do if we already have a valid imdb address
-    if (!StringUtilities.isNullOrEmpty(movie.getIMDbAddress())) {
-      return;
-    }
-
     final File path = movieFilePath(movie);
     if (path.exists()) {
       final String address = FileUtilities.readString(path);
@@ -69,8 +64,8 @@ public class IMDbCache extends AbstractMovieCache {
       }
     }
 
-    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities
-      .urlEncode(movie.getCanonicalTitle());
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupAmazonListings?q=" + StringUtilities
+    .urlEncode(movie.getCanonicalTitle());
 
     final String imdbAddress = NetworkUtilities.downloadString(url, false);
     if (imdbAddress == null) {
@@ -87,6 +82,6 @@ public class IMDbCache extends AbstractMovieCache {
 
   @Override
   protected List<File> getCacheDirectories() {
-    return Collections.singletonList(NowPlayingApplication.imdbDirectory);
+    return Collections.singletonList(NowPlayingApplication.amazonDirectory);
   }
 }

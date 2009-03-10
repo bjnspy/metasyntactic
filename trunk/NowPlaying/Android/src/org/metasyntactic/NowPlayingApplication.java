@@ -13,23 +13,22 @@
 // limitations under the License.
 package org.metasyntactic;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.metasyntactic.activities.R;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class NowPlayingApplication extends Application {
   public static final String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
@@ -55,13 +54,14 @@ public class NowPlayingApplication extends Application {
   public static final File scoresDirectory = new File(applicationDirectory, "Scores");
   public static final File reviewsDirectory = new File(applicationDirectory, "Reviews");
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
+  public static final File amazonDirectory = new File(applicationDirectory, "Amazon");
+  public static final File wikipediaDirectory = new File(applicationDirectory, "Wikipedia");
   public static final File postersDirectory = new File(applicationDirectory, "Posters");
   public static final File postersLargeDirectory = new File(postersDirectory, "Large");
   public static final File dvdDirectory = new File(applicationDirectory, "DVD");
   public static final File blurayDirectory = new File(applicationDirectory, "Bluray");
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
   public static final File upcomingCastDirectory = new File(upcomingDirectory, "Cast");
-  public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
   private static Pulser pulser;

@@ -13,12 +13,10 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -31,11 +29,11 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
+import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 public class NowPlayingController {
   private final NowPlayingModel model;
@@ -160,8 +158,16 @@ public class NowPlayingController {
     return model.getReviews(movie);
   }
 
+  public static String getAmazonAddress(final Movie movie) {
+    return NowPlayingModel.getAmazonAddress(movie);
+  }
+
   public static String getIMDbAddress(final Movie movie) {
     return NowPlayingModel.getIMDbAddress(movie);
+  }
+
+  public static String getWikipediaAddress(final Movie movie) {
+    return NowPlayingModel.getWikipediaAddress(movie);
   }
 
   public List<Theater> getTheatersShowingMovie(final Movie movie) {

@@ -13,7 +13,32 @@
 //limitations under the License.
 package org.metasyntactic;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.TrailerCache;
+import org.metasyntactic.caches.UpcomingCache;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.posters.LargePosterCache;
+import org.metasyntactic.caches.posters.PosterCache;
+import org.metasyntactic.caches.scores.ScoreCache;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.caches.websites.AmazonCache;
+import org.metasyntactic.caches.websites.IMDbCache;
+import org.metasyntactic.caches.websites.WikipediaCache;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.utilities.CollectionUtilities;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.FileUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
@@ -24,33 +49,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.websites.IMDbCache;
-import org.metasyntactic.caches.TrailerCache;
-import org.metasyntactic.caches.UpcomingCache;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.caches.dvd.BlurayCache;
-import org.metasyntactic.caches.dvd.DVDCache;
-import org.metasyntactic.caches.posters.LargePosterCache;
-import org.metasyntactic.caches.posters.PosterCache;
-import org.metasyntactic.caches.scores.ScoreCache;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.io.Persistable;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 
 public class NowPlayingModel {
   private static final String PERSISTANCE_VERSION = "19";
@@ -85,16 +83,17 @@ public class NowPlayingModel {
   private final UpcomingCache upcomingCache;
   private final PosterCache posterCache;
   private final LargePosterCache largePosterCache;
+  private final AmazonCache amazonCache;
   private final IMDbCache imdbCache;
-  private final DVDCache dvdCache;
-  private final BlurayCache blurayCache;
+  private final WikipediaCache wikipediaCache;
+  //private final DVDCache dvdCache;
+  //private final BlurayCache blurayCache;
 
   private Map<String, FavoriteTheater> favoriteTheaters;
 
   public NowPlayingModel(final Context applicationContext) {
-    preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
+    preferences = applicationContext.getSharedPreferences(getClass().getName(), 0);
     loadData();
-    clearCaches();
 
     dataProvider = new DataProvider(this);
     scoreCache = new ScoreCache(this);
@@ -103,9 +102,14 @@ public class NowPlayingModel {
     upcomingCache = new UpcomingCache(this);
     posterCache = new PosterCache(this);
     largePosterCache = new LargePosterCache(this);
+    amazonCache = new AmazonCache(this);
     imdbCache = new IMDbCache(this);
-    dvdCache = new DVDCache(this);
-    blurayCache = new BlurayCache(this);
+    wikipediaCache = new WikipediaCache(this);
+
+    clearCaches();
+
+    //dvdCache = new DVDCache(this);
+    //blurayCache = new BlurayCache(this);
   }
 
   private void clearCaches() {
@@ -121,9 +125,11 @@ public class NowPlayingModel {
       trailerCache.clearStaleData();
       posterCache.clearStaleData();
       scoreCache.clearStaleData();
+      amazonCache.clearStaleData();
       imdbCache.clearStaleData();
-      dvdCache.clearStaleData();
-      blurayCache.clearStaleData();
+      wikipediaCache.clearStaleData();
+      //dvdCache.clearStaleData();
+      //blurayCache.clearStaleData();
     }
   }
 
@@ -201,9 +207,11 @@ public class NowPlayingModel {
     trailerCache.onLowMemory();
     posterCache.onLowMemory();
     scoreCache.onLowMemory();
+    amazonCache.onLowMemory();
     imdbCache.onLowMemory();
-    dvdCache.onLowMemory();
-    blurayCache.onLowMemory();
+    wikipediaCache.onLowMemory();
+    //dvdCache.onLowMemory();
+    //blurayCache.onLowMemory();
   }
 
   public void shutdown() {
@@ -213,9 +221,11 @@ public class NowPlayingModel {
     trailerCache.shutdown();
     posterCache.shutdown();
     scoreCache.shutdown();
+    amazonCache.shutdown();
     imdbCache.shutdown();
-    dvdCache.shutdown();
-    blurayCache.shutdown();
+    wikipediaCache.shutdown();
+    //dvdCache.shutdown();
+    //blurayCache.shutdown();
   }
 
   public void update() {
@@ -227,13 +237,17 @@ public class NowPlayingModel {
   }
 
   public void updateSecondaryCaches() {
+    final List<Movie> movies = getMovies();
+
     scoreCache.update();
-    trailerCache.update(getMovies());
-    posterCache.update(getMovies());
+    trailerCache.update(movies);
+    posterCache.update(movies);
     upcomingCache.update();
-    imdbCache.update(getMovies());
-    dvdCache.update();
-    blurayCache.update();
+    amazonCache.update(movies);
+    imdbCache.update(movies);
+    wikipediaCache.update(movies);
+    //dvdCache.update();
+    //blurayCache.update();
   }
 
   public UserLocationCache getUserLocationCache() {
@@ -525,17 +539,20 @@ public class NowPlayingModel {
       return result;
     }
 
-    result = IMDbCache.getIMDbAddress(movie);
-    if (!isNullOrEmpty(result)) {
-      return result;
-    }
-
-    result = UpcomingCache.getIMDbAddress(movie);
+    result = IMDbCache.getAddress(movie);
     if (!isNullOrEmpty(result)) {
       return result;
     }
 
     return "";
+  }
+
+  public static String getAmazonAddress(final Movie movie) {
+    return AmazonCache.getAddress(movie);
+  }
+
+  public static String getWikipediaAddress(final Movie movie) {
+    return WikipediaCache.getAddress(movie);
   }
 
   public void prioritizeMovie(final Movie movie) {

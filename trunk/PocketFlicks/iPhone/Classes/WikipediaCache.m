@@ -72,7 +72,7 @@
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
-            // we have a real imdb value for this movie
+            // we have a real value for this movie
             return;
         }
 
