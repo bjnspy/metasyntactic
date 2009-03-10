@@ -13,9 +13,18 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
@@ -36,22 +45,15 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.CollectionUtilities;
-import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.FileUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 
 public class NowPlayingModel {
-  private static final String PERSISTANCE_VERSION = "19";
+  private static final String PERSISTANCE_VERSION = "21";
 
   // These keys *MUST* end with "KEY"
   private static final String VERSION_KEY = "VERSION";
@@ -137,6 +139,7 @@ public class NowPlayingModel {
     final String lastVersion = preferences.getString(VERSION_KEY, "");
     if (!lastVersion.equals(PERSISTANCE_VERSION)) {
       final Map<String, Object> currentPreferences = getPreferencesToMigrate();
+      ensureFavoriteTheaters();
 
       final SharedPreferences.Editor editor = preferences.edit();
       editor.clear();
@@ -146,6 +149,7 @@ public class NowPlayingModel {
       restorePreferences(currentPreferences);
 
       NowPlayingApplication.reset();
+      saveFavoriteTheaters();
     }
   }
 
@@ -416,6 +420,14 @@ public class NowPlayingModel {
     return dataProvider.getTheaters();
   }
 
+  private Map<String,FavoriteTheater> loadFavoriteTheaters() {
+    final Map<String, FavoriteTheater> result = FileUtilities.readStringToPersistableMap(FavoriteTheater.reader, getFavoriteTheatersFile());
+    if (CollectionUtilities.isEmpty(result)) {
+      return new HashMap<String, FavoriteTheater>();
+    }
+    return result;
+  }
+
   private static File getFavoriteTheatersFile() {
     return new File(NowPlayingApplication.dataDirectory, "FavoriteTheaters");
   }
@@ -426,10 +438,7 @@ public class NowPlayingModel {
 
   private void ensureFavoriteTheaters() {
     if (favoriteTheaters == null) {
-      favoriteTheaters = FileUtilities.readStringToPersistableMap(FavoriteTheater.reader, getFavoriteTheatersFile());
-      if (CollectionUtilities.isEmpty(favoriteTheaters)) {
-        favoriteTheaters = new HashMap<String, FavoriteTheater>();
-      }
+      favoriteTheaters = loadFavoriteTheaters();
     }
   }
 

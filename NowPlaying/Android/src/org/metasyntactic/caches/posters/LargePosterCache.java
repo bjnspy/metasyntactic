@@ -49,15 +49,10 @@ public class LargePosterCache extends AbstractCache {
   private static final int START_YEAR = 1912;
   private final Map<Integer, Map<String, List<String>>> yearToMovieMap = new HashMap<Integer, Map<String, List<String>>>();
   private final Object yearToMovieMapLock = new Object();
+  private boolean threadLaunched;
 
   public LargePosterCache(final NowPlayingModel model) {
     super(model);
-
-    ThreadingUtilities.performOnBackgroundThread("LargePosterCache-UpdateIndices", new Runnable() {
-      public void run() {
-        downloadIndices();
-      }
-    }, null, false);
   }
 
   @Override
@@ -73,11 +68,27 @@ public class LargePosterCache extends AbstractCache {
     return Collections.singletonList(NowPlayingApplication.postersLargeDirectory);
   }
 
-  public static File getIndexFile(final int year) {
+  private void ensureUpdateIndicesThread() {
+    synchronized (yearToMovieMapLock) {
+      if (threadLaunched) {
+        return;
+      }
+      threadLaunched = true;
+
+      ThreadingUtilities.performOnBackgroundThread("LargePosterCache-UpdateIndices", new Runnable() {
+        public void run() {
+          downloadIndices();
+        }
+      }, null, false);
+    }
+  }
+
+  private File getIndexFile(final int year) {
+    ensureUpdateIndicesThread();
     return new File(NowPlayingApplication.postersLargeDirectory, year + ".index");
   }
 
-  private static void downloadIndex(final int year, final boolean updateIfStale) {
+  private void downloadIndex(final int year, final boolean updateIfStale) {
     final File file = getIndexFile(year);
     if (file.exists()) {
       if (!updateIfStale) {

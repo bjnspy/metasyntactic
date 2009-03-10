@@ -13,23 +13,11 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
+import static java.lang.String.valueOf;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.utilities.XmlUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import java.io.File;
-import static java.lang.String.valueOf;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +30,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.XmlUtilities;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class UpcomingCache extends AbstractMovieCache {
   private static int identifier;
@@ -145,7 +146,7 @@ public class UpcomingCache extends AbstractMovieCache {
         updateIndexBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, null, true);
+    ThreadingUtilities.performOnBackgroundThread("UpcomingCache-UpdateIndex", runnable, null, true);
   }
 
   private void updateIndexBackgroundEntryPoint() {
