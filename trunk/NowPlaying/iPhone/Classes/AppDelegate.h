@@ -24,7 +24,6 @@
     Pulser* majorRefreshPulser;
 
     UIView* globalActivityView;
-    NSOperationQueue* operationQueue;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
@@ -41,6 +40,5 @@
 + (NotificationCenter*) notificationCenter;
 
 + (UIView*) globalActivityView;
-+ (NSOperationQueue*) operationQueue;
 
 @end
