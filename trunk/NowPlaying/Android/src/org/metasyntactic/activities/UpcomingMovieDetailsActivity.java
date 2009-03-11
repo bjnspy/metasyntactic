@@ -1,5 +1,22 @@
 package org.metasyntactic.activities;
 
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,19 +38,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -170,12 +174,21 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.read_reviews), null, MovieDetailItemType.ACTION, intent, true);
         movieDetailEntries.add(entry);
       }
-      // Add IMDb link
-      final String imdb_url = NowPlayingControllerWrapper.getIMDbAddress(movie);
-      if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
-        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-        final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null, MovieDetailItemType.ACTION, intent, true);
-        movieDetailEntries.add(entry);
+
+      // Add website links
+      final Map<String,String> nameToUrl = new LinkedHashMap<String, String>();
+      nameToUrl.put("IMDb", NowPlayingControllerWrapper.getIMDbAddress(movie));
+      nameToUrl.put("Wikipedia", NowPlayingControllerWrapper.getWikipediaAddress(movie));
+      nameToUrl.put("Amazon", NowPlayingControllerWrapper.getAmazonAddress(movie));
+
+      for (final Map.Entry<String,String> entry : nameToUrl.entrySet()) {
+        final String url = entry.getValue();
+        final String name = entry.getKey();
+        if (!StringUtilities.isNullOrEmpty(url) && url.startsWith("http")) {
+          final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(url));
+          final MovieDetailEntry movieDetails = new MovieDetailEntry(name, null, MovieDetailItemType.ACTION, intent, true);
+          movieDetailEntries.add(movieDetails);
+        }
       }
     }
   }
