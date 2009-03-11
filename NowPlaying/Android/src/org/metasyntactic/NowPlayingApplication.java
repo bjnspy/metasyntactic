@@ -13,22 +13,24 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+
+import org.metasyntactic.activities.R;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
-import org.metasyntactic.activities.R;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class NowPlayingApplication extends Application {
   public static final String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
@@ -46,6 +48,7 @@ public class NowPlayingApplication extends Application {
   // */
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
+  public static final File trashDirectory = new File(applicationDirectory, "Trash");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
   public static final File tempDirectory = new File(applicationDirectory, "Temp");
   public static final File performancesDirectory = new File(dataDirectory, "Performances");
@@ -70,17 +73,47 @@ public class NowPlayingApplication extends Application {
     if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
 
-      final Runnable runnable = new Runnable() {
-        public void run() {
-          if (NowPlayingControllerWrapper.isRunning()) {
-            final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-            if (context != null) {
-              context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+      {
+        final Runnable runnable = new Runnable() {
+          public void run() {
+            if (NowPlayingControllerWrapper.isRunning()) {
+              final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+              if (context != null) {
+                context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+              }
             }
           }
-        }
-      };
-      pulser = new Pulser(runnable, 5);
+        };
+        pulser = new Pulser(runnable, 5);
+      }
+
+      {
+        final Runnable runnable = new Runnable() {
+          public void run() {
+            try {
+              emptyTrash(trashDirectory, false);
+            } catch (final InterruptedException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        };
+        ThreadingUtilities.performOnBackgroundThread("Application-EmptyTrash", runnable, null, false);
+      }
+    }
+  }
+
+  private static void emptyTrash(final File directory, final boolean deleteDirectory) throws InterruptedException {
+    for (final File child : directory.listFiles()) {
+      if (child.isDirectory()) {
+        emptyTrash(child, true);
+      } else {
+        child.delete();
+      }
+      Thread.sleep(1000);
+    }
+
+    if (deleteDirectory) {
+      directory.delete();
     }
   }
 
@@ -168,8 +201,33 @@ public class NowPlayingApplication extends Application {
 
   private static void deleteDirectories() {
     final long start = System.currentTimeMillis();
-    deleteDirectory(applicationDirectory);
+    //deleteDirectory(applicationDirectory);
+    trashDirectory.mkdirs();
+    for (final File directory : directories()) {
+      if (directory != trashDirectory) {
+        final File destination = getUniqueTrashDirectory();
+        directory.renameTo(destination);
+      }
+    }
     LogUtilities.logTime(NowPlayingApplication.class, "Delete Directories", start);
+  }
+
+  private static File getUniqueTrashDirectory() {
+    File result;
+    do {
+      result = new File(trashDirectory, randomString());
+    } while (result.exists());
+
+    return result;
+  }
+
+  private static final Random random = new Random();
+  private static String randomString() {
+    final StringBuilder buffer = new StringBuilder(8);
+    for (int i = 0; i < 8; i++) {
+      buffer.append((char)('a' + random.nextInt(26)));
+    }
+    return buffer.toString();
   }
 
   public static void deleteDirectory(final File directory) {
