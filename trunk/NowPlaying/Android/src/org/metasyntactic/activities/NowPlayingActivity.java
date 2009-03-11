@@ -2,6 +2,21 @@ package org.metasyntactic.activities;
 
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,23 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -135,7 +134,7 @@ public class NowPlayingActivity extends MoviesActivity {
   /**
    * Updates display of the list of movies.
    */
-  public void refresh() {
+  @Override public void refresh() {
     if (search == null) {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
     }
@@ -146,18 +145,7 @@ public class NowPlayingActivity extends MoviesActivity {
     super.refresh();
   }
 
-  private List<Movie> getMatchingMoviesList(final String search2) {
-    final String localSearch = search2.toLowerCase();
-    final List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (final Movie movie : movies) {
-      if (movie.getDisplayTitle().toLowerCase().contains(localSearch)) {
-        matchingMovies.add(movie);
-      }
-    }
-    return matchingMovies;
-  }
-
-  public Context getContext() {
+  @Override public Context getContext() {
     return this;
   }
 
@@ -166,12 +154,12 @@ public class NowPlayingActivity extends MoviesActivity {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     broadcastReceiver = new BroadcastReceiver() {
-      public void onReceive(final Context context, final Intent intent) {
+      @Override public void onReceive(final Context context, final Intent intent) {
         refresh();
       }
     };
     scrollStatebroadcastReceiver = new BroadcastReceiver() {
-      public void onReceive(final Context context, final Intent intent) {
+      @Override public void onReceive(final Context context, final Intent intent) {
         if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())) {
           scrolling = true;
         } else if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())) {
@@ -249,13 +237,13 @@ public class NowPlayingActivity extends MoviesActivity {
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
-        .setIcon(R.drawable.upcoming);
+    .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
-        .setAlphabeticShortcut('s');
+            new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
+            .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -264,8 +252,8 @@ public class NowPlayingActivity extends MoviesActivity {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+              R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
+              .setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
@@ -312,7 +300,7 @@ public class NowPlayingActivity extends MoviesActivity {
     return body;
   }
 
-  protected void populateSections() {
+  @Override protected void populateSections() {
     super.populateSections();
     if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 0) {
       populateAlphaMovieSectionsAndPositions();
