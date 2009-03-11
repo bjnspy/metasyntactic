@@ -636,12 +636,15 @@ public class NowPlayingModel {
     }
   }
 
-  //public boolean
-
-  //- (BOOL) isStale:(Theater*) theater;
-  //- (NSString*) showtimesRetrievedOnString:(Theater*) theater;
+  public AmazonCache getAmazonCache() {
+    return amazonCache;
+  }
 
   public IMDbCache getIMDbCache() {
     return imdbCache;
+  }
+
+  public WikipediaCache getWikipediaCache() {
+    return wikipediaCache;
   }
 }
