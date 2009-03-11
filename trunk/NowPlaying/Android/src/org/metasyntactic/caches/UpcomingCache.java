@@ -296,6 +296,8 @@ public class UpcomingCache extends AbstractMovieCache {
       updateTrailers(movie, studioKey, titleKey);
     }
     updateImdb(movie);
+    updateAmazon(movie);
+    updateWikipedia(movie);
   }
 
   private static File getCastFile(final Movie movie) {
@@ -378,8 +380,16 @@ public class UpcomingCache extends AbstractMovieCache {
     model.getPosterCache().update(movie);
   }
 
+  private void updateAmazon(final Movie movie) {
+    model.getAmazonCache().update(movie);
+  }
+
   private void updateImdb(final Movie movie) {
     model.getIMDbCache().update(movie);
+  }
+
+  private void updateWikipedia(final Movie movie) {
+    model.getWikipediaCache().update(movie);
   }
 
   public static String getTrailer(final Movie movie) {
