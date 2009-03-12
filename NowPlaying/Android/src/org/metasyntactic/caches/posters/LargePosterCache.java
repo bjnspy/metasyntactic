@@ -147,6 +147,8 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private Map<String, List<String>> getIndex(final int year) {
+    if (shutdown) { return Collections.emptyMap(); }
+
     Map<String, List<String>> index;
     synchronized (yearToMovieMapLock) {
       index = yearToMovieMap.get(year);
@@ -164,6 +166,7 @@ public class LargePosterCache extends AbstractCache {
 
   private List<String> getPosterNames(final Movie movie, final int year) {
     final Map<String, List<String>> index = getIndex(year);
+    if (shutdown) { return Collections.emptyList(); }
 
     if (index != null) {
       final List<String> result = index.get(movie.getCanonicalTitle());
@@ -173,6 +176,7 @@ public class LargePosterCache extends AbstractCache {
 
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
       for (final Map.Entry<String, List<String>> entry : index.entrySet()) {
+        if (shutdown) { return Collections.emptyList(); }
         if (EditDistance.substringSimilar(entry.getKey(), lowercaseTitle)) {
           return entry.getValue();
         }

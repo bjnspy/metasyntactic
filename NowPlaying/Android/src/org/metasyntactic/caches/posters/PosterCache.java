@@ -13,6 +13,13 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractMovieCache;
@@ -21,12 +28,6 @@ import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class PosterCache extends AbstractMovieCache {
   public PosterCache(final NowPlayingModel model) {
@@ -41,13 +42,13 @@ public class PosterCache extends AbstractMovieCache {
     final List<Movie> moviesWithoutLinks = new ArrayList<Movie>();
     final List<Movie> moviesWithLinks = new ArrayList<Movie>();
 
-      for (final Movie movie : movies) {
-        if (isNullOrEmpty(movie.getPoster())) {
-          moviesWithoutLinks.add(movie);
-        } else {
-          moviesWithLinks.add(movie);
-        }
+    for (final Movie movie : movies) {
+      if (isNullOrEmpty(movie.getPoster())) {
+        moviesWithoutLinks.add(movie);
+      } else {
+        moviesWithLinks.add(movie);
       }
+    }
 
     addPrimaryMovies(moviesWithLinks);
     addSecondaryMovies(moviesWithoutLinks);
@@ -75,19 +76,19 @@ public class PosterCache extends AbstractMovieCache {
   }
 
   private byte[] downloadPosterWorker(final Movie movie) {
-    // if (shutdown) { return; }
+    if (shutdown) { return null; }
     byte[] data = NetworkUtilities.download(movie.getPoster(), false);
     if (data != null) {
       return data;
     }
 
-    // if (shutdown) { return; }
+    if (shutdown) { return null; }
     data = ApplePosterDownloader.download(movie);
     if (data != null) {
       return data;
     }
 
-    // if (shutdown) { return; }
+    if (shutdown) { return null; }
     data = downloadPosterFromFandango(movie);
     if (data != null) {
       return data;
@@ -98,7 +99,7 @@ public class PosterCache extends AbstractMovieCache {
      * data; }
      */
 
-    // if (shutdown) { return; }
+    if (shutdown) { return null; }
     model.getLargePosterCache().downloadFirstPoster(movie);
 
     return null;
