@@ -156,8 +156,8 @@ public class Theater extends AbstractPersistable implements Parcelable {
       final String address = source.readString();
       final String phoneNumber = source.readString();
 
-      final Location location = source.readParcelable(null);
-      final Location originatingLocation = source.readParcelable(null);
+      final Location location = source.readParcelable(Location.class.getClassLoader());
+      final Location originatingLocation = source.readParcelable(Location.class.getClassLoader());
       final List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 

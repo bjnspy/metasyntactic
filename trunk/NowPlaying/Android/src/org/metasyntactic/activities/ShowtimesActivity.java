@@ -67,8 +67,11 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
   protected void onResume() {
     LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
+  }
+
+  @Override public void onResumeAfterServiceConnected() {
+    LogUtilities.i(getClass().getSimpleName(), "onResumeAfterServiceConnected");
     bindView();
-    // populateTheaterDetailItems();
     final ListAdapter theaterAdapter = new TheaterListAdapter();
     setListAdapter(theaterAdapter);
   }
