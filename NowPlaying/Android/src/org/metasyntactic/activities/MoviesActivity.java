@@ -9,9 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
@@ -21,7 +19,6 @@ import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.Rotate3dAnimation;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +39,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MoviesActivity extends Activity implements INowPlaying {
+public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   protected CustomGridView grid;
   protected Intent intent;
   protected Movie selectedMovie;
@@ -56,10 +53,23 @@ public class MoviesActivity extends Activity implements INowPlaying {
   protected PostersAdapter postersAdapter;
   protected static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   protected boolean scrolling;
-  protected BroadcastReceiver broadcastReceiver;
-  protected BroadcastReceiver scrollStatebroadcastReceiver;
+  protected final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(final Context context, final Intent intent) {
+      refresh();
+    }
+  };
+  protected final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(final Context context, final Intent intent) {
+      if (NowPlayingApplication.NOW_PLAYING_SCROLLING_INTENT.equals(intent.getAction())) {
+        scrolling = true;
+      } else if (NowPlayingApplication.NOW_PLAYING_NOT_SCROLLING_INTENT.equals(intent.getAction())) {
+        scrolling = false;
+        postersAdapter.notifyDataSetChanged();
+      }
+    }
+  };
 
-  protected static Bitmap getPoster(final Movie movie) {
+  protected Bitmap getPoster(final Movie movie) {
     final String key = movie.getCanonicalTitle();
     final SoftReference<Bitmap> reference = postersMap.get(key);
     Bitmap bitmap = null;
@@ -67,7 +77,7 @@ public class MoviesActivity extends Activity implements INowPlaying {
       bitmap = reference.get();
     }
     if (bitmap == null) {
-      final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movie);
+      final File file = service.getPosterFile_safeToCallFromBackground(movie);
       if (file != null) {
         final byte[] bytes = FileUtilities.readBytes(file);
         if (bytes != null && bytes.length > 0) {
@@ -104,21 +114,18 @@ public class MoviesActivity extends Activity implements INowPlaying {
     return matchingMovies;
   }
 
-  public Context getContext() {
+  @Override public Context getContext() {
     return this;
   }
 
   @Override
   protected void onResume() {
-    super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
+    super.onResume();
     scrolling = false;
-    registerReceiver(broadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.SCROLLING_INTENT));
-    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOT_SCROLLING_INTENT));
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_SCROLLING_INTENT));
+    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_NOT_SCROLLING_INTENT));
     if (isGridSetup) {
       grid.setVisibility(View.VISIBLE);
       postersAdapter.notifyDataSetChanged();
@@ -135,15 +142,14 @@ public class MoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     super.onDestroy();
   }
 
   @Override
-  public Object onRetainNonConfigurationInstance() {
+  public Map<String, Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = new Object();
-    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
-    return result;
+    return super.onRetainNonConfigurationInstance();
   }
 
   @Override
@@ -157,8 +163,8 @@ public class MoviesActivity extends Activity implements INowPlaying {
   }
 
   protected void getUserLocation() {
-    final String userLocation = NowPlayingControllerWrapper.getUserLocation();
-    if (StringUtilities.isNullOrEmpty(userLocation)) {
+    final String userAddress = service.getUserAddress();
+    if (StringUtilities.isNullOrEmpty(userAddress)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, SettingsActivity.class);
       startActivity(localIntent);
@@ -169,17 +175,35 @@ public class MoviesActivity extends Activity implements INowPlaying {
     if (search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + search,
-            Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + search, Toast.LENGTH_SHORT).show();
       } else {
         movies = matchingMovies;
       }
     }
   }
 
+  private final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+    public int compare(final Movie m1, final Movie m2) {
+      int value1 = 0;
+      final Score s1 = service.getScore(m1);
+      final Score s2 = service.getScore(m2);
+      if (s1 != null) {
+        value1 = s1.getScoreValue();
+      }
+      int value2 = 0;
+      if (s2 != null) {
+        value2 = s2.getScoreValue();
+      }
+      if (value1 == value2) {
+        return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+      } else {
+        return value2 - value1;
+      }
+    }
+  };
+
   @SuppressWarnings("unchecked")
-  protected static final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER,
-      Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
+  protected final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, SCORE_ORDER);
 
   protected void populateAlphaMovieSectionsAndPositions() {
     for (int i = 0; i < movies.size(); i++) {
@@ -199,7 +223,7 @@ public class MoviesActivity extends Activity implements INowPlaying {
   protected void populateScoreMovieSectionsAndPositions() {
     for (int i = 0; i < movies.size(); i++) {
       final Movie movie = movies.get(i);
-      final Score localScore = NowPlayingControllerWrapper.getScore(movie);
+      final Score localScore = service.getScore(movie);
       final int scoreValue = localScore == null ? 0 : localScore.getScoreValue();
       final int scoreLevel = scoreValue / 10 * 10;
       final String sectionTitle = scoreLevel + "%";
@@ -256,7 +280,7 @@ public class MoviesActivity extends Activity implements INowPlaying {
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        intent.putExtra("movie", (Parcelable) selectedMovie);
+        intent.putExtra("movie", (Parcelable)selectedMovie);
         startActivity(intent);
       }
 
@@ -267,10 +291,6 @@ public class MoviesActivity extends Activity implements INowPlaying {
       }
     });
     view.startAnimation(rotation);
-  }
-
-  public MoviesActivity() {
-    super();
   }
 
   protected class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
@@ -297,14 +317,13 @@ public class MoviesActivity extends Activity implements INowPlaying {
         convertView = inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder(movie, (TextView) convertView.findViewById(R.id.title),
-            (ImageView) convertView.findViewById(R.id.poster));
+        holder = new ViewHolder(movie, (TextView)convertView.findViewById(R.id.title), (ImageView)convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
         convertView.setBackgroundDrawable(backgroundDrawable);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
         // and the ImageView.
-        holder = (ViewHolder) convertView.getTag();
+        holder = (ViewHolder)convertView.getTag();
       }
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
@@ -327,7 +346,7 @@ public class MoviesActivity extends Activity implements INowPlaying {
           }
         }
       } else {
-        NowPlayingControllerWrapper.prioritizeMovie(movie);
+        service.prioritizeMovie(movie);
         // ok. we've stopped scrolling. either we're reusing this view for a
         // new movie, or we haven't loaded the image for this movie yet. in
         // either case try to load it. if we can, then we're done and don't

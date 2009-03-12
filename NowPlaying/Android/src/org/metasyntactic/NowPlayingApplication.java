@@ -38,8 +38,10 @@ public class NowPlayingApplication extends Application {
   public static final String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
   public static final String NOW_PLAYING_UPDATING_LOCATION_START = "NOW_PLAYING_UPDATING_LOCATION_START";
   public static final String NOW_PLAYING_UPDATING_LOCATION_STOP = "NOW_PLAYING_UPDATING_LOCATION_STOP";
-  public static final String SCROLLING_INTENT = "SCROLLING_INTENT";
-  public static final String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
+  public static final String NOW_PLAYING_SCROLLING_INTENT = "NOW_PLAYING_SCROLLING_INTENT";
+  public static final String NOW_PLAYING_NOT_SCROLLING_INTENT = "NOW_PLAYING_NOT_SCROLLING_INTENT";
+  public static final String NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT = "NOW_PLAYING_COULD_NOT_FIND_LOCATION_INTENT";
+
   public static final String host =
     /*
      * "metaboxoffice6"; /
@@ -69,6 +71,8 @@ public class NowPlayingApplication extends Application {
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
   private static Pulser pulser;
 
+  private static NowPlayingApplication application;
+
   static {
     if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
@@ -76,45 +80,22 @@ public class NowPlayingApplication extends Application {
       {
         final Runnable runnable = new Runnable() {
           public void run() {
-            if (NowPlayingControllerWrapper.isRunning()) {
-              final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-              if (context != null) {
-                context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
-              }
+            if (application != null) {
+              application.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
             }
           }
         };
         pulser = new Pulser(runnable, 5);
       }
-
-      {
-        final Runnable runnable = new Runnable() {
-          public void run() {
-            try {
-              emptyTrash(trashDirectory, false);
-            } catch (final InterruptedException e) {
-              throw new RuntimeException(e);
-            }
-          }
-        };
-        ThreadingUtilities.performOnBackgroundThread("Application-EmptyTrash", runnable, null, false);
-      }
     }
   }
 
-  private static void emptyTrash(final File directory, final boolean deleteDirectory) throws InterruptedException {
-    for (final File child : directory.listFiles()) {
-      if (child.isDirectory()) {
-        emptyTrash(child, true);
-      } else {
-        child.delete();
-      }
-      Thread.sleep(1000);
-    }
+  public NowPlayingApplication() {
+    application = this;
+  }
 
-    if (deleteDirectory) {
-      directory.delete();
-    }
+  public static Application getApplication() {
+    return application;
   }
 
   public static String getName(final Resources resources) {
@@ -158,7 +139,6 @@ public class NowPlayingApplication extends Application {
   @Override
   public void onLowMemory() {
     super.onLowMemory();
-    NowPlayingControllerWrapper.onLowMemory();
     FileUtilities.onLowMemory();
   }
 

@@ -1,23 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
-import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -31,12 +13,27 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class ShowtimesActivity extends ListActivity {
-  private List<Theater> localTheaters;
+public class ShowtimesActivity extends AbstractNowPlayingListActivity {
   private final List<TheaterWrapper> theaterWrapperList = new ArrayList<TheaterWrapper>();
   private Movie movie;
   private Location userLocation;
@@ -57,19 +54,25 @@ public class ShowtimesActivity extends ListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
+  @Override protected void onResumeAfterServiceConnected() {
+  }
+
+  @Override protected void onCreateAfterServiceConnected() {
+  }
+
   @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    NowPlayingControllerWrapper.addActivity(this);
+    super.onCreate(bundle);
+
     setContentView(R.layout.theaters_movie);
     movie = getIntent().getExtras().getParcelable("movie");
   }
 
   @Override
   protected void onResume() {
-    super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
+    super.onResume();
     bindView();
     // populateTheaterDetailItems();
     final ListAdapter theaterAdapter = new TheaterListAdapter();
@@ -78,24 +81,21 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   protected void onPause() {
-    super.onPause();
     LogUtilities.i(getClass().getSimpleName(), "onPause");
+    super.onPause();
   }
 
   @Override
   protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
   }
 
   @Override
-  public Object onRetainNonConfigurationInstance() {
+  public Map<String,Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = new Object();
-    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
-    return result;
+    return super.onRetainNonConfigurationInstance();
   }
 
   private void bindView() {
@@ -105,13 +105,13 @@ public class ShowtimesActivity extends ListActivity {
     final View scoreImg = findViewById(R.id.score);
     final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Resources res = getResources();
-    final Score score = NowPlayingControllerWrapper.getScore(movie);
+    final Score score = service.getScore(movie);
     int scoreValue = -1;
     if (score != null && score.getValue().length() != 0) {
       scoreValue = Integer.parseInt(score.getValue());
     }
 
-    final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
+    final ScoreType scoreType = service.getScoreType();
     scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
     if (scoreValue != -1) {
       scoreLbl.setText(scoreValue + "%");
@@ -126,16 +126,16 @@ public class ShowtimesActivity extends ListActivity {
 
     ratingLengthLabel.setText(ratingAndLength);
 
-    userLocation = NowPlayingControllerWrapper.getLocationForAddress(NowPlayingControllerWrapper.getUserLocation());
-    localTheaters = NowPlayingControllerWrapper.getTheatersShowingMovie(movie);
+    userLocation = service.getLocationForAddress(service.getUserAddress());
+    final List<Theater> localTheaters = service.getTheatersShowingMovie(movie);
     theaterWrapperList.clear();
 
     Collections.sort(localTheaters, DISTANCE_ORDER);
     Collections.sort(localTheaters, RATING_ORDER);
     boolean isHeaderAdded = false;
     for (final Theater theater : localTheaters) {
-      if (userLocation.distanceTo(theater.getLocation()) > NowPlayingControllerWrapper.getSearchDistance() &&
-          !NowPlayingControllerWrapper.isFavoriteTheater(theater) &&
+      if (userLocation.distanceTo(theater.getLocation()) > service.getSearchDistance() &&
+          !service.isFavoriteTheater(theater) &&
           !isHeaderAdded) {
         theaterWrapperList.add(new TheaterWrapper(null, 2));
         isHeaderAdded = true;
@@ -153,8 +153,8 @@ public class ShowtimesActivity extends ListActivity {
   };
   private final Comparator<Theater> RATING_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
-      final boolean isFavoriteM1 = NowPlayingControllerWrapper.isFavoriteTheater(m1);
-      final boolean isFavoriteM2 = NowPlayingControllerWrapper.isFavoriteTheater(m2);
+      final boolean isFavoriteM1 = service.isFavoriteTheater(m1);
+      final boolean isFavoriteM2 = service.isFavoriteTheater(m2);
       if (isFavoriteM1 && isFavoriteM2 || !isFavoriteM1 && !isFavoriteM2) {
         return 0;
       }
@@ -183,14 +183,14 @@ public class ShowtimesActivity extends ListActivity {
         final Theater theater = theaterWrapper.theater;
         holder.label.setText(theater.getName());
 
-        final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);
+        final List<Performance> list = service.getPerformancesForMovieAtTheater(movie, theater);
         if (CollectionUtilities.size(list) > 0) {
           final String performance = buildPerformanceString(list);
           showStaleShowtimesWarning(convertView, theater);
           holder.data.setText(performance);
         }
 
-        if (NowPlayingControllerWrapper.isFavoriteTheater(theater)) {
+        if (service.isFavoriteTheater(theater)) {
           final View ratingImage = convertView.findViewById(R.id.ratingImage);
           ratingImage.setVisibility(View.VISIBLE);
         }
@@ -215,11 +215,11 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     private void showStaleShowtimesWarning(final View convertView, final Theater theater) {
-      if (NowPlayingControllerWrapper.isStale(theater)) {
+      if (service.isStale(theater)) {
         final View warningView = convertView.findViewById(R.id.warning);
         warningView.setVisibility(View.VISIBLE);
         final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
-        warningText.setText(NowPlayingControllerWrapper.getShowtimesRetrievedOnString(theater, getResources()));
+        warningText.setText(service.getShowtimesRetrievedOnString(theater));
       }
     }
 

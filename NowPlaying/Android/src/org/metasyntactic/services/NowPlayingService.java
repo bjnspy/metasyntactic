@@ -1,29 +1,114 @@
-//Copyright 2008 Cyrus Najmabadi
+// Copyright 2008 Cyrus Najmabadi
 //
-//Licensed under the Apache License, Version 2.0 (the "License");
-//you may not use this file except in compliance with the License.
-//You may obtain a copy of the License at
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
-//Unless required by applicable law or agreed to in writing, software
-//distributed under the License is distributed on an "AS IS" BASIS,th
-//WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//See the License for the specific language governing permissions and
-//limitations under the License.
-package org.metasyntactic;
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+package org.metasyntactic.services;
 
-/*
-public class NowPlayingController {
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
+import org.metasyntactic.LocationTracker;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+
+public class NowPlayingService extends Service {
+  private LocationTracker locationTracker;
   private final NowPlayingModel model;
   private final Object lock = new Object();
+  private final NowPlayingServiceBinder binder = new NowPlayingServiceBinder(this);
+  private volatile boolean shutdown;
 
-  public NowPlayingController(final Context applicationContext) {
-    model = new NowPlayingModel(applicationContext);
+  public NowPlayingService() {
+    model = new NowPlayingModel(this);
+    restartLocationTracker();
     update();
+
+    deleteTrash();
+  }
+
+  private void deleteTrash() {
+    final Runnable runnable = new Runnable() {
+      public void run() {
+        try {
+          emptyTrash(NowPlayingApplication.trashDirectory, false);
+        } catch (final InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread("Service-EmptyTrash", runnable, null, false);
+  }
+
+  private void emptyTrash(final File directory, final boolean deleteDirectory) throws InterruptedException {
+    for (final File child : directory.listFiles()) {
+      if (shutdown) {
+        return;
+      }
+
+      if (child.isDirectory()) {
+        emptyTrash(child, true);
+      } else {
+        child.delete();
+      }
+      Thread.sleep(1000);
+    }
+
+    if (deleteDirectory) {
+      directory.delete();
+    }
+  }
+
+  private void shutdownLocationTracker() {
+    if (locationTracker != null) {
+      locationTracker.shutdown();
+      locationTracker = null;
+    }
+  }
+
+  private void restartLocationTracker() {
+    shutdownLocationTracker();
+    locationTracker = new LocationTracker(this);
+  }
+
+  @Override public IBinder onBind(final Intent intent) {
+    return binder;
+  }
+
+  @Override public void onDestroy() {
+    shutdown();
+    stopSelf();
   }
 
   public void shutdown() {
+    shutdown = true;
+    shutdownLocationTracker();
     model.shutdown();
   }
 
@@ -33,7 +118,7 @@ public class NowPlayingController {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Controller-Update", runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Controller-Update", runnable, lock, false/* visible */);
   }
 
   private void updateBackgroundEntryPoint() {
@@ -52,16 +137,8 @@ public class NowPlayingController {
     }
   }
 
-  private static void reportUnknownLocation() {
-    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-    if (context == null) {
-      return;
-    }
-    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
-    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-      public void onClick(final DialogInterface dialogInterface, final int i) {
-      }
-    }).show();
+  private void reportUnknownLocation() {
+    sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT));
   }
 
   public String getUserAddress() {
@@ -215,7 +292,8 @@ public class NowPlayingController {
     return model.getUpcomingMovies();
   }
 
-  public void onLowMemory() {
+  @Override public void onLowMemory() {
+    super.onLowMemory();
     model.onLowMemory();
   }
 
@@ -227,8 +305,8 @@ public class NowPlayingController {
     return model.isStale(theater);
   }
 
-  public String getShowtimesRetrievedOnString(final Theater theater, final Resources resources) {
-    return model.getShowtimesRetrievedOnString(theater, resources);
+  public String getShowtimesRetrievedOnString(final Theater theater) {
+    return model.getShowtimesRetrievedOnString(theater, getResources());
   }
 
   public void addFavoriteTheater(final Theater theater) {
@@ -243,4 +321,3 @@ public class NowPlayingController {
     return model.isFavoriteTheater(theater);
   }
 }
-*/

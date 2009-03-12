@@ -1,10 +1,5 @@
 package org.metasyntactic.activities;
 
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import java.util.Map;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
@@ -22,15 +21,21 @@ import android.widget.EditText;
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class SearchMovieActivity extends Activity implements View.OnClickListener {
+public class SearchMovieActivity extends AbstractNowPlayingActivity implements View.OnClickListener {
   private EditText mSearchText;
   private static String activityName;
 
+  @Override protected void onResumeAfterServiceConnected() {
+  }
+
+  @Override protected void onCreateAfterServiceConnected() {
+  }
+
   @Override
-  public void onCreate(final Bundle icicle) {
-    super.onCreate(icicle);
+  public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    NowPlayingControllerWrapper.addActivity(this);
+    super.onCreate(bundle);
+
     setContentView(R.layout.search_bar);
     mSearchText = (EditText)findViewById(R.id.search_src_text);
     mSearchText.setOnClickListener(this);
@@ -40,29 +45,26 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
 
   @Override
   protected void onPause() {
-    super.onPause();
     LogUtilities.i(getClass().getSimpleName(), "onPause");
+    super.onPause();
   }
 
   @Override
   protected void onResume() {
-    super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
+    super.onResume();
   }
 
   @Override
   protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
-  public Object onRetainNonConfigurationInstance() {
+  public Map<String, Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = new Object();
-    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
-    return result;
+    return super.onRetainNonConfigurationInstance();
   }
 
   // View.OnClickListener
@@ -76,12 +78,12 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
     menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
-    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-      public boolean onMenuItemClick(final MenuItem item) {
-        performSearch();
-        return true;
-      }
-    });
+      .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        public boolean onMenuItemClick(final MenuItem item) {
+          performSearch();
+          return true;
+        }
+      });
     return true;
   }
 
@@ -105,5 +107,8 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
       intent.putExtra("movie", search);
       activity.startActivity(intent);
     }
+  }
+
+  public void refresh() {
   }
 }

@@ -300,6 +300,10 @@ const NSInteger POSTER_TAG = -1;
         [cells addObject:cell];
     }
 
+    // try to workaround the crash with released cells
+    [netflixStatusCells retain];
+    [netflixStatusCells performSelectorOnMainThread:@selector(autorelease) withObject:nil waitUntilDone:NO];
+    
     self.netflixStatusCells = cells;
 }
 

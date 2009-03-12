@@ -11,11 +11,14 @@
         android:theme="@android:style/Theme.Black"
         android:name="org.metasyntactic.NowPlayingApplication">
         >
+        <service
+            android:name="org.metasyntactic.services.NowPlayingService">
+        </service>
         <activity
             android:label="@string/application_name_and_version"
             android:name="NowPlayingActivity"
             android:launchMode="singleTask">
-            
+
         </activity>
         <activity
             android:theme="@android:style/Theme.NoTitleBar"

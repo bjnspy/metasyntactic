@@ -15,7 +15,6 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
@@ -297,25 +296,6 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
         d2 = m2.getReleaseDate();
       }
       return d2.compareTo(d1);
-    }
-  };
-  public static final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      int value1 = 0;
-      final Score s1 = NowPlayingControllerWrapper.getScore(m1);
-      final Score s2 = NowPlayingControllerWrapper.getScore(m2);
-      if (s1 != null) {
-        value1 = s1.getScoreValue();
-      }
-      int value2 = 0;
-      if (s2 != null) {
-        value2 = s2.getScoreValue();
-      }
-      if (value1 == value2) {
-        return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
-      } else {
-        return value2 - value1;
-      }
     }
   };
 }

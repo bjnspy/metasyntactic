@@ -1,8 +1,24 @@
 package org.metasyntactic.activities;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.RefreshableContext;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,78 +29,70 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class SettingsActivity extends ListActivity implements INowPlaying {
+public class SettingsActivity extends AbstractNowPlayingListActivity implements RefreshableContext {
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
   private boolean isFirst;
 
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver updateLocationStartReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       setTitle(R.string.finding_location);
       setProgressBarIndeterminateVisibility(true);
     }
   };
   private final BroadcastReceiver updateLocationStopReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       setProgressBarIndeterminateVisibility(false);
       setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
     }
   };
 
+  @Override protected void onResumeAfterServiceConnected() {
+  }
+
+  @Override protected void onCreateAfterServiceConnected() {
+    getUserLocation();
+    populateSettingsItems();
+    settingsAdapter = new SettingsAdapter();
+    setListAdapter(settingsAdapter);
+  }
+
   @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    NowPlayingControllerWrapper.addActivity(this);
+    super.onCreate(bundle);
+
     if (getIntent().getStringExtra("from_menu") == null) {
-      getUserLocation();
       isFirst = true;
     }
+
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
     final View next = findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
-        final String searchLocation = NowPlayingControllerWrapper.getUserLocation();
+        final String searchLocation = service.getUserAddress();
         if (StringUtilities.isNullOrEmpty(searchLocation)) {
           Toast.makeText(SettingsActivity.this, getResources().getString(R.string.please_enter_your_location), Toast.LENGTH_LONG).show();
         } else {
@@ -94,8 +102,22 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         }
       }
     });
-    populateSettingsItems();
     setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
+  }
+
+  @Override
+  protected void onResume() {
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
+    super.onResume();
+
+    if (!isFirst && getIntent().getStringExtra("from_menu") == null) {
+      finish();
+    }
+    isFirst = false;
+
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(updateLocationStartReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
+    registerReceiver(updateLocationStopReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
   }
 
   @Override
@@ -108,7 +130,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   private void getUserLocation() {
-    final String userLocation = NowPlayingControllerWrapper.getUserLocation();
+    final String userLocation = service.getUserAddress();
     if (!StringUtilities.isNullOrEmpty(userLocation)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, NowPlayingActivity.class);
@@ -117,33 +139,15 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
-    if (!isFirst && getIntent().getStringExtra("from_menu") == null) {
-      finish();
-    }
-    isFirst = false;
-    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(updateLocationStartReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
-    registerReceiver(updateLocationStopReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
-    settingsAdapter = new SettingsAdapter();
-    setListAdapter(settingsAdapter);
-  }
-
-  @Override
   protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
-  public Object onRetainNonConfigurationInstance() {
+  public Map<String,Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = new Object();
-    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
-    return result;
+    return super.onRetainNonConfigurationInstance();
   }
 
   @Override
@@ -227,11 +231,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
           final Calendar cal1 = Calendar.getInstance();
           cal1.set(year, monthOfYear, dayOfMonth);
-          NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
+          service.setSearchDate(cal1.getTime());
           refresh();
         }
       };
-      final Date searchDate = NowPlayingControllerWrapper.getSearchDate();
+      final Date searchDate = service.getSearchDate();
       final Calendar cal = Calendar.getInstance();
       cal.setTime(searchDate);
       new DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
@@ -247,7 +251,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.autoupdate_location));
-    final boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    final boolean isAutoUpdate = service.isAutoUpdateEnabled();
     if (isAutoUpdate) {
       settings.setData(res.getString(R.string.on));
     } else {
@@ -258,7 +262,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // location - 1
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.location));
-    final String location = NowPlayingControllerWrapper.getUserLocation();
+    final String location = service.getUserAddress();
     if (isNullOrEmpty(location)) {
       settings.setData(res.getString(R.string.tap_here_to_enter_your_search_location));
     } else {
@@ -269,8 +273,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // search distance - 2
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_distance));
-    final int distance = NowPlayingControllerWrapper.getSearchDistance();
-    
+    final int distance = service.getSearchDistance();
+
     // units is available.
     settings.setData(distance + " " + res.getString(R.string.miles));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
@@ -279,7 +283,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_date));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DATE);
-    final Date d1 = NowPlayingControllerWrapper.getSearchDate();
+    final Date d1 = service.getSearchDate();
     final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
     if (d1 != null) {
       settings.setData(df.format(d1));
@@ -288,7 +292,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // reviews provider - 4
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.reviews));
-    final ScoreType type = NowPlayingControllerWrapper.getScoreType();
+    final ScoreType type = service.getScoreType();
     if (type != null) {
       settings.setData(type.toString());
       if (type == ScoreType.RottenTomatoes) {
@@ -315,10 +319,10 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);
-        holder.check.setChecked(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+        holder.check.setChecked(service.isAutoUpdateEnabled());
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
-            NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
+            service.setAutoUpdateEnabled(checked);
             refresh();
           }
         });
@@ -411,7 +415,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     settingsAdapter.refresh();
   }
 
-  public Context getContext() {
+  @Override public Context getContext() {
     return this;
   }
 

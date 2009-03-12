@@ -44,16 +44,16 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.services.NowPlayingService;
 import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 public class NowPlayingModel {
-  private static final String PERSISTANCE_VERSION = "25";
+  private static final String PERSISTANCE_VERSION = "26";
 
   // These keys *MUST* end with "KEY"
   private static final String VERSION_KEY = "VERSION";
@@ -74,6 +74,8 @@ public class NowPlayingModel {
 
   private static final String[] BOOLEAN_KEYS_TO_MIGRATE = {AUTO_UPDATED_ENABLED_KEY};
 
+  private final NowPlayingService service;
+
   // SharedPreferences is not thread-safe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
@@ -93,8 +95,9 @@ public class NowPlayingModel {
 
   private Map<String, FavoriteTheater> favoriteTheaters;
 
-  public NowPlayingModel(final Context applicationContext) {
-    preferences = applicationContext.getSharedPreferences(getClass().getName(), 0);
+  public NowPlayingModel(final NowPlayingService service) {
+    this.service = service;
+    preferences = NowPlayingApplication.getApplication().getSharedPreferences(getClass().getName(), 0);
     loadData();
 
     dataProvider = new DataProvider(this);
@@ -112,6 +115,10 @@ public class NowPlayingModel {
 
     //dvdCache = new DVDCache(this);
     //blurayCache = new BlurayCache(this);
+  }
+
+  public NowPlayingService getService() {
+    return service;
   }
 
   private void clearCaches() {
