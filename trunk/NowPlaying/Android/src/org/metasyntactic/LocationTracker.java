@@ -13,41 +13,40 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import org.metasyntactic.data.Location;
+import org.metasyntactic.services.NowPlayingService;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LocationUtilities;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LocationUtilities;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class LocationTracker implements LocationListener {
-  private final NowPlayingController controller;
+  private final NowPlayingService service;
   private final LocationManager locationManager;
   private final Object lock = new Object();
   private boolean shutdown;
 
-  public LocationTracker(final NowPlayingController controller, final Context context) {
-    this.controller = controller;
-    locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+  public LocationTracker(final NowPlayingService service) {
+    this.service = service;
+    locationManager = (LocationManager)NowPlayingApplication.getApplication().getSystemService(Context.LOCATION_SERVICE);
     autoUpdateLocation();
   }
 
   private void autoUpdateLocation() {
-    if (controller.isAutoUpdateEnabled()) {
+    if (service.isAutoUpdateEnabled()) {
       final Criteria criteria = new Criteria();
       criteria.setAccuracy(Criteria.ACCURACY_COARSE);
       final String provider = locationManager.getBestProvider(criteria, true);
       if (provider != null) {
-        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-        if (context != null) {
-          context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
-        }
+        NowPlayingApplication.getApplication().sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
         locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
       }
     }
@@ -87,14 +86,11 @@ public class LocationTracker implements LocationListener {
     if (shutdown) {
       return;
     }
-    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-    if (context != null) {
-      context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
-    }
+    NowPlayingApplication.getApplication().sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
 
     final String displayString = location.toDisplayString();
-    NowPlayingController.reportLocationForAddress(location, displayString);
-    controller.setUserAddress(displayString);
+    NowPlayingService.reportLocationForAddress(location, displayString);
+    service.setUserAddress(displayString);
   }
 
   public void onStatusChanged(final String s, final int i, final Bundle bundle) {

@@ -13,35 +13,10 @@
 // limitations under the License.
 package org.metasyntactic;
 
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import static org.metasyntactic.utilities.SetUtilities.any;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.collections.IdentityHashSet;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.ui.GlobalActivityIndicator;
-import org.metasyntactic.utilities.LogUtilities;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
-
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
+/*
 public class NowPlayingControllerWrapper {
   private static final Collection<Activity> activities = new LinkedHashSet<Activity>();
   private static final Collection<Object> retainedActivityObjects = new IdentityHashSet<Object>();
@@ -351,3 +326,4 @@ public class NowPlayingControllerWrapper {
     return instance.isFavoriteTheater(theater);
   }
 }
+*/

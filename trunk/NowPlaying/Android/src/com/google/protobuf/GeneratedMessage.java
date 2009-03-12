@@ -229,7 +229,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
      * @return {@code true} unless the tag is an end-group tag.
      */
     protected boolean parseUnknownField(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
-        final ExtensionRegistry ignored, final int tag) throws IOException {
+        @SuppressWarnings("unused") final ExtensionRegistry ignored, final int tag) throws IOException {
       return unknownFields.mergeFieldFrom(tag, input);
     }
 
@@ -924,7 +924,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
     @SuppressWarnings("unchecked")
     private static class SingularFieldAccessor implements FieldAccessor {
-      SingularFieldAccessor(final FieldDescriptor descriptor, final String camelCaseName,
+      SingularFieldAccessor(@SuppressWarnings("unused") final FieldDescriptor descriptor, final String camelCaseName,
           final Class<? extends GeneratedMessage> messageClass,
           final Class<? extends GeneratedMessage.Builder> builderClass) {
         getMethod = getMethodOrDie(messageClass, "get" + camelCaseName);
@@ -982,7 +982,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
     @SuppressWarnings("unchecked")
     private static class RepeatedFieldAccessor implements FieldAccessor {
-      RepeatedFieldAccessor(final FieldDescriptor descriptor, final String camelCaseName,
+      RepeatedFieldAccessor(@SuppressWarnings("unused") final FieldDescriptor descriptor, final String camelCaseName,
           final Class<? extends GeneratedMessage> messageClass,
           final Class<? extends GeneratedMessage.Builder> builderClass) {
         getMethod = getMethodOrDie(messageClass, "get" + camelCaseName + "List");

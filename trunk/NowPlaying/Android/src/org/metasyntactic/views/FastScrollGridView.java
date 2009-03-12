@@ -113,7 +113,7 @@ OnHierarchyChangeListener {
     // Draw one last time to remove thumb
     invalidate();
     //scrolling by thumb stops when thumb goes invisible...broadcast the scrolling idle intent here.
-    context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
+    context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_NOT_SCROLLING_INTENT));
   }
 
   @Override
@@ -171,9 +171,9 @@ OnHierarchyChangeListener {
 
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
     if (scrollState == SCROLL_STATE_IDLE) {
-      context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
+      context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_NOT_SCROLLING_INTENT));
     } else {
-      context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
+      context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_SCROLLING_INTENT));
     }
   }
 

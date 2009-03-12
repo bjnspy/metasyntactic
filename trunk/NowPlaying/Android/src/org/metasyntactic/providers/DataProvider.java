@@ -13,12 +13,35 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
+import android.content.Context;
+import android.content.Intent;
+import com.google.protobuf.InvalidProtocolBufferException;
+import org.apache.commons.collections.map.MultiValueMap;
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.protobuf.NowPlaying;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.time.Days;
+import org.metasyntactic.time.Hours;
 import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,33 +57,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.protobuf.NowPlaying;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.time.Days;
-import org.metasyntactic.time.Hours;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-
-import android.content.Context;
-import android.content.Intent;
-
-import com.google.protobuf.InvalidProtocolBufferException;
 
 public class DataProvider {
   public enum State {
@@ -124,20 +120,16 @@ public class DataProvider {
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
-        state = State.Finished;
-        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-        if (context != null) {
-          context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-        }
+        model.getService().sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
         model.updateSecondaryCaches();
       }
     });
   }
 
-  private static void broadcastUpdate(final int id) {
+  private void broadcastUpdate(final int id) {
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
-        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+        final Context context = model.getService();
         if (context != null) {
           final String message = context.getResources().getString(id);
           final Intent intent = new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message", message);
@@ -552,7 +544,7 @@ public class DataProvider {
     return getPerformancesFile(NowPlayingApplication.performancesDirectory, theaterName);
   }
 
-  private static void saveResult(final LookupResult result) {
+  private void saveResult(final LookupResult result) {
     long start = System.currentTimeMillis();
     broadcastUpdate(R.string.downloading_movie_information);
     FileUtilities.writePersistableCollection(result.getMovies(), getMoviesFile());

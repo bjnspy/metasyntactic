@@ -1,23 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,11 +20,27 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class UpcomingMovieDetailsActivity extends ListActivity {
+public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity {
+  private static final String MOVIE_DETAIL_ENTRIES_KEY = UpcomingMovieDetailsActivity.class.getSimpleName() + ".movieDetailEntries";
+
   /**
    * Called when the activity is first created.
    */
@@ -56,15 +54,13 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     }
   };
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    NowPlayingControllerWrapper.addActivity(this);
-    setContentView(R.layout.upcomingmoviedetails);
+  @Override protected void onResumeAfterServiceConnected() {
+  }
+
+  @Override protected void onCreateAfterServiceConnected() {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
-    NowPlayingControllerWrapper.prioritizeMovie(movie);
+    service.prioritizeMovie(movie);
     final Resources res = getResources();
     final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
@@ -79,9 +75,16 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   }
 
   @Override
+  public void onCreate(final Bundle bundle) {
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
+    super.onCreate(bundle);
+    setContentView(R.layout.upcomingmoviedetails);
+  }
+
+  @Override
   protected void onResume() {
-    super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
+    super.onResume();
 
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
@@ -98,33 +101,35 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
-  public Object onRetainNonConfigurationInstance() {
+  public Map<String, Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = movieDetailEntries;
-    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
-    return result;
+    final Map<String, Object> state = super.onRetainNonConfigurationInstance();
+    state.put(MOVIE_DETAIL_ENTRIES_KEY, movieDetailEntries);
+    return state;
   }
 
   @SuppressWarnings("unchecked")
-  @Override public List<MovieDetailEntry> getLastNonConfigurationInstance() {
-    return (List<MovieDetailEntry>)super.getLastNonConfigurationInstance();
+  private List<MovieDetailEntry> getLastNonConfigurationInstanceValue() {
+    final Map<String, Object> state = getLastNonConfigurationInstance();
+    if (state == null) {
+      return null;
+    }
+    return (List<MovieDetailEntry>)state.get(MOVIE_DETAIL_ENTRIES_KEY);
   }
 
   private void populateMovieDetailEntries() {
-    movieDetailEntries = getLastNonConfigurationInstance();
+    movieDetailEntries = getLastNonConfigurationInstanceValue();
 
     if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
       // Add title and Synopsis
       {
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis), null, MovieDetailItemType.POSTER_SYNOPSIS, null,
-            false);
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis), null, MovieDetailItemType.POSTER_SYNOPSIS, null, false);
         movieDetailEntries.add(entry);
       }
       // Add release Date
@@ -132,20 +137,20 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       if (releaseDate != null) {
         final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(releaseDate);
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
-            null, false);
+          null, false);
         movieDetailEntries.add(entry);
       }
       {
         // Add cast
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast_colon),
-            MovieViewUtilities.formatListToString(movie.getCast()), MovieDetailItemType.DATA, null, false);
+          MovieViewUtilities.formatListToString(movie.getCast()), MovieDetailItemType.DATA, null, false);
         movieDetailEntries.add(entry);
       }
       // Add director
       final List<String> directors = movie.getDirectors();
       if (directors != null && !directors.isEmpty()) {
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director_colon), MovieViewUtilities.formatListToString(directors),
-            MovieDetailItemType.DATA, null, false);
+          MovieDetailItemType.DATA, null, false);
         movieDetailEntries.add(entry);
       }
       {
@@ -154,7 +159,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         movieDetailEntries.add(entry);
       }
       // Add trailer
-      final String trailer_url = NowPlayingControllerWrapper.getTrailer(movie);
+      final String trailer_url = service.getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(trailer_url), "video/*");
@@ -164,8 +169,8 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       // Add reviews
       // doing this as the getReviews() throws NPE instead null return.
       ArrayList<Review> reviews = new ArrayList<Review>();
-      if (NowPlayingControllerWrapper.getScore(movie) != null) {
-        reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(movie));
+      if (service.getScore(movie) != null) {
+        reviews = new ArrayList<Review>(service.getReviews(movie));
       }
       if (!reviews.isEmpty()) {
         final Intent intent = new Intent();
@@ -176,12 +181,12 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       }
 
       // Add website links
-      final Map<String,String> nameToUrl = new LinkedHashMap<String, String>();
-      nameToUrl.put("IMDb", NowPlayingControllerWrapper.getIMDbAddress(movie));
-      nameToUrl.put("Wikipedia", NowPlayingControllerWrapper.getWikipediaAddress(movie));
-      nameToUrl.put("Amazon", NowPlayingControllerWrapper.getAmazonAddress(movie));
+      final Map<String, String> nameToUrl = new LinkedHashMap<String, String>();
+      nameToUrl.put("IMDb", service.getIMDbAddress(movie));
+      nameToUrl.put("Wikipedia", service.getWikipediaAddress(movie));
+      nameToUrl.put("Amazon", service.getAmazonAddress(movie));
 
-      for (final Map.Entry<String,String> entry : nameToUrl.entrySet()) {
+      for (final Map.Entry<String, String> entry : nameToUrl.entrySet()) {
         final String url = entry.getValue();
         final String name = entry.getKey();
         if (!StringUtilities.isNullOrEmpty(url) && url.startsWith("http")) {
@@ -218,28 +223,28 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       final MovieDetailEntry entry = movieDetailEntries.get(position);
       switch (entry.type) {
-      case POSTER_SYNOPSIS:
-        convertView = setupPosterAndSynopsisView();
-        break;
-      case DATA:
-        convertView = inflater.inflate(R.layout.moviedetails_item, null);
-        // Creates a MovieViewHolder and store references to the
-        // children views we want to bind data to.
-        final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.name),
+        case POSTER_SYNOPSIS:
+          convertView = setupPosterAndSynopsisView();
+          break;
+        case DATA:
+          convertView = inflater.inflate(R.layout.moviedetails_item, null);
+          // Creates a MovieViewHolder and store references to the
+          // children views we want to bind data to.
+          final MovieViewHolder holder = new MovieViewHolder((TextView)convertView.findViewById(R.id.name),
             (TextView)convertView.findViewById(R.id.value));
-        holder.name.setText(entry.name);
-        holder.value.setText(entry.value);
-        break;
-      case HEADER:
-        convertView = inflater.inflate(R.layout.headerview, null);
-        final TextView headerView = (TextView)convertView.findViewById(R.id.name);
-        headerView.setText(entry.name);
-        break;
-      case ACTION:
-        convertView = inflater.inflate(R.layout.dataview, null);
-        final TextView view = (TextView)convertView.findViewById(R.id.name);
-        view.setText(entry.name);
-        break;
+          holder.name.setText(entry.name);
+          holder.value.setText(entry.value);
+          break;
+        case HEADER:
+          convertView = inflater.inflate(R.layout.headerview, null);
+          final TextView headerView = (TextView)convertView.findViewById(R.id.name);
+          headerView.setText(entry.name);
+          break;
+        case ACTION:
+          convertView = inflater.inflate(R.layout.dataview, null);
+          final TextView view = (TextView)convertView.findViewById(R.id.name);
+          view.setText(entry.name);
+          break;
       }
       return convertView;
     }
@@ -249,13 +254,13 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
       final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
       final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
+      final byte[] bytes = service.getPoster(movie);
       if (bytes.length > 0) {
         posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         posterImage.setBackgroundResource(R.drawable.image_frame);
       }
 
-      String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
+      String synopsis = service.getSynopsis(movie);
       if (StringUtilities.isNullOrEmpty(synopsis)) {
         synopsis = getResources().getString(R.string.no_synopsis_available_dot);
       }
@@ -336,9 +341,9 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-    .setIntent(new Intent(this, NowPlayingActivity.class));
+      .setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-    .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 

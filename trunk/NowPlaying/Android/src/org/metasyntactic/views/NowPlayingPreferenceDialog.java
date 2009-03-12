@@ -3,14 +3,13 @@ package org.metasyntactic.views;
 import java.util.Arrays;
 import java.util.List;
 
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.RefreshableContext;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.services.NowPlayingServiceWrapper;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.TextView;
@@ -21,13 +20,15 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private PreferenceKeys prefKey;
   private int intValue;
   private TextView textView;
-  private final INowPlaying context;
+  private final RefreshableContext refreshableContext;
   private OnClickListener positiveButtonListener;
+  private final NowPlayingServiceWrapper service;
 
-  public <T extends Context & INowPlaying> NowPlayingPreferenceDialog(final T context) {
-    super(context);
-    builder = new Builder(context);
-    this.context = context;
+  public NowPlayingPreferenceDialog(final RefreshableContext refreshableContext) {
+    super(refreshableContext.getContext());
+    builder = new Builder(refreshableContext.getContext());
+    this.refreshableContext = refreshableContext;
+    service = refreshableContext.getService();
   }
 
   public Dialog create() {
@@ -55,7 +56,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(intValue);
-        context.refresh();
+        refreshableContext.refresh();
       }
     };
     return this;
@@ -70,7 +71,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     final OnClickListener listItemListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
-        context.refresh();
+        refreshableContext.refresh();
       }
     };
     builder.setItems(distanceValues, listItemListener);
@@ -100,17 +101,17 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private int getIntPreferenceValue() {
     switch (prefKey) {
     case MOVIES_SORT:
-      return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+      return service.getAllMoviesSelectedSortIndex();
     case UPCOMING_MOVIES_SORT:
-      return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
+      return service.getUpcomingMoviesSelectedSortIndex();
     case THEATERS_SORT:
-      return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
+      return service.getAllTheatersSelectedSortIndex();
     case SEARCH_DISTANCE:
-      return NowPlayingControllerWrapper.getSearchDistance();
+      return service.getSearchDistance();
     case REVIEWS_PROVIDER:
-      return scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
+      return scoreTypes.indexOf(service.getScoreType());
     case AUTO_UPDATE_LOCATION:
-      return autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+      return autoUpdate.indexOf(service.isAutoUpdateEnabled());
     }
     return 0;
   }
@@ -118,7 +119,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private CharSequence getStringPreferenceValue() {
     switch (prefKey) {
     case LOCATION:
-      return NowPlayingControllerWrapper.getUserLocation();
+      return service.getUserAddress();
     }
     return null;
   }
@@ -126,22 +127,22 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private void setIntPreferenceValue(final int prefValue) {
     switch (prefKey) {
     case MOVIES_SORT:
-      NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
+      service.setAllMoviesSelectedSortIndex(prefValue);
       break;
     case UPCOMING_MOVIES_SORT:
-      NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
+      service.setUpcomingMoviesSelectedSortIndex(prefValue);
       break;
     case THEATERS_SORT:
-      NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
+      service.setAllTheatersSelectedSortIndex(prefValue);
       break;
     case SEARCH_DISTANCE:
-      NowPlayingControllerWrapper.setSearchDistance(prefValue);
+      service.setSearchDistance(prefValue);
       break;
     case REVIEWS_PROVIDER:
-      NowPlayingControllerWrapper.setScoreType(scoreTypes.get(prefValue));
+      service.setScoreType(scoreTypes.get(prefValue));
       break;
     case AUTO_UPDATE_LOCATION:
-      NowPlayingControllerWrapper.setAutoUpdateEnabled(autoUpdate.get(prefValue));
+      service.setAutoUpdateEnabled(autoUpdate.get(prefValue));
       break;
     }
   }
@@ -149,7 +150,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private void setStringPreferenceValue(final String prefValue) {
     switch (prefKey) {
     case LOCATION:
-      NowPlayingControllerWrapper.setUserLocation(prefValue);
+      service.setUserAddress(prefValue);
       break;
     }
   }
@@ -165,7 +166,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
     positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(textView.getText().toString());
-        context.refresh();
+        refreshableContext.refresh();
       }
     };
     return this;
