@@ -26,10 +26,13 @@ import android.widget.TextView;
 public class AllReviewsActivity extends AbstractNowPlayingListActivity {
   private List<Review> reviews;
 
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
   }
 
-  @Override protected void onResumeAfterServiceConnected() {
+  @Override public void onResumeAfterServiceConnected() {
+  }
+
+  @Override public void refresh() {
   }
 
   @Override

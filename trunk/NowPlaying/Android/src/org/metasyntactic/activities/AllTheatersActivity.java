@@ -1,23 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.RefreshableContext;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.FastScrollView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,16 +10,32 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.FastScrollView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class AllTheatersActivity extends AbstractNowPlayingListActivity implements RefreshableContext {
+public class AllTheatersActivity extends AbstractNowPlayingListActivity {
   private TheatersAdapter adapter;
   private List<Theater> theaters = new ArrayList<Theater>();
   private final List<Theater> filteredTheaters = new ArrayList<Theater>();
@@ -78,11 +76,11 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
   @SuppressWarnings("unchecked")
   private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     setupView();
   }
 
-  @Override protected void onResumeAfterServiceConnected() {
+  @Override public void onResumeAfterServiceConnected() {
     if (adapter != null) {
       adapter.refreshTheaters();
     }
@@ -123,8 +121,8 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
 
   private final Comparator<Theater> RATING_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
-      final boolean isFavoriteM1 = service.isFavoriteTheater(m1);
-      final boolean isFavoriteM2 = service.isFavoriteTheater(m2);
+      final boolean isFavoriteM1 = getService().isFavoriteTheater(m1);
+      final boolean isFavoriteM2 = getService().isFavoriteTheater(m2);
       if (isFavoriteM1 == isFavoriteM2) {
         return 0;
       } else if (isFavoriteM1) {
@@ -136,10 +134,10 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
   };
 
   private void setupView() {
-    theaters = new ArrayList<Theater>(service.getTheaters());
+    theaters = new ArrayList<Theater>(getService().getTheaters());
     setContentView(R.layout.theaterlist);
     final ListView list = getListView();
-    userLocation = service.getLocationForAddress(service.getUserAddress());
+    userLocation = getService().getLocationForAddress(getService().getUserAddress());
     Collections.sort(theaters, SEARCH_DISTANCE_ORDER);
     // Set up Movies adapter
     adapter = new TheatersAdapter();
@@ -163,9 +161,9 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
   private void populateFilteredTheaters() {
     filteredTheaters.clear();
     for (final Theater theater : theaters) {
-      if (!service.isFavoriteTheater(theater)) {
+      if (!getService().isFavoriteTheater(theater)) {
         if (filterTheatersByDistance) {
-          if (userLocation.distanceTo(theater.getLocation()) > service.getSearchDistance()) {
+          if (userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance()) {
             continue;
           }
         }
@@ -174,14 +172,14 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
       filteredTheaters.add(theater);
     }
 
-    Collections.sort(filteredTheaters, THEATER_ORDER.get(service.getAllTheatersSelectedSortIndex()));
+    Collections.sort(filteredTheaters, THEATER_ORDER.get(getService().getAllTheatersSelectedSortIndex()));
     Collections.sort(filteredTheaters, RATING_ORDER);
 
     actualSections.clear();
     theaterIndexToSectionIndex.clear();
     sectionIndexToTheaterIndex.clear();
 
-    if (service.getAllTheatersSelectedSortIndex() == 0) {
+    if (getService().getAllTheatersSelectedSortIndex() == 0) {
       populateAlphaTheaterSectionsAndPositions();
     } else {
       populateDistanceTheaterSectionsAndPositions();
@@ -196,7 +194,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
       final Theater theater = filteredTheaters.get(i);
       final String sectionTitle;
 
-      if (service.isFavoriteTheater(theater)) {
+      if (getService().isFavoriteTheater(theater)) {
         sectionTitle = "★";
       } else {
         sectionTitle = theater.getName().substring(0, 1);
@@ -251,7 +249,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
       final Theater theater = filteredTheaters.get(i);
       final String sectionTitle;
 
-      if (service.isFavoriteTheater(theater)) {
+      if (getService().isFavoriteTheater(theater)) {
         sectionTitle = "★";
       } else {
         final double distance = userLocation.distanceTo(theater.getLocation());
@@ -318,7 +316,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
       final Theater theater = filteredTheaters.get(position);
       holder.title.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
-      if (service.isFavoriteTheater(theater)) {
+      if (getService().isFavoriteTheater(theater)) {
         final View ratingImage = convertView.findViewById(R.id.ratingImage);
         ratingImage.setVisibility(View.VISIBLE);
       }
@@ -375,7 +373,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity implemen
     return this;
   }
 
-  public void refresh() {
+  @Override public void refresh() {
     if (ThreadingUtilities.isBackgroundThread()) {
       final Runnable runnable = new Runnable() {
         public void run() {

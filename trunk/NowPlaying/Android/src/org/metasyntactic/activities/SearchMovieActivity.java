@@ -25,12 +25,6 @@ public class SearchMovieActivity extends AbstractNowPlayingActivity implements V
   private EditText mSearchText;
   private static String activityName;
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
-  }
-
   @Override
   public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
@@ -107,8 +101,5 @@ public class SearchMovieActivity extends AbstractNowPlayingActivity implements V
       intent.putExtra("movie", search);
       activity.startActivity(intent);
     }
-  }
-
-  public void refresh() {
   }
 }

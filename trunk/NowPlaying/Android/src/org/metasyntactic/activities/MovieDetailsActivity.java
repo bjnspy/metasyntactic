@@ -1,21 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +22,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -58,26 +57,23 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
     }
   };
 
-  @Override protected void onCreateAfterServiceConnected() {
-  }
-
-  @Override protected void onResumeAfterServiceConnected() {
+  @Override public void onResumeAfterServiceConnected() {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
-    service.prioritizeMovie(movie);
+    getService().prioritizeMovie(movie);
     final Resources res = getResources();
     final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
     final View scoreImg = findViewById(R.id.score);
     final TextView scoreLbl = (TextView)findViewById(R.id.scorelbl);
-    final Score score = service.getScore(movie);
+    final Score score = getService().getScore(movie);
     int scoreValue = -1;
     if (score != null && !StringUtilities.isNullOrEmpty(score.getValue())) {
       scoreValue = Integer.parseInt(score.getValue());
     }
 
-    final ScoreType scoreType = service.getScoreType();
+    final ScoreType scoreType = getService().getScoreType();
     scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
     if (scoreValue != -1) {
       scoreLbl.setText(scoreValue + "%");
@@ -155,7 +151,7 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
         movieDetailEntries.add(entry);
       }
       // Add trailer
-      final String trailer_url = service.getTrailer(movie);
+      final String trailer_url = getService().getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(trailer_url), "video/*");
@@ -163,7 +159,7 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
         movieDetailEntries.add(entry);
       }
       // Add reviews
-      final List<Review> reviews = service.getReviews(movie);
+      final List<Review> reviews = getService().getReviews(movie);
       final ArrayList<Review> arrayReviews = new ArrayList<Review>(reviews);
       if (!reviews.isEmpty()) {
         final Intent intent = new Intent();
@@ -174,9 +170,9 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
       }
       // Add website links
       final Map<String, String> nameToUrl = new LinkedHashMap<String, String>();
-      nameToUrl.put("IMDb", service.getIMDbAddress(movie));
-      nameToUrl.put("Wikipedia", service.getWikipediaAddress(movie));
-      nameToUrl.put("Amazon", service.getAmazonAddress(movie));
+      nameToUrl.put("IMDb", getService().getIMDbAddress(movie));
+      nameToUrl.put("Wikipedia", getService().getWikipediaAddress(movie));
+      nameToUrl.put("Amazon", getService().getAmazonAddress(movie));
 
       for (final Map.Entry<String, String> entry : nameToUrl.entrySet()) {
         final String url = entry.getValue();
@@ -271,13 +267,13 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
       final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
       final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
       final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
-      final byte[] bytes = service.getPoster(movie);
+      final byte[] bytes = getService().getPoster(movie);
       if (bytes.length > 0) {
         posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         posterImage.setBackgroundResource(R.drawable.image_frame);
       }
 
-      String synopsis = service.getSynopsis(movie);
+      String synopsis = getService().getSynopsis(movie);
       if (StringUtilities.isNullOrEmpty(synopsis)) {
         synopsis = getResources().getString(R.string.no_synopsis_available_dot);
       }

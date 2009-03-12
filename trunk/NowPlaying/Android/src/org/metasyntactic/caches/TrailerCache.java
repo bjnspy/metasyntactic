@@ -104,6 +104,9 @@ public class TrailerCache extends AbstractMovieCache {
     }
 
     final Map<String, List<String>> localIndex = getIndex();
+    if (localIndex == null) {
+      return;
+    }
 
     final String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), localIndex.keySet());
     if (bestKey == null) {

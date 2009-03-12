@@ -54,13 +54,10 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
     }
   };
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
-    service.prioritizeMovie(movie);
+    getService().prioritizeMovie(movie);
     final Resources res = getResources();
     final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
@@ -159,7 +156,7 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
         movieDetailEntries.add(entry);
       }
       // Add trailer
-      final String trailer_url = service.getTrailer(movie);
+      final String trailer_url = getService().getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(trailer_url), "video/*");
@@ -169,8 +166,8 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
       // Add reviews
       // doing this as the getReviews() throws NPE instead null return.
       ArrayList<Review> reviews = new ArrayList<Review>();
-      if (service.getScore(movie) != null) {
-        reviews = new ArrayList<Review>(service.getReviews(movie));
+      if (getService().getScore(movie) != null) {
+        reviews = new ArrayList<Review>(getService().getReviews(movie));
       }
       if (!reviews.isEmpty()) {
         final Intent intent = new Intent();
@@ -182,9 +179,9 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
 
       // Add website links
       final Map<String, String> nameToUrl = new LinkedHashMap<String, String>();
-      nameToUrl.put("IMDb", service.getIMDbAddress(movie));
-      nameToUrl.put("Wikipedia", service.getWikipediaAddress(movie));
-      nameToUrl.put("Amazon", service.getAmazonAddress(movie));
+      nameToUrl.put("IMDb", getService().getIMDbAddress(movie));
+      nameToUrl.put("Wikipedia", getService().getWikipediaAddress(movie));
+      nameToUrl.put("Amazon", getService().getAmazonAddress(movie));
 
       for (final Map.Entry<String, String> entry : nameToUrl.entrySet()) {
         final String url = entry.getValue();
@@ -254,13 +251,13 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
       final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
       final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
       final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
-      final byte[] bytes = service.getPoster(movie);
+      final byte[] bytes = getService().getPoster(movie);
       if (bytes.length > 0) {
         posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         posterImage.setBackgroundResource(R.drawable.image_frame);
       }
 
-      String synopsis = service.getSynopsis(movie);
+      String synopsis = getService().getSynopsis(movie);
       if (StringUtilities.isNullOrEmpty(synopsis)) {
         synopsis = getResources().getString(R.string.no_synopsis_available_dot);
       }

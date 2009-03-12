@@ -52,13 +52,10 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     movie = getIntent().getExtras().getParcelable("movie");
     theater = getIntent().getExtras().getParcelable("theater");
-    performances = service.getPerformancesForMovieAtTheater(movie, theater);
+    performances = getService().getPerformancesForMovieAtTheater(movie, theater);
     for (final Performance per : performances) {
       if (per != null && !StringUtilities.isNullOrEmpty(per.getUrl())) {
         showtimes.add(per.getTime());
@@ -73,7 +70,7 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     final View linearLayout = findViewById(R.id.header);
     final ImageView ratingImage = (ImageView)findViewById(R.id.ratingImage);
     final Resources res = getResources();
-    if (service.isFavoriteTheater(theater)) {
+    if (getService().isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
     } else {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
@@ -81,12 +78,12 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     linearLayout.setClickable(true);
     linearLayout.setOnClickListener(new View.OnClickListener() {
       public void onClick(final View view) {
-        if (service.isFavoriteTheater(theater)) {
+        if (getService().isFavoriteTheater(theater)) {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
-          service.removeFavoriteTheater(theater);
+          getService().removeFavoriteTheater(theater);
         } else {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
-          service.addFavoriteTheater(theater);
+          getService().addFavoriteTheater(theater);
         }
       }
     });

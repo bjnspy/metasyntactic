@@ -1,24 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.Rotate3dAnimation;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +19,24 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.Rotate3dAnimation;
+
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   protected CustomGridView grid;
@@ -77,7 +76,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
       bitmap = reference.get();
     }
     if (bitmap == null) {
-      final File file = service.getPosterFile_safeToCallFromBackground(movie);
+      final File file = getService().getPosterFile_safeToCallFromBackground(movie);
       if (file != null) {
         final byte[] bytes = FileUtilities.readBytes(file);
         if (bytes != null && bytes.length > 0) {
@@ -163,7 +162,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   }
 
   protected void getUserLocation() {
-    final String userAddress = service.getUserAddress();
+    final String userAddress = getService().getUserAddress();
     if (StringUtilities.isNullOrEmpty(userAddress)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, SettingsActivity.class);
@@ -185,8 +184,8 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   private final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       int value1 = 0;
-      final Score s1 = service.getScore(m1);
-      final Score s2 = service.getScore(m2);
+      final Score s1 = getService().getScore(m1);
+      final Score s2 = getService().getScore(m2);
       if (s1 != null) {
         value1 = s1.getScoreValue();
       }
@@ -223,7 +222,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   protected void populateScoreMovieSectionsAndPositions() {
     for (int i = 0; i < movies.size(); i++) {
       final Movie movie = movies.get(i);
-      final Score localScore = service.getScore(movie);
+      final Score localScore = getService().getScore(movie);
       final int scoreValue = localScore == null ? 0 : localScore.getScoreValue();
       final int scoreLevel = scoreValue / 10 * 10;
       final String sectionTitle = scoreLevel + "%";
@@ -262,7 +261,8 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
      */
   }
 
-  public void refresh() {
+  @Override public void refresh() {
+    super.refresh();
     if (postersAdapter != null) {
       populateSections();
       FastScrollGridView.getSections();
@@ -346,7 +346,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
           }
         }
       } else {
-        service.prioritizeMovie(movie);
+        getService().prioritizeMovie(movie);
         // ok. we've stopped scrolling. either we're reusing this view for a
         // new movie, or we haven't loaded the image for this movie yet. in
         // either case try to load it. if we can, then we're done and don't
