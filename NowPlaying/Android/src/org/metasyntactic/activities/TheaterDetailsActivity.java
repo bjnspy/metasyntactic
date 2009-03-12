@@ -37,19 +37,16 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
   private Iterable<Movie> movies = new ArrayList<Movie>();
   private List<TheaterDetailEntry> theaterDetailEntries = new ArrayList<TheaterDetailEntry>();
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     theater = getIntent().getExtras().getParcelable("theater");
-    movies = service.getMoviesAtTheater(theater);
+    movies = getService().getMoviesAtTheater(theater);
     populateTheaterDetailEntries();
     final TextView titleView = (TextView)findViewById(R.id.theater);
     titleView.setText(theater.getName());
     final View linearLayout = findViewById(R.id.header);
     final ImageView ratingImage = (ImageView)findViewById(R.id.ratingImage);
     final Resources res = getResources();
-    if (service.isFavoriteTheater(theater)) {
+    if (getService().isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
     } else {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
@@ -57,12 +54,12 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
     linearLayout.setClickable(true);
     linearLayout.setOnClickListener(new View.OnClickListener() {
       public void onClick(final View view) {
-        if (service.isFavoriteTheater(theater)) {
+        if (getService().isFavoriteTheater(theater)) {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_off));
-          service.removeFavoriteTheater(theater);
+          getService().removeFavoriteTheater(theater);
         } else {
           ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
-          service.addFavoriteTheater(theater);
+          getService().addFavoriteTheater(theater);
         }
       }
     });
@@ -154,8 +151,8 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       }
       {
         // Add warning
-        if (service.isStale(theater)) {
-          final TheaterDetailEntry entry = new TheaterDetailEntry(service.getShowtimesRetrievedOnString(theater), null, TheaterDetailItemType.WARNING,
+        if (getService().isStale(theater)) {
+          final TheaterDetailEntry entry = new TheaterDetailEntry(getService().getShowtimesRetrievedOnString(theater), null, TheaterDetailItemType.WARNING,
             null, null, false);
           theaterDetailEntries.add(entry);
         }
@@ -167,7 +164,7 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       // Add movies
       for (final Movie movie : movies) {
         final String movieTitle = movie.getDisplayTitle();
-        final List<Performance> list = service.getPerformancesForMovieAtTheater(movie, theater);
+        final List<Performance> list = getService().getPerformancesForMovieAtTheater(movie, theater);
         String performance = "";
         for (final Performance aList : list) {
           performance += aList.getTime() + ", ";

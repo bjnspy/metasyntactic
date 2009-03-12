@@ -1,22 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,12 +12,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -66,7 +64,7 @@ public class NowPlayingActivity extends MoviesActivity {
       // download them. In the former case just wait. We'll get a
       // notification when they're done. In the latter case, let the user
       // know.
-      if (!isNullOrEmpty(service.getUserAddress()) && service.getDataProviderState() == DataProvider.State.Finished) {
+      if (!isNullOrEmpty(getService().getUserAddress()) && getService().getDataProviderState() == DataProvider.State.Finished) {
         showNoInformationFoundDialog();
       }
     } else {
@@ -74,7 +72,7 @@ public class NowPlayingActivity extends MoviesActivity {
     }
   }
 
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     // check for sdcard mounted properly
     if (FileUtilities.isSDCardAccessible()) {
       getUserLocation();
@@ -82,7 +80,7 @@ public class NowPlayingActivity extends MoviesActivity {
     }
   }
 
-  @Override protected void onResumeAfterServiceConnected() {
+  @Override public void onResumeAfterServiceConnected() {
     if (!FileUtilities.isSDCardAccessible()) {
       return;
     }
@@ -155,10 +153,10 @@ public class NowPlayingActivity extends MoviesActivity {
    */
   @Override public void refresh() {
     if (search == null) {
-      movies = new ArrayList<Movie>(service.getMovies());
+      movies = new ArrayList<Movie>(getService().getMovies());
     }
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(service.getAllMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     super.refresh();
   }
@@ -281,18 +279,18 @@ public class NowPlayingActivity extends MoviesActivity {
   private String getUserSettings() {
     String body = "\n\n\n\n";
     body += NowPlayingApplication.getNameAndVersion(getResources());
-    body += "\nAuto-Update Location: " + service.isAutoUpdateEnabled();
-    body += "\nLocation: " + service.getUserAddress();
-    body += "\nSearch Distance: " + service.getSearchDistance();
-    body += "\nReviews: " + service.getScoreType();
+    body += "\nAuto-Update Location: " + getService().isAutoUpdateEnabled();
+    body += "\nLocation: " + getService().getUserAddress();
+    body += "\nSearch Distance: " + getService().getSearchDistance();
+    body += "\nReviews: " + getService().getScoreType();
     return body;
   }
 
   @Override protected void populateSections() {
     super.populateSections();
-    if (service.getAllMoviesSelectedSortIndex() == 0) {
+    if (getService().getAllMoviesSelectedSortIndex() == 0) {
       populateAlphaMovieSectionsAndPositions();
-    } else if (service.getAllMoviesSelectedSortIndex() == 2) {
+    } else if (getService().getAllMoviesSelectedSortIndex() == 2) {
       populateScoreMovieSectionsAndPositions();
     }
   }
@@ -302,10 +300,10 @@ public class NowPlayingActivity extends MoviesActivity {
     public Object[] getSections() {
       // fast scroll is implemented only for alphabetic & score sort for release
       // 1.
-      if (service.getAllMoviesSelectedSortIndex() == 0) {
+      if (getService().getAllMoviesSelectedSortIndex() == 0) {
         return actualSections.toArray();
       }
-      if (service.getAllMoviesSelectedSortIndex() == 2) {
+      if (getService().getAllMoviesSelectedSortIndex() == 2) {
         return actualSections.toArray();
       }
       return null;

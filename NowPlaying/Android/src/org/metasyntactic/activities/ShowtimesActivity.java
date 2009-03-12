@@ -54,12 +54,6 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
-  }
-
   @Override
   public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
@@ -105,13 +99,13 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
     final View scoreImg = findViewById(R.id.score);
     final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Resources res = getResources();
-    final Score score = service.getScore(movie);
+    final Score score = getService().getScore(movie);
     int scoreValue = -1;
     if (score != null && score.getValue().length() != 0) {
       scoreValue = Integer.parseInt(score.getValue());
     }
 
-    final ScoreType scoreType = service.getScoreType();
+    final ScoreType scoreType = getService().getScoreType();
     scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
     if (scoreValue != -1) {
       scoreLbl.setText(scoreValue + "%");
@@ -126,16 +120,16 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
 
     ratingLengthLabel.setText(ratingAndLength);
 
-    userLocation = service.getLocationForAddress(service.getUserAddress());
-    final List<Theater> localTheaters = service.getTheatersShowingMovie(movie);
+    userLocation = getService().getLocationForAddress(getService().getUserAddress());
+    final List<Theater> localTheaters = getService().getTheatersShowingMovie(movie);
     theaterWrapperList.clear();
 
     Collections.sort(localTheaters, DISTANCE_ORDER);
     Collections.sort(localTheaters, RATING_ORDER);
     boolean isHeaderAdded = false;
     for (final Theater theater : localTheaters) {
-      if (userLocation.distanceTo(theater.getLocation()) > service.getSearchDistance() &&
-          !service.isFavoriteTheater(theater) &&
+      if (userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance() &&
+          !getService().isFavoriteTheater(theater) &&
           !isHeaderAdded) {
         theaterWrapperList.add(new TheaterWrapper(null, 2));
         isHeaderAdded = true;
@@ -153,8 +147,8 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
   };
   private final Comparator<Theater> RATING_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
-      final boolean isFavoriteM1 = service.isFavoriteTheater(m1);
-      final boolean isFavoriteM2 = service.isFavoriteTheater(m2);
+      final boolean isFavoriteM1 = getService().isFavoriteTheater(m1);
+      final boolean isFavoriteM2 = getService().isFavoriteTheater(m2);
       if (isFavoriteM1 && isFavoriteM2 || !isFavoriteM1 && !isFavoriteM2) {
         return 0;
       }
@@ -183,14 +177,14 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
         final Theater theater = theaterWrapper.theater;
         holder.label.setText(theater.getName());
 
-        final List<Performance> list = service.getPerformancesForMovieAtTheater(movie, theater);
+        final List<Performance> list = getService().getPerformancesForMovieAtTheater(movie, theater);
         if (CollectionUtilities.size(list) > 0) {
           final String performance = buildPerformanceString(list);
           showStaleShowtimesWarning(convertView, theater);
           holder.data.setText(performance);
         }
 
-        if (service.isFavoriteTheater(theater)) {
+        if (getService().isFavoriteTheater(theater)) {
           final View ratingImage = convertView.findViewById(R.id.ratingImage);
           ratingImage.setVisibility(View.VISIBLE);
         }
@@ -215,11 +209,11 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
     }
 
     private void showStaleShowtimesWarning(final View convertView, final Theater theater) {
-      if (service.isStale(theater)) {
+      if (getService().isStale(theater)) {
         final View warningView = convertView.findViewById(R.id.warning);
         warningView.setVisibility(View.VISIBLE);
         final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
-        warningText.setText(service.getShowtimesRetrievedOnString(theater));
+        warningText.setText(getService().getShowtimesRetrievedOnString(theater));
       }
     }
 

@@ -27,10 +27,7 @@ import java.util.Map;
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class UpcomingMoviesActivity extends MoviesActivity {
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     // check for sdcard mounted properly
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       getUserLocation();
@@ -91,10 +88,10 @@ public class UpcomingMoviesActivity extends MoviesActivity {
    */
   @Override public void refresh() {
     if (search == null) {
-      movies = new ArrayList<Movie>(service.getUpcomingMovies());
+      movies = new ArrayList<Movie>(getService().getUpcomingMovies());
     }
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(service.getUpcomingMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getUpcomingMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     super.refresh();
   }
@@ -129,10 +126,10 @@ public class UpcomingMoviesActivity extends MoviesActivity {
     public Object[] getSections() {
       // fast scroll is implemented only for alphabetic & score sort for release
       // 1.
-      if (service.getUpcomingMoviesSelectedSortIndex() == 0) {
+      if (getService().getUpcomingMoviesSelectedSortIndex() == 0) {
         return actualSections.toArray();
       }
-      if (service.getUpcomingMoviesSelectedSortIndex() == 2) {
+      if (getService().getUpcomingMoviesSelectedSortIndex() == 2) {
         return actualSections.toArray();
       }
       return null;
@@ -141,9 +138,9 @@ public class UpcomingMoviesActivity extends MoviesActivity {
 
   @Override protected void populateSections() {
     super.populateSections();
-    if (service.getUpcomingMoviesSelectedSortIndex() == 0) {
+    if (getService().getUpcomingMoviesSelectedSortIndex() == 0) {
       populateAlphaMovieSectionsAndPositions();
-    } else if (service.getUpcomingMoviesSelectedSortIndex() == 2) {
+    } else if (getService().getUpcomingMoviesSelectedSortIndex() == 2) {
       populateScoreMovieSectionsAndPositions();
     }
   }

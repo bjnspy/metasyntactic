@@ -1,22 +1,5 @@
 package org.metasyntactic.activities;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.RefreshableContext;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -29,23 +12,37 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class SettingsActivity extends AbstractNowPlayingListActivity implements RefreshableContext {
+public class SettingsActivity extends AbstractNowPlayingListActivity {
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
   private boolean isFirst;
@@ -68,10 +65,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     }
   };
 
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     getUserLocation();
     populateSettingsItems();
     settingsAdapter = new SettingsAdapter();
@@ -92,7 +86,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     final View next = findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
-        final String searchLocation = service.getUserAddress();
+        final String searchLocation = getService().getUserAddress();
         if (StringUtilities.isNullOrEmpty(searchLocation)) {
           Toast.makeText(SettingsActivity.this, getResources().getString(R.string.please_enter_your_location), Toast.LENGTH_LONG).show();
         } else {
@@ -130,7 +124,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
   }
 
   private void getUserLocation() {
-    final String userLocation = service.getUserAddress();
+    final String userLocation = getService().getUserAddress();
     if (!StringUtilities.isNullOrEmpty(userLocation)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, NowPlayingActivity.class);
@@ -231,11 +225,11 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
         public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
           final Calendar cal1 = Calendar.getInstance();
           cal1.set(year, monthOfYear, dayOfMonth);
-          service.setSearchDate(cal1.getTime());
+          getService().setSearchDate(cal1.getTime());
           refresh();
         }
       };
-      final Date searchDate = service.getSearchDate();
+      final Date searchDate = getService().getSearchDate();
       final Calendar cal = Calendar.getInstance();
       cal.setTime(searchDate);
       new DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
@@ -251,7 +245,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.autoupdate_location));
-    final boolean isAutoUpdate = service.isAutoUpdateEnabled();
+    final boolean isAutoUpdate = getService().isAutoUpdateEnabled();
     if (isAutoUpdate) {
       settings.setData(res.getString(R.string.on));
     } else {
@@ -262,7 +256,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     // location - 1
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.location));
-    final String location = service.getUserAddress();
+    final String location = getService().getUserAddress();
     if (isNullOrEmpty(location)) {
       settings.setData(res.getString(R.string.tap_here_to_enter_your_search_location));
     } else {
@@ -273,7 +267,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     // search distance - 2
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_distance));
-    final int distance = service.getSearchDistance();
+    final int distance = getService().getSearchDistance();
 
     // units is available.
     settings.setData(distance + " " + res.getString(R.string.miles));
@@ -283,7 +277,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_date));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DATE);
-    final Date d1 = service.getSearchDate();
+    final Date d1 = getService().getSearchDate();
     final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
     if (d1 != null) {
       settings.setData(df.format(d1));
@@ -292,7 +286,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
     // reviews provider - 4
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.reviews));
-    final ScoreType type = service.getScoreType();
+    final ScoreType type = getService().getScoreType();
     if (type != null) {
       settings.setData(type.toString());
       if (type == ScoreType.RottenTomatoes) {
@@ -319,10 +313,10 @@ public class SettingsActivity extends AbstractNowPlayingListActivity implements 
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);
-        holder.check.setChecked(service.isAutoUpdateEnabled());
+        holder.check.setChecked(getService().isAutoUpdateEnabled());
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
-            service.setAutoUpdateEnabled(checked);
+            getService().setAutoUpdateEnabled(checked);
             refresh();
           }
         });

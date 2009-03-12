@@ -10,10 +10,7 @@ import java.util.Map;
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class WebViewActivity extends AbstractNowPlayingActivity {
-  @Override protected void onResumeAfterServiceConnected() {
-  }
-
-  @Override protected void onCreateAfterServiceConnected() {
+  @Override public void onCreateAfterServiceConnected() {
     final WebView webView = (WebView)findViewById(R.id.license);
     if ("license".equals(getIntent().getExtras().getString("type"))) {
       webView.loadUrl("file:///android_asset/License.html");
@@ -51,8 +48,5 @@ public class WebViewActivity extends AbstractNowPlayingActivity {
   public Map<String, Object> onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     return super.onRetainNonConfigurationInstance();
-  }
-
-  public void refresh() {
   }
 }
