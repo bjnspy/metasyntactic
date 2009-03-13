@@ -413,24 +413,29 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) removeItem:(NSString*) item {
++ (void) emptyDirectory:(NSString*) directory andDelete:(BOOL) delete {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-        if ([FileUtilities isDirectory:item]) {
-            for (NSString* child in [FileUtilities directoryContentsPaths:item]) {
+        for (NSString* child in [FileUtilities directoryContentsPaths:directory]) {
+            if ([FileUtilities isDirectory:child]) {
+                [self emptyDirectory:child andDelete:YES];
+            } else {
                 [[NSFileManager defaultManager] removeItemAtPath:child error:NULL];
-                [NSThread sleepForTimeInterval:1];
             }
-        }
 
-        [[NSFileManager defaultManager] removeItemAtPath:item error:NULL];
+            [NSThread sleepForTimeInterval:1];
+        }
+        
+        if (delete) {
+            [[NSFileManager defaultManager] removeItemAtPath:directory error:NULL];
+        }
     }
     [pool release];
 }
 
 
 + (void) emptyTrashBackgroundEntryPoint {
-    [self removeItem:[self trashDirectory]];
+    [self emptyDirectory:[self trashDirectory] andDelete:NO];
 }
 
 
@@ -517,6 +522,9 @@ static DifferenceEngine* differenceEngine = nil;
     {
         NSString* trashPath = [self uniqueTrashDirectory];
         [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
+        
+        // safeguard, just in case.
+        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     }
     [gate unlock];
 }
