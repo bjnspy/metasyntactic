@@ -24,6 +24,7 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "NotificationCenter.h"
 #import "AppDelegate.h"
 #import "Model.h"
 #import "Performance.h"
@@ -488,7 +489,11 @@
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
+    NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), nil];
+    [[AppDelegate notificationCenter] addNotifications:notifications];
     [self updateBackgroundEntryPointWorker:request];
+    [[AppDelegate notificationCenter] removeNotifications:notifications];
+
     [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }
 

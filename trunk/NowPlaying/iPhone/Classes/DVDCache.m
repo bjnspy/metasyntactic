@@ -18,6 +18,7 @@
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "PointerSet.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -54,6 +55,16 @@
 
 - (NSString*) directory {
     return [Application dvdDirectory];
+}
+
+
+- (void) addNotification {
+    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"DVD", nil)];
+}
+
+
+- (void) removeNotification {
+    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"DVD", nil)];
 }
 
 @end

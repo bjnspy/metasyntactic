@@ -15,10 +15,12 @@
 #import "LocationManager.h"
 
 #import "AlertUtilities.h"
+#import "AppDelegate.h"
+#import "Controller.h"
 #import "Location.h"
 #import "LocationUtilities.h"
-#import "Controller.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 
@@ -181,7 +183,9 @@
 
 
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
+    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Location", nil)];
     Location* userLocation = [LocationUtilities findLocation:location];
+    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Location", nil)];
 
     [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
 }

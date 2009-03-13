@@ -197,7 +197,7 @@
 }
 
 
-- (void) updateScoresBackgroundEntryPoint {
+- (void) updateScoresBackgroundEntryPointWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
@@ -231,6 +231,11 @@
                                   onTarget:self
                                   argument:result
                                   argument:serverHash];
+}
+
+
+- (void) updateScoresBackgroundEntryPoint {
+    [self updateScoresBackgroundEntryPointWorker];
 }
 
 
@@ -474,7 +479,7 @@
 }
 
 
-- (void) regenerateMap:(NSDictionary*) scores
+- (void) regenerateMapWorker:(NSDictionary*) scores
              forMovies:(NSArray*) localMovies {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
@@ -514,6 +519,12 @@
                                   onTarget:self
                                   argument:result
                                   argument:localMovies];
+}
+
+
+- (void) regenerateMap:(NSDictionary*) scores
+             forMovies:(NSArray*) localMovies {
+    [self regenerateMapWorker:scores forMovies:movies];
 }
 
 

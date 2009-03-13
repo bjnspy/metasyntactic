@@ -425,7 +425,7 @@ static DifferenceEngine* differenceEngine = nil;
 
             [NSThread sleepForTimeInterval:1];
         }
-        
+
         if (delete) {
             [[NSFileManager defaultManager] removeItemAtPath:directory error:NULL];
         }
@@ -522,7 +522,7 @@ static DifferenceEngine* differenceEngine = nil;
     {
         NSString* trashPath = [self uniqueTrashDirectory];
         [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-        
+
         // safeguard, just in case.
         [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     }

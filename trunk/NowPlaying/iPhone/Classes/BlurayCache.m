@@ -14,8 +14,10 @@
 
 #import "BlurayCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 
 @implementation BlurayCache
 
@@ -49,6 +51,16 @@
 
 - (NSString*) directory {
     return [Application blurayDirectory];
+}
+
+
+- (void) addNotification {
+    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Bluray", nil)];
+}
+
+
+- (void) removeNotification {
+    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Bluray", nil)];
 }
 
 @end

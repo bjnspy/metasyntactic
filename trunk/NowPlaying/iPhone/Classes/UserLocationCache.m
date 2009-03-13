@@ -14,9 +14,11 @@
 
 #import "UserLocationCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
+#import "NotificationCenter.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -137,7 +139,9 @@
     Location* result;
     [gate lock];
     {
+        [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Location", nil)];
         result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
+        [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Location", nil)];
     }
     [gate unlock];
     return result;
