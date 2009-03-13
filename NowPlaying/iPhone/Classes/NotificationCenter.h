@@ -18,6 +18,8 @@
     UILabel* background;
     UILabel* notificationLabel;
     UILabel* blackLabel;
+
+    NSMutableArray* notifications;
 }
 
 + (NotificationCenter*) centerWithView:(UIView*) view;
@@ -26,5 +28,10 @@
 
 - (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation;
 - (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;
+
+- (void) addNotification:(NSString*) notification;
+- (void) addNotifications:(NSArray*) notifications;
+- (void) removeNotification:(NSString*) notification;
+- (void) removeNotifications:(NSArray*) notifications;
 
 @end

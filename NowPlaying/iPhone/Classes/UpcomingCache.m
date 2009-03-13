@@ -24,6 +24,7 @@
 #import "Movie.h"
 #import "NetflixCache.h"
 #import "NetworkUtilities.h"
+#import "NotificationCenter.h"
 #import "AppDelegate.h"
 #import "Model.h"
 #import "ThreadingUtilities.h"
@@ -315,7 +316,6 @@
         }
     }
 
-
     NSString* localHash = self.hash;
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                                important:NO];
@@ -352,7 +352,10 @@
 
 
 - (void) updateIndexBackgroundEntryPoint {
+    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Upcoming", nil)];
     NSArray* movies = [self updateIndexBackgroundEntryPointWorker];
+    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Upcoming", nil)];
+
     if (movies.count == 0) {
         movies = [[self loadMovies] allValues];
     }

@@ -14,6 +14,7 @@
 
 #import "NetflixCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
@@ -28,7 +29,7 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
+#import "NotificationCenter.h"
 #import "Model.h"
 #import "IdentitySet.h"
 #import "Person.h"
@@ -351,7 +352,11 @@ static NSDictionary* availabilityMap = nil;
                                            key:key
                                           name:[child attributeValue:@"title"]];
 
-                [feeds addObject:feed];
+                if ([key isEqual:[NetflixCache atHomeKey]]) {
+                    [feeds insertObject:feed atIndex:0];
+                } else {
+                    [feeds addObject:feed];
+                }
             }
         }
     }
@@ -796,6 +801,8 @@ static NSDictionary* availabilityMap = nil;
         [updateDetailsLock signal];
     }
     [updateDetailsLock unlock];
+
+    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Netflix", nil)];
 
     [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
                                   onTarget:self
@@ -1344,6 +1351,7 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
+    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Netflix", nil)];
     [self downloadUserData];
 
     NSArray* feeds = [self downloadFeeds];

@@ -51,7 +51,7 @@
     self.moviesSetData = nil;
     self.moviesData = nil;
     self.bookmarksData = nil;
-    
+
     [super dealloc];
 }
 
@@ -59,7 +59,7 @@
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 
@@ -110,7 +110,7 @@
     if (moviesData == nil) {
         [self setMovies:[self loadMovies]];
     }
-    
+
     return moviesData;
 }
 
@@ -131,12 +131,12 @@
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [result setObject:movie forKey:movie.canonicalTitle];
     }
-    
+
     return result;
 }
 
@@ -145,7 +145,7 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-    
+
     return bookmarksData;
 }
 
@@ -154,16 +154,16 @@
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     if (!model.dvdBlurayEnabled) {
         return;
     }
-    
+
     if (updated) {
         return;
     }
     updated = YES;
-    
+
     [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
@@ -175,7 +175,7 @@
     if (value.length == 0) {
         return [NSArray array];
     }
-    
+
     return [value componentsSeparatedByString:@"/"];
 }
 
@@ -184,39 +184,39 @@
     unichar a1[] = { 0xE2, 0x20AC, 0x201C };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a1 length:ArrayLength(a1)]
                                            withString:@"-"];
-    
+
     unichar a2[] = { 0xEF, 0xBF, 0xBD };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a2 length:ArrayLength(a2)]
                                            withString:@"'"];
-    
+
     unichar a3[] = { 0xE2, 0x20AC, 0x153 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a3 length:ArrayLength(a3)]
                                            withString:@"\""];
-    
+
     unichar a4[] = { 0xE2, 0x20AC, 0x9D };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a4 length:ArrayLength(a4)]
                                            withString:@"\""];
-    
+
     unichar a5[] = { 0xE2, 0x20AC, 0x2122 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a5 length:ArrayLength(a5)]
                                            withString:@"'"];
-    
+
     unichar a6[] = { 0xC2, 0xA0 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a6 length:ArrayLength(a6)]
                                            withString:@" "];
-    
+
     unichar a7[] = { 0xE2, 0x20AC, 0x201D };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a7 length:ArrayLength(a7)]
                                            withString:@"-"];
-    
+
     unichar a8[] = { 0xC2, 0xAE };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a8 length:ArrayLength(a8)]
                                            withString:@"Â®"];
-    
+
     unichar a9[] = { 0xE2, 0x20AC, 0xA2 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a9 length:ArrayLength(a9)]
                                            withString:@"â€¢"];
-    
+
     return text;
 }
 
@@ -238,15 +238,15 @@
     NSString* url = [videoElement attributeValue:@"url"];
     NSString* length = [videoElement attributeValue:@"length"];
     NSString* studio = [videoElement attributeValue:@"studio"];
-    
+
     synopsis = [self massage:synopsis];
-    
+
     DVD* dvd = [DVD dvdWithTitle:title
                            price:price
                           format:format
                            discs:discs
                              url:url];
-    
+
     Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", dvd]
                                         title:title
                                        rating:rating
@@ -259,14 +259,14 @@
                                     directors:directors
                                          cast:cast
                                        genres:genres];
-    
+
     [result setObject:dvd forKey:movie];
 }
 
 
 - (NSDictionary*) processElement:(XmlElement*) element {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
@@ -274,7 +274,7 @@
         }
         [pool release];
     }
-    
+
     return result;
 }
 
@@ -284,26 +284,26 @@
         return [[[self detailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@".plist"];
     }
-    
+
     return nil;
 }
 
 
 - (NSString*) detailsFile:(Movie*) movie {
     NSAssert([NSThread isMainThread], @"");
-    
+
     return [self detailsFile:movie set:self.moviesSet];
 }
 
 
 - (void) saveData:(NSDictionary*) dictionary {
     NSArray* videos = dictionary.allKeys;
-    
+
     for (Movie* movie in dictionary) {
         DVD* dvd = [dictionary objectForKey:movie];
         [FileUtilities writeObject:dvd.dictionary toFile:[self detailsFile:movie set:nil]];
     }
-    
+
     // do this last.  it signifies that we're done
     [FileUtilities writeObject:[Movie encodeArray:videos] toFile:self.moviesFile];
 }
@@ -316,37 +316,50 @@
             return nil;
         }
     }
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress
                                                            important:YES];
-    
+
     if (element == nil) {
         return nil;
     }
-    
+
     NSDictionary* map = [self processElement:element];
-    
+
     if (map.count == 0) {
         return nil;
     }
-    
+
     [self saveData:map];
     [self clearUpdatedMovies];
-    
+
     [self performSelectorOnMainThread:@selector(reportResults:)
                            withObject:map
                         waitUntilDone:NO];
-    
+
     return map.allKeys;
 }
 
 
+- (void) addNotification {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) removeNotification {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
 - (void) updateMoviesBackgroundEntryPoint {
+    [self addNotification];
     NSArray* movies = [self updateMoviesBackgroundEntryPointWorker];
+    [self removeNotification];
+
     if (movies.count == 0) {
         movies = [self loadMovies];
     }
-    
+
     [self addPrimaryMovies:movies];
 }
 
@@ -358,7 +371,7 @@
 
 - (void) reportResults:(NSDictionary*) map {
     NSAssert([NSThread isMainThread], nil);
-    
+
     NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
     // add in any previously bookmarked movies that we now no longer know about.
     for (Movie* movie in self.bookmarks.allValues) {
@@ -366,17 +379,17 @@
             [movies addObject:movie];
         }
     }
-    
+
     // also determine if any of the data we found match items the user bookmarked
     for (Movie* movie in movies) {
         if ([model isBookmarked:movie]) {
             [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
-    
+
     [self saveBookmarks];
     [self setMovies:movies];
-    
+
     [AppDelegate majorRefresh];
 }
 
@@ -410,7 +423,7 @@
     if (![self.moviesSet containsObject:movie]) {
         return;
     }
-    
+
     [super prioritizeMovie:movie];
 }
 
@@ -429,7 +442,7 @@
     if (dictionary == nil) {
         return nil;
     }
-    
+
     return [DVD dvdWithDictionary:dictionary];
 }
 

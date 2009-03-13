@@ -19,6 +19,7 @@
 @property (retain) UIView* view;
 @property (retain) UILabel* notificationLabel;
 @property (retain) UILabel* blackLabel;
+@property (retain) NSMutableArray* notifications;
 @end
 
 @implementation NotificationCenter
@@ -26,11 +27,13 @@
 @synthesize view;
 @synthesize notificationLabel;
 @synthesize blackLabel;
+@synthesize notifications;
 
 - (void) dealloc {
     self.view = nil;
     self.notificationLabel = nil;
     self.blackLabel = nil;
+    self.notifications = nil;
 
     [super dealloc];
 }
@@ -45,6 +48,8 @@
 - (id) initWithView:(UIView*) view_ {
     if (self = [super init]) {
         self.view = view_;
+
+        self.notifications = [NSMutableArray array];
 
         self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 16)] autorelease];
         notificationLabel.font = [UIFont boldSystemFontOfSize:12];
@@ -111,6 +116,61 @@
         [self addToView];
         [self showNotification];
     }
+}
+
+
+- (void) updateText {
+    NSMutableArray* array = [NSMutableArray array];
+    for (NSString* notification in notifications) {
+        if (![array containsObject:notification]) {
+            [array addObject:notification];
+        }
+    }
+
+    NSString* text;
+    if (array.count == 0) {
+        text = NSLocalizedString(@"Updating", nil);
+    } else {
+        text = [NSString stringWithFormat:NSLocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
+    }
+
+    [UIView beginAnimations:nil context:NULL];
+    {
+        notificationLabel.text = text;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) addNotification:(NSString*) notification {
+    [self addNotifications:[NSArray arrayWithObject:notification]];
+}
+
+
+- (void) removeNotification:(NSString*) notification {
+    [self removeNotifications:[NSArray arrayWithObject:notification]];
+}
+
+
+- (void) addNotifications:(NSArray*) notifications_ {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(addNotifications:) withObject:notifications_ waitUntilDone:NO];
+        return;
+    }
+
+    [notifications addObjectsFromArray:notifications_];
+    [self updateText];
+}
+
+
+- (void) removeNotifications:(NSArray*) notifications_ {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:notifications_ waitUntilDone:NO];
+        return;
+    }
+
+    [notifications removeObjectsInArray:notifications_];
+    [self updateText];
 }
 
 @end
