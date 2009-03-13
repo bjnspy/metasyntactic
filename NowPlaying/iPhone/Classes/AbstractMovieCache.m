@@ -21,7 +21,7 @@
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) LinkedSet* primaryMovies;
 @property (retain) LinkedSet* secondaryMovies;
-@property (retain) NSMutableSet* updateMovies;
+@property (retain) NSMutableSet* updatedMovies;
 @end
 
 
@@ -30,13 +30,13 @@
 @synthesize prioritizedMovies;
 @synthesize primaryMovies;
 @synthesize secondaryMovies;
-@synthesize updateMovies;
+@synthesize updatedMovies;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
     self.primaryMovies = nil;
     self.secondaryMovies = nil;
-    self.updateMovies = nil;
+    self.updatedMovies = nil;
 
     [super dealloc];
 }
@@ -47,7 +47,7 @@
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.primaryMovies = [LinkedSet set];
         self.secondaryMovies = [LinkedSet set];
-        self.updateMovies = [NSMutableSet set];
+        self.updatedMovies = [NSMutableSet set];
 
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
@@ -70,16 +70,16 @@
 }
 
 
-- (BOOL) updateMoviesContainsNoLock:(Movie*) movie {
+- (BOOL) updatedMoviesContainsNoLock:(Movie*) movie {
     return [updatedMovies containsObject:movie];
 }
 
 
-- (BOOL) updateMoviesContains:(Movie*) movie {
+- (BOOL) updatedMoviesContains:(Movie*) movie {
     BOOL value;
     [gate lock];
     {
-        value = [self updateMoviesContainsNoLock:movie];
+        value = [self updatedMoviesContainsNoLock:movie];
     }
     [gate unlock];
     return value;
@@ -120,7 +120,7 @@
             [gate unlock];
 
             if (movie != nil) {
-                if (![self updateMoviesContains:movie]) {
+                if (![self updatedMoviesContains:movie]) {
                     [self addUpdatedMovie:movie];
                     [self updateMovieDetails:movie];
                 }
@@ -137,7 +137,7 @@
               set:(LinkedSet*) set {
     [gate lock];
     {
-        if (![self updateMoviesContainsNoLock:movie]) {
+        if (![self updatedMoviesContainsNoLock:movie]) {
             [set addObject:movie];
             [gate broadcast];
         }
