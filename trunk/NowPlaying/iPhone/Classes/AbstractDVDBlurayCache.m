@@ -15,6 +15,7 @@
 #import "AbstractDVDBlurayCache.h"
 
 #import "AmazonCache.h"
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DVD.h"
 #import "DateUtilities.h"
@@ -26,7 +27,7 @@
 #import "Movie.h"
 #import "NetflixCache.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
+#import "NotificationCenter.h"
 #import "Model.h"
 #import "PointerSet.h"
 #import "StringUtilities.h"
@@ -341,20 +342,19 @@
 }
 
 
-- (void) addNotification {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (void) removeNotification {
+- (NSString*) notificationString {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (void) updateMoviesBackgroundEntryPoint {
-    [self addNotification];
-    NSArray* movies = [self updateMoviesBackgroundEntryPointWorker];
-    [self removeNotification];
+    NSArray* movies;
+    NSString* notificationString = [self notificationString];
+    [AppDelegate addNotification:notificationString];
+    {
+        movies = [self updateMoviesBackgroundEntryPointWorker];
+    }
+    [AppDelegate removeNotification:notificationString];
 
     if (movies.count == 0) {
         movies = [self loadMovies];

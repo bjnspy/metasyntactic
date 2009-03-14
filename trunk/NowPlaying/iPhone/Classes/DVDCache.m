@@ -58,13 +58,8 @@
 }
 
 
-- (void) addNotification {
-    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"DVD", nil)];
-}
-
-
-- (void) removeNotification {
-    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"DVD", nil)];
+- (NSString*) notificationString {
+    return @"dvd";
 }
 
 @end

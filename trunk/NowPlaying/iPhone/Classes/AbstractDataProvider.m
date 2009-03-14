@@ -489,10 +489,10 @@
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
-    NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), nil];
-    [[AppDelegate notificationCenter] addNotifications:notifications];
+    NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
+    [AppDelegate addNotifications:notifications];
     [self updateBackgroundEntryPointWorker:request];
-    [[AppDelegate notificationCenter] removeNotifications:notifications];
+    [AppDelegate removeNotifications:notifications];
 
     [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }

@@ -20,6 +20,7 @@
     UILabel* blackLabel;
 
     NSMutableArray* notifications;
+    Pulser* pulser;
 }
 
 + (NotificationCenter*) centerWithView:(UIView*) view;

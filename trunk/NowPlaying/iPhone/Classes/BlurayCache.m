@@ -54,13 +54,8 @@
 }
 
 
-- (void) addNotification {
-    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Bluray", nil)];
-}
-
-
-- (void) removeNotification {
-    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Bluray", nil)];
+- (NSString*) notificationString {
+    return @"bluray";
 }
 
 @end
