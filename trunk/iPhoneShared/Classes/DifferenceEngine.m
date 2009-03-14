@@ -162,7 +162,7 @@
 
 - (NSInteger) threshold:(NSString*) string {
     NSInteger threshold = string.length / 4;
-    if (threshold == 0) {
+    if (threshold == 0 && string.length > 1) {
         threshold = 1;
     }
     return threshold;
