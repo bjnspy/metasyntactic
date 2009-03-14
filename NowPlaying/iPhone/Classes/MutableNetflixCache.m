@@ -435,7 +435,7 @@
 
 
 - (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"Netflix rating", nil);
+    NSString* notification = NSLocalizedString(@"movie rating", nil);
     [AppDelegate addNotification:notification];
     {
         [self changeRatingBackgroundEntryPointWorker:arguments];

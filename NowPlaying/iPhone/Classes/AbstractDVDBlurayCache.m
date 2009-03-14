@@ -349,12 +349,12 @@
 
 - (void) updateMoviesBackgroundEntryPoint {
     NSArray* movies;
-    NSString* notificationString = [self notificationString];
-    [AppDelegate addNotification:notificationString];
+    NSString* notification = [self notificationString];
+    [AppDelegate addNotification:notification];
     {
         movies = [self updateMoviesBackgroundEntryPointWorker];
     }
-    [AppDelegate removeNotification:notificationString];
+    [AppDelegate removeNotification:notification];
 
     if (movies.count == 0) {
         movies = [self loadMovies];
