@@ -123,10 +123,15 @@
     Location* location = [self locationForUserAddress:userAddress];
 
     if (location == nil) {
-        location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
-        if (![location.country isEqual:[LocaleUtilities isoCountry]]) {
-            location = [self downloadAddressLocationFromWebService:userAddress];
+        NSString* notification = NSLocalizedString(@"location", nil);
+        [AppDelegate addNotification:notification];
+        {
+            location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
+            if (![location.country isEqual:[LocaleUtilities isoCountry]]) {
+                location = [self downloadAddressLocationFromWebService:userAddress];
+            }
         }
+        [AppDelegate removeNotification:notification];
 
         [self setLocation:location forUserAddress:userAddress];
     }
@@ -139,9 +144,7 @@
     Location* result;
     [gate lock];
     {
-        [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Location", nil)];
         result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
-        [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Location", nil)];
     }
     [gate unlock];
     return result;

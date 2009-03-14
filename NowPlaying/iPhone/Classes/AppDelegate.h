@@ -37,7 +37,12 @@
 + (void) majorRefresh:(BOOL) force;
 
 + (UIWindow*) window;
+
 + (NotificationCenter*) notificationCenter;
++ (void) addNotification:(NSString*) notification;
++ (void) addNotifications:(NSArray*) notifications;
++ (void) removeNotification:(NSString*) notification;
++ (void) removeNotifications:(NSArray*) notifications;
 
 + (UIView*) globalActivityView;
 

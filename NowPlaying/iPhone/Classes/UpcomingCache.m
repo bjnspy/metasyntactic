@@ -352,9 +352,13 @@
 
 
 - (void) updateIndexBackgroundEntryPoint {
-    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Upcoming", nil)];
-    NSArray* movies = [self updateIndexBackgroundEntryPointWorker];
-    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Upcoming", nil)];
+    NSArray* movies;
+    NSString* notification = NSLocalizedString(@"upcoming", nil);
+    [AppDelegate addNotification:notification];
+    {
+        movies = [self updateIndexBackgroundEntryPointWorker];
+    }
+    [AppDelegate removeNotification:notification];
 
     if (movies.count == 0) {
         movies = [[self loadMovies] allValues];

@@ -16,6 +16,7 @@
 
 #import "NSMutableArray+Utilities.h"
 
+#import "AppDelegate.h"
 #import "Feed.h"
 #import "FileUtilities.h"
 #import "IdentitySet.h"
@@ -25,6 +26,7 @@
 #import "NetflixChangeRatingDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
+#import "NotificationCenter.h"
 #import "Model.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
@@ -208,7 +210,7 @@
 }
 
 
-- (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) moveMovieToTopOfQueueBackgroundEntryPointWorker:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
@@ -234,6 +236,16 @@
     [self performSelectorOnMainThread:@selector(reportQueueAndMoveMovieSuccess:)
                            withObject:finalArguments
                         waitUntilDone:NO];
+}
+
+
+- (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
+    NSString* notification = NSLocalizedString(@"moving movie", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self moveMovieToTopOfQueueBackgroundEntryPointWorker:arguments];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 
@@ -396,7 +408,7 @@
 }
 
 
-- (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
+- (void) changeRatingBackgroundEntryPointWorker:(NSArray*) arguments {
     NSString* rating = [arguments objectAtIndex:0];
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
@@ -419,6 +431,16 @@
     NSLog(@"Changing rating succeeded.", nil);
     [FileUtilities writeObject:rating toFile:userRatingsFile];
     [self performSelectorOnMainThread:@selector(reportChangeRatingSuccess:) withObject:arguments waitUntilDone:NO];
+}
+
+
+- (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
+    NSString* notification = NSLocalizedString(@"Netflix rating", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self changeRatingBackgroundEntryPointWorker:arguments];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 
@@ -482,7 +504,7 @@
 }
 
 
-- (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) addMovieToQueueBackgroundEntryPointWorker:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
     Movie* movie = [arguments objectAtIndex:1];
     NSInteger position = [[arguments objectAtIndex:2] intValue];
@@ -528,6 +550,16 @@
 
     NSLog(@"Adding '%@' succeeded.", movie.canonicalTitle);
     [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:delegate];
+}
+
+
+- (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
+    NSString* notification = NSLocalizedString(@"adding movie", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self addMovieToQueueBackgroundEntryPointWorker:arguments];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 
@@ -585,7 +617,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 }
 
 
-- (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) modifyQueueBackgroundEntryPointWorker:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
     IdentitySet* deletedMovies = [arguments objectAtIndex:1];
     IdentitySet* reorderedMovies = [arguments objectAtIndex:2];
@@ -638,6 +670,16 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
     NSLog(@"Delete/Reorder completed successfully.  Saving queue and reporting.", nil);
     [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate];
+}
+
+
+- (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
+    NSString* notification = NSLocalizedString(@"updating queue", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self modifyQueueBackgroundEntryPointWorker:arguments];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 @end

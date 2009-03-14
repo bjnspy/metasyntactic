@@ -152,6 +152,26 @@ static AppDelegate* appDelegate = nil;
 }
 
 
++ (void) addNotification:(NSString*) notification {
+    [[self notificationCenter] addNotification:notification];
+}
+
+
++ (void) addNotifications:(NSArray*) notifications {
+    [[self notificationCenter] addNotifications:notifications];
+}
+
+
++ (void) removeNotification:(NSString*) notification {
+    [[self notificationCenter] removeNotification:notification];
+}
+
+
++ (void) removeNotifications:(NSArray*) notifications {
+    [[self notificationCenter] removeNotifications:notifications];
+}
+
+
 - (void) application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
     [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
 }

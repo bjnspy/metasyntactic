@@ -183,9 +183,14 @@
 
 
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
-    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Location", nil)];
-    Location* userLocation = [LocationUtilities findLocation:location];
-    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Location", nil)];
+    Location* userLocation;
+
+    NSString* notification = NSLocalizedString(@"location", nil);
+    [AppDelegate addNotification:notification];
+    {
+        userLocation = [LocationUtilities findLocation:location];
+    }
+    [AppDelegate removeNotification:notification];
 
     [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
 }

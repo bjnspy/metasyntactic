@@ -802,7 +802,7 @@ static NSDictionary* availabilityMap = nil;
     }
     [updateDetailsLock unlock];
 
-    [[AppDelegate notificationCenter] removeNotification:NSLocalizedString(@"Netflix", nil)];
+    [AppDelegate removeNotification:NSLocalizedString(@"Netflix", nil)];
 
     [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
                                   onTarget:self
@@ -1351,7 +1351,7 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
-    [[AppDelegate notificationCenter] addNotification:NSLocalizedString(@"Netflix", nil)];
+    [AppDelegate addNotification:NSLocalizedString(@"Netflix", nil)];
     [self downloadUserData];
 
     NSArray* feeds = [self downloadFeeds];

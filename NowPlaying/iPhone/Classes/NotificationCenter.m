@@ -12,14 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GlobalActivityIndicator.h"
 #import "NotificationCenter.h"
+
+#import "GlobalActivityIndicator.h"
+#import "Pulser.h"
 
 @interface NotificationCenter()
 @property (retain) UIView* view;
 @property (retain) UILabel* notificationLabel;
 @property (retain) UILabel* blackLabel;
 @property (retain) NSMutableArray* notifications;
+@property (retain) Pulser* pulser;
 @end
 
 @implementation NotificationCenter
@@ -28,12 +31,14 @@
 @synthesize notificationLabel;
 @synthesize blackLabel;
 @synthesize notifications;
+@synthesize pulser;
 
 - (void) dealloc {
     self.view = nil;
     self.notificationLabel = nil;
     self.blackLabel = nil;
     self.notifications = nil;
+    self.pulser = nil;
 
     [super dealloc];
 }
@@ -64,6 +69,8 @@
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
 
+        self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:2];
+        
         [GlobalActivityIndicator setTarget:self
                     startIndicatorSelector:@selector(showNotification)
                      stopIndicatorSelector:@selector(hideNotification)];
@@ -159,7 +166,7 @@
     }
 
     [notifications addObjectsFromArray:notifications_];
-    [self updateText];
+    [pulser tryPulse];
 }
 
 
@@ -170,7 +177,7 @@
     }
 
     [notifications removeObjectsInArray:notifications_];
-    [self updateText];
+    [pulser tryPulse];
 }
 
 @end
