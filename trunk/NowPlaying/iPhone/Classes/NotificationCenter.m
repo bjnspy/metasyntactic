@@ -69,7 +69,7 @@
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
 
-        self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:2];
+        self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:1];
         
         [GlobalActivityIndicator setTarget:self
                     startIndicatorSelector:@selector(showNotification)

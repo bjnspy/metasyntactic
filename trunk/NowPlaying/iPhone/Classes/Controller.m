@@ -146,9 +146,8 @@
 
 - (void) onDataProviderUpdateComplete {
     NSAssert([NSThread isMainThread], nil);
-    [self.model.scoreCache update];
-    [self.model.netflixCache update];
     [self.model update];
+    [self.model.netflixCache update];
 }
 
 

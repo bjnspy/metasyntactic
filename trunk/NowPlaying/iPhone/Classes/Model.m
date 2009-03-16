@@ -269,52 +269,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (void) updateScoreCache {
-    [scoreCache update];
-}
-
-
-- (void) updateNetflixCache {
-    [netflixCache lookupNetflixMoviesForLocalMovies:self.movies];
-}
-
-
-- (void) updateDVDCache {
-    [dvdCache update];
-    [blurayCache update];
-}
-
-
-- (void) updateUpcomingCache {
-    [upcomingCache update];
-}
-
-
-- (void) updateIMDbCache {
-    [imdbCache update:self.movies];
-}
-
-
-- (void) updateAmazonCache {
-    [amazonCache update:self.movies];
-}
-
-
-- (void) updateWikipediaCache {
-    [wikipediaCache update:self.movies];
-}
-
-
-- (void) updatePosterCache {
-    [posterCache update:self.movies];
-}
-
-
-- (void) updateTrailerCache {
-    [trailerCache update:self.movies];
-}
-
-
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
     for (FavoriteTheater* theater in favoriteTheaters) {
@@ -581,34 +535,27 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (void) updateCaches:(NSNumber*) number {
-    int value = number.intValue;
+- (void) updateDVDCache {
+    [dvdCache update];
+    [blurayCache update];
+}
 
-    SEL selectors[] = {
-        @selector(updateScoreCache),
-        @selector(updatePosterCache),
-        @selector(updateTrailerCache),
-        @selector(updateIMDbCache),
-        @selector(updateAmazonCache),
-        @selector(updateWikipediaCache),
-        @selector(updateUpcomingCache),
-        @selector(updateDVDCache),
-        @selector(updateNetflixCache),
-    };
 
-    if (value >= ArrayLength(selectors)) {
-        return;
-    }
-
-    [self performSelector:selectors[value]];
-    [self performSelector:@selector(updateCaches:)
-               withObject:[NSNumber numberWithInt:value + 1]
-               afterDelay:1];
+- (void) updateUpcomingCache {
+    [upcomingCache update];
 }
 
 
 - (void) update {
-    [self updateCaches:[NSNumber numberWithInt:0]];
+    [scoreCache update];
+    [posterCache update:self.movies];
+    [trailerCache update:self.movies];
+    [imdbCache update:self.movies];
+    [wikipediaCache update:self.movies];
+    [amazonCache update:self.movies];
+    [self updateUpcomingCache];
+    [self updateDVDCache];
+    [netflixCache lookupNetflixMoviesForLocalMovies:self.movies];
 }
 
 

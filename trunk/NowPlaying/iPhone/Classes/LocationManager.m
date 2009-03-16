@@ -170,14 +170,14 @@
             fromLocation:(CLLocation*) oldLocation {
     NSLog(@"Location found! Timestamp: %@. Accuracy: %f", newLocation.timestamp, newLocation.horizontalAccuracy);
     if (newLocation != nil) {
-        //if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
+        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [locationManager stopUpdatingLocation];
             [ThreadingUtilities backgroundSelector:@selector(findLocationBackgroundEntryPoint:)
                                           onTarget:self
                                           argument:newLocation
                                               gate:gate
                                            visible:YES];
-        //}
+        }
     }
 }
 
