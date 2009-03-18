@@ -20,7 +20,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface CreditsViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @end
 
 
@@ -34,26 +33,14 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-@synthesize navigationController;
 
 - (void) dealloc {
-    self.navigationController = nil;
-
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
-    }
-
-    return self;
-}
-
-
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
@@ -178,7 +165,7 @@ typedef enum {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

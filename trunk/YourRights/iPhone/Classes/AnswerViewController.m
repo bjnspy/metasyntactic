@@ -21,7 +21,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface AnswerViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (copy) NSString* sectionTitle;
 @property (copy) NSString* question;
 @property (copy) NSString* answer;
@@ -31,14 +30,12 @@
 
 @implementation AnswerViewController
 
-@synthesize navigationController;
 @synthesize sectionTitle;
 @synthesize question;
 @synthesize answer;
 @synthesize links;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.sectionTitle = nil;
     self.question = nil;
     self.answer = nil;
@@ -48,16 +45,14 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                       sectionTitle:(NSString*) sectionTitle_
+- (id) initWithSectionTitle:(NSString*) sectionTitle_
                    question:(NSString*) question_
                      answer:(NSString*) answer_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.sectionTitle = sectionTitle_;
         self.question = question_;
         self.answer = answer_;
@@ -149,7 +144,7 @@
             NSURL* url = [NSURL URLWithString:link];
             [[UIApplication sharedApplication] openURL:url];
         } else {
-            [navigationController pushBrowser:link animated:YES];
+            [(id)self.navigationController pushBrowser:link animated:YES];
         }
     }
 }

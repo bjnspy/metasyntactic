@@ -12,37 +12,44 @@
 #import "DateUtilities.h"
 #import "DeclarationOfIndependence.h"
 #import "GlobalActivityIndicator.h"
+#import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
 @interface DeclarationOfIndependenceViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) DeclarationOfIndependence* declaration;
+@property (retain) NSArray* chunks;
 @end
 
 @implementation DeclarationOfIndependenceViewController
 
-@synthesize navigationController;
 @synthesize declaration;
+@synthesize chunks;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.declaration = nil;
+    self.chunks = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                        declaration:(DeclarationOfIndependence*) declaration_ {
+- (id) initWithDeclaration:(DeclarationOfIndependence*) declaration_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.declaration = declaration_;
         self.title = NSLocalizedString(@"Declaration of Independence", nil);
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        self.chunks = [StringUtilities splitIntoChunks:declaration.text];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
 }
 
 
@@ -74,14 +81,19 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 0) {
+        return chunks.count;
+    } else {
+        return 1;
+    }
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        WrappableCell* cell = [[[WrappableCell alloc] initWithTitle:declaration.text] autorelease];
+        NSString* text = [chunks objectAtIndex:indexPath.row];
+        WrappableCell* cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
@@ -95,9 +107,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithNavigationController:navigationController
-                                                                                                                         signers:declaration.signers] autorelease];
-        [navigationController pushViewController:controller animated:YES];
+        ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithSigners:declaration.signers] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -115,7 +126,8 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return [WrappableCell height:declaration.text accessoryType:UITableViewCellAccessoryNone];
+        NSString* text = [chunks objectAtIndex:indexPath.row];
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
     } else {
         return tableView.rowHeight;
     }

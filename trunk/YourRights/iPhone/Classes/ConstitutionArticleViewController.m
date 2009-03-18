@@ -22,34 +22,34 @@
 #import "YourRightsNavigationController.h"
 
 @interface ConstitutionArticleViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Article* article;
 @end
 
 
 @implementation ConstitutionArticleViewController
 
-@synthesize navigationController;
 @synthesize article;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.article = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                            article:(Article*) article_ {
+- (id) initWithArticle:(Article*) article_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.article = article_;
-        self.navigationItem.titleView =
-        [ViewControllerUtilities viewControllerTitleLabel:article.title];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView =
+    [ViewControllerUtilities viewControllerTitleLabel:article.title];
 }
 
 
@@ -124,7 +124,7 @@
     if (indexPath.section < article.sections.count) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
-        [navigationController pushBrowser:article.link animated:YES];
+        [(id)self.navigationController pushBrowser:article.link animated:YES];
     }
 }
 
@@ -157,7 +157,5 @@
         return tableView.rowHeight;
     }
 }
-
-
 
 @end

@@ -14,11 +14,10 @@
 
 @interface ACLUArticlesViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     NSString* title;
     NSArray* items;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController title:(NSString*) title;
+- (id) initWithTitle:(NSString*) title;
 
 @end

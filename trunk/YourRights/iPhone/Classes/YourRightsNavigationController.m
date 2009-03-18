@@ -20,36 +20,18 @@
 #import "YourRightsAppDelegate.h"
 
 @interface YourRightsNavigationController()
-@property (assign) YourRightsAppDelegate* appDelegate;
-@property (retain) SectionViewController* viewController;
 @end
 
 @implementation YourRightsNavigationController
 
-@synthesize appDelegate;
-@synthesize viewController;
-
 - (void) dealloc {
-    self.appDelegate = nil;
-    self.viewController = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithAppDelegate:(YourRightsAppDelegate*) appDelegate_ {
-    if (self = [super init]) {
-        self.appDelegate = appDelegate_;
-        self.viewController = [[[SectionViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:viewController animated:NO];
-    }
-
-    return self;
-}
-
-
 - (Model*) model {
-    return appDelegate.model;
+    return (id)[(id)[[UIApplication sharedApplication] delegate] model];
 }
 
 
@@ -78,7 +60,7 @@
 
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton {
-    WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:address showSafariButton:showSafariButton] autorelease];
+    WebViewController* controller = [[[WebViewController alloc] initWithAddress:address showSafariButton:showSafariButton] autorelease];
     [self pushViewController:controller animated:animated];
 }
 

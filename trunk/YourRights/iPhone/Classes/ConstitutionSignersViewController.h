@@ -14,12 +14,10 @@
 
 @interface ConstitutionSignersViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     MultiDictionary* signers;
     NSArray* keys;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                            signers:(MultiDictionary*) signers;
+- (id) initWithSigners:(MultiDictionary*) signers;
 
 @end

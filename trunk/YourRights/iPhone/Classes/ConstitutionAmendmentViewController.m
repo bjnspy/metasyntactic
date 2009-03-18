@@ -22,33 +22,33 @@
 #import "YourRightsNavigationController.h"
 
 @interface ConstitutionAmendmentViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Amendment* amendment;
 @end
 
 
 @implementation ConstitutionAmendmentViewController
 
-@synthesize navigationController;
 @synthesize amendment;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.amendment = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                          amendment:(Amendment*) amendment_ {
+- (id) initWithAmendment:(Amendment*) amendment_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.amendment = amendment_;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:amendment.synopsis];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:amendment.synopsis];
 }
 
 
@@ -107,7 +107,7 @@
     if (indexPath.section < amendment.sections.count) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
-        [navigationController pushBrowser:amendment.link animated:YES];
+        [(id)self.navigationController pushBrowser:amendment.link animated:YES];
     }
 }
 

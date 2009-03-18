@@ -23,7 +23,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface QuestionsViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (copy) NSString* sectionTitle;
 @property (copy) NSString* preamble;
 @property (retain) NSArray* questions;
@@ -34,15 +33,13 @@
 
 @implementation QuestionsViewController
 
-@synthesize navigationController;
 @synthesize sectionTitle;
 @synthesize preamble;
 @synthesize questions;
 @synthesize otherResources;
 @synthesize links;
 
-- (void)dealloc {
-    self.navigationController = nil;
+- (void) dealloc {
     self.sectionTitle = nil;
     self.preamble = nil;
     self.questions = nil;
@@ -54,17 +51,13 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                       sectionTitle:(NSString*) sectionTitle_ {
+- (id) initWithSectionTitle:(NSString*) sectionTitle_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.sectionTitle = sectionTitle_;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:[self.model shortSectionTitleForSectionTitle:sectionTitle]];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
         self.preamble = [self.model preambleForSectionTitle:sectionTitle];
         self.questions = [self.model questionsForSectionTitle:sectionTitle];
         self.otherResources = [self.model otherResourcesForSectionTitle:sectionTitle];
@@ -72,6 +65,13 @@
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:[self.model shortSectionTitleForSectionTitle:sectionTitle]];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
 }
 
 
@@ -173,8 +173,7 @@
     } else if (indexPath.section == 1) {
         NSString* question = [questions objectAtIndex:indexPath.row];
         NSString* answer = [self.model answerForQuestion:question withSectionTitle:sectionTitle];
-        AnswerViewController* controller = [[[AnswerViewController alloc] initWithNavigationController:navigationController
-                                                                                          sectionTitle:sectionTitle
+        AnswerViewController* controller = [[[AnswerViewController alloc] initWithSectionTitle:sectionTitle
                                                                                               question:question
                                                                                                 answer:answer] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
@@ -188,7 +187,7 @@
             NSURL* url = [NSURL URLWithString:link];
             [[UIApplication sharedApplication] openURL:url];
         } else {
-            [navigationController pushBrowser:link animated:YES];
+            [(id)self.navigationController pushBrowser:link animated:YES];
         }
     }
 }

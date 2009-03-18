@@ -25,7 +25,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface ConstitutionSignersViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) MultiDictionary* signers;
 @property (retain) NSArray* keys;
 @end
@@ -33,12 +32,10 @@
 
 @implementation ConstitutionSignersViewController
 
-@synthesize navigationController;
 @synthesize signers;
 @synthesize keys;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.signers = nil;
     self.keys = nil;
 
@@ -46,10 +43,8 @@
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                            signers:(MultiDictionary*) signers_ {
+- (id) initWithSigners:(MultiDictionary*) signers_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.signers = signers_;
         self.title = NSLocalizedString(@"Signers", nil);
 
@@ -111,7 +106,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [navigationController pushBrowser:signer.link animated:YES];
+    [(id)self.navigationController pushBrowser:signer.link animated:YES];
 }
 
 

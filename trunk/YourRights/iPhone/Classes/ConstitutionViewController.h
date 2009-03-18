@@ -14,12 +14,10 @@
 
 @interface ConstitutionViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     Constitution* constitution;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                       constitution:(Constitution*) constitution
+- (id) initWithConstitution:(Constitution*) constitution
                               title:(NSString*) title;
 
 @end

@@ -14,11 +14,10 @@
 
 @interface DeclarationOfIndependenceViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     DeclarationOfIndependence* declaration;
+    NSArray* chunks;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                        declaration:(DeclarationOfIndependence*) declaration;
+- (id) initWithDeclaration:(DeclarationOfIndependence*) declaration;
 
 @end

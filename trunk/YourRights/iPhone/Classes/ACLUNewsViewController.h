@@ -14,11 +14,8 @@
 
 @interface ACLUNewsViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     NSMutableArray* titlesWithArticles;
 }
 
-
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController;
 
 @end

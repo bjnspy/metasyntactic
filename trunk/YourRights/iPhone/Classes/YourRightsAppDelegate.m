@@ -16,6 +16,7 @@
 
 #import "Model.h"
 #import "Pulser.h"
+#import "SectionViewController.h"
 #import "YourRightsNavigationController.h"
 
 @interface YourRightsAppDelegate()
@@ -47,8 +48,9 @@ static YourRightsAppDelegate* appDelegate = nil;
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
     appDelegate = self;
-
-    self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
+    
+    SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
+    self.navigationController = [[[YourRightsNavigationController alloc] initWithRootViewController:controller] autorelease];
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];

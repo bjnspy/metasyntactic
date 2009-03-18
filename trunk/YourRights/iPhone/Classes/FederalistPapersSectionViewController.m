@@ -17,44 +17,51 @@
 #import "Article.h"
 #import "GlobalActivityIndicator.h"
 #import "Section.h"
+#import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 
 @interface FederalistPapersSectionViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Section* section;
+@property (retain) NSArray* chunks;
 @end
 
 
 @implementation FederalistPapersSectionViewController
 
-@synthesize navigationController;
 @synthesize section;
+@synthesize chunks;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.section = nil;
+    self.chunks = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                            section:(Section*) section_ {
+- (id) initWithSection:(Section*) section_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.section = section_;
         self.title = section.title;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        self.chunks = [StringUtilities splitIntoChunks:section.text];
     }
 
     return self;
 }
 
 
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
-    //[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
@@ -65,7 +72,6 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
     return YES;
 }
 
@@ -80,21 +86,21 @@
 }
 
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return chunks.count;
 }
 
 
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
+    NSString* text = [chunks objectAtIndex:row];
+    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
 
     return cell;
 }
 
-// Customize the appearance of table view cells.
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self cellForSectionRow:indexPath.row];
 }
@@ -102,7 +108,8 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    return [WrappableCell height:section.text
+    NSString* text = [chunks objectAtIndex:indexPath.row];
+    return [WrappableCell height:text
                    accessoryType:UITableViewCellAccessoryNone];
 }
 

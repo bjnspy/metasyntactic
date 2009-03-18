@@ -26,27 +26,22 @@
 #import "WrappableCell.h"
 
 @interface ConstitutionViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Constitution* constitution;
 @end
 
 @implementation ConstitutionViewController
 
-@synthesize navigationController;
 @synthesize constitution;
 
 - (void)dealloc {
-    self.navigationController = nil;
     self.constitution = nil;
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                       constitution:(Constitution*) constitution_
+- (id) initWithConstitution:(Constitution*) constitution_
                               title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.constitution = constitution_;
         self.title = title_;
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
@@ -191,15 +186,15 @@
 
 - (void) didSelectArticlesRow:(NSInteger) row {
     Article* article = [constitution.articles objectAtIndex:row];
-    ConstitutionArticleViewController* controller = [[[ConstitutionArticleViewController alloc] initWithNavigationController:navigationController article:article] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    ConstitutionArticleViewController* controller = [[[ConstitutionArticleViewController alloc] initWithArticle:article] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectAmendmentsRow:(NSInteger) row {
     Amendment* amendment = [constitution.amendments objectAtIndex:row];
-    ConstitutionAmendmentViewController* controller = [[[ConstitutionAmendmentViewController alloc] initWithNavigationController:navigationController amendment:amendment] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    ConstitutionAmendmentViewController* controller = [[[ConstitutionAmendmentViewController alloc] initWithAmendment:amendment] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -209,8 +204,8 @@
 
 
 - (void) didSelectInformationRow:(NSInteger) row {
-    ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithNavigationController:navigationController signers:constitution.signers] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithSigners:constitution.signers] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

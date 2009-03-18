@@ -14,7 +14,6 @@
 
 @interface WebViewController : UIViewController<UIWebViewDelegate> {
 @private
-    YourRightsNavigationController* navigationController;
     UIWebView* webView;
     UIToolbar* toolbar;
     UIActivityIndicatorView* activityView;
@@ -24,8 +23,7 @@
     BOOL errorReported;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                            address:(NSString*) address
+- (id) initWithAddress:(NSString*) address
                    showSafariButton:(BOOL) showSafariButton;
 
 @end

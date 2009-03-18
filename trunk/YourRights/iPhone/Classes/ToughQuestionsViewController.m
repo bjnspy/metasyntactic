@@ -23,33 +23,33 @@
 #import "YourRightsNavigationController.h"
 
 @interface ToughQuestionsViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @end
 
 
 @implementation ToughQuestionsViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
     [super dealloc];
 }
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
+- (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Tough Questions", nil)];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Tough Questions", nil)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
 }
 
 

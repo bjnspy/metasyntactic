@@ -14,12 +14,8 @@
 
 @interface SectionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
 @private
-    YourRightsNavigationController* navigationController;
     UITableView* tableView;
     CreditsViewController* creditsViewController;
 }
-
-
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController;
 
 @end

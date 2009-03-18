@@ -13,12 +13,7 @@
 // limitations under the License.
 
 @interface YourRightsNavigationController : UINavigationController {
-@private
-    YourRightsAppDelegate* appDelegate;
-    SectionViewController* viewController;
 }
-
-- (id) initWithAppDelegate:(YourRightsAppDelegate*) appDelegate;
 
 - (Model*) model;
 
