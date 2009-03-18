@@ -351,7 +351,11 @@ static NSDictionary* availabilityMap = nil;
                                            key:key
                                           name:[child attributeValue:@"title"]];
 
-                [feeds addObject:feed];
+                if ([key isEqual:[NetflixCache atHomeKey]]) {
+                    [feeds insertObject:feed atIndex:0];
+                } else {
+                    [feeds addObject:feed];
+                }
             }
         }
     }
