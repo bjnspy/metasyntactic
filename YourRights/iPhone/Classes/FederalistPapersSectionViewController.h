@@ -14,11 +14,10 @@
 
 @interface FederalistPapersSectionViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     Section* section;
+    NSArray* chunks;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                            section:(Section*) section;
+- (id) initWithSection:(Section*) section;
 
 @end

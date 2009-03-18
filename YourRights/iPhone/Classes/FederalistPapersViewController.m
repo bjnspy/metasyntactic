@@ -27,32 +27,32 @@
 #import "WrappableCell.h"
 
 @interface FederalistPapersViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Constitution* constitution;
 @end
 
 @implementation FederalistPapersViewController
 
-@synthesize navigationController;
 @synthesize constitution;
 
 - (void)dealloc {
-    self.navigationController = nil;
     self.constitution = nil;
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                       constitution:(Constitution*) constitution_ {
+- (id) initWithConstitution:(Constitution*) constitution_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.constitution = constitution_;
         self.title = NSLocalizedString(@"Federalist Papers", nil);
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
 }
 
 
@@ -68,7 +68,6 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
     return YES;
 }
 
@@ -83,13 +82,11 @@
 }
 
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return constitution.articles.count;
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"reuseIdentifier";
 
@@ -108,21 +105,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Article* article = [constitution.articles objectAtIndex:indexPath.row];
-    FederalistPapersArticleViewController* controller = [[[FederalistPapersArticleViewController alloc] initWithNavigationController:navigationController article:article] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    FederalistPapersArticleViewController* controller = [[[FederalistPapersArticleViewController alloc] initWithArticle:article] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
-
-
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-    return nil;
-}
-
-/*
-- (CGFloat)         tableView:(UITableView*) tableView
-      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    return tableView.rowHeight;
-}
- */
 
 @end

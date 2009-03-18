@@ -44,9 +44,6 @@
          NSLocalizedString(@"Tough Question about ACLU positions", nil),
          NSLocalizedString(@"The ACLU Is / Is Not", nil),
          NSLocalizedString(@"ACLU 100 Greatest Hits", nil), nil];
-
-        self.navigationItem.titleView =
-        [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
     }
 
     return self;
@@ -60,6 +57,9 @@
     tableView.dataSource = self;
 
     self.view = tableView;
+    
+    self.navigationItem.titleView =
+    [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
 }
 
 

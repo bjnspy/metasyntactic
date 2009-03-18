@@ -14,15 +14,12 @@
 
 @interface GreatestHitsViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     NSArray* sectionTitles;
     MultiDictionary* sectionTitleToDecisions;
 
     UISegmentedControl* segmentedControl;
     NSArray* indexTitles;
 }
-
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController;
 
 - (BOOL) sortingByYear;
 - (BOOL) sortingByCategory;

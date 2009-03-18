@@ -14,15 +14,13 @@
 
 @interface AnswerViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     NSString* sectionTitle;
     NSString* question;
     NSString* answer;
     NSArray* links;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                       sectionTitle:(NSString*) sectionTitle
+- (id) initWithSectionTitle:(NSString*) sectionTitle
                            question:(NSString*) question
                              answer:(NSString*) answer;
 

@@ -24,7 +24,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface ACLUArticlesViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (copy) NSString* title;
 @property (retain) NSArray* items;
 @end
@@ -32,12 +31,10 @@
 
 @implementation ACLUArticlesViewController
 
-@synthesize navigationController;
 @synthesize title;
 @synthesize items;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.title = nil;
     self.items = nil;
 
@@ -45,10 +42,8 @@
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                              title:(NSString*) title_ {
+- (id) initWithTitle:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
         self.title = title_;
     }
 
@@ -57,7 +52,7 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
@@ -94,7 +89,7 @@
     if (indexPath.section < items.count) {
         Item* item = [items objectAtIndex:indexPath.section];
         if (item.link) {
-            [navigationController pushBrowser:item.link animated:YES];
+            [(id)self.navigationController pushBrowser:item.link animated:YES];
         }
     }
 }

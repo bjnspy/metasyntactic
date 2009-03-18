@@ -23,7 +23,6 @@
 #define NAVIGATE_FORWARD_ITEM 3
 
 @interface WebViewController()
-    @property (assign) YourRightsNavigationController* navigationController;
     @property (retain) UIWebView* webView;
     @property (retain) UIToolbar* toolbar;
     @property (retain) UIActivityIndicatorView* activityView;
@@ -34,7 +33,6 @@
 
 @implementation WebViewController
 
-@synthesize navigationController;
 @synthesize webView;
 @synthesize toolbar;
 @synthesize activityView;
@@ -42,7 +40,6 @@
 @synthesize address;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.address = nil;
 
     self.webView = nil;
@@ -54,11 +51,9 @@
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                            address:(NSString*) address_
+- (id) initWithAddress:(NSString*) address_
                    showSafariButton:(BOOL) showSafariButton_ {
     if (self = [super init]) {
-        self.navigationController = navigationController_;
         self.address = address_;
         showSafariButton = showSafariButton_;
     }
@@ -271,7 +266,7 @@
     }
 
     if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {
-        [navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
         return NO;
     }
 

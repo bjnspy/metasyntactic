@@ -14,11 +14,9 @@
 
 @interface ConstitutionArticleViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     Article* article;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                            article:(Article*) article;
+- (id) initWithArticle:(Article*) article;
 
 @end

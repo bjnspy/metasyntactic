@@ -35,7 +35,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface SectionViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) UITableView* tableView;
 @property (retain) CreditsViewController* creditsViewController;
 @end
@@ -43,12 +42,10 @@
 
 @implementation SectionViewController
 
-@synthesize navigationController;
 @synthesize tableView;
 @synthesize creditsViewController;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.tableView = nil;
     self.creditsViewController = nil;
 
@@ -57,16 +54,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
+- (id) init {
     if (self = [super init]) {
-        self.navigationController = navigationController_;
-        self.navigationItem.titleView =
-        [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
-
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
@@ -86,7 +79,7 @@
         return;
     }
 
-    self.creditsViewController = [[[CreditsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
+    self.creditsViewController = [[[CreditsViewController alloc] init] autorelease];
     self.creditsViewController.view.frame = tableView.frame;
 }
 
@@ -129,6 +122,9 @@
 
 
 - (void) loadView {
+    self.navigationItem.titleView =
+    [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
+
     CGRect rect = [UIScreen mainScreen].bounds;
 
     self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
@@ -252,44 +248,39 @@
         NSString* title = [self titleForIndexPath:indexPath];
         if (indexPath.row == 0) {
             Constitution* constitution = [UnitedStatesConstitution unitedStatesConstitution];
-            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
-                                                                                                          constitution:constitution
+            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithConstitution:constitution
                                                                                                                  title:title] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 1) {
-            DeclarationOfIndependenceViewController* controller = [[[DeclarationOfIndependenceViewController alloc] initWithNavigationController:navigationController
-                                                                                                                                     declaration:self.model.declarationOfIndependence] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            DeclarationOfIndependenceViewController* controller = [[[DeclarationOfIndependenceViewController alloc] initWithDeclaration:self.model.declarationOfIndependence] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 2) {
             Constitution* constitution = [ArticlesOfConfederation articlesOfConfederation];
-            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithNavigationController:navigationController
-                                                                                                          constitution:constitution
+            ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithConstitution:constitution
                                                                                                                  title:title] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            [self.navigationController pushViewController:controller animated:YES];
         } else {
             Constitution* constitution = [FederalistPapers federalistPapers];
-            FederalistPapersViewController* controller = [[[FederalistPapersViewController alloc] initWithNavigationController:navigationController
-                                                                                                                  constitution:constitution] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            FederalistPapersViewController* controller = [[[FederalistPapersViewController alloc] initWithConstitution:constitution] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            ACLUNewsViewController* controller = [[[ACLUNewsViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            ACLUNewsViewController* controller = [[[ACLUNewsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 1) {
-            ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 2) {
             ACLUInfoViewController* controller = [[[ACLUInfoViewController alloc] init] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 3) {
-            GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         }
     } else {
         NSString* text = [[self.model sectionTitles] objectAtIndex:indexPath.row];
-        QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithNavigationController:navigationController
-                                                                                                sectionTitle:text] autorelease];
+        QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithSectionTitle:text] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

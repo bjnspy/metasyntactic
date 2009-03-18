@@ -14,11 +14,9 @@
 
 @interface FederalistPapersViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     Constitution* constitution;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                       constitution:(Constitution*) constitution;
+- (id) initWithConstitution:(Constitution*) constitution;
 
 @end

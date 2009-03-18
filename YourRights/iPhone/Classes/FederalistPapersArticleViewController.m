@@ -23,34 +23,34 @@
 #import "YourRightsNavigationController.h"
 
 @interface FederalistPapersArticleViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) Article* article;
 @end
 
 
 @implementation FederalistPapersArticleViewController
 
-@synthesize navigationController;
 @synthesize article;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.article = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
-                            article:(Article*) article_ {
+- (id) initWithArticle:(Article*) article_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.article = article_;
         self.title = article.title;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
 }
 
 
@@ -66,7 +66,6 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
     return YES;
 }
 
@@ -81,7 +80,6 @@
 }
 
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return article.sections.count;
 }
@@ -94,7 +92,7 @@
     return cell;
 }
 
-// Customize the appearance of table view cells.
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self cellForSectionRow:indexPath.row];
 }
@@ -102,8 +100,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Section* section = [article.sections objectAtIndex:indexPath.row];
-    FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithNavigationController:navigationController section:section] autorelease];
-    [navigationController pushViewController:controller
+    FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithSection:section] autorelease];
+    [self.navigationController pushViewController:controller
                                     animated:YES];
 }
 

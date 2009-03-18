@@ -23,7 +23,6 @@
 #import "YourRightsNavigationController.h"
 
 @interface GreatestHitsViewController()
-@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) NSArray* sectionTitles;
 @property (retain) NSArray* indexTitles;
 @property (retain) MultiDictionary* sectionTitleToDecisions;
@@ -33,14 +32,12 @@
 
 @implementation GreatestHitsViewController
 
-@synthesize navigationController;
 @synthesize sectionTitles;
 @synthesize sectionTitleToDecisions;
 @synthesize segmentedControl;
 @synthesize indexTitles;
 
-- (void)dealloc {
-    self.navigationController = nil;
+- (void) dealloc {
     self.sectionTitles = nil;
     self.sectionTitleToDecisions = nil;
     self.segmentedControl = nil;
@@ -51,7 +48,7 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return (id)[(id)self.navigationController model];
 }
 
 
@@ -78,9 +75,8 @@
 }
 
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
+- (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
         self.segmentedControl = [self setupSegmentedControl];
 
         self.indexTitles =
@@ -294,7 +290,7 @@
     if (decision.link.length == 0) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
-        [navigationController pushBrowser:decision.link animated:YES];
+        [(id)self.navigationController pushBrowser:decision.link animated:YES];
     }
 }
 

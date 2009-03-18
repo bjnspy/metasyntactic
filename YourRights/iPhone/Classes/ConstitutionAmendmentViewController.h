@@ -14,11 +14,9 @@
 
 @interface ConstitutionAmendmentViewController : UITableViewController {
 @private
-    YourRightsNavigationController* navigationController;
     Amendment* amendment;
 }
 
-- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
-                          amendment:(Amendment*) amendment;
+- (id) initWithAmendment:(Amendment*) amendment;
 
 @end
