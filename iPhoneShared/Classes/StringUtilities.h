@@ -27,4 +27,6 @@
 + (NSString*) asciiString:(NSString*) string;
 + (NSString*) stringFromUnichar:(unichar) c;
 
++ (NSArray*) splitIntoChunks:(NSString*) string;
+
 @end
