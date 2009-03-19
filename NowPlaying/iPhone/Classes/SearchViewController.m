@@ -76,6 +76,20 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setToolbarHidden:NO animated:animated];
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setToolbarHidden:YES animated:animated];
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -89,6 +103,9 @@
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    searchBar.showsScopeBar = YES;
+    searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
+    searchBar.selectedScopeButtonIndex = self.model.searchSelectedScopeButtonIndex;
     [searchBar sizeToFit];
 
     CGRect searchBarRect = searchBar.frame;
@@ -100,14 +117,23 @@
     tableView.dataSource = self;
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
+    UIBarButtonItem* flexibleWidth = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDismiss)] autorelease];;
+    self.toolbarItems = [NSArray arrayWithObjects:flexibleWidth, doneItem, nil];
+    
     [self.view addSubview:searchBar];
     [self.view addSubview:tableView];
 }
 
 
-- (void) searchBarCancelButtonClicked:(UISearchBar*) searchBar_ {
+- (void) onDismiss {
     [searchBar resignFirstResponder];
     [navigationController hideSearchView];
+}
+
+
+- (void) searchBarCancelButtonClicked:(UISearchBar*) searchBar_ {
+    [self onDismiss];
 }
 
 
@@ -120,14 +146,34 @@
 }
 
 
+- (BOOL) shouldShowMovies {
+    return searchBar.selectedScopeButtonIndex == 0;
+}
+
+
+- (BOOL) shouldShowTheaters {
+    return searchBar.selectedScopeButtonIndex == 1;
+}
+
+
+- (BOOL) shouldShowUpcoming {
+    return searchBar.selectedScopeButtonIndex == 2;
+}
+
+
+- (BOOL) shouldShowDVDBluray {
+    return searchBar.selectedScopeButtonIndex == 3;
+}
+
+
 - (BOOL) noResults {
     return
     searchResult != nil &&
-    searchResult.movies.count == 0 &&
-    searchResult.theaters.count == 0 &&
-    searchResult.upcomingMovies.count == 0 &&
-    searchResult.dvds.count == 0 &&
-    searchResult.bluray.count == 0;
+    (searchResult.movies.count == 0 || ![self shouldShowMovies]) &&
+    (searchResult.theaters.count == 0 || ![self shouldShowTheaters]) &&
+    (searchResult.upcomingMovies.count == 0 || ![self shouldShowUpcoming]) &&
+    (searchResult.dvds.count == 0 || ![self shouldShowDVDBluray]) &&
+    (searchResult.bluray.count == 0 || ![self shouldShowDVDBluray]);
 }
 
 
@@ -162,16 +208,18 @@
         return 0;
     }
 
-    if (section == 0) {
+    if (section == 0 && [self shouldShowMovies]) {
         return searchResult.movies.count;
-    } else if (section == 1) {
+    } else if (section == 1 && [self shouldShowTheaters]) {
         return searchResult.theaters.count;
-    } else if (section == 2) {
+    } else if (section == 2 && [self shouldShowUpcoming]) {
         return searchResult.upcomingMovies.count;
-    } else if (section == 3) {
+    } else if (section == 3 && [self shouldShowDVDBluray]) {
         return searchResult.dvds.count;
-    } else {
+    } else if (section == 4 && [self shouldShowDVDBluray]) {
         return searchResult.bluray.count;
+    } else {
+        return 0;
     }
 }
 
@@ -461,29 +509,54 @@
         return NSLocalizedString(@"No information found", nil);
     }
 
-    if (section == 0) {
+    if (section == 0 && [self shouldShowMovies]) {
         if (searchResult.movies.count != 0) {
             return NSLocalizedString(@"Movies", nil);
         }
-    } else if (section == 1) {
+    } else if (section == 1 && [self shouldShowTheaters]) {
         if (searchResult.theaters.count != 0) {
             return NSLocalizedString(@"Theaters", nil);
         }
-    } else if (section == 2) {
+    } else if (section == 2 && [self shouldShowUpcoming]) {
         if (searchResult.upcomingMovies.count != 0) {
             return NSLocalizedString(@"Upcoming", nil);
         }
-    } else if (section == 3) {
+    } else if (section == 3 && [self shouldShowDVDBluray]) {
         if (searchResult.dvds.count != 0) {
             return NSLocalizedString(@"DVD", nil);
         }
-    } else if (section == 4) {
+    } else if (section == 4 && [self shouldShowDVDBluray]) {
         if (searchResult.bluray.count != 0) {
             return NSLocalizedString(@"Blu-ray", nil);
         }
     }
 
     return nil;
+}
+
+
+- (void) searchBarSearchButtonClicked:(UISearchBar*) sender {
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [navigationController setToolbarHidden:NO animated:YES];
+}
+
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar_ {
+    [navigationController setToolbarHidden:YES animated:YES];
+    [searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+
+- (BOOL) hidesBottomBarWhenPushed {
+    return YES;
+}
+
+
+- (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    self.model.searchSelectedScopeButtonIndex = selectedScope;
+    [self.tableView reloadData];
 }
 
 @end
