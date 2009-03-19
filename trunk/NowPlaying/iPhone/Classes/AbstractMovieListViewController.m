@@ -447,19 +447,15 @@
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    return [self createCell:movie];
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
+    UITableViewCell* cell = [self createCell:movie];
+    
     if (self.sortingByTitle && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return UITableViewCellAccessoryNone;
-    } else if (self.sortingByScore) {
-        return UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
-        return UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    return cell;
 }
 
 

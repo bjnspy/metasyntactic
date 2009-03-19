@@ -811,10 +811,11 @@ const NSInteger POSTER_TAG = -1;
                                        row:(NSInteger) row {
     if (row == 0) {
         static NSString* reuseIdentifier = @"theaterReuseIdentifier";
-        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                      model:self.model] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
@@ -823,11 +824,12 @@ const NSInteger POSTER_TAG = -1;
         return cell;
     } else {
         static NSString* reuseIdentifier = @"detailsReuseIdentifier";
-        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier
                                                         model:self.model] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
@@ -1303,24 +1305,6 @@ const NSInteger POSTER_TAG = -1;
     }
 
     [self didSelectShowHiddenTheaters];
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-
-    if (section == 0) {
-        return UITableViewCellAccessoryNone;
-    }
-
-    if ([self isTheaterSection:section]) {
-        // theater section
-        return UITableViewCellAccessoryDisclosureIndicator;
-    }
-
-    // show hidden theaters
-    return UITableViewCellAccessoryNone;
 }
 
 
