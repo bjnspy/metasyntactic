@@ -649,4 +649,9 @@ static DifferenceEngine* differenceEngine = nil;
     return isMetric && !isUK;
 }
 
+
++ (BOOL) canSendMail {
+    return [MFMailComposeViewController canSendMail];
+}
+
 @end

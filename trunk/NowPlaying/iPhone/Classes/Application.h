@@ -80,5 +80,6 @@
 + (NSString*) starString;
 
 + (BOOL) useKilometers;
++ (BOOL) canSendMail;
 
 @end

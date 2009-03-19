@@ -181,7 +181,7 @@ const NSInteger POSTER_TAG = -1;
         [arguments addObject:[NSNull null]];
     }
 
-    if (theatersArray.count > 0) {
+    if (theatersArray.count > 0 && [Application canSendMail]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
         [arguments addObject:[NSNull null]];
@@ -1215,39 +1215,36 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) emailListings {
-    NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
+    NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                               movie.canonicalTitle,
                               [DateUtilities formatFullDate:self.model.searchDate]];
+
     NSMutableString* body = [NSMutableString string];
 
     for (int i = 0; i < theatersArray.count; i++) {
         if (i != 0) {
-            [body appendString:@"\n\n"];
+            [body appendString:@"<p><p>"];
         }
 
         Theater* theater = [theatersArray objectAtIndex:i];
         NSArray* performances = [showtimesArray objectAtIndex:i];
 
         [body appendString:theater.name];
-        [body appendString:@"\n"];
+        [body appendString:@"<p>"];
         [body appendString:@"<a href=\""];
         [body appendString:theater.mapUrl];
         [body appendString:@"\">"];
         [body appendString:[self.model simpleAddressForTheater:theater]];
         [body appendString:@"</a>"];
 
-        [body appendString:@"\n"];
+        [body appendString:@"<p>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
                                                     theater:theater
                                                performances:performances]];
     }
 
-    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [StringUtilities stringByAddingPercentEscapes:movieAndDate],
-                     [StringUtilities stringByAddingPercentEscapes:body]];
-
-    [Application openBrowser:url];
+    [self openMailWithSubject:subject body:body];
 }
 
 

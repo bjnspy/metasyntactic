@@ -205,8 +205,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* language = [LocaleUtilities displayLanguage:code];
 
     cell.textLabel.text = language;
-    cell.detailTextLabel.text = person;
-    
+    [cell setCellValue:person];
     [cell setHidesSeparator:row > 0];
     
     return cell;

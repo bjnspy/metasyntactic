@@ -231,4 +231,23 @@
 }
 
 
+- (void) openMailWithSubject:(NSString*) subject
+                        body:(NSString*) body {
+    MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+    controller.delegate = self;
+    
+    [controller setSubject:subject];
+    [controller setMessageBody:body isHTML:YES];
+    
+    [self presentModalViewController:controller animated:YES];   
+}
+
+
+- (void) mailComposeController:(MFMailComposeViewController*)controller
+           didFinishWithResult:(MFMailComposeResult)result
+                         error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
 @end

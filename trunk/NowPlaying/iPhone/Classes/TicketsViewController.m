@@ -17,7 +17,6 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Application.h"
-#import "AttributeCell.h"
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
@@ -159,7 +158,11 @@
             return 2;
         }
     } else if (section == 1) {
-        return 2;
+        if ([Application canSendMail]) {
+            return 2;
+        } else {
+            return 1;
+        }
     } else if (section == 2) {
         return performances.count;
     }
@@ -265,10 +268,10 @@
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textColor = [ColorCache commandColor];
 
-    if (row == 0) {
-        cell.text = NSLocalizedString(@"Change date", nil);
-    } else {
+    if (row == 0 && [Application canSendMail]) {
         cell.text = NSLocalizedString(@"E-mail listings", @"This string must it on a button half the width of the screen.  It means 'email the theater listings to a friend'");
+    } else {
+        cell.text = NSLocalizedString(@"Change date", nil);
     }
 
     return cell;
@@ -310,41 +313,37 @@
 
 
 - (void) didSelectEmailListings {
-    NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
+    NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                                 movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
     [body appendString:theater.name];
-    [body appendString:@"\n"];
+    [body appendString:@"<p>"];
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
 
-    [body appendString:@"\n\n"];
+    [body appendString:@"<p><p>"];
     [body appendString:movie.canonicalTitle];
-    [body appendString:@"\n"];
+    [body appendString:@"<p>"];
 
     [body appendString:[Utilities generateShowtimeLinks:self.model
                                                   movie:movie
                                                 theater:theater
                                            performances:performances]];
 
-    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [StringUtilities stringByAddingPercentEscapes:theaterAndDate],
-                     [StringUtilities stringByAddingPercentEscapes:body]];
-
-    [Application openBrowser:url];
+    [self openMailWithSubject:subject body:body];
 }
 
 
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
-    if (row == 0) {
-        [self changeDate];
-    } else {
+    if (row == 0 && [Application canSendMail]) {
         [self didSelectEmailListings];
+    } else {
+        [self changeDate];
     }
 }
 

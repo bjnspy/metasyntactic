@@ -140,7 +140,7 @@
                                                             options:NSBackwardsSearch
                                                               range:NSMakeRange(0, guess)];
         NSInteger whitespace = whitespaceRange.location;
-        if (whitespace == 0) {
+        if (whitespace == 0  || whitespaceRange.length == 0) {
             return synopsis.length;
         }
 
