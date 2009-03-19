@@ -251,10 +251,11 @@
 - (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
     if (row == 0) {
         static NSString* reuseIdentifier = @"movieReuseIdentifier";
-        id movieCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieTitleCell* movieCell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (movieCell == nil) {
             movieCell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                          model:self.model] autorelease];
+            movieCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         [movieCell setMovie:[movies objectAtIndex:index] owner:self];
@@ -262,11 +263,12 @@
         return movieCell;
     } else {
         static NSString* reuseIdentifier = @"showtimesReuseIdentifier";
-        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier
                                                         model:self.model] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         [cell setShowtimes:[movieShowtimes objectAtIndex:index]];
@@ -280,7 +282,7 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == 0) {
         return [self cellForHeaderRow:row];
     } else if (section == 1) {
@@ -309,20 +311,6 @@
                                                     model:self.model] + 18;
         }
     }
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-
-    if (section == 0) {
-        return UITableViewCellAccessoryNone;
-    } else if (section == 1) {
-        return UITableViewCellAccessoryNone;
-    }
-
-    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 

@@ -130,6 +130,10 @@
             cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
         }
 
+        if (review.link.length != 0) {
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        }
+        
         [cell setReview:review];
 
         return cell;
@@ -149,6 +153,7 @@
         } else if (self.model.googleScores) {
             cell.text = @"Google.com";
         }
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         return cell;
     }
 }
@@ -209,23 +214,6 @@
     }
 
     return tableView.rowHeight;
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
-        if (indexPath.row == 1) {
-            Review* review = [reviews objectAtIndex:indexPath.section];
-            if (review.link.length != 0) {
-                return UITableViewCellAccessoryDetailDisclosureButton;
-            }
-        }
-
-        return UITableViewCellAccessoryNone;
-    } else {
-        return UITableViewCellAccessoryDetailDisclosureButton;
-    }
 }
 
 

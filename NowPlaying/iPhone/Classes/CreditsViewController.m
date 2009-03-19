@@ -269,6 +269,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
+    if (indexPath.section == VoteForIconSection) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    } else if (indexPath.section == LocalizedBySection) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
 }
 
@@ -309,20 +319,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     }
 
     return nil;
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == VoteForIconSection) {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
-        return UITableViewCellAccessoryDetailDisclosureButton;
-    } else if (indexPath.section == LocalizedBySection) {
-        return UITableViewCellAccessoryNone;
-    } else {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    }
 }
 
 
