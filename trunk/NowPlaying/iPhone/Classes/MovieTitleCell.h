@@ -15,16 +15,11 @@
 @interface MovieTitleCell : UITableViewCell {
 @protected
     Model* model;
-    UITableViewStyle style;
     UILabel* scoreLabel;
-    UILabel* titleLabel;
-    UILabel* ratingLabel;
 }
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model
-               style:(UITableViewStyle) style;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+                         model:(Model*) model;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 

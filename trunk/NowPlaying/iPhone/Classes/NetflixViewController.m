@@ -200,53 +200,55 @@ typedef enum {
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.label.backgroundColor = [UIColor clearColor];
-    cell.selectedTextColor = [UIColor whiteColor];
-
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault] autorelease];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    //cell.textLabel.selectedTextColor = [UIColor whiteColor];
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.minimumFontSize = 12;
+    
     if (self.model.isIronManTheme) {
-        cell.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
     } else {
-        cell.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
     }
 
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         switch (row) {
             case SearchSection:
-                cell.text = NSLocalizedString(@"Search", nil);
+                cell.textLabel.text = NSLocalizedString(@"Search", nil);
                 cell.image = [self imageNamed:@"NetflixSearch.png"];
                 break;
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.text = NSLocalizedString(@"Most Popular", nil);
+                    cell.textLabel.text = NSLocalizedString(@"Most Popular", nil);
                 } else {
-                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
+                    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
                 cell.image = [self imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
                 cell.image = [self imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
                 cell.image = [self imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
                 cell.image = [self imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
                 cell.image = [self imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
-                cell.text = NSLocalizedString(@"Rental History", nil);
+                cell.textLabel.text = NSLocalizedString(@"Rental History", nil);
                 cell.image = [self imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
-                cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
+                cell.textLabel.text = NSLocalizedString(@"Log Out of Netflix", nil);
                 cell.image = [self imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryView = nil;
                 break;
@@ -255,10 +257,10 @@ typedef enum {
         cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {
-            cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
+            cell.textLabel.text = NSLocalizedString(@"Sign Up for New Account", nil);
             cell.image = [self imageNamed:@"NetflixCredits.png"];
         } else if (indexPath.row == 1) {
-            cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
+            cell.textLabel.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [self imageNamed:@"NetflixLogOff.png"];
             cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
         }

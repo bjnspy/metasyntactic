@@ -89,9 +89,10 @@ static AppDelegate* appDelegate = nil;
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
+    self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
+
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-    self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
 
     // Ok.  We've set up all our global state.  Now get the ball rolling.
     [controller start];

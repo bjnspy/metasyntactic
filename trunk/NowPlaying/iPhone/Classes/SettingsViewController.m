@@ -163,12 +163,12 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[SettingCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     cell.placeholder = placeholder;
-    [cell setKey:key value:value hideSeparator:NO];
+    cell.textLabel.text = key;
+    [cell setCellValue:value];
 
     return cell;
 }

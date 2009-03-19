@@ -213,7 +213,7 @@
 }
 
 
-- (NSString*) hash {
+- (NSString*) hashValue {
     if (hashData == nil) {
         self.hashData = [FileUtilities readObject:self.hashFile];
         if (hashData == nil) {
@@ -316,7 +316,7 @@
         }
     }
 
-    NSString* localHash = self.hash;
+    NSString* localHash = self.hashValue;
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                                important:NO];
     if (serverHash.length == 0) {

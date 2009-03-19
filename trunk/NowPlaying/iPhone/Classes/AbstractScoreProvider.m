@@ -167,7 +167,7 @@
 }
 
 
-- (NSString*) hash {
+- (NSString*) hashValue {
     if (hashData == nil) {
         self.hashData = [self loadHash];
     }
@@ -206,7 +206,7 @@
         }
     }
 
-    NSString* localHash = self.hash;
+    NSString* localHash = self.hashValue;
     NSString* serverHash = [self lookupServerHash];
 
     if (serverHash.length == 0 ||

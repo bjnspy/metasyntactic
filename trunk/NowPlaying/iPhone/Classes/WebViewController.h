@@ -16,7 +16,7 @@
 @private
     AbstractNavigationController* navigationController;
     UIWebView* webView;
-    UIToolbar* toolbar;
+    //UIToolbar* toolbar;
     UIActivityIndicatorView* activityView;
     UILabel* label;
     NSString* address;

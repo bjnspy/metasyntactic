@@ -60,7 +60,7 @@
 @property (copy) NSString* trailer;
 @property (retain) NSArray* reviewsArray;
 @property (retain) NSDictionary* websites;
-@property (retain) UIView* actionsView;
+@property (retain) ActionsView* actionsView;
 @property NSInteger hiddenTheaterCount;
 @property (retain) NSLock* posterDownloadLock;
 @property (retain) UIImage* posterImage;
@@ -813,8 +813,7 @@ const NSInteger POSTER_TAG = -1;
         static NSString* reuseIdentifier = @"theaterReuseIdentifier";
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[TheaterNameCell alloc] initWithFrame:CGRectZero
-                                           reuseIdentifier:reuseIdentifier
+            cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                      model:self.model] autorelease];
         }
 

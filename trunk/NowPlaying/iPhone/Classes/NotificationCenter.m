@@ -53,10 +53,11 @@
 - (id) initWithView:(UIView*) view_ {
     if (self = [super init]) {
         self.view = view_;
+        enabled = YES;
 
         self.notifications = [NSMutableArray array];
 
-        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 16)] autorelease];
+        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 16)] autorelease];
         notificationLabel.font = [UIFont boldSystemFontOfSize:12];
         notificationLabel.textAlignment = UITextAlignmentCenter;
         notificationLabel.textColor = [UIColor whiteColor];
@@ -66,7 +67,7 @@
         notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
         notificationLabel.text = NSLocalizedString(@"Updating", nil);
 
-        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
+        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
 
         self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:1];
@@ -88,11 +89,13 @@
 
 
 - (void) showNotification {
-    [UIView beginAnimations:nil context:NULL];
-    {
-        notificationLabel.alpha = blackLabel.alpha = 1;
+    if (enabled) {
+        [UIView beginAnimations:nil context:NULL];
+        {
+            notificationLabel.alpha = blackLabel.alpha = 1;
+        }
+        [UIView commitAnimations];
     }
-    [UIView commitAnimations];
 }
 
 
@@ -178,6 +181,21 @@
 
     [notifications removeObjectsInArray:notifications_];
     [pulser tryPulse];
+}
+
+
+- (void) disableNotifications {
+    enabled = NO;
+    [self hideNotification];
+}
+
+
+- (void) enableNotifications {
+    enabled = YES;
+    if (notifications.count > 0) {
+        [self updateText];
+        [self showNotification];
+    }
 }
 
 @end

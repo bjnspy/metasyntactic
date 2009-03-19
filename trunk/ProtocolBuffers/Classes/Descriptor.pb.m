@@ -154,7 +154,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"File", nil];
-      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable =
+      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBFileDescriptorSet class]
@@ -163,7 +163,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Package", @"Dependency", @"MessageType", @"EnumType", @"Service", @"Extension", @"Options", nil];
-      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBFileDescriptorProto class]
@@ -172,7 +172,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_DescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Field", @"Extension", @"NestedType", @"EnumType", @"ExtensionRange", @"Options", nil];
-      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBDescriptorProto class]
@@ -181,7 +181,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor nestedTypes] objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Start", @"End", nil];
-      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable =
+      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBDescriptorProto_ExtensionRange class]
@@ -190,7 +190,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Number", @"Label", @"Type", @"TypeName", @"Extendee", @"DefaultValue", @"Options", nil];
-      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBFieldDescriptorProto class]
@@ -199,7 +199,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Value", @"Options", nil];
-      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBEnumDescriptorProto class]
@@ -208,7 +208,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Number", @"Options", nil];
-      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBEnumValueDescriptorProto class]
@@ -217,7 +217,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Method", @"Options", nil];
-      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBServiceDescriptorProto class]
@@ -226,7 +226,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:7] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"InputType", @"OutputType", @"Options", nil];
-      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable =
+      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBMethodDescriptorProto class]
@@ -235,7 +235,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_FileOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:8] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"JavaPackage", @"JavaOuterClassname", @"JavaMultipleFiles", @"OptimizeFor", @"UninterpretedOption", nil];
-      internal_static_google_protobuf_FileOptions_fieldAccessorTable =
+      internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBFileOptions class]
@@ -244,7 +244,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_MessageOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:9] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"MessageSetWireFormat", @"UninterpretedOption", nil];
-      internal_static_google_protobuf_MessageOptions_fieldAccessorTable =
+      internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBMessageOptions class]
@@ -253,7 +253,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_FieldOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:10] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Ctype", @"ExperimentalMapKey", @"UninterpretedOption", nil];
-      internal_static_google_protobuf_FieldOptions_fieldAccessorTable =
+      internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBFieldOptions class]
@@ -262,7 +262,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_EnumOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:11] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"UninterpretedOption", nil];
-      internal_static_google_protobuf_EnumOptions_fieldAccessorTable =
+      internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBEnumOptions class]
@@ -271,7 +271,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:12] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"UninterpretedOption", nil];
-      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable =
+      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBEnumValueOptions class]
@@ -280,7 +280,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_ServiceOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:13] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"UninterpretedOption", nil];
-      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable =
+      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBServiceOptions class]
@@ -289,7 +289,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_MethodOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:14] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"UninterpretedOption", nil];
-      internal_static_google_protobuf_MethodOptions_fieldAccessorTable =
+      internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBMethodOptions class]
@@ -298,7 +298,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_UninterpretedOption_descriptor = [[[self descriptor].messageTypes objectAtIndex:15] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"IdentifierValue", @"PositiveIntValue", @"NegativeIntValue", @"DoubleValue", @"StringValue", nil];
-      internal_static_google_protobuf_UninterpretedOption_fieldAccessorTable =
+      internal_static_google_protobuf_UninterpretedOption_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_UninterpretedOption_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBUninterpretedOption class]
@@ -307,7 +307,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor = [[[internal_static_google_protobuf_UninterpretedOption_descriptor nestedTypes] objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"NamePart", @"IsExtension", nil];
-      internal_static_google_protobuf_UninterpretedOption_NamePart_fieldAccessorTable =
+      internal_static_google_protobuf_UninterpretedOption_NamePart_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[PBUninterpretedOption_NamePart class]
@@ -487,7 +487,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_UninterpretedOption
     115,99,114,105,112,116,111,114,80,114,111,116,111,115,72,1,
   };
   NSArray* dependencies = [NSArray arrayWithObjects:nil];
-
+  
   NSData* data = [NSData dataWithBytes:descriptorData length:3449];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
   return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
@@ -732,17 +732,17 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 @implementation PBFileDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 - (BOOL) hasPackage {
-  return hasPackage != 0;
+  return hasPackage;
 }
 - (void) setHasPackage:(BOOL) hasPackage_ {
-  hasPackage = (hasPackage_ != 0);
+  hasPackage = hasPackage_;
 }
 @synthesize package;
 @synthesize mutableDependencyList;
@@ -751,10 +751,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 @synthesize mutableServiceList;
 @synthesize mutableExtensionList;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -1339,10 +1339,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 @implementation PBDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 @synthesize mutableFieldList;
@@ -1351,10 +1351,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 @synthesize mutableEnumTypeList;
 @synthesize mutableExtensionRangeList;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -1551,17 +1551,17 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 @implementation PBDescriptorProto_ExtensionRange
 
 - (BOOL) hasStart {
-  return hasStart != 0;
+  return hasStart;
 }
 - (void) setHasStart:(BOOL) hasStart_ {
-  hasStart = (hasStart_ != 0);
+  hasStart = hasStart_;
 }
 @synthesize start;
 - (BOOL) hasEnd {
-  return hasEnd != 0;
+  return hasEnd;
 }
 - (void) setHasEnd:(BOOL) hasEnd_ {
-  hasEnd = (hasEnd_ != 0);
+  hasEnd = hasEnd_;
 }
 @synthesize end;
 - (void) dealloc {
@@ -2147,59 +2147,59 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 @implementation PBFieldDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 - (BOOL) hasNumber {
-  return hasNumber != 0;
+  return hasNumber;
 }
 - (void) setHasNumber:(BOOL) hasNumber_ {
-  hasNumber = (hasNumber_ != 0);
+  hasNumber = hasNumber_;
 }
 @synthesize number;
 - (BOOL) hasLabel {
-  return hasLabel != 0;
+  return hasLabel;
 }
 - (void) setHasLabel:(BOOL) hasLabel_ {
-  hasLabel = (hasLabel_ != 0);
+  hasLabel = hasLabel_;
 }
 @synthesize label;
 - (BOOL) hasType {
-  return hasType != 0;
+  return hasType;
 }
 - (void) setHasType:(BOOL) hasType_ {
-  hasType = (hasType_ != 0);
+  hasType = hasType_;
 }
 @synthesize type;
 - (BOOL) hasTypeName {
-  return hasTypeName != 0;
+  return hasTypeName;
 }
 - (void) setHasTypeName:(BOOL) hasTypeName_ {
-  hasTypeName = (hasTypeName_ != 0);
+  hasTypeName = hasTypeName_;
 }
 @synthesize typeName;
 - (BOOL) hasExtendee {
-  return hasExtendee != 0;
+  return hasExtendee;
 }
 - (void) setHasExtendee:(BOOL) hasExtendee_ {
-  hasExtendee = (hasExtendee_ != 0);
+  hasExtendee = hasExtendee_;
 }
 @synthesize extendee;
 - (BOOL) hasDefaultValue {
-  return hasDefaultValue != 0;
+  return hasDefaultValue;
 }
 - (void) setHasDefaultValue:(BOOL) hasDefaultValue_ {
-  hasDefaultValue = (hasDefaultValue_ != 0);
+  hasDefaultValue = hasDefaultValue_;
 }
 @synthesize defaultValue;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -2892,18 +2892,18 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 @implementation PBEnumDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 @synthesize mutableValueList;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -3218,24 +3218,24 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 @implementation PBEnumValueDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 - (BOOL) hasNumber {
-  return hasNumber != 0;
+  return hasNumber;
 }
 - (void) setHasNumber:(BOOL) hasNumber_ {
-  hasNumber = (hasNumber_ != 0);
+  hasNumber = hasNumber_;
 }
 @synthesize number;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -3520,18 +3520,18 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 @implementation PBServiceDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 @synthesize mutableMethodList;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -3847,31 +3847,31 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 @implementation PBMethodDescriptorProto
 
 - (BOOL) hasName {
-  return hasName != 0;
+  return hasName;
 }
 - (void) setHasName:(BOOL) hasName_ {
-  hasName = (hasName_ != 0);
+  hasName = hasName_;
 }
 @synthesize name;
 - (BOOL) hasInputType {
-  return hasInputType != 0;
+  return hasInputType;
 }
 - (void) setHasInputType:(BOOL) hasInputType_ {
-  hasInputType = (hasInputType_ != 0);
+  hasInputType = hasInputType_;
 }
 @synthesize inputType;
 - (BOOL) hasOutputType {
-  return hasOutputType != 0;
+  return hasOutputType;
 }
 - (void) setHasOutputType:(BOOL) hasOutputType_ {
-  hasOutputType = (hasOutputType_ != 0);
+  hasOutputType = hasOutputType_;
 }
 @synthesize outputType;
 - (BOOL) hasOptions {
-  return hasOptions != 0;
+  return hasOptions;
 }
 - (void) setHasOptions:(BOOL) hasOptions_ {
-  hasOptions = (hasOptions_ != 0);
+  hasOptions = hasOptions_;
 }
 @synthesize options;
 - (void) dealloc {
@@ -4190,36 +4190,36 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 @implementation PBFileOptions
 
 - (BOOL) hasJavaPackage {
-  return hasJavaPackage != 0;
+  return hasJavaPackage;
 }
 - (void) setHasJavaPackage:(BOOL) hasJavaPackage_ {
-  hasJavaPackage = (hasJavaPackage_ != 0);
+  hasJavaPackage = hasJavaPackage_;
 }
 @synthesize javaPackage;
 - (BOOL) hasJavaOuterClassname {
-  return hasJavaOuterClassname != 0;
+  return hasJavaOuterClassname;
 }
 - (void) setHasJavaOuterClassname:(BOOL) hasJavaOuterClassname_ {
-  hasJavaOuterClassname = (hasJavaOuterClassname_ != 0);
+  hasJavaOuterClassname = hasJavaOuterClassname_;
 }
 @synthesize javaOuterClassname;
 - (BOOL) hasJavaMultipleFiles {
-  return hasJavaMultipleFiles != 0;
+  return hasJavaMultipleFiles;
 }
 - (void) setHasJavaMultipleFiles:(BOOL) hasJavaMultipleFiles_ {
-  hasJavaMultipleFiles = (hasJavaMultipleFiles_ != 0);
+  hasJavaMultipleFiles = hasJavaMultipleFiles_;
 }
 - (BOOL) javaMultipleFiles {
-  return javaMultipleFiles != 0;
+  return javaMultipleFiles;
 }
 - (void) setJavaMultipleFiles:(BOOL) javaMultipleFiles_ {
-  javaMultipleFiles = (javaMultipleFiles_ != 0);
+  javaMultipleFiles = javaMultipleFiles_;
 }
 - (BOOL) hasOptimizeFor {
-  return hasOptimizeFor != 0;
+  return hasOptimizeFor;
 }
 - (void) setHasOptimizeFor:(BOOL) hasOptimizeFor_ {
-  hasOptimizeFor = (hasOptimizeFor_ != 0);
+  hasOptimizeFor = hasOptimizeFor_;
 }
 @synthesize optimizeFor;
 @synthesize mutableUninterpretedOptionList;
@@ -4644,16 +4644,16 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 @implementation PBMessageOptions
 
 - (BOOL) hasMessageSetWireFormat {
-  return hasMessageSetWireFormat != 0;
+  return hasMessageSetWireFormat;
 }
 - (void) setHasMessageSetWireFormat:(BOOL) hasMessageSetWireFormat_ {
-  hasMessageSetWireFormat = (hasMessageSetWireFormat_ != 0);
+  hasMessageSetWireFormat = hasMessageSetWireFormat_;
 }
 - (BOOL) messageSetWireFormat {
-  return messageSetWireFormat != 0;
+  return messageSetWireFormat;
 }
 - (void) setMessageSetWireFormat:(BOOL) messageSetWireFormat_ {
-  messageSetWireFormat = (messageSetWireFormat_ != 0);
+  messageSetWireFormat = messageSetWireFormat_;
 }
 @synthesize mutableUninterpretedOptionList;
 - (void) dealloc {
@@ -4918,17 +4918,17 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 @implementation PBFieldOptions
 
 - (BOOL) hasCtype {
-  return hasCtype != 0;
+  return hasCtype;
 }
 - (void) setHasCtype:(BOOL) hasCtype_ {
-  hasCtype = (hasCtype_ != 0);
+  hasCtype = hasCtype_;
 }
 @synthesize ctype;
 - (BOOL) hasExperimentalMapKey {
-  return hasExperimentalMapKey != 0;
+  return hasExperimentalMapKey;
 }
 - (void) setHasExperimentalMapKey:(BOOL) hasExperimentalMapKey_ {
-  hasExperimentalMapKey = (hasExperimentalMapKey_ != 0);
+  hasExperimentalMapKey = hasExperimentalMapKey_;
 }
 @synthesize experimentalMapKey;
 @synthesize mutableUninterpretedOptionList;
@@ -6217,38 +6217,38 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 
 @synthesize mutableNameList;
 - (BOOL) hasIdentifierValue {
-  return hasIdentifierValue != 0;
+  return hasIdentifierValue;
 }
 - (void) setHasIdentifierValue:(BOOL) hasIdentifierValue_ {
-  hasIdentifierValue = (hasIdentifierValue_ != 0);
+  hasIdentifierValue = hasIdentifierValue_;
 }
 @synthesize identifierValue;
 - (BOOL) hasPositiveIntValue {
-  return hasPositiveIntValue != 0;
+  return hasPositiveIntValue;
 }
 - (void) setHasPositiveIntValue:(BOOL) hasPositiveIntValue_ {
-  hasPositiveIntValue = (hasPositiveIntValue_ != 0);
+  hasPositiveIntValue = hasPositiveIntValue_;
 }
 @synthesize positiveIntValue;
 - (BOOL) hasNegativeIntValue {
-  return hasNegativeIntValue != 0;
+  return hasNegativeIntValue;
 }
 - (void) setHasNegativeIntValue:(BOOL) hasNegativeIntValue_ {
-  hasNegativeIntValue = (hasNegativeIntValue_ != 0);
+  hasNegativeIntValue = hasNegativeIntValue_;
 }
 @synthesize negativeIntValue;
 - (BOOL) hasDoubleValue {
-  return hasDoubleValue != 0;
+  return hasDoubleValue;
 }
 - (void) setHasDoubleValue:(BOOL) hasDoubleValue_ {
-  hasDoubleValue = (hasDoubleValue_ != 0);
+  hasDoubleValue = hasDoubleValue_;
 }
 @synthesize doubleValue;
 - (BOOL) hasStringValue {
-  return hasStringValue != 0;
+  return hasStringValue;
 }
 - (void) setHasStringValue:(BOOL) hasStringValue_ {
-  hasStringValue = (hasStringValue_ != 0);
+  hasStringValue = hasStringValue_;
 }
 @synthesize stringValue;
 - (void) dealloc {
@@ -6390,23 +6390,23 @@ static PBUninterpretedOption* defaultPBUninterpretedOptionInstance = nil;
 @implementation PBUninterpretedOption_NamePart
 
 - (BOOL) hasNamePart {
-  return hasNamePart != 0;
+  return hasNamePart;
 }
 - (void) setHasNamePart:(BOOL) hasNamePart_ {
-  hasNamePart = (hasNamePart_ != 0);
+  hasNamePart = hasNamePart_;
 }
 @synthesize namePart;
 - (BOOL) hasIsExtension {
-  return hasIsExtension != 0;
+  return hasIsExtension;
 }
 - (void) setHasIsExtension:(BOOL) hasIsExtension_ {
-  hasIsExtension = (hasIsExtension_ != 0);
+  hasIsExtension = hasIsExtension_;
 }
 - (BOOL) isExtension {
-  return isExtension != 0;
+  return isExtension;
 }
 - (void) setIsExtension:(BOOL) isExtension_ {
-  isExtension = (isExtension_ != 0);
+  isExtension = isExtension_;
 }
 - (void) dealloc {
   self.namePart = nil;
@@ -6869,4 +6869,3 @@ static PBUninterpretedOption_NamePart* defaultPBUninterpretedOption_NamePartInst
   return self;
 }
 @end
-

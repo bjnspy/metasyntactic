@@ -17,28 +17,19 @@
 #import "ColorCache.h"
 
 @interface SettingCell()
-@property (retain) UILabel* keyLabel;
-@property (retain) UILabel* valueLabel;
 @property (retain) UILabel* separatorLine;
-@property (retain) UIFont* cachedFont;
 @property (retain) NSString* value;
 @end
 
 
 @implementation SettingCell
 
-@synthesize keyLabel;
-@synthesize valueLabel;
 @synthesize separatorLine;
-@synthesize cachedFont;
 @synthesize placeholder;
 @synthesize value;
 
 - (void) dealloc {
-    self.keyLabel = nil;
-    self.valueLabel = nil;
     self.separatorLine = nil;
-    self.cachedFont = nil;
     self.placeholder = nil;
     self.value = nil;
 
@@ -46,58 +37,18 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-
-        self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        valueLabel.textColor = [ColorCache commandColor];
-        valueLabel.adjustsFontSizeToFitWidth = YES;
-        valueLabel.minimumFontSize = valueLabel.font.pointSize - 4;
-
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithStyle:UITableViewCellStyleValue1
+                    reuseIdentifier:reuseIdentifier]) {
         self.separatorLine = [[[UILabel alloc] init] autorelease];
-
-        [self.contentView addSubview:keyLabel];
-        [self.contentView addSubview:valueLabel];
     }
 
     return self;
 }
 
 
-- (void) resizeLabels {
-    [keyLabel sizeToFit];
-    [valueLabel sizeToFit];
-}
-
-
 - (void) layoutSubviews {
     [super layoutSubviews];
-
-    if (cachedFont == nil) {
-        self.cachedFont = self.font;
-        self.keyLabel.font = self.cachedFont;
-        [self resizeLabels];
-    }
-
-    CGRect keyFrame = keyLabel.frame;
-    keyFrame.origin.y = floor((self.contentView.frame.size.height - keyFrame.size.height) / 2);
-    keyFrame.origin.x = 10;
-    keyLabel.frame = keyFrame;
-
-    CGRect valueFrame = valueLabel.frame;
-    valueFrame.origin.y = floor((self.contentView.frame.size.height - valueFrame.size.height) / 2);
-    valueFrame.origin.x = MAX(keyFrame.origin.x + keyFrame.size.width + 10,
-                              self.contentView.frame.size.width - valueFrame.size.width);
-    valueFrame.size.width = MIN(valueFrame.size.width,
-                                self.contentView.frame.size.width - valueFrame.origin.x);
-
-    if (self.accessoryType == UITableViewCellAccessoryNone) {
-        valueFrame.origin.x -= 10;
-    }
-
-    valueLabel.frame = valueFrame;
 
     CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
     separatorLine.frame = separatorFrame;
@@ -106,45 +57,38 @@
 
 - (void) setValueColor {
     if (value.length > 0) {
-        valueLabel.textColor = [ColorCache commandColor];
+        self.detailTextLabel.textColor = [ColorCache commandColor];
     } else {
-        valueLabel.textColor = [UIColor lightGrayColor];
+        self.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
 }
 
 
-- (void) setKey:(NSString*) key
-          value:(NSString*) value_
-  hideSeparator:(BOOL) hideSeparator  {
-    self.value = value_;
-
-    keyLabel.text = key;
-
+- (void) setCellValue:(NSString*) text {
+    self.value = text;
+    
     if (value.length > 0) {
-        valueLabel.text = value;
+        self.detailTextLabel.text = value;
     } else {
-        valueLabel.text = placeholder;
+        self.detailTextLabel.text = placeholder;
     }
-
+    
     [self setValueColor];
+}
 
+
+- (void) setHidesSeparator:(BOOL) hideSeparator {
     [separatorLine removeFromSuperview];
     if (hideSeparator) {
         [self.contentView addSubview:separatorLine];
     }
-
-    [self resizeLabels];
 }
 
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    if (selected) {
-        keyLabel.textColor = [UIColor whiteColor];
-        valueLabel.textColor = [UIColor whiteColor];
-    } else {
-        keyLabel.textColor = [UIColor blackColor];
+    if (!selected) {
         [self setValueColor];
     }
 }

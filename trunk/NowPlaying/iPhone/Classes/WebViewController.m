@@ -16,8 +16,10 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "AppDelegate.h"
 #import "Application.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "ViewControllerUtilities.h"
 
 #define NAVIGATE_BACK_ITEM 1
@@ -26,7 +28,6 @@
 @interface WebViewController()
 @property (assign) AbstractNavigationController* navigationController;
 @property (retain) UIWebView* webView;
-@property (retain) UIToolbar* toolbar;
 @property (retain) UIActivityIndicatorView* activityView;
 @property (retain) UILabel* label;
 @property (copy) NSString* address;
@@ -37,7 +38,6 @@
 
 @synthesize navigationController;
 @synthesize webView;
-@synthesize toolbar;
 @synthesize activityView;
 @synthesize label;
 @synthesize address;
@@ -47,7 +47,7 @@
     self.address = nil;
 
     self.webView = nil;
-    self.toolbar = nil;
+    //self.toolbar = nil;
     self.activityView = nil;
     self.label = nil;
 
@@ -104,14 +104,9 @@
 
 
 - (void) setupWebView {
-    CGRect webframe = self.view.frame;
-    webframe.origin.x = 0;
-    webframe.origin.y = 0;
-
-    CGRect toolbarFrame;
-    CGRectDivide(webframe, &toolbarFrame, &webframe, toolbar.frame.size.height, CGRectMaxYEdge);
-
-    self.webView = [[[UIWebView alloc] initWithFrame:webframe] autorelease];
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    self.webView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
     webView.delegate = self;
     webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     webView.scalesPageToFit = YES;
@@ -139,21 +134,12 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [toolbar setItems:items animated:YES];
+    [self setToolbarItems:items animated:YES];
 }
 
 
 - (void) setupToolbar {
-    CGRect webframe = self.view.frame;
-    webframe.origin.x = 0;
-    webframe.origin.y = 0;
-
-    CGRect toolbarFrame;
-    CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
-
-    self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+    self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
 
     [self setupToolbarItems];
 }
@@ -161,6 +147,9 @@
 
 - (void) loadView {
     [super loadView];
+    
+    [self setupWebView];
+    [self.view addSubview:webView];
 
     if (showSafariButton) {
         self.navigationItem.rightBarButtonItem =
@@ -172,10 +161,6 @@
 
     [self setupTitleView];
     [self setupToolbar];
-    [self setupWebView];
-
-    [self.view addSubview:toolbar];
-    [self.view addSubview:webView];
 
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
 }
@@ -211,11 +196,15 @@
 
 
 - (void) updateToolBarItems {
-    UIBarButtonItem* navigateBackItem = [toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+    UIBarButtonItem* navigateBackItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
+    UIBarButtonItem* navigateForwardItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
+    
+    BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
+    
+    [self.navigationController setToolbarHidden:hidden animated:YES];
 }
 
 
@@ -273,8 +262,17 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [[AppDelegate notificationCenter] disableNotifications];
+}
+
+
 - (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+    [[AppDelegate notificationCenter] enableNotifications];
     webView.delegate = nil;
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 
@@ -290,6 +288,11 @@
         return NO;
     }
 
+    return YES;
+}
+
+
+- (BOOL) hidesBottomBarWhenPushed {
     return YES;
 }
 

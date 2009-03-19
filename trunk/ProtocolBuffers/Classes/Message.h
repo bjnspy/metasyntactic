@@ -17,7 +17,7 @@
  *
  * @author Cyrus Najmabadi
  */
-@protocol PBMessage
+@protocol PBMessage<NSObject>
 /**
  * Get the message's type's descriptor.  This differs from the
  * {@code getDescriptor()} method of generated message classes in that
