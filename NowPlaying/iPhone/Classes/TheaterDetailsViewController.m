@@ -15,7 +15,6 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
-#import "AttributeCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
@@ -191,7 +190,11 @@
         // theater address and possibly phone number
         return 1 + (theater.phoneNumber.length == 0 ? 0 : 1);
     } else if (section == 1) {
-        return 2;
+        if ([Application canSendMail]) {
+            return 2;
+        } else {
+            return 1;
+        }
     } else {
         return 2;
     }
@@ -235,7 +238,7 @@
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textAlignment = UITextAlignmentCenter;
 
-    if (row == 0) {
+    if (row == 0 && [Application canSendMail]) {
         cell.text = NSLocalizedString(@"E-mail listings", nil);
     } else {
         cell.text = NSLocalizedString(@"Change date", nil);
@@ -324,7 +327,7 @@
 
 
 - (void) didSelectEmailListings {
-    NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
+    NSString* subject = [NSString stringWithFormat:@"%@ - %@",
                                 theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
@@ -336,24 +339,20 @@
     [body appendString:@"</a>"];
 
     for (int i = 0; i < movies.count; i++) {
-        [body appendString:@"\n\n"];
+        [body appendString:@"<p><p>"];
 
         Movie* movie = [movies objectAtIndex:i];
         NSArray* performances = [movieShowtimes objectAtIndex:i];
 
         [body appendString:movie.displayTitle];
-        [body appendString:@"\n"];
+        [body appendString:@"<p>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
                                                     theater:theater
                                                performances:performances]];
     }
 
-    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [StringUtilities stringByAddingPercentEscapes:theaterAndDate],
-                     [StringUtilities stringByAddingPercentEscapes:body]];
-
-    [Application openBrowser:url];
+    [self openMailWithSubject:subject body:body];
 }
 
 
@@ -409,7 +408,7 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     } else if (section == 1) {
-        if (row == 0) {
+        if (row == 0 && [Application canSendMail]) {
             [self didSelectEmailListings];
         } else {
             [self didSelectChangeDate];

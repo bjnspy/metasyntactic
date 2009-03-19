@@ -16,7 +16,6 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "AutoResizingCell.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
