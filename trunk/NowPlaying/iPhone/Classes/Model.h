@@ -121,6 +121,9 @@ enum ViewControllerType {
 - (NSInteger) dvdMoviesSelectedSegmentIndex;
 - (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index;
 
+- (NSInteger) searchSelectedScopeButtonIndex;
+- (void) setSearchSelectedScopeButtonIndex:(NSInteger) index;
+
 - (BOOL) allMoviesSortingByTitle;
 - (BOOL) allMoviesSortingByScore;
 - (BOOL) allMoviesSortingByReleaseDate;

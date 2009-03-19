@@ -18,8 +18,8 @@
 #import "AppDelegate.h"
 #import "ColorCache.h"
 #import "LargePosterCache.h"
-#import "NonClippingView.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
 #import "ThreadingUtilities.h"
@@ -29,7 +29,6 @@
 @property (retain) Movie* movie;
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
-@property (retain) UIToolbar* toolbar;
 @property (retain) UILabel* savingLabel;
 @end
 
@@ -45,7 +44,6 @@ const double LOAD_DELAY = 1;
 @synthesize navigationController;
 @synthesize pageNumberToView;
 @synthesize movie;
-@synthesize toolbar;
 @synthesize scrollView;
 @synthesize savingLabel;
 
@@ -53,7 +51,6 @@ const double LOAD_DELAY = 1;
     self.navigationController = nil;
     self.pageNumberToView = nil;
     self.movie = nil;
-    self.toolbar = nil;
     self.scrollView = nil;
     self.savingLabel = nil;
 
@@ -89,13 +86,22 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillAppear:(BOOL) animated { 
     [super viewWillAppear:animated];
+    [[AppDelegate notificationCenter] disableNotifications];
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+    [navigationController setNavigationBarHidden:YES animated:YES];
+    [navigationController setToolbarHidden:NO animated:YES];
+    navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
+    [[AppDelegate notificationCenter] enableNotifications];
+
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+    [navigationController setNavigationBarHidden:NO animated:YES];
+    [navigationController setToolbarHidden:YES animated:YES];
 }
 
 
@@ -343,7 +349,7 @@ const double LOAD_DELAY = 1;
     [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingActivityIndicator] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [toolbar setItems:items animated:YES];
+    [self setToolbarItems:items animated:YES];
 }
 
 
@@ -399,7 +405,7 @@ const double LOAD_DELAY = 1;
     UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
     [items addObject:doneItem];
 
-    [toolbar setItems:items animated:YES];
+    [self setToolbarItems:items animated:YES];
 
     if (currentPage <= 0) {
         leftArrow.enabled = NO;
@@ -450,21 +456,13 @@ const double LOAD_DELAY = 1;
     if (saving) {
         return;
     }
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        toolbar.alpha = 0;
-    }
-    [UIView commitAnimations];
+    
+    [navigationController setToolbarHidden:YES animated:YES];
 }
 
 
 - (void) showToolBar {
-    [UIView beginAnimations:nil context:NULL];
-    {
-        toolbar.alpha = TRANSLUCENCY_LEVEL;
-    }
-    [UIView commitAnimations];
+    [navigationController setToolbarHidden:NO animated:YES];
 }
 
 
@@ -590,27 +588,16 @@ const double LOAD_DELAY = 1;
     [super loadView];
 
     [self createScrollView];
-    {
-        self.toolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
-        toolbar.barStyle = UIBarStyleBlackTranslucent;
-        toolbar.translucent = YES;
-        [self setupToolbar];
-        [toolbar sizeToFit];
 
-        CGRect topBarFrame = toolbar.frame;
-        CGRect frame = [UIScreen mainScreen].bounds;
-        topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
-        toolbar.frame = topBarFrame;
-
-        [self showToolBar];
-    }
+    [self setupToolbar];
+    [self showToolBar];
 
     // load the first two pages.  Try to load the first one immediately.
     [self loadPage:0 delay:0];
     [self loadPage:1 delay:LOAD_DELAY];
 
     [self.view addSubview:scrollView];
-    [self.view addSubview:toolbar];
+    //[self.view addSubview:toolbar];
 
     //self.view = view;
 }
@@ -638,7 +625,7 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        if (toolbar.alpha == 0) {
+        if (navigationController.toolbarHidden) {
             [self showToolBar];
         } else {
             [self hideToolBar];
@@ -662,6 +649,11 @@ const double LOAD_DELAY = 1;
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return NO;
+}
+
+
+- (BOOL) hidesBottomBarWhenPushed {
+    return YES;
 }
 
 @end

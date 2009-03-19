@@ -237,20 +237,19 @@
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
     }
 
-    [self presentModalViewController:searchViewController animated:YES];
+    [self pushViewController:searchViewController animated:YES];
     [searchViewController onShow];
 }
 
 
 - (void) hideSearchView {
     [searchViewController onHide];
-    [self dismissModalViewControllerAnimated:YES];
+    [self popViewControllerAnimated:YES];
 }
 
 
 - (void) hidePostersView {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    [self popViewControllerAnimated:YES];
     self.postersViewController = nil;
 }
 
@@ -264,10 +263,11 @@
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
-    postersViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //postersViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
-    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-    [self presentModalViewController:postersViewController animated:YES];
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+    //[self presentModalViewController:postersViewController animated:YES];
+    [self pushViewController:postersViewController animated:YES];
 }
 
 

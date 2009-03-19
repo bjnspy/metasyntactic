@@ -112,6 +112,7 @@ static NSString* SCORE_PROVIDER_INDEX                   = @"scoreProviderIndex";
 static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
+static NSString* SEARCH_SELECTED_SCOPE_BUTTON_INDEX     = @"searchSelectedScopeButtonIndex";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
@@ -155,6 +156,7 @@ static NSString** ALL_KEYS[] = {
 &SCREEN_ROTATION_DISABLED,
 &SEARCH_DATE,
 &SEARCH_RADIUS,
+&SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
 &UNSUPPORTED_COUNTRY,
 &UPCOMING_AND_DVD_HIDE_UPCOMING,
@@ -183,6 +185,7 @@ static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
 &DVD_MOVIES_SELECTED_SEGMENT_INDEX,
 &SCORE_PROVIDER_INDEX,
 &SEARCH_RADIUS,
+&SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
 &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX
 };
@@ -812,6 +815,16 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
+}
+
+
+- (NSInteger) searchSelectedScopeButtonIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_SELECTED_SCOPE_BUTTON_INDEX];
+}
+
+
+- (void) setSearchSelectedScopeButtonIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SEARCH_SELECTED_SCOPE_BUTTON_INDEX];
 }
 
 

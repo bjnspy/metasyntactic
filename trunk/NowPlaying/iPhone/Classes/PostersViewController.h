@@ -25,8 +25,6 @@
     NSInteger posterCount;
     NSMutableDictionary* pageNumberToView;
 
-    UIToolbar* toolbar;
-
     BOOL shutdown;
 
     BOOL saving;
