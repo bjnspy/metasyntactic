@@ -89,11 +89,13 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillAppear:(BOOL) animated { 
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 }
 
 
@@ -587,11 +589,7 @@ const double LOAD_DELAY = 1;
 - (void) loadView {
     [super loadView];
 
-    CGRect frame = [UIScreen mainScreen].bounds;
-    //NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
-
     [self createScrollView];
-
     {
         self.toolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
         toolbar.barStyle = UIBarStyleBlackTranslucent;
@@ -600,6 +598,7 @@ const double LOAD_DELAY = 1;
         [toolbar sizeToFit];
 
         CGRect topBarFrame = toolbar.frame;
+        CGRect frame = [UIScreen mainScreen].bounds;
         topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
         toolbar.frame = topBarFrame;
 

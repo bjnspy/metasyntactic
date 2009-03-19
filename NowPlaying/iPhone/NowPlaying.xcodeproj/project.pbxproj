@@ -221,7 +221,6 @@
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
 		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
 		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
-		74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F840EC2D38D00A8F639 /* NonClippingView.m */; };
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
@@ -766,8 +765,6 @@
 		74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
 		74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
 		74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
-		74AF0F830EC2D38D00A8F639 /* NonClippingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonClippingView.h; sourceTree = "<group>"; };
-		74AF0F840EC2D38D00A8F639 /* NonClippingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonClippingView.m; sourceTree = "<group>"; };
 		74AF0F860EC2D42200A8F639 /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
 		74AF0F870EC2D42200A8F639 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
@@ -1159,8 +1156,6 @@
 				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
 				74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */,
 				74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */,
-				74AF0F830EC2D38D00A8F639 /* NonClippingView.h */,
-				74AF0F840EC2D38D00A8F639 /* NonClippingView.m */,
 				74AF0F860EC2D42200A8F639 /* TappableScrollView.h */,
 				74AF0F870EC2D42200A8F639 /* TappableScrollView.m */,
 				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
@@ -2259,7 +2254,6 @@
 				74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */,
 				7410D7410EC2C0740079BF1E /* LargePosterCache.m in Sources */,
 				74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */,
-				74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */,
 				74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */,
 				744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */,
 				744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */,
