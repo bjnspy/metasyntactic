@@ -249,7 +249,7 @@
 
 
 - (void) hidePostersView {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
     [self dismissModalViewControllerAnimated:YES];
     self.postersViewController = nil;
 }
@@ -264,8 +264,9 @@
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
+    postersViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     [self presentModalViewController:postersViewController animated:YES];
 }
 
