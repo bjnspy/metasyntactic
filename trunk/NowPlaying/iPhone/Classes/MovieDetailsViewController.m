@@ -1222,22 +1222,20 @@ const NSInteger POSTER_TAG = -1;
     NSMutableString* body = [NSMutableString string];
 
     for (int i = 0; i < theatersArray.count; i++) {
-        if (i != 0) {
-            [body appendString:@"<p><p>"];
-        }
+        [body appendString:@"<p>"];
 
         Theater* theater = [theatersArray objectAtIndex:i];
         NSArray* performances = [showtimesArray objectAtIndex:i];
 
         [body appendString:theater.name];
-        [body appendString:@"<p>"];
+        [body appendString:@"<br/>"];
         [body appendString:@"<a href=\""];
         [body appendString:theater.mapUrl];
         [body appendString:@"\">"];
         [body appendString:[self.model simpleAddressForTheater:theater]];
         [body appendString:@"</a>"];
 
-        [body appendString:@"<p>"];
+        [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
                                                     theater:theater
