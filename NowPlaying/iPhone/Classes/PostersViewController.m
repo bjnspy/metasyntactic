@@ -67,6 +67,7 @@ const double LOAD_DELAY = 1;
     if (self = [super init]) {
         self.navigationController = navigationController_;
         self.movie = movie_;
+        self.wantsFullScreenLayout = YES;
         posterCount = posterCount_;
 
         self.pageNumberToView = [NSMutableDictionary dictionary];
@@ -86,6 +87,16 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (void) viewWillAppear:(BOOL) animated { 
+    [super viewWillAppear:animated];
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+}
+
+
 - (UILabel*) createDownloadingLabel:(NSString*) text; {
     UILabel* downloadingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     downloadingLabel.tag = LABEL_TAG;
@@ -96,7 +107,7 @@ const double LOAD_DELAY = 1;
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    CGRect frame = [UIScreen mainScreen].bounds;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
@@ -154,8 +165,7 @@ const double LOAD_DELAY = 1;
     imageView.tag = IMAGE_TAG;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
 
     if (image.size.width > image.size.height) {
         int offset = (int)((frame.size.height - frame.size.width) / 2.0);
@@ -174,8 +184,7 @@ const double LOAD_DELAY = 1;
 
 
 - (TappableScrollView*) createScrollView {
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
 
     self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
@@ -253,8 +262,7 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = page * frame.size.width;
 
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
@@ -459,8 +467,7 @@ const double LOAD_DELAY = 1;
 
 
 - (void) onRightTapped:(id) sender {
-    CGRect rect = [UIScreen mainScreen].applicationFrame;
-    rect.origin.y = 0;
+    CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.x = (currentPage + 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage + 1];
@@ -469,8 +476,7 @@ const double LOAD_DELAY = 1;
 
 
 - (void) onLeftTapped:(id) sender {
-    CGRect rect = [UIScreen mainScreen].applicationFrame;
-    rect.origin.y = 0;
+    CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.x = (currentPage - 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage - 1];
@@ -581,15 +587,15 @@ const double LOAD_DELAY = 1;
 - (void) loadView {
     [super loadView];
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
-    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
+    CGRect frame = [UIScreen mainScreen].bounds;
+    //NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
 
     [self createScrollView];
 
     {
         self.toolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
         toolbar.barStyle = UIBarStyleBlackTranslucent;
+        toolbar.translucent = YES;
         [self setupToolbar];
         [toolbar sizeToFit];
 
@@ -604,10 +610,10 @@ const double LOAD_DELAY = 1;
     [self loadPage:0 delay:0];
     [self loadPage:1 delay:LOAD_DELAY];
 
-    [view addSubview:scrollView];
-    [view addSubview:toolbar];
+    [self.view addSubview:scrollView];
+    [self.view addSubview:toolbar];
 
-    self.view = view;
+    //self.view = view;
 }
 
 
