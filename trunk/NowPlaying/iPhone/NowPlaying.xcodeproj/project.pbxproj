@@ -104,6 +104,7 @@
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
 		744104320F71F1E200FF3954 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744104310F71F1E200FF3954 /* MessageUI.framework */; };
+		744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744105510F72057F00FF3954 /* AutoresizingCell.m */; };
 		744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 744245B80E89DA0500ACDBCF /* SearchViewController.m */; };
 		744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247000E89F7A700ACDBCF /* SearchEngine.m */; };
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
@@ -499,6 +500,8 @@
 		743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
 		743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
 		744104310F71F1E200FF3954 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		744105500F72057F00FF3954 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
+		744105510F72057F00FF3954 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
 		744245B70E89DA0500ACDBCF /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		744245B80E89DA0500ACDBCF /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		744246FF0E89F7A700ACDBCF /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngine.h; sourceTree = "<group>"; };
@@ -1404,6 +1407,8 @@
 		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				744105500F72057F00FF3954 /* AutoresizingCell.h */,
+				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
@@ -2347,6 +2352,7 @@
 				7477B3250F378CBA00FED03B /* NotificationCenter.m in Sources */,
 				743D95500F3F721100BA0784 /* NetflixThemeViewController.m in Sources */,
 				741172B20F60927C00E09FD8 /* AbstractMovieCache.m in Sources */,
+				744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

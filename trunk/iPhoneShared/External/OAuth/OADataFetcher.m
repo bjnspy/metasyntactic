@@ -38,7 +38,7 @@
     [request prepare];
 
     NSURLResponse* response;
-    NSError* error;
+    NSError* error = nil;
     NSData* responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response
                                                              error:&error];
