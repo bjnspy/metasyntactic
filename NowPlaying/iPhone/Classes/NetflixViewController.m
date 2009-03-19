@@ -260,7 +260,6 @@ typedef enum {
         } else if (indexPath.row == 1) {
             cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [self imageNamed:@"NetflixLogOff.png"];
-            cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
         }
     }
     

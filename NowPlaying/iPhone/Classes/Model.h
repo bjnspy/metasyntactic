@@ -225,7 +225,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context);
 - (void) setBookmarkedBluray:(NSArray*) array;
 
 - (NSString*) noInformationFound;
-- (NSString*) feedbackUrl;
 
 - (BOOL) useSmallFonts;
 - (void) setUseSmallFonts:(BOOL) useSmallFonts;
