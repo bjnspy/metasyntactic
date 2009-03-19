@@ -150,13 +150,15 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault] autorelease];
 
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
 
-    cell.text = [self.model.netflixCache titleForKey:feed.key];
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.minimumFontSize = 12;
+    cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

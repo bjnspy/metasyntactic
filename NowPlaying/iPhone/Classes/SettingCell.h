@@ -14,11 +14,7 @@
 
 @interface SettingCell : UITableViewCell {
 @private
-    UILabel* keyLabel;
-    UILabel* valueLabel;
     UILabel* separatorLine;
-
-    UIFont* cachedFont;
 
     NSString* value;
     NSString* placeholder;
@@ -26,11 +22,8 @@
 
 @property (retain) NSString* placeholder;
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier;
-
-- (void) setKey:(NSString*) key
-          value:(NSString*) value
-  hideSeparator:(BOOL) hideSeparator;
+- (void) setCellValue:(NSString*) text;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+- (void) setHidesSeparator:(BOOL) hideSeparator;
 
 @end

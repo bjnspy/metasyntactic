@@ -54,8 +54,8 @@
 @end
 
 @interface PBFileDescriptorSet : PBGeneratedMessage {
- @private
-  NSMutableArray* mutableFileList;
+@private
+    NSMutableArray* mutableFileList;
 }
 - (NSArray*) fileList;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
@@ -80,8 +80,8 @@
 @end
 
 @interface PBFileDescriptorSet_Builder : PBGeneratedMessage_Builder {
- @private
-  PBFileDescriptorSet* result;
+@private
+    PBFileDescriptorSet* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -107,25 +107,25 @@
 @end
 
 @interface PBFileDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasName:1;
-  BOOL hasPackage:1;
-  BOOL hasOptions:1;
-  NSString* name;
-  NSString* package;
-  PBFileOptions* options;
-  NSMutableArray* mutableDependencyList;
-  NSMutableArray* mutableMessageTypeList;
-  NSMutableArray* mutableEnumTypeList;
-  NSMutableArray* mutableServiceList;
-  NSMutableArray* mutableExtensionList;
+@private
+    BOOL hasName;
+    BOOL hasPackage;
+    BOOL hasOptions;
+    NSString* name;
+    NSString* package;
+    PBFileOptions* options;
+    NSMutableArray* mutableDependencyList;
+    NSMutableArray* mutableMessageTypeList;
+    NSMutableArray* mutableEnumTypeList;
+    NSMutableArray* mutableServiceList;
+    NSMutableArray* mutableExtensionList;
 }
 - (BOOL) hasName;
 - (BOOL) hasPackage;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) NSString* package;
-@property (retain, readonly) PBFileOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* package;
+@property (readonly, retain) PBFileOptions* options;
 - (NSArray*) dependencyList;
 - (NSString*) dependencyAtIndex:(int32_t) index;
 - (NSArray*) messageTypeList;
@@ -157,8 +157,8 @@
 @end
 
 @interface PBFileDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBFileDescriptorProto* result;
+@private
+    PBFileDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -229,21 +229,21 @@
 @end
 
 @interface PBDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasName:1;
-  BOOL hasOptions:1;
-  NSString* name;
-  PBMessageOptions* options;
-  NSMutableArray* mutableFieldList;
-  NSMutableArray* mutableExtensionList;
-  NSMutableArray* mutableNestedTypeList;
-  NSMutableArray* mutableEnumTypeList;
-  NSMutableArray* mutableExtensionRangeList;
+@private
+    BOOL hasName;
+    BOOL hasOptions;
+    NSString* name;
+    PBMessageOptions* options;
+    NSMutableArray* mutableFieldList;
+    NSMutableArray* mutableExtensionList;
+    NSMutableArray* mutableNestedTypeList;
+    NSMutableArray* mutableEnumTypeList;
+    NSMutableArray* mutableExtensionRangeList;
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBMessageOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBMessageOptions* options;
 - (NSArray*) fieldList;
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index;
 - (NSArray*) extensionList;
@@ -275,11 +275,11 @@
 @end
 
 @interface PBDescriptorProto_ExtensionRange : PBGeneratedMessage {
- @private
-  BOOL hasStart:1;
-  BOOL hasEnd:1;
-  int32_t start;
-  int32_t end;
+@private
+    BOOL hasStart;
+    BOOL hasEnd;
+    int32_t start;
+    int32_t end;
 }
 - (BOOL) hasStart;
 - (BOOL) hasEnd;
@@ -306,8 +306,8 @@
 @end
 
 @interface PBDescriptorProto_ExtensionRange_Builder : PBGeneratedMessage_Builder {
- @private
-  PBDescriptorProto_ExtensionRange* result;
+@private
+    PBDescriptorProto_ExtensionRange* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -336,8 +336,8 @@
 @end
 
 @interface PBDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBDescriptorProto* result;
+@private
+    PBDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -403,23 +403,23 @@
 @end
 
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasNumber:1;
-  BOOL hasName:1;
-  BOOL hasTypeName:1;
-  BOOL hasExtendee:1;
-  BOOL hasDefaultValue:1;
-  BOOL hasOptions:1;
-  BOOL hasLabel:1;
-  BOOL hasType:1;
-  int32_t number;
-  NSString* name;
-  NSString* typeName;
-  NSString* extendee;
-  NSString* defaultValue;
-  PBFieldOptions* options;
-  PBFieldDescriptorProto_Label* label;
-  PBFieldDescriptorProto_Type* type;
+@private
+    BOOL hasNumber;
+    BOOL hasName;
+    BOOL hasTypeName;
+    BOOL hasExtendee;
+    BOOL hasDefaultValue;
+    BOOL hasOptions;
+    BOOL hasLabel;
+    BOOL hasType;
+    int32_t number;
+    NSString* name;
+    NSString* typeName;
+    NSString* extendee;
+    NSString* defaultValue;
+    PBFieldOptions* options;
+    PBFieldDescriptorProto_Label* label;
+    PBFieldDescriptorProto_Type* type;
 }
 - (BOOL) hasName;
 - (BOOL) hasNumber;
@@ -429,14 +429,14 @@
 - (BOOL) hasExtendee;
 - (BOOL) hasDefaultValue;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
+@property (readonly, retain) NSString* name;
 @property (readonly) int32_t number;
-@property (retain, readonly) PBFieldDescriptorProto_Label* label;
-@property (retain, readonly) PBFieldDescriptorProto_Type* type;
-@property (retain, readonly) NSString* typeName;
-@property (retain, readonly) NSString* extendee;
-@property (retain, readonly) NSString* defaultValue;
-@property (retain, readonly) PBFieldOptions* options;
+@property (readonly, retain) PBFieldDescriptorProto_Label* label;
+@property (readonly, retain) PBFieldDescriptorProto_Type* type;
+@property (readonly, retain) NSString* typeName;
+@property (readonly, retain) NSString* extendee;
+@property (readonly, retain) NSString* defaultValue;
+@property (readonly, retain) PBFieldOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -458,9 +458,9 @@
 @end
 
 @interface PBFieldDescriptorProto_Type : NSObject {
- @private
-  int32_t index;
-  int32_t value;
+@private
+    int32_t index;
+    int32_t value;
 }
 @property (readonly) int32_t index;
 @property (readonly) int32_t value;
@@ -494,9 +494,9 @@
 @end
 
 @interface PBFieldDescriptorProto_Label : NSObject {
- @private
-  int32_t index;
-  int32_t value;
+@private
+    int32_t index;
+    int32_t value;
 }
 @property (readonly) int32_t index;
 @property (readonly) int32_t value;
@@ -515,8 +515,8 @@
 @end
 
 @interface PBFieldDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBFieldDescriptorProto* result;
+@private
+    PBFieldDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -577,17 +577,17 @@
 @end
 
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasName:1;
-  BOOL hasOptions:1;
-  NSString* name;
-  PBEnumOptions* options;
-  NSMutableArray* mutableValueList;
+@private
+    BOOL hasName;
+    BOOL hasOptions;
+    NSString* name;
+    PBEnumOptions* options;
+    NSMutableArray* mutableValueList;
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBEnumOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBEnumOptions* options;
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 
@@ -611,8 +611,8 @@
 @end
 
 @interface PBEnumDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBEnumDescriptorProto* result;
+@private
+    PBEnumDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -650,20 +650,20 @@
 @end
 
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasNumber:1;
-  BOOL hasName:1;
-  BOOL hasOptions:1;
-  int32_t number;
-  NSString* name;
-  PBEnumValueOptions* options;
+@private
+    BOOL hasNumber;
+    BOOL hasName;
+    BOOL hasOptions;
+    int32_t number;
+    NSString* name;
+    PBEnumValueOptions* options;
 }
 - (BOOL) hasName;
 - (BOOL) hasNumber;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
+@property (readonly, retain) NSString* name;
 @property (readonly) int32_t number;
-@property (retain, readonly) PBEnumValueOptions* options;
+@property (readonly, retain) PBEnumValueOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -685,8 +685,8 @@
 @end
 
 @interface PBEnumValueDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBEnumValueDescriptorProto* result;
+@private
+    PBEnumValueDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -722,17 +722,17 @@
 @end
 
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasName:1;
-  BOOL hasOptions:1;
-  NSString* name;
-  PBServiceOptions* options;
-  NSMutableArray* mutableMethodList;
+@private
+    BOOL hasName;
+    BOOL hasOptions;
+    NSString* name;
+    PBServiceOptions* options;
+    NSMutableArray* mutableMethodList;
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBServiceOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBServiceOptions* options;
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 
@@ -756,8 +756,8 @@
 @end
 
 @interface PBServiceDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBServiceDescriptorProto* result;
+@private
+    PBServiceDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -795,24 +795,24 @@
 @end
 
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
- @private
-  BOOL hasName:1;
-  BOOL hasInputType:1;
-  BOOL hasOutputType:1;
-  BOOL hasOptions:1;
-  NSString* name;
-  NSString* inputType;
-  NSString* outputType;
-  PBMethodOptions* options;
+@private
+    BOOL hasName;
+    BOOL hasInputType;
+    BOOL hasOutputType;
+    BOOL hasOptions;
+    NSString* name;
+    NSString* inputType;
+    NSString* outputType;
+    PBMethodOptions* options;
 }
 - (BOOL) hasName;
 - (BOOL) hasInputType;
 - (BOOL) hasOutputType;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) NSString* inputType;
-@property (retain, readonly) NSString* outputType;
-@property (retain, readonly) PBMethodOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* inputType;
+@property (readonly, retain) NSString* outputType;
+@property (readonly, retain) PBMethodOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -834,8 +834,8 @@
 @end
 
 @interface PBMethodDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
-  PBMethodDescriptorProto* result;
+@private
+    PBMethodDescriptorProto* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -876,25 +876,25 @@
 @end
 
 @interface PBFileOptions : PBExtendableMessage {
- @private
-  BOOL hasJavaMultipleFiles:1;
-  BOOL hasJavaPackage:1;
-  BOOL hasJavaOuterClassname:1;
-  BOOL hasOptimizeFor:1;
-  BOOL javaMultipleFiles:1;
-  NSString* javaPackage;
-  NSString* javaOuterClassname;
-  PBFileOptions_OptimizeMode* optimizeFor;
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    BOOL hasJavaMultipleFiles;
+    BOOL hasJavaPackage;
+    BOOL hasJavaOuterClassname;
+    BOOL hasOptimizeFor;
+    BOOL javaMultipleFiles;
+    NSString* javaPackage;
+    NSString* javaOuterClassname;
+    PBFileOptions_OptimizeMode* optimizeFor;
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (BOOL) hasJavaPackage;
 - (BOOL) hasJavaOuterClassname;
 - (BOOL) hasJavaMultipleFiles;
 - (BOOL) hasOptimizeFor;
-@property (retain, readonly) NSString* javaPackage;
-@property (retain, readonly) NSString* javaOuterClassname;
+@property (readonly, retain) NSString* javaPackage;
+@property (readonly, retain) NSString* javaOuterClassname;
 - (BOOL) javaMultipleFiles;
-@property (retain, readonly) PBFileOptions_OptimizeMode* optimizeFor;
+@property (readonly, retain) PBFileOptions_OptimizeMode* optimizeFor;
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
 
@@ -918,9 +918,9 @@
 @end
 
 @interface PBFileOptions_OptimizeMode : NSObject {
- @private
-  int32_t index;
-  int32_t value;
+@private
+    int32_t index;
+    int32_t value;
 }
 @property (readonly) int32_t index;
 @property (readonly) int32_t value;
@@ -938,8 +938,8 @@
 @end
 
 @interface PBFileOptions_Builder : PBExtendableBuilder {
- @private
-  PBFileOptions* result;
+@private
+    PBFileOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -985,10 +985,10 @@
 @end
 
 @interface PBMessageOptions : PBExtendableMessage {
- @private
-  BOOL hasMessageSetWireFormat:1;
-  BOOL messageSetWireFormat:1;
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    BOOL hasMessageSetWireFormat;
+    BOOL messageSetWireFormat;
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (BOOL) hasMessageSetWireFormat;
 - (BOOL) messageSetWireFormat;
@@ -1015,8 +1015,8 @@
 @end
 
 @interface PBMessageOptions_Builder : PBExtendableBuilder {
- @private
-  PBMessageOptions* result;
+@private
+    PBMessageOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1047,17 +1047,17 @@
 @end
 
 @interface PBFieldOptions : PBExtendableMessage {
- @private
-  BOOL hasExperimentalMapKey:1;
-  BOOL hasCtype:1;
-  NSString* experimentalMapKey;
-  PBFieldOptions_CType* ctype;
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    BOOL hasExperimentalMapKey;
+    BOOL hasCtype;
+    NSString* experimentalMapKey;
+    PBFieldOptions_CType* ctype;
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (BOOL) hasCtype;
 - (BOOL) hasExperimentalMapKey;
-@property (retain, readonly) PBFieldOptions_CType* ctype;
-@property (retain, readonly) NSString* experimentalMapKey;
+@property (readonly, retain) PBFieldOptions_CType* ctype;
+@property (readonly, retain) NSString* experimentalMapKey;
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
 
@@ -1081,9 +1081,9 @@
 @end
 
 @interface PBFieldOptions_CType : NSObject {
- @private
-  int32_t index;
-  int32_t value;
+@private
+    int32_t index;
+    int32_t value;
 }
 @property (readonly) int32_t index;
 @property (readonly) int32_t value;
@@ -1101,8 +1101,8 @@
 @end
 
 @interface PBFieldOptions_Builder : PBExtendableBuilder {
- @private
-  PBFieldOptions* result;
+@private
+    PBFieldOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1138,8 +1138,8 @@
 @end
 
 @interface PBEnumOptions : PBExtendableMessage {
- @private
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
@@ -1164,8 +1164,8 @@
 @end
 
 @interface PBEnumOptions_Builder : PBExtendableBuilder {
- @private
-  PBEnumOptions* result;
+@private
+    PBEnumOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1191,8 +1191,8 @@
 @end
 
 @interface PBEnumValueOptions : PBExtendableMessage {
- @private
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
@@ -1217,8 +1217,8 @@
 @end
 
 @interface PBEnumValueOptions_Builder : PBExtendableBuilder {
- @private
-  PBEnumValueOptions* result;
+@private
+    PBEnumValueOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1244,8 +1244,8 @@
 @end
 
 @interface PBServiceOptions : PBExtendableMessage {
- @private
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
@@ -1270,8 +1270,8 @@
 @end
 
 @interface PBServiceOptions_Builder : PBExtendableBuilder {
- @private
-  PBServiceOptions* result;
+@private
+    PBServiceOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1297,8 +1297,8 @@
 @end
 
 @interface PBMethodOptions : PBExtendableMessage {
- @private
-  NSMutableArray* mutableUninterpretedOptionList;
+@private
+    NSMutableArray* mutableUninterpretedOptionList;
 }
 - (NSArray*) uninterpretedOptionList;
 - (PBUninterpretedOption*) uninterpretedOptionAtIndex:(int32_t) index;
@@ -1323,8 +1323,8 @@
 @end
 
 @interface PBMethodOptions_Builder : PBExtendableBuilder {
- @private
-  PBMethodOptions* result;
+@private
+    PBMethodOptions* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1350,29 +1350,29 @@
 @end
 
 @interface PBUninterpretedOption : PBGeneratedMessage {
- @private
-  BOOL hasDoubleValue:1;
-  BOOL hasNegativeIntValue:1;
-  BOOL hasPositiveIntValue:1;
-  BOOL hasIdentifierValue:1;
-  BOOL hasStringValue:1;
-  Float64 doubleValue;
-  int64_t negativeIntValue;
-  int64_t positiveIntValue;
-  NSString* identifierValue;
-  NSData* stringValue;
-  NSMutableArray* mutableNameList;
+@private
+    BOOL hasDoubleValue;
+    BOOL hasNegativeIntValue;
+    BOOL hasPositiveIntValue;
+    BOOL hasIdentifierValue;
+    BOOL hasStringValue;
+    Float64 doubleValue;
+    int64_t negativeIntValue;
+    int64_t positiveIntValue;
+    NSString* identifierValue;
+    NSData* stringValue;
+    NSMutableArray* mutableNameList;
 }
 - (BOOL) hasIdentifierValue;
 - (BOOL) hasPositiveIntValue;
 - (BOOL) hasNegativeIntValue;
 - (BOOL) hasDoubleValue;
 - (BOOL) hasStringValue;
-@property (retain, readonly) NSString* identifierValue;
+@property (readonly, retain) NSString* identifierValue;
 @property (readonly) int64_t positiveIntValue;
 @property (readonly) int64_t negativeIntValue;
 @property (readonly) Float64 doubleValue;
-@property (retain, readonly) NSData* stringValue;
+@property (readonly, retain) NSData* stringValue;
 - (NSArray*) nameList;
 - (PBUninterpretedOption_NamePart*) nameAtIndex:(int32_t) index;
 
@@ -1396,15 +1396,15 @@
 @end
 
 @interface PBUninterpretedOption_NamePart : PBGeneratedMessage {
- @private
-  BOOL hasIsExtension:1;
-  BOOL hasNamePart:1;
-  BOOL isExtension:1;
-  NSString* namePart;
+@private
+    BOOL hasIsExtension;
+    BOOL hasNamePart;
+    BOOL isExtension;
+    NSString* namePart;
 }
 - (BOOL) hasNamePart;
 - (BOOL) hasIsExtension;
-@property (retain, readonly) NSString* namePart;
+@property (readonly, retain) NSString* namePart;
 - (BOOL) isExtension;
 
 + (PBDescriptor*) descriptor;
@@ -1427,8 +1427,8 @@
 @end
 
 @interface PBUninterpretedOption_NamePart_Builder : PBGeneratedMessage_Builder {
- @private
-  PBUninterpretedOption_NamePart* result;
+@private
+    PBUninterpretedOption_NamePart* result;
 }
 
 - (PBDescriptor*) descriptor;
@@ -1457,8 +1457,8 @@
 @end
 
 @interface PBUninterpretedOption_Builder : PBGeneratedMessage_Builder {
- @private
-  PBUninterpretedOption* result;
+@private
+    PBUninterpretedOption* result;
 }
 
 - (PBDescriptor*) descriptor;

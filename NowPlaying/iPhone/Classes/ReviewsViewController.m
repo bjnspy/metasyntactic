@@ -116,7 +116,6 @@
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewTitleCell alloc] initWithModel:self.model
-                                                     frame:[UIScreen mainScreen].applicationFrame
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
 

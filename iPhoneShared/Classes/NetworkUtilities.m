@@ -204,7 +204,7 @@ static Pulser* pulser = nil;
     [gate unlock];
 
     NSURLResponse* urlResponse = nil;
-    NSError* error;
+    NSError* error = nil;
     NSData* data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&urlResponse
                                                      error:&error];

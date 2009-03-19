@@ -23,48 +23,36 @@
 @interface ReviewTitleCell()
 @property (retain) Model* model;
 @property (retain) UILabel* scoreLabel;
-@property (retain) UILabel* authorLabel;
-@property (retain) UILabel* sourceLabel;
 @end
 
 @implementation ReviewTitleCell
 
 @synthesize model;
-@synthesize authorLabel;
 @synthesize scoreLabel;
-@synthesize sourceLabel;
 
 - (void) dealloc {
     self.model = nil;
-    self.authorLabel = nil;
     self.scoreLabel = nil;
-    self.sourceLabel = nil;
 
     [super dealloc];
 }
 
 
 - (id) initWithModel:(Model*) model_
-               frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithStyle:UITableViewCellStyleSubtitle
+                    reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.authorLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.sourceLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.scoreLabel  = [[[UILabel alloc] initWithFrame:frame] autorelease];
-
-        authorLabel.font = [UIFont boldSystemFontOfSize:14];
-        sourceLabel.font = [UIFont systemFontOfSize:12];
+        self.scoreLabel  = [[[UILabel alloc] init] autorelease];
 
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        [self.contentView addSubview:authorLabel];
-        [self.contentView addSubview:sourceLabel];
-        [self addSubview:scoreLabel];
+        [self.contentView addSubview:scoreLabel];
     }
+
     return self;
 }
 
@@ -73,6 +61,12 @@
     if (self.image != image) {
         [super setImage:image];
     }
+}
+
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    [self.contentView bringSubviewToFront:scoreLabel];
 }
 
 
@@ -95,7 +89,7 @@
     }
 
     if (score >= 0 && score <= 100) {
-        CGRect frame = CGRectMake(20, 7, 30, 30);
+        CGRect frame = CGRectMake(6, 6, 30, 30);
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
@@ -130,23 +124,8 @@
 - (void) setReview:(Review*) review {
     [self setReviewImage:review];
 
-    authorLabel.text = review.author;
-    sourceLabel.text = review.source;
-
-    [authorLabel sizeToFit];
-    [sourceLabel sizeToFit];
-
-    CGRect frame;
-
-    frame = authorLabel.frame;
-    frame.origin.y = 5;
-    frame.origin.x = 50;
-    authorLabel.frame = frame;
-
-    frame = sourceLabel.frame;
-    frame.origin.y = 23;
-    frame.origin.x = 50;
-    sourceLabel.frame = frame;
+    self.textLabel.text = review.author;
+    self.detailTextLabel.text = review.source;
 }
 
 @end

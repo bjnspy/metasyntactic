@@ -123,16 +123,18 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        cell.textLabel.minimumFontSize = 12;
     }
 
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
     NSNumber* count = [titleToCount objectForKey:title];
 
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
     return cell;
 }
 

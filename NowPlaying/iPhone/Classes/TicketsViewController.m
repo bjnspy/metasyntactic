@@ -243,26 +243,17 @@
 
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                reuseIdentifier:nil] autorelease];
-
-    NSString* mapString = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
-    NSString* callString = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
-    CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
-    CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
-
-    NSInteger width = MAX(size1.width, size2.width) + 30;
-
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
+                                                    reuseIdentifier:nil] autorelease];
+    
     if (row == 0) {
-        [cell setKey:mapString
-               value:[self.model simpleAddressForTheater:theater]
-            keyWidth:width];
+        cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
+        cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
     } else {
-        [cell setKey:callString
-               value:theater.phoneNumber
-            keyWidth:width];
+        cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
+        cell.detailTextLabel.text = theater.phoneNumber;
     }
-
+    
     return cell;
 }
 

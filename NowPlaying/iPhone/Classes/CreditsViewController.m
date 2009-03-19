@@ -193,19 +193,22 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"reuseIdentifier";
+    
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[SettingCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     NSString* code = [languages objectAtIndex:row];
     NSString* person = [localizers objectForKey:code];
     NSString* language = [LocaleUtilities displayLanguage:code];
 
-    [cell setKey:language value:person hideSeparator:(row != 0)];
+    cell.textLabel.text = language;
+    cell.detailTextLabel.text = person;
+    
+    [cell setHidesSeparator:row > 0];
+    
     return cell;
 }
 

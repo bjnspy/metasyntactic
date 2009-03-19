@@ -24,53 +24,36 @@
 @interface MovieTitleCell()
 @property (retain) Model* model;
 @property (retain) UILabel* scoreLabel;
-@property (retain) UILabel* titleLabel;
-@property (retain) UILabel* ratingLabel;
 @end
 
 
 @implementation MovieTitleCell
 
-@synthesize scoreLabel;
-@synthesize titleLabel;
-@synthesize ratingLabel;
 @synthesize model;
+@synthesize scoreLabel;
 
 - (void) dealloc {
-    self.scoreLabel = nil;
-    self.titleLabel = nil;
-    self.ratingLabel = nil;
     self.model = nil;
+    self.scoreLabel = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_
-               style:(UITableViewStyle) style_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+                         model:(Model*) model_{
+    if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
-        style = style_;
 
+        self.textLabel.adjustsFontSizeToFitWidth = YES;
+        self.textLabel.minimumFontSize = 12;
+        
         self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.adjustsFontSizeToFitWidth = YES;
-        titleLabel.minimumFontSize = 14;
-        titleLabel.textColor = [UIColor blackColor];
-
-        self.ratingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        ratingLabel.font = [UIFont systemFontOfSize:12];
-        ratingLabel.textColor = [UIColor grayColor];
-
-        [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:ratingLabel];
-        [self addSubview:scoreLabel];
+        [self.contentView addSubview:scoreLabel];
+        [self.contentView bringSubviewToFront:scoreLabel];
     }
 
     return self;
@@ -95,10 +78,7 @@
                 scoreLabel.font = [UIFont boldSystemFontOfSize:15];
                 scoreLabel.textColor = [UIColor whiteColor];
 
-                CGRect frame = CGRectMake(10, 8, 32, 32);
-                if (style == UITableViewStyleGrouped) {
-                    frame.origin.x += 10;
-                }
+                CGRect frame = CGRectMake(5, 7, 32, 32);
 
                 scoreLabel.frame = frame;
             }
@@ -109,10 +89,7 @@
                 scoreLabel.font = [UIFont boldSystemFontOfSize:17];
                 scoreLabel.textColor = [UIColor blackColor];
 
-                CGRect frame = CGRectMake(10, 6, 30, 32);
-                if (style == UITableViewStyleGrouped) {
-                    frame.origin.x += 10;
-                }
+                CGRect frame = CGRectMake(5, 5, 30, 32);
 
                 scoreLabel.frame = frame;
             }
@@ -132,15 +109,11 @@
     int score = [model scoreValueForMovie:movie];
 
     if (score >= 0 && score <= 100) {
-        CGRect frame = CGRectMake(10, 7, 30, 30);
+        CGRect frame = CGRectMake(6, 6, 30, 30);
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
             scoreLabel.font = [FontCache boldSystem19];
-        }
-
-        if (style == UITableViewStyleGrouped) {
-            frame.origin.x += 10;
         }
 
         scoreLabel.textColor = [ColorCache darkDarkGray];
@@ -168,21 +141,7 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
-    CGRect frame;
-    if (self.noScores) {
-        frame = CGRectMake(10, 25, 0, 14);
-    } else {
-        frame = CGRectMake(50, 25, 0, 14);
-    }
-
-    frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-
-    ratingLabel.frame = frame;
-
-    frame.origin.y = 5;
-    frame.size.height = 20;
-    titleLabel.frame = frame;
+    [self.contentView bringSubviewToFront:scoreLabel];
 }
 
 
@@ -200,32 +159,14 @@
 }
 
 
-- (void) setRatingLabelText:(Movie*) movie {
-}
-
-
 - (void) setMovie:(Movie*) movie owner:(id) owner {
     [self setScore:movie];
-    ratingLabel.text = movie.ratingAndRuntimeString;
+    self.detailTextLabel.text = movie.ratingAndRuntimeString;
 
     if ([model isBookmarked:movie]) {
-        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
     } else {
-        titleLabel.text = movie.displayTitle;
-    }
-}
-
-
-- (void) setSelected:(BOOL) selected
-            animated:(BOOL) animated {
-    [super setSelected:selected animated:animated];
-
-    if (selected) {
-        ratingLabel.textColor = [UIColor whiteColor];
-        titleLabel.textColor = [UIColor whiteColor];
-    } else {
-        titleLabel.textColor = [UIColor blackColor];
-        ratingLabel.textColor = [UIColor grayColor];
+        self.textLabel.text = movie.displayTitle;
     }
 }
 

@@ -35,6 +35,7 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.title = NSLocalizedString(@"Theaters", nil);
+        self.tabBarItem.title = self.title;
         self.tabBarItem.image = [UIImage imageNamed:@"Theaters.png"];
     }
 

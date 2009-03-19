@@ -16,12 +16,9 @@
 @private
     Model* model;
     UILabel* scoreLabel;
-    UILabel* authorLabel;
-    UILabel* sourceLabel;
 }
 
 - (id) initWithModel:(Model*) model
-               frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setReview:(Review*) review;

@@ -21,6 +21,8 @@
 
     NSMutableArray* notifications;
     Pulser* pulser;
+    
+    BOOL enabled;
 }
 
 + (NotificationCenter*) centerWithView:(UIView*) view;
@@ -29,6 +31,9 @@
 
 - (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation;
 - (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;
+
+- (void) disableNotifications;
+- (void) enableNotifications;
 
 - (void) addNotification:(NSString*) notification;
 - (void) addNotifications:(NSArray*) notifications;

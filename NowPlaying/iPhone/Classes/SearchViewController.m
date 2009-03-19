@@ -187,10 +187,8 @@
     static NSString* reuseIdentifier = @"MovieTitleCellReuseIdentifier";
     MovieTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                      reuseIdentifier:reuseIdentifier
-                                                model:self.model
-                                                style:UITableViewStylePlain] autorelease];
+        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                                model:self.model] autorelease];
     }
 
     [cell setMovie:movie owner:self];
@@ -202,12 +200,11 @@
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
     static NSString* reuseIdentifier = @"TheaterNameCellReuseIdentifier";
-
+    
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                       reuseIdentifier:reuseIdentifier
-                                                 model:self.model] autorelease];
+        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                                           model:self.model] autorelease];
     }
 
     [cell setTheater:theater];
@@ -293,48 +290,48 @@
 }
 
 
-- (ApplicationTabBarController*) tabBarController {
+- (ApplicationTabBarController*) applicationTabBarController {
     return navigationController.tabBarController;
 }
 
 
 - (void) didSelectMovieRow:(NSInteger) row {
-    [self.tabBarController switchToMovies];
+    [self.applicationTabBarController switchToMovies];
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
-    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
-    [self.tabBarController switchToTheaters];
+    [self.applicationTabBarController switchToTheaters];
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
-    [self.tabBarController.selectedNavigationController pushTheaterDetails:theater animated:YES];
+    [self.applicationTabBarController.selectedNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
-    [self.tabBarController switchToUpcoming];
+    [self.applicationTabBarController switchToUpcoming];
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
 
-    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
-    [self.tabBarController switchToDVD];
+    [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.dvds objectAtIndex:row];
 
-    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
-    [self.tabBarController switchToDVD];
+    [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.bluray objectAtIndex:row];
 
-    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

@@ -278,6 +278,7 @@
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
+        self.title = NSLocalizedString(@"Theaters", nil);
     }
 
     return self;
@@ -357,16 +358,6 @@
 }
 
 
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if ([self sortingByName] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return UITableViewCellAccessoryNone;
-    } else {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    }
-}
-
-
 - (BOOL) outOfBounds:(NSIndexPath*) indexPath {
     if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
         return YES;
@@ -416,11 +407,16 @@
 
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                       reuseIdentifier:reuseIdentifier
-                                                 model:self.model] autorelease];
+        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
+                                                           model:self.model] autorelease];
     }
 
+    if ([self sortingByName] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     [cell setTheater:theater];
     return cell;
 }

@@ -15,13 +15,10 @@
 @interface TheaterNameCell : UITableViewCell {
 @private
     Model* model;
-    UILabel* nameLabel;
-    UILabel* addressLabel;
 }
 
-- (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(Model*) model;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
+                         model:(Model*) model;
 
 - (void) setTheater:(Theater*) theater;
 
