@@ -317,18 +317,19 @@
                                 movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-
-    [body appendString:theater.name];
+    
     [body appendString:@"<p>"];
+    [body appendString:theater.name];
+    [body appendString:@"<br/>"];
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
 
-    [body appendString:@"<p><p>"];
-    [body appendString:movie.canonicalTitle];
     [body appendString:@"<p>"];
+    [body appendString:movie.canonicalTitle];
+    [body appendString:@"<br/>"];
 
     [body appendString:[Utilities generateShowtimeLinks:self.model
                                                   movie:movie

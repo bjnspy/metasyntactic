@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CreditsViewController : UITableViewController {
+@interface CreditsViewController : UITableViewController<MFMailComposeViewControllerDelegate> {
 @private
     AbstractNavigationController* navigationController;
     NSArray* languages;

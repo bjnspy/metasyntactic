@@ -331,7 +331,8 @@
                                 theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-
+    
+    [body appendString:@"<p>"];
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
@@ -339,13 +340,13 @@
     [body appendString:@"</a>"];
 
     for (int i = 0; i < movies.count; i++) {
-        [body appendString:@"<p><p>"];
+        [body appendString:@"<p>"];
 
         Movie* movie = [movies objectAtIndex:i];
         NSArray* performances = [movieShowtimes objectAtIndex:i];
 
         [body appendString:movie.displayTitle];
-        [body appendString:@"<p>"];
+        [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
                                                     theater:theater

@@ -1692,36 +1692,4 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     [netflixCache prioritizeMovie:movie];
 }
 
-
-- (NSString*) feedbackUrl {
-    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
-                      currentVersion,
-                      self.userAddress,
-                      self.searchRadius,
-                      [DateUtilities formatShortDate:self.searchDate],
-                      self.currentScoreProvider,
-                      (self.autoUpdateLocation ? @"yes" : @"no"),
-                      (self.prioritizeBookmarks ? @"yes" : @"no"),
-                      [LocaleUtilities englishCountry],
-                      [LocaleUtilities englishLanguage]];
-
-    if (self.netflixEnabled) {
-        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-                [StringUtilities nonNilString:self.netflixUserId],
-                [StringUtilities nonNilString:self.netflixKey],
-                [StringUtilities nonNilString:self.netflixSecret]];
-    }
-
-    NSString* subject;
-    if ([LocaleUtilities isJapanese]) {
-        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
-    } else {
-        subject = @"Now%20Playing%20Feedback";
-    }
-
-    NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
-    NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
-    return result;
-}
-
 @end

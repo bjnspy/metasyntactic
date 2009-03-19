@@ -16,9 +16,11 @@
 
 #import "AbstractNavigationController.h"
 #import "Application.h"
+#import "DateUtilities.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
+#import "StringUtilities.h"
 
 @interface CreditsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -347,9 +349,58 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
+- (void) sendFeedback {
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
+                      [Model version],
+                      self.model.userAddress,
+                      self.model.searchRadius,
+                      [DateUtilities formatShortDate:self.model.searchDate],
+                      self.model.currentScoreProvider,
+                      (self.model.autoUpdateLocation ? @"yes" : @"no"),
+                      (self.model.prioritizeBookmarks ? @"yes" : @"no"),
+                      [LocaleUtilities englishCountry],
+                      [LocaleUtilities englishLanguage]];
+    
+    if (self.model.netflixEnabled) {
+        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+                [StringUtilities nonNilString:self.model.netflixUserId],
+                [StringUtilities nonNilString:self.model.netflixKey],
+                [StringUtilities nonNilString:self.model.netflixSecret]];
+    }
+    
+    NSString* subject;
+    if ([LocaleUtilities isJapanese]) {
+        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+    } else {
+        subject = @"Now Playing Feedback";
+    }
+
+    if ([Application canSendMail]) {
+        MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+        controller.delegate = self;
+        
+        [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
+        [controller setSubject:subject];
+        [controller setMessageBody:body isHTML:NO];
+        
+        [self presentModalViewController:controller animated:YES];
+    } else {
+        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
+        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
+        [Application openBrowser:url];
+    }
+}
+
+
+- (void) mailComposeController:(MFMailComposeViewController*)controller
+           didFinishWithResult:(MFMailComposeResult)result
+                         error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
@@ -360,7 +411,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         NSString* url = nil;
         if (section == WrittenBySection) {
             if (row == 0) {
-                url = [self.model feedbackUrl];
+                return [self sendFeedback];
             } else if (row == 1) {
                 url = @"http://metasyntactic.googlecode.com";
             } else {
