@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
+#import "AutoresizingCell.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
@@ -199,77 +200,75 @@ typedef enum {
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault] autorelease];
-    cell.textLabel.backgroundColor = [UIColor clearColor];
-    //cell.textLabel.selectedTextColor = [UIColor whiteColor];
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.minimumFontSize = 12;
+    AutoResizingCell* cell = [[[AutoResizingCell alloc] init] autorelease];
+    cell.label.backgroundColor = [UIColor clearColor];
+    cell.selectedTextColor = [UIColor whiteColor];
     
     if (self.model.isIronManTheme) {
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textColor = [UIColor whiteColor];
     } else {
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textColor = [UIColor blackColor];
     }
-
+    
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         switch (row) {
             case SearchSection:
-                cell.textLabel.text = NSLocalizedString(@"Search", nil);
+                cell.text = NSLocalizedString(@"Search", nil);
                 cell.image = [self imageNamed:@"NetflixSearch.png"];
                 break;
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.textLabel.text = NSLocalizedString(@"Most Popular", nil);
+                    cell.text = NSLocalizedString(@"Most Popular", nil);
                 } else {
-                    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
+                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
                 cell.image = [self imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
-                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
                 cell.image = [self imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
-                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
                 cell.image = [self imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
-                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
                 cell.image = [self imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
-                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
                 cell.image = [self imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
-                cell.textLabel.text = NSLocalizedString(@"Rental History", nil);
+                cell.text = NSLocalizedString(@"Rental History", nil);
                 cell.image = [self imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
-                cell.textLabel.text = NSLocalizedString(@"Log Out of Netflix", nil);
+                cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
                 cell.image = [self imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryView = nil;
                 break;
         }
-
+        
         cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"Sign Up for New Account", nil);
+            cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
             cell.image = [self imageNamed:@"NetflixCredits.png"];
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = NSLocalizedString(@"Log In to Existing Account", nil);
+            cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [self imageNamed:@"NetflixLogOff.png"];
             cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
         }
     }
-
+    
     if (cell.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
-
+    
     if (self.model.isIronManTheme) {
         NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
         NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
@@ -280,7 +279,7 @@ typedef enum {
         cell.backgroundView = backgroundView;
         cell.selectedBackgroundView = selectedBackgroundView;
     }
-
+    
     return cell;
 }
 
