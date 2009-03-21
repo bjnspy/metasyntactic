@@ -93,8 +93,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             theater:(Theater*) theater_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.theater = theater_;
     }
 

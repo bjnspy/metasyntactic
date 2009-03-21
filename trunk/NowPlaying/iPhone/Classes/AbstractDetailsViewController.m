@@ -22,24 +22,18 @@
 #import "SearchDatePickerViewController.h"
 
 @interface AbstractDetailsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
 @implementation AbstractDetailsViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
     }
 
     return self;

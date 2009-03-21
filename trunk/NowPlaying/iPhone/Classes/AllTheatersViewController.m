@@ -240,8 +240,7 @@
 
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Theaters", nil);
         firstTime = YES;
     }

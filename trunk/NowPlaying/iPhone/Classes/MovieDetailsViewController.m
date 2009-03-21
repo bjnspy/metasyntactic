@@ -355,8 +355,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.movie = movie_;
         self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
 
