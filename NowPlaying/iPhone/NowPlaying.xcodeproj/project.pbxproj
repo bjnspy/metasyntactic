@@ -105,7 +105,6 @@
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
 		744104320F71F1E200FF3954 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744104310F71F1E200FF3954 /* MessageUI.framework */; };
 		744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744105510F72057F00FF3954 /* AutoresizingCell.m */; };
-		744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 744245B80E89DA0500ACDBCF /* SearchViewController.m */; };
 		744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247000E89F7A700ACDBCF /* SearchEngine.m */; };
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
 		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
@@ -505,8 +504,6 @@
 		744104310F71F1E200FF3954 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		744105500F72057F00FF3954 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
 		744105510F72057F00FF3954 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
-		744245B70E89DA0500ACDBCF /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		744245B80E89DA0500ACDBCF /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		744246FF0E89F7A700ACDBCF /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngine.h; sourceTree = "<group>"; };
 		744247000E89F7A700ACDBCF /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEngine.m; sourceTree = "<group>"; };
 		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
@@ -1314,8 +1311,6 @@
 		744245BA0E89DA0F00ACDBCF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				744245B70E89DA0500ACDBCF /* SearchViewController.h */,
-				744245B80E89DA0500ACDBCF /* SearchViewController.m */,
 				747986850F7448C30057E111 /* SearchDisplayController.h */,
 				747986860F7448C30057E111 /* SearchDisplayController.m */,
 			);
@@ -2209,7 +2204,6 @@
 				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
 				747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */,
 				7413718A0E88E79C00CF4900 /* Score.m in Sources */,
-				744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */,
 				744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */,
 				744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */,
 				744247070E89F7C300ACDBCF /* SearchResult.m in Sources */,
