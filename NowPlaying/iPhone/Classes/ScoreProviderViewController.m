@@ -19,38 +19,22 @@
 #import "Model.h"
 
 @interface ScoreProviderViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
 @implementation ScoreProviderViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Reviews", nil);
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 

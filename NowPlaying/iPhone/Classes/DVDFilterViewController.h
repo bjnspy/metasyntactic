@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVDFilterViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface DVDFilterViewController : AbstractTableViewController {
 @private
-    AbstractNavigationController* navigationController;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "NotificationCenter.h"
 
+
 @implementation AbstractFullScreenTableViewController
 
 - (BOOL) hidesBottomBarWhenPushed {

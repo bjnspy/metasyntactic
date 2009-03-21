@@ -1660,7 +1660,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                    [viewController isKindOfClass:[SettingsViewController class]]) {
             break;
         } else {
-            NSAssert(false, @"");
+            break;
         }
 
         [types addObject:[NSNumber numberWithInt:type]];

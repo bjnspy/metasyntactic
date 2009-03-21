@@ -26,7 +26,6 @@
 #define NAVIGATE_FORWARD_ITEM 3
 
 @interface WebViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) UIWebView* webView;
 @property (retain) UIActivityIndicatorView* activityView;
 @property (retain) UILabel* label;
@@ -36,18 +35,15 @@
 
 @implementation WebViewController
 
-@synthesize navigationController;
 @synthesize webView;
 @synthesize activityView;
 @synthesize label;
 @synthesize address;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.address = nil;
 
     self.webView = nil;
-    //self.toolbar = nil;
     self.activityView = nil;
     self.label = nil;
 
@@ -58,23 +54,12 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             address:(NSString*) address_
                    showSafariButton:(BOOL) showSafariButton_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithNavigationController:navigationController_]) {
         self.address = address_;
         showSafariButton = showSafariButton_;
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -138,13 +123,6 @@
 }
 
 
-- (void) setupToolbar {
-    self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
-
-    [self setupToolbarItems];
-}
-
-
 - (void) loadView {
     [super loadView];
 
@@ -160,7 +138,7 @@
     }
 
     [self setupTitleView];
-    [self setupToolbar];
+    [self setupToolbarItems];
 
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
 }
@@ -196,15 +174,15 @@
 
 
 - (void) updateToolBarItems {
-    UIBarButtonItem* navigateBackItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+    UIBarButtonItem* navigateBackItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
+    UIBarButtonItem* navigateForwardItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
 
     BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
 
-    [self.navigationController setToolbarHidden:hidden animated:YES];
+    [navigationController setToolbarHidden:hidden animated:YES];
 }
 
 
@@ -264,13 +242,15 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    navigationController.toolbar.barStyle = UIBarStyleBlack;
+    navigationController.toolbar.translucent = YES;
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
     webView.delegate = nil;
-    [self.navigationController setToolbarHidden:YES animated:NO];
+    [navigationController setToolbarHidden:YES animated:NO];
 }
 
 

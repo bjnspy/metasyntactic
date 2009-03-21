@@ -16,9 +16,7 @@
 
 @interface WebViewController : AbstractFullScreenViewController<UIWebViewDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     UIWebView* webView;
-    //UIToolbar* toolbar;
     UIActivityIndicatorView* activityView;
     UILabel* label;
     NSString* address;
