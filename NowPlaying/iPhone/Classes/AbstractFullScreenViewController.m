@@ -37,7 +37,7 @@
     if (self = [super init]) {
         self.navigationController = navigationController_;
     }
-    
+
     return self;
 }
 
