@@ -201,8 +201,7 @@
 
     UpcomingMovieCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                         reuseIdentifier:reuseIdentifier
+        cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                    model:self.model] autorelease];
     }
 
@@ -218,8 +217,7 @@
 
     DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                               reuseIdentifier:reuseIdentifier
+        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
 
@@ -235,8 +233,7 @@
 
     DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithFrame:CGRectZero
-                               reuseIdentifier:reuseIdentifier
+        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
 
@@ -246,7 +243,7 @@
 
 
 - (UITableViewCell*) noResultsCell {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
     return cell;
 }

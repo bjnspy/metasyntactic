@@ -249,15 +249,14 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     }
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
     NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
                                              model:self.model] autorelease];
         cell.tappableArrow.delegate = self;
     }

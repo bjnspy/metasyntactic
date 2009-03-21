@@ -134,7 +134,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     //NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];

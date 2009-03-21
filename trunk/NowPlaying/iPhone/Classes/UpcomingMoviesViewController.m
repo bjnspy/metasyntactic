@@ -123,8 +123,7 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                         reuseIdentifier:reuseIdentifier
+        cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                    model:self.model] autorelease];
     }
 

@@ -77,11 +77,10 @@
 
 - (id) initWithMovie:(Movie*) movie_
                model:(Model*) model_
-               frame:(CGRect) frame
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
         activityView:(ActivityIndicatorViewWithBackground*) activityView {
-    if (self = [super initWithFrame:frame reuseIdentifier:nil]) {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
         self.movie = movie_;
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -233,13 +232,11 @@
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(Model*) model
-                               frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
                         activityView:(ActivityIndicatorViewWithBackground*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
                                                model:model
-                                               frame:frame
                                          posterImage:posterImage
                                      posterImageView:posterImageView
                                         activityView:activityView] autorelease];
@@ -281,7 +278,6 @@
 
     MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie
                                                          model:model
-                                                         frame:[UIScreen mainScreen].applicationFrame
                                                    posterImage:posterImage
                                                posterImageView:posterImageView
                                                   activityView:nil];

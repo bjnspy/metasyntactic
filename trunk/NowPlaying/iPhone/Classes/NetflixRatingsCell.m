@@ -144,11 +144,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               model:(Model*) model_
+- (id) initWithModel:(Model*) model_
                movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame
-                              model:model_
+    if (self = [super initWithModel:model_
                               movie:movie_]) {
         self.imageViews = [NSMutableArray array];
         [self setupRating];

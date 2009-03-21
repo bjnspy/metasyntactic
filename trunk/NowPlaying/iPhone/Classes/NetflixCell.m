@@ -124,11 +124,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_ {
-    if (self = [super initWithFrame:frame
-                    reuseIdentifier:reuseIdentifier
+    if (self = [super initWithReuseIdentifier:reuseIdentifier
                               model:model_]) {
         self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22 forTitle:directorTitleLabel];

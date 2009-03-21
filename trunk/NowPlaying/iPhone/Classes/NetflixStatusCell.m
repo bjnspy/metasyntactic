@@ -73,7 +73,7 @@
 
 
 - (id) initWithStatus:(Status*) status_ {
-    if (self = [super initWithFrame:CGRectZero]) {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
         self.status = status_;
 
         self.font = [UIFont boldSystemFontOfSize:16];

@@ -34,10 +34,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               model:(Model*) model_
+- (id) initWithModel:(Model*) model_
                movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
         self.model = model_;
         self.movie = movie_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;

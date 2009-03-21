@@ -1418,6 +1418,7 @@
 		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				74798DCB0F74BE590057E111 /* ImageCells */,
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
@@ -1440,16 +1441,6 @@
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
-				745A08840F2EB444002F64C6 /* AbstractImageCell.h */,
-				745A08850F2EB444002F64C6 /* AbstractImageCell.m */,
-				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
-				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
-				747AB85F0EB963AE002438D0 /* DVDCell.h */,
-				747AB8600EB963AE002438D0 /* DVDCell.m */,
-				7479D8340E65255F00D91649 /* UpcomingMovieCell.h */,
-				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
-				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
-				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
 				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */,
@@ -1589,6 +1580,23 @@
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 			);
 			name = Caches;
+			sourceTree = "<group>";
+		};
+		74798DCB0F74BE590057E111 /* ImageCells */ = {
+			isa = PBXGroup;
+			children = (
+				745A08840F2EB444002F64C6 /* AbstractImageCell.h */,
+				745A08850F2EB444002F64C6 /* AbstractImageCell.m */,
+				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
+				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
+				747AB85F0EB963AE002438D0 /* DVDCell.h */,
+				747AB8600EB963AE002438D0 /* DVDCell.m */,
+				7479D8340E65255F00D91649 /* UpcomingMovieCell.h */,
+				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
+				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
+				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
+			);
+			name = ImageCells;
 			sourceTree = "<group>";
 		};
 		747AB7A80EB956C2002438D0 /* DVD */ = {

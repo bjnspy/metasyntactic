@@ -31,7 +31,6 @@
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(Model*) model
-                               frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
                         activityView:(ActivityIndicatorViewWithBackground*) activityView;

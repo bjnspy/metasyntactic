@@ -98,7 +98,7 @@
 
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ReviewBodyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
         }
 
         if (review.link.length != 0) {
@@ -117,7 +117,7 @@
     if (indexPath.section < reviews.count) {
         return [self reviewCellForRow:indexPath.row section:indexPath.section];
     } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
             cell.text = @"Metacritic.com";

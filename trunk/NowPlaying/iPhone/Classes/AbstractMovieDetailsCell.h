@@ -18,8 +18,7 @@
     Movie* movie;
 }
 
-- (id) initWithFrame:(CGRect) frame
-               model:(Model*) model
+- (id) initWithModel:(Model*) model
                movie:(Movie*) movie;
 
 - (CGFloat) height:(UITableView*) tableView;

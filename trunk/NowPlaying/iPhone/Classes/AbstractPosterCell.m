@@ -32,10 +32,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier model:model_]) {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier model:model_]) {
     }
 
     return self;

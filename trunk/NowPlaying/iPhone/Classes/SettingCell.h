@@ -22,8 +22,9 @@
 
 @property (retain) NSString* placeholder;
 
-- (void) setCellValue:(NSString*) text;
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+
+- (void) setCellValue:(NSString*) text;
 - (void) setHidesSeparator:(BOOL) hideSeparator;
 
 @end
