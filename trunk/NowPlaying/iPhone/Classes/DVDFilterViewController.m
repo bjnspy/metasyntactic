@@ -19,38 +19,22 @@
 #import "Model.h"
 
 @interface DVDFilterViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
 @implementation DVDFilterViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Settings", nil);
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 

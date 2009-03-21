@@ -17,7 +17,6 @@
 
 @interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     Movie* movie;
 
     TappableScrollView* scrollView;

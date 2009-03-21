@@ -423,7 +423,7 @@
     NSString* message = [self changeRatingTo:rating forMovieWorker:movie];
     if (message.length > 0) {
         NSLog(@"Changing rating failed. Restoring existing rating.", nil);
-        NSArray* failureArguments = [NSArray arrayWithObjects:movie, delegate, message];
+        NSArray* failureArguments = [NSArray arrayWithObjects:movie, delegate, message, nil];
         [self performSelectorOnMainThread:@selector(reportChangeRatingFailure:) withObject:failureArguments waitUntilDone:NO];
         return;
     }

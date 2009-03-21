@@ -25,7 +25,6 @@
 #import "ThreadingUtilities.h"
 
 @interface PostersViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
@@ -41,14 +40,12 @@ const int LABEL_TAG = -2;
 const int IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 
-@synthesize navigationController;
 @synthesize pageNumberToView;
 @synthesize movie;
 @synthesize scrollView;
 @synthesize savingLabel;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.pageNumberToView = nil;
     self.movie = nil;
     self.scrollView = nil;
@@ -61,8 +58,7 @@ const double LOAD_DELAY = 1;
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_
                         posterCount:(NSInteger) posterCount_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithNavigationController:navigationController_]) {
         self.movie = movie_;
         self.wantsFullScreenLayout = YES;
         posterCount = posterCount_;
@@ -74,23 +70,14 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     [navigationController setNavigationBarHidden:YES animated:YES];
     [navigationController setToolbarHidden:NO animated:YES];
-    navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    navigationController.toolbar.barStyle = UIBarStyleBlack;
+    navigationController.toolbar.translucent = YES;
 }
 
 

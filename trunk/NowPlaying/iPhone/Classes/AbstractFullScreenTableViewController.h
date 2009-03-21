@@ -15,7 +15,6 @@
 #import "AbstractTableViewController.h"
 
 @interface AbstractFullScreenTableViewController : AbstractTableViewController {
-
 }
 
 @end

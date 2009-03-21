@@ -13,7 +13,13 @@
 // limitations under the License.
 
 @interface AbstractFullScreenViewController : UIViewController {
-
+@protected
+    AbstractNavigationController* navigationController;
 }
+
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
+
+- (Controller*) controller;
+- (Model*) model;
 
 @end

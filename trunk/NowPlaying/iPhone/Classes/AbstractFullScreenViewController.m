@@ -14,10 +14,43 @@
 
 #import "AbstractFullScreenViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "NotificationCenter.h"
 
+@interface AbstractFullScreenViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@end
+
+
 @implementation AbstractFullScreenViewController
+
+@synthesize navigationController;
+
+- (void) dealloc {
+    self.navigationController = nil;
+    [super dealloc];
+}
+
+
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super init]) {
+        self.navigationController = navigationController_;
+    }
+    
+    return self;
+}
+
+
+- (Controller*) controller {
+    return navigationController.controller;
+}
+
+
+- (Model*) model {
+    return navigationController.model;
+}
+
 
 - (BOOL) hidesBottomBarWhenPushed {
     return YES;
