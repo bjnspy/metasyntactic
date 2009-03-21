@@ -293,8 +293,8 @@
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
-    
-    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];    
+
+    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
 }
 
 
@@ -331,14 +331,14 @@
     if (self.sortingByReleaseDate) {
         if (scrollToCurrentDateOnRefresh) {
             scrollToCurrentDateOnRefresh = NO;
-            
+
             NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
             NSDate* today = [DateUtilities today];
-            
+
             NSDate* date = nil;
             for (Movie* movie in movies) {
                 NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-                
+
                 if (releaseDate != nil) {
                     if ([releaseDate compare:today] == NSOrderedDescending) {
                         date = releaseDate;
@@ -346,11 +346,11 @@
                     }
                 }
             }
-            
+
             if (date != nil) {
                 NSString* title = [DateUtilities formatFullDate:date];
                 NSInteger section = [sectionTitles indexOfObject:title];
-                
+
                 if (section >= 0 && section < sectionTitles.count) {
                     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:NO];
                     return YES;
@@ -403,13 +403,13 @@
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     UITableViewCell* cell = [self createCell:movie];
-    
+
     if (self.sortingByTitle && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     return cell;
 }
 

@@ -266,7 +266,7 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 0) {
         return [self cellForHeaderRow:row];
     } else if (section == 1) {
@@ -303,7 +303,7 @@
                                 theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     [body appendString:@"<p>"];
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];

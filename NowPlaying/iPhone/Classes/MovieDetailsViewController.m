@@ -474,7 +474,7 @@ const NSInteger POSTER_TAG = -1;
     if (readonlyMode) {
         return;
     }
-    
+
     [super didReceiveMemoryWarning];
 }
 

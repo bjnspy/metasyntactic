@@ -66,13 +66,13 @@
 
 - (void) setCellValue:(NSString*) text {
     self.value = text;
-    
+
     if (value.length > 0) {
         self.detailTextLabel.text = value;
     } else {
         self.detailTextLabel.text = placeholder;
     }
-    
+
     [self setValueColor];
 }
 

@@ -211,7 +211,7 @@
 
 - (void) resetTabs {
     NSMutableArray* controllers = [NSMutableArray array];
-    
+
     [controllers addObject:[self loadMoviesNavigationController]];
     [controllers addObject:[self loadTheatersNavigationController]];
     if (self.model.upcomingEnabled) {
@@ -223,12 +223,12 @@
     if (self.model.netflixEnabled) {
         [controllers addObject:[self loadNetflixNavigationController]];
     }
-    
-    if ([self.selectedViewController isKindOfClass:[UINavigationController class]] && 
+
+    if ([self.selectedViewController isKindOfClass:[UINavigationController class]] &&
         ![controllers containsObject:self.selectedViewController]) {
         [(UINavigationController*)self.selectedViewController popToRootViewControllerAnimated:NO];
     }
-    
+
     [self setViewControllers:controllers animated:NO];
     /*
     // Such an awful hack.  For some reason, changing the view controllers
@@ -247,7 +247,7 @@
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-    
+
     return self.model.screenRotationEnabled;
 }
 

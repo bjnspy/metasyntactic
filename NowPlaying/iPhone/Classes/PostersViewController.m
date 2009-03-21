@@ -84,7 +84,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated { 
+- (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
@@ -454,7 +454,7 @@ const double LOAD_DELAY = 1;
     if (saving) {
         return;
     }
-    
+
     [navigationController setToolbarHidden:YES animated:YES];
 }
 

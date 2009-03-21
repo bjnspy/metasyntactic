@@ -21,7 +21,7 @@
 
     NSMutableArray* notifications;
     Pulser* pulser;
-    
+
     NSInteger disabledCount;
 }
 

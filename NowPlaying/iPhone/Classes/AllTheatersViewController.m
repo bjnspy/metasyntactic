@@ -281,8 +281,8 @@
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
-    
-    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];    
+
+    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
 }
 
 
@@ -294,7 +294,7 @@
     [self initializeSegmentedControl];
     [self initializeSearchDisplay];
     [self initializeInfoButton];
-    
+
     self.navigationItem.titleView = segmentedControl;
 
     [self setupIndexTitles];
@@ -371,7 +371,7 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     [cell setTheater:theater];
     return cell;
 }

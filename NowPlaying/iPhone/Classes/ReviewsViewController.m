@@ -105,7 +105,7 @@
         if (review.link.length != 0) {
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
-        
+
         [cell setReview:review];
 
         return cell;

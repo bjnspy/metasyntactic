@@ -70,7 +70,7 @@
         blackLabel.backgroundColor = [UIColor blackColor];
 
         self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:1];
-        
+
         [GlobalActivityIndicator setTarget:self
                     startIndicatorSelector:@selector(showNotification)
                      stopIndicatorSelector:@selector(hideNotification)];
