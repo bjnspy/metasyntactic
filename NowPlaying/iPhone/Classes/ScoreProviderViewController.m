@@ -14,12 +14,12 @@
 
 #import "ScoreProviderViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "Model.h"
-#import "SettingsNavigationController.h"
 
 @interface ScoreProviderViewController()
-@property (assign) SettingsNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
@@ -34,7 +34,7 @@
 }
 
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Reviews", nil);

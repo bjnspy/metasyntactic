@@ -13,15 +13,12 @@
 // limitations under the License.
 
 #import "RefreshableTableViewController.h"
+#import "AbstractFullScreenTableViewController.h"
 
-@interface SettingsViewController : UITableViewController {
+@interface SettingsViewController : AbstractFullScreenTableViewController {
 @private
-    SettingsNavigationController* navigationController;
 }
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
-
-- (Model*) model;
-- (Controller*) controller;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

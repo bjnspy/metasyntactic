@@ -16,13 +16,11 @@
 
 @interface NetflixViewController : RefreshableTableViewController<UIAlertViewDelegate> {
 @private
-    NetflixNavigationController* navigationController;
     NetflixSearchViewController* searchViewController;
 
-    BOOL visible;
     NSInteger mostPopularTitleCount;
 }
 
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

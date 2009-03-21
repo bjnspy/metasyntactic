@@ -110,6 +110,7 @@
 @class ScoreCache;
 @class ScoreProviderViewController;
 @class SearchDatePickerViewController;
+@class SearchDisplayController;
 @class SearchEngine;
 @class SearchEngineDelegate;
 @class SearchRequest;

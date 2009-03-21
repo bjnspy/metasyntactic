@@ -16,12 +16,8 @@
 
 @interface NetflixMostPopularMoviesViewController : RefreshableTableViewController {
 @private
-    AbstractNavigationController* navigationController;
     NSString* category;
     NSArray* movies;
-
-    NSArray* visibleIndexPaths;
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController category:(NSString*) category;

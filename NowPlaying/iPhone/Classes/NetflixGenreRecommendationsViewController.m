@@ -27,25 +27,19 @@
 #import "ViewControllerUtilities.h"
 
 @interface NetflixGenreRecommendationsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (copy) NSString* genre;
 @property (retain) NSArray* movies;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation NetflixGenreRecommendationsViewController
 
-@synthesize navigationController;
 @synthesize genre;
 @synthesize movies;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.genre = nil;
     self.movies = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -53,8 +47,8 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               genre:(NSString*) genre_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.genre = genre_;
         self.title = genre_;
 
@@ -64,16 +58,6 @@
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -100,17 +84,7 @@
 
 - (void) internalRefresh {
     [self initializeData];
-    [self.tableView reloadData];
-
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-        }
-
-        self.visibleIndexPaths = nil;
-    }
+    [self reloadTableViewData];
 }
 
 
@@ -133,16 +107,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -152,18 +116,9 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.movies = [NSArray array];
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
-    [super didReceiveMemoryWarning];
 }
 
 

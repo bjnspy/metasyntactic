@@ -107,7 +107,8 @@
     if (self = [super init]) {
         self.appDelegate = appDel;
 
-        [self resetTabs:NO];
+        //[self resetTabs:NO];
+        [self resetTabs];
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
@@ -208,9 +209,9 @@
 }
 
 
-- (void) setTabs:(NSNumber*) animated {
+- (void) resetTabs {
     NSMutableArray* controllers = [NSMutableArray array];
-
+    
     [controllers addObject:[self loadMoviesNavigationController]];
     [controllers addObject:[self loadTheatersNavigationController]];
     if (self.model.upcomingEnabled) {
@@ -222,9 +223,14 @@
     if (self.model.netflixEnabled) {
         [controllers addObject:[self loadNetflixNavigationController]];
     }
-
-    [self setViewControllers:controllers animated:animated.boolValue];
-
+    
+    if ([self.selectedViewController isKindOfClass:[UINavigationController class]] && 
+        ![controllers containsObject:self.selectedViewController]) {
+        [(UINavigationController*)self.selectedViewController popToRootViewControllerAnimated:NO];
+    }
+    
+    [self setViewControllers:controllers animated:NO];
+    /*
     // Such an awful hack.  For some reason, changing the view controllers
     // causes the tab bar to be 'stuck' selecting the current view controller.
     // in that case, we switch to another tab and back to unstick it.
@@ -232,34 +238,13 @@
     NSInteger tabCount = self.viewControllers.count;
     self.selectedIndex = (index + 1) % tabCount;
     self.selectedIndex = MAX(MIN(index, tabCount - 1), 0);
+     */
 }
 
 
-- (void) resetTabs:(BOOL) animated {
-    NSArray* currentControllers = self.viewControllers;
-    [self setTabs:[NSNumber numberWithBool:NO]];
-
-    if (animated) {
-        self.viewControllers = currentControllers;
-
-        // fade out, then fade in
-        [self setViewControllers:[NSArray array] animated:YES];
-        [self performSelector:@selector(setTabs:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
-    }
-
-    UIViewController* currentViewController = self.selectedViewController;
-    for (UIViewController* viewController in currentControllers) {
-        if (viewController != currentViewController &&
-            [viewController isKindOfClass:[AbstractNavigationController class]]) {
-            AbstractNavigationController* navigationController = (id)viewController;
-            [navigationController popInfoControllerAnimated:NO];
-        }
-    }
-}
-
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation {
+    [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
     

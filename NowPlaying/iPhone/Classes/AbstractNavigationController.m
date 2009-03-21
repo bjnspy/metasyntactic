@@ -232,22 +232,6 @@
 }
 
 
-- (void) showSearchView {
-    if (searchViewController == nil) {
-        self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
-    }
-
-    [self pushViewController:searchViewController animated:YES];
-    [searchViewController onShow];
-}
-
-
-- (void) hideSearchView {
-    [searchViewController onHide];
-    [self popViewControllerAnimated:YES];
-}
-
-
 - (void) hidePostersView {
     [self popViewControllerAnimated:YES];
     self.postersViewController = nil;
@@ -287,22 +271,6 @@
 - (void) pushInfoControllerAnimated:(BOOL) animated {
     UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:controller animated:YES];
-}
-
-
-- (void) popInfoControllerAnimated:(BOOL) animated {
-    NSInteger index = -1;
-    for (NSInteger i = 0; i < self.viewControllers.count; i++) {
-        if ([[self.viewControllers objectAtIndex:i] isKindOfClass:[SettingsViewController class]]) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index > 0) {
-        UIViewController* controller = [self.viewControllers objectAtIndex:index - 1];
-        [self popToViewController:controller animated:animated];
-    }
 }
 
 @end

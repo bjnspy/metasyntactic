@@ -27,7 +27,6 @@
 #import "WebViewController.h"
 
 @interface ReviewsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) NSArray* reviews;
 @end
@@ -35,12 +34,10 @@
 
 @implementation ReviewsViewController
 
-@synthesize navigationController;
 @synthesize movie;
 @synthesize reviews;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.movie = nil;
     self.reviews = nil;
 
@@ -48,20 +45,10 @@
 }
 
 
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
-
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStyleGrouped
+               navigationController:navigationController_]) {
         self.movie = movie_;
     }
 
@@ -78,29 +65,14 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:self.navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.reviews = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     [self majorRefresh];
 }
@@ -223,7 +195,7 @@
 
 
 - (void) majorRefresh {
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 

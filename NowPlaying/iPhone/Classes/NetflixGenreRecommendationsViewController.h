@@ -16,12 +16,8 @@
 
 @interface NetflixGenreRecommendationsViewController : RefreshableTableViewController {
 @private
-    AbstractNavigationController* navigationController;
     NSString* genre;
     NSArray* movies;
-
-    NSArray* visibleIndexPaths;
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController genre:(NSString*) genre;

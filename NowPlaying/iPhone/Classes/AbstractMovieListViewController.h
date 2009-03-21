@@ -16,18 +16,17 @@
 
 #import "InfoViewControllerDelegate.h"
 
-@interface AbstractMovieListViewController : RefreshableTableViewController<InfoViewControllerDelegate> {
+@interface AbstractMovieListViewController : RefreshableTableViewController {
 @protected
-    AbstractNavigationController* navigationController;
-
+    BOOL firstTime;
+    UISearchBar* searchBar;
+    SearchDisplayController* searchDisplayController;
+    
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
 
     NSArray* indexTitles;
-
-    BOOL visible;
-    NSArray* visibleIndexPaths;
 
     BOOL scrollToCurrentDateOnRefresh;
 }
@@ -35,8 +34,6 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 /* protected */
-- (Model*) model;
-- (Controller*) controller;
 
 - (void) majorRefreshWorker;
 - (void) minorRefreshWorker;

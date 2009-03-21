@@ -86,7 +86,6 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillAppear:(BOOL) animated { 
     [super viewWillAppear:animated];
-    [[AppDelegate notificationCenter] disableNotifications];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     [navigationController setNavigationBarHidden:YES animated:YES];
@@ -97,7 +96,6 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
-    [[AppDelegate notificationCenter] enableNotifications];
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
     [navigationController setNavigationBarHidden:NO animated:YES];
@@ -649,11 +647,6 @@ const double LOAD_DELAY = 1;
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return NO;
-}
-
-
-- (BOOL) hidesBottomBarWhenPushed {
-    return YES;
 }
 
 @end

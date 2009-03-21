@@ -53,7 +53,6 @@
 - (id) initWithView:(UIView*) view_ {
     if (self = [super init]) {
         self.view = view_;
-        enabled = YES;
 
         self.notifications = [NSMutableArray array];
 
@@ -89,7 +88,7 @@
 
 
 - (void) showNotification {
-    if (enabled) {
+    if (disabledCount == 0) {
         [UIView beginAnimations:nil context:NULL];
         {
             notificationLabel.alpha = blackLabel.alpha = 1;
@@ -185,14 +184,14 @@
 
 
 - (void) disableNotifications {
-    enabled = NO;
+    disabledCount++;
     [self hideNotification];
 }
 
 
 - (void) enableNotifications {
-    enabled = YES;
-    if (notifications.count > 0) {
+    disabledCount--;
+    if (disabledCount == 0 && notifications.count > 0) {
         [self updateText];
         [self showNotification];
     }

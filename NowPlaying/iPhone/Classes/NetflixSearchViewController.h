@@ -17,15 +17,12 @@
 
 @interface NetflixSearchViewController : RefreshableTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     UISearchBar* searchBar;
     UIActivityIndicatorView* activityIndicatorView;
     NetflixSearchEngine* searchEngine;
 
     NSArray* movies;
     NSArray* people;
-
-    BOOL visible;
 }
 
 

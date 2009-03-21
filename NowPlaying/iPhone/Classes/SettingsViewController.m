@@ -14,6 +14,7 @@
 
 #import "SettingsViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "Application.h"
 #import "AlertUtilities.h"
 #import "ColorCache.h"
@@ -28,44 +29,39 @@
 #import "Controller.h"
 #import "Model.h"
 #import "NetflixThemeViewController.h"
+#import "NotificationCenter.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
-#import "SettingsNavigationController.h"
 #import "TextFieldEditorViewController.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
 @interface SettingsViewController()
-@property (assign) SettingsNavigationController* navigationController;
 @end
 
 
 @implementation SettingsViewController
 
-@synthesize navigationController;
+
+typedef enum {
+    SendFeedbackSection,
+    StandardSettingsSection,
+    UpcomingSection,
+    DVDBluraySection,
+    NetflixSection,
+    LastSection = NetflixSection
+} SettingsSection;
+
 
 - (void) dealloc {
-    self.navigationController = nil;
 
     [super dealloc];
 }
 
 
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
-
-- (id) initWithNavigationController:(SettingsNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = controller;
-
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
         NSString* appVersion = [Model version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
@@ -78,8 +74,10 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 42;
-    [self.tableView reloadData];
+    self.tableView.rowHeight = 38;
+    //self.tableView.sectionHeaderHeight = 2;
+    self.tableView.sectionFooterHeight = 0;
+    [self reloadTableViewData];
 }
 
 
@@ -89,39 +87,46 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [super viewWillAppear:animated];
+    [[AppDelegate notificationCenter] disableNotifications];
     [self.controller.locationManager addLocationSpinner:self.navigationItem];
 
     [self majorRefresh];
 }
 
 
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+    [[AppDelegate notificationCenter] enableNotifications];
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 5;
+    return LastSection + 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == SendFeedbackSection) {
         return 1;
-    } else if (section == 1) {
+    } else if (section == StandardSettingsSection) {
         return 8;
-    } else if (section == 2) {
+    } else if (section == UpcomingSection) {
         return 1;
-    } else if (section == 3) {
+    } else if (section == DVDBluraySection) {
         if (self.model.dvdBlurayEnabled) {
             return 2;
         } else {
             return 1;
         }
-    } else if (section == 4) {
+    } else if (section == NetflixSection) {
         if (self.model.netflixEnabled) {
             return 2;
         } else {
             return 1;
         }
-    }
+    } 
 
     return 0;
 }
@@ -239,12 +244,7 @@
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
-        }/* else if (row == 8) {
-            text = NSLocalizedString(@"Delay Poster Loading", @"This string has to be small enough to be visible with a picker switch next to it");
-            on = self.model.delayPosterLoading;
-            selector = @selector(onDelayPosterLoadingChanged:);
         }
-         */
 
         return [self createToggleCellWithText:text on:on selector:selector];
     }
@@ -298,13 +298,13 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
           cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == SendFeedbackSection) {
         return [self cellForHeaderRow:indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == StandardSettingsSection) {
         return [self cellForSettingsRow:indexPath.row];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == UpcomingSection) {
         return [self cellForUpcomingRow:indexPath.row];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == DVDBluraySection) {
         return [self cellForDvdBlurayRow:indexPath.row];
     } else {
         return [self cellForNetflixRow:indexPath.row];
@@ -370,7 +370,7 @@
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
     PickerEditorViewController* controller =
-    [[[PickerEditorViewController alloc] initWithController:self.navigationController
+    [[[PickerEditorViewController alloc] initWithController:navigationController
                                                       title:NSLocalizedString(@"Search Distance", nil)
                                                        text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
                                                      object:self
@@ -461,13 +461,13 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == SendFeedbackSection) {
         [self didSelectCreditsRow:indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == StandardSettingsSection) {
         [self didSelectSettingsRow:indexPath.row];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == UpcomingSection) {
         [self didSelectUpcomingRow:indexPath.row];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == DVDBluraySection) {
         [self didSelectDvdBlurayRow:indexPath.row];
     } else {
         [self didSelectNetflixRow:indexPath.row];
@@ -484,34 +484,21 @@
 
 - (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:radius.intValue];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 2) {
+    if (section == UpcomingSection) {
         return NSLocalizedString(@"Upcoming", nil);
-    } else if (section == 3) {
+    } else if (section == DVDBluraySection) {
         return NSLocalizedString(@"DVD/Blu-ray", nil);
-    } else if (section == 4) {
+    } else if (section == NetflixSection) {
         return NSLocalizedString(@"Netflix", nil);
     }
 
     return nil;
 }
-
-
-/*
-- (UIView*)        tableView:(UITableView*) tableView
-       viewForFooterInSection:(NSInteger) section {
-    return [[[UIView alloc] init] autorelease];
-}
-
-- (CGFloat)          tableView:(UITableView*) tableView
-      heightForFooterInSection:(NSInteger) section {
-    return -5;
-}
- */
 
 @end

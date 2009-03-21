@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixMostPopularViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface NetflixMostPopularViewController : AbstractTableViewController {
 @private
-    AbstractNavigationController* navigationController;
-
     NSDictionary* titleToCount;
-
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

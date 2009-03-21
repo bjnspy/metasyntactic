@@ -16,23 +16,21 @@
 
 #import "InfoViewControllerDelegate.h"
 
-@interface AllTheatersViewController : RefreshableTableViewController<InfoViewControllerDelegate> {
+@interface AllTheatersViewController : RefreshableTableViewController {
 @private
-    TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
-
+    
+    BOOL firstTime;
+    UISearchBar* searchBar;
+    SearchDisplayController* searchDisplayController;
+    
     NSArray* sortedTheaters;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
 
     NSArray* indexTitles;
-
-    BOOL visible;
-    NSArray* visibleIndexPaths;
 }
 
-- (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
-
-- (Model*) model;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

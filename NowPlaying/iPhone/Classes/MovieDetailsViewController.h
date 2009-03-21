@@ -41,7 +41,6 @@
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
     BOOL shutdown;
-    BOOL visible;
     BOOL readonlyMode;
 
     NSLock* posterDownloadLock;

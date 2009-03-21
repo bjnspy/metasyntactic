@@ -29,7 +29,6 @@
 #import "ViewControllerUtilities.h"
 
 @interface NetflixQueueViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (copy) NSString* feedKey;
 @property (retain) Feed* feed;
 @property (retain) Queue* queue;
@@ -38,13 +37,11 @@
 @property (retain) IdentitySet* deletedMovies;
 @property (retain) IdentitySet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation NetflixQueueViewController
 
-@synthesize navigationController;
 @synthesize feedKey;
 @synthesize feed;
 @synthesize queue;
@@ -53,10 +50,8 @@
 @synthesize deletedMovies;
 @synthesize reorderedMovies;
 @synthesize backButton;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.feedKey = nil;
     self.feed = nil;
     self.queue = nil;
@@ -65,7 +60,6 @@
     self.deletedMovies = nil;
     self.reorderedMovies = nil;
     self.backButton = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -114,24 +108,14 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             feedKey:(NSString*) feedKey_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -169,17 +153,7 @@
     }
 
     [self initializeData];
-    [self.tableView reloadData];
-
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-        }
-
-        self.visibleIndexPaths = nil;
-    }
+    [self reloadTableViewData];
 }
 
 
@@ -206,16 +180,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -225,23 +189,14 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     // I don't want to clean anything else up here due to the complicated
     // state being kep around.
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
-    [super didReceiveMemoryWarning];
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 2;
 }
 

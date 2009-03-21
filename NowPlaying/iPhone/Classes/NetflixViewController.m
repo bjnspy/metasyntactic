@@ -14,6 +14,7 @@
 
 #import "NetflixViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Application.h"
 #import "AutoresizingCell.h"
@@ -33,7 +34,6 @@
 #import "ViewControllerUtilities.h"
 
 @interface NetflixViewController()
-@property (assign) NetflixNavigationController* navigationController;
 @property (retain) NetflixSearchViewController* searchViewController;
 @end
 
@@ -53,24 +53,12 @@ typedef enum {
     LogOutSection,
 } Sections;
 
-@synthesize navigationController;
 @synthesize searchViewController;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.searchViewController = nil;
 
     [super dealloc];
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -88,8 +76,8 @@ typedef enum {
 
 
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Netflix", nil);
 
         [self setupTableStyle];
@@ -134,7 +122,7 @@ typedef enum {
     CGRect frame = infoButton.frame;
     frame.size.width += 4;
     infoButton.frame = frame;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
 }
 
 
@@ -143,7 +131,7 @@ typedef enum {
     [self setupTableStyle];
     [self setupTitle];
     [self determinePopularMovieCount];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -152,19 +140,9 @@ typedef enum {
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 

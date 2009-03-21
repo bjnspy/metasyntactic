@@ -13,8 +13,9 @@
 // limitations under the License.
 
 #import "TappableScrollViewDelegate.h"
+#import "AbstractFullScreenViewController.h"
 
-@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
+@interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Movie* movie;

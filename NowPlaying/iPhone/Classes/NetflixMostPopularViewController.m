@@ -22,18 +22,15 @@
 #import "NetflixMostPopularMoviesViewController.h"
 
 @interface NetflixMostPopularViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSDictionary* titleToCount;
 @end
 
 
 @implementation NetflixMostPopularViewController
 
-@synthesize navigationController;
 @synthesize titleToCount;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.titleToCount = nil;
 
     [super dealloc];
@@ -41,22 +38,12 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Most Popular", nil);
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -74,7 +61,7 @@
 
 - (void) majorRefresh {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -82,16 +69,6 @@
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 

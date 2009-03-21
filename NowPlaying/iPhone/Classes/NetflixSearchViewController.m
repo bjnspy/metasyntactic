@@ -22,7 +22,6 @@
 #import "SearchResult.h"
 
 @interface NetflixSearchViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) UISearchBar* searchBar;
 @property (retain) NetflixSearchEngine* searchEngine;
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
@@ -33,7 +32,6 @@
 
 @implementation NetflixSearchViewController
 
-@synthesize navigationController;
 @synthesize searchBar;
 @synthesize searchEngine;
 @synthesize activityIndicatorView;
@@ -41,7 +39,6 @@
 @synthesize people;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.searchBar = nil;
     self.searchEngine = nil;
     self.activityIndicatorView = nil;
@@ -52,14 +49,9 @@
 }
 
 
-- (Model*) model {
-    return navigationController.model;
-}
-
-
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.searchEngine = [NetflixSearchEngine engineWithModel:self.model
                                                         delegate:self];
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -98,7 +90,7 @@
 
 
 - (void) majorRefreshWorker {
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -114,13 +106,14 @@
 
 
 - (void) setupTintColor {
-    searchBar.tintColor = self.navigationController.navigationBar.tintColor;
+    searchBar.tintColor = navigationController.navigationBar.tintColor;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self setupTintColor];
     [super viewWillAppear:animated];
+
+    [self setupTintColor];
     self.tableView.rowHeight = 100;
     [self majorRefresh];
 
@@ -130,27 +123,8 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return NO;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
-    [super didReceiveMemoryWarning];
 }
 
 

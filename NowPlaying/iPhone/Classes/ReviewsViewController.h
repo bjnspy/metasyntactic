@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ReviewsViewController :  UITableViewController {
-@private
-    AbstractNavigationController* navigationController;
+#import "AbstractTableViewController.h"
 
+@interface ReviewsViewController :  AbstractTableViewController {
+@private
     Movie* movie;
     NSArray* reviews;
-
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller

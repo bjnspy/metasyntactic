@@ -18,10 +18,8 @@
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-    //UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
     DVDNavigationController* dvdNavigationController;
     NetflixNavigationController* netflixNavigationController;
-    //SettingsNavigationController* settingsNavigationController;
 }
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
@@ -39,6 +37,6 @@
 
 - (AbstractNavigationController*) selectedNavigationController;
 
-- (void) resetTabs:(BOOL) animated;
+- (void) resetTabs;
 
 @end

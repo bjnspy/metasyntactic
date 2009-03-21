@@ -23,7 +23,6 @@
 #import "StringUtilities.h"
 
 @interface CreditsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* languages;
 @property (retain) NSDictionary* localizers;
 @end
@@ -46,12 +45,10 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-@synthesize navigationController;
 @synthesize languages;
 @synthesize localizers;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.languages = nil;
     self.localizers = nil;
 
@@ -68,8 +65,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStyleGrouped
+               navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -102,12 +99,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (void) majorRefresh {
-    [self.tableView reloadData];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [self reloadTableViewData];
 }
 
 
@@ -336,12 +328,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
-
-- (Model*) model {
-    return navigationController.model;
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -451,7 +438,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
         [Application openBrowser:url];
     } else if (indexPath.section == LocalizedBySection) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        //[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else if (indexPath.section == LicenseSection) {
         [self licenseCellTapped];
     }

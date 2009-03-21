@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface RefreshableTableViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface RefreshableTableViewController : AbstractTableViewController {
 }
 
 - (void) majorRefresh;

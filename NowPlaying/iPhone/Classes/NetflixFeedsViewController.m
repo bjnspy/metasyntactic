@@ -24,18 +24,15 @@
 #import "Queue.h"
 
 @interface NetflixFeedsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* feedKeys;
 @end
 
 
 @implementation NetflixFeedsViewController
 
-@synthesize navigationController;
 @synthesize feedKeys;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.feedKeys = nil;
 
     [super dealloc];
@@ -45,8 +42,8 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                            feedKeys:(NSArray*) feedKeys_
                               title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.title = title_;
         self.feedKeys = feedKeys_;
     }
@@ -55,18 +52,8 @@
 }
 
 
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
-
 - (void) majorRefreshWorker {
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -81,31 +68,12 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
 
     return self.model.screenRotationEnabled;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
-    [super didReceiveMemoryWarning];
 }
 
 

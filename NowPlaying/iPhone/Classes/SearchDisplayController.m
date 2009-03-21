@@ -1,18 +1,12 @@
-// Copyright 2008 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  SearchDisplayController.m
+//  NowPlaying
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//  Created by Cyrus Najmabadi on 3/20/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-/*
-#import "SearchViewController.h"
+
+#import "SearchDisplayController.h"
 
 #import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
@@ -25,44 +19,24 @@
 #import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
 
-@interface SearchViewController()
+@interface SearchDisplayController()
 @property (assign) AbstractNavigationController* navigationController;
 @property (retain) SearchEngine* searchEngine;
 @property (retain) SearchResult* searchResult;
-@property (retain) UISearchBar* searchBar;
-@property (retain) UITableView* tableView;
 @end
 
-
-@implementation SearchViewController
+@implementation SearchDisplayController
 
 @synthesize navigationController;
-
 @synthesize searchEngine;
 @synthesize searchResult;
-
-@synthesize searchBar;
-@synthesize tableView;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.searchEngine = nil;
     self.searchResult = nil;
-
-    self.searchBar = nil;
-    self.tableView = nil;
-
+    
     [super dealloc];
-}
-
-
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
-        self.searchEngine = [SearchEngine engineWithModel:navigationController.model delegate:self];
-    }
-
-    return self;
 }
 
 
@@ -76,93 +50,47 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self.navigationController setToolbarHidden:NO animated:animated];
-}
-
-
-- (void) viewWillDisappear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController setToolbarHidden:YES animated:animated];
-}
-
-
-- (void) loadView {
-    [super loadView];
-
-    CGRect rect = self.view.frame;
-    rect.origin.x = 0;
-    rect.origin.y = 0;
-
-    self.searchBar = [[[UISearchBar alloc] initWithFrame:rect] autorelease];
-    searchBar.delegate = self;
-    searchBar.showsCancelButton = YES;
-    searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-    searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    searchBar.showsScopeBar = YES;
-    searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
-    searchBar.selectedScopeButtonIndex = self.model.searchSelectedScopeButtonIndex;
-    [searchBar sizeToFit];
-
-    CGRect searchBarRect = searchBar.frame;
-    CGRectDivide(rect, &searchBarRect, &rect, searchBarRect.size.height, CGRectMinYEdge);
-
-    self.tableView = [[[UITableView alloc] initWithFrame:rect
-                                                   style:UITableViewStylePlain] autorelease];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    UIBarButtonItem* flexibleWidth = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDismiss)] autorelease];;
-    self.toolbarItems = [NSArray arrayWithObjects:flexibleWidth, doneItem, nil];
+- (id)initNavigationController:(AbstractNavigationController*) navigationController_
+                     searchBar:(UISearchBar *)searchBar_
+            contentsController:(UIViewController *)viewController_ {
+    if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
+        self.navigationController = navigationController_;
+        self.delegate = self;
+        //self.searchBar.delegate = self;
+        self.searchResultsDataSource = self;
+        self.searchResultsDelegate = self;
+        
+        self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+        self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.searchBar.showsScopeBar = YES;
+        self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
+        self.searchBar.selectedScopeButtonIndex = self.model.searchSelectedScopeButtonIndex;        
     
-    [self.view addSubview:searchBar];
-    [self.view addSubview:tableView];
-}
-
-
-- (void) onDismiss {
-    [searchBar resignFirstResponder];
-    [navigationController hideSearchView];
-}
-
-
-- (void) searchBarCancelButtonClicked:(UISearchBar*) searchBar_ {
-    [self onDismiss];
-}
-
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
+        self.searchEngine = [SearchEngine engineWithModel:navigationController.model delegate:self];
     }
-
-    return self.model.screenRotationEnabled;
+    
+    return self;
 }
 
 
 - (BOOL) shouldShowMovies {
-    return searchBar.selectedScopeButtonIndex == 0;
+    return self.searchBar.selectedScopeButtonIndex == 0;
 }
 
 
 - (BOOL) shouldShowTheaters {
-    return searchBar.selectedScopeButtonIndex == 1;
+    return self.searchBar.selectedScopeButtonIndex == 1;
 }
 
 
 - (BOOL) shouldShowUpcoming {
-    return searchBar.selectedScopeButtonIndex == 2;
+    return self.searchBar.selectedScopeButtonIndex == 2;
 }
 
 
 - (BOOL) shouldShowDVDBluray {
-    return searchBar.selectedScopeButtonIndex == 3;
+    return self.searchBar.selectedScopeButtonIndex == 3;
 }
 
 
@@ -178,9 +106,9 @@
 
 
 - (BOOL) searching {
-    NSString* searchText = searchBar.text;
+    NSString* searchText = self.searchBar.text;
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
+    
     return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
@@ -189,11 +117,11 @@
     if (searchResult == nil) {
         return 1;
     }
-
+    
     if ([self noResults]) {
         return 1;
     }
-
+    
     return 5;
 }
 
@@ -203,11 +131,11 @@
     if (searchResult == nil) {
         return 0;
     }
-
+    
     if ([self noResults]) {
         return 0;
     }
-
+    
     if (section == 0 && [self shouldShowMovies]) {
         return searchResult.movies.count;
     } else if (section == 1 && [self shouldShowTheaters]) {
@@ -231,14 +159,14 @@
 
 - (UITableViewCell*) movieCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.movies objectAtIndex:row];
-
+    
     static NSString* reuseIdentifier = @"MovieTitleCellReuseIdentifier";
-    MovieTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    MovieTitleCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                model:self.model] autorelease];
+                                                          model:self.model] autorelease];
     }
-
+    
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -246,15 +174,15 @@
 
 - (UITableViewCell*) theaterCellForRow:(NSInteger) row {
     Theater* theater = [searchResult.theaters objectAtIndex:row];
-
+    
     static NSString* reuseIdentifier = @"TheaterNameCellReuseIdentifier";
     
-    TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    TheaterNameCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                            model:self.model] autorelease];
     }
-
+    
     [cell setTheater:theater];
     return cell;
 }
@@ -262,16 +190,16 @@
 
 - (UITableViewCell*) upcomingMovieCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
-
+    
     static NSString* reuseIdentifier = @"UpcomingMovieCellReuseIdentifier";
-
-    UpcomingMovieCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    UpcomingMovieCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                          reuseIdentifier:reuseIdentifier
                                                    model:self.model] autorelease];
     }
-
+    
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -279,16 +207,16 @@
 
 - (UITableViewCell*) dvdCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.dvds objectAtIndex:row];
-
+    
     static NSString* reuseIdentifier = @"DvdCellReuseIdentifier";
-
-    DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
-
+    
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -296,16 +224,16 @@
 
 - (UITableViewCell*) blurayCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.bluray objectAtIndex:row];
-
+    
     static NSString* reuseIdentifier = @"BlurayCellReuseIdentifier";
-
-    DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:CGRectZero
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
-
+    
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -323,7 +251,7 @@
     if ([self noResults]) {
         return [self noResultsCell];
     }
-
+    
     if (indexPath.section == 0) {
         return [self movieCellForRow:indexPath.row];
     } else if (indexPath.section == 1) {
@@ -346,7 +274,7 @@
 - (void) didSelectMovieRow:(NSInteger) row {
     [self.applicationTabBarController switchToMovies];
     Movie* movie = [searchResult.movies objectAtIndex:row];
-
+    
     [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -354,7 +282,7 @@
 - (void) didSelectTheaterRow:(NSInteger) row {
     [self.applicationTabBarController switchToTheaters];
     Theater* theater = [searchResult.theaters objectAtIndex:row];
-
+    
     [self.applicationTabBarController.selectedNavigationController pushTheaterDetails:theater animated:YES];
 }
 
@@ -362,7 +290,7 @@
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
     [self.applicationTabBarController switchToUpcoming];
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
-
+    
     [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -370,7 +298,7 @@
 - (void) didSelectDvdRow:(NSInteger) row {
     [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.dvds objectAtIndex:row];
-
+    
     [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -378,16 +306,17 @@
 - (void) didSelectBlurayRow:(NSInteger) row {
     [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.bluray objectAtIndex:row];
-
+    
     [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self setActive:NO animated:YES];
 
-    [navigationController hideSearchView];
     if (indexPath.section == 0) {
         return [self didSelectMovieRow:indexPath.row];
     } else if (indexPath.section == 1) {
@@ -402,86 +331,25 @@
 }
 
 
-- (void) onShow {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    [searchBar resignFirstResponder];
-    [searchBar becomeFirstResponder];
-}
-
-
-- (void) onHide {
-    [searchBar resignFirstResponder];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-}
-
-
-- (void) keyboardWillShow:(NSNotification*) notification {
-    NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
-
-    CGRect rect;
-    [value getValue:&rect];
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:0.3];
-
-        CGRect tableViewFrame = tableView.frame;
-        tableViewFrame.size.height -= rect.size.height;
-        tableView.frame = tableViewFrame;
-    }
-    [UIView commitAnimations];
-}
-
-
-- (void) keyboardWillHide:(NSNotification*) notification {
-    NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
-
-    CGRect rect;
-    [value getValue:&rect];
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:0.3];
-
-        CGRect tableViewFrame = tableView.frame;
-        tableViewFrame.size.height += rect.size.height;
-        tableView.frame = tableViewFrame;
-    }
-    [UIView commitAnimations];
-}
-
-
 - (void) reportResult:(SearchResult*) result {
     NSAssert([NSThread isMainThread], nil);
     self.searchResult = result;
-    [self.tableView reloadData];
+    [self.searchResultsTableView reloadData];
 }
 
 
-- (void) searchBar:(UISearchBar*) searchBar
-     textDidChange:(NSString*) searchText {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if (searchText.length == 0) {
         [searchEngine invalidateExistingRequests];
         self.searchResult = nil;
+        [self.searchResultsTableView reloadData];
+        return YES;
     } else {
         [searchEngine submitRequest:searchText];
+        return NO;
     }
-
-    [self.tableView reloadData];
 }
 
 
@@ -494,8 +362,8 @@
             return 100;
         }
     }
-
-    return self.tableView.rowHeight;
+    
+    return self.searchResultsTableView.rowHeight;
 }
 
 
@@ -504,11 +372,11 @@
     if (searchResult == nil) {
         return nil;
     }
-
+    
     if ([self noResults]) {
         return NSLocalizedString(@"No information found", nil);
     }
-
+    
     if (section == 0 && [self shouldShowMovies]) {
         if (searchResult.movies.count != 0) {
             return NSLocalizedString(@"Movies", nil);
@@ -530,34 +398,14 @@
             return NSLocalizedString(@"Blu-ray", nil);
         }
     }
-
+    
     return nil;
-}
-
-
-- (void) searchBarSearchButtonClicked:(UISearchBar*) sender {
-    [searchBar resignFirstResponder];
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [navigationController setToolbarHidden:NO animated:YES];
-}
-
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar_ {
-    [navigationController setToolbarHidden:YES animated:YES];
-    [searchBar setShowsCancelButton:YES animated:YES];
-    return YES;
-}
-
-
-- (BOOL) hidesBottomBarWhenPushed {
-    return YES;
 }
 
 
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
     self.model.searchSelectedScopeButtonIndex = selectedScope;
-    [self.tableView reloadData];
+    [self.searchResultsTableView reloadData];
 }
 
 @end
-*/
