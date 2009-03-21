@@ -659,7 +659,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) createDvdDetailsCell {
     if (dvd == nil) {
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     }
 
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -677,7 +677,7 @@ const NSInteger POSTER_TAG = -1;
     frame.size.width = 300;
     label.frame = frame;
 
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:label];
 
@@ -688,8 +688,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) createNetflixRatingsCell {
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
-        [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
-                                             model:self.model
+        [[[NetflixRatingsCell alloc] initWithModel:self.model
                                              movie:netflixMovie] autorelease];
     }
 
@@ -710,7 +709,6 @@ const NSInteger POSTER_TAG = -1;
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie
                                           model:self.model
-                                          frame:[UIScreen mainScreen].applicationFrame
                                     posterImage:posterImage
                                 posterImageView:posterImageView
                                    activityView:posterActivityView];
@@ -721,12 +719,10 @@ const NSInteger POSTER_TAG = -1;
     }
 
     if (expandedDetails) {
-        return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                          model:self.model
+        return [[[ExpandedMovieDetailsCell alloc] initWithModel:self.model
                                                           movie:movie] autorelease];
     } else {
-        return [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                           model:self.model
+        return [[[CollapsedMovieDetailsCell alloc] initWithModel:self.model
                                                            movie:movie] autorelease];
     }
 }
@@ -816,8 +812,7 @@ const NSInteger POSTER_TAG = -1;
         static NSString* reuseIdentifier = @"detailsReuseIdentifier";
         MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                              reuseIdentifier:reuseIdentifier
+            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                         model:self.model] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -871,7 +866,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (UITableViewCell*) showHiddenTheatersCell {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {

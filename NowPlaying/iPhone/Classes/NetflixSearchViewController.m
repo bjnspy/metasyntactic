@@ -161,8 +161,7 @@
 
         NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                       reuseIdentifier:reuseIdentifier
+            cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                  model:self.model] autorelease];
         }
 

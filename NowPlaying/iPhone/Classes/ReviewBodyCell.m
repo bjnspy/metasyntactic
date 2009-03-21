@@ -37,11 +37,11 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.font = [FontCache helvetica14];
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 0;

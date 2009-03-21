@@ -33,8 +33,7 @@ typedef enum {
     CGFloat titleWidth;
 }
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_;
 
 - (void) loadImage;

@@ -98,10 +98,9 @@
 }
 
 
-- (id)  initWithFrame:(CGRect) frame
-      reuseIdentifier:(NSString*) reuseIdentifier
+- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier
                 model:(Model*) model_ {
-    if (self = [super initWithFrame:frame
+    if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

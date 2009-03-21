@@ -215,7 +215,7 @@
 
 
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
     cell.textColor = [ColorCache commandColor];
     cell.font = [UIFont boldSystemFontOfSize:14];
@@ -248,8 +248,7 @@
         static NSString* reuseIdentifier = @"showtimesReuseIdentifier";
         MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                              reuseIdentifier:reuseIdentifier
+            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier
                                                         model:self.model] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }

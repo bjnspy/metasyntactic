@@ -20,8 +20,7 @@
     NSArray* showtimesData;
 }
 
-- (id)  initWithFrame:(CGRect) frame
-      reuseIdentifier:(NSString*) reuseIdentifier
+- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier
                 model:(Model*) model;
 
 - (void) setStale:(BOOL) stale;

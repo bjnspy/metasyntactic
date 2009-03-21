@@ -214,7 +214,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return [self localizationCellForRow:row];
     }
 
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];
@@ -317,7 +317,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
 
-    UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    UITextView* textView = [[[UITextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     textView.editable = NO;
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 

@@ -64,7 +64,7 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     cell.text = [self.model.netflixThemes objectAtIndex:indexPath.row];

@@ -119,11 +119,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_ {
-    if (self = [super initWithFrame:frame
-                    reuseIdentifier:reuseIdentifier
+    if (self = [super initWithReuseIdentifier:reuseIdentifier
                               model:model_]) {
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
