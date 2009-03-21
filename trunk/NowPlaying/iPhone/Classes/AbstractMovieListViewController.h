@@ -14,11 +14,8 @@
 
 #import "RefreshableTableViewController.h"
 
-#import "InfoViewControllerDelegate.h"
-
 @interface AbstractMovieListViewController : RefreshableTableViewController {
 @protected
-    BOOL firstTime;
     UISearchBar* searchBar;
     SearchDisplayController* searchDisplayController;
 

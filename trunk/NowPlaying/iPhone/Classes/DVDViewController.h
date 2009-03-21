@@ -14,8 +14,6 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "InfoViewControllerDelegate.h"
-
 @interface DVDViewController : AbstractMovieListViewController {
 @private
     UIView* titleView;
