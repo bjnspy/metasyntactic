@@ -32,7 +32,6 @@
 @property (retain) UIView* superView;
 @property (retain) UITableView* cachedTableView;
 @property (retain) UIViewController* filterViewController;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -45,7 +44,6 @@
 @synthesize superView;
 @synthesize cachedTableView;
 @synthesize filterViewController;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
     self.titleView = nil;
@@ -55,7 +53,6 @@
     self.superView = nil;
     self.cachedTableView = nil;
     self.filterViewController = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -158,16 +155,11 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.titleView = nil;
     self.toolbar = nil;
     self.segmentedControl = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 

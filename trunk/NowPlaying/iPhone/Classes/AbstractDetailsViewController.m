@@ -46,16 +46,6 @@
 }
 
 
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
-
 - (void) changeDate {
     SearchDatePickerViewController* pickerController =
     [SearchDatePickerViewController pickerWithNavigationController:navigationController

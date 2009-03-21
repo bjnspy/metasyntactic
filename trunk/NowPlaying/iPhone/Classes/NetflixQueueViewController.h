@@ -23,7 +23,6 @@
         NetflixModifyQueueDelegate,
         NetflixMoveMovieDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     NSString* feedKey;
     Feed* feed;
     Queue* queue;
@@ -37,9 +36,6 @@
     IdentitySet* reorderedMovies;
 
     BOOL readonlyMode;
-
-    NSArray* visibleIndexPaths;
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

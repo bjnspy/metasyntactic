@@ -25,7 +25,6 @@
 #import "Queue.h"
 
 @interface NetflixRecommendationsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* genres;
 @property (retain) MultiDictionary* genreToMovies;
 @end
@@ -33,35 +32,24 @@
 
 @implementation NetflixRecommendationsViewController
 
-@synthesize navigationController;
 @synthesize genres;
 @synthesize genreToMovies;
 
 - (void)dealloc {
-    self.navigationController = nil;
     self.genres = nil;
     self.genreToMovies = nil;
+    
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Recommendations", nil);
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -85,7 +73,7 @@
 
 - (void) majorRefreshWorker {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -100,16 +88,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -119,15 +97,10 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.genreToMovies = [MultiDictionary dictionary];
     self.genres = [NSArray array];
-
-    [super didReceiveMemoryWarning];
 }
 
 

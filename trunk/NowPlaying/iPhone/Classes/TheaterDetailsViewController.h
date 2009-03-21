@@ -23,8 +23,6 @@
 
     NSArray* movies;
     NSMutableArray* movieShowtimes;
-
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

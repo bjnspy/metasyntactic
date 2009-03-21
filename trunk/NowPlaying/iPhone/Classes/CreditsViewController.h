@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CreditsViewController : UITableViewController<MFMailComposeViewControllerDelegate> {
+#import "AbstractFullScreenTableViewController.h"
+
+@interface CreditsViewController : AbstractFullScreenTableViewController<MFMailComposeViewControllerDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     NSArray* languages;
     NSDictionary* localizers;
 }

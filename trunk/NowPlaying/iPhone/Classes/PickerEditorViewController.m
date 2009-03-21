@@ -99,6 +99,8 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;

@@ -91,9 +91,10 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) controller
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             theater:(Theater*) theater_ {
-    if (self = [super initWithNavigationController:controller]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped
+               navigationController:navigationController_]) {
         self.theater = theater_;
     }
 
@@ -114,34 +115,17 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.segmentedControl = nil;
     self.favoriteButton = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
+    [super viewWillAppear:animated];
     [self majorRefresh];
 }
 
@@ -166,7 +150,7 @@
 
 - (void) majorRefresh {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 

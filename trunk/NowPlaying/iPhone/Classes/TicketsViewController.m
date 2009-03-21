@@ -85,7 +85,7 @@
 
 - (void) majorRefresh {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -93,7 +93,8 @@
                   theater:(Theater*) theater_
                     movie:(Movie*) movie_
                     title:(NSString*) title_ {
-    if (self = [super initWithNavigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped
+               navigationController:navigationController_]) {
         self.theater = theater_;
         self.movie = movie_;
         self.title = title_;
@@ -113,32 +114,15 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.performances = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self majorRefresh];
 }

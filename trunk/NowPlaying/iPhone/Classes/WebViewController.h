@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface WebViewController : UIViewController<UIWebViewDelegate> {
+#import "AbstractFullScreenViewController.h"
+
+@interface WebViewController : AbstractFullScreenViewController<UIWebViewDelegate> {
 @private
     AbstractNavigationController* navigationController;
     UIWebView* webView;

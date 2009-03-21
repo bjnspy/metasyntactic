@@ -14,9 +14,9 @@
 
 #import "NetflixThemeViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Model.h"
-#import "SettingsNavigationController.h"
 
 @interface NetflixThemeViewController()
 @property (assign) AbstractNavigationController* navigationController;

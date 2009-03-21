@@ -353,9 +353,10 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) controller
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_ {
-    if (self = [super initWithNavigationController:controller]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped
+               navigationController:navigationController_]) {
         self.movie = movie_;
         self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
 
@@ -469,26 +470,17 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
     if (readonlyMode) {
         return;
     }
+    
+    [super didReceiveMemoryWarning];
+}
 
+
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.dvd = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
@@ -500,8 +492,6 @@ const NSInteger POSTER_TAG = -1;
     self.posterImage = nil;
     self.posterImageView = nil;
     self.posterActivityView = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -535,14 +525,6 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
-    [self startup];
-    [self majorRefresh];
-}
-
-
 - (void) removeNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
@@ -556,7 +538,16 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
+    [self startup];
+    [self majorRefresh];
+}
+
+
 - (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
     [self shutdown];
     [self removeNotifications];
 }
@@ -574,7 +565,7 @@ const NSInteger POSTER_TAG = -1;
 
     [self initializeData];
     [netflixRatingsCell refresh];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -1275,7 +1266,7 @@ const NSInteger POSTER_TAG = -1;
         // hack: when shrinking the details pane, the 'actions view' can
         // sometimes go missing.  To prevent that, we refresh explicitly.
         if (!expandedDetails) {
-            [self.tableView reloadData];
+            [self reloadTableViewData];
         }
     }
 }

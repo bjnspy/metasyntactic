@@ -23,35 +23,36 @@
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
 #import "Model.h"
+#import "SearchDisplayController.h"
 #import "SettingsViewController.h"
 #import "Utilities.h"
 
 @interface AbstractMovieListViewController()
-@property (assign) AbstractNavigationController* navigationController;
+@property (retain) UISearchBar* searchBar;
+@property (retain) SearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedMovies;
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* indexTitles;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation AbstractMovieListViewController
 
-@synthesize navigationController;
+@synthesize searchBar;
+@synthesize searchDisplayController;
 @synthesize sortedMovies;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
+    self.searchBar = nil;
+    self.searchDisplayController = nil;
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -89,16 +90,6 @@
 
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -189,7 +180,7 @@
 }
 
 
-- (void) sortMoviesByReleaseDateWorker {
+- (void) sortMoviesByReleaseDate {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
 
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -237,49 +228,12 @@
 }
 
 
-- (void) sortMoviesByReleaseDate {
-    [self sortMoviesByReleaseDateWorker];
-
-    if (!scrollToCurrentDateOnRefresh || visibleIndexPaths != nil) {
-        return;
-    }
-    scrollToCurrentDateOnRefresh = NO;
-
-    NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
-    NSDate* today = [DateUtilities today];
-
-    NSDate* date = nil;
-    for (Movie* movie in movies) {
-        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-
-        if (releaseDate != nil) {
-            if ([releaseDate compare:today] == NSOrderedDescending) {
-                date = releaseDate;
-                break;
-            }
-        }
-    }
-
-    if (date == nil) {
-        return;
-    }
-
-    NSString* title = [DateUtilities formatFullDate:date];
-    NSInteger section = [sectionTitles indexOfObject:title];
-
-    if (section < 0 || section >= sectionTitles.count) {
-        return;
-    }
-
-    self.visibleIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:section], nil];
-}
-
-
 - (void) setupIndexTitles {
     if ([LocaleUtilities isJapanese]) {
         self.indexTitles = nil;
     } else {
         NSMutableArray* array = [NSMutableArray arrayWithObjects:
+                                 UITableViewIndexSearch,
                                  @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
                                  @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
                                  @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
@@ -313,33 +267,10 @@
 }
 
 
-- (void) initializeSearchButton {
-    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.showsTouchWhenHighlighted = YES;
-    UIImage* image = [ImageCache searchImage];
-    [searchButton setImage:image forState:UIControlStateNormal];
-    [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = searchButton.frame;
-    frame.origin.x += 0.5;
-    frame.size = image.size;
-    frame.size.width += 7;
-    frame.size.height += 7;
-    searchButton.frame = frame;
-
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
-    self.navigationItem.leftBarButtonItem = item;
-}
-
-
-- (void) search:(id) sender {
-    [navigationController showSearchView];
-}
-
-
-- (id) initWithNavigationController:(AbstractNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = controller;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
+        firstTime = YES;
     }
 
     return self;
@@ -354,7 +285,16 @@
     CGRect frame = infoButton.frame;
     frame.size.width += 4;
     infoButton.frame = frame;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
+- (void) initializeSearchDisplay {
+    self.searchBar = [[[UISearchBar alloc] init] autorelease];
+    [searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchBar;
+    
+    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];    
 }
 
 
@@ -363,42 +303,22 @@
 
     self.sortedMovies = [NSArray array];
 
-    [self initializeSearchButton];
+    [self initializeSearchDisplay];
     [self initializeInfoButton];
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-
-    [super didReceiveMemoryWarning];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [super viewWillAppear:animated];
     [self majorRefresh];
 }
 
@@ -407,20 +327,55 @@
 }
 
 
+- (BOOL) tryScrollToCurrentDate {
+    if (self.sortingByReleaseDate) {
+        if (scrollToCurrentDateOnRefresh) {
+            scrollToCurrentDateOnRefresh = NO;
+            
+            NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
+            NSDate* today = [DateUtilities today];
+            
+            NSDate* date = nil;
+            for (Movie* movie in movies) {
+                NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+                
+                if (releaseDate != nil) {
+                    if ([releaseDate compare:today] == NSOrderedDescending) {
+                        date = releaseDate;
+                        break;
+                    }
+                }
+            }
+            
+            if (date != nil) {
+                NSString* title = [DateUtilities formatFullDate:date];
+                NSInteger section = [sectionTitles indexOfObject:title];
+                
+                if (section >= 0 && section < sectionTitles.count) {
+                    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                    return YES;
+                }
+            }
+        }
+    }
+
+    return NO;
+}
+
+
 - (void) majorRefreshWorker {
     [self sortMovies];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0]
-                                  atScrollPosition:UITableViewScrollPositionTop
-                                          animated:NO];
+    if ([self tryScrollToCurrentDate]) {
+        return;
+    }
+
+    if (firstTime) {
+        if (sortedMovies.count > 0) {
+            firstTime = NO;
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
         }
-
-        self.visibleIndexPaths = nil;
     }
 }
 
@@ -517,7 +472,10 @@
                           atIndex:(NSInteger) index {
     unichar firstChar = [title characterAtIndex:0];
 
-    if (firstChar == '#') {
+    if ([UITableViewIndexSearch isEqual:title]) {
+        [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
+        return -1;
+    } else if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [Application starCharacter]) {
         return [sectionTitles indexOfObject:[Application starString]];

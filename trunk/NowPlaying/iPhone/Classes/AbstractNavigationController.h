@@ -46,12 +46,8 @@
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
 
 - (void) pushInfoControllerAnimated:(BOOL) animated;
-- (void) popInfoControllerAnimated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;
-
-- (void) showSearchView;
-- (void) hideSearchView;
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;

@@ -264,13 +264,11 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    [[AppDelegate notificationCenter] disableNotifications];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
-    [[AppDelegate notificationCenter] enableNotifications];
     webView.delegate = nil;
     [self.navigationController setToolbarHidden:YES animated:NO];
 }
@@ -288,11 +286,6 @@
         return NO;
     }
 
-    return YES;
-}
-
-
-- (BOOL) hidesBottomBarWhenPushed {
     return YES;
 }
 

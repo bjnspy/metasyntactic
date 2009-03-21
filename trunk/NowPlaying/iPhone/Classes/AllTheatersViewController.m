@@ -21,42 +21,41 @@
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "Model.h"
+#import "SearchDisplayController.h"
 #import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
 
 @interface AllTheatersViewController()
-@property (assign) TheatersNavigationController* navigationController;
 @property (retain) UISegmentedControl* segmentedControl;
+@property (retain) UISearchBar* searchBar;
+@property (retain) SearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedTheaters;
-
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
-
 @property (retain) NSArray* indexTitles;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation AllTheatersViewController
 
-@synthesize navigationController;
 @synthesize segmentedControl;
+@synthesize searchBar;
+@synthesize searchDisplayController;
 @synthesize sortedTheaters;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.segmentedControl = nil;
+    self.searchBar = nil;
+    self.searchDisplayController = nil;
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -75,16 +74,6 @@
 - (void) onSortOrderChanged:(id) sender {
     self.model.allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -232,31 +221,6 @@
 }
 
 
-- (void) initializeSearchButton {
-    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.showsTouchWhenHighlighted = YES;
-    UIImage* image = [ImageCache searchImage];
-    [searchButton setImage:image forState:UIControlStateNormal];
-    [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = searchButton.frame;
-    frame.origin.x += 0.5;
-    frame.size = image.size;
-    frame.size.width += 7;
-    frame.size.height += 7;
-    searchButton.frame = frame;
-
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
-    //UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search:)] autorelease];
-    self.navigationItem.leftBarButtonItem = item;
-}
-
-
-- (void) search:(id) sender {
-    [navigationController showSearchView];
-}
-
-
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
@@ -275,10 +239,11 @@
 }
 
 
-- (id) initWithNavigationController:(TheatersNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = controller;
+- (id) initWithNavigationController:(TheatersNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStylePlain
+               navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Theaters", nil);
+        firstTime = YES;
     }
 
     return self;
@@ -291,6 +256,7 @@
     } else {
         self.indexTitles =
         [NSArray arrayWithObjects:
+         UITableViewIndexSearch,
          [Application starString],
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
@@ -307,7 +273,16 @@
     CGRect frame = infoButton.frame;
     frame.size.width += 4;
     infoButton.frame = frame;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
+- (void) initializeSearchDisplay {
+    self.searchBar = [[[UISearchBar alloc] init] autorelease];
+    [searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchBar;
+    
+    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];    
 }
 
 
@@ -317,9 +292,9 @@
     self.sortedTheaters = [NSArray array];
 
     [self initializeSegmentedControl];
-    [self initializeSearchButton];
+    [self initializeSearchDisplay];
     [self initializeInfoButton];
-
+    
     self.navigationItem.titleView = segmentedControl;
 
     [self setupIndexTitles];
@@ -328,33 +303,13 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-    [self.model saveNavigationStack:self.navigationController];
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.segmentedControl = nil;
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -446,7 +401,10 @@
 
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
-    if (firstChar == '#') {
+    if ([UITableViewIndexSearch isEqual:title]) {
+        [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
+        return -1;
+    } else if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [Application starCharacter]) {
         return [sectionTitles indexOfObject:[Application starString]];
@@ -478,7 +436,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [super viewWillAppear:animated];
 
     [self majorRefresh];
 }
@@ -490,16 +448,13 @@
 
 - (void) majorRefreshWorker {
     [self sortTheaters];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    if (firstTime) {
+        if (sortedTheaters.count > 0) {
+            firstTime = NO;
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
         }
-
-        self.visibleIndexPaths = nil;
     }
 }
 

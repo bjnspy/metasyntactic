@@ -12,18 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AbstractTableViewController.h"
 #import "DataProviderUpdateDelegate.h"
 
-@interface AbstractDetailsViewController : UITableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
+@interface AbstractDetailsViewController : AbstractTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
 @protected
-    AbstractNavigationController* navigationController;
     NSInteger updateId;
 }
-
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
-- (Model*) model;
-- (Controller*) controller;
 
 // @protected
 - (void) changeDate;

@@ -22,7 +22,7 @@
     NSMutableArray* notifications;
     Pulser* pulser;
     
-    BOOL enabled;
+    NSInteger disabledCount;
 }
 
 + (NotificationCenter*) centerWithView:(UIView*) view;

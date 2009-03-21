@@ -108,14 +108,9 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.segmentedControl = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 
