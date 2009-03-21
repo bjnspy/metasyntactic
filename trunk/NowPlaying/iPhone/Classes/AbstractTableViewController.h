@@ -7,7 +7,7 @@
 //
 
 @interface AbstractTableViewController : UITableViewController {
-@protected 
+@protected
     AbstractNavigationController* navigationController;
 
     BOOL visible;

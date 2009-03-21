@@ -19,11 +19,11 @@
 @interface AllTheatersViewController : RefreshableTableViewController {
 @private
     UISegmentedControl* segmentedControl;
-    
+
     BOOL firstTime;
     UISearchBar* searchBar;
     SearchDisplayController* searchDisplayController;
-    
+
     NSArray* sortedTheaters;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;

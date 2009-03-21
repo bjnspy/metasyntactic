@@ -181,13 +181,13 @@ typedef enum {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] init] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
     cell.selectedTextColor = [UIColor whiteColor];
-    
+
     if (self.model.isIronManTheme) {
         cell.textColor = [UIColor whiteColor];
     } else {
         cell.textColor = [UIColor blackColor];
     }
-    
+
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         switch (row) {
@@ -229,7 +229,7 @@ typedef enum {
                 cell.accessoryView = nil;
                 break;
         }
-        
+
         cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {
@@ -240,12 +240,12 @@ typedef enum {
             cell.image = [self imageNamed:@"NetflixLogOff.png"];
         }
     }
-    
+
     if (cell.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
-    
+
     if (self.model.isIronManTheme) {
         NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
         NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
@@ -256,7 +256,7 @@ typedef enum {
         cell.backgroundView = backgroundView;
         cell.selectedBackgroundView = selectedBackgroundView;
     }
-    
+
     return cell;
 }
 

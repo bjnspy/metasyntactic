@@ -187,7 +187,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    
+
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
@@ -201,7 +201,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     cell.textLabel.text = language;
     [cell setCellValue:person];
     [cell setHidesSeparator:row > 0];
-    
+
     return cell;
 }
 
@@ -270,7 +270,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     return cell;
 }
 
@@ -343,14 +343,14 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
                       (self.model.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
-    
+
     if (self.model.netflixEnabled) {
         body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
                 [StringUtilities nonNilString:self.model.netflixUserId],
                 [StringUtilities nonNilString:self.model.netflixKey],
                 [StringUtilities nonNilString:self.model.netflixSecret]];
     }
-    
+
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
         subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
@@ -361,11 +361,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
         controller.delegate = self;
-        
+
         [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
         [controller setSubject:subject];
         [controller setMessageBody:body isHTML:NO];
-        
+
         [self presentModalViewController:controller animated:YES];
     } else {
         NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];

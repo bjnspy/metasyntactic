@@ -12,7 +12,7 @@
 @private
     AbstractNavigationController* navigationController;
     SearchEngine* searchEngine;
-    SearchResult* searchResult;  
+    SearchResult* searchResult;
 }
 
 

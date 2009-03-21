@@ -232,7 +232,7 @@
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
                                                     reuseIdentifier:nil] autorelease];
-    
+
     if (row == 0) {
         cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
         cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
@@ -240,7 +240,7 @@
         cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
         cell.detailTextLabel.text = theater.phoneNumber;
     }
-    
+
     return cell;
 }
 
@@ -301,7 +301,7 @@
                                 movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     [body appendString:@"<p>"];
     [body appendString:theater.name];
     [body appendString:@"<br/>"];

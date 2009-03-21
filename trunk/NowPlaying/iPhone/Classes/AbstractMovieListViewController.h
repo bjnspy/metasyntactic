@@ -21,7 +21,7 @@
     BOOL firstTime;
     UISearchBar* searchBar;
     SearchDisplayController* searchDisplayController;
-    
+
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;

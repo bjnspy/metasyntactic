@@ -225,11 +225,11 @@
                         body:(NSString*) body {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
     controller.delegate = self;
-    
+
     [controller setSubject:subject];
     [controller setMessageBody:body isHTML:YES];
-    
-    [self presentModalViewController:controller animated:YES];   
+
+    [self presentModalViewController:controller animated:YES];
 }
 
 

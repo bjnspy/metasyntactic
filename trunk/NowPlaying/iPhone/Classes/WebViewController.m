@@ -147,7 +147,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     [self setupWebView];
     [self.view addSubview:webView];
 
@@ -201,9 +201,9 @@
 
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
-    
+
     BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
-    
+
     [self.navigationController setToolbarHidden:hidden animated:YES];
 }
 
