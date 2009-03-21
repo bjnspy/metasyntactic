@@ -149,12 +149,12 @@ typedef enum {
                                            on:(BOOL) on
                                      selector:(SEL) selector {
     static NSString* reuseIdentifier = @"switchCellReuseIdentifier";
-    
+
     SwitchCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[SwitchCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     [cell.switch_ removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
     [cell.switch_ addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
     cell.switch_.on = on;
