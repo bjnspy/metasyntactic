@@ -269,7 +269,6 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
-        firstTime = YES;
     }
 
     return self;
@@ -366,16 +365,7 @@
     [self sortMovies];
     [self reloadTableViewData];
 
-    if ([self tryScrollToCurrentDate]) {
-        return;
-    }
-
-    if (firstTime) {
-        if (sortedMovies.count > 0) {
-            firstTime = NO;
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        }
-    }
+    [self tryScrollToCurrentDate];
 }
 
 

@@ -14,13 +14,10 @@
 
 #import "RefreshableTableViewController.h"
 
-#import "InfoViewControllerDelegate.h"
-
 @interface AllTheatersViewController : RefreshableTableViewController {
 @private
     UISegmentedControl* segmentedControl;
 
-    BOOL firstTime;
     UISearchBar* searchBar;
     SearchDisplayController* searchDisplayController;
 

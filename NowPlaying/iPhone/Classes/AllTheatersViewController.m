@@ -242,7 +242,6 @@
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Theaters", nil);
-        firstTime = YES;
     }
 
     return self;
@@ -448,13 +447,6 @@
 - (void) majorRefreshWorker {
     [self sortTheaters];
     [self reloadTableViewData];
-
-    if (firstTime) {
-        if (sortedTheaters.count > 0) {
-            firstTime = NO;
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        }
-    }
 }
 
 
