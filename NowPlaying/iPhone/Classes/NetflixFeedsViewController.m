@@ -42,8 +42,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                            feedKeys:(NSArray*) feedKeys_
                               title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = title_;
         self.feedKeys = feedKeys_;
     }

@@ -47,8 +47,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               genre:(NSString*) genre_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.genre = genre_;
         self.title = genre_;
 

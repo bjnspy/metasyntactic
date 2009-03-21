@@ -44,8 +44,7 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Recommendations", nil);
     }
 

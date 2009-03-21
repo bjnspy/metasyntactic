@@ -108,8 +108,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             feedKey:(NSString*) feedKey_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];

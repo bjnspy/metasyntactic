@@ -76,8 +76,7 @@ typedef enum {
 
 
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Netflix", nil);
 
         [self setupTableStyle];
