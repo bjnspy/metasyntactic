@@ -22,14 +22,6 @@
 }
 
 
-- (id) initWithStyle:(UITableViewStyle) style {
-    if (self = [super initWithStyle:style]) {
-    }
-
-    return self;
-}
-
-
 - (void) majorRefreshWorker {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }

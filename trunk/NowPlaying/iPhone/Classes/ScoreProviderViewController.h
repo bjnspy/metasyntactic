@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractTableViewController.h"
+#import "AbstractFullScreenTableViewController.h"
 
-@interface ScoreProviderViewController : AbstractTableViewController {
+@interface ScoreProviderViewController : AbstractFullScreenTableViewController {
 @private
 }
 

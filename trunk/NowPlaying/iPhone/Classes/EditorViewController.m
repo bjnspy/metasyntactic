@@ -15,29 +15,25 @@
 #import "EditorViewController.h"
 
 @interface EditorViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (assign) id object;
 @end
 
 
 @implementation EditorViewController
 
-@synthesize navigationController;
 @synthesize object;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.object = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) controller
+- (id) initWithController:(AbstractNavigationController*) navigationController_
                withObject:(id) object_
              withSelector:(SEL) selector_ {
-    if (self = [super init]) {
-        self.navigationController = controller;
+    if (self = [super initWithNavigationController:navigationController_]) {
         self.object = object_;
         selector = selector_;
     }
