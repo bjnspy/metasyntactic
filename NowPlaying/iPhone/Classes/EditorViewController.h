@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface EditorViewController : UIViewController {
+#import "AbstractFullScreenViewController.h"
+
+@interface EditorViewController : AbstractFullScreenViewController {
 @protected
-    AbstractNavigationController* navigationController;
     id object;
     SEL selector;
 }

@@ -181,6 +181,7 @@
 		747988750F745E680057E111 /* AbstractFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747988740F745E680057E111 /* AbstractFullScreenViewController.m */; };
 		747988780F745EC40057E111 /* AbstractFullScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747988770F745EC40057E111 /* AbstractFullScreenTableViewController.m */; };
 		7479898A0F746CEC0057E111 /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747989890F746CEC0057E111 /* AbstractTableViewController.m */; };
+		74798D010F74B7C80057E111 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74798D000F74B7C80057E111 /* SwitchCell.m */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
@@ -682,6 +683,8 @@
 		747988770F745EC40057E111 /* AbstractFullScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenTableViewController.m; sourceTree = "<group>"; };
 		747989880F746CEC0057E111 /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
 		747989890F746CEC0057E111 /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
+		74798CFF0F74B7C80057E111 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		74798D000F74B7C80057E111 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
 		747AB7A90EB956DC002438D0 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
@@ -1453,6 +1456,8 @@
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */,
 				7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */,
+				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
+				74798D000F74B7C80057E111 /* SwitchCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -2365,6 +2370,7 @@
 				747988750F745E680057E111 /* AbstractFullScreenViewController.m in Sources */,
 				747988780F745EC40057E111 /* AbstractFullScreenTableViewController.m in Sources */,
 				7479898A0F746CEC0057E111 /* AbstractTableViewController.m in Sources */,
+				74798D010F74B7C80057E111 /* SwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

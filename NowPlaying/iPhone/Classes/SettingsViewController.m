@@ -33,6 +33,7 @@
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
+#import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -144,19 +145,20 @@ typedef enum {
 }
 
 
-- (UITableViewCell*) createToggleCellWithText:(NSString*) text
+- (UITableViewCell*) createSwitchCellWithText:(NSString*) text
                                            on:(BOOL) on
                                      selector:(SEL) selector {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.font = [UIFont boldSystemFontOfSize:16];
-
-    UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    cell.accessoryView = picker;
-
-    [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
-    picker.on = on;
-    cell.text = text;
+    static NSString* reuseIdentifier = @"switchCellReuseIdentifier";
+    
+    SwitchCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[SwitchCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    }
+    
+    [cell.switch_ removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
+    [cell.switch_ addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
+    cell.switch_.on = on;
+    cell.textLabel.text = text;
 
     return cell;
 }
@@ -246,7 +248,7 @@ typedef enum {
             selector = @selector(onUseSmallFontsChanged:);
         }
 
-        return [self createToggleCellWithText:text on:on selector:selector];
+        return [self createSwitchCellWithText:text on:on selector:selector];
     }
 
     return nil;
@@ -254,7 +256,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForUpcomingRow:(NSInteger) row {
-    return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+    return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
                                        on:self.model.upcomingEnabled
                                  selector:@selector(onUpcomingEnabledChanged:)];
 }
@@ -262,7 +264,7 @@ typedef enum {
 
 - (UITableViewCell*) cellForDvdBlurayRow:(NSInteger) row {
     if (row == 0) {
-        return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+        return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
                                            on:self.model.dvdBlurayEnabled
                                      selector:@selector(onDvdBlurayEnabledChanged:)];
     } else {
@@ -286,7 +288,7 @@ typedef enum {
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
     if (row == 0) {
-        return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+        return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
                                            on:self.model.netflixEnabled
                                      selector:@selector(onNetflixEnabledChanged:)];
     } else {
