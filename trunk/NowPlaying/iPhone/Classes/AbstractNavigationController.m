@@ -28,7 +28,6 @@
 
 @interface AbstractNavigationController()
 @property (assign) ApplicationTabBarController* tabBarController;
-@property (retain) SearchViewController* searchViewController;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 @end
@@ -37,13 +36,11 @@
 @implementation AbstractNavigationController
 
 @synthesize tabBarController;
-@synthesize searchViewController;
 @synthesize postersViewController;
 @synthesize visible;
 
 - (void) dealloc {
     self.tabBarController = nil;
-    self.searchViewController = nil;
     self.postersViewController = nil;
 
     [super dealloc];

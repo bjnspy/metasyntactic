@@ -38,7 +38,6 @@
 @class ApplePosterDownloader;
 @class Application;
 @class ApplicationTabBarController;
-@class AttributeCell;
 @class AutoResizingCell;
 @class BackgroundInvocation;
 @class BlurayCache;
@@ -85,12 +84,15 @@
 @class NetflixSearchViewController;
 @class NetflixViewController;
 @class NetworkUtilities;
-@class NonClippingView;
 @class NoneScoreProvider;
 @class NotificationCenter;
 @class AppDelegate;
 @class Controller;
 @class Model;
+@class Operation;
+@class Operation1;
+@class Operation2;
+@class OperationQueue;
 @class Person;
 @class PersonPosterCache;
 @class Performance;
@@ -115,9 +117,7 @@
 @class SearchEngineDelegate;
 @class SearchRequest;
 @class SearchResult;
-@class SearchViewController;
 @class SettingCell;
-@class SettingsNavigationController;
 @class SettingsViewController;
 @class Status;
 @class TappableActivityIndicatorView;

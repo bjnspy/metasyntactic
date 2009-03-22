@@ -15,7 +15,6 @@
 @interface AbstractNavigationController : UINavigationController {
 @private
     ApplicationTabBarController* tabBarController;
-    SearchViewController* searchViewController;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
 

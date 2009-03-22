@@ -187,6 +187,10 @@
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
+		747BE9590F75FAE3008F5B2B /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE9580F75FAE3008F5B2B /* OperationQueue.m */; };
+		747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE95E0F75FCA8008F5B2B /* Operation.m */; };
+		747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96B0F75FEDE008F5B2B /* Operation2.m */; };
+		747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96E0F75FF23008F5B2B /* Operation1.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */; };
@@ -696,6 +700,14 @@
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
+		747BE9570F75FAE3008F5B2B /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
+		747BE9580F75FAE3008F5B2B /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationQueue.m; sourceTree = "<group>"; };
+		747BE95D0F75FCA8008F5B2B /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
+		747BE95E0F75FCA8008F5B2B /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
+		747BE96A0F75FEDE008F5B2B /* Operation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation2.h; sourceTree = "<group>"; };
+		747BE96B0F75FEDE008F5B2B /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation2.m; sourceTree = "<group>"; };
+		747BE96D0F75FF23008F5B2B /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation1.h; sourceTree = "<group>"; };
+		747BE96E0F75FF23008F5B2B /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
 		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
@@ -1421,20 +1433,22 @@
 				74798DCB0F74BE590057E111 /* ImageCells */,
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
-				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
-				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
-				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
-				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
-				741377AF0E64765000404519 /* TheaterNameCell.h */,
-				741377B00E64765000404519 /* TheaterNameCell.m */,
 				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
 				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
+				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
+				74798D000F74B7C80057E111 /* SwitchCell.m */,
+				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
+				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
+				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
+				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
+				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
+				743394100E61E52000D285F0 /* MovieOverviewCell.m */,
+				741377AF0E64765000404519 /* TheaterNameCell.h */,
+				741377B00E64765000404519 /* TheaterNameCell.m */,
 				740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */,
 				740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */,
 				740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */,
 				740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */,
-				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
-				743394100E61E52000D285F0 /* MovieOverviewCell.m */,
 				749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */,
 				749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */,
 				749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */,
@@ -1445,8 +1459,6 @@
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */,
 				7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */,
-				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
-				74798D000F74B7C80057E111 /* SwitchCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1589,10 +1601,10 @@
 				745A08850F2EB444002F64C6 /* AbstractImageCell.m */,
 				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
 				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
-				747AB85F0EB963AE002438D0 /* DVDCell.h */,
-				747AB8600EB963AE002438D0 /* DVDCell.m */,
 				7479D8340E65255F00D91649 /* UpcomingMovieCell.h */,
 				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
+				747AB85F0EB963AE002438D0 /* DVDCell.h */,
+				747AB8600EB963AE002438D0 /* DVDCell.m */,
 				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
 				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
 			);
@@ -1608,6 +1620,21 @@
 				74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */,
 			);
 			name = DVD;
+			sourceTree = "<group>";
+		};
+		747BE95C0F75FC92008F5B2B /* OperationQueue */ = {
+			isa = PBXGroup;
+			children = (
+				747BE9570F75FAE3008F5B2B /* OperationQueue.h */,
+				747BE9580F75FAE3008F5B2B /* OperationQueue.m */,
+				747BE95D0F75FCA8008F5B2B /* Operation.h */,
+				747BE95E0F75FCA8008F5B2B /* Operation.m */,
+				747BE96D0F75FF23008F5B2B /* Operation1.h */,
+				747BE96E0F75FF23008F5B2B /* Operation1.m */,
+				747BE96A0F75FEDE008F5B2B /* Operation2.h */,
+				747BE96B0F75FEDE008F5B2B /* Operation2.m */,
+			);
+			name = OperationQueue;
 			sourceTree = "<group>";
 		};
 		747DA1630EF83B0D0066B881 /* Netflix */ = {
@@ -1875,6 +1902,7 @@
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;
 			children = (
+				747BE95C0F75FC92008F5B2B /* OperationQueue */,
 				74616D9D0F15D8EC0004B610 /* Invocation.h */,
 				74616D9E0F15D8EC0004B610 /* Invocation.m */,
 				74616D9F0F15D8EC0004B610 /* Invocation2.h */,
@@ -2377,6 +2405,10 @@
 				747988780F745EC40057E111 /* AbstractFullScreenTableViewController.m in Sources */,
 				7479898A0F746CEC0057E111 /* AbstractTableViewController.m in Sources */,
 				74798D010F74B7C80057E111 /* SwitchCell.m in Sources */,
+				747BE9590F75FAE3008F5B2B /* OperationQueue.m in Sources */,
+				747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */,
+				747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */,
+				747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

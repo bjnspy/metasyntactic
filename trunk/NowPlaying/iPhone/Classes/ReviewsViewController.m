@@ -98,7 +98,7 @@
 
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewBodyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         }
 
         if (review.link.length != 0) {
