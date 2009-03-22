@@ -118,20 +118,20 @@
 
 + (NSArray*) splitIntoChunks:(NSString*) string {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     NSInteger start = 0;
     NSInteger textLength = string.length;
     NSCharacterSet* newlineCharacterSet = [NSCharacterSet newlineCharacterSet];
     NSCharacterSet* whitespaceCharacterSet = [NSCharacterSet whitespaceCharacterSet];
     NSCharacterSet* whitespaceAndNewlineCharacterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    
+
     while (start < textLength) {
         NSInteger end = MIN(start + 1000, textLength);
 
         NSRange newlineRange = [string rangeOfCharacterFromSet:newlineCharacterSet
                                                           options:0
                                                             range:NSMakeRange(end, textLength - end)];
-        
+
         if (newlineRange.length > 0) {
             if (newlineRange.location < 2000 + start) {
                 end = newlineRange.location;
@@ -139,20 +139,20 @@
                 NSRange whitespaceRange = [string rangeOfCharacterFromSet:whitespaceCharacterSet
                                                                   options:0
                                                                     range:NSMakeRange(end, textLength - end)];
-                
+
                 if (whitespaceRange.location < 2000 + start) {
                     end = whitespaceRange.location;
-                } 
+                }
             }
         }
-        
+
         NSString* substring = [string substringWithRange:NSMakeRange(start, end - start)];
         substring = [substring stringByTrimmingCharactersInSet:whitespaceAndNewlineCharacterSet];
-        
+
         [array addObject:substring];
         start = end;
     }
-    
+
     return array;
 }
 
