@@ -10,26 +10,26 @@
 @private
     NSOperationQueue* queue;
     NSMutableArray* boundedOperations;
-    NSLock* gate;
+    NSLock* boundedOperationsGate;
 }
 
 + (OperationQueue*) operationQueue;
 
-- (void) performSelector:(SEL) selector onTarget:(id) target;
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object;
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2;
+- (void) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate;
+- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate;
+- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate;
 
-- (void) performSelector:(SEL) selector onTarget:(id) target priority:(NSOperationQueuePriority) priority;
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object priority:(NSOperationQueuePriority) priority;
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 priority:(NSOperationQueuePriority) priority;
+- (void) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate visible:(BOOL) visible;
+- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate visible:(BOOL) visible;
+- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate visible:(BOOL) visible;
 
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target;
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object;
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate;
 
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target priority:(NSOperationQueuePriority) priority;
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object priority:(NSOperationQueuePriority) priority;
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 priority:(NSOperationQueuePriority) priority;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate visible:(BOOL) visible;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate visible:(BOOL) visible;
+- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate visible:(BOOL) visible;
 
 /* @package */
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation;

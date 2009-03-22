@@ -14,16 +14,16 @@
 
 #import "Controller.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "AlertUtilities.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LocationManager.h"
-#import "AppDelegate.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "ScoreCache.h"
-#import "ThreadingUtilities.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -71,38 +71,9 @@
 }
 
 
-- (BOOL) tooSoon:(NSDate*) lastDate {
-    if (lastDate == nil) {
-        return NO;
-    }
-
-    NSDate* now = [NSDate date];
-
-    if (![DateUtilities isSameDay:now date:lastDate]) {
-        // different days. we definitely need to refresh
-        return NO;
-    }
-
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
-    // same day, check if they're at least 8 hours apart.
-    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
-        return NO;
-    }
-
-    // it's been less than 8 hours. it's too soon to refresh
-    return YES;
-}
-
-
 - (void) spawnDataProviderLookupThread {
     NSAssert([NSThread isMainThread], nil);
-    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
-        [self onDataProviderUpdateComplete];
-    } else {
-        [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
-    }
+    [self.model.dataProvider update:self.model.searchDate delegate:self context:nil force:NO];
 }
 
 
@@ -132,10 +103,10 @@
 
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
-    [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:determineLocationLock
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
+                                         onTarget:self
+                                             gate:determineLocationLock
+                                          visible:YES];
 }
 
 
@@ -143,6 +114,7 @@
     NSAssert([NSThread isMainThread], nil);
     [self.model update];
     [self.model.netflixCache update];
+    //[self.model.largePosterCache updateIndices];
 }
 
 

@@ -20,12 +20,14 @@
 #import "NotificationCenter.h"
 #import "Controller.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) OperationQueue* operationQueue;
 @property (retain) NotificationCenter* notificationCenter;
 @property (retain) Controller* controller;
 @property (retain) Model* model;
@@ -41,6 +43,7 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize operationQueue;
 @synthesize notificationCenter;
 @synthesize controller;
 @synthesize model;
@@ -51,6 +54,7 @@ static AppDelegate* appDelegate = nil;
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
+    self.operationQueue = nil;
     self.notificationCenter = nil;
     self.controller = nil;
     self.model = nil;
@@ -89,6 +93,7 @@ static AppDelegate* appDelegate = nil;
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
+    self.operationQueue = [OperationQueue operationQueue];
     self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
 
     [window addSubview:tabBarController.view];
@@ -145,6 +150,11 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
+}
+
+
++ (OperationQueue*) operationQueue {
+    return appDelegate.operationQueue;
 }
 
 
