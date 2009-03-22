@@ -18,6 +18,8 @@
     UILabel* label;
 }
 
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+
 - (void) setReview:(Review*) review;
 
 + (CGFloat) height:(Review*) review;

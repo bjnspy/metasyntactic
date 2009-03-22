@@ -582,9 +582,6 @@ const double LOAD_DELAY = 1;
     [self loadPage:1 delay:LOAD_DELAY];
 
     [self.view addSubview:scrollView];
-    //[self.view addSubview:toolbar];
-
-    //self.view = view;
 }
 
 
