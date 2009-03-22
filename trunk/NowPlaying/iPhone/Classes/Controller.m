@@ -130,11 +130,6 @@
 }
 
 
-- (void) spawnScoresLookupThread {
-    NSAssert([NSThread isMainThread], nil);
-}
-
-
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
     [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
