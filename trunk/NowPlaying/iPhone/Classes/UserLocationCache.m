@@ -19,7 +19,6 @@
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "NotificationCenter.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @interface UserLocationCache()
