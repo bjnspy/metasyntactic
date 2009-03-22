@@ -39,7 +39,7 @@
 
 - (BOOL) isStale:(Theater*) theater;
 
-- (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context;
+- (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context force:(BOOL) force;
 - (void) saveResult:(LookupResult*) result;
 
 - (void) addBookmark:(NSString*) canonicalTitle;

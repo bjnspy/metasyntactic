@@ -16,6 +16,7 @@
 @private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
+    OperationQueue* operationQueue;
     NotificationCenter* notificationCenter;
 
     Model* model;
@@ -38,7 +39,9 @@
 
 + (UIWindow*) window;
 
++ (OperationQueue*) operationQueue;
 + (NotificationCenter*) notificationCenter;
+
 + (void) addNotification:(NSString*) notification;
 + (void) addNotifications:(NSArray*) notifications;
 + (void) removeNotification:(NSString*) notification;

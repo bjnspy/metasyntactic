@@ -27,7 +27,6 @@
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
 #import "Model.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @interface PosterCache()

@@ -27,9 +27,9 @@
 #import "NotificationCenter.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Performance.h"
 #import "Theater.h"
-#import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 
 @interface AbstractDataProvider()
@@ -379,18 +379,20 @@
 
 - (void) update:(NSDate*) searchDate
        delegate:(id<DataProviderUpdateDelegate>) delegate
-        context:(id) context {
+        context:(id) context
+          force:(BOOL) force {
     LookupRequest* request = [LookupRequest requestWithSearchDate:searchDate
                                                          delegate:delegate
                                                           context:context
+                                                            force:force
                                                     currentMovies:self.movies
                                                   currentTheaters:self.theaters];
 
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:request
-                                      gate:gate
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
+                                         onTarget:self
+                                       withObject:request
+                                             gate:gate
+                                          visible:YES];
 
 
 }
@@ -488,13 +490,41 @@
 }
 
 
+- (BOOL) tooSoon:(NSDate*) lastDate {
+    if (lastDate == nil) {
+        return NO;
+    }
+    
+    NSDate* now = [NSDate date];
+    
+    if (![DateUtilities isSameDay:now date:lastDate]) {
+        // different days. we definitely need to refresh
+        return NO;
+    }
+    
+    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
+    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
+    
+    // same day, check if they're at least 8 hours apart.
+    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
+        return NO;
+    }
+    
+    // it's been less than 8 hours. it's too soon to refresh
+    return YES;
+}
+
+
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
     NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
-    [AppDelegate addNotifications:notifications];
-    {
-        [self updateBackgroundEntryPointWorker:request];
+
+    if (request.force || ![self tooSoon:[self lastLookupDate]]) {
+        [AppDelegate addNotifications:notifications];
+        {
+            [self updateBackgroundEntryPointWorker:request];
+        }
+        [AppDelegate removeNotifications:notifications];
     }
-    [AppDelegate removeNotifications:notifications];
 
     [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }

@@ -18,6 +18,7 @@
 @property (retain) NSDate* searchDate;
 @property (retain) id<DataProviderUpdateDelegate> delegate;
 @property (retain) id context;
+@property BOOL force;
 @property (retain) NSArray* currentMovies;
 @property (retain) NSArray* currentTheaters;
 @end
@@ -27,6 +28,7 @@
 @synthesize searchDate;
 @synthesize delegate;
 @synthesize context;
+@synthesize force;
 @synthesize currentMovies;
 @synthesize currentTheaters;
 
@@ -34,38 +36,43 @@
     self.searchDate = nil;
     self.delegate = nil;
     self.context = nil;
+    self.force = NO;
     self.currentMovies = nil;
     self.currentTheaters = nil;
-
+    
     [super dealloc];
 }
 
 
 - (id) initWithSearchDate:(NSDate*) searchDate_
                  delegate:(id<DataProviderUpdateDelegate>) delegate_
-                 context:(id) context_
+                  context:(id) context_
+                    force:(BOOL) force_
             currentMovies:(NSArray*) currentMovies_
           currentTheaters:(NSArray*) currentTheaters_ {
     if (self = [super init]) {
         self.searchDate = searchDate_;
         self.delegate = delegate_;
         self.context = context_;
+        self.force = force_;
         self.currentMovies = currentMovies_;
         self.currentTheaters = currentTheaters_;
     }
-
+    
     return self;
 }
 
 
 + (LookupRequest*) requestWithSearchDate:(NSDate*) searchDate
                                 delegate:(id<DataProviderUpdateDelegate>) delegate
-                                context:(id) context
+                                 context:(id) context
+                                   force:(BOOL) force
                            currentMovies:(NSArray*) currentMovies
                          currentTheaters:(NSArray*) currentTheaters {
     return [[[LookupRequest alloc] initWithSearchDate:searchDate
                                              delegate:delegate
-                                             context:context
+                                              context:context
+                                                force:force
                                         currentMovies:currentMovies
                                       currentTheaters:currentTheaters] autorelease];
 }
