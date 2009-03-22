@@ -52,15 +52,6 @@
 }
 
 
-- (void) updateUserAddressLocation:(NSString*) userAddress {
-    [ThreadingUtilities backgroundSelector:@selector(downloadUserAddressLocationBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:userAddress
-                                      gate:gate
-                                   visible:YES];
-}
-
-
 - (BOOL) containsNumber:(NSString*) string {
     for (int i = 0; i < string.length; i++) {
         unichar c = [string characterAtIndex:i];
