@@ -21,8 +21,6 @@
 
 + (UserLocationCache*) cache;
 
-- (void) updateUserAddressLocation:(NSString*) userAddress;
-
 - (void) setLocation:(Location*) location forUserAddress:(NSString*) userAddress;
 - (Location*) locationForUserAddress:(NSString*) userAddress;
 
