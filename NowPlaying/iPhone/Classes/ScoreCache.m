@@ -58,12 +58,12 @@ property_wrapper(BOOL, updated, Updated);
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithModel:model];
-        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithModel:model];
-        self.googleScoreProvider = [GoogleScoreProvider providerWithModel:model];
-        self.noneScoreProvider = [NoneScoreProvider providerWithModel:model];
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
+        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithModel:self.model];
+        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithModel:self.model];
+        self.googleScoreProvider = [GoogleScoreProvider providerWithModel:self.model];
+        self.noneScoreProvider = [NoneScoreProvider providerWithModel:self.model];
     }
 
     return self;
@@ -85,13 +85,13 @@ property_wrapper(BOOL, updated, Updated);
 
 
 - (id<ScoreProvider>) currentScoreProvider {
-    if (model.rottenTomatoesScores) {
+    if (self.model.rottenTomatoesScores) {
         return self.rottenTomatoesScoreProvider;
-    } else if (model.metacriticScores) {
+    } else if (self.model.metacriticScores) {
         return self.metacriticScoreProvider;
-    } else if (model.googleScores) {
+    } else if (self.model.googleScores) {
         return self.googleScoreProvider;
-    } else if (model.noScores) {
+    } else if (self.model.noScores) {
         return self.noneScoreProvider;
     } else {
         return nil;
@@ -125,7 +125,7 @@ property_wrapper(BOOL, updated, Updated);
 
 
 - (void) update {
-    if (model.userAddress.length == 0) {
+    if (self.model.userAddress.length == 0) {
         return;
     }
 

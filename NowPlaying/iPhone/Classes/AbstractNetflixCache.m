@@ -24,14 +24,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (NSString*) recommendationKey {
     return @"http://schemas.netflix.com/feed.recommendations";
 }
@@ -71,8 +63,8 @@
     OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
                                                 secret:[Application netflixSecret]];
 
-    OAToken* token = [OAToken tokenWithKey:model.netflixKey
-                                    secret:model.netflixSecret];
+    OAToken* token = [OAToken tokenWithKey:self.model.netflixKey
+                                    secret:self.model.netflixSecret];
 
     OAMutableURLRequest* request =
     [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]

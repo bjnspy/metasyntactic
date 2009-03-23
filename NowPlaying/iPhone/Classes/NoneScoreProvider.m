@@ -21,14 +21,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (NoneScoreProvider*) providerWithModel:(Model*) model; {
     return [[[NoneScoreProvider alloc] initWithModel:model] autorelease];
 }

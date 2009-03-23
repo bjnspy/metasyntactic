@@ -27,14 +27,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (RottenTomatoesScoreProvider*) providerWithModel:(Model*) model {
     return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
 }

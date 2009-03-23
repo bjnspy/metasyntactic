@@ -35,14 +35,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (AmazonCache*) cacheWithModel:(Model*) model {
     return [[[AmazonCache alloc] initWithModel:model] autorelease];
 }

@@ -27,14 +27,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (MetacriticScoreProvider*) providerWithModel:(Model*) model {
     return [[[MetacriticScoreProvider alloc] initWithModel:model] autorelease];
 }

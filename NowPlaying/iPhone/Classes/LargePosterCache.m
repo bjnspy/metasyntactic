@@ -52,8 +52,8 @@ const int START_YEAR = 1912;
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
         self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
     }
@@ -226,7 +226,7 @@ const int START_YEAR = 1912;
 
 
 - (void) update {
-    if (model.userAddress.length == 0) {
+    if (self.model.userAddress.length == 0) {
         return;
     }
 
@@ -318,11 +318,11 @@ const int START_YEAR = 1912;
     NSAssert(![NSThread isMainThread], @"");
 
     NSArray* array;
-    [gate lock];
+    [self.gate lock];
     {
         array = [self posterUrlsNoLock:movie];
     }
-    [gate unlock];
+    [self.gate unlock];
     return array;
 }
 
@@ -347,13 +347,13 @@ const int START_YEAR = 1912;
                            urls:(NSArray*) urls
                           index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
-    [gate lock];
+    [self.gate lock];
     {
         if (![FileUtilities fileExists:[self posterFilePath:movie index:index]]) {
             [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
@@ -373,12 +373,12 @@ const int START_YEAR = 1912;
 
 - (NSInteger) posterCountForMovie:(Movie*) movie {
     NSInteger count;
-    [gate lock];
+    [self.gate lock];
     {
         NSArray* urls = [self posterUrlsNoLock:movie];
         count = urls.count;
     }
-    [gate unlock];
+    [self.gate unlock];
     return count;
 }
 

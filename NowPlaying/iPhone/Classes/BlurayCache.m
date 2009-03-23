@@ -26,21 +26,13 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (BlurayCache*) cacheWithModel:(Model*) model {
     return [[[BlurayCache alloc] initWithModel:model] autorelease];
 }
 
 
 - (NSArray*) loadBookmarksArray {
-    return [model bookmarkedBluray];
+    return [self.model bookmarkedBluray];
 }
 
 

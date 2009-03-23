@@ -41,14 +41,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (MutableNetflixCache*) cacheWithModel:(Model*) model {
     return [[[MutableNetflixCache alloc] initWithModel:model] autorelease];
 }
@@ -170,7 +162,7 @@
                error:(NSString**) error {
     *error = nil;
     NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", model.netflixUserId, queueType];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", self.model.netflixUserId, queueType];
 
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"POST"];
@@ -256,7 +248,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:arguments
-                                             gate:gate
+                                             gate:self.gate
                                          priority:Priority];
 }
 
@@ -272,7 +264,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
                                onTarget:self
                              withObject:arguments
-                                   gate:gate
+                                   gate:self.gate
                                priority:Priority];
 }
 
@@ -298,7 +290,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
-                                      gate:gate
+                                      gate:self.gate
                                    priority:Priority];
 }
 
@@ -306,7 +298,7 @@
 - (NSString*) putChangeRatingTo:(NSString*) rating
                        forMovie:(Movie*) movie
                  withIdentifier:(NSString*) identifier {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", model.netflixUserId, identifier];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", self.model.netflixUserId, identifier];
     OAMutableURLRequest* request = [self createURLRequest:address];
 
     NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
@@ -333,7 +325,7 @@
 - (NSString*) postChangeRatingTo:(NSString*) rating
                         forMovie:(Movie*) movie
                   withIdentifier:(NSString*) identifier {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", model.netflixUserId, identifier];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", self.model.netflixUserId, identifier];
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"POST"];
 
@@ -364,7 +356,7 @@
     // test if the user already has a rating set.  If so, we will 'PUT'
     // to that rating.  Otherwise we will 'POST' to it.
 
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", model.netflixUserId];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
     OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     [request setParameters:[NSArray arrayWithObject:parameter]];
@@ -450,7 +442,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
-                                      gate:gate
+                                      gate:self.gate
                                    priority:Priority];
 }
 
@@ -509,10 +501,10 @@
     NSString* address;
     if ([queue isInstantQueue]) {
         NSLog(@"Adding '%@' to instant queue.", movie.canonicalTitle);
-        address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", model.netflixUserId];
+        address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", self.model.netflixUserId];
     } else {
         NSLog(@"Adding '%@' to DVD queue.", movie.canonicalTitle);
-        address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", model.netflixUserId];
+        address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", self.model.netflixUserId];
     }
 
     OAMutableURLRequest* request = [self createURLRequest:address];

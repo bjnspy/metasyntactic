@@ -36,14 +36,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (GoogleScoreProvider*) providerWithModel:(Model*) model {
     return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
 }
@@ -55,7 +47,7 @@
 
 
 - (NSString*) serverUrl {
-    Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
+    Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
 
     if (location.postalCode == nil) {
         return nil;
@@ -67,7 +59,7 @@
 
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
-                                                                     toDate:model.searchDate
+                                                                     toDate:self.model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
