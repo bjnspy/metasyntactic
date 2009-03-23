@@ -32,20 +32,10 @@
 }
 
 
-- (void) setupTintColor {
-    if (self.model.isIronManTheme) {
-        self.navigationBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
-    } else {
-        self.navigationBar.tintColor = nil;
-    }
-}
-
-
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
         self.title = NSLocalizedString(@"Netflix", nil);
-        [self setupTintColor];
     }
 
     return self;
@@ -59,12 +49,6 @@
         self.netflixViewController = [[[NetflixViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:netflixViewController animated:NO];
     }
-}
-
-
-- (void) majorRefresh {
-    [super majorRefresh];
-    [self setupTintColor];
 }
 
 @end

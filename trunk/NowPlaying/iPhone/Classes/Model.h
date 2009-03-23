@@ -70,13 +70,6 @@ enum ViewControllerType {
 - (BOOL) votedForIcon;
 - (void) setVotedForIcon;
 
-/*
-- (void) updateAllCaches;
-- (void) updateDVDCache;
-- (void) updateUpcomingCache;
-- (void) updateNetflixCache;
-*/
-
 - (BOOL) screenRotationEnabled;
 - (void) setScreenRotationEnabled:(BOOL) enabled;
 
@@ -86,11 +79,6 @@ enum ViewControllerType {
 - (void) setDvdBlurayEnabled:(BOOL) value;
 - (void) setUpcomingEnabled:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;
-
-- (NSString*) netflixTheme;
-- (void) setNetflixTheme:(NSString*) theme;
-- (NSArray*) netflixThemes;
-- (BOOL) isIronManTheme;
 
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
