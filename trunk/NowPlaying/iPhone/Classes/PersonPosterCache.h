@@ -16,8 +16,8 @@
 
 @interface PersonPosterCache : AbstractCache {
 @private
-    LinkedSet* prioritizedPeople;
-    LinkedSet* normalPeople;
+    //LinkedSet* prioritizedPeople;
+    //LinkedSet* normalPeople;
 }
 
 + (PersonPosterCache*) cacheWithModel:(Model*) model;

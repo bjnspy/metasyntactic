@@ -34,19 +34,19 @@
 #import "XmlElement.h"
 
 @interface PersonPosterCache()
-@property (retain) LinkedSet* normalPeople;
-@property (retain) LinkedSet* prioritizedPeople;
+//@property (retain) LinkedSet* normalPeople;
+//@property (retain) LinkedSet* prioritizedPeople;
 @end
 
 
 @implementation PersonPosterCache
 
-@synthesize normalPeople;
-@synthesize prioritizedPeople;
+//@synthesize normalPeople;
+//@synthesize prioritizedPeople;
 
 - (void) dealloc {
-    self.normalPeople = nil;
-    self.prioritizedPeople = nil;
+    //self.normalPeople = nil;
+    //self.prioritizedPeople = nil;
 
     [super dealloc];
 }
@@ -54,8 +54,8 @@
 
 - (id) initWithModel:(Model*) model__ {
     if (self = [super initWithModel:model__]) {
-        self.normalPeople = [LinkedSet set];
-        self.prioritizedPeople = [LinkedSet setWithCountLimit:8];
+        //self.normalPeople = [LinkedSet set];
+        //self.prioritizedPeople = [LinkedSet setWithCountLimit:8];
 /*
         [ThreadingUtilities backgroundSelector:@selector(updatePostersBackgroundEntryPoint)
                                       onTarget:self
@@ -76,7 +76,7 @@
 - (void) update:(Person*) person {
     [self.gate lock];
     {
-        [normalPeople addObject:person];
+        //[normalPeople addObject:person];
         [self.gate signal];
     }
     [self.gate unlock];
@@ -86,7 +86,7 @@
 - (void) prioritizePerson:(Person*) person {
     [self.gate lock];
     {
-        [prioritizedPeople addObject:person];
+        //[prioritizedPeople addObject:person];
         [self.gate signal];
     }
     [self.gate unlock];
@@ -198,24 +198,6 @@
         if (data.length > 0) {
             [AppDelegate minorRefresh];
         }
-    }
-}
-
-
-- (void) updatePostersBackgroundEntryPoint {
-    while (YES) {
-        Person* person = nil;
-
-        [self.gate lock];
-        {
-            while ((person = [prioritizedPeople removeLastObjectAdded]) == nil &&
-                   (person = [normalPeople removeLastObjectAdded]) == nil) {
-                [self.gate wait];
-            }
-        }
-        [self.gate unlock];
-
-        [self downloadPoster:person];
     }
 }
 
