@@ -16,8 +16,9 @@
 
 @interface NetflixViewController : RefreshableTableViewController<UIAlertViewDelegate> {
 @private
-    NetflixSearchViewController* searchViewController;
-
+    UISearchBar* searchBar;
+    NetflixSearchDisplayController* searchDisplayController;
+    
     NSInteger mostPopularTitleCount;
 }
 

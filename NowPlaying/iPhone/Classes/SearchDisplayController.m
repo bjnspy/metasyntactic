@@ -27,7 +27,7 @@
 
 @interface SearchDisplayController()
 @property (assign) AbstractNavigationController* navigationController;
-@property (retain) SearchEngine* searchEngineData;
+@property (retain) AbstractSearchEngine* searchEngineData;
 @property (retain) SearchResult* searchResult;
 @end
 
@@ -61,6 +61,7 @@
             contentsController:(UIViewController *)viewController_ {
     if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
         self.navigationController = navigationController_;
+        
         self.delegate = self;
         self.searchResultsDataSource = self;
         self.searchResultsDelegate = self;
@@ -77,9 +78,15 @@
 }
 
 
-- (SearchEngine*) searchEngine {
+- (AbstractSearchEngine*) createSearchEngine {
+    return [SearchEngine engineWithModel:navigationController.model
+                                delegate:self];
+}
+
+
+- (AbstractSearchEngine*) searchEngine {
     if (searchEngineData == nil) {
-        self.searchEngineData = [SearchEngine engineWithModel:navigationController.model delegate:self];
+        self.searchEngineData = [self createSearchEngine];
     }
     
     return searchEngineData;

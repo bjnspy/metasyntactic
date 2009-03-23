@@ -191,6 +191,8 @@
 		747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE95E0F75FCA8008F5B2B /* Operation.m */; };
 		747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96B0F75FEDE008F5B2B /* Operation2.m */; };
 		747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96E0F75FF23008F5B2B /* Operation1.m */; };
+		747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */; };
+		747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */; };
@@ -708,6 +710,10 @@
 		747BE96B0F75FEDE008F5B2B /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation2.m; sourceTree = "<group>"; };
 		747BE96D0F75FF23008F5B2B /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation1.h; sourceTree = "<group>"; };
 		747BE96E0F75FF23008F5B2B /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
+		747BF3F80F7743F0008F5B2B /* NetflixSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchDisplayController.h; sourceTree = "<group>"; };
+		747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchDisplayController.m; sourceTree = "<group>"; };
+		747BF4760F77486F008F5B2B /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
+		747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchDisplayController.m; sourceTree = "<group>"; };
 		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
@@ -1325,8 +1331,12 @@
 		744245BA0E89DA0F00ACDBCF /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				747BF4760F77486F008F5B2B /* AbstractSearchDisplayController.h */,
+				747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */,
 				747986850F7448C30057E111 /* SearchDisplayController.h */,
 				747986860F7448C30057E111 /* SearchDisplayController.m */,
+				747BF3F80F7743F0008F5B2B /* NetflixSearchDisplayController.h */,
+				747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -2409,6 +2419,8 @@
 				747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */,
 				747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */,
 				747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */,
+				747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */,
+				747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

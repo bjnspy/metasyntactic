@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+/*
 #import "NetflixSearchViewController.h"
 
 #import "AbstractNavigationController.h"
@@ -171,21 +171,6 @@
         return cell;
     } else {
         return nil;
-        /*
-        static NSString* reuseIdentifier = @"personReuseIdentifier";
-
-        PersonCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[PersonCell alloc] initWithFrame:CGRectZero
-                                      reuseIdentifier:reuseIdentifier
-                                                model:self.model] autorelease];
-        }
-
-        Person* person = [people objectAtIndex:indexPath.row];
-        [cell setPerson:person owner:self];
-
-        return cell;
-         */
     }
 }
 
@@ -231,3 +216,4 @@
 }
 
 @end
+*/
