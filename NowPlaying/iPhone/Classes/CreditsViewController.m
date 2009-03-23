@@ -317,7 +317,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
 
-    UITextView* textView = [[[UITextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     textView.editable = NO;
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 

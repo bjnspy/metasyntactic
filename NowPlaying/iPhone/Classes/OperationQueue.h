@@ -13,7 +13,8 @@
 // limitations under the License.
 
 typedef enum {
-    Priority = NSOperationQueuePriorityVeryHigh,
+    Now      = NSOperationQueuePriorityVeryHigh,
+    Priority = NSOperationQueuePriorityVeryHigh - 1,
     Search   = NSOperationQueuePriorityHigh,
     High     = NSOperationQueuePriorityNormal,
     Normal   = NSOperationQueuePriorityLow,
