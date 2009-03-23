@@ -14,22 +14,14 @@
 
 @interface SearchResult : NSObject {
 @private
-    NSInteger requestId;
-    NSString* value;
-    NSArray* movies;
-    NSArray* theaters;
-    NSArray* upcomingMovies;
-    NSArray* dvds;
-    NSArray* bluray;
+    NSInteger requestId_;
+    NSString* value_;
+    NSArray* movies_;
+    NSArray* theaters_;
+    NSArray* upcomingMovies_;
+    NSArray* dvds_;
+    NSArray* bluray_;
 }
-
-@property (readonly) NSInteger requestId;
-@property (readonly, copy) NSString* value;
-@property (readonly, retain) NSArray* movies;
-@property (readonly, retain) NSArray* theaters;
-@property (readonly, retain) NSArray* upcomingMovies;
-@property (readonly, retain) NSArray* dvds;
-@property (readonly, retain) NSArray* bluray;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
@@ -38,5 +30,13 @@
                 upcomingMovies:(NSArray*) upcomingMovies
                           dvds:(NSArray*) dvds
                         bluray:(NSArray*) bluray;
+
+- (NSInteger) requestId;
+- (NSString*) value;
+- (NSArray*) movies;
+- (NSArray*) theaters;
+- (NSArray*) upcomingMovies;
+- (NSArray*) dvds;
+- (NSArray*) bluray;
 
 @end
