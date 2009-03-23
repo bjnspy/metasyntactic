@@ -33,6 +33,8 @@
 @property (readonly, retain) Controller* controller;
 @property (readonly, retain) Model* model;
 
++ (AppDelegate*) appDelegate;
+
 + (void) minorRefresh;
 + (void) majorRefresh;
 + (void) majorRefresh:(BOOL) force;

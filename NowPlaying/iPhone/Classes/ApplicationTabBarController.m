@@ -28,7 +28,6 @@
 #import "UpcomingMoviesNavigationController.h"
 
 @interface ApplicationTabBarController()
-@property (assign) AppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -44,7 +43,6 @@
 @synthesize upcomingMoviesNavigationController;
 @synthesize dvdNavigationController;
 @synthesize netflixNavigationController;
-@synthesize appDelegate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -52,7 +50,6 @@
     self.upcomingMoviesNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
-    self.appDelegate = nil;
 
     [super dealloc];
 }
@@ -103,11 +100,18 @@
 }
 
 
-- (id) initWithAppDelegate:(AppDelegate*) appDel {
-    if (self = [super init]) {
-        self.appDelegate = appDel;
+- (Model*) model {
+    return [[AppDelegate appDelegate] model];
+}
 
-        //[self resetTabs:NO];
+
+- (Controller*) controller {
+    return [[AppDelegate appDelegate] controller];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
         [self resetTabs];
 
         if (self.model.userAddress.length == 0) {
@@ -141,28 +145,18 @@
 }
 
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
-    return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
++ (ApplicationTabBarController*) controller {
+    return [[[ApplicationTabBarController alloc] init] autorelease];
 }
 
 
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
-    [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
+    self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
 
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
-}
-
-
-- (Model*) model {
-    return appDelegate.model;
-}
-
-
-- (Controller*) controller {
-    return appDelegate.controller;
 }
 
 
@@ -243,7 +237,6 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation {
-    [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }

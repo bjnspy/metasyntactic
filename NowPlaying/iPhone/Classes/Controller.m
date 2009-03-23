@@ -32,7 +32,6 @@
 #import "Utilities.h"
 
 @interface Controller()
-@property (assign) AppDelegate* appDelegate;
 @property (retain) NSLock* determineLocationLock;
 @property (retain) LocationManager* locationManager;
 @end
@@ -40,12 +39,10 @@
 
 @implementation Controller
 
-@synthesize appDelegate;
 @synthesize determineLocationLock;
 @synthesize locationManager;
 
 - (void) dealloc {
-    self.appDelegate = nil;
     self.determineLocationLock = nil;
     self.locationManager = nil;
 
@@ -53,14 +50,8 @@
 }
 
 
-- (Model*) model {
-    return appDelegate.model;
-}
-
-
-- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
+- (id) init {
     if (self = [super init]) {
-        self.appDelegate = appDelegate_;
         self.locationManager = [LocationManager managerWithController:self];
         self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
@@ -69,8 +60,13 @@
 }
 
 
-+ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
-    return [[[Controller alloc] initWithAppDelegate:appDelegate] autorelease];
+- (Model*) model {
+    return [[AppDelegate appDelegate] model];
+}
+
+
++ (Controller*) controller {
+    return [[[Controller alloc] init] autorelease];
 }
 
 
@@ -249,21 +245,21 @@
 
 - (void) setDvdBlurayEnabled:(BOOL) value {
     [self.model setDvdBlurayEnabled:value];
-    [appDelegate.tabBarController resetTabs];
+    [[AppDelegate appDelegate].tabBarController resetTabs];
     [self updateDVDCache];
 }
 
 
 - (void) setUpcomingEnabled:(BOOL) value {
     [self.model setUpcomingEnabled:value];
-    [appDelegate.tabBarController resetTabs];
+    [[AppDelegate appDelegate].tabBarController resetTabs];
     [self updateUpcomingCache];
 }
 
 
 - (void) setNetflixEnabled:(BOOL) value {
     [self.model setNetflixEnabled:value];
-    [appDelegate.tabBarController resetTabs];
+    [[AppDelegate appDelegate].tabBarController resetTabs];
     [Application resetNetflixDirectories];
     [self updateNetflixCache];
 }

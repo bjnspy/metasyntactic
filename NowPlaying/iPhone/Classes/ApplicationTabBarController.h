@@ -22,10 +22,7 @@
     NetflixNavigationController* netflixNavigationController;
 }
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
-
-- (Model*) model;
-- (Controller*) controller;
++ (ApplicationTabBarController*) controller;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
