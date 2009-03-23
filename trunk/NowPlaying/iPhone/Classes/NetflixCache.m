@@ -42,10 +42,10 @@
 #import "XmlElement.h"
 
 @interface NetflixCache()
-@property (retain) NSArray* feedsData;
-@property (retain) NSDictionary* queues;
-@property (retain) NSDate* lastQuotaErrorDate;
-@property (retain) NSMutableDictionary* presubmitRatings;
+@property (retain) NSArray* feedsData_;
+@property (retain) NSDictionary* queues_;
+@property (retain) NSDate* lastQuotaErrorDate_;
+@property (retain) NSMutableDictionary* presubmitRatings_;
 
 - (void) updateMovieDetails:(Movie*) movie;
 @end
@@ -165,16 +165,21 @@ static NSDictionary* availabilityMap = nil;
     }
 }
 
-@synthesize feedsData;
-@synthesize queues;
-@synthesize lastQuotaErrorDate;
-@synthesize presubmitRatings;
+@synthesize feedsData_;
+@synthesize queues_;
+@synthesize lastQuotaErrorDate_;
+@synthesize presubmitRatings_;
+
+property_wrapper(NSArray*, feedsData, FeedsData);
+property_wrapper(NSDictionary*, queues, Queues);
+property_wrapper(NSDate*, lastQuotaErrorDate, LastQuotaErrorDate);
+property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 - (void) dealloc {
-    self.feedsData = nil;
-    self.queues = nil;
-    self.lastQuotaErrorDate = nil;
-    self.presubmitRatings = nil;
+    self.feedsData_ = nil;
+    self.queues_ = nil;
+    self.lastQuotaErrorDate_ = nil;
+    self.presubmitRatings_ = nil;
 
     [super dealloc];
 }
@@ -221,11 +226,11 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSArray*) feeds {
-    if (feedsData == nil) {
+    if (self.feedsData == nil) {
         self.feedsData = [self loadFeeds];
     }
 
-    return feedsData;
+    return self.feedsData;
 }
 
 
@@ -264,7 +269,7 @@ static NSDictionary* availabilityMap = nil;
         return nil;
     }
 
-    Queue* queue = [queues objectForKey:feed.key];
+    Queue* queue = [self.queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
         if (queue != nil) {
@@ -1307,7 +1312,7 @@ static NSDictionary* availabilityMap = nil;
     self.feedsData = feeds;
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
 
-    for (NSString* key in queues.allKeys) {
+    for (NSString* key in self.queues.allKeys) {
         if (![self feedsContainsKey:key]) {
             [dictionary removeObjectForKey:key];
         }
@@ -1353,7 +1358,7 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) userRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
 
-    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
+    NSString* presubmitRating = [self.presubmitRatings objectForKey:movie];
     if (presubmitRating != nil) {
         return presubmitRating;
     }

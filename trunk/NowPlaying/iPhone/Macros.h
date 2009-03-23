@@ -22,6 +22,10 @@
 #define ONE_YEAR   (365.0 * ONE_DAY)
 
 #define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
+#define property_wrapper(type,name1,name2)                  \
+- (type) name1 { return self.name1##_; }                    \
+- (void) set##name2:(type) name1 { self.name1##_ = name1; }
+
 
 #define SMALL_POSTER_HEIGHT 99.0
 #define FULL_SCREEN_POSTER_HEIGHT 460
