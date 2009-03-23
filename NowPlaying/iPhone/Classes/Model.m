@@ -104,7 +104,6 @@ static NSString* NETFLIX_KEY                            = @"netflixKey";
 static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
 static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
 static NSString* NETFLIX_SECRET                         = @"netflixSecret";
-static NSString* NETFLIX_THEME                          = @"netflixTheme";
 static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
 static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                              = @"runCount";
@@ -148,7 +147,6 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_LAST_NAME,
 &NETFLIX_PREFERRED_FORMATS,
 &NETFLIX_SECRET,
-&NETFLIX_THEME,
 &NETFLIX_USER_ID,
 &PRIORITIZE_BOOKMARKS,
 &RUN_COUNT,
@@ -176,7 +174,6 @@ static NSString** STRING_KEYS_TO_MIGRATE[] = {
 &NETFLIX_USER_ID,
 &NETFLIX_FIRST_NAME,
 &NETFLIX_LAST_NAME,
-&NETFLIX_THEME,
 };
 
 static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
@@ -590,30 +587,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) setUpcomingEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_DISABLED];
-}
-
-
-- (NSString*) netflixTheme {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:NETFLIX_THEME];
-    if (![[self netflixThemes] containsObject:result]) {
-        return [[self netflixThemes] objectAtIndex:1];
-    }
-    return result;
-}
-
-
-- (void) setNetflixTheme:(NSString*) value {
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:NETFLIX_THEME];
-}
-
-
-- (NSArray*) netflixThemes {
-    return [NSArray arrayWithObjects:@"Plain", @"IronMan", nil];
-}
-
-
-- (BOOL) isIronManTheme {
-    return [self.netflixTheme isEqual:@"IronMan"];
 }
 
 

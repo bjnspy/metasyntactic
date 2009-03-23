@@ -122,11 +122,7 @@ typedef enum {
             return 1;
         }
     } else if (section == NetflixSection) {
-        if (self.model.netflixEnabled) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return 1;
     }
 
     return 0;
@@ -287,14 +283,9 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
-    if (row == 0) {
-        return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
+    return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
                                            on:self.model.netflixEnabled
                                      selector:@selector(onNetflixEnabledChanged:)];
-    } else {
-        return [self createSettingCellWithKey:NSLocalizedString(@"Theme", nil)
-                                        value:self.model.netflixTheme];
-    }
 }
 
 
@@ -457,10 +448,7 @@ typedef enum {
 
 
 - (void) didSelectNetflixRow:(NSInteger) row {
-    if (row == 1) {
-        NetflixThemeViewController* controller = [[[NetflixThemeViewController alloc] initWithNavigationController:navigationController] autorelease];
-        [navigationController pushViewController:controller animated:YES];
-    }
+
 }
 
 
