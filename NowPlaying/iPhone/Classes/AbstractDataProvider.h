@@ -12,20 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractDataProvider : NSObject {
+#import "AbstractCache.h"
+
+@interface AbstractDataProvider : AbstractCache {
 @private
-    NSLock* gate;
+    NSArray* moviesData_;
+    NSArray* theatersData_;
+    NSDictionary* synchronizationInformationData_;
+    NSMutableDictionary* bookmarksData_;
 
-    Model* model;
-    NSArray* moviesData;
-    NSArray* theatersData;
-    NSDictionary* synchronizationInformationData;
-    NSMutableDictionary* bookmarksData;
-
-    NSMutableDictionary* performancesData;
+    NSMutableDictionary* performancesData_;
 }
-
-@property (readonly, retain) Model* model;
 
 - (id) initWithModel:(Model*) model;
 
