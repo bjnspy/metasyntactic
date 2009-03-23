@@ -14,28 +14,28 @@
 
 @interface SearchRequest : NSObject {
 @private
-    NSInteger requestId;
-    NSString* value;
-    NSString* lowercaseValue;
+    NSInteger requestId_;
+    NSString* value_;
+    NSString* lowercaseValue_;
 
-    NSArray* movies;
-    NSArray* theaters;
-    NSArray* upcomingMovies;
-    NSArray* dvds;
-    NSArray* bluray;
+    NSArray* movies_;
+    NSArray* theaters_;
+    NSArray* upcomingMovies_;
+    NSArray* dvds_;
+    NSArray* bluray_;
 }
-
-@property (readonly) NSInteger requestId;
-@property (readonly, copy) NSString* value;
-@property (readonly, copy) NSString* lowercaseValue;
-@property (readonly, retain) NSArray* movies;
-@property (readonly, retain) NSArray* theaters;
-@property (readonly, retain) NSArray* upcomingMovies;
-@property (readonly, retain) NSArray* dvds;
-@property (readonly, retain) NSArray* bluray;
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value
                            model:(Model*) model;
+
+- (NSInteger) requestId;
+- (NSString*) value;
+- (NSString*) lowercaseValue;
+- (NSArray*) movies;
+- (NSArray*) theaters;
+- (NSArray*) upcomingMovies;
+- (NSArray*) dvds;
+- (NSArray*) bluray;
 
 @end
