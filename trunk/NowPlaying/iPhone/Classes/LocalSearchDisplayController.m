@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SearchDisplayController.h"
+#import "LocalSearchDisplayController.h"
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
@@ -25,55 +25,17 @@
 #import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
 
-@interface SearchDisplayController()
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) AbstractSearchEngine* searchEngineData;
-@property (retain) SearchResult* searchResult;
-@end
 
-@implementation SearchDisplayController
-
-@synthesize navigationController;
-@synthesize searchEngineData;
-@synthesize searchResult;
-
-- (void) dealloc {
-    self.navigationController = nil;
-    self.searchEngineData = nil;
-    self.searchResult = nil;
-
-    [super dealloc];
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-
-- (Controller*) controller {
-    return navigationController.controller;
-}
-
+@implementation LocalSearchDisplayController
 
 - (id)initNavigationController:(AbstractNavigationController*) navigationController_
-                     searchBar:(UISearchBar *)searchBar_
-            contentsController:(UIViewController *)viewController_ {
-    if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
-        self.navigationController = navigationController_;
-        
-        self.delegate = self;
-        self.searchResultsDataSource = self;
-        self.searchResultsDelegate = self;
-
-        self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-        self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.searchBar.showsScopeBar = YES;
+                     searchBar:(UISearchBar*) searchBar_
+            contentsController:(UIViewController*) viewController_ {
+    if (self = [super initNavigationController:navigationController_ searchBar:searchBar_ contentsController:viewController_]) {
         self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
-        self.searchBar.selectedScopeButtonIndex = self.model.searchSelectedScopeButtonIndex;
+        self.searchBar.selectedScopeButtonIndex = self.model.localSearchSelectedScopeButtonIndex;
     }
-
+    
     return self;
 }
 
@@ -81,15 +43,6 @@
 - (AbstractSearchEngine*) createSearchEngine {
     return [LocalSearchEngine engineWithModel:navigationController.model
                                 delegate:self];
-}
-
-
-- (AbstractSearchEngine*) searchEngine {
-    if (searchEngineData == nil) {
-        self.searchEngineData = [self createSearchEngine];
-    }
-    
-    return searchEngineData;
 }
 
 
@@ -121,14 +74,6 @@
     (searchResult.upcomingMovies.count == 0 || ![self shouldShowUpcoming]) &&
     (searchResult.dvds.count == 0 || ![self shouldShowDVDBluray]) &&
     (searchResult.bluray.count == 0 || ![self shouldShowDVDBluray]);
-}
-
-
-- (BOOL) searching {
-    NSString* searchText = self.searchBar.text;
-    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
 
@@ -168,11 +113,6 @@
     } else {
         return 0;
     }
-}
-
-
-- (BOOL) sortingByTitle {
-    return YES;
 }
 
 
@@ -347,28 +287,6 @@
 }
 
 
-- (void) reportResult:(SearchResult*) result {
-    NSAssert([NSThread isMainThread], nil);
-    self.searchResult = result;
-    [self.searchResultsTableView reloadData];
-}
-
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
-    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    if (searchText.length == 0) {
-        [self.searchEngine invalidateExistingRequests];
-        self.searchResult = nil;
-        [self.searchResultsTableView reloadData];
-        return YES;
-    } else {
-        [self.searchEngine submitRequest:searchText];
-        return NO;
-    }
-}
-
-
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (searchResult != nil) {
@@ -420,7 +338,7 @@
 
 
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
-    self.model.searchSelectedScopeButtonIndex = selectedScope;
+    self.model.localSearchSelectedScopeButtonIndex = selectedScope;
     [self.searchResultsTableView reloadData];
 }
 

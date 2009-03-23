@@ -17,7 +17,7 @@
 @interface AbstractMovieListViewController : RefreshableTableViewController {
 @protected
     UISearchBar* searchBar;
-    SearchDisplayController* searchDisplayController;
+    LocalSearchDisplayController* searchDisplayController;
 
     NSArray* sortedMovies;
     NSArray* sectionTitles;

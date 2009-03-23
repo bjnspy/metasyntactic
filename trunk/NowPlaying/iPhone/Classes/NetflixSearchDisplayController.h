@@ -6,9 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "SearchDisplayController.h"
+#import "AbstractSearchDisplayController.h"
 
-@interface NetflixSearchDisplayController : SearchDisplayController {
+@interface NetflixSearchDisplayController : AbstractSearchDisplayController {
 }
 
 @end

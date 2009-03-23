@@ -6,11 +6,20 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SearchEngineDelegate.h"
 
-
-@interface AbstractSearchDisplayController : NSObject {
-
+@interface AbstractSearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
+@protected
+    AbstractNavigationController* navigationController;
+    AbstractSearchEngine* searchEngineData;
+    SearchResult* searchResult;
 }
+
+- (id) initNavigationController:(AbstractNavigationController*) navigationController
+                      searchBar:(UISearchBar*) searchBar
+             contentsController:(UIViewController*) viewController;
+
+- (Model*) model;
+- (Controller*) controller;
 
 @end

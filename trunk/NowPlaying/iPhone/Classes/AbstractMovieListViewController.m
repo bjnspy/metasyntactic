@@ -23,13 +23,13 @@
 #import "Movie.h"
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
-#import "SearchDisplayController.h"
+#import "LocalSearchDisplayController.h"
 #import "SettingsViewController.h"
 #import "Utilities.h"
 
 @interface AbstractMovieListViewController()
 @property (retain) UISearchBar* searchBar;
-@property (retain) SearchDisplayController* searchDisplayController;
+@property (retain) LocalSearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedMovies;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -300,7 +300,7 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
 }
 
 
