@@ -27,29 +27,21 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-            delegate:(id<SearchEngineDelegate>) delegate_ {
-    if (self = [super initWithModel:model_ delegate:delegate_]) {
-    }
-
-    return self;
-}
-
-
 + (NetflixSearchEngine*) engineWithModel:(Model*) model
                                 delegate:(id<SearchEngineDelegate>) delegate {
     return [[[NetflixSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }
 
 
-- (void) search {
+- (void) search:(SearchRequest*) currentlyExecutingRequest {
     NSString* error;
-    NSArray* movies = [model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
-    if ([self abortEarly]) { return; }
-    NSArray* people = [model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
-    if ([self abortEarly]) { return; }
+    NSArray* movies = [self.model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+    NSArray* people = [self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    [self reportResult:movies
+    [self reportResult:currentlyExecutingRequest
+                movies:movies
               theaters:[NSArray array]
         upcomingMovies:[NSArray array]
                   dvds:[NSArray array]
