@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @protocol ScoreProvider
+- (NSString*) providerName;
 - (NSDictionary*) scores;
 - (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;

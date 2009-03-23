@@ -69,11 +69,14 @@
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
 
-        self.pulser = [Pulser pulserWithTarget:self action:@selector(updateText) pulseInterval:1];
-
+        self.pulser = [Pulser pulserWithTarget:self
+                                        action:@selector(update)
+                                 pulseInterval:1];
+/*
         [GlobalActivityIndicator setTarget:self
                     startIndicatorSelector:@selector(showNotification)
                      stopIndicatorSelector:@selector(hideNotification)];
+ */
 
         [self addToView];
     }
@@ -88,7 +91,7 @@
 
 
 - (void) showNotification {
-    if (disabledCount == 0) {
+    if (disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [UIView beginAnimations:nil context:NULL];
         {
             notificationLabel.alpha = blackLabel.alpha = 1;
@@ -107,49 +110,43 @@
 }
 
 
-- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation {
-    notificationLabel.alpha = blackLabel.alpha = 0;
-    [blackLabel removeFromSuperview];
-    [notificationLabel removeFromSuperview];
-}
-
-
-- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(showLabels) withObject:nil afterDelay:1];
-}
-
-
-- (void) showLabels {
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        [self addToView];
-        [self showNotification];
-    }
-}
-
-
-- (void) updateText {
+- (NSString*) computeText {
     NSMutableArray* array = [NSMutableArray array];
     for (NSString* notification in notifications) {
         if (![array containsObject:notification]) {
             [array addObject:notification];
         }
     }
-
-    NSString* text;
+    
     if (array.count == 0) {
-        text = NSLocalizedString(@"Updating", nil);
-    } else {
-        text = [NSString stringWithFormat:NSLocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
+        return nil;
     }
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        notificationLabel.text = text;
-    }
-    [UIView commitAnimations];
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
 }
 
+
+- (void) update {
+    notificationLabel.text = [self computeText];
+    if (notifications.count > 0) {
+        [self showNotification];
+    } else {
+        [self hideNotification];
+    }
+}
+
+
+- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation {
+    notificationLabel.alpha = blackLabel.alpha = 0;
+}
+
+
+- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(update)
+               withObject:nil
+               afterDelay:1];
+}
 
 - (void) addNotification:(NSString*) notification {
     [self addNotifications:[NSArray arrayWithObject:notification]];
@@ -186,15 +183,13 @@
 - (void) disableNotifications {
     disabledCount++;
     [self hideNotification];
+    [pulser tryPulse];
 }
 
 
 - (void) enableNotifications {
     disabledCount--;
-    if (disabledCount == 0 && notifications.count > 0) {
-        [self updateText];
-        [self showNotification];
-    }
+    [pulser tryPulse];
 }
 
 @end

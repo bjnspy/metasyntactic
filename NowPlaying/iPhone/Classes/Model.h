@@ -38,8 +38,8 @@ enum ViewControllerType {
     NSInteger searchRadius;
     NSNumber* isSearchDateTodayData;
 
-    NSMutableSet* bookmarkedTitlesData;
-    NSMutableDictionary* favoriteTheatersData;
+    NSSet* bookmarkedTitlesData;
+    NSDictionary* favoriteTheatersData;
 
     id<DataProvider> dataProvider;
 
@@ -70,9 +70,12 @@ enum ViewControllerType {
 - (BOOL) votedForIcon;
 - (void) setVotedForIcon;
 
-- (void) update;
+/*
+- (void) updateAllCaches;
 - (void) updateDVDCache;
 - (void) updateUpcomingCache;
+- (void) updateNetflixCache;
+*/
 
 - (BOOL) screenRotationEnabled;
 - (void) setScreenRotationEnabled:(BOOL) enabled;

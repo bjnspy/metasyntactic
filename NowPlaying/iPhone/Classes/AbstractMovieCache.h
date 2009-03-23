@@ -16,10 +16,6 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
-    LinkedSet* prioritizedMovies;
-    LinkedSet* primaryMovies;
-    LinkedSet* secondaryMovies;
-
     NSMutableSet* updatedMovies;
 }
 
@@ -32,8 +28,6 @@
 - (void) addPrimaryMovies:(NSArray*) movies;
 - (void) addSecondaryMovies:(NSArray*) movies;
 
-//- (BOOL) updatedMoviesContains:(Movie*) movie;
-//- (void) addSuccessfullyUpdatedMovie:(Movie*) movie;
 - (void) clearUpdatedMovies;
 
 @end

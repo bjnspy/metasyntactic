@@ -20,9 +20,9 @@
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "NotificationCenter.h"
+#import "OperationQueue.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
-#import "ThreadingUtilities.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;
@@ -516,11 +516,11 @@ const double LOAD_DELAY = 1;
       didFinishSavingWithError:(NSError*) error
                    contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
-    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
-                                  onTarget:self
-                                  argument:[NSNumber numberWithInteger:nextIndex]
-                                      gate:nil
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+                                         onTarget:self
+                                       withObject:[NSNumber numberWithInteger:nextIndex]
+                                             gate:nil
+                                         priority:High];
 }
 
 
@@ -554,17 +554,17 @@ const double LOAD_DELAY = 1;
     [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
-        [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
-                                      onTarget:self
-                                      argument:[NSNumber numberWithInteger:currentPage]
-                                          gate:nil
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(saveSingleImage:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInteger:currentPage]
+                                                 gate:nil
+                                             priority:High];
     } else {
-        [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
-                                      onTarget:self
-                                      argument:[NSNumber numberWithInteger:0]
-                                          gate:nil
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInteger:0]
+                                                 gate:nil
+                                             priority:High];
     }
 }
 

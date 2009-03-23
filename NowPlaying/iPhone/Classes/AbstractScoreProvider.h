@@ -13,24 +13,22 @@
 // limitations under the License.
 
 #import "ScoreProvider.h"
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface AbstractScoreProvider : AbstractCache<ScoreProvider> {
+@interface AbstractScoreProvider : AbstractMovieCache<ScoreProvider> {
 @private
     // Mapping from score title to score.
     NSDictionary* scoresData;
     NSString* hashData;
 
-    NSLock* movieMapLock;
     NSArray* movies;
 
     // Mapping from google movie title to score provider title
     NSDictionary* movieMapData;
+    NSLock* movieMapLock;
 
     NSString* providerDirectory;
     NSString* reviewsDirectory;
-
-    LinkedSet* prioritizedMovies;
 }
 
 - (id) initWithModel:(Model*) model;

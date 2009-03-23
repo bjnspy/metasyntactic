@@ -32,25 +32,18 @@
 #import "NotificationCenter.h"
 #import "Model.h"
 #import "IdentitySet.h"
+#import "OperationQueue.h"
 #import "Person.h"
 #import "PersonPosterCache.h"
 #import "Queue.h"
 #import "Status.h"
 #import "StringUtilities.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
 @interface NetflixCache()
 @property (retain) NSArray* feedsData;
-@property (retain) NSMutableDictionary* queues;
-@property (retain) LinkedSet* normalMovies;
-@property (retain) LinkedSet* prioritizedPeople;
-@property (retain) LinkedSet* rssMovies;
-@property (retain) LinkedSet* searchMovies;
-@property (retain) LinkedSet* searchPeople;
-@property (retain) LinkedSet* prioritizedMovies;
-@property (retain) NSCondition* updateDetailsLock;
+@property (retain) NSDictionary* queues;
 @property (retain) NSDate* lastQuotaErrorDate;
 @property (retain) NSMutableDictionary* presubmitRatings;
 
@@ -174,26 +167,12 @@ static NSDictionary* availabilityMap = nil;
 
 @synthesize feedsData;
 @synthesize queues;
-@synthesize normalMovies;
-@synthesize prioritizedPeople;
-@synthesize rssMovies;
-@synthesize searchMovies;
-@synthesize searchPeople;
-@synthesize prioritizedMovies;
-@synthesize updateDetailsLock;
 @synthesize lastQuotaErrorDate;
 @synthesize presubmitRatings;
 
 - (void) dealloc {
     self.feedsData = nil;
     self.queues = nil;
-    self.normalMovies = nil;
-    self.prioritizedPeople = nil;
-    self.rssMovies = nil;
-    self.searchMovies = nil;
-    self.searchPeople = nil;
-    self.prioritizedMovies = nil;
-    self.updateDetailsLock = nil;
     self.lastQuotaErrorDate = nil;
     self.presubmitRatings = nil;
 
@@ -204,20 +183,7 @@ static NSDictionary* availabilityMap = nil;
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.queues = [NSMutableDictionary dictionary];
-
-        self.normalMovies = [LinkedSet set];
-        self.prioritizedPeople = [LinkedSet set];
-        self.rssMovies = [LinkedSet set];
-        self.searchMovies = [LinkedSet set];
-        self.searchPeople = [LinkedSet set];
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.updateDetailsLock = [[[NSCondition alloc] init] autorelease];
         self.presubmitRatings = [NSMutableDictionary dictionary];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
 
     return self;
@@ -286,6 +252,13 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (void) addQueue:(Queue*) queue {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
+    [dictionary setObject:queue forKey:queue.feed.key];
+    self.queues = dictionary;
+}
+
+
 - (Queue*) queueForFeed:(Feed*) feed {
     if (feed == nil) {
         return nil;
@@ -295,9 +268,10 @@ static NSDictionary* availabilityMap = nil;
     if (queue == nil) {
         queue = [self loadQueue:feed];
         if (queue != nil) {
-            [queues setObject:queue forKey:feed.key];
+            [self addQueue:queue];
         }
     }
+
     return queue;
 }
 
@@ -315,10 +289,10 @@ static NSDictionary* availabilityMap = nil;
     if (model.netflixUserId.length == 0) {
         [self clear];
     } else {
-        [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:gate
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
+                                             onTarget:self
+                                                 gate:gate
+                                             priority:High];
     }
 }
 
@@ -541,7 +515,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (BOOL) etagChanged:(Feed*) feed {
-    Queue* queue = [self queueForFeed:feed];
+    Queue* queue = [self loadQueue:feed];
     NSString* localEtag = queue.etag;
     if (localEtag.length == 0) {
         return YES;
@@ -627,26 +601,6 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) addSearchPeople:(NSArray*) people {
-    [updateDetailsLock lock];
-    {
-        [searchPeople setArray:people];
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-}
-
-
-- (void) addSearchMovies:(NSArray*) movies {
-    [updateDetailsLock lock];
-    {
-        [searchMovies setArray:movies];
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-}
-
-
 - (NSArray*) peopleSearch:(NSString*) query {
     return [NSArray array];
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
@@ -668,7 +622,7 @@ static NSDictionary* availabilityMap = nil;
 
     if (people.count > 0) {
         // download the details for these movies in teh background.
-        [self addSearchPeople:people];
+        //[self addSearchPeople:people];
     }
 
     return people;
@@ -708,20 +662,14 @@ static NSDictionary* availabilityMap = nil;
 
     if (movies.count > 0) {
         // download the details for these movies in teh background.
-        [self addSearchMovies:movies];
+        [self addPrimaryMovies:movies];
     }
 
     return movies;
 }
 
 
-- (void) downloadQueue:(Feed*) feed {
-    // first download and check the feed's current etag against the current one.
-    if (![self etagChanged:feed]) {
-        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.key);
-        return;
-    }
-
+- (void) downloadQueueWorker:(Feed*) feed {
     NSRange range = [feed.url rangeOfString:@"&output=atom"];
     NSString* address = feed.url;
     if (range.length > 0) {
@@ -764,50 +712,34 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (void) downloadQueue:(Feed*) feed {
+    // first download and check the feed's current etag against the current one.
+    if (![self etagChanged:feed]) {
+        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.key);
+    } else {
+        NSString* title = [self titleForKey:feed.key includeCount:NO];
+        NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), title];
+        [AppDelegate addNotification:notification];
+        {
+            [self downloadQueueWorker:feed];
+        }
+        [AppDelegate removeNotification:notification];
+    }
+
+    Queue* queue = [self loadQueue:feed];
+
+    [self addSecondaryMovies:queue.movies];
+    [self addSecondaryMovies:queue.saved];
+}
+
+
 - (void) reportQueue:(Queue*) queue {
     NSAssert([NSThread isMainThread], nil);
     NSLog(@"Reporting queue '%@' with etag '%@'", queue.feed.key, queue.etag);
 
-    [queues setObject:queue forKey:queue.feed.key];
+    [self addQueue:queue];
+
     [AppDelegate majorRefresh];
-}
-
-
-- (void) downloadQueues:(NSArray*) feeds {
-    for (Feed* feed in feeds) {
-        // Take teh lock for each feed we download.  That way if it's taking a
-        // long time, the user can still do the the other operations the user
-        // asks us to do (move movies, change ratings, etc.).
-        [gate lock];
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            [self downloadQueue:feed];
-        }
-        [pool release];
-        [gate unlock];
-    }
-
-    [updateDetailsLock lock];
-    {
-        for (NSInteger i = self.feeds.count - 1; i >= 0; i--) {
-            Feed* feed = [self.feeds objectAtIndex:i];
-
-            Queue* queue = [self queueForFeed:feed];
-            if (queue != nil) {
-                [normalMovies addObjectsFromArray:queue.saved];
-                [normalMovies addObjectsFromArray:queue.movies];
-            }
-        }
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-
-    [AppDelegate removeNotification:NSLocalizedString(@"Netflix", nil)];
-
-    [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
-                                  onTarget:self
-                                      gate:nil // no lock.
-                                   visible:NO];
 }
 
 
@@ -1105,7 +1037,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) downloadRSSFeed:(NSString*) address {
+- (void) downloadRSSFeedWorker:(NSString*) address {
     NSString* file = [self rssFile:address];
     if ([FileUtilities fileExists:file]) {
         NSDate* date = [FileUtilities modificationDate:file];
@@ -1135,6 +1067,20 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (void) downloadRSSFeed:(NSString*) address {
+    [self downloadRSSFeedWorker:address];
+
+    NSString* file = [self rssFile:address];
+    NSArray* identifiers = [FileUtilities readObject:file];
+
+    for (NSString* identifier in identifiers) {
+        [[AppDelegate operationQueue] performSelector:@selector(downloadRSSMovie:address:)
+                                             onTarget:self
+                                           withObject:identifier withObject:address gate:nil priority:Low];
+    }
+}
+
+
 - (NSString*) rssFeedDirectory:(NSString*) address {
     return [[Application netflixRSSDirectory]
             stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
@@ -1145,19 +1091,6 @@ static NSDictionary* availabilityMap = nil;
     return [[[self rssFeedDirectory:address]
              stringByAppendingPathComponent:[FileUtilities sanitizeFileName:identifier]]
             stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (void) downloadRSSFeeds {
-    for (NSString* key in mostPopularTitles) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-            [FileUtilities createDirectory:[self rssFeedDirectory:address]];
-            [self downloadRSSFeed:address];
-        }
-        [pool release];
-    }
 }
 
 
@@ -1302,56 +1235,25 @@ static NSDictionary* availabilityMap = nil;
         }
     }
 
-    if (movie.canonicalTitle.length > 0) {
-        [updateDetailsLock lock];
-        {
-            [rssMovies addObject:movie];
-            [updateDetailsLock signal];
-        }
-        [updateDetailsLock unlock];
-    }
-}
-
-
-- (void) downloadRSSMovies:(NSString*) address {
-    NSString* file = [self rssFile:address];
-    NSArray* identifiers = [FileUtilities readObject:file];
-
-    for (NSString* identifier in identifiers) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            [self downloadRSSMovie:identifier address:address];
-        }
-        [pool release];
-    }
-}
-
-
-- (void) downloadRSSMovies {
-    for (NSString* key in mostPopularTitles) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-            [self downloadRSSMovies:address];
-        }
-        [pool release];
-        [AppDelegate majorRefresh];
-    }
+    [self addSecondaryMovie:movie];
 }
 
 
 - (void) downloadRSS {
-    [self downloadRSSFeeds];
-    [self downloadRSSMovies];
+    for (NSString* key in mostPopularTitles) {
+        NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
+        [FileUtilities createDirectory:[self rssFeedDirectory:address]];
+
+        [[AppDelegate operationQueue] performSelector:@selector(downloadRSSFeed:)
+                                             onTarget:self
+                                           withObject:address
+                                                 gate:nil
+                                             priority:Low];
+    }
 }
 
 
-- (void) updateBackgroundEntryPoint {
-    if (model.netflixUserId.length == 0) {
-        return;
-    }
-
-    [AppDelegate addNotification:NSLocalizedString(@"Netflix", nil)];
+- (void) updateBackgroundEntryPointWorker {
     [self downloadUserData];
 
     NSArray* feeds = [self downloadFeeds];
@@ -1363,72 +1265,32 @@ static NSDictionary* availabilityMap = nil;
                             waitUntilDone:NO];
     }
 
-    [ThreadingUtilities backgroundSelector:@selector(downloadQueues:)
-                                  onTarget:self
-                                  argument:feeds
-                                      gate:nil // no gate.  we'll take it for each feed we download.
-                                   visible:YES];
+    for (Feed* feed in feeds) {
+        [[AppDelegate operationQueue] performSelector:@selector(downloadQueue:)
+                                             onTarget:self
+                                           withObject:feed
+                                                 gate:gate
+                                             priority:High];
+    }
+
+    [[AppDelegate operationQueue] performSelector:@selector(downloadRSS)
+                                         onTarget:self
+                                             gate:nil // no lock.
+                                         priority:Low];
 }
 
 
-- (void) addSearchResult:(Movie*) movie {
-    if (![movie isNetflix]) {
+- (void) updateBackgroundEntryPoint {
+    if (model.netflixUserId.length == 0) {
         return;
     }
 
-    [updateDetailsLock lock];
+    NSString* notification = NSLocalizedString(@"Netflix", nil);
+    [AppDelegate addNotification:notification];
     {
-        [searchMovies addObject:movie];
-        [updateDetailsLock signal];
+        [self updateBackgroundEntryPointWorker];
     }
-    [updateDetailsLock unlock];
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    if (![movie isNetflix]) {
-        return;
-    }
-
-    [updateDetailsLock lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-}
-
-
-- (void) prioritizePerson:(Person*) person {
-    [updateDetailsLock lock];
-    {
-        [prioritizedPeople addObject:person];
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-}
-
-
-- (void) updateDetailsBackgroundEntryPoint {
-    while (YES) {
-        Movie* movie = nil;
-        Person* person = nil;
-        [updateDetailsLock lock];
-        {
-            while ((movie  = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                   (person = [prioritizedPeople removeLastObjectAdded]) == nil &&
-                   (movie  = [searchMovies removeLastObjectAdded]) == nil &&
-                   (person = [searchPeople removeLastObjectAdded]) == nil &&
-                   (movie  = [normalMovies removeLastObjectAdded]) == nil &&
-                   (movie  = [rssMovies removeLastObjectAdded]) == nil) {
-                [updateDetailsLock wait];
-            }
-        }
-        [updateDetailsLock unlock];
-
-        [self updatePersonDetails:person];
-        [self updateMovieDetails:movie];
-    }
+    [AppDelegate removeNotification:notification];
 }
 
 
@@ -1448,12 +1310,15 @@ static NSDictionary* availabilityMap = nil;
     NSAssert([NSThread isMainThread], nil);
 
     self.feedsData = feeds;
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
 
-    for (NSString* key in self.queues.allKeys) {
+    for (NSString* key in queues.allKeys) {
         if (![self feedsContainsKey:key]) {
-            [self.queues removeObjectForKey:key];
+            [dictionary removeObjectForKey:key];
         }
     }
+
+    self.queues = dictionary;
 
     [AppDelegate majorRefresh];
 }
@@ -1627,8 +1492,8 @@ static NSDictionary* availabilityMap = nil;
         title = NSLocalizedString(@"Recommendations", nil);
     }
 
-    Queue* queue = [self queueForKey:key];
-    if (queue == nil || !includeCount) {
+    Queue* queue;
+    if (!includeCount || ((queue = [self queueForKey:key]) == nil)) {
         return title;
     }
 
@@ -1756,19 +1621,15 @@ static NSDictionary* availabilityMap = nil;
 
     NSAssert(![NSThread isMainThread], @"");
 
-    [gate lock];
-    {
-        NSString* file = [self netflixFile:movie];
-        if (![FileUtilities fileExists:file]) {
-            Movie* netflixMovie = [self lookupMovieWorker:movie];
-            if (netflixMovie != nil) {
-                [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-                [self addSearchResult:netflixMovie];
-                [AppDelegate minorRefresh];
-            }
+    NSString* file = [self netflixFile:movie];
+    if (![FileUtilities fileExists:file]) {
+        Movie* netflixMovie = [self lookupMovieWorker:movie];
+        if (netflixMovie != nil) {
+            [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+            [self addSecondaryMovie:movie];
+            [AppDelegate minorRefresh];
         }
     }
-    [gate unlock];
 }
 
 
@@ -1777,21 +1638,12 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
-    [ThreadingUtilities backgroundSelector:@selector(lookupMoviesBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:movies
-                                      gate:nil // no gate.  we'll take the gate for each movie
-                                   visible:NO];
-}
-
-
-- (void) lookupMoviesBackgroundEntryPoint:(NSArray*) movies {
     for (Movie* movie in movies) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            [self lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
-        }
-        [pool release];
+        [[AppDelegate operationQueue] performSelector:@selector(lookupNetflixMovieForLocalMovieBackgroundEntryPoint:)
+                                             onTarget:self
+                                           withObject:movie
+                                                 gate:nil // no gate.  we'll take the gate for each movie
+                                             priority:Low];
     }
 }
 

@@ -35,7 +35,7 @@
     @property (retain) UIButton* favoriteButton;
     @property (retain) Theater* theater;
     @property (retain) NSArray* movies;
-    @property (retain) NSMutableArray* movieShowtimes;
+    @property (retain) NSArray* movieShowtimes;
 @end
 
 
@@ -138,12 +138,14 @@
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
 
-    self.movieShowtimes = [NSMutableArray array];
+    NSMutableArray* array = [NSMutableArray array];
     for (Movie* movie in movies) {
         NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
 
-        [movieShowtimes addObject:showtimes];
+        [array addObject:showtimes];
     }
+
+    self.movieShowtimes = array;
 }
 
 

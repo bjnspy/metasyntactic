@@ -28,8 +28,8 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NotificationCenter.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Queue.h"
-#import "ThreadingUtilities.h"
 #import "StringUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -254,11 +254,11 @@
             delegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
 
-    [ThreadingUtilities backgroundSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:arguments
-                                      gate:gate
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
+                                         onTarget:self
+                                       withObject:arguments
+                                             gate:gate
+                                         priority:High];
 }
 
 
@@ -270,11 +270,11 @@
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
 
-    [ThreadingUtilities backgroundSelector:@selector(modifyQueueBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:arguments
-                                      gate:gate
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
+                               onTarget:self
+                             withObject:arguments
+                                   gate:gate
+                               priority:High];
 }
 
 
@@ -296,11 +296,11 @@
     [presubmitRatings setObject:rating forKey:movie];
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
-    [ThreadingUtilities backgroundSelector:@selector(changeRatingBackgroundEntryPoint:)
+    [[AppDelegate operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                   onTarget:self
-                                  argument:arguments
+                                  withObject:arguments
                                       gate:gate
-                                   visible:YES];
+                                   priority:High];
 }
 
 
@@ -451,11 +451,11 @@
     NSArray* arguments =
     [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
 
-    [ThreadingUtilities backgroundSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
+    [[AppDelegate operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self
-                                  argument:arguments
+                                  withObject:arguments
                                       gate:gate
-                                   visible:YES];
+                                   priority:High];
 }
 
 

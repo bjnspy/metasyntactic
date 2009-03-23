@@ -15,6 +15,7 @@
 @interface ThreadingUtilities : NSObject {
 }
 
+/*
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                    argument:(id) argument1
@@ -27,7 +28,7 @@
                    argument:(id) argument
                        gate:(id<NSLocking>) gate
                     visible:(BOOL) visible;
-
+*/
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                        gate:(id<NSLocking>) gate

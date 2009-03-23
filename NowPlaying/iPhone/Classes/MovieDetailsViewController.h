@@ -40,10 +40,9 @@
 
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
-    BOOL shutdown;
     BOOL readonlyMode;
+    BOOL posterLoaded;
 
-    NSLock* posterDownloadLock;
     UIImage* posterImage;
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;

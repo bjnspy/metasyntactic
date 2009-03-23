@@ -24,6 +24,7 @@
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Review.h"
 #import "Score.h"
 #import "ScoreCache.h"
@@ -40,7 +41,6 @@
 @property (retain) NSDictionary* movieMapData;
 @property (retain) NSString* providerDirectory;
 @property (retain) NSString* reviewsDirectory;
-@property (retain) LinkedSet* prioritizedMovies;
 @end
 
 
@@ -53,7 +53,6 @@
 @synthesize movieMapData;
 @synthesize providerDirectory;
 @synthesize reviewsDirectory;
-@synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.scoresData = nil;
@@ -63,7 +62,6 @@
     self.movieMapData = nil;
     self.providerDirectory = nil;
     self.reviewsDirectory = nil;
-    self.prioritizedMovies = nil;
 
     [super dealloc];
 }
@@ -88,7 +86,6 @@
     if (self = [super initWithModel:model_]) {
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
 
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
@@ -239,32 +236,6 @@
 }
 
 
-- (Score*) getNextScore:(NSMutableArray*) scores
-              scoresMap:(NSDictionary*) scoresMap {
-    NSArray* arguments = [prioritizedMovies removeLastObjectAdded];
-    if (arguments != nil) {
-        Movie* movie = [arguments objectAtIndex:0];
-        NSDictionary* movieMap = [arguments objectAtIndex:1];
-
-        Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
-        if (score != nil) {
-            // only process this movie if we've got no data for it.
-            if (![FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
-                return score;
-            }
-        }
-    }
-
-    if (scores.count > 0) {
-        Score* score = [[[scores lastObject] retain] autorelease];
-        [scores removeLastObject];
-        return score;
-    }
-
-    return nil;
-}
-
-
 - (NSMutableArray*) extractReviews:(XmlElement*) element {
     NSMutableArray* result = [NSMutableArray array];
     for (XmlElement* reviewElement in element.children) {
@@ -354,7 +325,7 @@
 
 - (void) downloadReviews:(Score*) score
                 location:(Location*) location {
-    if (score == nil) {
+    if (score == nil || location == nil) {
         return;
     }
 
@@ -401,47 +372,54 @@
 }
 
 
-- (void) downloadReviews:(NSMutableArray*) scores
-               scoresMap:(NSDictionary*) scoresMap {
+- (void) updateMovieDetails:(Movie*) movie {
+    Score* score = [self.scores objectForKey:[self.movieMap objectForKey:movie.canonicalTitle]];
+    if (score == nil) {
+        return;
+    }
+    
+    if ([FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
+        return;
+    }
+    
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
-
     if (location == nil) {
         return;
     }
-
-    Score* score;
-    do {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        {
-            score = [self getNextScore:scores scoresMap:scoresMap];
-            [self downloadReviews:score location:location];
-        }
-        [autoreleasePool release];
-    } while (score != nil);
+    
+    [self downloadReviews:score location:location];
 }
 
 
 - (void) updateReviewsBackgroundEntryPoint {
-    NSDictionary* scoresMap = [self loadScores];
-    NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
-    NSMutableArray* scoresWithReviews = [NSMutableArray array];
+    Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
+    if (location == nil) {
+        return;
+    }
 
-    for (Score* score in scoresMap.allValues) {
+    for (Score* score in self.scores.allValues) {
         NSString* file = [self reviewsHashFile:score.canonicalTitle];
 
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
         if (lastLookupDate == nil) {
-            [scoresWithoutReviews addObject:score];
+            [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:locations:)
+                                                 onTarget:self
+                                               withObject:score
+                                               withObject:location
+                                                     gate:nil
+                                                 priority:Normal];
         } else {
             if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
-                [scoresWithReviews addObject:score];
+                [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:locations:)
+                                                     onTarget:self
+                                                   withObject:score
+                                                   withObject:location
+                                                         gate:nil
+                                                     priority:Low];
             }
         }
     }
-
-    [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap];
-    [self downloadReviews:scoresWithReviews scoresMap:scoresMap];
 }
 
 
@@ -469,18 +447,18 @@
 
         NSDictionary* scores = self.scores;
 
-        [ThreadingUtilities backgroundSelector:@selector(regenerateMap:forMovies:)
-                                      onTarget:self
-                                      argument:scores
-                                      argument:movies
-                                          gate:movieMapLock
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(regenerateMap:forMovies:)
+                                             onTarget:self
+                                           withObject:scores
+                                           withObject:movies
+                                                 gate:movieMapLock
+                                             priority:High];
     }
 }
 
 
 - (void) regenerateMapWorker:(NSDictionary*) scores
-             forMovies:(NSArray*) localMovies {
+                   forMovies:(NSArray*) localMovies {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* keys = scores.allKeys;
@@ -570,13 +548,8 @@
 
 - (void) prioritizeMovie:(Movie*) movie
                 inMovies:(NSArray*) movies_ {
-    if (movie == nil) {
-        return;
-    }
-
     [self ensureMovieMap:movies_];
-    NSArray* arguments = [NSArray arrayWithObjects:movie, self.movieMap, nil];
-    [prioritizedMovies addObject:arguments];
+    [super prioritizeMovie:movie];
 }
 
 @end

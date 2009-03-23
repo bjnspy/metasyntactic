@@ -17,19 +17,7 @@
 @interface NetflixCache : AbstractNetflixCache {
 @private
     NSArray* feedsData;
-    NSMutableDictionary* queues;
-
-    // movies whose details we want to update
-    LinkedSet* normalMovies;
-    LinkedSet* rssMovies;
-    LinkedSet* searchMovies;
-    LinkedSet* prioritizedMovies;
-
-    // people whose details we want to update
-    LinkedSet* prioritizedPeople;
-    LinkedSet* searchPeople;
-
-    NSCondition* updateDetailsLock;
+    NSDictionary* queues;
 
     NSDate* lastQuotaErrorDate;
 
@@ -45,8 +33,6 @@
 
 - (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;
-- (void) prioritizeMovie:(Movie*) movie;
-- (void) prioritizePerson:(Person*) person;
 
 - (BOOL) isEnqueued:(Movie*) movie;
 - (NSArray*) statusesForMovie:(Movie*) movie;

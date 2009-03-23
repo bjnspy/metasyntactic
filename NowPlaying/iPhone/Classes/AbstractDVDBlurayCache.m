@@ -29,16 +29,16 @@
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "PointerSet.h"
 #import "StringUtilities.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
 @interface AbstractDVDBlurayCache()
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
-@property (retain) NSMutableDictionary* bookmarksData;
+@property (retain) NSDictionary* bookmarksData;
 @end
 
 
@@ -142,12 +142,12 @@
 }
 
 
-- (NSMutableDictionary*) bookmarks {
-    if (bookmarksData == nil) {
+- (NSDictionary*) bookmarks {
+    if (self.bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return bookmarksData;
+    return self.bookmarksData;
 }
 
 
@@ -165,10 +165,10 @@
     }
     updated = YES;
 
-    [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(updateMoviesBackgroundEntryPoint)
+                                         onTarget:self
+                                             gate:nil
+                                          priority:High];
 }
 
 
@@ -381,11 +381,13 @@
     }
 
     // also determine if any of the data we found match items the user bookmarked
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     for (Movie* movie in movies) {
         if ([model isBookmarked:movie]) {
-            [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
+            [dictionary setObject:movie forKey:movie.canonicalTitle];
         }
     }
+    self.bookmarksData = dictionary;
 
     [self saveBookmarks];
     [self setMovies:movies];
@@ -450,7 +452,9 @@
 - (void) addBookmark:(NSString*) canonicalTitle {
     for (Movie* movie in self.movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            [self.bookmarks setObject:movie forKey:canonicalTitle];
+            NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+            [dictionary setObject:movie forKey:canonicalTitle];
+            self.bookmarksData = dictionary;
             [self saveBookmarks];
             return;
         }
@@ -459,7 +463,10 @@
 
 
 - (void) removeBookmark:(NSString*) canonicalTitle {
-    [self.bookmarks removeObjectForKey:canonicalTitle];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+    [dictionary removeObjectForKey:canonicalTitle];
+    self.bookmarksData = dictionary;
+
     [self saveBookmarks];
 }
 

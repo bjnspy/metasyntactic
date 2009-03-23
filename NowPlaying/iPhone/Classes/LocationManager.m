@@ -21,7 +21,7 @@
 #import "LocationUtilities.h"
 #import "Model.h"
 #import "NotificationCenter.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 #import "UserLocationCache.h"
 
 @interface LocationManager()
@@ -172,11 +172,11 @@
     if (newLocation != nil) {
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [locationManager stopUpdatingLocation];
-            [ThreadingUtilities backgroundSelector:@selector(findLocationBackgroundEntryPoint:)
-                                          onTarget:self
-                                          argument:newLocation
-                                              gate:gate
-                                           visible:YES];
+            [[AppDelegate operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
+                                                 onTarget:self
+                                               withObject:newLocation
+                                                     gate:gate
+                                                  priority:High];
         }
     }
 }

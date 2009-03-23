@@ -20,7 +20,7 @@
     SearchDisplayController* searchDisplayController;
 
     NSArray* sortedMovies;
-    NSMutableArray* sectionTitles;
+    NSArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
 
     NSArray* indexTitles;

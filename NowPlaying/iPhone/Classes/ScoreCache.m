@@ -14,16 +14,17 @@
 
 #import "ScoreCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "FileUtilities.h"
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
 #import "NoneScoreProvider.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "RottenTomatoesScoreProvider.h"
 #import "Score.h"
 #import "ScoreProvider.h"
-#import "ThreadingUtilities.h"
 
 @interface ScoreCache()
 @property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
@@ -120,24 +121,39 @@
         return;
     }
 
+    if (updated) {
+        return;
+    }
+
+    updated = YES;
+
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:currentScoreProvider
-                                      gate:gate
-                                   visible:NO];
-}
-
-
-- (void) updateBackgroundEntryPoint:(id<ScoreProvider>) currentScoreProvider {
-    [currentScoreProvider update];
+    if (currentScoreProvider != noneScoreProvider) {
+        [[AppDelegate operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
+                                         onTarget:self
+                                           withObject:currentScoreProvider
+                                             gate:nil
+                                          priority:High];
+    }
 
     for (id<ScoreProvider> provider in self.scoreProviders) {
         if (provider != currentScoreProvider) {
-            [provider update];
+            [[AppDelegate operationQueue] performSelector:@selector(update)
+                                                 onTarget:provider
+                                                     gate:nil
+                                                  priority:High];
         }
     }
+}
+
+
+- (void) updatePrimaryScoreProvider:(id<ScoreProvider>) scoreProvider {
+    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [scoreProvider providerName]];
+    [AppDelegate addNotification:notification];
+    {
+        [scoreProvider update];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 
