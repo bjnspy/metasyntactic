@@ -44,9 +44,9 @@ property_wrapper(BOOL, updated, Updated);
 const int START_YEAR = 1912;
 
 - (void) dealloc {
-    self.yearToMovieMap_ = nil;
-    self.yearToMovieMapGate_ = nil;
-    self.updated_ = NO;
+    self.yearToMovieMap = nil;
+    self.yearToMovieMapGate = nil;
+    self.updated = NO;
     
     [super dealloc];
 }

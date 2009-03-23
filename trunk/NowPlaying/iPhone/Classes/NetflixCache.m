@@ -176,10 +176,10 @@ property_wrapper(NSDate*, lastQuotaErrorDate, LastQuotaErrorDate);
 property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 - (void) dealloc {
-    self.feedsData_ = nil;
-    self.queues_ = nil;
-    self.lastQuotaErrorDate_ = nil;
-    self.presubmitRatings_ = nil;
+    self.feedsData = nil;
+    self.queues = nil;
+    self.lastQuotaErrorDate = nil;
+    self.presubmitRatings = nil;
 
     [super dealloc];
 }

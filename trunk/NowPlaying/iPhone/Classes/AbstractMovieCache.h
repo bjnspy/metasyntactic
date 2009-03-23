@@ -16,8 +16,8 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
-    NSMutableSet* updatedMovies;
-    NSArray* searchOperations;
+    NSMutableSet* updatedMovies_;
+    NSArray* searchOperations_;
 }
 
 - (void) prioritizeMovie:(Movie*) movie;
