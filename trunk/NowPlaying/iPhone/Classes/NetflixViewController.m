@@ -82,14 +82,14 @@ typedef enum {
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
-    
+
     self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
 }
 
 
 - (void) loadView {
     [super loadView];
-    
+
     [self initializeSearchDisplay];
 }
 
@@ -192,7 +192,7 @@ typedef enum {
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
         switch (row) {
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {

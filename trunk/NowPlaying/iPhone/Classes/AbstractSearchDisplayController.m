@@ -35,7 +35,7 @@
     self.navigationController = nil;
     self.searchEngineData = nil;
     self.searchResult = nil;
-    
+
     [super dealloc];
 }
 
@@ -55,17 +55,17 @@
             contentsController:(UIViewController *)viewController_ {
     if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
         self.navigationController = navigationController_;
-        
+
         self.delegate = self;
         self.searchResultsDataSource = self;
         self.searchResultsDelegate = self;
-        
+
         self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.searchBar.showsScopeBar = YES;
     }
-    
+
     return self;
 }
 
@@ -84,7 +84,7 @@
     if (searchEngineData == nil) {
         self.searchEngineData = [self createSearchEngine];
     }
-    
+
     return searchEngineData;
 }
 
@@ -92,7 +92,7 @@
 - (BOOL) searching {
     NSString* searchText = self.searchBar.text;
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
     return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
@@ -106,7 +106,7 @@
 
 - (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
     if (searchText.length == 0) {
         [self.searchEngine invalidateExistingRequests];
         self.searchResult = nil;
@@ -137,12 +137,12 @@
 
 
 - (void) majorRefresh {
-    
+
 }
 
 
 - (void) minorRefresh {
-    
+
 }
 
 @end

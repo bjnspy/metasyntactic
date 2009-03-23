@@ -35,7 +35,7 @@
         self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
         self.searchBar.selectedScopeButtonIndex = self.model.localSearchSelectedScopeButtonIndex;
     }
-    
+
     return self;
 }
 

@@ -104,7 +104,7 @@
                                          onTarget:self
                                        withObject:movie
                                              gate:nil
-                                         priority:Search];  
+                                         priority:Search];
 }
 
 
@@ -131,12 +131,12 @@
     for (Operation* operation in oldOperations) {
         [operation cancel];
     }
-    
+
     NSMutableArray* operations = [NSMutableArray array];
     for (Movie* movie in movies) {
         [operations addObject:[self addSearchMovie:movie]];
     }
-    
+
     self.searchOperations = operations;
 }
 
