@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,19 +15,19 @@
 @interface NetworkUtilities : NSObject {
 }
 
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address        important:(BOOL) important;
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address        important:(BOOL) important  response:(NSHTTPURLResponse**) response;
-+ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url                   important:(BOOL) important;
-+ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url                   important:(BOOL) important  response:(NSHTTPURLResponse**) response;
-+ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url     important:(BOOL) important;
-+ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url     important:(BOOL) important  response:(NSHTTPURLResponse**) response;
-+ (NSString*) stringWithContentsOfAddress:(NSString*) address       important:(BOOL) important;
-+ (NSString*) stringWithContentsOfUrl:(NSURL*) url                  important:(BOOL) important;
-+ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url    important:(BOOL) important;
-+ (NSData*) dataWithContentsOfAddress:(NSString*) address           important:(BOOL) important;
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url                      important:(BOOL) important;
-+ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url        important:(BOOL) important;
-+ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url        important:(BOOL) important  response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address;
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url;
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url;
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response;
++ (NSString*) stringWithContentsOfAddress:(NSString*) address;
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url;
++ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url;
++ (NSData*) dataWithContentsOfAddress:(NSString*) address;
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url;
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url;
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response;
 
 + (BOOL) isNetworkAvailable;
 

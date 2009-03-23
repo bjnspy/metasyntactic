@@ -70,7 +70,7 @@
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
 
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
+        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
         return [self processResult:element];
     }
 

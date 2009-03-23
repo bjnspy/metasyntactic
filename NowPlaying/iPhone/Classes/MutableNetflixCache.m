@@ -185,7 +185,6 @@
 
     NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES
                                                                response:&response];
 
     [self checkApiResult:element];
@@ -317,8 +316,7 @@
 
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -346,8 +344,7 @@
 
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -373,8 +370,7 @@
     [request setParameters:[NSArray arrayWithObject:parameter]];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     if (element == nil) {
         // we failed.  restore the rating to its original value
@@ -532,8 +528,7 @@
     [request setParameters:parameters];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -573,8 +568,7 @@
     [request setHTTPMethod:@"DELETE"];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 

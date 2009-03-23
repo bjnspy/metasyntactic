@@ -125,7 +125,7 @@
 
 - (NSData*) downloadPosterWorker:(Person*) person {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:person.name]];
-    NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
 
     if (wikipediaAddress.length == 0) {
         return nil;
@@ -142,7 +142,7 @@
     }
 
     NSString* wikiSearchAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=images&format=xml", wikiTitle];
-    XmlElement* apiElement = [NetworkUtilities xmlWithContentsOfAddress:wikiSearchAddress important:NO];
+    XmlElement* apiElement = [NetworkUtilities xmlWithContentsOfAddress:wikiSearchAddress];
     NSArray* imElements = [apiElement elements:@"im" recurse:YES];
 
     NSString* imageName = nil;
@@ -160,12 +160,12 @@
     }
 
     NSString* wikiDetailsAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=imageinfo&iiprop=url&format=xml", [StringUtilities stringByAddingPercentEscapes:imageName]];
-    XmlElement* apiElement2 = [NetworkUtilities xmlWithContentsOfAddress:wikiDetailsAddress important:NO];
+    XmlElement* apiElement2 = [NetworkUtilities xmlWithContentsOfAddress:wikiDetailsAddress];
     XmlElement* iiElement = [apiElement2 element:@"ii" recurse:YES];
 
     NSString* imageUrl = [iiElement attributeValue:@"url"];
 
-    return [NetworkUtilities dataWithContentsOfAddress:imageUrl important:NO];
+    return [NetworkUtilities dataWithContentsOfAddress:imageUrl];
 }
 
 

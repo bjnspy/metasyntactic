@@ -82,7 +82,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-    NSString* amazonAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* amazonAddress = [NetworkUtilities stringWithContentsOfAddress:url];
     if (amazonAddress == nil) {
         return;
     }
