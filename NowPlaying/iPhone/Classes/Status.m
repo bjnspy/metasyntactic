@@ -15,20 +15,26 @@
 #import "Status.h"
 
 @interface Status()
-@property (retain) Queue* queue;
-@property (retain) Movie* movie;
-@property (copy) NSString* description;
-@property BOOL saved;
-@property NSInteger position;
+@property (retain) Queue* queue_;
+@property (retain) Movie* movie_;
+@property (copy) NSString* description_;
+@property BOOL saved_;
+@property NSInteger position_;
 @end
 
 @implementation Status
 
-@synthesize queue;
-@synthesize movie;
-@synthesize description;
-@synthesize saved;
-@synthesize position;
+@synthesize queue_;
+@synthesize movie_;
+@synthesize description_;
+@synthesize saved_;
+@synthesize position_;
+
+property_wrapper(Queue*, queue, Queue);
+property_wrapper(Movie*, movie, Movie);
+property_wrapper(NSString*, description, Description);
+property_wrapper(BOOL, saved, Saved);
+property_wrapper(NSInteger, position, Position);
 
 - (void) dealloc {
     self.queue = nil;
@@ -41,17 +47,17 @@
 }
 
 
-- (id) initWithWithQueue:(Queue*) queue_
-                   movie:(Movie*) movie_
-             description:(NSString*) description_
-                   saved:(BOOL) saved_
-                position:(NSInteger) position_ {
+- (id) initWithWithQueue:(Queue*) queue__
+                   movie:(Movie*) movie__
+             description:(NSString*) description__
+                   saved:(BOOL) saved__
+                position:(NSInteger) position__ {
     if (self = [super init]) {
-        self.queue = queue_;
-        self.movie = movie_;
-        self.description = description_;
-        self.saved = saved_;
-        self.position = position_;
+        self.queue = queue__;
+        self.movie = movie__;
+        self.description = description__;
+        self.saved = saved__;
+        self.position = position__;
     }
 
     return self;
