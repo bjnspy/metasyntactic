@@ -31,15 +31,18 @@
 #import "XmlElement.h"
 
 @interface GoogleDataProvider()
-@property (retain) NSCalendar* calendar;
-@property (retain) NSDateComponents* dateComponents;
+@property (retain) NSCalendar* calendar_;
+@property (retain) NSDateComponents* dateComponents_;
 @end
 
 
 @implementation GoogleDataProvider
 
-@synthesize calendar;
-@synthesize dateComponents;
+@synthesize calendar_;
+@synthesize dateComponents_;
+
+property_wrapper(NSCalendar*, calendar, Calendar);
+property_wrapper(NSDateComponents*, dateComponents, DateComponents);
 
 - (void) dealloc {
     self.calendar = nil;
@@ -132,10 +135,10 @@
         NSInteger hour = [[time substringToIndex:2] intValue];
         NSInteger minute = [[time substringFromIndex:3] intValue];
 
-        [dateComponents setHour:hour];
-        [dateComponents setMinute:minute];
+        [self.dateComponents setHour:hour];
+        [self.dateComponents setMinute:minute];
 
-        NSDate* date = [calendar dateFromComponents:dateComponents];
+        NSDate* date = [self.calendar dateFromComponents:self.dateComponents];
 
         [result addObject:date];
     }
@@ -184,10 +187,10 @@
             hour = 0;
         }
 
-        [dateComponents setHour:hour];
-        [dateComponents setMinute:minute];
+        [self.dateComponents setHour:hour];
+        [self.dateComponents setMinute:minute];
 
-        NSDate* date = [calendar dateFromComponents:dateComponents];
+        NSDate* date = [self.calendar dateFromComponents:self.dateComponents];
 
         [reverseArray addObject:date];
     }
