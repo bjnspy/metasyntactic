@@ -30,6 +30,7 @@
 
 @class AbstractDataProvider;
 @class AbstractNavigationController;
+@class AbstractSearchEngine;
 @class ActionsView;
 @class ActivityIndicatorViewWithBackground;
 @class AllMoviesViewController;
@@ -80,6 +81,7 @@
 @class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
+@class NetflixSearchDisplayController;
 @class NetflixSearchEngine;
 @class NetflixSearchViewController;
 @class NetflixViewController;

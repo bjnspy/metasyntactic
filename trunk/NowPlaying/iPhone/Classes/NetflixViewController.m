@@ -28,13 +28,14 @@
 #import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
-#import "NetflixSearchViewController.h"
+#import "NetflixSearchDisplayController.h"
 #import "Queue.h"
 #import "SettingsViewController.h"
 #import "ViewControllerUtilities.h"
 
 @interface NetflixViewController()
-@property (retain) NetflixSearchViewController* searchViewController;
+@property (retain) UISearchBar* searchBar;
+@property (retain) NetflixSearchDisplayController* searchDisplayController;
 @end
 
 
@@ -43,7 +44,6 @@
 const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
-    SearchSection,
     MostPopularSection,
     DVDSection,
     InstantSection,
@@ -53,10 +53,12 @@ typedef enum {
     LogOutSection,
 } Sections;
 
-@synthesize searchViewController;
+@synthesize searchBar;
+@synthesize searchDisplayController;
 
 - (void) dealloc {
-    self.searchViewController = nil;
+    self.searchBar = nil;
+    self.searchDisplayController = nil;
 
     [super dealloc];
 }
@@ -70,10 +72,25 @@ typedef enum {
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Netflix", nil);
-
-        [self setupTableStyle];
     }
+
     return self;
+}
+
+
+- (void) initializeSearchDisplay {
+    self.searchBar = [[[UISearchBar alloc] init] autorelease];
+    [searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchBar;
+    
+    self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
+}
+
+
+- (void) loadView {
+    [super loadView];
+    
+    [self initializeSearchDisplay];
 }
 
 
@@ -153,7 +170,7 @@ typedef enum {
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (self.hasAccount) {
-        return 8;
+        return 7;
     } else {
         return 2;
     }
@@ -175,9 +192,6 @@ typedef enum {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
         switch (row) {
-            case SearchSection:
-                cell.text = NSLocalizedString(@"Search", nil);
-                break;
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
                     cell.text = NSLocalizedString(@"Most Popular", nil);
@@ -264,16 +278,6 @@ typedef enum {
 }
 
 
-- (void) didSelectSearchRow {
-    if (searchViewController == nil) {
-        self.searchViewController =
-        [[[NetflixSearchViewController alloc] initWithNavigationController:navigationController] autorelease];
-    }
-
-    [navigationController pushViewController:searchViewController animated:YES];
-}
-
-
 - (void) didSelectRecomendationsRow {
     NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:navigationController] autorelease];
     [navigationController pushViewController:controller animated:YES];
@@ -288,7 +292,6 @@ typedef enum {
 
 - (void) didSelectLoggedInRow:(NSInteger) row {
     switch (row) {
-        case SearchSection:             return [self didSelectSearchRow];
         case MostPopularSection:        return [self didSelectMostPopularSection];
         case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
         case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];

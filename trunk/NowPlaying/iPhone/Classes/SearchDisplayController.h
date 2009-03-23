@@ -16,14 +16,16 @@
 
 @interface SearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @private
-    AbstractNavigationController* navigationController;
-    SearchEngine* searchEngineData;
+    AbstractSearchEngine* searchEngineData;
     SearchResult* searchResult;
+    
+@protected
+    AbstractNavigationController* navigationController;
 }
 
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController
-                 searchBar:(UISearchBar *)searchBar
-            contentsController:(UIViewController *)viewController;
+- (id) initNavigationController:(AbstractNavigationController*) navigationController
+                      searchBar:(UISearchBar*) searchBar
+             contentsController:(UIViewController*) viewController;
 
 @end
