@@ -41,7 +41,7 @@ static BOOL use24HourTime;
     if (self == [DateUtilities class]) {
         gate = [[NSRecursiveLock alloc] init];
 
-        timeDifferenceMap = [[NSMutableDictionary dictionary] retain];
+        timeDifferenceMap = [[NSMutableDictionary alloc] init];
         calendar = [[NSCalendar currentCalendar] retain];
         {
             NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
@@ -50,9 +50,9 @@ static BOOL use24HourTime;
             today = [[calendar dateFromComponents:todayComponents] retain];
         }
 
-        yearsAgoMap = [[NSMutableDictionary dictionary] retain];
-        monthsAgoMap = [[NSMutableDictionary dictionary] retain];
-        weeksAgoMap = [[NSMutableDictionary dictionary] retain];
+        yearsAgoMap = [[NSMutableDictionary alloc] init];
+        monthsAgoMap = [[NSMutableDictionary alloc] init];
+        weeksAgoMap = [[NSMutableDictionary alloc] init];
 
         {
             shortDateFormatter = [[NSDateFormatter alloc] init];

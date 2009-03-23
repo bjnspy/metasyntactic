@@ -15,19 +15,24 @@
 #import "Pulser.h"
 
 @interface Pulser()
-@property (retain) id target;
-@property SEL action;
-@property NSTimeInterval pulseInterval;
-@property (retain) NSDate* lastPulseTime;
+@property (retain) id target_;
+@property SEL action_;
+@property NSTimeInterval pulseInterval_;
+@property (retain) NSDate* lastPulseTime_;
 @end
 
 
 @implementation Pulser
 
-@synthesize target;
-@synthesize action;
-@synthesize pulseInterval;
-@synthesize lastPulseTime;
+@synthesize target_;
+@synthesize action_;
+@synthesize pulseInterval_;
+@synthesize lastPulseTime_;
+
+property_wrapper(id, target, Target);
+property_wrapper(SEL, action, Action);
+property_wrapper(NSTimeInterval, pulseInterval, PulseInterval);
+property_wrapper(NSDate*, lastPulseTime, LastPulseTime);
 
 - (void) dealloc {
     self.target = nil;
@@ -39,13 +44,13 @@
 }
 
 
-- (id) initWithTarget:(id) target_
-               action:(SEL) action_
-        pulseInterval:(NSTimeInterval) pulseInterval_ {
+- (id) initWithTarget:(id) target__
+               action:(SEL) action__
+        pulseInterval:(NSTimeInterval) pulseInterval__ {
     if (self = [super init]) {
-        self.target = target_;
-        self.action = action_;
-        self.pulseInterval = pulseInterval_;
+        self.target = target__;
+        self.action = action__;
+        self.pulseInterval = pulseInterval__;
         self.lastPulseTime = [NSDate dateWithTimeIntervalSince1970:1];
     }
 
@@ -68,19 +73,19 @@
         return;
     }
 
-    if ([date compare:lastPulseTime] == NSOrderedAscending) {
+    if ([date compare:self.lastPulseTime] == NSOrderedAscending) {
         // we sent out a pulse after this one.  just disregard this pulse
         //NSLog(@"Pulse at '%@' < last pulse at '%@'.  Disregarding.", date, lastPulseTime);
         return;
     }
 
     NSDate* now = [NSDate date];
-    NSDate* nextViablePulseTime = [lastPulseTime addTimeInterval:pulseInterval];
+    NSDate* nextViablePulseTime = [self.lastPulseTime addTimeInterval:self.pulseInterval];
     if ([now compare:nextViablePulseTime] == NSOrderedAscending) {
         // too soon since the last pulse.  wait until later.
         //NSLog(@"Pulse at '%@' too soon since last pulse at '%@'.  Will perform later.", date, lastPulseTime);
         NSTimeInterval waitTime = ABS([date timeIntervalSinceDate:nextViablePulseTime]) + 1;
-        waitTime = MIN(waitTime, pulseInterval);
+        waitTime = MIN(waitTime, self.pulseInterval);
         [self performSelector:@selector(tryPulse:) withObject:date afterDelay:waitTime];
         return;
     }
@@ -88,7 +93,7 @@
     // ok, actually pulse.
     self.lastPulseTime = now;
     //NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
-    [target performSelectorOnMainThread:action withObject:nil waitUntilDone:NO];
+    [self.target performSelectorOnMainThread:self.action withObject:nil waitUntilDone:NO];
 }
 
 
@@ -100,7 +105,7 @@
 
     self.lastPulseTime = [NSDate date];
     //NSLog(@"Forced pulse at '%@'.", lastPulseTime);
-    [target performSelector:action];
+    [self.target performSelector:self.action];
 }
 
 
