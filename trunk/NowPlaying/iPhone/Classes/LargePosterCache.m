@@ -14,6 +14,7 @@
 
 #import "LargePosterCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
@@ -21,9 +22,8 @@
 #import "ImageUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
 #import "Model.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieMap;
@@ -49,11 +49,6 @@ const int START_YEAR = 1912;
     if (self = [super initWithModel:model_]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
         self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateIndices)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
 
     return self;
@@ -200,7 +195,10 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) ensureIndex:(NSInteger) year updateIfStale:(BOOL) updateIfStale {
+- (void) ensureIndex:(NSNumber*) yearNumber updateIfStale:(NSNumber*) updateIfStaleNumber {
+    NSInteger year = yearNumber.intValue;
+    BOOL updateIfStale = updateIfStaleNumber.boolValue;
+
     NSDictionary* dictionary = [self ensureIndexWorker:year updateIfStale:updateIfStale];
     if (dictionary == nil) {
         dictionary = [FileUtilities readObject:[self indexFile:year]];
@@ -230,10 +228,25 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) updateIndices {
+- (void) update {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+    
+    if (updated) {
+        return;
+    }
+    updated = YES;
+
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
-        [self ensureIndex:i updateIfStale:(i >= (year - 1) || i <= (year + 1))];
+        BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
+        [[AppDelegate operationQueue] performSelector:@selector(ensureIndex:updateIfStale:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInt:i]
+                                           withObject:[NSNumber numberWithBool:updateIfStale]
+                                                 gate:nil
+                                             priority:Normal];
     }
 }
 

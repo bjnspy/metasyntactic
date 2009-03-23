@@ -20,7 +20,7 @@
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
 #import "Model.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 
 @interface NetflixLoginViewController()
 @property (assign) NetflixNavigationController* navigationController;
@@ -162,14 +162,14 @@
     [self setupActivityIndicator];
     [self setupButton];
 
-    [ThreadingUtilities backgroundSelector:@selector(requestAuthorizationToken)
+    [[AppDelegate operationQueue] performSelector:@selector(requestAuthorizationToken)
                                   onTarget:self
                                       gate:nil
-                                   visible:YES];
+                                   priority:High];
 }
 
 
-- (void) requestAuthorizationToken {
+- (void) requestAuthorizationTokenWorker {
     OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
                                                 secret:[Application netflixSecret]];
 
@@ -186,6 +186,16 @@
                                delegate:self
                       didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)
                         didFailSelector:@selector(requestAuthorizationToken:didFailWithError:)];
+}
+
+
+- (void) requestAuthorizationToken {
+    NSString* notification = NSLocalizedString(@"requesting authorization", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self requestAuthorizationTokenWorker];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 
@@ -259,13 +269,14 @@
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
 
-    [ThreadingUtilities backgroundSelector:@selector(requestAccessToken)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(requestAccessToken)
+                                         onTarget:self
+                                             gate:nil
+                                         priority:High];
 }
 
-- (void) requestAccessToken {
+
+- (void) requestAccessTokenWorker {
     OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
                                                 secret:[Application netflixSecret]];
 
@@ -282,6 +293,16 @@
                                delegate:self
                       didFinishSelector:@selector(requestAccessToken:didFinishWithData:)
                         didFailSelector:@selector(requestAccessToken:didFailWithError:)];
+}
+
+
+- (void) requestAccessToken {
+    NSString* notification = NSLocalizedString(@"requesting access", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self requestAccessTokenWorker];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 

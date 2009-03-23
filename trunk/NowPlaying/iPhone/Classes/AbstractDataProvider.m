@@ -392,9 +392,7 @@
                                          onTarget:self
                                        withObject:request
                                              gate:gate
-                                          visible:YES];
-
-
+                                          priority:High];
 }
 
 
@@ -494,31 +492,30 @@
     if (lastDate == nil) {
         return NO;
     }
-    
+
     NSDate* now = [NSDate date];
-    
+
     if (![DateUtilities isSameDay:now date:lastDate]) {
         // different days. we definitely need to refresh
         return NO;
     }
-    
+
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-    
+
     // same day, check if they're at least 8 hours apart.
     if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
         return NO;
     }
-    
+
     // it's been less than 8 hours. it's too soon to refresh
     return YES;
 }
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
-    NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
-
-    if (request.force || ![self tooSoon:[self lastLookupDate]]) {
+    if (request.force || ![self tooSoon:self.lastLookupDate]) {
+        NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
         [AppDelegate addNotifications:notifications];
         {
             [self updateBackgroundEntryPointWorker:request];

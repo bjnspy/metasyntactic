@@ -31,7 +31,7 @@
 @property (retain) UISearchBar* searchBar;
 @property (retain) SearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedMovies;
-@property (retain) NSMutableArray* sectionTitles;
+@property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* indexTitles;
 @end
@@ -94,13 +94,17 @@
 
 
 - (void) removeUnusedSectionTitles {
-    for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
-        NSString* title = [sectionTitles objectAtIndex:i];
+    NSMutableArray* array = [NSMutableArray arrayWithArray:sectionTitles];
+
+    for (NSInteger i = array.count - 1; i >= 0; --i) {
+        NSString* title = [array objectAtIndex:i];
 
         if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
-            [sectionTitles removeObjectAtIndex:i];
+            [array removeObjectAtIndex:i];
         }
     }
+
+    self.sectionTitles = array;
 }
 
 
@@ -151,11 +155,13 @@
     }
 
     if ([LocaleUtilities isJapanese]) {
-        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
-        [sectionTitles sortUsingSelector:@selector(compare:)];
-        [self.sectionTitles insertObject:[Application starString] atIndex:0];
+        NSMutableArray* array = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
+        [array sortUsingSelector:@selector(compare:)];
+        [array insertObject:[Application starString] atIndex:0];
+
+        self.sectionTitles = array;
     } else {
-        self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
+        self.sectionTitles = self.indexTitles;
     }
 }
 
@@ -193,11 +199,12 @@
 
     NSString* starString = [Application starString];
 
+    NSMutableArray* array = [NSMutableArray array];
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:starString];
-            if (![sectionTitles containsObject:starString]) {
-                [sectionTitles insertObject:starString atIndex:0];
+            if (![array containsObject:starString]) {
+                [array insertObject:starString atIndex:0];
             }
         } else {
             NSString* title = NSLocalizedString(@"Unknown Release Ddate", nil);
@@ -213,11 +220,12 @@
 
             [sectionTitleToContentsMap addObject:movie forKey:title];
 
-            if (![sectionTitles containsObject:title]) {
-                [sectionTitles addObject:title];
+            if (![array containsObject:title]) {
+                [array addObject:title];
             }
         }
     }
+    self.sectionTitles = array;
 
     for (NSString* key in sectionTitleToContentsMap.allKeys) {
         if (![starString isEqual:key]) {

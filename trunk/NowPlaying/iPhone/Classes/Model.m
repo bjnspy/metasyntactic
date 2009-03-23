@@ -69,8 +69,8 @@
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
-@property (retain) NSMutableSet* bookmarkedTitlesData;
-@property (retain) NSMutableDictionary* favoriteTheatersData;
+@property (retain) NSSet* bookmarkedTitlesData;
+@property (retain) NSDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
 @end
@@ -538,30 +538,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (void) updateDVDCache {
-    [dvdCache update];
-    [blurayCache update];
-}
-
-
-- (void) updateUpcomingCache {
-    [upcomingCache update];
-}
-
-
-- (void) update {
-    [scoreCache update];
-    [posterCache update:self.movies];
-    [trailerCache update:self.movies];
-    [imdbCache update:self.movies];
-    [wikipediaCache update:self.movies];
-    [amazonCache update:self.movies];
-    [self updateUpcomingCache];
-    [self updateDVDCache];
-    [netflixCache lookupNetflixMoviesForLocalMovies:self.movies];
-}
-
-
 - (void) didReceiveMemoryWarning {
     [largePosterCache didReceiveMemoryWarning];
     [imdbCache didReceiveMemoryWarning];
@@ -1003,7 +979,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 - (void) ensureBookmarkedTitles {
-    if (bookmarkedTitlesData == nil) {
+    if (self.bookmarkedTitlesData == nil) {
         self.bookmarkedTitlesData = [self loadBookmarkedTitles];
     }
 }
@@ -1011,20 +987,23 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (BOOL) isBookmarked:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    return [bookmarkedTitlesData containsObject:movie.canonicalTitle];
+    return [self.bookmarkedTitlesData containsObject:movie.canonicalTitle];
 }
 
 
 - (NSSet*) bookmarkedTitles {
     [self ensureBookmarkedTitles];
-    return bookmarkedTitlesData;
+    return self.bookmarkedTitlesData;
 }
 
 
 - (void) addBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    [bookmarkedTitlesData addObject:movie.canonicalTitle];
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitlesData];
+    [set addObject:movie.canonicalTitle];
+    self.bookmarkedTitlesData = set;
+
+    [Model saveBookmarkedTitles:self.bookmarkedTitlesData];
 
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
@@ -1035,8 +1014,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) removeBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    [bookmarkedTitlesData removeObject:movie.canonicalTitle];
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitlesData];
+    [set removeObject:movie.canonicalTitle];
+    self.bookmarkedTitlesData = set;
+
+    [Model saveBookmarkedTitles:self.bookmarkedTitlesData];
 
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
@@ -1116,7 +1098,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) ensureFavoriteTheaters {
-    if (favoriteTheatersData == nil) {
+    if (self.favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
 }
@@ -1124,7 +1106,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSArray*) favoriteTheaters {
     [self ensureFavoriteTheaters];
-    return favoriteTheatersData.allValues;
+    return self.favoriteTheatersData.allValues;
 }
 
 
@@ -1135,10 +1117,14 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) addFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheatersData];
 
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                     originatingLocation:theater.originatingLocation];
-    [favoriteTheatersData setObject:favoriteTheater forKey:theater.name];
+
+    [dictionary setObject:favoriteTheater forKey:theater.name];
+    self.favoriteTheatersData = dictionary;
+
     [self saveFavoriteTheaters];
 }
 
@@ -1146,14 +1132,17 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
 
-    return [favoriteTheatersData objectForKey:theater.name] != nil;
+    return [self.favoriteTheatersData objectForKey:theater.name] != nil;
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
 
-    [favoriteTheatersData removeObjectForKey:theater.name];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheatersData];
+    [dictionary removeObjectForKey:theater.name];
+    self.favoriteTheatersData = dictionary;
+
     [self saveFavoriteTheaters];
 }
 

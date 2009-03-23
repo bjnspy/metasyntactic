@@ -21,7 +21,7 @@
 
     BOOL updated;
 
-    NSMutableDictionary* bookmarksData;
+    NSDictionary* bookmarksData;
 }
 
 - (id) initWithModel:(Model*) model;

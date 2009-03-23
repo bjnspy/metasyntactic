@@ -36,6 +36,7 @@
 #import "NetflixStatusCell.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "PosterCache.h"
 #import "Score.h"
 #import "Status.h"
@@ -44,7 +45,6 @@
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
-#import "ThreadingUtilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
@@ -62,7 +62,6 @@
 @property (retain) NSDictionary* websites;
 @property (retain) ActionsView* actionsView;
 @property NSInteger hiddenTheaterCount;
-@property (retain) NSLock* posterDownloadLock;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
@@ -92,7 +91,6 @@ const NSInteger POSTER_TAG = -1;
 @synthesize actionsView;
 @synthesize hiddenTheaterCount;
 @synthesize posterActivityView;
-@synthesize posterDownloadLock;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
@@ -111,7 +109,6 @@ const NSInteger POSTER_TAG = -1;
     self.actionsView = nil;
     self.hiddenTheaterCount = 0;
     self.posterActivityView = nil;
-    self.posterDownloadLock = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
     self.bookmarkButton = nil;
@@ -357,7 +354,6 @@ const NSInteger POSTER_TAG = -1;
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.movie = movie_;
-        self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
 
         // Only want to do this once.
         self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
@@ -494,7 +490,7 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) downloadPoster {
+- (void) downloadPosterBackgroundEntryPoint {
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
     NSInteger posterCount_ = [self.model.largePosterCache posterCountForMovie:movie];
 
@@ -506,21 +502,31 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) reportPoster:(NSNumber*) posterNumber {
     NSAssert([NSThread isMainThread], nil);
-    if (shutdown) { return; }
+    if (!visible) { return; }
     posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
     [self minorRefresh];
 }
 
 
-- (void) startup {
-    shutdown = NO;
+- (void) downloadPoster {
+    if (posterLoaded) {
+        return;
+    }
+    posterLoaded = YES;
 
-    [ThreadingUtilities backgroundSelector:@selector(downloadPoster)
+    [[AppDelegate operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
                                   onTarget:self
-                                  argument:posterDownloadLock
                                       gate:nil
-                                   visible:NO];
+                                   priority:High];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    
+    [self downloadPoster];
+    [self majorRefresh];
 }
 
 
@@ -531,23 +537,10 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) shutdown {
-    shutdown = YES;
-    [posterActivityView stopAnimating];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-
-    [self startup];
-    [self majorRefresh];
-}
-
-
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
-    [self shutdown];
+    [posterActivityView stopAnimating];
+
     [self removeNotifications];
 }
 
@@ -1307,11 +1300,11 @@ const NSInteger POSTER_TAG = -1;
         return;
     }
 
-    [ThreadingUtilities backgroundSelector:@selector(downloadAllPostersForMovie:)
-                                  onTarget:self.model.largePosterCache
-                                  argument:movie
-                                      gate:posterDownloadLock
-                                   visible:NO];
+    [[AppDelegate operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
+                                         onTarget:self.model.largePosterCache
+                                       withObject:movie
+                                             gate:nil
+                                         priority:High];
 
     [navigationController showPostersView:movie posterCount:posterCount];
 }

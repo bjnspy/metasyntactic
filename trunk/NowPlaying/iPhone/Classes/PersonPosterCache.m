@@ -56,11 +56,12 @@
     if (self = [super initWithModel:model_]) {
         self.normalPeople = [LinkedSet set];
         self.prioritizedPeople = [LinkedSet setWithCountLimit:8];
-
+/*
         [ThreadingUtilities backgroundSelector:@selector(updatePostersBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
                                        visible:NO];
+ */
     }
 
     return self;

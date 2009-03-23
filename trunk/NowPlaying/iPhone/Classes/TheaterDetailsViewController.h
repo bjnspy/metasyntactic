@@ -22,7 +22,7 @@
     UIButton* favoriteButton;
 
     NSArray* movies;
-    NSMutableArray* movieShowtimes;
+    NSArray* movieShowtimes;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

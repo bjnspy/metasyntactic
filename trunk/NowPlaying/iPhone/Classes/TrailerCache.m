@@ -20,9 +20,9 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "OperationQueue.h"
 #import "AppDelegate.h"
 #import "Model.h"
-#import "ThreadingUtilities.h"
 
 @interface TrailerCache()
 @property (retain) DifferenceEngine* engine;
@@ -67,11 +67,11 @@
 
 
 - (void) update:(NSArray*) movies {
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:movies
-                                      gate:nil
-                                   visible:NO];
+    [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
+                                         onTarget:self
+                                       withObject:movies
+                                             gate:nil
+                                         priority:Low];
 }
 
 
@@ -81,23 +81,17 @@
 
 
 - (void) updateBackgroundEntryPoint:(NSArray*) movies {
-    NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
-    NSMutableArray* moviesWithTrailers = [NSMutableArray array];
-
     for (Movie* movie in movies) {
         NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
 
         if (downloadDate == nil) {
-            [moviesWithoutTrailers addObject:movie];
+            [self addPrimaryMovie:movie];
         } else {
             if (![self tooSoon:downloadDate]) {
-                [moviesWithTrailers addObject:movie];
+                [self addSecondaryMovie:movie];
             }
         }
     }
-
-    [self addPrimaryMovies:moviesWithoutTrailers];
-    [self addSecondaryMovies:moviesWithTrailers];
 }
 
 

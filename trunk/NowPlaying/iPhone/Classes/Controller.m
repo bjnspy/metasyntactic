@@ -22,8 +22,11 @@
 #import "DateUtilities.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "NetflixCache.h"
+#import "PosterCache.h"
 #import "OperationQueue.h"
 #import "ScoreCache.h"
+#import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -83,8 +86,11 @@
 }
 
 
-- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context {
-    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
+- (void) onDataProviderUpdateFailure:(NSString*) error
+                             context:(id) context {
+    [self performSelectorOnMainThread:@selector(reportError:)
+                           withObject:error
+                        waitUntilDone:NO];
 }
 
 
@@ -106,14 +112,59 @@
     [[AppDelegate operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
                                          onTarget:self
                                              gate:determineLocationLock
-                                          visible:YES];
+                                          priority:High];
+}
+
+
+- (void) updateScoreCache {
+    [self.model.scoreCache update];
+}
+
+
+- (void) updateUpcomingCache {
+    [self.model.upcomingCache update];
+}
+
+
+- (void) updateDVDCache {
+    [self.model.dvdCache update];
+    [self.model.blurayCache update];
+}
+
+
+- (void) updateNetflixCache {
+    [self.model.netflixCache update];
+}
+
+
+- (void) updateLargePosterCache {
+    [self.model.largePosterCache update];
+}
+
+
+- (void) updateAllCaches {
+    // we want this first so that we download all the indices.
+    [self updateLargePosterCache];
+    
+    [self updateScoreCache];
+    [self updateUpcomingCache];
+    [self updateDVDCache];
+    [self updateNetflixCache];
+
+    NSArray* movies = self.model.movies;
+
+    [self.model.posterCache     update:movies];
+    [self.model.trailerCache    update:movies];
+    [self.model.imdbCache       update:movies];
+    [self.model.wikipediaCache  update:movies];
+    [self.model.amazonCache     update:movies];
+    [self.model.netflixCache lookupNetflixMoviesForLocalMovies:movies];
 }
 
 
 - (void) onDataProviderUpdateComplete {
     NSAssert([NSThread isMainThread], nil);
-    [self.model update];
-    [self.model.netflixCache update];
+    [self updateAllCaches];
     //[self.model.largePosterCache updateIndices];
 }
 
@@ -199,16 +250,14 @@
 - (void) setDvdBlurayEnabled:(BOOL) value {
     [self.model setDvdBlurayEnabled:value];
     [appDelegate.tabBarController resetTabs];
-    [AppDelegate majorRefresh];
-    [self.model updateDVDCache];
+    [self updateDVDCache];
 }
 
 
 - (void) setUpcomingEnabled:(BOOL) value {
     [self.model setUpcomingEnabled:value];
     [appDelegate.tabBarController resetTabs];
-    [AppDelegate majorRefresh];
-    [self.model updateUpcomingCache];
+    [self updateUpcomingCache];
 }
 
 
@@ -216,14 +265,13 @@
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs];
     [Application resetNetflixDirectories];
-    [AppDelegate majorRefresh];
-    [self.model.netflixCache update];
+    [self updateNetflixCache];
 }
 
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [self.model setNetflixKey:key secret:secret userId:userId];
-    [self.model.netflixCache update];
+    [self updateNetflixCache];
 }
 
 @end

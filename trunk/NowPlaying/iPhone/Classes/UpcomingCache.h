@@ -23,7 +23,7 @@
 
     BOOL updated;
 
-    NSMutableDictionary* bookmarksData;
+    NSDictionary* bookmarksData;
 }
 
 + (UpcomingCache*) cacheWithModel:(Model*) model;

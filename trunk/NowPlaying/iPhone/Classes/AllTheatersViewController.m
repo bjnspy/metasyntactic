@@ -32,7 +32,7 @@
 @property (retain) UISearchBar* searchBar;
 @property (retain) SearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedTheaters;
-@property (retain) NSMutableArray* sectionTitles;
+@property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* indexTitles;
 @end
@@ -78,12 +78,16 @@
 
 
 - (void) removeUnusedSectionTitles {
-    for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
-        NSString* title = [sectionTitles objectAtIndex:i];
+    NSMutableArray* array = [NSMutableArray arrayWithArray:sectionTitles];
+
+    for (NSInteger i = array.count - 1; i >= 0; --i) {
+        NSString* title = [array objectAtIndex:i];
         if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
-            [sectionTitles removeObjectAtIndex:i];
+            [array removeObjectAtIndex:i];
         }
     }
+
+    self.sectionTitles = array;
 }
 
 
@@ -118,7 +122,7 @@
 
     if ([LocaleUtilities isJapanese]) {
         self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
-        [sectionTitles sortUsingSelector:@selector(compare:)];
+        self.sectionTitles = [sectionTitles sortedArrayUsingSelector:@selector(compare:)];
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
     }
@@ -154,13 +158,14 @@
         }
     }
 
-    self.sectionTitles = [NSMutableArray array];
+    NSMutableArray* array = [NSMutableArray array];
 
-    [sectionTitles addObject:favorites];
-    [sectionTitles addObject:reallyCloseBy];
-    [sectionTitles addObjectsFromArray:distancesArray];
-    [sectionTitles addObject:reallyFarAway];
-    [sectionTitles addObject:unknownDistance];
+    [array addObject:favorites];
+    [array addObject:reallyCloseBy];
+    [array addObjectsFromArray:distancesArray];
+    [array addObject:reallyFarAway];
+    [array addObject:unknownDistance];
+    self.sectionTitles = array;
 
     NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
     for (Theater* theater in theatersInRange) {

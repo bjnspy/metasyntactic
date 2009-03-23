@@ -63,21 +63,14 @@
 
 
 - (void) update:(NSArray*) movies {
-    NSMutableArray* moviesWithoutLinks = [NSMutableArray array];
-    NSMutableArray* moviesWithLinks = [NSMutableArray array];
-
-
     // movies with poster links download faster. try them first.
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
-            [moviesWithoutLinks addObject:movie];
+            [self addSecondaryMovie:movie];
         } else {
-            [moviesWithLinks addObject:movie];
+            [self addPrimaryMovie:movie];
         }
     }
-
-    [self addPrimaryMovies:moviesWithLinks];
-    [self addSecondaryMovies:moviesWithoutLinks];
 }
 
 

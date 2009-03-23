@@ -18,9 +18,13 @@
 @private
     NSMutableDictionary* yearToMovieMap;
     NSLock* yearToMovieMapGate;
+
+    BOOL updated;
 }
 
 + (LargePosterCache*) cacheWithModel:(Model*) model;
+
+- (void) update;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface AbstractNetflixCache : AbstractCache {
+@interface AbstractNetflixCache : AbstractMovieCache {
 }
 
 + (NSString*) dvdQueueKey;

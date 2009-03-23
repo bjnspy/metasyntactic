@@ -20,6 +20,8 @@
     id<ScoreProvider> metacriticScoreProvider;
     id<ScoreProvider> googleScoreProvider;
     id<ScoreProvider> noneScoreProvider;
+
+    BOOL updated;
 }
 
 + (ScoreCache*) cacheWithModel:(Model*) model;

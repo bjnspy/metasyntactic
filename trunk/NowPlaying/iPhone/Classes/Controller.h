@@ -32,8 +32,8 @@
 - (void) setUserAddress:(NSString*) userAddress;
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setScoreProviderIndex:(NSInteger) index;
-- (void) setAutoUpdateLocation:(BOOL) value;
 
+- (void) setAutoUpdateLocation:(BOOL) value;
 - (void) setDvdBlurayEnabled:(BOOL) value;
 - (void) setUpcomingEnabled:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;

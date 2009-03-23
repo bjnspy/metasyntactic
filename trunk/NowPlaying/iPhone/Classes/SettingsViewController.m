@@ -314,38 +314,41 @@ typedef enum {
 }
 
 
-- (void) onNetflixEnabledChanged:(id) sender {
-    [self.controller setNetflixEnabled:!self.model.netflixEnabled];
+- (void) onNetflixEnabledChanged:(UISwitch*) sender {
+    [self.controller setNetflixEnabled:sender.on];
 
     if (self.model.netflixEnabled) {
         NSString* message = NSLocalizedString(@"This is the first release of Netflix support in Now Playing. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button above.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
         [AlertUtilities showOkAlert:message];
     }
+    
+    [self reloadTableViewData];
 }
 
 
-- (void) onUpcomingEnabledChanged:(id) sender {
-    [self.controller setUpcomingEnabled:!self.model.upcomingEnabled];
+- (void) onUpcomingEnabledChanged:(UISwitch*) sender {
+    [self.controller setUpcomingEnabled:sender.on];
 }
 
 
-- (void) onDvdBlurayEnabledChanged:(id) sender {
-    [self.controller setDvdBlurayEnabled:!self.model.dvdBlurayEnabled];
+- (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
+    [self.controller setDvdBlurayEnabled:sender.on];
+    [self reloadTableViewData];
 }
 
 
-- (void) onAutoUpdateChanged:(id) sender {
-    [self.controller setAutoUpdateLocation:!self.model.autoUpdateLocation];
+- (void) onAutoUpdateChanged:(UISwitch*) sender {
+    [self.controller setAutoUpdateLocation:sender.on];
 }
 
 
-- (void) onUseSmallFontsChanged:(id) sender {
-    [self.model setUseSmallFonts:!self.model.useSmallFonts];
+- (void) onUseSmallFontsChanged:(UISwitch*) sender {
+    [self.model setUseSmallFonts:sender.on];
 }
 
 
-- (void) onPrioritizeBookmarksChanged:(id) sender {
-    [self.model setPrioritizeBookmarks:!self.model.prioritizeBookmarks];
+- (void) onPrioritizeBookmarksChanged:(UISwitch*) sender {
+    [self.model setPrioritizeBookmarks:sender.on];
 }
 
 
