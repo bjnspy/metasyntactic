@@ -35,14 +35,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (IMDbCache*) cacheWithModel:(Model*) model {
     return [[[IMDbCache alloc] initWithModel:model] autorelease];
 }

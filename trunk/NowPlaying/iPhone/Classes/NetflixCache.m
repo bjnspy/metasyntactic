@@ -185,8 +185,8 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.queues = [NSMutableDictionary dictionary];
         self.presubmitRatings = [NSMutableDictionary dictionary];
     }
@@ -291,19 +291,19 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) update {
-    if (model.netflixUserId.length == 0) {
+    if (self.model.netflixUserId.length == 0) {
         [self clear];
     } else {
         [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                              onTarget:self
-                                                 gate:gate
+                                                 gate:self.gate
                                              priority:High];
     }
 }
 
 
 - (NSArray*) downloadFeeds {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", model.netflixUserId];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
 
     [request prepare];
@@ -743,7 +743,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) downloadUserData {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", model.netflixUserId];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
 
     [request prepare];
@@ -766,7 +766,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     }
 
     if (firstName.length > 0 || lastName.length > 0) {
-        [model setNetflixFirstName:firstName
+        [self.model setNetflixFirstName:firstName
                           lastName:lastName
                    canInstantWatch:canInstantWatch
                   preferredFormats:preferredFormats];
@@ -776,7 +776,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) updatePersonPoster:(Person*) person {
-    [model.personPosterCache update:person];
+    [self.model.personPosterCache update:person];
 }
 
 
@@ -910,7 +910,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         return;
     }
 
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", model.netflixUserId];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
     OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     [request setParameters:[NSArray arrayWithObject:parameter]];
@@ -1171,14 +1171,14 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
-    [model.posterCache updateMovie:movie];
+    [self.model.posterCache updateMovie:movie];
     //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
     [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats"];
     [self updateRatings:movie];
 
-    [model.imdbCache updateMovie:movie];
-    [model.wikipediaCache updateMovie:movie];
-    [model.amazonCache updateMovie:movie];
+    [self.model.imdbCache updateMovie:movie];
+    [self.model.wikipediaCache updateMovie:movie];
+    [self.model.amazonCache updateMovie:movie];
 }
 
 
@@ -1269,7 +1269,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         [[AppDelegate operationQueue] performSelector:@selector(downloadQueue:)
                                              onTarget:self
                                            withObject:feed
-                                                 gate:gate
+                                                 gate:self.gate
                                              priority:High];
     }
 
@@ -1281,7 +1281,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) updateBackgroundEntryPoint {
-    if (model.netflixUserId.length == 0) {
+    if (self.model.netflixUserId.length == 0) {
         return;
     }
 
@@ -1572,7 +1572,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (BOOL) hasAccount {
-    return model.netflixUserId.length > 0;
+    return self.model.netflixUserId.length > 0;
 }
 
 

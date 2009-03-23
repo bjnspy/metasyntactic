@@ -46,8 +46,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.engine = [DifferenceEngine engine];
     }
 

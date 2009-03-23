@@ -15,15 +15,18 @@
 #import "AbstractCache.h"
 
 @interface AbstractCache()
-@property (retain) Model* model;
-@property (retain) NSCondition* gate;
+@property (retain) Model* model_;
+@property (retain) NSCondition* gate_;
 @end
 
 
 @implementation AbstractCache
 
-@synthesize model;
-@synthesize gate;
+@synthesize model_;
+@synthesize gate_;
+
+property_wrapper(Model*, model, Model);
+property_wrapper(NSCondition*, gate, Gate);
 
 - (void) dealloc {
     self.model = nil;
@@ -33,9 +36,9 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
+- (id) initWithModel:(Model*) model__ {
     if (self = [super init]) {
-        self.model = model_;
+        self.model = model__;
         self.gate = [[[NSCondition alloc] init] autorelease];
     }
 

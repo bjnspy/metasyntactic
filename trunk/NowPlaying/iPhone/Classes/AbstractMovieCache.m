@@ -36,8 +36,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.updatedMovies = [NSMutableSet set];
     }
 
@@ -52,17 +52,17 @@
 
 
 - (void) clearUpdatedMovies {
-    [gate lock];
+    [self.gate lock];
     {
         [updatedMovies removeAllObjects];
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
 - (BOOL) checkMovie:(Movie*) movie {
     BOOL result;
-    [gate lock];
+    [self.gate lock];
     {
         if (![updatedMovies containsObject:movie]) {
             [updatedMovies addObject:movie];
@@ -71,7 +71,7 @@
             result = YES;
         }
     }
-    [gate unlock];
+    [self.gate unlock];
     return result;
 }
 

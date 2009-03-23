@@ -60,8 +60,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
     }
 
     return self;
@@ -159,11 +159,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (void) update {
-    if (model.userAddress.length == 0) {
+    if (self.model.userAddress.length == 0) {
         return;
     }
 
-    if (!model.dvdBlurayEnabled) {
+    if (!self.model.dvdBlurayEnabled) {
         return;
     }
 
@@ -371,7 +371,7 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (void) saveBookmarks {
-    [model setBookmarkedDVD:self.bookmarks.allValues];
+    [self.model setBookmarkedDVD:self.bookmarks.allValues];
 }
 
 
@@ -389,7 +389,7 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
     // also determine if any of the data we found match items the user bookmarked
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     for (Movie* movie in movies) {
-        if ([model isBookmarked:movie]) {
+        if ([self.model isBookmarked:movie]) {
             [dictionary setObject:movie forKey:movie.canonicalTitle];
         }
     }
@@ -403,27 +403,27 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (void) updateNetflix:(Movie*) movie {
-    [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
+    [self.model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
 }
 
 
 - (void) updatePoster:(Movie*) movie {
-    [model.posterCache updateMovie:movie];
+    [self.model.posterCache updateMovie:movie];
 }
 
 
 - (void) updateIMDb:(Movie*) movie {
-    [model.imdbCache updateMovie:movie];
+    [self.model.imdbCache updateMovie:movie];
 }
 
 
 - (void) updateAmazon:(Movie*) movie {
-    [model.amazonCache updateMovie:movie];
+    [self.model.amazonCache updateMovie:movie];
 }
 
 
 - (void) updateWikipedia:(Movie*) movie {
-    [model.wikipediaCache updateMovie:movie];
+    [self.model.wikipediaCache updateMovie:movie];
 }
 
 

@@ -35,14 +35,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (WikipediaCache*) cacheWithModel:(Model*) model {
     return [[[WikipediaCache alloc] initWithModel:model] autorelease];
 }

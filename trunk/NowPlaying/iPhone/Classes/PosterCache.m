@@ -40,14 +40,6 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (PosterCache*) cacheWithModel:(Model*) model {
     return [[[PosterCache alloc] initWithModel:model] autorelease];
 }
@@ -107,7 +99,7 @@
         return data;
     }
 
-    [model.largePosterCache downloadFirstPosterForMovie:movie];
+    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
 
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time

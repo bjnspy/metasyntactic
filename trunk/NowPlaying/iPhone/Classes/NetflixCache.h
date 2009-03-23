@@ -19,8 +19,6 @@
     NSArray* feedsData_;
     NSDictionary* queues_;
     NSDate* lastQuotaErrorDate_;
-
-@protected
     NSMutableDictionary* presubmitRatings_;
 }
 

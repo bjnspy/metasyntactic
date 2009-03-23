@@ -52,8 +52,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.normalPeople = [LinkedSet set];
         self.prioritizedPeople = [LinkedSet setWithCountLimit:8];
 /*
@@ -74,22 +74,22 @@
 
 
 - (void) update:(Person*) person {
-    [gate lock];
+    [self.gate lock];
     {
         [normalPeople addObject:person];
-        [gate signal];
+        [self.gate signal];
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
 - (void) prioritizePerson:(Person*) person {
-    [gate lock];
+    [self.gate lock];
     {
         [prioritizedPeople addObject:person];
-        [gate signal];
+        [self.gate signal];
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
@@ -206,14 +206,14 @@
     while (YES) {
         Person* person = nil;
 
-        [gate lock];
+        [self.gate lock];
         {
             while ((person = [prioritizedPeople removeLastObjectAdded]) == nil &&
                    (person = [normalPeople removeLastObjectAdded]) == nil) {
-                [gate wait];
+                [self.gate wait];
             }
         }
-        [gate unlock];
+        [self.gate unlock];
 
         [self downloadPoster:person];
     }

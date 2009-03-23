@@ -30,21 +30,13 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
 + (DVDCache*) cacheWithModel:(Model*) model {
     return [[[DVDCache alloc] initWithModel:model] autorelease];
 }
 
 
 - (NSArray*) loadBookmarksArray {
-    return [model bookmarkedDVD];
+    return [self.model bookmarkedDVD];
 }
 
 
