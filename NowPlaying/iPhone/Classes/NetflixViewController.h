@@ -18,7 +18,7 @@
 @private
     UISearchBar* searchBar;
     NetflixSearchDisplayController* searchDisplayController;
-    
+
     NSInteger mostPopularTitleCount;
 }
 
