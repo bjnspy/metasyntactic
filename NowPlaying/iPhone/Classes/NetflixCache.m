@@ -1069,7 +1069,10 @@ static NSDictionary* availabilityMap = nil;
     for (NSString* identifier in identifiers) {
         [[AppDelegate operationQueue] performSelector:@selector(downloadRSSMovie:address:)
                                              onTarget:self
-                                           withObject:identifier withObject:address gate:nil priority:Low];
+                                           withObject:identifier
+                                           withObject:address
+                                                 gate:nil
+                                             priority:Low];
     }
 }
 
@@ -1269,7 +1272,7 @@ static NSDictionary* availabilityMap = nil;
     [[AppDelegate operationQueue] performSelector:@selector(downloadRSS)
                                          onTarget:self
                                              gate:nil // no lock.
-                                         priority:Low];
+                                         priority:High];
 }
 
 

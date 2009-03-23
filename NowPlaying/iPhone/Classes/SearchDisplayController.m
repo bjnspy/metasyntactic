@@ -27,19 +27,19 @@
 
 @interface SearchDisplayController()
 @property (assign) AbstractNavigationController* navigationController;
-@property (retain) SearchEngine* searchEngine;
+@property (retain) SearchEngine* searchEngineData;
 @property (retain) SearchResult* searchResult;
 @end
 
 @implementation SearchDisplayController
 
 @synthesize navigationController;
-@synthesize searchEngine;
+@synthesize searchEngineData;
 @synthesize searchResult;
 
 - (void) dealloc {
     self.navigationController = nil;
-    self.searchEngine = nil;
+    self.searchEngineData = nil;
     self.searchResult = nil;
 
     [super dealloc];
@@ -62,7 +62,6 @@
     if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
         self.navigationController = navigationController_;
         self.delegate = self;
-        //self.searchBar.delegate = self;
         self.searchResultsDataSource = self;
         self.searchResultsDelegate = self;
 
@@ -72,11 +71,18 @@
         self.searchBar.showsScopeBar = YES;
         self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
         self.searchBar.selectedScopeButtonIndex = self.model.searchSelectedScopeButtonIndex;
-
-        self.searchEngine = [SearchEngine engineWithModel:navigationController.model delegate:self];
     }
 
     return self;
+}
+
+
+- (SearchEngine*) searchEngine {
+    if (searchEngineData == nil) {
+        self.searchEngineData = [SearchEngine engineWithModel:navigationController.model delegate:self];
+    }
+    
+    return searchEngineData;
 }
 
 
@@ -345,12 +351,12 @@
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if (searchText.length == 0) {
-        [searchEngine invalidateExistingRequests];
+        [self.searchEngine invalidateExistingRequests];
         self.searchResult = nil;
         [self.searchResultsTableView reloadData];
         return YES;
     } else {
-        [searchEngine submitRequest:searchText];
+        [self.searchEngine submitRequest:searchText];
         return NO;
     }
 }
