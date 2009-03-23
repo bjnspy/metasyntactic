@@ -225,9 +225,8 @@ const NSInteger POSTER_TAG = -1;
 
 + (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model {
     UIImage* image = [model posterForMovie:movie];
-    CGSize size = image.size;
 
-    if (size.height > 0 && size.width > 0) {
+    if (image != nil) {
         return image;
     }
 
