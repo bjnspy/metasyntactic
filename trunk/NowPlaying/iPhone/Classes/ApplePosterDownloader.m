@@ -22,8 +22,17 @@
 @implementation ApplePosterDownloader
 
 static NSDictionary* movieNameToPosterMap = nil;
+static NSLock* gate;
 
-+ (void) createMap {
+
++ (void) initialize {
+    if (self == [ApplePosterDownloader class]) {
+        gate = [[NSLock alloc] init];
+    }
+}
+
+
++ (void) createMapWorker {
     if (movieNameToPosterMap != nil) {
         return;
     }
@@ -34,7 +43,7 @@ static NSDictionary* movieNameToPosterMap = nil;
         return;
     }
 
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
 
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
@@ -49,8 +58,17 @@ static NSDictionary* movieNameToPosterMap = nil;
     }
 
     movieNameToPosterMap = result;
-    [movieNameToPosterMap retain];
 }
+
+
++ (void) createMap {
+    [gate lock];
+    {
+        [self createMapWorker];
+    }
+    [gate unlock];
+}
+
 
 + (NSData*) download:(Movie*) movie {
     [self createMap];

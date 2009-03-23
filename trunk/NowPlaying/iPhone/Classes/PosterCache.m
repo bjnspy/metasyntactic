@@ -86,8 +86,7 @@
 }
 
 
-- (NSData*) downloadPosterWorker:(Movie*) movie
-                      postalCode:(NSString*) postalCode {
+- (NSData*) downloadPosterWorker:(Movie*) movie {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
     if (data != nil) {
         return data;
@@ -98,7 +97,7 @@
         return data;
     }
 
-    data = [FandangoPosterDownloader download:movie postalCode:postalCode];
+    data = [FandangoPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
@@ -120,8 +119,7 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie
-                 postalCode:(NSString*) postalCode {
+- (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
 
     if ([FileUtilities fileExists:path]) {
@@ -139,7 +137,7 @@
         }
     }
 
-    NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];
+    NSData* data = [self downloadPosterWorker:movie];
 
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
@@ -148,11 +146,6 @@
             [AppDelegate minorRefresh];
         }
     }
-}
-
-
-- (void) updateMovieDetails:(Movie*) movie {
-    [self updateMovieDetails:movie postalCode:@"10009"];
 }
 
 

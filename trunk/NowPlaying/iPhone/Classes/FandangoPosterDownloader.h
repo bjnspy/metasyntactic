@@ -15,6 +15,6 @@
 @interface FandangoPosterDownloader : NSObject {
 }
 
-+ (NSData*) download:(Movie*) movie postalCode:(NSString*) postalCode;
++ (NSData*) download:(Movie*) movie;
 
 @end
