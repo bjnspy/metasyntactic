@@ -43,7 +43,7 @@
 - (id) init {
     if (self = [super init]) {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        queue.maxConcurrentOperationCount = 2;
+        queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         self.boundedOperations = [NSMutableArray array];
         self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
     }
@@ -58,39 +58,29 @@
 
 
 - (void) addOperation:(Operation*) operation priority:(BOOL) queuePriority {
-    NSOperationQueuePriority priority;
-    switch (queuePriority) {
-        case High:
-            priority = NSOperationQueuePriorityNormal;
-            break;
-        case Normal:
-            priority = NSOperationQueuePriorityLow;
-            break;
-        default:
-            priority = NSOperationQueuePriorityVeryLow;
-            break;
-    }
-
-    operation.queuePriority = priority;
+    operation.queuePriority = queuePriority;
     [queue addOperation:operation];
 }
 
 
-- (void) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation* operation = [Operation operationWithTarget:target selector:selector operationQueue:self isBounded:NO gate:gate];
     [self addOperation:operation priority:priority];
+    return operation;
 }
 
 
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation1* operation = [Operation1 operationWithTarget:target selector:selector argument:object operationQueue:self isBounded:NO gate:gate];
     [self addOperation:operation priority:priority];
+    return operation;
 }
 
 
-- (void) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation2* operation = [Operation2 operationWithTarget:target selector:selector argument:object1 argument:object2 operationQueue:self isBounded:NO gate:gate];
     [self addOperation:operation priority:priority];
+    return operation;
 }
 
 
@@ -113,21 +103,24 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 16;
 }
 
 
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation* operation = [Operation operationWithTarget:target selector:selector operationQueue:self isBounded:YES gate:gate];
     [self addBoundedOperation:operation priority:priority];
+    return operation;
 }
 
 
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation1* operation = [Operation1 operationWithTarget:target selector:selector argument:object operationQueue:self isBounded:YES gate:gate];
     [self addBoundedOperation:operation priority:priority];
+    return operation;
 }
 
 
-- (void) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
+- (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
     Operation2* operation = [Operation2 operationWithTarget:target selector:selector argument:object1 argument:object2 operationQueue:self isBounded:YES gate:gate];
     [self addBoundedOperation:operation priority:priority];
+    return operation;
 }
 
 

@@ -130,4 +130,14 @@
     return [[[UITableViewCell alloc] init] autorelease];
 }
 
+
+- (void) majorRefresh {
+    
+}
+
+
+- (void) minorRefresh {
+    
+}
+
 @end
