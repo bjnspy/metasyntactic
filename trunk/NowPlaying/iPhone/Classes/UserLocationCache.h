@@ -16,7 +16,7 @@
 
 @interface UserLocationCache : LocationCache {
 @private
-    NSLock* gate;
+    NSLock* gate_;
 }
 
 + (UserLocationCache*) cache;
