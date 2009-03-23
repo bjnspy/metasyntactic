@@ -16,9 +16,9 @@
 
 @interface Controller : NSObject<DataProviderUpdateDelegate> {
 @private
-    LocationManager* locationManager;
+    LocationManager* locationManager_;
 
-    NSLock* determineLocationLock;
+    NSLock* determineLocationLock_;
 }
 
 @property (readonly, retain) LocationManager* locationManager;
