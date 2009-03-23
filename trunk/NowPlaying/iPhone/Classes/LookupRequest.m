@@ -15,22 +15,29 @@
 #import "LookupRequest.h"
 
 @interface LookupRequest()
-@property (retain) NSDate* searchDate;
-@property (retain) id<DataProviderUpdateDelegate> delegate;
-@property (retain) id context;
-@property BOOL force;
-@property (retain) NSArray* currentMovies;
-@property (retain) NSArray* currentTheaters;
+@property (retain) NSDate* searchDate_;
+@property (retain) id<DataProviderUpdateDelegate> delegate_;
+@property (retain) id context_;
+@property BOOL force_;
+@property (retain) NSArray* currentMovies_;
+@property (retain) NSArray* currentTheaters_;
 @end
 
 @implementation LookupRequest
 
-@synthesize searchDate;
-@synthesize delegate;
-@synthesize context;
-@synthesize force;
-@synthesize currentMovies;
-@synthesize currentTheaters;
+@synthesize searchDate_;
+@synthesize delegate_;
+@synthesize context_;
+@synthesize force_;
+@synthesize currentMovies_;
+@synthesize currentTheaters_;
+
+property_wrapper(NSDate*, searchDate, SearchDate);
+property_wrapper(id<DataProviderUpdateDelegate>, delegate, Delegate);
+property_wrapper(id, context, Context);
+property_wrapper(BOOL, force, Force);
+property_wrapper(NSArray*, currentMovies, CurrentMovies);
+property_wrapper(NSArray*, currentTheaters, CurrentTheaters);
 
 - (void) dealloc {
     self.searchDate = nil;
@@ -44,19 +51,19 @@
 }
 
 
-- (id) initWithSearchDate:(NSDate*) searchDate_
-                 delegate:(id<DataProviderUpdateDelegate>) delegate_
-                  context:(id) context_
-                    force:(BOOL) force_
-            currentMovies:(NSArray*) currentMovies_
-          currentTheaters:(NSArray*) currentTheaters_ {
+- (id) initWithSearchDate:(NSDate*) searchDate__
+                 delegate:(id<DataProviderUpdateDelegate>) delegate__
+                  context:(id) context__
+                    force:(BOOL) force__
+            currentMovies:(NSArray*) currentMovies__
+          currentTheaters:(NSArray*) currentTheaters__ {
     if (self = [super init]) {
-        self.searchDate = searchDate_;
-        self.delegate = delegate_;
-        self.context = context_;
-        self.force = force_;
-        self.currentMovies = currentMovies_;
-        self.currentTheaters = currentTheaters_;
+        self.searchDate = searchDate__;
+        self.delegate = delegate__;
+        self.context = context__;
+        self.force = force__;
+        self.currentMovies = currentMovies__;
+        self.currentTheaters = currentTheaters__;
     }
 
     return self;

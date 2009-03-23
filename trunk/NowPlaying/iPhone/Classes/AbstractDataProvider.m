@@ -33,29 +33,29 @@
 #import "UserLocationCache.h"
 
 @interface AbstractDataProvider()
-@property (retain) NSLock* gate;
-@property (retain) Model* model;
-@property (retain) NSArray* moviesData;
-@property (retain) NSArray* theatersData;
-@property (retain) NSDictionary* synchronizationInformationData;
-@property (retain) NSMutableDictionary* performancesData;
-@property (retain) NSMutableDictionary* bookmarksData;
+@property (retain) NSArray* moviesData_;
+@property (retain) NSArray* theatersData_;
+@property (retain) NSDictionary* synchronizationInformationData_;
+@property (retain) NSMutableDictionary* performancesData_;
+@property (retain) NSMutableDictionary* bookmarksData_;
 @end
 
 
 @implementation AbstractDataProvider
 
-@synthesize gate;
-@synthesize model;
-@synthesize moviesData;
-@synthesize theatersData;
-@synthesize performancesData;
-@synthesize synchronizationInformationData;
-@synthesize bookmarksData;
+@synthesize moviesData_;
+@synthesize theatersData_;
+@synthesize performancesData_;
+@synthesize synchronizationInformationData_;
+@synthesize bookmarksData_;
+
+property_wrapper(NSArray*, moviesData, MoviesData);
+property_wrapper(NSArray*, theatersData, TheatersData);
+property_wrapper(NSDictionary*, synchronizationInformationData, SynchronizationInformationData);
+property_wrapper(NSMutableDictionary*, bookmarksData, BookmarksData);
+property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 - (void) dealloc {
-    self.gate = nil;
-    self.model = nil;
     self.moviesData = nil;
     self.theatersData = nil;
     self.performancesData = nil;
@@ -66,10 +66,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
-        self.model = model_;
+- (id) initWithModel:(Model*) model__ {
+    if (self = [super initWithModel:model__]) {
         self.performancesData = [NSMutableDictionary dictionary];
     }
 
@@ -134,16 +132,16 @@
 
 
 - (NSArray*) movies {
-    if (moviesData == nil) {
+    if (self.moviesData == nil) {
         self.moviesData = [self loadMovies];
     }
 
-    return moviesData;
+    return self.moviesData;
 }
 
 
 - (NSMutableDictionary*) loadBookmarks {
-    NSArray* movies = [model bookmarkedMovies];
+    NSArray* movies = [self.model bookmarkedMovies];
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
@@ -157,11 +155,11 @@
 
 
 - (NSMutableDictionary*) bookmarks {
-    if (bookmarksData == nil) {
+    if (self.bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return bookmarksData;
+    return self.bookmarksData;
 }
 
 
@@ -175,10 +173,10 @@
 
 
 - (NSDictionary*) synchronizationInformation {
-    if (synchronizationInformationData == nil) {
+    if (self.synchronizationInformationData == nil) {
         self.synchronizationInformationData = [self loadSynchronizationInformation];
     }
-    return synchronizationInformationData;
+    return self.synchronizationInformationData;
 }
 
 
@@ -232,11 +230,11 @@
 
 
 - (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
+    NSMutableDictionary* theaterPerformances = [self.performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
                                [FileUtilities readObject:[self performancesFile:theater.name]]];
-        [performancesData setObject:theaterPerformances
+        [self.performancesData setObject:theaterPerformances
                              forKey:theater.name];
     }
     return theaterPerformances;
@@ -285,11 +283,11 @@
 
 
 - (NSArray*) theaters {
-    if (theatersData == nil) {
+    if (self.theatersData == nil) {
         self.theatersData = [self loadTheaters];
     }
 
-    return theatersData;
+    return self.theatersData;
 }
 
 
@@ -391,7 +389,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:request
-                                             gate:gate
+                                             gate:self.gate
                                           priority:High];
 }
 
@@ -528,7 +526,7 @@
 
 
 - (void) saveBookmarks {
-    [model setBookmarkedMovies:self.bookmarks.allValues];
+    [self.model setBookmarkedMovies:self.bookmarks.allValues];
 }
 
 
@@ -543,7 +541,7 @@
 
     // also determine if any of the data we found match items the user bookmarked
     for (Movie* movie in result.movies) {
-        if ([model isBookmarked:movie]) {
+        if ([self.model isBookmarked:movie]) {
             [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
