@@ -32,15 +32,18 @@
 #import "Utilities.h"
 
 @interface Controller()
-@property (retain) NSLock* determineLocationLock;
-@property (retain) LocationManager* locationManager;
+@property (retain) NSLock* determineLocationLock_;
+@property (retain) LocationManager* locationManager_;
 @end
 
 
 @implementation Controller
 
-@synthesize determineLocationLock;
-@synthesize locationManager;
+@synthesize determineLocationLock_;
+@synthesize locationManager_;
+
+property_wrapper(NSLock*, determineLocationLock, DetermineLocationLock);
+property_wrapper(LocationManager*, locationManager, LocationManager)
 
 - (void) dealloc {
     self.determineLocationLock = nil;
@@ -107,7 +110,7 @@
     NSAssert([NSThread isMainThread], nil);
     [[AppDelegate operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
                                          onTarget:self
-                                             gate:determineLocationLock
+                                             gate:self.determineLocationLock
                                           priority:High];
 }
 
@@ -239,7 +242,7 @@
 
 - (void) setAutoUpdateLocation:(BOOL) value {
     [self.model setAutoUpdateLocation:value];
-    [locationManager autoUpdateLocation];
+    [self.locationManager autoUpdateLocation];
 }
 
 
