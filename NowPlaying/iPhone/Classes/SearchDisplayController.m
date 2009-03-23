@@ -20,7 +20,7 @@
 #import "DVDCell.h"
 #import "Model.h"
 #import "MovieTitleCell.h"
-#import "SearchEngine.h"
+#import "LocalSearchEngine.h"
 #import "SearchResult.h"
 #import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
@@ -79,7 +79,7 @@
 
 
 - (AbstractSearchEngine*) createSearchEngine {
-    return [SearchEngine engineWithModel:navigationController.model
+    return [LocalSearchEngine engineWithModel:navigationController.model
                                 delegate:self];
 }
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SearchEngine.h"
+#import "LocalSearchEngine.h"
 
 #import "Location.h"
 #import "Model.h"
@@ -23,7 +23,7 @@
 #import "Utilities.h"
 
 
-@implementation SearchEngine
+@implementation LocalSearchEngine
 
 - (void) dealloc {
     [super dealloc];
@@ -39,9 +39,9 @@
 }
 
 
-+ (SearchEngine*) engineWithModel:(Model*) model
++ (LocalSearchEngine*) engineWithModel:(Model*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
-    return [[[SearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
+    return [[[LocalSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }
 
 
