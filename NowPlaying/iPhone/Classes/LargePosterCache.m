@@ -84,25 +84,22 @@ const int START_YEAR = 1912;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index
-                   compress:(BOOL) compress {
+                      index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     UIImage* image = [UIImage imageWithData:data];
 
-    if (compress) {
-        CGSize size = image.size;
-        if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-            NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                        toHeight:FULL_SCREEN_POSTER_HEIGHT];
-            image = [UIImage imageWithData:data];
-            [FileUtilities writeData:resizedData toFile:path];
-        } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-            NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                        toHeight:FULL_SCREEN_POSTER_WIDTH];
-            image = [UIImage imageWithData:data];
-            [FileUtilities writeData:resizedData toFile:path];
-        }
+    CGSize size = image.size;
+    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                    toHeight:FULL_SCREEN_POSTER_HEIGHT];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
+    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                    toHeight:FULL_SCREEN_POSTER_WIDTH];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
     }
 
     return image;
@@ -346,7 +343,6 @@ const int START_YEAR = 1912;
 
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
     if (data != nil) {
-
         [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
         [AppDelegate minorRefresh];
     }
