@@ -16,7 +16,6 @@
 
 @interface Controller : NSObject<DataProviderUpdateDelegate> {
 @private
-    AppDelegate* appDelegate;
     LocationManager* locationManager;
 
     NSLock* determineLocationLock;
@@ -25,8 +24,6 @@
 @property (readonly, retain) LocationManager* locationManager;
 
 - (void) start;
-
-- (Model*) model;
 
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setUserAddress:(NSString*) userAddress;
@@ -40,6 +37,6 @@
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
-+ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
++ (Controller*) controller;
 
 @end

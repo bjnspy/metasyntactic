@@ -82,7 +82,7 @@
 
 
 - (Model*) model {
-    return controller.model;
+    return [AppDelegate appDelegate].model;
 }
 
 

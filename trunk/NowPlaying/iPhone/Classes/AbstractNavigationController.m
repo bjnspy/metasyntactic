@@ -14,6 +14,7 @@
 
 #import "AbstractNavigationController.h"
 
+#import "AppDelegate.h"
 #import "ApplicationTabBarController.h"
 #import "Model.h"
 #import "Movie.h"
@@ -108,12 +109,12 @@
 
 
 - (Model*) model {
-    return tabBarController.model;
+    return [[AppDelegate appDelegate] model];
 }
 
 
 - (Controller*) controller {
-    return tabBarController.controller;
+    return [[AppDelegate appDelegate] controller];
 }
 
 

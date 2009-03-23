@@ -86,9 +86,8 @@ static AppDelegate* appDelegate = nil;
     [self setupGlobalActivtyIndicator];
 
     self.model = [Model model];
-    self.controller = [Controller controllerWithAppDelegate:self];
-
-    self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
+    self.controller = [Controller controller];
+    self.tabBarController = [ApplicationTabBarController controller];
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
