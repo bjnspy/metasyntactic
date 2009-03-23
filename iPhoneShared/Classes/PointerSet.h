@@ -14,7 +14,7 @@
 
 @interface PointerSet : NSObject {
 @private
-    NSMutableSet* set;
+    NSMutableSet* set_;
 }
 
 + (PointerSet*) set;
