@@ -19,7 +19,7 @@
     NSArray* moviesData_;
     NSArray* theatersData_;
     NSDictionary* synchronizationInformationData_;
-    NSMutableDictionary* bookmarksData_;
+    NSDictionary* bookmarksData_;
 
     NSMutableDictionary* performancesData_;
 }
