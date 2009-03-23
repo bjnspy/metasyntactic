@@ -33,21 +33,30 @@
 #import "XmlElement.h"
 
 @interface UpcomingCache()
-@property (retain) NSString* hashData;
-@property (retain) NSDictionary* movieMapData;
-@property (retain) NSDictionary* studioKeysData;
-@property (retain) NSDictionary* titleKeysData;
-@property (retain) NSDictionary* bookmarksData;
+@property (retain) NSString* hashData_;
+@property (retain) NSDictionary* movieMapData_;
+@property (retain) NSDictionary* studioKeysData_;
+@property (retain) NSDictionary* titleKeysData_;
+@property (retain) NSDictionary* bookmarksData_;
+@property BOOL updated_;
 @end
 
 
 @implementation UpcomingCache
 
-@synthesize hashData;
-@synthesize movieMapData;
-@synthesize studioKeysData;
-@synthesize titleKeysData;
-@synthesize bookmarksData;
+@synthesize hashData_;
+@synthesize movieMapData_;
+@synthesize studioKeysData_;
+@synthesize titleKeysData_;
+@synthesize bookmarksData_;
+@synthesize updated_;
+
+property_wrapper(NSString*, hashData, HashData);
+property_wrapper(NSDictionary*, movieMapData, MovieMapData);
+property_wrapper(NSDictionary*, studioKeysData, StudioKeysData);
+property_wrapper(NSDictionary*, titleKeysData, TitleKeysData);
+property_wrapper(BOOL, updated, Updated);
+property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 - (void) dealloc {
     self.hashData = nil;
@@ -55,6 +64,7 @@
     self.studioKeysData = nil;
     self.titleKeysData = nil;
     self.bookmarksData = nil;
+    self.updated_ = NO;
 
     [super dealloc];
 }
@@ -192,11 +202,11 @@
 
 
 - (NSDictionary*) movieMap {
-    if (movieMapData == nil) {
+    if (self.movieMapData == nil) {
         self.movieMapData = [self loadMovies];
     }
 
-    return movieMapData;
+    return self.movieMapData;
 }
 
 
@@ -206,14 +216,14 @@
 
 
 - (NSString*) hashValue {
-    if (hashData == nil) {
+    if (self.hashData == nil) {
         self.hashData = [FileUtilities readObject:self.hashFile];
-        if (hashData == nil) {
+        if (self.hashData == nil) {
             self.hashData = @"";
         }
     }
 
-    return hashData;
+    return self.hashData;
 }
 
 
@@ -228,11 +238,11 @@
 
 
 - (NSDictionary*) studioKeys {
-    if (studioKeysData == nil) {
+    if (self.studioKeysData == nil) {
         self.studioKeysData = [self loadStudioKeys];
     }
 
-    return studioKeysData;
+    return self.studioKeysData;
 }
 
 
@@ -247,11 +257,11 @@
 
 
 - (NSDictionary*) titleKeys {
-    if (titleKeysData == nil) {
+    if (self.titleKeysData == nil) {
         self.titleKeysData = [self loadTitleKeys];
     }
 
-    return titleKeysData;
+    return self.titleKeysData;
 }
 
 
@@ -271,11 +281,11 @@
 
 
 - (NSDictionary*) bookmarks {
-    if (bookmarksData == nil) {
+    if (self.bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return bookmarksData;
+    return self.bookmarksData;
 }
 
 
@@ -367,10 +377,10 @@
         return;
     }
 
-    if (updated) {
+    if (self.updated) {
         return;
     }
-    updated = YES;
+    self.updated = YES;
 
     [[AppDelegate operationQueue] performSelector:@selector(updateIndexBackgroundEntryPoint)
                                          onTarget:self

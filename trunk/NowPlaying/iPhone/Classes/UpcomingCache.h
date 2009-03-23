@@ -16,14 +16,14 @@
 
 @interface UpcomingCache : AbstractMovieCache {
 @private
-    NSString* hashData;
-    NSDictionary* movieMapData;
-    NSDictionary* studioKeysData;
-    NSDictionary* titleKeysData;
+    NSString* hashData_;
+    NSDictionary* movieMapData_;
+    NSDictionary* studioKeysData_;
+    NSDictionary* titleKeysData_;
 
-    BOOL updated;
+    BOOL updated_;
 
-    NSDictionary* bookmarksData;
+    NSDictionary* bookmarksData_;
 }
 
 + (UpcomingCache*) cacheWithModel:(Model*) model;
