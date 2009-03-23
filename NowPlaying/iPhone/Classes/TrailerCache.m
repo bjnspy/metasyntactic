@@ -25,17 +25,21 @@
 #import "OperationQueue.h"
 
 @interface TrailerCache()
-@property (retain) DifferenceEngine* engine;
-@property (retain) NSDictionary* index;
-@property (retain) NSArray* indexKeys;
+@property (retain) DifferenceEngine* engine_;
+@property (retain) NSDictionary* index_;
+@property (retain) NSArray* indexKeys_;
 @end
 
 
 @implementation TrailerCache
 
-@synthesize engine;
-@synthesize index;
-@synthesize indexKeys;
+@synthesize engine_;
+@synthesize index_;
+@synthesize indexKeys_;
+
+property_wrapper(DifferenceEngine*, engine, Engine);
+property_wrapper(NSDictionary*, index, Index);
+property_wrapper(NSArray*, indexKeys, IndexKeys);
 
 - (void) dealloc {
     self.engine = nil;
@@ -103,8 +107,8 @@
         }
     }
 
-    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
-                                                 inArray:indexKeys];
+    NSInteger arrayIndex = [self.engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
+                                                 inArray:self.indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
         [FileUtilities writeObject:[NSArray array]
@@ -112,7 +116,7 @@
         return;
     }
 
-    NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
+    NSArray* studioAndLocation = [self.index objectForKey:[self.indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
 
@@ -158,7 +162,7 @@
     }
 
     self.index = result;
-    self.indexKeys = index.allKeys;
+    self.indexKeys = self.index.allKeys;
 }
 
 
