@@ -14,16 +14,16 @@
 
 @interface LocationManager : NSObject<CLLocationManagerDelegate> {
 @private
-    Controller* controller;
-    NSLock* gate;
-    CLLocationManager* locationManager;
+    Controller* controller_;
+    NSLock* gate_;
+    CLLocationManager* locationManager_;
 
-    UINavigationItem* navigationItem;
-    UIBarButtonItem* buttonItem;
+    UINavigationItem* navigationItem_;
+    UIBarButtonItem* buttonItem_;
 
-    BOOL running;
-    BOOL firstTime;
-    BOOL userInvoked;
+    BOOL running_;
+    BOOL firstTime_;
+    BOOL userInvoked_;
 }
 
 + (LocationManager*) managerWithController:(Controller*) controller;
