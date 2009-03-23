@@ -17,14 +17,17 @@
 @interface AbstractMovieCache : AbstractCache {
 @private
     NSMutableSet* updatedMovies;
+    NSArray* searchOperations;
 }
 
 - (void) prioritizeMovie:(Movie*) movie;
 
 /* @protected */
 - (id) initWithModel:(Model*) model;
+
 - (void) addPrimaryMovie:(Movie*) movie;
 - (void) addSecondaryMovie:(Movie*) movie;
+- (void) addSearchMovies:(NSArray*) movies;
 - (void) addPrimaryMovies:(NSArray*) movies;
 - (void) addSecondaryMovies:(NSArray*) movies;
 

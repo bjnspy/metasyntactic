@@ -520,7 +520,7 @@ const double LOAD_DELAY = 1;
                                          onTarget:self
                                        withObject:[NSNumber numberWithInteger:nextIndex]
                                              gate:nil
-                                         priority:High];
+                                         priority:Priority];
 }
 
 
@@ -558,13 +558,13 @@ const double LOAD_DELAY = 1;
                                              onTarget:self
                                            withObject:[NSNumber numberWithInteger:currentPage]
                                                  gate:nil
-                                             priority:High];
+                                             priority:Priority];
     } else {
         [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
                                              onTarget:self
                                            withObject:[NSNumber numberWithInteger:0]
                                                  gate:nil
-                                             priority:High];
+                                             priority:Priority];
     }
 }
 

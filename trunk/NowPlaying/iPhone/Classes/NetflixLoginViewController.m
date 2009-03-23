@@ -165,7 +165,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(requestAuthorizationToken)
                                   onTarget:self
                                       gate:nil
-                                   priority:High];
+                                   priority:Priority];
 }
 
 
@@ -272,7 +272,7 @@
     [[AppDelegate operationQueue] performSelector:@selector(requestAccessToken)
                                          onTarget:self
                                              gate:nil
-                                         priority:High];
+                                         priority:Priority];
 }
 
 

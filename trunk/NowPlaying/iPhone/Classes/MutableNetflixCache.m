@@ -257,7 +257,7 @@
                                          onTarget:self
                                        withObject:arguments
                                              gate:gate
-                                         priority:High];
+                                         priority:Priority];
 }
 
 
@@ -273,7 +273,7 @@
                                onTarget:self
                              withObject:arguments
                                    gate:gate
-                               priority:High];
+                               priority:Priority];
 }
 
 
@@ -299,7 +299,7 @@
                                   onTarget:self
                                   withObject:arguments
                                       gate:gate
-                                   priority:High];
+                                   priority:Priority];
 }
 
 
@@ -451,7 +451,7 @@
                                   onTarget:self
                                   withObject:arguments
                                       gate:gate
-                                   priority:High];
+                                   priority:Priority];
 }
 
 

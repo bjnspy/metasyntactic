@@ -140,10 +140,12 @@ typedef enum {
     [self setupTitle];
     [self determinePopularMovieCount];
     [self reloadTableViewData];
+    [searchDisplayController majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
+    [searchDisplayController minorRefresh];
 }
 
 

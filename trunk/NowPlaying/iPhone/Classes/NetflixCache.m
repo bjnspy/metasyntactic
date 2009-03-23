@@ -640,8 +640,7 @@ static NSDictionary* availabilityMap = nil;
     [request setParameters:parameters];
     [request prepare];
 
-    XmlElement* element =
-    [NetworkUtilities xmlWithContentsOfUrlRequest:request];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -658,7 +657,7 @@ static NSDictionary* availabilityMap = nil;
 
     if (movies.count > 0) {
         // download the details for these movies in teh background.
-        [self addPrimaryMovies:movies];
+        [self addSearchMovies:movies];
     }
 
     return movies;

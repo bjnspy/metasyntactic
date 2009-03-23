@@ -22,4 +22,7 @@
 - (Model*) model;
 - (Controller*) controller;
 
+- (void) majorRefresh;
+- (void) minorRefresh;
+
 @end

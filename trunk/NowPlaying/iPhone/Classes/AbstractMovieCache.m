@@ -19,15 +19,18 @@
 
 @interface AbstractMovieCache()
 @property (retain) NSMutableSet* updatedMovies;
+@property (retain) NSArray* searchOperations;
 @end
 
 
 @implementation AbstractMovieCache
 
 @synthesize updatedMovies;
+@synthesize searchOperations;
 
 - (void) dealloc {
     self.updatedMovies = nil;
+    self.searchOperations = nil;
 
     [super dealloc];
 }
@@ -92,7 +95,16 @@
                                                 onTarget:self
                                               withObject:movie
                                                     gate:nil
-                                                priority:High];
+                                                priority:Priority];
+}
+
+
+- (Operation*) addSearchMovie:(Movie*) movie {
+    return [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
+                                         onTarget:self
+                                       withObject:movie
+                                             gate:nil
+                                         priority:Search];  
 }
 
 
@@ -111,6 +123,21 @@
                                        withObject:movie
                                              gate:nil
                                          priority:Low];
+}
+
+
+- (void) addSearchMovies:(NSArray*) movies {
+    NSArray* oldOperations = self.searchOperations;
+    for (Operation* operation in oldOperations) {
+        [operation cancel];
+    }
+    
+    NSMutableArray* operations = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        [operations addObject:[self addSearchMovie:movie]];
+    }
+    
+    self.searchOperations = operations;
 }
 
 
