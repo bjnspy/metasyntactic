@@ -43,7 +43,7 @@
 - (id) init {
     if (self = [super init]) {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
+        queue.maxConcurrentOperationCount = 2;
         self.boundedOperations = [NSMutableArray array];
         self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
     }
