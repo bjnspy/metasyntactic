@@ -21,51 +21,51 @@ enum ViewControllerType {
 
 @interface Model : NSObject<UIAlertViewDelegate> {
 @private
-    UserLocationCache* userLocationCache;
-    BlurayCache* blurayCache;
-    DVDCache* dvdCache;
-    IMDbCache* imdbCache;
-    AmazonCache* amazonCache;
-    WikipediaCache* wikipediaCache;
-    PersonPosterCache* personPosterCache;
-    PosterCache* posterCache;
-    LargePosterCache* largePosterCache;
-    ScoreCache* scoreCache;
-    TrailerCache* trailerCache;
-    UpcomingCache* upcomingCache;
-    MutableNetflixCache* netflixCache;
+    UserLocationCache* userLocationCache_;
+    BlurayCache* blurayCache_;
+    DVDCache* dvdCache_;
+    IMDbCache* imdbCache_;
+    AmazonCache* amazonCache_;
+    WikipediaCache* wikipediaCache_;
+    PersonPosterCache* personPosterCache_;
+    PosterCache* posterCache_;
+    LargePosterCache* largePosterCache_;
+    ScoreCache* scoreCache_;
+    TrailerCache* trailerCache_;
+    UpcomingCache* upcomingCache_;
+    MutableNetflixCache* netflixCache_;
 
-    NSInteger searchRadius;
-    NSNumber* isSearchDateTodayData;
+    NSInteger searchRadiusData_;
+    NSNumber* isSearchDateTodayData_;
 
-    NSSet* bookmarkedTitlesData;
-    NSDictionary* favoriteTheatersData;
+    NSSet* bookmarkedTitlesData_;
+    NSDictionary* favoriteTheatersData_;
 
-    id<DataProvider> dataProvider;
+    id<DataProvider> dataProvider_;
 
-    NSInteger cachedScoreProviderIndex;
+    NSInteger cachedScoreProviderIndex_;
 }
-
-@property (readonly, retain) UserLocationCache* userLocationCache;
-@property (readonly, retain) BlurayCache* blurayCache;
-@property (readonly, retain) DVDCache* dvdCache;
-@property (readonly, retain) IMDbCache* imdbCache;
-@property (readonly, retain) AmazonCache* amazonCache;
-@property (readonly, retain) WikipediaCache* wikipediaCache;
-@property (readonly, retain) PersonPosterCache* personPosterCache;
-@property (readonly, retain) PosterCache* posterCache;
-@property (readonly, retain) LargePosterCache* largePosterCache;
-@property (readonly, retain) ScoreCache* scoreCache;
-@property (readonly, retain) TrailerCache* trailerCache;
-@property (readonly, retain) UpcomingCache* upcomingCache;
-@property (readonly, retain) MutableNetflixCache* netflixCache;
-@property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
 
 + (NSString*) version;
 
 - (void) didReceiveMemoryWarning;
+
+- (UserLocationCache*) userLocationCache;
+- (BlurayCache*) blurayCache;
+- (DVDCache*) dvdCache;
+- (IMDbCache*) imdbCache;
+- (AmazonCache*) amazonCache;
+- (WikipediaCache*) wikipediaCache;
+- (PersonPosterCache*) personPosterCache;
+- (PosterCache*) posterCache;
+- (LargePosterCache*) largePosterCache;
+- (ScoreCache*) scoreCache;
+- (TrailerCache*) trailerCache;
+- (UpcomingCache*) upcomingCache;
+- (MutableNetflixCache*) netflixCache;
+- (id<DataProvider>) dataProvider;
 
 - (BOOL) votedForIcon;
 - (void) setVotedForIcon;
