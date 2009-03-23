@@ -26,21 +26,28 @@
 #import "OperationQueue.h"
 
 @interface LargePosterCache()
-@property (retain) NSMutableDictionary* yearToMovieMap;
-@property (retain) NSLock* yearToMovieMapGate;
+@property (retain) NSMutableDictionary* yearToMovieMap_;
+@property (retain) NSLock* yearToMovieMapGate_;
+@property BOOL updated_;
 @end
 
 @implementation LargePosterCache
 
-@synthesize yearToMovieMap;
-@synthesize yearToMovieMapGate;
+@synthesize yearToMovieMap_;
+@synthesize yearToMovieMapGate_;
+@synthesize updated_;
+
+property_wrapper(NSMutableDictionary*, yearToMovieMap, YearToMovieMap);
+property_wrapper(NSLock*, yearToMovieMapGate, YearToMovieMapGate);
+property_wrapper(BOOL, updated, Updated);
 
 const int START_YEAR = 1912;
 
 - (void) dealloc {
-    self.yearToMovieMap = nil;
-    self.yearToMovieMapGate = nil;
-
+    self.yearToMovieMap_ = nil;
+    self.yearToMovieMapGate_ = nil;
+    self.updated_ = NO;
+    
     [super dealloc];
 }
 
@@ -204,11 +211,11 @@ const int START_YEAR = 1912;
     }
 
     if (dictionary.count > 0) {
-        [yearToMovieMapGate lock];
+        [self.yearToMovieMapGate lock];
         {
-            [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+            [self.yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
         }
-        [yearToMovieMapGate unlock];
+        [self.yearToMovieMapGate unlock];
     }
 }
 
@@ -232,10 +239,10 @@ const int START_YEAR = 1912;
         return;
     }
 
-    if (updated) {
+    if (self.updated) {
         return;
     }
-    updated = YES;
+    self.updated = YES;
 
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
@@ -252,11 +259,11 @@ const int START_YEAR = 1912;
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
     NSDictionary* movieMap;
-    [yearToMovieMapGate lock];
+    [self.yearToMovieMapGate lock];
     {
-        movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+        movieMap = [self.yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
     }
-    [yearToMovieMapGate unlock];
+    [self.yearToMovieMapGate unlock];
 
     NSArray* result = [movieMap objectForKey:movie.canonicalTitle.lowercaseString];
     if (result.count > 0) {

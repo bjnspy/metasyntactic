@@ -16,10 +16,10 @@
 
 @interface LargePosterCache : AbstractCache {
 @private
-    NSMutableDictionary* yearToMovieMap;
-    NSLock* yearToMovieMapGate;
+    NSMutableDictionary* yearToMovieMap_;
+    NSLock* yearToMovieMapGate_;
 
-    BOOL updated;
+    BOOL updated_;
 }
 
 + (LargePosterCache*) cacheWithModel:(Model*) model;
