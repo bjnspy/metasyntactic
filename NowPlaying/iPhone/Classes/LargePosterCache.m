@@ -106,12 +106,6 @@ const int START_YEAR = 1912;
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index {
-    return [self posterForMovie:movie index:index compress:YES];
-}
-
-
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                            index:(NSInteger) index {
     NSData* smallPosterData;
