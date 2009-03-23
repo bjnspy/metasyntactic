@@ -36,22 +36,25 @@
 #import "XmlElement.h"
 
 @interface AbstractDVDBlurayCache()
-@property (retain) PointerSet* moviesSetData;
-@property (retain) NSArray* moviesData;
-@property (retain) NSDictionary* bookmarksData;
+@property (retain) PointerSet* moviesSetData_;
+@property (retain) NSArray* moviesData_;
+@property (retain) NSDictionary* bookmarksData_;
+@property BOOL updated_;
 @end
 
 
 @implementation AbstractDVDBlurayCache
 
-@synthesize moviesSetData;
-@synthesize moviesData;
-@synthesize bookmarksData;
+@synthesize moviesSetData_;
+@synthesize moviesData_;
+@synthesize bookmarksData_;
+@synthesize updated_;
 
 - (void) dealloc {
-    self.moviesSetData = nil;
-    self.moviesData = nil;
-    self.bookmarksData = nil;
+    self.moviesSetData_ = nil;
+    self.moviesData_ = nil;
+    self.bookmarksData_ = nil;
+    self.updated_ = NO;
 
     [super dealloc];
 }
@@ -64,6 +67,10 @@
     return self;
 }
 
+property_wrapper(PointerSet*, moviesSetData, MoviesSetData);
+property_wrapper(NSArray*, moviesData, MoviesData);
+property_wrapper(BOOL, updated, Updated);
+property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 - (NSString*) serverAddress {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
@@ -108,17 +115,17 @@
 
 
 - (NSArray*) movies {
-    if (moviesData == nil) {
+    if (self.moviesData == nil) {
         [self setMovies:[self loadMovies]];
     }
 
-    return moviesData;
+    return self.moviesData;
 }
 
 
 - (PointerSet*) moviesSet {
     [self movies];
-    return moviesSetData;
+    return self.moviesSetData;
 }
 
 
@@ -160,10 +167,10 @@
         return;
     }
 
-    if (updated) {
+    if (self.updated) {
         return;
     }
-    updated = YES;
+    self.updated = YES;
 
     [[AppDelegate operationQueue] performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                          onTarget:self

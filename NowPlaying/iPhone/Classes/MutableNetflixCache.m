@@ -122,7 +122,7 @@
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
     NSString* message = [arguments objectAtIndex:2];
 
-    [presubmitRatings removeObjectForKey:movie];
+    [self.presubmitRatings removeObjectForKey:movie];
     [delegate changeFailedWithError:message];
 }
 
@@ -131,7 +131,7 @@
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
 
-    [presubmitRatings removeObjectForKey:movie];
+    [self.presubmitRatings removeObjectForKey:movie];
     [delegate changeSucceeded];
 }
 
@@ -292,7 +292,7 @@
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
     movie = [self promoteDiscToSeries:movie];
-    [presubmitRatings setObject:rating forKey:movie];
+    [self.presubmitRatings setObject:rating forKey:movie];
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
     [[AppDelegate operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)

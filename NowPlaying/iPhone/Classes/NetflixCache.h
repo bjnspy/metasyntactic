@@ -16,20 +16,19 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-    NSArray* feedsData;
-    NSDictionary* queues;
-
-    NSDate* lastQuotaErrorDate;
+    NSArray* feedsData_;
+    NSDictionary* queues_;
+    NSDate* lastQuotaErrorDate_;
 
 @protected
-    NSMutableDictionary* presubmitRatings;
+    NSMutableDictionary* presubmitRatings_;
 }
-
-@property (readonly, retain) NSDate* lastQuotaErrorDate;
 
 + (NSArray*) mostPopularTitles;
 
 - (id) initWithModel:(Model*) model;
+
+- (NSDate*) lastQuotaErrorDate;
 
 - (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;
@@ -66,6 +65,8 @@
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
 
 // @protected
+- (NSMutableDictionary*) presubmitRatings;
+
 - (void) saveQueue:(Queue*) queue;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 - (NSString*) userRatingsFile:(Movie*) movie;
