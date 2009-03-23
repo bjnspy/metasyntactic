@@ -377,16 +377,16 @@
     if (score == nil) {
         return;
     }
-    
+
     if ([FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
         return;
     }
-    
+
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
     if (location == nil) {
         return;
     }
-    
+
     [self downloadReviews:score location:location];
 }
 

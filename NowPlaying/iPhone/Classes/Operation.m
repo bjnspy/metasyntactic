@@ -52,7 +52,7 @@
         self.isBounded = isBounded_;
         self.gate = gate_;
     }
-    
+
     return self;
 }
 
@@ -74,7 +74,7 @@
     if (![anObject isKindOfClass:[Operation class]]) {
         return NO;
     }
-    
+
     Operation* other = anObject;
     return target == other.target && selector == other.selector;
 }
@@ -95,9 +95,9 @@
     NSString* selectorName = NSStringFromSelector(selector);
     NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
     [[NSThread currentThread] setName:name];
-    
+
     BOOL visible =  (self.queuePriority >= NSOperationQueuePriorityLow);
-    
+
     [gate lock];
     [GlobalActivityIndicator addBackgroundTask:visible];
     {
@@ -105,7 +105,7 @@
     }
     [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];
-    
+
     if (isBounded) {
         [operationQueue onAfterBoundedOperationCompleted:self];
     }

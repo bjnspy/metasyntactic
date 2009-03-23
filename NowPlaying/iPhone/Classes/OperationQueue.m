@@ -41,7 +41,7 @@
         self.boundedOperations = [NSMutableArray array];
         self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -51,7 +51,7 @@
 }
 
 
-- (void) addOperation:(Operation*) operation priority:(BOOL) queuePriority {   
+- (void) addOperation:(Operation*) operation priority:(BOOL) queuePriority {
     NSOperationQueuePriority priority;
     switch (queuePriority) {
         case High:
@@ -65,7 +65,7 @@
             break;
     }
 
-    operation.queuePriority = priority;    
+    operation.queuePriority = priority;
     [queue addOperation:operation];
 }
 
@@ -97,12 +97,12 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 16;
         if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
             Operation* staleOperation = [boundedOperations objectAtIndex:0];
             [staleOperation cancel];
-            
+
             [boundedOperations removeObjectAtIndex:0];
         }
     }
     [boundedOperationsGate unlock];
-    
+
     [self addOperation:operation priority:priority];
 }
 

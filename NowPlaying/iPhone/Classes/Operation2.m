@@ -39,7 +39,7 @@
                                 gate:gate_]) {
         self.argument2 = argument2_;
     }
-    
+
     return self;
 }
 

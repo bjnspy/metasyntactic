@@ -82,7 +82,7 @@
     if ([self checkMovie:movie]) {
         return;
     }
-    
+
     [self updateMovieDetails:movie];
 }
 

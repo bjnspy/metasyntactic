@@ -36,7 +36,7 @@
                                 gate:gate_]) {
         self.argument1 = argument1_;
     }
-    
+
     return self;
 }
 
@@ -44,7 +44,7 @@
 + (Operation1*) operationWithTarget:(id) target
                            selector:(SEL) selector
                            argument:(id) argument1
-                     operationQueue:(OperationQueue*) operationQueue 
+                     operationQueue:(OperationQueue*) operationQueue
                           isBounded:(BOOL) isBounded
                                gate:(id<NSLocking>) gate {
     return [[[Operation1 alloc] initWithTarget:target
