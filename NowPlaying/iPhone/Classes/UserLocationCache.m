@@ -22,13 +22,15 @@
 #import "Utilities.h"
 
 @interface UserLocationCache()
-@property (retain) NSLock* gate;
+@property (retain) NSLock* gate_;
 @end
 
 
 @implementation UserLocationCache
 
-@synthesize gate;
+@synthesize gate_;
+
+property_wrapper(NSLock*, gate, Gate);
 
 - (void) dealloc {
     self.gate = nil;
@@ -132,11 +134,11 @@
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
     Location* result;
-    [gate lock];
+    [self.gate lock];
     {
         result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
     }
-    [gate unlock];
+    [self.gate unlock];
     return result;
 }
 
