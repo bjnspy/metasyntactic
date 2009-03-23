@@ -26,14 +26,14 @@
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
-@property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) OperationQueue* operationQueue;
-@property (retain) NotificationCenter* notificationCenter;
-@property (retain) Controller* controller;
-@property (retain) Model* model;
-@property (retain) Pulser* majorRefreshPulser;
-@property (retain) Pulser* minorRefreshPulser;
-@property (retain) UIView* globalActivityView;
+@property (retain) ApplicationTabBarController* tabBarController_;
+@property (retain) OperationQueue* operationQueue_;
+@property (retain) NotificationCenter* notificationCenter_;
+@property (retain) Controller* controller_;
+@property (retain) Model* model_;
+@property (retain) Pulser* majorRefreshPulser_;
+@property (retain) Pulser* minorRefreshPulser_;
+@property (retain) UIView* globalActivityView_;
 @end
 
 
@@ -42,14 +42,23 @@
 static AppDelegate* appDelegate = nil;
 
 @synthesize window;
-@synthesize tabBarController;
-@synthesize operationQueue;
-@synthesize notificationCenter;
-@synthesize controller;
-@synthesize model;
-@synthesize majorRefreshPulser;
-@synthesize minorRefreshPulser;
-@synthesize globalActivityView;
+@synthesize tabBarController_;
+@synthesize operationQueue_;
+@synthesize notificationCenter_;
+@synthesize controller_;
+@synthesize model_;
+@synthesize majorRefreshPulser_;
+@synthesize minorRefreshPulser_;
+@synthesize globalActivityView_;
+
+property_wrapper(ApplicationTabBarController*, tabBarController, TabBarController);
+property_wrapper(OperationQueue*, operationQueue, OperationQueue);
+property_wrapper(NotificationCenter*, notificationCenter, NotificationCenter);
+property_wrapper(Model*, model, Model);
+property_wrapper(Controller*, controller, Controller);
+property_wrapper(Pulser*, minorRefreshPulser, MinorRefreshPulser);
+property_wrapper(Pulser*, majorRefreshPulser, MajorRefreshPulser);
+property_wrapper(UIView*, globalActivityView, GlobalActivityView)
 
 - (void) dealloc {
     self.window = nil;
@@ -72,7 +81,7 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) setupGlobalActivtyIndicator {
-    globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    self.globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
 }
 
 
@@ -89,17 +98,17 @@ static AppDelegate* appDelegate = nil;
     self.controller = [Controller controller];
     self.tabBarController = [ApplicationTabBarController controller];
 
-    self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:self.tabBarController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:self.tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
     self.operationQueue = [OperationQueue operationQueue];
-    self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
+    self.notificationCenter = [NotificationCenter centerWithView:self.tabBarController.view];
 
-    [window addSubview:tabBarController.view];
+    [window addSubview:self.tabBarController.view];
     [window makeKeyAndVisible];
 
     // Ok.  We've set up all our global state.  Now get the ball rolling.
-    [controller start];
+    [self.controller start];
 }
 
 
@@ -115,9 +124,9 @@ static AppDelegate* appDelegate = nil;
     }
 
     if (force.boolValue) {
-        [majorRefreshPulser forcePulse];
+        [self.majorRefreshPulser forcePulse];
     } else {
-        [majorRefreshPulser tryPulse];
+        [self.majorRefreshPulser tryPulse];
     }
 }
 
@@ -138,7 +147,7 @@ static AppDelegate* appDelegate = nil;
         return;
     }
 
-    [minorRefreshPulser tryPulse];
+    [self.minorRefreshPulser tryPulse];
 }
 
 
@@ -183,12 +192,12 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
-    [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
+    [self.notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
 }
 
 
 - (void) application:(UIApplication*) application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
-    [notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
+    [self.notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
 }
 
 + (UIView*) globalActivityView {
@@ -197,7 +206,7 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
-    [model didReceiveMemoryWarning];
+    [self.model didReceiveMemoryWarning];
 }
 
 @end

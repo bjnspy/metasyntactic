@@ -15,23 +15,24 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    ApplicationTabBarController* tabBarController;
-    OperationQueue* operationQueue;
-    NotificationCenter* notificationCenter;
+    ApplicationTabBarController* tabBarController_;
+    OperationQueue* operationQueue_;
+    NotificationCenter* notificationCenter_;
 
-    Model* model;
-    Controller* controller;
-    Pulser* minorRefreshPulser;
-    Pulser* majorRefreshPulser;
+    Model* model_;
+    Controller* controller_;
+    Pulser* minorRefreshPulser_;
+    Pulser* majorRefreshPulser_;
 
-    UIView* globalActivityView;
+    UIView* globalActivityView_;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
-@property (readonly, retain) ApplicationTabBarController* tabBarController;
-@property (readonly, retain) NotificationCenter* notificationCenter;
-@property (readonly, retain) Controller* controller;
-@property (readonly, retain) Model* model;
+
+- (ApplicationTabBarController*) tabBarController;
+- (NotificationCenter*) notificationCenter;
+- (Controller*) controller;
+- (Model*) model;
 
 + (AppDelegate*) appDelegate;
 
