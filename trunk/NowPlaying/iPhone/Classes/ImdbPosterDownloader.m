@@ -24,7 +24,7 @@
     NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
         NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
-        XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:urlString important:NO];
+        XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:urlString];
 
         XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
         XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
@@ -43,7 +43,7 @@
 
     NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
 
-    XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:address important:NO];
+    XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:address];
     XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
     XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
 
@@ -56,7 +56,7 @@
         return nil;
     }
 
-    return [NetworkUtilities dataWithContentsOfAddress:imageUrl important:NO];
+    return [NetworkUtilities dataWithContentsOfAddress:imageUrl];
 }
 
 

@@ -317,8 +317,7 @@
     }
 
     NSString* localHash = self.hashValue;
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
-                                                               important:NO];
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]];
     if (serverHash.length == 0) {
         serverHash = @"0";
     }
@@ -329,8 +328,7 @@
         return nil;
     }
 
-    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
-                                                                 important:NO];
+    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
 
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
@@ -462,7 +460,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@&format=2", [Application host], studio, title];
-    NSString* result = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* result = [NetworkUtilities stringWithContentsOfAddress:url];
 
     if (result == nil) {
         return;
@@ -506,7 +504,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
-    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
     if (trailersString == nil) {
         return;
     }

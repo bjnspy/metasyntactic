@@ -20,16 +20,12 @@
 
 @implementation NetworkUtilities
 
-static PriorityMutex* priorityMutex = nil;
-
 static NSLock* gate = nil;
 static NSInteger inflightOperations = 0;
 static Pulser* pulser = nil;
 
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
-        priorityMutex = [[PriorityMutex alloc] init];
-
         gate = [[NSRecursiveLock alloc] init];
         pulser = [[Pulser pulserWithTarget:self
                                     action:@selector(updateNetworkActivityIndicator)
@@ -66,32 +62,26 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSString*) stringWithContentsOfAddress:(NSString*) address
-                                important:(BOOL) important {
++ (NSString*) stringWithContentsOfAddress:(NSString*) address {
     if (address.length == 0) {
         return nil;
     }
 
-    return [self stringWithContentsOfUrl:[NSURL URLWithString:address]
-                               important:important];
+    return [self stringWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
 
-+ (NSString*) stringWithContentsOfUrl:(NSURL*) url
-                            important:(BOOL) important {
-    return [self stringWithContentsOfUrlRequest:[self createRequest:url]
-                                      important:important];
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url {
+    return [self stringWithContentsOfUrlRequest:[self createRequest:url]];
 }
 
 
-+ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) request
-                                   important:(BOOL) important {
++ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) request {
     if (request == nil) {
         return nil;
     }
 
-    NSData* data = [self dataWithContentsOfUrlRequest:request
-                                            important:important];
+    NSData* data = [self dataWithContentsOfUrlRequest:request];
     if (data == nil) {
         return nil;
     }
@@ -105,16 +95,13 @@ static Pulser* pulser = nil;
 }
 
 
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
-                               important:(BOOL) important {
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address {
     return [self xmlWithContentsOfAddress:address
-                                important:important
                                  response:NULL];
 }
 
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
-                               important:(BOOL) important
                                 response:(NSHTTPURLResponse**) response {
     if (response != NULL) {
         *response = nil;
@@ -125,38 +112,30 @@ static Pulser* pulser = nil;
     }
 
     return [self xmlWithContentsOfUrl:[NSURL URLWithString:address]
-                            important:important
                              response:response];
 }
 
 
-+ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
-                           important:(BOOL) important {
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url {
     return [self xmlWithContentsOfUrl:url
-                            important:important
                              response:NULL];
 }
 
 
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
-                           important:(BOOL) important
                             response:(NSHTTPURLResponse**) response {
     return [self xmlWithContentsOfUrlRequest:[self createRequest:url]
-                                   important:important
                                     response:response];
 }
 
 
-+ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
-                                  important:(BOOL) important {
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request {
     return [self xmlWithContentsOfUrlRequest:request
-                                   important:important
                                     response:NULL];
 }
 
 
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
-                                  important:(BOOL) important
                                    response:(NSHTTPURLResponse**) response {
     if (response != NULL) {
         *response = nil;
@@ -167,20 +146,17 @@ static Pulser* pulser = nil;
     }
 
     NSData* data = [self dataWithContentsOfUrlRequest:request
-                                            important:important
                                              response:response];
     return [XmlParser parse:data];
 }
 
 
-+ (NSData*) dataWithContentsOfAddress:(NSString*) address
-                            important:(BOOL) important {
++ (NSData*) dataWithContentsOfAddress:(NSString*) address {
     if (address.length == 0) {
         return nil;
     }
 
-    return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
-                             important:important];
+    return [self dataWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
 
@@ -232,51 +208,18 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSData*) highPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request
-                                            response:(NSHTTPURLResponse**) response {
-    NSData* data;
-
-    [priorityMutex lockHigh];
-    {
-        data = [self dataWithContentsOfUrlRequestWorker:request response:response];
-    }
-    [priorityMutex unlockHigh];
-
-    return data;
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url {
+    return [self dataWithContentsOfUrlRequest:[self createRequest:url]];
 }
 
 
-+ (NSData*) lowPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request
-                                           response:(NSHTTPURLResponse**) response {
-    NSData* data;
-
-    [priorityMutex lockLow];
-    {
-        data = [self dataWithContentsOfUrlRequestWorker:request response:response];
-    }
-    [priorityMutex unlockLow];
-
-    return data;
-}
-
-
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url
-                        important:(BOOL) important {
-    return [self dataWithContentsOfUrlRequest:[self createRequest:url]
-                                    important:important];
-}
-
-
-+ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
-                               important:(BOOL) important {
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request {
     return [self dataWithContentsOfUrlRequest:request
-                                    important:important
                                      response:NULL];
 }
 
 
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
-                               important:(BOOL) important
                                 response:(NSHTTPURLResponse**) response {
     if (response != NULL) {
         *response = nil;
@@ -285,12 +228,8 @@ static Pulser* pulser = nil;
     if (request == nil) {
         return nil;
     }
-
-    if (important) {
-        return [self highPriorityDataWithContentsOfUrlRequest:request response:response];
-    } else {
-        return [self lowPriorityDataWithContentsOfUrlRequest:request response:response];
-    }
+    
+    return [self dataWithContentsOfUrlRequestWorker:request response:response];
 }
 
 

@@ -318,8 +318,7 @@
         }
     }
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress
-                                                           important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress];
 
     if (element == nil) {
         return nil;

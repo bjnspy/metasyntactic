@@ -82,8 +82,7 @@ static NSDictionary* movieNameToPosterMap = nil;
                      components.month,
                      components.day];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
-                                                           important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
 
     NSDictionary* result = [self processFandangoElement:element];
 
@@ -125,7 +124,7 @@ static NSDictionary* movieNameToPosterMap = nil;
     }
 
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl important:NO];
+    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
 }
 
 @end

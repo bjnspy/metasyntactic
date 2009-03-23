@@ -82,7 +82,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-    NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
     if (wikipediaAddress == nil) {
         return;
     }

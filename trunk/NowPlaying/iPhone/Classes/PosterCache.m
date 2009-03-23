@@ -88,7 +88,7 @@
 
 - (NSData*) downloadPosterWorker:(Movie*) movie
                       postalCode:(NSString*) postalCode {
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
     if (data != nil) {
         return data;
     }

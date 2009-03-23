@@ -89,16 +89,14 @@
 - (NSString*) lookupServerHash {
     NSString* baseAddress = [self serverUrl];
     NSString* address = [baseAddress stringByAppendingString:@"&hash=true"];
-    NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
-                                                          important:YES];
+    NSString* value = [NetworkUtilities stringWithContentsOfAddress:address];
     return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
     NSString* address = [self serverUrl];
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address
-                                                     important:YES];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
     if (data != nil) {
         @try {
             TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];

@@ -117,8 +117,7 @@
     NSString* location = [studioAndLocation objectAtIndex:1];
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
-    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
-                                                                   important:NO];
+    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
     if (trailersString == nil) {
         // didn't get any data.  ignore this for now.
         return;
@@ -166,7 +165,7 @@
 - (void) updateMovieDetails:(Movie*) movie {
     if (index == nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+        NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
         if (indexText == nil) {
             return;
         }

@@ -169,8 +169,7 @@ const int START_YEAR = 1912;
     }
 
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp&year=%d", [Application host], year];
-    NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
-                                                           important:NO];
+    NSString* result = [NetworkUtilities stringWithContentsOfAddress:address];
     if (result.length == 0) {
         return nil;
     }
@@ -338,8 +337,7 @@ const int START_YEAR = 1912;
         return;
     }
 
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
-                                                     important:NO];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
     if (data != nil) {
 
         [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];

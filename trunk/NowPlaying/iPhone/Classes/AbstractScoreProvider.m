@@ -285,7 +285,7 @@
                                   location:(Location*) location {
     NSString* address = [self serverReviewsAddress:location
                                              score:score];
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
     if (data == nil) {
         // We couldn't even connect.  Just abort what we're doing.
         return nil;
@@ -331,7 +331,7 @@
 
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address];
 
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"]) {
@@ -403,7 +403,7 @@
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
         if (lastLookupDate == nil) {
-            [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:locations:)
+            [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:location:)
                                                  onTarget:self
                                                withObject:score
                                                withObject:location
@@ -411,7 +411,7 @@
                                                  priority:Normal];
         } else {
             if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
-                [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:locations:)
+                [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:location:)
                                                      onTarget:self
                                                    withObject:score
                                                    withObject:location

@@ -302,8 +302,7 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:address];
 
     [request prepare];
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -507,7 +506,6 @@ static NSDictionary* availabilityMap = nil;
 
     NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES
                                                             response:&response];
 
     return [self extractEtagFromElement:element andResponse:response];
@@ -613,8 +611,7 @@ static NSDictionary* availabilityMap = nil;
     [request prepare];
 
     XmlElement* element =
-    [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                        important:YES];
+    [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -644,8 +641,7 @@ static NSDictionary* availabilityMap = nil;
     [request prepare];
 
     XmlElement* element =
-    [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                        important:YES];
+    [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -680,7 +676,6 @@ static NSDictionary* availabilityMap = nil;
 
     NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES
                                                             response:&response];
 
     NSString* etag = [self extractEtagFromElement:element andResponse:response];
@@ -749,7 +744,7 @@ static NSDictionary* availabilityMap = nil;
 
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:YES];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
     NSString* firstName = [[element element:@"first_name"] text];
     NSString* lastName = [[element element:@"last_name"] text];
     BOOL canInstantWatch = [[[element element:@"can_instant_watch"] text] isEqual:@"true"];
@@ -811,8 +806,7 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:seriesKey];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -918,8 +912,7 @@ static NSDictionary* availabilityMap = nil;
     [request setParameters:[NSArray arrayWithObject:parameter]];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                                              important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
@@ -1048,7 +1041,7 @@ static NSDictionary* availabilityMap = nil;
         }
     }
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
     XmlElement* channelElement = [element element:@"channel"];
 
     NSMutableArray* items = [NSMutableArray array];
@@ -1106,7 +1099,7 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
     return [NetflixCache processMovieItem:element saved:NULL];
 }
 
@@ -1160,7 +1153,7 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
     NSDictionary* dictionary = [self extractMovieDetails:element];
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
@@ -1183,7 +1176,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) updateMovieDetails:(Movie*) movie {
-    if (movie == nil) {
+    if (![movie isNetflix]) {
         return;
     }
 
@@ -1587,8 +1580,7 @@ static NSDictionary* availabilityMap = nil;
     [request prepare];
 
     XmlElement* element =
-    [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                        important:YES];
+    [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
     [self checkApiResult:element];
 
