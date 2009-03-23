@@ -14,10 +14,10 @@
 
 #import "AbstractSearchEngine.h"
 
-@interface SearchEngine : AbstractSearchEngine {
+@interface LocalSearchEngine : AbstractSearchEngine {
 @private
 }
 
-+ (SearchEngine*) engineWithModel:(Model*) model delegate:(id<SearchEngineDelegate>) delegate;
++ (LocalSearchEngine*) engineWithModel:(Model*) model delegate:(id<SearchEngineDelegate>) delegate;
 
 @end
