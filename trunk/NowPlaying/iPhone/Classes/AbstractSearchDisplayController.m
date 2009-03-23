@@ -70,6 +70,11 @@
 }
 
 
+- (BOOL) sortingByTitle {
+    return YES;
+}
+
+
 - (AbstractSearchEngine*) createSearchEngine {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
