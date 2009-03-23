@@ -84,7 +84,7 @@
 }
 
 
-const NSInteger MAX_BOUNDED_OPERATIONS = 16;
+const NSInteger MAX_BOUNDED_OPERATIONS = 9;
 - (void) addBoundedOperation:(Operation*) operation
                     priority:(QueuePriority) priority {
     [boundedOperationsGate lock];

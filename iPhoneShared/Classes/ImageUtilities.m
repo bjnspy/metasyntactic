@@ -17,17 +17,25 @@
 @implementation ImageUtilities
 
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size {
-    NSAssert([NSThread isMainThread], @"");
     if (image == nil) {
         return nil;
     }
 
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    CGImageRef cgImage = image.CGImage;
+    CGContextRef cgc = CGBitmapContextCreate(NULL,
+                                             size.width,
+                                             size.height,
+                                             CGImageGetBitsPerComponent(cgImage),
+                                             CGImageGetBytesPerRow(cgImage),
+                                             CGImageGetColorSpace(cgImage),
+                                             CGImageGetBitmapInfo(cgImage));
+    CGContextDrawImage(cgc, CGRectMake(0, 0, size.width, size.height), cgImage);
+    CGImageRef cgi = CGBitmapContextCreateImage(cgc);
+    CGContextRelease(cgc);
+    UIImage* scaledImage = [[[UIImage alloc] initWithCGImage:cgi] autorelease];
+    CGImageRelease(cgi);
 
-    return result;
+    return scaledImage;
 }
 
 
