@@ -29,25 +29,16 @@
     [super dealloc];
 }
 
-
-- (id) initWithModel:(Model*) model_
-            delegate:(id<SearchEngineDelegate>) delegate_ {
-    if (self = [super initWithModel:model_ delegate:delegate_]) {
-    }
-
-    return self;
-}
-
-
 + (LocalSearchEngine*) engineWithModel:(Model*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
     return [[[LocalSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }
 
 
-- (BOOL) arrayMatches:(NSArray*) array {
+- (BOOL) arrayMatches:(NSArray*) array
+              request:(SearchRequest*) currentlyExecutingRequest {
     for (NSString* text in array) {
-        if ([self abortEarly]) {
+        if ([self abortEarly:currentlyExecutingRequest]) {
             return NO;
         }
 
@@ -71,28 +62,30 @@
 }
 
 
-- (BOOL) movieMatches:(Movie*) movie {
+- (BOOL) movieMatches:(Movie*) movie
+              request:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* array = [NSMutableArray array];
     [array addObject:movie.canonicalTitle];
     [array addObjectsFromArray:movie.directors];
-    [array addObjectsFromArray:[model castForMovie:movie]];
+    [array addObjectsFromArray:[self.model castForMovie:movie]];
     [array addObjectsFromArray:movie.genres];
-    return [self arrayMatches:array];
+    return [self arrayMatches:array request:currentlyExecutingRequest];
 }
 
 
-- (BOOL) theaterMatches:(Theater*) theater {
+- (BOOL) theaterMatches:(Theater*) theater
+                request:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* array = [NSMutableArray array];
     [array addObject:theater.name];
     [array addObject:theater.location.address];
-    return [self arrayMatches:array];
+    return [self arrayMatches:array request:currentlyExecutingRequest];
 }
 
 
-- (NSArray*) findMovies {
+- (NSArray*) findMovies:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* result = [NSMutableArray array];
     for (Movie* movie in currentlyExecutingRequest.movies) {
-        if ([self movieMatches:movie]) {
+        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
             [result addObject:movie];
         }
     }
@@ -101,10 +94,10 @@
 }
 
 
-- (NSArray*) findTheaters {
+- (NSArray*) findTheaters:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* result = [NSMutableArray array];
     for (Theater* theater in currentlyExecutingRequest.theaters) {
-        if ([self theaterMatches:theater]) {
+        if ([self theaterMatches:theater request:currentlyExecutingRequest]) {
             [result addObject:theater];
         }
     }
@@ -113,10 +106,10 @@
 }
 
 
-- (NSArray*) findUpcomingMovies {
+- (NSArray*) findUpcomingMovies:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* result = [NSMutableArray array];
     for (Movie* movie in currentlyExecutingRequest.upcomingMovies) {
-        if ([self movieMatches:movie]) {
+        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
             [result addObject:movie];
         }
     }
@@ -125,10 +118,10 @@
 }
 
 
-- (NSArray*) findDVDs {
+- (NSArray*) findDVDs:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* result = [NSMutableArray array];
     for (Movie* movie in currentlyExecutingRequest.dvds) {
-        if ([self movieMatches:movie]) {
+        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
             [result addObject:movie];
         }
     }
@@ -137,10 +130,10 @@
 }
 
 
-- (NSArray*) findBluray {
+- (NSArray*) findBluray:(SearchRequest*) currentlyExecutingRequest {
     NSMutableArray* result = [NSMutableArray array];
     for (Movie* movie in currentlyExecutingRequest.bluray) {
-        if ([self movieMatches:movie]) {
+        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
             [result addObject:movie];
         }
     }
@@ -149,24 +142,25 @@
 }
 
 
-- (void) search {
-    NSArray* movies = [self findMovies];
-    if ([self abortEarly]) { return; }
+- (void) search:(SearchRequest*) currentlyExecutingRequest {
+    NSArray* movies = [self findMovies:currentlyExecutingRequest];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* theaters = [self findTheaters];
-    if ([self abortEarly]) { return; }
+    NSArray* theaters = [self findTheaters:currentlyExecutingRequest];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* upcomingMovies = [self findUpcomingMovies];
-    if ([self abortEarly]) { return; }
+    NSArray* upcomingMovies = [self findUpcomingMovies:currentlyExecutingRequest];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* dvds = [self findDVDs];
-    if ([self abortEarly]) { return; }
+    NSArray* dvds = [self findDVDs:currentlyExecutingRequest];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* bluray = [self findBluray];
-    if ([self abortEarly]) { return; }
+    NSArray* bluray = [self findBluray:currentlyExecutingRequest];
+    if ([self abortEarly:currentlyExecutingRequest]) { return; }
     //...
 
-    [self reportResult:movies
+    [self reportResult:currentlyExecutingRequest
+                movies:movies
                theaters:theaters
          upcomingMovies:upcomingMovies
                    dvds:dvds

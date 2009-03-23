@@ -24,30 +24,36 @@
 #import "Utilities.h"
 
 @interface AbstractSearchEngine()
-@property (assign) id<SearchEngineDelegate> delegate;
-@property NSInteger currentRequestId;
-@property (retain) Model* model;
-@property (retain) SearchRequest* currentlyExecutingRequest;
-@property (retain) SearchRequest* nextSearchRequest;
-@property (retain) NSCondition* gate;
+@property (assign) id<SearchEngineDelegate> delegate_;
+@property NSInteger currentRequestId_;
+@property (retain) Model* model_;
+//@property (retain) SearchRequest* currentlyExecutingRequest_;
+@property (retain) SearchRequest* nextSearchRequest_;
+@property (retain) NSCondition* gate_;
 @end
 
 
 @implementation AbstractSearchEngine
 
-@synthesize delegate;
-@synthesize currentRequestId;
-@synthesize model;
-@synthesize currentlyExecutingRequest;
-@synthesize nextSearchRequest;
-@synthesize gate;
+@synthesize delegate_;
+@synthesize currentRequestId_;
+@synthesize model_;
+//@synthesize currentlyExecutingRequest_;
+@synthesize nextSearchRequest_;
+@synthesize gate_;
 
+property_wrapper(Model*, model, Model);
+property_wrapper(id<SearchEngineDelegate>, delegate, Delegate);
+property_wrapper(NSInteger, currentRequestId, CurrentRequestId);
+property_wrapper(SearchRequest*, nextSearchRequest, NextSearchRequest);
+//property_wrapper(SearchRequest*, currentlyExecutingRequest, CurrentlyExecutingRequest);
+property_wrapper(NSCondition*, gate, Gate);
 
 - (void) dealloc {
     self.delegate = nil;
     self.currentRequestId = 0;
     self.model = nil;
-    self.currentlyExecutingRequest = nil;
+    //self.currentlyExecutingRequest = nil;
     self.nextSearchRequest = nil;
     self.gate = nil;
 
@@ -55,12 +61,12 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-            delegate:(id<SearchEngineDelegate>) delegate_ {
+- (id) initWithModel:(Model*) model__
+            delegate:(id<SearchEngineDelegate>) delegate__ {
     if (self = [super init]) {
-        self.model = model_;
+        self.model = model__;
         self.currentRequestId = 0;
-        self.delegate = delegate_;
+        self.delegate = delegate__;
         self.gate = [[[NSCondition alloc] init] autorelease];
 
         [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
@@ -70,20 +76,20 @@
 }
 
 
-- (BOOL) abortEarly {
+- (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest {
     BOOL result;
 
-    [gate lock];
+    [self.gate lock];
     {
-        result = currentlyExecutingRequest.requestId != currentRequestId;
+        result = currentlyExecutingRequest.requestId != self.currentRequestId;
     }
-    [gate unlock];
+    [self.gate unlock];
 
     return result;
 }
 
 
-- (void) search {
+- (void) search:(SearchRequest*) request {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -92,20 +98,19 @@
     while (true) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            [gate lock];
+            SearchRequest* currentlyExecutingRequest = nil;
+            [self.gate lock];
             {
-                while (nextSearchRequest == nil) {
-                    [gate wait];
+                while (self.nextSearchRequest == nil) {
+                    [self.gate wait];
                 }
 
-                self.currentlyExecutingRequest = nextSearchRequest;
+                currentlyExecutingRequest = [[self.nextSearchRequest retain] autorelease];
                 self.nextSearchRequest = nil;
             }
-            [gate unlock];
+            [self.gate unlock];
 
-            [self search];
-
-            self.currentlyExecutingRequest = nil;
+            [self search:currentlyExecutingRequest];
         }
         [autoreleasePool release];
     }
@@ -124,14 +129,16 @@
 
 
 - (void) submitRequest:(NSString*) string {
-    [gate lock];
+    [self.gate lock];
     {
-        currentRequestId++;
-        self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId value:string model:model];
+        self.currentRequestId++;
+        self.nextSearchRequest = [SearchRequest requestWithId:self.currentRequestId
+                                                        value:string
+                                                        model:self.model];
 
-        [gate broadcast];
+        [self.gate broadcast];
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
@@ -139,28 +146,30 @@
     NSAssert([NSThread isMainThread], nil);
 
     BOOL abort = NO;
-    [gate lock];
+    [self.gate lock];
     {
-        if (result.requestId != currentRequestId) {
+        if (result.requestId != self.currentRequestId) {
             abort = YES;
         }
     }
-    [gate unlock];
+    [self.gate unlock];
 
     if (abort) {
         return;
     }
 
-    [delegate reportResult:result];
+    [self.delegate reportResult:result];
 }
 
 
-- (void) reportResult:(NSArray*) movies
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
              theaters:(NSArray*) theaters
        upcomingMovies:(NSArray*) upcomingMovies
                  dvds:(NSArray*) dvds
                bluray:(NSArray*) bluray {
-    [self reportResult:movies
+    [self reportResult:request
+                movies:movies
               theaters:theaters
         upcomingMovies:upcomingMovies
                   dvds:dvds
@@ -169,14 +178,15 @@
 }
 
 
-- (void) reportResult:(NSArray*) movies
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
              theaters:(NSArray*) theaters
        upcomingMovies:(NSArray*) upcomingMovies
                  dvds:(NSArray*) dvds
                bluray:(NSArray*) bluray
                people:(NSArray*) people {
-    SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
-                                                value:currentlyExecutingRequest.value
+    SearchResult* result = [SearchResult resultWithId:request.requestId
+                                                value:request.value
                                                movies:movies
                                              theaters:theaters
                                        upcomingMovies:upcomingMovies
@@ -187,12 +197,12 @@
 
 
 - (void) invalidateExistingRequests {
-    [gate lock];
+    [self.gate lock];
     {
-        currentRequestId++;
+        self.currentRequestId++;
         self.nextSearchRequest = nil;
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 @end
