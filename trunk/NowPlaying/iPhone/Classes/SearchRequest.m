@@ -21,27 +21,36 @@
 #import "Utilities.h"
 
 @interface SearchRequest()
-@property NSInteger requestId;
-@property (copy) NSString* value;
-@property (copy) NSString* lowercaseValue;
-@property (retain) NSArray* movies;
-@property (retain) NSArray* theaters;
-@property (retain) NSArray* upcomingMovies;
-@property (retain) NSArray* dvds;
-@property (retain) NSArray* bluray;
+@property NSInteger requestId_;
+@property (copy) NSString* value_;
+@property (copy) NSString* lowercaseValue_;
+@property (retain) NSArray* movies_;
+@property (retain) NSArray* theaters_;
+@property (retain) NSArray* upcomingMovies_;
+@property (retain) NSArray* dvds_;
+@property (retain) NSArray* bluray_;
 @end
 
 
 @implementation SearchRequest
 
-@synthesize requestId;
-@synthesize value;
-@synthesize lowercaseValue;
-@synthesize movies;
-@synthesize theaters;
-@synthesize upcomingMovies;
-@synthesize dvds;
-@synthesize bluray;
+@synthesize requestId_;
+@synthesize value_;
+@synthesize lowercaseValue_;
+@synthesize movies_;
+@synthesize theaters_;
+@synthesize upcomingMovies_;
+@synthesize dvds_;
+@synthesize bluray_;
+
+property_wrapper(NSInteger, requestId, RequestId);
+property_wrapper(NSString*, value, Value);
+property_wrapper(NSString*, lowercaseValue, LowercaseValue);
+property_wrapper(NSArray*, movies, Movies);
+property_wrapper(NSArray*, theaters, Theaters);
+property_wrapper(NSArray*, upcomingMovies, UpcomingMovies);
+property_wrapper(NSArray*, dvds, Dvds);
+property_wrapper(NSArray*, bluray, Bluray);
 
 - (void) dealloc {
     self.requestId = 0;
@@ -57,19 +66,19 @@
 }
 
 
-- (id) initWithId:(NSInteger) requestId_
-            value:(NSString*) value_
+- (id) initWithId:(NSInteger) requestId__
+            value:(NSString*) value__
             model:(Model*) model {
     if (self = [super init]) {
-        self.requestId = requestId_;
-        self.value = value_;
+        self.requestId = requestId__;
+        self.value = value__;
         self.movies = model.movies;
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.movies;
         self.dvds = model.dvdCache.movies;
         self.bluray = model.blurayCache.movies;
 
-        self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
+        self.lowercaseValue = [[Utilities asciiString:self.value] lowercaseString];
     }
 
     return self;
