@@ -17,13 +17,15 @@
 #import "IdentityObject.h"
 
 @interface IdentitySet()
-@property (retain) NSMutableSet* set;
+@property (retain) NSMutableSet* set_;
 @end
 
 
 @implementation IdentitySet
 
-@synthesize set;
+@synthesize set_;
+
+property_wrapper(NSMutableSet*, set, Set);
 
 - (void) dealloc {
     self.set = nil;
@@ -61,12 +63,12 @@
 
 
 - (void) addObject:(id) value {
-    [set addObject:[IdentityObject objectWithValue:value]];
+    [self.set addObject:[IdentityObject objectWithValue:value]];
 }
 
 
 - (void) removeObject:(id) value {
-    [set removeObject:[IdentityObject objectWithValue:value]];
+    [self.set removeObject:[IdentityObject objectWithValue:value]];
 }
 
 
@@ -78,19 +80,19 @@
 
 
 - (BOOL) containsObject:(id) value {
-    return [set containsObject:[IdentityObject objectWithValue:value]];
+    return [self.set containsObject:[IdentityObject objectWithValue:value]];
 }
 
 
 - (NSInteger) count {
-    return set.count;
+    return self.set.count;
 }
 
 
 - (NSArray*) allObjects {
     NSMutableArray* array = [NSMutableArray array];
 
-    for (IdentityObject* object in set) {
+    for (IdentityObject* object in self.set) {
         [array addObject:object.value];
     }
 
@@ -99,7 +101,7 @@
 
 
 - (NSString*) description {
-    return set.description;
+    return self.set.description;
 }
 
 @end

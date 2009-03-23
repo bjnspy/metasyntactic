@@ -15,13 +15,15 @@
 #import "IdentityObject.h"
 
 @interface IdentityObject()
-@property (retain) id value;
+@property (retain) id value_;
 @end
 
 
 @implementation IdentityObject
 
-@synthesize value;
+@synthesize value_;
+
+property_wrapper(id, value, Value);
 
 - (void) dealloc {
     self.value = nil;
@@ -29,9 +31,9 @@
 }
 
 
-- (id) initWithValue:(id) value_ {
+- (id) initWithValue:(id) value__ {
     if (self = [super init]) {
-        self.value = value_;
+        self.value = value__;
     }
 
     return self;
@@ -44,17 +46,17 @@
 
 
 - (NSUInteger) hash {
-    return (NSUInteger)value;
+    return (NSUInteger)self.value;
 }
 
 
 - (BOOL) isEqual:(id) other {
-    return value == [other value];
+    return self.value == [other value];
 }
 
 
 - (NSString*) description {
-    return [value description];
+    return [self.value description];
 }
 
 @end

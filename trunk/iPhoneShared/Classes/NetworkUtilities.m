@@ -228,7 +228,7 @@ static Pulser* pulser = nil;
     if (request == nil) {
         return nil;
     }
-    
+
     return [self dataWithContentsOfUrlRequestWorker:request response:response];
 }
 
