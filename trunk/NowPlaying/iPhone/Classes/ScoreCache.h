@@ -16,12 +16,12 @@
 
 @interface ScoreCache : AbstractCache {
 @private
-    id<ScoreProvider> rottenTomatoesScoreProvider;
-    id<ScoreProvider> metacriticScoreProvider;
-    id<ScoreProvider> googleScoreProvider;
-    id<ScoreProvider> noneScoreProvider;
+    id<ScoreProvider> rottenTomatoesScoreProvider_;
+    id<ScoreProvider> metacriticScoreProvider_;
+    id<ScoreProvider> googleScoreProvider_;
+    id<ScoreProvider> noneScoreProvider_;
 
-    BOOL updated;
+    BOOL updated_;
 }
 
 + (ScoreCache*) cacheWithModel:(Model*) model;

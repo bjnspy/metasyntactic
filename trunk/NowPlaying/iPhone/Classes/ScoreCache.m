@@ -27,18 +27,26 @@
 #import "ScoreProvider.h"
 
 @interface ScoreCache()
-@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
-@property (retain) id<ScoreProvider> metacriticScoreProvider;
-@property (retain) id<ScoreProvider> googleScoreProvider;
-@property (retain) id<ScoreProvider> noneScoreProvider;
+@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider_;
+@property (retain) id<ScoreProvider> metacriticScoreProvider_;
+@property (retain) id<ScoreProvider> googleScoreProvider_;
+@property (retain) id<ScoreProvider> noneScoreProvider_;
+@property BOOL updated_;
 @end
 
 @implementation ScoreCache
 
-@synthesize rottenTomatoesScoreProvider;
-@synthesize metacriticScoreProvider;
-@synthesize googleScoreProvider;
-@synthesize noneScoreProvider;
+@synthesize rottenTomatoesScoreProvider_;
+@synthesize metacriticScoreProvider_;
+@synthesize googleScoreProvider_;
+@synthesize noneScoreProvider_;
+@synthesize updated_;
+
+property_wrapper(id<ScoreProvider>, rottenTomatoesScoreProvider, RottenTomatoesScoreProvider);
+property_wrapper(id<ScoreProvider>, metacriticScoreProvider, MetacriticScoreProvider);
+property_wrapper(id<ScoreProvider>, googleScoreProvider, GoogleScoreProvider);
+property_wrapper(id<ScoreProvider>, noneScoreProvider, NoneScoreProvider);
+property_wrapper(BOOL, updated, Updated);
 
 - (void) dealloc {
     self.rottenTomatoesScoreProvider = nil;
@@ -69,22 +77,22 @@
 
 - (NSArray*) scoreProviders {
     return [NSArray arrayWithObjects:
-            rottenTomatoesScoreProvider,
-            metacriticScoreProvider,
-            googleScoreProvider,
-            noneScoreProvider, nil];
+            self.rottenTomatoesScoreProvider,
+            self.metacriticScoreProvider,
+            self.googleScoreProvider,
+            self.noneScoreProvider, nil];
 }
 
 
 - (id<ScoreProvider>) currentScoreProvider {
     if (model.rottenTomatoesScores) {
-        return rottenTomatoesScoreProvider;
+        return self.rottenTomatoesScoreProvider;
     } else if (model.metacriticScores) {
-        return metacriticScoreProvider;
+        return self.metacriticScoreProvider;
     } else if (model.googleScores) {
-        return googleScoreProvider;
+        return self.googleScoreProvider;
     } else if (model.noScores) {
-        return noneScoreProvider;
+        return self.noneScoreProvider;
     } else {
         return nil;
     }
@@ -97,19 +105,19 @@
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [rottenTomatoesScoreProvider scoreForMovie:movie inMovies:movies];
+    return [self.rottenTomatoesScoreProvider scoreForMovie:movie inMovies:movies];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [metacriticScoreProvider scoreForMovie:movie inMovies:movies];
+    return [self.metacriticScoreProvider scoreForMovie:movie inMovies:movies];
 }
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider == rottenTomatoesScoreProvider) {
-        currentScoreProvider = metacriticScoreProvider;
+    if (currentScoreProvider == self.rottenTomatoesScoreProvider) {
+        currentScoreProvider = self.metacriticScoreProvider;
     }
 
     return [currentScoreProvider reviewsForMovie:movie inMovies:movies];
@@ -121,14 +129,13 @@
         return;
     }
 
-    if (updated) {
+    if (self.updated) {
         return;
     }
-
-    updated = YES;
+    self.updated = YES;
 
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider != noneScoreProvider) {
+    if (currentScoreProvider != self.noneScoreProvider) {
         [[AppDelegate operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
                                          onTarget:self
                                            withObject:currentScoreProvider

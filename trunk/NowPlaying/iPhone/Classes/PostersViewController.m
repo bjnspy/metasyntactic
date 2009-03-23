@@ -500,7 +500,7 @@ const double LOAD_DELAY = 1;
 
 - (void) saveImage:(NSInteger) index
          nextIndex:(NSInteger) nextIndex {
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index compress:NO];
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
     if (image == nil) {
         [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
     } else {
