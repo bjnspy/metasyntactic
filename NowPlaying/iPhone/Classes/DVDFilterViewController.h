@@ -14,7 +14,7 @@
 
 #import "AbstractTableViewController.h"
 
-@interface DVDFilterViewController : AbstractTableViewController {
+@interface DVDFilterViewController : AbstractFullScreenTableViewController {
 @private
 }
 
