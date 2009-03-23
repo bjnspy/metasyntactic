@@ -17,11 +17,11 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
-#import "Model.h"
 #import "Queue.h"
 
 @interface NetflixRecommendationsViewController()

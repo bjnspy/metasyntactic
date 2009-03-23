@@ -18,8 +18,8 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
-#import "NetflixNavigationController.h"
 #import "Model.h"
+#import "NetflixNavigationController.h"
 #import "OperationQueue.h"
 
 @interface NetflixLoginViewController()

@@ -15,11 +15,11 @@
 #import "SearchDisplayController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "ApplicationTabBarController.h"
 #import "DVDCell.h"
 #import "Model.h"
 #import "MovieTitleCell.h"
-#import "AppDelegate.h"
 #import "SearchEngine.h"
 #import "SearchResult.h"
 #import "TheaterNameCell.h"

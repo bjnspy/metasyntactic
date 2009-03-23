@@ -18,14 +18,14 @@
 #import "DateUtilities.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
+#import "Model.h"
 #import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
-#import "Model.h"
 #import "Score.h"
 #import "ScoreCache.h"
+#import "StringUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
-#import "StringUtilities.h"
 #import "XmlElement.h"
 
 

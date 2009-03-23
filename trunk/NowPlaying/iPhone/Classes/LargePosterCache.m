@@ -20,9 +20,9 @@
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "Model.h"
 #import "OperationQueue.h"
 
 @interface LargePosterCache()

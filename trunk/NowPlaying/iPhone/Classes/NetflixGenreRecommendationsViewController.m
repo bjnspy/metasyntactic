@@ -17,12 +17,12 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
-#import "Model.h"
 #import "Queue.h"
 #import "ViewControllerUtilities.h"
 

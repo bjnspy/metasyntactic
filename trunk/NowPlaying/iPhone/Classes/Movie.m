@@ -14,8 +14,8 @@
 
 #import "Movie.h"
 
-#import "Utilities.h"
 #import "StringUtilities.h"
+#import "Utilities.h"
 
 @interface Movie()
 @property (copy) NSString* identifier;

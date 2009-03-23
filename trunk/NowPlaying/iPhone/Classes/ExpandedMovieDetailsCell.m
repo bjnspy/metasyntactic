@@ -15,9 +15,9 @@
 #import "ExpandedMovieDetailsCell.h"
 
 #import "DateUtilities.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
-#import "Model.h"
 
 @interface ExpandedMovieDetailsCell()
 @property (retain) NSMutableArray* titles;

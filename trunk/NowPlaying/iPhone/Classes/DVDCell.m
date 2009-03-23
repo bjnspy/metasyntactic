@@ -21,8 +21,8 @@
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 
 @interface DVDCell()
 @property (retain) UILabel* directorTitleLabel;

@@ -14,15 +14,15 @@
 
 #import "TrailerCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LinkedSet.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "OperationQueue.h"
-#import "AppDelegate.h"
-#import "Model.h"
 
 @interface TrailerCache()
 @property (retain) DifferenceEngine* engine;
