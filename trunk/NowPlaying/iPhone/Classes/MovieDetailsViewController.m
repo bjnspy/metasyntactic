@@ -524,7 +524,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    
+
     [self downloadPoster];
     [self majorRefresh];
 }

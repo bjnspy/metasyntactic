@@ -145,7 +145,7 @@
 - (void) updateAllCaches {
     // we want this first so that we download all the indices.
     [self updateLargePosterCache];
-    
+
     [self updateScoreCache];
     [self updateUpcomingCache];
     [self updateDVDCache];

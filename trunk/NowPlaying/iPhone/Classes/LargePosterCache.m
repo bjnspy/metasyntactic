@@ -232,7 +232,7 @@ const int START_YEAR = 1912;
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     if (updated) {
         return;
     }

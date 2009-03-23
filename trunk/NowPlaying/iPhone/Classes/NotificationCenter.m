@@ -117,11 +117,11 @@
             [array addObject:notification];
         }
     }
-    
+
     if (array.count == 0) {
         return nil;
     }
-    
+
     return [NSString stringWithFormat:NSLocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
 }
 
