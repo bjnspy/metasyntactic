@@ -15,9 +15,9 @@
 #import "AbstractNavigationController.h"
 
 #import "ApplicationTabBarController.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "Model.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
 #import "SettingsViewController.h"

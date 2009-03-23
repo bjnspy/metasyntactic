@@ -14,6 +14,7 @@
 
 #import "PersonPosterCache.h"
 
+#import "AppDelegate.h"
 #import "ApplePosterDownloader.h"
 #import "Application.h"
 #import "DifferenceEngine.h"
@@ -23,10 +24,9 @@
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
-#import "Model.h"
 #import "Person.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"

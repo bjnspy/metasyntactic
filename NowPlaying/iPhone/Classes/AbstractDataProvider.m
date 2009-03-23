@@ -14,6 +14,7 @@
 
 #import "AbstractDataProvider.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DataProviderUpdateDelegate.h"
 #import "DateUtilities.h"
@@ -22,11 +23,10 @@
 #import "Location.h"
 #import "LookupRequest.h"
 #import "LookupResult.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
 #import "NotificationCenter.h"
-#import "AppDelegate.h"
-#import "Model.h"
 #import "OperationQueue.h"
 #import "Performance.h"
 #import "Theater.h"

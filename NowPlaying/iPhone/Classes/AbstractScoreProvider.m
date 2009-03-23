@@ -14,16 +14,16 @@
 
 #import "AbstractScoreProvider.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LinkedSet.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
-#import "Model.h"
 #import "OperationQueue.h"
 #import "Review.h"
 #import "Score.h"

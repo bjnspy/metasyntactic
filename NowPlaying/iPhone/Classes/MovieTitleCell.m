@@ -18,8 +18,8 @@
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 
 @interface MovieTitleCell()
 @property (retain) Model* model;

@@ -25,8 +25,8 @@
 
 #import "NSMutableURLRequest+Parameters.h"
 
-#import "OARequestParameter.h"
 #import "NSURL+Base.h"
+#import "OARequestParameter.h"
 
 @implementation NSMutableURLRequest (OAParameterAdditions)
 

@@ -17,8 +17,8 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 

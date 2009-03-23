@@ -16,10 +16,10 @@
 
 #import "AlertUtilities.h"
 #import "ApplicationTabBarController.h"
-#import "LocationManager.h"
-#import "NotificationCenter.h"
 #import "Controller.h"
+#import "LocationManager.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "Pulser.h"
 #import "TappableImageView.h"

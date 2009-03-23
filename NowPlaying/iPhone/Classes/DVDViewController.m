@@ -15,11 +15,11 @@
 #import "DVDViewController.h"
 
 #import "BlurayCache.h"
-#import "DateUtilities.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
+#import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "TappableLabel.h"

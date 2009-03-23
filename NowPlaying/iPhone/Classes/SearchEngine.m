@@ -15,8 +15,8 @@
 #import "SearchEngine.h"
 
 #import "Location.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 #import "Theater.h"

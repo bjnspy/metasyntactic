@@ -13,8 +13,8 @@
 // limitations under the License.
 
 #import "RefreshableTableViewController.h"
-#import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
+#import "NetflixMoveMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
 @interface NetflixQueueViewController :

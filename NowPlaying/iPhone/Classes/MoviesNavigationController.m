@@ -15,8 +15,8 @@
 #import "MoviesNavigationController.h"
 
 #import "AllMoviesViewController.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 
 @interface MoviesNavigationController()
 @property (retain) AllMoviesViewController* allMoviesViewController;

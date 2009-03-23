@@ -16,8 +16,8 @@
 
 #import "DVDCache.h"
 #import "DVDViewController.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 
 @interface DVDNavigationController()
 @property (retain) DVDViewController* dvdViewController;
