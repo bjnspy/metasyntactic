@@ -17,7 +17,7 @@
 @interface SearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @private
     AbstractNavigationController* navigationController;
-    SearchEngine* searchEngine;
+    SearchEngine* searchEngineData;
     SearchResult* searchResult;
 }
 
