@@ -21,7 +21,7 @@
 #import "Location.h"
 #import "Model.h"
 #import "MultiDictionary.h"
-#import "SearchDisplayController.h"
+#import "LocalSearchDisplayController.h"
 #import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -30,7 +30,7 @@
 @interface AllTheatersViewController()
 @property (retain) UISegmentedControl* segmentedControl;
 @property (retain) UISearchBar* searchBar;
-@property (retain) SearchDisplayController* searchDisplayController;
+@property (retain) LocalSearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedTheaters;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -285,7 +285,7 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[SearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
 }
 
 

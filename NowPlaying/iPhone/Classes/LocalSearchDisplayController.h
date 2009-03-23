@@ -12,20 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SearchEngineDelegate.h"
+#import "AbstractSearchDisplayController.h"
 
-@interface SearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
-@private
-    AbstractSearchEngine* searchEngineData;
-    SearchResult* searchResult;
-    
-@protected
-    AbstractNavigationController* navigationController;
+@interface LocalSearchDisplayController : AbstractSearchDisplayController {
 }
-
-
-- (id) initNavigationController:(AbstractNavigationController*) navigationController
-                      searchBar:(UISearchBar*) searchBar
-             contentsController:(UIViewController*) viewController;
 
 @end
