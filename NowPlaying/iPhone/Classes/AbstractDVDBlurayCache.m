@@ -50,11 +50,16 @@
 @synthesize bookmarksData_;
 @synthesize updated_;
 
+property_wrapper(PointerSet*, moviesSetData, MoviesSetData);
+property_wrapper(NSArray*, moviesData, MoviesData);
+property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
+property_wrapper(BOOL, updated, Updated);
+
 - (void) dealloc {
-    self.moviesSetData_ = nil;
-    self.moviesData_ = nil;
-    self.bookmarksData_ = nil;
-    self.updated_ = NO;
+    self.moviesSetData = nil;
+    self.moviesData = nil;
+    self.bookmarksData = nil;
+    self.updated = NO;
 
     [super dealloc];
 }
@@ -66,11 +71,6 @@
 
     return self;
 }
-
-property_wrapper(PointerSet*, moviesSetData, MoviesSetData);
-property_wrapper(NSArray*, moviesData, MoviesData);
-property_wrapper(BOOL, updated, Updated);
-property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 - (NSString*) serverAddress {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];

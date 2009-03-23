@@ -18,15 +18,18 @@
 #import "OperationQueue.h"
 
 @interface AbstractMovieCache()
-@property (retain) NSMutableSet* updatedMovies;
-@property (retain) NSArray* searchOperations;
+@property (retain) NSMutableSet* updatedMovies_;
+@property (retain) NSArray* searchOperations_;
 @end
 
 
 @implementation AbstractMovieCache
 
-@synthesize updatedMovies;
-@synthesize searchOperations;
+@synthesize updatedMovies_;
+@synthesize searchOperations_;
+
+property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
+property_wrapper(NSArray*, searchOperations, SearchOperations);
 
 - (void) dealloc {
     self.updatedMovies = nil;
@@ -54,7 +57,7 @@
 - (void) clearUpdatedMovies {
     [self.gate lock];
     {
-        [updatedMovies removeAllObjects];
+        [self.updatedMovies removeAllObjects];
     }
     [self.gate unlock];
 }
@@ -64,8 +67,8 @@
     BOOL result;
     [self.gate lock];
     {
-        if (![updatedMovies containsObject:movie]) {
-            [updatedMovies addObject:movie];
+        if (![self.updatedMovies containsObject:movie]) {
+            [self.updatedMovies addObject:movie];
             result = NO;
         } else {
             result = YES;
