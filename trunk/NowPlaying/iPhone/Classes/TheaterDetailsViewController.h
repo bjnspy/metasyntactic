@@ -16,13 +16,13 @@
 
 @interface TheaterDetailsViewController : AbstractDetailsViewController {
 @private
-    Theater* theater;
+    Theater* theater_;
 
-    UISegmentedControl* segmentedControl;
-    UIButton* favoriteButton;
+    UISegmentedControl* segmentedControl_;
+    UIButton* favoriteButton_;
 
-    NSArray* movies;
-    NSArray* movieShowtimes;
+    NSArray* movies_;
+    NSArray* movieShowtimes_;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
