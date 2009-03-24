@@ -16,20 +16,18 @@
 
 @interface TicketsViewController : AbstractDetailsViewController {
 @private
-    Movie* movie;
-    Theater* theater;
+    Movie* movie_;
+    Theater* theater_;
 
-    NSArray* performances;
+    NSArray* performances_;
 }
-
-@property (readonly, retain) Movie* movie;
-@property (readonly, retain) Theater* theater;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                   theater:(Theater*) theater
                     movie:(Movie*) movie
                     title:(NSString*) title;
 
-- (void) majorRefresh;
+- (Movie*) movie;
+- (Theater*) theater;
 
 @end
