@@ -14,16 +14,11 @@
 
 @interface AbstractNavigationController : UINavigationController {
 @private
-    ApplicationTabBarController* tabBarController;
-    PostersViewController* postersViewController;
-    BOOL viewLoaded;
-
-@protected
-    BOOL visible;
+    ApplicationTabBarController* applicationTabBarController_;
+    PostersViewController* postersViewController_;
+    BOOL viewLoaded_;
+    BOOL visible_;
 }
-
-@property (readonly, assign) ApplicationTabBarController* tabBarController;
-@property (readonly) BOOL visible;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
@@ -49,6 +44,8 @@
 - (void) hidePostersView;
 
 // @protected
+- (ApplicationTabBarController*) applicationTabBarController;
+- (BOOL) visible;
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;
 
 @end
