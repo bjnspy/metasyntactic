@@ -15,7 +15,7 @@
 @interface AbstractTableViewController : UITableViewController {
 @private
     AbstractNavigationController* abstractNavigationController_;
-    
+
     BOOL visible_;
     NSArray* visibleIndexPaths_;
 }

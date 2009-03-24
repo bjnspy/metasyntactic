@@ -257,7 +257,7 @@
         self.titleToLabel = [NSMutableDictionary dictionary];
 
         MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-        
+
         [self addRating:dictionary];
         [self addRunningTime:dictionary];
         [self addReleaseDate:dictionary];
@@ -265,7 +265,7 @@
         [self addStudio:dictionary];
         [self addDirectors:dictionary];
         [self addCast:dictionary];
-        
+
         self.titleToValueLabels = dictionary;
 
         [self setLabelPositions];

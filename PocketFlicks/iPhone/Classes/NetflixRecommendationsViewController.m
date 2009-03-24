@@ -68,18 +68,18 @@
 
 - (void) initializeData {
     MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-    
+
     NSMutableSet* set = [NSMutableSet set];
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
         if (movie.genres.count > 0) {
             NSString* genre = [movie.genres objectAtIndex:0];
-            
+
             [dictionary addObject:movie forKey:genre];
             [set addObject:genre];
         }
     }
-    
+
     self.genreToMovies = dictionary;
     self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }

@@ -20,9 +20,9 @@
 #import "Controller.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
+#import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
-#import "Model.h"
 #import "Queue.h"
 
 @interface NetflixFeedsViewController()

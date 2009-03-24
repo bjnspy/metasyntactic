@@ -88,43 +88,43 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     data = [FandangoPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-    
+
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time
     if ([NetworkUtilities isNetworkAvailable]) {
         return [NSData data];
     }
-    
+
     return nil;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
-    
+
     if ([FileUtilities fileExists:path]) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
-        
+
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
@@ -133,12 +133,12 @@
             }
         }
     }
-    
+
     NSData* data = [self downloadPosterWorker:movie];
-    
+
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
-        
+
         if (data.length > 0) {
             [AppDelegate minorRefresh];
         }
@@ -156,17 +156,17 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 

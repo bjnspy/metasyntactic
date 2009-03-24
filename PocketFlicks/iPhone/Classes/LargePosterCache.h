@@ -18,7 +18,7 @@
 @private
     NSMutableDictionary* yearToMovieMap_;
     NSLock* yearToMovieMapGate_;
-    
+
     BOOL updated_;
 }
 

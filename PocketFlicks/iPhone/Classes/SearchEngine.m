@@ -14,8 +14,8 @@
 
 #import "SearchEngine.h"
 
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 #import "StringUtilities.h"

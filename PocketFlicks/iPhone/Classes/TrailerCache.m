@@ -45,7 +45,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
     self.engine = nil;
     self.index = nil;
     self.indexKeys = nil;
-    
+
     [super dealloc];
 }
 
@@ -54,7 +54,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
     if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
     }
-    
+
     return self;
 }
 
@@ -87,7 +87,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 - (void) updateBackgroundEntryPoint:(NSArray*) movies {
     for (Movie* movie in movies) {
         NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-        
+
         if (downloadDate == nil) {
             [self addPrimaryMovie:movie];
         } else {
@@ -106,7 +106,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
             return;
         }
     }
-    
+
     NSInteger arrayIndex = [self.engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
                             inArray:self.indexKeys];
     if (arrayIndex == NSNotFound) {
@@ -115,18 +115,18 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
                             toFile:[self trailerFile:movie]];
         return;
     }
-    
+
     NSArray* studioAndLocation = [self.index objectForKey:[self.indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
     if (trailersString == nil) {
         // didn't get any data.  ignore this for now.
         return;
     }
-    
+
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     NSMutableArray* final = [NSMutableArray array];
     for (NSString* trailer in trailers) {
@@ -134,9 +134,9 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
             [final addObject:trailer];
         }
     }
-    
+
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-    
+
     if (final.count > 0) {
         [AppDelegate minorRefresh];
     }
@@ -145,22 +145,22 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 
 - (void) generateIndex:(NSString*) indexText {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* values = [row componentsSeparatedByString:@"\t"];
         if (values.count != 3) {
             continue;
         }
-        
+
         NSString* fullTitle = [values objectAtIndex:0];
         NSString* studio = [values objectAtIndex:1];
         NSString* location = [values objectAtIndex:2];
-        
+
         [result setObject:[NSArray arrayWithObjects:studio, location, nil]
                    forKey:fullTitle.lowercaseString];
     }
-    
+
     self.index = result;
     self.indexKeys = self.index.allKeys;
 }
@@ -173,10 +173,10 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
         if (indexText == nil) {
             return;
         }
-        
+
         [self generateIndex:indexText];
     }
-    
+
     [self updateMovieDetailsWorker:movie];
 }
 

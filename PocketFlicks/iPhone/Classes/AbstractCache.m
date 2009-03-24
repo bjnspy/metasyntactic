@@ -27,7 +27,7 @@ property_wrapper(NSCondition*, gate, Gate);
 
 - (void) dealloc {
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -36,13 +36,13 @@ property_wrapper(NSCondition*, gate, Gate);
     if (self = [super init]) {
         self.gate = [[[NSCondition alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    
+
 }
 
 @end

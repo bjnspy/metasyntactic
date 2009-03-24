@@ -39,7 +39,7 @@ property_wrapper(BOOL, visible, Visible);
     self.abstractNavigationController = nil;
     self.visibleIndexPaths = nil;
     self.visible = NO;
-    
+
     [super dealloc];
 }
 

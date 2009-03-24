@@ -55,7 +55,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
 
 - (void) setupNetflixRating {
     CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:self.movie] floatValue];
-    
+
     NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
@@ -92,7 +92,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
         [self.contentView addSubview:imageView];
         [array addObject:imageView];
     }
-    
+
     self.imageViews = array;
 }
 

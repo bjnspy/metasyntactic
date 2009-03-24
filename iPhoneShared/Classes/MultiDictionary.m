@@ -34,7 +34,7 @@ property_wrapper(NSDictionary*, dictionary, Dictionary);
     if (self = [super init]) {
         self.dictionary = dictionary__;
     }
-    
+
     return self;
 }
 

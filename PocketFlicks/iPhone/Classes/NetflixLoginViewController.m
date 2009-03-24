@@ -161,7 +161,7 @@
     [self setupStatus];
     [self setupActivityIndicator];
     [self setupButton];
-    
+
     [[AppDelegate operationQueue] performSelector:@selector(requestAuthorizationToken)
                                          onTarget:self
                                              gate:nil
@@ -258,7 +258,7 @@
     [activityIndicator startAnimating];
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
-    
+
     [[AppDelegate operationQueue] performSelector:@selector(requestAccessToken)
                                          onTarget:self
                                              gate:nil

@@ -108,7 +108,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
 
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
-    
+
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [map addObject:theater forKey:[Application starString]];
@@ -141,7 +141,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
     }
-    
+
     self.sectionTitleToContentsMap = map;
 }
 
@@ -216,7 +216,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
         // so we simulate here directly.
     outer: ;
     }
-    
+
     self.sectionTitleToContentsMap = map;
 }
 

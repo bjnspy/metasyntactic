@@ -101,7 +101,7 @@ static AppDelegate* appDelegate = nil;
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
 
     self.operationQueue = [OperationQueue operationQueue];
-    
+
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
@@ -169,22 +169,22 @@ static AppDelegate* appDelegate = nil;
 
 
 + (void) addNotification:(NSString*) notification {
-    
+
 }
 
 
 + (void) addNotifications:(NSArray*) notifications {
-    
+
 }
 
 
 + (void) removeNotification:(NSString*) notification {
-    
+
 }
 
 
 + (void) removeNotifications:(NSArray*) notifications {
-    
+
 }
 
 
