@@ -15,27 +15,33 @@
 #import "EditorViewController.h"
 
 @interface EditorViewController()
-@property (assign) id object;
+@property (assign) id object_;
+@property SEL selector_;
 @end
 
 
 @implementation EditorViewController
 
-@synthesize object;
+@synthesize object_;
+@synthesize selector_;
+
+property_wrapper(id, object, Object);
+property_wrapper(SEL, selector, Selector);
 
 - (void) dealloc {
     self.object = nil;
+    self.selector = nil;
 
     [super dealloc];
 }
 
 
 - (id) initWithController:(AbstractNavigationController*) navigationController_
-               withObject:(id) object_
-             withSelector:(SEL) selector_ {
+               withObject:(id) object__
+             withSelector:(SEL) selector__ {
     if (self = [super initWithNavigationController:navigationController_]) {
-        self.object = object_;
-        selector = selector_;
+        self.object = object__;
+        self.selector = selector__;
     }
 
     return self;

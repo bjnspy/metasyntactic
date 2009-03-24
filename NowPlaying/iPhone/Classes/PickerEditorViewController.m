@@ -111,7 +111,7 @@
 
 
 - (void) save:(id) sender {
-    [object performSelector:selector
+    [self.object performSelector:self.selector
                  withObject:[values objectAtIndex:[picker selectedRowInComponent:0]]];
     [super save:sender];
 }
