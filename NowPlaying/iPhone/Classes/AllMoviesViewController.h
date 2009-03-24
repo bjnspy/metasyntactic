@@ -16,7 +16,7 @@
 
 @interface AllMoviesViewController : AbstractMovieListViewController {
 @private
-    UISegmentedControl* segmentedControl;
+    UISegmentedControl* segmentedControl_;
 }
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
