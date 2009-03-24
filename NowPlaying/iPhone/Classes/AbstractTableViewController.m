@@ -19,20 +19,27 @@
 #import "Model.h"
 
 @interface AbstractTableViewController()
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) NSArray* visibleIndexPaths;
+@property (assign) AbstractNavigationController* abstractNavigationController_;
+@property (retain) NSArray* visibleIndexPaths_;
+@property BOOL visible_;
 @end
 
 
 @implementation AbstractTableViewController
 
-@synthesize navigationController;
-@synthesize visibleIndexPaths;
+@synthesize abstractNavigationController_;
+@synthesize visibleIndexPaths_;
+@synthesize visible_;
+
+property_wrapper(AbstractNavigationController*, abstractNavigationController, AbstractNavigationController);
+property_wrapper(NSArray*, visibleIndexPaths, VisibleIndexPaths);
+property_wrapper(BOOL, visible, Visible);
 
 - (void) dealloc {
-    self.navigationController = nil;
+    self.abstractNavigationController = nil;
     self.visibleIndexPaths = nil;
-
+    self.visible = NO;
+    
     [super dealloc];
 }
 
@@ -40,7 +47,7 @@
 - (id)       initWithStyle:(UITableViewStyle) style_
       navigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:style_]) {
-        self.navigationController = navigationController_;
+        self.abstractNavigationController = navigationController_;
     }
 
     return self;
@@ -59,14 +66,14 @@
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    visible = YES;
-    [self.model saveNavigationStack:navigationController];
+    self.visible = YES;
+    [self.model saveNavigationStack:self.abstractNavigationController];
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
     [super viewDidDisappear:animated];
-    visible = NO;
+    self.visible = NO;
 }
 
 
@@ -75,7 +82,7 @@
 
 
 - (void) didReceiveMemoryWarning {
-    if (visible) {
+    if (self.visible) {
         return;
     }
 
@@ -92,11 +99,11 @@
 - (void) reloadTableViewData {
     [self.tableView reloadData];
 
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+    if (self.visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [self.visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+            [self.tableView scrollToRowAtIndexPath:[self.visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;

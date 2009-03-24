@@ -84,7 +84,7 @@
 
 
 - (void) minorRefreshWorker {
-    if (!visible) {
+    if (!self.visible) {
         return;
     }
 
@@ -148,7 +148,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

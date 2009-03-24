@@ -506,7 +506,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) reportPoster:(NSNumber*) posterNumber {
     NSAssert([NSThread isMainThread], nil);
-    if (!visible) { return; }
+    if (!self.visible) { return; }
     posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
     [self minorRefresh];
@@ -959,12 +959,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) readReviews {
-    [navigationController pushReviews:movie animated:YES];
+    [self.abstractNavigationController pushReviews:movie animated:YES];
 }
 
 
 - (void) visitWebsite:(NSString*) website {
-    [navigationController pushBrowser:website animated:YES];
+    [self.abstractNavigationController pushBrowser:website animated:YES];
 }
 
 
@@ -1141,7 +1141,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
                             withButtonIndex:(NSInteger) buttonIndex {
     NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
-    [navigationController pushBrowser:url animated:YES];
+    [self.abstractNavigationController pushBrowser:url animated:YES];
 }
 
 
@@ -1226,7 +1226,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
-    [navigationController pushTicketsView:movie
+    [self.abstractNavigationController pushTicketsView:movie
                                   theater:theater
                                     title:theater.name
                                  animated:animated];
@@ -1273,7 +1273,7 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
         if (indexPath.row == 0) {
-            [navigationController pushTheaterDetails:theater animated:YES];
+            [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
         } else {
             [self pushTicketsView:theater animated:YES];
         }
@@ -1304,7 +1304,7 @@ const NSInteger POSTER_TAG = -1;
                                              gate:nil
                                          priority:High];
 
-    [navigationController showPostersView:movie posterCount:posterCount];
+    [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
 }
 
 

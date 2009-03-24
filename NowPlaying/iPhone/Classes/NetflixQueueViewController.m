@@ -162,7 +162,7 @@
 
 
 - (void) minorRefreshWorker {
-    if (!visible) {
+    if (!self.visible) {
         return;
     }
 
@@ -376,7 +376,7 @@
             movie = [queue.saved objectAtIndex:indexPath.row];
         }
 
-        [navigationController pushMovieDetails:movie animated:YES];
+        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
     }
 }
 

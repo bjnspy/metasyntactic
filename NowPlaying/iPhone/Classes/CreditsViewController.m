@@ -332,7 +332,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [navigationController pushViewController:controller animated:YES];
+    [self.abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
@@ -393,7 +393,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
     if (section == VoteForIconSection) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-        [navigationController pushBrowser:url showSafariButton:NO animated:YES];
+        [self.abstractNavigationController pushBrowser:url showSafariButton:NO animated:YES];
     } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
         NSString* url = nil;
         if (section == WrittenBySection) {
