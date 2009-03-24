@@ -15,14 +15,17 @@
 #import "TextFieldEditorViewController.h"
 
 @interface TextFieldEditorViewController()
-@property (retain) UITextField* textField;
-@property (retain) UILabel* messageLabel;
+@property (retain) UITextField* textField_;
+@property (retain) UILabel* messageLabel_;
 @end
 
 @implementation TextFieldEditorViewController
 
-@synthesize textField;
-@synthesize messageLabel;
+@synthesize textField_;
+@synthesize messageLabel_;
+
+property_wrapper(UITextField*, textField, TextField);
+property_wrapper(UILabel*, messageLabel, MessageLabel);
 
 - (void) dealloc {
     self.textField = nil;
@@ -42,24 +45,24 @@
                      type:(UIKeyboardType) type {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
         self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
-        textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
-        textField.text = text;
-        textField.placeholder = placeHolder;
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        textField.font = [UIFont boldSystemFontOfSize:17];
-        textField.keyboardType = type;
-        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        textField.delegate = self;
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        self.textField.text = text;
+        self.textField.placeholder = placeHolder;
+        self.textField.borderStyle = UITextBorderStyleRoundedRect;
+        self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.textField.font = [UIFont boldSystemFontOfSize:17];
+        self.textField.keyboardType = type;
+        self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        self.textField.delegate = self;
+        self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
 
         self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        messageLabel.backgroundColor = [UIColor clearColor];
-        messageLabel.text = message;
-        messageLabel.numberOfLines = 0;
-        messageLabel.textColor = [UIColor grayColor];
-        [messageLabel sizeToFit];
+        self.messageLabel.backgroundColor = [UIColor clearColor];
+        self.messageLabel.text = message;
+        self.messageLabel.numberOfLines = 0;
+        self.messageLabel.textColor = [UIColor grayColor];
+        [self.messageLabel sizeToFit];
 
         self.title = title;
     }
@@ -71,28 +74,28 @@
 - (void) loadView {
     [super loadView];
 
-    [self.view addSubview:textField];
-    textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
+    [self.view addSubview:self.textField];
+    self.textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
 
-    [self.view addSubview:messageLabel];
-    CGRect frame = messageLabel.frame;
-    frame.origin.x = textField.frame.origin.x;
-    frame.origin.y = textField.frame.origin.y + 40;
-    messageLabel.frame = frame;
+    [self.view addSubview:self.messageLabel];
+    CGRect frame = self.messageLabel.frame;
+    frame.origin.x = self.textField.frame.origin.x;
+    frame.origin.y = self.textField.frame.origin.y + 40;
+    self.messageLabel.frame = frame;
 
-    [textField becomeFirstResponder];
+    [self.textField becomeFirstResponder];
 }
 
 
 - (void) save:(id) sender {
-    NSString* trimmedValue = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* trimmedValue = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.object performSelector:self.selector withObject:trimmedValue];
     [super save:sender];
 }
 
 
 - (BOOL) textFieldShouldClear:(UITextField*) textField {
-    messageLabel.text = @"";
+    self.messageLabel.text = @"";
     return YES;
 }
 
