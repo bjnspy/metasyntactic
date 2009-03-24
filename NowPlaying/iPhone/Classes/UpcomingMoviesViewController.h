@@ -16,7 +16,7 @@
 
 @interface UpcomingMoviesViewController : AbstractMovieListViewController {
 @private
-    UISegmentedControl* segmentedControl;
+    UISegmentedControl* segmentedControl_;
 }
 
 - (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;

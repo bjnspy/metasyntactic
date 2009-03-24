@@ -21,13 +21,15 @@
 #import "UpcomingMoviesNavigationController.h"
 
 @interface UpcomingMoviesViewController()
-@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) UISegmentedControl* segmentedControl_;
 @end
 
 
 @implementation UpcomingMoviesViewController
 
-@synthesize segmentedControl;
+@synthesize segmentedControl_;
+
+property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
 
 - (void) dealloc {
     self.segmentedControl = nil;
@@ -88,7 +90,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
     scrollToCurrentDateOnRefresh = YES;
-    self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+    self.model.upcomingMoviesSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
 
@@ -106,7 +108,7 @@
 
     scrollToCurrentDateOnRefresh = YES;
     self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
+    self.navigationItem.titleView = self.segmentedControl;
 
     self.title = NSLocalizedString(@"Upcoming", nil);
     self.tableView.rowHeight = 100;
