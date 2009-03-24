@@ -85,17 +85,17 @@
     UILabel* titleLabel = [self createTitleLabel:title];
     [titleLabel sizeToFit];
     [self.contentView addSubview:titleLabel];
-    
+
     for (NSString* value in values) {
         UILabel* valueLabel = [self createValueLabel];
         valueLabel.text = value;
-        
+
         [dictionary addObject:valueLabel forKey:title];
-        
+
         [valueLabel sizeToFit];
         [self.contentView addSubview:valueLabel];
     }
-    
+
     [titles addObject:title];
     [titleToLabel setObject:titleLabel forKey:title];
 }
@@ -118,7 +118,7 @@
     } else {
         value = self.movie.rating;
     }
-    
+
     [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -127,10 +127,10 @@
     if (self.movie.length <= 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Running time:", nil);
     NSString* value = self.movie.runtimeString;
-    
+
     [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -139,16 +139,16 @@
     if (self.movie.releaseDate == nil) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Release date:", nil);
-    
+
     NSString* value;
     if (self.movie.isNetflix) {
         value = [DateUtilities formatYear:self.movie.releaseDate];
     } else {
         value = [DateUtilities formatMediumDate:self.movie.releaseDate];
     }
-    
+
     [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -158,13 +158,13 @@
     if (genres.count == 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Genre:", nil);
     NSString* value = [genres componentsJoinedByString:@", "];
     if (value.length == 0) {
         return;
     }
-    
+
     [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -173,10 +173,10 @@
     if (self.movie.studio.length == 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Studio:", nil);
     NSString* value = self.movie.studio;
-    
+
     [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -186,14 +186,14 @@
     if (directors.count == 0) {
         return;
     }
-    
+
     NSString* title;
     if (directors.count == 1) {
         title = NSLocalizedString(@"Director:", nil);
     } else {
         title = NSLocalizedString(@"Directors:", nil);
     }
-    
+
     [self addTitle:title andValues:directors to:dictionary];
 }
 
@@ -203,7 +203,7 @@
     if (cast.count == 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Cast:", nil);
     [self addTitle:title andValues:cast to:dictionary];
 }
@@ -256,7 +256,7 @@
     if (self = [super initWithFrame:frame movie:movie_]) {
         self.titles = [NSMutableArray array];
         self.titleToLabel = [NSMutableDictionary dictionary];
-        
+
         MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
         [self addRating:dictionary];
         [self addRunningTime:dictionary];

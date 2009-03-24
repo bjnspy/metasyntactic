@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AmazonCache.h"
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
@@ -30,7 +31,6 @@
 #import "MutableNetflixCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
 #import "PersonPosterCache.h"
 #import "PosterCache.h"
 #import "StringUtilities.h"
@@ -327,7 +327,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) saveNavigationStack:(UINavigationController*) controller {
-    
+
 }
 
 

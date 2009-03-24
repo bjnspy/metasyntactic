@@ -347,7 +347,7 @@ const NSInteger POSTER_TAG = -1;
         return;
     }
     posterLoaded = YES;
-    
+
     [[AppDelegate operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
                                          onTarget:self
                                              gate:nil
@@ -357,7 +357,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    
+
     [self downloadPoster];
     [self majorRefresh];
 }
@@ -827,7 +827,7 @@ const NSInteger POSTER_TAG = -1;
     if (posterCount == 0) {
         return;
     }
-    
+
     [[AppDelegate operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
                                          onTarget:self.model.largePosterCache
                                        withObject:movie

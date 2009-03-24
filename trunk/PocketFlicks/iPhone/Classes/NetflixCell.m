@@ -19,9 +19,9 @@
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "Model.h"
 #import "TappableImageView.h"
 
 @interface NetflixCell()

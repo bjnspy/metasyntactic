@@ -34,7 +34,7 @@ property_wrapper(NSMutableDictionary*, mutableDictionary, MutableDictionary);
     if (self = [super initWithDictionary:mutableDictionary__]) {
         self.mutableDictionary = mutableDictionary__;
     }
-    
+
     return self;
 }
 

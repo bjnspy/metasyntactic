@@ -14,11 +14,11 @@
 
 #import "AbstractNavigationController.h"
 
+#import "AppDelegate.h"
 #import "Controller.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "AppDelegate.h"
-#import "Model.h"
 #import "PostersViewController.h"
 #import "WebViewController.h"
 

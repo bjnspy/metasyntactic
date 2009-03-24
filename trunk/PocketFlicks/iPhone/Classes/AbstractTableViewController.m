@@ -39,7 +39,7 @@ property_wrapper(BOOL, visible, Visible);
     self.abstractNavigationController = nil;
     self.visibleIndexPaths = nil;
     self.visible = NO;
-    
+
     [super dealloc];
 }
 
@@ -49,7 +49,7 @@ property_wrapper(BOOL, visible, Visible);
     if (self = [super initWithStyle:style_]) {
         self.abstractNavigationController = navigationController_;
     }
-    
+
     return self;
 }
 
@@ -85,27 +85,27 @@ property_wrapper(BOOL, visible, Visible);
     if (self.visible) {
         return;
     }
-    
+
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-    
+
     [self didReceiveMemoryWarningWorker];
-    
+
     [super didReceiveMemoryWarning];
 }
 
 
 - (void) reloadTableViewData {
     [self.tableView reloadData];
-    
+
     if (self.visibleIndexPaths.count > 0) {
         NSIndexPath* path = [self.visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[self.visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-        
+
         self.visibleIndexPaths = nil;
     }
 }

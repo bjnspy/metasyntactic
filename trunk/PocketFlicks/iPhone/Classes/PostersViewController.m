@@ -19,11 +19,11 @@
 #import "ColorCache.h"
 #import "Controller.h"
 #import "LargePosterCache.h"
-#import "NonClippingView.h"
 #import "Model.h"
+#import "NonClippingView.h"
+#import "OperationQueue.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
-#import "OperationQueue.h"
 
 @interface PostersViewController()
 @property (assign) AbstractNavigationController* navigationController;

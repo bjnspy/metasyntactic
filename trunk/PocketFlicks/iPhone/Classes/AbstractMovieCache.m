@@ -34,7 +34,7 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
 - (void) dealloc {
     self.updatedMovies = nil;
     self.searchOperations = nil;
-    
+
     [super dealloc];
 }
 
@@ -43,7 +43,7 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
     if (self = [super init]) {
         self.updatedMovies = [NSMutableSet set];
     }
-    
+
     return self;
 }
 
@@ -88,7 +88,7 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
     if ([self checkMovie:movie]) {
         return;
     }
-    
+
     [self updateMovieDetails:movie];
 }
 
@@ -134,12 +134,12 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
     for (Operation* operation in oldOperations) {
         [operation cancel];
     }
-    
+
     NSMutableArray* operations = [NSMutableArray array];
     for (Movie* movie in movies) {
         [operations addObject:[self addSearchMovie:movie]];
     }
-    
+
     self.searchOperations = operations;
 }
 

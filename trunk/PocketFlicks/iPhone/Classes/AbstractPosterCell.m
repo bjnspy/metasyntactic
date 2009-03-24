@@ -17,8 +17,8 @@
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
-#import "Movie.h"
 #import "Model.h"
+#import "Movie.h"
 
 
 @implementation AbstractPosterCell

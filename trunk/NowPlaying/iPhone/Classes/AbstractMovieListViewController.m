@@ -133,7 +133,7 @@
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [map addObject:movie forKey:[Application starString]];
@@ -169,7 +169,7 @@
     } else {
         self.sectionTitles = self.indexTitles;
     }
-    
+
     self.sectionTitleToContentsMap = map;
 }
 
@@ -184,7 +184,7 @@
 
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [map addObject:movie forKey:bookmarksString];
@@ -192,7 +192,7 @@
             [map addObject:movie forKey:moviesString];
         }
     }
-    
+
     self.sectionTitleToContentsMap = map;
 }
 
@@ -212,7 +212,7 @@
 
     NSMutableArray* array = [NSMutableArray array];
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [map addObject:movie forKey:starString];
@@ -246,7 +246,7 @@
             [values sortUsingFunction:compareMoviesByScore context:self.model];
         }
     }
-    
+
     self.sectionTitleToContentsMap = map;
 }
 

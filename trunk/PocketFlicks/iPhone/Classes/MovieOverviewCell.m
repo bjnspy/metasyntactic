@@ -15,11 +15,11 @@
 #import "MovieOverviewCell.h"
 
 #import "ActivityIndicatorViewWithBackground.h"
+#import "AppDelegate.h"
 #import "FontCache.h"
 #import "ImageCache.h"
-#import "MovieDetailsViewController.h"
-#import "AppDelegate.h"
 #import "Model.h"
+#import "MovieDetailsViewController.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
 
