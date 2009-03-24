@@ -41,9 +41,9 @@ property_wrapper(UILabel*, ratingAndRuntimeLabel, RatingAndRuntimeLabel);
         self.ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 
         if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
-            self.ratingAndRuntimeLabel.text = movie.rating;
+            self.ratingAndRuntimeLabel.text = self.movie.rating;
         } else {
-            self.ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
+            self.ratingAndRuntimeLabel.text = self.movie.ratingAndRuntimeString;
         }
 
         self.ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
