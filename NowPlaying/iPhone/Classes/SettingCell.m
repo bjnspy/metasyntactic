@@ -17,16 +17,21 @@
 #import "ColorCache.h"
 
 @interface SettingCell()
-@property (retain) UILabel* separatorLine;
-@property (retain) NSString* value;
+@property (retain) UILabel* separatorLine_;
+@property (retain) NSString* value_;
+@property (retain) NSString* placeholder_;
 @end
 
 
 @implementation SettingCell
 
-@synthesize separatorLine;
-@synthesize placeholder;
-@synthesize value;
+@synthesize separatorLine_;
+@synthesize value_;
+@synthesize placeholder_;
+
+property_wrapper(UILabel*, separatorLine, SeparatorLine);
+property_wrapper(NSString*, value, Value);
+property_wrapper(NSString*, placeholder, Placeholder);
 
 - (void) dealloc {
     self.separatorLine = nil;
@@ -51,12 +56,12 @@
     [super layoutSubviews];
 
     CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
-    separatorLine.frame = separatorFrame;
+    self.separatorLine.frame = separatorFrame;
 }
 
 
 - (void) setValueColor {
-    if (value.length > 0) {
+    if (self.value.length > 0) {
         self.detailTextLabel.textColor = [ColorCache commandColor];
     } else {
         self.detailTextLabel.textColor = [UIColor lightGrayColor];
@@ -67,10 +72,10 @@
 - (void) setCellValue:(NSString*) text {
     self.value = text;
 
-    if (value.length > 0) {
-        self.detailTextLabel.text = value;
+    if (self.value.length > 0) {
+        self.detailTextLabel.text = self.value;
     } else {
-        self.detailTextLabel.text = placeholder;
+        self.detailTextLabel.text = self.placeholder;
     }
 
     [self setValueColor];
@@ -78,9 +83,9 @@
 
 
 - (void) setHidesSeparator:(BOOL) hideSeparator {
-    [separatorLine removeFromSuperview];
+    [self.separatorLine removeFromSuperview];
     if (hideSeparator) {
-        [self.contentView addSubview:separatorLine];
+        [self.contentView addSubview:self.separatorLine];
     }
 }
 

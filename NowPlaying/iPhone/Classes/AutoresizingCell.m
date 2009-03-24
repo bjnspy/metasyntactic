@@ -45,11 +45,11 @@ property_wrapper(UIColor*, textColorData, TextColorData);
         self.label.minimumFontSize = 12;
         self.label.lineBreakMode = UILineBreakModeMiddleTruncation;
 
-        CGRect frame = label.frame;
+        CGRect frame = self.label.frame;
         frame.origin.x = 10;
         self.label.frame = frame;
 
-        [self.contentView addSubview:label];
+        [self.contentView addSubview:self.label];
     }
 
     return self;
@@ -69,7 +69,7 @@ property_wrapper(UIColor*, textColorData, TextColorData);
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
     labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
 
-    label.frame = labelFrame;
+    self.label.frame = labelFrame;
     //[self.contentView bringSubviewToFront:label];
 }
 
