@@ -22,12 +22,14 @@
 #import "TappableImageView.h"
 
 @interface NetflixRatingsCell()
-@property (retain) NSMutableArray* imageViews;
+@property (retain) NSArray* imageViews_;
 @end
 
 @implementation NetflixRatingsCell
 
-@synthesize imageViews;
+@synthesize imageViews_;
+
+property_wrapper(NSArray*, imageViews, ImageViews);
 
 - (void) dealloc {
     self.imageViews = nil;
@@ -53,7 +55,8 @@
 
 - (void) setupNetflixRating {
     CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:self.movie] floatValue];
-
+    
+    NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
 
@@ -87,14 +90,17 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
-        [imageViews addObject:imageView];
+        [array addObject:imageView];
     }
+    
+    self.imageViews = array;
 }
 
 
 - (void) setupUserRating:(NSString*) userRating {
     CGFloat rating = [userRating floatValue];
 
+    NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = -1; i < 5; i++) {
         UIImage* image;
         if (i == -1) {
@@ -123,8 +129,9 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
-        [imageViews addObject:imageView];
+        [array addObject:imageView];
     }
+    self.imageViews = array;
 }
 
 
@@ -133,7 +140,7 @@
         [view removeFromSuperview];
     }
 
-    [imageViews removeAllObjects];
+    self.imageViews = [NSArray array];
 }
 
 
