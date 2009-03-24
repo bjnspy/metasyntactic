@@ -14,12 +14,12 @@
 
 @interface MovieShowtimesCell : UITableViewCell {
 @private
-    UILabel* showtimesLabel;
+    UILabel* showtimesLabel_;
 
-    NSArray* showtimesData;
+    NSArray* showtimesData_;
 }
 
-- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes;
