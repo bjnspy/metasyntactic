@@ -341,7 +341,7 @@ property_wrapper(NSArray*, performances, Performances);
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (updateId != [[array objectAtIndex:0] intValue]) {
+    if (self.updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
