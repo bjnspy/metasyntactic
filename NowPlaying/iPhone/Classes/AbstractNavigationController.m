@@ -29,20 +29,27 @@
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property (assign) ApplicationTabBarController* tabBarController;
-@property (retain) PostersViewController* postersViewController;
-@property BOOL visible;
+@property (assign) ApplicationTabBarController* applicationTabBarController_;
+@property (retain) PostersViewController* postersViewController_;
+@property BOOL visible_;
+@property BOOL viewLoaded_;
 @end
 
 
 @implementation AbstractNavigationController
 
-@synthesize tabBarController;
-@synthesize postersViewController;
-@synthesize visible;
+@synthesize applicationTabBarController_;
+@synthesize postersViewController_;
+@synthesize visible_;
+@synthesize viewLoaded_;
+
+property_wrapper(ApplicationTabBarController*, applicationTabBarController, ApplicationTabBarController);
+property_wrapper(PostersViewController*, postersViewController, PostersViewController);
+property_wrapper(BOOL, visible, Visible);
+property_wrapper(BOOL, viewLoaded, ViewLoaded);
 
 - (void) dealloc {
-    self.tabBarController = nil;
+    self.applicationTabBarController = nil;
     self.postersViewController = nil;
 
     [super dealloc];
@@ -51,7 +58,7 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super init]) {
-        self.tabBarController = controller;
+        self.applicationTabBarController = controller;
     }
 
     return self;
@@ -61,13 +68,13 @@
 - (void) loadView {
     [super loadView];
 
-    viewLoaded = YES;
+    self.viewLoaded = YES;
     self.view.autoresizesSubviews = YES;
 }
 
 
 - (void) refreshWithSelector:(SEL) selector {
-    if (!viewLoaded || !visible) {
+    if (!self.viewLoaded || !self.visible) {
         return;
     }
 
@@ -90,17 +97,17 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
+    self.visible = YES;
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
+    self.visible = NO;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    if (visible || postersViewController != nil) {
+    if (self.visible || self.postersViewController != nil) {
         return;
     }
 
@@ -226,7 +233,7 @@
 
     return
         self.model.screenRotationEnabled &&
-        postersViewController == nil;
+        self.postersViewController == nil;
 }
 
 
@@ -237,7 +244,7 @@
 
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
-    if (postersViewController != nil) {
+    if (self.postersViewController != nil) {
         [self hidePostersView];
     }
 
@@ -245,11 +252,8 @@
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
-    //postersViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
-    //[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-    //[self presentModalViewController:postersViewController animated:YES];
-    [self pushViewController:postersViewController animated:YES];
+    [self pushViewController:self.postersViewController animated:YES];
 }
 
 
