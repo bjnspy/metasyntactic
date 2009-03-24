@@ -14,8 +14,8 @@
 
 @interface WarningView : UIView {
 @private
-    UIImageView* imageView;
-    UILabel* label;
+    UIImageView* imageView_;
+    UILabel* label_;
 }
 
 + (WarningView*) viewWithText:(NSString*) text;
