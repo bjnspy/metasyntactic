@@ -66,12 +66,12 @@ property_wrapper(SEL, selector, Selector);
 
 
 - (void) cancel:(id) sender {
-    [navigationController popViewControllerAnimated:YES];
+    [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 
 - (void) save:(id) sender {
-    [navigationController popViewControllerAnimated:YES];
+    [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 @end

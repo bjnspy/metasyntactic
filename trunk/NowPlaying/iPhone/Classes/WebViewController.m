@@ -189,15 +189,15 @@ property_wrapper(BOOL, errorReported, ErrorReported);
 
 
 - (void) updateToolBarItems {
-    UIBarButtonItem* navigateBackItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+    UIBarButtonItem* navigateBackItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
+    UIBarButtonItem* navigateForwardItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 
     navigateBackItem.enabled = self.webView.canGoBack;
     navigateForwardItem.enabled = self.webView.canGoForward;
 
     BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
 
-    [navigationController setToolbarHidden:hidden animated:YES];
+    [self.abstractNavigationController setToolbarHidden:hidden animated:YES];
 }
 
 
@@ -257,15 +257,15 @@ property_wrapper(BOOL, errorReported, ErrorReported);
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    navigationController.toolbar.barStyle = UIBarStyleBlack;
-    navigationController.toolbar.translucent = YES;
+    self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.abstractNavigationController.toolbar.translucent = YES;
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
     self.webView.delegate = nil;
-    [navigationController setToolbarHidden:YES animated:NO];
+    [self.abstractNavigationController setToolbarHidden:YES animated:NO];
 }
 
 
@@ -277,7 +277,7 @@ property_wrapper(BOOL, errorReported, ErrorReported);
     }
 
     if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {
-        [navigationController popViewControllerAnimated:YES];
+        [self.abstractNavigationController popViewControllerAnimated:YES];
         return NO;
     }
 
