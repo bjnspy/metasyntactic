@@ -15,17 +15,21 @@
 #import "PickerEditorViewController.h"
 
 @interface PickerEditorViewController()
-@property (retain) UIPickerView* picker;
-@property (retain) NSArray* values;
-@property (retain) UILabel* label;
+@property (retain) UIPickerView* picker_;
+@property (retain) NSArray* values_;
+@property (retain) UILabel* label_;
 @end
 
 
 @implementation PickerEditorViewController
 
-@synthesize picker;
-@synthesize values;
-@synthesize label;
+@synthesize picker_;
+@synthesize values_;
+@synthesize label_;
+
+property_wrapper(UIPickerView*, picker, Picker);
+property_wrapper(NSArray*, values, Values);
+property_wrapper(UILabel*, label, Label);
 
 - (void) dealloc {
     self.picker = nil;
@@ -37,17 +41,17 @@
 
 
 - (void) majorRefresh {
-    label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+    self.label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
 
     CGRect screenRect = self.view.bounds;
-    CGSize pickerSize = picker.frame.size;
+    CGSize pickerSize = self.picker.frame.size;
 
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
-    label.frame = labelRect;
-    [label sizeToFit];
-    labelRect = label.frame;
+    self.label.frame = labelRect;
+    [self.label sizeToFit];
+    labelRect = self.label.frame;
     labelRect.origin.x = floor((self.view.bounds.size.width - labelRect.size.width) / 2);
-    label.frame = labelRect;
+    self.label.frame = labelRect;
 }
 
 
@@ -56,29 +60,29 @@
                      text:(NSString*) text_
                    object:(id) object_
                  selector:(SEL) selector_
-                   values:(NSArray*) values_
+                   values:(NSArray*) values__
              defaultValue:(NSString*) defaultValue {
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
-        self.values = values_;
+        self.values = values__;
 
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
-        picker.delegate = self;
-        picker.showsSelectionIndicator = YES;
-        [picker selectRow:[values indexOfObject:defaultValue]
+        self.picker.delegate = self;
+        self.picker.showsSelectionIndicator = YES;
+        [self.picker selectRow:[self.values indexOfObject:defaultValue]
               inComponent:0
                  animated:NO];
-        picker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        self.picker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
         self.title = title_;
 
         if (text_ != nil) {
             self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-            label.text = text_;
-            label.font = [UIFont systemFontOfSize:15];
-            label.textAlignment = UITextAlignmentCenter;
-            label.textColor = [UIColor darkGrayColor];
-            label.backgroundColor = [UIColor clearColor];
-            label.numberOfLines = 0;
+            self.label.text = text_;
+            self.label.font = [UIFont systemFontOfSize:15];
+            self.label.textAlignment = UITextAlignmentCenter;
+            self.label.textColor = [UIColor darkGrayColor];
+            self.label.backgroundColor = [UIColor clearColor];
+            self.label.numberOfLines = 0;
         }
     }
 
@@ -89,10 +93,10 @@
 - (void) loadView {
     [super loadView];
 
-    [self.view addSubview:picker];
-    [self.view addSubview:label];
+    [self.view addSubview:self.picker];
+    [self.view addSubview:self.label];
 
-    [picker becomeFirstResponder];
+    [self.picker becomeFirstResponder];
 
     [self majorRefresh];
 }
@@ -102,17 +106,17 @@
     [super viewWillAppear:animated];
 
     CGRect screenRect = self.view.bounds;
-    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
+    CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
 
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
-    picker.frame = pickerRect;
+    self.picker.frame = pickerRect;
 }
 
 
 - (void) save:(id) sender {
     [self.object performSelector:self.selector
-                 withObject:[values objectAtIndex:[picker selectedRowInComponent:0]]];
+                 withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
     [super save:sender];
 }
 
@@ -124,14 +128,14 @@
 
 - (NSInteger)      pickerView:(UIPickerView*) pickerView
       numberOfRowsInComponent:(NSInteger) component {
-    return values.count;
+    return self.values.count;
 }
 
 
 - (NSString*) pickerView:(UIPickerView*) pickerView
              titleForRow:(NSInteger) row
             forComponent:(NSInteger) component {
-    return [values objectAtIndex:row];
+    return [self.values objectAtIndex:row];
 }
 
 

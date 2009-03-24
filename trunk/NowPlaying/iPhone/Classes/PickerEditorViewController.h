@@ -16,9 +16,9 @@
 
 @interface PickerEditorViewController : EditorViewController<UIPickerViewDelegate> {
 @private
-    UIPickerView* picker;
-    NSArray* values;
-    UILabel* label;
+    UIPickerView* picker_;
+    NSArray* values_;
+    UILabel* label_;
 }
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
