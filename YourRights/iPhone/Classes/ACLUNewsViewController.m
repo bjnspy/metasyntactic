@@ -143,7 +143,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* title = [[RSSCache titles] objectAtIndex:indexPath.section];
+    NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
     ACLUArticlesViewController* controller = [[[ACLUArticlesViewController alloc] initWithTitle:title] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
