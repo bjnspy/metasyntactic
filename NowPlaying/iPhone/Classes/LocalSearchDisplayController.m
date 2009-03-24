@@ -229,7 +229,7 @@
 
 
 - (ApplicationTabBarController*) applicationTabBarController {
-    return self.navigationController.tabBarController;
+    return self.navigationController.applicationTabBarController;
 }
 
 

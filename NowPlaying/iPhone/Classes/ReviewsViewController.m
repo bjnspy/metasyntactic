@@ -27,15 +27,18 @@
 #import "WebViewController.h"
 
 @interface ReviewsViewController()
-@property (retain) Movie* movie;
-@property (retain) NSArray* reviews;
+@property (retain) Movie* movie_;
+@property (retain) NSArray* reviews_;
 @end
 
 
 @implementation ReviewsViewController
 
-@synthesize movie;
-@synthesize reviews;
+@synthesize movie_;
+@synthesize reviews_;
+
+property_wrapper(Movie*, movie, Movie);
+property_wrapper(NSArray*, reviews, Reviews);
 
 - (void) dealloc {
     self.movie = nil;
@@ -46,9 +49,9 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              movie:(Movie*) movie_ {
+                              movie:(Movie*) movie__ {
     if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
-        self.movie = movie_;
+        self.movie = movie__;
     }
 
     return self;
@@ -65,7 +68,7 @@
 
     self.title = NSLocalizedString(@"Reviews", nil);
 
-    self.reviews = [self.model reviewsForMovie:movie];
+    self.reviews = [self.model reviewsForMovie:self.movie];
 }
 
 
@@ -84,7 +87,7 @@
 
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
-    Review* review = [reviews objectAtIndex:section];
+    Review* review = [self.reviews objectAtIndex:section];
 
     if (row == 0) {
         static NSString* reuseIdentifier = @"titleReuseIdentifier";
@@ -118,7 +121,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
+    if (indexPath.section < self.reviews.count) {
         return [self reviewCellForRow:indexPath.row section:indexPath.section];
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
@@ -136,7 +139,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == reviews.count) {
+    if (section == self.reviews.count) {
         return @"For movie reviews and more, visit";
     }
 
@@ -146,14 +149,14 @@
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
-        Review* review = [reviews objectAtIndex:indexPath.section];
+    if (indexPath.section < self.reviews.count) {
+        Review* review = [self.reviews objectAtIndex:indexPath.section];
         if (review.link) {
             [self.abstractNavigationController pushBrowser:review.link animated:YES];
         }
     } else {
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
-            Score* score = [self.model metacriticScoreForMovie:movie];
+            Score* score = [self.model metacriticScoreForMovie:self.movie];
             NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
             [self.abstractNavigationController pushBrowser:address animated:YES];
         } else if (self.model.googleScores) {
@@ -164,13 +167,13 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return reviews.count + 1;
+    return self.reviews.count + 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section < reviews.count) {
+    if (section < self.reviews.count) {
         return 2;
     } else {
         return 1;
@@ -180,9 +183,9 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
+    if (indexPath.section < self.reviews.count) {
         if (indexPath.row == 1) {
-            Review* review = [reviews objectAtIndex:indexPath.section];
+            Review* review = [self.reviews objectAtIndex:indexPath.section];
 
             return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
         }

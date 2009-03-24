@@ -171,7 +171,7 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 
 - (ApplicationTabBarController*) applicationTabBarController {
-    return self.navigationController.tabBarController;
+    return self.navigationController.applicationTabBarController;
 }
 
 
