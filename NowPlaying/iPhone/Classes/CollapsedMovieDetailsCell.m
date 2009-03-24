@@ -18,13 +18,15 @@
 #import "Movie.h"
 
 @interface CollapsedMovieDetailsCell()
-@property (retain) UILabel* ratingAndRuntimeLabel;
+@property (retain) UILabel* ratingAndRuntimeLabel_;
 @end
 
 
 @implementation CollapsedMovieDetailsCell
 
-@synthesize ratingAndRuntimeLabel;
+@synthesize ratingAndRuntimeLabel_;
+
+property_wrapper(UILabel*, ratingAndRuntimeLabel, RatingAndRuntimeLabel);
 
 - (void) dealloc {
     self.ratingAndRuntimeLabel = nil;
@@ -36,18 +38,18 @@
 - (id) initWithMovie:(Movie*) movie_ {
     if (self = [super initWithMovie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
+        self.ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 
         if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
-            ratingAndRuntimeLabel.text = movie.rating;
+            self.ratingAndRuntimeLabel.text = movie.rating;
         } else {
-            ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
+            self.ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         }
 
-        ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
-        [ratingAndRuntimeLabel sizeToFit];
+        self.ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
+        [self.ratingAndRuntimeLabel sizeToFit];
 
-        [self.contentView addSubview:ratingAndRuntimeLabel];
+        [self.contentView addSubview:self.ratingAndRuntimeLabel];
 
         self.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
     }
@@ -64,10 +66,10 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect frame = ratingAndRuntimeLabel.frame;
+    CGRect frame = self.ratingAndRuntimeLabel.frame;
     frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
     frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
-    ratingAndRuntimeLabel.frame = frame;
+    self.ratingAndRuntimeLabel.frame = frame;
 }
 
 @end
