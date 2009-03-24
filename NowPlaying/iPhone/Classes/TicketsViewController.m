@@ -33,17 +33,21 @@
 #import "WarningView.h"
 
 @interface TicketsViewController()
-@property (retain) Movie* movie;
-@property (retain) Theater* theater;
-@property (retain) NSArray* performances;
+@property (retain) Movie* movie_;
+@property (retain) Theater* theater_;
+@property (retain) NSArray* performances_;
 @end
 
 
 @implementation TicketsViewController
 
-@synthesize theater;
-@synthesize movie;
-@synthesize performances;
+@synthesize theater_;
+@synthesize movie_;
+@synthesize performances_;
+
+property_wrapper(Movie*, movie, Movie);
+property_wrapper(Theater*, theater, Theater);
+property_wrapper(NSArray*, performances, Performances);
 
 - (void) dealloc {
     self.theater = nil;
@@ -60,7 +64,7 @@
 
 
 - (void) initializeData {
-    NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
+    NSArray* allPerformances =  [self.model moviePerformances:self.movie forTheater:self.theater];
     NSMutableArray* result = [NSMutableArray array];
 
     NSDate* now = [DateUtilities currentTime];
@@ -95,12 +99,12 @@
 
 
 - (id) initWithController:(AbstractNavigationController*) navigationController_
-                  theater:(Theater*) theater_
-                    movie:(Movie*) movie_
+                  theater:(Theater*) theater__
+                    movie:(Movie*) movie__
                     title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
-        self.theater = theater_;
-        self.movie = movie_;
+        self.theater = theater__;
+        self.movie = movie__;
         self.title = title_;
     }
 
@@ -140,7 +144,7 @@
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        if (theater.phoneNumber.length == 0) {
+        if (self.theater.phoneNumber.length == 0) {
             return 1;
         } else {
             return 2;
@@ -152,7 +156,7 @@
             return 1;
         }
     } else if (section == 2) {
-        return performances.count;
+        return self.performances.count;
     }
 
     return 0;
@@ -165,7 +169,7 @@
         return nil;
     } else if (section == 1) {
         return nil;
-    } else if (section == 2 && performances.count) {
+    } else if (section == 2 && self.performances.count) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
         } else {
@@ -180,9 +184,9 @@
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
     if (section == 1) {
-        if (performances.count > 0 ) {
-            if ([self.model isStale:theater]) {
-                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
+        if (self.performances.count > 0 ) {
+            if ([self.model isStale:self.theater]) {
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:self.theater]];
             }
         }
     }
@@ -214,7 +218,7 @@
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
 
-    Performance* performance = [performances objectAtIndex:row];
+    Performance* performance = [self.performances objectAtIndex:row];
 
     if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
@@ -238,10 +242,10 @@
 
     if (row == 0) {
         cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
-        cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
+        cell.detailTextLabel.text = [self.model simpleAddressForTheater:self.theater];
     } else {
         cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
-        cell.detailTextLabel.text = theater.phoneNumber;
+        cell.detailTextLabel.text = self.theater.phoneNumber;
     }
 
     return cell;
@@ -281,15 +285,15 @@
 
 - (void) didSelectCommandAtRow:(NSInteger) row {
     if (row == 0) {
-        [Application openMap:theater.mapUrl];
+        [Application openMap:self.theater.mapUrl];
     } else if (row == 1) {
-        [Application makeCall:theater.phoneNumber];
+        [Application makeCall:self.theater.phoneNumber];
     }
 }
 
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
-    Performance* performance = [performances objectAtIndex:row];
+    Performance* performance = [self.performances objectAtIndex:row];
 
     if (performance.url.length == 0) {
         return;
@@ -301,27 +305,27 @@
 
 - (void) didSelectEmailListings {
     NSString* subject = [NSString stringWithFormat:@"%@ - %@",
-                                movie.canonicalTitle,
+                                self.movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
     [body appendString:@"<p>"];
-    [body appendString:theater.name];
+    [body appendString:self.theater.name];
     [body appendString:@"<br/>"];
     [body appendString:@"<a href=\""];
-    [body appendString:theater.mapUrl];
+    [body appendString:self.theater.mapUrl];
     [body appendString:@"\">"];
-    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:[self.model simpleAddressForTheater:self.theater]];
     [body appendString:@"</a>"];
 
     [body appendString:@"<p>"];
-    [body appendString:movie.canonicalTitle];
+    [body appendString:self.movie.canonicalTitle];
     [body appendString:@"<br/>"];
 
     [body appendString:[Utilities generateShowtimeLinks:self.model
-                                                  movie:movie
-                                                theater:theater
-                                           performances:performances]];
+                                                  movie:self.movie
+                                                theater:self.theater
+                                           performances:self.performances]];
 
     [self openMailWithSubject:subject body:body];
 }
@@ -343,14 +347,14 @@
 
     NSDate* searchDate = [array lastObject];
 
-    NSArray* lookupResultPerformances = [[lookupResult.performances objectForKey:theater.name] objectForKey:movie.canonicalTitle];
+    NSArray* lookupResultPerformances = [[lookupResult.performances objectForKey:self.theater.name] objectForKey:self.movie.canonicalTitle];
 
     if (lookupResultPerformances.count == 0) {
         NSString* text =
         [NSString stringWithFormat:
          NSLocalizedString(@"No listings found for '%@' at '%@' on %@", @"No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008"),
-         movie.canonicalTitle,
-         theater.name,
+         self.movie.canonicalTitle,
+         self.theater.name,
          [DateUtilities formatShortDate:searchDate]];
 
         [self onDataProviderUpdateFailure:text context:array];
@@ -358,8 +362,8 @@
         [super onDataProviderUpdateSuccess:lookupResult context:array];
 
         // find the up to date version of this theater and movie
-        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
-        self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
+        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:self.theater]];
+        self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:self.movie]];
     }
 }
 
