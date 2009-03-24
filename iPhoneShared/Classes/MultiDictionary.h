@@ -14,25 +14,19 @@
 
 @interface MultiDictionary : NSObject {
 @private
-    NSMutableDictionary* dictionary_;
+    NSDictionary* dictionary_;
 }
 
 + (MultiDictionary*) dictionary;
 
-- (void) addObject:(id) object
-            forKey:(id) key;
-
-- (void) addObjects:(NSArray*) objects
-             forKey:(id) key;
-
 - (NSArray*) objectsForKey:(id) key;
-- (NSMutableArray*) mutableObjectsForKey:(id) key;
 
 - (NSArray*) allKeys;
 
 // returns an array of arrays;
 - (NSArray*) allValues;
 
-- (void) removeObjectsForKey:(id) key;
+/* @protected */
+- (id) initWithDictionary:(NSDictionary*) dictionary;
 
 @end

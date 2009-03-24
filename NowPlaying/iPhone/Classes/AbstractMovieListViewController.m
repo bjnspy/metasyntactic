@@ -23,7 +23,7 @@
 #import "Model.h"
 #import "Movie.h"
 #import "MoviesNavigationController.h"
-#import "MultiDictionary.h"
+#import "MutableMultiDictionary.h"
 #import "SettingsViewController.h"
 #import "Utilities.h"
 
@@ -132,10 +132,11 @@
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
-
+    MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
+    
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
-            [sectionTitleToContentsMap addObject:movie forKey:[Application starString]];
+            [map addObject:movie forKey:[Application starString]];
             continue;
         }
 
@@ -145,16 +146,16 @@
         if ([LocaleUtilities isJapanese]) {
             if (CFCharacterSetIsCharacterMember(CFCharacterSetGetPredefined(kCFCharacterSetLetter), firstChar)) {
                 NSString* sectionTitle = [[[NSString alloc] initWithCharacters:&firstChar length:1] autorelease];
-                [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+                [map addObject:movie forKey:sectionTitle];
             } else {
-                [sectionTitleToContentsMap addObject:movie forKey:@"#"];
+                [map addObject:movie forKey:@"#"];
             }
         } else {
             if (firstChar >= 'A' && firstChar <= 'Z') {
                 NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-                [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+                [map addObject:movie forKey:sectionTitle];
             } else {
-                [sectionTitleToContentsMap addObject:movie forKey:@"#"];
+                [map addObject:movie forKey:@"#"];
             }
         }
     }
@@ -168,6 +169,8 @@
     } else {
         self.sectionTitles = self.indexTitles;
     }
+    
+    self.sectionTitleToContentsMap = map;
 }
 
 
@@ -180,14 +183,17 @@
     NSString* moviesString = NSLocalizedString(@"Movies", nil);
 
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
-
+    MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
+    
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
-            [sectionTitleToContentsMap addObject:movie forKey:bookmarksString];
+            [map addObject:movie forKey:bookmarksString];
         } else {
-            [sectionTitleToContentsMap addObject:movie forKey:moviesString];
+            [map addObject:movie forKey:moviesString];
         }
     }
+    
+    self.sectionTitleToContentsMap = map;
 }
 
 
@@ -205,9 +211,11 @@
     NSString* starString = [Application starString];
 
     NSMutableArray* array = [NSMutableArray array];
+    MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
+    
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
-            [sectionTitleToContentsMap addObject:movie forKey:starString];
+            [map addObject:movie forKey:starString];
             if (![array containsObject:starString]) {
                 [array insertObject:starString atIndex:0];
             }
@@ -223,7 +231,7 @@
                 }
             }
 
-            [sectionTitleToContentsMap addObject:movie forKey:title];
+            [map addObject:movie forKey:title];
 
             if (![array containsObject:title]) {
                 [array addObject:title];
@@ -234,10 +242,12 @@
 
     for (NSString* key in sectionTitleToContentsMap.allKeys) {
         if (![starString isEqual:key]) {
-            NSMutableArray* values = [sectionTitleToContentsMap mutableObjectsForKey:key];
+            NSMutableArray* values = [map mutableObjectsForKey:key];
             [values sortUsingFunction:compareMoviesByScore context:self.model];
         }
     }
+    
+    self.sectionTitleToContentsMap = map;
 }
 
 
@@ -262,7 +272,6 @@
 - (void) sortMovies {
     [self setupIndexTitles];
     self.sectionTitles = [NSMutableArray array];
-    self.sectionTitleToContentsMap = [MultiDictionary dictionary];
 
     if (self.sortingByTitle) {
         [self sortMoviesByTitle];

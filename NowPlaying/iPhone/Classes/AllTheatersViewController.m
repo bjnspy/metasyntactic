@@ -21,7 +21,7 @@
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "Model.h"
-#import "MultiDictionary.h"
+#import "MutableMultiDictionary.h"
 #import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -99,9 +99,11 @@
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
 
+    MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
+    
     for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
-            [sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
+            [map addObject:theater forKey:[Application starString]];
             continue;
         }
 
@@ -111,16 +113,16 @@
         if ([LocaleUtilities isJapanese]) {
             if (CFCharacterSetIsCharacterMember(CFCharacterSetGetPredefined(kCFCharacterSetLetter), firstChar)) {
                 NSString* sectionTitle = [[[NSString alloc] initWithCharacters:&firstChar length:1] autorelease];
-                [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+                [map addObject:theater forKey:sectionTitle];
             } else {
-                [sectionTitleToContentsMap addObject:theater forKey:@"#"];
+                [map addObject:theater forKey:@"#"];
             }
         } else {
             if (firstChar >= 'A' && firstChar <= 'Z') {
                 NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-                [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+                [map addObject:theater forKey:sectionTitle];
             } else {
-                [sectionTitleToContentsMap addObject:theater forKey:@"#"];
+                [map addObject:theater forKey:@"#"];
             }
         }
     }
@@ -131,6 +133,8 @@
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
     }
+    
+    self.sectionTitleToContentsMap = map;
 }
 
 
@@ -171,44 +175,45 @@
     [array addObject:reallyFarAway];
     [array addObject:unknownDistance];
     self.sectionTitles = array;
+    MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
     NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
     for (Theater* theater in theatersInRange) {
         if ([self.model isFavoriteTheater:theater]) {
-            [sectionTitleToContentsMap addObject:theater forKey:favorites];
+            [map addObject:theater forKey:favorites];
             continue;
         }
 
         double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
 
         if (distance <= 0.5) {
-            [sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
+            [map addObject:theater forKey:reallyCloseBy];
             continue;
         }
 
         for (int i = 0; i < ArrayLength(distances); i++) {
             if (distance <= distances[i]) {
-                [sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
+                [map addObject:theater forKey:[distancesArray objectAtIndex:i]];
                 goto outer;
             }
         }
 
         if (distance < UNKNOWN_DISTANCE) {
-            [sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+            [map addObject:theater forKey:reallyFarAway];
         } else {
-            [sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+            [map addObject:theater forKey:unknownDistance];
         }
 
         // i hate goto/labels. however, objective-c lacks a 'continue outer' statement.
         // so we simulate here directly.
     outer: ;
     }
+    
+    self.sectionTitleToContentsMap = map;
 }
 
 
 - (void) sortTheaters {
-    self.sectionTitleToContentsMap = [MultiDictionary dictionary];
-
     if ([self sortingByName]) {
         [self sortTheatersByName];
     } else {

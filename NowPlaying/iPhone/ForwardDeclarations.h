@@ -78,12 +78,12 @@
 @class MoviesNavigationController;
 @class MovieTitleCell;
 @class MultiDictionary;
+@class MutableMultiDictionary;
 @class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
 @class NetflixSearchDisplayController;
 @class NetflixSearchEngine;
-@class NetflixSearchViewController;
 @class NetflixViewController;
 @class NetworkUtilities;
 @class NoneScoreProvider;
