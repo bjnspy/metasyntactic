@@ -21,12 +21,14 @@
 #import "Review.h"
 
 @interface ReviewTitleCell()
-@property (retain) UILabel* scoreLabel;
+@property (retain) UILabel* scoreLabel_;
 @end
 
 @implementation ReviewTitleCell
 
-@synthesize scoreLabel;
+@synthesize scoreLabel_;
+
+property_wrapper(UILabel*, scoreLabel, ScoreLabel);
 
 - (void) dealloc {
     self.scoreLabel = nil;
@@ -42,10 +44,10 @@
 
         self.scoreLabel  = [[[UILabel alloc] init] autorelease];
 
-        scoreLabel.backgroundColor = [UIColor clearColor];
-        scoreLabel.textAlignment = UITextAlignmentCenter;
+        self.scoreLabel.backgroundColor = [UIColor clearColor];
+        self.scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        [self.contentView addSubview:scoreLabel];
+        [self.contentView addSubview:self.scoreLabel];
     }
 
     return self;
@@ -66,13 +68,13 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    [self.contentView bringSubviewToFront:scoreLabel];
+    [self.contentView bringSubviewToFront:self.scoreLabel];
 }
 
 
 - (void) clearScoreLabel {
-    scoreLabel.text = nil;
-    scoreLabel.frame = CGRectZero;
+    self.scoreLabel.text = nil;
+    self.scoreLabel.frame = CGRectZero;
 }
 
 
@@ -91,14 +93,14 @@
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(6, 6, 30, 30);
         if (score == 100) {
-            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+            self.scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
-            scoreLabel.font = [FontCache boldSystem19];
+            self.scoreLabel.font = [FontCache boldSystem19];
         }
 
-        scoreLabel.textColor = [ColorCache darkDarkGray];
-        scoreLabel.frame = frame;
-        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+        self.scoreLabel.textColor = [ColorCache darkDarkGray];
+        self.scoreLabel.frame = frame;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
 }
 
