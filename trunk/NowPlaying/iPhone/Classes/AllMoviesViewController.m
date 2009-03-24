@@ -20,13 +20,15 @@
 #import "MoviesNavigationController.h"
 
 @interface AllMoviesViewController()
-@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) UISegmentedControl* segmentedControl_;
 @end
 
 
 @implementation AllMoviesViewController
 
-@synthesize segmentedControl;
+@synthesize segmentedControl_;
+
+property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
 
 - (void) dealloc {
     self.segmentedControl = nil;
@@ -88,7 +90,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    self.model.allMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+    self.model.allMoviesSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
 
@@ -106,7 +108,7 @@
     [super loadView];
 
     self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
+    self.navigationItem.titleView = self.segmentedControl;
 }
 
 
@@ -122,11 +124,11 @@
 
 
 - (void) majorRefresh {
-    if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
-        segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-        [segmentedControl removeSegmentAtIndex:2 animated:NO];
-    } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
-        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
+    if (self.model.noScores && self.segmentedControl.numberOfSegments == 3) {
+        self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+        [self.segmentedControl removeSegmentAtIndex:2 animated:NO];
+    } else if (!self.model.noScores && self.segmentedControl.numberOfSegments == 2) {
+        [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
     [super majorRefresh];
