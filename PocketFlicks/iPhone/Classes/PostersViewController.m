@@ -17,12 +17,13 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "ColorCache.h"
+#import "Controller.h"
 #import "LargePosterCache.h"
 #import "NonClippingView.h"
 #import "Model.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 
 @interface PostersViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -76,13 +77,13 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (Controller*) controller {
-    return navigationController.controller;
+- (Model*) model {
+    return [Model model];
 }
 
 
-- (Model*) model {
-    return navigationController.model;
+- (Controller*) controller {
+    return [Controller controller];
 }
 
 
@@ -509,7 +510,7 @@ const double LOAD_DELAY = 1;
 
 - (void) saveImage:(NSInteger) index
          nextIndex:(NSInteger) nextIndex {
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index compress:NO];
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
     if (image == nil) {
         [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
     } else {
@@ -525,11 +526,11 @@ const double LOAD_DELAY = 1;
       didFinishSavingWithError:(NSError*) error
                    contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
-    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
-                                  onTarget:self
-                                  argument:[NSNumber numberWithInteger:nextIndex]
-                                      gate:nil
-                                   visible:YES];
+    [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+                                         onTarget:self
+                                       withObject:[NSNumber numberWithInteger:nextIndex]
+                                             gate:nil
+                                         priority:Priority];
 }
 
 
@@ -563,17 +564,17 @@ const double LOAD_DELAY = 1;
     [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
-        [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
-                                      onTarget:self
-                                      argument:[NSNumber numberWithInteger:currentPage]
-                                          gate:nil
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(saveSingleImage:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInteger:currentPage]
+                                                 gate:nil
+                                             priority:Priority];
     } else {
-        [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
-                                      onTarget:self
-                                      argument:[NSNumber numberWithInteger:0]
-                                          gate:nil
-                                       visible:YES];
+        [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInteger:0]
+                                                 gate:nil
+                                             priority:Priority];
     }
 }
 

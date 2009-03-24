@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractDetailsViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface AbstractDetailsViewController : AbstractTableViewController {
 @protected
     AbstractNavigationController* navigationController;
 }

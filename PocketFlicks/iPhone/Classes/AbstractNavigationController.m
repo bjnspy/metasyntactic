@@ -14,6 +14,7 @@
 
 #import "AbstractNavigationController.h"
 
+#import "Controller.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "AppDelegate.h"
@@ -22,7 +23,6 @@
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property (assign) AppDelegate* appDelegate;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 @end
@@ -30,24 +30,13 @@
 
 @implementation AbstractNavigationController
 
-@synthesize appDelegate;
 @synthesize postersViewController;
 @synthesize visible;
 
 - (void) dealloc {
-    self.appDelegate = nil;
     self.postersViewController = nil;
 
     [super dealloc];
-}
-
-
-- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
-    if (self = [super init]) {
-        self.appDelegate = appDelegate_;
-    }
-
-    return self;
 }
 
 
@@ -103,12 +92,12 @@
 
 
 - (Model*) model {
-    return appDelegate.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return appDelegate.controller;
+    return [Controller controller];
 }
 
 

@@ -33,9 +33,9 @@
     UIButton* bookmarkButton;
 
     BOOL expandedDetails;
-    BOOL shutdown;
     BOOL visible;
     BOOL readonlyMode;
+    BOOL posterLoaded;
 
     NSLock* posterDownloadLock;
     UIImage* posterImage;

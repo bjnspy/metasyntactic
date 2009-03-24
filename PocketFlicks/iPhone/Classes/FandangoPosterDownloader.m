@@ -23,109 +23,88 @@
 
 @implementation FandangoPosterDownloader
 
-static NSString* lastPostalCode = nil;
 static NSDictionary* movieNameToPosterMap = nil;
+static NSLock* gate;
 
++ (void) initialize {
+    if (self == [FandangoPosterDownloader class]) {
+        gate = [[NSLock alloc] init];
+    }
+}
 
-+ (NSDictionary*) processFandangoElement:(XmlElement*) element {
++ (void) processFandangoElement:(XmlElement*) element {
     NSMutableDictionary* map = [NSMutableDictionary dictionary];
-
+    
     XmlElement* dataElement = [element element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
-
+    
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* poster = [movieElement attributeValue:@"posterhref"];
         NSString* title = [movieElement element:@"title"].text;
-
+        
         if (poster.length == 0 || title.length == 0) {
             continue;
         }
-
+        
         title = [Movie makeCanonical:title];
-
+        
         [map setObject:poster forKey:title];
     }
-
+    
     if (map.count == 0) {
-        return nil;
+        return;
     }
-
-    [movieNameToPosterMap release];
-    movieNameToPosterMap = map;
-    [movieNameToPosterMap retain];
-
-    return map;
+    
+    movieNameToPosterMap = [map retain];
 }
 
 
-+ (NSString*) trimPostalCode:(NSString*) postalCode {
-    NSMutableString* trimmed = [NSMutableString string];
-    for (NSInteger i = 0; i < postalCode.length; i++) {
-        unichar c = [postalCode characterAtIndex:i];
-        if (isalnum(c)) {
-            [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
-        }
++ (void) createMovieMapWorker {
+    if (movieNameToPosterMap != nil) {
+        return;
     }
-    return trimmed;
-}
-
-
-+ (void) createMovieMapWorker:(NSString*) postalCode {
+    
+    NSString* postalCode = @"10009";
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                    fromDate:[DateUtilities today]];
-
+    
     NSString* url = [NSString stringWithFormat:
                      @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                      [Application host],
-                     [self trimPostalCode:postalCode],
+                     postalCode,
                      components.year,
                      components.month,
                      components.day];
-
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
-                                                           important:YES];
-
-    NSDictionary* result = [self processFandangoElement:element];
-
-    if (result.count > 0) {
-        [lastPostalCode release];
-        lastPostalCode = [[NSString stringWithString:postalCode] retain];
-    }
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
+    
+    [self processFandangoElement:element];
 }
 
 
-+ (void) createMovieMap:(NSString*) postalCode {
-    if (postalCode.length == 0) {
-        return;
-    }
-
-    if([postalCode isEqual:lastPostalCode]) {
-        return;
-    }
-
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
++ (void) createMovieMap {
+    [gate lock];
     {
-        [self createMovieMapWorker:postalCode];
+        [self createMovieMapWorker];
     }
-    [pool release];
+    [gate unlock];
 }
 
 
-+ (NSData*) download:(Movie*) movie
-        postalCode:(NSString*) postalCode {
-    [self createMovieMap:postalCode];
-
++ (NSData*) download:(Movie*) movie {
+    [self createMovieMap];
+    
     if (movieNameToPosterMap == nil) {
         return nil;
     }
-
+    
     NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
     if (key == nil) {
         return nil;
     }
-
+    
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl important:NO];
+    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
 }
 
 @end

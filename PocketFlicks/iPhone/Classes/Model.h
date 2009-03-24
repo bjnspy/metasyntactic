@@ -37,6 +37,10 @@
 
 + (NSString*) version;
 
+- (void) didReceiveMemoryWarning;
+
+- (void) saveNavigationStack:(UINavigationController*) controller;
+
 - (BOOL) screenRotationEnabled;
 
 - (NSString*) netflixKey;

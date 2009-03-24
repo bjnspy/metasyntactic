@@ -17,10 +17,11 @@
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "Application.h"
+#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
 #import "Model.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 
 @interface NetflixLoginViewController()
 @property (assign) NetflixNavigationController* navigationController;
@@ -62,12 +63,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 
@@ -160,11 +161,11 @@
     [self setupStatus];
     [self setupActivityIndicator];
     [self setupButton];
-
-    [ThreadingUtilities backgroundSelector:@selector(requestAuthorizationToken)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:YES];
+    
+    [[AppDelegate operationQueue] performSelector:@selector(requestAuthorizationToken)
+                                         onTarget:self
+                                             gate:nil
+                                         priority:Priority];
 }
 
 
@@ -257,11 +258,11 @@
     [activityIndicator startAnimating];
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
-
-    [ThreadingUtilities backgroundSelector:@selector(requestAccessToken)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:YES];
+    
+    [[AppDelegate operationQueue] performSelector:@selector(requestAccessToken)
+                                         onTarget:self
+                                             gate:nil
+                                         priority:Priority];
 }
 
 - (void) requestAccessToken {

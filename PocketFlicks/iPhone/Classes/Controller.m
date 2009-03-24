@@ -24,37 +24,34 @@
 #import "Utilities.h"
 
 @interface Controller()
-@property (assign) AppDelegate* appDelegate;
 @end
 
 
 @implementation Controller
 
-@synthesize appDelegate;
+static Controller* controller = nil;
 
 - (void) dealloc {
-    self.appDelegate = nil;
-
     [super dealloc];
 }
 
 
 - (Model*) model {
-    return appDelegate.model;
+    return [Model model];
 }
 
 
-- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
+- (id) init {
     if (self = [super init]) {
-        self.appDelegate = appDelegate_;
+        controller = self;
     }
 
     return self;
 }
 
 
-+ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
-    return [[[Controller alloc] initWithAppDelegate:appDelegate] autorelease];
++ (Controller*) controller {
+    return controller;
 }
 
 

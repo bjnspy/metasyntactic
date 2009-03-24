@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
+#import "Model.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
 #import "PersonCell.h"
@@ -57,7 +58,7 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 

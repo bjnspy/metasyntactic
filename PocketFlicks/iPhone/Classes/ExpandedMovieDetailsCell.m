@@ -16,7 +16,7 @@
 
 #import "DateUtilities.h"
 #import "Movie.h"
-#import "MultiDictionary.h"
+#import "MutableMultiDictionary.h"
 #import "Model.h"
 
 @interface ExpandedMovieDetailsCell()
@@ -38,6 +38,11 @@
     self.titleToValueLabels = nil;
 
     [super dealloc];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -74,127 +79,133 @@
 }
 
 
-- (void) addTitle:(NSString*) title andValues:(NSArray*) values {
+- (void) addTitle:(NSString*) title
+        andValues:(NSArray*) values
+               to:(MutableMultiDictionary*) dictionary {
     UILabel* titleLabel = [self createTitleLabel:title];
     [titleLabel sizeToFit];
     [self.contentView addSubview:titleLabel];
-
+    
     for (NSString* value in values) {
         UILabel* valueLabel = [self createValueLabel];
         valueLabel.text = value;
-
-        [titleToValueLabels addObject:valueLabel forKey:title];
-
+        
+        [dictionary addObject:valueLabel forKey:title];
+        
         [valueLabel sizeToFit];
         [self.contentView addSubview:valueLabel];
     }
-
+    
     [titles addObject:title];
     [titleToLabel setObject:titleLabel forKey:title];
 }
 
 
-- (void) addTitle:(NSString*) title andValue:(NSString*) value {
-    [self addTitle:title andValues:[NSArray arrayWithObject:value]];
+- (void) addTitle:(NSString*) title
+         andValue:(NSString*) value
+               to:(MutableMultiDictionary*) dictionary {
+    [self addTitle:title
+         andValues:[NSArray arrayWithObject:value]
+                to:dictionary];
 }
 
 
-- (void) addRating {
+- (void) addRating:(MutableMultiDictionary*) dictionary {
     NSString* title = NSLocalizedString(@"Rated:", nil);
     NSString* value;
-    if (movie.isUnrated) {
+    if (self.movie.isUnrated) {
         value = NSLocalizedString(@"Unrated", nil);
     } else {
-        value = movie.rating;
+        value = self.movie.rating;
     }
-
-    [self addTitle:title andValue:value];
+    
+    [self addTitle:title andValue:value to:dictionary];
 }
 
 
-- (void) addRunningTime {
-    if (movie.length <= 0) {
+- (void) addRunningTime:(MutableMultiDictionary*) dictionary {
+    if (self.movie.length <= 0) {
         return;
     }
-
+    
     NSString* title = NSLocalizedString(@"Running time:", nil);
-    NSString* value = movie.runtimeString;
-
-    [self addTitle:title andValue:value];
+    NSString* value = self.movie.runtimeString;
+    
+    [self addTitle:title andValue:value to:dictionary];
 }
 
 
-- (void) addReleaseDate {
-    if (movie.releaseDate == nil) {
+- (void) addReleaseDate:(MutableMultiDictionary*) dictionary {
+    if (self.movie.releaseDate == nil) {
         return;
     }
-
+    
     NSString* title = NSLocalizedString(@"Release date:", nil);
-
+    
     NSString* value;
-    if (movie.isNetflix) {
-        value = [DateUtilities formatYear:movie.releaseDate];
+    if (self.movie.isNetflix) {
+        value = [DateUtilities formatYear:self.movie.releaseDate];
     } else {
-        value = [DateUtilities formatMediumDate:movie.releaseDate];
+        value = [DateUtilities formatMediumDate:self.movie.releaseDate];
     }
-
-    [self addTitle:title andValue:value];
+    
+    [self addTitle:title andValue:value to:dictionary];
 }
 
 
-- (void) addGenres {
-    NSArray* genres = [model genresForMovie:movie];
+- (void) addGenres:(MutableMultiDictionary*) dictionary {
+    NSArray* genres = [self.model genresForMovie:self.movie];
     if (genres.count == 0) {
         return;
     }
-
+    
     NSString* title = NSLocalizedString(@"Genre:", nil);
     NSString* value = [genres componentsJoinedByString:@", "];
     if (value.length == 0) {
         return;
     }
-
-    [self addTitle:title andValue:value];
+    
+    [self addTitle:title andValue:value to:dictionary];
 }
 
 
-- (void) addStudio {
-    if (movie.studio.length == 0) {
+- (void) addStudio:(MutableMultiDictionary*) dictionary {
+    if (self.movie.studio.length == 0) {
         return;
     }
-
+    
     NSString* title = NSLocalizedString(@"Studio:", nil);
-    NSString* value = movie.studio;
-
-    [self addTitle:title andValue:value];
+    NSString* value = self.movie.studio;
+    
+    [self addTitle:title andValue:value to:dictionary];
 }
 
 
-- (void) addDirectors {
-    NSArray* directors = [model directorsForMovie:movie];
+- (void) addDirectors:(MutableMultiDictionary*) dictionary {
+    NSArray* directors = [self.model directorsForMovie:self.movie];
     if (directors.count == 0) {
         return;
     }
-
+    
     NSString* title;
     if (directors.count == 1) {
         title = NSLocalizedString(@"Director:", nil);
     } else {
         title = NSLocalizedString(@"Directors:", nil);
     }
-
-    [self addTitle:title andValues:directors];
+    
+    [self addTitle:title andValues:directors to:dictionary];
 }
 
 
-- (void) addCast {
-    NSArray* cast = [model castForMovie:movie];
+- (void) addCast:(MutableMultiDictionary*) dictionary {
+    NSArray* cast = [self.model castForMovie:self.movie];
     if (cast.count == 0) {
         return;
     }
-
+    
     NSString* title = NSLocalizedString(@"Cast:", nil);
-    [self addTitle:title andValues:cast];
+    [self addTitle:title andValues:cast to:dictionary];
 }
 
 
@@ -241,20 +252,20 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(Model*) model_
                movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
+    if (self = [super initWithFrame:frame movie:movie_]) {
         self.titles = [NSMutableArray array];
         self.titleToLabel = [NSMutableDictionary dictionary];
-        self.titleToValueLabels = [MultiDictionary dictionary];
-
-        [self addRating];
-        [self addRunningTime];
-        [self addReleaseDate];
-        [self addGenres];
-        [self addStudio];
-        [self addDirectors];
-        [self addCast];
+        
+        MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+        [self addRating:dictionary];
+        [self addRunningTime:dictionary];
+        [self addReleaseDate:dictionary];
+        [self addGenres:dictionary];
+        [self addStudio:dictionary];
+        [self addDirectors:dictionary];
+        [self addCast:dictionary];
+        self.titleToValueLabels = dictionary;
 
         [self setLabelPositions];
         [self setLabelWidths];

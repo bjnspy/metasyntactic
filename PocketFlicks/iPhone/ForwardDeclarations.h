@@ -50,8 +50,6 @@
 @class ImdbPosterDownloader;
 @class Invocation;
 @class LargePosterCache;
-@class LinkedNode;
-@class LinkedSet;
 @class Movie;
 @class MovieDetailsViewController;
 @class MovieOverviewCell;
@@ -69,6 +67,8 @@
 @class AppDelegate;
 @class Controller;
 @class Model;
+@class Operation;
+@class OperationQueue;
 @class Person;
 @class PersonPosterCache;
 @class PickerEditorViewController;

@@ -16,6 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "Controller.h"
 #import "DateUtilities.h"
 #import "Model.h"
 
@@ -45,12 +46,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

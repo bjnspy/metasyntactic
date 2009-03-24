@@ -14,6 +14,7 @@
 
 #import "PosterCache.h"
 
+#import "AppDelegate.h"
 #import "ApplePosterDownloader.h"
 #import "Application.h"
 #import "DifferenceEngine.h"
@@ -23,11 +24,9 @@
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
-#import "Model.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @interface PosterCache()
@@ -41,16 +40,13 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
++ (PosterCache*) cache {
+    return [[[PosterCache alloc] init] autorelease];
 }
 
 
-+ (PosterCache*) cacheWithModel:(Model*) model {
-    return [[[PosterCache alloc] initWithModel:model] autorelease];
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -64,21 +60,14 @@
 
 
 - (void) update:(NSArray*) movies {
-    NSMutableArray* moviesWithoutLinks = [NSMutableArray array];
-    NSMutableArray* moviesWithLinks = [NSMutableArray array];
-
-
     // movies with poster links download faster. try them first.
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
-            [moviesWithoutLinks addObject:movie];
+            [self addSecondaryMovie:movie];
         } else {
-            [moviesWithLinks addObject:movie];
+            [self addPrimaryMovie:movie];
         }
     }
-
-    [self addPrimaryMovies:moviesWithLinks];
-    [self addSecondaryMovies:moviesWithoutLinks];
 }
 
 
@@ -94,50 +83,48 @@
 }
 
 
-- (NSData*) downloadPosterWorker:(Movie*) movie
-                      postalCode:(NSString*) postalCode {
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
+- (NSData*) downloadPosterWorker:(Movie*) movie {
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
     if (data != nil) {
         return data;
     }
-
+    
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-
-    data = [FandangoPosterDownloader download:movie postalCode:postalCode];
+    
+    data = [FandangoPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-
+    
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-
-    [model.largePosterCache downloadFirstPosterForMovie:movie];
-
+    
+    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+    
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time
     if ([NetworkUtilities isNetworkAvailable]) {
         return [NSData data];
     }
-
+    
     return nil;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie
-                 postalCode:(NSString*) postalCode {
+- (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
-
+    
     if ([FileUtilities fileExists:path]) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
-
+        
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
@@ -146,21 +133,16 @@
             }
         }
     }
-
-    NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];
-
+    
+    NSData* data = [self downloadPosterWorker:movie];
+    
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
-
+        
         if (data.length > 0) {
             [AppDelegate minorRefresh];
         }
     }
-}
-
-
-- (void) updateMovieDetails:(Movie*) movie {
-    [self updateMovieDetails:movie postalCode:@"10009"];
 }
 
 
@@ -174,17 +156,17 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
     NSData* smallPosterData;
-
+    
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-
+        
         [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-
+    
     return [UIImage imageWithData:smallPosterData];
 }
 

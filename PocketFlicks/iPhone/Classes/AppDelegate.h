@@ -15,6 +15,7 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
+    OperationQueue* operationQueue;
     NetflixNavigationController* navigationController;
 
     Model* model;
@@ -36,7 +37,14 @@
 + (void) majorRefresh:(BOOL) force;
 
 + (UIWindow*) window;
-
 + (UIView*) globalActivityView;
+
++ (AppDelegate*) appDelegate;
++ (OperationQueue*) operationQueue;
+
++ (void) addNotification:(NSString*) notification;
++ (void) addNotifications:(NSArray*) notifications;
++ (void) removeNotification:(NSString*) notification;
++ (void) removeNotifications:(NSArray*) notifications;
 
 @end

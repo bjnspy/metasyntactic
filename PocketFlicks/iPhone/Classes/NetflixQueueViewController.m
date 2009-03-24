@@ -18,6 +18,7 @@
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "ImageCache.h"
+#import "Controller.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
@@ -126,12 +127,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

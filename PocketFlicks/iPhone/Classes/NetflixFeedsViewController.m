@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "AutoResizingCell.h"
+#import "Controller.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
@@ -57,12 +58,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

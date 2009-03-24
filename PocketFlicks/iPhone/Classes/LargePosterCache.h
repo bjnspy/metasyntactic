@@ -16,17 +16,20 @@
 
 @interface LargePosterCache : AbstractCache {
 @private
-    NSMutableDictionary* yearToMovieMap;
-    NSLock* yearToMovieMapGate;
+    NSMutableDictionary* yearToMovieMap_;
+    NSLock* yearToMovieMapGate_;
+    
+    BOOL updated_;
 }
 
-+ (LargePosterCache*) cacheWithModel:(Model*) model;
++ (LargePosterCache*) cache;
+
+- (void) update;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
-- (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index compress:(BOOL) compress;
 - (BOOL) posterExistsForMovie:(Movie*) movie index:(NSInteger) index;
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie;

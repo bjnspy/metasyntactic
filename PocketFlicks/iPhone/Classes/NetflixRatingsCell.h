@@ -22,7 +22,6 @@
 }
 
 - (id) initWithFrame:(CGRect) frame
-               model:(Model*) model
                movie:(Movie*) movie;
 
 - (void) refresh;

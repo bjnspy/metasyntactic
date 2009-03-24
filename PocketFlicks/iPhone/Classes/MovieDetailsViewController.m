@@ -34,10 +34,10 @@
 #import "NetflixStatusCell.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "PosterCache.h"
 #import "Status.h"
 #import "TappableImageView.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
@@ -323,7 +323,7 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) downloadPoster {
+- (void) downloadPosterBackgroundEntryPoint {
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
     NSInteger posterCount_ = [self.model.largePosterCache posterCountForMovie:movie];
 
@@ -335,28 +335,30 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) reportPoster:(NSNumber*) posterNumber {
     NSAssert([NSThread isMainThread], nil);
-    if (shutdown) { return; }
+    if (!self.visible) { return; }
     posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
     [self minorRefresh];
 }
 
 
-- (void) startup {
-    shutdown = NO;
-
-    [ThreadingUtilities backgroundSelector:@selector(downloadPoster)
-                                  onTarget:self
-                                  argument:posterDownloadLock
-                                      gate:nil
-                                   visible:NO];
+- (void) downloadPoster {
+    if (posterLoaded) {
+        return;
+    }
+    posterLoaded = YES;
+    
+    [[AppDelegate operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
+                                         onTarget:self
+                                             gate:nil
+                                         priority:High];
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-
-    [self startup];
+    
+    [self downloadPoster];
     [self majorRefresh];
 }
 
@@ -368,14 +370,10 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) shutdown {
-    shutdown = YES;
-    [posterActivityView stopAnimating];
-}
-
-
 - (void) viewWillDisappear:(BOOL) animated {
-    [self shutdown];
+    [super viewWillDisappear:animated];
+    [posterActivityView stopAnimating];
+
     [self removeNotifications];
 }
 
@@ -422,7 +420,6 @@ const NSInteger POSTER_TAG = -1;
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
         [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
-                                             model:self.model
                                              movie:movie] autorelease];
     }
 
@@ -434,7 +431,6 @@ const NSInteger POSTER_TAG = -1;
     if (expandedMovieDetailsCell == nil) {
         self.expandedMovieDetailsCell =
         [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                   model:self.model
                                                    movie:movie] autorelease];
     }
 
@@ -446,7 +442,6 @@ const NSInteger POSTER_TAG = -1;
     if (collapsedMovieDetailsCell == nil) {
         self.collapsedMovieDetailsCell =
         [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                    model:self.model
                                                     movie:movie] autorelease];
     }
 
@@ -832,12 +827,12 @@ const NSInteger POSTER_TAG = -1;
     if (posterCount == 0) {
         return;
     }
-
-    [ThreadingUtilities backgroundSelector:@selector(downloadAllPostersForMovie:)
-                                  onTarget:self.model.largePosterCache
-                                  argument:movie
-                                      gate:posterDownloadLock
-                                   visible:NO];
+    
+    [[AppDelegate operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
+                                         onTarget:self.model.largePosterCache
+                                       withObject:movie
+                                             gate:nil
+                                         priority:High];
 
     [navigationController showPostersView:movie posterCount:posterCount];
 }

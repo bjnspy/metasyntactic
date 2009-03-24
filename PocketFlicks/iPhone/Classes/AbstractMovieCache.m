@@ -14,47 +14,36 @@
 
 #import "AbstractMovieCache.h"
 
-#import "LinkedSet.h"
-#import "ThreadingUtilities.h"
+#import "AppDelegate.h"
+#import "OperationQueue.h"
 
 @interface AbstractMovieCache()
-@property (retain) LinkedSet* prioritizedMovies;
-@property (retain) LinkedSet* primaryMovies;
-@property (retain) LinkedSet* secondaryMovies;
-@property (retain) NSMutableSet* updatedMovies;
+@property (retain) NSMutableSet* updatedMovies_;
+@property (retain) NSArray* searchOperations_;
 @end
 
 
 @implementation AbstractMovieCache
 
-@synthesize prioritizedMovies;
-@synthesize primaryMovies;
-@synthesize secondaryMovies;
-@synthesize updatedMovies;
+@synthesize updatedMovies_;
+@synthesize searchOperations_;
+
+property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
+property_wrapper(NSArray*, searchOperations, SearchOperations);
 
 - (void) dealloc {
-    self.prioritizedMovies = nil;
-    self.primaryMovies = nil;
-    self.secondaryMovies = nil;
     self.updatedMovies = nil;
-
+    self.searchOperations = nil;
+    
     [super dealloc];
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.primaryMovies = [LinkedSet set];
-        self.secondaryMovies = [LinkedSet set];
+- (id) init {
+    if (self = [super init]) {
         self.updatedMovies = [NSMutableSet set];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
     }
-
+    
     return self;
 }
 
@@ -65,120 +54,107 @@
 }
 
 
+- (void) clearUpdatedMovies {
+    [self.gate lock];
+    {
+        [self.updatedMovies removeAllObjects];
+    }
+    [self.gate unlock];
+}
+
+
+- (BOOL) checkMovie:(Movie*) movie {
+    BOOL result;
+    [self.gate lock];
+    {
+        if (![self.updatedMovies containsObject:movie]) {
+            [self.updatedMovies addObject:movie];
+            result = NO;
+        } else {
+            result = YES;
+        }
+    }
+    [self.gate unlock];
+    return result;
+}
+
+
 - (void) updateMovieDetails:(Movie*) movie {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (BOOL) updateMoviesContainsNoLock:(Movie*) movie {
-    return [updatedMovies containsObject:movie];
-}
-
-
-- (BOOL) updateMoviesContains:(Movie*) movie {
-    BOOL value;
-    [gate lock];
-    {
-        value = [self updateMoviesContainsNoLock:movie];
+- (void) processMovie:(Movie*) movie {
+    if ([self checkMovie:movie]) {
+        return;
     }
-    [gate unlock];
-    return value;
-}
-
-
-- (void) addUpdatedMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [updatedMovies addObject:movie];
-    }
-    [gate unlock];
-}
-
-
-- (void) clearUpdatedMovies {
-    [gate lock];
-    {
-        [updatedMovies removeAllObjects];
-    }
-    [gate unlock];
-}
-
-
-- (void) updateDetailsBackgroundEntryPoint {
-    while (YES) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            Movie* movie = nil;
-            [gate lock];
-            {
-                while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                       (movie = [primaryMovies removeLastObjectAdded]) == nil &&
-                       (movie = [secondaryMovies removeLastObjectAdded]) == nil) {
-                    [gate wait];
-                }
-            }
-            [gate unlock];
-
-            if (movie != nil) {
-                if (![self updateMoviesContains:movie]) {
-                    [self addUpdatedMovie:movie];
-                    [self updateMovieDetails:movie];
-                }
-            }
-
-            [NSThread sleepForTimeInterval:1];
-        }
-        [pool release];
-    }
-}
-
-
-- (void) addMovie:(Movie*) movie
-              set:(LinkedSet*) set {
-    [gate lock];
-    {
-        if (![self updateMoviesContainsNoLock:movie]) {
-            [set addObject:movie];
-            [gate broadcast];
-        }
-    }
-    [gate unlock];
-}
-
-
-- (void) addMovies:(NSArray*) movies
-               set:(LinkedSet*) set {
-    [gate lock];
-    {
-        [set addObjectsFromArray:movies];
-        [gate broadcast];
-    }
-    [gate unlock];
+    
+    [self updateMovieDetails:movie];
 }
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    [self addMovie:movie set:prioritizedMovies];
+    [[AppDelegate operationQueue] performBoundedSelector:@selector(processMovie:)
+                                                onTarget:self
+                                              withObject:movie
+                                                    gate:nil
+                                                priority:Priority];
+}
+
+
+- (Operation*) addSearchMovie:(Movie*) movie {
+    return [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
+                                                onTarget:self
+                                              withObject:movie
+                                                    gate:nil
+                                                priority:Search];
 }
 
 
 - (void) addPrimaryMovie:(Movie*) movie {
-    [self addMovie:movie set:primaryMovies];
+    [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
+                                         onTarget:self
+                                       withObject:movie
+                                             gate:nil
+                                         priority:Normal];
 }
 
 
 - (void) addSecondaryMovie:(Movie*) movie {
-    [self addMovie:movie set:secondaryMovies];
+    [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
+                                         onTarget:self
+                                       withObject:movie
+                                             gate:nil
+                                         priority:Low];
+}
+
+
+- (void) addSearchMovies:(NSArray*) movies {
+    NSArray* oldOperations = self.searchOperations;
+    for (Operation* operation in oldOperations) {
+        [operation cancel];
+    }
+    
+    NSMutableArray* operations = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        [operations addObject:[self addSearchMovie:movie]];
+    }
+    
+    self.searchOperations = operations;
 }
 
 
 - (void) addPrimaryMovies:(NSArray*) movies {
-    [self addMovies:movies set:primaryMovies];
+    for (Movie* movie in movies) {
+        [self addPrimaryMovie:movie];
+    }
 }
 
 
 - (void) addSecondaryMovies:(NSArray*) movies {
-    [self addMovies:movies set:secondaryMovies];
+    for (Movie* movie in movies) {
+        [self addSecondaryMovie:movie];
+    }
 }
 
 @end

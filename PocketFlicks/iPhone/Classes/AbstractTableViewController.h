@@ -12,17 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
-
-@interface AmazonCache : AbstractMovieCache {
+@interface AbstractTableViewController : UITableViewController {
 @private
+    AbstractNavigationController* abstractNavigationController_;
+    
+    BOOL visible_;
+    NSArray* visibleIndexPaths_;
 }
 
-+ (AmazonCache*) cache;
+- (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
-- (void) update:(NSArray*) movies;
-- (void) updateMovie:(Movie*) movie;
+/* @protected */
+- (AbstractNavigationController*) abstractNavigationController;
+- (BOOL) visible;
+- (NSArray*) visibleIndexPaths;
 
-- (NSString*) amazonAddressForMovie:(Movie*) movie;
+- (void) reloadTableViewData;
+- (void) didReceiveMemoryWarningWorker;
 
 @end

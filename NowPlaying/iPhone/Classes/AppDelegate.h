@@ -15,8 +15,8 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    ApplicationTabBarController* tabBarController_;
     OperationQueue* operationQueue_;
+    ApplicationTabBarController* tabBarController_;
     NotificationCenter* notificationCenter_;
 
     Model* model_;
@@ -39,6 +39,7 @@
 + (void) majorRefresh:(BOOL) force;
 
 + (UIWindow*) window;
++ (UIView*) globalActivityView;
 
 + (OperationQueue*) operationQueue;
 + (NotificationCenter*) notificationCenter;
@@ -47,7 +48,5 @@
 + (void) addNotifications:(NSArray*) notifications;
 + (void) removeNotification:(NSString*) notification;
 + (void) removeNotifications:(NSArray*) notifications;
-
-+ (UIView*) globalActivityView;
 
 @end

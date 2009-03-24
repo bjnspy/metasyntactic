@@ -14,7 +14,6 @@
 
 @interface AbstractNavigationController : UINavigationController {
 @private
-    AppDelegate* appDelegate;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
 
@@ -22,16 +21,10 @@
     BOOL visible;
 }
 
-@property (readonly, assign) AppDelegate* appDelegate;
 @property (readonly) BOOL visible;
-
-- (id) initWithAppDelegate:(AppDelegate*) appDelegate;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
-
-- (Model*) model;
-- (Controller*) controller;
 
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
