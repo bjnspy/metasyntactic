@@ -333,7 +333,7 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [navigationController pushTicketsView:movie
+    [self.abstractNavigationController pushTicketsView:movie
                                   theater:theater
                                     title:movie.displayTitle
                                  animated:animated];
@@ -393,7 +393,7 @@
 
         Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [navigationController pushMovieDetails:movie animated:YES];
+            [self.abstractNavigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

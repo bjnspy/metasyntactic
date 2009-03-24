@@ -144,7 +144,7 @@
 
 - (void) minorRefreshWorker {
     [super minorRefreshWorker];
-    if (!visible) {
+    if (!self.visible) {
         return;
     }
 

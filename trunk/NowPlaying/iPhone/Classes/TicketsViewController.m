@@ -299,7 +299,7 @@ property_wrapper(NSArray*, performances, Performances);
         return;
     }
 
-    [navigationController pushBrowser:performance.url animated:YES];
+    [self.abstractNavigationController pushBrowser:performance.url animated:YES];
 }
 
 

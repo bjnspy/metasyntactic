@@ -113,9 +113,9 @@
     NSString* genre = [genres objectAtIndex:indexPath.row];
 
     NetflixGenreRecommendationsViewController* controller =
-    [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:navigationController genre:genre] autorelease];
+    [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:self.abstractNavigationController genre:genre] autorelease];
 
-    [navigationController pushViewController:controller animated:YES];
+    [self.abstractNavigationController pushViewController:controller animated:YES];
 }
 
 

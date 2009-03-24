@@ -93,7 +93,7 @@
     }
 
     [self.controller setScoreProviderIndex:selectPath.row];
-    [navigationController popViewControllerAnimated:YES];
+    [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -191,7 +191,7 @@
 
 - (void) minorRefreshWorker {
     [super minorRefreshWorker];
-    if (!visible) {
+    if (!self.visible) {
         return;
     }
 
@@ -202,7 +202,7 @@
 
 
 - (UIViewController*) createFilterViewController {
-    return [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
+    return [[[DVDFilterViewController alloc] initWithNavigationController:self.abstractNavigationController] autorelease];
 }
 
 @end

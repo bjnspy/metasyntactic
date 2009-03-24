@@ -280,8 +280,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController__ {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController__]) {
     }
 
     return self;
@@ -305,7 +305,9 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:navigationController searchBar:searchBar contentsController:self] autorelease];
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:self.abstractNavigationController
+                                                                                         searchBar:searchBar
+                                                                                contentsController:self] autorelease];
 }
 
 
@@ -424,7 +426,7 @@
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -502,7 +504,7 @@
 
 
 - (void) showInfo {
-    [navigationController pushInfoControllerAnimated:YES];
+    [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
 @end
