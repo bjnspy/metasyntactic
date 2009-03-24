@@ -15,7 +15,6 @@
 @interface AbstractSearchEngine : NSObject {
 @protected
     // only accessed from the main thread.  needs no lock.
-    Model* model_;
     id<SearchEngineDelegate> delegate_;
 
     // accessed from both threads.  needs lock
@@ -30,10 +29,7 @@
 - (void) invalidateExistingRequests;
 
 /* @protected */
-- (id) initWithModel:(Model*) model
-            delegate:(id<SearchEngineDelegate>) delegate;
-
-- (Model*) model;
+- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate;
 
 - (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest;
 

@@ -33,9 +33,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-               movie:(Movie*) movie_ {
-    if (self = [super initWithModel:model_ movie:movie_]) {
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super initWithMovie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 

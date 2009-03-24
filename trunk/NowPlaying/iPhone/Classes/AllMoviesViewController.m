@@ -34,6 +34,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (NSArray*) movies {
     return self.model.movies;
 }
@@ -132,8 +137,7 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                model:self.model] autorelease];
+        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:self];

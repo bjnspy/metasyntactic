@@ -21,28 +21,23 @@
 #import "Review.h"
 
 @interface ReviewTitleCell()
-@property (retain) Model* model;
 @property (retain) UILabel* scoreLabel;
 @end
 
 @implementation ReviewTitleCell
 
-@synthesize model;
 @synthesize scoreLabel;
 
 - (void) dealloc {
-    self.model = nil;
     self.scoreLabel = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithModel:(Model*) model_
-     reuseIdentifier:(NSString*) reuseIdentifier {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.scoreLabel  = [[[UILabel alloc] init] autorelease];
@@ -54,6 +49,11 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -111,11 +111,11 @@
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
 
-    if (model.rottenTomatoesScores) {
+    if (self.model.rottenTomatoesScores) {
         [self setBasicSquareImage:score];
-    } else if (model.metacriticScores) {
+    } else if (self.model.metacriticScores) {
         [self setBasicSquareImage:score];
-    } else if (model.googleScores) {
+    } else if (self.model.googleScores) {
         [self setGoogleImage:score];
     }
 }

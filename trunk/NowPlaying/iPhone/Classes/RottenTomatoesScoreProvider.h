@@ -17,6 +17,6 @@
 @interface RottenTomatoesScoreProvider : AbstractScoreProvider {
 }
 
-+ (RottenTomatoesScoreProvider*) providerWithModel:(Model*) model;
++ (RottenTomatoesScoreProvider*) provider;
 
 @end

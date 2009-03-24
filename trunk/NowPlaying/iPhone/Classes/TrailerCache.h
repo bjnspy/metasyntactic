@@ -21,7 +21,7 @@
     NSArray* indexKeys_;
 }
 
-+ (TrailerCache*) cacheWithModel:(Model*) model;
++ (TrailerCache*) cache;
 
 - (void) update:(NSArray*) movies;
 

@@ -185,13 +185,18 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.queues = [NSMutableDictionary dictionary];
         self.presubmitRatings = [NSMutableDictionary dictionary];
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

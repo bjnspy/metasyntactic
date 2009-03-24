@@ -14,12 +14,10 @@
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
 @protected
-    Model* model;
     Movie* movie;
 }
 
-- (id) initWithModel:(Model*) model
-               movie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie;
 
 - (CGFloat) height:(UITableView*) tableView;
 

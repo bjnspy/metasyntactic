@@ -44,6 +44,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 + (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController
                                                             object:(id) object
                                                           selector:(SEL) selector {
@@ -57,7 +62,7 @@
 
         [values addObject:[DateUtilities formatFullDate:date]];
     }
-    NSString* defaultValue = [DateUtilities formatFullDate:navigationController.model.searchDate];
+    NSString* defaultValue = [DateUtilities formatFullDate:[[Model model] searchDate]];
 
     return [[[SearchDatePickerViewController alloc] initWithNavigationController:navigationController
                                                                       withValues:values

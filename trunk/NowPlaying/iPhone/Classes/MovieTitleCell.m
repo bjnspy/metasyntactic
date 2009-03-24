@@ -22,29 +22,24 @@
 #import "Movie.h"
 
 @interface MovieTitleCell()
-@property (retain) Model* model;
 @property (retain) UILabel* scoreLabel;
 @end
 
 
 @implementation MovieTitleCell
 
-@synthesize model;
 @synthesize scoreLabel;
 
 - (void) dealloc {
-    self.model = nil;
     self.scoreLabel = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-                         model:(Model*) model_{
-    if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
-
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithStyle:UITableViewCellStyleSubtitle
+                    reuseIdentifier:reuseIdentifier]) {
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
 
@@ -60,6 +55,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setImage:(UIImage*) image {
     if (self.image != image) {
         [super setImage:image];
@@ -68,7 +68,7 @@
 
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
-    int score = [model scoreValueForMovie:movie];
+    int score = [self.model scoreValueForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         if (score >= 60) {
@@ -106,7 +106,7 @@
 
 
 - (void) setBasicSquareScore:(Movie*) movie {
-    int score = [model scoreValueForMovie:movie];
+    int score = [self.model scoreValueForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(6, 6, 30, 30);
@@ -135,7 +135,7 @@
 
 
 - (BOOL) noScores {
-    return model.noScores;
+    return self.model.noScores;
 }
 
 
@@ -146,13 +146,13 @@
 
 
 - (void) setScore:(Movie*) movie {
-    if (model.rottenTomatoesScores) {
+    if (self.model.rottenTomatoesScores) {
         [self setRottenTomatoesScore:movie];
-    } else if (model.metacriticScores) {
+    } else if (self.model.metacriticScores) {
         [self setBasicSquareScore:movie];
-    } else if (model.googleScores) {
+    } else if (self.model.googleScores) {
         [self setBasicSquareScore:movie];
-    } else if (model.noScores) {
+    } else if (self.model.noScores) {
         self.image = nil;
         scoreLabel.text = nil;
     }
@@ -163,7 +163,7 @@
     [self setScore:movie];
     self.detailTextLabel.text = movie.ratingAndRuntimeString;
 
-    if ([model isBookmarked:movie]) {
+    if ([self.model isBookmarked:movie]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
     } else {
         self.textLabel.text = movie.displayTitle;

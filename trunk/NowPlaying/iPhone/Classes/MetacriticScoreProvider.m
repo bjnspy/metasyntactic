@@ -27,8 +27,8 @@
 }
 
 
-+ (MetacriticScoreProvider*) providerWithModel:(Model*) model {
-    return [[[MetacriticScoreProvider alloc] initWithModel:model] autorelease];
++ (MetacriticScoreProvider*) provider {
+    return [[[MetacriticScoreProvider alloc] init] autorelease];
 }
 
 

@@ -52,6 +52,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) initializeData {
     self.genreToMovies = [MultiDictionary dictionary];
 

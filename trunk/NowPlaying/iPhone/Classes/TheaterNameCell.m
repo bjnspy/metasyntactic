@@ -19,26 +19,19 @@
 #import "Theater.h"
 
 @interface TheaterNameCell()
-@property (retain) Model* model;
 @end
 
 
 @implementation TheaterNameCell
 
-@synthesize model;
-
 - (void) dealloc {
-    self.model = nil;
-
     [super dealloc];
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-                         model:(Model*) model_ {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
     }
@@ -47,14 +40,19 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setTheater:(Theater*) theater {
-    if ([model isFavoriteTheater:theater]) {
+    if ([self.model isFavoriteTheater:theater]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
     } else {
         self.textLabel.text = theater.name;
     }
 
-    self.detailTextLabel.text = [model simpleAddressForTheater:theater];
+    self.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
 }
 
 @end

@@ -17,6 +17,7 @@
 #import "AllMoviesViewController.h"
 #import "AppDelegate.h"
 #import "Application.h"
+#import "Controller.h"
 #import "DVDNavigationController.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"
@@ -107,12 +108,12 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
 
 
 - (Model*) model {
-    return [[AppDelegate appDelegate] model];
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return [[AppDelegate appDelegate] controller];
+    return [Controller controller];
 }
 
 

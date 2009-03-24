@@ -24,7 +24,6 @@
 #import "TappableImageView.h"
 
 @interface MovieOverviewCell()
-@property (retain) Model* model;
 @property (retain) Movie* movie;
 @property (copy) NSString* synopsis;
 @property NSInteger synopsisSplit;
@@ -38,7 +37,6 @@
 @implementation MovieOverviewCell
 
 @synthesize movie;
-@synthesize model;
 @synthesize posterImage;
 @synthesize synopsis;
 @synthesize synopsisSplit;
@@ -48,7 +46,6 @@
 
 - (void) dealloc {
     self.movie = nil;
-    self.model = nil;
     self.posterImage = nil;
     self.synopsis = nil;
     self.synopsisSplit = 0;
@@ -76,13 +73,11 @@
 
 
 - (id) initWithMovie:(Movie*) movie_
-               model:(Model*) model_
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
         activityView:(ActivityIndicatorViewWithBackground*) activityView {
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
         self.movie = movie_;
-        self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.posterImage = posterImage_;
 
@@ -114,6 +109,11 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -187,7 +187,7 @@
 
 
 - (void) calculateSynopsisChunks:(double) width {
-    self.synopsis = [model synopsisForMovie:movie];
+    self.synopsis = [self.model synopsisForMovie:movie];
     self.synopsisSplit = [self calculateSynopsisSplit:width];
     self.synopsisMax = [self calculateSynopsisMax];
 }
@@ -236,7 +236,6 @@
                      posterImageView:(TappableImageView*) posterImageView
                         activityView:(ActivityIndicatorViewWithBackground*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
-                                               model:model
                                          posterImage:posterImage
                                      posterImageView:posterImageView
                                         activityView:activityView] autorelease];
@@ -245,7 +244,7 @@
 
 - (CGFloat) height {
     double width;
-    if ([model screenRotationEnabled] &&
+    if ([self.model screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {

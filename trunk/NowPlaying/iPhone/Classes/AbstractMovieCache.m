@@ -39,8 +39,8 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.updatedMovies = [NSMutableSet set];
     }
 

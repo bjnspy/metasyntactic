@@ -21,8 +21,8 @@
 }
 
 
-+ (NoneScoreProvider*) providerWithModel:(Model*) model; {
-    return [[[NoneScoreProvider alloc] initWithModel:model] autorelease];
++ (NoneScoreProvider*) provider {
+    return [[[NoneScoreProvider alloc] init] autorelease];
 }
 
 

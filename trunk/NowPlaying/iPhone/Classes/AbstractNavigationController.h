@@ -30,9 +30,6 @@
 - (void) majorRefresh;
 - (void) minorRefresh;
 
-- (Model*) model;
-- (Controller*) controller;
-
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                    title:(NSString*) title

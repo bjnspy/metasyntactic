@@ -35,8 +35,8 @@
 }
 
 
-+ (WikipediaCache*) cacheWithModel:(Model*) model {
-    return [[[WikipediaCache alloc] initWithModel:model] autorelease];
++ (WikipediaCache*) cache {
+    return [[[WikipediaCache alloc] init] autorelease];
 }
 
 

@@ -30,8 +30,13 @@
 }
 
 
-+ (DVDCache*) cacheWithModel:(Model*) model {
-    return [[[DVDCache alloc] initWithModel:model] autorelease];
++ (DVDCache*) cache {
+    return [[[DVDCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

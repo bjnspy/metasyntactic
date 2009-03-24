@@ -16,6 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
+#import "Controller.h"
 #import "Model.h"
 
 @interface ScoreProviderViewController()
@@ -35,6 +36,16 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (Controller*) controller {
+    return [Controller controller];
 }
 
 

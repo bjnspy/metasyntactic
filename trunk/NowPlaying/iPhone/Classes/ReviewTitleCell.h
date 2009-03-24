@@ -14,12 +14,10 @@
 
 @interface ReviewTitleCell : UITableViewCell {
 @private
-    Model* model;
     UILabel* scoreLabel;
 }
 
-- (id) initWithModel:(Model*) model
-     reuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setReview:(Review*) review;
 

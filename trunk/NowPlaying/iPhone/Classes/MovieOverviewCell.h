@@ -16,7 +16,6 @@
 
 @interface MovieOverviewCell : UITableViewCell {
 @private
-    Model* model;
     Movie* movie;
 
     NSString* synopsis;

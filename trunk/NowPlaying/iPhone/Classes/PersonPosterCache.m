@@ -52,24 +52,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
-        //self.normalPeople = [LinkedSet set];
-        //self.prioritizedPeople = [LinkedSet setWithCountLimit:8];
-/*
-        [ThreadingUtilities backgroundSelector:@selector(updatePostersBackgroundEntryPoint)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
- */
-    }
-
-    return self;
-}
-
-
-+ (PersonPosterCache*) cacheWithModel:(Model*) model {
-    return [[[PersonPosterCache alloc] initWithModel:model] autorelease];
++ (PersonPosterCache*) cache {
+    return [[[PersonPosterCache alloc] init] autorelease];
 }
 
 

@@ -94,8 +94,8 @@ property_wrapper(UIView*, globalActivityView, GlobalActivityView)
 
     [self setupGlobalActivtyIndicator];
 
-    self.model = [Model model];
-    self.controller = [Controller controller];
+    self.model = [[[Model alloc] init] autorelease];
+    self.controller = [[[Controller alloc] init] autorelease];
     self.tabBarController = [ApplicationTabBarController controller];
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:self.tabBarController action:@selector(majorRefresh) pulseInterval:5];

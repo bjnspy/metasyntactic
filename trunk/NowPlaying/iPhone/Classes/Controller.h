@@ -23,6 +23,8 @@
 
 @property (readonly, retain) LocationManager* locationManager;
 
++ (Controller*) controller;
+
 - (void) start;
 
 - (void) setSearchDate:(NSDate*) searchDate;
@@ -36,7 +38,5 @@
 - (void) setNetflixEnabled:(BOOL) value;
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
-
-+ (Controller*) controller;
 
 @end

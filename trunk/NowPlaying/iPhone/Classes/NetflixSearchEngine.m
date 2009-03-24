@@ -27,9 +27,13 @@
 }
 
 
-+ (NetflixSearchEngine*) engineWithModel:(Model*) model
-                                delegate:(id<SearchEngineDelegate>) delegate {
-    return [[[NetflixSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
++ (NetflixSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
+    return [[[NetflixSearchEngine alloc] initWithDelegate:delegate] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

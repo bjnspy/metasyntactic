@@ -23,8 +23,6 @@
 - (void) prioritizeMovie:(Movie*) movie;
 
 /* @protected */
-- (id) initWithModel:(Model*) model;
-
 - (void) addPrimaryMovie:(Movie*) movie;
 - (void) addSecondaryMovie:(Movie*) movie;
 - (void) addSearchMovies:(NSArray*) movies;

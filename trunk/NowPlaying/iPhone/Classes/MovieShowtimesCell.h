@@ -14,21 +14,18 @@
 
 @interface MovieShowtimesCell : UITableViewCell {
 @private
-    Model* model;
     UILabel* showtimesLabel;
 
     NSArray* showtimesData;
 }
 
-- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier
-                model:(Model*) model;
+- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale
-                         model:(Model*) model;
+                         stale:(BOOL) stale;
 
 @end

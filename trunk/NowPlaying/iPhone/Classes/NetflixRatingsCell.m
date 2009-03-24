@@ -36,8 +36,13 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (NSInteger) halfWayPoint {
-    if ([model screenRotationEnabled] &&
+    if ([self.model screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
         return 230;
     } else {
@@ -47,7 +52,7 @@
 
 
 - (void) setupNetflixRating {
-    CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
+    CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie] floatValue];
 
     for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
@@ -135,7 +140,7 @@
 - (void) setupRating {
     [self clearRating];
 
-    NSString* userRating = [model.netflixCache userRatingForMovie:movie];
+    NSString* userRating = [self.model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
         [self setupUserRating:userRating];
     } else {
@@ -144,10 +149,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-               movie:(Movie*) movie_ {
-    if (self = [super initWithModel:model_
-                              movie:movie_]) {
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super initWithMovie:movie_]) {
         self.imageViews = [NSMutableArray array];
         [self setupRating];
     }
@@ -159,7 +162,7 @@
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
     NSInteger value = imageView.tag;
-    NSInteger currentUserRating = (NSInteger)[[model.netflixCache userRatingForMovie:movie] floatValue];
+    NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
 
     if (value == currentUserRating) {
         return;
@@ -175,7 +178,7 @@
 
     // now, update in the background.
     NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-    [model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
+    [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
 }
 
 

@@ -22,7 +22,7 @@
     BOOL updated_;
 }
 
-+ (LargePosterCache*) cacheWithModel:(Model*) model;
++ (LargePosterCache*) cache;
 
 - (void) update;
 

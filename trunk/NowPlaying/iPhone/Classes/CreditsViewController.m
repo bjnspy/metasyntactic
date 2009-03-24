@@ -97,6 +97,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) majorRefresh {
     [self reloadTableViewData];
 }

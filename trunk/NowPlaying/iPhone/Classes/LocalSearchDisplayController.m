@@ -28,8 +28,13 @@
 
 @implementation LocalSearchDisplayController
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController_
-                     searchBar:(UISearchBar*) searchBar_
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (id) initNavigationController:(AbstractNavigationController*) navigationController_
+                      searchBar:(UISearchBar*) searchBar_
             contentsController:(UIViewController*) viewController_ {
     if (self = [super initNavigationController:navigationController_ searchBar:searchBar_ contentsController:viewController_]) {
         self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
@@ -41,8 +46,7 @@
 
 
 - (AbstractSearchEngine*) createSearchEngine {
-    return [LocalSearchEngine engineWithModel:navigationController.model
-                                delegate:self];
+    return [LocalSearchEngine engineWithDelegate:self];
 }
 
 

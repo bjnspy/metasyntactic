@@ -29,9 +29,14 @@
     [super dealloc];
 }
 
-+ (LocalSearchEngine*) engineWithModel:(Model*) model
-                         delegate:(id<SearchEngineDelegate>) delegate {
-    return [[[LocalSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
+
++ (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
+    return [[[LocalSearchEngine alloc] initWithDelegate:delegate] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

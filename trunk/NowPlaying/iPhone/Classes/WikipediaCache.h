@@ -18,7 +18,7 @@
 @private
 }
 
-+ (WikipediaCache*) cacheWithModel:(Model*) model;
++ (WikipediaCache*) cache;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

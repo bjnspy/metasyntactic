@@ -51,6 +51,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) majorRefreshWorker {
     [self reloadTableViewData];
 }

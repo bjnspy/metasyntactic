@@ -58,20 +58,25 @@ property_wrapper(BOOL, updated, Updated);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
-        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithModel:self.model];
-        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithModel:self.model];
-        self.googleScoreProvider = [GoogleScoreProvider providerWithModel:self.model];
-        self.noneScoreProvider = [NoneScoreProvider providerWithModel:self.model];
+- (id) init {
+    if (self = [super init]) {
+        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider provider];
+        self.metacriticScoreProvider = [MetacriticScoreProvider provider];
+        self.googleScoreProvider = [GoogleScoreProvider provider];
+        self.noneScoreProvider = [NoneScoreProvider provider];
     }
 
     return self;
 }
 
 
-+ (ScoreCache*) cacheWithModel:(Model*) model {
-    return [[[ScoreCache alloc] initWithModel:model] autorelease];
+- (Model*) model {
+    return [Model model];
+}
+
+
++ (ScoreCache*) cache {
+    return [[[ScoreCache alloc] init] autorelease];
 }
 
 

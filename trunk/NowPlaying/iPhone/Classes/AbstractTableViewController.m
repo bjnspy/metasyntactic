@@ -15,6 +15,7 @@
 #import "AbstractTableViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "Controller.h"
 #import "Model.h"
 
 @interface AbstractTableViewController()
@@ -47,12 +48,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

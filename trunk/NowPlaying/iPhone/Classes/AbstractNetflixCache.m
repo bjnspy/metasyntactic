@@ -24,6 +24,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 + (NSString*) recommendationKey {
     return @"http://schemas.netflix.com/feed.recommendations";
 }

@@ -22,9 +22,6 @@
 
 - (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
-- (Model*) model;
-- (Controller*) controller;
-
 /* @protected */
 - (void) reloadTableViewData;
 - (void) didReceiveMemoryWarningWorker;

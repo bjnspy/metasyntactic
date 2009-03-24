@@ -35,8 +35,8 @@
 }
 
 
-+ (IMDbCache*) cacheWithModel:(Model*) model {
-    return [[[IMDbCache alloc] initWithModel:model] autorelease];
++ (IMDbCache*) cache {
+    return [[[IMDbCache alloc] init] autorelease];
 }
 
 

@@ -24,8 +24,6 @@
 
 + (NSArray*) mostPopularTitles;
 
-- (id) initWithModel:(Model*) model;
-
 - (NSDate*) lastQuotaErrorDate;
 
 - (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;

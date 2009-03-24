@@ -117,6 +117,11 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) orderTheaters {
     [theatersArray sortUsingFunction:compareTheatersByDistance
                              context:self.model.theaterDistanceMap];
@@ -680,8 +685,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) createNetflixRatingsCell {
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
-        [[[NetflixRatingsCell alloc] initWithModel:self.model
-                                             movie:netflixMovie] autorelease];
+        [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie] autorelease];
     }
 
     return netflixRatingsCell;
@@ -711,11 +715,9 @@ const NSInteger POSTER_TAG = -1;
     }
 
     if (expandedDetails) {
-        return [[[ExpandedMovieDetailsCell alloc] initWithModel:self.model
-                                                          movie:movie] autorelease];
+        return [[[ExpandedMovieDetailsCell alloc] initWithMovie:movie] autorelease];
     } else {
-        return [[[CollapsedMovieDetailsCell alloc] initWithModel:self.model
-                                                           movie:movie] autorelease];
+        return [[[CollapsedMovieDetailsCell alloc] initWithMovie:movie] autorelease];
     }
 }
 
@@ -775,8 +777,7 @@ const NSInteger POSTER_TAG = -1;
             Theater* theater = [theatersArray objectAtIndex:theaterIndex];
 
             return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
-                                                    stale:[self.model isStale:theater]
-                                                    model:self.model] + 18;
+                                                    stale:[self.model isStale:theater]] + 18;
         }
     }
 
@@ -791,8 +792,7 @@ const NSInteger POSTER_TAG = -1;
         static NSString* reuseIdentifier = @"theaterReuseIdentifier";
         TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                     model:self.model] autorelease];
+            cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
@@ -804,8 +804,7 @@ const NSInteger POSTER_TAG = -1;
         static NSString* reuseIdentifier = @"detailsReuseIdentifier";
         MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                        model:self.model] autorelease];
+            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 

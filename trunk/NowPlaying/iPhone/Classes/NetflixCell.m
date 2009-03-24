@@ -124,10 +124,8 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_ {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier
-                              model:model_]) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22 forTitle:directorTitleLabel];
 
@@ -166,14 +164,19 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setNetflixLabel {
     NSMutableString* result = [NSMutableString string];
-    NSString* rating = [model.netflixCache userRatingForMovie:movie];
+    NSString* rating = [self.model.netflixCache userRatingForMovie:movie];
     if (rating.length > 0) {
         userRating = YES;
     } else {
         userRating = NO;
-        rating = [model.netflixCache netflixRatingForMovie:movie];
+        rating = [self.model.netflixCache netflixRatingForMovie:movie];
     }
 
     if (rating.length == 0) {
@@ -210,11 +213,11 @@
 - (void) loadMovie:(id) owner {
     [self loadImage];
 
-    directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
-    castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
-    genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-    formatsLabel.text   = [[[[model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
-    availabilityLabel.text = [model.netflixCache availabilityForMovie:movie];
+    directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
+    castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
+    genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
+    formatsLabel.text   = [[[[self.model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
+    availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
 
     NSString* rating;
     if (movie.isUnrated) {		

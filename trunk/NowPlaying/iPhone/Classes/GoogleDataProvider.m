@@ -52,8 +52,8 @@ property_wrapper(NSDateComponents*, dateComponents, DateComponents);
 }
 
 
-+ (GoogleDataProvider*) providerWithModel:(Model*) model {
-    return [[[GoogleDataProvider alloc] initWithModel:model] autorelease];
++ (GoogleDataProvider*) provider {
+    return [[[GoogleDataProvider alloc] init] autorelease];
 }
 
 

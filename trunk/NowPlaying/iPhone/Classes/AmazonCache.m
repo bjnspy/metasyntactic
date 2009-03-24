@@ -35,8 +35,8 @@
 }
 
 
-+ (AmazonCache*) cacheWithModel:(Model*) model {
-    return [[[AmazonCache alloc] initWithModel:model] autorelease];
++ (AmazonCache*) cache {
+    return [[[AmazonCache alloc] init] autorelease];
 }
 
 

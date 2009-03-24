@@ -21,6 +21,6 @@
     NSDateComponents* dateComponents_;
 }
 
-+ (GoogleDataProvider*) providerWithModel:(Model*) model;
++ (GoogleDataProvider*) provider;
 
 @end

@@ -74,6 +74,16 @@ typedef enum {
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (Controller*) controller {
+    return [Controller controller];
+}
+
+
 - (void) majorRefresh {
     self.tableView.rowHeight = 38;
     //self.tableView.sectionHeaderHeight = 2;
@@ -354,7 +364,7 @@ typedef enum {
 
 
 - (void) onSearchDateChanged:(NSString*) dateString {
-    [navigationController.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
+    [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 

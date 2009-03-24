@@ -79,6 +79,8 @@
 
 @implementation Model
 
+static Model* model = nil;
+
 static NSString* currentVersion = @"3.5.0";
 static NSString* persistenceVersion = @"104";
 
@@ -291,6 +293,11 @@ property_wrapper(NSInteger, searchRadiusData, SearchRadiusData);
 }
 
 
++ (Model*) model {
+    return model;
+}
+
+
 + (NSString*) version {
     return currentVersion;
 }
@@ -414,7 +421,7 @@ property_wrapper(NSInteger, searchRadiusData, SearchRadiusData);
 
 
 - (void) loadData {
-    self.dataProvider = [GoogleDataProvider providerWithModel:self];
+    self.dataProvider = [GoogleDataProvider provider];
 
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
@@ -535,22 +542,23 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (id) init {
     if (self = [super init]) {
+        model = self;
         [self checkCountry];
         [self loadData];
         [self checkDate];
 
         self.userLocationCache = [UserLocationCache cache];
-        self.largePosterCache = [LargePosterCache cacheWithModel:self];
-        self.imdbCache = [IMDbCache cacheWithModel:self];
-        self.amazonCache = [AmazonCache cacheWithModel:self];
-        self.wikipediaCache = [WikipediaCache cacheWithModel:self];
-        self.trailerCache = [TrailerCache cacheWithModel:self];
-        self.blurayCache = [BlurayCache cacheWithModel:self];
-        self.dvdCache = [DVDCache cacheWithModel:self];
-        self.posterCache = [PosterCache cacheWithModel:self];
-        self.scoreCache = [ScoreCache cacheWithModel:self];
-        self.upcomingCache = [UpcomingCache cacheWithModel:self];
-        self.netflixCache = [MutableNetflixCache cacheWithModel:self];
+        self.largePosterCache = [LargePosterCache cache];
+        self.imdbCache = [IMDbCache cache];
+        self.amazonCache = [AmazonCache cache];
+        self.wikipediaCache = [WikipediaCache cache];
+        self.trailerCache = [TrailerCache cache];
+        self.blurayCache = [BlurayCache cache];
+        self.dvdCache = [DVDCache cache];
+        self.posterCache = [PosterCache cache];
+        self.scoreCache = [ScoreCache cache];
+        self.upcomingCache = [UpcomingCache cache];
+        self.netflixCache = [MutableNetflixCache cache];
 
         [self clearCaches];
 
@@ -574,11 +582,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [self.scoreCache didReceiveMemoryWarning];
     [self.upcomingCache didReceiveMemoryWarning];
     [self.netflixCache didReceiveMemoryWarning];
-}
-
-
-+ (Model*) model {
-    return [[[Model alloc] init] autorelease];
 }
 
 

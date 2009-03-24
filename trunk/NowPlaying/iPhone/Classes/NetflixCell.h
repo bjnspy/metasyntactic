@@ -40,8 +40,7 @@
 @property (readonly, retain) TappableImageView* tappableArrow;
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 
 - (void) refresh;

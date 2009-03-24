@@ -52,8 +52,8 @@ const int START_YEAR = 1912;
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
         self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
     }
@@ -62,8 +62,13 @@ const int START_YEAR = 1912;
 }
 
 
-+ (LargePosterCache*) cacheWithModel:(Model*) model {
-    return [[[LargePosterCache alloc] initWithModel:model] autorelease];
++ (LargePosterCache*) cache {
+    return [[[LargePosterCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

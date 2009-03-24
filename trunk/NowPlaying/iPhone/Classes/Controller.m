@@ -39,6 +39,8 @@
 
 @implementation Controller
 
+static Controller* controller = nil;
+
 @synthesize determineLocationLock_;
 @synthesize locationManager_;
 
@@ -53,8 +55,14 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 }
 
 
++ (Controller*) controller {
+    return controller;
+}
+
+
 - (id) init {
     if (self = [super init]) {
+        controller = self;
         self.locationManager = [LocationManager managerWithController:self];
         self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
@@ -64,12 +72,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 
 - (Model*) model {
-    return [[AppDelegate appDelegate] model];
-}
-
-
-+ (Controller*) controller {
-    return [[[Controller alloc] init] autorelease];
+    return [Model model];
 }
 
 

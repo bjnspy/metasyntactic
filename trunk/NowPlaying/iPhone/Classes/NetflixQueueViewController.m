@@ -118,6 +118,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setupTitle {
     NSString* text;
     if (readonlyMode) {
@@ -256,8 +261,7 @@
 
     NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                             model:self.model] autorelease];
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         cell.tappableArrow.delegate = self;
     }
 

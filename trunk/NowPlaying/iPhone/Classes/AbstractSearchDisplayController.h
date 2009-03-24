@@ -19,9 +19,6 @@
                       searchBar:(UISearchBar*) searchBar
              contentsController:(UIViewController*) viewController;
 
-- (Model*) model;
-- (Controller*) controller;
-
 - (void) majorRefresh;
 - (void) minorRefresh;
 

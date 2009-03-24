@@ -37,6 +37,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (id)initNavigationController:(AbstractNavigationController*) navigationController_
                      searchBar:(UISearchBar*) searchBar_
             contentsController:(UIViewController*) viewController_ {
@@ -51,8 +56,7 @@
 
 
 - (AbstractSearchEngine*) createSearchEngine {
-    return [NetflixSearchEngine engineWithModel:navigationController.model
-                                       delegate:self];
+    return [NetflixSearchEngine engineWithDelegate:self];
 }
 
 
@@ -118,8 +122,7 @@
 
     NetflixCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                       model:self.model] autorelease];
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:nil];

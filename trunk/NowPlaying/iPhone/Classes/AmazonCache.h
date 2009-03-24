@@ -18,7 +18,7 @@
 @private
 }
 
-+ (AmazonCache*) cacheWithModel:(Model*) model;
++ (AmazonCache*) cache;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

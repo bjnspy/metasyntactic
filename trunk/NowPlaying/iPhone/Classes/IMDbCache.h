@@ -18,7 +18,7 @@
 @private
 }
 
-+ (IMDbCache*) cacheWithModel:(Model*) model;
++ (IMDbCache*) cache;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;
