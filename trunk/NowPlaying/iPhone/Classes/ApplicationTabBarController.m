@@ -28,21 +28,27 @@
 #import "UpcomingMoviesNavigationController.h"
 
 @interface ApplicationTabBarController()
-@property (retain) MoviesNavigationController* moviesNavigationController;
-@property (retain) TheatersNavigationController* theatersNavigationController;
-@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-@property (retain) DVDNavigationController* dvdNavigationController;
-@property (retain) NetflixNavigationController* netflixNavigationController;
+@property (retain) MoviesNavigationController* moviesNavigationController_;
+@property (retain) TheatersNavigationController* theatersNavigationController_;
+@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController_;
+@property (retain) DVDNavigationController* dvdNavigationController_;
+@property (retain) NetflixNavigationController* netflixNavigationController_;
 @end
 
 
 @implementation ApplicationTabBarController
 
-@synthesize moviesNavigationController;
-@synthesize theatersNavigationController;
-@synthesize upcomingMoviesNavigationController;
-@synthesize dvdNavigationController;
-@synthesize netflixNavigationController;
+@synthesize moviesNavigationController_;
+@synthesize theatersNavigationController_;
+@synthesize upcomingMoviesNavigationController_;
+@synthesize dvdNavigationController_;
+@synthesize netflixNavigationController_;
+
+property_wrapper(MoviesNavigationController*, moviesNavigationController, MoviesNavigationController);
+property_wrapper(TheatersNavigationController*, theatersNavigationController, TheatersNavigationController);
+property_wrapper(UpcomingMoviesNavigationController*, upcomingMoviesNavigationController, UpcomingMoviesNavigationController);
+property_wrapper(DVDNavigationController*, dvdNavigationController, DvdNavigationController);
+property_wrapper(NetflixNavigationController*, netflixNavigationController, NetflixNavigationController);
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -56,47 +62,47 @@
 
 
 - (UINavigationController*) loadMoviesNavigationController {
-    if (moviesNavigationController == nil) {
+    if (self.moviesNavigationController == nil) {
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
 
-    return moviesNavigationController;
+    return self.moviesNavigationController;
 }
 
 
 - (UINavigationController*) loadTheatersNavigationController {
-    if (theatersNavigationController == nil) {
+    if (self.theatersNavigationController == nil) {
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
     }
 
-    return theatersNavigationController;
+    return self.theatersNavigationController;
 }
 
 
 - (UINavigationController*) loadUpcomingMoviesNavigationController {
-    if (upcomingMoviesNavigationController == nil) {
+    if (self.upcomingMoviesNavigationController == nil) {
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
 
-    return upcomingMoviesNavigationController;
+    return self.upcomingMoviesNavigationController;
 }
 
 
 - (UINavigationController*) loadDVDNavigationController {
-    if (dvdNavigationController == nil) {
+    if (self.dvdNavigationController == nil) {
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
     }
 
-    return dvdNavigationController;
+    return self.dvdNavigationController;
 }
 
 
 - (UINavigationController*) loadNetflixNavigationController {
-    if (netflixNavigationController == nil) {
+    if (self.netflixNavigationController == nil) {
         self.netflixNavigationController = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
     }
 
-    return netflixNavigationController;
+    return self.netflixNavigationController;
 }
 
 
@@ -116,7 +122,7 @@
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
-            [moviesNavigationController pushInfoControllerAnimated:NO];
+            [self.moviesNavigationController pushInfoControllerAnimated:NO];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
