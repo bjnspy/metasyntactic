@@ -26,37 +26,47 @@
 #define NAVIGATE_FORWARD_ITEM 3
 
 @interface WebViewController()
-@property (retain) UIWebView* webView;
-@property (retain) UIActivityIndicatorView* activityView;
-@property (retain) UILabel* label;
-@property (copy) NSString* address;
+@property (retain) UIWebView* webView_;
+@property (retain) UIActivityIndicatorView* activityView_;
+@property (retain) UILabel* label_;
+@property (copy) NSString* address_;
+@property BOOL showSafariButton_;
+@property BOOL errorReported_;
 @end
 
 
 @implementation WebViewController
 
-@synthesize webView;
-@synthesize activityView;
-@synthesize label;
-@synthesize address;
+@synthesize webView_;
+@synthesize activityView_;
+@synthesize label_;
+@synthesize address_;
+@synthesize showSafariButton_;
+@synthesize errorReported_;
+
+property_wrapper(UIWebView*, webView, WebView);
+property_wrapper(UIActivityIndicatorView*, activityView, ActivityView);
+property_wrapper(UILabel*, label, Label);
+property_wrapper(NSString*, address, Address);
+property_wrapper(BOOL, showSafariButton, ShowSafariButton);
+property_wrapper(BOOL, errorReported, ErrorReported);
 
 - (void) dealloc {
-    self.address = nil;
-
     self.webView = nil;
     self.activityView = nil;
     self.label = nil;
+    self.address = nil;
 
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            address:(NSString*) address_
-                   showSafariButton:(BOOL) showSafariButton_ {
+                            address:(NSString*) address__
+                   showSafariButton:(BOOL) showSafariButton__ {
     if (self = [super initWithNavigationController:navigationController_]) {
-        self.address = address_;
-        showSafariButton = showSafariButton_;
+        self.address = address__;
+        self.showSafariButton = showSafariButton__;
     }
 
     return self;
@@ -70,24 +80,24 @@
 
 - (void) setupTitleView {
     self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    [activityView startAnimating];
+    [self.activityView startAnimating];
 
-    CGRect frame = activityView.frame;
+    CGRect frame = self.activityView.frame;
     frame.origin.y += 2;
-    activityView.frame = frame;
+    self.activityView.frame = frame;
 
     self.label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = NSLocalizedString(@"Loading", nil);
-    [label sizeToFit];
+    self.label.text = NSLocalizedString(@"Loading", nil);
+    [self.label sizeToFit];
 
-    frame = label.frame;
-    frame.origin.x += (activityView.frame.size.width + 5);
-    label.frame = frame;
+    frame = self.label.frame;
+    frame.origin.x += (self.activityView.frame.size.width + 5);
+    self.label.frame = frame;
 
-    frame = CGRectMake(0, 0, label.frame.size.width + activityView.frame.size.width + 5, label.frame.size.height);
+    frame = CGRectMake(0, 0, self.label.frame.size.width + self.activityView.frame.size.width + 5, self.label.frame.size.height);
     UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
-    [view addSubview:activityView];
-    [view addSubview:label];
+    [view addSubview:self.activityView];
+    [view addSubview:self.label];
 
     self.navigationItem.titleView = view;
 }
@@ -97,9 +107,9 @@
     CGRect frame = self.view.frame;
     frame.origin.y = 0;
     self.webView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
-    webView.delegate = self;
-    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    webView.scalesPageToFit = YES;
+    self.webView.delegate = self;
+    self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.webView.scalesPageToFit = YES;
 }
 
 
@@ -132,9 +142,9 @@
     [super loadView];
 
     [self setupWebView];
-    [self.view addSubview:webView];
+    [self.view addSubview:self.webView];
 
-    if (showSafariButton) {
+    if (self.showSafariButton) {
         self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Safari", nil)
                                           style:UIBarButtonItemStyleDone
@@ -145,7 +155,7 @@
     [self setupTitleView];
     [self setupToolbarItems];
 
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.address]]];
 }
 
 
@@ -159,9 +169,9 @@
 
 
 - (void) open:(id) sender {
-    NSString* url = webView.request.URL.absoluteString;
+    NSString* url = self.webView.request.URL.absoluteString;
     if (url.length == 0) {
-        url = address;
+        url = self.address;
     }
 
     [Application openBrowser:url];
@@ -171,8 +181,8 @@
 - (void) clearTitle {
     [UIView beginAnimations:nil context:NULL];
     {
-        label.alpha = 0;
-        activityView.alpha = 0;
+        self.label.alpha = 0;
+        self.activityView.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -182,8 +192,8 @@
     UIBarButtonItem* navigateBackItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
     UIBarButtonItem* navigateForwardItem = [navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 
-    navigateBackItem.enabled = webView.canGoBack;
-    navigateForwardItem.enabled = webView.canGoForward;
+    navigateBackItem.enabled = self.webView.canGoBack;
+    navigateForwardItem.enabled = self.webView.canGoForward;
 
     BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
 
@@ -192,8 +202,8 @@
 
 
 - (void) onNavigateBackTapped:(id) sender {
-    if (webView.canGoBack) {
-        [webView goBack];
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
     }
 
     [self updateToolBarItems];
@@ -201,8 +211,8 @@
 
 
 - (void) onNavigateForwardTapped:(id) sender {
-    if (webView.canGoForward) {
-        [webView goForward];
+    if (self.webView.canGoForward) {
+        [self.webView goForward];
     }
 
     [self updateToolBarItems];
@@ -217,10 +227,10 @@
 }
 
 
-- (void) webView:(UIWebView*) webView_ didFailLoadWithError:(NSError*) error {
-    [self webViewDidFinishLoad:webView_];
+- (void) webView:(UIWebView*) view didFailLoadWithError:(NSError*) error {
+    [self webViewDidFinishLoad:view];
 
-    if (errorReported) {
+    if (self.errorReported) {
         return;
     }
 
@@ -230,7 +240,7 @@
         [NSString stringWithFormat:NSLocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
 
         [AlertUtilities showOkAlert:message withTitle:title];
-        errorReported = YES;
+        self.errorReported = YES;
     }
 }
 
@@ -238,8 +248,8 @@
 - (void) webViewDidStartLoad:(UIWebView*) webView {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(clearTitle) object:nil];
 
-    label.alpha = 1;
-    activityView.alpha = 1;
+    self.label.alpha = 1;
+    self.activityView.alpha = 1;
 
     [self updateToolBarItems];
 }
@@ -254,7 +264,7 @@
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
-    webView.delegate = nil;
+    self.webView.delegate = nil;
     [navigationController setToolbarHidden:YES animated:NO];
 }
 
