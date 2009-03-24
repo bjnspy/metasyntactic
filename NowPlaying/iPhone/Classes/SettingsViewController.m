@@ -161,9 +161,9 @@ typedef enum {
         cell = [[[SwitchCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
-    [cell.switch_ removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
-    [cell.switch_ addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
-    cell.switch_.on = on;
+    [cell.switchControl removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
+    [cell.switchControl addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
+    cell.switchControl.on = on;
     cell.textLabel.text = text;
 
     return cell;
