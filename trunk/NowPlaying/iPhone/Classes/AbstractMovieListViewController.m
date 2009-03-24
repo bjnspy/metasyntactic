@@ -18,12 +18,12 @@
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "LocalSearchDisplayController.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
-#import "LocalSearchDisplayController.h"
 #import "SettingsViewController.h"
 #import "Utilities.h"
 

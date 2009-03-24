@@ -47,7 +47,7 @@ const int START_YEAR = 1912;
     self.yearToMovieMap = nil;
     self.yearToMovieMapGate = nil;
     self.updated = NO;
-    
+
     [super dealloc];
 }
 
