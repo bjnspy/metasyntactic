@@ -79,10 +79,10 @@ const double LOAD_DELAY = 1;
     [super viewWillAppear:animated];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-    [navigationController setNavigationBarHidden:YES animated:YES];
-    [navigationController setToolbarHidden:NO animated:YES];
-    navigationController.toolbar.barStyle = UIBarStyleBlack;
-    navigationController.toolbar.translucent = YES;
+    [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
+    [self.abstractNavigationController setToolbarHidden:NO animated:YES];
+    self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.abstractNavigationController.toolbar.translucent = YES;
 }
 
 
@@ -90,8 +90,8 @@ const double LOAD_DELAY = 1;
     [super viewWillDisappear:animated];
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-    [navigationController setNavigationBarHidden:NO animated:YES];
-    [navigationController setToolbarHidden:YES animated:YES];
+    [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
+    [self.abstractNavigationController setToolbarHidden:YES animated:YES];
 }
 
 
@@ -447,12 +447,12 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    [navigationController setToolbarHidden:YES animated:YES];
+    [self.abstractNavigationController setToolbarHidden:YES animated:YES];
 }
 
 
 - (void) showToolBar {
-    [navigationController setToolbarHidden:NO animated:YES];
+    [self.abstractNavigationController setToolbarHidden:NO animated:YES];
 }
 
 
@@ -592,7 +592,7 @@ const double LOAD_DELAY = 1;
 
 - (void) dismiss {
     shutdown = YES;
-    [navigationController hidePostersView];
+    [self.abstractNavigationController hidePostersView];
 }
 
 
@@ -612,7 +612,7 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        if (navigationController.toolbarHidden) {
+        if (self.abstractNavigationController.toolbarHidden) {
             [self showToolBar];
         } else {
             [self hideToolBar];
