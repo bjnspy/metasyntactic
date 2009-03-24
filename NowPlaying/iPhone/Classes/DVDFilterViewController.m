@@ -38,6 +38,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }

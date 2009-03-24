@@ -21,8 +21,6 @@ typedef enum {
 
 @interface AbstractImageCell : UITableViewCell {
 @protected
-    Model* model;
-
     ImageState state;
     UIImageView* imageLoadingView;
     UIImageView* imageView;
@@ -33,8 +31,7 @@ typedef enum {
     CGFloat titleWidth;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) loadImage;
 - (void) clearImage;

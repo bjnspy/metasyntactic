@@ -17,6 +17,6 @@
 @interface NoneScoreProvider : AbstractScoreProvider {
 }
 
-+ (NoneScoreProvider*) providerWithModel:(Model*) model;
++ (NoneScoreProvider*) provider;
 
 @end

@@ -41,6 +41,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (UILabel*) createTitleLabel:(NSString*) title {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -143,7 +148,7 @@
 
 
 - (void) addGenres {
-    NSArray* genres = [model genresForMovie:movie];
+    NSArray* genres = [self.model genresForMovie:movie];
     if (genres.count == 0) {
         return;
     }
@@ -171,7 +176,7 @@
 
 
 - (void) addDirectors {
-    NSArray* directors = [model directorsForMovie:movie];
+    NSArray* directors = [self.model directorsForMovie:movie];
     if (directors.count == 0) {
         return;
     }
@@ -188,7 +193,7 @@
 
 
 - (void) addCast {
-    NSArray* cast = [model castForMovie:movie];
+    NSArray* cast = [self.model castForMovie:movie];
     if (cast.count == 0) {
         return;
     }
@@ -240,9 +245,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-               movie:(Movie*) movie_ {
-    if (self = [super initWithModel:model_ movie:movie_]) {
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super initWithMovie:movie_]) {
         self.titles = [NSMutableArray array];
         self.titleToLabel = [NSMutableDictionary dictionary];
         self.titleToValueLabels = [MultiDictionary dictionary];

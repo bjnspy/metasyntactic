@@ -55,6 +55,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -86,8 +91,7 @@
 
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewTitleCell alloc] initWithModel:self.model
-                                           reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ReviewTitleCell alloc] init] autorelease];
         }
 
         [cell setReview:review];

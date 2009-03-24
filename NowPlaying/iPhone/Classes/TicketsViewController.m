@@ -54,6 +54,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) initializeData {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     NSMutableArray* result = [NSMutableArray array];
@@ -177,8 +182,7 @@
     if (section == 1) {
         if (performances.count > 0 ) {
             if ([self.model isStale:theater]) {
-                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]
-                                           model:self.model];
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
             }
         }
     }

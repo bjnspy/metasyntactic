@@ -65,12 +65,10 @@ property_wrapper(BOOL, updated, Updated);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
-    }
-
-    return self;
+- (Model*) model {
+    return [Model model];
 }
+
 
 - (NSString*) serverAddress {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];

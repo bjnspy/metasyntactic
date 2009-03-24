@@ -24,8 +24,6 @@
     NSMutableDictionary* performancesData_;
 }
 
-- (id) initWithModel:(Model*) model;
-
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;

@@ -90,8 +90,8 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
 
@@ -100,6 +100,11 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

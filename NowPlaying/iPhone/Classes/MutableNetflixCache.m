@@ -41,8 +41,13 @@
 }
 
 
-+ (MutableNetflixCache*) cacheWithModel:(Model*) model {
-    return [[[MutableNetflixCache alloc] initWithModel:model] autorelease];
++ (MutableNetflixCache*) cache {
+    return [[[MutableNetflixCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

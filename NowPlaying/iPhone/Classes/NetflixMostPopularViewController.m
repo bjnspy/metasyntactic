@@ -46,6 +46,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) initializeData {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     for (NSString* title in [NetflixCache mostPopularTitles]) {

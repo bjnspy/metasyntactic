@@ -19,7 +19,4 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
-- (Controller*) controller;
-- (Model*) model;
-
 @end

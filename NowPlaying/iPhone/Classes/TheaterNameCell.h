@@ -14,11 +14,9 @@
 
 @interface TheaterNameCell : UITableViewCell {
 @private
-    Model* model;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-                         model:(Model*) model;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setTheater:(Theater*) theater;
 

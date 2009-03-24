@@ -66,12 +66,17 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.performancesData = [NSMutableDictionary dictionary];
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

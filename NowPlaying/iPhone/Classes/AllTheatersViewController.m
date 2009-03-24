@@ -61,6 +61,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (BOOL) sortingByName {
     return segmentedControl.selectedSegmentIndex == 1;
 }
@@ -365,8 +370,7 @@
 
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                           model:self.model] autorelease];
+        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     if ([self sortingByName] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {

@@ -40,8 +40,13 @@
 }
 
 
-+ (PosterCache*) cacheWithModel:(Model*) model {
-    return [[[PosterCache alloc] initWithModel:model] autorelease];
++ (PosterCache*) cache {
+    return [[[PosterCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

@@ -26,8 +26,6 @@
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate_;
 @property NSInteger currentRequestId_;
-@property (retain) Model* model_;
-//@property (retain) SearchRequest* currentlyExecutingRequest_;
 @property (retain) SearchRequest* nextSearchRequest_;
 @property (retain) NSCondition* gate_;
 @end
@@ -37,23 +35,17 @@
 
 @synthesize delegate_;
 @synthesize currentRequestId_;
-@synthesize model_;
-//@synthesize currentlyExecutingRequest_;
 @synthesize nextSearchRequest_;
 @synthesize gate_;
 
-property_wrapper(Model*, model, Model);
 property_wrapper(id<SearchEngineDelegate>, delegate, Delegate);
 property_wrapper(NSInteger, currentRequestId, CurrentRequestId);
 property_wrapper(SearchRequest*, nextSearchRequest, NextSearchRequest);
-//property_wrapper(SearchRequest*, currentlyExecutingRequest, CurrentlyExecutingRequest);
 property_wrapper(NSCondition*, gate, Gate);
 
 - (void) dealloc {
     self.delegate = nil;
     self.currentRequestId = 0;
-    self.model = nil;
-    //self.currentlyExecutingRequest = nil;
     self.nextSearchRequest = nil;
     self.gate = nil;
 
@@ -61,10 +53,8 @@ property_wrapper(NSCondition*, gate, Gate);
 }
 
 
-- (id) initWithModel:(Model*) model__
-            delegate:(id<SearchEngineDelegate>) delegate__ {
+- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate__ {
     if (self = [super init]) {
-        self.model = model__;
         self.currentRequestId = 0;
         self.delegate = delegate__;
         self.gate = [[[NSCondition alloc] init] autorelease];
@@ -73,6 +63,11 @@ property_wrapper(NSCondition*, gate, Gate);
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

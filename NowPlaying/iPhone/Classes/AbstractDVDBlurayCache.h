@@ -22,8 +22,6 @@
     NSDictionary* bookmarksData_;
 }
 
-- (id) initWithModel:(Model*) model;
-
 - (void) update;
 - (void) prioritizeMovie:(Movie*) movie;
 

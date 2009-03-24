@@ -18,7 +18,7 @@
 }
 
 
-+ (MutableNetflixCache*) cacheWithModel:(Model*) model;
++ (MutableNetflixCache*) cache;
 
 - (void) updateQueue:(Queue*) queue
   byMovingMovieToTop:(Movie*) movie

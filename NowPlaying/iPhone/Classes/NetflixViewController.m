@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "AutoresizingCell.h"
 #import "ColorCache.h"
+#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
@@ -75,6 +76,16 @@ typedef enum {
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (Controller*) controller {
+    return [Controller controller];
 }
 
 

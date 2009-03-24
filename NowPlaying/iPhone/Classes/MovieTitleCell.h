@@ -14,12 +14,10 @@
 
 @interface MovieTitleCell : UITableViewCell {
 @protected
-    Model* model;
     UILabel* scoreLabel;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-                         model:(Model*) model;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 

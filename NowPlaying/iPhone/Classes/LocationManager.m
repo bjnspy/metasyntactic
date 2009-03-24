@@ -96,7 +96,7 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 
 
 - (Model*) model {
-    return [AppDelegate appDelegate].model;
+    return [Model model];
 }
 
 

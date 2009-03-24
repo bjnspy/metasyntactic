@@ -18,6 +18,6 @@
 @private
 }
 
-+ (LocalSearchEngine*) engineWithModel:(Model*) model delegate:(id<SearchEngineDelegate>) delegate;
++ (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;
 
 @end

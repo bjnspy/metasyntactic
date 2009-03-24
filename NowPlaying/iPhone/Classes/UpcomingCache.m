@@ -70,8 +70,13 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 }
 
 
-+ (UpcomingCache*) cacheWithModel:(Model*) model {
-    return [[[UpcomingCache alloc] initWithModel:model] autorelease];
++ (UpcomingCache*) cache {
+    return [[[UpcomingCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

@@ -70,6 +70,11 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
 

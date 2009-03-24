@@ -58,6 +58,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (NSArray*) movies {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }

@@ -50,8 +50,8 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 }
 
 
-- (id) initWithModel:(Model*) model__ {
-    if (self = [super initWithModel:model__]) {
+- (id) init {
+    if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
     }
 
@@ -59,8 +59,8 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 }
 
 
-+ (TrailerCache*) cacheWithModel:(Model*) model {
-    return [[[TrailerCache alloc] initWithModel:model] autorelease];
++ (TrailerCache*) cache {
+    return [[[TrailerCache alloc] init] autorelease];
 }
 
 

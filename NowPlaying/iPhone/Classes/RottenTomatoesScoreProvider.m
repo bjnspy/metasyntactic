@@ -27,8 +27,8 @@
 }
 
 
-+ (RottenTomatoesScoreProvider*) providerWithModel:(Model*) model {
-    return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
++ (RottenTomatoesScoreProvider*) provider {
+    return [[[RottenTomatoesScoreProvider alloc] init] autorelease];
 }
 
 

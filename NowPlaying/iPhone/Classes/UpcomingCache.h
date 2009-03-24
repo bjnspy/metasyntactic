@@ -26,7 +26,7 @@
     NSDictionary* bookmarksData_;
 }
 
-+ (UpcomingCache*) cacheWithModel:(Model*) model;
++ (UpcomingCache*) cache;
 
 - (void) update;
 

@@ -61,6 +61,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) initializeData {
     self.movies = [self.model.netflixCache moviesForRSSTitle:category];
 }
@@ -129,8 +134,7 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                             model:self.model] autorelease];
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 

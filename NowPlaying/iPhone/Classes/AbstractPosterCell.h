@@ -21,8 +21,7 @@
 
 @property (retain) Movie* movie;
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 

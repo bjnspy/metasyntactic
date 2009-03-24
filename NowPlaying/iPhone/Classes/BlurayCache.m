@@ -26,8 +26,13 @@
 }
 
 
-+ (BlurayCache*) cacheWithModel:(Model*) model {
-    return [[[BlurayCache alloc] initWithModel:model] autorelease];
++ (BlurayCache*) cache {
+    return [[[BlurayCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

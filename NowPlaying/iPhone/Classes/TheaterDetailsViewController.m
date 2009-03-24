@@ -58,6 +58,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setFavoriteImage {
     self.favoriteButton.selected = [self.model isFavoriteTheater:theater];
 }
@@ -238,8 +243,7 @@
         static NSString* reuseIdentifier = @"movieReuseIdentifier";
         MovieTitleCell* movieCell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (movieCell == nil) {
-            movieCell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                         model:self.model] autorelease];
+            movieCell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
             movieCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
@@ -250,8 +254,7 @@
         static NSString* reuseIdentifier = @"showtimesReuseIdentifier";
         MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                        model:self.model] autorelease];
+            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
@@ -291,8 +294,7 @@
             return tableView.rowHeight;
         } else {
             return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
-                                                    stale:NO
-                                                    model:self.model] + 18;
+                                                    stale:NO] + 18;
         }
     }
 }
@@ -423,8 +425,7 @@
     if (section == 1) {
         if (movies.count > 0 ) {
             if ([self.model isStale:theater]) {
-                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]
-                                           model:self.model];
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
             }
         }
     }

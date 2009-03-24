@@ -21,7 +21,6 @@
 #import "Performance.h"
 
 @interface MovieShowtimesCell()
-@property (retain) Model* model;
 @property (retain) UILabel* showtimesLabel;
 @property (retain) NSArray* showtimesData;
 @end
@@ -29,16 +28,19 @@
 
 @implementation MovieShowtimesCell
 
-@synthesize model;
 @synthesize showtimesLabel;
 @synthesize showtimesData;
 
 - (void) dealloc {
-    self.model = nil;
     self.showtimesLabel = nil;
     self.showtimesData = nil;
 
     [super dealloc];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -69,13 +71,12 @@
 
 
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
-                         stale:(BOOL) stale
-                         model:(Model*) model {
+                         stale:(BOOL) stale {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
-    UIFont* font = [MovieShowtimesCell showtimesFont:model.useSmallFonts];
+    UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
 
     double width;
-    if ([model screenRotationEnabled] &&
+    if ([[Model model] screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
@@ -98,11 +99,9 @@
 }
 
 
-- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier
-                model:(Model*) model_ {
+- (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -143,8 +142,7 @@
 
     showtimesFrame.size.width = width;
     showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
-                                                                  stale:(self.image != nil)
-                                                                  model:model];
+                                                                  stale:(self.image != nil)];
 
     showtimesLabel.frame = showtimesFrame;
 }
@@ -153,7 +151,7 @@
 - (void) setShowtimes:(NSArray*) showtimes_ {
     self.showtimesData = showtimes_;
 
-    showtimesLabel.font = [MovieShowtimesCell showtimesFont:model.useSmallFonts];
+    showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
 }
 

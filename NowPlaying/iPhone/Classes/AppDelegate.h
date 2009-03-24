@@ -31,8 +31,6 @@
 
 - (ApplicationTabBarController*) tabBarController;
 - (NotificationCenter*) notificationCenter;
-- (Controller*) controller;
-- (Model*) model;
 
 + (AppDelegate*) appDelegate;
 

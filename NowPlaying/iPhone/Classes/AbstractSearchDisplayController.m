@@ -11,6 +11,7 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "ApplicationTabBarController.h"
+#import "Controller.h"
 #import "DVDCell.h"
 #import "Model.h"
 #import "MovieTitleCell.h"
@@ -41,12 +42,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

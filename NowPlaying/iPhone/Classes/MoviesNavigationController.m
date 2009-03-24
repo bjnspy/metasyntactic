@@ -44,6 +44,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) loadView {
     [super loadView];
 

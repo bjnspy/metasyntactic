@@ -31,6 +31,4 @@
     NSString* reviewsDirectory_;
 }
 
-- (id) initWithModel:(Model*) model;
-
 @end

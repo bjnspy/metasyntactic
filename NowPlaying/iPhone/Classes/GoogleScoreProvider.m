@@ -36,8 +36,13 @@
 }
 
 
-+ (GoogleScoreProvider*) providerWithModel:(Model*) model {
-    return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
++ (GoogleScoreProvider*) provider {
+    return [[[GoogleScoreProvider alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 

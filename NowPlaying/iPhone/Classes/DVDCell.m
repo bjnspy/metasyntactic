@@ -69,6 +69,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -121,8 +126,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_ {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier
-                              model:model_]) {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
@@ -164,11 +168,11 @@
 - (void) loadMovie:(id) owner {
     [self loadImage];
 
-    DVD* dvd = [model dvdDetailsForMovie:movie];
+    DVD* dvd = [self.model dvdDetailsForMovie:movie];
 
-    directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
-    castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
-    genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
+    directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
+    castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
+    genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
     formatLabel.text    = dvd.format;
 
     NSString* rating;
@@ -178,7 +182,7 @@
         rating = movie.rating;		
     }
 
-    if ([owner sortingByTitle] || [model isBookmarked:movie]) {
+    if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (!movie.isUnrated) {

@@ -27,7 +27,6 @@
     UILabel* ratedLabel;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 @end

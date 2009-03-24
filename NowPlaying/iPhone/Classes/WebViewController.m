@@ -63,6 +63,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) setupTitleView {
     self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     [activityView startAnimating];

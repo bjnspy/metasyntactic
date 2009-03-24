@@ -21,8 +21,7 @@
     NSMutableArray* imageViews;
 }
 
-- (id) initWithModel:(Model*) model
-               movie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie;
 
 - (void) refresh;
 

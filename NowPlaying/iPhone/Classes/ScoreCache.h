@@ -24,7 +24,7 @@
     BOOL updated_;
 }
 
-+ (ScoreCache*) cacheWithModel:(Model*) model;
++ (ScoreCache*) cache;
 
 - (void) update;
 - (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;

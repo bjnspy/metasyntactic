@@ -20,7 +20,7 @@
     //LinkedSet* normalPeople;
 }
 
-+ (PersonPosterCache*) cacheWithModel:(Model*) model;
++ (PersonPosterCache*) cache;
 
 - (void) update:(Person*) person;
 - (void) prioritizePerson:(Person*) person;
