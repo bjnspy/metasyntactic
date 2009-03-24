@@ -16,7 +16,7 @@
 
 @interface UpcomingMoviesNavigationController : AbstractNavigationController {
 @private
-    UpcomingMoviesViewController* upcomingMoviesViewController;
+    UpcomingMoviesViewController* upcomingMoviesViewController_;
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;

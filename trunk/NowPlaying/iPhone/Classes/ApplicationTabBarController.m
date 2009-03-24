@@ -23,7 +23,6 @@
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
 #import "NetworkUtilities.h"
-#import "SettingsNavigationController.h"
 #import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"

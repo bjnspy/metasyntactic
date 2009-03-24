@@ -16,7 +16,7 @@
 
 @interface NetflixNavigationController : AbstractNavigationController {
 @private
-    NetflixViewController* netflixViewController;
+    NetflixViewController* netflixViewController_;
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;

@@ -16,11 +16,11 @@
 
 @interface MoviesNavigationController : AbstractNavigationController {
 @private
-    AllMoviesViewController* allMoviesViewController;
+    AllMoviesViewController* allMoviesViewController_;
 }
 
-@property (readonly, retain) AllMoviesViewController* allMoviesViewController;
-
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
+
+- (AllMoviesViewController*) allMoviesViewController;
 
 @end

@@ -16,7 +16,7 @@
 
 @interface TheatersNavigationController : AbstractNavigationController {
 @private
-    AllTheatersViewController* allTheatersViewController;
+    AllTheatersViewController* allTheatersViewController_;
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
