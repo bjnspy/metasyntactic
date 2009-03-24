@@ -15,15 +15,18 @@
 #import "AutoResizingCell.h"
 
 @interface AutoResizingCell()
-@property (retain) UILabel* label;
-@property (retain) UIColor* textColorData;
+@property (retain) UILabel* label_;
+@property (retain) UIColor* textColorData_;
 @end
 
 
 @implementation AutoResizingCell
 
-@synthesize label;
-@synthesize textColorData;
+@synthesize label_;
+@synthesize textColorData_;
+
+property_wrapper(UILabel*, label, Label);
+property_wrapper(UIColor*, textColorData, TextColorData);
 
 - (void) dealloc {
     self.label = nil;
@@ -37,14 +40,14 @@
                     reuseIdentifier:nil]) {
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        label.font = self.font;
-        label.adjustsFontSizeToFitWidth = YES;
-        label.minimumFontSize = 12;
-        label.lineBreakMode = UILineBreakModeMiddleTruncation;
+        self.label.font = self.font;
+        self.label.adjustsFontSizeToFitWidth = YES;
+        self.label.minimumFontSize = 12;
+        self.label.lineBreakMode = UILineBreakModeMiddleTruncation;
 
         CGRect frame = label.frame;
         frame.origin.x = 10;
-        label.frame = frame;
+        self.label.frame = frame;
 
         [self.contentView addSubview:label];
     }
@@ -56,7 +59,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect labelFrame = label.frame;
+    CGRect labelFrame = self.label.frame;
     CGRect contentFrame = self.contentView.frame;
 
     if (self.image != nil) {
@@ -73,18 +76,18 @@
 
 - (void) setText:(NSString*) text {
     //[super setText:text];
-    label.text = text;
-    [label sizeToFit];
+    self.label.text = text;
+    [self.label sizeToFit];
 }
 
 
 - (NSString*) text {
-    return label.text;
+    return self.label.text;
 }
 
 
 - (void) setTextColor:(UIColor*) color {
-    label.textColor = color;
+    self.label.textColor = color;
     self.textColorData = color;
 }
 
@@ -93,9 +96,9 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        label.textColor = self.selectedTextColor;
+        self.label.textColor = self.selectedTextColor;
     } else {
-        label.textColor = textColorData;
+        self.label.textColor = self.textColorData;
     }
 }
 
