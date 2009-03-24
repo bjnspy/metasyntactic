@@ -18,20 +18,29 @@
 #import "Pulser.h"
 
 @interface NotificationCenter()
-@property (retain) UIView* view;
-@property (retain) UILabel* notificationLabel;
-@property (retain) UILabel* blackLabel;
-@property (retain) NSMutableArray* notifications;
-@property (retain) Pulser* pulser;
+@property (retain) UIView* view_;
+@property (retain) UILabel* notificationLabel_;
+@property (retain) UILabel* blackLabel_;
+@property (retain) NSMutableArray* notifications_;
+@property (retain) Pulser* pulser_;
+@property NSInteger disabledCount_;
 @end
 
 @implementation NotificationCenter
 
-@synthesize view;
-@synthesize notificationLabel;
-@synthesize blackLabel;
-@synthesize notifications;
-@synthesize pulser;
+@synthesize view_;
+@synthesize notificationLabel_;
+@synthesize blackLabel_;
+@synthesize notifications_;
+@synthesize pulser_;
+@synthesize disabledCount_;
+
+property_wrapper(UIView*, view, View);
+property_wrapper(UILabel*, notificationLabel, NotificationLabel);
+property_wrapper(UILabel*, blackLabel, BlackLabel);
+property_wrapper(NSMutableArray*, notifications, Notifications);
+property_wrapper(Pulser*, pulser, Pulser);
+property_wrapper(NSInteger, disabledCount, DisabledCount);
 
 - (void) dealloc {
     self.view = nil;
@@ -39,35 +48,36 @@
     self.blackLabel = nil;
     self.notifications = nil;
     self.pulser = nil;
+    self.disabledCount = 0;
 
     [super dealloc];
 }
 
 
 - (void) addToView {
-    [view addSubview:notificationLabel];
-    [view addSubview:blackLabel];
+    [self.view addSubview:self.notificationLabel];
+    [self.view addSubview:self.blackLabel];
 }
 
 
-- (id) initWithView:(UIView*) view_ {
+- (id) initWithView:(UIView*) view__ {
     if (self = [super init]) {
-        self.view = view_;
+        self.view = view__;
 
         self.notifications = [NSMutableArray array];
 
         self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 16)] autorelease];
-        notificationLabel.font = [UIFont boldSystemFontOfSize:12];
-        notificationLabel.textAlignment = UITextAlignmentCenter;
-        notificationLabel.textColor = [UIColor whiteColor];
-        notificationLabel.shadowColor = [UIColor darkGrayColor];
-        notificationLabel.shadowOffset = CGSizeMake(0, 1);
-        notificationLabel.alpha = 0;
-        notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
-        notificationLabel.text = NSLocalizedString(@"Updating", nil);
+        self.notificationLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.notificationLabel.textAlignment = UITextAlignmentCenter;
+        self.notificationLabel.textColor = [UIColor whiteColor];
+        self.notificationLabel.shadowColor = [UIColor darkGrayColor];
+        self.notificationLabel.shadowOffset = CGSizeMake(0, 1);
+        self.notificationLabel.alpha = 0;
+        self.notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
+        self.notificationLabel.text = NSLocalizedString(@"Updating", nil);
 
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
-        blackLabel.backgroundColor = [UIColor blackColor];
+        self.blackLabel.backgroundColor = [UIColor blackColor];
 
         self.pulser = [Pulser pulserWithTarget:self
                                         action:@selector(update)
@@ -91,10 +101,10 @@
 
 
 - (void) showNotification {
-    if (disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+    if (self.disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [UIView beginAnimations:nil context:NULL];
         {
-            notificationLabel.alpha = blackLabel.alpha = 1;
+            self.notificationLabel.alpha = self.blackLabel.alpha = 1;
         }
         [UIView commitAnimations];
     }
@@ -104,7 +114,7 @@
 - (void) hideNotification {
     [UIView beginAnimations:nil context:NULL];
     {
-        notificationLabel.alpha = blackLabel.alpha = 0;
+        self.notificationLabel.alpha = self.blackLabel.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -112,7 +122,7 @@
 
 - (NSString*) computeText {
     NSMutableArray* array = [NSMutableArray array];
-    for (NSString* notification in notifications) {
+    for (NSString* notification in self.notifications) {
         if (![array containsObject:notification]) {
             [array addObject:notification];
         }
@@ -127,8 +137,8 @@
 
 
 - (void) update {
-    notificationLabel.text = [self computeText];
-    if (notifications.count > 0) {
+    self.notificationLabel.text = [self computeText];
+    if (self.notifications.count > 0) {
         [self showNotification];
     } else {
         [self hideNotification];
@@ -137,7 +147,7 @@
 
 
 - (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation {
-    notificationLabel.alpha = blackLabel.alpha = 0;
+    self.notificationLabel.alpha = self.blackLabel.alpha = 0;
 }
 
 
@@ -158,38 +168,38 @@
 }
 
 
-- (void) addNotifications:(NSArray*) notifications_ {
+- (void) addNotifications:(NSArray*) array {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(addNotifications:) withObject:notifications_ waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(addNotifications:) withObject:array waitUntilDone:NO];
         return;
     }
 
-    [notifications addObjectsFromArray:notifications_];
-    [pulser tryPulse];
+    [self.notifications addObjectsFromArray:array];
+    [self.pulser tryPulse];
 }
 
 
-- (void) removeNotifications:(NSArray*) notifications_ {
+- (void) removeNotifications:(NSArray*) array {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:notifications_ waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:array waitUntilDone:NO];
         return;
     }
 
-    [notifications removeObjectsInArray:notifications_];
-    [pulser tryPulse];
+    [self.notifications removeObjectsInArray:array];
+    [self.pulser tryPulse];
 }
 
 
 - (void) disableNotifications {
-    disabledCount++;
+    self.disabledCount++;
     [self hideNotification];
-    [pulser tryPulse];
+    [self.pulser tryPulse];
 }
 
 
 - (void) enableNotifications {
-    disabledCount--;
-    [pulser tryPulse];
+    self.disabledCount--;
+    [self.pulser tryPulse];
 }
 
 @end
