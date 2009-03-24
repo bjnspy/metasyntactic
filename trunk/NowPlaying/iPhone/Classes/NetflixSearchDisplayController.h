@@ -16,9 +16,9 @@
 
 @interface NetflixSearchDisplayController : AbstractSearchDisplayController {
 @private
-    NSArray* movies;
-    NSArray* discMovies;
-    NSArray* instantMovies;
+    NSArray* movies_;
+    NSArray* discMovies_;
+    NSArray* instantMovies_;
 }
 
 @end

@@ -22,17 +22,21 @@
 #import "SearchResult.h"
 
 @interface NetflixSearchDisplayController()
-@property (retain) NSArray* movies;
-@property (retain) NSArray* discMovies;
-@property (retain) NSArray* instantMovies;
+@property (retain) NSArray* movies_;
+@property (retain) NSArray* discMovies_;
+@property (retain) NSArray* instantMovies_;
 @end
 
 
 @implementation NetflixSearchDisplayController
 
-@synthesize movies;
-@synthesize discMovies;
-@synthesize instantMovies;
+@synthesize movies_;
+@synthesize discMovies_;
+@synthesize instantMovies_;
+
+property_wrapper(NSArray*, movies, Movies);
+property_wrapper(NSArray*, discMovies, DiscMovies);
+property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 - (void) dealloc {
     self.movies = nil;
@@ -92,9 +96,9 @@
 - (BOOL) noResults {
     return
     self.searchResult != nil &&
-    (movies.count == 0 || ![self shouldShowAll]) &&
-    (discMovies.count == 0 || ![self shouldShowDisc]) &&
-    (instantMovies.count == 0 || ![self shouldShowInstant]);
+    (self.movies.count == 0 || ![self shouldShowAll]) &&
+    (self.discMovies.count == 0 || ![self shouldShowDisc]) &&
+    (self.instantMovies.count == 0 || ![self shouldShowInstant]);
 }
 
 
@@ -114,11 +118,11 @@
     }
 
     if ([self shouldShowAll]) {
-        return movies.count;
+        return self.movies.count;
     } else if ([self shouldShowDisc]) {
-        return discMovies.count;
+        return self.discMovies.count;
     } else if ([self shouldShowInstant]) {
-        return instantMovies.count;
+        return self.instantMovies.count;
     } else {
         return 0;
     }
@@ -153,11 +157,11 @@
 
     Movie* movie = nil;
     if ([self shouldShowAll]) {
-        movie = [movies objectAtIndex:indexPath.row];
+        movie = [self.movies objectAtIndex:indexPath.row];
     } else if ([self shouldShowDisc]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
+        movie = [self.discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [instantMovies objectAtIndex:indexPath.row];
+        movie = [self.instantMovies objectAtIndex:indexPath.row];
     } else {
         [[[UITableViewCell alloc] init] autorelease];
     }
@@ -177,11 +181,11 @@
 
     Movie* movie = nil;
     if ([self shouldShowAll]) {
-        movie = [movies objectAtIndex:indexPath.row];
+        movie = [self.movies objectAtIndex:indexPath.row];
     } else if ([self shouldShowDisc]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
+        movie = [self.discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [instantMovies objectAtIndex:indexPath.row];
+        movie = [self.instantMovies objectAtIndex:indexPath.row];
     } else {
         return;
     }
@@ -223,9 +227,9 @@
         }
     }
 
-    if ([movies isEqual:result.movies] &&
-        [discMovies isEqual:discs] &&
-        [instantMovies isEqual:instant]) {
+    if ([self.movies isEqual:result.movies] &&
+        [self.discMovies isEqual:discs] &&
+        [self.instantMovies isEqual:instant]) {
         return NO;
     }
 
