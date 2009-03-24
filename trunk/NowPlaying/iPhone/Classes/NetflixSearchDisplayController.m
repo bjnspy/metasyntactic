@@ -48,10 +48,12 @@
 }
 
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController_
-                     searchBar:(UISearchBar*) searchBar_
-            contentsController:(UIViewController*) viewController_ {
-    if (self = [super initNavigationController:navigationController_ searchBar:searchBar_ contentsController:viewController_]) {
+- (id)initNavigationController:(AbstractNavigationController*) navigationController__
+                     searchBar:(UISearchBar*) searchBar__
+            contentsController:(UIViewController*) viewController__ {
+    if (self = [super initNavigationController:navigationController__
+                                     searchBar:searchBar__
+                            contentsController:viewController__]) {
         self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Disc", nil), NSLocalizedString(@"Instant", nil), nil];
         self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
         self.searchBar.placeholder = NSLocalizedString(@"Search Netflix", nil);
@@ -89,7 +91,7 @@
 
 - (BOOL) noResults {
     return
-    searchResult != nil &&
+    self.searchResult != nil &&
     (movies.count == 0 || ![self shouldShowAll]) &&
     (discMovies.count == 0 || ![self shouldShowDisc]) &&
     (instantMovies.count == 0 || ![self shouldShowInstant]);
@@ -103,7 +105,7 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (searchResult == nil) {
+    if (self.searchResult == nil) {
         return 0;
     }
 
@@ -138,7 +140,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), self.searchResult.value];
     return cell;
 }
 
@@ -165,7 +167,7 @@
 
 
 - (ApplicationTabBarController*) applicationTabBarController {
-    return navigationController.tabBarController;
+    return self.navigationController.tabBarController;
 }
 
 
@@ -184,13 +186,13 @@
         return;
     }
 
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.navigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (searchResult != nil) {
+    if (self.searchResult != nil) {
         return 100;
     }
 
@@ -242,7 +244,7 @@
 
 
 - (void) majorRefresh {
-    if ([self initializeData:searchResult]) {
+    if ([self initializeData:self.searchResult]) {
         [self.searchResultsTableView reloadData];
     } else {
         for (id cell in self.searchResultsTableView.visibleCells) {
