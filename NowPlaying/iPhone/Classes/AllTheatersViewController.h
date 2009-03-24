@@ -16,16 +16,16 @@
 
 @interface AllTheatersViewController : RefreshableTableViewController {
 @private
-    UISegmentedControl* segmentedControl;
+    UISegmentedControl* segmentedControl_;
 
-    UISearchBar* searchBar;
-    LocalSearchDisplayController* searchDisplayController;
+    UISearchBar* searchBar_;
+    LocalSearchDisplayController* searchDisplayController_;
 
-    NSArray* sortedTheaters;
-    NSArray* sectionTitles;
-    MultiDictionary* sectionTitleToContentsMap;
+    NSArray* sortedTheaters_;
+    NSArray* sectionTitles_;
+    MultiDictionary* sectionTitleToContentsMap_;
 
-    NSArray* indexTitles;
+    NSArray* indexTitles_;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
