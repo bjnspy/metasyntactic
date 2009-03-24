@@ -32,7 +32,7 @@ static UIFont* defaultFont;
 @synthesize title;
 @synthesize label;
 
-- (void)dealloc {
+- (void) dealloc {
     self.title = nil;
     self.label = nil;
 
@@ -41,7 +41,7 @@ static UIFont* defaultFont;
 
 
 - (id) initWithTitle:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
+    if (self = [super initWithFrame:[[UIScreen mainScreen] bounds] reuseIdentifier:nil]) {
         self.title = title_;
 
         self.label = [[[UILabel alloc] init] autorelease];

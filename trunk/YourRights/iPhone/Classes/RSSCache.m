@@ -144,7 +144,7 @@ static NSDictionary* titleToIdentifier;
 
 
 - (NSArray*) downloadFeed:(NSString*) identifier {
-    XmlElement* rssElement = [NetworkUtilities xmlWithContentsOfAddress:identifier important:NO];
+    XmlElement* rssElement = [NetworkUtilities xmlWithContentsOfAddress:identifier];
     XmlElement* channelElement = [rssElement element:@"channel"];
 
     NSMutableArray* items = [NSMutableArray array];
