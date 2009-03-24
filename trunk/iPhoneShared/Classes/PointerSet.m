@@ -46,20 +46,8 @@ property_wrapper(NSMutableSet*, set, Set);
 }
 
 
-+ (PointerSet*) setWithArray:(NSArray*) array {
-    PointerSet* set = [[[PointerSet alloc] init] autorelease];
-    [set addObjectsFromArray:array];
-    return set;
-}
-
-
 - (void) addObject:(id) value {
     [self.set addObject:[NSValue valueWithPointer:value]];
-}
-
-
-- (void) removeObject:(id) value {
-    [self.set removeObject:[NSValue valueWithPointer:value]];
 }
 
 
@@ -67,6 +55,18 @@ property_wrapper(NSMutableSet*, set, Set);
     for (id value in values) {
         [self addObject:value];
     }
+}
+
+
++ (PointerSet*) setWithArray:(NSArray*) array {
+    PointerSet* set = [[[PointerSet alloc] init] autorelease];
+    [set addObjectsFromArray:array];
+    return set;
+}
+
+
+- (void) removeObject:(id) value {
+    [self.set removeObject:[NSValue valueWithPointer:value]];
 }
 
 
