@@ -27,16 +27,20 @@
 #import "UpcomingMovieCell.h"
 
 @interface AbstractSearchDisplayController()
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) AbstractSearchEngine* searchEngineData;
-@property (retain) SearchResult* searchResult;
+@property (assign) AbstractNavigationController* navigationController_;
+@property (retain) AbstractSearchEngine* searchEngineData_;
+@property (retain) SearchResult* searchResult_;
 @end
 
 @implementation AbstractSearchDisplayController
 
-@synthesize navigationController;
-@synthesize searchEngineData;
-@synthesize searchResult;
+@synthesize navigationController_;
+@synthesize searchEngineData_;
+@synthesize searchResult_;
+
+property_wrapper(AbstractNavigationController*, navigationController, NavigationController);
+property_wrapper(AbstractSearchEngine*, searchEngineData, SearchEngineData);
+property_wrapper(SearchResult*, searchResult, SearchResult);
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -57,11 +61,11 @@
 }
 
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController_
-                     searchBar:(UISearchBar *)searchBar_
-            contentsController:(UIViewController *)viewController_ {
-    if (self = [super initWithSearchBar:searchBar_ contentsController:viewController_]) {
-        self.navigationController = navigationController_;
+- (id)initNavigationController:(AbstractNavigationController*) navigationController__
+                     searchBar:(UISearchBar *)searchBar__
+            contentsController:(UIViewController *)viewController__ {
+    if (self = [super initWithSearchBar:searchBar__ contentsController:viewController__]) {
+        self.navigationController = navigationController__;
 
         self.delegate = self;
         self.searchResultsDataSource = self;
@@ -88,11 +92,11 @@
 
 
 - (AbstractSearchEngine*) searchEngine {
-    if (searchEngineData == nil) {
+    if (self.searchEngineData == nil) {
         self.searchEngineData = [self createSearchEngine];
     }
 
-    return searchEngineData;
+    return self.searchEngineData;
 }
 
 
@@ -100,7 +104,7 @@
     NSString* searchText = self.searchBar.text;
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    return searchText.length > 0 && ![searchText isEqual:searchResult.value];
+    return searchText.length > 0 && ![searchText isEqual:self.searchResult.value];
 }
 
 

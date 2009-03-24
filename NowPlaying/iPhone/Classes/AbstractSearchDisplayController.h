@@ -16,9 +16,9 @@
 
 @interface AbstractSearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @protected
-    AbstractNavigationController* navigationController;
-    AbstractSearchEngine* searchEngineData;
-    SearchResult* searchResult;
+    AbstractNavigationController* navigationController_;
+    AbstractSearchEngine* searchEngineData_;
+    SearchResult* searchResult_;
 }
 
 - (id) initNavigationController:(AbstractNavigationController*) navigationController
@@ -27,5 +27,9 @@
 
 - (void) majorRefresh;
 - (void) minorRefresh;
+
+/* @protected */
+- (AbstractNavigationController*) navigationController;
+- (SearchResult*) searchResult;
 
 @end
