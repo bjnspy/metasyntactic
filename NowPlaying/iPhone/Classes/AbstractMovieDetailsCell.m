@@ -15,14 +15,15 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface AbstractMovieDetailsCell()
-@property (retain) Movie* movie;
+@property (retain) Movie* movie_;
 @end
 
 
 @implementation AbstractMovieDetailsCell
 
-@synthesize movie;
+@synthesize movie_;
 
+property_wrapper(Movie*, movie, Movie);
 
 - (void) dealloc {
     self.movie = nil;
@@ -31,9 +32,9 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ {
+- (id) initWithMovie:(Movie*) movie__ {
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
-        self.movie = movie_;
+        self.movie = movie__;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
