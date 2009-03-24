@@ -497,7 +497,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 
     self.movieMapData = result;
     self.movies = localMovies;
-    
+
     [AppDelegate majorRefresh];
 
 }

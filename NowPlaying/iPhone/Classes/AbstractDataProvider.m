@@ -594,7 +594,7 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
             NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
             [dictionary setObject:movie forKey:canonicalTitle];
             self.bookmarksData = dictionary;
-            
+
             [self saveBookmarks];
             return;
         }
