@@ -14,8 +14,8 @@
 
 @interface ReviewBodyCell : UITableViewCell {
 @private
-    Review* review;
-    UILabel* label;
+    Review* review_;
+    UILabel* label_;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

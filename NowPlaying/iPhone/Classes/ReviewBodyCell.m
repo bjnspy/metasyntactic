@@ -19,15 +19,18 @@
 #import "Utilities.h"
 
 @interface ReviewBodyCell()
-@property (retain) Review* review;
-@property (retain) UILabel* label;
+@property (retain) Review* review_;
+@property (retain) UILabel* label_;
 @end
 
 
 @implementation ReviewBodyCell
 
-@synthesize review;
-@synthesize label;
+@synthesize review_;
+@synthesize label_;
+
+property_wrapper(Review*, review, Review);
+property_wrapper(UILabel*, label, Label);
 
 - (void) dealloc {
     self.review = nil;
@@ -42,11 +45,11 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        label.font = [FontCache helvetica14];
-        label.lineBreakMode = UILineBreakModeWordWrap;
-        label.numberOfLines = 0;
+        self.label.font = [FontCache helvetica14];
+        self.label.lineBreakMode = UILineBreakModeWordWrap;
+        self.label.numberOfLines = 0;
 
-        [self.contentView addSubview:label];
+        [self.contentView addSubview:self.label];
     }
 
     return self;
@@ -56,16 +59,16 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    label.text = review.text;
+    self.label.text = self.review.text;
 
     double width = self.frame.size.width;
     width -= 40;
-    if (review.link.length != 0) {
+    if (self.review.link.length != 0) {
         width -= 25;
     }
 
-    CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:review] - 10);
-    label.frame = rect;
+    CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:self.review] - 10);
+    self.label.frame = rect;
 }
 
 
