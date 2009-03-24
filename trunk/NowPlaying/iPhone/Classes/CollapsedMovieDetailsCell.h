@@ -16,7 +16,7 @@
 
 @interface CollapsedMovieDetailsCell : AbstractMovieDetailsCell {
 @private
-    UILabel* ratingAndRuntimeLabel;
+    UILabel* ratingAndRuntimeLabel_;
 }
 
 @end
