@@ -14,12 +14,11 @@
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
 @private
-    AppDelegate* appDelegate;
-    MoviesNavigationController* moviesNavigationController;
-    TheatersNavigationController* theatersNavigationController;
-    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-    DVDNavigationController* dvdNavigationController;
-    NetflixNavigationController* netflixNavigationController;
+    MoviesNavigationController* moviesNavigationController_;
+    TheatersNavigationController* theatersNavigationController_;
+    UpcomingMoviesNavigationController* upcomingMoviesNavigationController_;
+    DVDNavigationController* dvdNavigationController_;
+    NetflixNavigationController* netflixNavigationController_;
 }
 
 + (ApplicationTabBarController*) controller;
