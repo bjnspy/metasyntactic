@@ -20,8 +20,8 @@
 #import "Model.h"
 
 @interface WarningView()
-@property (retain) UIImageView* imageView;
-@property (retain) UILabel* label;
+@property (retain) UIImageView* imageView_;
+@property (retain) UILabel* label_;
 @end
 
 
@@ -30,8 +30,11 @@
 const NSInteger LABEL_X = 52;
 const NSInteger TOP_BUFFER = 5;
 
-@synthesize imageView;
-@synthesize label;
+@synthesize imageView_;
+@synthesize label_;
+
+property_wrapper(UIImageView*, imageView, ImageView);
+property_wrapper(UILabel*, label, Label);
 
 - (void) dealloc {
     self.imageView = nil;
@@ -47,19 +50,19 @@ const NSInteger TOP_BUFFER = 5;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        label.text = text;
-        label.numberOfLines = 0;
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [FontCache footerFont];
-        label.textColor = [ColorCache footerColor];
-        label.shadowColor = [UIColor whiteColor];
-        label.shadowOffset = CGSizeMake(0, 1);
-        label.textAlignment = UITextAlignmentCenter;
+        self.label.text = text;
+        self.label.numberOfLines = 0;
+        self.label.backgroundColor = [UIColor clearColor];
+        self.label.font = [FontCache footerFont];
+        self.label.textColor = [ColorCache footerColor];
+        self.label.shadowColor = [UIColor whiteColor];
+        self.label.shadowOffset = CGSizeMake(0, 1);
+        self.label.textAlignment = UITextAlignmentCenter;
 
         self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache warning32x32]] autorelease];
 
-        [self addSubview:imageView];
-        [self addSubview:label];
+        [self addSubview:self.imageView];
+        [self addSubview:self.label];
     }
 
     return self;
@@ -77,22 +80,22 @@ const NSInteger TOP_BUFFER = 5;
 
 - (void) layoutSubviews {
     {
-        NSString* text = label.text;
-        CGRect frame = label.frame;
+        NSString* text = self.label.text;
+        CGRect frame = self.label.frame;
         frame.origin.x = LABEL_X;
         frame.origin.y = TOP_BUFFER;
         frame.size.width = self.frame.size.width - 10 - frame.origin.x;
         frame.size.height = [text sizeWithFont:[FontCache footerFont]
                              constrainedToSize:CGSizeMake(frame.size.width, 2000)
                                  lineBreakMode:UILineBreakModeWordWrap].height;
-        label.frame = frame;
+        self.label.frame = frame;
     }
 
     {
-        CGRect frame = imageView.frame;
+        CGRect frame = self.imageView.frame;
         frame.origin.x = 20;
-        frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [ImageCache warning32x32].size.height) / 2.0));
-        imageView.frame = frame;
+        frame.origin.y = MAX(self.label.frame.origin.y, self.label.frame.origin.y + (int)((self.label.frame.size.height - [ImageCache warning32x32].size.height) / 2.0));
+        self.imageView.frame = frame;
     }
 }
 
@@ -109,7 +112,7 @@ const NSInteger TOP_BUFFER = 5;
 
     NSInteger labelX = LABEL_X;
     NSInteger labelWidth = width - 10 - labelX;
-    NSString* text = label.text;
+    NSString* text = self.label.text;
     double labelHeight = [text sizeWithFont:[FontCache footerFont]
                           constrainedToSize:CGSizeMake(labelWidth, 2000)
                               lineBreakMode:UILineBreakModeWordWrap].height;
