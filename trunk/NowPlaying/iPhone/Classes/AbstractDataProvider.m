@@ -25,7 +25,7 @@
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
-#import "MultiDictionary.h"
+#import "MutableMultiDictionary.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "Performance.h"
@@ -341,7 +341,7 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
         return;
     }
 
-    MultiDictionary* locationToMissingTheaterNames = [MultiDictionary dictionary];
+    MutableMultiDictionary* locationToMissingTheaterNames = [MutableMultiDictionary dictionary];
 
     for (FavoriteTheater* favorite in favoriteTheaters) {
         if (![self results:lookupResult containsFavorite:favorite]) {

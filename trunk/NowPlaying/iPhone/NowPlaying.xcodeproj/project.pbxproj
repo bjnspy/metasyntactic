@@ -352,6 +352,7 @@
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
+		74EF9CA70F789C91008680B2 /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -985,6 +986,8 @@
 		74EC92D50EE4E090004E044E /* LookupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupRequest.m; sourceTree = "<group>"; };
 		74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsViewController.h; sourceTree = "<group>"; };
 		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
+		74EF9CA50F789C91008680B2 /* MutableMultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableMultiDictionary.h; sourceTree = "<group>"; };
+		74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableMultiDictionary.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -1681,6 +1684,8 @@
 				74616DE40F15D9F20004B610 /* LinkedSet.m */,
 				74616DE50F15D9F20004B610 /* MultiDictionary.h */,
 				74616DE60F15D9F20004B610 /* MultiDictionary.m */,
+				74EF9CA50F789C91008680B2 /* MutableMultiDictionary.h */,
+				74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */,
 				74616DE70F15D9F20004B610 /* PointerSet.h */,
 				74616DE80F15D9F20004B610 /* PointerSet.m */,
 			);
@@ -2421,6 +2426,7 @@
 				747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */,
 				747BF48B0F774928008F5B2B /* LocalSearchEngine.m in Sources */,
 				747BF4AD0F774A0A008F5B2B /* LocalSearchDisplayController.m in Sources */,
+				74EF9CA70F789C91008680B2 /* MutableMultiDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
