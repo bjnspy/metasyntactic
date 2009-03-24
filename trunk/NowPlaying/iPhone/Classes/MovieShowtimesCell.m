@@ -21,15 +21,18 @@
 #import "Performance.h"
 
 @interface MovieShowtimesCell()
-@property (retain) UILabel* showtimesLabel;
-@property (retain) NSArray* showtimesData;
+@property (retain) UILabel* showtimesLabel_;
+@property (retain) NSArray* showtimesData_;
 @end
 
 
 @implementation MovieShowtimesCell
 
-@synthesize showtimesLabel;
-@synthesize showtimesData;
+@synthesize showtimesLabel_;
+@synthesize showtimesData_;
+
+property_wrapper(UILabel*, showtimesLabel, ShowtimesLabel);
+property_wrapper(NSArray*, showtimesData, ShowtimesData);
 
 - (void) dealloc {
     self.showtimesLabel = nil;
@@ -105,10 +108,10 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        showtimesLabel.numberOfLines = 0;
-        showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
+        self.showtimesLabel.numberOfLines = 0;
+        self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
-        [self.contentView addSubview:showtimesLabel];
+        [self.contentView addSubview:self.showtimesLabel];
     }
 
     return self;
@@ -127,7 +130,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect showtimesFrame = showtimesLabel.frame;
+    CGRect showtimesFrame = self.showtimesLabel.frame;
     if (self.image == nil) {
         showtimesFrame.origin.x = 8;
     } else {
@@ -141,18 +144,18 @@
     width -= 18; // accessory
 
     showtimesFrame.size.width = width;
-    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
+    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:self.showtimesData
                                                                   stale:(self.image != nil)];
 
-    showtimesLabel.frame = showtimesFrame;
+    self.showtimesLabel.frame = showtimesFrame;
 }
 
 
 - (void) setShowtimes:(NSArray*) showtimes_ {
     self.showtimesData = showtimes_;
 
-    showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
-    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
+    self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
+    self.showtimesLabel.text = [MovieShowtimesCell showtimesString:self.showtimesData];
 }
 
 
@@ -160,9 +163,9 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        showtimesLabel.textColor = [UIColor whiteColor];
+        self.showtimesLabel.textColor = [UIColor whiteColor];
     } else {
-        showtimesLabel.textColor = [UIColor blackColor];
+        self.showtimesLabel.textColor = [UIColor blackColor];
     }
 }
 
