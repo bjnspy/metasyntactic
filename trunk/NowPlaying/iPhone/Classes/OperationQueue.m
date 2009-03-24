@@ -19,17 +19,21 @@
 #import "Operation2.h"
 
 @interface OperationQueue()
-@property (retain) NSOperationQueue* queue;
-@property (retain) NSMutableArray* boundedOperations;
-@property (retain) NSLock* boundedOperationsGate;
+@property (retain) NSOperationQueue* queue_;
+@property (retain) NSMutableArray* boundedOperations_;
+@property (retain) NSLock* boundedOperationsGate_;
 @end
 
 
 @implementation OperationQueue
 
-@synthesize queue;
-@synthesize boundedOperations;
-@synthesize boundedOperationsGate;
+@synthesize queue_;
+@synthesize boundedOperations_;
+@synthesize boundedOperationsGate_;
+
+property_wrapper(NSOperationQueue*, queue, Queue);
+property_wrapper(NSMutableArray*, boundedOperations, BoundedOperations);
+property_wrapper(NSLock*, boundedOperationsGate, BoundedOperationsGate);
 
 - (void) dealloc {
     self.queue = nil;
@@ -43,7 +47,7 @@
 - (id) init {
     if (self = [super init]) {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        queue.maxConcurrentOperationCount = 2;
+        self.queue.maxConcurrentOperationCount = 2;
         self.boundedOperations = [NSMutableArray array];
         self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
     }
@@ -59,7 +63,7 @@
 
 - (void) addOperation:(Operation*) operation priority:(BOOL) queuePriority {
     operation.queuePriority = queuePriority;
-    [queue addOperation:operation];
+    [self.queue addOperation:operation];
 }
 
 
@@ -87,17 +91,17 @@
 const NSInteger MAX_BOUNDED_OPERATIONS = 9;
 - (void) addBoundedOperation:(Operation*) operation
                     priority:(QueuePriority) priority {
-    [boundedOperationsGate lock];
+    [self.boundedOperationsGate lock];
     {
-        [boundedOperations addObject:operation];
-        if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
-            Operation* staleOperation = [boundedOperations objectAtIndex:0];
+        [self.boundedOperations addObject:operation];
+        if (self.boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
+            Operation* staleOperation = [self.boundedOperations objectAtIndex:0];
             [staleOperation cancel];
 
-            [boundedOperations removeObjectAtIndex:0];
+            [self.boundedOperations removeObjectAtIndex:0];
         }
     }
-    [boundedOperationsGate unlock];
+    [self.boundedOperationsGate unlock];
 
     [self addOperation:operation priority:priority];
 }
@@ -125,11 +129,11 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 9;
 
 
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation {
-    [boundedOperationsGate lock];
+    [self.boundedOperationsGate lock];
     {
-        [boundedOperations removeObject:operation];
+        [self.boundedOperations removeObject:operation];
     }
-    [boundedOperationsGate unlock];
+    [self.boundedOperationsGate unlock];
 }
 
 @end
