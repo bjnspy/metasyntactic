@@ -91,7 +91,7 @@
 
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewTitleCell alloc] init] autorelease];
+            cell = [[[ReviewTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         }
 
         [cell setReview:review];
