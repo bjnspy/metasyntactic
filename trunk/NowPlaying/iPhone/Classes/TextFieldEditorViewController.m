@@ -86,7 +86,7 @@
 
 - (void) save:(id) sender {
     NSString* trimmedValue = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [object performSelector:selector withObject:trimmedValue];
+    [self.object performSelector:self.selector withObject:trimmedValue];
     [super save:sender];
 }
 

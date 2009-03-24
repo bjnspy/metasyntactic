@@ -15,14 +15,17 @@
 #import "AbstractFullScreenViewController.h"
 
 @interface EditorViewController : AbstractFullScreenViewController {
-@protected
-    id object;
-    SEL selector;
+@private
+    id object_;
+    SEL selector_;
 }
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                withObject:(id) object
              withSelector:(SEL) selector;
+
+- (id) object;
+- (SEL) selector;
 
 - (void) cancel:(id) sender;
 - (void) save:(id) sender;
