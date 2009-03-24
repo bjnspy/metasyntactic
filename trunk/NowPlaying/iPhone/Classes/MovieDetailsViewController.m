@@ -1169,7 +1169,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (updateId != [[array objectAtIndex:0] intValue]) {
+    if (self.updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 

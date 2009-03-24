@@ -352,7 +352,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (updateId != [[array objectAtIndex:0] intValue]) {
+    if (self.updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 

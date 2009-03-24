@@ -16,11 +16,12 @@
 #import "DataProviderUpdateDelegate.h"
 
 @interface AbstractDetailsViewController : AbstractTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
-@protected
-    NSInteger updateId;
+@private
+    NSInteger updateId_;
 }
 
 // @protected
+- (NSInteger) updateId;
 - (void) changeDate;
 - (void) openMailWithSubject:(NSString*) subject body:(NSString*) body;
 

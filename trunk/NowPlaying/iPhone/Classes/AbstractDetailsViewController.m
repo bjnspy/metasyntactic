@@ -22,10 +22,15 @@
 #import "SearchDatePickerViewController.h"
 
 @interface AbstractDetailsViewController()
+@property NSInteger updateId_;
 @end
 
 
 @implementation AbstractDetailsViewController
+
+@synthesize updateId_;
+
+property_wrapper(NSInteger, updateId, UpdateId);
 
 - (void) dealloc {
     [super dealloc];
@@ -165,7 +170,7 @@
 
 
 - (void) onCancelTapped:(id) sender {
-    ++updateId;
+    self.updateId++;
     [self dismissUpdateListingsViewController];
 }
 
@@ -178,14 +183,15 @@
 
     [self presentUpdateListingsViewController];
 
-    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:++updateId],
+    self.updateId++;
+    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:self.updateId],
                       searchDate, nil];
     [self.model.dataProvider update:searchDate delegate:self context:array force:YES];
 }
 
 
 - (void) onDataProviderUpdateFailure:(NSString*) error context:(id) array {
-    if (updateId != [[array objectAtIndex:0] intValue]) {
+    if (self.updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
@@ -202,7 +208,7 @@
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (updateId != [[array objectAtIndex:0] intValue]) {
+    if (self.updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
