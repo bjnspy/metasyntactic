@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "Application.h"
+#import "Controller.h"
 #import "Model.h"
 #import "ViewControllerUtilities.h"
 
@@ -69,12 +70,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

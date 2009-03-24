@@ -18,7 +18,7 @@
 @private
 }
 
-+ (PosterCache*) cacheWithModel:(Model*) model;
++ (PosterCache*) cache;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

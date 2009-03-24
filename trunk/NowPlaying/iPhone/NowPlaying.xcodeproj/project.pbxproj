@@ -184,10 +184,6 @@
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
-		747BE9590F75FAE3008F5B2B /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE9580F75FAE3008F5B2B /* OperationQueue.m */; };
-		747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE95E0F75FCA8008F5B2B /* Operation.m */; };
-		747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96B0F75FEDE008F5B2B /* Operation2.m */; };
-		747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BE96E0F75FF23008F5B2B /* Operation1.m */; };
 		747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */; };
 		747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */; };
 		747BF48B0F774928008F5B2B /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF48A0F774928008F5B2B /* LocalSearchEngine.m */; };
@@ -351,7 +347,11 @@
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
-		74EF9CA70F789C91008680B2 /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */; };
+		74EFA1410F7940D7008680B2 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA13A0F7940D7008680B2 /* Operation.m */; };
+		74EFA1420F7940D7008680B2 /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA13C0F7940D7008680B2 /* Operation1.m */; };
+		74EFA1430F7940D7008680B2 /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA13E0F7940D7008680B2 /* Operation2.m */; };
+		74EFA1440F7940D7008680B2 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1400F7940D7008680B2 /* OperationQueue.m */; };
+		74EFA2070F794411008680B2 /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA2060F794411008680B2 /* MutableMultiDictionary.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -696,14 +696,6 @@
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
-		747BE9570F75FAE3008F5B2B /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
-		747BE9580F75FAE3008F5B2B /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationQueue.m; sourceTree = "<group>"; };
-		747BE95D0F75FCA8008F5B2B /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
-		747BE95E0F75FCA8008F5B2B /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
-		747BE96A0F75FEDE008F5B2B /* Operation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation2.h; sourceTree = "<group>"; };
-		747BE96B0F75FEDE008F5B2B /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation2.m; sourceTree = "<group>"; };
-		747BE96D0F75FF23008F5B2B /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation1.h; sourceTree = "<group>"; };
-		747BE96E0F75FF23008F5B2B /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
 		747BF3F80F7743F0008F5B2B /* NetflixSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchDisplayController.h; sourceTree = "<group>"; };
 		747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchDisplayController.m; sourceTree = "<group>"; };
 		747BF4760F77486F008F5B2B /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
@@ -983,8 +975,16 @@
 		74EC92D50EE4E090004E044E /* LookupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupRequest.m; sourceTree = "<group>"; };
 		74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsViewController.h; sourceTree = "<group>"; };
 		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
-		74EF9CA50F789C91008680B2 /* MutableMultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableMultiDictionary.h; sourceTree = "<group>"; };
-		74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableMultiDictionary.m; sourceTree = "<group>"; };
+		74EFA1390F7940D7008680B2 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Operation.h; path = ../../iPhoneShared/Classes/Operation.h; sourceTree = SOURCE_ROOT; };
+		74EFA13A0F7940D7008680B2 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Operation.m; path = ../../iPhoneShared/Classes/Operation.m; sourceTree = SOURCE_ROOT; };
+		74EFA13B0F7940D7008680B2 /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Operation1.h; path = ../../iPhoneShared/Classes/Operation1.h; sourceTree = SOURCE_ROOT; };
+		74EFA13C0F7940D7008680B2 /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Operation1.m; path = ../../iPhoneShared/Classes/Operation1.m; sourceTree = SOURCE_ROOT; };
+		74EFA13D0F7940D7008680B2 /* Operation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Operation2.h; path = ../../iPhoneShared/Classes/Operation2.h; sourceTree = SOURCE_ROOT; };
+		74EFA13E0F7940D7008680B2 /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Operation2.m; path = ../../iPhoneShared/Classes/Operation2.m; sourceTree = SOURCE_ROOT; };
+		74EFA13F0F7940D7008680B2 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationQueue.h; path = ../../iPhoneShared/Classes/OperationQueue.h; sourceTree = SOURCE_ROOT; };
+		74EFA1400F7940D7008680B2 /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationQueue.m; path = ../../iPhoneShared/Classes/OperationQueue.m; sourceTree = SOURCE_ROOT; };
+		74EFA2050F794411008680B2 /* MutableMultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableMultiDictionary.h; path = ../../iPhoneShared/Classes/MutableMultiDictionary.h; sourceTree = SOURCE_ROOT; };
+		74EFA2060F794411008680B2 /* MutableMultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutableMultiDictionary.m; path = ../../iPhoneShared/Classes/MutableMultiDictionary.m; sourceTree = SOURCE_ROOT; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -1563,8 +1563,6 @@
 		7474FE8F0E63595400BAA43D /* Posters */ = {
 			isa = PBXGroup;
 			children = (
-				74D3CC750F2DB7520007C783 /* PersonPosterCache.h */,
-				74D3CC760F2DB7520007C783 /* PersonPosterCache.m */,
 				74088BD50DCD0AA800954696 /* PosterCache.h */,
 				74088BD60DCD0AA800954696 /* PosterCache.m */,
 				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
@@ -1575,6 +1573,8 @@
 				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
 				7410D73F0EC2C0740079BF1E /* LargePosterCache.h */,
 				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
+				74D3CC750F2DB7520007C783 /* PersonPosterCache.h */,
+				74D3CC760F2DB7520007C783 /* PersonPosterCache.m */,
 			);
 			name = Posters;
 			sourceTree = "<group>";
@@ -1635,14 +1635,14 @@
 		747BE95C0F75FC92008F5B2B /* OperationQueue */ = {
 			isa = PBXGroup;
 			children = (
-				747BE9570F75FAE3008F5B2B /* OperationQueue.h */,
-				747BE9580F75FAE3008F5B2B /* OperationQueue.m */,
-				747BE95D0F75FCA8008F5B2B /* Operation.h */,
-				747BE95E0F75FCA8008F5B2B /* Operation.m */,
-				747BE96D0F75FF23008F5B2B /* Operation1.h */,
-				747BE96E0F75FF23008F5B2B /* Operation1.m */,
-				747BE96A0F75FEDE008F5B2B /* Operation2.h */,
-				747BE96B0F75FEDE008F5B2B /* Operation2.m */,
+				74EFA1390F7940D7008680B2 /* Operation.h */,
+				74EFA13A0F7940D7008680B2 /* Operation.m */,
+				74EFA13B0F7940D7008680B2 /* Operation1.h */,
+				74EFA13C0F7940D7008680B2 /* Operation1.m */,
+				74EFA13D0F7940D7008680B2 /* Operation2.h */,
+				74EFA13E0F7940D7008680B2 /* Operation2.m */,
+				74EFA13F0F7940D7008680B2 /* OperationQueue.h */,
+				74EFA1400F7940D7008680B2 /* OperationQueue.m */,
 			);
 			name = OperationQueue;
 			sourceTree = "<group>";
@@ -1669,6 +1669,8 @@
 		748AB37B0EB6C57C004918A6 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				74EFA2050F794411008680B2 /* MutableMultiDictionary.h */,
+				74EFA2060F794411008680B2 /* MutableMultiDictionary.m */,
 				74616DDD0F15D9F20004B610 /* IdentityObject.h */,
 				74616DDE0F15D9F20004B610 /* IdentityObject.m */,
 				74616DDF0F15D9F20004B610 /* IdentitySet.h */,
@@ -1679,8 +1681,6 @@
 				74616DE40F15D9F20004B610 /* LinkedSet.m */,
 				74616DE50F15D9F20004B610 /* MultiDictionary.h */,
 				74616DE60F15D9F20004B610 /* MultiDictionary.m */,
-				74EF9CA50F789C91008680B2 /* MutableMultiDictionary.h */,
-				74EF9CA60F789C91008680B2 /* MutableMultiDictionary.m */,
 				74616DE70F15D9F20004B610 /* PointerSet.h */,
 				74616DE80F15D9F20004B610 /* PointerSet.m */,
 			);
@@ -2412,15 +2412,15 @@
 				747988780F745EC40057E111 /* AbstractFullScreenTableViewController.m in Sources */,
 				7479898A0F746CEC0057E111 /* AbstractTableViewController.m in Sources */,
 				74798D010F74B7C80057E111 /* SwitchCell.m in Sources */,
-				747BE9590F75FAE3008F5B2B /* OperationQueue.m in Sources */,
-				747BE95F0F75FCA8008F5B2B /* Operation.m in Sources */,
-				747BE96C0F75FEDE008F5B2B /* Operation2.m in Sources */,
-				747BE96F0F75FF23008F5B2B /* Operation1.m in Sources */,
 				747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */,
 				747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */,
 				747BF48B0F774928008F5B2B /* LocalSearchEngine.m in Sources */,
 				747BF4AD0F774A0A008F5B2B /* LocalSearchDisplayController.m in Sources */,
-				74EF9CA70F789C91008680B2 /* MutableMultiDictionary.m in Sources */,
+				74EFA1410F7940D7008680B2 /* Operation.m in Sources */,
+				74EFA1420F7940D7008680B2 /* Operation1.m in Sources */,
+				74EFA1430F7940D7008680B2 /* Operation2.m in Sources */,
+				74EFA1440F7940D7008680B2 /* OperationQueue.m in Sources */,
+				74EFA2070F794411008680B2 /* MutableMultiDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

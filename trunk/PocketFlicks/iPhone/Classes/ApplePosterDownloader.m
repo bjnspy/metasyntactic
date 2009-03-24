@@ -22,49 +22,67 @@
 @implementation ApplePosterDownloader
 
 static NSDictionary* movieNameToPosterMap = nil;
+static NSLock* gate;
 
-+ (void) createMap {
+
++ (void) initialize {
+    if (self == [ApplePosterDownloader class]) {
+        gate = [[NSLock alloc] init];
+    }
+}
+
+
++ (void) createMapWorker {
     if (movieNameToPosterMap != nil) {
         return;
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
-    NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* index = [NetworkUtilities stringWithContentsOfAddress:url];
     if (index == nil) {
         return;
     }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
+    
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
+        
         if (columns.count >= 2) {
             NSString* movieName = [Movie makeCanonical:[columns objectAtIndex:0]];
             NSString* posterUrl = [columns objectAtIndex:1];
-
+            
             [result setObject:posterUrl forKey:movieName];
         }
     }
-
+    
     movieNameToPosterMap = result;
-    [movieNameToPosterMap retain];
 }
+
+
++ (void) createMap {
+    [gate lock];
+    {
+        [self createMapWorker];
+    }
+    [gate unlock];
+}
+
 
 + (NSData*) download:(Movie*) movie {
     [self createMap];
     if (movieNameToPosterMap == nil) {
         return nil;
     }
-
+    
     NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
     if (key == nil) {
         return nil;
     }
-
+    
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl important:NO];
+    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
 }
 
 @end

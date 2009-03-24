@@ -15,19 +15,16 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface AbstractMovieDetailsCell()
-@property (retain) Model* model;
 @property (retain) Movie* movie;
 @end
 
 
 @implementation AbstractMovieDetailsCell
 
-@synthesize model;
 @synthesize movie;
 
 
 - (void) dealloc {
-    self.model = nil;
     self.movie = nil;
 
     [super dealloc];
@@ -35,10 +32,8 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(Model*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame]) {
-        self.model = model_;
         self.movie = movie_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

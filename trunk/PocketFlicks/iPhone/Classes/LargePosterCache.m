@@ -14,54 +14,62 @@
 
 #import "LargePosterCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
-#import "Model.h"
-#import "ThreadingUtilities.h"
+#import "OperationQueue.h"
 
 @interface LargePosterCache()
-@property (retain) NSMutableDictionary* yearToMovieMap;
-@property (retain) NSLock* yearToMovieMapGate;
+@property (retain) NSMutableDictionary* yearToMovieMap_;
+@property (retain) NSLock* yearToMovieMapGate_;
+@property BOOL updated_;
 @end
 
 @implementation LargePosterCache
 
-@synthesize yearToMovieMap;
-@synthesize yearToMovieMapGate;
+@synthesize yearToMovieMap_;
+@synthesize yearToMovieMapGate_;
+@synthesize updated_;
+
+property_wrapper(NSMutableDictionary*, yearToMovieMap, YearToMovieMap);
+property_wrapper(NSLock*, yearToMovieMapGate, YearToMovieMapGate);
+property_wrapper(BOOL, updated, Updated);
 
 const int START_YEAR = 1912;
 
 - (void) dealloc {
     self.yearToMovieMap = nil;
     self.yearToMovieMapGate = nil;
-
+    self.updated = NO;
+    
     [super dealloc];
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) init {
+    if (self = [super init]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
         self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
-
-        [ThreadingUtilities backgroundSelector:@selector(updateIndices)
-                                      onTarget:self
-                                          gate:nil
-                                       visible:NO];
+        [self update];
     }
-
+    
     return self;
 }
 
 
-+ (LargePosterCache*) cacheWithModel:(Model*) model {
-    return [[[LargePosterCache alloc] initWithModel:model] autorelease];
++ (LargePosterCache*) cache {
+    return [[[LargePosterCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -82,34 +90,25 @@ const int START_YEAR = 1912;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index
-                   compress:(BOOL) compress {
+                      index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     UIImage* image = [UIImage imageWithData:data];
-
-    if (compress) {
-        CGSize size = image.size;
-        if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-            NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                        toHeight:FULL_SCREEN_POSTER_HEIGHT];
-            image = [UIImage imageWithData:data];
-            [FileUtilities writeData:resizedData toFile:path];
-        } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-            NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                        toHeight:FULL_SCREEN_POSTER_WIDTH];
-            image = [UIImage imageWithData:data];
-            [FileUtilities writeData:resizedData toFile:path];
-        }
+    
+    CGSize size = image.size;
+    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                    toHeight:FULL_SCREEN_POSTER_HEIGHT];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
+    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                    toHeight:FULL_SCREEN_POSTER_WIDTH];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
     }
-
+    
     return image;
-}
-
-
-- (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index {
-    return [self posterForMovie:movie index:index compress:YES];
 }
 
 
@@ -118,7 +117,7 @@ const int START_YEAR = 1912;
     NSData* smallPosterData;
     NSString* smallPosterPath = [self smallPosterFilePath:movie
                                                     index:index];
-
+    
     if ([FileUtilities size:smallPosterPath] == 0 && index == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie index:index]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
@@ -128,7 +127,7 @@ const int START_YEAR = 1912;
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-
+    
     return [UIImage imageWithData:smallPosterData];
 }
 
@@ -164,7 +163,7 @@ const int START_YEAR = 1912;
         if (!updateIfStale) {
             return nil;
         }
-
+        
         NSDate* modificationDate = [FileUtilities modificationDate:file];
         if (modificationDate != nil) {
             if (ABS(modificationDate.timeIntervalSinceNow) < ONE_WEEK) {
@@ -172,46 +171,48 @@ const int START_YEAR = 1912;
             }
         }
     }
-
+    
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp&year=%d", [Application host], year];
-    NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
-                                                           important:NO];
+    NSString* result = [NetworkUtilities stringWithContentsOfAddress:address];
     if (result.length == 0) {
         return nil;
     }
-
+    
     NSMutableDictionary* index = [NSMutableDictionary dictionary];
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
+        
         if (columns.count < 2) {
             continue;
         }
-
+        
         NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
         [index setObject:posters forKey:[[columns objectAtIndex:0] lowercaseString]];
     }
-
+    
     if (index.count > 0) {
         [FileUtilities writeObject:index toFile:file];
     }
-
+    
     return index;
 }
 
 
-- (void) ensureIndex:(NSInteger) year updateIfStale:(BOOL) updateIfStale {
+- (void) ensureIndex:(NSNumber*) yearNumber updateIfStale:(NSNumber*) updateIfStaleNumber {
+    NSInteger year = yearNumber.intValue;
+    BOOL updateIfStale = updateIfStaleNumber.boolValue;
+    
     NSDictionary* dictionary = [self ensureIndexWorker:year updateIfStale:updateIfStale];
     if (dictionary == nil) {
         dictionary = [FileUtilities readObject:[self indexFile:year]];
     }
-
+    
     if (dictionary.count > 0) {
-        [yearToMovieMapGate lock];
+        [self.yearToMovieMapGate lock];
         {
-            [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+            [self.yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
         }
-        [yearToMovieMapGate unlock];
+        [self.yearToMovieMapGate unlock];
     }
 }
 
@@ -219,7 +220,7 @@ const int START_YEAR = 1912;
 - (NSInteger) yearForDate:(NSDate*) date {
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:date];
     NSInteger year = components.year;
-
+    
     return year;
 }
 
@@ -230,34 +231,45 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) updateIndices {
+- (void) update {
+    if (self.updated) {
+        return;
+    }
+    self.updated = YES;
+    
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
-        [self ensureIndex:i updateIfStale:(i >= (year - 1) || i <= (year + 1))];
+        BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
+        [[AppDelegate operationQueue] performSelector:@selector(ensureIndex:updateIfStale:)
+                                             onTarget:self
+                                           withObject:[NSNumber numberWithInt:i]
+                                           withObject:[NSNumber numberWithBool:updateIfStale]
+                                                 gate:nil
+                                             priority:Normal];
     }
 }
 
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
     NSDictionary* movieMap;
-    [yearToMovieMapGate lock];
+    [self.yearToMovieMapGate lock];
     {
-        movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+        movieMap = [self.yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
     }
-    [yearToMovieMapGate unlock];
-
+    [self.yearToMovieMapGate unlock];
+    
     NSArray* result = [movieMap objectForKey:movie.canonicalTitle.lowercaseString];
     if (result.count > 0) {
         return result;
     }
-
+    
     NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
     for (NSString* key in movieMap.allKeys) {
         if ([DifferenceEngine substringSimilar:key other:lowercaseTitle]) {
             return [movieMap objectForKey:key];
         }
     }
-
+    
     return [NSArray array];
 }
 
@@ -267,7 +279,7 @@ const int START_YEAR = 1912;
     if (result.count == 0) {
         return result;
     }
-
+    
     NSMutableArray* urls = [NSMutableArray array];
     for (NSString* name in result) {
         NSString* url = [NSString stringWithFormat:@"http://www.impawards.com/%d/posters/%@", year, name];
@@ -281,7 +293,7 @@ const int START_YEAR = 1912;
     NSDate* date = movie.releaseDate;
     if (date != nil) {
         NSInteger releaseYear = [self yearForDate:date];
-
+        
         NSArray* result;
         if ((result = [self posterUrlsNoLock:movie year:releaseYear]).count > 0 ||
             (result = [self posterUrlsNoLock:movie year:releaseYear - 1]).count > 0 ||
@@ -299,20 +311,20 @@ const int START_YEAR = 1912;
             }
         }
     }
-
+    
     return [NSArray array];
 }
 
 
 - (NSArray*) posterUrls:(Movie*) movie {
     NSAssert(![NSThread isMainThread], @"");
-
+    
     NSArray* array;
-    [gate lock];
+    [self.gate lock];
     {
         array = [self posterUrlsNoLock:movie];
     }
-    [gate unlock];
+    [self.gate unlock];
     return array;
 }
 
@@ -324,9 +336,8 @@ const int START_YEAR = 1912;
     if (index < 0 || index >= urls.count) {
         return;
     }
-
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
-                                                     important:NO];
+    
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
     if (data != nil) {
         [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
         [AppDelegate minorRefresh];
@@ -338,13 +349,13 @@ const int START_YEAR = 1912;
                            urls:(NSArray*) urls
                           index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
-    [gate lock];
+    [self.gate lock];
     {
         if (![FileUtilities fileExists:[self posterFilePath:movie index:index]]) {
             [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
-    [gate unlock];
+    [self.gate unlock];
 }
 
 
@@ -364,25 +375,25 @@ const int START_YEAR = 1912;
 
 - (NSInteger) posterCountForMovie:(Movie*) movie {
     NSInteger count;
-    [gate lock];
+    [self.gate lock];
     {
         NSArray* urls = [self posterUrlsNoLock:movie];
         count = urls.count;
     }
-    [gate unlock];
+    [self.gate unlock];
     return count;
 }
 
 
 - (BOOL) allPostersDownloadedForMovie:(Movie*) movie {
     NSInteger posterCount = [self posterCountForMovie:movie];
-
+    
     for (NSInteger i = 0; i < posterCount; i++) {
         if (![FileUtilities fileExists:[self posterFilePath:movie index:i]]) {
             return NO;
         }
     }
-
+    
     return YES;
 }
 

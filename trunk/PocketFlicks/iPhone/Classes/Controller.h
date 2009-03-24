@@ -14,15 +14,14 @@
 
 @interface Controller : NSObject {
 @private
-    AppDelegate* appDelegate;
 }
+
++ (Controller*) controller;
 
 - (void) start;
 
 - (Model*) model;
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
-
-+ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
 
 @end

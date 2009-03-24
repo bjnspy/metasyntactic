@@ -14,15 +14,14 @@
 
 #import "IMDbCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "FileUtilities.h"
 #import "LinkedSet.h"
+#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "AppDelegate.h"
-#import "Model.h"
 #import "StringUtilities.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @interface IMDbCache()
@@ -36,16 +35,8 @@
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
-
-+ (IMDbCache*) cacheWithModel:(Model*) model {
-    return [[[IMDbCache alloc] initWithModel:model] autorelease];
++ (IMDbCache*) cache {
+    return [[[IMDbCache alloc] init] autorelease];
 }
 
 
@@ -70,29 +61,29 @@
         // don't even bother if the movie has an imdb address in it
         return;
     }
-
+    
     NSString* path = [self imdbFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-
+    
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-
+        
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url];
     if (imdbAddress == nil) {
         return;
     }
-
+    
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];

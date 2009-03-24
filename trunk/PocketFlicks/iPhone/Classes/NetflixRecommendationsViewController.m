@@ -16,9 +16,10 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
+#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
-#import "MultiDictionary.h"
+#import "MutableMultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
 #import "Model.h"
@@ -56,29 +57,30 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 
 - (void) initializeData {
-    self.genreToMovies = [MultiDictionary dictionary];
-
+    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+    
     NSMutableSet* set = [NSMutableSet set];
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
         if (movie.genres.count > 0) {
             NSString* genre = [movie.genres objectAtIndex:0];
-
-            [genreToMovies addObject:movie forKey:genre];
+            
+            [dictionary addObject:movie forKey:genre];
             [set addObject:genre];
         }
     }
-
+    
+    self.genreToMovies = dictionary;
     self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
 

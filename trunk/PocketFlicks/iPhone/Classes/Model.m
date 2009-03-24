@@ -51,6 +51,8 @@
 
 @implementation Model
 
+static Model* model = nil;
+
 static NSString* currentVersion = @"1.5.0";
 static NSString* persistenceVersion = @"105";
 
@@ -287,18 +289,19 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (id) init {
     if (self = [super init]) {
+        model = self;
         [self checkCountry];
         [self loadData];
         [self updateNetflixKeys];
 
-        self.personPosterCache = [PersonPosterCache cacheWithModel:self];
-        self.largePosterCache = [LargePosterCache cacheWithModel:self];
-        self.imdbCache = [IMDbCache cacheWithModel:self];
-        self.amazonCache = [AmazonCache cacheWithModel:self];
-        self.wikipediaCache = [WikipediaCache cacheWithModel:self];
-        self.trailerCache = [TrailerCache cacheWithModel:self];
-        self.posterCache = [PosterCache cacheWithModel:self];
-        self.netflixCache = [MutableNetflixCache cacheWithModel:self];
+        self.personPosterCache = [PersonPosterCache cache];
+        self.largePosterCache = [LargePosterCache cache];
+        self.imdbCache = [IMDbCache cache];
+        self.amazonCache = [AmazonCache cache];
+        self.wikipediaCache = [WikipediaCache cache];
+        self.trailerCache = [TrailerCache cache];
+        self.posterCache = [PosterCache cache];
+        self.netflixCache = [MutableNetflixCache cache];
 
         [self clearCaches];
     }
@@ -308,7 +311,23 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 + (Model*) model {
-    return [[[Model alloc] init] autorelease];
+    return model;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    [self.largePosterCache didReceiveMemoryWarning];
+    [self.imdbCache didReceiveMemoryWarning];
+    [self.amazonCache didReceiveMemoryWarning];
+    [self.wikipediaCache didReceiveMemoryWarning];
+    [self.trailerCache didReceiveMemoryWarning];
+    [self.posterCache didReceiveMemoryWarning];
+    [self.netflixCache didReceiveMemoryWarning];
+}
+
+
+- (void) saveNavigationStack:(UINavigationController*) controller {
+    
 }
 
 
@@ -587,8 +606,8 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
 
 - (void) prioritizePerson:(Person*) person {
-    [netflixCache prioritizePerson:person];
-    [personPosterCache prioritizePerson:person];
+    //[netflixCache prioritizePerson:person];
+    //[personPosterCache prioritizePerson:person];
 }
 
 

@@ -19,6 +19,4 @@
     NetflixViewController* netflixViewController;
 }
 
-- (id) initWithAppDelegate:(AppDelegate*) appDelegate;
-
 @end

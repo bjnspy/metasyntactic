@@ -16,24 +16,19 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
-    LinkedSet* prioritizedMovies;
-    LinkedSet* primaryMovies;
-    LinkedSet* secondaryMovies;
-
-    NSMutableSet* updatedMovies;
+    NSMutableSet* updatedMovies_;
+    NSArray* searchOperations_;
 }
 
 - (void) prioritizeMovie:(Movie*) movie;
 
 /* @protected */
-- (id) initWithModel:(Model*) model;
 - (void) addPrimaryMovie:(Movie*) movie;
 - (void) addSecondaryMovie:(Movie*) movie;
+- (void) addSearchMovies:(NSArray*) movies;
 - (void) addPrimaryMovies:(NSArray*) movies;
 - (void) addSecondaryMovies:(NSArray*) movies;
 
-//- (BOOL) updatedMoviesContains:(Movie*) movie;
-//- (void) addSuccessfullyUpdatedMovie:(Movie*) movie;
 - (void) clearUpdatedMovies;
 
 @end

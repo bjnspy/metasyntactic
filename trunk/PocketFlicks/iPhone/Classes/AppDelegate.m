@@ -18,6 +18,7 @@
 #import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 #import "NetflixNavigationController.h"
@@ -25,6 +26,7 @@
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) NetflixNavigationController* navigationController;
+@property (retain) OperationQueue* operationQueue;
 @property (retain) Controller* controller;
 @property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
@@ -40,6 +42,7 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize operationQueue;
 @synthesize controller;
 @synthesize model;
 @synthesize majorRefreshPulser;
@@ -50,6 +53,7 @@ static AppDelegate* appDelegate = nil;
 - (void) dealloc {
     self.window = nil;
     self.navigationController = nil;
+    self.operationQueue = nil;
     self.controller = nil;
     self.model = nil;
     self.majorRefreshPulser = nil;
@@ -89,13 +93,15 @@ static AppDelegate* appDelegate = nil;
 
     [self setupGlobalActivityIndicator];
 
-    self.model = [Model model];
-    self.controller = [Controller controllerWithAppDelegate:self];
+    self.model = [[[Model alloc] init] autorelease];
+    self.controller = [[[Controller alloc] init] autorelease];
 
-    self.navigationController = [[[NetflixNavigationController alloc] initWithAppDelegate:self] autorelease];
+    self.navigationController = [[[NetflixNavigationController alloc] init] autorelease];
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
 
+    self.operationQueue = [OperationQueue operationQueue];
+    
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
@@ -154,6 +160,36 @@ static AppDelegate* appDelegate = nil;
 
 + (UIView*) globalActivityView {
     return appDelegate.globalActivityView;
+}
+
+
++ (OperationQueue*) operationQueue {
+    return appDelegate.operationQueue;
+}
+
+
++ (void) addNotification:(NSString*) notification {
+    
+}
+
+
++ (void) addNotifications:(NSArray*) notifications {
+    
+}
+
+
++ (void) removeNotification:(NSString*) notification {
+    
+}
+
+
++ (void) removeNotifications:(NSArray*) notifications {
+    
+}
+
+
+- (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
+    [self.model didReceiveMemoryWarning];
 }
 
 @end

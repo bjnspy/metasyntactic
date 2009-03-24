@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "AutoResizingCell.h"
 #import "ColorCache.h"
+#import "Controller.h"
 #import "CreditsViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
@@ -89,12 +90,11 @@ typedef enum {
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
-
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 

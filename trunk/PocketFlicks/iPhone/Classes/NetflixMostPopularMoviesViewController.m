@@ -16,6 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
+#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -68,12 +69,12 @@
 
 
 - (Model*) model {
-    return navigationController.model;
+    return [Model model];
 }
 
 
 - (Controller*) controller {
-    return navigationController.controller;
+    return [Controller controller];
 }
 
 
