@@ -17,21 +17,30 @@
 #import "Model.h"
 
 @interface ActionsView()
-@property (assign) id target;
-@property (retain) NSArray* selectors;
-@property (retain) NSArray* titles;
-@property (retain) NSArray* buttons;
-@property (retain) NSArray* arguments;
+@property (assign) id target_;
+@property (retain) NSArray* selectors_;
+@property (retain) NSArray* titles_;
+@property (retain) NSArray* buttons_;
+@property (retain) NSArray* arguments_;
+@property CGFloat height_;
 @end
 
 
 @implementation ActionsView
 
-@synthesize target;
-@synthesize selectors;
-@synthesize titles;
-@synthesize buttons;
-@synthesize arguments;
+@synthesize target_;
+@synthesize selectors_;
+@synthesize titles_;
+@synthesize buttons_;
+@synthesize arguments_;
+@synthesize height_;
+
+property_wrapper(id, target, Target);
+property_wrapper(NSArray*, selectors, Selectors);
+property_wrapper(NSArray*, titles, Titles);
+property_wrapper(NSArray*, buttons, Buttons);
+property_wrapper(NSArray*, arguments, Arguments);
+property_wrapper(CGFloat, height, Height);
 
 - (void) dealloc {
     self.target = nil;
@@ -44,19 +53,19 @@
 }
 
 
-- (id) initWithTarget:(id) target_
-            selectors:(NSArray*) selectors_
-               titles:(NSArray*) titles_
-            arguments:(NSArray*) arguments_ {
+- (id) initWithTarget:(id) target__
+            selectors:(NSArray*) selectors__
+               titles:(NSArray*) titles__
+            arguments:(NSArray*) arguments__ {
     if (self = [super initWithFrame:CGRectZero]) {
-        self.target = target_;
-        self.selectors = selectors_;
-        self.titles = titles_;
-        self.arguments = arguments_;
+        self.target = target__;
+        self.selectors = selectors__;
+        self.titles = titles__;
+        self.arguments = arguments__;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         NSMutableArray* array = [NSMutableArray array];
-        for (NSString* title in titles) {
+        for (NSString* title in self.titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
@@ -70,11 +79,11 @@
         self.buttons = array;
 
         {
-            int lastRow = (buttons.count - 1) / 2;
+            int lastRow = (self.buttons.count - 1) / 2;
 
-            UIButton* button = [buttons lastObject];
+            UIButton* button = [self.buttons lastObject];
             CGRect frame = button.frame;
-            height = (8 + frame.size.height) * (lastRow + 1);
+            self.height = (8 + frame.size.height) * (lastRow + 1);
         }
     }
 
@@ -94,23 +103,23 @@
 
 
 - (void) onButtonTapped:(UIButton*) button {
-    NSInteger index = [buttons indexOfObject:button];
+    NSInteger index = [self.buttons indexOfObject:button];
 
-    SEL selector = [[selectors objectAtIndex:index] pointerValue];
-    if ([target respondsToSelector:selector]) {
-        id argument = [arguments objectAtIndex:index];
+    SEL selector = [[self.selectors objectAtIndex:index] pointerValue];
+    if ([self.target respondsToSelector:selector]) {
+        id argument = [self.arguments objectAtIndex:index];
 
         if (argument == [NSNull null]) {
-            [target performSelector:selector];
+            [self.target performSelector:selector];
         } else {
-            [target performSelector:selector withObject:argument];
+            [self.target performSelector:selector withObject:argument];
         }
     }
 }
 
 
 - (CGSize) sizeThatFits:(CGSize) size withModel:(Model*) model {
-    if (buttons.count == 0) {
+    if (self.buttons.count == 0) {
         return CGSizeZero;
     }
 
@@ -122,22 +131,17 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
 
-    return CGSizeMake(width, height);
-}
-
-
-- (CGFloat) height {
-    return height;
+    return CGSizeMake(width, self.height);
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
+    BOOL oddNumberOfButtons = ((self.buttons.count % 2) == 1);
 
-    for (int i = 0; i < buttons.count; i++) {
-        UIButton* button = [buttons objectAtIndex:i];
+    for (int i = 0; i < self.buttons.count; i++) {
+        UIButton* button = [self.buttons objectAtIndex:i];
 
         NSInteger column;
         NSInteger row;
