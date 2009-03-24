@@ -18,13 +18,15 @@
 #import "NetflixViewController.h"
 
 @interface NetflixNavigationController()
-@property (retain) NetflixViewController* netflixViewController;
+@property (retain) NetflixViewController* netflixViewController_;
 @end
 
 
 @implementation NetflixNavigationController
 
-@synthesize netflixViewController;
+@synthesize netflixViewController_;
+
+property_wrapper(NetflixViewController*, netflixViewController, NetflixViewController);
 
 - (void) dealloc {
     self.netflixViewController = nil;
@@ -45,9 +47,9 @@
 - (void) loadView {
     [super loadView];
 
-    if (netflixViewController == nil) {
+    if (self.netflixViewController == nil) {
         self.netflixViewController = [[[NetflixViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:netflixViewController animated:NO];
+        [self pushViewController:self.netflixViewController animated:NO];
     }
 }
 

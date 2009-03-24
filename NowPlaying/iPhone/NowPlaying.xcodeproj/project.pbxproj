@@ -21,7 +21,6 @@
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
-		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
 		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
 		7406A78C0F104D1D00795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7880F104D1D00795555 /* Controller.m */; };
 		7406A78D0F104D1D00795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A78A0F104D1D00795555 /* Model.m */; };
@@ -392,8 +391,6 @@
 		740245680E7848BF00ECE1B4 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
 		740246600E785A9000ECE1B4 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
 		740246610E785A9000ECE1B4 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
-		7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
-		7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
 		7406A7850F104D1D00795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7406A7870F104D1D00795555 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
@@ -1402,8 +1399,6 @@
 				747AB7AD0EB95750002438D0 /* DVDNavigationController.m */,
 				74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */,
 				74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */,
-				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
-				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -2210,7 +2205,6 @@
 				74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */,
 				74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */,
 				74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */,
-				7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */,
 				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
