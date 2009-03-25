@@ -18,17 +18,17 @@
 @interface AbstractScoreProvider : AbstractMovieCache<ScoreProvider> {
 @private
     // Mapping from score title to score.
-    NSDictionary* scoresData_;
-    NSString* hashData_;
+    NSDictionary* scoresData;
+    NSString* hashData;
 
-    NSArray* movies_;
+    NSArray* movies;
 
     // Mapping from google movie title to score provider title
-    NSDictionary* movieMapData_;
-    NSLock* movieMapLock_;
+    NSDictionary* movieMapData;
+    NSLock* movieMapLock;
 
-    NSString* providerDirectory_;
-    NSString* reviewsDirectory_;
+    NSString* providerDirectory;
+    NSString* reviewsDirectory;
 }
 
 @end
