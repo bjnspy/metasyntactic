@@ -128,8 +128,7 @@
     static NSString* reuseIdentifier = @"MovieTitleCellReuseIdentifier";
     MovieTitleCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                          model:self.model] autorelease];
+        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:self];
@@ -144,8 +143,7 @@
 
     TheaterNameCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                           model:self.model] autorelease];
+        cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setTheater:theater];
@@ -160,8 +158,7 @@
 
     UpcomingMovieCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                                   model:self.model] autorelease];
+        cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:self];
@@ -176,8 +173,7 @@
 
     DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                         model:self.model] autorelease];
+        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:self];
@@ -192,8 +188,7 @@
 
     DVDCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier
-                                         model:self.model] autorelease];
+        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setMovie:movie owner:self];

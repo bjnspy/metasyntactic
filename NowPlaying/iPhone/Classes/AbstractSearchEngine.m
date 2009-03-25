@@ -14,6 +14,7 @@
 
 #import "AbstractSearchEngine.h"
 
+#import "AppDelegate.h"
 #import "Location.h"
 #import "Model.h"
 #import "Movie.h"
@@ -79,11 +80,21 @@
 }
 
 
-- (void) search:(SearchRequest*) request {
+- (void) searchWorker:(SearchRequest*) request {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
+- (void) search:(SearchRequest*) request {
+    NSString* notification = NSLocalizedString(@"Searching", nil);
+    [AppDelegate addNotification:notification];
+    {
+        [self searchWorker:request];
+    }
+    [AppDelegate removeNotification:notification];
+}
+
+    
 - (void) searchLoop {
     while (true) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
