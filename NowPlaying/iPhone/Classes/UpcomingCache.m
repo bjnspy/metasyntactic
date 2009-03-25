@@ -480,13 +480,6 @@
 }
 
 
-- (void) reportIndex:(NSArray*) arguments {
-    NSAssert([NSThread isMainThread], nil);
-
-
-}
-
-
 - (void) updateSynopsisAndCast:(Movie*) movie
                         studio:(NSString*) studio
                          title:(NSString*) title {
