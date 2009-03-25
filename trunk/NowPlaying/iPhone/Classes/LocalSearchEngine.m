@@ -147,7 +147,7 @@
 }
 
 
-- (void) search:(SearchRequest*) currentlyExecutingRequest {
+- (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
     NSArray* movies = [self findMovies:currentlyExecutingRequest];
     if ([self abortEarly:currentlyExecutingRequest]) { return; }
 

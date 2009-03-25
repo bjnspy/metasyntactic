@@ -37,7 +37,7 @@
 }
 
 
-- (void) search:(SearchRequest*) currentlyExecutingRequest {
+- (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
     NSString* error;
     NSArray* movies = [self.model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
     if ([self abortEarly:currentlyExecutingRequest]) { return; }
