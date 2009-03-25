@@ -16,10 +16,10 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
+    // accessed from multiple threads.  needs lock
     NSArray* feedsData;
     NSDictionary* queues;
     NSDate* lastQuotaErrorDate;
-    NSMutableDictionary* presubmitRatings;
 }
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
@@ -58,9 +58,6 @@
 - (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie;
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
-
-// @protected
-- (NSMutableDictionary*) presubmitRatings;
 
 - (void) saveQueue:(Queue*) queue;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;

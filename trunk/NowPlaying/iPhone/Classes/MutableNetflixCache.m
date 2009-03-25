@@ -33,11 +33,25 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface MutableNetflixCache()
+@property (retain) NSDictionary* presubmitRatings;
+@end
 
 @implementation MutableNetflixCache
 
+@synthesize presubmitRatings;
+
 - (void) dealloc {
+    self.presubmitRatings = nil;
     [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.presubmitRatings = [NSDictionary dictionary];
+    }
+    return self;
 }
 
 
@@ -112,6 +126,14 @@
 }
 
 
+- (void) removePresubmitRatingsForMovie:(Movie*) movie {
+    movie = [self promoteDiscToSeries:movie];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
+    [dictionary removeObjectForKey:movie];
+    self.presubmitRatings = dictionary;
+}
+
+
 - (void) reportChangeRatingFailure:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
 
@@ -119,16 +141,19 @@
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
     NSString* message = [arguments objectAtIndex:2];
 
-    [self.presubmitRatings removeObjectForKey:movie];
+    [self removePresubmitRatingsForMovie:movie];
+
     [delegate changeFailedWithError:message];
 }
 
 
 - (void) reportChangeRatingSuccess:(NSArray*) arguments {
+    NSAssert([NSThread isMainThread], nil);
+
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
-
-    [self.presubmitRatings removeObjectForKey:movie];
+    [self removePresubmitRatingsForMovie:movie];
+    
     [delegate changeSucceeded];
 }
 
@@ -288,8 +313,12 @@
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
+    NSAssert([NSThread isMainThread], @"");
     movie = [self promoteDiscToSeries:movie];
-    [self.presubmitRatings setObject:rating forKey:movie];
+    
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
+    [dictionary setObject:rating forKey:movie];
+    self.presubmitRatings = dictionary;
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
     [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
@@ -671,6 +700,19 @@ NSInteger orderMovies(id t1, id t2, void* context) {
         [self modifyQueueBackgroundEntryPointWorker:arguments];
     }
     [AppDelegate removeNotification:notification];
+}
+
+
+- (NSString*) userRatingForMovie:(Movie*) movie {
+    NSAssert([NSThread isMainThread], @"");
+    movie = [self promoteDiscToSeries:movie];
+    
+    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
+    if (presubmitRating != nil) {
+        return presubmitRating;
+    }
+    
+    return [super userRatingForMovie:movie];
 }
 
 @end

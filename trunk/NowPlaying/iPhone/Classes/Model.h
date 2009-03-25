@@ -34,14 +34,14 @@ enum ViewControllerType {
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
     MutableNetflixCache* netflixCache;
-
+    
+    id<DataProvider> dataProvider;
+    
     NSInteger searchRadiusData;
     NSNumber* isSearchDateTodayData;
 
     NSSet* bookmarkedTitlesData;
     NSDictionary* favoriteTheatersData;
-
-    id<DataProvider> dataProvider;
 
     NSInteger cachedScoreProviderIndex;
 }

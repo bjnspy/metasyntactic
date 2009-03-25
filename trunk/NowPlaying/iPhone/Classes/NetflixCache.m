@@ -46,7 +46,6 @@
 @property (retain) NSArray* feedsData;
 @property (retain) NSDictionary* queues;
 @property (retain) NSDate* lastQuotaErrorDate;
-@property (retain) NSMutableDictionary* presubmitRatings;
 
 - (void) updateMovieDetails:(Movie*) movie;
 @end
@@ -178,13 +177,11 @@ static NSDictionary* availabilityMap = nil;
 @synthesize feedsData;
 @synthesize queues;
 @synthesize lastQuotaErrorDate;
-@synthesize presubmitRatings;
 
 - (void) dealloc {
     self.feedsData = nil;
     self.queues = nil;
     self.lastQuotaErrorDate = nil;
-    self.presubmitRatings = nil;
 
     [super dealloc];
 }
@@ -193,7 +190,6 @@ static NSDictionary* availabilityMap = nil;
 - (id) init {
     if (self = [super init]) {
         self.queues = [NSDictionary dictionary];
-        self.presubmitRatings = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -1379,11 +1375,6 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) userRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-
-    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
-    if (presubmitRating != nil) {
-        return presubmitRating;
-    }
 
     return [FileUtilities readObject:[self userRatingsFile:movie]];
 }
