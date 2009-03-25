@@ -26,20 +26,16 @@
 #import "OperationQueue.h"
 
 @interface LargePosterCache()
-@property (retain) NSMutableDictionary* yearToMovieMap_;
-@property (retain) NSLock* yearToMovieMapGate_;
-@property BOOL updated_;
+@property (retain) NSMutableDictionary* yearToMovieMap;
+@property (retain) NSLock* yearToMovieMapGate;
+@property BOOL updated;
 @end
 
 @implementation LargePosterCache
 
-@synthesize yearToMovieMap_;
-@synthesize yearToMovieMapGate_;
-@synthesize updated_;
-
-property_wrapper(NSMutableDictionary*, yearToMovieMap, YearToMovieMap);
-property_wrapper(NSLock*, yearToMovieMapGate, YearToMovieMapGate);
-property_wrapper(BOOL, updated, Updated);
+@synthesize yearToMovieMap;
+@synthesize yearToMovieMapGate;
+@synthesize updated;
 
 const int START_YEAR = 1912;
 
@@ -207,11 +203,11 @@ const int START_YEAR = 1912;
     }
 
     if (dictionary.count > 0) {
-        [self.yearToMovieMapGate lock];
+        [yearToMovieMapGate lock];
         {
-            [self.yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+            [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
         }
-        [self.yearToMovieMapGate unlock];
+        [yearToMovieMapGate unlock];
         [self clearUpdatedMovies];
     }
 }
@@ -236,7 +232,7 @@ const int START_YEAR = 1912;
         return;
     }
 
-    if (self.updated) {
+    if (updated) {
         return;
     }
     self.updated = YES;
@@ -256,11 +252,11 @@ const int START_YEAR = 1912;
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
     NSDictionary* movieMap;
-    [self.yearToMovieMapGate lock];
+    [yearToMovieMapGate lock];
     {
-        movieMap = [self.yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+        movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
     }
-    [self.yearToMovieMapGate unlock];
+    [yearToMovieMapGate unlock];
 
     NSArray* result = [movieMap objectForKey:movie.canonicalTitle.lowercaseString];
     if (result.count > 0) {

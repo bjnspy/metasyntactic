@@ -36,24 +36,19 @@
 #import "XmlElement.h"
 
 @interface AbstractDVDBlurayCache()
-@property (retain) PointerSet* moviesSetData_;
-@property (retain) NSArray* moviesData_;
-@property (retain) NSDictionary* bookmarksData_;
-@property BOOL updated_;
+@property (retain) PointerSet* moviesSetData;
+@property (retain) NSArray* moviesData;
+@property (retain) NSDictionary* bookmarksData;
+@property BOOL updated;
 @end
 
 
 @implementation AbstractDVDBlurayCache
 
-@synthesize moviesSetData_;
-@synthesize moviesData_;
-@synthesize bookmarksData_;
-@synthesize updated_;
-
-property_wrapper(PointerSet*, moviesSetData, MoviesSetData);
-property_wrapper(NSArray*, moviesData, MoviesData);
-property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
-property_wrapper(BOOL, updated, Updated);
+@synthesize moviesSetData;
+@synthesize moviesData;
+@synthesize bookmarksData;
+@synthesize updated;
 
 - (void) dealloc {
     self.moviesSetData = nil;
@@ -113,17 +108,17 @@ property_wrapper(BOOL, updated, Updated);
 
 
 - (NSArray*) movies {
-    if (self.moviesData == nil) {
+    if (moviesData == nil) {
         [self setMovies:[self loadMovies]];
     }
 
-    return self.moviesData;
+    return moviesData;
 }
 
 
 - (PointerSet*) moviesSet {
     [self movies];
-    return self.moviesSetData;
+    return moviesSetData;
 }
 
 
@@ -148,11 +143,11 @@ property_wrapper(BOOL, updated, Updated);
 
 
 - (NSDictionary*) bookmarks {
-    if (self.bookmarksData == nil) {
+    if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return self.bookmarksData;
+    return bookmarksData;
 }
 
 
@@ -165,7 +160,7 @@ property_wrapper(BOOL, updated, Updated);
         return;
     }
 
-    if (self.updated) {
+    if (updated) {
         return;
     }
     self.updated = YES;

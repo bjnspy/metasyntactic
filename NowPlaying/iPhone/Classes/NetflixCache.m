@@ -43,10 +43,10 @@
 #import "XmlElement.h"
 
 @interface NetflixCache()
-@property (retain) NSArray* feedsData_;
-@property (retain) NSDictionary* queues_;
-@property (retain) NSDate* lastQuotaErrorDate_;
-@property (retain) NSMutableDictionary* presubmitRatings_;
+@property (retain) NSArray* feedsData;
+@property (retain) NSDictionary* queues;
+@property (retain) NSDate* lastQuotaErrorDate;
+@property (retain) NSMutableDictionary* presubmitRatings;
 
 - (void) updateMovieDetails:(Movie*) movie;
 @end
@@ -175,15 +175,10 @@ static NSDictionary* availabilityMap = nil;
     }
 }
 
-@synthesize feedsData_;
-@synthesize queues_;
-@synthesize lastQuotaErrorDate_;
-@synthesize presubmitRatings_;
-
-property_wrapper(NSArray*, feedsData, FeedsData);
-property_wrapper(NSDictionary*, queues, Queues);
-property_wrapper(NSDate*, lastQuotaErrorDate, LastQuotaErrorDate);
-property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
+@synthesize feedsData;
+@synthesize queues;
+@synthesize lastQuotaErrorDate;
+@synthesize presubmitRatings;
 
 - (void) dealloc {
     self.feedsData = nil;
@@ -197,7 +192,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 - (id) init {
     if (self = [super init]) {
-        self.queues = [NSMutableDictionary dictionary];
+        self.queues = [NSDictionary dictionary];
         self.presubmitRatings = [NSMutableDictionary dictionary];
     }
 
@@ -241,11 +236,11 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (NSArray*) feeds {
-    if (self.feedsData == nil) {
+    if (feedsData == nil) {
         self.feedsData = [self loadFeeds];
     }
 
-    return self.feedsData;
+    return feedsData;
 }
 
 
@@ -273,7 +268,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) addQueue:(Queue*) queue {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
     [dictionary setObject:queue forKey:queue.feed.key];
     self.queues = dictionary;
 }
@@ -284,7 +279,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         return nil;
     }
 
-    Queue* queue = [self.queues objectForKey:feed.key];
+    Queue* queue = [queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
         if (queue != nil) {
@@ -1337,9 +1332,9 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     NSAssert([NSThread isMainThread], nil);
 
     self.feedsData = feeds;
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
 
-    for (NSString* key in self.queues.allKeys) {
+    for (NSString* key in queues.allKeys) {
         if (![self feedsContainsKey:key]) {
             [dictionary removeObjectForKey:key];
         }
@@ -1385,7 +1380,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 - (NSString*) userRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
 
-    NSString* presubmitRating = [self.presubmitRatings objectForKey:movie];
+    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
     if (presubmitRating != nil) {
         return presubmitRating;
     }
