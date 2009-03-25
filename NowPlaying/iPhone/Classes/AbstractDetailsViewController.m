@@ -22,15 +22,13 @@
 #import "SearchDatePickerViewController.h"
 
 @interface AbstractDetailsViewController()
-@property NSInteger updateId_;
+@property NSInteger updateId;
 @end
 
 
 @implementation AbstractDetailsViewController
 
-@synthesize updateId_;
-
-property_wrapper(NSInteger, updateId, UpdateId);
+@synthesize updateId;
 
 - (void) dealloc {
     [super dealloc];
@@ -52,10 +50,10 @@ property_wrapper(NSInteger, updateId, UpdateId);
 
 - (void) changeDate {
     SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:self.abstractNavigationController
+    [SearchDatePickerViewController pickerWithNavigationController:abstractNavigationController
                                                             object:self
                                                           selector:@selector(onSearchDateChanged:)];
-    [self.abstractNavigationController pushViewController:pickerController animated:YES];
+    [abstractNavigationController pushViewController:pickerController animated:YES];
 }
 
 
@@ -184,14 +182,14 @@ property_wrapper(NSInteger, updateId, UpdateId);
     [self presentUpdateListingsViewController];
 
     self.updateId++;
-    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:self.updateId],
+    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:updateId],
                       searchDate, nil];
     [self.model.dataProvider update:searchDate delegate:self context:array force:YES];
 }
 
 
 - (void) onDataProviderUpdateFailure:(NSString*) error context:(id) array {
-    if (self.updateId != [[array objectAtIndex:0] intValue]) {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
@@ -208,7 +206,7 @@ property_wrapper(NSInteger, updateId, UpdateId);
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (self.updateId != [[array objectAtIndex:0] intValue]) {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 

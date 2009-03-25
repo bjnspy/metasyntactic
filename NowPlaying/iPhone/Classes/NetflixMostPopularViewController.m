@@ -123,9 +123,9 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
 
-    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:self.abstractNavigationController
+    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:abstractNavigationController
                                                                                                                               category:title] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 

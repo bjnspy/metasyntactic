@@ -175,11 +175,6 @@
 
 
 - (void) minorRefreshWorker {
-    [super minorRefreshWorker];
-    if (!self.visible) {
-        return;
-    }
-
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
@@ -187,7 +182,7 @@
 
 
 - (UIViewController*) createFilterViewController {
-    return [[[DVDFilterViewController alloc] initWithNavigationController:self.abstractNavigationController] autorelease];
+    return [[[DVDFilterViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
 }
 
 @end

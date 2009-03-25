@@ -508,7 +508,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) reportPoster:(NSNumber*) posterNumber {
     NSAssert([NSThread isMainThread], nil);
-    if (!self.visible) { return; }
+    if (!visible) { return; }
     posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
     [self minorRefresh];
@@ -961,12 +961,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) readReviews {
-    [self.abstractNavigationController pushReviews:movie animated:YES];
+    [abstractNavigationController pushReviews:movie animated:YES];
 }
 
 
 - (void) visitWebsite:(NSString*) website {
-    [self.abstractNavigationController pushBrowser:website animated:YES];
+    [abstractNavigationController pushBrowser:website animated:YES];
 }
 
 
@@ -1143,7 +1143,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
                             withButtonIndex:(NSInteger) buttonIndex {
     NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
-    [self.abstractNavigationController pushBrowser:url animated:YES];
+    [abstractNavigationController pushBrowser:url animated:YES];
 }
 
 
@@ -1171,7 +1171,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (self.updateId != [[array objectAtIndex:0] intValue]) {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
@@ -1228,7 +1228,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [abstractNavigationController pushTicketsView:movie
                                   theater:theater
                                     title:theater.name
                                  animated:animated];
@@ -1275,7 +1275,7 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
         if (indexPath.row == 0) {
-            [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+            [abstractNavigationController pushTheaterDetails:theater animated:YES];
         } else {
             [self pushTicketsView:theater animated:YES];
         }
@@ -1306,7 +1306,7 @@ const NSInteger POSTER_TAG = -1;
                                              gate:nil
                                          priority:Now];
 
-    [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
+    [abstractNavigationController showPostersView:movie posterCount:posterCount];
 }
 
 

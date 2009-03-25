@@ -140,9 +140,9 @@
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
-    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:self.abstractNavigationController
+    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:abstractNavigationController
                                                                                                        feedKey:feed.key] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 @end

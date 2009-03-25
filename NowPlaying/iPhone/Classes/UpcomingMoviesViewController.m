@@ -143,11 +143,6 @@
 
 
 - (void) minorRefreshWorker {
-    [super minorRefreshWorker];
-    if (!self.visible) {
-        return;
-    }
-
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }

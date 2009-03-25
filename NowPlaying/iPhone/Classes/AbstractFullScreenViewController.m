@@ -21,15 +21,13 @@
 #import "NotificationCenter.h"
 
 @interface AbstractFullScreenViewController()
-@property (assign) AbstractNavigationController* abstractNavigationController_;
+@property (assign) AbstractNavigationController* abstractNavigationController;
 @end
 
 
 @implementation AbstractFullScreenViewController
 
-@synthesize abstractNavigationController_;
-
-property_wrapper(AbstractNavigationController*, abstractNavigationController, AbstractNavigationController);
+@synthesize abstractNavigationController;
 
 - (void) dealloc {
     self.abstractNavigationController = nil;

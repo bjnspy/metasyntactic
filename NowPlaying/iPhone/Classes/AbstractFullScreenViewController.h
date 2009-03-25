@@ -14,7 +14,7 @@
 
 @interface AbstractFullScreenViewController : UIViewController {
 @protected
-    AbstractNavigationController* abstractNavigationController_;
+    AbstractNavigationController* abstractNavigationController;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

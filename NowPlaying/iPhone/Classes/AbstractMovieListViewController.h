@@ -31,8 +31,6 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 /* protected */
-
 - (void) majorRefreshWorker;
-- (void) minorRefreshWorker;
 
 @end

@@ -94,7 +94,7 @@ typedef enum {
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:self.abstractNavigationController
+    self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:abstractNavigationController
                                                                                            searchBar:searchBar
                                                                                   contentsController:self] autorelease];
 }
@@ -272,9 +272,9 @@ typedef enum {
 
 - (void) didSelectQueueRow:(NSString*) key {
     NetflixQueueViewController* controller =
-    [[[NetflixQueueViewController alloc] initWithNavigationController:self.abstractNavigationController
+    [[[NetflixQueueViewController alloc] initWithNavigationController:abstractNavigationController
                                                               feedKey:key] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
@@ -286,22 +286,22 @@ typedef enum {
      [NetflixCache rentalHistoryReturnedKey], nil];
 
     NetflixFeedsViewController* controller =
-    [[[NetflixFeedsViewController alloc] initWithNavigationController:self.abstractNavigationController
+    [[[NetflixFeedsViewController alloc] initWithNavigationController:abstractNavigationController
                                                              feedKeys:keys
                                                                 title:NSLocalizedString(@"Rental History", nil)] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectRecomendationsRow {
-    NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:self.abstractNavigationController] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectMostPopularSection {
-    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:self.abstractNavigationController] autorelease];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
@@ -327,15 +327,15 @@ typedef enum {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
             [Application openBrowser:address];
         } else if (indexPath.row == 1) {
-            NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:self.abstractNavigationController] autorelease];
-            [self.abstractNavigationController pushViewController:controller animated:YES];
+            NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+            [abstractNavigationController pushViewController:controller animated:YES];
         }
     }
 }
 
 
 - (void) showInfo {
-    [self.abstractNavigationController pushInfoControllerAnimated:YES];
+    [abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
 @end

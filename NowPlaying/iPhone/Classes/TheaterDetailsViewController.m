@@ -329,7 +329,7 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [abstractNavigationController pushTicketsView:movie
                                   theater:theater
                                     title:movie.displayTitle
                                  animated:animated];
@@ -342,7 +342,7 @@
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-    if (self.updateId != [[array objectAtIndex:0] intValue]) {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
 
@@ -389,7 +389,7 @@
 
         Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+            [abstractNavigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

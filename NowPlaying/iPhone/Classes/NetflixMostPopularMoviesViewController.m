@@ -84,10 +84,6 @@
 
 
 - (void) minorRefreshWorker {
-    if (!self.visible) {
-        return;
-    }
-
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -148,7 +144,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

@@ -36,6 +36,10 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:selector
                                                object:nil];
+    
+    if (!visible) {
+        return;
+    }
 
     if (self.tableView.dragging || self.tableView.decelerating) {
         [self performSelector:selector withObject:nil afterDelay:1];

@@ -149,15 +149,15 @@
     if (indexPath.section < reviews.count) {
         Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link) {
-            [self.abstractNavigationController pushBrowser:review.link animated:YES];
+            [abstractNavigationController pushBrowser:review.link animated:YES];
         }
     } else {
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
             Score* score = [self.model metacriticScoreForMovie:movie];
             NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
-            [self.abstractNavigationController pushBrowser:address animated:YES];
+            [abstractNavigationController pushBrowser:address animated:YES];
         } else if (self.model.googleScores) {
-            [self.abstractNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
+            [abstractNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
         }
     }
 }
