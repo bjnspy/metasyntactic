@@ -18,7 +18,7 @@
 @private
     // accessed from multiple threads.  needs lock
     NSArray* feedsData;
-    NSDictionary* queues;
+    NSDictionary* queuesData;
     NSDate* lastQuotaErrorDate;
 }
 

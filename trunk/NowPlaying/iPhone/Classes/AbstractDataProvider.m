@@ -135,7 +135,8 @@
         self.moviesData = [self loadMovies];
     }
     
-    return moviesData;
+    // Access through the property so that we get back a safe pointer
+    return self.moviesData;
 }
 
 
@@ -169,7 +170,8 @@
         self.bookmarksData = [self loadBookmarks];
     }
     
-    return bookmarksData;
+    // Access through the property so that we get back a safe pointer
+    return self.bookmarksData;
 }
 
 
@@ -197,7 +199,9 @@
     if (synchronizationInformationData == nil) {
         self.synchronizationInformationData = [self loadSynchronizationInformation];
     }
-    return synchronizationInformationData;
+
+    // Access through the property so that we get back a safe pointer
+    return self.synchronizationInformationData;
 }
 
 
@@ -331,7 +335,8 @@
         self.theatersData = [self loadTheaters];
     }
     
-    return theatersData;
+    // Access through the property so that we get back a safe pointer
+    return self.theatersData;
 }
 
 

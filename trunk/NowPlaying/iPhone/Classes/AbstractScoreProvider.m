@@ -165,8 +165,9 @@
     if (scoresData == nil) {
         self.scoresData = [self loadScores];
     }
-
-    return scoresData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.scoresData;
 }
 
 
@@ -185,8 +186,9 @@
     if (hashData == nil) {
         self.hashData = [self loadHash];
     }
-
-    return hashData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.hashData;
 }
 
 
@@ -224,7 +226,9 @@
     }
 
     [self ensureMovieMapNoLock];
-    return movieMapData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.movieMapData;
 }
 
 

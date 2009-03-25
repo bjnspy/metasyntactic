@@ -121,7 +121,8 @@
         [self setMoviesNoLock:[self loadMovies]];
     }
     
-    return moviesData;
+    // Access through the property so that we get back a safe pointer
+    return self.moviesData;
 }
 
 
@@ -141,7 +142,8 @@
     [dataGate lock];
     {
         [self moviesNoLock];
-        result = moviesSetData;
+        // Access through the property so that we get back a safe pointer
+        result = self.moviesSetData;
     }
     [dataGate unlock];
     return result;
@@ -172,8 +174,9 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-
-    return bookmarksData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.bookmarksData;
 }
 
 
