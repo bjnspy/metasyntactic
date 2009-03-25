@@ -1090,6 +1090,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) ensureFavoriteTheaters {
+    NSAssert([NSThread isMainThread], @"");
     if (favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
