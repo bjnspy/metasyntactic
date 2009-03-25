@@ -130,12 +130,23 @@
 }
 
 
-- (NSArray*) movies {
+- (NSArray*) moviesNoLock {
     if (moviesData == nil) {
         self.moviesData = [self loadMovies];
     }
 
     return moviesData;
+}
+
+
+- (NSArray*) movies {
+    NSArray* result = nil;
+    [gate lock];
+    {
+        result = [self moviesNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -153,12 +164,23 @@
 }
 
 
-- (NSDictionary*) bookmarks {
+- (NSDictionary*) bookmarksNoLock {
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
     return bookmarksData;
+}
+
+
+- (NSDictionary*) bookmarks {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self bookmarksNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -171,11 +193,22 @@
 }
 
 
-- (NSDictionary*) synchronizationInformation {
+- (NSDictionary*) synchronizationInformationNoLock {
     if (synchronizationInformationData == nil) {
         self.synchronizationInformationData = [self loadSynchronizationInformation];
     }
     return synchronizationInformationData;
+}
+
+
+- (NSDictionary*) synchronizationInformation {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self synchronizationInformationNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -228,7 +261,7 @@
 }
 
 
-- (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
+- (NSMutableDictionary*) lookupTheaterPerformancesNoLock:(Theater*) theater {
     NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
@@ -241,8 +274,8 @@
 
 
 - (NSArray*) moviePerformances:(Movie*) movie
-                    forTheater:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformances:theater];
+                    forTheaterNoLock:(Theater*) theater {
+    NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformancesNoLock:theater];
 
     NSArray* unsureArray = [theaterPerformances objectForKey:movie.canonicalTitle];
     if (unsureArray.count == 0) {
@@ -265,6 +298,18 @@
 }
 
 
+- (NSArray*) moviePerformances:(Movie*) movie
+                    forTheater:(Theater*) theater {
+    NSArray* result = nil;
+    [gate lock];
+    {
+        result = [self moviePerformances:movie forTheaterNoLock:theater];
+    }
+    [gate unlock];
+    return result;
+}
+
+
 - (NSArray*) loadTheaters {
     NSArray* array = [FileUtilities readObject:self.theatersFile];
     if (array == nil) {
@@ -281,12 +326,23 @@
 }
 
 
-- (NSArray*) theaters {
+- (NSArray*) theatersNoLock {
     if (theatersData == nil) {
         self.theatersData = [self loadTheaters];
     }
 
     return theatersData;
+}
+
+
+- (NSArray*) theaters {
+    NSArray* result = nil;
+    [gate lock];
+    {
+        result = [self theatersNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -524,8 +580,13 @@
 }
 
 
-- (void) saveBookmarks {
-    [self.model setBookmarkedMovies:self.bookmarks.allValues];
+- (void) setBookmarks:(NSDictionary*) bookmarks {
+    [gate lock];
+    {
+        self.bookmarksData = bookmarks;
+    }
+    [gate unlock];
+    [self.model setBookmarkedMovies:bookmarks.allValues];
 }
 
 
@@ -545,13 +606,16 @@
             [dictionary setObject:movie forKey:movie.canonicalTitle];
         }
     }
-    self.bookmarksData = dictionary;
-    [self saveBookmarks];
+    [self setBookmarks:dictionary];
 
-    self.moviesData = result.movies;
-    self.theatersData = result.theaters;
-    self.synchronizationInformationData = result.synchronizationInformation;
-    self.performancesData = [NSMutableDictionary dictionary];
+    [gate lock];
+    {
+        self.moviesData = result.movies;
+        self.theatersData = result.theaters;
+        self.synchronizationInformationData = result.synchronizationInformation;
+        self.performancesData = [NSMutableDictionary dictionary];
+    }
+    [gate unlock];
 
     [AppDelegate majorRefresh:YES];
 }
@@ -587,9 +651,8 @@
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
             [dictionary setObject:movie forKey:canonicalTitle];
-            self.bookmarksData = dictionary;
 
-            [self saveBookmarks];
+            [self setBookmarks:dictionary];
             return;
         }
     }
@@ -599,8 +662,7 @@
 - (void) removeBookmark:(NSString*) canonicalTitle {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     [dictionary removeObjectForKey:canonicalTitle];
-    self.bookmarksData = dictionary;
-    [self saveBookmarks];
+    [self setBookmarks:dictionary];
 }
 
 @end
