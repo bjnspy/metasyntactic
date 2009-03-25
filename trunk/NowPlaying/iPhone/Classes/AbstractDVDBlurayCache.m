@@ -103,7 +103,7 @@
 
 - (void) setMoviesNoLock:(NSArray*) array {
     self.moviesData = array;
-    self.moviesSetData = [PointerSet setWithArray:array];        
+    self.moviesSetData = [PointerSet setWithArray:array];
 }
 
 
@@ -120,7 +120,7 @@
     if (moviesData == nil) {
         [self setMoviesNoLock:[self loadMovies]];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.moviesData;
 }
@@ -174,7 +174,7 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.bookmarksData;
 }
@@ -384,7 +384,7 @@
     [self clearUpdatedMovies];
 
     NSAssert([NSThread isMainThread], nil);
-    
+
     NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
     // add in any previously bookmarked movies that we now no longer know about.
     for (Movie* movie in self.bookmarks.allValues) {
@@ -392,7 +392,7 @@
             [movies addObject:movie];
         }
     }
-    
+
     // also determine if any of the data we found match items the user bookmarked
     NSMutableDictionary* bookmarks = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     for (Movie* movie in movies) {
@@ -400,10 +400,10 @@
             [bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
-    
+
     [self setBookmarks:bookmarks];
     [self setMovies:movies];
-    
+
     return map.allKeys;
 }
 

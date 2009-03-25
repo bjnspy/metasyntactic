@@ -203,7 +203,7 @@
     if (movieMapData == nil) {
         self.movieMapData = [self loadMovies];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.movieMapData;
 }
@@ -232,7 +232,7 @@
             self.hashData = @"";
         }
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.hashData;
 }
@@ -263,7 +263,7 @@
     if (studioKeysData == nil) {
         self.studioKeysData = [self loadStudioKeys];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.studioKeysData;
 }
@@ -294,7 +294,7 @@
     if (titleKeysData == nil) {
         self.titleKeysData = [self loadTitleKeys];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.titleKeysData;
 }
@@ -330,7 +330,7 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.bookmarksData;
 }
@@ -411,7 +411,7 @@
             [movies addObject:movie];
         }
     }
-    
+
     // also determine if any of the data we found match items the user bookmarked
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     for (Movie* movie in movies) {
@@ -420,12 +420,12 @@
         }
     }
     [self setBookmarks:dictionary];
-    
+
     NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [movieMap setObject:movie forKey:movie.canonicalTitle];
     }
-    
+
     [dataGate lock];
     {
         self.hashData = serverHash;
@@ -434,7 +434,7 @@
         self.titleKeysData = titleKeys;
     }
     [dataGate unlock];
-    
+
     [AppDelegate majorRefresh];
 
     return movies;

@@ -246,7 +246,7 @@ static NSDictionary* availabilityMap = nil;
     if (queuesData == nil) {
         queuesData = [NSDictionary dictionary];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.queuesData;
 }
@@ -752,7 +752,7 @@ static NSDictionary* availabilityMap = nil;
                                      movies:movies
                                       saved:saved];
         [self saveQueue:queue];
-        
+
         [AppDelegate majorRefresh];
     }
 }
@@ -1308,7 +1308,7 @@ static NSDictionary* availabilityMap = nil;
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -1320,23 +1320,23 @@ static NSDictionary* availabilityMap = nil;
 
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
-        
+
         NSDictionary* queues = self.queues;
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
-        
+
         for (NSString* key in queues.allKeys) {
             if (![self feedsContainsKey:key]) {
                 [dictionary removeObjectForKey:key];
             }
         }
-        
+
         [dataGate lock];
         {
             self.feedsData = feeds;
             self.queuesData = dictionary;
         }
         [dataGate unlock];
-        
+
         [AppDelegate majorRefresh];
     }
 

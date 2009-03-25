@@ -32,7 +32,7 @@
     self.separatorLine = nil;
     self.placeholder = nil;
     self.value = nil;
-    
+
     [super dealloc];
 }
 
@@ -42,14 +42,14 @@
                     reuseIdentifier:reuseIdentifier]) {
         self.separatorLine = [[[UILabel alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
     separatorLine.frame = separatorFrame;
 }
@@ -66,13 +66,13 @@
 
 - (void) setCellValue:(NSString*) text {
     self.value = text;
-    
+
     if (value.length > 0) {
         self.detailTextLabel.text = value;
     } else {
         self.detailTextLabel.text = placeholder;
     }
-    
+
     [self setValueColor];
 }
 

@@ -137,7 +137,7 @@
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
     [self removePresubmitRatingsForMovie:movie];
-    
+
     [delegate changeSucceeded];
 }
 
@@ -301,7 +301,7 @@
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
     NSAssert([NSThread isMainThread], @"");
     movie = [self promoteDiscToSeries:movie];
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
     [dictionary setObject:rating forKey:movie];
     self.presubmitRatings = dictionary;
@@ -692,12 +692,12 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 - (NSString*) userRatingForMovie:(Movie*) movie {
     NSAssert([NSThread isMainThread], @"");
     movie = [self promoteDiscToSeries:movie];
-    
+
     NSString* presubmitRating = [presubmitRatings objectForKey:movie];
     if (presubmitRating != nil) {
         return presubmitRating;
     }
-    
+
     return [super userRatingForMovie:movie];
 }
 

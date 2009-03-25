@@ -103,7 +103,7 @@
     NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
     [[NSThread currentThread] setName:name];
 
-    BOOL visible =  (self.queuePriority >= NSOperationQueuePriorityLow);
+    BOOL visible =  (self.queuePriority >= Priority);
 
     [gate lock];
     [GlobalActivityIndicator addBackgroundTask:visible];

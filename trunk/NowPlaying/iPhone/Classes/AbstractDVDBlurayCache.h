@@ -17,7 +17,7 @@
 @interface AbstractDVDBlurayCache : AbstractMovieCache {
 @private
     BOOL updated;
-    
+
     // Accessed by many threads.  needs locks.
     PointerSet* moviesSetData;
     NSArray* moviesData;

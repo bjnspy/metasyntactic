@@ -51,7 +51,7 @@
     self.upcomingMoviesNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
-    
+
     [super dealloc];
 }
 
@@ -60,7 +60,7 @@
     if (moviesNavigationController == nil) {
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return moviesNavigationController;
 }
 
@@ -69,7 +69,7 @@
     if (theatersNavigationController == nil) {
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return theatersNavigationController;
 }
 
@@ -78,7 +78,7 @@
     if (upcomingMoviesNavigationController == nil) {
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return upcomingMoviesNavigationController;
 }
 
@@ -87,7 +87,7 @@
     if (dvdNavigationController == nil) {
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return dvdNavigationController;
 }
 
@@ -96,7 +96,7 @@
     if (netflixNavigationController == nil) {
         self.netflixNavigationController = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return netflixNavigationController;
 }
 
@@ -114,7 +114,7 @@
 - (id) init {
     if (self = [super init]) {
         [self resetTabs];
-        
+
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
             [moviesNavigationController pushInfoControllerAnimated:NO];
@@ -125,23 +125,23 @@
             } else {
                 controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
             }
-            
+
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
-            
+
             if ([NetworkUtilities isNetworkAvailable]) {
                 if (!self.model.votedForIcon) {
                     [self.model setVotedForIcon];
-                    
+
                     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
                     [controller pushBrowser:url showSafariButton:NO animated:YES];
                 }
             }
         }
-        
+
         self.delegate = self;
     }
-    
+
     return self;
 }
 
@@ -154,7 +154,7 @@
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
-    
+
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
@@ -206,7 +206,7 @@
 
 - (void) resetTabs {
     NSMutableArray* controllers = [NSMutableArray array];
-    
+
     [controllers addObject:[self loadMoviesNavigationController]];
     [controllers addObject:[self loadTheatersNavigationController]];
     if (self.model.upcomingEnabled) {
@@ -218,9 +218,9 @@
     if (self.model.netflixEnabled) {
         [controllers addObject:[self loadNetflixNavigationController]];
     }
-    
+
     [self.selectedNavigationController popToRootViewControllerAnimated:NO];
-    
+
     [self setViewControllers:controllers animated:NO];
     /*
      // Such an awful hack.  For some reason, changing the view controllers
@@ -238,7 +238,7 @@
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-    
+
     return self.model.screenRotationEnabled;
 }
 
