@@ -114,11 +114,12 @@
 - (void) setupTappableArrow {
     UIImage* image = [ImageCache upArrow];
     TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
-    //view.contentMode = UIViewContentModeCenter;
+    view.contentMode = UIViewContentModeCenter;
 
-    //CGRect frame = view.frame;
-    //frame.size.height += 80;
-    //view.frame = frame;
+    CGRect frame = view.frame;
+    frame.size.height += 80;
+    frame.size.width += 20;
+    view.frame = frame;
 
     self.tappableArrow = view;
 }

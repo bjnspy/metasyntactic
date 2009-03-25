@@ -92,7 +92,6 @@ typedef enum {
 - (void) initializeSearchDisplay {
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
-    self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:abstractNavigationController
                                                                                            searchBar:searchBar
@@ -148,6 +147,11 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
+    if (self.hasAccount) {
+        self.tableView.tableHeaderView = searchBar;
+    } else {
+        self.tableView.tableHeaderView = nil;
+    }
     [self initializeInfoButton];
     [self setupTableStyle];
     [self setupTitle];
@@ -165,7 +169,6 @@ typedef enum {
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
 }
 
 

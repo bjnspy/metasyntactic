@@ -78,7 +78,6 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
 }
 
 

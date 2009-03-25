@@ -103,6 +103,10 @@
 
 
 - (void) reloadTableViewData {
+    if (!visible) {
+        return;
+    }
+    
     [self.tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {

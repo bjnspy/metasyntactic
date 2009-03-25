@@ -532,7 +532,6 @@ const NSInteger POSTER_TAG = -1;
     [super viewWillAppear:animated];
 
     [self downloadPoster];
-    [self majorRefresh];
 }
 
 
