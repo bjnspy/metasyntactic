@@ -1089,54 +1089,63 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (void) ensureFavoriteTheaters {
-    NSAssert([NSThread isMainThread], @"");
+- (NSDictionary*) favoriteTheatersNoLock {
     if (favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
+
+    // Access through property so we always get a valid value back
+    return self.favoriteTheatersData;
 }
 
 
-- (NSArray*) favoriteTheaters {
-    [self ensureFavoriteTheaters];
-    return favoriteTheatersData.allValues;
+- (NSDictionary*) favoriteTheaters {
+    NSDictionary* result = nil;
+    [dataGate lock];
+    {
+        result = [self favoriteTheatersNoLock];
+    }
+    [dataGate unlock];
+    return result;
 }
 
 
-- (void) saveFavoriteTheaters {
-    [Model saveFavoriteTheaters:self.favoriteTheaters];
+- (NSArray*) favoriteTheatersArray {
+    return self.favoriteTheaters.allValues;
+}
+
+- (void) setFavoriteTheaters:(NSDictionary*) favoriteTheaters {
+    [dataGate lock];
+    {
+        self.favoriteTheatersData = favoriteTheaters;
+    }
+    [dataGate unlock];
+    [Model saveFavoriteTheaters:favoriteTheaters.allValues];
 }
 
 
 - (void) addFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:favoriteTheatersData];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
 
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                     originatingLocation:theater.originatingLocation];
 
     [dictionary setObject:favoriteTheater forKey:theater.name];
-    self.favoriteTheatersData = dictionary;
 
-    [self saveFavoriteTheaters];
+    [self setFavoriteTheaters:dictionary];
 }
 
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-
-    return [favoriteTheatersData objectForKey:theater.name] != nil;
+    return [self.favoriteTheaters objectForKey:theater.name] != nil;
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:favoriteTheatersData];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
     [dictionary removeObjectForKey:theater.name];
-    self.favoriteTheatersData = dictionary;
 
-    [self saveFavoriteTheaters];
+    [self setFavoriteTheaters:dictionary];
 }
 
 

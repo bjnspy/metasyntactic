@@ -391,7 +391,7 @@
 
 - (void) updateMissingFavorites:(LookupResult*) lookupResult
                      searchDate:(NSDate*) searchDate {
-    NSArray* favoriteTheaters = self.model.favoriteTheaters;
+    NSArray* favoriteTheaters = self.model.favoriteTheatersArray;
     if (favoriteTheaters.count == 0) {
         return;
     }
