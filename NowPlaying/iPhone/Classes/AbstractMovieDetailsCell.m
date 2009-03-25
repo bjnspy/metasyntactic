@@ -15,15 +15,13 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface AbstractMovieDetailsCell()
-@property (retain) Movie* movie_;
+@property (retain) Movie* movie;
 @end
 
 
 @implementation AbstractMovieDetailsCell
 
-@synthesize movie_;
-
-property_wrapper(Movie*, movie, Movie);
+@synthesize movie;
 
 - (void) dealloc {
     self.movie = nil;

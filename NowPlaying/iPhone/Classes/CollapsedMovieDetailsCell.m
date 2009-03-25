@@ -18,15 +18,13 @@
 #import "Movie.h"
 
 @interface CollapsedMovieDetailsCell()
-@property (retain) UILabel* ratingAndRuntimeLabel_;
+@property (retain) UILabel* ratingAndRuntimeLabel;
 @end
 
 
 @implementation CollapsedMovieDetailsCell
 
-@synthesize ratingAndRuntimeLabel_;
-
-property_wrapper(UILabel*, ratingAndRuntimeLabel, RatingAndRuntimeLabel);
+@synthesize ratingAndRuntimeLabel;
 
 - (void) dealloc {
     self.ratingAndRuntimeLabel = nil;
@@ -38,18 +36,18 @@ property_wrapper(UILabel*, ratingAndRuntimeLabel, RatingAndRuntimeLabel);
 - (id) initWithMovie:(Movie*) movie_ {
     if (self = [super initWithMovie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        self.ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
+        ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 
         if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
-            self.ratingAndRuntimeLabel.text = self.movie.rating;
+            ratingAndRuntimeLabel.text = movie.rating;
         } else {
-            self.ratingAndRuntimeLabel.text = self.movie.ratingAndRuntimeString;
+            ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         }
 
-        self.ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
-        [self.ratingAndRuntimeLabel sizeToFit];
+        ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
+        [ratingAndRuntimeLabel sizeToFit];
 
-        [self.contentView addSubview:self.ratingAndRuntimeLabel];
+        [self.contentView addSubview:ratingAndRuntimeLabel];
 
         self.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
     }
@@ -66,10 +64,10 @@ property_wrapper(UILabel*, ratingAndRuntimeLabel, RatingAndRuntimeLabel);
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect frame = self.ratingAndRuntimeLabel.frame;
+    CGRect frame = ratingAndRuntimeLabel.frame;
     frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
     frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
-    self.ratingAndRuntimeLabel.frame = frame;
+    ratingAndRuntimeLabel.frame = frame;
 }
 
 @end

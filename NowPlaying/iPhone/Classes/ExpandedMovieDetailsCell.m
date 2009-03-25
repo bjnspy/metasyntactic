@@ -113,10 +113,10 @@
 - (void) addRating:(MutableMultiDictionary*) dictionary {
     NSString* title = NSLocalizedString(@"Rated:", nil);
     NSString* value;
-    if (self.movie.isUnrated) {
+    if (movie.isUnrated) {
         value = NSLocalizedString(@"Unrated", nil);
     } else {
-        value = self.movie.rating;
+        value = movie.rating;
     }
 
     [self addTitle:title andValue:value to:dictionary];
@@ -124,29 +124,29 @@
 
 
 - (void) addRunningTime:(MutableMultiDictionary*) dictionary {
-    if (self.movie.length <= 0) {
+    if (movie.length <= 0) {
         return;
     }
 
     NSString* title = NSLocalizedString(@"Running time:", nil);
-    NSString* value = self.movie.runtimeString;
+    NSString* value = movie.runtimeString;
 
     [self addTitle:title andValue:value to:dictionary];
 }
 
 
 - (void) addReleaseDate:(MutableMultiDictionary*) dictionary {
-    if (self.movie.releaseDate == nil) {
+    if (movie.releaseDate == nil) {
         return;
     }
 
     NSString* title = NSLocalizedString(@"Release date:", nil);
 
     NSString* value;
-    if (self.movie.isNetflix) {
-        value = [DateUtilities formatYear:self.movie.releaseDate];
+    if (movie.isNetflix) {
+        value = [DateUtilities formatYear:movie.releaseDate];
     } else {
-        value = [DateUtilities formatMediumDate:self.movie.releaseDate];
+        value = [DateUtilities formatMediumDate:movie.releaseDate];
     }
 
     [self addTitle:title andValue:value to:dictionary];
@@ -154,7 +154,7 @@
 
 
 - (void) addGenres:(MutableMultiDictionary*) dictionary {
-    NSArray* genres = [self.model genresForMovie:self.movie];
+    NSArray* genres = [self.model genresForMovie:movie];
     if (genres.count == 0) {
         return;
     }
@@ -170,19 +170,19 @@
 
 
 - (void) addStudio:(MutableMultiDictionary*) dictionary {
-    if (self.movie.studio.length == 0) {
+    if (movie.studio.length == 0) {
         return;
     }
 
     NSString* title = NSLocalizedString(@"Studio:", nil);
-    NSString* value = self.movie.studio;
+    NSString* value = movie.studio;
 
     [self addTitle:title andValue:value to:dictionary];
 }
 
 
 - (void) addDirectors:(MutableMultiDictionary*) dictionary {
-    NSArray* directors = [self.model directorsForMovie:self.movie];
+    NSArray* directors = [self.model directorsForMovie:movie];
     if (directors.count == 0) {
         return;
     }
@@ -199,7 +199,7 @@
 
 
 - (void) addCast:(MutableMultiDictionary*) dictionary {
-    NSArray* cast = [self.model castForMovie:self.movie];
+    NSArray* cast = [self.model castForMovie:movie];
     if (cast.count == 0) {
         return;
     }

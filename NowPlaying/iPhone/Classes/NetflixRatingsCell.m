@@ -22,14 +22,12 @@
 #import "TappableImageView.h"
 
 @interface NetflixRatingsCell()
-@property (retain) NSArray* imageViews_;
+@property (retain) NSArray* imageViews;
 @end
 
 @implementation NetflixRatingsCell
 
-@synthesize imageViews_;
-
-property_wrapper(NSArray*, imageViews, ImageViews);
+@synthesize imageViews;
 
 - (void) dealloc {
     self.imageViews = nil;
@@ -54,7 +52,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
 
 
 - (void) setupNetflixRating {
-    CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:self.movie] floatValue];
+    CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie] floatValue];
 
     NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
@@ -147,7 +145,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
 - (void) setupRating {
     [self clearRating];
 
-    NSString* userRating = [self.model.netflixCache userRatingForMovie:self.movie];
+    NSString* userRating = [self.model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
         [self setupUserRating:userRating];
     } else {
@@ -169,7 +167,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
     NSInteger value = imageView.tag;
-    NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:self.movie] floatValue];
+    NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
 
     if (value == currentUserRating) {
         return;
@@ -185,7 +183,7 @@ property_wrapper(NSArray*, imageViews, ImageViews);
 
     // now, update in the background.
     NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-    [self.model.netflixCache changeRatingTo:rating forMovie:self.movie delegate:self];
+    [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
 }
 
 

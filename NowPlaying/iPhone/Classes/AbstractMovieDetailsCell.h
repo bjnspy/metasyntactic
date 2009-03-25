@@ -13,15 +13,12 @@
 // limitations under the License.
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
-@private
-    Movie* movie_;
+@protected
+    Movie* movie;
 }
 
 - (id) initWithMovie:(Movie*) movie;
 
 - (CGFloat) height:(UITableView*) tableView;
-
-/* @protected */
-- (Movie*) movie;
 
 @end
