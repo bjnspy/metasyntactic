@@ -28,33 +28,25 @@
 #import "TheatersNavigationController.h"
 
 @interface AllTheatersViewController()
-@property (retain) UISegmentedControl* segmentedControl_;
-@property (retain) UISearchBar* searchBar_;
-@property (retain) LocalSearchDisplayController* searchDisplayController_;
-@property (retain) NSArray* sortedTheaters_;
-@property (retain) NSArray* sectionTitles_;
-@property (retain) MultiDictionary* sectionTitleToContentsMap_;
-@property (retain) NSArray* indexTitles_;
+@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) UISearchBar* searchBar;
+@property (retain) LocalSearchDisplayController* searchDisplayController;
+@property (retain) NSArray* sortedTheaters;
+@property (retain) NSArray* sectionTitles;
+@property (retain) MultiDictionary* sectionTitleToContentsMap;
+@property (retain) NSArray* indexTitles;
 @end
 
 
 @implementation AllTheatersViewController
 
-@synthesize segmentedControl_;
-@synthesize searchBar_;
-@synthesize searchDisplayController_;
-@synthesize sortedTheaters_;
-@synthesize sectionTitles_;
-@synthesize sectionTitleToContentsMap_;
-@synthesize indexTitles_;
-
-property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
-property_wrapper(UISearchBar*, searchBar, SearchBar);
-property_wrapper(LocalSearchDisplayController*, searchDisplayController, SearchDisplayController);
-property_wrapper(NSArray*, sortedTheaters, SortedTheaters);
-property_wrapper(NSArray*, sectionTitles, SectionTitles);
-property_wrapper(MultiDictionary*, sectionTitleToContentsMap, SectionTitleToContentsMap);
-property_wrapper(NSArray*, indexTitles, IndexTitles);
+@synthesize segmentedControl;
+@synthesize searchBar;
+@synthesize searchDisplayController;
+@synthesize sortedTheaters;
+@synthesize sectionTitles;
+@synthesize sectionTitleToContentsMap;
+@synthesize indexTitles;
 
 - (void) dealloc {
     self.segmentedControl = nil;
@@ -75,7 +67,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 
 - (BOOL) sortingByName {
-    return self.segmentedControl.selectedSegmentIndex == 1;
+    return segmentedControl.selectedSegmentIndex == 1;
 }
 
 
@@ -85,17 +77,17 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 
 - (void) onSortOrderChanged:(id) sender {
-    self.model.allTheatersSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
+    self.model.allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
 
 
 - (void) removeUnusedSectionTitles {
-    NSMutableArray* array = [NSMutableArray arrayWithArray:self.sectionTitles];
+    NSMutableArray* array = [NSMutableArray arrayWithArray:sectionTitles];
 
     for (NSInteger i = array.count - 1; i >= 0; --i) {
         NSString* title = [array objectAtIndex:i];
-        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0) {
+        if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
             [array removeObjectAtIndex:i];
         }
     }
@@ -109,7 +101,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
-    for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
+    for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [map addObject:theater forKey:[Application starString]];
             continue;
@@ -136,10 +128,10 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
     }
 
     if ([LocaleUtilities isJapanese]) {
-        self.sectionTitles = [NSMutableArray arrayWithArray:self.sectionTitleToContentsMap.allKeys];
-        self.sectionTitles = [self.sectionTitles sortedArrayUsingSelector:@selector(compare:)];
+        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
+        self.sectionTitles = [sectionTitles sortedArrayUsingSelector:@selector(compare:)];
     } else {
-        self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
+        self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
     }
 
     self.sectionTitleToContentsMap = map;
@@ -185,7 +177,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
     self.sectionTitles = array;
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
 
-    NSArray* theatersInRange = [self.model theatersInRange:self.sortedTheaters];
+    NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
     for (Theater* theater in theatersInRange) {
         if ([self.model isFavoriteTheater:theater]) {
             [map addObject:theater forKey:favorites];
@@ -230,7 +222,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
     [self removeUnusedSectionTitles];
 
-    if (self.sectionTitles.count == 0) {
+    if (sectionTitles.count == 0) {
         NSArray* theaters = self.model.theaters;
         if (theaters.count == 1) {
             self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search area", nil)];
@@ -250,15 +242,15 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
                                NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"),
                                NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"), nil]] autorelease];
 
-    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    self.segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
-    [self.segmentedControl addTarget:self
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
+    [segmentedControl addTarget:self
                          action:@selector(onSortOrderChanged:)
                forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = self.segmentedControl.frame;
+    CGRect rect = segmentedControl.frame;
     rect.size.width = 240;
-    self.segmentedControl.frame = rect;
+    segmentedControl.frame = rect;
 }
 
 
@@ -300,11 +292,11 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 - (void) initializeSearchDisplay {
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
-    [self.searchBar sizeToFit];
-    self.tableView.tableHeaderView = self.searchBar;
+    [searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:self.abstractNavigationController
-                                                                                         searchBar:self.searchBar
+                                                                                         searchBar:searchBar
                                                                                 contentsController:self] autorelease];
 }
 
@@ -318,7 +310,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
     [self initializeSearchDisplay];
     [self initializeInfoButton];
 
-    self.navigationItem.titleView = self.segmentedControl;
+    self.navigationItem.titleView = segmentedControl;
 
     [self setupIndexTitles];
 
@@ -337,11 +329,11 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 
 - (BOOL) outOfBounds:(NSIndexPath*) indexPath {
-    if (indexPath.section < 0 || indexPath.section >= self.sectionTitles.count) {
+    if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
         return YES;
     }
 
-    NSArray* theaters = [self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]];
+    NSArray* theaters = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
     if (indexPath.row < 0 || indexPath.row >= theaters.count) {
         return YES;
     }
@@ -356,20 +348,20 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
         return;
     }
 
-    Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return self.sectionTitles.count;
+    return sectionTitles.count;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
+    return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
 }
 
 
@@ -379,7 +371,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
         return [[[UITableView alloc] init] autorelease];
     }
 
-    Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
@@ -401,7 +393,7 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    NSString* sectionTitle = [self.sectionTitles objectAtIndex:section];
+    NSString* sectionTitle = [sectionTitles objectAtIndex:section];
     if ([sectionTitle isEqual:[Application starString]]) {
         return NSLocalizedString(@"Favorites", nil);
     }
@@ -412,9 +404,9 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
     if ([self sortingByName] &&
-        self.sortedTheaters.count > 0 &&
+        sortedTheaters.count > 0 &&
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return self.indexTitles;
+        return indexTitles;
     }
 
     return nil;
@@ -424,17 +416,17 @@ property_wrapper(NSArray*, indexTitles, IndexTitles);
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
     if ([UITableViewIndexSearch isEqual:title]) {
-        [self.tableView scrollRectToVisible:self.searchBar.frame animated:NO];
+        [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
         return -1;
     } else if (firstChar == '#') {
-        return [self.sectionTitles indexOfObject:@"#"];
+        return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [Application starCharacter]) {
-        return [self.sectionTitles indexOfObject:[Application starString]];
+        return [sectionTitles indexOfObject:[Application starString]];
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];
 
-            NSInteger result = [self.sectionTitles indexOfObject:s];
+            NSInteger result = [sectionTitles indexOfObject:s];
             if (result != NSNotFound) {
                 return result;
             }
