@@ -29,28 +29,22 @@
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property (assign) ApplicationTabBarController* applicationTabBarController_;
-@property (retain) PostersViewController* postersViewController_;
-@property BOOL visible_;
-@property BOOL viewLoaded_;
+@property (assign) ApplicationTabBarController* applicationTabBarController;
+@property (retain) PostersViewController* postersViewController;
+@property BOOL visible;
 @end
 
 
 @implementation AbstractNavigationController
 
-@synthesize applicationTabBarController_;
-@synthesize postersViewController_;
-@synthesize visible_;
-@synthesize viewLoaded_;
-
-property_wrapper(ApplicationTabBarController*, applicationTabBarController, ApplicationTabBarController);
-property_wrapper(PostersViewController*, postersViewController, PostersViewController);
-property_wrapper(BOOL, visible, Visible);
-property_wrapper(BOOL, viewLoaded, ViewLoaded);
+@synthesize applicationTabBarController;
+@synthesize postersViewController;
+@synthesize visible;
 
 - (void) dealloc {
     self.applicationTabBarController = nil;
     self.postersViewController = nil;
+    self.visible = NO;
 
     [super dealloc];
 }
@@ -68,13 +62,12 @@ property_wrapper(BOOL, viewLoaded, ViewLoaded);
 - (void) loadView {
     [super loadView];
 
-    self.viewLoaded = YES;
     self.view.autoresizesSubviews = YES;
 }
 
 
 - (void) refreshWithSelector:(SEL) selector {
-    if (!self.viewLoaded || !self.visible) {
+    if (!self.isViewLoaded || !visible) {
         return;
     }
 
@@ -97,17 +90,19 @@ property_wrapper(BOOL, viewLoaded, ViewLoaded);
 
 
 - (void) viewDidAppear:(BOOL) animated {
+    [super viewDidAppear:animated];
     self.visible = YES;
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
+    [super viewDidDisappear:animated];
     self.visible = NO;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    if (self.visible || self.postersViewController != nil) {
+    if (visible || postersViewController != nil) {
         return;
     }
 
@@ -233,7 +228,7 @@ property_wrapper(BOOL, viewLoaded, ViewLoaded);
 
     return
         self.model.screenRotationEnabled &&
-        self.postersViewController == nil;
+        postersViewController == nil;
 }
 
 
@@ -244,7 +239,7 @@ property_wrapper(BOOL, viewLoaded, ViewLoaded);
 
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
-    if (self.postersViewController != nil) {
+    if (postersViewController != nil) {
         [self hidePostersView];
     }
 
@@ -253,7 +248,7 @@ property_wrapper(BOOL, viewLoaded, ViewLoaded);
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
 
-    [self pushViewController:self.postersViewController animated:YES];
+    [self pushViewController:postersViewController animated:YES];
 }
 
 
