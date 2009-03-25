@@ -67,7 +67,7 @@ property_wrapper(NSLock*, boundedOperationsGate, BoundedOperationsGate);
 }
 
 
-- (void) addOperation:(Operation*) operation priority:(BOOL) queuePriority {
+- (void) addOperation:(Operation*) operation priority:(QueuePriority) queuePriority {
     operation.queuePriority = queuePriority;
     [self.queue addOperation:operation];
 }
@@ -99,7 +99,8 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
                     priority:(QueuePriority) priority {
     [self.boundedOperationsGate lock];
     {
-        [self.boundedOperations addObject:operation];
+        operation.queuePriority = priority;
+
         if (self.boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
             // too many operations.  cancel the oldest one.
             Operation* staleOperation = [self.boundedOperations objectAtIndex:0];

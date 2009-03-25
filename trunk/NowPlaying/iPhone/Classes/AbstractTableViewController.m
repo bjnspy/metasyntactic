@@ -66,14 +66,24 @@ property_wrapper(BOOL, visible, Visible);
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    self.visible = YES;
     [self.model saveNavigationStack:self.abstractNavigationController];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    self.visible = YES;
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+    self.visible = NO;
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
     [super viewDidDisappear:animated];
-    self.visible = NO;
 }
 
 
