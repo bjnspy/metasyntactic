@@ -16,6 +16,7 @@
 
 @interface TrailerCache : AbstractMovieCache {
 @private
+    // Accessed from different threads.  needs gate.
     NSDictionary* index;
     NSArray* indexKeys;
 }

@@ -16,13 +16,13 @@
 
 @interface UpcomingCache : AbstractMovieCache {
 @private
+    BOOL updated;
+    
+    // Accessed from different threads.  Needs lock.
     NSString* hashData;
     NSDictionary* movieMapData;
     NSDictionary* studioKeysData;
     NSDictionary* titleKeysData;
-
-    BOOL updated;
-
     NSDictionary* bookmarksData;
 }
 
