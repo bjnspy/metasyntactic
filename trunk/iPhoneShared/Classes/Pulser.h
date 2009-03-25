@@ -14,11 +14,11 @@
 
 @interface Pulser : NSObject {
 @private
-    id target_;
-    SEL action_;
-    NSTimeInterval pulseInterval_;
+    id target;
+    SEL action;
+    NSTimeInterval pulseInterval;
 
-    NSDate* lastPulseTime_;
+    NSDate* lastPulseTime;
 }
 
 + (Pulser*) pulserWithTarget:(id) target
