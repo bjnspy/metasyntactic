@@ -371,7 +371,7 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
     }
 
     [self clearUpdatedMovies];
-    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
+    [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
 

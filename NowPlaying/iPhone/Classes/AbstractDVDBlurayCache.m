@@ -366,7 +366,7 @@ property_wrapper(BOOL, updated, Updated);
     }
 
     [self clearUpdatedMovies];
-    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
+    [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
 

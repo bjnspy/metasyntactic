@@ -71,6 +71,11 @@ property_wrapper(UIViewController*, filterViewController, FilterViewController);
 }
 
 
+- (void) viewDidAppear:(BOOL) animated {
+    [super viewDidAppear:animated];
+}
+
+
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
 

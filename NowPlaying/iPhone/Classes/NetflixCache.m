@@ -743,8 +743,8 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
     Queue* queue = [self loadQueue:feed];
 
-    [[CacheUpdater cacheUpdater] addPrimaryMovies:queue.movies];
-    [[CacheUpdater cacheUpdater] addPrimaryMovies:queue.saved];
+    [[CacheUpdater cacheUpdater] addMovies:queue.movies];
+    [[CacheUpdater cacheUpdater] addMovies:queue.saved];
 }
 
 
@@ -1095,7 +1095,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
                                                                        onTarget:[AppDelegate class]
                                                                         withObject:notification
                                                                            gate:nil
-                                                                       priority:Priority];
+                                                                       priority:Normal];
 
     for (NSString* identifier in identifiers) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
@@ -1103,14 +1103,14 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
                                            withObject:identifier
                                            withObject:address
                                                  gate:nil
-                                             priority:Priority];
+                                             priority:Normal];
     }
 
     [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
                                                                        onTarget:[AppDelegate class]
                                                                      withObject:notification
                                                                            gate:nil
-                                                                       priority:Priority];
+                                                                       priority:Normal];
 }
 
 
@@ -1263,7 +1263,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         }
     }
 
-    [[CacheUpdater cacheUpdater] addPrimaryMovie:movie];
+    [[CacheUpdater cacheUpdater] addMovie:movie];
 }
 
 
@@ -1653,7 +1653,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         Movie* netflixMovie = [self lookupMovieWorker:movie];
         if (netflixMovie != nil) {
             [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-            [[CacheUpdater cacheUpdater] addPrimaryMovie:movie];
+            [[CacheUpdater cacheUpdater] addMovie:movie];
             [AppDelegate minorRefresh];
         }
     }

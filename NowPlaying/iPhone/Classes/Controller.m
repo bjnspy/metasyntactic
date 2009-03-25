@@ -157,7 +157,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
     [self updateNetflixCache];
 
     NSArray* movies = self.model.movies;
-    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
+    [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
 

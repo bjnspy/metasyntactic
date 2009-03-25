@@ -117,4 +117,12 @@
     }
 }
 
+
+- (NSString*) description {
+    NSString* className = NSStringFromClass([target class]);
+    NSString* selectorName = NSStringFromSelector(selector);
+    NSString* name = [NSString stringWithFormat:@"%d-%@-%@", self.queuePriority, className, selectorName];
+    return name;
+}
+
 @end
