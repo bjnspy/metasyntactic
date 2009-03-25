@@ -22,15 +22,13 @@
 #import "Movie.h"
 
 @interface MovieTitleCell()
-@property (retain) UILabel* scoreLabel_;
+@property (retain) UILabel* scoreLabel;
 @end
 
 
 @implementation MovieTitleCell
 
-@synthesize scoreLabel_;
-
-property_wrapper(UILabel*, scoreLabel, ScoreLabel);
+@synthesize scoreLabel;
 
 - (void) dealloc {
     self.scoreLabel = nil;
@@ -46,11 +44,11 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
         self.textLabel.minimumFontSize = 12;
 
         self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        self.scoreLabel.backgroundColor = [UIColor clearColor];
-        self.scoreLabel.textAlignment = UITextAlignmentCenter;
+        scoreLabel.backgroundColor = [UIColor clearColor];
+        scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        [self.contentView addSubview:self.scoreLabel];
-        [self.contentView bringSubviewToFront:self.scoreLabel];
+        [self.contentView addSubview:scoreLabel];
+        [self.contentView bringSubviewToFront:scoreLabel];
     }
 
     return self;
@@ -77,30 +75,30 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
             if (self.image != [ImageCache freshImage]) {
                 self.image = [ImageCache freshImage];
 
-                self.scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-                self.scoreLabel.textColor = [UIColor whiteColor];
+                scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+                scoreLabel.textColor = [UIColor whiteColor];
 
                 CGRect frame = CGRectMake(5, 7, 32, 32);
 
-                self.scoreLabel.frame = frame;
+                scoreLabel.frame = frame;
             }
         } else {
             if (self.image != [ImageCache rottenFadedImage]) {
                 self.image = [ImageCache rottenFadedImage];
 
-                self.scoreLabel.font = [UIFont boldSystemFontOfSize:17];
-                self.scoreLabel.textColor = [UIColor blackColor];
+                scoreLabel.font = [UIFont boldSystemFontOfSize:17];
+                scoreLabel.textColor = [UIColor blackColor];
 
                 CGRect frame = CGRectMake(5, 5, 30, 32);
 
-                self.scoreLabel.frame = frame;
+                scoreLabel.frame = frame;
             }
         }
 
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     } else {
         if (self.image != [ImageCache unknownRatingImage]) {
-            self.scoreLabel.text = nil;
+            scoreLabel.text = nil;
             self.image = [ImageCache unknownRatingImage];
         }
     }
@@ -113,14 +111,14 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(6, 6, 30, 30);
         if (score == 100) {
-            self.scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
-            self.scoreLabel.font = [FontCache boldSystem19];
+            scoreLabel.font = [FontCache boldSystem19];
         }
 
-        self.scoreLabel.textColor = [ColorCache darkDarkGray];
-        self.scoreLabel.frame = frame;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+        scoreLabel.textColor = [ColorCache darkDarkGray];
+        scoreLabel.frame = frame;
+        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
 
     if (score >= 0 && score <= 40) {
@@ -130,7 +128,7 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
     } else if (score > 60 && score <= 100) {
         self.image = [ImageCache greenRatingImage];
     } else {
-        self.scoreLabel.text = nil;
+        scoreLabel.text = nil;
         self.image = [ImageCache unknownRatingImage];
     }
 }
@@ -143,7 +141,7 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    [self.contentView bringSubviewToFront:self.scoreLabel];
+    [self.contentView bringSubviewToFront:scoreLabel];
 }
 
 
@@ -156,7 +154,7 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
         [self setBasicSquareScore:movie];
     } else if (self.model.noScores) {
         self.image = nil;
-        self.scoreLabel.text = nil;
+        scoreLabel.text = nil;
     }
 }
 
