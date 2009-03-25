@@ -159,7 +159,7 @@
 }
 
 
-- (NSDictionary*) scores {
+- (NSDictionary*) scoresNoLock {
     if (scoresData == nil) {
         self.scoresData = [self loadScores];
     }
@@ -168,7 +168,18 @@
 }
 
 
-- (NSString*) hashValue {
+- (NSDictionary*) scores {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self scoresNoLock];
+    }
+    [gate unlock];
+    return result;
+}
+
+
+- (NSString*) hashValueNoLock {
     if (hashData == nil) {
         self.hashData = [self loadHash];
     }
@@ -177,7 +188,18 @@
 }
 
 
-- (void) ensureMovieMap {
+- (NSString*) hashValue {
+    NSString* result = nil;
+    [gate lock];
+    {
+        result = [self hashValueNoLock];
+    }
+    [gate unlock];
+    return result;
+}
+
+
+- (void) ensureMovieMapNoLock {
     NSArray* moviesArray = [[Model model] movies];
     if (moviesArray != movies) {
         self.movies = moviesArray;
@@ -194,13 +216,24 @@
 }
 
 
-- (NSDictionary*) movieMap {
+- (NSDictionary*) movieMapNoLock {
     if (movieMapData == nil) {
         self.movieMapData = [self loadMovieMap];
     }
 
-    [self ensureMovieMap];
+    [self ensureMovieMapNoLock];
     return movieMapData;
+}
+
+
+- (NSDictionary*) movieMap {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self movieMapNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -246,10 +279,14 @@
 
     [self saveScores:result hash:serverHash];
 
-    self.scoresData = result;
-    self.hashData = serverHash;
-    self.movieMapData = nil;
-    self.movies = nil;
+    [gate lock];
+    {
+        self.scoresData = result;
+        self.hashData = serverHash;
+        self.movieMapData = nil;
+        self.movies = nil;
+    }
+    [gate unlock];
     [AppDelegate majorRefresh];
 }
 
@@ -489,8 +526,12 @@
     [FileUtilities writeObject:result
                         toFile:self.movieMapFile];
 
-    self.movieMapData = result;
-    self.movies = localMovies;
+    [gate lock];
+    {
+        self.movieMapData = result;
+        self.movies = localMovies;
+    }
+    [gate unlock];
 
     [AppDelegate majorRefresh];
 }
@@ -498,7 +539,7 @@
 
 - (void) regenerateMap:(NSDictionary*) scores
              forMovies:(NSArray*) localMovies {
-    [self regenerateMapWorker:scores forMovies:movies];
+    [self regenerateMapWorker:scores forMovies:localMovies];
     [self clearUpdatedMovies];
 }
 
