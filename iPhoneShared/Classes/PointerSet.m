@@ -15,15 +15,13 @@
 #import "PointerSet.h"
 
 @interface PointerSet()
-@property (retain) NSMutableSet* set_;
+@property (retain) NSMutableSet* set;
 @end
 
 
 @implementation PointerSet
 
-@synthesize set_;
-
-property_wrapper(NSMutableSet*, set, Set);
+@synthesize set;
 
 - (void) dealloc {
     self.set = nil;
@@ -47,7 +45,7 @@ property_wrapper(NSMutableSet*, set, Set);
 
 
 - (void) addObject:(id) value {
-    [self.set addObject:[NSValue valueWithPointer:value]];
+    [set addObject:[NSValue valueWithPointer:value]];
 }
 
 
@@ -66,17 +64,17 @@ property_wrapper(NSMutableSet*, set, Set);
 
 
 - (void) removeObject:(id) value {
-    [self.set removeObject:[NSValue valueWithPointer:value]];
+    [set removeObject:[NSValue valueWithPointer:value]];
 }
 
 
 - (BOOL) containsObject:(id) value {
-    return [self.set containsObject:[NSValue valueWithPointer:value]];
+    return [set containsObject:[NSValue valueWithPointer:value]];
 }
 
 
 - (NSInteger) count {
-    return self.set.count;
+    return set.count;
 }
 
 @end

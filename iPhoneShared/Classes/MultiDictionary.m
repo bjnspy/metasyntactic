@@ -15,14 +15,12 @@
 #import "MultiDictionary.h"
 
 @interface MultiDictionary()
-@property (retain) NSDictionary* dictionary_;
+@property (retain) NSDictionary* dictionary;
 @end
 
 @implementation MultiDictionary
 
-@synthesize dictionary_;
-
-property_wrapper(NSDictionary*, dictionary, Dictionary);
+@synthesize dictionary;
 
 - (void) dealloc {
     self.dictionary = nil;
@@ -54,7 +52,7 @@ property_wrapper(NSDictionary*, dictionary, Dictionary);
 
 
 - (NSArray*) objectsForKey:(id) key {
-    NSArray* array = [self.dictionary objectForKey:key];
+    NSArray* array = [dictionary objectForKey:key];
     if (array == nil) {
         array = [NSArray array];
     }
@@ -63,17 +61,17 @@ property_wrapper(NSDictionary*, dictionary, Dictionary);
 
 
 - (NSMutableArray*) mutableObjectsForKey:(id) key {
-    return [self.dictionary objectForKey:key];
+    return [dictionary objectForKey:key];
 }
 
 
 - (NSArray*) allKeys {
-    return self.dictionary.allKeys;
+    return dictionary.allKeys;
 }
 
 
 - (NSArray*) allValues {
-    return self.dictionary.allValues;
+    return dictionary.allValues;
 }
 
 @end

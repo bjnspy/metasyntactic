@@ -15,15 +15,13 @@
 #import "IdentityObject.h"
 
 @interface IdentityObject()
-@property (retain) id value_;
+@property (retain) id value;
 @end
 
 
 @implementation IdentityObject
 
-@synthesize value_;
-
-property_wrapper(id, value, Value);
+@synthesize value;
 
 - (void) dealloc {
     self.value = nil;
@@ -46,17 +44,17 @@ property_wrapper(id, value, Value);
 
 
 - (NSUInteger) hash {
-    return (NSUInteger)self.value;
+    return (NSUInteger)value;
 }
 
 
 - (BOOL) isEqual:(id) other {
-    return self.value == [other value];
+    return value == [other value];
 }
 
 
 - (NSString*) description {
-    return [self.value description];
+    return [value description];
 }
 
 @end

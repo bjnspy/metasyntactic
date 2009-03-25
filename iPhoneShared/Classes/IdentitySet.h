@@ -14,7 +14,7 @@
 
 @interface IdentitySet : NSObject {
 @private
-    NSMutableSet* set_;
+    NSMutableSet* set;
 }
 
 + (IdentitySet*) set;

@@ -147,8 +147,6 @@
 		74616DA80F15D8EC0004B610 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DA40F15D8EC0004B610 /* PriorityMutex.m */; };
 		74616DE90F15D9F20004B610 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DDE0F15D9F20004B610 /* IdentityObject.m */; };
 		74616DEA0F15D9F20004B610 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DE00F15D9F20004B610 /* IdentitySet.m */; };
-		74616DEB0F15D9F20004B610 /* LinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DE20F15D9F20004B610 /* LinkedNode.m */; };
-		74616DEC0F15D9F20004B610 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DE40F15D9F20004B610 /* LinkedSet.m */; };
 		74616DED0F15D9F20004B610 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DE60F15D9F20004B610 /* MultiDictionary.m */; };
 		74616DEE0F15D9F20004B610 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DE80F15D9F20004B610 /* PointerSet.m */; };
 		74616E2E0F15DB540004B610 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E270F15DB540004B610 /* XmlDocument.m */; };
@@ -619,10 +617,6 @@
 		74616DDE0F15D9F20004B610 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IdentityObject.m; path = ../../iPhoneShared/Classes/IdentityObject.m; sourceTree = SOURCE_ROOT; };
 		74616DDF0F15D9F20004B610 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IdentitySet.h; path = ../../iPhoneShared/Classes/IdentitySet.h; sourceTree = SOURCE_ROOT; };
 		74616DE00F15D9F20004B610 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IdentitySet.m; path = ../../iPhoneShared/Classes/IdentitySet.m; sourceTree = SOURCE_ROOT; };
-		74616DE10F15D9F20004B610 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedNode.h; path = ../../iPhoneShared/Classes/LinkedNode.h; sourceTree = SOURCE_ROOT; };
-		74616DE20F15D9F20004B610 /* LinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedNode.m; path = ../../iPhoneShared/Classes/LinkedNode.m; sourceTree = SOURCE_ROOT; };
-		74616DE30F15D9F20004B610 /* LinkedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedSet.h; path = ../../iPhoneShared/Classes/LinkedSet.h; sourceTree = SOURCE_ROOT; };
-		74616DE40F15D9F20004B610 /* LinkedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedSet.m; path = ../../iPhoneShared/Classes/LinkedSet.m; sourceTree = SOURCE_ROOT; };
 		74616DE50F15D9F20004B610 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiDictionary.h; path = ../../iPhoneShared/Classes/MultiDictionary.h; sourceTree = SOURCE_ROOT; };
 		74616DE60F15D9F20004B610 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiDictionary.m; path = ../../iPhoneShared/Classes/MultiDictionary.m; sourceTree = SOURCE_ROOT; };
 		74616DE70F15D9F20004B610 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointerSet.h; path = ../../iPhoneShared/Classes/PointerSet.h; sourceTree = SOURCE_ROOT; };
@@ -1674,10 +1668,6 @@
 				74616DDE0F15D9F20004B610 /* IdentityObject.m */,
 				74616DDF0F15D9F20004B610 /* IdentitySet.h */,
 				74616DE00F15D9F20004B610 /* IdentitySet.m */,
-				74616DE10F15D9F20004B610 /* LinkedNode.h */,
-				74616DE20F15D9F20004B610 /* LinkedNode.m */,
-				74616DE30F15D9F20004B610 /* LinkedSet.h */,
-				74616DE40F15D9F20004B610 /* LinkedSet.m */,
 				74616DE50F15D9F20004B610 /* MultiDictionary.h */,
 				74616DE60F15D9F20004B610 /* MultiDictionary.m */,
 				74616DE70F15D9F20004B610 /* PointerSet.h */,
@@ -2372,8 +2362,6 @@
 				74616DA80F15D8EC0004B610 /* PriorityMutex.m in Sources */,
 				74616DE90F15D9F20004B610 /* IdentityObject.m in Sources */,
 				74616DEA0F15D9F20004B610 /* IdentitySet.m in Sources */,
-				74616DEB0F15D9F20004B610 /* LinkedNode.m in Sources */,
-				74616DEC0F15D9F20004B610 /* LinkedSet.m in Sources */,
 				74616DED0F15D9F20004B610 /* MultiDictionary.m in Sources */,
 				74616DEE0F15D9F20004B610 /* PointerSet.m in Sources */,
 				74616E2E0F15DB540004B610 /* XmlDocument.m in Sources */,

@@ -25,7 +25,6 @@
 #import "IMDbCache.h"
 #import "IdentitySet.h"
 #import "ImageUtilities.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixAddMovieDelegate.h"

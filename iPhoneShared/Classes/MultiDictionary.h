@@ -14,7 +14,7 @@
 
 @interface MultiDictionary : NSObject {
 @private
-    NSDictionary* dictionary_;
+    NSDictionary* dictionary;
 }
 
 + (MultiDictionary*) dictionary;
