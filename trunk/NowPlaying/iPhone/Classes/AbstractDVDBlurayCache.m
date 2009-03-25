@@ -347,6 +347,16 @@
 }
 
 
+- (void) setBookmarks:(NSDictionary*) bookmarks {
+    [gate lock];
+    {
+        self.bookmarksData = bookmarks;
+    }
+    [gate unlock];
+    [self.model setBookmarkedDVD:bookmarks.allValues];
+}
+
+
 - (NSArray*) updateMoviesBackgroundEntryPointWorker {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
     if (lastUpdateDate != nil) {
@@ -370,10 +380,27 @@
     [self saveData:map];
     [self clearUpdatedMovies];
 
-    [self performSelectorOnMainThread:@selector(reportResults:)
-                           withObject:map
-                        waitUntilDone:NO];
-
+    NSAssert([NSThread isMainThread], nil);
+    
+    NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
+    // add in any previously bookmarked movies that we now no longer know about.
+    for (Movie* movie in self.bookmarks.allValues) {
+        if (![movies containsObject:movie]) {
+            [movies addObject:movie];
+        }
+    }
+    
+    // also determine if any of the data we found match items the user bookmarked
+    NSMutableDictionary* bookmarks = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+    for (Movie* movie in movies) {
+        if ([self.model isBookmarked:movie]) {
+            [bookmarks setObject:movie forKey:movie.canonicalTitle];
+        }
+    }
+    
+    [self setBookmarks:bookmarks];
+    [self setMovies:movies];
+    
     return map.allKeys;
 }
 
@@ -394,46 +421,12 @@
 
     if (movies.count == 0) {
         movies = [self loadMovies];
+    } else {
+        [AppDelegate majorRefresh];
     }
 
     [self clearUpdatedMovies];
     [[CacheUpdater cacheUpdater] addMovies:movies];
-}
-
-
-- (void) setBookmarks:(NSDictionary*) bookmarks {
-    [gate lock];
-    {
-        self.bookmarksData = bookmarks;
-    }
-    [gate unlock];
-    [self.model setBookmarkedDVD:bookmarks.allValues];
-}
-
-
-- (void) reportResults:(NSDictionary*) map {
-    NSAssert([NSThread isMainThread], nil);
-
-    NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
-    // add in any previously bookmarked movies that we now no longer know about.
-    for (Movie* movie in self.bookmarks.allValues) {
-        if (![movies containsObject:movie]) {
-            [movies addObject:movie];
-        }
-    }
-
-    // also determine if any of the data we found match items the user bookmarked
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    for (Movie* movie in movies) {
-        if ([self.model isBookmarked:movie]) {
-            [dictionary setObject:movie forKey:movie.canonicalTitle];
-        }
-    }
-
-    [self setBookmarks:dictionary];
-    [self setMovies:movies];
-
-    [AppDelegate majorRefresh];
 }
 
 
