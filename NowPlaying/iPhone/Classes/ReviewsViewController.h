@@ -16,8 +16,8 @@
 
 @interface ReviewsViewController :  AbstractTableViewController {
 @private
-    Movie* movie_;
-    NSArray* reviews_;
+    Movie* movie;
+    NSArray* reviews;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller

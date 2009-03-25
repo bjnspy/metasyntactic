@@ -20,15 +20,13 @@
 #import "MoviesNavigationController.h"
 
 @interface AllMoviesViewController()
-@property (retain) UISegmentedControl* segmentedControl_;
+@property (retain) UISegmentedControl* segmentedControl;
 @end
 
 
 @implementation AllMoviesViewController
 
-@synthesize segmentedControl_;
-
-property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
+@synthesize segmentedControl;
 
 - (void) dealloc {
     self.segmentedControl = nil;
@@ -90,7 +88,7 @@ property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
 
 
 - (void) onSortOrderChanged:(id) sender {
-    self.model.allMoviesSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
+    self.model.allMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
 
@@ -108,7 +106,7 @@ property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
     [super loadView];
 
     self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = self.segmentedControl;
+    self.navigationItem.titleView = segmentedControl;
 }
 
 
@@ -124,11 +122,11 @@ property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
 
 
 - (void) majorRefresh {
-    if (self.model.noScores && self.segmentedControl.numberOfSegments == 3) {
-        self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-        [self.segmentedControl removeSegmentAtIndex:2 animated:NO];
-    } else if (!self.model.noScores && self.segmentedControl.numberOfSegments == 2) {
-        [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
+    if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
+        segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+        [segmentedControl removeSegmentAtIndex:2 animated:NO];
+    } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
+        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
     [super majorRefresh];
