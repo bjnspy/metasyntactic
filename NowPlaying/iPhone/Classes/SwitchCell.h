@@ -14,11 +14,11 @@
 
 @interface SwitchCell : UITableViewCell {
 @private
-    UISwitch* switchControl_;
+    UISwitch* switchControl;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+@property (readonly, retain) UISwitch* switchControl;
 
-- (UISwitch*) switchControl;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 @end
