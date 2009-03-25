@@ -16,10 +16,10 @@
 
 @interface AbstractDVDBlurayCache : AbstractMovieCache {
 @private
-    PointerSet* moviesSetData_;
-    NSArray* moviesData_;
-    BOOL updated_;
-    NSDictionary* bookmarksData_;
+    PointerSet* moviesSetData;
+    NSArray* moviesData;
+    BOOL updated;
+    NSDictionary* bookmarksData;
 }
 
 - (void) update;

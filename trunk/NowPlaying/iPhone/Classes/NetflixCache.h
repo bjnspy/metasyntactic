@@ -16,15 +16,15 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-    NSArray* feedsData_;
-    NSDictionary* queues_;
-    NSDate* lastQuotaErrorDate_;
-    NSMutableDictionary* presubmitRatings_;
+    NSArray* feedsData;
+    NSDictionary* queues;
+    NSDate* lastQuotaErrorDate;
+    NSMutableDictionary* presubmitRatings;
 }
 
-+ (NSArray*) mostPopularTitles;
+@property (readonly, retain) NSDate* lastQuotaErrorDate;
 
-- (NSDate*) lastQuotaErrorDate;
++ (NSArray*) mostPopularTitles;
 
 - (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;

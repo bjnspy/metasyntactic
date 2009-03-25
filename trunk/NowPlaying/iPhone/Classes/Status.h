@@ -14,11 +14,11 @@
 
 @interface Status : NSObject {
 @private
-    Queue* queue_;
-    Movie* movie_;
-    NSString* description_;
-    BOOL saved_;
-    NSInteger position_;
+    Queue* queue;
+    Movie* movie;
+    NSString* description;
+    BOOL saved;
+    NSInteger position;
 }
 
 + (Status*) statusWithQueue:(Queue*) queue

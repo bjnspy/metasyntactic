@@ -15,26 +15,20 @@
 #import "Status.h"
 
 @interface Status()
-@property (retain) Queue* queue_;
-@property (retain) Movie* movie_;
-@property (copy) NSString* description_;
-@property BOOL saved_;
-@property NSInteger position_;
+@property (retain) Queue* queue;
+@property (retain) Movie* movie;
+@property (copy) NSString* description;
+@property BOOL saved;
+@property NSInteger position;
 @end
 
 @implementation Status
 
-@synthesize queue_;
-@synthesize movie_;
-@synthesize description_;
-@synthesize saved_;
-@synthesize position_;
-
-property_wrapper(Queue*, queue, Queue);
-property_wrapper(Movie*, movie, Movie);
-property_wrapper(NSString*, description, Description);
-property_wrapper(BOOL, saved, Saved);
-property_wrapper(NSInteger, position, Position);
+@synthesize queue;
+@synthesize movie;
+@synthesize description;
+@synthesize saved;
+@synthesize position;
 
 - (void) dealloc {
     self.queue = nil;
