@@ -21,8 +21,8 @@
 #import "WikipediaCache.h"
 
 @interface CacheUpdater()
-@property (retain) NSLock* searchOperationsGate_;
-@property (retain) NSArray* searchOperations_;
+@property (retain) NSLock* searchOperationsGate;
+@property (retain) NSArray* searchOperations;
 @end
 
 
@@ -30,11 +30,8 @@
 
 static CacheUpdater* cacheUpdater = nil;
 
-@synthesize searchOperationsGate_;
-@synthesize searchOperations_;
-
-property_wrapper(NSLock*, searchOperationsGate, SearchOperationsGate);
-property_wrapper(NSArray*, searchOperations, SearchOperations);
+@synthesize searchOperationsGate;
+@synthesize searchOperations;
 
 - (void) dealloc {
     self.searchOperationsGate = nil;
@@ -114,10 +111,9 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
 
 
 - (void) addSearchMovies:(NSArray*) movies {
-    [self.searchOperationsGate lock];
+    [searchOperationsGate lock];
     {
-        NSArray* oldOperations = self.searchOperations;
-        for (Operation* operation in oldOperations) {
+        for (Operation* operation in searchOperations) {
             [operation cancel];
         }
 
@@ -128,7 +124,7 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
 
         self.searchOperations = operations;
     }
-    [self.searchOperationsGate unlock];
+    [searchOperationsGate unlock];
 }
 
 

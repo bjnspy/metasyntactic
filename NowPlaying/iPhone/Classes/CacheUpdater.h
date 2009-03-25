@@ -8,8 +8,8 @@
 
 @interface CacheUpdater : NSObject {
 @private
-    NSLock* searchOperationsGate_;
-    NSArray* searchOperations_;
+    NSLock* searchOperationsGate;
+    NSArray* searchOperations;
 }
 
 + (CacheUpdater*) cacheUpdater;

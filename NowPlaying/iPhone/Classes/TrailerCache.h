@@ -16,9 +16,9 @@
 
 @interface TrailerCache : AbstractMovieCache {
 @private
-    DifferenceEngine* engine_;
-    NSDictionary* index_;
-    NSArray* indexKeys_;
+    DifferenceEngine* engine;
+    NSDictionary* index;
+    NSArray* indexKeys;
 }
 
 + (TrailerCache*) cache;

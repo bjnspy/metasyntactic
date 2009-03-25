@@ -16,14 +16,14 @@
 
 @interface UpcomingCache : AbstractMovieCache {
 @private
-    NSString* hashData_;
-    NSDictionary* movieMapData_;
-    NSDictionary* studioKeysData_;
-    NSDictionary* titleKeysData_;
+    NSString* hashData;
+    NSDictionary* movieMapData;
+    NSDictionary* studioKeysData;
+    NSDictionary* titleKeysData;
 
-    BOOL updated_;
+    BOOL updated;
 
-    NSDictionary* bookmarksData_;
+    NSDictionary* bookmarksData;
 }
 
 + (UpcomingCache*) cache;
