@@ -133,6 +133,10 @@
 }
 
 
+- (void) minorRefreshWorker {
+}
+
+
 - (UITableViewCell*) createCell:(Movie*) movie {
     static NSString* reuseIdentifier = @"reuseIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
