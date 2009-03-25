@@ -14,21 +14,21 @@
 
 @interface ActionsView : UIView {
 @private
-    id target_;
-    NSArray* selectors_;
-    NSArray* titles_;
-    NSArray* arguments_;
+    id target;
+    NSArray* selectors;
+    NSArray* titles;
+    NSArray* arguments;
 
-    NSArray* buttons_;
+    NSArray* buttons;
 
-    CGFloat height_;
+    CGFloat height;
 }
+
+@property (readonly) CGFloat height;
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
                       arguments:(NSArray*) arguments;
-
-- (CGFloat) height;
 
 @end

@@ -17,30 +17,23 @@
 #import "Model.h"
 
 @interface ActionsView()
-@property (assign) id target_;
-@property (retain) NSArray* selectors_;
-@property (retain) NSArray* titles_;
-@property (retain) NSArray* buttons_;
-@property (retain) NSArray* arguments_;
-@property CGFloat height_;
+@property (assign) id target;
+@property (retain) NSArray* selectors;
+@property (retain) NSArray* titles;
+@property (retain) NSArray* buttons;
+@property (retain) NSArray* arguments;
+@property CGFloat height;
 @end
 
 
 @implementation ActionsView
 
-@synthesize target_;
-@synthesize selectors_;
-@synthesize titles_;
-@synthesize buttons_;
-@synthesize arguments_;
-@synthesize height_;
-
-property_wrapper(id, target, Target);
-property_wrapper(NSArray*, selectors, Selectors);
-property_wrapper(NSArray*, titles, Titles);
-property_wrapper(NSArray*, buttons, Buttons);
-property_wrapper(NSArray*, arguments, Arguments);
-property_wrapper(CGFloat, height, Height);
+@synthesize target;
+@synthesize selectors;
+@synthesize titles;
+@synthesize buttons;
+@synthesize arguments;
+@synthesize height;
 
 - (void) dealloc {
     self.target = nil;
@@ -48,6 +41,7 @@ property_wrapper(CGFloat, height, Height);
     self.titles = nil;
     self.buttons = nil;
     self.arguments = nil;
+    self.height = 0;
 
     [super dealloc];
 }
@@ -65,7 +59,7 @@ property_wrapper(CGFloat, height, Height);
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         NSMutableArray* array = [NSMutableArray array];
-        for (NSString* title in self.titles) {
+        for (NSString* title in titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
@@ -79,9 +73,9 @@ property_wrapper(CGFloat, height, Height);
         self.buttons = array;
 
         {
-            int lastRow = (self.buttons.count - 1) / 2;
+            int lastRow = (buttons.count - 1) / 2;
 
-            UIButton* button = [self.buttons lastObject];
+            UIButton* button = [buttons lastObject];
             CGRect frame = button.frame;
             self.height = (8 + frame.size.height) * (lastRow + 1);
         }
@@ -103,23 +97,23 @@ property_wrapper(CGFloat, height, Height);
 
 
 - (void) onButtonTapped:(UIButton*) button {
-    NSInteger index = [self.buttons indexOfObject:button];
+    NSInteger index = [buttons indexOfObject:button];
 
-    SEL selector = [[self.selectors objectAtIndex:index] pointerValue];
-    if ([self.target respondsToSelector:selector]) {
-        id argument = [self.arguments objectAtIndex:index];
+    SEL selector = [[selectors objectAtIndex:index] pointerValue];
+    if ([target respondsToSelector:selector]) {
+        id argument = [arguments objectAtIndex:index];
 
         if (argument == [NSNull null]) {
-            [self.target performSelector:selector];
+            [target performSelector:selector];
         } else {
-            [self.target performSelector:selector withObject:argument];
+            [target performSelector:selector withObject:argument];
         }
     }
 }
 
 
 - (CGSize) sizeThatFits:(CGSize) size withModel:(Model*) model {
-    if (self.buttons.count == 0) {
+    if (buttons.count == 0) {
         return CGSizeZero;
     }
 
@@ -131,17 +125,17 @@ property_wrapper(CGFloat, height, Height);
         width = [UIScreen mainScreen].bounds.size.width;
     }
 
-    return CGSizeMake(width, self.height);
+    return CGSizeMake(width, height);
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    BOOL oddNumberOfButtons = ((self.buttons.count % 2) == 1);
+    BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
-    for (int i = 0; i < self.buttons.count; i++) {
-        UIButton* button = [self.buttons objectAtIndex:i];
+    for (int i = 0; i < buttons.count; i++) {
+        UIButton* button = [buttons objectAtIndex:i];
 
         NSInteger column;
         NSInteger row;
