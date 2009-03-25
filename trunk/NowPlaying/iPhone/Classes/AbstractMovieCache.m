@@ -51,17 +51,17 @@ property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
 
 
 - (void) clearUpdatedMovies {
-    [self.gate lock];
+    [gate lock];
     {
         [self.updatedMovies removeAllObjects];
     }
-    [self.gate unlock];
+    [gate unlock];
 }
 
 
 - (BOOL) checkMovie:(Movie*) movie {
     BOOL result;
-    [self.gate lock];
+    [gate lock];
     {
         if (![self.updatedMovies containsObject:movie]) {
             [self.updatedMovies addObject:movie];
@@ -70,7 +70,7 @@ property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
             result = YES;
         }
     }
-    [self.gate unlock];
+    [gate unlock];
     return result;
 }
 
