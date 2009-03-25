@@ -28,27 +28,22 @@
 #import "UpcomingMoviesNavigationController.h"
 
 @interface ApplicationTabBarController()
-@property (retain) MoviesNavigationController* moviesNavigationController_;
-@property (retain) TheatersNavigationController* theatersNavigationController_;
-@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController_;
-@property (retain) DVDNavigationController* dvdNavigationController_;
-@property (retain) NetflixNavigationController* netflixNavigationController_;
+@property (retain) MoviesNavigationController* moviesNavigationController;
+@property (retain) TheatersNavigationController* theatersNavigationController;
+@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
+@property (retain) DVDNavigationController* dvdNavigationController;
+@property (retain) NetflixNavigationController* netflixNavigationController;
 @end
 
 
 @implementation ApplicationTabBarController
 
-@synthesize moviesNavigationController_;
-@synthesize theatersNavigationController_;
-@synthesize upcomingMoviesNavigationController_;
-@synthesize dvdNavigationController_;
-@synthesize netflixNavigationController_;
+@synthesize moviesNavigationController;
+@synthesize theatersNavigationController;
+@synthesize upcomingMoviesNavigationController;
+@synthesize dvdNavigationController;
+@synthesize netflixNavigationController;
 
-property_wrapper(MoviesNavigationController*, moviesNavigationController, MoviesNavigationController);
-property_wrapper(TheatersNavigationController*, theatersNavigationController, TheatersNavigationController);
-property_wrapper(UpcomingMoviesNavigationController*, upcomingMoviesNavigationController, UpcomingMoviesNavigationController);
-property_wrapper(DVDNavigationController*, dvdNavigationController, DvdNavigationController);
-property_wrapper(NetflixNavigationController*, netflixNavigationController, NetflixNavigationController);
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -56,53 +51,53 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
     self.upcomingMoviesNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
-
+    
     [super dealloc];
 }
 
 
 - (UINavigationController*) loadMoviesNavigationController {
-    if (self.moviesNavigationController == nil) {
+    if (moviesNavigationController == nil) {
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-
-    return self.moviesNavigationController;
+    
+    return moviesNavigationController;
 }
 
 
 - (UINavigationController*) loadTheatersNavigationController {
-    if (self.theatersNavigationController == nil) {
+    if (theatersNavigationController == nil) {
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-
-    return self.theatersNavigationController;
+    
+    return theatersNavigationController;
 }
 
 
 - (UINavigationController*) loadUpcomingMoviesNavigationController {
-    if (self.upcomingMoviesNavigationController == nil) {
+    if (upcomingMoviesNavigationController == nil) {
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-
-    return self.upcomingMoviesNavigationController;
+    
+    return upcomingMoviesNavigationController;
 }
 
 
 - (UINavigationController*) loadDVDNavigationController {
-    if (self.dvdNavigationController == nil) {
+    if (dvdNavigationController == nil) {
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-
-    return self.dvdNavigationController;
+    
+    return dvdNavigationController;
 }
 
 
 - (UINavigationController*) loadNetflixNavigationController {
-    if (self.netflixNavigationController == nil) {
+    if (netflixNavigationController == nil) {
         self.netflixNavigationController = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-
-    return self.netflixNavigationController;
+    
+    return netflixNavigationController;
 }
 
 
@@ -119,10 +114,10 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
 - (id) init {
     if (self = [super init]) {
         [self resetTabs];
-
+        
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
-            [self.moviesNavigationController pushInfoControllerAnimated:NO];
+            [moviesNavigationController pushInfoControllerAnimated:NO];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -130,23 +125,23 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
             } else {
                 controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
             }
-
+            
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
-
+            
             if ([NetworkUtilities isNetworkAvailable]) {
                 if (!self.model.votedForIcon) {
                     [self.model setVotedForIcon];
-
+                    
                     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
                     [controller pushBrowser:url showSafariButton:NO animated:YES];
                 }
             }
         }
-
+        
         self.delegate = self;
     }
-
+    
     return self;
 }
 
@@ -159,7 +154,7 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
-
+    
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
@@ -211,7 +206,7 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
 
 - (void) resetTabs {
     NSMutableArray* controllers = [NSMutableArray array];
-
+    
     [controllers addObject:[self loadMoviesNavigationController]];
     [controllers addObject:[self loadTheatersNavigationController]];
     if (self.model.upcomingEnabled) {
@@ -223,21 +218,18 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
     if (self.model.netflixEnabled) {
         [controllers addObject:[self loadNetflixNavigationController]];
     }
-
-    if ([self.selectedViewController isKindOfClass:[UINavigationController class]] &&
-        ![controllers containsObject:self.selectedViewController]) {
-        [(UINavigationController*)self.selectedViewController popToRootViewControllerAnimated:NO];
-    }
-
+    
+    [self.selectedNavigationController popToRootViewControllerAnimated:NO];
+    
     [self setViewControllers:controllers animated:NO];
     /*
-    // Such an awful hack.  For some reason, changing the view controllers
-    // causes the tab bar to be 'stuck' selecting the current view controller.
-    // in that case, we switch to another tab and back to unstick it.
-    NSInteger index = self.selectedIndex;
-    NSInteger tabCount = self.viewControllers.count;
-    self.selectedIndex = (index + 1) % tabCount;
-    self.selectedIndex = MAX(MIN(index, tabCount - 1), 0);
+     // Such an awful hack.  For some reason, changing the view controllers
+     // causes the tab bar to be 'stuck' selecting the current view controller.
+     // in that case, we switch to another tab and back to unstick it.
+     NSInteger index = selectedIndex;
+     NSInteger tabCount = viewControllers.count;
+     selectedIndex = (index + 1) % tabCount;
+     selectedIndex = MAX(MIN(index, tabCount - 1), 0);
      */
 }
 
@@ -246,7 +238,7 @@ property_wrapper(NetflixNavigationController*, netflixNavigationController, Netf
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-
+    
     return self.model.screenRotationEnabled;
 }
 
