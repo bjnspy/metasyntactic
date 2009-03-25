@@ -17,8 +17,8 @@
 
 @interface GoogleDataProvider : AbstractDataProvider<DataProvider> {
 @private
-    NSCalendar* calendar_;
-    NSDateComponents* dateComponents_;
+    NSCalendar* calendar;
+    NSDateComponents* dateComponents;
 }
 
 + (GoogleDataProvider*) provider;

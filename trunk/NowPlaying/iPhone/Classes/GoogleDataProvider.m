@@ -31,18 +31,15 @@
 #import "XmlElement.h"
 
 @interface GoogleDataProvider()
-@property (retain) NSCalendar* calendar_;
-@property (retain) NSDateComponents* dateComponents_;
+@property (retain) NSCalendar* calendar;
+@property (retain) NSDateComponents* dateComponents;
 @end
 
 
 @implementation GoogleDataProvider
 
-@synthesize calendar_;
-@synthesize dateComponents_;
-
-property_wrapper(NSCalendar*, calendar, Calendar);
-property_wrapper(NSDateComponents*, dateComponents, DateComponents);
+@synthesize calendar;
+@synthesize dateComponents;
 
 - (void) dealloc {
     self.calendar = nil;
@@ -135,10 +132,10 @@ property_wrapper(NSDateComponents*, dateComponents, DateComponents);
         NSInteger hour = [[time substringToIndex:2] intValue];
         NSInteger minute = [[time substringFromIndex:3] intValue];
 
-        [self.dateComponents setHour:hour];
-        [self.dateComponents setMinute:minute];
+        [dateComponents setHour:hour];
+        [dateComponents setMinute:minute];
 
-        NSDate* date = [self.calendar dateFromComponents:self.dateComponents];
+        NSDate* date = [calendar dateFromComponents:dateComponents];
 
         [result addObject:date];
     }
@@ -187,10 +184,10 @@ property_wrapper(NSDateComponents*, dateComponents, DateComponents);
             hour = 0;
         }
 
-        [self.dateComponents setHour:hour];
-        [self.dateComponents setMinute:minute];
+        [dateComponents setHour:hour];
+        [dateComponents setMinute:minute];
 
-        NSDate* date = [self.calendar dateFromComponents:self.dateComponents];
+        NSDate* date = [calendar dateFromComponents:dateComponents];
 
         [reverseArray addObject:date];
     }

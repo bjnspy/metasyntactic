@@ -16,7 +16,7 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
-    NSMutableSet* updatedMovies_;
+    NSMutableSet* updatedMovies;
 }
 
 - (void) processMovie:(Movie*) movie;
