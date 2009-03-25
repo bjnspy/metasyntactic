@@ -33,33 +33,25 @@
 #import "XmlParser.h"
 
 @interface AbstractScoreProvider()
-@property (retain) NSDictionary* scoresData_;
-@property (retain) NSString* hashData_;
-@property (retain) NSLock* movieMapLock_;
-@property (retain) NSArray* movies_;
-@property (retain) NSDictionary* movieMapData_;
-@property (retain) NSString* providerDirectory_;
-@property (retain) NSString* reviewsDirectory_;
+@property (retain) NSDictionary* scoresData;
+@property (retain) NSString* hashData;
+@property (retain) NSLock* movieMapLock;
+@property (retain) NSArray* movies;
+@property (retain) NSDictionary* movieMapData;
+@property (retain) NSString* providerDirectory;
+@property (retain) NSString* reviewsDirectory;
 @end
 
 
 @implementation AbstractScoreProvider
 
-@synthesize scoresData_;
-@synthesize hashData_;
-@synthesize movieMapLock_;
-@synthesize movies_;
-@synthesize movieMapData_;
-@synthesize providerDirectory_;
-@synthesize reviewsDirectory_;
-
-property_wrapper(NSDictionary*, scoresData, ScoresData);
-property_wrapper(NSString*, hashData, HashData);
-property_wrapper(NSLock*, movieMapLock, MovieMapLock);
-property_wrapper(NSArray*, movies, Movies);
-property_wrapper(NSDictionary*, movieMapData, MovieMapData);
-property_wrapper(NSString*, providerDirectory, ProviderDirectory);
-property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
+@synthesize scoresData;
+@synthesize hashData;
+@synthesize movieMapLock;
+@synthesize movies;
+@synthesize movieMapData;
+@synthesize providerDirectory;
+@synthesize reviewsDirectory;
 
 - (void) dealloc {
     self.scoresData = nil;
@@ -94,8 +86,8 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
 
-        [FileUtilities createDirectory:self.providerDirectory];
-        [FileUtilities createDirectory:self.reviewsDirectory];
+        [FileUtilities createDirectory:providerDirectory];
+        [FileUtilities createDirectory:reviewsDirectory];
     }
 
     return self;
@@ -108,28 +100,28 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 
 
 - (NSString*) scoresFile {
-    return [self.providerDirectory stringByAppendingPathComponent:@"Scores.plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Scores.plist"];
 }
 
 
 - (NSString*) hashFile {
-    return [self.providerDirectory stringByAppendingPathComponent:@"Hash.plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Hash.plist"];
 }
 
 
 - (NSString*) movieMapFile {
-    return [self.providerDirectory stringByAppendingPathComponent:@"Map.plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
 }
 
 
 - (NSString*) reviewsFile:(NSString*) title {
-    return [[self.reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
+    return [[reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
             stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) reviewsHashFile:(NSString*) title {
-    return [self.reviewsDirectory stringByAppendingPathComponent:[[FileUtilities sanitizeFileName:title] stringByAppendingString:@"-Hash.plist"]];
+    return [reviewsDirectory stringByAppendingPathComponent:[[FileUtilities sanitizeFileName:title] stringByAppendingString:@"-Hash.plist"]];
 }
 
 
@@ -168,26 +160,26 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 
 
 - (NSDictionary*) scores {
-    if (self.scoresData == nil) {
+    if (scoresData == nil) {
         self.scoresData = [self loadScores];
     }
 
-    return self.scoresData;
+    return scoresData;
 }
 
 
 - (NSString*) hashValue {
-    if (self.hashData == nil) {
+    if (hashData == nil) {
         self.hashData = [self loadHash];
     }
 
-    return self.hashData;
+    return hashData;
 }
 
 
 - (void) ensureMovieMap {
     NSArray* moviesArray = [[Model model] movies];
-    if (moviesArray != self.movies) {
+    if (moviesArray != movies) {
         self.movies = moviesArray;
 
         NSDictionary* scores = self.scores;
@@ -195,20 +187,20 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
         [[OperationQueue operationQueue] performSelector:@selector(regenerateMap:forMovies:)
                                                 onTarget:self
                                               withObject:scores
-                                              withObject:self.movies
-                                                    gate:self.movieMapLock
+                                              withObject:movies
+                                                    gate:movieMapLock
                                                 priority:Now];
     }
 }
 
 
 - (NSDictionary*) movieMap {
-    if (self.movieMapData == nil) {
+    if (movieMapData == nil) {
         self.movieMapData = [self loadMovieMap];
     }
 
     [self ensureMovieMap];
-    return self.movieMapData;
+    return movieMapData;
 }
 
 
@@ -506,7 +498,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 
 - (void) regenerateMap:(NSDictionary*) scores
              forMovies:(NSArray*) localMovies {
-    [self regenerateMapWorker:scores forMovies:self.movies];
+    [self regenerateMapWorker:scores forMovies:movies];
     [self clearUpdatedMovies];
 }
 

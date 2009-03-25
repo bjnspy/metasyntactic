@@ -27,32 +27,27 @@
 #import "ScoreProvider.h"
 
 @interface ScoreCache()
-@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider_;
-@property (retain) id<ScoreProvider> metacriticScoreProvider_;
-@property (retain) id<ScoreProvider> googleScoreProvider_;
-@property (retain) id<ScoreProvider> noneScoreProvider_;
-@property BOOL updated_;
+@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
+@property (retain) id<ScoreProvider> metacriticScoreProvider;
+@property (retain) id<ScoreProvider> googleScoreProvider;
+@property (retain) id<ScoreProvider> noneScoreProvider;
+@property BOOL updated;
 @end
 
 @implementation ScoreCache
 
-@synthesize rottenTomatoesScoreProvider_;
-@synthesize metacriticScoreProvider_;
-@synthesize googleScoreProvider_;
-@synthesize noneScoreProvider_;
-@synthesize updated_;
-
-property_wrapper(id<ScoreProvider>, rottenTomatoesScoreProvider, RottenTomatoesScoreProvider);
-property_wrapper(id<ScoreProvider>, metacriticScoreProvider, MetacriticScoreProvider);
-property_wrapper(id<ScoreProvider>, googleScoreProvider, GoogleScoreProvider);
-property_wrapper(id<ScoreProvider>, noneScoreProvider, NoneScoreProvider);
-property_wrapper(BOOL, updated, Updated);
+@synthesize rottenTomatoesScoreProvider;
+@synthesize metacriticScoreProvider;
+@synthesize googleScoreProvider;
+@synthesize noneScoreProvider;
+@synthesize updated;
 
 - (void) dealloc {
     self.rottenTomatoesScoreProvider = nil;
     self.metacriticScoreProvider = nil;
     self.googleScoreProvider = nil;
     self.noneScoreProvider = nil;
+    self.updated = NO;
 
     [super dealloc];
 }
@@ -82,22 +77,22 @@ property_wrapper(BOOL, updated, Updated);
 
 - (NSArray*) scoreProviders {
     return [NSArray arrayWithObjects:
-            self.rottenTomatoesScoreProvider,
-            self.metacriticScoreProvider,
-            self.googleScoreProvider,
-            self.noneScoreProvider, nil];
+            rottenTomatoesScoreProvider,
+            metacriticScoreProvider,
+            googleScoreProvider,
+            noneScoreProvider, nil];
 }
 
 
 - (id<ScoreProvider>) currentScoreProvider {
     if (self.model.rottenTomatoesScores) {
-        return self.rottenTomatoesScoreProvider;
+        return rottenTomatoesScoreProvider;
     } else if (self.model.metacriticScores) {
-        return self.metacriticScoreProvider;
+        return metacriticScoreProvider;
     } else if (self.model.googleScores) {
-        return self.googleScoreProvider;
+        return googleScoreProvider;
     } else if (self.model.noScores) {
-        return self.noneScoreProvider;
+        return noneScoreProvider;
     } else {
         return nil;
     }
@@ -110,19 +105,19 @@ property_wrapper(BOOL, updated, Updated);
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-    return [self.rottenTomatoesScoreProvider scoreForMovie:movie];
+    return [rottenTomatoesScoreProvider scoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-    return [self.metacriticScoreProvider scoreForMovie:movie];
+    return [metacriticScoreProvider scoreForMovie:movie];
 }
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider == self.rottenTomatoesScoreProvider) {
-        currentScoreProvider = self.metacriticScoreProvider;
+    if (currentScoreProvider == rottenTomatoesScoreProvider) {
+        currentScoreProvider = metacriticScoreProvider;
     }
 
     return [currentScoreProvider reviewsForMovie:movie];
@@ -131,8 +126,8 @@ property_wrapper(BOOL, updated, Updated);
 
 - (void) processMovie:(Movie*) movie {
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider == self.rottenTomatoesScoreProvider) {
-        currentScoreProvider = self.metacriticScoreProvider;
+    if (currentScoreProvider == rottenTomatoesScoreProvider) {
+        currentScoreProvider = metacriticScoreProvider;
     }
 
     [currentScoreProvider processMovie:movie];
@@ -144,13 +139,13 @@ property_wrapper(BOOL, updated, Updated);
         return;
     }
 
-    if (self.updated) {
+    if (updated) {
         return;
     }
     self.updated = YES;
 
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider != self.noneScoreProvider) {
+    if (currentScoreProvider != noneScoreProvider) {
         [[OperationQueue operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
                                          onTarget:self
                                            withObject:currentScoreProvider
