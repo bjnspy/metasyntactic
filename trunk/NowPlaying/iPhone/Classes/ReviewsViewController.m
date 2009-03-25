@@ -27,18 +27,15 @@
 #import "WebViewController.h"
 
 @interface ReviewsViewController()
-@property (retain) Movie* movie_;
-@property (retain) NSArray* reviews_;
+@property (retain) Movie* movie;
+@property (retain) NSArray* reviews;
 @end
 
 
 @implementation ReviewsViewController
 
-@synthesize movie_;
-@synthesize reviews_;
-
-property_wrapper(Movie*, movie, Movie);
-property_wrapper(NSArray*, reviews, Reviews);
+@synthesize movie;
+@synthesize reviews;
 
 - (void) dealloc {
     self.movie = nil;
@@ -68,7 +65,7 @@ property_wrapper(NSArray*, reviews, Reviews);
 
     self.title = NSLocalizedString(@"Reviews", nil);
 
-    self.reviews = [self.model reviewsForMovie:self.movie];
+    self.reviews = [self.model reviewsForMovie:movie];
 }
 
 
@@ -87,7 +84,7 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
-    Review* review = [self.reviews objectAtIndex:section];
+    Review* review = [reviews objectAtIndex:section];
 
     if (row == 0) {
         static NSString* reuseIdentifier = @"titleReuseIdentifier";
@@ -121,7 +118,7 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < self.reviews.count) {
+    if (indexPath.section < reviews.count) {
         return [self reviewCellForRow:indexPath.row section:indexPath.section];
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
@@ -139,7 +136,7 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == self.reviews.count) {
+    if (section == reviews.count) {
         return @"For movie reviews and more, visit";
     }
 
@@ -149,14 +146,14 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < self.reviews.count) {
-        Review* review = [self.reviews objectAtIndex:indexPath.section];
+    if (indexPath.section < reviews.count) {
+        Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link) {
             [self.abstractNavigationController pushBrowser:review.link animated:YES];
         }
     } else {
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
-            Score* score = [self.model metacriticScoreForMovie:self.movie];
+            Score* score = [self.model metacriticScoreForMovie:movie];
             NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
             [self.abstractNavigationController pushBrowser:address animated:YES];
         } else if (self.model.googleScores) {
@@ -167,13 +164,13 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return self.reviews.count + 1;
+    return reviews.count + 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section < self.reviews.count) {
+    if (section < reviews.count) {
         return 2;
     } else {
         return 1;
@@ -183,9 +180,9 @@ property_wrapper(NSArray*, reviews, Reviews);
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < self.reviews.count) {
+    if (indexPath.section < reviews.count) {
         if (indexPath.row == 1) {
-            Review* review = [self.reviews objectAtIndex:indexPath.section];
+            Review* review = [reviews objectAtIndex:indexPath.section];
 
             return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
         }
