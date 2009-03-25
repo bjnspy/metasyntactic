@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AbstractCache.h"
+
 enum ViewControllerType {
     MovieDetails = 1,
     TheaterDetails = 2,
@@ -19,7 +21,7 @@ enum ViewControllerType {
     Tickets = 4
 };
 
-@interface Model : NSObject<UIAlertViewDelegate> {
+@interface Model : AbstractCache<UIAlertViewDelegate> {
 @private
     UserLocationCache* userLocationCache;
     BlurayCache* blurayCache;
@@ -40,6 +42,7 @@ enum ViewControllerType {
     NSInteger searchRadiusData;
     NSNumber* isSearchDateTodayData;
 
+    // Accessed from multiple threads.  Needs lock.
     NSSet* bookmarkedTitlesData;
     NSDictionary* favoriteTheatersData;
 
@@ -200,7 +203,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context);
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) reviewsForMovie:(Movie*) movie;
 
-- (NSArray*) favoriteTheaters;
+- (NSArray*) favoriteTheatersArray;
 - (BOOL) isFavoriteTheater:(Theater*) theater;
 - (void) addFavoriteTheater:(Theater*) theater;
 - (void) removeFavoriteTheater:(Theater*) theater;
