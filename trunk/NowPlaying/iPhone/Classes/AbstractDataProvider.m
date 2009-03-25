@@ -141,11 +141,11 @@
 
 - (NSArray*) movies {
     NSArray* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self moviesNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -175,11 +175,11 @@
 
 - (NSDictionary*) bookmarks {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self bookmarksNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -203,11 +203,11 @@
 
 - (NSDictionary*) synchronizationInformation {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self synchronizationInformationNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -301,11 +301,11 @@
 - (NSArray*) moviePerformances:(Movie*) movie
                     forTheater:(Theater*) theater {
     NSArray* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self moviePerformances:movie forTheaterNoLock:theater];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -337,11 +337,11 @@
 
 - (NSArray*) theaters {
     NSArray* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self theatersNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -444,7 +444,7 @@
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
                                             onTarget:self
                                           withObject:request
-                                                gate:gate
+                                                gate:runGate
                                             priority:Now];
 }
 
@@ -581,11 +581,11 @@
 
 
 - (void) setBookmarks:(NSDictionary*) bookmarks {
-    [gate lock];
+    [dataGate lock];
     {
         self.bookmarksData = bookmarks;
     }
-    [gate unlock];
+    [dataGate unlock];
     [self.model setBookmarkedMovies:bookmarks.allValues];
 }
 
@@ -608,14 +608,14 @@
     }
     [self setBookmarks:dictionary];
     
-    [gate lock];
+    [dataGate lock];
     {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
         self.synchronizationInformationData = result.synchronizationInformation;
         self.performancesData = [NSMutableDictionary dictionary];
     }
-    [gate unlock];
+    [dataGate unlock];
     
     [AppDelegate majorRefresh:YES];
 }

@@ -278,7 +278,7 @@
     [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:arguments
-                                             gate:gate
+                                             gate:runGate
                                          priority:Now];
 }
 
@@ -294,7 +294,7 @@
     [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
                                onTarget:self
                              withObject:arguments
-                                   gate:gate
+                                   gate:runGate
                                priority:Now];
 }
 
@@ -324,7 +324,7 @@
     [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
-                                      gate:gate
+                                      gate:runGate
                                    priority:Now];
 }
 
@@ -476,7 +476,7 @@
     [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
-                                      gate:gate
+                                      gate:runGate
                                    priority:Now];
 }
 

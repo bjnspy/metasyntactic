@@ -320,11 +320,11 @@ const int START_YEAR = 1912;
     NSAssert(![NSThread isMainThread], @"");
 
     NSArray* array;
-    [gate lock];
+    [dataGate lock];
     {
         array = [self posterUrlsNoLock:movie];
     }
-    [gate unlock];
+    [dataGate unlock];
     return array;
 }
 
@@ -349,13 +349,13 @@ const int START_YEAR = 1912;
                            urls:(NSArray*) urls
                           index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
-    [gate lock];
+    [dataGate lock];
     {
         if (![FileUtilities fileExists:[self posterFilePath:movie index:index]]) {
             [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
-    [gate unlock];
+    [dataGate unlock];
 }
 
 
@@ -375,12 +375,12 @@ const int START_YEAR = 1912;
 
 - (NSInteger) posterCountForMovie:(Movie*) movie {
     NSInteger count;
-    [gate lock];
+    [dataGate lock];
     {
         NSArray* urls = [self posterUrlsNoLock:movie];
         count = urls.count;
     }
-    [gate unlock];
+    [dataGate unlock];
     return count;
 }
 

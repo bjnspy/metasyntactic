@@ -210,11 +210,11 @@
 
 - (NSDictionary*) movieMap {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self movieMapNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -238,11 +238,11 @@
 
 - (NSString*) hashValue {
     NSString* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self hashValueNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -268,11 +268,11 @@
 
 - (NSDictionary*) studioKeys {
     NSDictionary* studioKeys = nil;
-    [gate lock];
+    [dataGate lock];
     {
         [self studioKeysNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return studioKeys;
 }
 
@@ -298,11 +298,11 @@
 
 - (NSDictionary*) titleKeys {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self titleKeysNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -333,21 +333,21 @@
 
 - (NSDictionary*) bookmarks {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self bookmarksNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
 
 - (void) setBookmarks:(NSDictionary*) bookmarks {
-    [gate lock];
+    [dataGate lock];
     {
         self.bookmarksData = bookmarks;
     }
-    [gate unlock];
+    [dataGate unlock];
     [self.model setBookmarkedUpcoming:bookmarks.allValues];
 }
 
@@ -474,14 +474,14 @@
         [movieMap setObject:movie forKey:movie.canonicalTitle];
     }
 
-    [gate lock];
+    [dataGate lock];
     {
         self.hashData = [arguments objectAtIndex:0];
         self.movieMapData = movieMap;
         self.studioKeysData = [arguments objectAtIndex:2];
         self.titleKeysData = [arguments objectAtIndex:3];
     }
-    [gate unlock];
+    [dataGate unlock];
 
     [AppDelegate majorRefresh];
 }

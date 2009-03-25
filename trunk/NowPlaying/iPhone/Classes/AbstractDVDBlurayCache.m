@@ -108,11 +108,11 @@
 
 
 - (void) setMovies:(NSArray*) array {
-    [gate lock];
+    [dataGate lock];
     {
         [self setMoviesNoLock:array];
     }
-    [gate unlock];
+    [dataGate unlock];
 }
 
 
@@ -127,23 +127,23 @@
 
 - (NSArray*) movies {
     NSArray* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self moviesNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
 
 - (PointerSet*) moviesSet {
     PointerSet* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         [self moviesNoLock];
         result = moviesSetData;
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -179,11 +179,11 @@
 
 - (NSDictionary*) bookmarks {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self bookmarksNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -348,11 +348,11 @@
 
 
 - (void) setBookmarks:(NSDictionary*) bookmarks {
-    [gate lock];
+    [dataGate lock];
     {
         self.bookmarksData = bookmarks;
     }
-    [gate unlock];
+    [dataGate unlock];
     [self.model setBookmarkedDVD:bookmarks.allValues];
 }
 
