@@ -71,6 +71,7 @@
 
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
+        blackLabel.alpha = 0;
 
         self.pulser = [Pulser pulserWithTarget:self
                                         action:@selector(update)
