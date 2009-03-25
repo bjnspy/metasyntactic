@@ -15,15 +15,13 @@
 #import "SwitchCell.h"
 
 @interface SwitchCell()
-@property (retain) UISwitch* switchControl_;
+@property (retain) UISwitch* switchControl;
 @end
 
 
 @implementation SwitchCell
 
-@synthesize switchControl_;
-
-property_wrapper(UISwitch*, switchControl, SwitchControl);
+@synthesize switchControl;
 
 - (void) dealloc {
     self.switchControl = nil;
@@ -35,7 +33,7 @@ property_wrapper(UISwitch*, switchControl, SwitchControl);
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.switchControl = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        self.accessoryView = self.switchControl;
+        self.accessoryView = switchControl;
     }
 
     return self;
