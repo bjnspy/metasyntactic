@@ -44,7 +44,7 @@
 
 @interface NetflixCache()
 @property (retain) NSArray* feedsData;
-@property (retain) NSDictionary* queues;
+@property (retain) NSDictionary* queuesData;
 @property (retain) NSDate* lastQuotaErrorDate;
 
 - (void) updateMovieDetails:(Movie*) movie;
@@ -175,24 +175,15 @@ static NSDictionary* availabilityMap = nil;
 }
 
 @synthesize feedsData;
-@synthesize queues;
+@synthesize queuesData;
 @synthesize lastQuotaErrorDate;
 
 - (void) dealloc {
     self.feedsData = nil;
-    self.queues = nil;
+    self.queuesData = nil;
     self.lastQuotaErrorDate = nil;
 
     [super dealloc];
-}
-
-
-- (id) init {
-    if (self = [super init]) {
-        self.queues = [NSDictionary dictionary];
-    }
-
-    return self;
 }
 
 
@@ -231,12 +222,44 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) feeds {
+- (NSArray*) feedsNoLock {
     if (feedsData == nil) {
         self.feedsData = [self loadFeeds];
     }
 
     return feedsData;
+}
+
+
+- (NSArray*) feeds {
+    NSArray* result = nil;
+    [dataGate lock];
+    {
+        result = [self feedsNoLock];
+    }
+    [dataGate unlock];
+    return result;
+}
+
+
+- (NSDictionary*) queuesNoLock {
+    if (queuesData == nil) {
+        queuesData = [NSDictionary dictionary];
+    }
+    
+    // Access through the property so that we get back a safe pointer
+    return self.queuesData;
+}
+
+
+- (NSDictionary*) queues {
+    NSDictionary* result = nil;
+    [dataGate lock];
+    {
+        result = [self queuesNoLock];
+    }
+    [dataGate unlock];
+    return result;
 }
 
 
@@ -264,9 +287,13 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) addQueue:(Queue*) queue {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
     [dictionary setObject:queue forKey:queue.feed.key];
-    self.queues = dictionary;
+    [dataGate lock];
+    {
+        self.queuesData = dictionary;
+    }
+    [dataGate unlock];
 }
 
 
@@ -275,7 +302,7 @@ static NSDictionary* availabilityMap = nil;
         return nil;
     }
 
-    Queue* queue = [queues objectForKey:feed.key];
+    Queue* queue = [self.queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
         if (queue != nil) {
@@ -289,9 +316,12 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) clear {
     [Application resetNetflixDirectories];
-    self.feedsData = nil;
-    self.queues = nil;
-
+    [dataGate lock];
+    {
+        self.feedsData = nil;
+        self.queuesData = nil;
+    }
+    [dataGate unlock];
     [AppDelegate majorRefresh:YES];
 }
 
@@ -1271,6 +1301,17 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (BOOL) feedsContainsKey:(NSString*) key {
+    for (Feed* feed in self.feeds) {
+        if ([feed.key isEqual:key]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
 - (void) updateBackgroundEntryPointWorker {
     [self downloadUserData];
 
@@ -1278,9 +1319,26 @@ static NSDictionary* availabilityMap = nil;
 
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
-        [self performSelectorOnMainThread:@selector(reportFeeds:)
-                               withObject:feeds
-                            waitUntilDone:NO];
+        
+        NSAssert([NSThread isMainThread], nil);
+        
+        NSDictionary* queues = self.queues;
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
+        
+        for (NSString* key in queues.allKeys) {
+            if (![self feedsContainsKey:key]) {
+                [dictionary removeObjectForKey:key];
+            }
+        }
+        
+        [dataGate lock];
+        {
+            self.feedsData = feeds;
+            self.queuesData = dictionary;
+        }
+        [dataGate unlock];
+        
+        [AppDelegate majorRefresh];
     }
 
     for (Feed* feed in feeds) {
@@ -1310,37 +1368,6 @@ static NSDictionary* availabilityMap = nil;
     }
     [AppDelegate removeNotification:notification];
 }
-
-
-- (BOOL) feedsContainsKey:(NSString*) key {
-    for (Feed* feed in self.feeds) {
-        if ([feed.key isEqual:key]) {
-            return YES;
-        }
-    }
-
-    return NO;
-}
-
-
-
-- (void) reportFeeds:(NSArray*) feeds {
-    NSAssert([NSThread isMainThread], nil);
-
-    self.feedsData = feeds;
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];
-
-    for (NSString* key in queues.allKeys) {
-        if (![self feedsContainsKey:key]) {
-            [dictionary removeObjectForKey:key];
-        }
-    }
-
-    self.queues = dictionary;
-
-    [AppDelegate majorRefresh];
-}
-
 
 - (NSDictionary*) detailsForMovie:(Movie*) movie {
     return [FileUtilities readObject:[self detailsFile:movie]];

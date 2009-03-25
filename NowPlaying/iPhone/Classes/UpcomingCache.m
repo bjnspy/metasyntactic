@@ -203,8 +203,9 @@
     if (movieMapData == nil) {
         self.movieMapData = [self loadMovies];
     }
-
-    return movieMapData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.movieMapData;
 }
 
 
@@ -231,8 +232,9 @@
             self.hashData = @"";
         }
     }
-
-    return hashData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.hashData;
 }
 
 
@@ -261,8 +263,9 @@
     if (studioKeysData == nil) {
         self.studioKeysData = [self loadStudioKeys];
     }
-
-    return studioKeysData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.studioKeysData;
 }
 
 
@@ -291,8 +294,9 @@
     if (titleKeysData == nil) {
         self.titleKeysData = [self loadTitleKeys];
     }
-
-    return titleKeysData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.titleKeysData;
 }
 
 
@@ -326,8 +330,9 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-
-    return bookmarksData;
+    
+    // Access through the property so that we get back a safe pointer
+    return self.bookmarksData;
 }
 
 
