@@ -24,7 +24,6 @@
 #import "OperationQueue.h"
 
 @interface TrailerCache()
-@property (retain) DifferenceEngine* engine;
 @property (retain) NSDictionary* index;
 @property (retain) NSArray* indexKeys;
 @end
@@ -32,25 +31,14 @@
 
 @implementation TrailerCache
 
-@synthesize engine;
 @synthesize index;
 @synthesize indexKeys;
 
 - (void) dealloc {
-    self.engine = nil;
     self.index = nil;
     self.indexKeys = nil;
 
     [super dealloc];
-}
-
-
-- (id) init {
-    if (self = [super init]) {
-        self.engine = [DifferenceEngine engine];
-    }
-
-    return self;
 }
 
 
@@ -78,6 +66,7 @@
         }
     }
 
+    DifferenceEngine* engine = [DifferenceEngine engine];
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
                                                  inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
