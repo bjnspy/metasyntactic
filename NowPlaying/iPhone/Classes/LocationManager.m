@@ -25,64 +25,50 @@
 #import "UserLocationCache.h"
 
 @interface LocationManager()
-@property (retain) Controller* controller_;
-@property (retain) CLLocationManager* locationManager_;
-@property (retain) NSLock* gate_;
-@property (retain) UINavigationItem* navigationItem_;
-@property (retain) UIBarButtonItem* buttonItem_;
-@property BOOL running_;
-@property BOOL firstTime_;
-@property BOOL userInvoked_;
+@property (retain) CLLocationManager* locationManager;
+@property (retain) NSLock* gate;
+@property (retain) UINavigationItem* navigationItem;
+@property (retain) UIBarButtonItem* buttonItem;
+@property BOOL running;
+@property BOOL userInvoked;
 @end
 
 
 @implementation LocationManager
 
-@synthesize controller_;
-@synthesize locationManager_;
-@synthesize gate_;
-@synthesize navigationItem_;
-@synthesize buttonItem_;
-@synthesize running_;
-@synthesize firstTime_;
-@synthesize userInvoked_;
-
-property_wrapper(Controller*, controller, Controller);
-property_wrapper(NSLock*, gate, Gate);
-property_wrapper(CLLocationManager*, locationManager, LocationManager);
-property_wrapper(UINavigationItem*, navigationItem, NavigationItem);
-property_wrapper(UIBarButtonItem*, buttonItem, ButtonItem);
-property_wrapper(BOOL, running, Running);
-property_wrapper(BOOL, firstTime, FirstTime);
-property_wrapper(BOOL, userInvoked, UserInvoked);
+@synthesize locationManager;
+@synthesize gate;
+@synthesize navigationItem;
+@synthesize buttonItem;
+@synthesize running;
+@synthesize userInvoked;
 
 - (void) dealloc {
-    self.controller = nil;
     self.locationManager = nil;
     self.gate = nil;
     self.navigationItem = nil;
     self.buttonItem = nil;
+    self.running = NO;
+    self.userInvoked = NO;
 
     [super dealloc];
 }
 
 
-- (id) initWithController:(Controller*) controller__ {
+- (id) init {
     if (self = [super init]) {
-        self.controller = controller__;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
 
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
 
         self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:self
                                                            action:@selector(onButtonTapped:)] autorelease];
 
-        self.firstTime = YES;
         [self autoUpdateLocation];
     }
 
@@ -90,8 +76,8 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 }
 
 
-+ (LocationManager*) managerWithController:(Controller*) controller {
-    return [[[LocationManager alloc] initWithController:controller] autorelease];
++ (LocationManager*) manager {
+    return [[[LocationManager alloc] init] autorelease];
 }
 
 
@@ -100,14 +86,19 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 }
 
 
+- (Controller*) controller {
+    return [Controller controller];
+}
+
+
 - (void) updateSpinnerImage:(NSNumber*) number {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (self.running == NO) {
+    if (running == NO) {
         return;
     }
 
     NSInteger i = number.intValue;
-    self.buttonItem.image =
+    buttonItem.image =
     [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
 
     [self performSelector:@selector(updateSpinnerImage:)
@@ -118,7 +109,7 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 
 - (void) startUpdatingSpinner:(BOOL) wasUserInvoked {
     self.userInvoked = wasUserInvoked;
-    self.buttonItem.style = UIBarButtonItemStyleDone;
+    buttonItem.style = UIBarButtonItemStyleDone;
     [self updateSpinnerImage:[NSNumber numberWithInt:1]];
 }
 
@@ -126,22 +117,22 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 - (void) stopUpdatingSpinner {
     self.userInvoked = NO;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    self.buttonItem.style = UIBarButtonItemStylePlain;
-    self.buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
+    buttonItem.style = UIBarButtonItemStylePlain;
+    buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
 }
 
 
 - (void) startUpdatingLocation:(BOOL) wasUserInvoked {
-    if (self.running) {
+    if (running) {
         // the user may have stopped the spinner, and then started it up
         // again while the current request is still running.
-        [self startUpdatingSpinner:userInvoked_];
+        [self startUpdatingSpinner:wasUserInvoked];
         return;
     }
     self.running = YES;
     [self startUpdatingSpinner:wasUserInvoked];
 
-    [self.locationManager startUpdatingLocation];
+    [locationManager startUpdatingLocation];
 }
 
 
@@ -161,14 +152,14 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 
 - (void) stopAll {
     self.running = NO;
-    [self.locationManager stopUpdatingLocation];
+    [locationManager stopUpdatingLocation];
     [self stopUpdatingSpinner];
 }
 
 
 - (void) locationManager:(CLLocationManager*) manager
         didFailWithError:(NSError*) error {
-    if (self.userInvoked) {
+    if (userInvoked) {
         [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
     }
 
@@ -185,11 +176,11 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
     NSLog(@"Location found! Timestamp: %@. Accuracy: %f", newLocation.timestamp, newLocation.horizontalAccuracy);
     if (newLocation != nil) {
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
-            [self.locationManager stopUpdatingLocation];
+            [locationManager stopUpdatingLocation];
             [[OperationQueue operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
                                                  onTarget:self
                                                withObject:newLocation
-                                                     gate:self.gate
+                                                     gate:gate
                                                   priority:Now];
         }
     }
@@ -233,7 +224,7 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 
 
 - (void) onButtonTapped:(id) sender {
-    if (self.running) {
+    if (running) {
         // just stop the spinner.  we'll continue doing whatever
         // it was that we were doign.
         [self stopUpdatingSpinner];
@@ -246,7 +237,7 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
 
 - (void) addLocationSpinner:(UINavigationItem*) item {
     self.navigationItem = item;
-    self.navigationItem.rightBarButtonItem = self.buttonItem;
+    navigationItem.rightBarButtonItem = buttonItem;
 }
 
 @end

@@ -67,7 +67,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 - (id) init {
     if (self = [super init]) {
-        self.locationManager = [LocationManager managerWithController:self];
+        self.locationManager = [LocationManager manager];
         self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
 

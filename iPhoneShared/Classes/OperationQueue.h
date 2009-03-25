@@ -34,9 +34,9 @@ typedef enum {
 
 @interface OperationQueue : NSObject {
 @private
-    NSOperationQueue* queue_;
-    NSMutableArray* boundedOperations_;
-    NSLock* boundedOperationsGate_;
+    NSOperationQueue* queue;
+    NSMutableArray* boundedOperations;
+    NSLock* boundedOperationsGate;
 }
 
 + (OperationQueue*) operationQueue;
