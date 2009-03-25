@@ -22,21 +22,17 @@
 #import "SearchResult.h"
 
 @interface NetflixSearchDisplayController()
-@property (retain) NSArray* movies_;
-@property (retain) NSArray* discMovies_;
-@property (retain) NSArray* instantMovies_;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* discMovies;
+@property (retain) NSArray* instantMovies;
 @end
 
 
 @implementation NetflixSearchDisplayController
 
-@synthesize movies_;
-@synthesize discMovies_;
-@synthesize instantMovies_;
-
-property_wrapper(NSArray*, movies, Movies);
-property_wrapper(NSArray*, discMovies, DiscMovies);
-property_wrapper(NSArray*, instantMovies, InstantMovies);
+@synthesize movies;
+@synthesize discMovies;
+@synthesize instantMovies;
 
 - (void) dealloc {
     self.movies = nil;
@@ -95,10 +91,10 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 - (BOOL) noResults {
     return
-    self.searchResult != nil &&
-    (self.movies.count == 0 || ![self shouldShowAll]) &&
-    (self.discMovies.count == 0 || ![self shouldShowDisc]) &&
-    (self.instantMovies.count == 0 || ![self shouldShowInstant]);
+    searchResult != nil &&
+    (movies.count == 0 || ![self shouldShowAll]) &&
+    (discMovies.count == 0 || ![self shouldShowDisc]) &&
+    (discMovies.count == 0 || ![self shouldShowInstant]);
 }
 
 
@@ -109,7 +105,7 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (self.searchResult == nil) {
+    if (searchResult == nil) {
         return 0;
     }
 
@@ -118,11 +114,11 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
     }
 
     if ([self shouldShowAll]) {
-        return self.movies.count;
+        return movies.count;
     } else if ([self shouldShowDisc]) {
-        return self.discMovies.count;
+        return discMovies.count;
     } else if ([self shouldShowInstant]) {
-        return self.instantMovies.count;
+        return discMovies.count;
     } else {
         return 0;
     }
@@ -144,7 +140,7 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), self.searchResult.value];
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
     return cell;
 }
 
@@ -157,11 +153,11 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
     Movie* movie = nil;
     if ([self shouldShowAll]) {
-        movie = [self.movies objectAtIndex:indexPath.row];
+        movie = [movies objectAtIndex:indexPath.row];
     } else if ([self shouldShowDisc]) {
-        movie = [self.discMovies objectAtIndex:indexPath.row];
+        movie = [discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [self.instantMovies objectAtIndex:indexPath.row];
+        movie = [discMovies objectAtIndex:indexPath.row];
     } else {
         [[[UITableViewCell alloc] init] autorelease];
     }
@@ -171,7 +167,7 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 
 - (ApplicationTabBarController*) applicationTabBarController {
-    return self.navigationController.applicationTabBarController;
+    return navigationController.applicationTabBarController;
 }
 
 
@@ -181,22 +177,22 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
     Movie* movie = nil;
     if ([self shouldShowAll]) {
-        movie = [self.movies objectAtIndex:indexPath.row];
+        movie = [movies objectAtIndex:indexPath.row];
     } else if ([self shouldShowDisc]) {
-        movie = [self.discMovies objectAtIndex:indexPath.row];
+        movie = [discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [self.instantMovies objectAtIndex:indexPath.row];
+        movie = [discMovies objectAtIndex:indexPath.row];
     } else {
         return;
     }
 
-    [self.navigationController pushMovieDetails:movie animated:YES];
+    [navigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (self.searchResult != nil) {
+    if (searchResult != nil) {
         return 100;
     }
 
@@ -227,9 +223,9 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
         }
     }
 
-    if ([self.movies isEqual:result.movies] &&
-        [self.discMovies isEqual:discs] &&
-        [self.instantMovies isEqual:instant]) {
+    if ([movies isEqual:result.movies] &&
+        [discMovies isEqual:discs] &&
+        [instantMovies isEqual:instant]) {
         return NO;
     }
 
@@ -248,7 +244,7 @@ property_wrapper(NSArray*, instantMovies, InstantMovies);
 
 
 - (void) majorRefresh {
-    if ([self initializeData:self.searchResult]) {
+    if ([self initializeData:searchResult]) {
         [self.searchResultsTableView reloadData];
     } else {
         for (id cell in self.searchResultsTableView.visibleCells) {

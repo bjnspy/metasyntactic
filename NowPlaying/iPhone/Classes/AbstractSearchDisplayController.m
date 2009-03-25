@@ -27,20 +27,16 @@
 #import "UpcomingMovieCell.h"
 
 @interface AbstractSearchDisplayController()
-@property (assign) AbstractNavigationController* navigationController_;
-@property (retain) AbstractSearchEngine* searchEngineData_;
-@property (retain) SearchResult* searchResult_;
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) AbstractSearchEngine* searchEngineData;
+@property (retain) SearchResult* searchResult;
 @end
 
 @implementation AbstractSearchDisplayController
 
-@synthesize navigationController_;
-@synthesize searchEngineData_;
-@synthesize searchResult_;
-
-property_wrapper(AbstractNavigationController*, navigationController, NavigationController);
-property_wrapper(AbstractSearchEngine*, searchEngineData, SearchEngineData);
-property_wrapper(SearchResult*, searchResult, SearchResult);
+@synthesize navigationController;
+@synthesize searchEngineData;
+@synthesize searchResult;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -92,11 +88,11 @@ property_wrapper(SearchResult*, searchResult, SearchResult);
 
 
 - (AbstractSearchEngine*) searchEngine {
-    if (self.searchEngineData == nil) {
+    if (searchEngineData == nil) {
         self.searchEngineData = [self createSearchEngine];
     }
 
-    return self.searchEngineData;
+    return searchEngineData;
 }
 
 
@@ -104,7 +100,7 @@ property_wrapper(SearchResult*, searchResult, SearchResult);
     NSString* searchText = self.searchBar.text;
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    return searchText.length > 0 && ![searchText isEqual:self.searchResult.value];
+    return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
 

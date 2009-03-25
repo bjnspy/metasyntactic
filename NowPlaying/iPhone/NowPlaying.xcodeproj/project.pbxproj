@@ -97,7 +97,6 @@
 		743D951F0F3F6DFB00BA0784 /* IronMan-NetflixRecommendations.png in Resources */ = {isa = PBXBuildFile; fileRef = 743D94FF0F3F6DFB00BA0784 /* IronMan-NetflixRecommendations.png */; };
 		743D95200F3F6DFB00BA0784 /* IronMan-NetflixSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 743D95000F3F6DFB00BA0784 /* IronMan-NetflixSearch.png */; };
 		743D95210F3F6DFB00BA0784 /* IronMan-NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 743D95010F3F6DFB00BA0784 /* IronMan-NetflixSettings.png */; };
-		743D95500F3F721100BA0784 /* NetflixThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D954F0F3F721100BA0784 /* NetflixThemeViewController.m */; };
 		743D95B90F3F761900BA0784 /* IronMan-NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 743D95B80F3F761900BA0784 /* IronMan-NetflixCredits.png */; };
 		743D95BB0F3F766500BA0784 /* Plain-NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 743D95BA0F3F766500BA0784 /* Plain-NetflixCredits.png */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
@@ -194,7 +193,6 @@
 		747D98CE0F3047E7000B5A68 /* Netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 747D98CD0F3047E7000B5A68 /* Netflix.png */; };
 		747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
-		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
 		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
 		747E21080EED99B0005B638A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747E21070EED99B0005B638A /* WebViewController.m */; };
@@ -499,8 +497,6 @@
 		743D94FF0F3F6DFB00BA0784 /* IronMan-NetflixRecommendations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IronMan-NetflixRecommendations.png"; path = "Resources/Netflix/IronMan/IronMan-NetflixRecommendations.png"; sourceTree = "<group>"; };
 		743D95000F3F6DFB00BA0784 /* IronMan-NetflixSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IronMan-NetflixSearch.png"; path = "Resources/Netflix/IronMan/IronMan-NetflixSearch.png"; sourceTree = "<group>"; };
 		743D95010F3F6DFB00BA0784 /* IronMan-NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IronMan-NetflixSettings.png"; path = "Resources/Netflix/IronMan/IronMan-NetflixSettings.png"; sourceTree = "<group>"; };
-		743D954E0F3F721100BA0784 /* NetflixThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixThemeViewController.h; sourceTree = "<group>"; };
-		743D954F0F3F721100BA0784 /* NetflixThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixThemeViewController.m; sourceTree = "<group>"; };
 		743D95B80F3F761900BA0784 /* IronMan-NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IronMan-NetflixCredits.png"; path = "Resources/Netflix/IronMan/IronMan-NetflixCredits.png"; sourceTree = "<group>"; };
 		743D95BA0F3F766500BA0784 /* Plain-NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plain-NetflixCredits.png"; path = "Resources/Netflix/Plain/Plain-NetflixCredits.png"; sourceTree = "<group>"; };
 		743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
@@ -720,8 +716,6 @@
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		747DA10E0EF835A50066B881 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
-		747DAC0D0EF9D9F50066B881 /* NetflixSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchViewController.h; sourceTree = "<group>"; };
-		747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchViewController.m; sourceTree = "<group>"; };
 		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
 		747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
@@ -1786,8 +1780,6 @@
 			children = (
 				7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */,
 				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
-				747DAC0D0EF9D9F50066B881 /* NetflixSearchViewController.h */,
-				747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */,
 				7414A5F40F1414B2003163B3 /* NetflixMostPopularMoviesViewController.h */,
 				7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */,
 				7414A5F60F1414B2003163B3 /* NetflixMostPopularViewController.h */,
@@ -1804,8 +1796,6 @@
 				7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */,
 				747D9F200F3369A7000B5A68 /* NetflixMovieListViewController.h */,
 				747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */,
-				743D954E0F3F721100BA0784 /* NetflixThemeViewController.h */,
-				743D954F0F3F721100BA0784 /* NetflixThemeViewController.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -2341,7 +2331,6 @@
 				7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */,
 				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
 				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
-				747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */,
 				747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */,
 				747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */,
 				74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */,
@@ -2410,7 +2399,6 @@
 				747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */,
 				747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */,
 				7477B3250F378CBA00FED03B /* NotificationCenter.m in Sources */,
-				743D95500F3F721100BA0784 /* NetflixThemeViewController.m in Sources */,
 				741172B20F60927C00E09FD8 /* AbstractMovieCache.m in Sources */,
 				744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */,
 				747988750F745E680057E111 /* AbstractFullScreenViewController.m in Sources */,
