@@ -23,7 +23,6 @@
 #import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"

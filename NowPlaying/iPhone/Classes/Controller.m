@@ -33,8 +33,8 @@
 #import "Utilities.h"
 
 @interface Controller()
-@property (retain) NSLock* determineLocationLock_;
-@property (retain) LocationManager* locationManager_;
+@property (retain) NSLock* determineLocationGate;
+@property (retain) LocationManager* locationManager;
 @end
 
 
@@ -42,14 +42,11 @@
 
 static Controller* controller = nil;
 
-@synthesize determineLocationLock_;
-@synthesize locationManager_;
-
-property_wrapper(NSLock*, determineLocationLock, DetermineLocationLock);
-property_wrapper(LocationManager*, locationManager, LocationManager)
+@synthesize determineLocationGate;
+@synthesize locationManager;
 
 - (void) dealloc {
-    self.determineLocationLock = nil;
+    self.determineLocationGate = nil;
     self.locationManager = nil;
 
     [super dealloc];
@@ -68,7 +65,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 - (id) init {
     if (self = [super init]) {
         self.locationManager = [LocationManager manager];
-        self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
+        self.determineLocationGate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
@@ -117,7 +114,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
     NSAssert([NSThread isMainThread], nil);
     [[OperationQueue operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
                                          onTarget:self
-                                             gate:self.determineLocationLock
+                                             gate:determineLocationGate
                                           priority:Now];
 }
 
@@ -241,7 +238,7 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 - (void) setAutoUpdateLocation:(BOOL) value {
     [self.model setAutoUpdateLocation:value];
-    [self.locationManager autoUpdateLocation];
+    [locationManager autoUpdateLocation];
 }
 
 
