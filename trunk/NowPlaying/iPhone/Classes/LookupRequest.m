@@ -15,29 +15,22 @@
 #import "LookupRequest.h"
 
 @interface LookupRequest()
-@property (retain) NSDate* searchDate_;
-@property (retain) id<DataProviderUpdateDelegate> delegate_;
-@property (retain) id context_;
-@property BOOL force_;
-@property (retain) NSArray* currentMovies_;
-@property (retain) NSArray* currentTheaters_;
+@property (retain) NSDate* searchDate;
+@property (retain) id<DataProviderUpdateDelegate> delegate;
+@property (retain) id context;
+@property BOOL force;
+@property (retain) NSArray* currentMovies;
+@property (retain) NSArray* currentTheaters;
 @end
 
 @implementation LookupRequest
 
-@synthesize searchDate_;
-@synthesize delegate_;
-@synthesize context_;
-@synthesize force_;
-@synthesize currentMovies_;
-@synthesize currentTheaters_;
-
-property_wrapper(NSDate*, searchDate, SearchDate);
-property_wrapper(id<DataProviderUpdateDelegate>, delegate, Delegate);
-property_wrapper(id, context, Context);
-property_wrapper(BOOL, force, Force);
-property_wrapper(NSArray*, currentMovies, CurrentMovies);
-property_wrapper(NSArray*, currentTheaters, CurrentTheaters);
+@synthesize searchDate;
+@synthesize delegate;
+@synthesize context;
+@synthesize force;
+@synthesize currentMovies;
+@synthesize currentTheaters;
 
 - (void) dealloc {
     self.searchDate = nil;
