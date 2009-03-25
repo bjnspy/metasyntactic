@@ -651,7 +651,8 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (BOOL) canSendMail {
-    return [MFMailComposeViewController canSendMail];
+    return YES;
+    //return [MFMailComposeViewController canSendMail];
 }
 
 @end
