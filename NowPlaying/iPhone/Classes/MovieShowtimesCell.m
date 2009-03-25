@@ -21,18 +21,15 @@
 #import "Performance.h"
 
 @interface MovieShowtimesCell()
-@property (retain) UILabel* showtimesLabel_;
-@property (retain) NSArray* showtimesData_;
+@property (retain) UILabel* showtimesLabel;
+@property (retain) NSArray* showtimesData;
 @end
 
 
 @implementation MovieShowtimesCell
 
-@synthesize showtimesLabel_;
-@synthesize showtimesData_;
-
-property_wrapper(UILabel*, showtimesLabel, ShowtimesLabel);
-property_wrapper(NSArray*, showtimesData, ShowtimesData);
+@synthesize showtimesLabel;
+@synthesize showtimesData;
 
 - (void) dealloc {
     self.showtimesLabel = nil;
@@ -108,10 +105,10 @@ property_wrapper(NSArray*, showtimesData, ShowtimesData);
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        self.showtimesLabel.numberOfLines = 0;
-        self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
+        showtimesLabel.numberOfLines = 0;
+        showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
-        [self.contentView addSubview:self.showtimesLabel];
+        [self.contentView addSubview:showtimesLabel];
     }
 
     return self;
@@ -130,7 +127,7 @@ property_wrapper(NSArray*, showtimesData, ShowtimesData);
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect showtimesFrame = self.showtimesLabel.frame;
+    CGRect showtimesFrame = showtimesLabel.frame;
     if (self.image == nil) {
         showtimesFrame.origin.x = 8;
     } else {
@@ -144,18 +141,18 @@ property_wrapper(NSArray*, showtimesData, ShowtimesData);
     width -= 18; // accessory
 
     showtimesFrame.size.width = width;
-    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:self.showtimesData
+    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
                                                                   stale:(self.image != nil)];
 
-    self.showtimesLabel.frame = showtimesFrame;
+    showtimesLabel.frame = showtimesFrame;
 }
 
 
 - (void) setShowtimes:(NSArray*) showtimes_ {
     self.showtimesData = showtimes_;
 
-    self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
-    self.showtimesLabel.text = [MovieShowtimesCell showtimesString:self.showtimesData];
+    showtimesLabel.font = [MovieShowtimesCell showtimesFont:self.model.useSmallFonts];
+    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
 }
 
 
@@ -163,9 +160,9 @@ property_wrapper(NSArray*, showtimesData, ShowtimesData);
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        self.showtimesLabel.textColor = [UIColor whiteColor];
+        showtimesLabel.textColor = [UIColor whiteColor];
     } else {
-        self.showtimesLabel.textColor = [UIColor blackColor];
+        showtimesLabel.textColor = [UIColor blackColor];
     }
 }
 

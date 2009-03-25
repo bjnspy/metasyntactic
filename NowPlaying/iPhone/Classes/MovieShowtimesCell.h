@@ -14,9 +14,9 @@
 
 @interface MovieShowtimesCell : UITableViewCell {
 @private
-    UILabel* showtimesLabel_;
+    UILabel* showtimesLabel;
 
-    NSArray* showtimesData_;
+    NSArray* showtimesData;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
