@@ -103,7 +103,7 @@
 }
 
 
-- (void) generateIndex:(NSString*) indexText {
+- (void) generateIndexWorker:(NSString*) indexText {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
@@ -126,19 +126,30 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
-    if (index == nil) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
-        if (indexText == nil) {
-            return;
+- (BOOL) tryGenerateIndex {
+    BOOL result;
+    [gate lock];
+    {
+        if (index == nil) {
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+            NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
+            if (indexText != nil) {
+                [self generateIndexWorker:indexText];
+                [self clearUpdatedMovies];
+            }
         }
-
-        [self generateIndex:indexText];
-        [self clearUpdatedMovies];
+        
+        result = index != nil;
     }
+    [gate unlock];
+    return result;
+}
 
-    [self updateMovieDetailsWorker:movie];
+
+- (void) updateMovieDetails:(Movie*) movie {
+    if ([self tryGenerateIndex]) {
+        [self updateMovieDetailsWorker:movie];
+    }
 }
 
 
