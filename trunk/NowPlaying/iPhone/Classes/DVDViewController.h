@@ -16,14 +16,7 @@
 
 @interface DVDViewController : AbstractMovieListViewController {
 @private
-    UIView* titleView_;
-    UIToolbar* toolbar_;
-    UISegmentedControl* segmentedControl_;
-    UIButton* flipButton_;
-
-    UIView* superView_;
-    UITableView* cachedTableView_;
-    UIViewController* filterViewController_;
+    UISegmentedControl* segmentedControl;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
