@@ -16,8 +16,8 @@
 
 @interface TextFieldEditorViewController : EditorViewController<UITextFieldDelegate> {
 @private
-    UITextField* textField_;
-    UILabel* messageLabel_;
+    UITextField* textField;
+    UILabel* messageLabel;
 }
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
