@@ -31,33 +31,24 @@
 #import "WarningView.h"
 
 @interface TheaterDetailsViewController()
-@property (retain) UISegmentedControl* segmentedControl_;
-@property (retain) UIButton* favoriteButton_;
-@property (retain) Theater* theater_;
-@property (retain) NSArray* movies_;
-@property (retain) NSArray* movieShowtimes_;
+@property (retain) UIButton* favoriteButton;
+@property (retain) Theater* theater;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* movieShowtimes;
 @end
 
 
 @implementation TheaterDetailsViewController
 
-@synthesize theater_;
-@synthesize movies_;
-@synthesize movieShowtimes_;
-@synthesize segmentedControl_;
-@synthesize favoriteButton_;
-
-property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
-property_wrapper(UIButton*, favoriteButton, FavoriteButton);
-property_wrapper(Theater*, theater, Theater);
-property_wrapper(NSArray*, movies, Movies);
-property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
+@synthesize theater;
+@synthesize movies;
+@synthesize movieShowtimes;
+@synthesize favoriteButton;
 
 - (void) dealloc {
     self.theater = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
-    self.segmentedControl = nil;
     self.favoriteButton = nil;
 
     [super dealloc];
@@ -70,15 +61,15 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 
 - (void) setFavoriteImage {
-    self.favoriteButton.selected = [self.model isFavoriteTheater:self.theater];
+    favoriteButton.selected = [self.model isFavoriteTheater:theater];
 }
 
 
 - (void) switchFavorite:(id) sender {
-    if ([self.model isFavoriteTheater:self.theater]) {
-        [self.model removeFavoriteTheater:self.theater];
+    if ([self.model isFavoriteTheater:theater]) {
+        [self.model removeFavoriteTheater:theater];
     } else {
-        [self.model addFavoriteTheater:self.theater];
+        [self.model addFavoriteTheater:theater];
     }
 
     [self setFavoriteImage];
@@ -87,17 +78,17 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 - (void) initializeFavoriteButton {
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [self.favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
-    [self.favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
+    [favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
+    [favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
 
-    CGRect frame = self.favoriteButton.frame;
+    CGRect frame = favoriteButton.frame;
     frame.size = [ImageCache emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
-    self.favoriteButton.frame = frame;
+    favoriteButton.frame = frame;
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.favoriteButton] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:favoriteButton] autorelease];
     [self setFavoriteImage];
 }
 
@@ -116,9 +107,9 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
     [super loadView];
 
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = self.theater.name;
+    label.text = theater.name;
 
-    self.title = self.theater.name;
+    self.title = theater.name;
     self.navigationItem.titleView = label;
 
     [self initializeFavoriteButton];
@@ -127,7 +118,6 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
-    self.segmentedControl = nil;
     self.favoriteButton = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
@@ -146,12 +136,12 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 
 - (void) initializeData {
-    self.movies = [[self.model moviesAtTheater:self.theater] sortedArrayUsingFunction:compareMoviesByTitle
+    self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
 
     NSMutableArray* array = [NSMutableArray array];
-    for (Movie* movie in self.movies) {
-        NSArray* showtimes = [self.model moviePerformances:movie forTheater:self.theater];
+    for (Movie* movie in movies) {
+        NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
 
         [array addObject:showtimes];
     }
@@ -174,7 +164,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
     sections++;
 
     // movies
-    sections += self.movies.count;
+    sections += movies.count;
 
     return sections;
 }
@@ -184,7 +174,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         // theater address and possibly phone number
-        return 1 + (self.theater.phoneNumber.length == 0 ? 0 : 1);
+        return 1 + (theater.phoneNumber.length == 0 ? 0 : 1);
     } else if (section == 1) {
         if ([Application canSendMail]) {
             return 2;
@@ -199,7 +189,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 2 && self.movies.count > 0) {
+    if (section == 2 && movies.count > 0) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
         } else {
@@ -217,10 +207,10 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
     if (row == 0) {
         cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
-        cell.detailTextLabel.text = [self.model simpleAddressForTheater:self.theater];
+        cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
     } else {
         cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
-        cell.detailTextLabel.text = self.theater.phoneNumber;
+        cell.detailTextLabel.text = theater.phoneNumber;
     }
 
     return cell;
@@ -253,7 +243,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
             movieCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
-        [movieCell setMovie:[self.movies objectAtIndex:index] owner:self];
+        [movieCell setMovie:[movies objectAtIndex:index] owner:self];
 
         return movieCell;
     } else {
@@ -264,7 +254,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
-        [cell setShowtimes:[self.movieShowtimes objectAtIndex:index]];
+        [cell setShowtimes:[movieShowtimes objectAtIndex:index]];
 
         return cell;
     }
@@ -299,7 +289,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
         if (row == 0) {
             return tableView.rowHeight;
         } else {
-            return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:section]
+            return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
                                                     stale:NO] + 18;
         }
     }
@@ -308,28 +298,28 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
 - (void) didSelectEmailListings {
     NSString* subject = [NSString stringWithFormat:@"%@ - %@",
-                                self.theater.name,
+                                theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
     [body appendString:@"<p>"];
     [body appendString:@"<a href=\""];
-    [body appendString:self.theater.mapUrl];
+    [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
-    [body appendString:[self.model simpleAddressForTheater:self.theater]];
+    [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
 
-    for (int i = 0; i < self.movies.count; i++) {
+    for (int i = 0; i < movies.count; i++) {
         [body appendString:@"<p>"];
 
-        Movie* movie = [self.movies objectAtIndex:i];
-        NSArray* performances = [self.movieShowtimes objectAtIndex:i];
+        Movie* movie = [movies objectAtIndex:i];
+        NSArray* performances = [movieShowtimes objectAtIndex:i];
 
         [body appendString:movie.displayTitle];
         [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
-                                                    theater:self.theater
+                                                    theater:theater
                                                performances:performances]];
     }
 
@@ -340,7 +330,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
     [self.abstractNavigationController pushTicketsView:movie
-                                  theater:self.theater
+                                  theater:theater
                                     title:movie.displayTitle
                                  animated:animated];
 }
@@ -358,11 +348,11 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
     NSDate* searchDate = [array lastObject];
 
-    if (![lookupResult.theaters containsObject:self.theater]) {
+    if (![lookupResult.theaters containsObject:theater]) {
         NSString* text =
         [NSString stringWithFormat:
          NSLocalizedString(@"No listings found at '%@' on %@", @"No listings found at 'Regal Meridian 6' on 5/18/2008"),
-         self.theater.name,
+         theater.name,
          [DateUtilities formatShortDate:searchDate]];
 
         [self onDataProviderUpdateFailure:text context:array];
@@ -370,7 +360,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
         [super onDataProviderUpdateSuccess:lookupResult context:array];
 
         // find the up to date version of this theater
-        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:self.theater]];
+        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
     }
 }
 
@@ -382,9 +372,9 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 
     if (section == 0) {
         if (row == 0) {
-            [Application openMap:self.theater.mapUrl];
+            [Application openMap:theater.mapUrl];
         } else {
-            [Application makeCall:self.theater.phoneNumber];
+            [Application makeCall:theater.phoneNumber];
             // no call will be made if this is an iPod touch.
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
@@ -397,7 +387,7 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
     } else {
         section -= 2;
 
-        Movie* movie = [self.movies objectAtIndex:section];
+        Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
             [self.abstractNavigationController pushMovieDetails:movie animated:YES];
         } else {
@@ -410,15 +400,15 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == 1) {
-        if (self.movies.count == 0) {
+        if (movies.count == 0) {
             return [NSString stringWithFormat:
                     NSLocalizedString(@"This theater has not yet reported its show times. "
                                       "When they become available, %@ will retrieve them automatically.", nil),
                     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
         }
 
-        if (![self.model isStale:self.theater]) {
-            return [self.model showtimesRetrievedOnString:self.theater];
+        if (![self.model isStale:theater]) {
+            return [self.model showtimesRetrievedOnString:theater];
         }
     }
 
@@ -429,9 +419,9 @@ property_wrapper(NSArray*, movieShowtimes, MovieShowtimes);
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
     if (section == 1) {
-        if (self.movies.count > 0 ) {
-            if ([self.model isStale:self.theater]) {
-                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:self.theater]];
+        if (movies.count > 0 ) {
+            if ([self.model isStale:theater]) {
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]];
             }
         }
     }
