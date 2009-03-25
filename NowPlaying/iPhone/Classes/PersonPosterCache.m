@@ -57,22 +57,22 @@
 
 
 - (void) update:(Person*) person {
-    [self.gate lock];
+    [gate lock];
     {
         //[normalPeople addObject:person];
-        [self.gate signal];
+        [gate signal];
     }
-    [self.gate unlock];
+    [gate unlock];
 }
 
 
 - (void) prioritizePerson:(Person*) person {
-    [self.gate lock];
+    [gate lock];
     {
         //[prioritizedPeople addObject:person];
-        [self.gate signal];
+        [gate signal];
     }
-    [self.gate unlock];
+    [gate unlock];
 }
 
 

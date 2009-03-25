@@ -15,15 +15,13 @@
 #import "AbstractCache.h"
 
 @interface AbstractCache()
-@property (retain) NSCondition* gate_;
+@property (retain) NSCondition* gate;
 @end
 
 
 @implementation AbstractCache
 
-@synthesize gate_;
-
-property_wrapper(NSCondition*, gate, Gate);
+@synthesize gate;
 
 - (void) dealloc {
     self.gate = nil;

@@ -311,7 +311,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     } else {
         [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                              onTarget:self
-                                                 gate:self.gate
+                                                 gate:gate
                                              priority:Priority];
     }
 }
@@ -1296,7 +1296,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:)
                                              onTarget:self
                                            withObject:feed
-                                                 gate:self.gate
+                                                 gate:gate
                                              priority:Priority];
     }
 

@@ -394,7 +394,7 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:request
-                                             gate:self.gate
+                                             gate:gate
                                           priority:Now];
 }
 

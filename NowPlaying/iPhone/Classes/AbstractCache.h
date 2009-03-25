@@ -14,12 +14,9 @@
 
 @interface AbstractCache : NSObject {
 @protected
-    NSCondition* gate_;
+    NSCondition* gate;
 }
 
 - (void) didReceiveMemoryWarning;
-
-/* @protected */
-- (NSCondition*) gate;
 
 @end
