@@ -15,16 +15,19 @@
 #import "AbstractCache.h"
 
 @interface AbstractCache()
-@property (retain) NSCondition* gate;
+@property (retain) NSRecursiveLock* dataGate;
+@property (retain) NSRecursiveLock* runGate;
 @end
 
 
 @implementation AbstractCache
 
-@synthesize gate;
+@synthesize dataGate;
+@synthesize runGate;
 
 - (void) dealloc {
-    self.gate = nil;
+    self.dataGate = nil;
+    self.runGate = nil;
 
     [super dealloc];
 }
@@ -32,7 +35,8 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSCondition alloc] init] autorelease];
+        self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
+        self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;

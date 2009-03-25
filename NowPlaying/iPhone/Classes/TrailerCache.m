@@ -128,7 +128,7 @@
 
 - (BOOL) tryGenerateIndex {
     BOOL result;
-    [gate lock];
+    [dataGate lock];
     {
         if (index == nil) {
             NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
@@ -141,7 +141,7 @@
         
         result = index != nil;
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 

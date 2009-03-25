@@ -302,7 +302,7 @@ static NSDictionary* availabilityMap = nil;
     } else {
         [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                              onTarget:self
-                                                 gate:gate
+                                                 gate:runGate
                                              priority:Priority];
     }
 }
@@ -1287,7 +1287,7 @@ static NSDictionary* availabilityMap = nil;
         [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:)
                                              onTarget:self
                                            withObject:feed
-                                                 gate:gate
+                                                 gate:runGate
                                              priority:Priority];
     }
 

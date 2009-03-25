@@ -126,11 +126,11 @@
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
     Location* result;
-    [gate lock];
+    [runGate lock];
     {
         result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
     }
-    [gate unlock];
+    [runGate unlock];
     return result;
 }
 

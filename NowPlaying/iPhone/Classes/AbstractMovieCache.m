@@ -49,17 +49,17 @@
 
 
 - (void) clearUpdatedMovies {
-    [gate lock];
+    [dataGate lock];
     {
         [updatedMovies removeAllObjects];
     }
-    [gate unlock];
+    [dataGate unlock];
 }
 
 
 - (BOOL) checkMovie:(Movie*) movie {
     BOOL result;
-    [gate lock];
+    [dataGate lock];
     {
         if (![updatedMovies containsObject:movie]) {
             [updatedMovies addObject:movie];
@@ -68,7 +68,7 @@
             result = YES;
         }
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 

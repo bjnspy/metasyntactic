@@ -172,11 +172,11 @@
 
 - (NSDictionary*) scores {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self scoresNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -192,11 +192,11 @@
 
 - (NSString*) hashValue {
     NSString* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self hashValueNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -230,11 +230,11 @@
 
 - (NSDictionary*) movieMap {
     NSDictionary* result = nil;
-    [gate lock];
+    [dataGate lock];
     {
         result = [self movieMapNoLock];
     }
-    [gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -281,14 +281,14 @@
 
     [self saveScores:result hash:serverHash];
 
-    [gate lock];
+    [dataGate lock];
     {
         self.scoresData = result;
         self.hashData = serverHash;
         self.movieMapData = nil;
         self.movies = nil;
     }
-    [gate unlock];
+    [dataGate unlock];
     [AppDelegate majorRefresh];
 }
 
@@ -528,12 +528,12 @@
     [FileUtilities writeObject:result
                         toFile:self.movieMapFile];
 
-    [gate lock];
+    [dataGate lock];
     {
         self.movieMapData = result;
         self.movies = localMovies;
     }
-    [gate unlock];
+    [dataGate unlock];
 
     [AppDelegate majorRefresh];
 }
