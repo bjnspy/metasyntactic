@@ -24,24 +24,19 @@
 #import "Utilities.h"
 
 @interface AbstractSearchEngine()
-@property (assign) id<SearchEngineDelegate> delegate_;
-@property NSInteger currentRequestId_;
-@property (retain) SearchRequest* nextSearchRequest_;
-@property (retain) NSCondition* gate_;
+@property (assign) id<SearchEngineDelegate> delegate;
+@property NSInteger currentRequestId;
+@property (retain) SearchRequest* nextSearchRequest;
+@property (retain) NSCondition* gate;
 @end
 
 
 @implementation AbstractSearchEngine
 
-@synthesize delegate_;
-@synthesize currentRequestId_;
-@synthesize nextSearchRequest_;
-@synthesize gate_;
-
-property_wrapper(id<SearchEngineDelegate>, delegate, Delegate);
-property_wrapper(NSInteger, currentRequestId, CurrentRequestId);
-property_wrapper(SearchRequest*, nextSearchRequest, NextSearchRequest);
-property_wrapper(NSCondition*, gate, Gate);
+@synthesize delegate;
+@synthesize currentRequestId;
+@synthesize nextSearchRequest;
+@synthesize gate;
 
 - (void) dealloc {
     self.delegate = nil;
@@ -74,11 +69,11 @@ property_wrapper(NSCondition*, gate, Gate);
 - (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest {
     BOOL result;
 
-    [self.gate lock];
+    [gate lock];
     {
-        result = currentlyExecutingRequest.requestId != self.currentRequestId;
+        result = currentlyExecutingRequest.requestId != currentRequestId;
     }
-    [self.gate unlock];
+    [gate unlock];
 
     return result;
 }
@@ -94,16 +89,16 @@ property_wrapper(NSCondition*, gate, Gate);
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
             SearchRequest* currentlyExecutingRequest = nil;
-            [self.gate lock];
+            [gate lock];
             {
-                while (self.nextSearchRequest == nil) {
-                    [self.gate wait];
+                while (nextSearchRequest == nil) {
+                    [gate wait];
                 }
 
-                currentlyExecutingRequest = [[self.nextSearchRequest retain] autorelease];
+                currentlyExecutingRequest = [[nextSearchRequest retain] autorelease];
                 self.nextSearchRequest = nil;
             }
-            [self.gate unlock];
+            [gate unlock];
 
             [self search:currentlyExecutingRequest];
         }
@@ -124,16 +119,16 @@ property_wrapper(NSCondition*, gate, Gate);
 
 
 - (void) submitRequest:(NSString*) string {
-    [self.gate lock];
+    [gate lock];
     {
         self.currentRequestId++;
-        self.nextSearchRequest = [SearchRequest requestWithId:self.currentRequestId
+        self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId
                                                         value:string
                                                         model:self.model];
 
-        [self.gate broadcast];
+        [gate broadcast];
     }
-    [self.gate unlock];
+    [gate unlock];
 }
 
 
@@ -141,19 +136,19 @@ property_wrapper(NSCondition*, gate, Gate);
     NSAssert([NSThread isMainThread], nil);
 
     BOOL abort = NO;
-    [self.gate lock];
+    [gate lock];
     {
-        if (result.requestId != self.currentRequestId) {
+        if (result.requestId != currentRequestId) {
             abort = YES;
         }
     }
-    [self.gate unlock];
+    [gate unlock];
 
     if (abort) {
         return;
     }
 
-    [self.delegate reportResult:result];
+    [delegate reportResult:result];
 }
 
 
@@ -192,12 +187,12 @@ property_wrapper(NSCondition*, gate, Gate);
 
 
 - (void) invalidateExistingRequests {
-    [self.gate lock];
+    [gate lock];
     {
         self.currentRequestId++;
         self.nextSearchRequest = nil;
     }
-    [self.gate unlock];
+    [gate unlock];
 }
 
 @end
