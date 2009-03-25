@@ -15,8 +15,8 @@
 @protocol ScoreProvider
 - (NSString*) providerName;
 - (NSDictionary*) scores;
-- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
-- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (Score*) scoreForMovie:(Movie*) movie;
+- (NSArray*) reviewsForMovie:(Movie*) movie;
 - (void) update;
-- (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (void) processMovie:(Movie*) movie;
 @end

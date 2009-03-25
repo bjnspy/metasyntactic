@@ -63,6 +63,10 @@
 
 
 - (void) mainWorker {
+    if (self.isCancelled) {
+        return;
+    }
+
     [target performSelector:selector withObject:argument1];
 }
 

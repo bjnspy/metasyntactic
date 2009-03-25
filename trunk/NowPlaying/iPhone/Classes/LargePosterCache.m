@@ -212,6 +212,7 @@ const int START_YEAR = 1912;
             [self.yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
         }
         [self.yearToMovieMapGate unlock];
+        [self clearUpdatedMovies];
     }
 }
 
@@ -243,7 +244,7 @@ const int START_YEAR = 1912;
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
         BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
-        [[AppDelegate operationQueue] performSelector:@selector(ensureIndex:updateIfStale:)
+        [[OperationQueue operationQueue] performSelector:@selector(ensureIndex:updateIfStale:)
                                              onTarget:self
                                            withObject:[NSNumber numberWithInt:i]
                                            withObject:[NSNumber numberWithBool:updateIfStale]

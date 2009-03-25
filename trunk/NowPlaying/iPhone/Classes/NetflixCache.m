@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "Feed.h"
@@ -32,6 +33,7 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
+#import "Operation.h"
 #import "OperationQueue.h"
 #import "Person.h"
 #import "PersonPosterCache.h"
@@ -68,6 +70,7 @@ static NSString* directors_key = @"directors";
 
 static NSArray* mostPopularTitles = nil;
 static NSDictionary* mostPopularTitlesToAddresses = nil;
+static NSDictionary* mostPopularAddressesToTitles = nil;
 static NSDictionary* availabilityMap = nil;
 
 + (NSArray*) mostPopularTitles {
@@ -134,6 +137,14 @@ static NSDictionary* availabilityMap = nil;
                                      forKeys:mostPopularTitles] retain];
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
+
+        {
+            NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] init];
+            for (NSString* title in mostPopularTitlesToAddresses) {
+                [dictionary setObject:title forKey:[mostPopularTitlesToAddresses objectForKey:title]];
+            }
+            mostPopularAddressesToTitles = dictionary;
+        }
 
         availabilityMap =
         [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
@@ -299,10 +310,10 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     if (self.model.netflixUserId.length == 0) {
         [self clear];
     } else {
-        [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
+        [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                              onTarget:self
                                                  gate:self.gate
-                                             priority:High];
+                                             priority:Priority];
     }
 }
 
@@ -667,7 +678,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
     if (movies.count > 0) {
         // download the details for these movies in teh background.
-        [self addSearchMovies:movies];
+        [[CacheUpdater cacheUpdater] addSearchMovies:movies];
     }
 
     return movies;
@@ -732,8 +743,8 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
     Queue* queue = [self loadQueue:feed];
 
-    [self addSecondaryMovies:queue.movies];
-    [self addSecondaryMovies:queue.saved];
+    [[CacheUpdater cacheUpdater] addPrimaryMovies:queue.movies];
+    [[CacheUpdater cacheUpdater] addPrimaryMovies:queue.saved];
 }
 
 
@@ -1075,14 +1086,31 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     NSString* file = [self rssFile:address];
     NSArray* identifiers = [FileUtilities readObject:file];
 
+    if (identifiers.count == 0) {
+        return;
+    }
+
+    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
+    [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
+                                                                       onTarget:[AppDelegate class]
+                                                                        withObject:notification
+                                                                           gate:nil
+                                                                       priority:Priority];
+
     for (NSString* identifier in identifiers) {
-        [[AppDelegate operationQueue] performSelector:@selector(downloadRSSMovie:address:)
+        [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
                                              onTarget:self
                                            withObject:identifier
                                            withObject:address
                                                  gate:nil
-                                             priority:Low];
+                                             priority:Priority];
     }
+
+    [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
+                                                                       onTarget:[AppDelegate class]
+                                                                     withObject:notification
+                                                                           gate:nil
+                                                                       priority:Priority];
 }
 
 
@@ -1176,14 +1204,9 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
-    [self.model.posterCache updateMovie:movie];
     //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
     [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats"];
     [self updateRatings:movie];
-
-    [self.model.imdbCache updateMovie:movie];
-    [self.model.wikipediaCache updateMovie:movie];
-    [self.model.amazonCache updateMovie:movie];
 }
 
 
@@ -1222,7 +1245,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
 
 
 - (void) downloadRSSMovie:(NSString*) identifier
-                  address:(NSString*) address {
+                        address:(NSString*) address {
     NSString* file = [self rssMovieFile:identifier address:address];
 
     Movie* movie;
@@ -1240,7 +1263,7 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         }
     }
 
-    [self addSecondaryMovie:movie];
+    [[CacheUpdater cacheUpdater] addPrimaryMovie:movie];
 }
 
 
@@ -1249,11 +1272,11 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
         [FileUtilities createDirectory:[self rssFeedDirectory:address]];
 
-        [[AppDelegate operationQueue] performSelector:@selector(downloadRSSFeed:)
+        [[OperationQueue operationQueue] performSelector:@selector(downloadRSSFeed:)
                                              onTarget:self
                                            withObject:address
                                                  gate:nil
-                                             priority:Low];
+                                             priority:Priority];
     }
 }
 
@@ -1271,17 +1294,17 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
     }
 
     for (Feed* feed in feeds) {
-        [[AppDelegate operationQueue] performSelector:@selector(downloadQueue:)
+        [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:)
                                              onTarget:self
                                            withObject:feed
                                                  gate:self.gate
-                                             priority:High];
+                                             priority:Priority];
     }
 
-    [[AppDelegate operationQueue] performSelector:@selector(downloadRSS)
+    [[OperationQueue operationQueue] performSelector:@selector(downloadRSS)
                                          onTarget:self
                                              gate:nil // no lock.
-                                         priority:High];
+                                         priority:Priority];
 }
 
 
@@ -1630,24 +1653,9 @@ property_wrapper(NSMutableDictionary*, presubmitRatings, PresubmitRatings);
         Movie* netflixMovie = [self lookupMovieWorker:movie];
         if (netflixMovie != nil) {
             [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-            [self addSecondaryMovie:movie];
+            [[CacheUpdater cacheUpdater] addPrimaryMovie:movie];
             [AppDelegate minorRefresh];
         }
-    }
-}
-
-
-- (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies {
-    if (![self hasAccount]) {
-        return;
-    }
-
-    for (Movie* movie in movies) {
-        [[AppDelegate operationQueue] performSelector:@selector(lookupNetflixMovieForLocalMovieBackgroundEntryPoint:)
-                                             onTarget:self
-                                           withObject:movie
-                                                 gate:nil // no gate.  we'll take the gate for each movie
-                                             priority:Low];
     }
 }
 

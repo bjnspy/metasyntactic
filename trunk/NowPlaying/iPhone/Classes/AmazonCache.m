@@ -46,16 +46,6 @@
 }
 
 
-- (void) update:(NSArray*) movies {
-    [self addPrimaryMovies:movies];
-}
-
-
-- (void) updateMovie:(Movie*) movie {
-    [self addPrimaryMovie:movie];
-}
-
-
 - (void) updateMovieDetails:(Movie*) movie {
     NSString* path = [self amazonFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];

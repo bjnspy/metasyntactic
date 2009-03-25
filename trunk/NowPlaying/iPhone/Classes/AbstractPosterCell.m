@@ -15,6 +15,7 @@
 #import "AbstractPosterCell.h"
 
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Model.h"
@@ -51,7 +52,7 @@
 
 
 - (void) prioritizeImage {
-    [self.model prioritizeMovie:movie];
+    [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:NO];
 }
 
 

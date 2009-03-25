@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
 #import "IMDbCache.h"
@@ -369,7 +370,8 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
         movies = [[self loadMovies] allValues];
     }
 
-    [self addPrimaryMovies:movies];
+    [self clearUpdatedMovies];
+    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
 }
 
 
@@ -387,10 +389,10 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
     }
     self.updated = YES;
 
-    [[AppDelegate operationQueue] performSelector:@selector(updateIndexBackgroundEntryPoint)
+    [[OperationQueue operationQueue] performSelector:@selector(updateIndexBackgroundEntryPoint)
                                          onTarget:self
                                              gate:nil
-                                         priority:High];
+                                         priority:Priority];
 }
 
 
@@ -427,26 +429,6 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
     self.titleKeysData = [arguments objectAtIndex:3];
 
     [AppDelegate majorRefresh];
-}
-
-
-- (void) updateIMDb:(Movie*) movie {
-    [self.model.imdbCache updateMovie:movie];
-}
-
-
-- (void) updateAmazon:(Movie*) movie {
-    [self.model.amazonCache updateMovie:movie];
-}
-
-
-- (void) updateWikipedia:(Movie*) movie {
-    [self.model.wikipediaCache updateMovie:movie];
-}
-
-
-- (void) updatePoster:(Movie*) movie {
-    [self.model.posterCache updateMovie:movie];
 }
 
 
@@ -529,21 +511,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 }
 
 
-- (void) updateNetflix:(Movie*) movie {
-    [self.model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
-}
-
-
 - (void) updateMovieDetails:(Movie*) movie
                 studio:(NSString*) studio
                  title:(NSString*) title {
-    [self updatePoster:movie];
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
-    [self updateNetflix:movie];
-    [self updateIMDb:movie];
-    [self updateWikipedia:movie];
-    [self updateAmazon:movie];
 }
 
 

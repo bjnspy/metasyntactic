@@ -23,8 +23,6 @@
 
 + (TrailerCache*) cache;
 
-- (void) update:(NSArray*) movies;
-
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
 @end

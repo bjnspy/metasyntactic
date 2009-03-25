@@ -294,6 +294,10 @@ property_wrapper(NSInteger, searchRadiusData, SearchRadiusData);
 
 
 + (Model*) model {
+    if (model == nil) {
+        model = [[Model alloc] init];
+    }
+
     return model;
 }
 
@@ -542,7 +546,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (id) init {
     if (self = [super init]) {
-        model = self;
         [self checkCountry];
         [self loadData];
         [self checkDate];
@@ -1523,17 +1526,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (Score*) scoreForMovie:(Movie*) movie {
-    return [self.scoreCache scoreForMovie:movie inMovies:self.movies];
+    return [self.scoreCache scoreForMovie:movie];
 }
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-    return [self.scoreCache rottenTomatoesScoreForMovie:movie inMovies:self.movies];
+    return [self.scoreCache rottenTomatoesScoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-    return [self.scoreCache metacriticScoreForMovie:movie inMovies:self.movies];
+    return [self.scoreCache metacriticScoreForMovie:movie];
 }
 
 
@@ -1598,7 +1601,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-    return [self.scoreCache reviewsForMovie:movie inMovies:self.movies];
+    return [self.scoreCache reviewsForMovie:movie];
 }
 
 
@@ -1686,20 +1689,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     }
 
     return result;
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [self.posterCache prioritizeMovie:movie];
-    [self.netflixCache prioritizeMovie:movie];
-    [self.upcomingCache prioritizeMovie:movie];
-    [self.dvdCache prioritizeMovie:movie];
-    [self.blurayCache prioritizeMovie:movie];
-    [self.scoreCache prioritizeMovie:movie inMovies:self.movies];
-    [self.trailerCache prioritizeMovie:movie];
-    [self.imdbCache prioritizeMovie:movie];
-    [self.amazonCache prioritizeMovie:movie];
-    [self.wikipediaCache prioritizeMovie:movie];
 }
 
 @end

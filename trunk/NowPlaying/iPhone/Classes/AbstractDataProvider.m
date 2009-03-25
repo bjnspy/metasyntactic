@@ -391,11 +391,11 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
                                                     currentMovies:self.movies
                                                   currentTheaters:self.theaters];
 
-    [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:request
                                              gate:self.gate
-                                          priority:High];
+                                          priority:Now];
 }
 
 

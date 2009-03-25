@@ -19,6 +19,7 @@
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
 #import "DVD.h"
@@ -465,7 +466,8 @@ const NSInteger POSTER_TAG = -1;
     [self setupPosterView];
     [self setupButtons];
 
-    [self.model prioritizeMovie:movie];
+    // Load the movie details as the absolutely highest thing we can do.
+    [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:YES];
 }
 
 
@@ -519,10 +521,10 @@ const NSInteger POSTER_TAG = -1;
     }
     posterLoaded = YES;
 
-    [[AppDelegate operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
+    [[OperationQueue operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
-                                   priority:High];
+                                   priority:Now];
 }
 
 
@@ -1298,11 +1300,11 @@ const NSInteger POSTER_TAG = -1;
         return;
     }
 
-    [[AppDelegate operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
+    [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
                                          onTarget:self.model.largePosterCache
                                        withObject:movie
                                              gate:nil
-                                         priority:High];
+                                         priority:Now];
 
     [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
 }

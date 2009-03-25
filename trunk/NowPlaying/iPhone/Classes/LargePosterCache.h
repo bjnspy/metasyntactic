@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
-@interface LargePosterCache : AbstractCache {
+@interface LargePosterCache : AbstractMovieCache {
 @private
     NSMutableDictionary* yearToMovieMap_;
     NSLock* yearToMovieMapGate_;
