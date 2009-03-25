@@ -15,18 +15,15 @@
 #import "EditorViewController.h"
 
 @interface EditorViewController()
-@property (assign) id object_;
-@property SEL selector_;
+@property (assign) id object;
+@property SEL selector;
 @end
 
 
 @implementation EditorViewController
 
-@synthesize object_;
-@synthesize selector_;
-
-property_wrapper(id, object, Object);
-property_wrapper(SEL, selector, Selector);
+@synthesize object;
+@synthesize selector;
 
 - (void) dealloc {
     self.object = nil;
