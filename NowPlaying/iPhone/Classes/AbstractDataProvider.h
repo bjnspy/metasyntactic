@@ -16,12 +16,12 @@
 
 @interface AbstractDataProvider : AbstractCache {
 @private
-    NSArray* moviesData_;
-    NSArray* theatersData_;
-    NSDictionary* synchronizationInformationData_;
-    NSDictionary* bookmarksData_;
+    NSArray* moviesData;
+    NSArray* theatersData;
+    NSDictionary* synchronizationInformationData;
+    NSDictionary* bookmarksData;
 
-    NSMutableDictionary* performancesData_;
+    NSMutableDictionary* performancesData;
 }
 
 - (NSArray*) movies;

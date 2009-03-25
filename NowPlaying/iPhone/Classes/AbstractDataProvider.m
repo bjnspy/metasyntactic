@@ -33,27 +33,21 @@
 #import "UserLocationCache.h"
 
 @interface AbstractDataProvider()
-@property (retain) NSArray* moviesData_;
-@property (retain) NSArray* theatersData_;
-@property (retain) NSDictionary* synchronizationInformationData_;
-@property (retain) NSMutableDictionary* performancesData_;
-@property (retain) NSDictionary* bookmarksData_;
+@property (retain) NSArray* moviesData;
+@property (retain) NSArray* theatersData;
+@property (retain) NSDictionary* synchronizationInformationData;
+@property (retain) NSMutableDictionary* performancesData;
+@property (retain) NSDictionary* bookmarksData;
 @end
 
 
 @implementation AbstractDataProvider
 
-@synthesize moviesData_;
-@synthesize theatersData_;
-@synthesize performancesData_;
-@synthesize synchronizationInformationData_;
-@synthesize bookmarksData_;
-
-property_wrapper(NSArray*, moviesData, MoviesData);
-property_wrapper(NSArray*, theatersData, TheatersData);
-property_wrapper(NSDictionary*, synchronizationInformationData, SynchronizationInformationData);
-property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
-property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
+@synthesize moviesData;
+@synthesize theatersData;
+@synthesize performancesData;
+@synthesize synchronizationInformationData;
+@synthesize bookmarksData;
 
 - (void) dealloc {
     self.moviesData = nil;
@@ -137,11 +131,11 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 
 - (NSArray*) movies {
-    if (self.moviesData == nil) {
+    if (moviesData == nil) {
         self.moviesData = [self loadMovies];
     }
 
-    return self.moviesData;
+    return moviesData;
 }
 
 
@@ -160,11 +154,11 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 
 - (NSDictionary*) bookmarks {
-    if (self.bookmarksData == nil) {
+    if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return self.bookmarksData;
+    return bookmarksData;
 }
 
 
@@ -178,10 +172,10 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 
 - (NSDictionary*) synchronizationInformation {
-    if (self.synchronizationInformationData == nil) {
+    if (synchronizationInformationData == nil) {
         self.synchronizationInformationData = [self loadSynchronizationInformation];
     }
-    return self.synchronizationInformationData;
+    return synchronizationInformationData;
 }
 
 
@@ -235,11 +229,11 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 
 - (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [self.performancesData objectForKey:theater.name];
+    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
                                [FileUtilities readObject:[self performancesFile:theater.name]]];
-        [self.performancesData setObject:theaterPerformances
+        [performancesData setObject:theaterPerformances
                              forKey:theater.name];
     }
     return theaterPerformances;
@@ -288,11 +282,11 @@ property_wrapper(NSMutableDictionary*, performancesData, PerformancesData);
 
 
 - (NSArray*) theaters {
-    if (self.theatersData == nil) {
+    if (theatersData == nil) {
         self.theatersData = [self loadTheaters];
     }
 
-    return self.theatersData;
+    return theatersData;
 }
 
 

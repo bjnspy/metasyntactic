@@ -14,13 +14,20 @@
 
 @interface LookupRequest : NSObject {
 @private
-    NSDate* searchDate_;
-    id<DataProviderUpdateDelegate> delegate_;
-    id context_;
-    BOOL force_;
-    NSArray* currentMovies_;
-    NSArray* currentTheaters_;
+    NSDate* searchDate;
+    id<DataProviderUpdateDelegate> delegate;
+    id context;
+    BOOL force;
+    NSArray* currentMovies;
+    NSArray* currentTheaters;
 }
+
+@property (readonly, retain) NSDate* searchDate;
+@property (readonly, retain) id<DataProviderUpdateDelegate> delegate;
+@property (readonly, retain) id context;
+@property (readonly) BOOL force;
+@property (readonly, retain) NSArray* currentMovies;
+@property (readonly, retain) NSArray* currentTheaters;
 
 + (LookupRequest*) requestWithSearchDate:(NSDate*) searchDate
                                 delegate:(id<DataProviderUpdateDelegate>) delegate
@@ -28,12 +35,5 @@
                                    force:(BOOL) force
                            currentMovies:(NSArray*) currentMovies
                          currentTheaters:(NSArray*) currentTheaters;
-
-- (NSDate*) searchDate;
-- (id<DataProviderUpdateDelegate>) delegate;
-- (id) context;
-- (BOOL) force;
-- (NSArray*) currentMovies;
-- (NSArray*) currentTheaters;
 
 @end
