@@ -15,18 +15,15 @@
 #import "ActivityIndicatorViewWithBackground.h"
 
 @interface ActivityIndicatorViewWithBackground()
-@property (retain) UIImageView* imageView_;
-@property (retain) UIActivityIndicatorView* activityIndicator_;
+@property (retain) UIImageView* imageView;
+@property (retain) UIActivityIndicatorView* activityIndicator;
 @end
 
 
 @implementation ActivityIndicatorViewWithBackground
 
-@synthesize imageView_;
-@synthesize activityIndicator_;
-
-property_wrapper(UIImageView*, imageView, ImageView);
-property_wrapper(UIActivityIndicatorView*, activityIndicator, ActivityIndicator);
+@synthesize imageView;
+@synthesize activityIndicator;
 
 - (void) dealloc {
     self.imageView = nil;
@@ -40,19 +37,19 @@ property_wrapper(UIActivityIndicatorView*, activityIndicator, ActivityIndicator)
     if (self = [super init]) {
         UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
         self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        self.frame = self.imageView.frame;
+        self.frame = imageView.frame;
 
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        self.activityIndicator.hidesWhenStopped = YES;
+        activityIndicator.hidesWhenStopped = YES;
 
-        CGRect frame = self.activityIndicator.frame;
+        CGRect frame = activityIndicator.frame;
         frame.origin.x = frame.origin.y = 4;
-        self.activityIndicator.frame = frame;
+        activityIndicator.frame = frame;
 
-        [self addSubview:self.imageView];
-        [self addSubview:self.activityIndicator];
+        [self addSubview:imageView];
+        [self addSubview:activityIndicator];
 
-        [self sendSubviewToBack:self.imageView];
+        [self sendSubviewToBack:imageView];
     }
 
     return self;
@@ -65,8 +62,8 @@ property_wrapper(UIActivityIndicatorView*, activityIndicator, ActivityIndicator)
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
 
-        self.activityIndicator.alpha = 0;
-        self.imageView.alpha = 0;
+        activityIndicator.alpha = 0;
+        imageView.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -75,20 +72,20 @@ property_wrapper(UIActivityIndicatorView*, activityIndicator, ActivityIndicator)
 - (void) onStopAnimatingCompleted:(NSString*) animationId
                          finished:(BOOL) finished
                           context:(void*) context {
-    [self.activityIndicator stopAnimating];
+    [activityIndicator stopAnimating];
 }
 
 
 - (void) startAnimating {
-    self.imageView.alpha = 0;
-    self.activityIndicator.alpha = 0;
+    imageView.alpha = 0;
+    activityIndicator.alpha = 0;
 
-    [self.activityIndicator startAnimating];
+    [activityIndicator startAnimating];
 
     [UIView beginAnimations:nil context:NULL];
     {
-        self.imageView.alpha = 0.75;
-        self.activityIndicator.alpha = 1;
+        imageView.alpha = 0.75;
+        activityIndicator.alpha = 1;
     }
     [UIView commitAnimations];
 }

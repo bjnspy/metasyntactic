@@ -14,8 +14,8 @@
 
 @interface ActivityIndicatorViewWithBackground : UIView {
 @private
-    UIImageView* imageView_;
-    UIActivityIndicatorView* activityIndicator_;
+    UIImageView* imageView;
+    UIActivityIndicatorView* activityIndicator;
 }
 
 - (void) stopAnimating;
