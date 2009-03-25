@@ -14,7 +14,7 @@
 
 @interface ReviewTitleCell : UITableViewCell {
 @private
-    UILabel* scoreLabel_;
+    UILabel* scoreLabel;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

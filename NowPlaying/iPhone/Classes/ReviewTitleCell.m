@@ -21,14 +21,12 @@
 #import "Review.h"
 
 @interface ReviewTitleCell()
-@property (retain) UILabel* scoreLabel_;
+@property (retain) UILabel* scoreLabel;
 @end
 
 @implementation ReviewTitleCell
 
-@synthesize scoreLabel_;
-
-property_wrapper(UILabel*, scoreLabel, ScoreLabel);
+@synthesize scoreLabel;
 
 - (void) dealloc {
     self.scoreLabel = nil;
@@ -44,10 +42,10 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
 
         self.scoreLabel  = [[[UILabel alloc] init] autorelease];
 
-        self.scoreLabel.backgroundColor = [UIColor clearColor];
-        self.scoreLabel.textAlignment = UITextAlignmentCenter;
+        scoreLabel.backgroundColor = [UIColor clearColor];
+        scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        [self.contentView addSubview:self.scoreLabel];
+        [self.contentView addSubview:scoreLabel];
     }
 
     return self;
@@ -68,13 +66,13 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    [self.contentView bringSubviewToFront:self.scoreLabel];
+    [self.contentView bringSubviewToFront:scoreLabel];
 }
 
 
 - (void) clearScoreLabel {
-    self.scoreLabel.text = nil;
-    self.scoreLabel.frame = CGRectZero;
+    scoreLabel.text = nil;
+    scoreLabel.frame = CGRectZero;
 }
 
 
@@ -93,14 +91,14 @@ property_wrapper(UILabel*, scoreLabel, ScoreLabel);
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(6, 6, 30, 30);
         if (score == 100) {
-            self.scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
-            self.scoreLabel.font = [FontCache boldSystem19];
+            scoreLabel.font = [FontCache boldSystem19];
         }
 
-        self.scoreLabel.textColor = [ColorCache darkDarkGray];
-        self.scoreLabel.frame = frame;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+        scoreLabel.textColor = [ColorCache darkDarkGray];
+        scoreLabel.frame = frame;
+        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
 }
 
