@@ -13,12 +13,13 @@
 // limitations under the License.
 
 @interface AbstractNavigationController : UINavigationController {
-@private
-    ApplicationTabBarController* applicationTabBarController_;
-    PostersViewController* postersViewController_;
-    BOOL viewLoaded_;
-    BOOL visible_;
+@protected
+    ApplicationTabBarController* applicationTabBarController;
+    PostersViewController* postersViewController;
+    BOOL visible;
 }
+
+@property (readonly, assign) ApplicationTabBarController* applicationTabBarController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
@@ -44,8 +45,6 @@
 - (void) hidePostersView;
 
 // @protected
-- (ApplicationTabBarController*) applicationTabBarController;
-- (BOOL) visible;
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;
 
 @end
