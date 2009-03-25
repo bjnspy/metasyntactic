@@ -14,14 +14,14 @@
 
 @interface NotificationCenter : NSObject {
 @private
-    UIView* view_;
-    UILabel* notificationLabel_;
-    UILabel* blackLabel_;
+    UIView* view;
+    UILabel* notificationLabel;
+    UILabel* blackLabel;
 
-    NSMutableArray* notifications_;
-    Pulser* pulser_;
+    NSMutableArray* notifications;
+    Pulser* pulser;
 
-    NSInteger disabledCount_;
+    NSInteger disabledCount;
 }
 
 + (NotificationCenter*) centerWithView:(UIView*) view;
