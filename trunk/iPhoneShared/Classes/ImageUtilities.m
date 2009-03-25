@@ -17,6 +17,7 @@
 @implementation ImageUtilities
 
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size {
+    //return image;
     if (image == nil) {
         return nil;
     }

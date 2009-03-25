@@ -49,7 +49,7 @@ property_wrapper(NSLock*, boundedOperationsGate, BoundedOperationsGate);
 - (id) init {
     if (self = [super init]) {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        self.queue.maxConcurrentOperationCount = 2;
+        self.queue.maxConcurrentOperationCount = 1;
         self.boundedOperations = [NSMutableArray array];
         self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
     }

@@ -198,7 +198,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
                                               withObject:scores
                                               withObject:self.movies
                                                     gate:self.movieMapLock
-                                                priority:Priority];
+                                                priority:Now];
     }
 }
 

@@ -149,7 +149,6 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 
 - (void) updateAllCaches {
-    // we want this first so that we download all the indices.
     [self updateScoreCache];
     [self updateLargePosterCache];
     [self updateUpcomingCache];
