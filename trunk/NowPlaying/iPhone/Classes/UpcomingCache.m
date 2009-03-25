@@ -33,30 +33,23 @@
 #import "XmlElement.h"
 
 @interface UpcomingCache()
-@property (retain) NSString* hashData_;
-@property (retain) NSDictionary* movieMapData_;
-@property (retain) NSDictionary* studioKeysData_;
-@property (retain) NSDictionary* titleKeysData_;
-@property (retain) NSDictionary* bookmarksData_;
-@property BOOL updated_;
+@property (retain) NSString* hashData;
+@property (retain) NSDictionary* movieMapData;
+@property (retain) NSDictionary* studioKeysData;
+@property (retain) NSDictionary* titleKeysData;
+@property (retain) NSDictionary* bookmarksData;
+@property BOOL updated;
 @end
 
 
 @implementation UpcomingCache
 
-@synthesize hashData_;
-@synthesize movieMapData_;
-@synthesize studioKeysData_;
-@synthesize titleKeysData_;
-@synthesize bookmarksData_;
-@synthesize updated_;
-
-property_wrapper(NSString*, hashData, HashData);
-property_wrapper(NSDictionary*, movieMapData, MovieMapData);
-property_wrapper(NSDictionary*, studioKeysData, StudioKeysData);
-property_wrapper(NSDictionary*, titleKeysData, TitleKeysData);
-property_wrapper(BOOL, updated, Updated);
-property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
+@synthesize hashData;
+@synthesize movieMapData;
+@synthesize studioKeysData;
+@synthesize titleKeysData;
+@synthesize bookmarksData;
+@synthesize updated;
 
 - (void) dealloc {
     self.hashData = nil;
@@ -64,7 +57,7 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
     self.studioKeysData = nil;
     self.titleKeysData = nil;
     self.bookmarksData = nil;
-    self.updated_ = NO;
+    self.updated = NO;
 
     [super dealloc];
 }
@@ -207,11 +200,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (NSDictionary*) movieMap {
-    if (self.movieMapData == nil) {
+    if (movieMapData == nil) {
         self.movieMapData = [self loadMovies];
     }
 
-    return self.movieMapData;
+    return movieMapData;
 }
 
 
@@ -221,14 +214,14 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (NSString*) hashValue {
-    if (self.hashData == nil) {
+    if (hashData == nil) {
         self.hashData = [FileUtilities readObject:self.hashFile];
-        if (self.hashData == nil) {
+        if (hashData == nil) {
             self.hashData = @"";
         }
     }
 
-    return self.hashData;
+    return hashData;
 }
 
 
@@ -243,11 +236,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (NSDictionary*) studioKeys {
-    if (self.studioKeysData == nil) {
+    if (studioKeysData == nil) {
         self.studioKeysData = [self loadStudioKeys];
     }
 
-    return self.studioKeysData;
+    return studioKeysData;
 }
 
 
@@ -262,11 +255,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (NSDictionary*) titleKeys {
-    if (self.titleKeysData == nil) {
+    if (titleKeysData == nil) {
         self.titleKeysData = [self loadTitleKeys];
     }
 
-    return self.titleKeysData;
+    return titleKeysData;
 }
 
 
@@ -286,11 +279,11 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
 
 
 - (NSDictionary*) bookmarks {
-    if (self.bookmarksData == nil) {
+    if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
 
-    return self.bookmarksData;
+    return bookmarksData;
 }
 
 
@@ -383,7 +376,7 @@ property_wrapper(NSDictionary*, bookmarksData, BookmarksData);
         return;
     }
 
-    if (self.updated) {
+    if (updated) {
         return;
     }
     self.updated = YES;

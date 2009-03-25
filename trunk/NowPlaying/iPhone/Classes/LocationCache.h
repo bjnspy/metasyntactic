@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LocationCache : NSObject {
+#import "AbstractCache.h"
+
+@interface LocationCache : AbstractCache {
 }
 
 // @protected

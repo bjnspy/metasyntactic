@@ -22,26 +22,18 @@
 #import "Utilities.h"
 
 @interface UserLocationCache()
-@property (retain) NSLock* gate_;
 @end
 
 
 @implementation UserLocationCache
 
-@synthesize gate_;
-
-property_wrapper(NSLock*, gate, Gate);
-
 - (void) dealloc {
-    self.gate = nil;
-
     [super dealloc];
 }
 
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
@@ -134,11 +126,11 @@ property_wrapper(NSLock*, gate, Gate);
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
     Location* result;
-    [self.gate lock];
+    [gate lock];
     {
         result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
     }
-    [self.gate unlock];
+    [gate unlock];
     return result;
 }
 
