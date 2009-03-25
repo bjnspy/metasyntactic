@@ -240,7 +240,7 @@
     }
     self.sectionTitles = array;
 
-    for (NSString* key in sectionTitleToContentsMap.allKeys) {
+    for (NSString* key in map.allKeys) {
         if (![starString isEqual:key]) {
             NSMutableArray* values = [map mutableObjectsForKey:key];
             [values sortUsingFunction:compareMoviesByScore context:self.model];
@@ -336,12 +336,6 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    [self majorRefresh];
 }
 
 

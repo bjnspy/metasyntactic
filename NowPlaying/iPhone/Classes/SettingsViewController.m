@@ -100,8 +100,6 @@ typedef enum {
     [super viewWillAppear:animated];
     [[AppDelegate notificationCenter] disableNotifications];
     [self.controller.locationManager addLocationSpinner:self.navigationItem];
-
-    [self majorRefresh];
 }
 
 

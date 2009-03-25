@@ -304,7 +304,14 @@
 
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    [activityIndicator startAnimating];
+    {
+        [activityIndicator startAnimating];
+        activityIndicator.contentMode = UIViewContentModeCenter;
+        CGRect frame = activityIndicator.frame;
+        frame.size.height += 80;
+        frame.size.width += 20;
+        activityIndicator.frame = frame;
+    }
     cell.accessoryView = activityIndicator;
 
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];

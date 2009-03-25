@@ -1659,6 +1659,10 @@ static NSDictionary* availabilityMap = nil;
 
     NSAssert(![NSThread isMainThread], @"");
 
+    if ([movie isNetflix]) {
+        return;
+    }
+    
     NSString* file = [self netflixFile:movie];
     if (![FileUtilities fileExists:file]) {
         Movie* netflixMovie = [self lookupMovieWorker:movie];

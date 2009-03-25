@@ -22,6 +22,12 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self majorRefresh];
+}
+
+
 - (void) majorRefreshWorker {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }

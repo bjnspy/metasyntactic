@@ -147,9 +147,10 @@
 
 - (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(update)
-               withObject:nil
-               afterDelay:1];
+    [self.view bringSubviewToFront:notificationLabel];
+    [self.view bringSubviewToFront:blackLabel];
+
+    [pulser tryPulse];
 }
 
 - (void) addNotification:(NSString*) notification {
