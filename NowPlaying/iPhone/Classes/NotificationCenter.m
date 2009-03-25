@@ -189,7 +189,7 @@
         [self performSelectorOnMainThread:@selector(disableNotifications) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     disabledCount++;
     [self hideNotification];
     [pulser tryPulse];
@@ -201,7 +201,7 @@
         [self performSelectorOnMainThread:@selector(enableNotifications) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     disabledCount--;
     [pulser tryPulse];
 }

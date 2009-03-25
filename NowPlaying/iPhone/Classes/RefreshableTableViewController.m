@@ -36,7 +36,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:selector
                                                object:nil];
-    
+
     if (!visible) {
         return;
     }

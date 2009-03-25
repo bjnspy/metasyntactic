@@ -84,10 +84,10 @@
 - (id) init {
     if (self = [super init]) {
         self.movieMapLock = [[[NSLock alloc] init] autorelease];
-        
+
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
-        
+
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
     }
@@ -165,7 +165,7 @@
     if (scoresData == nil) {
         self.scoresData = [self loadScores];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.scoresData;
 }
@@ -186,7 +186,7 @@
     if (hashData == nil) {
         self.hashData = [self loadHash];
     }
-    
+
     // Access through the property so that we get back a safe pointer
     return self.hashData;
 }
@@ -226,7 +226,7 @@
     }
 
     [self ensureMovieMapNoLock];
-    
+
     // Access through the property so that we get back a safe pointer
     return self.movieMapData;
 }

@@ -138,7 +138,7 @@
                 [self clearUpdatedMovies];
             }
         }
-        
+
         result = index != nil;
     }
     [dataGate unlock];
