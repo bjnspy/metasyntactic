@@ -18,15 +18,13 @@
 #import "OperationQueue.h"
 
 @interface AbstractMovieCache()
-@property (retain) NSMutableSet* updatedMovies_;
+@property (retain) NSMutableSet* updatedMovies;
 @end
 
 
 @implementation AbstractMovieCache
 
-@synthesize updatedMovies_;
-
-property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
+@synthesize updatedMovies;
 
 - (void) dealloc {
     self.updatedMovies = nil;
@@ -53,7 +51,7 @@ property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
 - (void) clearUpdatedMovies {
     [gate lock];
     {
-        [self.updatedMovies removeAllObjects];
+        [updatedMovies removeAllObjects];
     }
     [gate unlock];
 }
@@ -63,8 +61,8 @@ property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
     BOOL result;
     [gate lock];
     {
-        if (![self.updatedMovies containsObject:movie]) {
-            [self.updatedMovies addObject:movie];
+        if (![updatedMovies containsObject:movie]) {
+            [updatedMovies addObject:movie];
             result = NO;
         } else {
             result = YES;
