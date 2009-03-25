@@ -97,6 +97,7 @@
 
 
 - (void) main {
+    [NSThread setThreadPriority:0];
     NSString* className = NSStringFromClass([target class]);
     NSString* selectorName = NSStringFromSelector(selector);
     NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
