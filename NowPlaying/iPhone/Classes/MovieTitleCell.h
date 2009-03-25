@@ -14,7 +14,7 @@
 
 @interface MovieTitleCell : UITableViewCell {
 @protected
-    UILabel* scoreLabel_;
+    UILabel* scoreLabel;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
