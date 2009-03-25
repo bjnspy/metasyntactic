@@ -30,6 +30,7 @@
 #import "OperationQueue.h"
 #import "Queue.h"
 #import "StringUtilities.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -77,51 +78,34 @@
 }
 
 
-- (void) reportQueueAndMoveMovieSuccess:(NSArray*) arguments {
+- (void) reportMoveMovieSuccess:(Movie*) movie toDelegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    Movie* movie = [arguments objectAtIndex:1];
-    id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
-
     [delegate moveSucceededForMovie:movie];
 }
 
 
-- (void) reportQueueAndModifyQueueError:(NSArray*) arguments {
+- (void) reportModifyQueueError:(NSString*) error
+                     toDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and failure to NetflixModifyQueueDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
-    NSString* error = [arguments objectAtIndex:2];
-
     [delegate modifyFailedWithError:error];
 }
 
 
-- (void) reportQueueAndModifyQueueSuccess:(NSArray*) arguments {
+- (void) reportModifyQueueSuccess:(id<NetflixModifyQueueDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
     NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
-
     [delegate modifySucceeded];
 }
 
 
-- (void) reportQueueAndAddMovieSuccess:(NSArray*) arguments {
+- (void) reportAddMovieSuccess:(id<NetflixAddMovieDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixAddMovieDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:1];
-
     [delegate addSucceeded];
 }
 
@@ -163,8 +147,11 @@
       toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, error, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueError:) withObject:arguments waitUntilDone:NO];
+
+    [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
+                                  onTarget:self
+                                  argument:error
+                                  argument:delegate];
 }
 
 
@@ -172,8 +159,9 @@
       andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueSuccess:) withObject:arguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
+                                  onTarget:self
+                                  argument:delegate];
 }
 
 
@@ -181,8 +169,9 @@
       andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate {
     NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndAddMovieSuccess:) withObject:arguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
+                                  onTarget:self
+                                  argument:delegate];
 }
 
 
@@ -253,10 +242,7 @@
     NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
     [self saveQueue:finalQueue];
 
-    NSArray* finalArguments = [NSArray arrayWithObjects:finalQueue, movie, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndMoveMovieSuccess:)
-                           withObject:finalArguments
-                        waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:) onTarget:self argument:movie argument:delegate];
 }
 
 

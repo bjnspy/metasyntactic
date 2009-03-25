@@ -405,10 +405,37 @@
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
     [self clearUpdatedMovies];
 
-    NSArray* arguments = [NSArray arrayWithObjects:serverHash, movies, studioKeys, titleKeys, nil];
-    [self performSelectorOnMainThread:@selector(reportIndex:)
-                           withObject:arguments
-                        waitUntilDone:NO];
+    // add in any previously bookmarked movies that we now no longer know about.
+    for (Movie* movie in self.bookmarks.allValues) {
+        if (![movies containsObject:movie]) {
+            [movies addObject:movie];
+        }
+    }
+    
+    // also determine if any of the data we found match items the user bookmarked
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+    for (Movie* movie in movies) {
+        if ([self.model isBookmarked:movie]) {
+            [dictionary setObject:movie forKey:movie.canonicalTitle];
+        }
+    }
+    [self setBookmarks:dictionary];
+    
+    NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
+    for (Movie* movie in movies) {
+        [movieMap setObject:movie forKey:movie.canonicalTitle];
+    }
+    
+    [dataGate lock];
+    {
+        self.hashData = serverHash;
+        self.movieMapData = movieMap;
+        self.studioKeysData = studioKeys;
+        self.titleKeysData = titleKeys;
+    }
+    [dataGate unlock];
+    
+    [AppDelegate majorRefresh];
 
     return movies;
 }
@@ -456,39 +483,7 @@
 - (void) reportIndex:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
 
-    NSMutableArray* movies = [arguments objectAtIndex:1];
 
-    // add in any previously bookmarked movies that we now no longer know about.
-    for (Movie* movie in self.bookmarks.allValues) {
-        if (![movies containsObject:movie]) {
-            [movies addObject:movie];
-        }
-    }
-
-    // also determine if any of the data we found match items the user bookmarked
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    for (Movie* movie in movies) {
-        if ([self.model isBookmarked:movie]) {
-            [dictionary setObject:movie forKey:movie.canonicalTitle];
-        }
-    }
-    [self setBookmarks:dictionary];
-
-    NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
-    for (Movie* movie in movies) {
-        [movieMap setObject:movie forKey:movie.canonicalTitle];
-    }
-
-    [dataGate lock];
-    {
-        self.hashData = [arguments objectAtIndex:0];
-        self.movieMapData = movieMap;
-        self.studioKeysData = [arguments objectAtIndex:2];
-        self.titleKeysData = [arguments objectAtIndex:3];
-    }
-    [dataGate unlock];
-
-    [AppDelegate majorRefresh];
 }
 
 
