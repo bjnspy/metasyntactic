@@ -297,7 +297,12 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-+ (void) saveBookmarkedTitles:(NSSet*) bookmarkedTitles {
+- (void) setBookmarkedTitles:(NSSet*) bookmarkedTitles {
+    [dataGate lock];
+    {
+        self.bookmarkedTitlesData = bookmarkedTitles;
+    }
+    [dataGate unlock];
     [[NSUserDefaults standardUserDefaults] setObject:bookmarkedTitles.allObjects forKey:BOOKMARKED_TITLES];
 }
 
@@ -960,42 +965,45 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (NSMutableSet*) loadBookmarkedTitles {
+- (NSSet*) loadBookmarkedTitles {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
     if (array.count == 0) {
         return [NSMutableSet set];
     }
 
-    return [NSMutableSet setWithArray:array];
+    return [NSSet setWithArray:array];
 }
 
-- (void) ensureBookmarkedTitles {
-    NSAssert([NSThread isMainThread], @"");
+- (NSSet*) bookmarkedTitlesNoLock {
     if (bookmarkedTitlesData == nil) {
         self.bookmarkedTitlesData = [self loadBookmarkedTitles];
     }
-}
-
-
-- (BOOL) isBookmarked:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    return [bookmarkedTitlesData containsObject:movie.canonicalTitle];
+    
+    // Access through property to ensure valid value.
+    return self.bookmarkedTitlesData;
 }
 
 
 - (NSSet*) bookmarkedTitles {
-    [self ensureBookmarkedTitles];
-    return bookmarkedTitlesData;
+    NSSet* result;
+    [dataGate lock];
+    {
+        result = [self bookmarkedTitlesNoLock];
+    }
+    [dataGate unlock];
+    return result;
+}
+
+
+- (BOOL) isBookmarked:(Movie*) movie {
+    return [self.bookmarkedTitles containsObject:movie.canonicalTitle];
 }
 
 
 - (void) addBookmark:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    NSMutableSet* set = [NSMutableSet setWithSet:bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
     [set addObject:movie.canonicalTitle];
-    self.bookmarkedTitlesData = set;
-
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
+    [self setBookmarkedTitles:set];
 
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
@@ -1005,12 +1013,10 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) removeBookmark:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    NSMutableSet* set = [NSMutableSet setWithSet:bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
     [set removeObject:movie.canonicalTitle];
-    self.bookmarkedTitlesData = set;
-
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
+    
+    [self setBookmarkedTitles:set];
 
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
