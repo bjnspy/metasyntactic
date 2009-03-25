@@ -14,8 +14,8 @@
 
 @interface AutoResizingCell : UITableViewCell {
 @private
-    UILabel* label_;
-    UIColor* textColorData_;
+    UILabel* label;
+    UIColor* textColorData;
 }
 
 @property (readonly, retain) UILabel* label;
