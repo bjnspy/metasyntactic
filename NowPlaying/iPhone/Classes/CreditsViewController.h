@@ -16,8 +16,8 @@
 
 @interface CreditsViewController : AbstractFullScreenTableViewController<MFMailComposeViewControllerDelegate> {
 @private
-    NSArray* languages_;
-    NSDictionary* localizers_;
+    NSArray* languages;
+    NSDictionary* localizers;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
