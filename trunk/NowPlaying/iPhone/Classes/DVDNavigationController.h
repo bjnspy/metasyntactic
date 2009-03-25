@@ -16,7 +16,7 @@
 
 @interface DVDNavigationController : AbstractNavigationController {
 @private
-    DVDViewController* dvdViewController_;
+    DVDViewController* dvdViewController;
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;

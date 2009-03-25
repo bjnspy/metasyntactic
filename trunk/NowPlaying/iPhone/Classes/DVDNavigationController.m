@@ -20,15 +20,13 @@
 #import "Movie.h"
 
 @interface DVDNavigationController()
-@property (retain) DVDViewController* dvdViewController_;
+@property (retain) DVDViewController* dvdViewController;
 @end
 
 
 @implementation DVDNavigationController
 
-@synthesize dvdViewController_;
-
-property_wrapper(DVDViewController*, dvdViewController, DvdViewController);
+@synthesize dvdViewController;
 
 - (void) dealloc {
     self.dvdViewController = nil;
@@ -64,9 +62,9 @@ property_wrapper(DVDViewController*, dvdViewController, DvdViewController);
 - (void) loadView {
     [super loadView];
 
-    if (self.dvdViewController == nil) {
+    if (dvdViewController == nil) {
         self.dvdViewController = [[[DVDViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:self.dvdViewController animated:NO];
+        [self pushViewController:dvdViewController animated:NO];
     }
 }
 

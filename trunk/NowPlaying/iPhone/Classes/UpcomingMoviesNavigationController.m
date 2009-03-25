@@ -20,15 +20,13 @@
 #import "UpcomingMoviesViewController.h"
 
 @interface UpcomingMoviesNavigationController()
-@property (retain) UpcomingMoviesViewController* upcomingMoviesViewController_;
+@property (retain) UpcomingMoviesViewController* upcomingMoviesViewController;
 @end
 
 
 @implementation UpcomingMoviesNavigationController
 
-@synthesize upcomingMoviesViewController_;
-
-property_wrapper(UpcomingMoviesViewController*, upcomingMoviesViewController, UpcomingMoviesViewController);
+@synthesize upcomingMoviesViewController;
 
 - (void) dealloc {
     self.upcomingMoviesViewController = nil;
@@ -55,9 +53,9 @@ property_wrapper(UpcomingMoviesViewController*, upcomingMoviesViewController, Up
 - (void) loadView {
     [super loadView];
 
-    if (self.upcomingMoviesViewController == nil) {
+    if (upcomingMoviesViewController == nil) {
         self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:self.upcomingMoviesViewController animated:NO];
+        [self pushViewController:upcomingMoviesViewController animated:NO];
     }
 }
 

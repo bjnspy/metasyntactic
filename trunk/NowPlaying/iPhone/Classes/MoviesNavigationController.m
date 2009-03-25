@@ -19,15 +19,13 @@
 #import "Movie.h"
 
 @interface MoviesNavigationController()
-@property (retain) AllMoviesViewController* allMoviesViewController_;
+@property (retain) AllMoviesViewController* allMoviesViewController;
 @end
 
 
 @implementation MoviesNavigationController
 
-@synthesize allMoviesViewController_;
-
-property_wrapper(AllMoviesViewController*, allMoviesViewController, AllMoviesViewController);
+@synthesize allMoviesViewController;
 
 - (void) dealloc {
     self.allMoviesViewController = nil;
@@ -54,9 +52,9 @@ property_wrapper(AllMoviesViewController*, allMoviesViewController, AllMoviesVie
 - (void) loadView {
     [super loadView];
 
-    if (self.allMoviesViewController == nil) {
+    if (allMoviesViewController == nil) {
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:self.allMoviesViewController animated:NO];
+        [self pushViewController:allMoviesViewController animated:NO];
     }
 }
 
