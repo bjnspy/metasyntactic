@@ -25,42 +25,16 @@
 #import "TappableLabel.h"
 
 @interface DVDViewController()
-@property (retain) UIView* titleView_;
-@property (retain) UIToolbar* toolbar_;
-@property (retain) UISegmentedControl* segmentedControl_;
-@property (retain) UIButton* flipButton_;
-@property (retain) UIView* superView_;
-@property (retain) UITableView* cachedTableView_;
-@property (retain) UIViewController* filterViewController_;
+@property (retain) UISegmentedControl* segmentedControl;
 @end
 
 
 @implementation DVDViewController
 
-@synthesize titleView_;
-@synthesize toolbar_;
-@synthesize segmentedControl_;
-@synthesize flipButton_;
-@synthesize superView_;
-@synthesize cachedTableView_;
-@synthesize filterViewController_;
-
-property_wrapper(UIView*, titleView, TitleView);
-property_wrapper(UIToolbar*, toolbar, Toolbar);
-property_wrapper(UISegmentedControl*, segmentedControl, SegmentedControl);
-property_wrapper(UIButton*, flipButton, FlipButton);
-property_wrapper(UIView*, superView, SuperView);
-property_wrapper(UITableView*, cachedTableView, CachedTableView);
-property_wrapper(UIViewController*, filterViewController, FilterViewController);
+@synthesize segmentedControl;
 
 - (void) dealloc {
-    self.titleView = nil;
-    self.toolbar = nil;
     self.segmentedControl = nil;
-    self.flipButton = nil;
-    self.superView = nil;
-    self.cachedTableView = nil;
-    self.filterViewController = nil;
 
     [super dealloc];
 }
@@ -113,7 +87,7 @@ property_wrapper(UIViewController*, filterViewController, FilterViewController);
 
 - (void) onSortOrderChanged:(id) sender {
     scrollToCurrentDateOnRefresh = YES;
-    self.model.dvdMoviesSelectedSegmentIndex = self.segmentedControl.selectedSegmentIndex;
+    self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
 
@@ -167,7 +141,7 @@ property_wrapper(UIViewController*, filterViewController, FilterViewController);
 
     scrollToCurrentDateOnRefresh = YES;
     self.segmentedControl = [self createSegmentedControl];
-    self.navigationItem.titleView = self.segmentedControl;
+    self.navigationItem.titleView = segmentedControl;
 
     self.tableView.rowHeight = 100;
 }
@@ -175,8 +149,6 @@ property_wrapper(UIViewController*, filterViewController, FilterViewController);
 
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
-    self.titleView = nil;
-    self.toolbar = nil;
     self.segmentedControl = nil;
 }
 
