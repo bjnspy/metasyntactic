@@ -16,6 +16,7 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
+    // Accessed from different threads.  needs gate.
     NSMutableSet* updatedMovies;
 }
 

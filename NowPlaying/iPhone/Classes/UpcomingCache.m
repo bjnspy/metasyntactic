@@ -199,7 +199,7 @@
 }
 
 
-- (NSDictionary*) movieMap {
+- (NSDictionary*) movieMapNoLock {
     if (movieMapData == nil) {
         self.movieMapData = [self loadMovies];
     }
@@ -208,12 +208,23 @@
 }
 
 
+- (NSDictionary*) movieMap {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self movieMapNoLock];
+    }
+    [gate unlock];
+    return result;
+}
+
+
 - (NSArray*) movies {
     return self.movieMap.allValues;
 }
 
 
-- (NSString*) hashValue {
+- (NSString*) hashValueNoLock {
     if (hashData == nil) {
         self.hashData = [FileUtilities readObject:self.hashFile];
         if (hashData == nil) {
@@ -222,6 +233,17 @@
     }
 
     return hashData;
+}
+
+
+- (NSString*) hashValue {
+    NSString* result = nil;
+    [gate lock];
+    {
+        result = [self hashValueNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -235,12 +257,23 @@
 }
 
 
-- (NSDictionary*) studioKeys {
+- (NSDictionary*) studioKeysNoLock {
     if (studioKeysData == nil) {
         self.studioKeysData = [self loadStudioKeys];
     }
 
     return studioKeysData;
+}
+
+
+- (NSDictionary*) studioKeys {
+    NSDictionary* studioKeys = nil;
+    [gate lock];
+    {
+        [self studioKeysNoLock];
+    }
+    [gate unlock];
+    return studioKeys;
 }
 
 
@@ -254,12 +287,23 @@
 }
 
 
-- (NSDictionary*) titleKeys {
+- (NSDictionary*) titleKeysNoLock {
     if (titleKeysData == nil) {
         self.titleKeysData = [self loadTitleKeys];
     }
 
     return titleKeysData;
+}
+
+
+- (NSDictionary*) titleKeys {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self titleKeysNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -278,7 +322,7 @@
 }
 
 
-- (NSDictionary*) bookmarks {
+- (NSDictionary*) bookmarksNoLock {
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
@@ -287,8 +331,24 @@
 }
 
 
-- (void) saveBookmarks {
-    [self.model setBookmarkedUpcoming:self.bookmarks.allValues];
+- (NSDictionary*) bookmarks {
+    NSDictionary* result = nil;
+    [gate lock];
+    {
+        result = [self bookmarksNoLock];
+    }
+    [gate unlock];
+    return result;
+}
+
+
+- (void) setBookmarks:(NSDictionary*) bookmarks {
+    [gate lock];
+    {
+        self.bookmarksData = bookmarks;
+    }
+    [gate unlock];
+    [self.model setBookmarkedUpcoming:bookmarks.allValues];
 }
 
 
@@ -407,18 +467,21 @@
             [dictionary setObject:movie forKey:movie.canonicalTitle];
         }
     }
-    self.bookmarksData = dictionary;
-    [self saveBookmarks];
+    [self setBookmarks:dictionary];
 
     NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [movieMap setObject:movie forKey:movie.canonicalTitle];
     }
 
-    self.hashData = [arguments objectAtIndex:0];
-    self.movieMapData = movieMap;
-    self.studioKeysData = [arguments objectAtIndex:2];
-    self.titleKeysData = [arguments objectAtIndex:3];
+    [gate lock];
+    {
+        self.hashData = [arguments objectAtIndex:0];
+        self.movieMapData = movieMap;
+        self.studioKeysData = [arguments objectAtIndex:2];
+        self.titleKeysData = [arguments objectAtIndex:3];
+    }
+    [gate unlock];
 
     [AppDelegate majorRefresh];
 }
@@ -571,9 +634,7 @@
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
             [dictionary setObject:movie forKey:canonicalTitle];
-            self.bookmarksData = dictionary;
-
-            [self saveBookmarks];
+            [self setBookmarks:dictionary];
             return;
         }
     }
@@ -583,9 +644,7 @@
 - (void) removeBookmark:(NSString*) canonicalTitle {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
     [dictionary removeObjectForKey:canonicalTitle];
-    self.bookmarksData = dictionary;
-
-    [self saveBookmarks];
+    [self setBookmarks:dictionary];
 }
 
 @end

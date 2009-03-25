@@ -83,9 +83,11 @@
 
 - (id) init {
     if (self = [super init]) {
+        self.movieMapLock = [[[NSLock alloc] init] autorelease];
+        
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
-
+        
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
     }
