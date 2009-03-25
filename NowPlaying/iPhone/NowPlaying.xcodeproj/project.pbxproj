@@ -352,6 +352,7 @@
 		74EFA1430F7940D7008680B2 /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA13E0F7940D7008680B2 /* Operation2.m */; };
 		74EFA1440F7940D7008680B2 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1400F7940D7008680B2 /* OperationQueue.m */; };
 		74EFA2070F794411008680B2 /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA2060F794411008680B2 /* MutableMultiDictionary.m */; };
+		74EFA4790F79CE17008680B2 /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA4780F79CE17008680B2 /* CacheUpdater.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -985,6 +986,8 @@
 		74EFA1400F7940D7008680B2 /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationQueue.m; path = ../../iPhoneShared/Classes/OperationQueue.m; sourceTree = SOURCE_ROOT; };
 		74EFA2050F794411008680B2 /* MutableMultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableMultiDictionary.h; path = ../../iPhoneShared/Classes/MutableMultiDictionary.h; sourceTree = SOURCE_ROOT; };
 		74EFA2060F794411008680B2 /* MutableMultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutableMultiDictionary.m; path = ../../iPhoneShared/Classes/MutableMultiDictionary.m; sourceTree = SOURCE_ROOT; };
+		74EFA4770F79CE17008680B2 /* CacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUpdater.h; sourceTree = "<group>"; };
+		74EFA4780F79CE17008680B2 /* CacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheUpdater.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -1600,6 +1603,8 @@
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
+				74EFA4770F79CE17008680B2 /* CacheUpdater.h */,
+				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -2421,6 +2426,7 @@
 				74EFA1430F7940D7008680B2 /* Operation2.m in Sources */,
 				74EFA1440F7940D7008680B2 /* OperationQueue.m in Sources */,
 				74EFA2070F794411008680B2 /* MutableMultiDictionary.m in Sources */,
+				74EFA4790F79CE17008680B2 /* CacheUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

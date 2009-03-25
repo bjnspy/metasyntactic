@@ -104,28 +104,38 @@ property_wrapper(BOOL, updated, Updated);
 }
 
 
-- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [self.currentScoreProvider scoreForMovie:movie inMovies:movies];
+- (Score*) scoreForMovie:(Movie*) movie {
+    return [self.currentScoreProvider scoreForMovie:movie];
 }
 
 
-- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [self.rottenTomatoesScoreProvider scoreForMovie:movie inMovies:movies];
+- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
+    return [self.rottenTomatoesScoreProvider scoreForMovie:movie];
 }
 
 
-- (Score*) metacriticScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [self.metacriticScoreProvider scoreForMovie:movie inMovies:movies];
+- (Score*) metacriticScoreForMovie:(Movie*) movie {
+    return [self.metacriticScoreProvider scoreForMovie:movie];
 }
 
 
-- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+- (NSArray*) reviewsForMovie:(Movie*) movie {
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
     if (currentScoreProvider == self.rottenTomatoesScoreProvider) {
         currentScoreProvider = self.metacriticScoreProvider;
     }
 
-    return [currentScoreProvider reviewsForMovie:movie inMovies:movies];
+    return [currentScoreProvider reviewsForMovie:movie];
+}
+
+
+- (void) processMovie:(Movie*) movie {
+    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+    if (currentScoreProvider == self.rottenTomatoesScoreProvider) {
+        currentScoreProvider = self.metacriticScoreProvider;
+    }
+
+    [currentScoreProvider processMovie:movie];
 }
 
 
@@ -141,19 +151,19 @@ property_wrapper(BOOL, updated, Updated);
 
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
     if (currentScoreProvider != self.noneScoreProvider) {
-        [[AppDelegate operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
+        [[OperationQueue operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
                                          onTarget:self
                                            withObject:currentScoreProvider
                                              gate:nil
-                                          priority:High];
+                                          priority:Priority];
     }
 
     for (id<ScoreProvider> provider in self.scoreProviders) {
         if (provider != currentScoreProvider) {
-            [[AppDelegate operationQueue] performSelector:@selector(update)
+            [[OperationQueue operationQueue] performSelector:@selector(update)
                                                  onTarget:provider
                                                      gate:nil
-                                                  priority:High];
+                                                  priority:Normal];
         }
     }
 }
@@ -166,14 +176,6 @@ property_wrapper(BOOL, updated, Updated);
         [scoreProvider update];
     }
     [AppDelegate removeNotification:notification];
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie
-                inMovies:(NSArray*) movies {
-    for (id<ScoreProvider> provider in self.scoreProviders) {
-        [provider prioritizeMovie:movie inMovies:movies];
-    }
 }
 
 @end

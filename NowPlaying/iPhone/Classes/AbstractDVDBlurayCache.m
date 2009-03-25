@@ -17,6 +17,7 @@
 #import "AmazonCache.h"
 #import "AppDelegate.h"
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "DVD.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
@@ -170,10 +171,10 @@ property_wrapper(BOOL, updated, Updated);
     }
     self.updated = YES;
 
-    [[AppDelegate operationQueue] performSelector:@selector(updateMoviesBackgroundEntryPoint)
+    [[OperationQueue operationQueue] performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                          onTarget:self
                                              gate:nil
-                                          priority:High];
+                                          priority:Priority];
 }
 
 
@@ -364,7 +365,8 @@ property_wrapper(BOOL, updated, Updated);
         movies = [self loadMovies];
     }
 
-    [self addPrimaryMovies:movies];
+    [self clearUpdatedMovies];
+    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
 }
 
 
@@ -400,46 +402,10 @@ property_wrapper(BOOL, updated, Updated);
 }
 
 
-- (void) updateNetflix:(Movie*) movie {
-    [self.model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
-}
-
-
-- (void) updatePoster:(Movie*) movie {
-    [self.model.posterCache updateMovie:movie];
-}
-
-
-- (void) updateIMDb:(Movie*) movie {
-    [self.model.imdbCache updateMovie:movie];
-}
-
-
-- (void) updateAmazon:(Movie*) movie {
-    [self.model.amazonCache updateMovie:movie];
-}
-
-
-- (void) updateWikipedia:(Movie*) movie {
-    [self.model.wikipediaCache updateMovie:movie];
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie {
     if (![self.moviesSet containsObject:movie]) {
         return;
     }
-
-    [super prioritizeMovie:movie];
-}
-
-
-- (void) updateMovieDetails:(Movie*) movie {
-    [self updatePoster:movie];
-    [self updateNetflix:movie];
-    [self updateIMDb:movie];
-    [self updateWikipedia:movie];
-    [self updateAmazon:movie];
 }
 
 

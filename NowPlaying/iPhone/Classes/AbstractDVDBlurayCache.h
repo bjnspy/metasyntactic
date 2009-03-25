@@ -23,7 +23,6 @@
 }
 
 - (void) update;
-- (void) prioritizeMovie:(Movie*) movie;
 
 - (NSArray*) movies;
 

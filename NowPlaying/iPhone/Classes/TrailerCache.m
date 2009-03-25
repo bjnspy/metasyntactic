@@ -70,32 +70,8 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 }
 
 
-- (void) update:(NSArray*) movies {
-    [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:movies
-                                             gate:nil
-                                         priority:Low];
-}
-
-
 - (BOOL) tooSoon:(NSDate*) date {
     return date.timeIntervalSinceNow < (3 * ONE_DAY);
-}
-
-
-- (void) updateBackgroundEntryPoint:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-
-        if (downloadDate == nil) {
-            [self addPrimaryMovie:movie];
-        } else {
-            if (![self tooSoon:downloadDate]) {
-                [self addSecondaryMovie:movie];
-            }
-        }
-    }
 }
 
 
@@ -175,6 +151,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
         }
 
         [self generateIndex:indexText];
+        [self clearUpdatedMovies];
     }
 
     [self updateMovieDetailsWorker:movie];

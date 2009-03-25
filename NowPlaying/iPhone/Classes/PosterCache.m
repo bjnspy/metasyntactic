@@ -50,27 +50,6 @@
 }
 
 
-- (void) updateMovie:(Movie*) movie {
-    if (movie.poster.length == 0) {
-        [self addSecondaryMovie:movie];
-    } else {
-        [self addPrimaryMovie:movie];
-    }
-}
-
-
-- (void) update:(NSArray*) movies {
-    // movies with poster links download faster. try them first.
-    for (Movie* movie in movies) {
-        if (movie.poster.length == 0) {
-            [self addSecondaryMovie:movie];
-        } else {
-            [self addPrimaryMovie:movie];
-        }
-    }
-}
-
-
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];

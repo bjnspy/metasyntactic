@@ -186,11 +186,11 @@ property_wrapper(BOOL, userInvoked, UserInvoked);
     if (newLocation != nil) {
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [self.locationManager stopUpdatingLocation];
-            [[AppDelegate operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
+            [[OperationQueue operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
                                                  onTarget:self
                                                withObject:newLocation
                                                      gate:self.gate
-                                                  priority:High];
+                                                  priority:Now];
         }
     }
 }

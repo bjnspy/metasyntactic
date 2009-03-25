@@ -15,12 +15,9 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    OperationQueue* operationQueue_;
     ApplicationTabBarController* tabBarController_;
     NotificationCenter* notificationCenter_;
 
-    Model* model_;
-    Controller* controller_;
     Pulser* minorRefreshPulser_;
     Pulser* majorRefreshPulser_;
 
@@ -41,7 +38,6 @@
 + (UIWindow*) window;
 + (UIView*) globalActivityView;
 
-+ (OperationQueue*) operationQueue;
 + (NotificationCenter*) notificationCenter;
 
 + (void) addNotification:(NSString*) notification;

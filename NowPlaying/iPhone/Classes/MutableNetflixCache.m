@@ -250,11 +250,11 @@
             delegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                          onTarget:self
                                        withObject:arguments
                                              gate:self.gate
-                                         priority:Priority];
+                                         priority:Now];
 }
 
 
@@ -266,11 +266,11 @@
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
                                onTarget:self
                              withObject:arguments
                                    gate:self.gate
-                               priority:Priority];
+                               priority:Now];
 }
 
 
@@ -292,11 +292,11 @@
     [self.presubmitRatings setObject:rating forKey:movie];
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
-    [[AppDelegate operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
                                       gate:self.gate
-                                   priority:Priority];
+                                   priority:Now];
 }
 
 
@@ -444,11 +444,11 @@
     NSArray* arguments =
     [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self
                                   withObject:arguments
                                       gate:self.gate
-                                   priority:Priority];
+                                   priority:Now];
 }
 
 

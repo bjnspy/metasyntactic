@@ -42,6 +42,7 @@
 @class AutoResizingCell;
 @class BackgroundInvocation;
 @class BlurayCache;
+@class CacheUpdater;
 @class CollapsedMovieDetailsCell;
 @class ColorCache;
 @class CreditsViewController;

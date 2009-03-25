@@ -521,11 +521,11 @@ const double LOAD_DELAY = 1;
       didFinishSavingWithError:(NSError*) error
                    contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
-    [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+    [[OperationQueue operationQueue] performSelector:@selector(saveMultipleImages:)
                                          onTarget:self
                                        withObject:[NSNumber numberWithInteger:nextIndex]
                                              gate:nil
-                                         priority:Priority];
+                                         priority:Now];
 }
 
 
@@ -559,17 +559,17 @@ const double LOAD_DELAY = 1;
     [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
-        [[AppDelegate operationQueue] performSelector:@selector(saveSingleImage:)
+        [[OperationQueue operationQueue] performSelector:@selector(saveSingleImage:)
                                              onTarget:self
                                            withObject:[NSNumber numberWithInteger:currentPage]
                                                  gate:nil
-                                             priority:Priority];
+                                             priority:Now];
     } else {
-        [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
+        [[OperationQueue operationQueue] performSelector:@selector(saveMultipleImages:)
                                              onTarget:self
                                            withObject:[NSNumber numberWithInteger:0]
                                                  gate:nil
-                                             priority:Priority];
+                                             priority:Now];
     }
 }
 

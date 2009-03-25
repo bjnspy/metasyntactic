@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "ApplicationTabBarController.h"
+#import "CacheUpdater.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LocationManager.h"
@@ -56,13 +57,16 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 
 + (Controller*) controller {
+    if (controller == nil) {
+        controller = [[Controller alloc] init];
+    }
+
     return controller;
 }
 
 
 - (id) init {
     if (self = [super init]) {
-        controller = self;
         self.locationManager = [LocationManager managerWithController:self];
         self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
@@ -111,10 +115,10 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
-    [[AppDelegate operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
+    [[OperationQueue operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
                                          onTarget:self
                                              gate:self.determineLocationLock
-                                          priority:High];
+                                          priority:Now];
 }
 
 
@@ -146,21 +150,14 @@ property_wrapper(LocationManager*, locationManager, LocationManager)
 
 - (void) updateAllCaches {
     // we want this first so that we download all the indices.
-    [self updateLargePosterCache];
-
     [self updateScoreCache];
+    [self updateLargePosterCache];
     [self updateUpcomingCache];
     [self updateDVDCache];
     [self updateNetflixCache];
 
     NSArray* movies = self.model.movies;
-
-    [self.model.posterCache     update:movies];
-    [self.model.trailerCache    update:movies];
-    [self.model.imdbCache       update:movies];
-    [self.model.wikipediaCache  update:movies];
-    [self.model.amazonCache     update:movies];
-    [self.model.netflixCache lookupNetflixMoviesForLocalMovies:movies];
+    [[CacheUpdater cacheUpdater] addPrimaryMovies:movies];
 }
 
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractMovieCache.h"
 
 @interface ScoreCache : AbstractCache {
 @private
@@ -26,12 +26,12 @@
 
 + (ScoreCache*) cache;
 
-- (void) update;
-- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
-- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
-- (Score*) metacriticScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
-- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (void) processMovie:(Movie*) movie;
 
-- (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (void) update;
+- (Score*) scoreForMovie:(Movie*) movie;
+- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie;
+- (Score*) metacriticScoreForMovie:(Movie*) movie;
+- (NSArray*) reviewsForMovie:(Movie*) movie;
 
 @end

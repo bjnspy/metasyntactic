@@ -186,11 +186,29 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 }
 
 
+- (void) ensureMovieMap {
+    NSArray* moviesArray = [[Model model] movies];
+    if (moviesArray != self.movies) {
+        self.movies = moviesArray;
+
+        NSDictionary* scores = self.scores;
+
+        [[OperationQueue operationQueue] performSelector:@selector(regenerateMap:forMovies:)
+                                                onTarget:self
+                                              withObject:scores
+                                              withObject:self.movies
+                                                    gate:self.movieMapLock
+                                                priority:Priority];
+    }
+}
+
+
 - (NSDictionary*) movieMap {
     if (self.movieMapData == nil) {
         self.movieMapData = [self loadMovieMap];
     }
 
+    [self ensureMovieMap];
     return self.movieMapData;
 }
 
@@ -247,6 +265,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 
 - (void) updateScoresBackgroundEntryPoint {
     [self updateScoresBackgroundEntryPointWorker];
+    [self clearUpdatedMovies];
 }
 
 
@@ -417,7 +436,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
         if (lastLookupDate == nil) {
-            [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:location:)
+            [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
                                                  onTarget:self
                                                withObject:score
                                                withObject:location
@@ -425,7 +444,7 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
                                                  priority:Normal];
         } else {
             if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
-                [[AppDelegate operationQueue] performSelector:@selector(downloadReviews:location:)
+                [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
                                                      onTarget:self
                                                    withObject:score
                                                    withObject:location
@@ -440,22 +459,6 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
 - (void) update {
     [self updateScoresBackgroundEntryPoint];
     [self updateReviewsBackgroundEntryPoint];
-}
-
-
-- (void) ensureMovieMap:(NSArray*) moviesArray {
-    if (moviesArray != self.movies) {
-        self.movies = moviesArray;
-
-        NSDictionary* scores = self.scores;
-
-        [[AppDelegate operationQueue] performSelector:@selector(regenerateMap:forMovies:)
-                                             onTarget:self
-                                           withObject:scores
-                                           withObject:self.movies
-                                                 gate:self.movieMapLock
-                                             priority:High];
-    }
 }
 
 
@@ -499,29 +502,23 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
     self.movies = localMovies;
 
     [AppDelegate majorRefresh];
-
 }
 
 
 - (void) regenerateMap:(NSDictionary*) scores
              forMovies:(NSArray*) localMovies {
     [self regenerateMapWorker:scores forMovies:self.movies];
+    [self clearUpdatedMovies];
 }
 
 
-- (Score*) scoreForMovie:(Movie*) movie
-                inMovies:(NSArray*) moviesArray {
-    [self ensureMovieMap:moviesArray];
-
+- (Score*) scoreForMovie:(Movie*) movie {
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
     return [self.scores objectForKey:title];
 }
 
 
-- (NSArray*) reviewsForMovie:(Movie*) movie
-                    inMovies:(NSArray*) moviesArray {
-    [self ensureMovieMap:moviesArray];
-
+- (NSArray*) reviewsForMovie:(Movie*) movie {
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
     NSArray* encodedResult = [FileUtilities readObject:[self reviewsFile:title]];
 
@@ -535,13 +532,6 @@ property_wrapper(NSString*, reviewsDirectory, ReviewsDirectory);
     }
 
     return result;
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie
-                inMovies:(NSArray*) moviesArray {
-    [self ensureMovieMap:moviesArray];
-    [super prioritizeMovie:movie];
 }
 
 @end

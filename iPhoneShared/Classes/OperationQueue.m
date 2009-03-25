@@ -27,6 +27,8 @@
 
 @implementation OperationQueue
 
+static OperationQueue* operationQueue = nil;
+
 @synthesize queue_;
 @synthesize boundedOperations_;
 @synthesize boundedOperationsGate_;
@@ -57,7 +59,11 @@ property_wrapper(NSLock*, boundedOperationsGate, BoundedOperationsGate);
 
 
 + (OperationQueue*) operationQueue {
-    return [[[OperationQueue alloc] init] autorelease];
+    if (operationQueue == nil) {
+        operationQueue = [[OperationQueue alloc] init];
+    }
+
+    return operationQueue;
 }
 
 
@@ -88,18 +94,26 @@ property_wrapper(NSLock*, boundedOperationsGate, BoundedOperationsGate);
 }
 
 
-const NSInteger MAX_BOUNDED_OPERATIONS = 9;
+const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 - (void) addBoundedOperation:(Operation*) operation
                     priority:(QueuePriority) priority {
     [self.boundedOperationsGate lock];
     {
         [self.boundedOperations addObject:operation];
         if (self.boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
+            // too many operations.  cancel the oldest one.
             Operation* staleOperation = [self.boundedOperations objectAtIndex:0];
             [staleOperation cancel];
 
             [self.boundedOperations removeObjectAtIndex:0];
         }
+
+        // make the last priority operation dependent on this one.
+        if (self.boundedOperations.count > 0) {
+            [(NSOperation*)self.boundedOperations.lastObject addDependency:operation];
+        }
+
+        [self.boundedOperations addObject:operation];
     }
     [self.boundedOperationsGate unlock];
 

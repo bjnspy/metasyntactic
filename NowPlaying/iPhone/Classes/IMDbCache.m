@@ -46,16 +46,6 @@
 }
 
 
-- (void) update:(NSArray*) movies {
-    [self addPrimaryMovies:movies];
-}
-
-
-- (void) updateMovie:(Movie*) movie {
-    [self addPrimaryMovie:movie];
-}
-
-
 - (void) updateMovieDetails:(Movie*) movie {
     if (movie.imdbAddress.length > 0) {
         // don't even bother if the movie has an imdb address in it
