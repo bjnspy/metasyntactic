@@ -56,25 +56,25 @@
 #import "WikipediaCache.h"
 
 @interface Model()
-@property (retain) UserLocationCache* userLocationCache_;
-@property (retain) BlurayCache* blurayCache_;
-@property (retain) DVDCache* dvdCache_;
-@property (retain) IMDbCache* imdbCache_;
-@property (retain) AmazonCache* amazonCache_;
-@property (retain) WikipediaCache* wikipediaCache_;
-@property (retain) PersonPosterCache* personPosterCache_;
-@property (retain) PosterCache* posterCache_;
-@property (retain) LargePosterCache* largePosterCache_;
-@property (retain) ScoreCache* scoreCache_;
-@property (retain) TrailerCache* trailerCache_;
-@property (retain) UpcomingCache* upcomingCache_;
-@property (retain) MutableNetflixCache* netflixCache_;
-@property (retain) NSSet* bookmarkedTitlesData_;
-@property (retain) NSDictionary* favoriteTheatersData_;
-@property (retain) id<DataProvider> dataProvider_;
-@property (retain) NSNumber* isSearchDateTodayData_;
-@property NSInteger cachedScoreProviderIndex_;
-@property NSInteger searchRadiusData_;
+@property (retain) UserLocationCache* userLocationCache;
+@property (retain) BlurayCache* blurayCache;
+@property (retain) DVDCache* dvdCache;
+@property (retain) IMDbCache* imdbCache;
+@property (retain) AmazonCache* amazonCache;
+@property (retain) WikipediaCache* wikipediaCache;
+@property (retain) PersonPosterCache* personPosterCache;
+@property (retain) PosterCache* posterCache;
+@property (retain) LargePosterCache* largePosterCache;
+@property (retain) ScoreCache* scoreCache;
+@property (retain) TrailerCache* trailerCache;
+@property (retain) UpcomingCache* upcomingCache;
+@property (retain) MutableNetflixCache* netflixCache;
+@property (retain) NSSet* bookmarkedTitlesData;
+@property (retain) NSDictionary* favoriteTheatersData;
+@property (retain) id<DataProvider> dataProvider;
+@property (retain) NSNumber* isSearchDateTodayData;
+@property NSInteger cachedScoreProviderIndex;
+@property NSInteger searchRadiusData;
 @end
 
 @implementation Model
@@ -227,47 +227,27 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 };
 
 
-@synthesize dataProvider_;
+@synthesize dataProvider;
 
-@synthesize bookmarkedTitlesData_;
-@synthesize favoriteTheatersData_;
-@synthesize isSearchDateTodayData_;
+@synthesize bookmarkedTitlesData;
+@synthesize favoriteTheatersData;
+@synthesize isSearchDateTodayData;
 
-@synthesize userLocationCache_;
-@synthesize blurayCache_;
-@synthesize dvdCache_;
-@synthesize imdbCache_;
-@synthesize amazonCache_;
-@synthesize wikipediaCache_;
-@synthesize personPosterCache_;
-@synthesize posterCache_;
-@synthesize largePosterCache_;
-@synthesize scoreCache_;
-@synthesize trailerCache_;
-@synthesize upcomingCache_;
-@synthesize netflixCache_;
-@synthesize cachedScoreProviderIndex_;
-@synthesize searchRadiusData_;
-
-property_wrapper(UserLocationCache*, userLocationCache, UserLocationCache);
-property_wrapper(BlurayCache*, blurayCache, BlurayCache);
-property_wrapper(DVDCache*, dvdCache, DvdCache);
-property_wrapper(IMDbCache*, imdbCache, ImdbCache);
-property_wrapper(AmazonCache*, amazonCache, AmazonCache);
-property_wrapper(WikipediaCache*, wikipediaCache, WikipediaCache);
-property_wrapper(PersonPosterCache*, personPosterCache, PersonPosterCache);
-property_wrapper(PosterCache*, posterCache, PosterCache);
-property_wrapper(LargePosterCache*, largePosterCache, LargePosterCache);
-property_wrapper(ScoreCache*, scoreCache, ScoreCache);
-property_wrapper(TrailerCache*, trailerCache, TrailerCache);
-property_wrapper(UpcomingCache*, upcomingCache, UpcomingCache);
-property_wrapper(MutableNetflixCache*, netflixCache, NetflixCache);
-property_wrapper(NSSet*, bookmarkedTitlesData, BookmarkedTitlesData);
-property_wrapper(NSDictionary*, favoriteTheatersData, FavoriteTheatersData);
-property_wrapper(id<DataProvider>, dataProvider, DataProvider);
-property_wrapper(NSNumber*, isSearchDateTodayData, IsSearchDateTodayData);
-property_wrapper(NSInteger, cachedScoreProviderIndex, CachedScoreProviderIndex);
-property_wrapper(NSInteger, searchRadiusData, SearchRadiusData);
+@synthesize userLocationCache;
+@synthesize blurayCache;
+@synthesize dvdCache;
+@synthesize imdbCache;
+@synthesize amazonCache;
+@synthesize wikipediaCache;
+@synthesize personPosterCache;
+@synthesize posterCache;
+@synthesize largePosterCache;
+@synthesize scoreCache;
+@synthesize trailerCache;
+@synthesize upcomingCache;
+@synthesize netflixCache;
+@synthesize cachedScoreProviderIndex;
+@synthesize searchRadiusData;
 
 - (void) dealloc {
     self.dataProvider = nil;
@@ -574,17 +554,17 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) didReceiveMemoryWarning {
-    [self.largePosterCache didReceiveMemoryWarning];
-    [self.imdbCache didReceiveMemoryWarning];
-    [self.amazonCache didReceiveMemoryWarning];
-    [self.wikipediaCache didReceiveMemoryWarning];
-    [self.trailerCache didReceiveMemoryWarning];
-    [self.blurayCache didReceiveMemoryWarning];
-    [self.dvdCache didReceiveMemoryWarning];
-    [self.posterCache didReceiveMemoryWarning];
-    [self.scoreCache didReceiveMemoryWarning];
-    [self.upcomingCache didReceiveMemoryWarning];
-    [self.netflixCache didReceiveMemoryWarning];
+    [largePosterCache didReceiveMemoryWarning];
+    [imdbCache didReceiveMemoryWarning];
+    [amazonCache didReceiveMemoryWarning];
+    [wikipediaCache didReceiveMemoryWarning];
+    [trailerCache didReceiveMemoryWarning];
+    [blurayCache didReceiveMemoryWarning];
+    [dvdCache didReceiveMemoryWarning];
+    [posterCache didReceiveMemoryWarning];
+    [scoreCache didReceiveMemoryWarning];
+    [upcomingCache didReceiveMemoryWarning];
+    [netflixCache didReceiveMemoryWarning];
 }
 
 
@@ -962,21 +942,21 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) isSearchDateToday {
-    if (self.isSearchDateTodayData == nil) {
+    if (isSearchDateTodayData == nil) {
         self.isSearchDateTodayData = [NSNumber numberWithBool:[DateUtilities isToday:self.searchDate]];
     }
 
-    return self.isSearchDateTodayData.boolValue;
+    return isSearchDateTodayData.boolValue;
 }
 
 
 - (NSArray*) movies {
-    return [self.dataProvider movies];
+    return [dataProvider movies];
 }
 
 
 - (NSArray*) theaters {
-    return [self.dataProvider theaters];
+    return [dataProvider theaters];
 }
 
 
@@ -990,7 +970,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 - (void) ensureBookmarkedTitles {
-    if (self.bookmarkedTitlesData == nil) {
+    NSAssert([NSThread isMainThread], @"");
+    if (bookmarkedTitlesData == nil) {
         self.bookmarkedTitlesData = [self loadBookmarkedTitles];
     }
 }
@@ -998,43 +979,43 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (BOOL) isBookmarked:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    return [self.bookmarkedTitlesData containsObject:movie.canonicalTitle];
+    return [bookmarkedTitlesData containsObject:movie.canonicalTitle];
 }
 
 
 - (NSSet*) bookmarkedTitles {
     [self ensureBookmarkedTitles];
-    return self.bookmarkedTitlesData;
+    return bookmarkedTitlesData;
 }
 
 
 - (void) addBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:bookmarkedTitlesData];
     [set addObject:movie.canonicalTitle];
     self.bookmarkedTitlesData = set;
 
-    [Model saveBookmarkedTitles:self.bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 
-    [self.dataProvider addBookmark:movie.canonicalTitle];
-    [self.upcomingCache addBookmark:movie.canonicalTitle];
-    [self.dvdCache addBookmark:movie.canonicalTitle];
-    [self.blurayCache addBookmark:movie.canonicalTitle];
+    [dataProvider addBookmark:movie.canonicalTitle];
+    [upcomingCache addBookmark:movie.canonicalTitle];
+    [dvdCache addBookmark:movie.canonicalTitle];
+    [blurayCache addBookmark:movie.canonicalTitle];
 }
 
 
 - (void) removeBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
-    NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitlesData];
+    NSMutableSet* set = [NSMutableSet setWithSet:bookmarkedTitlesData];
     [set removeObject:movie.canonicalTitle];
     self.bookmarkedTitlesData = set;
 
-    [Model saveBookmarkedTitles:self.bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 
-    [self.dataProvider removeBookmark:movie.canonicalTitle];
-    [self.upcomingCache removeBookmark:movie.canonicalTitle];
-    [self.dvdCache removeBookmark:movie.canonicalTitle];
-    [self.blurayCache removeBookmark:movie.canonicalTitle];
+    [dataProvider removeBookmark:movie.canonicalTitle];
+    [upcomingCache removeBookmark:movie.canonicalTitle];
+    [dvdCache removeBookmark:movie.canonicalTitle];
+    [blurayCache removeBookmark:movie.canonicalTitle];
 }
 
 
@@ -1109,7 +1090,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) ensureFavoriteTheaters {
-    if (self.favoriteTheatersData == nil) {
+    if (favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
 }
@@ -1117,7 +1098,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSArray*) favoriteTheaters {
     [self ensureFavoriteTheaters];
-    return self.favoriteTheatersData.allValues;
+    return favoriteTheatersData.allValues;
 }
 
 
@@ -1128,7 +1109,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) addFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheatersData];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:favoriteTheatersData];
 
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                     originatingLocation:theater.originatingLocation];
@@ -1143,14 +1124,14 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
 
-    return [self.favoriteTheatersData objectForKey:theater.name] != nil;
+    return [favoriteTheatersData objectForKey:theater.name] != nil;
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
 
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheatersData];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:favoriteTheatersData];
     [dictionary removeObjectForKey:theater.name];
     self.favoriteTheatersData = dictionary;
 
@@ -1163,7 +1144,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return movie.releaseDate;
     }
 
-    return [self.upcomingCache releaseDateForMovie:movie];
+    return [upcomingCache releaseDateForMovie:movie];
 }
 
 
@@ -1173,12 +1154,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return directors;
     }
 
-    directors = [self.upcomingCache directorsForMovie:movie];
+    directors = [upcomingCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
     }
 
-    directors = [self.netflixCache directorsForMovie:movie];
+    directors = [netflixCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
     }
@@ -1193,12 +1174,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return cast;
     }
 
-    cast = [self.upcomingCache castForMovie:movie];
+    cast = [upcomingCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
     }
 
-    cast = [self.netflixCache castForMovie:movie];
+    cast = [netflixCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
     }
@@ -1212,7 +1193,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return movie.genres;
     }
 
-    return [self.upcomingCache genresForMovie:movie];
+    return [upcomingCache genresForMovie:movie];
 }
 
 
@@ -1222,7 +1203,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return result;
     }
 
-    result = [self.imdbCache imdbAddressForMovie:movie];
+    result = [imdbCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
     }
@@ -1232,22 +1213,22 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSString*) amazonAddressForMovie:(Movie*) movie {
-    return [self.amazonCache amazonAddressForMovie:movie];
+    return [amazonCache amazonAddressForMovie:movie];
 }
 
 
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie {
-    return [self.wikipediaCache wikipediaAddressForMovie:movie];
+    return [wikipediaCache wikipediaAddressForMovie:movie];
 }
 
 
 - (DVD*) dvdDetailsForMovie:(Movie*) movie {
-    DVD* dvd = [self.dvdCache detailsForMovie:movie];
+    DVD* dvd = [dvdCache detailsForMovie:movie];
     if (dvd != nil) {
         return dvd;
     }
 
-    dvd = [self.blurayCache detailsForMovie:movie];
+    dvd = [blurayCache detailsForMovie:movie];
     if (dvd != nil) {
         return dvd;
     }
@@ -1272,14 +1253,14 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:self.posterCache, self.largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
                        selector:@selector(posterForMovie:)];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:self.posterCache, self.largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
                        selector:@selector(smallPosterForMovie:)];
 }
 
@@ -1311,19 +1292,19 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
-    return [self.dataProvider moviePerformances:movie forTheater:theater];
+    return [dataProvider moviePerformances:movie forTheater:theater];
 }
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [self.dataProvider synchronizationDateForTheater:theater];
+    return [dataProvider synchronizationDateForTheater:theater];
 }
 
 
 - (BOOL) isStale:(Theater*) theater {
     NSNumber* stale = theater.isStale;
     if (stale == nil) {
-        stale = [NSNumber numberWithBool:[self.dataProvider isStale:theater]];
+        stale = [NSNumber numberWithBool:[dataProvider isStale:theater]];
         theater.isStale = stale;
     }
 
@@ -1339,7 +1320,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
                 NSLocalizedString(@"Theater last reported show times on\n%@.", nil),
                 [DateUtilities formatLongDate:theaterSyncDate]];
     } else {
-        NSDate* globalSyncDate = [self.dataProvider lastLookupDate];
+        NSDate* globalSyncDate = [dataProvider lastLookupDate];
         if (globalSyncDate == nil) {
             return @"";
         }
@@ -1378,7 +1359,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSDictionary*) theaterDistanceMap {
-    Location* location = [self.userLocationCache locationForUserAddress:self.userAddress];
+    Location* location = [userLocationCache locationForUserAddress:self.userAddress];
     return [self theaterDistanceMap:location
                            theaters:self.theaters];
 }
@@ -1526,17 +1507,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (Score*) scoreForMovie:(Movie*) movie {
-    return [self.scoreCache scoreForMovie:movie];
+    return [scoreCache scoreForMovie:movie];
 }
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-    return [self.scoreCache rottenTomatoesScoreForMovie:movie];
+    return [scoreCache rottenTomatoesScoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-    return [self.scoreCache metacriticScoreForMovie:movie];
+    return [scoreCache metacriticScoreForMovie:movie];
 }
 
 
@@ -1563,12 +1544,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
             [options addObject:synopsis];
         }
 
-        synopsis = [self.upcomingCache synopsisForMovie:movie];
+        synopsis = [upcomingCache synopsisForMovie:movie];
         if (synopsis.length > 0) {
             [options addObject:synopsis];
         }
 
-        synopsis = [self.netflixCache synopsisForMovie:movie];
+        synopsis = [netflixCache synopsisForMovie:movie];
         if (synopsis.length > 0) {
             [options addObject:synopsis];
         }
@@ -1591,17 +1572,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* result = [self.trailerCache trailersForMovie:movie];
+    NSArray* result = [trailerCache trailersForMovie:movie];
     if (result.count > 0) {
         return result;
     }
 
-    return [self.upcomingCache trailersForMovie:movie];
+    return [upcomingCache trailersForMovie:movie];
 }
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-    return [self.scoreCache reviewsForMovie:movie];
+    return [scoreCache reviewsForMovie:movie];
 }
 
 
