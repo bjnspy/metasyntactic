@@ -23,8 +23,8 @@
 #import "StringUtilities.h"
 
 @interface CreditsViewController()
-@property (retain) NSArray* languages_;
-@property (retain) NSDictionary* localizers_;
+@property (retain) NSArray* languages;
+@property (retain) NSDictionary* localizers;
 @end
 
 
@@ -45,11 +45,8 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-@synthesize languages_;
-@synthesize localizers_;
-
-property_wrapper(NSArray*, languages, Languages);
-property_wrapper(NSDictionary*, localizers, Localizers);
+@synthesize languages;
+@synthesize localizers;
 
 - (void) dealloc {
     self.languages = nil;
@@ -93,7 +90,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
 
-        self.languages = [self.localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
+        self.languages = [localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
     }
 
     return self;
@@ -136,7 +133,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == DVDDetailsSection) {
         return 2;
     } else if (section == LocalizedBySection) {
-        return self.localizers.count;
+        return localizers.count;
     } else if (section == LicenseSection) {
         return 1;
     }
@@ -201,8 +198,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    NSString* code = [self.languages objectAtIndex:row];
-    NSString* person = [self.localizers objectForKey:code];
+    NSString* code = [languages objectAtIndex:row];
+    NSString* person = [localizers objectForKey:code];
     NSString* language = [LocaleUtilities displayLanguage:code];
 
     cell.textLabel.text = language;
