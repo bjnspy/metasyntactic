@@ -17,27 +17,22 @@
 #import "ColorCache.h"
 
 @interface SettingCell()
-@property (retain) UILabel* separatorLine_;
-@property (retain) NSString* value_;
-@property (retain) NSString* placeholder_;
+@property (retain) UILabel* separatorLine;
+@property (copy) NSString* value;
 @end
 
 
 @implementation SettingCell
 
-@synthesize separatorLine_;
-@synthesize value_;
-@synthesize placeholder_;
-
-property_wrapper(UILabel*, separatorLine, SeparatorLine);
-property_wrapper(NSString*, value, Value);
-property_wrapper(NSString*, placeholder, Placeholder);
+@synthesize separatorLine;
+@synthesize value;
+@synthesize placeholder;
 
 - (void) dealloc {
     self.separatorLine = nil;
     self.placeholder = nil;
     self.value = nil;
-
+    
     [super dealloc];
 }
 
@@ -47,21 +42,21 @@ property_wrapper(NSString*, placeholder, Placeholder);
                     reuseIdentifier:reuseIdentifier]) {
         self.separatorLine = [[[UILabel alloc] init] autorelease];
     }
-
+    
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
-    self.separatorLine.frame = separatorFrame;
+    separatorLine.frame = separatorFrame;
 }
 
 
 - (void) setValueColor {
-    if (self.value.length > 0) {
+    if (value.length > 0) {
         self.detailTextLabel.textColor = [ColorCache commandColor];
     } else {
         self.detailTextLabel.textColor = [UIColor lightGrayColor];
@@ -71,21 +66,21 @@ property_wrapper(NSString*, placeholder, Placeholder);
 
 - (void) setCellValue:(NSString*) text {
     self.value = text;
-
-    if (self.value.length > 0) {
-        self.detailTextLabel.text = self.value;
+    
+    if (value.length > 0) {
+        self.detailTextLabel.text = value;
     } else {
-        self.detailTextLabel.text = self.placeholder;
+        self.detailTextLabel.text = placeholder;
     }
-
+    
     [self setValueColor];
 }
 
 
 - (void) setHidesSeparator:(BOOL) hideSeparator {
-    [self.separatorLine removeFromSuperview];
+    [separatorLine removeFromSuperview];
     if (hideSeparator) {
-        [self.contentView addSubview:self.separatorLine];
+        [self.contentView addSubview:separatorLine];
     }
 }
 

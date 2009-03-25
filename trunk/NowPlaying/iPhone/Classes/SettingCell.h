@@ -14,16 +14,15 @@
 
 @interface SettingCell : UITableViewCell {
 @private
-    UILabel* separatorLine_;
+    UILabel* separatorLine;
 
-    NSString* value_;
-    NSString* placeholder_;
+    NSString* value;
+    NSString* placeholder;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+@property (copy) NSString* placeholder;
 
-- (NSString*) placeholder;
-- (void) setPlaceholder:(NSString*) value;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setCellValue:(NSString*) text;
 - (void) setHidesSeparator:(BOOL) hideSeparator;
