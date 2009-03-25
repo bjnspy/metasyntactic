@@ -63,7 +63,6 @@
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
-- (void) reportQueue:(Queue*) queue;
 
 - (void) checkApiResult:(XmlElement*) result;
 - (NSString*) extractErrorMessage:(XmlElement*) element;

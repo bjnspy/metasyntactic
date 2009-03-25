@@ -297,7 +297,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (Queue*) queueForFeed:(Feed*) feed {
+- (Queue*) queueForFeedNoLock:(Feed*) feed {
     if (feed == nil) {
         return nil;
     }
@@ -310,6 +310,17 @@ static NSDictionary* availabilityMap = nil;
         }
     }
 
+    return queue;
+}
+
+
+- (Queue*) queueForFeed:(Feed*) feed {
+    Queue* queue = nil;
+    [dataGate lock];
+    {
+        queue = [self queueForFeedNoLock:feed];
+    }
+    [dataGate unlock];
     return queue;
 }
 
@@ -516,6 +527,7 @@ static NSDictionary* availabilityMap = nil;
     NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.key, queue.etag);
     [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed]];
     [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue]];
+    [self addQueue:queue];
 }
 
 
@@ -740,9 +752,8 @@ static NSDictionary* availabilityMap = nil;
                                      movies:movies
                                       saved:saved];
         [self saveQueue:queue];
-        [self performSelectorOnMainThread:@selector(reportQueue:)
-                               withObject:queue
-                            waitUntilDone:NO];
+        
+        [AppDelegate majorRefresh];
     }
 }
 
@@ -765,16 +776,6 @@ static NSDictionary* availabilityMap = nil;
 
     [[CacheUpdater cacheUpdater] addMovies:queue.movies];
     [[CacheUpdater cacheUpdater] addMovies:queue.saved];
-}
-
-
-- (void) reportQueue:(Queue*) queue {
-    NSAssert([NSThread isMainThread], nil);
-    NSLog(@"Reporting queue '%@' with etag '%@'", queue.feed.key, queue.etag);
-
-    [self addQueue:queue];
-
-    [AppDelegate majorRefresh];
 }
 
 
@@ -1319,8 +1320,6 @@ static NSDictionary* availabilityMap = nil;
 
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
-        
-        NSAssert([NSThread isMainThread], nil);
         
         NSDictionary* queues = self.queues;
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:queues];

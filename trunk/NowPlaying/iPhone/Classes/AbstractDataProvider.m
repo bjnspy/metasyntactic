@@ -237,6 +237,16 @@
 }
 
 
+- (void) setBookmarks:(NSDictionary*) bookmarks {
+    [dataGate lock];
+    {
+        self.bookmarksData = bookmarks;
+    }
+    [dataGate unlock];
+    [self.model setBookmarkedMovies:bookmarks.allValues];
+}
+
+
 - (void) saveResult:(LookupResult*) result {
     NSAssert(![NSThread isMainThread], nil);
     
@@ -258,10 +268,32 @@
     // Do this last.  It signifies that we are done
     [self setLastLookupDate];
     
+    for (Movie* movie in self.bookmarks.allValues) {
+        if (![result.movies containsObject:movie]) {
+            [result.movies addObject:movie];
+        }
+    }
+    
+    // also determine if any of the data we found match items the user bookmarked
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+    for (Movie* movie in result.movies) {
+        if ([self.model isBookmarked:movie]) {
+            [dictionary setObject:movie forKey:movie.canonicalTitle];
+        }
+    }
+    [self setBookmarks:dictionary];
+    
+    [dataGate lock];
+    {
+        self.moviesData = result.movies;
+        self.theatersData = result.theaters;
+        self.synchronizationInformationData = result.synchronizationInformation;
+        self.performancesData = [NSMutableDictionary dictionary];
+    }
+    [dataGate unlock];
+    
     // Let the rest of the app know about the results.
-    [self performSelectorOnMainThread:@selector(reportResult:)
-                           withObject:result
-                        waitUntilDone:NO];
+    [AppDelegate majorRefresh:YES];
 }
 
 
@@ -582,47 +614,6 @@
     }
     
     [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
-}
-
-
-- (void) setBookmarks:(NSDictionary*) bookmarks {
-    [dataGate lock];
-    {
-        self.bookmarksData = bookmarks;
-    }
-    [dataGate unlock];
-    [self.model setBookmarkedMovies:bookmarks.allValues];
-}
-
-
-- (void) reportResult:(LookupResult*) result {
-    NSAssert([NSThread isMainThread], nil);
-    // add in any previously bookmarked movies that we now no longer know about.
-    for (Movie* movie in self.bookmarks.allValues) {
-        if (![result.movies containsObject:movie]) {
-            [result.movies addObject:movie];
-        }
-    }
-    
-    // also determine if any of the data we found match items the user bookmarked
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    for (Movie* movie in result.movies) {
-        if ([self.model isBookmarked:movie]) {
-            [dictionary setObject:movie forKey:movie.canonicalTitle];
-        }
-    }
-    [self setBookmarks:dictionary];
-    
-    [dataGate lock];
-    {
-        self.moviesData = result.movies;
-        self.theatersData = result.theaters;
-        self.synchronizationInformationData = result.synchronizationInformation;
-        self.performancesData = [NSMutableDictionary dictionary];
-    }
-    [dataGate unlock];
-    
-    [AppDelegate majorRefresh:YES];
 }
 
 
