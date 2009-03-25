@@ -15,33 +15,25 @@
 #import "SearchResult.h"
 
 @interface SearchResult()
-@property NSInteger requestId_;
-@property (copy) NSString* value_;
-@property (retain) NSArray* movies_;
-@property (retain) NSArray* theaters_;
-@property (retain) NSArray* upcomingMovies_;
-@property (retain) NSArray* dvds_;
-@property (retain) NSArray* bluray_;
+@property NSInteger requestId;
+@property (copy) NSString* value;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* theaters;
+@property (retain) NSArray* upcomingMovies;
+@property (retain) NSArray* dvds;
+@property (retain) NSArray* bluray;
 @end
 
 
 @implementation SearchResult
 
-@synthesize requestId_;
-@synthesize value_;
-@synthesize movies_;
-@synthesize theaters_;
-@synthesize upcomingMovies_;
-@synthesize dvds_;
-@synthesize bluray_;
-
-property_wrapper(NSInteger, requestId, RequestId);
-property_wrapper(NSString*, value, Value);
-property_wrapper(NSArray*, movies, Movies);
-property_wrapper(NSArray*, theaters, Theaters);
-property_wrapper(NSArray*, upcomingMovies, UpcomingMovies);
-property_wrapper(NSArray*, dvds, Dvds);
-property_wrapper(NSArray*, bluray, Bluray);
+@synthesize requestId;
+@synthesize value;
+@synthesize movies;
+@synthesize theaters;
+@synthesize upcomingMovies;
+@synthesize dvds;
+@synthesize bluray;
 
 - (void) dealloc {
     self.requestId = 0;

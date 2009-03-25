@@ -15,13 +15,12 @@
 @interface AbstractSearchEngine : NSObject {
 @protected
     // only accessed from the main thread.  needs no lock.
-    id<SearchEngineDelegate> delegate_;
+    id<SearchEngineDelegate> delegate;
 
     // accessed from both threads.  needs lock
-    NSInteger currentRequestId_;
-    SearchRequest* nextSearchRequest_;
-
-    NSCondition* gate_;
+    NSCondition* gate;
+    NSInteger currentRequestId;
+    SearchRequest* nextSearchRequest;
 }
 
 - (void) submitRequest:(NSString*) string;
