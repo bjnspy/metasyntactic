@@ -314,7 +314,7 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:self.abstractNavigationController
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:abstractNavigationController
                                                                                          searchBar:searchBar
                                                                                 contentsController:self] autorelease];
 }
@@ -342,10 +342,6 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     [self majorRefresh];
-}
-
-
-- (void) minorRefreshWorker {
 }
 
 
@@ -435,7 +431,7 @@
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -513,7 +509,7 @@
 
 
 - (void) showInfo {
-    [self.abstractNavigationController pushInfoControllerAnimated:YES];
+    [abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
 @end

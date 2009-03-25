@@ -19,21 +19,17 @@
 #import "Model.h"
 
 @interface AbstractTableViewController()
-@property (assign) AbstractNavigationController* abstractNavigationController_;
-@property (retain) NSArray* visibleIndexPaths_;
-@property BOOL visible_;
+@property (assign) AbstractNavigationController* abstractNavigationController;
+@property (retain) NSArray* visibleIndexPaths;
+@property BOOL visible;
 @end
 
 
 @implementation AbstractTableViewController
 
-@synthesize abstractNavigationController_;
-@synthesize visibleIndexPaths_;
-@synthesize visible_;
-
-property_wrapper(AbstractNavigationController*, abstractNavigationController, AbstractNavigationController);
-property_wrapper(NSArray*, visibleIndexPaths, VisibleIndexPaths);
-property_wrapper(BOOL, visible, Visible);
+@synthesize abstractNavigationController;
+@synthesize visibleIndexPaths;
+@synthesize visible;
 
 - (void) dealloc {
     self.abstractNavigationController = nil;
@@ -66,7 +62,7 @@ property_wrapper(BOOL, visible, Visible);
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [self.model saveNavigationStack:self.abstractNavigationController];
+    [self.model saveNavigationStack:abstractNavigationController];
 }
 
 
@@ -92,7 +88,7 @@ property_wrapper(BOOL, visible, Visible);
 
 
 - (void) didReceiveMemoryWarning {
-    if (self.visible) {
+    if (visible) {
         return;
     }
 
@@ -109,11 +105,11 @@ property_wrapper(BOOL, visible, Visible);
 - (void) reloadTableViewData {
     [self.tableView reloadData];
 
-    if (self.visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [self.visibleIndexPaths objectAtIndex:0];
+    if (visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[self.visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;

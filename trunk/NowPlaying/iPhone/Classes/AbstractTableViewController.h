@@ -13,20 +13,16 @@
 // limitations under the License.
 
 @interface AbstractTableViewController : UITableViewController {
-@private
-    AbstractNavigationController* abstractNavigationController_;
+@protected
+    AbstractNavigationController* abstractNavigationController;
 
-    BOOL visible_;
-    NSArray* visibleIndexPaths_;
+    BOOL visible;
+    NSArray* visibleIndexPaths;
 }
 
 - (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
 /* @protected */
-- (AbstractNavigationController*) abstractNavigationController;
-- (BOOL) visible;
-- (NSArray*) visibleIndexPaths;
-
 - (void) reloadTableViewData;
 - (void) didReceiveMemoryWarningWorker;
 

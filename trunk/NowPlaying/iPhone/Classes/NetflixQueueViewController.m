@@ -162,10 +162,6 @@
 
 
 - (void) minorRefreshWorker {
-    if (!self.visible) {
-        return;
-    }
-
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -376,7 +372,7 @@
             movie = [queue.saved objectAtIndex:indexPath.row];
         }
 
-        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+        [abstractNavigationController pushMovieDetails:movie animated:YES];
     }
 }
 
