@@ -14,16 +14,13 @@
 
 @interface PointerSet : NSObject {
 @private
-    NSMutableSet* set_;
+    NSMutableSet* set;
 }
 
 + (PointerSet*) set;
 + (PointerSet*) setWithArray:(NSArray*) values;
 
-//- (void) addObject:(id) value;
-//- (void) addObjectsFromArray:(NSArray*) values;
 - (BOOL) containsObject:(id) value;
-//- (void) removeObject:(id) value;
 
 - (NSInteger) count;
 

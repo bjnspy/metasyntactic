@@ -15,14 +15,12 @@
 #import "MutableMultiDictionary.h"
 
 @interface MutableMultiDictionary()
-@property (retain) NSMutableDictionary* mutableDictionary_;
+@property (retain) NSMutableDictionary* mutableDictionary;
 @end
 
 @implementation MutableMultiDictionary
 
-@synthesize mutableDictionary_;
-
-property_wrapper(NSMutableDictionary*, mutableDictionary, MutableDictionary);
+@synthesize mutableDictionary;
 
 - (void) dealloc {
     self.mutableDictionary = nil;
@@ -46,10 +44,10 @@ property_wrapper(NSMutableDictionary*, mutableDictionary, MutableDictionary);
 
 - (void) addObject:(id) object
             forKey:(id) key {
-    NSMutableArray* array = [self.mutableDictionary objectForKey:key];
+    NSMutableArray* array = [mutableDictionary objectForKey:key];
     if (array == nil) {
         array = [NSMutableArray array];
-        [self.mutableDictionary setObject:array forKey:key];
+        [mutableDictionary setObject:array forKey:key];
     }
     [array addObject:object];
 }
@@ -57,22 +55,22 @@ property_wrapper(NSMutableDictionary*, mutableDictionary, MutableDictionary);
 
 - (void) addObjects:(NSArray*) objects
              forKey:(id) key {
-    NSMutableArray* array = [self.mutableDictionary objectForKey:key];
+    NSMutableArray* array = [mutableDictionary objectForKey:key];
     if (array == nil) {
         array = [NSMutableArray array];
-        [self.mutableDictionary setObject:array forKey:key];
+        [mutableDictionary setObject:array forKey:key];
     }
     [array addObjectsFromArray:objects];
 }
 
 
 - (NSMutableArray*) mutableObjectsForKey:(id) key {
-    return [self.mutableDictionary objectForKey:key];
+    return [mutableDictionary objectForKey:key];
 }
 
 
 - (void) removeObjectsForKey:(id) key {
-    [self.mutableDictionary removeObjectForKey:key];
+    [mutableDictionary removeObjectForKey:key];
 }
 
 @end

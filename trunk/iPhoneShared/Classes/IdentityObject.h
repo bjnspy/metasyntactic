@@ -14,11 +14,11 @@
 
 @interface IdentityObject : NSObject {
 @private
-    id value_;
+    id value;
 }
 
-+ (IdentityObject*) objectWithValue:(id) value;
+@property (readonly, retain) id value;
 
-- (id) value;
++ (IdentityObject*) objectWithValue:(id) value;
 
 @end
