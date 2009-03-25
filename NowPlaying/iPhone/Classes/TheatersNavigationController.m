@@ -17,15 +17,13 @@
 #import "AllTheatersViewController.h"
 
 @interface TheatersNavigationController()
-@property (retain) AllTheatersViewController* allTheatersViewController_;
+@property (retain) AllTheatersViewController* allTheatersViewController;
 @end
 
 
 @implementation TheatersNavigationController
 
-@synthesize allTheatersViewController_;
-
-property_wrapper(AllTheatersViewController*, allTheatersViewController, AllTheatersViewController);
+@synthesize allTheatersViewController;
 
 - (void) dealloc {
     self.allTheatersViewController = nil;
@@ -48,9 +46,9 @@ property_wrapper(AllTheatersViewController*, allTheatersViewController, AllTheat
 - (void) loadView {
     [super loadView];
 
-    if (self.allTheatersViewController == nil) {
+    if (allTheatersViewController == nil) {
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:self.allTheatersViewController animated:NO];
+        [self pushViewController:allTheatersViewController animated:NO];
     }
 }
 
