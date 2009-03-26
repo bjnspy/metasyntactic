@@ -42,6 +42,7 @@ static NSInteger visibleBackgroundTaskCount;
        stopIndicatorSelector:(SEL) stopIndicatorSelector_ {
     [gate lock];
     {
+        // should this be retained?
         target = target_;
         startIndicatorSelector = startIndicatorSelector_;
         stopIndicatorSelector = stopIndicatorSelector_;
