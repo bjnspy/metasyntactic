@@ -96,7 +96,8 @@
             directorTitleLabel,
             castTitleLabel,
             genreTitleLabel,
-            ratedTitleLabel, nil];
+            ratedTitleLabel,
+            nil];
 }
 
 
@@ -105,7 +106,8 @@
             directorLabel,
             castLabel,
             genreLabel,
-            ratedLabel, nil];
+            ratedLabel,
+            nil];
 }
 
 

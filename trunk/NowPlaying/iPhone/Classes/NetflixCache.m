@@ -103,7 +103,8 @@ static NSDictionary* availabilityMap = nil;
           NSLocalizedString(@"Special Interest", nil),
           NSLocalizedString(@"Sports & Fitness", nil),
           NSLocalizedString(@"Television", nil),
-          NSLocalizedString(@"Thrillers", nil), nil] retain];
+          NSLocalizedString(@"Thrillers", nil),
+          nil] retain];
 
         mostPopularTitlesToAddresses =
         [[NSDictionary dictionaryWithObjects:
@@ -131,7 +132,8 @@ static NSDictionary* availabilityMap = nil;
            @"http://rss.netflix.com/Top25RSS?gid=2223",
            @"http://rss.netflix.com/Top25RSS?gid=2190",
            @"http://rss.netflix.com/Top25RSS?gid=2197",
-           @"http://rss.netflix.com/Top25RSS?gid=387", nil]
+           @"http://rss.netflix.com/Top25RSS?gid=387",
+           nil]
                                      forKeys:mostPopularTitles] retain];
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
@@ -157,7 +159,8 @@ static NSDictionary* availabilityMap = nil;
                                               NSLocalizedString(@"Not Rentable", nil),
                                               NSLocalizedString(@"Unknown Release Date", nil),
                                               NSLocalizedString(@"Unknown Release Date", nil),
-                                              NSLocalizedString(@"Unknown Release Date", nil), nil]
+                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              nil]
                                      forKeys:[NSArray arrayWithObjects:
                                               @"awaiting release",
                                               @"available now",
@@ -170,7 +173,8 @@ static NSDictionary* availabilityMap = nil;
                                               @"not rentable",
                                               @"release date is unknown; availability is not guaranteed.",
                                               @"release date is unknown.",
-                                              @"availability date is unknown.", nil]] retain];
+                                              @"availability date is unknown.",
+                                              nil]] retain];
     }
 }
 
@@ -686,7 +690,8 @@ static NSDictionary* availabilityMap = nil;
 
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"5"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"5"],
+                           nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -717,7 +722,8 @@ static NSDictionary* availabilityMap = nil;
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"expand" value:@"formats"],
                            [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"30"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"30"],
+                           nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -1276,7 +1282,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadRSSMovie:(NSString*) identifier
-                        address:(NSString*) address {
+                  address:(NSString*) address {
     NSString* file = [self rssMovieFile:identifier address:address];
 
     Movie* movie;
@@ -1636,7 +1642,8 @@ static NSDictionary* availabilityMap = nil;
 
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"1"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"1"],
+                           nil];
 
     [request setParameters:parameters];
     [request prepare];

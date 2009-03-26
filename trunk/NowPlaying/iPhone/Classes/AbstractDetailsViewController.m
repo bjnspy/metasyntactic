@@ -182,8 +182,10 @@
     [self presentUpdateListingsViewController];
 
     self.updateId++;
-    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:updateId],
-                      searchDate, nil];
+    NSArray* array = [NSArray arrayWithObjects:
+                      [NSNumber numberWithInt:updateId],
+                      searchDate,
+                      nil];
     [self.model.dataProvider update:searchDate delegate:self context:array force:YES];
 }
 

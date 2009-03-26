@@ -96,4 +96,12 @@
     [abstractNavigationController popViewControllerAnimated:YES];
 }
 
+
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefresWorker {
+}
+
 @end

@@ -242,8 +242,12 @@ const int START_YEAR = 1912;
 - (void) ensureIndices {
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
-        BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
-        [self ensureIndex:i updateIfStale:updateIfStale];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
+            [self ensureIndex:i updateIfStale:updateIfStale];
+        }
+        [pool release];
     }
 }
 

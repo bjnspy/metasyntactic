@@ -64,7 +64,7 @@ property_definition(text);
 
 + (id) elementWithName:(NSString*) name_
               child:(XmlElement*) child_ {
-    return [XmlElement elementWithName:name_ children:[NSArray arrayWithObjects:child_]];
+    return [XmlElement elementWithName:name_ children:[NSArray arrayWithObject:child_]];
 }
 
 

@@ -96,6 +96,9 @@
 
 - (void) showNotification {
     if (disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        [self.view bringSubviewToFront:notificationLabel];
+        [self.view bringSubviewToFront:blackLabel];
+
         [UIView beginAnimations:nil context:NULL];
         {
             notificationLabel.alpha = blackLabel.alpha = 1;
@@ -147,8 +150,6 @@
 
 - (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self.view bringSubviewToFront:notificationLabel];
-    [self.view bringSubviewToFront:blackLabel];
 
     [pulser tryPulse];
 }

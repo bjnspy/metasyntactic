@@ -151,6 +151,13 @@
 }
 
 
+- (void) minorRefreshWorker {
+    for (id cell in self.tableView.visibleCells) {
+        [cell refresh];
+    }
+}
+
+
 - (void) internalRefresh {
     if (self.tableView.editing || readonlyMode) {
         return;
@@ -158,13 +165,6 @@
 
     [self initializeData];
     [self reloadTableViewData];
-}
-
-
-- (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
-        [cell refresh];
-    }
 }
 
 

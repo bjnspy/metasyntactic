@@ -364,6 +364,8 @@ const NSInteger POSTER_TAG = -1;
         self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
         [posterActivityView startAnimating];
         [posterActivityView sizeToFit];
+        
+        posterCount = -1;
     }
 
     return self;
@@ -498,10 +500,10 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) downloadPosterBackgroundEntryPoint {
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-    NSInteger posterCount_ = [self.model.largePosterCache posterCountForMovie:movie];
+    NSInteger count = [self.model.largePosterCache posterCountForMovie:movie];
 
     [self performSelectorOnMainThread:@selector(reportPoster:)
-                           withObject:[NSNumber numberWithInt:posterCount_]
+                           withObject:[NSNumber numberWithInt:count]
                         waitUntilDone:NO];
 }
 
@@ -516,10 +518,10 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) downloadPoster {
-    if (posterLoaded) {
+    if (posterCount >= 0) {
         return;
     }
-    posterLoaded = YES;
+    posterCount = 0;
 
     [[OperationQueue operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
                                   onTarget:self
@@ -1300,7 +1302,7 @@ const NSInteger POSTER_TAG = -1;
         return;
     }
 
-    if (posterCount == 0) {
+    if (posterCount <= 0) {
         return;
     }
 

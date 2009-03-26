@@ -119,7 +119,8 @@
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                     [NSArray arrayWithObjects:
                                      NSLocalizedString(@"Release", nil),
-                                     NSLocalizedString(@"Title", nil), nil]] autorelease];
+                                     NSLocalizedString(@"Title", nil),
+                                     nil]] autorelease];
 
     control.segmentedControlStyle = UISegmentedControlStyleBar;
     control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;

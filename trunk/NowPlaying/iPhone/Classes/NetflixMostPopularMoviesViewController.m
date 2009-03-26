@@ -71,15 +71,15 @@
 }
 
 
-- (void) majorRefreshWorker {
-    // do nothing.  we don't want to refresh the view (because it causes an
-    // ugly flash).  Instead, just refresh things when teh view becomes visible
-}
-
-
 - (void) internalRefresh {
     [self initializeData];
     [self reloadTableViewData];
+}
+
+
+- (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
 }
 
 

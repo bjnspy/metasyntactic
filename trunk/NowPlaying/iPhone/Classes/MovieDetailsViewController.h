@@ -41,7 +41,6 @@
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
     BOOL readonlyMode;
-    BOOL posterLoaded;
 
     UIImage* posterImage;
     TappableImageView* posterImageView;
