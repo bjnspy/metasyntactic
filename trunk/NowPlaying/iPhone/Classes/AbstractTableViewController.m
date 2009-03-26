@@ -67,10 +67,20 @@
 }
 
 
+- (void) majorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) minorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.visible = YES;
-    [self majorRefresh];
+    [self majorRefreshWorker];
 }
 
 
@@ -123,18 +133,11 @@
 }
 
 
-- (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
-    [[OperationQueue operationQueue] temporarilySuspend];
-}
-
-
-- (void) majorRefreshWorker {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (void) minorRefreshWorker {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+- (void)scrollViewDidEndDragging:(UIScrollView*) scrollView
+                  willDecelerate:(BOOL) willDecelerate {
+    if (willDecelerate) {
+        [[OperationQueue operationQueue] temporarilySuspend];
+    }
 }
 
 
