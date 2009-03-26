@@ -210,7 +210,7 @@
 }
 
 
-- (BOOL) initializeData:(SearchResult*) result {
+- (void) initializeData:(SearchResult*) result {
     NSMutableArray* discs = [NSMutableArray array];
     NSMutableArray* instant = [NSMutableArray array];
 
@@ -223,46 +223,20 @@
         }
     }
 
-    if ([movies isEqual:result.movies] &&
-        [discMovies isEqual:discs] &&
-        [instantMovies isEqual:instant]) {
-        return NO;
-    }
-
     self.movies = result.movies;
     self.discMovies = discs;
     self.instantMovies = instant;
-
-    return YES;
+    
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
+                                        [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies.count],
+                                        [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", nil), discs.count],
+                                        [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", nil), instant.count], nil];
 }
 
 
 - (void) reportResult:(SearchResult*) result {
     [self initializeData:result];
     [super reportResult:result];
-}
-
-
-- (void) reload {
-    if ([self initializeData:searchResult]) {
-        [self.searchResultsTableView reloadData];
-    } else {
-        for (id cell in self.searchResultsTableView.visibleCells) {
-            if ([cell respondsToSelector:@selector(loadImage)]) {
-                [cell loadImage];
-            }
-        }
-    }
-}
-
-
-- (void) majorRefreshWorker {
-    [self reload];
-}
-
-
-- (void) minorRefreshWorker {
-    [self reload];
 }
 
 @end

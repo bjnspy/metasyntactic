@@ -143,13 +143,22 @@
 }
 
 
-- (void) majorRefresh {
+- (void) reload {
+    for (id cell in self.searchResultsTableView.visibleCells) {
+        if ([cell respondsToSelector:@selector(loadImage)]) {
+            [cell loadImage];
+        }
+    }
+}
 
+
+- (void) majorRefresh {
+    [self reload];
 }
 
 
 - (void) minorRefresh {
-
+    [self reload];
 }
 
 @end

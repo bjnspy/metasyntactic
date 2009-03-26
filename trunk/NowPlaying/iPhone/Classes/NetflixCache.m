@@ -403,6 +403,27 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
++ (NSArray*) extractFormats:(XmlElement*) element {
+    NSMutableArray* formats = [NSMutableArray array];
+    for (XmlElement* child in element.children) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            if ([@"availability" isEqual:child.name]) {
+                for (XmlElement* grandChild in child.children) {
+                    if ([@"category" isEqual:grandChild.name] &&
+                        [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
+                        [formats addObject:[grandChild attributeValue:@"term"]];
+                    }
+                }
+            }
+        }
+        [pool release];
+    }
+    
+    return formats;
+}
+
+
 + (Movie*) processMovieItem:(XmlElement*) element
                       saved:(BOOL*) saved {
     if (element == nil) {
@@ -435,6 +456,11 @@ static NSDictionary* availabilityMap = nil;
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:title_key];
             } else if ([@"http://schemas.netflix.com/catalog/titles.series" isEqual:rel]) {
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:series_key];
+            } else if ([@"http://schemas.netflix.com/catalog/titles/format_availability" isEqual:rel]) {
+                NSArray* formats = [self extractFormats:[child element:@"delivery_formats"]];
+                if (formats.count > 0) {
+                    [additionalFields setObject:formats forKey:formats_key];
+                }
             }
         } else if ([@"title" isEqual:child.name]) {
             title = [child attributeValue:@"short"];
@@ -602,7 +628,9 @@ static NSDictionary* availabilityMap = nil;
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies
                         saved:(NSMutableArray*) saved {
-    [self processMovieItemList:element movies:movies saved:saved maxCount:-1];
+    [self processMovieItemList:element movies:movies
+                         saved:saved
+                      maxCount:-1];
 }
 
 
@@ -687,8 +715,9 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
+                           [OARequestParameter parameterWithName:@"expand" value:@"formats"],
                            [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"25"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"30"], nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -707,9 +736,11 @@ static NSDictionary* availabilityMap = nil;
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
     [movies addObjectsFromArray:saved];
-
+    
     if (movies.count > 0) {
-        // download the details for these movies in teh background.
+        
+        
+        // download the andetails for these movies in teh background.
         [[CacheUpdater cacheUpdater] addSearchMovies:movies];
     }
 
@@ -817,7 +848,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) extractPeople:(XmlElement*) element {
++ (NSArray*) extractPeople:(XmlElement*) element {
     NSMutableArray* cast = [NSMutableArray array];
 
     for (XmlElement* child in element.children) {
@@ -983,27 +1014,6 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) extractFormats:(XmlElement*) element {
-    NSMutableArray* formats = [NSMutableArray array];
-    for (XmlElement* child in element.children) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            if ([@"availability" isEqual:child.name]) {
-                for (XmlElement* grandChild in child.children) {
-                    if ([@"category" isEqual:grandChild.name] &&
-                        [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
-                        [formats addObject:[grandChild attributeValue:@"term"]];
-                    }
-                }
-            }
-        }
-        [pool release];
-    }
-
-    return formats;
-}
-
-
 - (NSArray*) extractSimilars:(XmlElement*) element {
     NSMutableArray* result = [NSMutableArray array];
     for (XmlElement* child in element.children) {
@@ -1024,12 +1034,12 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSString*) cleanupSynopsis:(NSString*) synopsis {
++ (NSString*) cleanupSynopsis:(NSString*) synopsis {
     return [StringUtilities convertHtmlEncodings:[StringUtilities stripHtmlLinks:synopsis]];
 }
 
 
-- (NSDictionary*) extractMovieDetails:(XmlElement*) element {
++ (NSDictionary*) extractMovieDetails:(XmlElement*) element {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     for (XmlElement* child in element.children) {
         if ([@"link" isEqual:child.name]) {
@@ -1215,7 +1225,7 @@ static NSDictionary* availabilityMap = nil;
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-    NSDictionary* dictionary = [self extractMovieDetails:element];
+    NSDictionary* dictionary = [NetflixCache extractMovieDetails:element];
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
         [AppDelegate minorRefresh];
@@ -1408,8 +1418,13 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSArray*) formatsForMovie:(Movie*) movie {
+    NSArray* result = [movie.additionalFields objectForKey:formats_key];
+    if (result.count > 0) {
+        return result;
+    }
+    
     NSDictionary* details = [self detailsForMovie:movie];
-    NSArray* result = [details objectForKey:formats_key];
+    result = [details objectForKey:formats_key];
     if (result.count > 0) {
         return result;
     }
