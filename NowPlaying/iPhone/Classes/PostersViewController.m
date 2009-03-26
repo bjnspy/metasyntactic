@@ -554,8 +554,8 @@ const double LOAD_DELAY = 1;
     if (saving) {
         return;
     }
-
     saving = YES;
+
     [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
