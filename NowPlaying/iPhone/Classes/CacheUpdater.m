@@ -98,7 +98,7 @@ static CacheUpdater* cacheUpdater = nil;
 }
 
 
-- (Operation*) addSearchMovie:(Movie*) movie {
+- (Operation1*) addSearchMovie:(Movie*) movie {
     return [[OperationQueue operationQueue] performSelector:@selector(processMovie:)
                                                 onTarget:self
                                               withObject:movie
