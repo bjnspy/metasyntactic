@@ -270,13 +270,13 @@
 
 
 - (NSDictionary*) studioKeys {
-    NSDictionary* studioKeys = nil;
+    NSDictionary* result = nil;
     [dataGate lock];
     {
-        [self studioKeysNoLock];
+        result = [self studioKeysNoLock];
     }
     [dataGate unlock];
-    return studioKeys;
+    return result;
 }
 
 
