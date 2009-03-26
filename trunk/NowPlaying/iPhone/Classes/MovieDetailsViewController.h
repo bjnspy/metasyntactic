@@ -52,9 +52,6 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
 
-- (void) minorRefresh;
-- (void) majorRefresh;
-
 + (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model;
 
 @end

@@ -243,7 +243,7 @@
 }
 
 
-- (void) majorRefresh {
+- (void) reload {
     if ([self initializeData:searchResult]) {
         [self.searchResultsTableView reloadData];
     } else {
@@ -256,8 +256,13 @@
 }
 
 
-- (void) minorRefresh {
-    [self majorRefresh];
+- (void) majorRefreshWorker {
+    [self reload];
+}
+
+
+- (void) minorRefreshWorker {
+    [self reload];
 }
 
 @end

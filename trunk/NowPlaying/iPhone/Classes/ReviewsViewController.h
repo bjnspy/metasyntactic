@@ -23,7 +23,4 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie;
 
-- (void) majorRefresh;
-- (void) minorRefresh;
-
 @end

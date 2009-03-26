@@ -83,7 +83,7 @@ typedef enum {
 }
 
 
-- (void) majorRefresh {
+- (void) reload {
     self.tableView.rowHeight = 38;
     //self.tableView.sectionHeaderHeight = 2;
     self.tableView.sectionFooterHeight = 0;
@@ -91,8 +91,13 @@ typedef enum {
 }
 
 
-- (void) minorRefresh {
-    [self majorRefresh];
+- (void) majorRefreshWorker {
+    [self reload];
+}
+
+
+- (void) minorRefreshWorker {
+    [self reload];
 }
 
 

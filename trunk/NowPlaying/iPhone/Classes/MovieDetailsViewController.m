@@ -550,19 +550,24 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) minorRefresh {
-    [self majorRefresh];
-}
-
-
-- (void) majorRefresh {
+- (void) reload {
     if (readonlyMode) {
         return;
     }
-
+    
     [self initializeData];
     [netflixRatingsCell refresh];
     [self reloadTableViewData];
+}
+
+
+- (void) majorRefreshWorker {
+    [self reload];
+}
+
+
+- (void) minorRefreshWorker {
+    [self reload];
 }
 
 
