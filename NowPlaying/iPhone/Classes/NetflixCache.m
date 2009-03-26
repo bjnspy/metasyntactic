@@ -244,7 +244,7 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSDictionary*) queuesNoLock {
     if (queuesData == nil) {
-        queuesData = [NSDictionary dictionary];
+        self.queuesData = [NSDictionary dictionary];
     }
 
     // Access through the property so that we get back a safe pointer
@@ -1359,6 +1359,7 @@ static NSDictionary* availabilityMap = nil;
     if (self.model.netflixUserId.length == 0) {
         return;
     }
+    [self clearUpdatedMovies];
 
     NSString* notification = NSLocalizedString(@"Netflix", nil);
     [AppDelegate addNotification:notification];

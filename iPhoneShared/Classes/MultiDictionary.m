@@ -44,7 +44,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.dictionary = [NSMutableDictionary dictionary];
+        self.dictionary = [NSDictionary dictionary];
     }
 
     return self;
