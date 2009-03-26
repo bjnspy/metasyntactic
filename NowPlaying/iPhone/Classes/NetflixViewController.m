@@ -286,7 +286,8 @@ typedef enum {
     [NSArray arrayWithObjects:
      [NetflixCache rentalHistoryKey],
      [NetflixCache rentalHistoryWatchedKey],
-     [NetflixCache rentalHistoryReturnedKey], nil];
+     [NetflixCache rentalHistoryReturnedKey],
+     nil];
 
     NetflixFeedsViewController* controller =
     [[[NetflixFeedsViewController alloc] initWithNavigationController:abstractNavigationController

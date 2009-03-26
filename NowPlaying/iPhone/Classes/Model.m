@@ -723,7 +723,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
             @"RottenTomatoes",
             @"Metacritic",
             @"Google",
-            NSLocalizedString(@"None", @"This is what a user picks when they don't want any reviews."), nil];
+            NSLocalizedString(@"None", @"This is what a user picks when they don't want any reviews."),
+            nil];
 }
 
 

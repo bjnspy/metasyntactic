@@ -80,7 +80,8 @@
             rottenTomatoesScoreProvider,
             metacriticScoreProvider,
             googleScoreProvider,
-            noneScoreProvider, nil];
+            noneScoreProvider,
+            nil];
 }
 
 

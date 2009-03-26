@@ -86,16 +86,16 @@
 }
 
 
-- (void) internalRefresh {
-    [self initializeData];
-    [self reloadTableViewData];
-}
-
-
 - (void) minorRefreshWorker {
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
+}
+
+
+- (void) internalRefresh {
+    [self initializeData];
+    [self reloadTableViewData];
 }
 
 

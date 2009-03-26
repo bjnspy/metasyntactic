@@ -240,7 +240,8 @@
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"),
-                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"), nil]] autorelease];
+                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"),
+                               nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;

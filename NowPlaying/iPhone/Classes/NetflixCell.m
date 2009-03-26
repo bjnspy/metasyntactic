@@ -89,7 +89,8 @@
             castTitleLabel,
             genreTitleLabel,
             ratedTitleLabel,
-            netflixTitleLabel, nil];
+            netflixTitleLabel,
+            nil];
 }
 
 

@@ -110,4 +110,12 @@
     [AppDelegate majorRefresh:YES];
 }
 
+
+- (void) majorRefreshWorker{
+}
+
+
+- (void) minorRefreshWorker {
+}
+
 @end

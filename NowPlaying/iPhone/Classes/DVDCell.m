@@ -105,7 +105,8 @@
             castTitleLabel,
             genreTitleLabel,
             ratedTitleLabel,
-            formatTitleLabel, nil];
+            formatTitleLabel,
+            nil];
 }
 
 
@@ -115,7 +116,8 @@
             castLabel,
             genreLabel,
             ratedLabel,
-            formatLabel, nil];
+            formatLabel,
+            nil];
 }
 
 

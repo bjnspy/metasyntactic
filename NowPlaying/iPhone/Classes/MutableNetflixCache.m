@@ -189,7 +189,8 @@
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
                            [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
-                           [OARequestParameter parameterWithName:@"etag" value:queue.etag], nil];
+                           [OARequestParameter parameterWithName:@"etag" value:queue.etag],
+                           nil];
 
     [request setParameters:parameters];
     [request prepare];
