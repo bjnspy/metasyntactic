@@ -88,7 +88,7 @@
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
     [self initializeData];
     [self reloadTableViewData];
 }

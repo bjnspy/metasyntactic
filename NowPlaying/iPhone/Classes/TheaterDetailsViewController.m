@@ -129,11 +129,6 @@
 }
 
 
-- (void) minorRefresh {
-    [self majorRefresh];
-}
-
-
 - (void) initializeData {
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
@@ -149,9 +144,19 @@
 }
 
 
-- (void) majorRefresh {
+- (void) reload {
     [self initializeData];
     [self reloadTableViewData];
+}
+
+
+- (void) majorRefreshWorker {
+    [self reload];
+}
+
+
+- (void) minorRefreshWorker {
+    [self reload];
 }
 
 

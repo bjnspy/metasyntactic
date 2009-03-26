@@ -191,13 +191,13 @@
 }
 
 
-- (void) minorRefresh {
-    [self majorRefresh];
+- (void) minorRefreshWorker {
+    //[self majorRefresh];
 }
 
 
-- (void) majorRefresh {
-    [self reloadTableViewData];
+- (void) majorRefreshWorker {
+    //[self reloadTableViewData];
 }
 
 
