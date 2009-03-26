@@ -49,6 +49,8 @@ typedef enum {
 - (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority;
 - (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority;
 
+- (void) temporarilySuspend;
+
 /* @package */
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation;
 

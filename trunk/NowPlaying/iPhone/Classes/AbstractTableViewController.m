@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "Controller.h"
 #import "Model.h"
+#import "OperationQueue.h"
 
 @interface AbstractTableViewController()
 @property (assign) AbstractNavigationController* abstractNavigationController;
@@ -118,6 +119,11 @@
 
         self.visibleIndexPaths = nil;
     }
+}
+
+
+- (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
+    [[OperationQueue operationQueue] temporarilySuspend];
 }
 
 @end
