@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#import "AbstractTableViewController.h"
 #import "DataProviderUpdateDelegate.h"
 
-@interface AbstractDetailsViewController : RefreshableTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
+@interface AbstractDetailsViewController : AbstractTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
 @protected
     NSInteger updateId;
 }

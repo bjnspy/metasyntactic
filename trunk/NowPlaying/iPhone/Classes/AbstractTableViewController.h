@@ -22,6 +22,9 @@
 
 - (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
+- (void) majorRefresh;
+- (void) minorRefresh;
+
 /* @protected */
 - (void) reloadTableViewData;
 - (void) didReceiveMemoryWarningWorker;
