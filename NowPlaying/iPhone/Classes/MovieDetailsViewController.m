@@ -554,7 +554,7 @@ const NSInteger POSTER_TAG = -1;
     if (readonlyMode) {
         return;
     }
-    
+
     [self initializeData];
     [netflixRatingsCell refresh];
     [self reloadTableViewData];
