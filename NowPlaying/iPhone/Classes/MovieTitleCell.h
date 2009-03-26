@@ -15,6 +15,7 @@
 @interface MovieTitleCell : UITableViewCell {
 @protected
     UILabel* scoreLabel;
+    BOOL performedLayout;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

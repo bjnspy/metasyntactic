@@ -20,6 +20,7 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
+#import "Score.h"
 
 @interface MovieTitleCell()
 @property (retain) UILabel* scoreLabel;
@@ -68,10 +69,10 @@
 
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
-    int score = [self.model scoreValueForMovie:movie];
-
-    if (score >= 0 && score <= 100) {
-        if (score >= 60) {
+    Score* score = [self.model scoreForMovie:movie];
+    NSInteger scoreValue = score.scoreValue;
+    if (score != nil && scoreValue != -1) {
+        if (scoreValue >= 60) {
             if (self.image != [ImageCache freshImage]) {
                 self.image = [ImageCache freshImage];
 
@@ -95,7 +96,7 @@
             }
         }
 
-        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+        scoreLabel.text = score.score;//[NSString stringWithFormat:@"%d", scoreValue];
     } else {
         if (self.image != [ImageCache unknownRatingImage]) {
             scoreLabel.text = nil;

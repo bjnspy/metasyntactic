@@ -552,6 +552,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
         self.searchRadius = -1;
         self.cachedScoreProviderIndex = -1;
+        cachedAllMoviesSelectedSegmentIndex = -1;
     }
 
     return self;
@@ -742,11 +743,16 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSInteger) allMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
+    if (cachedAllMoviesSelectedSegmentIndex == -1) {
+        cachedAllMoviesSelectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
+    }
+    
+    return cachedAllMoviesSelectedSegmentIndex;
 }
 
 
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index {
+    cachedAllMoviesSelectedSegmentIndex = index;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
