@@ -19,6 +19,7 @@
     NSString* score;
     NSString* provider;
     NSString* identifier;
+    NSInteger scoreValue;
 }
 
 @property (readonly, copy) NSString* canonicalTitle;

@@ -57,6 +57,7 @@ property_definition(identifier);
         self.synopsis = [StringUtilities nonNilString:synopsis_];
         self.provider = provider_;
         self.identifier = [StringUtilities nonNilString:identifier_];
+        scoreValue = -2;
     }
 
     return self;
@@ -120,12 +121,16 @@ property_definition(identifier);
 
 
 - (NSInteger) scoreValue {
-    int value = score.intValue;
-    if (value >= 0 && value <= 100) {
-        return value;
+    if (scoreValue == -2) {
+        int value = score.intValue;
+        if (value >= 0 && value <= 100) {
+            return scoreValue = value;
+        } else {
+            scoreValue = -1;
+        }
     }
-
-    return -1;
+    
+    return scoreValue;
 }
 
 @end

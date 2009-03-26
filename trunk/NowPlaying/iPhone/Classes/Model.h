@@ -47,6 +47,7 @@ enum ViewControllerType {
     NSDictionary* favoriteTheatersData;
 
     NSInteger cachedScoreProviderIndex;
+    NSInteger cachedAllMoviesSelectedSegmentIndex;
 }
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
