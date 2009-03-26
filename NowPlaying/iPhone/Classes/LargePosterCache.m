@@ -23,7 +23,7 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "OperationQueue.h"
+#import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieMap;
@@ -193,10 +193,8 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) ensureIndex:(NSNumber*) yearNumber updateIfStale:(NSNumber*) updateIfStaleNumber {
-    NSInteger year = yearNumber.intValue;
-    BOOL updateIfStale = updateIfStaleNumber.boolValue;
-
+- (void) ensureIndex:(NSInteger) year
+       updateIfStale:(BOOL) updateIfStale {
     NSDictionary* dictionary = [self ensureIndexWorker:year updateIfStale:updateIfStale];
     if (dictionary == nil) {
         dictionary = [FileUtilities readObject:[self indexFile:year]];
@@ -237,15 +235,15 @@ const int START_YEAR = 1912;
     }
     self.updated = YES;
 
+    [ThreadingUtilities backgroundSelector:@selector(ensureIndices) onTarget:self gate:nil visible:NO];
+}
+
+
+- (void) ensureIndices {
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
         BOOL updateIfStale = (i >= (year - 1) && i <= (year + 1));
-        [[OperationQueue operationQueue] performSelector:@selector(ensureIndex:updateIfStale:)
-                                             onTarget:self
-                                           withObject:[NSNumber numberWithInt:i]
-                                           withObject:[NSNumber numberWithBool:updateIfStale]
-                                                 gate:nil
-                                             priority:Normal];
+        [self ensureIndex:i updateIfStale:updateIfStale];
     }
 }
 

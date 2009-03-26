@@ -95,6 +95,7 @@
 
 - (id) initWithNavigationController:(UpcomingMoviesNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
+        self.title = NSLocalizedString(@"Upcoming", nil);
     }
 
     return self;

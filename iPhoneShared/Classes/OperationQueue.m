@@ -147,4 +147,18 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
     [boundedOperationsGate unlock];
 }
 
+
+- (void) temporarilySuspend {
+    NSLog(@"OperationQueue:temporarilySuspend");
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resume) object:nil];
+    [queue setSuspended:YES];
+    [self performSelector:@selector(resume) withObject:nil afterDelay:3];
+}
+
+
+- (void) resume {
+    NSLog(@"OperationQueue:resume");
+    [queue setSuspended:NO];
+}
+
 @end
