@@ -44,6 +44,7 @@ static NSString* trailersDirectory = nil;
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
+static NSString* largeMoviesPostersIndexDirectory = nil;
 static NSString* peoplePostersDirectory = nil;
 static NSString* largePeoplePostersDirectory = nil;
 
@@ -91,6 +92,7 @@ static NSString** directories[] = {
 &postersDirectory,
 &moviesPostersDirectory,
 &largeMoviesPostersDirectory,
+&largeMoviesPostersIndexDirectory,
 &peoplePostersDirectory,
 &largePeoplePostersDirectory,
 &upcomingDirectory,
@@ -209,6 +211,7 @@ static DifferenceEngine* differenceEngine = nil;
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
         moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
         largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+        largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
         peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
         largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
 
@@ -305,6 +308,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) largeMoviesPostersDirectory {
     return largeMoviesPostersDirectory;
+}
+
+
++ (NSString*) largeMoviesPostersIndexDirectory {
+    return largeMoviesPostersIndexDirectory;
 }
 
 
@@ -414,6 +422,10 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (void) emptyDirectory:(NSString*) directory andDelete:(BOOL) delete {
+    if ([largeMoviesPostersIndexDirectory isEqual:directory]) {
+        return;
+    }
+    
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
         for (NSString* child in [FileUtilities directoryContentsPaths:directory]) {

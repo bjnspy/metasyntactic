@@ -31,6 +31,7 @@
 + (NSString*) userLocationsDirectory;
 + (NSString*) moviesPostersDirectory;
 + (NSString*) largeMoviesPostersDirectory;
++ (NSString*) largeMoviesPostersIndexDirectory;
 + (NSString*) peoplePostersDirectory;
 + (NSString*) largePeoplePostersDirectory;
 + (NSString*) scoresDirectory;
