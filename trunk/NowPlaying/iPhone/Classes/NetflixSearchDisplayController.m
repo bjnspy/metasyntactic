@@ -94,7 +94,7 @@
     searchResult != nil &&
     (movies.count == 0 || ![self shouldShowAll]) &&
     (discMovies.count == 0 || ![self shouldShowDisc]) &&
-    (discMovies.count == 0 || ![self shouldShowInstant]);
+    (instantMovies.count == 0 || ![self shouldShowInstant]);
 }
 
 
@@ -118,7 +118,7 @@
     } else if ([self shouldShowDisc]) {
         return discMovies.count;
     } else if ([self shouldShowInstant]) {
-        return discMovies.count;
+        return instantMovies.count;
     } else {
         return 0;
     }
@@ -157,7 +157,7 @@
     } else if ([self shouldShowDisc]) {
         movie = [discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
+        movie = [instantMovies objectAtIndex:indexPath.row];
     } else {
         [[[UITableViewCell alloc] init] autorelease];
     }
@@ -181,7 +181,7 @@
     } else if ([self shouldShowDisc]) {
         movie = [discMovies objectAtIndex:indexPath.row];
     } else if ([self shouldShowInstant]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
+        movie = [instantMovies objectAtIndex:indexPath.row];
     } else {
         return;
     }
