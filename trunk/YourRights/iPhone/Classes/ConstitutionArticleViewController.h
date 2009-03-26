@@ -15,6 +15,7 @@
 @interface ConstitutionArticleViewController : UITableViewController {
 @private
     Article* article;
+    NSArray* sectionChunks;
 }
 
 - (id) initWithArticle:(Article*) article;

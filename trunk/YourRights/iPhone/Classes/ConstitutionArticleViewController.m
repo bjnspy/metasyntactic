@@ -17,21 +17,25 @@
 #import "Article.h"
 #import "GlobalActivityIndicator.h"
 #import "Section.h"
+#import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 
 @interface ConstitutionArticleViewController()
 @property (retain) Article* article;
+@property (retain) NSArray* sectionChunks;
 @end
 
 
 @implementation ConstitutionArticleViewController
 
 @synthesize article;
+@synthesize sectionChunks;
 
 - (void) dealloc {
     self.article = nil;
+    self.sectionChunks = nil;
 
     [super dealloc];
 }
@@ -40,6 +44,13 @@
 - (id) initWithArticle:(Article*) article_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.article = article_;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        NSMutableArray* array = [NSMutableArray array];
+        for (Section* section in article_.sections) {
+            [array addObject:[StringUtilities splitIntoChunks:section.text]];
+        }
+        self.sectionChunks = array;
     }
 
     return self;
@@ -83,7 +94,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section < article.sections.count) {
-        return 1;
+        return [[sectionChunks objectAtIndex:section] count];
     } else {
         if (article.link.length > 0) {
             return 1;
@@ -94,9 +105,10 @@
 }
 
 
-- (UITableViewCell*) cellForSectionRow:(NSInteger) row {
-    Section* section = [article.sections objectAtIndex:row];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
+- (UITableViewCell*) cellForSectionRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSArray* chunks = [sectionChunks objectAtIndex:indexPath.section];
+    NSString* chunk = [chunks objectAtIndex:indexPath.row];
+    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:chunk] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
@@ -113,14 +125,15 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section < article.sections.count) {
-        return [self cellForSectionRow:indexPath.section];
+        return [self cellForSectionRowAtIndexPath:indexPath];
     } else {
         return [self cellForLinksRow:indexPath.row];
     }
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < article.sections.count) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
@@ -148,11 +161,10 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < article.sections.count) {
-        Section* section = [article.sections objectAtIndex:indexPath.section];
-
-        NSString* text = section.text;
-
-        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
+        NSArray* chunks = [sectionChunks objectAtIndex:indexPath.section];
+        NSString* chunk = [chunks objectAtIndex:indexPath.row];
+        
+        return [WrappableCell height:chunk accessoryType:UITableViewCellAccessoryNone];
     } else {
         return tableView.rowHeight;
     }
