@@ -94,7 +94,7 @@
     [AppDelegate removeNotification:notification];
 }
 
-    
+
 - (void) searchLoop {
     while (true) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];

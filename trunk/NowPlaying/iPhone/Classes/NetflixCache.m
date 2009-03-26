@@ -1662,7 +1662,7 @@ static NSDictionary* availabilityMap = nil;
     if ([movie isNetflix]) {
         return;
     }
-    
+
     NSString* file = [self netflixFile:movie];
     if (![FileUtilities fileExists:file]) {
         Movie* netflixMovie = [self lookupMovieWorker:movie];

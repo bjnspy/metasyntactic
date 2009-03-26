@@ -978,7 +978,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (bookmarkedTitlesData == nil) {
         self.bookmarkedTitlesData = [self loadBookmarkedTitles];
     }
-    
+
     // Access through property to ensure valid value.
     return self.bookmarkedTitlesData;
 }
@@ -1015,7 +1015,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) removeBookmark:(Movie*) movie {
     NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
     [set removeObject:movie.canonicalTitle];
-    
+
     [self setBookmarkedTitles:set];
 
     [dataProvider removeBookmark:movie.canonicalTitle];
