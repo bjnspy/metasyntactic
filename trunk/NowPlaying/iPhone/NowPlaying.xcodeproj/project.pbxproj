@@ -46,7 +46,6 @@
 		7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
 		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
-		7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
@@ -436,8 +435,6 @@
 		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
 		74166B0C0EC94A5700FFD29A /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
-		7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableTableViewController.h; sourceTree = "<group>"; };
-		7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableTableViewController.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
 		74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
 		742C07B10F08B0890087F4E0 /* AmazonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonCache.h; sourceTree = "<group>"; };
@@ -1418,8 +1415,6 @@
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */,
 				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
-				7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */,
-				7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */,
 				747E21060EED99B0005B638A /* WebViewController.h */,
 				747E21070EED99B0005B638A /* WebViewController.m */,
 				74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */,
@@ -2308,7 +2303,6 @@
 				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
 				74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */,
-				7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */,
 				747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */,
 				74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */,
 				74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */,

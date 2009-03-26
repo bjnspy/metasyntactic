@@ -63,8 +63,6 @@
 @class ImdbPosterDownloader;
 @class Invocation;
 @class LargePosterCache;
-@class LinkedNode;
-@class LinkedSet;
 @class Location;
 @class LocationManager;
 @class LocationUtilities;
@@ -106,7 +104,6 @@
 @class PriorityMutex;
 @class Pulser;
 @class Queue;
-@class RefreshableTableViewController;
 @class Review;
 @class ReviewBodyCell;
 @class ReviewsViewController;
