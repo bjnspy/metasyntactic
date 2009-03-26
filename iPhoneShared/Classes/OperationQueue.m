@@ -149,7 +149,6 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 
 
 - (void) temporarilySuspend {
-    NSLog(@"OperationQueue:temporarilySuspend");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resume) object:nil];
     [queue setSuspended:YES];
     [self performSelector:@selector(resume) withObject:nil afterDelay:1];
@@ -157,7 +156,6 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 
 
 - (void) resume {
-    NSLog(@"OperationQueue:resume");
     [queue setSuspended:NO];
 }
 
