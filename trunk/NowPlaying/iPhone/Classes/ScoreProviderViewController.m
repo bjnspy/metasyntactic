@@ -101,7 +101,7 @@
 }
 
 
-- (void) majorRefresWorker {
+- (void) majorRefreshWorker {
 }
 
 @end

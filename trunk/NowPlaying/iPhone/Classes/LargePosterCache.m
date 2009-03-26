@@ -26,22 +26,22 @@
 #import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
-@property (retain) NSMutableDictionary* yearToMovieMap;
-@property (retain) NSLock* yearToMovieMapGate;
+@property (retain) NSMutableDictionary* yearToMovieNames;
+@property (retain) NSLock* yearToMovieNamesGate;
 @property BOOL updated;
 @end
 
 @implementation LargePosterCache
 
-@synthesize yearToMovieMap;
-@synthesize yearToMovieMapGate;
+@synthesize yearToMovieNames;
+@synthesize yearToMovieNamesGate;
 @synthesize updated;
 
 const int START_YEAR = 1912;
 
 - (void) dealloc {
-    self.yearToMovieMap = nil;
-    self.yearToMovieMapGate = nil;
+    self.yearToMovieNames = nil;
+    self.yearToMovieNamesGate = nil;
     self.updated = NO;
 
     [super dealloc];
@@ -50,8 +50,8 @@ const int START_YEAR = 1912;
 
 - (id) init {
     if (self = [super init]) {
-        self.yearToMovieMap = [NSMutableDictionary dictionary];
-        self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
+        self.yearToMovieNames = [NSMutableDictionary dictionary];
+        self.yearToMovieNamesGate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
@@ -148,11 +148,25 @@ const int START_YEAR = 1912;
 
 - (NSString*) indexFile:(NSInteger) year {
     NSString* file = [NSString stringWithFormat:@"%d.plist", year];
-    return [[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:file];
+    return [[Application largeMoviesPostersIndexDirectory] stringByAppendingPathComponent:file];
 }
 
 
-- (NSDictionary*) ensureIndexWorker:(NSInteger) year updateIfStale:(BOOL) updateIfStale {
+- (NSString*) directoryForYear:(NSInteger) year {
+    NSString* directory = [[Application largeMoviesPostersIndexDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", year]];
+
+    return directory;
+}
+
+
+- (NSString*) moviePath:(NSString*) name year:(NSInteger) year {
+    NSString* directory = [self directoryForYear:year];
+    return [[directory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:name]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSArray*) ensureIndexWorker:(NSInteger) year
+                 updateIfStale:(BOOL) updateIfStale {
     NSString* file = [self indexFile:year];
     if ([FileUtilities fileExists:file]) {
         if (!updateIfStale) {
@@ -173,7 +187,10 @@ const int START_YEAR = 1912;
         return nil;
     }
 
-    NSMutableDictionary* index = [NSMutableDictionary dictionary];
+    NSString* directory = [self directoryForYear:year];
+    [FileUtilities createDirectory:directory];
+    
+    NSMutableArray* titles = [NSMutableArray array];
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
 
@@ -181,31 +198,35 @@ const int START_YEAR = 1912;
             continue;
         }
 
+        NSString* movieName = [[Movie makeCanonical:[columns objectAtIndex:0]] lowercaseString];
+        [titles addObject:movieName];
+        
         NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
-        [index setObject:posters forKey:[[columns objectAtIndex:0] lowercaseString]];
+        NSString* moviePath = [self moviePath:movieName year:year];
+        [FileUtilities writeObject:posters toFile:moviePath];
     }
 
-    if (index.count > 0) {
-        [FileUtilities writeObject:index toFile:file];
+    if (titles.count > 0) {
+        [FileUtilities writeObject:titles toFile:file];
     }
 
-    return index;
+    return titles;
 }
 
 
 - (void) ensureIndex:(NSInteger) year
        updateIfStale:(BOOL) updateIfStale {
-    NSDictionary* dictionary = [self ensureIndexWorker:year updateIfStale:updateIfStale];
-    if (dictionary == nil) {
-        dictionary = [FileUtilities readObject:[self indexFile:year]];
+    NSArray* array = [self ensureIndexWorker:year updateIfStale:updateIfStale];
+    if (array == nil) {
+        array = [FileUtilities readObject:[self indexFile:year]];
     }
 
-    if (dictionary.count > 0) {
-        [yearToMovieMapGate lock];
+    if (array.count > 0) {
+        [yearToMovieNamesGate lock];
         {
-            [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+            [yearToMovieNames setObject:array forKey:[NSNumber numberWithInt:year]];
         }
-        [yearToMovieMapGate unlock];
+        [yearToMovieNamesGate unlock];
         [self clearUpdatedMovies];
     }
 }
@@ -253,22 +274,22 @@ const int START_YEAR = 1912;
 
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
-    NSDictionary* movieMap;
-    [yearToMovieMapGate lock];
+    NSArray* movieNames;
+    [yearToMovieNamesGate lock];
     {
-        movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+        movieNames = [yearToMovieNames objectForKey:[NSNumber numberWithInt:year]];
     }
-    [yearToMovieMapGate unlock];
-
-    NSArray* result = [movieMap objectForKey:movie.canonicalTitle.lowercaseString];
+    [yearToMovieNamesGate unlock];
+    
+    NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
+    NSArray* result = [FileUtilities readObject:[self moviePath:lowercaseTitle year:year]];
     if (result.count > 0) {
         return result;
     }
 
-    NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
-    for (NSString* key in movieMap.allKeys) {
+    for (NSString* key in movieNames) {
         if ([DifferenceEngine substringSimilar:key other:lowercaseTitle]) {
-            return [movieMap objectForKey:key];
+            return [FileUtilities readObject:[self moviePath:key year:year]];
         }
     }
 

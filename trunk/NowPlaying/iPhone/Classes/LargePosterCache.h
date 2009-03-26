@@ -16,8 +16,8 @@
 
 @interface LargePosterCache : AbstractMovieCache {
 @private
-    NSMutableDictionary* yearToMovieMap;
-    NSLock* yearToMovieMapGate;
+    NSMutableDictionary* yearToMovieNames;
+    NSLock* yearToMovieNamesGate;
 
     BOOL updated;
 }
