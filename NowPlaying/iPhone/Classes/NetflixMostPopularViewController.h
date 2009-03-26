@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#import "AbstractTableViewController.h"
 
-@interface NetflixMostPopularViewController : RefreshableTableViewController {
+@interface NetflixMostPopularViewController : AbstractTableViewController {
 @private
     NSDictionary* titleToCount;
 }

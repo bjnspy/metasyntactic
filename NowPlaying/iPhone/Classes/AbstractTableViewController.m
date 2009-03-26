@@ -70,6 +70,7 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.visible = YES;
+    [self majorRefresh];
 }
 
 
@@ -124,6 +125,44 @@
 
 - (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
     [[OperationQueue operationQueue] temporarilySuspend];
+}
+
+
+- (void) majorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) minorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) refreshWithSelector:(SEL) selector subclassSelector:(SEL) subclassSelector {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:selector
+                                               object:nil];
+    
+    if (!visible) {
+        return;
+    }
+    
+    if (self.tableView.dragging || self.tableView.decelerating) {
+        [self performSelector:selector withObject:nil afterDelay:1];
+        return;
+    }
+    
+    [self performSelector:subclassSelector];
+}
+
+
+- (void) majorRefresh {
+    [self refreshWithSelector:@selector(majorRefresh) subclassSelector:@selector(majorRefreshWorker)];
+}
+
+
+- (void) minorRefresh {
+    [self refreshWithSelector:@selector(minorRefresh) subclassSelector:@selector(minorRefreshWorker)];
 }
 
 @end
