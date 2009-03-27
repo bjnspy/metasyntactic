@@ -15,7 +15,6 @@
 #import "LocationCache.h"
 
 @interface UserLocationCache : LocationCache {
-@private
 }
 
 + (UserLocationCache*) cache;

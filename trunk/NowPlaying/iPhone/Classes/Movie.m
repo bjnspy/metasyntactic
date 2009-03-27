@@ -31,7 +31,7 @@
 @property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
-@property (retain) NSString* cachedRatingAndRuntimeString;
+@property (copy) NSString* cachedRatingAndRuntimeString;
 @property (retain) NSDictionary* additionalFields;
 @end
 
@@ -439,7 +439,7 @@ static NSString* articles[] = {
     if (array.count == 0) {
         return [NSArray array];
     }
-
+    
     NSMutableArray* result = [NSMutableArray array];
 
     for (NSDictionary* dictionary in array) {

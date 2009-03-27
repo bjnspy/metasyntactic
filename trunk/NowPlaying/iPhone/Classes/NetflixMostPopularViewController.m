@@ -20,6 +20,7 @@
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
+#import "OperationQueue.h"
 
 @interface NetflixMostPopularViewController()
 @property (retain) NSDictionary* titleToCount;
@@ -135,7 +136,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && titleToCount.count == 0) {
-        if ([GlobalActivityIndicator hasBackgroundTasks]) {
+        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             return NSLocalizedString(@"Downloading data", nil);
         }
 

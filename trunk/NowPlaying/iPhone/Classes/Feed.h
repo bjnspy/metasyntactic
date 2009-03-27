@@ -19,8 +19,9 @@
     NSString* name;
 }
 
-@property (readonly, retain) NSString* url;
-@property (readonly, retain) NSString* key;
+@property (readonly, copy) NSString* url;
+@property (readonly, copy) NSString* key;
+@property (readonly, copy) NSString* name;
 
 + (Feed*) feedWithUrl:(NSString*) url key:(NSString*) key name:(NSString*) name;
 + (Feed*) feedWithDictionary:(NSDictionary*) dictionary;

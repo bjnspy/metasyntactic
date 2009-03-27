@@ -21,7 +21,7 @@
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
 @property (retain) NSMutableArray* boundedOperations;
-@property (retain) NSLock* boundedOperationsGate;
+@property (retain) NSLock* dataGate;
 @end
 
 
@@ -31,12 +31,12 @@ static OperationQueue* operationQueue = nil;
 
 @synthesize queue;
 @synthesize boundedOperations;
-@synthesize boundedOperationsGate;
+@synthesize dataGate;
 
 - (void) dealloc {
     self.queue = nil;
     self.boundedOperations = nil;
-    self.boundedOperationsGate = nil;
+    self.dataGate = nil;
 
     [super dealloc];
 }
@@ -45,9 +45,9 @@ static OperationQueue* operationQueue = nil;
 - (id) init {
     if (self = [super init]) {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        queue.maxConcurrentOperationCount = 1;
+        queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         self.boundedOperations = [NSMutableArray array];
-        self.boundedOperationsGate = [[[NSLock alloc] init] autorelease];
+        self.dataGate = [[[NSLock alloc] init] autorelease];
     }
 
     return self;
@@ -63,40 +63,61 @@ static OperationQueue* operationQueue = nil;
 }
 
 
-- (void) addOperation:(Operation*) operation priority:(QueuePriority) queuePriority {
-    operation.queuePriority = queuePriority;
+- (Operation*) performSelector:(SEL) selector
+                      onTarget:(id) target
+                          gate:(id<NSLocking>) gate
+                      priority:(QueuePriority) priority {
+    Operation* operation = [Operation operationWithTarget:target
+                                                 selector:selector
+                                           operationQueue:self
+                                                isBounded:NO
+                                                     gate:gate
+                                                 priority:priority];
     [queue addOperation:operation];
-}
-
-
-- (Operation*) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation* operation = [Operation operationWithTarget:target selector:selector operationQueue:self isBounded:NO gate:gate];
-    [self addOperation:operation priority:priority];
     return operation;
 }
 
 
-- (Operation1*) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation1* operation = [Operation1 operationWithTarget:target selector:selector argument:object operationQueue:self isBounded:NO gate:gate];
-    [self addOperation:operation priority:priority];
+- (Operation1*) performSelector:(SEL) selector
+                       onTarget:(id) target
+                     withObject:(id) object
+                           gate:(id<NSLocking>) gate
+                       priority:(QueuePriority) priority {
+    Operation1* operation = [Operation1 operationWithTarget:target
+                                                   selector:selector
+                                                   argument:object
+                                             operationQueue:self
+                                                  isBounded:NO
+                                                       gate:gate
+                                                   priority:priority];
+    [queue addOperation:operation];
     return operation;
 }
 
 
-- (Operation2*) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation2* operation = [Operation2 operationWithTarget:target selector:selector argument:object1 argument:object2 operationQueue:self isBounded:NO gate:gate];
-    [self addOperation:operation priority:priority];
+- (Operation2*) performSelector:(SEL) selector
+                       onTarget:(id) target
+                     withObject:(id) object1
+                     withObject:(id) object2
+                           gate:(id<NSLocking>) gate
+                       priority:(QueuePriority) priority {
+    Operation2* operation = [Operation2 operationWithTarget:target
+                                                   selector:selector
+                                                   argument:object1
+                                                   argument:object2
+                                             operationQueue:self
+                                                  isBounded:NO
+                                                       gate:gate
+                                                   priority:priority];
+    [queue addOperation:operation];
     return operation;
 }
 
 
 const NSInteger MAX_BOUNDED_OPERATIONS = 5;
-- (void) addBoundedOperation:(Operation*) operation
-                    priority:(QueuePriority) priority {
-    [boundedOperationsGate lock];
+- (void) addBoundedOperation:(Operation*) operation {
+    [dataGate lock];
     {
-        operation.queuePriority = priority;
-
         if (boundedOperations.count > MAX_BOUNDED_OPERATIONS) {
             // too many operations.  cancel the oldest one.
             Operation* staleOperation = [boundedOperations objectAtIndex:0];
@@ -112,39 +133,44 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 
         [boundedOperations addObject:operation];
     }
-    [boundedOperationsGate unlock];
+    [dataGate unlock];
 
-    [self addOperation:operation priority:priority];
+    [queue addOperation:operation];
 }
 
 
 - (Operation*) performBoundedSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation* operation = [Operation operationWithTarget:target selector:selector operationQueue:self isBounded:YES gate:gate];
-    [self addBoundedOperation:operation priority:priority];
+    Operation* operation = [Operation operationWithTarget:target
+                                                 selector:selector
+                                           operationQueue:self
+                                                isBounded:YES
+                                                     gate:gate
+                                                 priority:priority];
+    [self addBoundedOperation:operation];
     return operation;
 }
 
 
 - (Operation1*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation1* operation = [Operation1 operationWithTarget:target selector:selector argument:object operationQueue:self isBounded:YES gate:gate];
-    [self addBoundedOperation:operation priority:priority];
+    Operation1* operation = [Operation1 operationWithTarget:target selector:selector argument:object operationQueue:self isBounded:YES gate:gate priority:priority];
+    [self addBoundedOperation:operation];
     return operation;
 }
 
 
 - (Operation2*) performBoundedSelector:(SEL) selector onTarget:(id) target withObject:(id) object1 withObject:(id) object2 gate:(id<NSLocking>) gate priority:(QueuePriority) priority {
-    Operation2* operation = [Operation2 operationWithTarget:target selector:selector argument:object1 argument:object2 operationQueue:self isBounded:YES gate:gate];
-    [self addBoundedOperation:operation priority:priority];
+    Operation2* operation = [Operation2 operationWithTarget:target selector:selector argument:object1 argument:object2 operationQueue:self isBounded:YES gate:gate priority:priority];
+    [self addBoundedOperation:operation];
     return operation;
 }
 
 
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation {
-    [boundedOperationsGate lock];
+    [dataGate lock];
     {
         [boundedOperations removeObject:operation];
     }
-    [boundedOperationsGate unlock];
+    [dataGate unlock];
 }
 
 
@@ -158,5 +184,39 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 - (void) resume {
     [queue setSuspended:NO];
 }
+
+
+- (BOOL) hasPriorityOperations {
+    BOOL result;
+    [dataGate lock];
+    {
+        result = (priorityOperationsCount > 0);
+    }
+    [dataGate unlock];
+    return result;
+}
+
+
+- (void) notifyOperationCreated:(QueuePriority) priority {
+    [dataGate lock];
+    {
+        if (priority >= Priority) {
+            priorityOperationsCount++;
+        }
+    }
+    [dataGate unlock];
+}
+
+
+- (void) notifyOperationDestroyed:(QueuePriority) priority {
+    [dataGate lock];
+    {
+        if (priority >= Priority) {
+            priorityOperationsCount--;
+        }
+    }
+    [dataGate unlock];
+}
+
 
 @end

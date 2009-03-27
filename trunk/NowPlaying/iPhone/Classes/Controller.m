@@ -171,6 +171,7 @@ static Controller* controller = nil;
 
 
 - (void) determineLocationBackgroundEntryPoint {
+    NSLog(@"Controller:determineLocationBackgroundEntryPoint");
     NSString* address = self.model.userAddress;
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
 

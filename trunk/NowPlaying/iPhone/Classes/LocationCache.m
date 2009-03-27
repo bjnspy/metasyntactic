@@ -23,16 +23,23 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface LocationCache()
+@property (retain) NSMutableDictionary* addressToLocation;
+@end
+
 @implementation LocationCache
 
+@synthesize addressToLocation;
 
 - (void) dealloc {
+    self.addressToLocation = nil;
     [super dealloc];
 }
 
 
 - (id) init {
     if (self = [super init]) {
+        self.addressToLocation = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -116,7 +123,7 @@
 }
 
 
-- (Location*) loadLocation:(NSString*) address {
+- (Location*) loadLocationWorker:(NSString*) address {
     if (address.length != 0) {
         NSDictionary* dict = [FileUtilities readObject:[self locationFile:address]];
         if (dict != nil) {
@@ -128,13 +135,36 @@
 }
 
 
+- (Location*) loadLocation:(NSString*) address {
+    Location* result = nil;
+    [dataGate lock];
+    {
+        result = [addressToLocation objectForKey:address];
+        if (result == nil) {
+            result =[self loadLocationWorker:address];
+            if (result != nil) {
+                [addressToLocation setObject:result forKey:address];
+            }
+        }
+    }
+    [dataGate unlock];
+    
+    return result;
+}
+
+
 - (void) saveLocation:(Location*) location
           forAddress:(NSString*) address {
     if (location == nil || address.length == 0) {
         return;
     }
 
-    [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
+    [dataGate lock];
+    {
+        [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
+        [addressToLocation setObject:location forKey:address];
+    }
+    [dataGate unlock];
 }
 
 @end
