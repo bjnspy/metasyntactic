@@ -1115,6 +1115,7 @@ static NSDictionary* availabilityMap = nil;
         }
     }
 
+    NSLog(@"Downlading RSS Feed: %@", address);
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
     XmlElement* channelElement = [element element:@"channel"];
 

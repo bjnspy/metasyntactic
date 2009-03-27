@@ -265,8 +265,6 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    [self setActive:NO animated:YES];
-
     if (indexPath.section == 0) {
         return [self didSelectMovieRow:indexPath.row];
     } else if (indexPath.section == 1) {
