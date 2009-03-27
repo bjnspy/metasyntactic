@@ -6,7 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "PerfectGreeMovieTitleCell.h"
+#import "PerfectGreenMovieTitleCell.h"
 
 #import "ColorCache.h"
 #import "ImageCache.h"

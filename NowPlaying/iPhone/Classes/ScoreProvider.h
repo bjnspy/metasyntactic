@@ -17,6 +17,7 @@
 - (NSDictionary*) scores;
 - (Score*) scoreForMovie:(Movie*) movie;
 - (NSArray*) reviewsForMovie:(Movie*) movie;
-- (void) update;
+- (void) updateWithNotifications;
+- (void) updateWithoutNotifications;
 - (void) processMovie:(Movie*) movie;
 @end

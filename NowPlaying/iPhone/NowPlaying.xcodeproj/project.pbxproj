@@ -75,7 +75,6 @@
 		7445B4540F7D651C00864071 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */; };
 		7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4560F7D652400864071 /* GreenMovieTitleCell.m */; };
 		7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */; };
-		7445B4820F7D6B8600864071 /* PerfectGreeMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */; };
 		7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447092D0F7BDA160047061E /* DeleteMovie.png */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
@@ -188,6 +187,7 @@
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */; };
+		74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */; };
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
@@ -460,8 +460,6 @@
 		7445B4560F7D652400864071 /* GreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenMovieTitleCell.m; sourceTree = "<group>"; };
 		7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoScoreMovieTitleCell.h; sourceTree = "<group>"; };
 		7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoScoreMovieTitleCell.m; sourceTree = "<group>"; };
-		7445B4800F7D6B8600864071 /* PerfectGreeMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreeMovieTitleCell.h; sourceTree = "<group>"; };
-		7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreeMovieTitleCell.m; sourceTree = "<group>"; };
 		7447092D0F7BDA160047061E /* DeleteMovie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteMovie.png; path = Resources/DeleteMovie.png; sourceTree = "<group>"; };
 		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -714,6 +712,8 @@
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
 		74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
+		74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreenMovieTitleCell.h; sourceTree = "<group>"; };
+		74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreenMovieTitleCell.m; sourceTree = "<group>"; };
 		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
@@ -1246,6 +1246,8 @@
 		7445B4450F7D64CA00864071 /* MovieTitleCells */ = {
 			isa = PBXGroup;
 			children = (
+				74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */,
+				74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
 				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
 				7445B4460F7D64F300864071 /* RottenMovieTitleCell.h */,
@@ -1262,8 +1264,6 @@
 				7445B4560F7D652400864071 /* GreenMovieTitleCell.m */,
 				7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */,
 				7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */,
-				7445B4800F7D6B8600864071 /* PerfectGreeMovieTitleCell.h */,
-				7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */,
 				74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */,
 				74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */,
 			);
@@ -2265,8 +2265,8 @@
 				7445B4540F7D651C00864071 /* YellowMovieTitleCell.m in Sources */,
 				7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */,
 				7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */,
-				7445B4820F7D6B8600864071 /* PerfectGreeMovieTitleCell.m in Sources */,
 				74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */,
+				74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
