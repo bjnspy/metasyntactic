@@ -148,7 +148,7 @@
         }
     }
     [dataGate unlock];
-    
+
     return result;
 }
 

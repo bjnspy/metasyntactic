@@ -36,7 +36,7 @@ typedef enum {
 @private
     NSOperationQueue* queue;
     NSLock* dataGate;
-    
+
     NSMutableArray* boundedOperations;
     NSInteger priorityOperationsCount;
 }
