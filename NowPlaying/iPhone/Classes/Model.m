@@ -747,7 +747,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (cachedAllMoviesSelectedSegmentIndex == -1) {
         cachedAllMoviesSelectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
     }
-    
+
     return cachedAllMoviesSelectedSegmentIndex;
 }
 

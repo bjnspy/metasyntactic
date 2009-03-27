@@ -423,7 +423,7 @@ static NSDictionary* availabilityMap = nil;
         }
         [pool release];
     }
-    
+
     return formats;
 }
 
@@ -742,10 +742,10 @@ static NSDictionary* availabilityMap = nil;
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
     [movies addObjectsFromArray:saved];
-    
+
     if (movies.count > 0) {
-        
-        
+
+
         // download the andetails for these movies in teh background.
         [[CacheUpdater cacheUpdater] addSearchMovies:movies];
     }
@@ -1428,7 +1428,7 @@ static NSDictionary* availabilityMap = nil;
     if (result.count > 0) {
         return result;
     }
-    
+
     NSDictionary* details = [self detailsForMovie:movie];
     result = [details objectForKey:formats_key];
     if (result.count > 0) {

@@ -129,7 +129,7 @@ property_definition(identifier);
             scoreValue = -1;
         }
     }
-    
+
     return scoreValue;
 }
 

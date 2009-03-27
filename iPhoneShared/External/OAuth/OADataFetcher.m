@@ -37,7 +37,7 @@
               didFailSelector:(SEL) didFailSelector {
     [request prepare];
 
-    NSURLResponse* response;
+    NSURLResponse* response = nil;
     NSError* error = nil;
     NSData* responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response

@@ -189,7 +189,7 @@ const int START_YEAR = 1912;
 
     NSString* directory = [self directoryForYear:year];
     [FileUtilities createDirectory:directory];
-    
+
     NSMutableArray* titles = [NSMutableArray array];
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
@@ -200,7 +200,7 @@ const int START_YEAR = 1912;
 
         NSString* movieName = [[Movie makeCanonical:[columns objectAtIndex:0]] lowercaseString];
         [titles addObject:movieName];
-        
+
         NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
         NSString* moviePath = [self moviePath:movieName year:year];
         [FileUtilities writeObject:posters toFile:moviePath];
@@ -280,7 +280,7 @@ const int START_YEAR = 1912;
         movieNames = [yearToMovieNames objectForKey:[NSNumber numberWithInt:year]];
     }
     [yearToMovieNamesGate unlock];
-    
+
     NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
     NSArray* result = [FileUtilities readObject:[self moviePath:lowercaseTitle year:year]];
     if (result.count > 0) {
