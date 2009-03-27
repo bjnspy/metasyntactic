@@ -439,7 +439,7 @@ static NSString* articles[] = {
     if (array.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
 
     for (NSDictionary* dictionary in array) {

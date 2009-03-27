@@ -108,10 +108,10 @@
 
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForUserAddress:userAddress];
-    
+
     if (location == nil) {
         NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
-        
+
         NSString* notification = NSLocalizedString(@"location", nil);
         [AppDelegate addNotification:notification];
         {
@@ -128,7 +128,7 @@
         [AppDelegate removeNotification:notification];
 
         [self setLocation:location forUserAddress:userAddress];
-    }   
+    }
 
     return location;
 }

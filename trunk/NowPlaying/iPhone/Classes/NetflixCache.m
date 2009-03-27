@@ -294,8 +294,8 @@ static NSDictionary* availabilityMap = nil;
 - (void) addQueueNoLock:(Queue*) queue {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queuesNoLock];
     [dictionary setObject:queue forKey:queue.feed.key];
-    
-    self.queuesData = dictionary;    
+
+    self.queuesData = dictionary;
 }
 
 
