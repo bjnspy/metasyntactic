@@ -240,15 +240,9 @@
 
 - (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
     if (row == 0) {
-        static NSString* reuseIdentifier = @"movieReuseIdentifier";
-        MovieTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
+        Movie* movie = [movies objectAtIndex:index];
 
-        [cell setMovie:[movies objectAtIndex:index] owner:self];
-
+        MovieTitleCell* cell = [MovieTitleCell movieTitleCellForMovie:movie inTableView:self.tableView];
         return cell;
     } else {
         static NSString* reuseIdentifier = @"showtimesReuseIdentifier";

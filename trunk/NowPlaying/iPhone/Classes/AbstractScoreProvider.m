@@ -111,11 +111,6 @@
 }
 
 
-- (NSString*) movieMapFile {
-    return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
-}
-
-
 - (NSString*) reviewsFile:(NSString*) title {
     return [[reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
             stringByAppendingPathExtension:@"plist"];
@@ -129,7 +124,7 @@
 
 - (NSArray*) moviesNoLock {
     if (moviesData == nil) {
-        self.moviesData = [[Model model] movies];
+        self.moviesData = [NSArray array];
     }
 
     // Access through the property so that we get back a safe pointer
@@ -168,15 +163,6 @@
     NSString* result = [FileUtilities readObject:self.hashFile];
     if (result == nil) {
         return @"";
-    }
-    return result;
-}
-
-
-- (NSDictionary*) loadMovieMap {
-    NSDictionary* result = [FileUtilities readObject:self.movieMapFile];
-    if (result == nil) {
-        return [NSDictionary dictionary];
     }
     return result;
 }
@@ -244,7 +230,7 @@
 
 - (NSDictionary*) movieMapNoLock {
     if (movieMapData == nil) {
-        self.movieMapData = [self loadMovieMap];
+        self.movieMapData = [NSDictionary dictionary];
     }
 
     [self ensureMovieMapNoLock];
@@ -554,10 +540,6 @@
     if (result.count == 0) {
         return;
     }
-
-    NSLog(@"Writing movieMap", nil);
-    [FileUtilities writeObject:result
-                        toFile:self.movieMapFile];
 
     [dataGate lock];
     {

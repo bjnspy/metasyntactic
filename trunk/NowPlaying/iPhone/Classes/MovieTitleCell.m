@@ -22,6 +22,14 @@
 #import "Movie.h"
 #import "Score.h"
 
+#import "RottenMovieTitleCell.h"
+#import "TomatoMovieTitleCell.h"
+#import "RedMovieTitleCell.h"
+#import "YellowMovieTitleCell.h"
+#import "GreenMovieTitleCell.h"
+#import "PerfectGreeMovieTitleCell.h"
+#import "UnknownMovieTitleCell.h"
+
 @interface MovieTitleCell()
 @property (retain) UILabel* scoreLabel;
 @end
@@ -43,6 +51,7 @@
                     reuseIdentifier:reuseIdentifier]) {
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
@@ -56,87 +65,45 @@
 }
 
 
-- (Model*) model {
-    return [Model model];
++ (NSString*) reuseIdentifier {
+    return @"MovieTitleCell";
 }
 
 
-- (void) setImage:(UIImage*) image {
-    if (self.image != image) {
-        [super setImage:image];
++ (MovieTitleCell*) movieTitleCellForClass:(Class) class inTableView:(UITableView*) tableView {
+    id cell = [tableView dequeueReusableCellWithIdentifier:[class reuseIdentifier]];
+    if (cell == nil) {
+        cell = [[[class alloc] init] autorelease];
     }
+    
+    return cell;    
 }
 
 
-- (void) setRottenTomatoesScore:(Movie*) movie {
-    Score* score = [self.model scoreForMovie:movie];
++ (MovieTitleCell*) movieTitleCellForScore:(Score*) score
+                               inTableView:(UITableView*) tableView {
     NSInteger scoreValue = score.scoreValue;
-    if (score != nil && scoreValue != -1) {
+    if (score == nil || scoreValue == -1 || [Model model].noScores) {
+        return [self movieTitleCellForClass:[UnknownMovieTitleCell class] inTableView:tableView];
+    }
+    
+    if ([Model model].rottenTomatoesScores) {
         if (scoreValue >= 60) {
-            if (self.image != [ImageCache freshImage]) {
-                self.image = [ImageCache freshImage];
-
-                scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-                scoreLabel.textColor = [UIColor whiteColor];
-
-                CGRect frame = CGRectMake(5, 7, 32, 32);
-
-                scoreLabel.frame = frame;
-            }
+            return [self movieTitleCellForClass:[TomatoMovieTitleCell class] inTableView:tableView];
         } else {
-            if (self.image != [ImageCache rottenFadedImage]) {
-                self.image = [ImageCache rottenFadedImage];
-
-                scoreLabel.font = [UIFont boldSystemFontOfSize:17];
-                scoreLabel.textColor = [UIColor blackColor];
-
-                CGRect frame = CGRectMake(5, 5, 30, 32);
-
-                scoreLabel.frame = frame;
-            }
+            return [self movieTitleCellForClass:[RottenMovieTitleCell class] inTableView:tableView];
         }
-
-        scoreLabel.text = score.score;//[NSString stringWithFormat:@"%d", scoreValue];
     } else {
-        if (self.image != [ImageCache unknownRatingImage]) {
-            scoreLabel.text = nil;
-            self.image = [ImageCache unknownRatingImage];
-        }
-    }
-}
-
-
-- (void) setBasicSquareScore:(Movie*) movie {
-    int score = [self.model scoreValueForMovie:movie];
-
-    if (score >= 0 && score <= 100) {
-        CGRect frame = CGRectMake(6, 6, 30, 30);
-        if (score == 100) {
-            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+        if (scoreValue <= 40) {
+            return [self movieTitleCellForClass:[RedMovieTitleCell class] inTableView:tableView];
+        } else if (scoreValue <= 60) {
+            return [self movieTitleCellForClass:[YellowMovieTitleCell class] inTableView:tableView];
+        } else if (scoreValue < 100) {
+            return [self movieTitleCellForClass:[GreenMovieTitleCell class] inTableView:tableView];
         } else {
-            scoreLabel.font = [FontCache boldSystem19];
+            return [self movieTitleCellForClass:[PerfectGreenMovieTitleCell class] inTableView:tableView];
         }
-
-        scoreLabel.textColor = [ColorCache darkDarkGray];
-        scoreLabel.frame = frame;
-        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
-
-    if (score >= 0 && score <= 40) {
-        self.image = [ImageCache redRatingImage];
-    } else if (score > 40 && score <= 60) {
-        self.image = [ImageCache yellowRatingImage];
-    } else if (score > 60 && score <= 100) {
-        self.image = [ImageCache greenRatingImage];
-    } else {
-        scoreLabel.text = nil;
-        self.image = [ImageCache unknownRatingImage];
-    }
-}
-
-
-- (BOOL) noScores {
-    return self.model.noScores;
 }
 
 
@@ -146,29 +113,29 @@
 }
 
 
-- (void) setScore:(Movie*) movie {
-    if (self.model.rottenTomatoesScores) {
-        [self setRottenTomatoesScore:movie];
-    } else if (self.model.metacriticScores) {
-        [self setBasicSquareScore:movie];
-    } else if (self.model.googleScores) {
-        [self setBasicSquareScore:movie];
-    } else if (self.model.noScores) {
-        self.image = nil;
-        scoreLabel.text = nil;
-    }
+- (void) setScore:(Score*) score {
+    scoreLabel.text = score.score;
 }
 
 
-- (void) setMovie:(Movie*) movie owner:(id) owner {
-    [self setScore:movie];
+- (void) setMovie:(Movie*) movie {
     self.detailTextLabel.text = movie.ratingAndRuntimeString;
 
-    if ([self.model isBookmarked:movie]) {
+    if ([[Model model] isBookmarked:movie]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
     } else {
         self.textLabel.text = movie.displayTitle;
     }
+}
+
+
++ (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView {
+    Score* score = [[Model model] scoreForMovie:movie];
+    
+    MovieTitleCell* cell = [self movieTitleCellForScore:score inTableView:tableView];
+    [cell setScore:score];
+    [cell setMovie:movie];
+    return cell;
 }
 
 @end
