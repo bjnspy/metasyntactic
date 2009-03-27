@@ -280,7 +280,7 @@
 - (void) requestAccessTokenWorker {
     OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
                                                 secret:[Application netflixSecret]];
-
+    
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/access_token"];
 
     OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url

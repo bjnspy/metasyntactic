@@ -364,7 +364,7 @@ const NSInteger POSTER_TAG = -1;
         self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
         [posterActivityView startAnimating];
         [posterActivityView sizeToFit];
-        
+
         posterCount = -1;
     }
 

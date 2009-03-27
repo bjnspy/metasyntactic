@@ -226,7 +226,7 @@
     self.movies = result.movies;
     self.discMovies = discs;
     self.instantMovies = instant;
-    
+
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
                                         [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies.count],
                                         [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", nil), discs.count],

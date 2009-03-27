@@ -129,7 +129,7 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [self setToolbarItems:items animated:YES];
+    [self setToolbarItems:items animated:NO];
 }
 
 
@@ -190,9 +190,7 @@
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
 
-    BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
-
-    [self.abstractNavigationController setToolbarHidden:hidden animated:YES];
+    //BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
 }
 
 
@@ -254,6 +252,7 @@
     [super viewWillAppear:animated];
     self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
     self.abstractNavigationController.toolbar.translucent = YES;
+    [self.abstractNavigationController setToolbarHidden:NO animated:NO];
 }
 
 

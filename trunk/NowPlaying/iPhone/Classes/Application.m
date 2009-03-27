@@ -425,7 +425,7 @@ static DifferenceEngine* differenceEngine = nil;
     if ([largeMoviesPostersIndexDirectory isEqual:directory]) {
         return;
     }
-    
+
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
         for (NSString* child in [FileUtilities directoryContentsPaths:directory]) {
