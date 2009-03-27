@@ -68,6 +68,14 @@
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
+		7445B4480F7D64F300864071 /* RottenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4470F7D64F300864071 /* RottenMovieTitleCell.m */; };
+		7445B44B0F7D64FD00864071 /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B44A0F7D64FD00864071 /* TomatoMovieTitleCell.m */; };
+		7445B44E0F7D650500864071 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B44D0F7D650500864071 /* UnknownMovieTitleCell.m */; };
+		7445B4510F7D651400864071 /* RedMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4500F7D651400864071 /* RedMovieTitleCell.m */; };
+		7445B4540F7D651C00864071 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */; };
+		7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4560F7D652400864071 /* GreenMovieTitleCell.m */; };
+		7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */; };
+		7445B4820F7D6B8600864071 /* PerfectGreeMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */; };
 		7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447092D0F7BDA160047061E /* DeleteMovie.png */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
@@ -179,6 +187,7 @@
 		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
+		74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */; };
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
@@ -437,6 +446,22 @@
 		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
 		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
+		7445B4460F7D64F300864071 /* RottenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B4470F7D64F300864071 /* RottenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B4490F7D64FD00864071 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B44A0F7D64FD00864071 /* TomatoMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B44C0F7D650500864071 /* UnknownMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B44D0F7D650500864071 /* UnknownMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B44F0F7D651400864071 /* RedMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B4500F7D651400864071 /* RedMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B4520F7D651C00864071 /* YellowMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YellowMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YellowMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B4550F7D652400864071 /* GreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B4560F7D652400864071 /* GreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoScoreMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoScoreMovieTitleCell.m; sourceTree = "<group>"; };
+		7445B4800F7D6B8600864071 /* PerfectGreeMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreeMovieTitleCell.h; sourceTree = "<group>"; };
+		7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreeMovieTitleCell.m; sourceTree = "<group>"; };
 		7447092D0F7BDA160047061E /* DeleteMovie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteMovie.png; path = Resources/DeleteMovie.png; sourceTree = "<group>"; };
 		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -687,6 +712,8 @@
 		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
+		74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
 		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
@@ -1216,6 +1243,33 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		7445B4450F7D64CA00864071 /* MovieTitleCells */ = {
+			isa = PBXGroup;
+			children = (
+				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
+				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
+				7445B4460F7D64F300864071 /* RottenMovieTitleCell.h */,
+				7445B4470F7D64F300864071 /* RottenMovieTitleCell.m */,
+				7445B4490F7D64FD00864071 /* TomatoMovieTitleCell.h */,
+				7445B44A0F7D64FD00864071 /* TomatoMovieTitleCell.m */,
+				7445B44C0F7D650500864071 /* UnknownMovieTitleCell.h */,
+				7445B44D0F7D650500864071 /* UnknownMovieTitleCell.m */,
+				7445B44F0F7D651400864071 /* RedMovieTitleCell.h */,
+				7445B4500F7D651400864071 /* RedMovieTitleCell.m */,
+				7445B4520F7D651C00864071 /* YellowMovieTitleCell.h */,
+				7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */,
+				7445B4550F7D652400864071 /* GreenMovieTitleCell.h */,
+				7445B4560F7D652400864071 /* GreenMovieTitleCell.m */,
+				7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */,
+				7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */,
+				7445B4800F7D6B8600864071 /* PerfectGreeMovieTitleCell.h */,
+				7445B4810F7D6B8600864071 /* PerfectGreeMovieTitleCell.m */,
+				74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */,
+				74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */,
+			);
+			name = MovieTitleCells;
+			sourceTree = "<group>";
+		};
 		74489CCB0DDD11AB00F565B1 /* TabBarControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1280,14 +1334,13 @@
 			isa = PBXGroup;
 			children = (
 				74798DCB0F74BE590057E111 /* ImageCells */,
+				7445B4450F7D64CA00864071 /* MovieTitleCells */,
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
 				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
 				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
 				74798D000F74B7C80057E111 /* SwitchCell.m */,
-				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
-				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
 				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
@@ -2205,6 +2258,15 @@
 				74EFA1440F7940D7008680B2 /* OperationQueue.m in Sources */,
 				74EFA2070F794411008680B2 /* MutableMultiDictionary.m in Sources */,
 				74EFA4790F79CE17008680B2 /* CacheUpdater.m in Sources */,
+				7445B4480F7D64F300864071 /* RottenMovieTitleCell.m in Sources */,
+				7445B44B0F7D64FD00864071 /* TomatoMovieTitleCell.m in Sources */,
+				7445B44E0F7D650500864071 /* UnknownMovieTitleCell.m in Sources */,
+				7445B4510F7D651400864071 /* RedMovieTitleCell.m in Sources */,
+				7445B4540F7D651C00864071 /* YellowMovieTitleCell.m in Sources */,
+				7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */,
+				7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */,
+				7445B4820F7D6B8600864071 /* PerfectGreeMovieTitleCell.m in Sources */,
+				74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

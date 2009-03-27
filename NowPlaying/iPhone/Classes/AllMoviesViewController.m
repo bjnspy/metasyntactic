@@ -138,14 +138,7 @@
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[MovieTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
-
-    [cell setMovie:movie owner:self];
-    return cell;
+    return [MovieTitleCell movieTitleCellForMovie:movie inTableView:self.tableView];
 }
 
 @end

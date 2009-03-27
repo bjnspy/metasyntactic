@@ -17,8 +17,9 @@
     UILabel* scoreLabel;
 }
 
++ (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView;
+
+/* @protected */
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
-- (void) setMovie:(Movie*) movie owner:(id) owner;
-
+   
 @end
