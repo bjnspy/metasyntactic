@@ -99,7 +99,7 @@ enum ViewControllerType {
 - (BOOL) googleScores;
 - (BOOL) noScores;
 - (NSString*) currentScoreProvider;
-- (NSArray*) scoreProvider;
+- (NSArray*) scoreProviders;
 
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;

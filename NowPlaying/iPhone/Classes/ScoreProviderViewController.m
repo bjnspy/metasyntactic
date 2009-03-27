@@ -56,7 +56,7 @@
 
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section {
-    return self.model.scoreProvider.count;
+    return self.model.scoreProviders.count;
 }
 
 
@@ -73,7 +73,7 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.text = [self.model.scoreProvider objectAtIndex:indexPath.row];
+    cell.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -81,7 +81,7 @@
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
-    for (int i = 0; i < self.model.scoreProvider.count; i++) {
+    for (int i = 0; i < self.model.scoreProviders.count; i++) {
         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
 

@@ -719,7 +719,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (NSArray*) scoreProvider {
+- (NSArray*) scoreProviders {
     return [NSArray arrayWithObjects:
             @"RottenTomatoes",
             @"Metacritic",
@@ -730,7 +730,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSString*) currentScoreProvider {
-    return [self.scoreProvider objectAtIndex:self.scoreProviderIndex];
+    return [self.scoreProviders objectAtIndex:self.scoreProviderIndex];
 }
 
 
