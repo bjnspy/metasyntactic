@@ -111,6 +111,11 @@
 }
 
 
+- (NSString*) movieMapFile {
+    return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
+}
+
+
 - (NSString*) reviewsFile:(NSString*) title {
     return [[reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
             stringByAppendingPathExtension:@"plist"];
@@ -228,9 +233,18 @@
 }
 
 
+- (NSDictionary*) loadMovieMap {
+    NSDictionary* result = [FileUtilities readObject:self.movieMapFile];
+    if (result.count == 0) {
+        return [NSDictionary dictionary];
+    }
+    return result;
+}
+
+
 - (NSDictionary*) movieMapNoLock {
     if (movieMapData == nil) {
-        self.movieMapData = [NSDictionary dictionary];
+        self.movieMapData = [self loadMovieMap];
     }
 
     [self ensureMovieMapNoLock];
@@ -263,36 +277,28 @@
 }
 
 
-- (void) updateScoresBackgroundEntryPointWorker {
-    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-
-    if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
-            return;
-        }
-    }
-
+- (void) updateScoresWorker {
     NSString* localHash = self.hashValue;
     NSString* serverHash = [self lookupServerHash];
-
+    
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"]) {
         return;
     }
-
+    
     if ([serverHash isEqual:localHash]) {
         // rewrite the hash so we don't this for another day.
         [FileUtilities writeObject:serverHash toFile:self.hashFile];
         return;
     }
-
+    
     NSDictionary* result = [self lookupServerScores];
     if (result.count == 0) {
         return;
     }
-
+    
     [self saveScores:result hash:serverHash];
-
+    
     [dataGate lock];
     {
         self.scoresData = result;
@@ -301,12 +307,34 @@
         self.moviesData = nil;
     }
     [dataGate unlock];
-    [AppDelegate majorRefresh];
+    [AppDelegate majorRefresh:YES];
 }
 
 
-- (void) updateScoresBackgroundEntryPoint {
-    [self updateScoresBackgroundEntryPointWorker];
+- (void) updateScoresBackgroundEntryPointWorker:(BOOL) notification {
+    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
+
+    if (lastLookupDate != nil) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
+            return;
+        }
+    }
+
+    NSString* notificationString = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [self providerName]];
+    if (notification) {
+        [AppDelegate addNotification:notificationString];
+    }
+    
+    [self updateScoresWorker];
+    
+    if (notification) {
+        [AppDelegate removeNotification:notificationString];
+    }
+}
+
+
+- (void) updateScoresBackgroundEntryPoint:(BOOL) notification {
+    [self updateScoresBackgroundEntryPointWorker:notification];
     [self clearUpdatedMovies];
 }
 
@@ -498,9 +526,19 @@
 }
 
 
-- (void) update {
-    [self updateScoresBackgroundEntryPoint];
+- (void) update:(BOOL) notifications {
+    [self updateScoresBackgroundEntryPoint:notifications];
     [self updateReviewsBackgroundEntryPoint];
+}
+
+
+- (void) updateWithNotifications {
+    [self update:YES];
+}
+
+
+- (void) updateWithoutNotifications {
+    [self update:NO];
 }
 
 
@@ -541,6 +579,7 @@
         return;
     }
 
+    [FileUtilities writeObject:result toFile:[self movieMapFile]];
     [dataGate lock];
     {
         self.movieMapData = result;
@@ -548,14 +587,19 @@
     }
     [dataGate unlock];
 
-    [AppDelegate majorRefresh];
+    [AppDelegate majorRefresh:YES];
 }
 
 
 - (void) regenerateMap:(NSDictionary*) scores
              forMovies:(NSArray*) localMovies {
-    [self regenerateMapWorker:scores forMovies:localMovies];
-    [self clearUpdatedMovies];
+    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [self providerName]];
+    [AppDelegate addNotification:notification];
+    {
+        [self regenerateMapWorker:scores forMovies:localMovies];
+        [self clearUpdatedMovies];
+    }
+    [AppDelegate removeNotification:notification];
 }
 
 

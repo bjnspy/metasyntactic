@@ -106,8 +106,6 @@
 
         [self setCheckmarkForCell:cell atRow:i];
     }
-
-    [AppDelegate majorRefresh:YES];
 }
 
 

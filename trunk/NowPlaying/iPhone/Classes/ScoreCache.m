@@ -147,31 +147,20 @@
 
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
     if (currentScoreProvider != noneScoreProvider) {
-        [[OperationQueue operationQueue] performSelector:@selector(updatePrimaryScoreProvider:)
-                                         onTarget:self
-                                           withObject:currentScoreProvider
-                                             gate:nil
-                                          priority:Priority];
+        [[OperationQueue operationQueue] performSelector:@selector(updateWithNotifications)
+                                                onTarget:currentScoreProvider
+                                                    gate:nil
+                                                priority:Priority];     
     }
 
     for (id<ScoreProvider> provider in self.scoreProviders) {
-        if (provider != currentScoreProvider) {
-            [[OperationQueue operationQueue] performSelector:@selector(update)
+        if (provider != currentScoreProvider && provider != noneScoreProvider) {
+            [[OperationQueue operationQueue] performSelector:@selector(updateWithoutNotifications)
                                                  onTarget:provider
                                                      gate:nil
-                                                  priority:Normal];
+                                                  priority:Priority];
         }
     }
-}
-
-
-- (void) updatePrimaryScoreProvider:(id<ScoreProvider>) scoreProvider {
-    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [scoreProvider providerName]];
-    [AppDelegate addNotification:notification];
-    {
-        [scoreProvider update];
-    }
-    [AppDelegate removeNotification:notification];
 }
 
 @end

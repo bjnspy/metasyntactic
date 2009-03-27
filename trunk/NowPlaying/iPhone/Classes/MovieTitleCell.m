@@ -27,7 +27,7 @@
 #import "RedMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
 #import "GreenMovieTitleCell.h"
-#import "PerfectGreeMovieTitleCell.h"
+#import "PerfectGreenMovieTitleCell.h"
 #import "UnknownMovieTitleCell.h"
 
 @interface MovieTitleCell()
