@@ -812,9 +812,9 @@ static NSDictionary* availabilityMap = nil;
 
     // first download and check the feed's current etag against the current one.
     if (![self etagChanged:feed]) {
-        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.name);
+        NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
     } else {
-        NSLog(@"Etag changed for %@.  Downloading.", feed.name);
+        NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
         NSString* title = [self titleForKey:feed.key includeCount:NO];
         NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), title];
         [AppDelegate addNotification:notification];
@@ -1134,37 +1134,41 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) downloadRSSFeed:(NSString*) address {
-    [self downloadRSSFeedWorker:address];
-
+- (void) downloadRSSFeedMovies:(NSString*) address {
     NSString* file = [self rssFile:address];
     NSArray* identifiers = [FileUtilities readObject:file];
-
+    
     if (identifiers.count == 0) {
         return;
     }
-
+    
     NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
     [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
-                                                                       onTarget:[AppDelegate class]
-                                                                        withObject:notification
-                                                                           gate:nil
-                                                                       priority:Normal];
-
+                                            onTarget:[AppDelegate class]
+                                          withObject:notification
+                                                gate:nil
+                                            priority:Normal];
+    
     for (NSString* identifier in identifiers) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
-                                             onTarget:self
-                                           withObject:identifier
-                                           withObject:address
-                                                 gate:nil
-                                             priority:Normal];
+                                                onTarget:self
+                                              withObject:identifier
+                                              withObject:address
+                                                    gate:nil
+                                                priority:Normal];
     }
-
+    
     [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
-                                                                       onTarget:[AppDelegate class]
-                                                                     withObject:notification
-                                                                           gate:nil
-                                                                       priority:Normal];
+                                            onTarget:[AppDelegate class]
+                                          withObject:notification
+                                                gate:nil
+                                            priority:Normal];    
+}
+
+
+- (void) downloadRSSFeed:(NSString*) address {
+    [self downloadRSSFeedWorker:address];
+    [self downloadRSSFeedMovies:address];
 }
 
 
