@@ -221,13 +221,9 @@
         NSLog(@"AbstractScoreProvider:ensureMovieMapNoLock - regenerating map");
         self.moviesData = moviesArray;
 
-        NSDictionary* scores = self.scores;
-
-        [[OperationQueue operationQueue] performSelector:@selector(regenerateMap:forMovies:)
+        [[OperationQueue operationQueue] performSelector:@selector(regenerateMap)
                                                 onTarget:self
-                                              withObject:scores
-                                              withObject:moviesArray
-                                                    gate:movieMapLock
+                                                    gate:runGate
                                                 priority:Now];
     }
 }
@@ -277,6 +273,62 @@
 }
 
 
+- (NSDictionary*) regenerateMapWorker:(NSDictionary*) scores
+                            forMovies:(NSArray*) movies {
+    NSLog(@"AbstractScoreProvider:regenerateMapWorker - scores:%d movies:%d", scores.count, movies.count);
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    NSArray* keys = scores.allKeys;
+    NSMutableArray* lowercaseKeys = [NSMutableArray array];
+    for (NSString* key in keys) {
+        [lowercaseKeys addObject:key.lowercaseString];
+    }
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    
+    for (Movie* movie in movies) {        
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
+            NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
+            if (index == NSNotFound) {
+                index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
+            }
+            
+            if (index != NSNotFound) {
+                NSString* key = [keys objectAtIndex:index];
+                [result setObject:key forKey:movie.canonicalTitle];
+            }
+        }
+        [pool release];
+    }
+    
+    return result;
+}
+
+
+- (void) regenerateMap {
+    NSDictionary* scores = self.scores;
+    NSArray* movies = self.movies;
+
+    NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
+    if (map.count == 0) {
+        return;
+    }
+
+    [dataGate lock];
+    {
+        [FileUtilities writeObject:map toFile:[self movieMapFile]];
+        self.movieMapData = map;
+        self.moviesData = movies;
+    }
+    [dataGate unlock];
+    
+    [AppDelegate majorRefresh];
+    
+}
+
 - (void) updateScoresWorker {
     NSString* localHash = self.hashValue;
     NSString* serverHash = [self lookupServerHash];
@@ -292,21 +344,27 @@
         return;
     }
     
-    NSDictionary* result = [self lookupServerScores];
-    if (result.count == 0) {
+    NSDictionary* scores = [self lookupServerScores];
+    if (scores.count == 0) {
         return;
     }
     
-    [self saveScores:result hash:serverHash];
+    [self saveScores:scores hash:serverHash];
+    NSArray* movies = [self.model movies];
     
+    NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
+
     [dataGate lock];
     {
-        self.scoresData = result;
+        [FileUtilities writeObject:map toFile:[self movieMapFile]];
+        self.moviesData = movies;
+        self.movieMapData = map;
+        
+        self.scoresData = scores;
         self.hashData = serverHash;
-        self.movieMapData = nil;
-        self.moviesData = nil;
     }
     [dataGate unlock];
+    
     [AppDelegate majorRefresh:YES];
 }
 
@@ -320,7 +378,7 @@
         }
     }
 
-    NSString* notificationString = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [self providerName]];
+    NSString* notificationString = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [[Model model] currentScoreProvider]];
     if (notification) {
         [AppDelegate addNotification:notificationString];
     }
@@ -510,7 +568,7 @@
                                                  onTarget:self
                                                withObject:score
                                                withObject:location
-                                                     gate:nil
+                                                     gate:runGate
                                                  priority:Normal];
         } else {
             if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
@@ -518,7 +576,7 @@
                                                      onTarget:self
                                                    withObject:score
                                                    withObject:location
-                                                         gate:nil
+                                                         gate:runGate
                                                      priority:Low];
             }
         }
@@ -527,8 +585,12 @@
 
 
 - (void) update:(BOOL) notifications {
-    [self updateScoresBackgroundEntryPoint:notifications];
-    [self updateReviewsBackgroundEntryPoint];
+    [runGate lock];
+    {
+        [self updateScoresBackgroundEntryPoint:notifications];
+        [self updateReviewsBackgroundEntryPoint];
+    }
+    [runGate unlock];
 }
 
 
@@ -539,67 +601,6 @@
 
 - (void) updateWithoutNotifications {
     [self update:NO];
-}
-
-
-- (void) regenerateMapWorker:(NSDictionary*) scores
-                   forMovies:(NSArray*) localMovies {
-    NSLog(@"AbstractScoreProvider:regenerateMapWorker - scores:%d movies:%d", scores.count, localMovies.count);
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
-    NSArray* keys = scores.allKeys;
-    NSMutableArray* lowercaseKeys = [NSMutableArray array];
-    for (NSString* key in keys) {
-        [lowercaseKeys addObject:key.lowercaseString];
-    }
-
-    DifferenceEngine* engine = [DifferenceEngine engine];
-
-    for (Movie* movie in localMovies) {
-        NSLog(@"AbstractScoreProvider:regenerateMapWorker - movie:%@", movie.canonicalTitle);
-
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
-            NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
-            if (index == NSNotFound) {
-                index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
-            }
-
-            if (index != NSNotFound) {
-                NSString* key = [keys objectAtIndex:index];
-                [result setObject:key forKey:movie.canonicalTitle];
-            }
-        }
-        [pool release];
-    }
-
-    if (result.count == 0) {
-        return;
-    }
-
-    [FileUtilities writeObject:result toFile:[self movieMapFile]];
-    [dataGate lock];
-    {
-        self.movieMapData = result;
-        self.moviesData = localMovies;
-    }
-    [dataGate unlock];
-
-    [AppDelegate majorRefresh:YES];
-}
-
-
-- (void) regenerateMap:(NSDictionary*) scores
-             forMovies:(NSArray*) localMovies {
-    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", nil), [self providerName]];
-    [AppDelegate addNotification:notification];
-    {
-        [self regenerateMapWorker:scores forMovies:localMovies];
-        [self clearUpdatedMovies];
-    }
-    [AppDelegate removeNotification:notification];
 }
 
 
