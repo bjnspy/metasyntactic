@@ -20,10 +20,7 @@
     startIndicatorSelector:(SEL) startIndicatorSelector
      stopIndicatorSelector:(SEL) stopIndicatorSelector;
 
-+ (void) addBackgroundTask:(BOOL) isVisible;
-+ (void) removeBackgroundTask:(BOOL) isVisible;
-
-+ (BOOL) hasVisibleBackgroundTasks;
-+ (BOOL) hasBackgroundTasks;
++ (void) addVisibleBackgroundTask;
++ (void) removeVisibleBackgroundTask;
 
 @end

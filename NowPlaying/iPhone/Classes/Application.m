@@ -421,19 +421,27 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
+
 + (void) emptyDirectory:(NSString*) directory andDelete:(BOOL) delete {
+    NSLog(@"Application:emptyDirectory - %@ delete:%@", directory.lastPathComponent, delete ? @"YES" : @"NO");
     if ([largeMoviesPostersIndexDirectory isEqual:directory]) {
         return;
     }
 
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-        for (NSString* child in [FileUtilities directoryContentsPaths:directory]) {
-            if ([FileUtilities isDirectory:child]) {
-                [self emptyDirectory:child andDelete:YES];
-            } else {
-                [[NSFileManager defaultManager] removeItemAtPath:child error:NULL];
+        for (NSString* childName in [FileUtilities directoryContentsNames:directory]) {
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            {
+                NSString* child = [directory stringByAppendingPathComponent:childName];
+                if ([FileUtilities isDirectory:child]) {
+                    [self emptyDirectory:child andDelete:YES];
+                } else {
+                    NSLog(@"Application:emptyDirectory - %@ deleting:%@", directory.lastPathComponent, childName);
+                    [[NSFileManager defaultManager] removeItemAtPath:child error:NULL];
+                }
             }
+            [pool release];
 
             [NSThread sleepForTimeInterval:1];
         }

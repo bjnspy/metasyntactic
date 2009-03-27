@@ -36,13 +36,15 @@
              argument:(id) argument2_
        operationQueue:(OperationQueue*) operationQueue_
             isBounded:(BOOL) isBounded_
-                 gate:(id<NSLocking>) gate_ {
+                 gate:(id<NSLocking>) gate_
+             priority:(NSOperationQueuePriority) priority_ {
     if (self = [super initWithTarget:target_
                             selector:selector_
                             argument:argument1_
                       operationQueue:operationQueue_
                            isBounded:isBounded_
-                                gate:gate_]) {
+                                gate:gate_
+                            priority:priority_]) {
         self.argument2 = argument2_;
     }
 
@@ -56,14 +58,16 @@
                            argument:(id) argument2
                      operationQueue:(OperationQueue*) operationQueue
                           isBounded:(BOOL) isBounded
-                               gate:(id<NSLocking>) gate {
+                               gate:(id<NSLocking>) gate
+                           priority:(NSOperationQueuePriority) priority {
     return [[[Operation2 alloc] initWithTarget:target
                                       selector:selector
                                       argument:argument1
                                       argument:argument2
                                 operationQueue:operationQueue
                                      isBounded:isBounded
-                                          gate:gate] autorelease];
+                                          gate:gate
+                                      priority:priority] autorelease];
 }
 
 

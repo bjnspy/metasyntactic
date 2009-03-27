@@ -81,11 +81,15 @@
     }
 
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:visible];
     {
+        if (visible) {
+            [GlobalActivityIndicator addVisibleBackgroundTask];
+        }
         [self invokeSelector];
+        if (visible) {
+            [GlobalActivityIndicator removeVisibleBackgroundTask];
+        }
     }
-    [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];
 
     [AppDelegate minorRefresh];

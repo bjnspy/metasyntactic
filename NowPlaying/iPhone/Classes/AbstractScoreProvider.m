@@ -34,12 +34,12 @@
 
 @interface AbstractScoreProvider()
 @property (retain) NSDictionary* scoresData;
-@property (retain) NSString* hashData;
+@property (copy) NSString* hashData;
 @property (retain) NSLock* movieMapLock;
-@property (retain) NSArray* movies;
+@property (retain) NSArray* moviesData;
 @property (retain) NSDictionary* movieMapData;
-@property (retain) NSString* providerDirectory;
-@property (retain) NSString* reviewsDirectory;
+@property (copy) NSString* providerDirectory;
+@property (copy) NSString* reviewsDirectory;
 @end
 
 
@@ -48,7 +48,7 @@
 @synthesize scoresData;
 @synthesize hashData;
 @synthesize movieMapLock;
-@synthesize movies;
+@synthesize moviesData;
 @synthesize movieMapData;
 @synthesize providerDirectory;
 @synthesize reviewsDirectory;
@@ -57,7 +57,7 @@
     self.scoresData = nil;
     self.hashData = nil;
     self.movieMapLock = nil;
-    self.movies = nil;
+    self.moviesData = nil;
     self.movieMapData = nil;
     self.providerDirectory = nil;
     self.reviewsDirectory = nil;
@@ -124,6 +124,27 @@
 
 - (NSString*) reviewsHashFile:(NSString*) title {
     return [reviewsDirectory stringByAppendingPathComponent:[[FileUtilities sanitizeFileName:title] stringByAppendingString:@"-Hash.plist"]];
+}
+
+
+- (NSArray*) moviesNoLock {
+    if (moviesData == nil) {
+        self.moviesData = [[Model model] movies];
+    }
+
+    // Access through the property so that we get back a safe pointer
+    return self.moviesData;
+}
+
+
+- (NSArray*) movies {
+    NSArray* result = nil;
+    [dataGate lock];
+    {
+        result = [self moviesNoLock];
+    }
+    [dataGate unlock];
+    return result;
 }
 
 
@@ -205,15 +226,16 @@
 
 - (void) ensureMovieMapNoLock {
     NSArray* moviesArray = [[Model model] movies];
-    if (moviesArray != movies) {
-        self.movies = moviesArray;
+    if (moviesArray != self.moviesNoLock) {
+        NSLog(@"AbstractScoreProvider:ensureMovieMapNoLock - regenerating map");
+        self.moviesData = moviesArray;
 
         NSDictionary* scores = self.scores;
 
         [[OperationQueue operationQueue] performSelector:@selector(regenerateMap:forMovies:)
                                                 onTarget:self
                                               withObject:scores
-                                              withObject:movies
+                                              withObject:moviesArray
                                                     gate:movieMapLock
                                                 priority:Now];
     }
@@ -290,7 +312,7 @@
         self.scoresData = result;
         self.hashData = serverHash;
         self.movieMapData = nil;
-        self.movies = nil;
+        self.moviesData = nil;
     }
     [dataGate unlock];
     [AppDelegate majorRefresh];
@@ -498,6 +520,8 @@
 
 - (void) regenerateMapWorker:(NSDictionary*) scores
                    forMovies:(NSArray*) localMovies {
+    NSLog(@"AbstractScoreProvider:regenerateMapWorker - scores:%d movies:%d", scores.count, localMovies.count);
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* keys = scores.allKeys;
@@ -509,6 +533,8 @@
     DifferenceEngine* engine = [DifferenceEngine engine];
 
     for (Movie* movie in localMovies) {
+        NSLog(@"AbstractScoreProvider:regenerateMapWorker - movie:%@", movie.canonicalTitle);
+
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
@@ -529,13 +555,14 @@
         return;
     }
 
+    NSLog(@"Writing movieMap", nil);
     [FileUtilities writeObject:result
                         toFile:self.movieMapFile];
 
     [dataGate lock];
     {
         self.movieMapData = result;
-        self.movies = localMovies;
+        self.moviesData = localMovies;
     }
     [dataGate unlock];
 

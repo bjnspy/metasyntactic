@@ -15,9 +15,9 @@
 #import "Feed.h"
 
 @interface Feed()
-@property (retain) NSString* url;
-@property (retain) NSString* key;
-@property (retain) NSString* name;
+@property (copy) NSString* url;
+@property (copy) NSString* key;
+@property (copy) NSString* name;
 @end
 
 

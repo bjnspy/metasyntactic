@@ -39,6 +39,7 @@
 #import "MutableNetflixCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
+#import "OperationQueue.h"
 #import "PosterCache.h"
 #import "ReviewsViewController.h"
 #import "Score.h"
@@ -981,6 +982,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     return [NSSet setWithArray:array];
 }
 
+
 - (NSSet*) bookmarkedTitlesNoLock {
     if (bookmarkedTitlesData == nil) {
         self.bookmarkedTitlesData = [self loadBookmarkedTitles];
@@ -1612,7 +1614,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 - (NSString*) noInformationFound {
     if (self.userAddress.length == 0) {
         return NSLocalizedString(@"Please enter your location", nil);
-    } else if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+    } else if ([[OperationQueue operationQueue] hasPriorityOperations]) {
         return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
         return NSLocalizedString(@"Network unavailable", nil);

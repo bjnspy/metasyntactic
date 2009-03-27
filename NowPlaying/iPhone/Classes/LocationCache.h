@@ -15,6 +15,8 @@
 #import "AbstractCache.h"
 
 @interface LocationCache : AbstractCache {
+@private
+    NSMutableDictionary* addressToLocation;
 }
 
 // @protected

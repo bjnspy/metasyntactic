@@ -83,10 +83,13 @@
         return nil;
     }
 
+    //NSLog(@"UserLocationCache:locationForUserAddress - Loading massaged address");
     Location* location = [self loadLocation:[self massageAddress:userAddress]];
     if (location != nil) {
+        //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address found");
         return location;
     }
+    //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address not found.  Loading normal address");
 
     return [self loadLocation:userAddress];
 }
@@ -105,20 +108,27 @@
 
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForUserAddress:userAddress];
-
+    
     if (location == nil) {
+        NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
+        
         NSString* notification = NSLocalizedString(@"location", nil);
         [AppDelegate addNotification:notification];
         {
+            NSLog(@"UserLocationCache:downloadWorker - Downloading address address");
+
             location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
-            if (![location.country isEqual:[LocaleUtilities isoCountry]]) {
+            if ([location.country isEqual:[LocaleUtilities isoCountry]]) {
+                NSLog(@"UserLocationCache:downloadWorker - Massaged address found");
+            } else {
+                NSLog(@"UserLocationCache:downloadWorker - Downloading non-massaged address");
                 location = [self downloadAddressLocationFromWebService:userAddress];
             }
         }
         [AppDelegate removeNotification:notification];
 
         [self setLocation:location forUserAddress:userAddress];
-    }
+    }   
 
     return location;
 }

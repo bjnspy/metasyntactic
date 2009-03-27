@@ -36,6 +36,8 @@
 @synthesize gate;
 
 - (void) dealloc {
+    [operationQueue notifyOperationDestroyed:priority];
+
     self.operationQueue = nil;
     self.target = nil;
     self.selector = nil;
@@ -50,13 +52,18 @@
              selector:(SEL) selector_
        operationQueue:(OperationQueue*) operationQueue_
             isBounded:(BOOL) isBounded_
-                 gate:(id<NSLocking>) gate_ {
+                 gate:(id<NSLocking>) gate_
+             priority:(NSOperationQueuePriority) priority_ {
     if (self = [super init]) {
         self.target = target_;
         self.selector = selector_;
         self.operationQueue = operationQueue_;
         self.isBounded = isBounded_;
         self.gate = gate_;
+        priority = priority_;
+        self.queuePriority = priority_;
+        
+        [operationQueue notifyOperationCreated:priority_];
     }
 
     return self;
@@ -67,12 +74,14 @@
                           selector:(SEL) selector
                     operationQueue:(OperationQueue*) operationQueue
                          isBounded:(BOOL) isBounded
-                              gate:(id<NSLocking>) gate {
+                              gate:(id<NSLocking>) gate
+                          priority:(NSOperationQueuePriority) priority {
     return [[[Operation alloc] initWithTarget:target
                                      selector:selector
                                operationQueue:operationQueue
                                     isBounded:isBounded
-                                         gate:gate] autorelease];
+                                         gate:gate
+                                     priority:priority] autorelease];
 }
 
 /*
@@ -98,20 +107,29 @@
 
 - (void) main {
     [NSThread setThreadPriority:0];
+    
     NSString* className = NSStringFromClass([target class]);
     NSString* selectorName = NSStringFromSelector(selector);
-    NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
+    NSString* name = [NSString stringWithFormat:@"%@:%@", className, selectorName];
     [[NSThread currentThread] setName:name];
 
-    BOOL visible =  (self.queuePriority >= Priority);
+    NSLog(@"Starting: %@", name);
+    
+    BOOL visible = (self.queuePriority >= Priority);
 
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:visible];
     {
+        if (visible) {
+            [GlobalActivityIndicator addVisibleBackgroundTask];
+        }
         [self mainWorker];
+        if (visible) {
+            [GlobalActivityIndicator removeVisibleBackgroundTask];
+        }
     }
-    [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];
+
+    NSLog(@"Stopping: %@", name);
 
     if (isBounded) {
         [operationQueue onAfterBoundedOperationCompleted:self];

@@ -19,9 +19,9 @@
     id argument2;
 }
 
-+ (Operation2*) operationWithTarget:(id) target selector:(SEL) selector argument:(id) argument1 argument:(id) argument2 operationQueue:(OperationQueue*) operationQueue  isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate;
++ (Operation2*) operationWithTarget:(id) target selector:(SEL) selector argument:(id) argument1 argument:(id) argument2 operationQueue:(OperationQueue*) operationQueue  isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate priority:(NSOperationQueuePriority) priority;
 
 /* @protected */
-- (id) initWithTarget:(id) target selector:(SEL) selector argument:(id) argument1 argument:(id) argument2 operationQueue:(OperationQueue*) operationQueue isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate;
+- (id) initWithTarget:(id) target selector:(SEL) selector argument:(id) argument1 argument:(id) argument2 operationQueue:(OperationQueue*) operationQueue isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate priority:(NSOperationQueuePriority) priority;
 
 @end

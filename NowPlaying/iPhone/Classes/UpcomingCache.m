@@ -33,7 +33,7 @@
 #import "XmlElement.h"
 
 @interface UpcomingCache()
-@property (retain) NSString* hashData;
+@property (copy) NSString* hashData;
 @property (retain) NSDictionary* movieMapData;
 @property (retain) NSDictionary* studioKeysData;
 @property (retain) NSDictionary* titleKeysData;

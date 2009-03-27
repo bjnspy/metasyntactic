@@ -26,7 +26,7 @@
     @property (retain) Location* location;
     @property (retain) Location* originatingLocation;
     @property (retain) NSArray* movieTitles;
-    @property (retain) NSString* simpleAddress;
+    @property (copy) NSString* simpleAddress;
 @end
 
 

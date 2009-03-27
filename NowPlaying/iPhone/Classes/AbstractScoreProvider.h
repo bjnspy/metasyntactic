@@ -22,7 +22,7 @@
     // Mapping from score title to score.
     NSDictionary* scoresData;
     NSString* hashData;
-    NSArray* movies;
+    NSArray* moviesData;
 
     // Mapping from google movie title to score provider title
     NSDictionary* movieMapData;

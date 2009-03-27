@@ -35,8 +35,10 @@ typedef enum {
 @interface OperationQueue : NSObject {
 @private
     NSOperationQueue* queue;
+    NSLock* dataGate;
+    
     NSMutableArray* boundedOperations;
-    NSLock* boundedOperationsGate;
+    NSInteger priorityOperationsCount;
 }
 
 + (OperationQueue*) operationQueue;
@@ -51,7 +53,11 @@ typedef enum {
 
 - (void) temporarilySuspend;
 
+- (BOOL) hasPriorityOperations;
+
 /* @package */
+- (void) notifyOperationCreated:(QueuePriority) priority;
+- (void) notifyOperationDestroyed:(QueuePriority) priority;
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation;
 
 @end

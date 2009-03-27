@@ -197,7 +197,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) noInformationFound {
-    if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+    if ([[OperationQueue operationQueue] hasPriorityOperations]) {
         return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
         return NSLocalizedString(@"Network unavailable", nil);
@@ -231,7 +231,7 @@ static NSDictionary* availabilityMap = nil;
         self.feedsData = [self loadFeeds];
     }
 
-    return feedsData;
+    return self.feedsData;
 }
 
 
@@ -273,14 +273,15 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSString*) queueEtagFile:(Queue*) queue {
-    NSString* name = [NSString stringWithFormat:@"%@-etag", queue.feed.key];
+- (NSString*) queueEtagFile:(Feed*) feed {
+    NSString* name = [NSString stringWithFormat:@"%@-etag", feed.key];
     return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:name]]
             stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (Queue*) loadQueue:(Feed*) feed {
+    NSLog(@"Loading queue: %@", feed.name);
     NSDictionary* dictionary = [FileUtilities readObject:[self queueFile:feed]];
     if (dictionary.count == 0) {
         return nil;
@@ -290,12 +291,18 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) addQueue:(Queue*) queue {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queues];
+- (void) addQueueNoLock:(Queue*) queue {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.queuesNoLock];
     [dictionary setObject:queue forKey:queue.feed.key];
+    
+    self.queuesData = dictionary;    
+}
+
+
+- (void) addQueue:(Queue*) queue {
     [dataGate lock];
     {
-        self.queuesData = dictionary;
+        [self addQueueNoLock:queue];
     }
     [dataGate unlock];
 }
@@ -306,12 +313,16 @@ static NSDictionary* availabilityMap = nil;
         return nil;
     }
 
-    Queue* queue = [self.queues objectForKey:feed.key];
+    Queue* queue = [self.queuesNoLock objectForKey:feed.key];
     if (queue == nil) {
-        queue = [self loadQueue:feed];
-        if (queue != nil) {
-            [self addQueue:queue];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            queue = [self loadQueue:feed];
+            if (queue != nil) {
+                [self addQueueNoLock:queue];
+            }
         }
+        [pool release];
     }
 
     return queue;
@@ -395,6 +406,8 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) saveFeeds:(NSArray*) feeds {
+    NSLog(@"NetflixCache:saveFeeds");
+
     NSMutableArray* result = [NSMutableArray array];
 
     for (Feed* feed in feeds) {
@@ -554,9 +567,9 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) saveQueue:(Queue*) queue {
-    NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.key, queue.etag);
+    NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.name, queue.etag);
     [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed]];
-    [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue]];
+    [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue.feed]];
     [self addQueue:queue];
 }
 
@@ -596,8 +609,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (BOOL) etagChanged:(Feed*) feed {
-    Queue* queue = [self loadQueue:feed];
-    NSString* localEtag = queue.etag;
+    NSString* localEtag = [FileUtilities readObject:[self queueEtagFile:feed]];
     if (localEtag.length == 0) {
         return YES;
     }
@@ -796,10 +808,13 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadQueue:(Feed*) feed {
+    NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
+
     // first download and check the feed's current etag against the current one.
     if (![self etagChanged:feed]) {
-        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.key);
+        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.name);
     } else {
+        NSLog(@"Etag changed for %@.  Downloading.", feed.name);
         NSString* title = [self titleForKey:feed.key includeCount:NO];
         NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), title];
         [AppDelegate addNotification:notification];
@@ -809,7 +824,7 @@ static NSDictionary* availabilityMap = nil;
         [AppDelegate removeNotification:notification];
     }
 
-    Queue* queue = [self loadQueue:feed];
+    Queue* queue = [self queueForFeed:feed];
 
     [[CacheUpdater cacheUpdater] addMovies:queue.movies];
     [[CacheUpdater cacheUpdater] addMovies:queue.saved];
@@ -817,6 +832,8 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadUserData {
+    NSLog(@"NetflixCache:downloadUserData");
+
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
 
@@ -1305,6 +1322,8 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadRSS {
+    NSLog(@"NetflixCache:downloadRSS");
+
     for (NSString* key in mostPopularTitles) {
         NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
         [FileUtilities createDirectory:[self rssFeedDirectory:address]];

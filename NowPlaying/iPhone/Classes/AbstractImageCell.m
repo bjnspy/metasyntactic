@@ -14,8 +14,8 @@
 
 #import "AbstractImageCell.h"
 
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "OperationQueue.h"
 
 @interface AbstractImageCell()
 @property ImageState state;
@@ -103,14 +103,15 @@
 
     UIImage* image = [self loadImageWorker];
     if (image == nil) {
-        [self prioritizeImage];
-        if ([GlobalActivityIndicator hasBackgroundTasks]) {
+        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             // don't need to do anything.
             // keep up the spinner
             state = Loading;
         } else {
             state = NotFound;
         }
+
+        [self prioritizeImage];
     } else {
         CGSize imageSize = image.size;
         CGSize frameSize = imageView.frame.size;
