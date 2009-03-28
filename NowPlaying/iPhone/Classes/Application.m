@@ -460,7 +460,7 @@ static DifferenceEngine* differenceEngine = nil;
         [pool release];
     }
 
-    NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
+    NSLog(@"Application:emptyTrashBackgroundEntryPoint - stop");
 }
 
 
