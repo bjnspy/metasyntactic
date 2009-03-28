@@ -147,11 +147,7 @@
             return 2;
         }
     } else if (section == 1) {
-        if ([Application canSendMail]) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return 2;
     } else if (section == 2) {
         return performances.count;
     }
@@ -261,7 +257,7 @@
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textColor = [ColorCache commandColor];
 
-    if (row == 0 && [Application canSendMail]) {
+    if (row == 0) {
         cell.text = NSLocalizedString(@"E-mail listings", @"This string must it on a button half the width of the screen.  It means 'email the theater listings to a friend'");
     } else {
         cell.text = NSLocalizedString(@"Change date", nil);
@@ -334,7 +330,7 @@
 
 
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
-    if (row == 0 && [Application canSendMail]) {
+    if (row == 0) {
         [self didSelectEmailListings];
     } else {
         [self changeDate];

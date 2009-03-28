@@ -186,7 +186,7 @@ const NSInteger POSTER_TAG = -1;
         [arguments addObject:[NSNull null]];
     }
 
-    if (theatersArray.count > 0 && [Application canSendMail]) {
+    if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
         [arguments addObject:[NSNull null]];

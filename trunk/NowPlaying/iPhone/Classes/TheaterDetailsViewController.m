@@ -183,11 +183,7 @@
         // theater address and possibly phone number
         return 1 + (theater.phoneNumber.length == 0 ? 0 : 1);
     } else if (section == 1) {
-        if ([Application canSendMail]) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return 2;
     } else {
         return 2;
     }
@@ -235,7 +231,7 @@
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textAlignment = UITextAlignmentCenter;
 
-    if (row == 0 && [Application canSendMail]) {
+    if (row == 0) {
         cell.text = NSLocalizedString(@"E-mail listings", nil);
     } else {
         cell.text = NSLocalizedString(@"Change date", nil);
@@ -384,7 +380,7 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     } else if (section == 1) {
-        if (row == 0 && [Application canSendMail]) {
+        if (row == 0) {
             [self didSelectEmailListings];
         } else {
             [self didSelectChangeDate];

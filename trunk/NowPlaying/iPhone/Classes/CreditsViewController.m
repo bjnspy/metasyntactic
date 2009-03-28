@@ -369,9 +369,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else {
         subject = @"Now Playing Feedback";
     }
-
-    if ([Application canSendMail]) {
+    
 #ifdef IPHONE_OS_VERSION_3
+    if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
         controller.delegate = self;
 
@@ -380,12 +380,14 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [controller setMessageBody:body isHTML:NO];
 
         [self presentModalViewController:controller animated:YES];
-#endif
     } else {
+#endif
         NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
         NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
         [Application openBrowser:url];
+#ifdef IPHONE_OS_VERSION_3
     }
+#endif
 }
 
 
