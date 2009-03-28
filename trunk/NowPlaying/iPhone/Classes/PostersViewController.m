@@ -59,7 +59,7 @@ const double LOAD_DELAY = 1;
 #ifndef IPHONE_OS_VERSION_3
     self.toolbar = nil;
 #endif
-    
+
     [super dealloc];
 }
 
@@ -70,7 +70,7 @@ const double LOAD_DELAY = 1;
     if (self = [super initWithNavigationController:navigationController_]) {
         self.movie = movie_;
         posterCount = posterCount_;
-        
+
 #ifdef IPHONE_OS_VERSION_3
         self.wantsFullScreenLayout = YES;
 #endif
@@ -342,7 +342,7 @@ const double LOAD_DELAY = 1;
 
 #ifndef IPHONE_OS_VERSION_3
 - (void) setToolbarItems:(NSArray*) items animated:(BOOL) animated {
-    [toolbar setItems:items animated:YES];   
+    [toolbar setItems:items animated:YES];
 }
 #endif
 
@@ -624,7 +624,7 @@ const double LOAD_DELAY = 1;
     CGRect webframe = self.view.frame;
     webframe.origin.x = 0;
     webframe.origin.y = 0;
-    
+
     CGRect toolbarFrame;
     CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
 
@@ -649,7 +649,7 @@ const double LOAD_DELAY = 1;
     [self loadPage:1 delay:LOAD_DELAY];
 
     [self.view addSubview:scrollView];
-    
+
 #ifndef IPHONE_OS_VERSION_3
     [self.view addSubview:toolbar];
     [self.view bringSubviewToFront:toolbar];
@@ -674,7 +674,7 @@ const double LOAD_DELAY = 1;
     if (saving) {
         return;
     }
-    
+
     if (posterCount == 1) {
         // just dismiss us
         [self dismiss];
@@ -682,7 +682,7 @@ const double LOAD_DELAY = 1;
 #ifdef IPHONE_OS_VERSION_3
         if (self.abstractNavigationController.toolbarHidden) {
 #else
-        if (toolbar.alpha == 0) {       
+        if (toolbar.alpha == 0) {
 #endif
             [self showToolBar];
         } else {

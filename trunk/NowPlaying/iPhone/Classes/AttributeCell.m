@@ -25,7 +25,7 @@
 - (void) dealloc {
     self.textLabel = nil;
     self.detailTextLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,26 +39,26 @@
                     reuseIdentifier:nil]) {
         self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        
+
         textLabel.textColor = [ColorCache commandColor];
         textLabel.font = [AttributeCell keyFont];
         textLabel.textAlignment = UITextAlignmentRight;
-        
+
         detailTextLabel.font = [UIFont boldSystemFontOfSize:14.0];
         detailTextLabel.adjustsFontSizeToFitWidth = YES;
         detailTextLabel.minimumFontSize = 10.0;
-        
+
         [self.contentView addSubview:textLabel];
         [self.contentView addSubview:detailTextLabel];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     [textLabel sizeToFit];
     [detailTextLabel sizeToFit];
 
@@ -68,7 +68,7 @@
         frame.size.width = 60;
         textLabel.frame = frame;
     }
-    
+
     {
         CGRect frame = detailTextLabel.frame;
         frame.origin.y = floor((self.contentView.frame.size.height - detailTextLabel.frame.size.height) / 2);

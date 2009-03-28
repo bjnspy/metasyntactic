@@ -173,7 +173,7 @@ typedef enum {
 #else
     cell.text = text;
 #endif
-    
+
     return cell;
 }
 

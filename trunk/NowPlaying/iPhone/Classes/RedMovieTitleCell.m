@@ -23,7 +23,7 @@
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
         self.image = [ImageCache redRatingImage];
     }
-    
+
     return self;
 }
 

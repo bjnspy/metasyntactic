@@ -60,16 +60,16 @@
         scoreLabel.textAlignment = UITextAlignmentCenter;
 
         [self.contentView addSubview:scoreLabel];
-        
+
 #ifndef IPHONE_OS_VERSION_3
         self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        
+
         textLabel.font = [UIFont boldSystemFontOfSize:14];
         detailTextLabel.font = [UIFont systemFontOfSize:12];
-                
+
         [self.contentView addSubview:textLabel];
-        [self.contentView addSubview:detailTextLabel];  
+        [self.contentView addSubview:detailTextLabel];
 #endif
     }
 
@@ -117,7 +117,7 @@
 #ifdef IPHONE_OS_VERSION_3
         CGRect frame = CGRectMake(6, 6, 30, 30);
 #else
-        CGRect frame = CGRectMake(10, 7, 30, 30);  
+        CGRect frame = CGRectMake(10, 7, 30, 30);
 #endif
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -155,18 +155,18 @@
 
     self.textLabel.text = review.author;
     self.detailTextLabel.text = review.source;
-    
+
 #ifndef IPHONE_OS_VERSION_3
     [textLabel sizeToFit];
     [detailTextLabel sizeToFit];
-    
+
     CGRect frame;
-    
+
     frame = textLabel.frame;
     frame.origin.y = 5;
     frame.origin.x = 50;
     textLabel.frame = frame;
-    
+
     frame = detailTextLabel.frame;
     frame.origin.y = 23;
     frame.origin.x = 50;

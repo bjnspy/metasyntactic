@@ -271,18 +271,18 @@
 - (NSDictionary*) regenerateMapWorker:(NSDictionary*) scores
                             forMovies:(NSArray*) movies {
     NSLog(@"AbstractScoreProvider:regenerateMapWorker - scores:%d movies:%d", scores.count, movies.count);
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* keys = scores.allKeys;
     NSMutableArray* lowercaseKeys = [NSMutableArray array];
     for (NSString* key in keys) {
         [lowercaseKeys addObject:key.lowercaseString];
     }
-    
+
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
-    for (Movie* movie in movies) {        
+
+    for (Movie* movie in movies) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
@@ -290,7 +290,7 @@
             if (index == NSNotFound) {
                 index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
             }
-            
+
             if (index != NSNotFound) {
                 NSString* key = [keys objectAtIndex:index];
                 [result setObject:key forKey:movie.canonicalTitle];
@@ -298,7 +298,7 @@
         }
         [pool release];
     }
-    
+
     return result;
 }
 
@@ -319,34 +319,34 @@
         self.moviesData = movies;
     }
     [dataGate unlock];
-    
+
     [AppDelegate majorRefresh];
-    
+
 }
 
 - (void) updateScoresWorker {
     NSString* localHash = self.hashValue;
     NSString* serverHash = [self lookupServerHash];
-    
+
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"]) {
         return;
     }
-    
+
     if ([serverHash isEqual:localHash]) {
         // rewrite the hash so we don't this for another day.
         [FileUtilities writeObject:serverHash toFile:self.hashFile];
         return;
     }
-    
+
     NSDictionary* scores = [self lookupServerScores];
     if (scores.count == 0) {
         return;
     }
-    
+
     [self saveScores:scores hash:serverHash];
     NSArray* movies = [self.model movies];
-    
+
     NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
 
     [dataGate lock];
@@ -354,12 +354,12 @@
         [FileUtilities writeObject:map toFile:[self movieMapFile]];
         self.moviesData = movies;
         self.movieMapData = map;
-        
+
         self.scoresData = scores;
         self.hashData = serverHash;
     }
     [dataGate unlock];
-    
+
     [AppDelegate majorRefresh:YES];
 }
 
@@ -377,9 +377,9 @@
     if (notification) {
         [AppDelegate addNotification:notificationString];
     }
-    
+
     [self updateScoresWorker];
-    
+
     if (notification) {
         [AppDelegate removeNotification:notificationString];
     }

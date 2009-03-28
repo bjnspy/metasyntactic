@@ -113,7 +113,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
 #ifdef IPHONE_OS_VERSION_3
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.textLabel.minimumFontSize = 12;
@@ -128,7 +128,7 @@
 #else
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
 #endif
-    
+
     return cell;
 }
 

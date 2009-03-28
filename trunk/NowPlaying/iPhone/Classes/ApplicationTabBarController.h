@@ -19,7 +19,7 @@
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
     DVDNavigationController* dvdNavigationController;
     NetflixNavigationController* netflixNavigationController;
-    
+
     NotificationCenter* notificationCenter;
 }
 

@@ -20,7 +20,7 @@
     UISearchBar* searchBar;
     LocalSearchDisplayController* searchDisplayController;
 #endif
-    
+
     NSArray* sortedMovies;
     NSArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;

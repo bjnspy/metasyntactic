@@ -16,7 +16,7 @@
 
 @interface CreditsViewController : AbstractFullScreenTableViewController
 #ifdef IPHONE_OS_VERSION_3
-    <MFMailComposeViewControllerDelegate> 
+    <MFMailComposeViewControllerDelegate>
 #endif
 {
 @private

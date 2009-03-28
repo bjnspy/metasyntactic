@@ -47,7 +47,7 @@ static OperationQueue* operationQueue = nil;
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
         //queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         queue.maxConcurrentOperationCount = 1;
-        
+
         self.boundedOperations = [NSMutableArray array];
         self.dataGate = [[[NSLock alloc] init] autorelease];
     }
@@ -162,7 +162,7 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
                                                    selector:selector
                                                    argument:object
                                              operationQueue:self
-                                                  isBounded:YES 
+                                                  isBounded:YES
                                                        gate:gate
                                                    priority:priority];
     [self addBoundedOperation:operation];

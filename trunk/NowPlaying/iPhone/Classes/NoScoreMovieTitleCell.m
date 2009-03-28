@@ -20,7 +20,7 @@
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
         [scoreLabel removeFromSuperview];
     }
-    
+
     return self;
 }
 

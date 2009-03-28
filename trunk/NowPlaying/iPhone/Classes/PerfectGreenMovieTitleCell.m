@@ -21,11 +21,11 @@
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
         self.image = [ImageCache greenRatingImage];
-        
+
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.text = @"100";
     }
-    
+
     return self;
 }
 
