@@ -62,7 +62,7 @@
         self.gate = gate_;
         priority = priority_;
         self.queuePriority = priority_;
-        
+
         [operationQueue notifyOperationCreated:priority_];
     }
 
@@ -107,14 +107,14 @@
 
 - (void) main {
     [NSThread setThreadPriority:0];
-    
+
     NSString* className = NSStringFromClass([target class]);
     NSString* selectorName = NSStringFromSelector(selector);
     NSString* name = [NSString stringWithFormat:@"%@:%@", className, selectorName];
     [[NSThread currentThread] setName:name];
 
     NSLog(@"Starting: %@", name);
-    
+
     BOOL visible = (self.queuePriority >= Priority);
 
     [gate lock];
@@ -133,6 +133,17 @@
 
     if (isBounded) {
         [operationQueue onAfterBoundedOperationCompleted:self];
+    }
+}
+
+
+- (void) start {
+    @try {
+        [super start];
+    } @catch (NSException* exception) {
+        NSLog(@"******** Received exception: %@-%@-%@", exception.name, exception.reason, exception.userInfo);
+    } @catch (id exception) {
+        NSLog(@"******** Received unknown exception ********");
     }
 }
 
