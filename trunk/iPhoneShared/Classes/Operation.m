@@ -141,7 +141,7 @@
     @try {
         [super start];
     } @catch (NSException* exception) {
-        NSLog(@"******** Received exception: %@-%@-%@", exception.name, exception.reason, exception.userInfo);
+        NSLog(@"******** Received exception ********");
     } @catch (id exception) {
         NSLog(@"******** Received unknown exception ********");
     }

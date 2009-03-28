@@ -111,9 +111,10 @@
 
 
 - (void) save:(id) sender {
-    [object performSelector:selector
-                 withObject:[values objectAtIndex:[picker selectedRowInComponent:0]]];
+    id value = [[[values objectAtIndex:[picker selectedRowInComponent:0]] retain] autorelease];
     [super save:sender];
+    [object performSelector:selector
+                 withObject:value];
 }
 
 

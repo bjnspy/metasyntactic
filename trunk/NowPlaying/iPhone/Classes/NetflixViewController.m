@@ -338,7 +338,7 @@ typedef enum {
 
 #ifndef IPHONE_OS_VERSION_3
 - (void) didSelectSearchSection {
-    
+
 }
 #endif
 

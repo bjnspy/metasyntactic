@@ -15,6 +15,7 @@
 #import "AbstractMovieCache.h"
 
 #import "AppDelegate.h"
+#import "Movie.h"
 #import "OperationQueue.h"
 
 @interface AbstractMovieCache()

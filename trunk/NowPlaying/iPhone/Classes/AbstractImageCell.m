@@ -104,7 +104,7 @@
     }
 
     UIImage* image = [self loadImageWorker];
-    if (image == nil) {        
+    if (image == nil) {
         [self prioritizeImage];
 
         if ([[OperationQueue operationQueue] hasPriorityOperations]) {

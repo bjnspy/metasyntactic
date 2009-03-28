@@ -1121,17 +1121,17 @@ static NSDictionary* availabilityMap = nil;
         NSLog(@"Downlading RSS Feed: %@", address);
         XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
         XmlElement* channelElement = [element element:@"channel"];
-        
+
         NSMutableArray* items = [NSMutableArray array];
         for (XmlElement* itemElement in [channelElement elements:@"item"]) {
             NSString* identifier = [[itemElement element:@"link"] text];
             NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
-            
+
             if (lastSlashRange.length > 0) {
                 [items addObject:[identifier substringFromIndex:lastSlashRange.location + 1]];
             }
         }
-        
+
         if (items.count > 0) {
             [FileUtilities writeObject:items toFile:file];
         }
@@ -1147,15 +1147,15 @@ static NSDictionary* availabilityMap = nil;
     if (identifiers.count == 0) {
         return;
     }
-    
+
     NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
                                             onTarget:[AppDelegate class]
                                           withObject:notification
                                                 gate:nil
                                             priority:Normal];
-    
+
 
     for (NSString* identifier in identifiers) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
@@ -1165,7 +1165,7 @@ static NSDictionary* availabilityMap = nil;
                                                     gate:nil
                                                 priority:Normal];
     }
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
                                             onTarget:[AppDelegate class]
                                           withObject:notification

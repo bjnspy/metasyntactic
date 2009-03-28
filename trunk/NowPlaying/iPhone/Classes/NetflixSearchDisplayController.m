@@ -75,6 +75,18 @@
 }
 
 
+- (BOOL)       searchDisplayController:(UISearchDisplayController*) controller
+      shouldReloadTableForSearchString:(NSString*) searchText {
+    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if (searchText.length == 0) {
+        self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Disc", nil), NSLocalizedString(@"Instant", nil), nil];
+    }
+
+    return [super searchDisplayController:controller shouldReloadTableForSearchString:searchText];
+}
+
+
 - (BOOL) shouldShowAll {
     return self.searchBar.selectedScopeButtonIndex == 0;
 }

@@ -263,16 +263,19 @@
     if ([LocaleUtilities isJapanese]) {
         self.indexTitles = nil;
     } else {
-        NSMutableArray* array = [NSMutableArray arrayWithObjects:
+        NSMutableArray* array = [NSMutableArray array];
+        
 #ifdef IPHONE_OS_VERSION_3
-                                 UITableViewIndexSearch,
+        [array addObject:UITableViewIndexSearch];
 #endif
-                                 @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-                                 @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-                                 @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
         if (self.model.prioritizeBookmarks) {
             [array insertObject:[Application starString] atIndex:0];
         }
+
+        [array addObjectsFromArray:[NSArray arrayWithObjects:
+                                 @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+                                 @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+                                 @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil]];
 
         self.indexTitles = array;
     }

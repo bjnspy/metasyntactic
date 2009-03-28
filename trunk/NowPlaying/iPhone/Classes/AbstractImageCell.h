@@ -24,7 +24,7 @@ typedef enum {
     UIImageView* imageLoadingView;
     ImageState state;
     UIActivityIndicatorView* activityView;
-    
+
 @protected
     UIImageView* imageView;
 

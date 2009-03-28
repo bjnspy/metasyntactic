@@ -187,9 +187,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             height = imageHeight;
         }
     } else if (indexPath.section == LocalizedBySection) {
-//#ifdef IPHONE_OS_VERSION_3
         return tableView.rowHeight - 14;
-//#endif
     }
 
     return height;
