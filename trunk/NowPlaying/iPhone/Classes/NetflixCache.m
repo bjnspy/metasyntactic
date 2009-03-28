@@ -1211,20 +1211,24 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSArray*) moviesForRSSTitle:(NSString*) title {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-    NSString* directory = [self rssFeedDirectory:address];
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-
     NSMutableArray* array = [NSMutableArray array];
 
-    for (NSString* path in paths) {
-        NSDictionary* dictionary = [FileUtilities readObject:path];
-        if (dictionary != nil) {
-            Movie* movie = [Movie movieWithDictionary:dictionary];
-            [array addObject:movie];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
+        
+        NSString* directory = [self rssFeedDirectory:address];
+        NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+        
+        for (NSString* path in paths) {
+            NSDictionary* dictionary = [FileUtilities readObject:path];
+            if (dictionary != nil) {
+                Movie* movie = [Movie movieWithDictionary:dictionary];
+                [array addObject:movie];
+            }
         }
     }
+    [pool release];
 
     return array;
 }
@@ -1234,7 +1238,7 @@ static NSDictionary* availabilityMap = nil;
     NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
 
     NSString* directory = [self rssFeedDirectory:address];
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+    NSArray* paths = [FileUtilities directoryContentsNames:directory];
 
     return paths.count;
 }

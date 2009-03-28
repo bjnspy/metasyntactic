@@ -421,41 +421,46 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (void) emptyTrashBackgroundEntryPoint {
+    NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
+    NSFileManager* manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
 
-+ (void) emptyDirectory:(NSString*) directory andDelete:(BOOL) delete {
-    NSLog(@"Application:emptyDirectory - %@ delete:%@", directory.lastPathComponent, delete ? @"YES" : @"NO");
-    if ([largeMoviesPostersIndexDirectory isEqual:directory]) {
-        return;
-    }
-
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-        for (NSString* childName in [FileUtilities directoryContentsNames:directory]) {
-            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-            {
-                NSString* child = [directory stringByAppendingPathComponent:childName];
-                if ([FileUtilities isDirectory:child]) {
-                    [self emptyDirectory:child andDelete:YES];
-                } else {
-                    NSLog(@"Application:emptyDirectory - %@ deleting:%@", directory.lastPathComponent, childName);
-                    [[NSFileManager defaultManager] removeItemAtPath:child error:NULL];
-                }
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        NSString* fileName;
+        while ((fileName = [enumerator nextObject]) != nil) {
+            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
+            NSDictionary* attributes = [enumerator fileAttributes];
+            
+            // don't delete folders yet
+            if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+                NSLog(@"Application:emptyTrashBackgroundEntryPoint - %@", fullPath.lastPathComponent);
+                [manager removeItemAtPath:fullPath error:NULL];
             }
+            
+            [NSThread sleepForTimeInterval:1];
+            
             [pool release];
-
+            pool = [[NSAutoreleasePool alloc] init];
+        }
+        
+        [pool release];
+    }
+    
+    // Now remove the directories.
+    for (NSString* fileName in [FileUtilities directoryContentsNames:trashDirectory]) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
+            
+            [manager removeItemAtPath:fullPath error:NULL];
             [NSThread sleepForTimeInterval:1];
         }
-
-        if (delete) {
-            [[NSFileManager defaultManager] removeItemAtPath:directory error:NULL];
-        }
+        [pool release];
     }
-    [pool release];
-}
 
-
-+ (void) emptyTrashBackgroundEntryPoint {
-    [self emptyDirectory:[self trashDirectory] andDelete:NO];
+    NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
 }
 
 
@@ -481,23 +486,19 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleDataWorker:(NSString*) directory {
-    NSArray* names = [FileUtilities directoryContentsNames:directory];
-    for (NSString* name in names) {
-        // clear 5% of the old directories
-        if ((rand() % 1000) < 50) {
-            NSString* path = [directory stringByAppendingPathComponent:name];
-            NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
-
-            if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-                // don't delete folders
-                continue;
-            }
-
++ (void) clearStaleItem:(NSString*) fullPath
+           inEnumerator:(NSDirectoryEnumerator*) enumerator
+            withManager:(NSFileManager*) manager {
+    if ((rand() % 1000) < 50) {
+        NSDictionary* attributes = [enumerator fileAttributes];
+        
+        // don't delete folders
+        if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
             if (lastModifiedDate != nil) {
                 if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                    [self moveItemToTrash:path];
+                    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - %@", fullPath.lastPathComponent);
+                    [manager removeItemAtPath:fullPath error:NULL];
                 }
             }
         }
@@ -505,35 +506,34 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData:(NSString*) directory {
++ (void) clearStaleDataBackgroundEntryPoint {
+    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - start");
+    NSFileManager* manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:cacheDirectory];
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-        [self clearStaleDataWorker:directory];
+
+    NSString* fileName;
+    while ((fileName = [enumerator nextObject]) != nil) {
+        NSString* fullPath = [cacheDirectory stringByAppendingPathComponent:fileName];
+        if ([userLocationsDirectory isEqual:fullPath]) {
+            [enumerator skipDescendents];
+        } else {
+            [self clearStaleItem:fullPath inEnumerator:enumerator withManager:manager];
+        }
+
+        [pool release];
+        pool = [[NSAutoreleasePool alloc] init];
     }
     [pool release];
+    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - stop");
 }
 
 
 + (void) clearStaleData {
-    [gate lock];
-    {
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-            if ([netflixRSSDirectory isEqual:directory] ||
-                [userLocationsDirectory isEqual:directory]) {
-                continue;
-            }
-
-            [self clearStaleData:directory];
-        }
-
-        for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
-            if ([FileUtilities isDirectory:path]) {
-                [self clearStaleData:path];
-            }
-        }
-    }
-    [gate unlock];
+    [ThreadingUtilities backgroundSelector:@selector(clearStaleDataBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:NO];
 }
 
 

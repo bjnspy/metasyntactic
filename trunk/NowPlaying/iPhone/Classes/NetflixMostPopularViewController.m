@@ -57,10 +57,14 @@
 - (void) initializeData {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     for (NSString* title in [NetflixCache mostPopularTitles]) {
-        NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
-        if (count > 0) {
-            [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+            if (count > 0) {
+                [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+            }
         }
+        [pool release];
     }
     self.titleToCount = dictionary;
 }
