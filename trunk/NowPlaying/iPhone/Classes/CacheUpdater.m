@@ -111,6 +111,10 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (void) addMovie:(Movie*) movie {
+    if (movie == nil) {
+        return;
+    }
+
     [[OperationQueue operationQueue] performSelector:@selector(processMovie:)
                                          onTarget:self
                                        withObject:movie
