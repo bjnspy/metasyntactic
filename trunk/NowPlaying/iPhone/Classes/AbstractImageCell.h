@@ -20,12 +20,13 @@ typedef enum {
 
 
 @interface AbstractImageCell : UITableViewCell {
-@protected
-    ImageState state;
+@private
     UIImageView* imageLoadingView;
-    UIImageView* imageView;
-
+    ImageState state;
     UIActivityIndicatorView* activityView;
+    
+@protected
+    UIImageView* imageView;
 
     UILabel* titleLabel;
     CGFloat titleWidth;
