@@ -113,10 +113,14 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) version {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+
 + (NSString*) nameAndVersion {
     NSString* appName = [self name];
-    NSString* appVersion = [Model version];
-    appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
+    NSString* appVersion = [self version];
 
     return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 }

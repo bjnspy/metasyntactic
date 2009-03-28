@@ -16,6 +16,7 @@
 }
 
 + (NSString*) name;
++ (NSString*) version;
 + (NSString*) nameAndVersion;
 
 + (NSString*) netflixKey;

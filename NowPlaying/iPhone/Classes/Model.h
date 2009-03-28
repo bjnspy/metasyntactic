@@ -67,8 +67,6 @@ enum ViewControllerType {
 
 + (Model*) model;
 
-+ (NSString*) version;
-
 - (void) didReceiveMemoryWarning;
 
 - (BOOL) votedForIcon;
