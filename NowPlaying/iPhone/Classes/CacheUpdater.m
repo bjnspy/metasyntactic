@@ -19,6 +19,7 @@
 #import "DVDCache.h"
 #import "IMDbCache.h"
 #import "Model.h"
+#import "Movie.h"
 #import "NetflixCache.h"
 #import "OperationQueue.h"
 #import "ScoreCache.h"
@@ -83,6 +84,8 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (void) processMovie:(Movie*) movie {
+    NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);
+
     Model* model = [Model model];
     [model.posterCache       processMovie:movie];
     [model.netflixCache      processMovie:movie];

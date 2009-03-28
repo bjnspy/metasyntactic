@@ -946,6 +946,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
+    [[OperationQueue operationQueue] temporarilySuspend:90];
     NSString* urlString = trailer;
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
     //MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"movie.mp4" ofType:nil]]];
@@ -965,6 +966,8 @@ const NSInteger POSTER_TAG = -1;
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
+
+    [[OperationQueue operationQueue] resume];
 }
 
 

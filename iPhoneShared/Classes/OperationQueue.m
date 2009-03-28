@@ -65,6 +65,13 @@ static OperationQueue* operationQueue = nil;
 }
 
 
+- (void) addOperation:(Operation*) operation {
+    [queue performSelectorOnMainThread:@selector(addOperation:)
+                            withObject:operation
+                         waitUntilDone:NO];
+}
+
+
 - (Operation*) performSelector:(SEL) selector
                       onTarget:(id) target
                           gate:(id<NSLocking>) gate
@@ -75,7 +82,7 @@ static OperationQueue* operationQueue = nil;
                                                 isBounded:NO
                                                      gate:gate
                                                  priority:priority];
-    [queue addOperation:operation];
+    [self addOperation:operation];
     return operation;
 }
 
@@ -92,7 +99,7 @@ static OperationQueue* operationQueue = nil;
                                                   isBounded:NO
                                                        gate:gate
                                                    priority:priority];
-    [queue addOperation:operation];
+    [self addOperation:operation];
     return operation;
 }
 
@@ -111,7 +118,7 @@ static OperationQueue* operationQueue = nil;
                                                   isBounded:NO
                                                        gate:gate
                                                    priority:priority];
-    [queue addOperation:operation];
+    [self addOperation:operation];
     return operation;
 }
 
@@ -137,7 +144,7 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
     }
     [dataGate unlock];
 
-    [queue addOperation:operation];
+    [self addOperation:operation];
 }
 
 
@@ -198,10 +205,15 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 }
 
 
-- (void) temporarilySuspend {
+- (void) temporarilySuspend:(NSTimeInterval) timeInterval {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resume) object:nil];
     [queue setSuspended:YES];
-    [self performSelector:@selector(resume) withObject:nil afterDelay:1];
+    [self performSelector:@selector(resume) withObject:nil afterDelay:timeInterval];
+}
+
+
+- (void) temporarilySuspend {
+    [self temporarilySuspend:1];
 }
 
 

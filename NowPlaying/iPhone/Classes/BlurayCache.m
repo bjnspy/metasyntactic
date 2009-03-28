@@ -40,7 +40,7 @@
     if (!self.model.dvdMoviesShowBluray) {
         return;
     }
-    
+
     [super update];
 }
 

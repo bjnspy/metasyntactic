@@ -317,6 +317,7 @@
         [FileUtilities writeObject:map toFile:[self movieMapFile]];
         self.movieMapData = map;
         self.moviesData = movies;
+        [self clearUpdatedMovies];
     }
     [dataGate unlock];
 
@@ -558,22 +559,14 @@
 
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
-        if (lastLookupDate == nil) {
+        if (lastLookupDate == nil ||
+            (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY))) {
             [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
                                                  onTarget:self
                                                withObject:score
                                                withObject:location
                                                      gate:runGate
-                                                 priority:Normal];
-        } else {
-            if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
-                [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
-                                                     onTarget:self
-                                                   withObject:score
-                                                   withObject:location
-                                                         gate:runGate
-                                                     priority:Low];
-            }
+                                                 priority:Low];
         }
     }
 }
