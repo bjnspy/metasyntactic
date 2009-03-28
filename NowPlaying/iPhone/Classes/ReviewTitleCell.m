@@ -14,13 +14,13 @@
 
 #import "ReviewTitleCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Review.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface ReviewTitleCell()
 @property (retain) UILabel* scoreLabel;

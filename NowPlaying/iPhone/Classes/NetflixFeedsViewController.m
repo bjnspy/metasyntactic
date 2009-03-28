@@ -14,8 +14,6 @@
 
 #import "NetflixFeedsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Feed.h"
@@ -24,6 +22,8 @@
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
 #import "Queue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixFeedsViewController()
 @property (retain) NSArray* feedKeys;

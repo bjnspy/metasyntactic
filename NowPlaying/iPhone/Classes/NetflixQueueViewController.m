@@ -14,8 +14,6 @@
 
 #import "NetflixQueueViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
@@ -28,7 +26,9 @@
 #import "NetflixCell.h"
 #import "Queue.h"
 #import "TappableImageView.h"
+#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
+
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;

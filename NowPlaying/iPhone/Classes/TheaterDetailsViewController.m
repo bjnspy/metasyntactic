@@ -14,8 +14,6 @@
 
 #import "TheaterDetailsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "Application.h"
 #import "AttributeCell.h"
 #import "ColorCache.h"
@@ -29,9 +27,11 @@
 #import "StringUtilities.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
+
 
 @interface TheaterDetailsViewController()
 @property (retain) UIButton* favoriteButton;

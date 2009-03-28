@@ -14,23 +14,23 @@
 
 #import "MovieTitleCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "Application.h"
 #import "ColorCache.h"
 #import "FontCache.h"
+#import "GreenMovieTitleCell.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
-#import "Score.h"
-
-#import "RottenMovieTitleCell.h"
-#import "TomatoMovieTitleCell.h"
-#import "RedMovieTitleCell.h"
-#import "YellowMovieTitleCell.h"
-#import "GreenMovieTitleCell.h"
 #import "PerfectGreenMovieTitleCell.h"
+#import "RedMovieTitleCell.h"
+#import "RottenMovieTitleCell.h"
+#import "Score.h"
+#import "TomatoMovieTitleCell.h"
+#import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
+#import "YellowMovieTitleCell.h"
+
+
 
 @interface MovieTitleCell()
 @property (retain) UILabel* scoreLabel;

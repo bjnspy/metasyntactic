@@ -14,8 +14,6 @@
 
 #import "ReviewsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AppDelegate.h"
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
@@ -25,8 +23,10 @@
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
 #import "Score.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "WebViewController.h"
+
 
 @interface ReviewsViewController()
 @property (retain) Movie* movie;

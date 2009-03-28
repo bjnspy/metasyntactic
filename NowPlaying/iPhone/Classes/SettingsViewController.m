@@ -14,8 +14,6 @@
 
 #import "SettingsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
@@ -36,8 +34,10 @@
 #import "SettingCell.h"
 #import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
+
 
 @interface SettingsViewController()
 @end

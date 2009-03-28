@@ -14,8 +14,6 @@
 
 #import "NetflixMostPopularViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
@@ -23,6 +21,8 @@
 #import "MutableNetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
 #import "OperationQueue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixMostPopularViewController()
 @property (retain) NSDictionary* titleToCount;
