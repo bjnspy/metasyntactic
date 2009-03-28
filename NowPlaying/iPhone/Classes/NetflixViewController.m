@@ -49,6 +49,9 @@
 const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
+#ifndef IPHONE_OS_VERSION_3
+    SearchSection,
+#endif
     MostPopularSection,
     DVDSection,
     InstantSection,
@@ -229,6 +232,11 @@ typedef enum {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         switch (row) {
+#ifndef IPHONE_OS_VERSION_3
+            case SearchSection:
+                cell.text = NSLocalizedString(@"Search", nil);
+                break;
+#endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
                     cell.text = NSLocalizedString(@"Most Popular", nil);
@@ -328,8 +336,18 @@ typedef enum {
 }
 
 
+#ifndef IPHONE_OS_VERSION_3
+- (void) didSelectSearchSection {
+    
+}
+#endif
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     switch (row) {
+#ifndef IPHONE_OS_VERSION_3
+        case SearchSection:             return [self didSelectSearchSection];
+#endif
         case MostPopularSection:        return [self didSelectMostPopularSection];
         case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
         case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
