@@ -35,7 +35,6 @@
 @interface AbstractScoreProvider()
 @property (retain) NSDictionary* scoresData;
 @property (copy) NSString* hashData;
-@property (retain) NSLock* movieMapLock;
 @property (retain) NSArray* moviesData;
 @property (retain) NSDictionary* movieMapData;
 @property (copy) NSString* providerDirectory;
@@ -47,7 +46,6 @@
 
 @synthesize scoresData;
 @synthesize hashData;
-@synthesize movieMapLock;
 @synthesize moviesData;
 @synthesize movieMapData;
 @synthesize providerDirectory;
@@ -56,7 +54,6 @@
 - (void) dealloc {
     self.scoresData = nil;
     self.hashData = nil;
-    self.movieMapLock = nil;
     self.moviesData = nil;
     self.movieMapData = nil;
     self.providerDirectory = nil;
@@ -83,8 +80,6 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.movieMapLock = [[[NSLock alloc] init] autorelease];
-
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
 

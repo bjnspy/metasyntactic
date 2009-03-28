@@ -29,8 +29,10 @@
 
 @interface AllTheatersViewController()
 @property (retain) UISegmentedControl* segmentedControl;
+#ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) LocalSearchDisplayController* searchDisplayController;
+#endif
 @property (retain) NSArray* sortedTheaters;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -41,8 +43,10 @@
 @implementation AllTheatersViewController
 
 @synthesize segmentedControl;
+#ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
+#endif
 @synthesize sortedTheaters;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
@@ -50,8 +54,10 @@
 
 - (void) dealloc {
     self.segmentedControl = nil;
+#ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
+#endif
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
@@ -255,7 +261,7 @@
 }
 
 
-- (id) initWithNavigationController:(TheatersNavigationController*) navigationController_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Theaters", nil);
     }
@@ -270,7 +276,9 @@
     } else {
         self.indexTitles =
         [NSArray arrayWithObjects:
+#ifdef IPHONE_OS_VERSION_3
          UITableViewIndexSearch,
+#endif
          [Application starString],
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
@@ -292,6 +300,7 @@
 
 
 - (void) initializeSearchDisplay {
+#ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
@@ -299,6 +308,7 @@
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:abstractNavigationController
                                                                                          searchBar:searchBar
                                                                                 contentsController:self] autorelease];
+#endif
 }
 
 
@@ -416,10 +426,13 @@
 
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
+#ifdef IPHONE_OS_VERSION_3
     if ([UITableViewIndexSearch isEqual:title]) {
         [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
         return -1;
-    } else if (firstChar == '#') {
+    } else
+#endif
+    if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [Application starCharacter]) {
         return [sectionTitles indexOfObject:[Application starString]];

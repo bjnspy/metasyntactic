@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #import "SearchEngineDelegate.h"
-
+#ifdef IPHONE_OS_VERSION_3
 @interface AbstractSearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @protected
     AbstractNavigationController* navigationController;
@@ -29,3 +29,4 @@
 - (void) minorRefresh;
 
 @end
+#endif

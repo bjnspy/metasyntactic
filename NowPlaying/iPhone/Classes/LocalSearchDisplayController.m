@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifdef IPHONE_OS_VERSION_3
 #import "LocalSearchDisplayController.h"
 
 #import "AbstractNavigationController.h"
@@ -335,3 +336,4 @@
 }
 
 @end
+#endif

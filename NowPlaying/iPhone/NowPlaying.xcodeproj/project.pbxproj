@@ -55,7 +55,6 @@
 		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
-		744104320F71F1E200FF3954 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744104310F71F1E200FF3954 /* MessageUI.framework */; };
 		744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744105510F72057F00FF3954 /* AutoresizingCell.m */; };
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
 		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
@@ -81,6 +80,7 @@
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
+		74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
 		74616D330F15D3260004B610 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 74616D080F15D3260004B610 /* COPYING */; };
@@ -172,6 +172,7 @@
 		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
+		7498FDA80F7DB99B0045F883 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498FDA70F7DB99B0045F883 /* AttributeCell.m */; };
 		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
@@ -418,7 +419,6 @@
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
 		743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
 		743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
-		744104310F71F1E200FF3954 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		744105500F72057F00FF3954 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
 		744105510F72057F00FF3954 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
 		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
@@ -471,6 +471,8 @@
 		744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeliveredByNetflix.png; path = Resources/DeliveredByNetflix.png; sourceTree = "<group>"; };
 		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
+		74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
+		74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
 		7457FE910E21A41A00929D3E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
 		745A08840F2EB444002F64C6 /* AbstractImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageCell.h; sourceTree = "<group>"; };
@@ -681,6 +683,8 @@
 		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		7498FDA60F7DB99B0045F883 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
+		7498FDA70F7DB99B0045F883 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
 		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
 		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -948,7 +952,6 @@
 				74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */,
 				74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */,
 				7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */,
-				744104320F71F1E200FF3954 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,7 +1090,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				744104310F71F1E200FF3954 /* MessageUI.framework */,
 				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
 				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
 				74CA20B60DD0F93D0046D1CE /* AddressBook.framework */,
@@ -1239,6 +1241,8 @@
 				749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */,
 				7477B3230F378CBA00FED03B /* NotificationCenter.h */,
 				7477B3240F378CBA00FED03B /* NotificationCenter.m */,
+				74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */,
+				74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1335,6 +1339,8 @@
 			children = (
 				74798DCB0F74BE590057E111 /* ImageCells */,
 				7445B4450F7D64CA00864071 /* MovieTitleCells */,
+				7498FDA60F7DB99B0045F883 /* AttributeCell.h */,
+				7498FDA70F7DB99B0045F883 /* AttributeCell.m */,
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
@@ -1670,10 +1676,10 @@
 			children = (
 				7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */,
 				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
-				7414A5F40F1414B2003163B3 /* NetflixMostPopularMoviesViewController.h */,
-				7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */,
 				7414A5F60F1414B2003163B3 /* NetflixMostPopularViewController.h */,
 				7414A5F70F1414B2003163B3 /* NetflixMostPopularViewController.m */,
+				7414A5F40F1414B2003163B3 /* NetflixMostPopularMoviesViewController.h */,
+				7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */,
 				7400EB620EF4E8E700058CDD /* NetflixLoginViewController.h */,
 				7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */,
 				7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */,
@@ -2267,6 +2273,8 @@
 				7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */,
 				74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */,
 				74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */,
+				74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */,
+				7498FDA80F7DB99B0045F883 /* AttributeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

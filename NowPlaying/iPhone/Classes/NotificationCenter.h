@@ -14,7 +14,7 @@
 
 @interface NotificationCenter : NSObject {
 @private
-    UIView* view;
+    UIViewController* viewController;
     UILabel* notificationLabel;
     UILabel* blackLabel;
 
@@ -24,12 +24,10 @@
     NSInteger disabledCount;
 }
 
-+ (NotificationCenter*) centerWithView:(UIView*) view;
++ (NotificationCenter*) centerWithViewController:(UIViewController*) viewController;
 
-- (void) addToView;
-
-- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation;
-- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;
+- (void) willChangeInterfaceOrientation;
+- (void) didChangeInterfaceOrientation;
 
 - (void) disableNotifications;
 - (void) enableNotifications;

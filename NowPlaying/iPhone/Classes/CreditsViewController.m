@@ -14,6 +14,8 @@
 
 #import "CreditsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "Application.h"
 #import "DateUtilities.h"
@@ -185,7 +187,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             height = imageHeight;
         }
     } else if (indexPath.section == LocalizedBySection) {
+//#ifdef IPHONE_OS_VERSION_3
         return tableView.rowHeight - 14;
+//#endif
     }
 
     return height;
@@ -206,6 +210,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* language = [LocaleUtilities displayLanguage:code];
 
     cell.textLabel.text = language;
+    
     [cell setCellValue:person];
     [cell setHidesSeparator:row > 0];
 
@@ -366,6 +371,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     }
 
     if ([Application canSendMail]) {
+#ifdef IPHONE_OS_VERSION_3
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
         controller.delegate = self;
 
@@ -374,6 +380,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [controller setMessageBody:body isHTML:NO];
 
         [self presentModalViewController:controller animated:YES];
+#endif
     } else {
         NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
         NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
@@ -382,11 +389,13 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
+#ifdef IPHONE_OS_VERSION_3
 - (void) mailComposeController:(MFMailComposeViewController*)controller
            didFinishWithResult:(MFMailComposeResult)result
                          error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
 }
+#endif
 
 
 - (void)            tableView:(UITableView*) tableView

@@ -14,6 +14,8 @@
 
 #import "MovieOverviewCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AppDelegate.h"
 #import "FontCache.h"

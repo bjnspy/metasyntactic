@@ -14,6 +14,8 @@
 
 #import "SettingsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
@@ -166,8 +168,12 @@ typedef enum {
     [cell.switchControl removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
     [cell.switchControl addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
     cell.switchControl.on = on;
+#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.text = text;
-
+#else
+    cell.text = text;
+#endif
+    
     return cell;
 }
 

@@ -14,6 +14,8 @@
 
 #import "DVDFilterViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Model.h"

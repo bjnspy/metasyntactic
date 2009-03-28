@@ -14,6 +14,8 @@
 
 #import "NetflixRecommendationsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"

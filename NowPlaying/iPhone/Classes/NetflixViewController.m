@@ -14,6 +14,8 @@
 
 #import "NetflixViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Application.h"
@@ -35,8 +37,10 @@
 #import "ViewControllerUtilities.h"
 
 @interface NetflixViewController()
+#ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) NetflixSearchDisplayController* searchDisplayController;
+#endif
 @end
 
 
@@ -54,12 +58,16 @@ typedef enum {
     LogOutSection,
 } Sections;
 
+#ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
+#endif
 
 - (void) dealloc {
+#ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
+#endif
 
     [super dealloc];
 }
@@ -70,7 +78,7 @@ typedef enum {
 }
 
 
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Netflix", nil);
     }
@@ -90,12 +98,14 @@ typedef enum {
 
 
 - (void) initializeSearchDisplay {
+#ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
 
     self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:abstractNavigationController
                                                                                            searchBar:searchBar
                                                                                   contentsController:self] autorelease];
+#endif
 }
 
 
@@ -148,7 +158,9 @@ typedef enum {
 
 - (void) majorRefreshWorker {
     if (self.hasAccount) {
+#ifdef IPHONE_OS_VERSION_3
         self.tableView.tableHeaderView = searchBar;
+#endif
     } else {
         self.tableView.tableHeaderView = nil;
     }
@@ -157,12 +169,16 @@ typedef enum {
     [self setupTitle];
     [self determinePopularMovieCount];
     [self reloadTableViewData];
+#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController majorRefresh];
+#endif
 }
 
 
 - (void) minorRefreshWorker {
+#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController minorRefresh];
+#endif
 }
 
 
@@ -203,7 +219,10 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+    
+#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
+#endif
 
     NSInteger row = indexPath.row;
     if (self.hasAccount) {

@@ -23,6 +23,7 @@
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
 #import "NetworkUtilities.h"
+#import "NotificationCenter.h"
 #import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
@@ -33,6 +34,7 @@
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
 @property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) NetflixNavigationController* netflixNavigationController;
+@property (retain) NotificationCenter* notificationCenter;
 @end
 
 
@@ -43,7 +45,7 @@
 @synthesize upcomingMoviesNavigationController;
 @synthesize dvdNavigationController;
 @synthesize netflixNavigationController;
-
+@synthesize notificationCenter;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -51,6 +53,7 @@
     self.upcomingMoviesNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
+    self.notificationCenter = nil;
 
     [super dealloc];
 }
@@ -151,6 +154,12 @@
 }
 
 
+- (void) loadView {
+    [super loadView];
+    self.notificationCenter = [NotificationCenter centerWithViewController:self];
+}
+
+
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
@@ -242,6 +251,17 @@
     }
 
     return self.model.screenRotationEnabled;
+}
+
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
+                                 duration:(NSTimeInterval) duration {
+    [notificationCenter willChangeInterfaceOrientation];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [notificationCenter didChangeInterfaceOrientation];
 }
 
 @end

@@ -14,6 +14,8 @@
 
 #import "NetflixStatusCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "ImageCache.h"
 #import "Model.h"
 #import "NetflixCache.h"
@@ -73,7 +75,8 @@
 
 
 - (id) initWithStatus:(Status*) status_ {
-    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault
+                    reuseIdentifier:nil]) {
         self.status = status_;
 
         self.font = [UIFont boldSystemFontOfSize:16];

@@ -16,10 +16,12 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "Application.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "Model.h"
 #import "SearchDatePickerViewController.h"
+#import "StringUtilities.h"
 
 @interface AbstractDetailsViewController()
 @property NSInteger updateId;
@@ -226,6 +228,7 @@
 }
 
 
+#ifdef IPHONE_OS_VERSION_3
 - (void) openMailWithSubject:(NSString*) subject
                         body:(NSString*) body {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
@@ -243,6 +246,16 @@
                          error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
 }
+#else
+- (void) openMailWithSubject:(NSString*) subject
+                        body:(NSString*) body {
+    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+                     [StringUtilities stringByAddingPercentEscapes:subject],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
+    
+    [Application openBrowser:url];
+}
+#endif
 
 
 @end

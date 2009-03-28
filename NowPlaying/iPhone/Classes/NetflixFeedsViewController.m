@@ -14,6 +14,8 @@
 
 #import "NetflixFeedsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Feed.h"
@@ -126,9 +128,13 @@
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
 
+#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.minimumFontSize = 12;
     cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key];
+#else
+    cell.text = [self.model.netflixCache titleForKey:feed.key];
+#endif
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

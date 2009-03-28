@@ -16,8 +16,10 @@
 
 @interface NetflixViewController : AbstractTableViewController<UIAlertViewDelegate> {
 @private
+#ifdef IPHONE_OS_VERSION_3
     UISearchBar* searchBar;
     NetflixSearchDisplayController* searchDisplayController;
+#endif
 
     NSInteger mostPopularTitleCount;
 }

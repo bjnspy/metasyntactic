@@ -14,6 +14,8 @@
 
 #import "ReviewsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AppDelegate.h"
 #import "Application.h"
 #import "GlobalActivityIndicator.h"

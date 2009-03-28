@@ -18,7 +18,7 @@
 #import "Pulser.h"
 
 @interface NotificationCenter()
-@property (retain) UIView* view;
+@property (retain) UIViewController* viewController;
 @property (retain) UILabel* notificationLabel;
 @property (retain) UILabel* blackLabel;
 @property (retain) NSMutableArray* notifications;
@@ -28,7 +28,7 @@
 
 @implementation NotificationCenter
 
-@synthesize view;
+@synthesize viewController;
 @synthesize notificationLabel;
 @synthesize blackLabel;
 @synthesize notifications;
@@ -36,7 +36,7 @@
 @synthesize disabledCount;
 
 - (void) dealloc {
-    self.view = nil;
+    self.viewController = nil;
     self.notificationLabel = nil;
     self.blackLabel = nil;
     self.notifications = nil;
@@ -47,19 +47,21 @@
 }
 
 
-- (void) addToView {
-    [view addSubview:notificationLabel];
-    [view addSubview:blackLabel];
-}
 
-
-- (id) initWithView:(UIView*) view__ {
+- (id) initWithViewController:(UIViewController*) viewController_ {
     if (self = [super init]) {
-        self.view = view__;
+        self.viewController = viewController_;
 
         self.notifications = [NSMutableArray array];
 
+#ifdef IPHONE_OS_VERSION_3
         self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 16)] autorelease];
+        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
+#else
+        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 16)] autorelease];
+        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
+#endif
+        
         notificationLabel.font = [UIFont boldSystemFontOfSize:12];
         notificationLabel.textAlignment = UITextAlignmentCenter;
         notificationLabel.textColor = [UIColor whiteColor];
@@ -69,7 +71,6 @@
         notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
         notificationLabel.text = NSLocalizedString(@"Updating", nil);
 
-        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
         blackLabel.alpha = 0;
 
@@ -81,23 +82,27 @@
                     startIndicatorSelector:@selector(showNotification)
                      stopIndicatorSelector:@selector(hideNotification)];
  */
-
-        [self addToView];
+        
+        [viewController.view addSubview:notificationLabel];
+        [viewController.view addSubview:blackLabel];
+        
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     }
 
     return self;
 }
 
 
-+ (NotificationCenter*) centerWithView:(UIView*) view {
-    return [[[NotificationCenter alloc] initWithView:view] autorelease];
++ (NotificationCenter*) centerWithViewController:(UIViewController*) viewController {
+    return [[[NotificationCenter alloc] initWithViewController:viewController] autorelease];
 }
 
 
 - (void) showNotification {
-    if (disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        [self.view bringSubviewToFront:notificationLabel];
-        [self.view bringSubviewToFront:blackLabel];
+    UIInterfaceOrientation orientation = viewController.interfaceOrientation;
+    if (disabledCount == 0 && orientation == UIInterfaceOrientationPortrait) {
+        [viewController.view bringSubviewToFront:notificationLabel];
+        [viewController.view bringSubviewToFront:blackLabel];
 
         [UIView beginAnimations:nil context:NULL];
         {
@@ -143,12 +148,12 @@
 }
 
 
-- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation {
+- (void) willChangeInterfaceOrientation {
     notificationLabel.alpha = blackLabel.alpha = 0;
 }
 
 
-- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
+- (void) didChangeInterfaceOrientation {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
     [pulser tryPulse];

@@ -14,6 +14,8 @@
 
 #import "NetflixMostPopularViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
@@ -111,14 +113,22 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+#ifdef IPHONE_OS_VERSION_3
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.textLabel.minimumFontSize = 12;
+#endif
     }
 
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
     NSNumber* count = [titleToCount objectForKey:title];
 
+#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+#else
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+#endif
+    
     return cell;
 }
 
