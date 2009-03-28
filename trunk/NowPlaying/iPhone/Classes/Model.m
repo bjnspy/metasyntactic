@@ -82,7 +82,7 @@
 
 static Model* model = nil;
 
-static NSString* currentVersion = @"3.5.0";
+static NSString* currentVersion = @"3.6.0";
 static NSString* persistenceVersion = @"104";
 
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";

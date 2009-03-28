@@ -18,6 +18,7 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
+#import "Controller.h"
 #import "Model.h"
 
 @interface DVDFilterViewController()
@@ -42,6 +43,11 @@
 
 - (Model*) model {
     return [Model model];
+}
+
+
+- (Controller*) controller {
+    return [Controller controller];
 }
 
 
@@ -97,9 +103,9 @@
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
     if (selectPath.row == 0) {
-        [self.model setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
+        [self.controller setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
     } else {
-        [self.model setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
+        [self.controller setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
     }
 
     for (int i = 0; i <= 1; i++) {

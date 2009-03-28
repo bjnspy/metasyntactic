@@ -40,6 +40,15 @@
 }
 
 
+- (void) update {
+    if (!self.model.dvdMoviesShowDVDs) {
+        return;
+    }
+    
+    [super update];
+}
+
+
 - (NSArray*) loadBookmarksArray {
     return [self.model bookmarkedDVD];
 }

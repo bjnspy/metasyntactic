@@ -35,6 +35,8 @@
 - (void) setDvdBlurayEnabled:(BOOL) value;
 - (void) setUpcomingEnabled:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;
+- (void) setDvdMoviesShowDVDs:(BOOL) value;
+- (void) setDvdMoviesShowBluray:(BOOL) value;
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
