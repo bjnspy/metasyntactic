@@ -29,6 +29,10 @@
 
     BOOL saving;
     UILabel* savingLabel;
+    
+#ifndef IPHONE_OS_VERSION_3
+    UIToolbar* toolbar;
+#endif
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

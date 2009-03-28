@@ -32,6 +32,9 @@
 @property (assign) ApplicationTabBarController* applicationTabBarController;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
+#ifndef IPHONE_OS_VERSION_3
+@property BOOL isViewLoaded;
+#endif
 @end
 
 
@@ -40,6 +43,9 @@
 @synthesize applicationTabBarController;
 @synthesize postersViewController;
 @synthesize visible;
+#ifndef IPHONE_OS_VERSION_3
+@synthesize isViewLoaded;
+#endif
 
 - (void) dealloc {
     self.applicationTabBarController = nil;
@@ -62,6 +68,10 @@
 - (void) loadView {
     [super loadView];
 
+#ifndef IPHONE_OS_VERSION_3
+    self.isViewLoaded = YES;
+#endif
+    
     self.view.autoresizesSubviews = YES;
 }
 

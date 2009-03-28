@@ -78,9 +78,16 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+#ifdef IPHONE_OS_VERSION_3
     [super viewWillAppear:animated];
+#endif
+
     self.visible = YES;
     [self majorRefreshWorker];
+
+#ifndef IPHONE_OS_VERSION_3
+    [super viewWillAppear:animated];
+#endif
 }
 
 

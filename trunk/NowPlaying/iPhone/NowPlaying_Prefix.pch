@@ -12,13 +12,17 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+//#define IPHONE_OS_VERSION_3
+
 #ifdef __OBJC__
 #import <CoreFoundation/CoreFoundation.h>
 #import <CommonCrypto/CommonHMAC.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#ifdef IPHONE_OS_VERSION_3
 #import <MessageUI/MessageUI.h>
+#endif
 #import <Security/Security.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>

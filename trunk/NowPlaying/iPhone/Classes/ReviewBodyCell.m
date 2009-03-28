@@ -14,6 +14,8 @@
 
 #import "ReviewBodyCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "FontCache.h"
 #import "Review.h"
 #import "Utilities.h"

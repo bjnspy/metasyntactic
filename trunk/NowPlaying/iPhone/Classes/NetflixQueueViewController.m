@@ -14,6 +14,8 @@
 
 #import "NetflixQueueViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
@@ -145,9 +147,23 @@
 }
 
 
+- (void) internalRefresh {
+    if (self.tableView.editing || readonlyMode) {
+        return;
+    }
+    
+    [self initializeData];
+    [self reloadTableViewData];
+}
+
+
+
 - (void) majorRefreshWorker {
     // do nothing.  we don't want to refresh the view (because it causes an
     // ugly flash).  Instead, just refresh things when teh view becomes visible
+    if (mutableSaved.count == 0 && mutableMovies.count == 0) {
+        [self internalRefresh];
+    }
 }
 
 
@@ -155,16 +171,6 @@
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
-}
-
-
-- (void) internalRefresh {
-    if (self.tableView.editing || readonlyMode) {
-        return;
-    }
-
-    [self initializeData];
-    [self reloadTableViewData];
 }
 
 

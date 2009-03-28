@@ -16,7 +16,6 @@
 @private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-    NotificationCenter* notificationCenter;
 
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
@@ -26,7 +25,6 @@
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) ApplicationTabBarController* tabBarController;
-@property (readonly, retain) NotificationCenter* notificationCenter;
 
 + (AppDelegate*) appDelegate;
 

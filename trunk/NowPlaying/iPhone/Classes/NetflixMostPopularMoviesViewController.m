@@ -80,6 +80,9 @@
 - (void) majorRefreshWorker {
     // do nothing.  we don't want to refresh the view (because it causes an
     // ugly flash).  Instead, just refresh things when teh view becomes visible
+    if (movies.count == 0) {
+        [self internalRefresh];
+    }
 }
 
 

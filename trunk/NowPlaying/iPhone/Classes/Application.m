@@ -671,8 +671,12 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (BOOL) canSendMail {
+#ifdef IPHONE_OS_VERSION_3
     return YES;
-    //return [MFMailComposeViewController canSendMail];
+#else
+    return NO;
+#endif
 }
+    //return [MFMailComposeViewController canSendMail];
 
 @end

@@ -14,6 +14,8 @@
 
 #import "ScoreProviderViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "Controller.h"

@@ -28,7 +28,6 @@
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NotificationCenter* notificationCenter;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @property (retain) UIView* globalActivityView;
@@ -41,7 +40,6 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
-@synthesize notificationCenter;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
 @synthesize globalActivityView;
@@ -49,7 +47,6 @@ static AppDelegate* appDelegate = nil;
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
-    self.notificationCenter = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
     self.globalActivityView = nil;
@@ -85,8 +82,6 @@ static AppDelegate* appDelegate = nil;
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
-
-    self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
@@ -146,7 +141,7 @@ static AppDelegate* appDelegate = nil;
 
 
 + (NotificationCenter*) notificationCenter {
-    return appDelegate.notificationCenter;
+    return appDelegate.tabBarController.notificationCenter;
 }
 
 
@@ -170,14 +165,17 @@ static AppDelegate* appDelegate = nil;
 }
 
 
+/*
 - (void) application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
     [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
 }
 
 
 - (void) application:(UIApplication*) application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
-    [notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
+    [ notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
 }
+ */
+
 
 + (UIView*) globalActivityView {
     return appDelegate.globalActivityView;

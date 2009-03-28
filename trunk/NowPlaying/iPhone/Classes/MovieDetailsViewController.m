@@ -14,6 +14,8 @@
 
 #import "MovieDetailsViewController.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "ActionsView.h"
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AlertUtilities.h"

@@ -14,6 +14,8 @@
 
 #import "MovieShowtimesCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"

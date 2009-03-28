@@ -25,7 +25,12 @@
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.textColor = [UIColor whiteColor];
         
+#ifdef IPHONE_OS_VERSION_3
         CGRect frame = CGRectMake(5, 7, 32, 32);
+#else
+        CGRect frame = CGRectMake(10, 8, 32, 32);  
+#endif
+
         scoreLabel.frame = frame;
     }
     
