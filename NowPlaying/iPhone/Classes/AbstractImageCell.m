@@ -104,7 +104,9 @@
     }
 
     UIImage* image = [self loadImageWorker];
-    if (image == nil) {
+    if (image == nil) {        
+        [self prioritizeImage];
+
         if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             // don't need to do anything.
             // keep up the spinner
@@ -112,8 +114,6 @@
         } else {
             state = NotFound;
         }
-
-        [self prioritizeImage];
     } else {
         CGSize imageSize = image.size;
         CGSize frameSize = imageView.frame.size;

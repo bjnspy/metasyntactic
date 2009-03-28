@@ -91,6 +91,10 @@
 }
 
 
+- (void) minorRefreshWorker {
+}
+
+
 - (void) majorRefreshWorker {
     [self initializeData];
     [self reloadTableViewData];
