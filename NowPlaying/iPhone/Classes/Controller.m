@@ -250,6 +250,18 @@ static Controller* controller = nil;
 }
 
 
+- (void) setDvdMoviesShowDVDs:(BOOL) value {
+    [self.model setDvdMoviesShowDVDs:value];
+    [self updateDVDCache];
+}
+
+
+- (void) setDvdMoviesShowBluray:(BOOL) value {
+    [self.model setDvdMoviesShowBluray:value];
+    [self updateDVDCache];
+}
+
+
 - (void) setUpcomingEnabled:(BOOL) value {
     [self.model setUpcomingEnabled:value];
     [[AppDelegate appDelegate].tabBarController resetTabs];
