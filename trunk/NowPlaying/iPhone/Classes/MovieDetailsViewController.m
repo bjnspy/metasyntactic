@@ -14,8 +14,6 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "ActionsView.h"
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AlertUtilities.h"
@@ -48,9 +46,11 @@
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
+#import "UITableViewCell+Utilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
+
 
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;

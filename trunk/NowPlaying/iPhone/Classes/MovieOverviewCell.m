@@ -14,8 +14,6 @@
 
 #import "MovieOverviewCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AppDelegate.h"
 #import "FontCache.h"
@@ -24,6 +22,8 @@
 #import "MovieDetailsViewController.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface MovieOverviewCell()
 @property (retain) Movie* movie;

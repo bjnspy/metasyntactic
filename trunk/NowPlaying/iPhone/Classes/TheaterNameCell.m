@@ -14,11 +14,11 @@
 
 #import "TheaterNameCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "Application.h"
 #import "Model.h"
 #import "Theater.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface TheaterNameCell()
 #ifndef IPHONE_OS_VERSION_3

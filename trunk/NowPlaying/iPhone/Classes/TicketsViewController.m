@@ -14,8 +14,6 @@
 
 #import "TicketsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Application.h"
@@ -31,9 +29,11 @@
 #import "SearchDatePickerViewController.h"
 #import "StringUtilities.h"
 #import "Theater.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
+
 
 @interface TicketsViewController()
 @property (retain) Movie* movie;

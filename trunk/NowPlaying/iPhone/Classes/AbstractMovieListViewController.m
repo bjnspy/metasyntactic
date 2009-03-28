@@ -14,8 +14,6 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "Application.h"
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
@@ -27,7 +25,9 @@
 #import "MoviesNavigationController.h"
 #import "MutableMultiDictionary.h"
 #import "SettingsViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
+
 
 @interface AbstractMovieListViewController()
 #ifdef IPHONE_OS_VERSION_3

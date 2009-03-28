@@ -14,13 +14,13 @@
 
 #import "MovieShowtimesCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Performance.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface MovieShowtimesCell()
 @property (retain) UILabel* showtimesLabel;

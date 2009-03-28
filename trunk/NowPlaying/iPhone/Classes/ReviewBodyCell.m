@@ -14,11 +14,11 @@
 
 #import "ReviewBodyCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "FontCache.h"
 #import "Review.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
+
 
 @interface ReviewBodyCell()
 @property (retain) Review* review;

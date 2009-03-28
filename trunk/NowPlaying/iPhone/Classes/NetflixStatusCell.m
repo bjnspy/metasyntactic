@@ -14,8 +14,6 @@
 
 #import "NetflixStatusCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "ImageCache.h"
 #import "Model.h"
 #import "NetflixCache.h"
@@ -23,6 +21,8 @@
 #import "Status.h"
 #import "SwitchCell.h"
 #import "TappableImageView.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixStatusCell()
 @property (retain) TappableImageView* deleteImageView;
