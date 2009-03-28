@@ -82,7 +82,6 @@
 
 static Model* model = nil;
 
-static NSString* currentVersion = @"3.6.0";
 static NSString* persistenceVersion = @"104";
 
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";
@@ -283,11 +282,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-+ (NSString*) version {
-    return currentVersion;
-}
-
-
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
     for (FavoriteTheater* theater in favoriteTheaters) {
@@ -457,7 +451,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     }
 
     // Only warn once per upgrade.
-    NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, currentVersion, [LocaleUtilities isoCountry]];
+    NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, [Application version], [LocaleUtilities isoCountry]];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
         return;
     }

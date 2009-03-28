@@ -64,11 +64,7 @@ typedef enum {
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
-        NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-        NSString* appVersion = [Model version];
-        appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-
-        self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
+        self.title = [Application nameAndVersion];
     }
 
     return self;
