@@ -26,7 +26,7 @@
 
     // Mapping from google movie title to score provider title
     NSDictionary* movieMapData;
-    
+
     // -->
 
     NSString* providerDirectory;

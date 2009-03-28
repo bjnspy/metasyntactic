@@ -47,20 +47,20 @@
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
-        
+
 #ifndef IPHONE_OS_VERSION_3
         self.textLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
         textLabel.font = [UIFont boldSystemFontOfSize:18];
         textLabel.textColor = [UIColor blackColor];
-        
+
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 0, 14)] autorelease];
         detailTextLabel.font = [UIFont systemFontOfSize:12];
         detailTextLabel.textColor = [UIColor grayColor];
-        
+
         [self.contentView addSubview:textLabel];
-        [self.contentView addSubview:detailTextLabel];  
+        [self.contentView addSubview:detailTextLabel];
 #endif
-    
+
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
     }
@@ -77,7 +77,7 @@
 #ifndef IPHONE_OS_VERSION_3
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     for (UILabel* label in [NSArray arrayWithObjects:textLabel, detailTextLabel, nil]) {
         CGRect frame = label.frame;
         frame.size.width = MIN(frame.size.width, self.contentView.frame.size.width - frame.origin.x);
@@ -95,7 +95,7 @@
     }
 
     self.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
-    
+
 #ifndef IPHONE_OS_VERSION_3
     [textLabel sizeToFit];
     [detailTextLabel sizeToFit];
@@ -107,7 +107,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (selected) {
         textLabel.textColor = [UIColor whiteColor];
         detailTextLabel.textColor = [UIColor whiteColor];

@@ -231,7 +231,7 @@
     if (![controllers containsObject:self.selectedNavigationController]) {
         [self.selectedNavigationController popToRootViewControllerAnimated:NO];
     }
-        
+
     [self setViewControllers:controllers animated:NO];
     /*
      // Such an awful hack.  For some reason, changing the view controllers

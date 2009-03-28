@@ -150,7 +150,7 @@
         [[OperationQueue operationQueue] performSelector:@selector(updateWithNotifications)
                                                 onTarget:currentScoreProvider
                                                     gate:nil
-                                                priority:Priority];     
+                                                priority:Priority];
     }
 
     for (id<ScoreProvider> provider in self.scoreProviders) {

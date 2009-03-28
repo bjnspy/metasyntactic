@@ -55,16 +55,16 @@
     if (self = [super initWithStyle:UITableViewCellStyleValue1
                     reuseIdentifier:reuseIdentifier]) {
         self.separatorLine = [[[UILabel alloc] init] autorelease];
-        
+
 #ifndef IPHONE_OS_VERSION_3
         self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         textLabel.font = [UIFont boldSystemFontOfSize:17];
         [self.contentView addSubview:textLabel];
-        
+
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         detailTextLabel.textColor = [ColorCache commandColor];
         detailTextLabel.adjustsFontSizeToFitWidth = YES;
-        detailTextLabel.minimumFontSize = 12; 
+        detailTextLabel.minimumFontSize = 12;
         [self.contentView addSubview:detailTextLabel];
 #endif
     }
@@ -78,28 +78,28 @@
 
     CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
     separatorLine.frame = separatorFrame;
-    
+
 #ifndef IPHONE_OS_VERSION_3
     [textLabel sizeToFit];
     [detailTextLabel sizeToFit];
-    
+
     CGRect frame = detailTextLabel.frame;
     frame.origin.y = floor((self.contentView.frame.size.height - frame.size.height) / 2);
     frame.origin.x = self.contentView.frame.size.width - frame.size.width;
     frame.size.width = MIN(frame.size.width,
                            self.contentView.frame.size.width - frame.origin.x);
-    
+
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         frame.origin.x -= 10;
     }
-    
+
     detailTextLabel.frame = frame;
-    
+
     frame = textLabel.frame;
     frame.origin.x = 10;
     frame.origin.y = floor((self.contentView.frame.size.height - frame.size.height) / 2);
     textLabel.frame = frame;
-    
+
     [self.contentView bringSubviewToFront:detailTextLabel];
 #endif
 }

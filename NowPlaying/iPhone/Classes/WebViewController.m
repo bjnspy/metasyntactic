@@ -114,7 +114,7 @@
     webView.delegate = self;
     webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     webView.scalesPageToFit = YES;
-    
+
     [self.view addSubview:webView];
 }
 
@@ -153,14 +153,14 @@
     CGRect webframe = self.view.frame;
     webframe.origin.x = 0;
     webframe.origin.y = 0;
-    
+
     CGRect toolbarFrame;
     CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
-    
+
     self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     toolbar.barStyle = UIBarStyleBlackTranslucent;
-    
+
     [self.view addSubview:toolbar];
     [self.view bringSubviewToFront:toolbar];
 #endif
@@ -223,7 +223,7 @@
     UIBarButtonItem* navigateForwardItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 #else
     UIBarButtonItem* navigateBackItem = [toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];    
+    UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 #endif
 
     navigateBackItem.enabled = webView.canGoBack;

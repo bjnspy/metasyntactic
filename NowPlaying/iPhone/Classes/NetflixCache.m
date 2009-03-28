@@ -1138,18 +1138,18 @@ static NSDictionary* availabilityMap = nil;
 - (void) downloadRSSFeedMovies:(NSString*) address {
     NSString* file = [self rssFile:address];
     NSArray* identifiers = [FileUtilities readObject:file];
-    
+
     if (identifiers.count == 0) {
         return;
     }
-    
+
     NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
     [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
                                             onTarget:[AppDelegate class]
                                           withObject:notification
                                                 gate:nil
                                             priority:Normal];
-    
+
     for (NSString* identifier in identifiers) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
                                                 onTarget:self
@@ -1158,12 +1158,12 @@ static NSDictionary* availabilityMap = nil;
                                                     gate:nil
                                                 priority:Normal];
     }
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
                                             onTarget:[AppDelegate class]
                                           withObject:notification
                                                 gate:nil
-                                            priority:Normal];    
+                                            priority:Normal];
 }
 
 

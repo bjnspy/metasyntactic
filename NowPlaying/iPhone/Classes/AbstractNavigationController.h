@@ -17,7 +17,7 @@
     ApplicationTabBarController* applicationTabBarController;
     PostersViewController* postersViewController;
     BOOL visible;
-    
+
 #ifndef IPHONE_OS_VERSION_3
     BOOL isViewLoaded;
 #endif

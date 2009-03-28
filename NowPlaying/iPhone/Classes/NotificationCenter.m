@@ -61,7 +61,7 @@
         self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 16)] autorelease];
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
 #endif
-        
+
         notificationLabel.font = [UIFont boldSystemFontOfSize:12];
         notificationLabel.textAlignment = UITextAlignmentCenter;
         notificationLabel.textColor = [UIColor whiteColor];
@@ -82,10 +82,10 @@
                     startIndicatorSelector:@selector(showNotification)
                      stopIndicatorSelector:@selector(hideNotification)];
  */
-        
+
         [viewController.view addSubview:notificationLabel];
         [viewController.view addSubview:blackLabel];
-        
+
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     }
 

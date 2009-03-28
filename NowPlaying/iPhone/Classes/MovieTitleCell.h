@@ -25,5 +25,5 @@
 
 /* @protected */
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-   
+
 @end

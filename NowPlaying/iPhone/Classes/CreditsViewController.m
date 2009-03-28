@@ -210,7 +210,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* language = [LocaleUtilities displayLanguage:code];
 
     cell.textLabel.text = language;
-    
+
     [cell setCellValue:person];
     [cell setHidesSeparator:row > 0];
 
@@ -369,7 +369,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else {
         subject = @"Now Playing Feedback";
     }
-    
+
 #ifdef IPHONE_OS_VERSION_3
     if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];

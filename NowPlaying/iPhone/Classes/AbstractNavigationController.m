@@ -71,7 +71,7 @@
 #ifndef IPHONE_OS_VERSION_3
     self.isViewLoaded = YES;
 #endif
-    
+
     self.view.autoresizesSubviews = YES;
 }
 

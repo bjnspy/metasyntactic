@@ -18,7 +18,7 @@
 
     NSString* value;
     NSString* placeholder;
-    
+
 #ifndef IPHONE_OS_VERSION_3
     UILabel* textLabel;
     UILabel* detailTextLabel;

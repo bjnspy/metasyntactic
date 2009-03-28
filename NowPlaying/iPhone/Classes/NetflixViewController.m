@@ -219,7 +219,7 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-    
+
 #ifdef IPHONE_OS_VERSION_3
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
 #endif

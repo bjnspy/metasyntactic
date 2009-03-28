@@ -69,15 +69,15 @@
         textLabel.adjustsFontSizeToFitWidth = YES;
         textLabel.minimumFontSize = 14;
         textLabel.textColor = [UIColor blackColor];
-        
+
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         detailTextLabel.font = [UIFont systemFontOfSize:12];
         detailTextLabel.textColor = [UIColor grayColor];
-        
+
         [self.contentView addSubview:textLabel];
         [self.contentView addSubview:detailTextLabel];
 #endif
-        
+
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -103,8 +103,8 @@
     if (cell == nil) {
         cell = [[[class alloc] init] autorelease];
     }
-    
-    return cell;    
+
+    return cell;
 }
 
 
@@ -114,7 +114,7 @@
     if (score == nil || scoreValue == -1 || [Model model].noScores) {
         return [self movieTitleCellForClass:[UnknownMovieTitleCell class] inTableView:tableView];
     }
-    
+
     if ([Model model].rottenTomatoesScores) {
         if (scoreValue >= 60) {
             return [self movieTitleCellForClass:[TomatoMovieTitleCell class] inTableView:tableView];
@@ -138,7 +138,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.contentView bringSubviewToFront:scoreLabel];
-    
+
 #ifndef IPHONE_OS_VERSION_3
     CGRect frame;
     if ([Model model].noScores) {
@@ -146,11 +146,11 @@
     } else {
         frame = CGRectMake(50, 25, 0, 14);
     }
-    
+
     frame.size.width = self.contentView.frame.size.width - frame.origin.x;
 
     detailTextLabel.frame = frame;
-    
+
     frame.origin.y = 5;
     frame.size.height = 20;
     textLabel.frame = frame;
@@ -176,7 +176,7 @@
 
 + (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView {
     Score* score = [[Model model] scoreForMovie:movie];
-    
+
     MovieTitleCell* cell = [self movieTitleCellForScore:score inTableView:tableView];
     [cell setScore:score];
     [cell setMovie:movie];
@@ -188,7 +188,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (selected) {
         textLabel.textColor = [UIColor whiteColor];
         detailTextLabel.textColor = [UIColor whiteColor];

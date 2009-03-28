@@ -23,7 +23,7 @@
         self.image = [ImageCache unknownRatingImage];
         [scoreLabel removeFromSuperview];
     }
-    
+
     return self;
 }
 

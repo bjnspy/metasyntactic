@@ -151,7 +151,7 @@
     if (self.tableView.editing || readonlyMode) {
         return;
     }
-    
+
     [self initializeData];
     [self reloadTableViewData];
 }
