@@ -1611,8 +1611,6 @@
 		7445B4450F7D64CA00864071 /* MovieTitleCells */ = {
 			isa = PBXGroup;
 			children = (
-				74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */,
-				74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
 				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
 				7445B4460F7D64F300864071 /* RottenMovieTitleCell.h */,
@@ -1627,6 +1625,8 @@
 				7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */,
 				7445B4550F7D652400864071 /* GreenMovieTitleCell.h */,
 				7445B4560F7D652400864071 /* GreenMovieTitleCell.m */,
+				74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */,
+				74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */,
 				7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */,
 				7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */,
 				74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */,
