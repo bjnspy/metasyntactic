@@ -97,9 +97,6 @@ typedef enum {
     if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = [Application name];
 
-        self.navigationItem.rightBarButtonItem =
-        [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
-
         [self setupTableStyle];
     }
 
@@ -110,6 +107,7 @@ typedef enum {
 - (Model*) model {
     return [Model model];
 }
+
 
 - (Controller*) controller {
     return [Controller controller];
@@ -193,12 +191,6 @@ typedef enum {
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -243,7 +235,7 @@ typedef enum {
                 if (mostPopularTitleCount == 0) {
                     cell.text = NSLocalizedString(@"Most Popular", nil);
                 } else {
-                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), NSLocalizedString(@"Most Popular", nil), mostPopularTitleCount];
+                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
                 cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
