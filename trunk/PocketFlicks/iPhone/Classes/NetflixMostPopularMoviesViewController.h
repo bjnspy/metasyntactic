@@ -12,16 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#import "AbstractTableViewController.h"
 
-@interface NetflixMostPopularMoviesViewController : RefreshableTableViewController {
+@interface NetflixMostPopularMoviesViewController : AbstractTableViewController {
 @private
-    AbstractNavigationController* navigationController;
     NSString* category;
     NSArray* movies;
-
-    NSArray* visibleIndexPaths;
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController category:(NSString*) category;

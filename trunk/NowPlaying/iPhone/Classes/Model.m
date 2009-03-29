@@ -657,6 +657,16 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (BOOL) netflixCanInstantWatch {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_CAN_INSTANT_WATCH];
+}
+
+
+- (NSArray*) netflixPreferredFormats {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_PREFERRED_FORMATS];
+}
+
+
 - (NSInteger) scoreProviderIndexWorker {
     NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
     if (result != nil) {
@@ -1254,6 +1264,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     return nil;
+}
+
+
+- (NSString*) netflixAddressForMovie:(Movie*) movie {
+    return [netflixCache netflixAddressForMovie:movie];
 }
 
 

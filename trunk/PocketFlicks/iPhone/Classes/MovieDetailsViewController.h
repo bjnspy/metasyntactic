@@ -18,7 +18,7 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface MovieDetailsViewController : AbstractDetailsViewController<UIActionSheetDelegate, TappableImageViewDelegate, NetflixAddMovieDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
+@interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
     Movie* movie;
 
@@ -33,25 +33,16 @@
     UIButton* bookmarkButton;
 
     BOOL expandedDetails;
-    BOOL visible;
     BOOL readonlyMode;
-    BOOL posterLoaded;
 
-    NSLock* posterDownloadLock;
     UIImage* posterImage;
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
-
-    CollapsedMovieDetailsCell* collapsedMovieDetailsCell;
-    ExpandedMovieDetailsCell* expandedMovieDetailsCell;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
-
-- (void) minorRefresh;
-- (void) majorRefresh;
 
 + (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model;
 

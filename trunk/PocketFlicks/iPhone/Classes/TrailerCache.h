@@ -16,14 +16,12 @@
 
 @interface TrailerCache : AbstractMovieCache {
 @private
-    DifferenceEngine* engine_;
-    NSDictionary* index_;
-    NSArray* indexKeys_;
+    // Accessed from different threads.  needs gate.
+    NSDictionary* index;
+    NSArray* indexKeys;
 }
 
 + (TrailerCache*) cache;
-
-- (void) update:(NSArray*) movies;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 

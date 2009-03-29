@@ -89,6 +89,8 @@ enum ViewControllerType {
 - (NSString*) netflixUserId;
 - (NSString*) netflixFirstName;
 - (NSString*) netflixLastName;
+- (BOOL) netflixCanInstantWatch;
+- (NSArray*) netflixPreferredFormats;
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 - (void) setNetflixFirstName:(NSString*) firstName lastName:(NSString*) lastName canInstantWatch:(BOOL) canInstantWatch preferredFormats:(NSArray*) preferredFormats;
 
@@ -169,6 +171,7 @@ enum ViewControllerType {
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSString*) amazonAddressForMovie:(Movie*) movie;
+- (NSString*) netflixAddressForMovie:(Movie*) movie;
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;

@@ -252,11 +252,11 @@
 
 - (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"moving movie", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self moveMovieToTopOfQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -448,11 +448,11 @@
 
 - (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"movie rating", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self changeRatingBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -566,11 +566,11 @@
 
 - (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"adding movie", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self addMovieToQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -685,11 +685,11 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
 - (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"updating queue", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self modifyQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 

@@ -33,45 +33,72 @@ static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
 
 // Application storage directories
+static NSString* dataDirectory = nil;
 static NSString* imdbDirectory = nil;
 static NSString* amazonDirectory = nil;
 static NSString* wikipediaDirectory = nil;
+static NSString* userLocationsDirectory = nil;
+static NSString* scoresDirectory = nil;
+static NSString* reviewsDirectory = nil;
 static NSString* trailersDirectory = nil;
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
+static NSString* largeMoviesPostersIndexDirectory = nil;
 static NSString* peoplePostersDirectory = nil;
 static NSString* largePeoplePostersDirectory = nil;
+
+static NSString* dvdDirectory = nil;
+static NSString* dvdDetailsDirectory = nil;
+
+static NSString* blurayDirectory = nil;
+static NSString* blurayDetailsDirectory = nil;
 
 static NSString* netflixDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
-static NSString* netflixPostersDirectory = nil;
 static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 static NSString* netflixDetailsDirectory = nil;
 static NSString* netflixRSSDirectory = nil;
 
+static NSString* upcomingDirectory = nil;
+static NSString* upcomingCastDirectory = nil;
+static NSString* upcomingSynopsesDirectory = nil;
+static NSString* upcomingTrailersDirectory = nil;
+
 static NSString** directories[] = {
+&dataDirectory,
 &imdbDirectory,
 &amazonDirectory,
 &wikipediaDirectory,
+&userLocationsDirectory,
+&dvdDirectory,
+&dvdDetailsDirectory,
+&blurayDirectory,
+&blurayDetailsDirectory,
 &netflixDirectory,
 &netflixQueuesDirectory,
 &netflixSeriesDirectory,
-&netflixPostersDirectory,
 &netflixUserRatingsDirectory,
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
 &netflixDetailsDirectory,
 &netflixRSSDirectory,
+&scoresDirectory,
+&reviewsDirectory,
 &trailersDirectory,
 &postersDirectory,
 &moviesPostersDirectory,
 &largeMoviesPostersDirectory,
+&largeMoviesPostersIndexDirectory,
 &peoplePostersDirectory,
 &largePeoplePostersDirectory,
+&upcomingDirectory,
+&upcomingCastDirectory,
+&upcomingSynopsesDirectory,
+&upcomingTrailersDirectory,
 };
 
 static NSString* emptyStarString = nil;
@@ -80,32 +107,22 @@ static NSString* starString = nil;
 
 static DifferenceEngine* differenceEngine = nil;
 
+
 + (NSString*) name {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
 
++ (NSString*) version {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+
 + (NSString*) nameAndVersion {
     NSString* appName = [self name];
-    NSString* appVersion = [Model version];
-    appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
+    NSString* appVersion = [self version];
 
     return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-}
-
-
-+ (NSString*) netflixKey {
-    return @"szqxavgvm6s3ywed2cnwmt69";
-}
-
-
-+ (NSString*) netflixSecret {
-    return @"52EWSSQFrJ";
-}
-
-
-+ (NSString*) netflixApplicationName {
-    return @"PocketFlicks";
 }
 
 
@@ -171,26 +188,41 @@ static DifferenceEngine* differenceEngine = nil;
     }
 
     {
+        dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
         imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
         amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
         wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
+        userLocationsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"UserLocations"] retain];
+        scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
+        reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
         trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
         moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
         largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+        largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
         peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
         largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
 
+        dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
+        dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
+
+        blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
+        blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
+
         netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
         netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
-        netflixPostersDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Posters"] retain];
         netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
         netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
         netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
         netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
         netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
         netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
+
+        upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
+        upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
+        upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
+        upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         [self createDirectories];
     }
@@ -208,96 +240,8 @@ static DifferenceEngine* differenceEngine = nil;
         differenceEngine = [[DifferenceEngine engine] retain];
 
         [self initializeDirectories];
-        [self moveItemToTrash:supportDirectory];
-
         [self emptyTrash];
     }
-}
-
-
-+ (void) emptyTrashBackgroundEntryPoint {
-    for (NSString* path in [FileUtilities directoryContentsPaths:[self trashDirectory]]) {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-    }
-}
-
-
-+ (void) resetDirectories {
-    [gate lock];
-    {
-        [self deleteDirectories];
-        [self createDirectories];
-    }
-    [gate unlock];
-}
-
-
-+ (void) resetNetflixDirectories {
-    [gate lock];
-    {
-        [self moveItemToTrash:netflixUserRatingsDirectory];
-        [self moveItemToTrash:netflixPredictedRatingsDirectory];
-        [self moveItemToTrash:netflixQueuesDirectory];
-        [self createDirectories];
-    }
-    [gate unlock];
-}
-
-
-+ (void) clearStaleData:(NSString*) directory {
-    NSArray* names = [FileUtilities directoryContentsNames:directory];
-    for (NSString* name in names) {
-        // clear 5% of the old directories
-        if ((rand() % 1000) < 50) {
-            NSString* path = [directory stringByAppendingPathComponent:name];
-            NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
-
-            if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-                // don't delete folders
-                continue;
-            }
-
-            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
-            if (lastModifiedDate != nil) {
-                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                    [self moveItemToTrash:path];
-                }
-            }
-        }
-    }
-}
-
-
-+ (void) clearStaleData {
-    [gate lock];
-    {
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-            if ([netflixRSSDirectory isEqual:directory]) {
-                // we handle this one specially below
-                continue;
-            }
-
-            [self clearStaleData:directory];
-        }
-
-        for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
-            if ([FileUtilities isDirectory:path]) {
-                [self clearStaleData:path];
-            }
-        }
-    }
-    [gate unlock];
-}
-
-
-+ (void) moveItemToTrash:(NSString*) path {
-    [gate lock];
-    {
-        NSString* trashPath = [self uniqueTrashDirectory];
-        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-    }
-    [gate unlock];
 }
 
 
@@ -321,6 +265,11 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) dataDirectory {
+    return dataDirectory;
+}
+
+
 + (NSString*) imdbDirectory {
     return imdbDirectory;
 }
@@ -336,6 +285,11 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) userLocationsDirectory {
+    return userLocationsDirectory;
+}
+
+
 + (NSString*) moviesPostersDirectory {
     return moviesPostersDirectory;
 }
@@ -343,6 +297,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) largeMoviesPostersDirectory {
     return largeMoviesPostersDirectory;
+}
+
+
++ (NSString*) largeMoviesPostersIndexDirectory {
+    return largeMoviesPostersIndexDirectory;
 }
 
 
@@ -356,8 +315,38 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) scoresDirectory {
+    return scoresDirectory;
+}
+
+
++ (NSString*) reviewsDirectory {
+    return reviewsDirectory;
+}
+
+
 + (NSString*) trailersDirectory {
     return trailersDirectory;
+}
+
+
++ (NSString*) dvdDirectory {
+    return dvdDirectory;
+}
+
+
++ (NSString*) dvdDetailsDirectory {
+    return dvdDetailsDirectory;
+}
+
+
++ (NSString*) blurayDirectory {
+    return blurayDirectory;
+}
+
+
++ (NSString*) blurayDetailsDirectory {
+    return blurayDetailsDirectory;
 }
 
 
@@ -373,11 +362,6 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixQueuesDirectory {
     return netflixQueuesDirectory;
-}
-
-
-+ (NSString*) netflixPostersDirectory {
-    return netflixPostersDirectory;
 }
 
 
@@ -403,6 +387,155 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixRSSDirectory {
     return netflixRSSDirectory;
+}
+
+
++ (NSString*) upcomingDirectory {
+    return upcomingDirectory;
+}
+
+
++ (NSString*) upcomingCastDirectory {
+    return upcomingCastDirectory;
+}
+
+
++ (NSString*) upcomingSynopsesDirectory {
+    return upcomingSynopsesDirectory;
+}
+
+
++ (NSString*) upcomingTrailersDirectory {
+    return upcomingTrailersDirectory;
+}
+
+
++ (void) emptyTrashBackgroundEntryPoint {
+    NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
+    NSFileManager* manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
+
+    {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        NSString* fileName;
+        while ((fileName = [enumerator nextObject]) != nil) {
+            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
+            NSDictionary* attributes = [enumerator fileAttributes];
+
+            // don't delete folders yet
+            if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+                NSLog(@"Application:emptyTrashBackgroundEntryPoint - %@", fullPath.lastPathComponent);
+                [manager removeItemAtPath:fullPath error:NULL];
+            }
+
+            [NSThread sleepForTimeInterval:1];
+
+            [pool release];
+            pool = [[NSAutoreleasePool alloc] init];
+        }
+
+        [pool release];
+    }
+
+    // Now remove the directories.
+    for (NSString* fileName in [FileUtilities directoryContentsNames:trashDirectory]) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
+
+            [manager removeItemAtPath:fullPath error:NULL];
+            [NSThread sleepForTimeInterval:1];
+        }
+        [pool release];
+    }
+
+    NSLog(@"Application:emptyTrashBackgroundEntryPoint - stop");
+}
+
+
++ (void) resetDirectories {
+    [gate lock];
+    {
+        [self deleteDirectories];
+        [self createDirectories];
+    }
+    [gate unlock];
+}
+
+
++ (void) resetNetflixDirectories {
+    [gate lock];
+    {
+        [self moveItemToTrash:netflixUserRatingsDirectory];
+        [self moveItemToTrash:netflixPredictedRatingsDirectory];
+        [self moveItemToTrash:netflixQueuesDirectory];
+        [self createDirectories];
+    }
+    [gate unlock];
+}
+
+
++ (void) clearStaleItem:(NSString*) fullPath
+           inEnumerator:(NSDirectoryEnumerator*) enumerator
+            withManager:(NSFileManager*) manager {
+    if ((rand() % 1000) < 50) {
+        NSDictionary* attributes = [enumerator fileAttributes];
+
+        // don't delete folders
+        if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
+            if (lastModifiedDate != nil) {
+                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - %@", fullPath.lastPathComponent);
+                    [manager removeItemAtPath:fullPath error:NULL];
+                }
+            }
+        }
+    }
+}
+
+
++ (void) clearStaleDataBackgroundEntryPoint {
+    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - start");
+    NSFileManager* manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:cacheDirectory];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+    NSString* fileName;
+    while ((fileName = [enumerator nextObject]) != nil) {
+        NSString* fullPath = [cacheDirectory stringByAppendingPathComponent:fileName];
+        if ([userLocationsDirectory isEqual:fullPath]) {
+            [enumerator skipDescendents];
+        } else {
+            [self clearStaleItem:fullPath inEnumerator:enumerator withManager:manager];
+        }
+
+        [pool release];
+        pool = [[NSAutoreleasePool alloc] init];
+    }
+    [pool release];
+    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - stop");
+}
+
+
++ (void) clearStaleData {
+    [ThreadingUtilities backgroundSelector:@selector(clearStaleDataBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:NO];
+}
+
+
++ (void) moveItemToTrash:(NSString*) path {
+    [gate lock];
+    {
+        NSString* trashPath = [self uniqueTrashDirectory];
+        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
+
+        // safeguard, just in case.
+        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    }
+    [gate unlock];
 }
 
 
@@ -524,5 +657,15 @@ static DifferenceEngine* differenceEngine = nil;
 
     return isMetric && !isUK;
 }
+
+
++ (BOOL) canSendMail {
+#ifdef IPHONE_OS_VERSION_3
+    return [MFMailComposeViewController canSendMail];
+#else
+    return YES;
+#endif
+}
+    //
 
 @end

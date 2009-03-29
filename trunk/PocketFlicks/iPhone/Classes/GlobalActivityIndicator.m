@@ -26,7 +26,6 @@ static SEL stopIndicatorSelector = 0;
 static NSLock* gate;
 
 static BOOL firstTime = YES;
-static NSInteger totalBackgroundTaskCount;
 static NSInteger visibleBackgroundTaskCount;
 
 
@@ -42,6 +41,7 @@ static NSInteger visibleBackgroundTaskCount;
        stopIndicatorSelector:(SEL) stopIndicatorSelector_ {
     [gate lock];
     {
+        // should this be retained?
         target = target_;
         startIndicatorSelector = startIndicatorSelector_;
         stopIndicatorSelector = stopIndicatorSelector_;
@@ -75,14 +75,10 @@ static NSInteger visibleBackgroundTaskCount;
 }
 
 
-+ (void) addBackgroundTask:(BOOL) isVisible {
++ (void) addVisibleBackgroundTask {
     [gate lock];
     {
-        totalBackgroundTaskCount++;
-
-        if (isVisible) {
-            visibleBackgroundTaskCount++;
-        }
+        visibleBackgroundTaskCount++;
 
         if (visibleBackgroundTaskCount > 0 && firstTime) {
             [self performSelectorOnMainThread:@selector(forceUpdate) withObject:nil waitUntilDone:NO];
@@ -94,40 +90,13 @@ static NSInteger visibleBackgroundTaskCount;
 }
 
 
-+ (void) removeBackgroundTask:(BOOL) isVisible {
++ (void) removeVisibleBackgroundTask {
     [gate lock];
     {
-        totalBackgroundTaskCount--;
-
-        if (isVisible) {
-            visibleBackgroundTaskCount--;
-        }
-
+        visibleBackgroundTaskCount--;
         [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];
-}
-
-
-+ (BOOL) hasVisibleBackgroundTasks {
-    BOOL result;
-    [gate lock];
-    {
-        result = visibleBackgroundTaskCount > 0;
-    }
-    [gate unlock];
-    return result;
-}
-
-
-+ (BOOL) hasBackgroundTasks {
-    BOOL result;
-    [gate lock];
-    {
-        result = totalBackgroundTaskCount > 0;
-    }
-    [gate unlock];
-    return result;
 }
 
 @end

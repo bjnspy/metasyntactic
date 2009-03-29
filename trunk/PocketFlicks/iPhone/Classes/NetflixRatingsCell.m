@@ -22,7 +22,7 @@
 #import "TappableImageView.h"
 
 @interface NetflixRatingsCell()
-@property (retain) NSMutableArray* imageViews;
+@property (retain) NSArray* imageViews;
 @end
 
 @implementation NetflixRatingsCell
@@ -52,8 +52,9 @@
 
 
 - (void) setupNetflixRating {
-    CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:self.movie] floatValue];
+    CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie] floatValue];
 
+    NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
 
@@ -87,14 +88,17 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
-        [imageViews addObject:imageView];
+        [array addObject:imageView];
     }
+
+    self.imageViews = array;
 }
 
 
 - (void) setupUserRating:(NSString*) userRating {
     CGFloat rating = [userRating floatValue];
 
+    NSMutableArray* array = [NSMutableArray array];
     for (NSInteger i = -1; i < 5; i++) {
         UIImage* image;
         if (i == -1) {
@@ -123,8 +127,9 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
-        [imageViews addObject:imageView];
+        [array addObject:imageView];
     }
+    self.imageViews = array;
 }
 
 
@@ -133,14 +138,14 @@
         [view removeFromSuperview];
     }
 
-    [imageViews removeAllObjects];
+    self.imageViews = [NSArray array];
 }
 
 
 - (void) setupRating {
     [self clearRating];
 
-    NSString* userRating = [self.model.netflixCache userRatingForMovie:self.movie];
+    NSString* userRating = [self.model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
         [self setupUserRating:userRating];
     } else {
@@ -149,10 +154,8 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame
-                              movie:movie_]) {
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super initWithMovie:movie_]) {
         self.imageViews = [NSMutableArray array];
         [self setupRating];
     }
@@ -164,7 +167,7 @@
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
     NSInteger value = imageView.tag;
-    NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:self.movie] floatValue];
+    NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
 
     if (value == currentUserRating) {
         return;
@@ -180,7 +183,7 @@
 
     // now, update in the background.
     NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-    [self.model.netflixCache changeRatingTo:rating forMovie:self.movie delegate:self];
+    [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
 }
 
 

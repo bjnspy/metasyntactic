@@ -14,8 +14,10 @@
 
 #import "ImdbPosterDownloader.h"
 
+#import "Application.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "StringUtilities.h"
 #import "XmlElement.h"
 
 @implementation ImdbPosterDownloader
@@ -23,8 +25,12 @@
 + (NSString*) imdbId:(Movie*) movie {
     NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
-        NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
-        XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:urlString];
+        NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
+        NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
+                                 [Application host],
+                                 [StringUtilities stringByAddingPercentEscapes:address]];
+
+        XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:fullAddress];
 
         XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
         XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
@@ -42,8 +48,11 @@
     }
 
     NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
+    NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
+                             [Application host],
+                             [StringUtilities stringByAddingPercentEscapes:address]];
 
-    XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:address];
+    XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:fullAddress];
     XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
     XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
 

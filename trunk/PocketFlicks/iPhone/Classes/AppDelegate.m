@@ -15,23 +15,23 @@
 #import "AppDelegate.h"
 
 #import "AlertUtilities.h"
+#import "ApplicationTabBarController.h"
+#import "CacheUpdater.h"
 #import "Controller.h"
-#import "GlobalActivityIndicator.h"
+#import "LocationManager.h"
 #import "Model.h"
+#import "NetflixNavigationController.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
-#import "NetflixNavigationController.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
+@property (retain) ApplicationTabBarController* tabBarController;
 @property (retain) NetflixNavigationController* navigationController;
-@property (retain) OperationQueue* operationQueue;
-@property (retain) Controller* controller;
-@property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
-@property (retain) UIActivityIndicatorView* globalActivityIndicatorView;
 @property (retain) UIView* globalActivityView;
 @end
 
@@ -41,24 +41,18 @@
 static AppDelegate* appDelegate = nil;
 
 @synthesize window;
+@synthesize tabBarController;
 @synthesize navigationController;
-@synthesize operationQueue;
-@synthesize controller;
-@synthesize model;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
-@synthesize globalActivityIndicatorView;
 @synthesize globalActivityView;
 
 - (void) dealloc {
     self.window = nil;
+    self.tabBarController = nil;
     self.navigationController = nil;
-    self.operationQueue = nil;
-    self.controller = nil;
-    self.model = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
-    self.globalActivityIndicatorView = nil;
     self.globalActivityView = nil;
 
     [super dealloc];
@@ -71,6 +65,8 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) setupGlobalActivityIndicator {
+    self.globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+/*
     self.globalActivityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] retain];
     CGRect frame = globalActivityIndicatorView.frame;
     frame.size.width += 4;
@@ -81,6 +77,7 @@ static AppDelegate* appDelegate = nil;
     [GlobalActivityIndicator setTarget:globalActivityIndicatorView
                 startIndicatorSelector:@selector(startAnimating)
                  stopIndicatorSelector:@selector(stopAnimating)];
+*/
 }
 
 
@@ -93,19 +90,23 @@ static AppDelegate* appDelegate = nil;
 
     [self setupGlobalActivityIndicator];
 
-    self.model = [[[Model alloc] init] autorelease];
-    self.controller = [[[Controller alloc] init] autorelease];
+    [Model model];
+    [Controller controller];
+    [CacheUpdater cacheUpdater];
+    [OperationQueue operationQueue];
+    self.tabBarController = [ApplicationTabBarController controller];
+    self.navigationController = [[[NetflixNavigationController alloc] initWithTabBarController:tabBarController] autorelease];
 
-    self.navigationController = [[[NetflixNavigationController alloc] init] autorelease];
-    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
-
-    self.operationQueue = [OperationQueue operationQueue];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
-    [controller start];
+    [NotificationCenter attachToViewController:navigationController];
+
+    // Ok.  We've set up all our global state.  Now get the ball rolling.
+    [[Controller controller] start];
 }
 
 
@@ -163,33 +164,8 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-+ (OperationQueue*) operationQueue {
-    return appDelegate.operationQueue;
-}
-
-
-+ (void) addNotification:(NSString*) notification {
-
-}
-
-
-+ (void) addNotifications:(NSArray*) notifications {
-
-}
-
-
-+ (void) removeNotification:(NSString*) notification {
-
-}
-
-
-+ (void) removeNotifications:(NSArray*) notifications {
-
-}
-
-
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
-    [self.model didReceiveMemoryWarning];
+    [[Model model] didReceiveMemoryWarning];
 }
 
 @end

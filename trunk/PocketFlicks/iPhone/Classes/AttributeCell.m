@@ -12,24 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifndef IPHONE_OS_VERSION_3
 #import "AttributeCell.h"
 
 #import "ColorCache.h"
 
 @interface AttributeCell()
-@property (retain) UILabel* keyLabel;
-@property (retain) UILabel* valueLabel;
+@property (retain) UILabel* textLabel;
+@property (retain) UILabel* detailTextLabel;
 @end
 
 
 @implementation AttributeCell
 
-@synthesize keyLabel;
-@synthesize valueLabel;
+@synthesize textLabel;
+@synthesize detailTextLabel;
 
 - (void) dealloc {
-    self.keyLabel = nil;
-    self.valueLabel = nil;
+    self.textLabel = nil;
+    self.detailTextLabel = nil;
 
     [super dealloc];
 }
@@ -39,21 +40,22 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+- (id) init {
+    if (self = [super initWithFrame:[UIScreen mainScreen].bounds
+                    reuseIdentifier:nil]) {
+        self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 
-        keyLabel.textColor = [ColorCache commandColor];
-        keyLabel.font = [AttributeCell keyFont];
-        keyLabel.textAlignment = UITextAlignmentRight;
+        textLabel.textColor = [ColorCache commandColor];
+        textLabel.font = [AttributeCell keyFont];
+        textLabel.textAlignment = UITextAlignmentRight;
 
-        valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        valueLabel.adjustsFontSizeToFitWidth = YES;
-        valueLabel.minimumFontSize = 10.0;
+        detailTextLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        detailTextLabel.adjustsFontSizeToFitWidth = YES;
+        detailTextLabel.minimumFontSize = 10.0;
 
-        [self.contentView addSubview:keyLabel];
-        [self.contentView addSubview:valueLabel];
+        [self.contentView addSubview:textLabel];
+        [self.contentView addSubview:detailTextLabel];
     }
 
     return self;
@@ -63,39 +65,22 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
+    [textLabel sizeToFit];
+    [detailTextLabel sizeToFit];
+
     {
-        CGRect frame = keyLabel.frame;
-        frame.origin.y = floor((self.contentView.frame.size.height - keyLabel.frame.size.height) / 2);
-        keyLabel.frame = frame;
+        CGRect frame = textLabel.frame;
+        frame.origin.y = floor((self.contentView.frame.size.height - textLabel.frame.size.height) / 2);
+        frame.size.width = 60;
+        textLabel.frame = frame;
     }
 
     {
-        CGRect frame = valueLabel.frame;
-        frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
+        CGRect frame = detailTextLabel.frame;
+        frame.origin.y = floor((self.contentView.frame.size.height - detailTextLabel.frame.size.height) / 2);
+        frame.origin.x = 70;
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-        valueLabel.frame = frame;
-    }
-}
-
-
-- (void) setKey:(NSString*) key
-          value:(NSString*) value
-       keyWidth:(CGFloat) keyWidth {
-    keyLabel.text = key;
-    valueLabel.text = value;
-
-    {
-        [keyLabel sizeToFit];
-        CGRect frame = keyLabel.frame;
-        frame.origin.x = keyWidth - frame.size.width;
-        keyLabel.frame = frame;
-    }
-
-    {
-        [valueLabel sizeToFit];
-        CGRect frame = valueLabel.frame;
-        frame.origin.x = keyWidth + 10;
-        valueLabel.frame = frame;
+        detailTextLabel.frame = frame;
     }
 }
 
@@ -104,12 +89,13 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        keyLabel.textColor = [UIColor whiteColor];
-        valueLabel.textColor = [UIColor whiteColor];
+        textLabel.textColor = [UIColor whiteColor];
+        detailTextLabel.textColor = [UIColor whiteColor];
     } else {
-        keyLabel.textColor = [ColorCache commandColor];
-        valueLabel.textColor = [UIColor blackColor];
+        textLabel.textColor = [ColorCache commandColor];
+        detailTextLabel.textColor = [UIColor blackColor];
     }
 }
 
 @end
+#endif

@@ -12,18 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#import "AbstractTableViewController.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface NetflixQueueViewController :
-    RefreshableTableViewController<
-        TappableImageViewDelegate,
-        NetflixModifyQueueDelegate,
-        NetflixMoveMovieDelegate> {
+@interface NetflixQueueViewController : AbstractTableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     NSString* feedKey;
     Feed* feed;
     Queue* queue;
@@ -37,9 +32,6 @@
     IdentitySet* reorderedMovies;
 
     BOOL readonlyMode;
-
-    NSArray* visibleIndexPaths;
-    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

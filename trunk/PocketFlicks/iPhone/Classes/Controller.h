@@ -12,15 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Controller : NSObject {
+#import "DataProviderUpdateDelegate.h"
+
+@interface Controller : NSObject<DataProviderUpdateDelegate> {
 @private
+    LocationManager* locationManager;
+    NSLock* determineLocationGate;
 }
+
+@property (readonly, retain) LocationManager* locationManager;
 
 + (Controller*) controller;
 
 - (void) start;
 
-- (Model*) model;
+- (void) setSearchDate:(NSDate*) searchDate;
+- (void) setUserAddress:(NSString*) userAddress;
+- (void) setSearchRadius:(NSInteger) radius;
+- (void) setScoreProviderIndex:(NSInteger) index;
+
+- (void) setAutoUpdateLocation:(BOOL) value;
+- (void) setDvdBlurayEnabled:(BOOL) value;
+- (void) setUpcomingEnabled:(BOOL) value;
+- (void) setNetflixEnabled:(BOOL) value;
+- (void) setDvdMoviesShowDVDs:(BOOL) value;
+- (void) setDvdMoviesShowBluray:(BOOL) value;
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 

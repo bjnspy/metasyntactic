@@ -18,44 +18,27 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "OperationQueue.h"
 
 @interface TrailerCache()
-@property (retain) DifferenceEngine* engine_;
-@property (retain) NSDictionary* index_;
-@property (retain) NSArray* indexKeys_;
+@property (retain) NSDictionary* index;
+@property (retain) NSArray* indexKeys;
 @end
 
 
 @implementation TrailerCache
 
-@synthesize engine_;
-@synthesize index_;
-@synthesize indexKeys_;
-
-property_wrapper(DifferenceEngine*, engine, Engine);
-property_wrapper(NSDictionary*, index, Index);
-property_wrapper(NSArray*, indexKeys, IndexKeys);
+@synthesize index;
+@synthesize indexKeys;
 
 - (void) dealloc {
-    self.engine = nil;
     self.index = nil;
     self.indexKeys = nil;
 
     [super dealloc];
-}
-
-
-- (id) init {
-    if (self = [super init]) {
-        self.engine = [DifferenceEngine engine];
-    }
-
-    return self;
 }
 
 
@@ -70,32 +53,8 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 }
 
 
-- (void) update:(NSArray*) movies {
-    [[AppDelegate operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:movies
-                                             gate:nil
-                                         priority:Low];
-}
-
-
 - (BOOL) tooSoon:(NSDate*) date {
     return date.timeIntervalSinceNow < (3 * ONE_DAY);
-}
-
-
-- (void) updateBackgroundEntryPoint:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-
-        if (downloadDate == nil) {
-            [self addPrimaryMovie:movie];
-        } else {
-            if (![self tooSoon:downloadDate]) {
-                [self addSecondaryMovie:movie];
-            }
-        }
-    }
 }
 
 
@@ -107,8 +66,9 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
         }
     }
 
-    NSInteger arrayIndex = [self.engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
-                            inArray:self.indexKeys];
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
+                                                 inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
         [FileUtilities writeObject:[NSArray array]
@@ -116,7 +76,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
         return;
     }
 
-    NSArray* studioAndLocation = [self.index objectForKey:[self.indexKeys objectAtIndex:arrayIndex]];
+    NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
 
@@ -143,7 +103,7 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
 }
 
 
-- (void) generateIndex:(NSString*) indexText {
+- (void) generateIndexWorker:(NSString*) indexText {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
@@ -162,22 +122,34 @@ property_wrapper(NSArray*, indexKeys, IndexKeys);
     }
 
     self.index = result;
-    self.indexKeys = self.index.allKeys;
+    self.indexKeys = index.allKeys;
+}
+
+
+- (BOOL) tryGenerateIndex {
+    BOOL result;
+    [dataGate lock];
+    {
+        if (index == nil) {
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+            NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
+            if (indexText != nil) {
+                [self generateIndexWorker:indexText];
+                [self clearUpdatedMovies];
+            }
+        }
+
+        result = index != nil;
+    }
+    [dataGate unlock];
+    return result;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie {
-    if (index == nil) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
-        if (indexText == nil) {
-            return;
-        }
-
-        [self generateIndex:indexText];
+    if ([self tryGenerateIndex]) {
+        [self updateMovieDetailsWorker:movie];
     }
-
-    [self updateMovieDetailsWorker:movie];
 }
 
 

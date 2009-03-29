@@ -22,9 +22,10 @@
 #import "MovieDetailsViewController.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface MovieOverviewCell()
-@property (retain) Model* model;
 @property (retain) Movie* movie;
 @property (copy) NSString* synopsis;
 @property NSInteger synopsisSplit;
@@ -38,7 +39,6 @@
 @implementation MovieOverviewCell
 
 @synthesize movie;
-@synthesize model;
 @synthesize posterImage;
 @synthesize synopsis;
 @synthesize synopsisSplit;
@@ -48,7 +48,6 @@
 
 - (void) dealloc {
     self.movie = nil;
-    self.model = nil;
     self.posterImage = nil;
     self.synopsis = nil;
     self.synopsisSplit = 0;
@@ -76,14 +75,11 @@
 
 
 - (id) initWithMovie:(Movie*) movie_
-               model:(Model*) model_
-               frame:(CGRect) frame
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
         activityView:(ActivityIndicatorViewWithBackground*) activityView {
-    if (self = [super initWithFrame:frame reuseIdentifier:nil]) {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
         self.movie = movie_;
-        self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.posterImage = posterImage_;
 
@@ -118,6 +114,11 @@
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (NSInteger) calculateSynopsisSplit:(double) cellWidth {
     CGFloat posterHeight = self.posterSize.height;
     int chunk1X = 5 + self.posterSize.width + 5;
@@ -140,7 +141,7 @@
                                                             options:NSBackwardsSearch
                                                               range:NSMakeRange(0, guess)];
         NSInteger whitespace = whitespaceRange.location;
-        if (whitespace == 0) {
+        if (whitespace == 0  || whitespaceRange.length == 0) {
             return synopsis.length;
         }
 
@@ -162,7 +163,7 @@
 - (NSInteger) calculateSynopsisMax {
     // in order to not make the synopsis too long, we trim it a bit.
     // We do this by first figuring out how much can go on the right of the
-    // poster (i.e. synopsisSplit), doubling that amount, and then terminating
+    // poster (i.e. synopsisSplit), tripling that amount, and then terminating
     // at the first period that follows.
     if (synopsisSplit == synopsis.length) {
         // we didn't even need to split the synopsis. so there's no need to
@@ -170,7 +171,7 @@
         return synopsis.length;
     }
 
-    NSInteger guess = synopsisSplit * 2;
+    NSInteger guess = synopsisSplit * 3;
     if (guess >= synopsis.length) {
         // we have enough room to fit the full synopsis in.
         return synopsis.length;
@@ -188,7 +189,7 @@
 
 
 - (void) calculateSynopsisChunks:(double) width {
-    self.synopsis = [model synopsisForMovie:movie];
+    self.synopsis = [self.model synopsisForMovie:movie];
     self.synopsisSplit = [self calculateSynopsisSplit:width];
     self.synopsisMax = [self calculateSynopsisMax];
 }
@@ -233,13 +234,10 @@
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(Model*) model
-                               frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
                         activityView:(ActivityIndicatorViewWithBackground*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
-                                               model:model
-                                               frame:frame
                                          posterImage:posterImage
                                      posterImageView:posterImageView
                                         activityView:activityView] autorelease];
@@ -248,7 +246,7 @@
 
 - (CGFloat) height {
     double width;
-    if ([model screenRotationEnabled] &&
+    if ([self.model screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
@@ -281,7 +279,6 @@
 
     MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie
                                                          model:model
-                                                         frame:[UIScreen mainScreen].applicationFrame
                                                    posterImage:posterImage
                                                posterImageView:posterImageView
                                                   activityView:nil];

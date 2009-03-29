@@ -19,8 +19,10 @@
 #import "Application.h"
 #import "Controller.h"
 #import "GlobalActivityIndicator.h"
-#import "NetflixNavigationController.h"
 #import "Model.h"
+#import "NetflixAuthentication.h"
+#import "NetflixNavigationController.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 
 @interface NetflixLoginViewController()
@@ -73,6 +75,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
@@ -162,16 +165,16 @@
     [self setupActivityIndicator];
     [self setupButton];
 
-    [[AppDelegate operationQueue] performSelector:@selector(requestAuthorizationToken)
-                                         onTarget:self
-                                             gate:nil
-                                         priority:Priority];
+    [[OperationQueue operationQueue] performSelector:@selector(requestAuthorizationToken)
+                                  onTarget:self
+                                      gate:nil
+                                   priority:Now];
 }
 
 
-- (void) requestAuthorizationToken {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
-                                                secret:[Application netflixSecret]];
+- (void) requestAuthorizationTokenWorker {
+    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                                secret:[NetflixAuthentication secret]];
 
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/request_token"];
 
@@ -186,6 +189,16 @@
                                delegate:self
                       didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)
                         didFailSelector:@selector(requestAuthorizationToken:didFailWithError:)];
+}
+
+
+- (void) requestAuthorizationToken {
+    NSString* notification = NSLocalizedString(@"requesting authorization", nil);
+    [NotificationCenter addNotification:notification];
+    {
+        [self requestAuthorizationTokenWorker];
+    }
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -240,8 +253,8 @@
     NSString* accessUrl =
     [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=%@&application_name=%@&oauth_callback=nowplaying://popviewcontroller",
      authorizationToken.key,
-     [Application netflixKey],
-     [Application netflixApplicationName]];
+     [NetflixAuthentication key],
+     [NetflixAuthentication applicationName]];
 
     [navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
     didShowBrowser = YES;
@@ -259,15 +272,16 @@
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
 
-    [[AppDelegate operationQueue] performSelector:@selector(requestAccessToken)
+    [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
                                          onTarget:self
                                              gate:nil
-                                         priority:Priority];
+                                         priority:Now];
 }
 
-- (void) requestAccessToken {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
-                                                secret:[Application netflixSecret]];
+
+- (void) requestAccessTokenWorker {
+    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                                secret:[NetflixAuthentication secret]];
 
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/access_token"];
 
@@ -282,6 +296,16 @@
                                delegate:self
                       didFinishSelector:@selector(requestAccessToken:didFinishWithData:)
                         didFailSelector:@selector(requestAccessToken:didFailWithError:)];
+}
+
+
+- (void) requestAccessToken {
+    NSString* notification = NSLocalizedString(@"requesting access", nil);
+    [NotificationCenter addNotification:notification];
+    {
+        [self requestAccessTokenWorker];
+    }
+    [NotificationCenter removeNotification:notification];
 }
 
 

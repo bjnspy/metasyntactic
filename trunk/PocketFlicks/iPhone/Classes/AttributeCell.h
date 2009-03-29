@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifndef IPHONE_OS_VERSION_3
 @interface AttributeCell : UITableViewCell {
 @private
-    UILabel* keyLabel;
-    UILabel* valueLabel;
+    UILabel* textLabel;
+    UILabel* detailTextLabel;
 }
 
-+ (UIFont*) keyFont;
-
-- (void) setKey:(NSString*) key
-          value:(NSString*) value
-       keyWidth:(CGFloat) width;
+@property (readonly, retain) UILabel* textLabel;
+@property (readonly, retain) UILabel* detailTextLabel;
 
 @end
+#endif

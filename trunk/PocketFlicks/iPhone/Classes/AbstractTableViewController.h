@@ -12,21 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractTableViewController : UITableViewController {
-@private
-    AbstractNavigationController* abstractNavigationController_;
+@interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate> {
+@protected
+    AbstractNavigationController* abstractNavigationController;
 
-    BOOL visible_;
-    NSArray* visibleIndexPaths_;
+    BOOL visible;
+    NSArray* visibleIndexPaths;
 }
 
 - (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
-/* @protected */
-- (AbstractNavigationController*) abstractNavigationController;
-- (BOOL) visible;
-- (NSArray*) visibleIndexPaths;
+- (void) majorRefresh;
+- (void) minorRefresh;
 
+/* @protected */
 - (void) reloadTableViewData;
 - (void) didReceiveMemoryWarningWorker;
 

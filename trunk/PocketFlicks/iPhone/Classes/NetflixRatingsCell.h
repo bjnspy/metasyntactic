@@ -18,11 +18,10 @@
 
 @interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private
-    NSMutableArray* imageViews;
+    NSArray* imageViews;
 }
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie;
 
 - (void) refresh;
 

@@ -71,7 +71,7 @@
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
+    searchBar.tintColor = abstractNavigationController.navigationBar.tintColor;
     [searchBar sizeToFit];
 
     self.navigationItem.titleView = searchBar;

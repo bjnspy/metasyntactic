@@ -14,7 +14,6 @@
 
 #import "OperationQueue.h"
 
-#import "MutablePointerSet.h"
 #import "Operation.h"
 #import "Operation1.h"
 #import "Operation2.h"
@@ -51,12 +50,12 @@ static OperationQueue* operationQueue = nil;
         [self performSelectorOnMainThread:@selector(addOperation:) withObject:operation waitUntilDone:NO];
         return;
     }
-    
+
     [dataGate lock];
     {
         //[operations addObject:operation];
         [queue addOperation:operation];
-        
+
         if (operation.queuePriority >= Priority) {
             priorityOperationsCount++;
         }
@@ -70,15 +69,15 @@ static OperationQueue* operationQueue = nil;
     {
         //MutablePointerSet* oldOperations = [[operations retain] autorelease];
         //[oldOperations removeObject:operationToKill];
-        
+
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
         //queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         queue.maxConcurrentOperationCount = 1;
-        
+
         //self.operations = [MutablePointerSet set];
         self.boundedOperations = [NSMutableArray array];
         priorityOperationsCount = 0;
-        
+
         //for (NSValue* value in oldOperations.mutableSet) {
         //    id op = (id)value.pointerValue;
         //    [self addOperation:op];
@@ -96,7 +95,7 @@ static OperationQueue* operationQueue = nil;
 - (id) init {
     if (self = [super init]) {
         self.dataGate = [[[NSLock alloc] init] autorelease];
-        
+
         [self restart];
     }
 
@@ -289,7 +288,7 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 4;
         if (priority >= Priority) {
             priorityOperationsCount--;
         }
-        
+
         //[operations removeObject:operation];
     }
     [dataGate unlock];

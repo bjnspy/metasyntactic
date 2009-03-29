@@ -14,12 +14,10 @@
 
 @interface AbstractCache : NSObject {
 @protected
-    NSCondition* gate_;
+    NSRecursiveLock* dataGate;
+    NSRecursiveLock* runGate;
 }
 
 - (void) didReceiveMemoryWarning;
-
-/* @protected */
-- (NSCondition*) gate;
 
 @end

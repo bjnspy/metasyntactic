@@ -20,9 +20,6 @@
 
 + (PosterCache*) cache;
 
-- (void) update:(NSArray*) movies;
-- (void) updateMovie:(Movie*) movie;
-
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 

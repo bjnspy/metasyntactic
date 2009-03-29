@@ -18,6 +18,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#ifdef IPHONE_OS_VERSION_3
+#import <MessageUI/MessageUI.h>
+#endif
 #import <Security/Security.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
@@ -25,6 +28,7 @@
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "OAuthConsumer.h"
+#import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "expat.h"
 #endif

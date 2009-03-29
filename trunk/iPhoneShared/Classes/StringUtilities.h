@@ -29,4 +29,6 @@
 
 + (NSArray*) splitIntoChunks:(NSString*) string;
 
++ (NSInteger) hashString:(NSString*) string;
+
 @end

@@ -20,9 +20,6 @@
 
 + (AmazonCache*) cache;
 
-- (void) update:(NSArray*) movies;
-- (void) updateMovie:(Movie*) movie;
-
 - (NSString*) amazonAddressForMovie:(Movie*) movie;
 
 @end

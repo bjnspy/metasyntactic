@@ -14,8 +14,10 @@
 
 #import "AbstractSearchEngine.h"
 
+#import "AppDelegate.h"
 #import "Model.h"
 #import "Movie.h"
+#import "NotificationCenter.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
@@ -24,8 +26,6 @@
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate;
 @property NSInteger currentRequestId;
-@property (retain) Model* model;
-@property (retain) SearchRequest* currentlyExecutingRequest;
 @property (retain) SearchRequest* nextSearchRequest;
 @property (retain) NSCondition* gate;
 @end
@@ -35,17 +35,12 @@
 
 @synthesize delegate;
 @synthesize currentRequestId;
-@synthesize model;
-@synthesize currentlyExecutingRequest;
 @synthesize nextSearchRequest;
 @synthesize gate;
-
 
 - (void) dealloc {
     self.delegate = nil;
     self.currentRequestId = 0;
-    self.model = nil;
-    self.currentlyExecutingRequest = nil;
     self.nextSearchRequest = nil;
     self.gate = nil;
 
@@ -53,12 +48,10 @@
 }
 
 
-- (id) initWithModel:(Model*) model_
-            delegate:(id<SearchEngineDelegate>) delegate_ {
+- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate__ {
     if (self = [super init]) {
-        self.model = model_;
         self.currentRequestId = 0;
-        self.delegate = delegate_;
+        self.delegate = delegate__;
         self.gate = [[[NSCondition alloc] init] autorelease];
 
         [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
@@ -68,7 +61,12 @@
 }
 
 
-- (BOOL) abortEarly {
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest {
     BOOL result;
 
     [gate lock];
@@ -81,8 +79,18 @@
 }
 
 
-- (void) search {
+- (void) searchWorker:(SearchRequest*) request {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) search:(SearchRequest*) request {
+    NSString* notification = NSLocalizedString(@"searching", nil);
+    [NotificationCenter addNotification:notification];
+    {
+        [self searchWorker:request];
+    }
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -90,20 +98,19 @@
     while (true) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
+            SearchRequest* currentlyExecutingRequest = nil;
             [gate lock];
             {
                 while (nextSearchRequest == nil) {
                     [gate wait];
                 }
 
-                self.currentlyExecutingRequest = nextSearchRequest;
+                currentlyExecutingRequest = [[nextSearchRequest retain] autorelease];
                 self.nextSearchRequest = nil;
             }
             [gate unlock];
 
-            [self search];
-
-            self.currentlyExecutingRequest = nil;
+            [self search:currentlyExecutingRequest];
         }
         [autoreleasePool release];
     }
@@ -124,8 +131,10 @@
 - (void) submitRequest:(NSString*) string {
     [gate lock];
     {
-        currentRequestId++;
-        self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId value:string model:model];
+        self.currentRequestId++;
+        self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId
+                                                        value:string
+                                                        model:self.model];
 
         [gate broadcast];
     }
@@ -153,16 +162,36 @@
 }
 
 
-- (void) reportError:(NSString*) error movies:(NSArray*) movies {
-    [self reportError:error movies:movies people:nil];
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray {
+    [self reportResult:request
+                movies:movies
+              theaters:theaters
+        upcomingMovies:upcomingMovies
+                  dvds:dvds
+                bluray:bluray
+                people:[NSArray array]];
 }
 
 
-- (void) reportError:(NSString*) error movies:(NSArray*) movies people:(NSArray*) people {
-    SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
-                                                value:currentlyExecutingRequest.value
-                                                error:error
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray
+               people:(NSArray*) people {
+    SearchResult* result = [SearchResult resultWithId:request.requestId
+                                                value:request.value
                                                movies:movies
+                                             theaters:theaters
+                                       upcomingMovies:upcomingMovies
+                                                 dvds:dvds
+                                               bluray:bluray
                                                people:people];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
 }
@@ -171,7 +200,7 @@
 - (void) invalidateExistingRequests {
     [gate lock];
     {
-        currentRequestId++;
+        self.currentRequestId++;
         self.nextSearchRequest = nil;
     }
     [gate unlock];

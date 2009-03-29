@@ -13,24 +13,47 @@
 // limitations under the License.
 
 @interface AbstractNavigationController : UINavigationController {
-@private
-    PostersViewController* postersViewController;
-    BOOL viewLoaded;
-
 @protected
+    ApplicationTabBarController* applicationTabBarController;
+    PostersViewController* postersViewController;
     BOOL visible;
+
+#ifndef IPHONE_OS_VERSION_3
+    BOOL isViewLoaded;
+    SearchViewController* searchViewController;
+#endif
 }
 
-@property (readonly) BOOL visible;
+@property (readonly, assign) ApplicationTabBarController* applicationTabBarController;
+
+- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
 
+- (void) pushTicketsView:(Movie*) movie
+                 theater:(Theater*) theater
+                   title:(NSString*) title
+                animated:(BOOL) animated;
+
+- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated;
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
+- (void) pushReviews:(Movie*) movie animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
 
+- (void) pushInfoControllerAnimated:(BOOL) animated;
+
+- (void) navigateToLastViewedPage;
+
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;
+
+#ifndef IPHONE_OS_VERSION_3
+- (void) showSearchView;
+#endif
+
+// @protected
+- (Movie*) movieForTitle:(NSString*) canonicalTitle;
 
 @end

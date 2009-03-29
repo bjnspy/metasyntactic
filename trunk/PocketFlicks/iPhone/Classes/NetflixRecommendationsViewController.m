@@ -16,17 +16,17 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "Controller.h"
 #import "GlobalActivityIndicator.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MutableMultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
-#import "Model.h"
 #import "Queue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixRecommendationsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* genres;
 @property (retain) MultiDictionary* genreToMovies;
 @end
@@ -34,21 +34,19 @@
 
 @implementation NetflixRecommendationsViewController
 
-@synthesize navigationController;
 @synthesize genres;
 @synthesize genreToMovies;
 
 - (void)dealloc {
-    self.navigationController = nil;
     self.genres = nil;
     self.genreToMovies = nil;
+
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Recommendations", nil);
     }
 
@@ -58,11 +56,6 @@
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
 }
 
 
@@ -87,7 +80,7 @@
 
 - (void) majorRefreshWorker {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -98,17 +91,6 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 
@@ -121,15 +103,10 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.genreToMovies = [MultiDictionary dictionary];
     self.genres = [NSArray array];
-
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -138,9 +115,9 @@
     NSString* genre = [genres objectAtIndex:indexPath.row];
 
     NetflixGenreRecommendationsViewController* controller =
-    [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:navigationController genre:genre] autorelease];
+    [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:abstractNavigationController genre:genre] autorelease];
 
-    [navigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
@@ -157,7 +134,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
     NSString* genre = [genres objectAtIndex:indexPath.row];
     NSInteger count = [[genreToMovies objectsForKey:genre] count];

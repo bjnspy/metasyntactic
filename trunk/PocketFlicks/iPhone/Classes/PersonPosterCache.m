@@ -23,7 +23,6 @@
 #import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -58,22 +57,10 @@
 
 
 - (void) update:(Person*) person {
-    [self.gate lock];
-    {
-        //[normalPeople addObject:person];
-        [self.gate signal];
-    }
-    [self.gate unlock];
 }
 
 
 - (void) prioritizePerson:(Person*) person {
-    [self.gate lock];
-    {
-        //[prioritizedPeople addObject:person];
-        [self.gate signal];
-    }
-    [self.gate unlock];
 }
 
 
@@ -93,8 +80,8 @@
     NSString* lowercaseName = [name lowercaseString];
 
     return [lowercaseName hasSuffix:@"png"] ||
-    [lowercaseName hasSuffix:@"jpg"] ||
-    [lowercaseName hasSuffix:@"jpeg"];
+           [lowercaseName hasSuffix:@"jpg"] ||
+           [lowercaseName hasSuffix:@"jpeg"];
 }
 
 

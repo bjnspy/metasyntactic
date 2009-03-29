@@ -86,6 +86,8 @@ static AppDelegate* appDelegate = nil;
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 
+    [NotificationCenter attachToViewController:tabBarController];
+
     // Ok.  We've set up all our global state.  Now get the ball rolling.
     [[Controller controller] start];
 }
@@ -137,31 +139,6 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
-}
-
-
-+ (NotificationCenter*) notificationCenter {
-    return appDelegate.tabBarController.notificationCenter;
-}
-
-
-+ (void) addNotification:(NSString*) notification {
-    [[self notificationCenter] addNotification:notification];
-}
-
-
-+ (void) addNotifications:(NSArray*) notifications {
-    [[self notificationCenter] addNotifications:notifications];
-}
-
-
-+ (void) removeNotification:(NSString*) notification {
-    [[self notificationCenter] removeNotification:notification];
-}
-
-
-+ (void) removeNotifications:(NSArray*) notifications {
-    [[self notificationCenter] removeNotifications:notifications];
 }
 
 

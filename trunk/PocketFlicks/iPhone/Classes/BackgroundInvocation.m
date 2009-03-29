@@ -38,10 +38,10 @@
 
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
-             argument:(id) argument_
+           withObject:(id) argument_
                  gate:(id<NSLocking>) gate_
               visible:(BOOL) visible_ {
-    if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
+    if (self = [super initWithTarget:target_ selector:selector_ withObject:argument_]) {
         self.gate = gate_;
         self.visible = visible_;
     }
@@ -52,12 +52,12 @@
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
-                                      argument:(id) argument
+                                    withObject:(id) argument
                                           gate:(id<NSLocking>) gate
                                        visible:(BOOL) visible {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
-                                                argument:argument
+                                              withObject:argument
                                                     gate:gate
                                                  visible:visible] autorelease];
 }
@@ -81,11 +81,15 @@
     }
 
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:visible];
     {
+        if (visible) {
+            [GlobalActivityIndicator addVisibleBackgroundTask];
+        }
         [self invokeSelector];
+        if (visible) {
+            [GlobalActivityIndicator removeVisibleBackgroundTask];
+        }
     }
-    [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];
 
     [AppDelegate minorRefresh];

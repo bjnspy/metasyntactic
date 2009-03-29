@@ -20,9 +20,6 @@
 
 + (WikipediaCache*) cache;
 
-- (void) update:(NSArray*) movies;
-- (void) updateMovie:(Movie*) movie;
-
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie;
 
 @end

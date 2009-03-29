@@ -13,10 +13,10 @@
 // limitations under the License.
 
 #import "TappableScrollViewDelegate.h"
+#import "AbstractFullScreenViewController.h"
 
-@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
+@interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     Movie* movie;
 
     TappableScrollView* scrollView;
@@ -25,12 +25,14 @@
     NSInteger posterCount;
     NSMutableDictionary* pageNumberToView;
 
-    UIToolbar* toolbar;
-
     BOOL shutdown;
 
     BOOL saving;
     UILabel* savingLabel;
+
+#ifndef IPHONE_OS_VERSION_3
+    UIToolbar* toolbar;
+#endif
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

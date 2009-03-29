@@ -260,7 +260,7 @@ static Pulser* pulser = nil;
     if (!gotFlags) {
         return NO;
     }
-    
+
     return [self isReachableWithoutRequiringConnection:flags];
 }
 
@@ -277,7 +277,7 @@ static Pulser* pulser = nil;
     BOOL result = [self isNetworkAvailableWorker:networkReachability];
 
     CFRelease(networkReachability);
-    
+
     return result;
 }
 

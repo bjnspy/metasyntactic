@@ -14,23 +14,25 @@
 
 @interface SettingCell : UITableViewCell {
 @private
-    UILabel* keyLabel;
-    UILabel* valueLabel;
     UILabel* separatorLine;
-
-    UIFont* cachedFont;
 
     NSString* value;
     NSString* placeholder;
+
+#ifndef IPHONE_OS_VERSION_3
+    UILabel* textLabel;
+    UILabel* detailTextLabel;
+#endif
 }
 
-@property (retain) NSString* placeholder;
+#ifndef IPHONE_OS_VERSION_3
+@property (readonly, retain) UILabel* textLabel;
+#endif
+@property (copy) NSString* placeholder;
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
-- (void) setKey:(NSString*) key
-          value:(NSString*) value
-  hideSeparator:(BOOL) hideSeparator;
+- (void) setCellValue:(NSString*) text;
+- (void) setHidesSeparator:(BOOL) hideSeparator;
 
 @end

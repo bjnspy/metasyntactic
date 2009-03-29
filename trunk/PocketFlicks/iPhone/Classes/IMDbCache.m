@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "FileUtilities.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -43,16 +42,6 @@
 - (NSString*) imdbFile:(Movie*) movie {
     NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
     return [[Application imdbDirectory] stringByAppendingPathComponent:name];
-}
-
-
-- (void) update:(NSArray*) movies {
-    [self addPrimaryMovies:movies];
-}
-
-
-- (void) updateMovie:(Movie*) movie {
-    [self addPrimaryMovie:movie];
 }
 
 

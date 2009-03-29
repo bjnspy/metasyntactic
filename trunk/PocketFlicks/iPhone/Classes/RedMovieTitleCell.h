@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface RefreshableTableViewController : UITableViewController {
-}
+#import "SquareMovieTitleCell.h"
 
-- (void) majorRefresh;
-- (void) minorRefresh;
+@interface RedMovieTitleCell : SquareMovieTitleCell {
+
+}
 
 @end

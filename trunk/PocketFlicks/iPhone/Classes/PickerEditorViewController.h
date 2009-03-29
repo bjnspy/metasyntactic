@@ -15,7 +15,7 @@
 #import "EditorViewController.h"
 
 @interface PickerEditorViewController : EditorViewController<UIPickerViewDelegate> {
-@private
+@protected
     UIPickerView* picker;
     NSArray* values;
     UILabel* label;

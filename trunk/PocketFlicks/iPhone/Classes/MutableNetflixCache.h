@@ -15,6 +15,8 @@
 #import "NetflixCache.h"
 
 @interface MutableNetflixCache : NetflixCache {
+@private
+    NSDictionary* presubmitRatings;
 }
 
 

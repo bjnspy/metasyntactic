@@ -41,17 +41,17 @@
 }
 
 
-- (id) initWithWithQueue:(Queue*) queue_
-                   movie:(Movie*) movie_
-             description:(NSString*) description_
-                   saved:(BOOL) saved_
-                position:(NSInteger) position_ {
+- (id) initWithWithQueue:(Queue*) queue__
+                   movie:(Movie*) movie__
+             description:(NSString*) description__
+                   saved:(BOOL) saved__
+                position:(NSInteger) position__ {
     if (self = [super init]) {
-        self.queue = queue_;
-        self.movie = movie_;
-        self.description = description_;
-        self.saved = saved_;
-        self.position = position_;
+        self.queue = queue__;
+        self.movie = movie__;
+        self.description = description__;
+        self.saved = saved__;
+        self.position = position__;
     }
 
     return self;

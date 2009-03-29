@@ -17,21 +17,21 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "ColorCache.h"
-#import "Controller.h"
 #import "LargePosterCache.h"
 #import "Model.h"
-#import "NonClippingView.h"
-#import "OperationQueue.h"
+#import "NotificationCenter.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
+#import "ThreadingUtilities.h"
 
 @interface PostersViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
-@property (retain) UIToolbar* toolbar;
 @property (retain) UILabel* savingLabel;
+#ifndef IPHONE_OS_VERSION_3
+@property (retain) UIToolbar* toolbar;
+#endif
 @end
 
 
@@ -43,20 +43,22 @@ const int LABEL_TAG = -2;
 const int IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 
-@synthesize navigationController;
 @synthesize pageNumberToView;
 @synthesize movie;
-@synthesize toolbar;
 @synthesize scrollView;
 @synthesize savingLabel;
+#ifndef IPHONE_OS_VERSION_3
+@synthesize toolbar;
+#endif
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.pageNumberToView = nil;
     self.movie = nil;
-    self.toolbar = nil;
     self.scrollView = nil;
     self.savingLabel = nil;
+#ifndef IPHONE_OS_VERSION_3
+    self.toolbar = nil;
+#endif
 
     [super dealloc];
 }
@@ -65,10 +67,13 @@ const double LOAD_DELAY = 1;
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_
                         posterCount:(NSInteger) posterCount_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithNavigationController:navigationController_]) {
         self.movie = movie_;
         posterCount = posterCount_;
+
+#ifdef IPHONE_OS_VERSION_3
+        self.wantsFullScreenLayout = YES;
+#endif
 
         self.pageNumberToView = [NSMutableDictionary dictionary];
     }
@@ -82,8 +87,33 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (Controller*) controller {
-    return [Controller controller];
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
+    [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
+
+#ifdef IPHONE_OS_VERSION_3
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+    [self.abstractNavigationController setToolbarHidden:NO animated:YES];
+    self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.abstractNavigationController.toolbar.translucent = YES;
+#else
+    [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlackTranslucent animated:YES];
+#endif
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+    [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
+
+#ifdef IPHONE_OS_VERSION_3
+    [self.abstractNavigationController setToolbarHidden:YES animated:YES];
+#else
+    [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleDefault animated:YES];
+#endif
 }
 
 
@@ -97,7 +127,7 @@ const double LOAD_DELAY = 1;
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    CGRect frame = [UIScreen mainScreen].bounds;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
@@ -155,8 +185,7 @@ const double LOAD_DELAY = 1;
     imageView.tag = IMAGE_TAG;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
 
     if (image.size.width > image.size.height) {
         int offset = (int)((frame.size.height - frame.size.width) / 2.0);
@@ -175,8 +204,7 @@ const double LOAD_DELAY = 1;
 
 
 - (TappableScrollView*) createScrollView {
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
 
     self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
@@ -254,8 +282,7 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = page * frame.size.width;
 
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
@@ -313,6 +340,13 @@ const double LOAD_DELAY = 1;
 }
 
 
+#ifndef IPHONE_OS_VERSION_3
+- (void) setToolbarItems:(NSArray*) items animated:(BOOL) animated {
+    [toolbar setItems:items animated:YES];
+}
+#endif
+
+
 - (void) setupSavingToolbar {
     self.savingLabel = [[[UILabel alloc] init] autorelease];
     savingLabel.font = [UIFont boldSystemFontOfSize:20];
@@ -334,7 +368,7 @@ const double LOAD_DELAY = 1;
     [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingActivityIndicator] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [toolbar setItems:items animated:YES];
+    [self setToolbarItems:items animated:YES];
 }
 
 
@@ -390,7 +424,7 @@ const double LOAD_DELAY = 1;
     UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
     [items addObject:doneItem];
 
-    [toolbar setItems:items animated:YES];
+    [self setToolbarItems:items animated:YES];
 
     if (currentPage <= 0) {
         leftArrow.enabled = NO;
@@ -442,26 +476,33 @@ const double LOAD_DELAY = 1;
         return;
     }
 
+#ifdef IPHONE_OS_VERSION_3
+    [self.abstractNavigationController setToolbarHidden:YES animated:YES];
+#else
     [UIView beginAnimations:nil context:NULL];
     {
         toolbar.alpha = 0;
     }
     [UIView commitAnimations];
+#endif
 }
 
 
 - (void) showToolBar {
+#ifdef IPHONE_OS_VERSION_3
+    [self.abstractNavigationController setToolbarHidden:NO animated:YES];
+#else
     [UIView beginAnimations:nil context:NULL];
     {
-        toolbar.alpha = TRANSLUCENCY_LEVEL;
+        toolbar.alpha = 1;
     }
     [UIView commitAnimations];
+#endif
 }
 
 
 - (void) onRightTapped:(id) sender {
-    CGRect rect = [UIScreen mainScreen].applicationFrame;
-    rect.origin.y = 0;
+    CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.x = (currentPage + 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage + 1];
@@ -470,8 +511,7 @@ const double LOAD_DELAY = 1;
 
 
 - (void) onLeftTapped:(id) sender {
-    CGRect rect = [UIScreen mainScreen].applicationFrame;
-    rect.origin.y = 0;
+    CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.x = (currentPage - 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage - 1];
@@ -526,11 +566,11 @@ const double LOAD_DELAY = 1;
       didFinishSavingWithError:(NSError*) error
                    contextInfo:(void*) contextInfo {
     NSInteger nextIndex = (NSInteger)contextInfo;
-    [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
-                                         onTarget:self
-                                       withObject:[NSNumber numberWithInteger:nextIndex]
-                                             gate:nil
-                                         priority:Priority];
+    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
+                                  onTarget:self
+                                withObject:[NSNumber numberWithInteger:nextIndex]
+                                      gate:nil
+                                   visible:YES];
 }
 
 
@@ -551,7 +591,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void)actionSheet:(UIActionSheet*) actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void) actionSheet:(UIActionSheet*) actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
@@ -559,62 +599,67 @@ const double LOAD_DELAY = 1;
     if (saving) {
         return;
     }
-
     saving = YES;
+
     [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
-        [[AppDelegate operationQueue] performSelector:@selector(saveSingleImage:)
-                                             onTarget:self
-                                           withObject:[NSNumber numberWithInteger:currentPage]
-                                                 gate:nil
-                                             priority:Priority];
+        [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
+                                      onTarget:self
+                                    withObject:[NSNumber numberWithInteger:currentPage]
+                                          gate:nil
+                                       visible:YES];
     } else {
-        [[AppDelegate operationQueue] performSelector:@selector(saveMultipleImages:)
-                                             onTarget:self
-                                           withObject:[NSNumber numberWithInteger:0]
-                                                 gate:nil
-                                             priority:Priority];
+        [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
+                                      onTarget:self
+                                    withObject:[NSNumber numberWithInteger:0]
+                                          gate:nil
+                                       visible:YES];
     }
+}
+
+
+- (void) createToolbar {
+#ifndef IPHONE_OS_VERSION_3
+    CGRect webframe = self.view.frame;
+    webframe.origin.x = 0;
+    webframe.origin.y = 0;
+
+    CGRect toolbarFrame;
+    CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
+
+    self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
+    toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
+#endif
 }
 
 
 - (void) loadView {
     [super loadView];
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
-    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
-
     [self createScrollView];
+    [self createToolbar];
 
-    {
-        self.toolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
-        toolbar.barStyle = UIBarStyleBlackTranslucent;
-        [self setupToolbar];
-        [toolbar sizeToFit];
-
-        CGRect topBarFrame = toolbar.frame;
-        topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
-        toolbar.frame = topBarFrame;
-
-        [self showToolBar];
-    }
+    [self setupToolbar];
+    [self showToolBar];
 
     // load the first two pages.  Try to load the first one immediately.
     [self loadPage:0 delay:0];
     [self loadPage:1 delay:LOAD_DELAY];
 
-    [view addSubview:scrollView];
-    [view addSubview:toolbar];
+    [self.view addSubview:scrollView];
 
-    self.view = view;
+#ifndef IPHONE_OS_VERSION_3
+    [self.view addSubview:toolbar];
+    [self.view bringSubviewToFront:toolbar];
+#endif
 }
 
 
 - (void) dismiss {
     shutdown = YES;
-    [navigationController hidePostersView];
+    [self.abstractNavigationController hidePostersView];
 }
 
 
@@ -634,30 +679,34 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        if (toolbar.alpha == 0) {
-            [self showToolBar];
-        } else {
-            [self hideToolBar];
+#ifdef IPHONE_OS_VERSION_3
+        if (self.abstractNavigationController.toolbarHidden) {
+#else
+            if (toolbar.alpha == 0) {
+#endif
+                [self showToolBar];
+            } else {
+                [self hideToolBar];
+            }
         }
     }
-}
 
 
-- (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
-    [self hideToolBar];
-}
+    - (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
+        [self hideToolBar];
+    }
 
 
-- (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
-    CGFloat pageWidth = scrollView.frame.size.width;
-    NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
+    - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
+        CGFloat pageWidth = scrollView.frame.size.width;
+        NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
 
-    [self setPage:page];
-}
+        [self setPage:page];
+    }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return NO;
-}
+    - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+        return NO;
+    }
 
 @end

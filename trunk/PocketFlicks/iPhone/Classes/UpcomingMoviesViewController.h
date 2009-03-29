@@ -12,26 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NonClippingView.h"
+#import "AbstractMovieListViewController.h"
 
-@implementation NonClippingView
-
-- (void) dealloc {
-    [super dealloc];
+@interface UpcomingMoviesViewController : AbstractMovieListViewController {
+@private
+    UISegmentedControl* segmentedControl;
 }
 
+- (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
 
-- (id) initWithFrame:(CGRect) frame {
-    if (self = [super initWithFrame:frame]) {
-    }
-    return self;
-}
-
-
-- (void) didMoveToSuperview {
-    for (UIView* view = self; view != nil; view = view.superview) {
-        view.clipsToBounds = NO;
-    }
-}
+- (BOOL) sortingByTitle;
 
 @end

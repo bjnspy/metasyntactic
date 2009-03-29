@@ -20,22 +20,19 @@ typedef enum {
 
 
 @interface AbstractImageCell : UITableViewCell {
-@protected
-    Model* model;
-
-    ImageState state;
+@private
     UIImageView* imageLoadingView;
-    UIImageView* imageView;
-
+    ImageState state;
     UIActivityIndicatorView* activityView;
+
+@protected
+    UIImageView* imageView;
 
     UILabel* titleLabel;
     CGFloat titleWidth;
 }
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) loadImage;
 - (void) clearImage;

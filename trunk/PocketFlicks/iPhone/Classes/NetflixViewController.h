@@ -12,17 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#import "AbstractTableViewController.h"
 
-@interface NetflixViewController : RefreshableTableViewController<UIAlertViewDelegate> {
+@interface NetflixViewController : AbstractTableViewController<UIAlertViewDelegate> {
 @private
-    NetflixNavigationController* navigationController;
+#ifdef IPHONE_OS_VERSION_3
+    UISearchBar* searchBar;
+    NetflixSearchDisplayController* searchDisplayController;
+#else
     NetflixSearchViewController* searchViewController;
+#endif
 
-    BOOL visible;
     NSInteger mostPopularTitleCount;
 }
 
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

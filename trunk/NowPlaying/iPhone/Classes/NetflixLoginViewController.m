@@ -22,6 +22,7 @@
 #import "Model.h"
 #import "NetflixAuthentication.h"
 #import "NetflixNavigationController.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 
 @interface NetflixLoginViewController()
@@ -193,11 +194,11 @@
 
 - (void) requestAuthorizationToken {
     NSString* notification = NSLocalizedString(@"requesting authorization", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self requestAuthorizationTokenWorker];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -300,11 +301,11 @@
 
 - (void) requestAccessToken {
     NSString* notification = NSLocalizedString(@"requesting access", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self requestAccessTokenWorker];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 

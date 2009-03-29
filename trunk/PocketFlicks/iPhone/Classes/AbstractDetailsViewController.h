@@ -13,15 +13,21 @@
 // limitations under the License.
 
 #import "AbstractTableViewController.h"
+#import "DataProviderUpdateDelegate.h"
 
-@interface AbstractDetailsViewController : AbstractTableViewController {
+@interface AbstractDetailsViewController :
+    AbstractTableViewController<
+        DataProviderUpdateDelegate
+#ifdef IPHONE_OS_VERSION_3
+        , MFMailComposeViewControllerDelegate
+#endif
+    > {
 @protected
-    AbstractNavigationController* navigationController;
+    NSInteger updateId;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
-- (Model*) model;
-- (Controller*) controller;
+// @protected
+- (void) changeDate;
+- (void) openMailWithSubject:(NSString*) subject body:(NSString*) body;
 
 @end

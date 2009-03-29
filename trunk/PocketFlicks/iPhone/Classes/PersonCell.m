@@ -49,10 +49,8 @@
             bioLabel, nil];
 }
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier model:model_]) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.bioTitleLabel = [self createTitleLabel:NSLocalizedString(@"Bio:", nil) yPosition:22];
         self.bioLabel = [self createValueLabel:22 + 1 forTitle:bioTitleLabel];
         bioLabel.numberOfLines = 0;
@@ -75,12 +73,13 @@
 
 
 - (UIImage*) loadImageWorker {
-    return [model smallPosterForPerson:person];
+    return nil;
+    //return [model smallPosterForPerson:person];
 }
 
 
 - (void) prioritizeImage {
-    [model prioritizePerson:person];
+    //[model prioritizePerson:person];
 }
 
 

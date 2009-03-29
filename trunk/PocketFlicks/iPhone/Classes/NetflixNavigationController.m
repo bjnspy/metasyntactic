@@ -33,10 +33,9 @@
 }
 
 
-- (id) init {
-    if (self = [super init]) {
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super initWithTabBarController:controller]) {
         self.title = [Application name];
-        self.navigationBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
     }
 
     return self;
