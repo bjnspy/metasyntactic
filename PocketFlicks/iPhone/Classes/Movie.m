@@ -31,7 +31,7 @@
 @property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
-@property (retain) NSString* cachedRatingAndRuntimeString;
+@property (copy) NSString* cachedRatingAndRuntimeString;
 @property (retain) NSDictionary* additionalFields;
 @end
 

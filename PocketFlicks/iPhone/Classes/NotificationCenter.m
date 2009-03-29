@@ -14,36 +14,32 @@
 
 #import "NotificationCenter.h"
 
+#import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
 #import "Pulser.h"
 
 @interface NotificationCenter()
-@property (retain) UIView* view_;
-@property (retain) UILabel* notificationLabel_;
-@property (retain) UILabel* blackLabel_;
-@property (retain) NSMutableArray* notifications_;
-@property (retain) Pulser* pulser_;
-@property NSInteger disabledCount_;
+@property (retain) UIViewController* viewController;
+@property (retain) UILabel* notificationLabel;
+@property (retain) UILabel* blackLabel;
+@property (retain) NSMutableArray* notifications;
+@property (retain) Pulser* pulser;
+@property NSInteger disabledCount;
 @end
 
 @implementation NotificationCenter
 
-@synthesize view_;
-@synthesize notificationLabel_;
-@synthesize blackLabel_;
-@synthesize notifications_;
-@synthesize pulser_;
-@synthesize disabledCount_;
+static NotificationCenter* notificationCenter;
 
-property_wrapper(UIView*, view, View);
-property_wrapper(UILabel*, notificationLabel, NotificationLabel);
-property_wrapper(UILabel*, blackLabel, BlackLabel);
-property_wrapper(NSMutableArray*, notifications, Notifications);
-property_wrapper(Pulser*, pulser, Pulser);
-property_wrapper(NSInteger, disabledCount, DisabledCount);
+@synthesize viewController;
+@synthesize notificationLabel;
+@synthesize blackLabel;
+@synthesize notifications;
+@synthesize pulser;
+@synthesize disabledCount;
 
 - (void) dealloc {
-    self.view = nil;
+    self.viewController = nil;
     self.notificationLabel = nil;
     self.blackLabel = nil;
     self.notifications = nil;
@@ -54,67 +50,98 @@ property_wrapper(NSInteger, disabledCount, DisabledCount);
 }
 
 
-- (void) addToView {
-    [self.view addSubview:self.notificationLabel];
-    [self.view addSubview:self.blackLabel];
++ (NotificationCenter*) notificationCenter {
+    if (notificationCenter == nil) {
+        notificationCenter = [[NotificationCenter alloc] init];
+    }
+
+    return notificationCenter;
 }
 
 
-- (id) initWithView:(UIView*) view__ {
-    if (self = [super init]) {
-        self.view = view__;
+- (UIView*) view {
+    return viewController.view;
+}
 
+const NSInteger TAB_BAR_HEIGHT = 47;
+const NSInteger LABEL_HEIGHT = 16;
+const NSInteger STATUS_BAR_HEIGHT = 20;
+
+- (void) attachToViewController:(UIViewController*) viewController_ {
+    self.viewController = viewController_;
+    
+    CGRect viewFrame = self.view.frame;
+    
+    NSInteger top = viewFrame.size.height - LABEL_HEIGHT;
+    if ([viewController isKindOfClass:[UITabBarController class]]) {
+        top -= TAB_BAR_HEIGHT;
+        notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
+    } else {
+        notificationLabel.backgroundColor = [UIColor blackColor];
+    }
+    CGRect frame = CGRectMake(0, top, viewFrame.size.width, LABEL_HEIGHT);
+    
+    notificationLabel.frame = frame;
+    frame.size.height = 1;
+    blackLabel.frame = frame;
+    
+    [self.view addSubview:notificationLabel];
+    [self.view addSubview:blackLabel];
+}
+
+
++ (void) attachToViewController:(UIViewController*) viewController_ {
+    [[self notificationCenter] attachToViewController:viewController_];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
         self.notifications = [NSMutableArray array];
 
-        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 16)] autorelease];
-        self.notificationLabel.font = [UIFont boldSystemFontOfSize:12];
-        self.notificationLabel.textAlignment = UITextAlignmentCenter;
-        self.notificationLabel.textColor = [UIColor whiteColor];
-        self.notificationLabel.shadowColor = [UIColor darkGrayColor];
-        self.notificationLabel.shadowOffset = CGSizeMake(0, 1);
-        self.notificationLabel.alpha = 0;
-        self.notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
-        self.notificationLabel.text = NSLocalizedString(@"Updating", nil);
+        self.notificationLabel = [[[UILabel alloc] init] autorelease];
+        self.blackLabel = [[[UILabel alloc] init] autorelease];
 
-        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
-        self.blackLabel.backgroundColor = [UIColor blackColor];
+        notificationLabel.font = [UIFont boldSystemFontOfSize:12];
+        notificationLabel.textAlignment = UITextAlignmentCenter;
+        notificationLabel.textColor = [UIColor whiteColor];
+        notificationLabel.shadowColor = [UIColor darkGrayColor];
+        notificationLabel.shadowOffset = CGSizeMake(0, 1);
+        notificationLabel.alpha = 0;
+        notificationLabel.text = NSLocalizedString(@"Updating", nil);
+        notificationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+
+        blackLabel.backgroundColor = [UIColor blackColor];
+        blackLabel.alpha = 0;
+        blackLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
         self.pulser = [Pulser pulserWithTarget:self
                                         action:@selector(update)
                                  pulseInterval:1];
-/*
-        [GlobalActivityIndicator setTarget:self
-                    startIndicatorSelector:@selector(showNotification)
-                     stopIndicatorSelector:@selector(hideNotification)];
- */
-
-        [self addToView];
     }
 
     return self;
 }
 
 
-+ (NotificationCenter*) centerWithView:(UIView*) view {
-    return [[[NotificationCenter alloc] initWithView:view] autorelease];
-}
+- (void) showNotifications {
+    if (disabledCount == 0) {
+        [self.view bringSubviewToFront:notificationLabel];
+        [self.view bringSubviewToFront:blackLabel];
 
-
-- (void) showNotification {
-    if (self.disabledCount == 0 && [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [UIView beginAnimations:nil context:NULL];
         {
-            self.notificationLabel.alpha = self.blackLabel.alpha = 1;
+            notificationLabel.alpha = blackLabel.alpha = 1;
         }
         [UIView commitAnimations];
     }
 }
 
 
-- (void) hideNotification {
+- (void) hideNotifications {
     [UIView beginAnimations:nil context:NULL];
     {
-        self.notificationLabel.alpha = self.blackLabel.alpha = 0;
+        notificationLabel.alpha = blackLabel.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -122,7 +149,7 @@ property_wrapper(NSInteger, disabledCount, DisabledCount);
 
 - (NSString*) computeText {
     NSMutableArray* array = [NSMutableArray array];
-    for (NSString* notification in self.notifications) {
+    for (NSString* notification in notifications) {
         if (![array containsObject:notification]) {
             [array addObject:notification];
         }
@@ -137,26 +164,46 @@ property_wrapper(NSInteger, disabledCount, DisabledCount);
 
 
 - (void) update {
-    self.notificationLabel.text = [self computeText];
-    if (self.notifications.count > 0) {
-        [self showNotification];
+    notificationLabel.text = [self computeText];
+    if (notifications.count > 0) {
+        [self showNotifications];
     } else {
-        [self hideNotification];
+        [self hideNotifications];
     }
 }
 
 
-- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation {
-    self.notificationLabel.alpha = self.blackLabel.alpha = 0;
+- (void) willChangeInterfaceOrientation {
+    notificationLabel.alpha = blackLabel.alpha = 0;
 }
 
 
-- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(update)
-               withObject:nil
-               afterDelay:1];
+- (void) didChangeInterfaceOrientation {
+    [self update];
 }
+
+
+- (void) addNotifications:(NSArray*) array {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(addNotifications:) withObject:array waitUntilDone:NO];
+        return;
+    }
+
+    [notifications addObjectsFromArray:array];
+    [pulser tryPulse];
+}
+
+
+- (void) removeNotifications:(NSArray*) array {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:array waitUntilDone:NO];
+        return;
+    }
+
+    [notifications removeObjectsInArray:array];
+    [pulser tryPulse];
+}
+
 
 - (void) addNotification:(NSString*) notification {
     [self addNotifications:[NSArray arrayWithObject:notification]];
@@ -168,38 +215,66 @@ property_wrapper(NSInteger, disabledCount, DisabledCount);
 }
 
 
-- (void) addNotifications:(NSArray*) array {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(addNotifications:) withObject:array waitUntilDone:NO];
-        return;
-    }
-
-    [self.notifications addObjectsFromArray:array];
-    [self.pulser tryPulse];
-}
-
-
-- (void) removeNotifications:(NSArray*) array {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:array waitUntilDone:NO];
-        return;
-    }
-
-    [self.notifications removeObjectsInArray:array];
-    [self.pulser tryPulse];
-}
-
-
 - (void) disableNotifications {
-    self.disabledCount++;
-    [self hideNotification];
-    [self.pulser tryPulse];
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(disableNotifications) withObject:nil waitUntilDone:NO];
+        return;
+    }
+
+    disabledCount++;
+    [self hideNotifications];
+    [pulser tryPulse];
 }
 
 
 - (void) enableNotifications {
-    self.disabledCount--;
-    [self.pulser tryPulse];
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(enableNotifications) withObject:nil waitUntilDone:NO];
+        return;
+    }
+
+    disabledCount--;
+    [pulser tryPulse];
+}
+
+
++ (void) addNotification:(NSString*) notification {
+    [[self notificationCenter] addNotification:notification];
+}
+
+
++ (void) removeNotification:(NSString*) notification {
+    [[self notificationCenter] removeNotification:notification];
+}
+
+
++ (void) addNotifications:(NSArray*) array {
+    [[self notificationCenter] addNotifications:array];
+}
+
+
++ (void) removeNotifications:(NSArray*) array {
+    [[self notificationCenter] removeNotifications:array];
+}
+
+
++ (void) disableNotifications {
+    [[self notificationCenter] disableNotifications];
+}
+
+
++ (void) enableNotifications {
+    [[self notificationCenter] enableNotifications];
+}
+
+
++ (void) didChangeInterfaceOrientation {
+    [[self notificationCenter] didChangeInterfaceOrientation];
+}
+
+
++ (void) willChangeInterfaceOrientation {
+    [[self notificationCenter] willChangeInterfaceOrientation];
 }
 
 @end

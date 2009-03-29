@@ -21,16 +21,16 @@
     NSInteger position;
 }
 
-@property (readonly, retain) Queue* queue;
-@property (readonly, retain) Movie* movie;
-@property (readonly, copy) NSString* description;
-@property (readonly) BOOL saved;
-@property (readonly) NSInteger position;
-
 + (Status*) statusWithQueue:(Queue*) queue
                       movie:(Movie*) movie
                 description:(NSString*) description
                       saved:(BOOL) saved
                    position:(NSInteger) position;
+
+- (Queue*) queue;
+- (Movie*) movie;
+- (NSString*) description;
+- (BOOL) saved;
+- (NSInteger) position;
 
 @end

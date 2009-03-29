@@ -23,9 +23,7 @@
 
 @property (retain) Person* person;
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setPerson:(Person*) movie owner:(id) owner;
 

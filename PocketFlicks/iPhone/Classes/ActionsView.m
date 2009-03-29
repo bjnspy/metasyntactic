@@ -22,6 +22,7 @@
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
 @property (retain) NSArray* arguments;
+@property CGFloat height;
 @end
 
 
@@ -32,6 +33,7 @@
 @synthesize titles;
 @synthesize buttons;
 @synthesize arguments;
+@synthesize height;
 
 - (void) dealloc {
     self.target = nil;
@@ -39,20 +41,21 @@
     self.titles = nil;
     self.buttons = nil;
     self.arguments = nil;
+    self.height = 0;
 
     [super dealloc];
 }
 
 
-- (id) initWithTarget:(id) target_
-            selectors:(NSArray*) selectors_
-               titles:(NSArray*) titles_
-            arguments:(NSArray*) arguments_ {
+- (id) initWithTarget:(id) target__
+            selectors:(NSArray*) selectors__
+               titles:(NSArray*) titles__
+            arguments:(NSArray*) arguments__ {
     if (self = [super initWithFrame:CGRectZero]) {
-        self.target = target_;
-        self.selectors = selectors_;
-        self.titles = titles_;
-        self.arguments = arguments_;
+        self.target = target__;
+        self.selectors = selectors__;
+        self.titles = titles__;
+        self.arguments = arguments__;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         NSMutableArray* array = [NSMutableArray array];
@@ -74,7 +77,7 @@
 
             UIButton* button = [buttons lastObject];
             CGRect frame = button.frame;
-            height = (8 + frame.size.height) * (lastRow + 1);
+            self.height = (8 + frame.size.height) * (lastRow + 1);
         }
     }
 
@@ -123,11 +126,6 @@
     }
 
     return CGSizeMake(width, height);
-}
-
-
-- (CGFloat) height {
-    return height;
 }
 
 

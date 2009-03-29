@@ -16,53 +16,61 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "AppDelegate.h"
 #import "Application.h"
-#import "Controller.h"
 #import "Model.h"
+#import "NotificationCenter.h"
 #import "ViewControllerUtilities.h"
 
 #define NAVIGATE_BACK_ITEM 1
 #define NAVIGATE_FORWARD_ITEM 3
 
 @interface WebViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) UIWebView* webView;
-@property (retain) UIToolbar* toolbar;
 @property (retain) UIActivityIndicatorView* activityView;
 @property (retain) UILabel* label;
 @property (copy) NSString* address;
+@property BOOL showSafariButton;
+@property BOOL errorReported;
+#ifndef IPHONE_OS_VERSION_3
+@property (retain) UIToolbar* toolbar;
+#endif
 @end
 
 
 @implementation WebViewController
 
-@synthesize navigationController;
 @synthesize webView;
-@synthesize toolbar;
 @synthesize activityView;
 @synthesize label;
 @synthesize address;
+@synthesize showSafariButton;
+@synthesize errorReported;
+#ifndef IPHONE_OS_VERSION_3
+@synthesize toolbar;
+#endif
 
 - (void) dealloc {
-    self.navigationController = nil;
-    self.address = nil;
-
     self.webView = nil;
-    self.toolbar = nil;
     self.activityView = nil;
     self.label = nil;
+    self.address = nil;
+    self.showSafariButton = NO;
+    self.errorReported = NO;
+#ifndef IPHONE_OS_VERSION_3
+    self.toolbar = nil;
+#endif
 
     [super dealloc];
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            address:(NSString*) address_
-                   showSafariButton:(BOOL) showSafariButton_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
-        self.address = address_;
-        showSafariButton = showSafariButton_;
+                            address:(NSString*) address__
+                   showSafariButton:(BOOL) showSafariButton__ {
+    if (self = [super initWithNavigationController:navigationController_]) {
+        self.address = address__;
+        self.showSafariButton = showSafariButton__;
     }
 
     return self;
@@ -71,11 +79,6 @@
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
 }
 
 
@@ -105,17 +108,14 @@
 
 
 - (void) setupWebView {
-    CGRect webframe = self.view.frame;
-    webframe.origin.x = 0;
-    webframe.origin.y = 0;
-
-    CGRect toolbarFrame;
-    CGRectDivide(webframe, &toolbarFrame, &webframe, toolbar.frame.size.height, CGRectMaxYEdge);
-
-    self.webView = [[[UIWebView alloc] initWithFrame:webframe] autorelease];
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    self.webView = [[[UIWebView alloc] initWithFrame:frame] autorelease];
     webView.delegate = self;
     webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     webView.scalesPageToFit = YES;
+
+    [self.view addSubview:webView];
 }
 
 
@@ -140,11 +140,16 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [toolbar setItems:items animated:YES];
+#ifdef IPHONE_OS_VERSION_3
+    [self setToolbarItems:items animated:NO];
+#else
+    [toolbar setItems:items animated:NO];
+#endif
 }
 
 
 - (void) setupToolbar {
+#ifndef IPHONE_OS_VERSION_3
     CGRect webframe = self.view.frame;
     webframe.origin.x = 0;
     webframe.origin.y = 0;
@@ -154,14 +159,19 @@
 
     self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
 
-    [self setupToolbarItems];
+    [self.view addSubview:toolbar];
+    [self.view bringSubviewToFront:toolbar];
+#endif
 }
 
 
 - (void) loadView {
     [super loadView];
+
+    [self setupWebView];
+    [self setupToolbar];
 
     if (showSafariButton) {
         self.navigationItem.rightBarButtonItem =
@@ -172,11 +182,7 @@
     }
 
     [self setupTitleView];
-    [self setupToolbar];
-    [self setupWebView];
-
-    [self.view addSubview:toolbar];
-    [self.view addSubview:webView];
+    [self setupToolbarItems];
 
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
 }
@@ -212,11 +218,18 @@
 
 
 - (void) updateToolBarItems {
+#ifdef IPHONE_OS_VERSION_3
+    UIBarButtonItem* navigateBackItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
+    UIBarButtonItem* navigateForwardItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+#else
     UIBarButtonItem* navigateBackItem = [toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
     UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+#endif
 
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
+
+    //BOOL hidden = !navigateBackItem.enabled && !navigateForwardItem.enabled;
 }
 
 
@@ -246,8 +259,8 @@
 }
 
 
-- (void) webView:(UIWebView*) webView_ didFailLoadWithError:(NSError*) error {
-    [self webViewDidFinishLoad:webView_];
+- (void) webView:(UIWebView*) view didFailLoadWithError:(NSError*) error {
+    [self webViewDidFinishLoad:view];
 
     if (errorReported) {
         return;
@@ -259,7 +272,7 @@
         [NSString stringWithFormat:NSLocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
 
         [AlertUtilities showOkAlert:message withTitle:title];
-        errorReported = YES;
+        self.errorReported = YES;
     }
 }
 
@@ -274,8 +287,22 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+#ifdef IPHONE_OS_VERSION_3
+    self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.abstractNavigationController.toolbar.translucent = YES;
+    [self.abstractNavigationController setToolbarHidden:NO animated:NO];
+#endif
+}
+
+
 - (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
     webView.delegate = nil;
+#ifdef IPHONE_OS_VERSION_3
+    [self.abstractNavigationController setToolbarHidden:YES animated:NO];
+#endif
 }
 
 
@@ -287,7 +314,7 @@
     }
 
     if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {
-        [navigationController popViewControllerAnimated:YES];
+        [self.abstractNavigationController popViewControllerAnimated:YES];
         return NO;
     }
 

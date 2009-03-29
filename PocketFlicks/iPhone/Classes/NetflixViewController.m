@@ -14,9 +14,10 @@
 
 #import "NetflixViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Application.h"
-#import "AutoResizingCell.h"
+#import "AutoresizingCell.h"
 #import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
@@ -29,14 +30,24 @@
 #import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
-#import "NetflixSearchViewController.h"
+#import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
 #import "Queue.h"
+#import "SettingsViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
+#ifndef IPHONE_OS_VERSION_3
+#import "NetflixSearchViewController.h"
+#endif
+
 @interface NetflixViewController()
-@property (assign) NetflixNavigationController* navigationController;
+#ifdef IPHONE_OS_VERSION_3
+@property (retain) UISearchBar* searchBar;
+@property (retain) NetflixSearchDisplayController* searchDisplayController;
+#else
 @property (retain) NetflixSearchViewController* searchViewController;
+#endif
 @end
 
 
@@ -45,7 +56,9 @@
 const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
+#ifndef IPHONE_OS_VERSION_3
     SearchSection,
+#endif
     MostPopularSection,
     DVDSection,
     InstantSection,
@@ -56,13 +69,20 @@ typedef enum {
     LogOutSection,
 } Sections;
 
-@synthesize navigationController;
+#ifdef IPHONE_OS_VERSION_3
+@synthesize searchBar;
+@synthesize searchDisplayController;
+#else
 @synthesize searchViewController;
+#endif
 
 - (void) dealloc {
-    self.navigationController = nil;
+#ifdef IPHONE_OS_VERSION_3
+    self.searchBar = nil;
+    self.searchDisplayController = nil;
+#else
     self.searchViewController = nil;
-
+#endif
     [super dealloc];
 }
 
@@ -74,12 +94,11 @@ typedef enum {
 }
 
 
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = [Application name];
 
-        self.navigationItem.leftBarButtonItem =
+        self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
 
         [self setupTableStyle];
@@ -95,6 +114,25 @@ typedef enum {
 
 - (Controller*) controller {
     return [Controller controller];
+}
+
+
+- (void) initializeSearchDisplay {
+#ifdef IPHONE_OS_VERSION_3
+    self.searchBar = [[[UISearchBar alloc] init] autorelease];
+    [searchBar sizeToFit];
+
+    self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initNavigationController:abstractNavigationController
+                                                                                           searchBar:searchBar
+                                                                                  contentsController:self] autorelease];
+#endif
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    [self initializeSearchDisplay];
 }
 
 
@@ -118,8 +156,12 @@ typedef enum {
 - (void) determinePopularMovieCount {
     NSInteger result = 0;
     for (NSString* title in [NetflixCache mostPopularTitles]) {
-        NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
-        result += count;
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+            result += count;
+        }
+        [pool release];
     }
 
     mostPopularTitleCount = result;
@@ -127,37 +169,43 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
+#ifdef IPHONE_OS_VERSION_3
+    if (self.hasAccount) {
+        self.tableView.tableHeaderView = searchBar;
+    } else {
+        self.tableView.tableHeaderView = nil;
+    }
+#endif
     [self setupTableStyle];
     [self setupTitle];
     [self determinePopularMovieCount];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
+
+#ifdef IPHONE_OS_VERSION_3
+    [searchDisplayController majorRefresh];
+#endif
 }
 
 
 - (void) minorRefreshWorker {
-    [self setupTitle];
+#ifdef IPHONE_OS_VERSION_3
+    [searchDisplayController minorRefresh];
+#endif
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+
+    return self.model.screenRotationEnabled;
 }
 
 
@@ -186,10 +234,12 @@ typedef enum {
 
     if (self.hasAccount) {
         switch (row) {
+#ifndef IPHONE_OS_VERSION_3
             case SearchSection:
                 cell.text = NSLocalizedString(@"Search", nil);
                 cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
                 break;
+#endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
                     cell.text = NSLocalizedString(@"Most Popular", nil);
@@ -287,9 +337,9 @@ typedef enum {
 
 - (void) didSelectQueueRow:(NSString*) key {
     NetflixQueueViewController* controller =
-    [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
+    [[[NetflixQueueViewController alloc] initWithNavigationController:abstractNavigationController
                                                               feedKey:key] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
@@ -298,53 +348,57 @@ typedef enum {
     [NSArray arrayWithObjects:
      [NetflixCache rentalHistoryKey],
      [NetflixCache rentalHistoryWatchedKey],
-     [NetflixCache rentalHistoryReturnedKey], nil];
+     [NetflixCache rentalHistoryReturnedKey],
+     nil];
 
     NetflixFeedsViewController* controller =
-    [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController
+    [[[NetflixFeedsViewController alloc] initWithNavigationController:abstractNavigationController
                                                              feedKeys:keys
                                                                 title:NSLocalizedString(@"Rental History", nil)] autorelease];
-    [navigationController pushViewController:controller animated:YES];
-}
-
-
-- (void) didSelectSearchRow {
-    if (searchViewController == nil) {
-        self.searchViewController =
-        [[[NetflixSearchViewController alloc] initWithNavigationController:navigationController] autorelease];
-    }
-
-    [navigationController pushViewController:searchViewController animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectRecomendationsRow {
-    NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:navigationController] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectAboutSendFeedbackRow {
-    CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    CreditsViewController* controller = [[[CreditsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectSettingsRow {
-    NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] initWithNavigationController:navigationController] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectMostPopularSection {
-    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:navigationController] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
+
+
+#ifndef IPHONE_OS_VERSION_3
+- (void) didSelectSearchSection {
+    if (searchViewController == nil) {
+        self.searchViewController = [[[NetflixSearchViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    }
+
+    [abstractNavigationController pushViewController:searchViewController animated:YES];
+}
+#endif
 
 
 - (void) didSelectLoggedInRow:(NSInteger) row {
     switch (row) {
-        case SearchSection:             return [self didSelectSearchRow];
+#ifndef IPHONE_OS_VERSION_3
+        case SearchSection:             return [self didSelectSearchSection];
+#endif
         case MostPopularSection:        return [self didSelectMostPopularSection];
         case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
         case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
@@ -366,11 +420,11 @@ typedef enum {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
             [Application openBrowser:address];
         } else if (indexPath.row == 1) {
-            CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            CreditsViewController* controller = [[[CreditsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+            [abstractNavigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 0) {
-            NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+            [abstractNavigationController pushViewController:controller animated:YES];
         }
     }
 }

@@ -16,26 +16,24 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "AutoResizingCell.h"
-#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
+#import "OperationQueue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixMostPopularViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSDictionary* titleToCount;
 @end
 
 
 @implementation NetflixMostPopularViewController
 
-@synthesize navigationController;
 @synthesize titleToCount;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.titleToCount = nil;
 
     [super dealloc];
@@ -43,8 +41,7 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = NSLocalizedString(@"Most Popular", nil);
     }
 
@@ -57,43 +54,35 @@
 }
 
 
-- (Controller*) controller {
-    return [Controller controller];
-}
-
-
 - (void) initializeData {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     for (NSString* title in [NetflixCache mostPopularTitles]) {
-        NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
-        if (count > 0) {
-            [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+            if (count > 0) {
+                [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+            }
         }
+        [pool release];
     }
     self.titleToCount = dictionary;
 }
 
 
-- (void) majorRefresh {
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 
@@ -124,16 +113,26 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+#ifdef IPHONE_OS_VERSION_3
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        cell.textLabel.minimumFontSize = 12;
+#endif
     }
 
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
     NSNumber* count = [titleToCount objectForKey:title];
 
+#ifdef IPHONE_OS_VERSION_3
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+#else
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+#endif
+
     return cell;
 }
 
@@ -142,15 +141,16 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
 
-    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:navigationController category:title] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:abstractNavigationController
+                                                                                                                              category:title] autorelease];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && titleToCount.count == 0) {
-        if ([GlobalActivityIndicator hasBackgroundTasks]) {
+        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             return NSLocalizedString(@"Downloading data", nil);
         }
 

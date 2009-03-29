@@ -14,12 +14,13 @@
 
 #import "AbstractImageCell.h"
 
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "OperationQueue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface AbstractImageCell()
 @property ImageState state;
-@property (retain) Model* model;
 @property (retain) UIImageView* imageLoadingView;
 @property (retain) UIImageView* imageView;
 @property (retain) UIActivityIndicatorView* activityView;
@@ -30,14 +31,12 @@
 @implementation AbstractImageCell
 
 @synthesize state;
-@synthesize model;
 @synthesize imageLoadingView;
 @synthesize imageView;
 @synthesize activityView;
 @synthesize titleLabel;
 
 - (void) dealloc {
-    self.model = nil;
     self.imageLoadingView = nil;
     self.imageView = nil;
     self.activityView = nil;
@@ -47,11 +46,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault
+                    reuseIdentifier:reuseIdentifier]) {
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
 
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -109,7 +106,8 @@
     UIImage* image = [self loadImageWorker];
     if (image == nil) {
         [self prioritizeImage];
-        if ([GlobalActivityIndicator hasBackgroundTasks]) {
+
+        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             // don't need to do anything.
             // keep up the spinner
             state = Loading;
@@ -245,6 +243,5 @@
 
     return label;
 }
-
 
 @end

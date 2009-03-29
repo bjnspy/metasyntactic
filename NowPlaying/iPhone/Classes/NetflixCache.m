@@ -817,11 +817,11 @@ static NSDictionary* availabilityMap = nil;
         NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
         NSString* title = [self titleForKey:feed.key includeCount:NO];
         NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), title];
-        [AppDelegate addNotification:notification];
+        [NotificationCenter addNotification:notification];
         {
             [self downloadQueueWorker:feed];
         }
-        [AppDelegate removeNotification:notification];
+        [NotificationCenter removeNotification:notification];
     }
 
     Queue* queue = [self queueForFeed:feed];
@@ -1116,7 +1116,7 @@ static NSDictionary* availabilityMap = nil;
     }
 
     NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         NSLog(@"Downlading RSS Feed: %@", address);
         XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
@@ -1136,7 +1136,7 @@ static NSDictionary* availabilityMap = nil;
             [FileUtilities writeObject:items toFile:file];
         }
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -1413,11 +1413,11 @@ static NSDictionary* availabilityMap = nil;
     [self clearUpdatedMovies];
 
     NSString* notification = NSLocalizedString(@"Netflix", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self updateBackgroundEntryPointWorker];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 - (NSDictionary*) detailsForMovie:(Movie*) movie {

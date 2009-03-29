@@ -12,24 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RefreshableTableViewController.h"
+#ifndef IPHONE_OS_VERSION_3
+#import "AbstractTableViewController.h"
 #import "SearchEngineDelegate.h"
 
-@interface NetflixSearchViewController : RefreshableTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
+@interface NetflixSearchViewController : AbstractTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
 @private
-    AbstractNavigationController* navigationController;
     UISearchBar* searchBar;
-    UIActivityIndicatorView* activityIndicatorView;
     NetflixSearchEngine* searchEngine;
 
     NSArray* movies;
     NSArray* people;
-    NSString* error;
-
-    BOOL visible;
 }
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) abstractNavigationController;
 
 @end
+#endif

@@ -18,6 +18,6 @@
 @private
 }
 
-+ (NetflixSearchEngine*) engineWithModel:(Model*) model delegate:(id<SearchEngineDelegate>) delegate;
++ (NetflixSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;
 
 @end

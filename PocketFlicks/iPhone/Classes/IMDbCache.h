@@ -20,9 +20,6 @@
 
 + (IMDbCache*) cache;
 
-- (void) update:(NSArray*) movies;
-- (void) updateMovie:(Movie*) movie;
-
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 
 @end

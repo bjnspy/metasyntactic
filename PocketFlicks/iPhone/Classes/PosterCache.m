@@ -23,7 +23,6 @@
 #import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
-#import "LinkedSet.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -47,27 +46,6 @@
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (void) updateMovie:(Movie*) movie {
-    if (movie.poster.length == 0) {
-        [self addSecondaryMovie:movie];
-    } else {
-        [self addPrimaryMovie:movie];
-    }
-}
-
-
-- (void) update:(NSArray*) movies {
-    // movies with poster links download faster. try them first.
-    for (Movie* movie in movies) {
-        if (movie.poster.length == 0) {
-            [self addSecondaryMovie:movie];
-        } else {
-            [self addPrimaryMovie:movie];
-        }
-    }
 }
 
 

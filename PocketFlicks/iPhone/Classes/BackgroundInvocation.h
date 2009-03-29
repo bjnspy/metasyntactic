@@ -22,13 +22,13 @@
 
 - (id) initWithTarget:(id) target
              selector:(SEL) selector
-             argument:(id) argument
+           withObject:(id) argument
                  gate:(id<NSLocking>) gate
               visible:(BOOL) visible;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
-                                      argument:(id) argument
+                                    withObject:(id) argument
                                           gate:(id<NSLocking>) gate
                                        visible:(BOOL) visible;
 

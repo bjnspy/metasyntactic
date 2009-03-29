@@ -14,14 +14,14 @@
 
 #import "SearchResult.h"
 
-#import "Utilities.h"
-
-
 @interface SearchResult()
 @property NSInteger requestId;
 @property (copy) NSString* value;
-@property (copy) NSString* error;
 @property (retain) NSArray* movies;
+@property (retain) NSArray* theaters;
+@property (retain) NSArray* upcomingMovies;
+@property (retain) NSArray* dvds;
+@property (retain) NSArray* bluray;
 @property (retain) NSArray* people;
 @end
 
@@ -30,32 +30,44 @@
 
 @synthesize requestId;
 @synthesize value;
-@synthesize error;
 @synthesize movies;
+@synthesize theaters;
+@synthesize upcomingMovies;
+@synthesize dvds;
+@synthesize bluray;
 @synthesize people;
 
 - (void) dealloc {
     self.requestId = 0;
     self.value = nil;
-    self.error = nil;
     self.movies = nil;
+    self.theaters = nil;
+    self.upcomingMovies = nil;
+    self.dvds = nil;
+    self.bluray = nil;
     self.people = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithId:(NSInteger) requestId_
-            value:(NSString*) value_
-            error:(NSString*) error_
-           movies:(NSArray*) movies_
-           people:(NSArray*) people_ {
+- (id) initWithId:(NSInteger) requestId__
+            value:(NSString*) value__
+           movies:(NSArray*) movies__
+         theaters:(NSArray*) theaters__
+   upcomingMovies:(NSArray*) upcomingMovies__
+             dvds:(NSArray*) dvds__
+           bluray:(NSArray*) bluray__
+           people:(NSArray*) people__ {
     if (self = [super init]) {
-        self.requestId = requestId_;
-        self.value = value_;
-        self.error = error_;
-        self.movies = [Utilities nonNilArray:movies_];
-        self.people = [Utilities nonNilArray:people_];
+        self.requestId = requestId__;
+        self.value = value__;
+        self.movies = movies__;
+        self.theaters = theaters__;
+        self.upcomingMovies = upcomingMovies__;
+        self.dvds = dvds__;
+        self.bluray = bluray__;
+        self.people = people__;
     }
 
     return self;
@@ -64,25 +76,19 @@
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
-                         error:(NSString*) error
-                        movies:(NSArray*) movies {
-    return [SearchResult resultWithId:requestId
-                                value:value
-                                error:error
-                               movies:movies
-                               people:nil];
-}
-
-
-+ (SearchResult*) resultWithId:(NSInteger) requestId
-                         value:(NSString*) value
-                         error:(NSString*) error
                         movies:(NSArray*) movies
+                      theaters:(NSArray*) theaters
+                upcomingMovies:(NSArray*) upcomingMovies
+                          dvds:(NSArray*) dvds
+                        bluray:(NSArray*) bluray
                         people:(NSArray*) people {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value
-                                       error:error
                                       movies:movies
+                                    theaters:theaters
+                              upcomingMovies:upcomingMovies
+                                        dvds:dvds
+                                      bluray:bluray
                                       people:people] autorelease];
 }
 

@@ -12,13 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CreditsViewController : UITableViewController {
+#import "AbstractFullScreenTableViewController.h"
+
+@interface CreditsViewController : AbstractFullScreenTableViewController
+#ifdef IPHONE_OS_VERSION_3
+    <MFMailComposeViewControllerDelegate>
+#endif
+{
 @private
-    Model* model;
     NSArray* languages;
     NSDictionary* localizers;
 }
 
-- (id) initWithModel:(Model*) model;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end

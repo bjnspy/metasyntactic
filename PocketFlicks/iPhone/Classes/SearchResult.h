@@ -16,26 +16,30 @@
 @private
     NSInteger requestId;
     NSString* value;
-    NSString* error;
     NSArray* movies;
+    NSArray* theaters;
+    NSArray* upcomingMovies;
+    NSArray* dvds;
+    NSArray* bluray;
     NSArray* people;
 }
 
 @property (readonly) NSInteger requestId;
 @property (readonly, copy) NSString* value;
-@property (readonly, copy) NSString* error;
 @property (readonly, retain) NSArray* movies;
+@property (readonly, retain) NSArray* theaters;
+@property (readonly, retain) NSArray* upcomingMovies;
+@property (readonly, retain) NSArray* dvds;
+@property (readonly, retain) NSArray* bluray;
 @property (readonly, retain) NSArray* people;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
-                         error:(NSString*) error
-                        movies:(NSArray*) movies;
-
-+ (SearchResult*) resultWithId:(NSInteger) requestId
-                         value:(NSString*) value
-                         error:(NSString*) error
                         movies:(NSArray*) movies
+                      theaters:(NSArray*) theaters
+                upcomingMovies:(NSArray*) upcomingMovies
+                          dvds:(NSArray*) dvds
+                        bluray:(NSArray*) bluray
                         people:(NSArray*) people;
 
 @end

@@ -18,9 +18,10 @@
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
+#import "StringUtilities.h"
+#import "UITableViewCell+Utilities.h"
 
 @interface CreditsViewController()
-@property (retain) Model* model;
 @property (retain) NSArray* languages;
 @property (retain) NSDictionary* localizers;
 @end
@@ -38,12 +39,10 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-@synthesize model;
 @synthesize languages;
 @synthesize localizers;
 
 - (void) dealloc {
-    self.model = nil;
     self.languages = nil;
     self.localizers = nil;
 
@@ -59,9 +58,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.model = model_;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
         self.title = [Application nameAndVersion];
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -93,13 +91,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (Model*) model {
+    return [Model model];
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
 }
 
 
@@ -158,19 +159,22 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"reuseIdentifier";
+
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[SettingCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     NSString* code = [languages objectAtIndex:row];
     NSString* person = [localizers objectForKey:code];
     NSString* language = [LocaleUtilities displayLanguage:code];
 
-    [cell setKey:language value:person hideSeparator:(row != 0)];
+    cell.textLabel.text = language;
+
+    [cell setCellValue:person];
+    [cell setHidesSeparator:row > 0];
+
     return cell;
 }
 
@@ -184,7 +188,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return [self localizationCellForRow:row];
     }
 
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];
@@ -221,6 +225,13 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
+    if (indexPath.section < LocalizedBySection) {
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    } else if (indexPath.section == LocalizedBySection) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
@@ -256,18 +267,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < LocalizedBySection) {
-        return UITableViewCellAccessoryDetailDisclosureButton;
-    } else if (indexPath.section == LocalizedBySection) {
-        return UITableViewCellAccessoryNone;
-    } else {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    }
-}
-
-
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
@@ -282,29 +281,68 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [self.navigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
+
+
+- (void) sendFeedback {
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
+                      [Application version],
+                      [LocaleUtilities englishCountry],
+                      [LocaleUtilities englishLanguage]];
+
+    body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+            [StringUtilities nonNilString:self.model.netflixUserId],
+            [StringUtilities nonNilString:self.model.netflixKey],
+            [StringUtilities nonNilString:self.model.netflixSecret]];
+
+    NSString* subject;
+    if ([LocaleUtilities isJapanese]) {
+        subject = [StringUtilities stringByAddingPercentEscapes:@"PocketFlicksのフィードバック"];
+    } else {
+        subject = @"PocketFlicks Feedback";
+    }
+
+#ifdef IPHONE_OS_VERSION_3
+    if ([Application canSendMail]) {
+        MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+        controller.delegate = self;
+
+        [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
+        [controller setSubject:subject];
+        [controller setMessageBody:body isHTML:NO];
+
+        [self presentModalViewController:controller animated:YES];
+    } else {
+#endif
+        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
+        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
+        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
+        [Application openBrowser:url];
+#ifdef IPHONE_OS_VERSION_3
+    }
+#endif
+}
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) mailComposeController:(MFMailComposeViewController*)controller
+           didFinishWithResult:(MFMailComposeResult)result
+                         error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+#endif
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == LocalizedBySection) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    } else if (indexPath.section == LicenseSection) {
-        [self licenseCellTapped];
-    }
-}
-
-
-- (void)                            tableView:(UITableView*) tableView
-     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
     NSString* url = nil;
     if (section == WrittenBySection) {
         if (row == 0) {
-            url = [self.model feedbackUrl];
+            return [self sendFeedback];
         } else if (row == 1) {
             url = @"http://metasyntactic.googlecode.com";
         } else {
@@ -323,10 +361,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == LocalizedBySection) {
         return;
     } else if (section == LicenseSection) {
-        return;
+        [self licenseCellTapped];
     }
 
     [Application openBrowser:url];
+}
+
+
+- (void)                            tableView:(UITableView*) tableView
+     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
+    return [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 

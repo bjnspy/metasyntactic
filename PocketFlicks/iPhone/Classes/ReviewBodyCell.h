@@ -12,7 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NonClippingView : UIView {
+@interface ReviewBodyCell : UITableViewCell {
+@private
+    Review* review;
+    UILabel* label;
 }
+
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+
+- (void) setReview:(Review*) review;
+
++ (CGFloat) height:(Review*) review;
 
 @end

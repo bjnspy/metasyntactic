@@ -24,11 +24,11 @@
     CGFloat height;
 }
 
+@property (readonly) CGFloat height;
+
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
                       arguments:(NSArray*) arguments;
-
-- (CGFloat) height;
 
 @end

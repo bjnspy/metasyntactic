@@ -16,7 +16,6 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "Movie.h"
@@ -28,25 +27,19 @@
 #import "ViewControllerUtilities.h"
 
 @interface NetflixGenreRecommendationsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (copy) NSString* genre;
 @property (retain) NSArray* movies;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation NetflixGenreRecommendationsViewController
 
-@synthesize navigationController;
 @synthesize genre;
 @synthesize movies;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.genre = nil;
     self.movies = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -54,8 +47,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               genre:(NSString*) genre_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.genre = genre_;
         self.title = genre_;
 
@@ -70,11 +62,6 @@
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
 }
 
 
@@ -93,35 +80,24 @@
 }
 
 
-- (void) majorRefreshWorker {
-    // do nothing.  we don't want to refresh the view (because it causes an
-    // ugly flash).  Instead, just refresh things when teh view becomes visible
+- (void) minorRefreshWorker {
+    for (id cell in self.tableView.visibleCells) {
+        [cell refresh];
+    }
 }
 
 
 - (void) internalRefresh {
     [self initializeData];
-    [self.tableView reloadData];
-
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-        }
-
-        self.visibleIndexPaths = nil;
-    }
+    [self reloadTableViewData];
 }
 
 
-- (void) minorRefreshWorker {
-    if (!visible) {
-        return;
-    }
-
-    for (id cell in self.tableView.visibleCells) {
-        [cell refresh];
+- (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+    if (movies.count == 0) {
+        [self internalRefresh];
     }
 }
 
@@ -134,16 +110,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -153,18 +119,9 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     self.movies = [NSArray array];
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -185,9 +142,7 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier
-                                             model:self.model] autorelease];
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
@@ -201,7 +156,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [navigationController pushMovieDetails:movie animated:YES];
+    [abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

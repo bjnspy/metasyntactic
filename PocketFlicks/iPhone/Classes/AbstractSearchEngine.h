@@ -15,17 +15,12 @@
 @interface AbstractSearchEngine : NSObject {
 @protected
     // only accessed from the main thread.  needs no lock.
-    Model* model;
     id<SearchEngineDelegate> delegate;
 
     // accessed from both threads.  needs lock
+    NSCondition* gate;
     NSInteger currentRequestId;
     SearchRequest* nextSearchRequest;
-
-    // only accessed from the background thread.  needs no lock
-    SearchRequest* currentlyExecutingRequest;
-
-    NSCondition* gate;
 }
 
 - (void) submitRequest:(NSString*) string;
@@ -33,12 +28,23 @@
 - (void) invalidateExistingRequests;
 
 /* @protected */
-- (id) initWithModel:(Model*) model
-            delegate:(id<SearchEngineDelegate>) delegate;
+- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate;
 
-- (BOOL) abortEarly;
+- (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest;
 
-- (void) reportError:(NSString*) error movies:(NSArray*) movies;
-- (void) reportError:(NSString*) error movies:(NSArray*) movies people:(NSArray*) people;
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray;
+
+- (void) reportResult:(SearchRequest*) request
+               movies:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray
+               people:(NSArray*) people;
 
 @end

@@ -56,10 +56,10 @@
                      text:(NSString*) text_
                    object:(id) object_
                  selector:(SEL) selector_
-                   values:(NSArray*) values_
+                   values:(NSArray*) values__
              defaultValue:(NSString*) defaultValue {
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
-        self.values = values_;
+        self.values = values__;
 
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
         picker.delegate = self;
@@ -99,6 +99,8 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
@@ -109,9 +111,10 @@
 
 
 - (void) save:(id) sender {
-    [object performSelector:selector
-                 withObject:[values objectAtIndex:[picker selectedRowInComponent:0]]];
+    id value = [[[values objectAtIndex:[picker selectedRowInComponent:0]] retain] autorelease];
     [super save:sender];
+    [object performSelector:selector
+                 withObject:value];
 }
 
 

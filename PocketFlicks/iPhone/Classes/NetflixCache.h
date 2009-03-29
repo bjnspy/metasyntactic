@@ -16,15 +16,15 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-    NSArray* feedsData_;
-    NSDictionary* queues_;
-    NSDate* lastQuotaErrorDate_;
-    NSMutableDictionary* presubmitRatings_;
+    // accessed from multiple threads.  needs lock
+    NSArray* feedsData;
+    NSDictionary* queuesData;
+    NSDate* lastQuotaErrorDate;
 }
 
-+ (NSArray*) mostPopularTitles;
+@property (readonly, retain) NSDate* lastQuotaErrorDate;
 
-- (NSDate*) lastQuotaErrorDate;
++ (NSArray*) mostPopularTitles;
 
 - (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;
@@ -55,19 +55,14 @@
 
 - (NSString*) noInformationFound;
 
-- (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies;
 - (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie;
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
-
-// @protected
-- (NSMutableDictionary*) presubmitRatings;
 
 - (void) saveQueue:(Queue*) queue;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
-- (void) reportQueue:(Queue*) queue;
 
 - (void) checkApiResult:(XmlElement*) result;
 - (NSString*) extractErrorMessage:(XmlElement*) element;

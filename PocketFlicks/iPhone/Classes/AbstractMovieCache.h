@@ -16,18 +16,11 @@
 
 @interface AbstractMovieCache : AbstractCache {
 @private
-    NSMutableSet* updatedMovies_;
-    NSArray* searchOperations_;
+    // Accessed from different threads.  needs gate.
+    NSMutableSet* updatedMovies;
 }
 
-- (void) prioritizeMovie:(Movie*) movie;
-
-/* @protected */
-- (void) addPrimaryMovie:(Movie*) movie;
-- (void) addSecondaryMovie:(Movie*) movie;
-- (void) addSearchMovies:(NSArray*) movies;
-- (void) addPrimaryMovies:(NSArray*) movies;
-- (void) addSecondaryMovies:(NSArray*) movies;
+- (void) processMovie:(Movie*) movie;
 
 - (void) clearUpdatedMovies;
 

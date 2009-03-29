@@ -16,22 +16,30 @@
 }
 
 + (NSString*) name;
++ (NSString*) version;
 + (NSString*) nameAndVersion;
-
-+ (NSString*) netflixKey;
-+ (NSString*) netflixSecret;
-+ (NSString*) netflixApplicationName;
 
 + (NSString*) trashDirectory;
 
++ (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
 + (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
++ (NSString*) userLocationsDirectory;
 + (NSString*) moviesPostersDirectory;
 + (NSString*) largeMoviesPostersDirectory;
++ (NSString*) largeMoviesPostersIndexDirectory;
 + (NSString*) peoplePostersDirectory;
 + (NSString*) largePeoplePostersDirectory;
++ (NSString*) scoresDirectory;
++ (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;
+
++ (NSString*) dvdDirectory;
++ (NSString*) dvdDetailsDirectory;
+
++ (NSString*) blurayDirectory;
++ (NSString*) blurayDetailsDirectory;
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixDetailsDirectory;
@@ -41,6 +49,11 @@
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 + (NSString*) netflixRSSDirectory;
+
++ (NSString*) upcomingDirectory;
++ (NSString*) upcomingCastDirectory;
++ (NSString*) upcomingSynopsesDirectory;
++ (NSString*) upcomingTrailersDirectory;
 
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;
@@ -52,6 +65,8 @@
 + (void) moveItemToTrash:(NSString*) path;
 
 + (void) openBrowser:(NSString*) address;
++ (void) openMap:(NSString*) address;
++ (void) makeCall:(NSString*) phoneNumber;
 
 + (DifferenceEngine*) differenceEngine;
 
@@ -63,5 +78,6 @@
 + (NSString*) starString;
 
 + (BOOL) useKilometers;
++ (BOOL) canSendMail;
 
 @end

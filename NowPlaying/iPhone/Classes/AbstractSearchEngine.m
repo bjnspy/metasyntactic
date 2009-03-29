@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "Model.h"
 #import "Movie.h"
+#import "NotificationCenter.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
@@ -85,11 +86,11 @@
 
 - (void) search:(SearchRequest*) request {
     NSString* notification = NSLocalizedString(@"searching", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self searchWorker:request];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 

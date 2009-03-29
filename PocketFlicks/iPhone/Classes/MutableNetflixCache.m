@@ -30,14 +30,29 @@
 #import "OperationQueue.h"
 #import "Queue.h"
 #import "StringUtilities.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface MutableNetflixCache()
+@property (retain) NSDictionary* presubmitRatings;
+@end
 
 @implementation MutableNetflixCache
 
+@synthesize presubmitRatings;
+
 - (void) dealloc {
+    self.presubmitRatings = nil;
     [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.presubmitRatings = [NSDictionary dictionary];
+    }
+    return self;
 }
 
 
@@ -63,52 +78,43 @@
 }
 
 
-- (void) reportQueueAndMoveMovieSuccess:(NSArray*) arguments {
+- (void) reportMoveMovieSuccess:(Movie*) movie toDelegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    Movie* movie = [arguments objectAtIndex:1];
-    id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
-
     [delegate moveSucceededForMovie:movie];
 }
 
 
-- (void) reportQueueAndModifyQueueError:(NSArray*) arguments {
+- (void) reportModifyQueueError:(NSString*) error
+                     toDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and failure to NetflixModifyQueueDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
-    NSString* error = [arguments objectAtIndex:2];
-
     [delegate modifyFailedWithError:error];
 }
 
 
-- (void) reportQueueAndModifyQueueSuccess:(NSArray*) arguments {
+- (void) reportModifyQueueSuccess:(id<NetflixModifyQueueDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
     NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
-
     [delegate modifySucceeded];
 }
 
 
-- (void) reportQueueAndAddMovieSuccess:(NSArray*) arguments {
+- (void) reportAddMovieSuccess:(id<NetflixAddMovieDelegate>) delegate {
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixAddMovieDelegate.", nil);
-
-    [self reportQueue:[arguments objectAtIndex:0]];
-    id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:1];
-
     [delegate addSucceeded];
+}
+
+
+- (void) removePresubmitRatingsForMovie:(Movie*) movie {
+    movie = [self promoteDiscToSeries:movie];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
+    [dictionary removeObjectForKey:movie];
+    self.presubmitRatings = dictionary;
 }
 
 
@@ -119,16 +125,19 @@
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
     NSString* message = [arguments objectAtIndex:2];
 
-    [self.presubmitRatings removeObjectForKey:movie];
+    [self removePresubmitRatingsForMovie:movie];
+
     [delegate changeFailedWithError:message];
 }
 
 
 - (void) reportChangeRatingSuccess:(NSArray*) arguments {
+    NSAssert([NSThread isMainThread], nil);
+
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
+    [self removePresubmitRatingsForMovie:movie];
 
-    [self.presubmitRatings removeObjectForKey:movie];
     [delegate changeSucceeded];
 }
 
@@ -138,8 +147,11 @@
       toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, error, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueError:) withObject:arguments waitUntilDone:NO];
+
+    [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
+                                  onTarget:self
+                                withObject:error
+                                withObject:delegate];
 }
 
 
@@ -147,8 +159,9 @@
       andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueSuccess:) withObject:arguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
+                                  onTarget:self
+                                withObject:delegate];
 }
 
 
@@ -156,8 +169,9 @@
       andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate {
     NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndAddMovieSuccess:) withObject:arguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
+                                  onTarget:self
+                                withObject:delegate];
 }
 
 
@@ -175,7 +189,8 @@
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
                            [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
-                           [OARequestParameter parameterWithName:@"etag" value:queue.etag], nil];
+                           [OARequestParameter parameterWithName:@"etag" value:queue.etag],
+                           nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -228,20 +243,20 @@
     NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
     [self saveQueue:finalQueue];
 
-    NSArray* finalArguments = [NSArray arrayWithObjects:finalQueue, movie, delegate, nil];
-    [self performSelectorOnMainThread:@selector(reportQueueAndMoveMovieSuccess:)
-                           withObject:finalArguments
-                        waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:)
+                                  onTarget:self
+                                withObject:movie
+                                withObject:delegate];
 }
 
 
 - (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"moving movie", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self moveMovieToTopOfQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -250,11 +265,11 @@
             delegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:arguments
-                                             gate:self.gate
-                                         priority:Priority];
+    [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -266,11 +281,11 @@
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:arguments
-                                             gate:self.gate
-                                         priority:Priority];
+    [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -288,15 +303,19 @@
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
+    NSAssert([NSThread isMainThread], @"");
     movie = [self promoteDiscToSeries:movie];
-    [self.presubmitRatings setObject:rating forKey:movie];
+
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
+    [dictionary setObject:rating forKey:movie];
+    self.presubmitRatings = dictionary;
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
-    [[AppDelegate operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:arguments
-                                             gate:self.gate
-                                         priority:Priority];
+    [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -429,11 +448,11 @@
 
 - (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"movie rating", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self changeRatingBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -444,11 +463,11 @@
     NSArray* arguments =
     [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
 
-    [[AppDelegate operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:arguments
-                                             gate:self.gate
-                                         priority:Priority];
+    [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -547,11 +566,11 @@
 
 - (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"adding movie", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self addMovieToQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -666,11 +685,24 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
 - (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
     NSString* notification = NSLocalizedString(@"updating queue", nil);
-    [AppDelegate addNotification:notification];
+    [NotificationCenter addNotification:notification];
     {
         [self modifyQueueBackgroundEntryPointWorker:arguments];
     }
-    [AppDelegate removeNotification:notification];
+    [NotificationCenter removeNotification:notification];
+}
+
+
+- (NSString*) userRatingForMovie:(Movie*) movie {
+    NSAssert([NSThread isMainThread], @"");
+    movie = [self promoteDiscToSeries:movie];
+
+    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
+    if (presubmitRating != nil) {
+        return presubmitRating;
+    }
+
+    return [super userRatingForMovie:movie];
 }
 
 @end

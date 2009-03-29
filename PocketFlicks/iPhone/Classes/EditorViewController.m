@@ -15,31 +15,30 @@
 #import "EditorViewController.h"
 
 @interface EditorViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (assign) id object;
+@property SEL selector;
 @end
 
 
 @implementation EditorViewController
 
-@synthesize navigationController;
 @synthesize object;
+@synthesize selector;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.object = nil;
+    self.selector = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) controller
-               withObject:(id) object_
-             withSelector:(SEL) selector_ {
-    if (self = [super init]) {
-        self.navigationController = controller;
-        self.object = object_;
-        selector = selector_;
+- (id) initWithController:(AbstractNavigationController*) navigationController_
+               withObject:(id) object__
+             withSelector:(SEL) selector__ {
+    if (self = [super initWithNavigationController:navigationController_]) {
+        self.object = object__;
+        self.selector = selector__;
     }
 
     return self;
@@ -64,12 +63,12 @@
 
 
 - (void) cancel:(id) sender {
-    [navigationController popViewControllerAnimated:YES];
+    [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 
 - (void) save:(id) sender {
-    [navigationController popViewControllerAnimated:YES];
+    [self.abstractNavigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -15,25 +15,20 @@
 #import "AbstractMovieCache.h"
 
 #import "AppDelegate.h"
+#import "Movie.h"
 #import "OperationQueue.h"
 
 @interface AbstractMovieCache()
-@property (retain) NSMutableSet* updatedMovies_;
-@property (retain) NSArray* searchOperations_;
+@property (retain) NSMutableSet* updatedMovies;
 @end
 
 
 @implementation AbstractMovieCache
 
-@synthesize updatedMovies_;
-@synthesize searchOperations_;
-
-property_wrapper(NSMutableSet*, updatedMovies, UpdatedMovies);
-property_wrapper(NSArray*, searchOperations, SearchOperations);
+@synthesize updatedMovies;
 
 - (void) dealloc {
     self.updatedMovies = nil;
-    self.searchOperations = nil;
 
     [super dealloc];
 }
@@ -55,26 +50,26 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
 
 
 - (void) clearUpdatedMovies {
-    [self.gate lock];
+    [dataGate lock];
     {
-        [self.updatedMovies removeAllObjects];
+        [updatedMovies removeAllObjects];
     }
-    [self.gate unlock];
+    [dataGate unlock];
 }
 
 
 - (BOOL) checkMovie:(Movie*) movie {
     BOOL result;
-    [self.gate lock];
+    [dataGate lock];
     {
-        if (![self.updatedMovies containsObject:movie]) {
-            [self.updatedMovies addObject:movie];
+        if (![updatedMovies containsObject:movie]) {
+            [updatedMovies addObject:movie];
             result = NO;
         } else {
             result = YES;
         }
     }
-    [self.gate unlock];
+    [dataGate unlock];
     return result;
 }
 
@@ -90,71 +85,6 @@ property_wrapper(NSArray*, searchOperations, SearchOperations);
     }
 
     [self updateMovieDetails:movie];
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [[AppDelegate operationQueue] performBoundedSelector:@selector(processMovie:)
-                                                onTarget:self
-                                              withObject:movie
-                                                    gate:nil
-                                                priority:Priority];
-}
-
-
-- (Operation*) addSearchMovie:(Movie*) movie {
-    return [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
-                                                onTarget:self
-                                              withObject:movie
-                                                    gate:nil
-                                                priority:Search];
-}
-
-
-- (void) addPrimaryMovie:(Movie*) movie {
-    [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
-                                         onTarget:self
-                                       withObject:movie
-                                             gate:nil
-                                         priority:Normal];
-}
-
-
-- (void) addSecondaryMovie:(Movie*) movie {
-    [[AppDelegate operationQueue] performSelector:@selector(processMovie:)
-                                         onTarget:self
-                                       withObject:movie
-                                             gate:nil
-                                         priority:Low];
-}
-
-
-- (void) addSearchMovies:(NSArray*) movies {
-    NSArray* oldOperations = self.searchOperations;
-    for (Operation* operation in oldOperations) {
-        [operation cancel];
-    }
-
-    NSMutableArray* operations = [NSMutableArray array];
-    for (Movie* movie in movies) {
-        [operations addObject:[self addSearchMovie:movie]];
-    }
-
-    self.searchOperations = operations;
-}
-
-
-- (void) addPrimaryMovies:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        [self addPrimaryMovie:movie];
-    }
-}
-
-
-- (void) addSecondaryMovies:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        [self addSecondaryMovie:movie];
-    }
 }
 
 @end

@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractSearchEngine.h"
-
-@interface SearchEngine : AbstractSearchEngine {
+@interface WarningView : UIView {
 @private
+    UIImageView* imageView;
+    UILabel* label;
 }
 
-+ (SearchEngine*) engineWithModel:(Model*) model delegate:(id<SearchEngineDelegate>) delegate;
++ (WarningView*) viewWithText:(NSString*) text;
+
+- (CGFloat) height;
 
 @end

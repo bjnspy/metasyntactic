@@ -24,17 +24,19 @@
     NSInteger disabledCount;
 }
 
-+ (NotificationCenter*) centerWithViewController:(UIViewController*) viewController;
++ (NotificationCenter*) notificationCenter;
 
-- (void) willChangeInterfaceOrientation;
-- (void) didChangeInterfaceOrientation;
++ (void) attachToViewController:(UIViewController*) viewController;
 
-- (void) disableNotifications;
-- (void) enableNotifications;
++ (void) disableNotifications;
++ (void) enableNotifications;
 
-- (void) addNotification:(NSString*) notification;
-- (void) addNotifications:(NSArray*) notifications;
-- (void) removeNotification:(NSString*) notification;
-- (void) removeNotifications:(NSArray*) notifications;
++ (void) addNotification:(NSString*) notification;
++ (void) addNotifications:(NSArray*) notifications;
++ (void) removeNotification:(NSString*) notification;
++ (void) removeNotifications:(NSArray*) notifications;
+
++ (void) willChangeInterfaceOrientation;
++ (void) didChangeInterfaceOrientation;
 
 @end

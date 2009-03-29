@@ -14,29 +14,29 @@
 
 @interface NotificationCenter : NSObject {
 @private
-    UIView* view_;
-    UILabel* notificationLabel_;
-    UILabel* blackLabel_;
+    UIViewController* viewController;
+    UILabel* notificationLabel;
+    UILabel* blackLabel;
 
-    NSMutableArray* notifications_;
-    Pulser* pulser_;
+    NSMutableArray* notifications;
+    Pulser* pulser;
 
-    NSInteger disabledCount_;
+    NSInteger disabledCount;
 }
 
-+ (NotificationCenter*) centerWithView:(UIView*) view;
++ (NotificationCenter*) notificationCenter;
 
-- (void) addToView;
++ (void) attachToViewController:(UIViewController*) viewController;
 
-- (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation;
-- (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;
++ (void) disableNotifications;
++ (void) enableNotifications;
 
-- (void) disableNotifications;
-- (void) enableNotifications;
++ (void) addNotification:(NSString*) notification;
++ (void) addNotifications:(NSArray*) notifications;
++ (void) removeNotification:(NSString*) notification;
++ (void) removeNotifications:(NSArray*) notifications;
 
-- (void) addNotification:(NSString*) notification;
-- (void) addNotifications:(NSArray*) notifications;
-- (void) removeNotification:(NSString*) notification;
-- (void) removeNotifications:(NSArray*) notifications;
++ (void) willChangeInterfaceOrientation;
++ (void) didChangeInterfaceOrientation;
 
 @end

@@ -16,28 +16,25 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "AutoResizingCell.h"
-#import "Controller.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
 #import "Queue.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface NetflixFeedsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* feedKeys;
 @end
 
 
 @implementation NetflixFeedsViewController
 
-@synthesize navigationController;
 @synthesize feedKeys;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.feedKeys = nil;
 
     [super dealloc];
@@ -47,8 +44,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                            feedKeys:(NSArray*) feedKeys_
                               title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.title = title_;
         self.feedKeys = feedKeys_;
     }
@@ -62,13 +58,8 @@
 }
 
 
-- (Controller*) controller {
-    return [Controller controller];
-}
-
-
 - (void) majorRefreshWorker {
-    [self.tableView reloadData];
+    [self reloadTableViewData];
 }
 
 
@@ -79,17 +70,6 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    [self majorRefresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
 }
 
 
@@ -99,15 +79,6 @@
     }
 
     return self.model.screenRotationEnabled;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -151,13 +122,19 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
 
+#ifdef IPHONE_OS_VERSION_3
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.minimumFontSize = 12;
+    cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key];
+#else
     cell.text = [self.model.netflixCache titleForKey:feed.key];
+#endif
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
@@ -168,9 +145,9 @@
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
-    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
+    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:abstractNavigationController
                                                                                                        feedKey:feed.key] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    [abstractNavigationController pushViewController:controller animated:YES];
 }
 
 @end

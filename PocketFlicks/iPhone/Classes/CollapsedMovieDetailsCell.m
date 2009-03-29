@@ -33,16 +33,15 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame movie:movie_]) {
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super initWithMovie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 
         if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
-            ratingAndRuntimeLabel.text = self.movie.rating;
+            ratingAndRuntimeLabel.text = movie.rating;
         } else {
-            ratingAndRuntimeLabel.text = self.movie.ratingAndRuntimeString;
+            ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         }
 
         ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;

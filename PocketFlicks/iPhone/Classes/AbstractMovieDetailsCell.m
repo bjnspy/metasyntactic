@@ -14,6 +14,8 @@
 
 #import "AbstractMovieDetailsCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 @interface AbstractMovieDetailsCell()
 @property (retain) Movie* movie;
 @end
@@ -23,7 +25,6 @@
 
 @synthesize movie;
 
-
 - (void) dealloc {
     self.movie = nil;
 
@@ -31,10 +32,9 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame]) {
-        self.movie = movie_;
+- (id) initWithMovie:(Movie*) movie__ {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
+        self.movie = movie__;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 

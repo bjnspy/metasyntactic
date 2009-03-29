@@ -17,23 +17,20 @@
 #import "AbstractNavigationController.h"
 #import "Controller.h"
 #import "Model.h"
+#import "OperationQueue.h"
 
 @interface AbstractTableViewController()
-@property (assign) AbstractNavigationController* abstractNavigationController_;
-@property (retain) NSArray* visibleIndexPaths_;
-@property BOOL visible_;
+@property (assign) AbstractNavigationController* abstractNavigationController;
+@property (retain) NSArray* visibleIndexPaths;
+@property BOOL visible;
 @end
 
 
 @implementation AbstractTableViewController
 
-@synthesize abstractNavigationController_;
-@synthesize visibleIndexPaths_;
-@synthesize visible_;
-
-property_wrapper(AbstractNavigationController*, abstractNavigationController, AbstractNavigationController);
-property_wrapper(NSArray*, visibleIndexPaths, VisibleIndexPaths);
-property_wrapper(BOOL, visible, Visible);
+@synthesize abstractNavigationController;
+@synthesize visibleIndexPaths;
+@synthesize visible;
 
 - (void) dealloc {
     self.abstractNavigationController = nil;
@@ -66,14 +63,42 @@ property_wrapper(BOOL, visible, Visible);
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
+    [self.model saveNavigationStack:abstractNavigationController];
+}
+
+
+- (void) majorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) minorRefreshWorker {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+#ifdef IPHONE_OS_VERSION_3
+    [super viewWillAppear:animated];
+#endif
+
     self.visible = YES;
-    [self.model saveNavigationStack:self.abstractNavigationController];
+    [self majorRefreshWorker];
+
+#ifndef IPHONE_OS_VERSION_3
+    [super viewWillAppear:animated];
+#endif
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+    [super viewWillDisappear:animated];
+    self.visible = NO;
 }
 
 
 - (void) viewDidDisappear:(BOOL) animated {
     [super viewDidDisappear:animated];
-    self.visible = NO;
 }
 
 
@@ -82,7 +107,7 @@ property_wrapper(BOOL, visible, Visible);
 
 
 - (void) didReceiveMemoryWarning {
-    if (self.visible) {
+    if (visible) {
         return;
     }
 
@@ -97,17 +122,57 @@ property_wrapper(BOOL, visible, Visible);
 
 
 - (void) reloadTableViewData {
+    if (!visible) {
+        return;
+    }
+
     [self.tableView reloadData];
 
-    if (self.visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [self.visibleIndexPaths objectAtIndex:0];
+    if (visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[self.visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;
     }
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView*) scrollView
+                  willDecelerate:(BOOL) willDecelerate {
+    if (willDecelerate) {
+        [[OperationQueue operationQueue] temporarilySuspend];
+    }
+}
+
+
+- (void) refreshWithSelector:(SEL) selector subclassSelector:(SEL) subclassSelector {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:selector
+                                               object:nil];
+
+    if (!visible) {
+        return;
+    }
+
+    if (self.tableView.dragging || self.tableView.decelerating) {
+        [self performSelector:selector withObject:nil afterDelay:1];
+        return;
+    }
+
+    [self performSelector:subclassSelector];
+}
+
+
+- (void) majorRefresh {
+    [self refreshWithSelector:@selector(majorRefresh) subclassSelector:@selector(majorRefreshWorker)];
+}
+
+
+- (void) minorRefresh {
+    [self refreshWithSelector:@selector(minorRefresh) subclassSelector:@selector(minorRefreshWorker)];
 }
 
 @end

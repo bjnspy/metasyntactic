@@ -15,6 +15,7 @@
 #import "AbstractPosterCell.h"
 
 #import "Application.h"
+#import "CacheUpdater.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Model.h"
@@ -32,23 +33,26 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier model:model_]) {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
     }
 
     return self;
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (UIImage*) loadImageWorker {
-    return [model smallPosterForMovie:movie];
+    return [self.model smallPosterForMovie:movie];
 }
 
 
 - (void) prioritizeImage {
-    [model prioritizeMovie:movie];
+    [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:NO];
 }
 
 
@@ -79,7 +83,7 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-    if ([model isBookmarked:movie_]) {
+    if ([self.model isBookmarked:movie_]) {
         titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
     } else {
         titleLabel.text = movie_.displayTitle;

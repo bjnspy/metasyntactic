@@ -25,11 +25,11 @@
 
 + (Invocation*) invocationWithTarget:(id) target
                             selector:(SEL) selector
-                            withObject:(id) argument;
+                          withObject:(id) argument;
 
 - (id) initWithTarget:(id) target
              selector:(SEL) selector
-             withObject:(id) argument;
+           withObject:(id) argument;
 
 - (void) run;
 

@@ -35,11 +35,4 @@
 + (UIWindow*) window;
 + (UIView*) globalActivityView;
 
-+ (NotificationCenter*) notificationCenter;
-
-+ (void) addNotification:(NSString*) notification;
-+ (void) addNotifications:(NSArray*) notifications;
-+ (void) removeNotification:(NSString*) notification;
-+ (void) removeNotifications:(NSArray*) notifications;
-
 @end

@@ -17,7 +17,6 @@
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
-#import "Controller.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
 #import "IdentitySet.h"
@@ -27,10 +26,11 @@
 #import "NetflixCell.h"
 #import "Queue.h"
 #import "TappableImageView.h"
+#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
+
 @interface NetflixQueueViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (copy) NSString* feedKey;
 @property (retain) Feed* feed;
 @property (retain) Queue* queue;
@@ -39,13 +39,11 @@
 @property (retain) IdentitySet* deletedMovies;
 @property (retain) IdentitySet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
-@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
 @implementation NetflixQueueViewController
 
-@synthesize navigationController;
 @synthesize feedKey;
 @synthesize feed;
 @synthesize queue;
@@ -54,10 +52,8 @@
 @synthesize deletedMovies;
 @synthesize reorderedMovies;
 @synthesize backButton;
-@synthesize visibleIndexPaths;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.feedKey = nil;
     self.feed = nil;
     self.queue = nil;
@@ -66,7 +62,6 @@
     self.deletedMovies = nil;
     self.reorderedMovies = nil;
     self.backButton = nil;
-    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -115,8 +110,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             feedKey:(NSString*) feedKey_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = navigationController_;
+    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
         self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];
@@ -128,11 +122,6 @@
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
 }
 
 
@@ -158,37 +147,27 @@
 }
 
 
-- (void) majorRefreshWorker {
-    // do nothing.  we don't want to refresh the view (because it causes an
-    // ugly flash).  Instead, just refresh things when teh view becomes visible
-}
-
-
 - (void) internalRefresh {
     if (self.tableView.editing || readonlyMode) {
         return;
     }
 
     [self initializeData];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
+}
 
-    if (visibleIndexPaths.count > 0) {
-        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-        }
 
-        self.visibleIndexPaths = nil;
+
+- (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+    if (mutableSaved.count == 0 && mutableMovies.count == 0) {
+        [self internalRefresh];
     }
 }
 
 
 - (void) minorRefreshWorker {
-    if (!visible) {
-        return;
-    }
-
     for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
@@ -207,16 +186,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-    visible = YES;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-    visible = NO;
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
@@ -226,23 +195,14 @@
 }
 
 
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
-    }
-
+- (void) didReceiveMemoryWarningWorker {
+    [super didReceiveMemoryWarningWorker];
     // I don't want to clean anything else up here due to the complicated
     // state being kep around.
-
-    // Store the currently visible cells so we can scroll back to them when
-    // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-
-    [super didReceiveMemoryWarning];
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 2;
 }
 
@@ -296,16 +256,14 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     }
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
     NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier
-                                             model:self.model] autorelease];
+        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         cell.tappableArrow.delegate = self;
     }
 
@@ -352,7 +310,14 @@
 
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    [activityIndicator startAnimating];
+    {
+        [activityIndicator startAnimating];
+        activityIndicator.contentMode = UIViewContentModeCenter;
+        CGRect frame = activityIndicator.frame;
+        frame.size.height += 80;
+        frame.size.width += 20;
+        activityIndicator.frame = frame;
+    }
     cell.accessoryView = activityIndicator;
 
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
@@ -420,7 +385,7 @@
             movie = [queue.saved objectAtIndex:indexPath.row];
         }
 
-        [navigationController pushMovieDetails:movie animated:YES];
+        [abstractNavigationController pushMovieDetails:movie animated:YES];
     }
 }
 

@@ -15,22 +15,20 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    OperationQueue* operationQueue;
+    ApplicationTabBarController* tabBarController;
     NetflixNavigationController* navigationController;
 
-    Model* model;
-    Controller* controller;
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
 
-    UIActivityIndicatorView* globalActivityIndicatorView;
     UIView* globalActivityView;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
+@property (readonly, retain) ApplicationTabBarController* tabBarController;
 @property (readonly, retain) NetflixNavigationController* navigationController;
-@property (readonly, retain) Controller* controller;
-@property (readonly, retain) Model* model;
+
++ (AppDelegate*) appDelegate;
 
 + (void) minorRefresh;
 + (void) majorRefresh;
@@ -38,13 +36,5 @@
 
 + (UIWindow*) window;
 + (UIView*) globalActivityView;
-
-+ (AppDelegate*) appDelegate;
-+ (OperationQueue*) operationQueue;
-
-+ (void) addNotification:(NSString*) notification;
-+ (void) addNotifications:(NSArray*) notifications;
-+ (void) removeNotification:(NSString*) notification;
-+ (void) removeNotifications:(NSArray*) notifications;
 
 @end
