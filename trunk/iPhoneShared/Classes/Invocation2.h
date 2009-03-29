@@ -21,7 +21,7 @@
 
 + (Invocation2*) invocationWithTarget:(id) target
                             selector:(SEL) selector
-                            argument:(id) argument1
-                            argument:(id) argument2;
+                            withObject:(id) argument1
+                            withObject:(id) argument2;
 
 @end

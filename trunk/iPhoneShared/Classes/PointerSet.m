@@ -15,7 +15,7 @@
 #import "PointerSet.h"
 
 @interface PointerSet()
-@property (retain) NSMutableSet* set;
+@property (retain) NSSet* set;
 @end
 
 
@@ -30,41 +30,21 @@
 }
 
 
-- (id) init {
+- (id) initWithSet:(NSSet*) set_ {
     if (self = [super init]) {
-        self.set = [NSMutableSet set];
+        self.set = set_;
     }
 
     return self;
 }
 
 
-+ (PointerSet*) set {
-    return [[[PointerSet alloc] init] autorelease];
-}
-
-
-- (void) addObject:(id) value {
-    [set addObject:[NSValue valueWithPointer:value]];
-}
-
-
-- (void) addObjectsFromArray:(NSArray*) values {
-    for (id value in values) {
-        [self addObject:value];
-    }
-}
-
-
 + (PointerSet*) setWithArray:(NSArray*) array {
-    PointerSet* set = [[[PointerSet alloc] init] autorelease];
-    [set addObjectsFromArray:array];
-    return set;
-}
-
-
-- (void) removeObject:(id) value {
-    [set removeObject:[NSValue valueWithPointer:value]];
+    NSMutableSet* set = [NSMutableSet set];
+    for (id value in array) {
+        [set addObject:[NSValue valueWithPointer:value]];
+    }
+    return [[[PointerSet alloc] initWithSet:set] autorelease];
 }
 
 

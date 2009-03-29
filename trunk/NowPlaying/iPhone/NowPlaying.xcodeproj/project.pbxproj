@@ -501,6 +501,8 @@
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
+		74A910C60F7F2D8600832767 /* MutablePointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A910C50F7F2D8600832767 /* MutablePointerSet.m */; };
+		74A910C70F7F2D8600832767 /* MutablePointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A910C50F7F2D8600832767 /* MutablePointerSet.m */; };
 		74AD65F90E92CCFC00A01FD5 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD65F80E92CCFC00A01FD5 /* DVD.m */; };
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
 		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
@@ -1037,6 +1039,8 @@
 		74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesViewController.m; sourceTree = "<group>"; };
 		74A865450E64FCC6003A2249 /* UpcomingMoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesNavigationController.h; sourceTree = "<group>"; };
 		74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
+		74A910C40F7F2D8600832767 /* MutablePointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutablePointerSet.h; sourceTree = "<group>"; };
+		74A910C50F7F2D8600832767 /* MutablePointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutablePointerSet.m; sourceTree = "<group>"; };
 		74AD65F70E92CCFC00A01FD5 /* DVD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVD.h; sourceTree = "<group>"; };
 		74AD65F80E92CCFC00A01FD5 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
 		74AD66330E92D49500A01FD5 /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
@@ -1956,6 +1960,8 @@
 				74616DE60F15D9F20004B610 /* MultiDictionary.m */,
 				74616DE70F15D9F20004B610 /* PointerSet.h */,
 				74616DE80F15D9F20004B610 /* PointerSet.m */,
+				74A910C40F7F2D8600832767 /* MutablePointerSet.h */,
+				74A910C50F7F2D8600832767 /* MutablePointerSet.m */,
 			);
 			name = Collections;
 			sourceTree = "<group>";
@@ -2754,6 +2760,7 @@
 				7498FDA80F7DB99B0045F883 /* AttributeCell.m in Sources */,
 				746399F70F7ED2E700B2F64C /* SearchViewController.m in Sources */,
 				74639A8E0F7ED9BE00B2F64C /* NetflixSearchViewController.m in Sources */,
+				74A910C60F7F2D8600832767 /* MutablePointerSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2998,6 +3005,7 @@
 				7463984D0F7EC8D600B2F64C /* PerfectGreenMovieTitleCell.m in Sources */,
 				7463984E0F7EC8D600B2F64C /* UITableViewCell+Utilities.m in Sources */,
 				7463984F0F7EC8D600B2F64C /* AttributeCell.m in Sources */,
+				74A910C70F7F2D8600832767 /* MutablePointerSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,13 +37,14 @@ typedef enum {
     NSOperationQueue* queue;
     NSLock* dataGate;
 
+    //MutablePointerSet* operations;
     NSMutableArray* boundedOperations;
     NSInteger priorityOperationsCount;
 }
 
 + (OperationQueue*) operationQueue;
 
-- (void) restart;
+- (void) restart:(Operation*) operationToKill;
 
 - (Operation*) performSelector:(SEL) selector onTarget:(id) target gate:(id<NSLocking>) gate priority:(QueuePriority) priority;
 - (Operation1*) performSelector:(SEL) selector onTarget:(id) target withObject:(id) object gate:(id<NSLocking>) gate priority:(QueuePriority) priority;
@@ -60,8 +61,8 @@ typedef enum {
 - (BOOL) hasPriorityOperations;
 
 /* @package */
-- (void) notifyOperationCreated:(QueuePriority) priority;
-- (void) notifyOperationDestroyed:(QueuePriority) priority;
+- (void) notifyOperationDestroyed:(Operation*) operation
+                     withPriority:(QueuePriority) priority;
 - (void) onAfterBoundedOperationCompleted:(Operation*) operation;
 
 @end

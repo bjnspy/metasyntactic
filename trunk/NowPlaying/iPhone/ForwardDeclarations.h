@@ -114,6 +114,7 @@
 @class SearchDatePickerViewController;
 @class LocalSearchDisplayController;
 @class LocalSearchEngine;
+@class MutablePointerSet;
 @class SearchEngineDelegate;
 @class SearchRequest;
 @class SearchResult;

@@ -38,7 +38,7 @@
 
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
-             argument:(id) argument_ {
+             withObject:(id) argument_ {
     if (self = [super init]) {
         self.target = target_;
         self.selector = selector_;
@@ -51,10 +51,10 @@
 
 + (Invocation*) invocationWithTarget:(id) target
                             selector:(SEL) selector
-                            argument:(id) argument {
+                            withObject:(id) argument {
     return [[[Invocation alloc] initWithTarget:target
                                       selector:selector
-                                      argument:argument] autorelease];
+                                      withObject:argument] autorelease];
 }
 
 
