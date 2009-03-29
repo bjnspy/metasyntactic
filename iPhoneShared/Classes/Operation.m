@@ -142,8 +142,10 @@
         [super start];
     } @catch (NSException* exception) {
         NSLog(@"******** Received exception ********");
+        [operationQueue restart];
     } @catch (id exception) {
         NSLog(@"******** Received unknown exception ********");
+        [operationQueue restart];
     }
 }
 

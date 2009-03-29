@@ -360,11 +360,15 @@ const int START_YEAR = 1912;
         return;
     }
 
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
-        [AppDelegate minorRefresh];
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
+        if (data != nil) {
+            [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
+            [AppDelegate minorRefresh];
+        }
     }
+    [pool release];
 }
 
 

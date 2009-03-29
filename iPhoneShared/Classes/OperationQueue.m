@@ -42,14 +42,25 @@ static OperationQueue* operationQueue = nil;
 }
 
 
-- (id) init {
-    if (self = [super init]) {
+- (void) restart {
+    [dataGate lock];
+    {
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
         //queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         queue.maxConcurrentOperationCount = 1;
-
+        
         self.boundedOperations = [NSMutableArray array];
+        priorityOperationsCount = 0;
+    }
+    [dataGate unlock];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
         self.dataGate = [[[NSLock alloc] init] autorelease];
+        
+        [self restart];
     }
 
     return self;
@@ -66,9 +77,16 @@ static OperationQueue* operationQueue = nil;
 
 
 - (void) addOperation:(Operation*) operation {
-    [queue performSelectorOnMainThread:@selector(addOperation:)
-                            withObject:operation
-                         waitUntilDone:NO];
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(addOperation:) withObject:operation waitUntilDone:NO];
+        return;
+    }
+    
+    [dataGate lock];
+    {
+        [queue addOperation:operation];
+    }
+    [dataGate unlock];
 }
 
 
@@ -207,7 +225,11 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 
 - (void) temporarilySuspend:(NSTimeInterval) timeInterval {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resume) object:nil];
-    [queue setSuspended:YES];
+    [dataGate lock];
+    {
+        [queue setSuspended:YES];
+    }
+    [dataGate unlock];
     [self performSelector:@selector(resume) withObject:nil afterDelay:timeInterval];
 }
 
@@ -218,7 +240,11 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 
 
 - (void) resume {
-    [queue setSuspended:NO];
+    [dataGate lock];
+    {
+        [queue setSuspended:NO];
+    }
+    [dataGate unlock];
 }
 
 
