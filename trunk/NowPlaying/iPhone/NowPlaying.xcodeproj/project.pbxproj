@@ -123,7 +123,6 @@
 		74616EF20F15DE9D0004B610 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE70F15DE9D0004B610 /* LocaleUtilities.m */; };
 		74616EF30F15DE9D0004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE90F15DE9D0004B610 /* NetworkUtilities.m */; };
 		74616EF40F15DE9D0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EEB0F15DE9D0004B610 /* Pulser.m */; };
-		74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616F050F15DEF70004B610 /* LocationUtilities.m */; };
 		74616FB90F15E0B70004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
 		7463971C0F7EC8D600B2F64C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		7463971D0F7EC8D600B2F64C /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
@@ -305,13 +304,7 @@
 		746397CE0F7EC8D600B2F64C /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		746397CF0F7EC8D600B2F64C /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		746397D00F7EC8D600B2F64C /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */; };
-		746397D10F7EC8D600B2F64C /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */; };
-		746397D20F7EC8D600B2F64C /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */; };
-		746397D30F7EC8D600B2F64C /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D360EB513D300DEB5BB /* RottenTomatoesScoreProvider.m */; };
-		746397D40F7EC8D600B2F64C /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D380EB513D300DEB5BB /* ScoreCache.m */; };
 		746397D50F7EC8D600B2F64C /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
-		746397D60F7EC8D600B2F64C /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */; };
-		746397D70F7EC8D600B2F64C /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1FAB0EB5418D00DEB5BB /* NoneScoreProvider.m */; };
 		746397D80F7EC8D600B2F64C /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		746397D90F7EC8D600B2F64C /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		746397DA0F7EC8D600B2F64C /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
@@ -394,7 +387,6 @@
 		746398270F7EC8D600B2F64C /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE70F15DE9D0004B610 /* LocaleUtilities.m */; };
 		746398280F7EC8D600B2F64C /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE90F15DE9D0004B610 /* NetworkUtilities.m */; };
 		746398290F7EC8D600B2F64C /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EEB0F15DE9D0004B610 /* Pulser.m */; };
-		7463982A0F7EC8D600B2F64C /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616F050F15DEF70004B610 /* LocationUtilities.m */; };
 		7463982B0F7EC8D600B2F64C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
 		7463982C0F7EC8D600B2F64C /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDC70F27C81100BD86B6 /* Status.m */; };
 		7463982D0F7EC8D600B2F64C /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */; };
@@ -479,13 +471,7 @@
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
-		748F1D390EB513D300DEB5BB /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */; };
-		748F1D3A0EB513D300DEB5BB /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */; };
-		748F1D3B0EB513D300DEB5BB /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D360EB513D300DEB5BB /* RottenTomatoesScoreProvider.m */; };
-		748F1D3C0EB513D300DEB5BB /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D380EB513D300DEB5BB /* ScoreCache.m */; };
 		748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
-		748F1E5A0EB5267D00DEB5BB /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */; };
-		748F1FAC0EB5418D00DEB5BB /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1FAB0EB5418D00DEB5BB /* NoneScoreProvider.m */; };
 		749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
 		749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
@@ -503,6 +489,22 @@
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
 		74A910C60F7F2D8600832767 /* MutablePointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A910C50F7F2D8600832767 /* MutablePointerSet.m */; };
 		74A910C70F7F2D8600832767 /* MutablePointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A910C50F7F2D8600832767 /* MutablePointerSet.m */; };
+		74A9152F0F7FF94B00832767 /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915230F7FF94B00832767 /* AbstractScoreProvider.m */; };
+		74A915300F7FF94B00832767 /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915250F7FF94B00832767 /* GoogleScoreProvider.m */; };
+		74A915310F7FF94B00832767 /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915270F7FF94B00832767 /* MetacriticScoreProvider.m */; };
+		74A915320F7FF94B00832767 /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915290F7FF94B00832767 /* NoneScoreProvider.m */; };
+		74A915330F7FF94B00832767 /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9152B0F7FF94B00832767 /* RottenTomatoesScoreProvider.m */; };
+		74A915340F7FF94B00832767 /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9152D0F7FF94B00832767 /* ScoreCache.m */; };
+		74A915350F7FF94B00832767 /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915230F7FF94B00832767 /* AbstractScoreProvider.m */; };
+		74A915360F7FF94B00832767 /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915250F7FF94B00832767 /* GoogleScoreProvider.m */; };
+		74A915370F7FF94B00832767 /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915270F7FF94B00832767 /* MetacriticScoreProvider.m */; };
+		74A915380F7FF94B00832767 /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915290F7FF94B00832767 /* NoneScoreProvider.m */; };
+		74A915390F7FF94B00832767 /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9152B0F7FF94B00832767 /* RottenTomatoesScoreProvider.m */; };
+		74A9153A0F7FF94B00832767 /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9152D0F7FF94B00832767 /* ScoreCache.m */; };
+		74A9164D0F7FFCD600832767 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9164C0F7FFCD600832767 /* LocationUtilities.m */; };
+		74A9164E0F7FFCD600832767 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9164C0F7FFCD600832767 /* LocationUtilities.m */; };
+		74A917C50F800C8F00832767 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917C40F800C8F00832767 /* NetflixAuthentication.m */; };
+		74A917C60F800C8F00832767 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917C40F800C8F00832767 /* NetflixAuthentication.m */; };
 		74AD65F90E92CCFC00A01FD5 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD65F80E92CCFC00A01FD5 /* DVD.m */; };
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
 		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
@@ -902,8 +904,6 @@
 		74616EE90F15DE9D0004B610 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkUtilities.m; path = ../../iPhoneShared/Classes/NetworkUtilities.m; sourceTree = SOURCE_ROOT; };
 		74616EEA0F15DE9D0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pulser.h; path = ../../iPhoneShared/Classes/Pulser.h; sourceTree = SOURCE_ROOT; };
 		74616EEB0F15DE9D0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pulser.m; path = ../../iPhoneShared/Classes/Pulser.m; sourceTree = SOURCE_ROOT; };
-		74616F040F15DEF70004B610 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtilities.h; sourceTree = "<group>"; };
-		74616F050F15DEF70004B610 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtilities.m; sourceTree = "<group>"; };
 		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		746398600F7EC8D600B2F64C /* BoxOffice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -995,21 +995,8 @@
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		748F1D310EB513D300DEB5BB /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
-		748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
-		748F1D330EB513D300DEB5BB /* MetacriticScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticScoreProvider.h; sourceTree = "<group>"; };
-		748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticScoreProvider.m; sourceTree = "<group>"; };
-		748F1D350EB513D300DEB5BB /* RottenTomatoesScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesScoreProvider.h; sourceTree = "<group>"; };
-		748F1D360EB513D300DEB5BB /* RottenTomatoesScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesScoreProvider.m; sourceTree = "<group>"; };
-		748F1D370EB513D300DEB5BB /* ScoreCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCache.h; sourceTree = "<group>"; };
-		748F1D380EB513D300DEB5BB /* ScoreCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreCache.m; sourceTree = "<group>"; };
 		748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProviderViewController.h; sourceTree = "<group>"; };
 		748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProviderViewController.m; sourceTree = "<group>"; };
-		748F1E550EB5261300DEB5BB /* ScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProvider.h; sourceTree = "<group>"; };
-		748F1E580EB5267D00DEB5BB /* AbstractScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractScoreProvider.h; sourceTree = "<group>"; };
-		748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractScoreProvider.m; sourceTree = "<group>"; };
-		748F1FAA0EB5418D00DEB5BB /* NoneScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoneScoreProvider.h; sourceTree = "<group>"; };
-		748F1FAB0EB5418D00DEB5BB /* NoneScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoneScoreProvider.m; sourceTree = "<group>"; };
 		749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapsedMovieDetailsCell.h; sourceTree = "<group>"; };
 		749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
 		749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
@@ -1041,6 +1028,23 @@
 		74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
 		74A910C40F7F2D8600832767 /* MutablePointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutablePointerSet.h; sourceTree = "<group>"; };
 		74A910C50F7F2D8600832767 /* MutablePointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutablePointerSet.m; sourceTree = "<group>"; };
+		74A915220F7FF94B00832767 /* AbstractScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractScoreProvider.h; sourceTree = "<group>"; };
+		74A915230F7FF94B00832767 /* AbstractScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractScoreProvider.m; sourceTree = "<group>"; };
+		74A915240F7FF94B00832767 /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
+		74A915250F7FF94B00832767 /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
+		74A915260F7FF94B00832767 /* MetacriticScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticScoreProvider.h; sourceTree = "<group>"; };
+		74A915270F7FF94B00832767 /* MetacriticScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticScoreProvider.m; sourceTree = "<group>"; };
+		74A915280F7FF94B00832767 /* NoneScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoneScoreProvider.h; sourceTree = "<group>"; };
+		74A915290F7FF94B00832767 /* NoneScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoneScoreProvider.m; sourceTree = "<group>"; };
+		74A9152A0F7FF94B00832767 /* RottenTomatoesScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesScoreProvider.h; sourceTree = "<group>"; };
+		74A9152B0F7FF94B00832767 /* RottenTomatoesScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesScoreProvider.m; sourceTree = "<group>"; };
+		74A9152C0F7FF94B00832767 /* ScoreCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCache.h; sourceTree = "<group>"; };
+		74A9152D0F7FF94B00832767 /* ScoreCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreCache.m; sourceTree = "<group>"; };
+		74A9152E0F7FF94B00832767 /* ScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProvider.h; sourceTree = "<group>"; };
+		74A9164B0F7FFCD600832767 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationUtilities.h; path = ../../iPhoneShared/Classes/LocationUtilities.h; sourceTree = SOURCE_ROOT; };
+		74A9164C0F7FFCD600832767 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationUtilities.m; path = ../../iPhoneShared/Classes/LocationUtilities.m; sourceTree = SOURCE_ROOT; };
+		74A917C30F800C8F00832767 /* NetflixAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAuthentication.h; sourceTree = "<group>"; };
+		74A917C40F800C8F00832767 /* NetflixAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAuthentication.m; sourceTree = "<group>"; };
 		74AD65F70E92CCFC00A01FD5 /* DVD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVD.h; sourceTree = "<group>"; };
 		74AD65F80E92CCFC00A01FD5 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
 		74AD66330E92D49500A01FD5 /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
@@ -1339,6 +1343,8 @@
 				7406A7880F104D1D00795555 /* Controller.m */,
 				7406A7890F104D1D00795555 /* Model.h */,
 				7406A78A0F104D1D00795555 /* Model.m */,
+				74A917C30F800C8F00832767 /* NetflixAuthentication.h */,
+				74A917C40F800C8F00832767 /* NetflixAuthentication.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1494,34 +1500,34 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */,
-				7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */,
-				74616FB70F15E0B70004B610 /* Utilities.h */,
-				74616FB80F15E0B70004B610 /* Utilities.m */,
-				74616F040F15DEF70004B610 /* LocationUtilities.h */,
-				74616F050F15DEF70004B610 /* LocationUtilities.m */,
 				74616EDE0F15DE9D0004B610 /* AlertUtilities.h */,
 				74616EDF0F15DE9D0004B610 /* AlertUtilities.m */,
+				74616D440F15D3420004B610 /* Base64.h */,
+				74616D450F15D3420004B610 /* Base64.m */,
 				74616EE00F15DE9D0004B610 /* DateUtilities.h */,
 				74616EE10F15DE9D0004B610 /* DateUtilities.m */,
+				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
+				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
 				74616EE20F15DE9D0004B610 /* FileUtilities.h */,
 				74616EE30F15DE9D0004B610 /* FileUtilities.m */,
 				74616EE40F15DE9D0004B610 /* ImageUtilities.h */,
 				74616EE50F15DE9D0004B610 /* ImageUtilities.m */,
 				74616EE60F15DE9D0004B610 /* LocaleUtilities.h */,
 				74616EE70F15DE9D0004B610 /* LocaleUtilities.m */,
-				74616EE80F15DE9D0004B610 /* NetworkUtilities.h */,
-				74616EE90F15DE9D0004B610 /* NetworkUtilities.m */,
-				74616EEA0F15DE9D0004B610 /* Pulser.h */,
-				74616EEB0F15DE9D0004B610 /* Pulser.m */,
-				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
-				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
-				74616D720F15D45D0004B610 /* StringUtilities.h */,
-				74616D730F15D45D0004B610 /* StringUtilities.m */,
-				74616D440F15D3420004B610 /* Base64.h */,
-				74616D450F15D3420004B610 /* Base64.m */,
 				74166B0C0EC94A5700FFD29A /* LocationManager.h */,
 				74166B0D0EC94A5700FFD29A /* LocationManager.m */,
+				74A9164B0F7FFCD600832767 /* LocationUtilities.h */,
+				74A9164C0F7FFCD600832767 /* LocationUtilities.m */,
+				74616EE80F15DE9D0004B610 /* NetworkUtilities.h */,
+				74616EE90F15DE9D0004B610 /* NetworkUtilities.m */,
+				7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */,
+				7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */,
+				74616EEA0F15DE9D0004B610 /* Pulser.h */,
+				74616EEB0F15DE9D0004B610 /* Pulser.m */,
+				74616D720F15D45D0004B610 /* StringUtilities.h */,
+				74616D730F15D45D0004B610 /* StringUtilities.m */,
+				74616FB70F15E0B70004B610 /* Utilities.h */,
+				74616FB80F15E0B70004B610 /* Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1739,9 +1745,9 @@
 		745184B40E91D8D600D4E0C5 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
+				74E179F60E949D0900F8D0D3 /* Classes */,
 				74E17FC10E95FEEB00F8D0D3 /* Bootstrap.h */,
 				74E17FC20E95FEEB00F8D0D3 /* ForwardDeclarations.h */,
-				74E179F60E949D0900F8D0D3 /* Classes */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1863,6 +1869,7 @@
 			children = (
 				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				741172AE0F60909100E09FD8 /* DVD */,
+				74A915760F7FFAC400832767 /* Location */,
 				747DA1630EF83B0D0066B881 /* Netflix */,
 				7474FE8F0E63595400BAA43D /* Posters */,
 				7491444F0E764D0E00CC42A8 /* Scores */,
@@ -1871,16 +1878,12 @@
 				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 				741172B00F60927C00E09FD8 /* AbstractMovieCache.h */,
 				741172B10F60927C00E09FD8 /* AbstractMovieCache.m */,
-				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
-				747CA1C00E8594C300A09E89 /* LocationCache.m */,
-				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
-				747CA13A0E8591B600A09E89 /* UserLocationCache.m */,
+				74EFA4770F79CE17008680B2 /* CacheUpdater.h */,
+				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
-				74EFA4770F79CE17008680B2 /* CacheUpdater.h */,
-				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1969,19 +1972,19 @@
 		7491444F0E764D0E00CC42A8 /* Scores */ = {
 			isa = PBXGroup;
 			children = (
-				748F1D370EB513D300DEB5BB /* ScoreCache.h */,
-				748F1D380EB513D300DEB5BB /* ScoreCache.m */,
-				748F1E550EB5261300DEB5BB /* ScoreProvider.h */,
-				748F1E580EB5267D00DEB5BB /* AbstractScoreProvider.h */,
-				748F1E590EB5267D00DEB5BB /* AbstractScoreProvider.m */,
-				748F1D310EB513D300DEB5BB /* GoogleScoreProvider.h */,
-				748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */,
-				748F1D330EB513D300DEB5BB /* MetacriticScoreProvider.h */,
-				748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */,
-				748F1D350EB513D300DEB5BB /* RottenTomatoesScoreProvider.h */,
-				748F1D360EB513D300DEB5BB /* RottenTomatoesScoreProvider.m */,
-				748F1FAA0EB5418D00DEB5BB /* NoneScoreProvider.h */,
-				748F1FAB0EB5418D00DEB5BB /* NoneScoreProvider.m */,
+				74A915220F7FF94B00832767 /* AbstractScoreProvider.h */,
+				74A915230F7FF94B00832767 /* AbstractScoreProvider.m */,
+				74A915240F7FF94B00832767 /* GoogleScoreProvider.h */,
+				74A915250F7FF94B00832767 /* GoogleScoreProvider.m */,
+				74A915260F7FF94B00832767 /* MetacriticScoreProvider.h */,
+				74A915270F7FF94B00832767 /* MetacriticScoreProvider.m */,
+				74A915280F7FF94B00832767 /* NoneScoreProvider.h */,
+				74A915290F7FF94B00832767 /* NoneScoreProvider.m */,
+				74A9152A0F7FF94B00832767 /* RottenTomatoesScoreProvider.h */,
+				74A9152B0F7FF94B00832767 /* RottenTomatoesScoreProvider.m */,
+				74A9152C0F7FF94B00832767 /* ScoreCache.h */,
+				74A9152D0F7FF94B00832767 /* ScoreCache.m */,
+				74A9152E0F7FF94B00832767 /* ScoreProvider.h */,
 			);
 			name = Scores;
 			sourceTree = "<group>";
@@ -2038,6 +2041,17 @@
 				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		74A915760F7FFAC400832767 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
+				747CA1C00E8594C300A09E89 /* LocationCache.m */,
+				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
+				747CA13A0E8591B600A09E89 /* UserLocationCache.m */,
+			);
+			name = Location;
 			sourceTree = "<group>";
 		};
 		74D6F2B40DCC14420097A984 /* Xml */ = {
@@ -2211,28 +2225,28 @@
 		74EB7B3D0EE34373005BD3F0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				74D3CC720F2DB73E0007C783 /* Person.h */,
-				74D3CC730F2DB73E0007C783 /* Person.m */,
-				746A01410DC819270079D89B /* Movie.h */,
-				746A01420DC819270079D89B /* Movie.m */,
-				746A02030DC819430079D89B /* Theater.h */,
-				746A02040DC819430079D89B /* Theater.m */,
-				741371880E88E79C00CF4900 /* Score.h */,
-				741371890E88E79C00CF4900 /* Score.m */,
-				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
-				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
-				74EC04F30DD2B704006953A4 /* Location.h */,
-				74EC04F40DD2B704006953A4 /* Location.m */,
-				7457FE900E21A41A00929D3E /* Performance.h */,
-				7457FE910E21A41A00929D3E /* Performance.m */,
 				74AD65F70E92CCFC00A01FD5 /* DVD.h */,
 				74AD65F80E92CCFC00A01FD5 /* DVD.m */,
-				749569590E2D6248007BFF21 /* Review.h */,
-				7495695A0E2D6248007BFF21 /* Review.m */,
+				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
+				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
 				7400EFD00EF5935700058CDD /* Feed.h */,
 				7400EFD10EF5935700058CDD /* Feed.m */,
+				74EC04F30DD2B704006953A4 /* Location.h */,
+				74EC04F40DD2B704006953A4 /* Location.m */,
+				746A01410DC819270079D89B /* Movie.h */,
+				746A01420DC819270079D89B /* Movie.m */,
+				7457FE900E21A41A00929D3E /* Performance.h */,
+				7457FE910E21A41A00929D3E /* Performance.m */,
+				74D3CC720F2DB73E0007C783 /* Person.h */,
+				74D3CC730F2DB73E0007C783 /* Person.m */,
 				747DA10D0EF835A50066B881 /* Queue.h */,
 				747DA10E0EF835A50066B881 /* Queue.m */,
+				749569590E2D6248007BFF21 /* Review.h */,
+				7495695A0E2D6248007BFF21 /* Review.m */,
+				741371880E88E79C00CF4900 /* Score.h */,
+				741371890E88E79C00CF4900 /* Score.m */,
+				746A02030DC819430079D89B /* Theater.h */,
+				746A02040DC819430079D89B /* Theater.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -2631,13 +2645,7 @@
 				74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */,
 				74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */,
 				74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */,
-				748F1D390EB513D300DEB5BB /* GoogleScoreProvider.m in Sources */,
-				748F1D3A0EB513D300DEB5BB /* MetacriticScoreProvider.m in Sources */,
-				748F1D3B0EB513D300DEB5BB /* RottenTomatoesScoreProvider.m in Sources */,
-				748F1D3C0EB513D300DEB5BB /* ScoreCache.m in Sources */,
 				748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */,
-				748F1E5A0EB5267D00DEB5BB /* AbstractScoreProvider.m in Sources */,
-				748F1FAC0EB5418D00DEB5BB /* NoneScoreProvider.m in Sources */,
 				748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */,
 				747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */,
 				747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */,
@@ -2720,7 +2728,6 @@
 				74616EF20F15DE9D0004B610 /* LocaleUtilities.m in Sources */,
 				74616EF30F15DE9D0004B610 /* NetworkUtilities.m in Sources */,
 				74616EF40F15DE9D0004B610 /* Pulser.m in Sources */,
-				74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */,
 				74616FB90F15E0B70004B610 /* Utilities.m in Sources */,
 				7408FDC80F27C81100BD86B6 /* Status.m in Sources */,
 				7408FDCC0F27C83500BD86B6 /* NSMutableArray+Utilities.m in Sources */,
@@ -2761,6 +2768,14 @@
 				746399F70F7ED2E700B2F64C /* SearchViewController.m in Sources */,
 				74639A8E0F7ED9BE00B2F64C /* NetflixSearchViewController.m in Sources */,
 				74A910C60F7F2D8600832767 /* MutablePointerSet.m in Sources */,
+				74A9152F0F7FF94B00832767 /* AbstractScoreProvider.m in Sources */,
+				74A915300F7FF94B00832767 /* GoogleScoreProvider.m in Sources */,
+				74A915310F7FF94B00832767 /* MetacriticScoreProvider.m in Sources */,
+				74A915320F7FF94B00832767 /* NoneScoreProvider.m in Sources */,
+				74A915330F7FF94B00832767 /* RottenTomatoesScoreProvider.m in Sources */,
+				74A915340F7FF94B00832767 /* ScoreCache.m in Sources */,
+				74A9164D0F7FFCD600832767 /* LocationUtilities.m in Sources */,
+				74A917C50F800C8F00832767 /* NetflixAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2878,13 +2893,7 @@
 				746397CE0F7EC8D600B2F64C /* AbstractFieldAccessor.m in Sources */,
 				746397CF0F7EC8D600B2F64C /* NowPlaying.pb.m in Sources */,
 				746397D00F7EC8D600B2F64C /* PackageDescriptor.m in Sources */,
-				746397D10F7EC8D600B2F64C /* GoogleScoreProvider.m in Sources */,
-				746397D20F7EC8D600B2F64C /* MetacriticScoreProvider.m in Sources */,
-				746397D30F7EC8D600B2F64C /* RottenTomatoesScoreProvider.m in Sources */,
-				746397D40F7EC8D600B2F64C /* ScoreCache.m in Sources */,
 				746397D50F7EC8D600B2F64C /* ScoreProviderViewController.m in Sources */,
-				746397D60F7EC8D600B2F64C /* AbstractScoreProvider.m in Sources */,
-				746397D70F7EC8D600B2F64C /* NoneScoreProvider.m in Sources */,
 				746397D80F7EC8D600B2F64C /* IMDbCache.m in Sources */,
 				746397D90F7EC8D600B2F64C /* DVDViewController.m in Sources */,
 				746397DA0F7EC8D600B2F64C /* DVDNavigationController.m in Sources */,
@@ -2967,7 +2976,6 @@
 				746398270F7EC8D600B2F64C /* LocaleUtilities.m in Sources */,
 				746398280F7EC8D600B2F64C /* NetworkUtilities.m in Sources */,
 				746398290F7EC8D600B2F64C /* Pulser.m in Sources */,
-				7463982A0F7EC8D600B2F64C /* LocationUtilities.m in Sources */,
 				7463982B0F7EC8D600B2F64C /* Utilities.m in Sources */,
 				7463982C0F7EC8D600B2F64C /* Status.m in Sources */,
 				7463982D0F7EC8D600B2F64C /* NSMutableArray+Utilities.m in Sources */,
@@ -3006,6 +3014,14 @@
 				7463984E0F7EC8D600B2F64C /* UITableViewCell+Utilities.m in Sources */,
 				7463984F0F7EC8D600B2F64C /* AttributeCell.m in Sources */,
 				74A910C70F7F2D8600832767 /* MutablePointerSet.m in Sources */,
+				74A915350F7FF94B00832767 /* AbstractScoreProvider.m in Sources */,
+				74A915360F7FF94B00832767 /* GoogleScoreProvider.m in Sources */,
+				74A915370F7FF94B00832767 /* MetacriticScoreProvider.m in Sources */,
+				74A915380F7FF94B00832767 /* NoneScoreProvider.m in Sources */,
+				74A915390F7FF94B00832767 /* RottenTomatoesScoreProvider.m in Sources */,
+				74A9153A0F7FF94B00832767 /* ScoreCache.m in Sources */,
+				74A9164E0F7FFCD600832767 /* LocationUtilities.m in Sources */,
+				74A917C60F800C8F00832767 /* NetflixAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

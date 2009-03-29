@@ -15,13 +15,11 @@
 #import "AbstractSearchEngine.h"
 
 #import "AppDelegate.h"
-#import "Location.h"
 #import "Model.h"
 #import "Movie.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
-#import "Theater.h"
 #import "Utilities.h"
 
 @interface AbstractSearchEngine()
@@ -192,7 +190,8 @@
                                              theaters:theaters
                                        upcomingMovies:upcomingMovies
                                                  dvds:dvds
-                                               bluray:bluray];
+                                               bluray:bluray
+                                               people:people];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
 }
 

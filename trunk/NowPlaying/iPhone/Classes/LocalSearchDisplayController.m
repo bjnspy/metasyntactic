@@ -76,7 +76,7 @@
     if (searchResult == nil) {
         return NO;
     }
-    
+
     if (searchResult.theaters.count > 0) {
         if ([self shouldShowTheaters] || [self shouldShowAll]) {
             return YES;
@@ -351,7 +351,7 @@
 - (void) initializeData:(SearchResult*) result {
     NSInteger theaters = result.theaters.count;
     NSInteger movies = result.movies.count + result.upcomingMovies.count + result.dvds.count + result.bluray.count;
-    
+
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
                                         [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
                                         [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", nil), movies],

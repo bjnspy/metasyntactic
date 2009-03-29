@@ -22,7 +22,7 @@
     NSDictionary* synchronizationInformationData;
     NSDictionary* bookmarksData;
     NSMutableDictionary* performancesData;
-    
+
     NSMutableDictionary* cachedIsStale;
 }
 

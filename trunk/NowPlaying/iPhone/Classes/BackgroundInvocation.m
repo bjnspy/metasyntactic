@@ -38,7 +38,7 @@
 
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
-             withObject:(id) argument_
+           withObject:(id) argument_
                  gate:(id<NSLocking>) gate_
               visible:(BOOL) visible_ {
     if (self = [super initWithTarget:target_ selector:selector_ withObject:argument_]) {
@@ -52,12 +52,12 @@
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
-                                      withObject:(id) argument
+                                    withObject:(id) argument
                                           gate:(id<NSLocking>) gate
                                        visible:(BOOL) visible {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
-                                                withObject:argument
+                                              withObject:argument
                                                     gate:gate
                                                  visible:visible] autorelease];
 }

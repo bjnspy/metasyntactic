@@ -60,7 +60,7 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) setupGlobalActivtyIndicator {
+- (void) setupGlobalActivityIndicator {
     self.globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
 }
 
@@ -72,7 +72,7 @@ static AppDelegate* appDelegate = nil;
 
     appDelegate = self;
 
-    [self setupGlobalActivtyIndicator];
+    [self setupGlobalActivityIndicator];
 
     [Model model];
     [Controller controller];
@@ -163,18 +163,6 @@ static AppDelegate* appDelegate = nil;
 + (void) removeNotifications:(NSArray*) notifications {
     [[self notificationCenter] removeNotifications:notifications];
 }
-
-
-/*
-- (void) application:(UIApplication*) application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
-    [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
-}
-
-
-- (void) application:(UIApplication*) application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
-    [ notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
-}
- */
 
 
 + (UIView*) globalActivityView {

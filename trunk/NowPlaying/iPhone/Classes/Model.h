@@ -75,6 +75,8 @@ enum ViewControllerType {
 - (BOOL) screenRotationEnabled;
 - (void) setScreenRotationEnabled:(BOOL) enabled;
 
+- (BOOL) scoresEnabled;
+
 - (BOOL) dvdBlurayEnabled;
 - (BOOL) upcomingEnabled;
 - (BOOL) netflixEnabled;

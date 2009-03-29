@@ -356,7 +356,7 @@ typedef enum {
     if (searchViewController == nil) {
         self.searchViewController = [[[NetflixSearchViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
     }
-    
+
     [abstractNavigationController pushViewController:searchViewController animated:YES];
 }
 #endif

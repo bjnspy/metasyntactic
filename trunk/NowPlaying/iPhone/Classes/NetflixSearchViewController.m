@@ -43,7 +43,7 @@
     self.searchEngine = nil;
     self.movies = nil;
     self.people = nil;
-    
+
     [super dealloc];
 }
 
@@ -58,7 +58,7 @@
                navigationController:navigationController_]) {
         self.searchEngine = [NetflixSearchEngine engineWithDelegate:self];
     }
-    
+
     return self;
 }
 
@@ -71,9 +71,9 @@
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+
     [searchBar sizeToFit];
-    
+
     self.navigationItem.titleView = searchBar;
 }
 
@@ -127,7 +127,7 @@
     } else if (section == 1 && people.count > 0) {
         return NSLocalizedString(@"People", nil);
     }
-    
+
     return nil;
 }
 
@@ -136,31 +136,31 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         static NSString* reuseIdentifier = @"movieReuseIdentifier";
-        
+
         NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         Movie* movie = [movies objectAtIndex:indexPath.row];
         [cell setMovie:movie owner:self];
-        
+
         return cell;
     } else {
         return nil;
         /*
          static NSString* reuseIdentifier = @"personReuseIdentifier";
-         
+
          PersonCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
          if (cell == nil) {
          cell = [[[PersonCell alloc] initWithFrame:CGRectZero
          reuseIdentifier:reuseIdentifier
          model:self.model] autorelease];
          }
-         
+
          Person* person = [people objectAtIndex:indexPath.row];
          [cell setPerson:person owner:self];
-         
+
          return cell;
          */
     }
@@ -173,7 +173,7 @@
         Movie* movie = [movies objectAtIndex:indexPath.row];
         [abstractNavigationController pushMovieDetails:movie animated:YES];
     } else {
-        
+
     }
 }
 
@@ -198,7 +198,7 @@
 
 - (void) reportResult:(SearchResult*) result {
     NSAssert([NSThread isMainThread], nil);
-    
+
     self.movies = result.movies;
     //self.people = result.people;
     [self majorRefresh];

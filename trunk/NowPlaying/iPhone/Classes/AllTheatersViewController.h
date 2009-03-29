@@ -22,7 +22,7 @@
     UISearchBar* searchBar;
     LocalSearchDisplayController* searchDisplayController;
 #else
-    
+
 #endif
 
     NSArray* sortedTheaters;

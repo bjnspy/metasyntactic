@@ -17,6 +17,7 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "Model.h"
+#import "StringUtilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 
@@ -69,7 +70,7 @@
         self.dvds = model.dvdCache.movies;
         self.bluray = model.blurayCache.movies;
 
-        self.lowercaseValue = [[Utilities asciiString:self.value] lowercaseString];
+        self.lowercaseValue = [[StringUtilities asciiString:self.value] lowercaseString];
     }
 
     return self;

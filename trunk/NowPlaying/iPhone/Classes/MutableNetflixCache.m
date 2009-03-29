@@ -150,8 +150,8 @@
 
     [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
                                   onTarget:self
-                                  withObject:error
-                                  withObject:delegate];
+                                withObject:error
+                                withObject:delegate];
 }
 
 
@@ -161,7 +161,7 @@
     [self saveQueue:queue];
     [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
                                   onTarget:self
-                                  withObject:delegate];
+                                withObject:delegate];
 }
 
 
@@ -171,7 +171,7 @@
     [self saveQueue:queue];
     [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
                                   onTarget:self
-                                  withObject:delegate];
+                                withObject:delegate];
 }
 
 
@@ -266,10 +266,10 @@
     NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
 
     [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
-                                         onTarget:self
-                                       withObject:arguments
-                                             gate:runGate
-                                         priority:Now];
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -282,10 +282,10 @@
     NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
 
     [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
-                               onTarget:self
-                             withObject:arguments
-                                   gate:runGate
-                               priority:Now];
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -312,10 +312,10 @@
 
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
     [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
-                                  onTarget:self
-                                  withObject:arguments
-                                      gate:runGate
-                                   priority:Now];
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 
@@ -464,10 +464,10 @@
     [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
 
     [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
-                                  onTarget:self
-                                  withObject:arguments
-                                      gate:runGate
-                                   priority:Now];
+                                            onTarget:self
+                                          withObject:arguments
+                                                gate:runGate
+                                            priority:Now];
 }
 
 

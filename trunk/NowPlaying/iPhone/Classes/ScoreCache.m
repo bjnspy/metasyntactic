@@ -140,6 +140,10 @@
         return;
     }
 
+    if (!self.model.scoresEnabled) {
+        return;
+    }
+
     if (updated) {
         return;
     }

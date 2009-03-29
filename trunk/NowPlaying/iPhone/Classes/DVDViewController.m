@@ -180,9 +180,4 @@
     }
 }
 
-
-- (UIViewController*) createFilterViewController {
-    return [[[DVDFilterViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
-}
-
 @end

@@ -357,9 +357,9 @@ static NSDictionary* availabilityMap = nil;
         [self clear];
     } else {
         [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
-                                             onTarget:self
-                                                 gate:runGate
-                                             priority:Priority];
+                                                onTarget:self
+                                                    gate:runGate
+                                                priority:Priority];
     }
 }
 
@@ -858,9 +858,9 @@ static NSDictionary* availabilityMap = nil;
 
     if (firstName.length > 0 || lastName.length > 0) {
         [self.model setNetflixFirstName:firstName
-                          lastName:lastName
-                   canInstantWatch:canInstantWatch
-                  preferredFormats:preferredFormats];
+         lastName:lastName
+         canInstantWatch:canInstantWatch
+         preferredFormats:preferredFormats];
         [AppDelegate majorRefresh];
     }
 }
@@ -1216,10 +1216,10 @@ static NSDictionary* availabilityMap = nil;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
         NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-        
+
         NSString* directory = [self rssFeedDirectory:address];
         NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-        
+
         for (NSString* path in paths) {
             NSDictionary* dictionary = [FileUtilities readObject:path];
             if (dictionary != nil) {
@@ -1345,10 +1345,10 @@ static NSDictionary* availabilityMap = nil;
         [FileUtilities createDirectory:[self rssFeedDirectory:address]];
 
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSFeed:)
-                                             onTarget:self
-                                           withObject:address
-                                                 gate:nil
-                                             priority:Priority];
+                                                onTarget:self
+                                              withObject:address
+                                                    gate:nil
+                                                priority:Priority];
     }
 }
 
@@ -1393,16 +1393,16 @@ static NSDictionary* availabilityMap = nil;
 
     for (Feed* feed in feeds) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:)
-                                             onTarget:self
-                                           withObject:feed
-                                                 gate:runGate
-                                             priority:Priority];
+                                                onTarget:self
+                                              withObject:feed
+                                                    gate:runGate
+                                                priority:Priority];
     }
 
     [[OperationQueue operationQueue] performSelector:@selector(downloadRSS)
-                                         onTarget:self
-                                             gate:nil // no lock.
-                                         priority:Priority];
+                                            onTarget:self
+                                                gate:nil // no lock.
+                                            priority:Priority];
 }
 
 

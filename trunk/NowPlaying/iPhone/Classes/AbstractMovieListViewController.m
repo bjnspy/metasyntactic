@@ -25,6 +25,7 @@
 #import "MoviesNavigationController.h"
 #import "MutableMultiDictionary.h"
 #import "SettingsViewController.h"
+#import "StringUtilities.h"
 #import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 
@@ -125,7 +126,7 @@
     unichar c1 = toupper([string characterAtIndex:0]);
     if (c1 < 'A' || c1 > 'Z') {
         // remove an accent if it exists.
-        NSString* asciiString = [Utilities asciiString:string];
+        NSString* asciiString = [StringUtilities asciiString:string];
         unichar c2 = toupper([asciiString characterAtIndex:0]);
         if (c2 >= 'A' && c2 <= 'Z') {
             return c2;
@@ -264,7 +265,7 @@
         self.indexTitles = nil;
     } else {
         NSMutableArray* array = [NSMutableArray array];
-        
+
 #ifdef IPHONE_OS_VERSION_3
         [array addObject:UITableViewIndexSearch];
 #endif
@@ -337,14 +338,14 @@
     UIImage* image = [ImageCache searchImage];
     [searchButton setImage:image forState:UIControlStateNormal];
     [searchButton addTarget:self.navigationController action:@selector(showSearchView) forControlEvents:UIControlEventTouchUpInside];
-    
+
     CGRect frame = searchButton.frame;
     frame.origin.x += 0.5;
     frame.size = image.size;
     frame.size.width += 7;
     frame.size.height += 7;
     searchButton.frame = frame;
-    
+
     UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
     self.navigationItem.rightBarButtonItem = item;
 #endif

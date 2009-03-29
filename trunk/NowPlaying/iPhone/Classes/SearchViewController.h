@@ -20,7 +20,7 @@
 @private
     AbstractSearchEngine* searchEngine;
     SearchResult* searchResult;
-    
+
     UISearchBar* searchBar;
 }
 

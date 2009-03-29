@@ -221,7 +221,7 @@
     [self.model.dataProvider saveResult:lookupResult];
 
     [self dismissUpdateListingsViewController];
-    
+
     [self reloadTableViewData];
 }
 

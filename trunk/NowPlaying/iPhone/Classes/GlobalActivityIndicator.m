@@ -99,27 +99,4 @@ static NSInteger visibleBackgroundTaskCount;
     [gate unlock];
 }
 
-/*
-+ (BOOL) hasVisibleBackgroundTasks {
-    BOOL result;
-    [gate lock];
-    {
-        result = visibleBackgroundTaskCount > 0;
-    }
-    [gate unlock];
-    return result;
-}
-
-
-+ (BOOL) hasBackgroundTasks {
-    BOOL result;
-    [gate lock];
-    {
-        result = totalBackgroundTaskCount > 0;
-    }
-    [gate unlock];
-    return result;
-}
- */
-
 @end
