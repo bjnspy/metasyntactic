@@ -19,7 +19,6 @@
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"

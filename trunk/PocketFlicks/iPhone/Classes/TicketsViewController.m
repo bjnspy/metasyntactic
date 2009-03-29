@@ -21,7 +21,6 @@
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"

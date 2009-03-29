@@ -21,7 +21,6 @@
 #import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
