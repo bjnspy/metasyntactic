@@ -68,9 +68,9 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 - (void) attachToViewController:(UIViewController*) viewController_ {
     self.viewController = viewController_;
-    
+
     CGRect viewFrame = self.view.frame;
-    
+
     NSInteger top = viewFrame.size.height - LABEL_HEIGHT;
     if ([viewController isKindOfClass:[UITabBarController class]]) {
         top -= TAB_BAR_HEIGHT;
@@ -79,11 +79,11 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
         notificationLabel.backgroundColor = [UIColor blackColor];
     }
     CGRect frame = CGRectMake(0, top, viewFrame.size.width, LABEL_HEIGHT);
-    
+
     notificationLabel.frame = frame;
     frame.size.height = 1;
     blackLabel.frame = frame;
-    
+
     [self.view addSubview:notificationLabel];
     [self.view addSubview:blackLabel];
 }
