@@ -63,6 +63,8 @@
 
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
+        
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
     return self;

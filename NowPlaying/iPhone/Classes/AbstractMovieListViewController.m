@@ -269,7 +269,7 @@
         [array addObject:UITableViewIndexSearch];
 #endif
         if (self.model.prioritizeBookmarks) {
-            [array insertObject:[Application starString] atIndex:0];
+            [array addObject:[Application starString]];
         }
 
         [array addObjectsFromArray:[NSArray arrayWithObjects:
@@ -437,7 +437,6 @@
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     UITableViewCell* cell = [self createCell:movie];
-
     if (self.sortingByTitle && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
