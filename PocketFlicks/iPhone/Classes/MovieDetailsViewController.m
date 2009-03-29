@@ -212,7 +212,8 @@ const NSInteger POSTER_TAG = -1;
         // show individual buttons
         for (NSString* name in [websites.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
             [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite:)]];
-            [titles addObject:name];
+            NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Visit %@", nil), name];
+            [titles addObject:title];
             [arguments addObject:[websites objectForKey:name]];
         }
     }

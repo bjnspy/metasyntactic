@@ -705,6 +705,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSInteger) scoreProviderIndex {
+    return 3;
     if (self.cachedScoreProviderIndex == -1) {
         self.cachedScoreProviderIndex = [self scoreProviderIndexWorker];
     }
