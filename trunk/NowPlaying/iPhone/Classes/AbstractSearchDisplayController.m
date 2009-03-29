@@ -58,6 +58,11 @@
 }
 
 
+- (void) setupDefaultScopeButtonTitles {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
 - (id)initNavigationController:(AbstractNavigationController*) navigationController__
                      searchBar:(UISearchBar *)searchBar__
             contentsController:(UIViewController *)viewController__ {
@@ -72,6 +77,8 @@
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.searchBar.showsScopeBar = YES;
+        
+        [self setupDefaultScopeButtonTitles];
     }
 
     return self;
@@ -116,6 +123,7 @@
     searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if (searchText.length == 0) {
+        [self setupDefaultScopeButtonTitles];
         [self.searchEngine invalidateExistingRequests];
         self.searchResult = nil;
         [self.searchResultsTableView reloadData];

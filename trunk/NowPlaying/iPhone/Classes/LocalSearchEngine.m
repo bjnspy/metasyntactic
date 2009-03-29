@@ -54,7 +54,7 @@
             if (range.location > 0) {
                 // make sure it's matching the start of a word
                 unichar c = [lowercaseText characterAtIndex:range.location - 1];
-                if (c >= 'a' && c <= 'z') {
+                if (isalnum(c)) {
                     continue;
                 }
             }
