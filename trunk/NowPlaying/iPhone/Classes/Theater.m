@@ -39,7 +39,6 @@ property_definition(location);
 property_definition(originatingLocation);
 property_definition(movieTitles);
 @synthesize simpleAddress;
-@synthesize isStale;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -49,7 +48,6 @@ property_definition(movieTitles);
     self.originatingLocation = nil;
     self.movieTitles = nil;
     self.simpleAddress = nil;
-    self.isStale = nil;
 
     [super dealloc];
 }

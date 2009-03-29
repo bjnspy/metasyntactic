@@ -1197,10 +1197,10 @@ const NSInteger POSTER_TAG = -1;
 
         [self onDataProviderUpdateFailure:text context:array];
     } else {
-        [super onDataProviderUpdateSuccess:lookupResult context:array];
-
         // Find the most up to date version of this movie
         self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
+
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
     }
 }
 
