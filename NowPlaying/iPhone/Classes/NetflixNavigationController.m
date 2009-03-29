@@ -14,7 +14,6 @@
 
 #import "NetflixNavigationController.h"
 
-#import "Model.h"
 #import "NetflixViewController.h"
 
 @interface NetflixNavigationController()

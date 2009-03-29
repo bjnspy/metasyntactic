@@ -14,7 +14,9 @@
 
 #import "CreditsViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "Application.h"
+#import "DateUtilities.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"

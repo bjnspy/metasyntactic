@@ -32,7 +32,6 @@
 @property (retain) NetflixNavigationController* navigationController;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
-@property (retain) UIView* globalActivityView;
 @end
 
 
@@ -45,7 +44,6 @@ static AppDelegate* appDelegate = nil;
 @synthesize navigationController;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
-@synthesize globalActivityView;
 
 - (void) dealloc {
     self.window = nil;
@@ -53,7 +51,6 @@ static AppDelegate* appDelegate = nil;
     self.navigationController = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
-    self.globalActivityView = nil;
 
     [super dealloc];
 }
@@ -64,31 +61,12 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) setupGlobalActivityIndicator {
-    self.globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-/*
-    self.globalActivityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] retain];
-    CGRect frame = globalActivityIndicatorView.frame;
-    frame.size.width += 4;
-
-    self.globalActivityView = [[[UIView alloc] initWithFrame:frame] retain];
-    [globalActivityView addSubview:globalActivityIndicatorView];
-
-    [GlobalActivityIndicator setTarget:globalActivityIndicatorView
-                startIndicatorSelector:@selector(startAnimating)
-                 stopIndicatorSelector:@selector(stopAnimating)];
-*/
-}
-
-
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
 
     appDelegate = self;
-
-    [self setupGlobalActivityIndicator];
 
     [Model model];
     [Controller controller];
@@ -156,11 +134,6 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
-}
-
-
-+ (UIView*) globalActivityView {
-    return appDelegate.globalActivityView;
 }
 
 

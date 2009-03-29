@@ -130,12 +130,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 3;
 }

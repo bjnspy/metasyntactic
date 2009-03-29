@@ -14,7 +14,6 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "ActionsView.h"
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AlertUtilities.h"
@@ -23,35 +22,52 @@
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
+#import "DVD.h"
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "ImageCache.h"
 #import "LargePosterCache.h"
+#import "LookupResult.h"
+#import "Model.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
+#import "MovieShowtimesCell.h"
+#import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
-#import "Model.h"
 #import "OperationQueue.h"
 #import "PosterCache.h"
+#import "Score.h"
 #import "Status.h"
+#import "StringUtilities.h"
 #import "TappableImageView.h"
+#import "Theater.h"
+#import "TheaterNameCell.h"
+#import "TheatersNavigationController.h"
+#import "UITableViewCell+Utilities.h"
+#import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;
+@property (retain) DVD* dvd;
 @property (retain) Movie* netflixMovie;
 @property (retain) NSArray* netflixStatusCells;
 @property (retain) NetflixRatingsCell* netflixRatingsCell;
+@property (retain) NSMutableArray* theatersArray;
+@property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
+@property (retain) NSArray* reviewsArray;
 @property (retain) NSDictionary* websites;
 @property (retain) ActionsView* actionsView;
+@property NSInteger hiddenTheaterCount;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
+@property (retain) UIButton* bookmarkButton;
 @end
 
 
@@ -65,27 +81,39 @@ const NSInteger VISIT_WEBSITES_TAG = 4;
 const NSInteger POSTER_TAG = -1;
 
 @synthesize movie;
+@synthesize dvd;
 @synthesize netflixMovie;
 @synthesize netflixStatusCells;
 @synthesize netflixRatingsCell;
+@synthesize theatersArray;
+@synthesize showtimesArray;
 @synthesize trailer;
+@synthesize reviewsArray;
 @synthesize websites;
 @synthesize actionsView;
+@synthesize hiddenTheaterCount;
 @synthesize posterActivityView;
 @synthesize posterImage;
 @synthesize posterImageView;
+@synthesize bookmarkButton;
 
 - (void) dealloc {
     self.movie = nil;
+    self.dvd = nil;
     self.netflixMovie = nil;
     self.netflixStatusCells = nil;
     self.netflixRatingsCell = nil;
+    self.theatersArray = nil;
+    self.showtimesArray = nil;
     self.trailer = nil;
+    self.reviewsArray = nil;
     self.websites = nil;
     self.actionsView = nil;
+    self.hiddenTheaterCount = 0;
     self.posterActivityView = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
+    self.bookmarkButton = nil;
 
     [super dealloc];
 }
@@ -93,6 +121,50 @@ const NSInteger POSTER_TAG = -1;
 
 - (Model*) model {
     return [Model model];
+}
+
+
+- (void) orderTheaters {
+    [theatersArray sortUsingFunction:compareTheatersByDistance
+                             context:self.model.theaterDistanceMap];
+
+    NSMutableArray* favorites = [NSMutableArray array];
+    NSMutableArray* nonFavorites = [NSMutableArray array];
+
+    for (Theater* theater in theatersArray) {
+        if ([self.model isFavoriteTheater:theater]) {
+            [favorites addObject:theater];
+        } else {
+            [nonFavorites addObject:theater];
+        }
+    }
+
+    NSMutableArray* result = [NSMutableArray array];
+    [result addObjectsFromArray:favorites];
+    [result addObjectsFromArray:nonFavorites];
+
+    self.theatersArray = result;
+}
+
+
+- (BOOL) isUpcomingMovie {
+    for (Movie* upcomingMovie in self.model.upcomingCache.movies) {
+        if (upcomingMovie == movie) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+
+- (BOOL) isDVD {
+    return dvd != nil;
+}
+
+
+- (BOOL) isNetflix {
+    return movie.isNetflix;
 }
 
 
@@ -107,9 +179,27 @@ const NSInteger POSTER_TAG = -1;
         [arguments addObject:[NSNull null]];
     }
 
+    if (reviewsArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
+        [titles addObject:NSLocalizedString(@"Read reviews", nil)];
+        [arguments addObject:[NSNull null]];
+    }
+
+    if (theatersArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
+        [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
+        [arguments addObject:[NSNull null]];
+    }
+
     if (netflixMovie != nil && netflixStatusCells.count == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
+        [arguments addObject:[NSNull null]];
+    }
+
+    if (![self isUpcomingMovie] && ![self isDVD] && ![self isNetflix]) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
+        [titles addObject:NSLocalizedString(@"Change date", nil)];
         [arguments addObject:[NSNull null]];
     }
 
@@ -173,6 +263,19 @@ const NSInteger POSTER_TAG = -1;
         [map setObject:netflixAddress forKey:@"Netflix"];
     }
 
+    Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+        [map setObject:score.identifier forKey:@"RottenTomatoes"];
+    }
+
+    score = [self.model metacriticScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+        [map setObject:score.identifier forKey:@"Metacritic"];
+    }
+
+    if (dvd != nil) {
+        [map setObject:dvd.url forKey:@"VideoETA"];
+    }
     self.websites = map;
 }
 
@@ -190,7 +293,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeNetflixStatusCells {
-    NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
+    NSArray* statuses = [self.model.netflixCache statusesForMovie:netflixMovie];
 
     NSMutableArray* cells = [NSMutableArray array];
     for (NSInteger i = 0; i < statuses.count; i++) {
@@ -220,6 +323,28 @@ const NSInteger POSTER_TAG = -1;
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];
+    }
+
+    if (!self.model.noScores) {
+        self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
+    }
+
+    NSArray* theatersShowingMovie = [self.model theatersShowingMovie:movie];
+
+    if (filterTheatersByDistance) {
+        self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
+        self.hiddenTheaterCount = theatersShowingMovie.count - theatersArray.count;
+    } else {
+        self.theatersArray = [NSMutableArray arrayWithArray:theatersShowingMovie];
+        self.hiddenTheaterCount = 0;
+    }
+
+    [self orderTheaters];
+
+    self.showtimesArray = [NSMutableArray array];
+
+    for (Theater* theater in theatersArray) {
+        [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
 
     [self initializeWebsites];
@@ -253,6 +378,56 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (BOOL) isBookmarked {
+    return [self.model isBookmarked:movie];
+}
+
+
+- (void) addBookmark {
+    [self.model addBookmark:movie];
+}
+
+
+- (void) removeBookmark {
+    [self.model removeBookmark:movie];
+}
+
+
+- (void) setBookmarkImage {
+    self.bookmarkButton.selected = [self isBookmarked];
+}
+
+
+- (void) switchBookmark:(id) sender {
+    if ([self isBookmarked]) {
+        [self removeBookmark];
+    } else {
+        [self addBookmark];
+    }
+
+    [self setBookmarkImage];
+}
+
+
+- (void) initializeBookmarkButton {
+    return;
+    self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
+    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+
+    [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
+
+    CGRect frame = bookmarkButton.frame;
+    frame.size = [ImageCache emptyStarImage].size;
+    frame.size.width += 10;
+    frame.size.height += 10;
+    bookmarkButton.frame = frame;
+
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:bookmarkButton] autorelease];
+    [self setBookmarkImage];
+}
+
+
 - (void) setupTitle {
     if (readonlyMode) {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
@@ -283,15 +458,18 @@ const NSInteger POSTER_TAG = -1;
         [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:YES animated:YES];
     } else {
-        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-        [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:NO animated:YES];
+        [self initializeBookmarkButton];
     }
 }
 
 
 - (void) loadView {
     [super loadView];
+
+    self.dvd = [self.model dvdDetailsForMovie:movie];
+
+    filterTheatersByDistance = YES;
 
     [self setupTitle];
     [self setupPosterView];
@@ -313,8 +491,13 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
+    self.dvd = nil;
+    self.theatersArray = nil;
+    self.showtimesArray = nil;
     self.trailer = nil;
+    self.reviewsArray = nil;
     self.websites = nil;
+    self.hiddenTheaterCount = 0;
     self.actionsView = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
@@ -398,24 +581,119 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+    // Header
+    NSInteger sections = 1;
+
+    // Netflix
+    sections += 1;
+
+    // theaters
+    sections += theatersArray.count;
+
+    // show hidden theaters
+    if (hiddenTheaterCount > 0) {
+        sections += 1;
+    }
+
+    return sections;
+}
+
+
+- (NSInteger) numberOfRowsInHeaderSection {
+    return 3;
 }
 
 
 - (BOOL) hasNetflixRating {
-    return [self.model.netflixCache netflixRatingForMovie:movie].length > 0;
+    return
+    netflixMovie != nil &&
+    [self.model.netflixCache netflixRatingForMovie:netflixMovie].length > 0;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 1) {
+        if ([self hasNetflixRating] || netflixStatusCells.count > 0) {
+            return NSLocalizedString(@"Netflix", nil);
+        }
+    } else if (section == 2 && theatersArray.count > 0) {
+        if (self.model.isSearchDateToday) {
+            //[DateUtilities isToday:self.model.searchDate]) {
+            return NSLocalizedString(@"Today", nil);
+        } else {
+            return [DateUtilities formatFullDate:self.model.searchDate];
+        }
+    }
+
+    return nil;
+}
+
+
+- (NSInteger) getTheaterIndex:(NSInteger) section {
+    return section - 2;
+}
+
+
+- (NSInteger) isTheaterSection:(NSInteger) section {
+    NSInteger theaterIndex = [self getTheaterIndex:section];
+    return theaterIndex >= 0 && theaterIndex < theatersArray.count;
+}
+
+
+- (NSInteger) numberOfRowsInNetflixSection {
+    if (netflixMovie != nil) {
+        return 1 + netflixStatusCells.count;
+    }
+
+    return 0;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 2;
-    } else if (section == 1) {
-        return 1 + netflixStatusCells.count;
+        return [self numberOfRowsInHeaderSection];
     }
 
-    return 0;
+    if (section == 1) {
+        return [self numberOfRowsInNetflixSection];
+    }
+
+    if ([self isTheaterSection:section]) {
+        return 2;
+    }
+
+    // show hidden theaters
+    return 1;
+}
+
+
+- (UITableViewCell*) createDvdDetailsCell {
+    if (dvd == nil) {
+        return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    }
+
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.font = [UIFont boldSystemFontOfSize:14];
+    label.adjustsFontSizeToFitWidth = YES;
+    label.textAlignment = UITextAlignmentCenter;
+    if ([@"1" isEqual:dvd.discs]) {
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - 1 disc.", @"$19.99.  Widescreen DVD - 1 disc."), dvd.price, dvd.format];
+    } else {
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - %@ discs.", @"$19.99.  Widescreen DVD - 2 discs."), dvd.price, dvd.format, dvd.discs];
+    }
+    [label sizeToFit];
+    CGRect frame = label.frame;
+    frame.size.height = self.tableView.rowHeight - 16;
+    frame.size.width = 300;
+    label.frame = frame;
+
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.contentView addSubview:label];
+
+    return cell;
 }
 
 
@@ -429,6 +707,15 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
+    if (row == 0) {
+        return [self createNetflixRatingsCell];
+    } else {
+        return [netflixStatusCells objectAtIndex:row - 1];
+    }
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie
@@ -436,6 +723,10 @@ const NSInteger POSTER_TAG = -1;
                                     posterImage:posterImage
                                 posterImageView:posterImageView
                                    activityView:posterActivityView];
+    }
+
+    if (row == 1) {
+        return [self createDvdDetailsCell];
     }
 
     if (expandedDetails) {
@@ -449,6 +740,14 @@ const NSInteger POSTER_TAG = -1;
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
+    }
+
+    if (row == 1) {
+        if (dvd != nil) {
+            return self.tableView.rowHeight - 14;
+        } else {
+            return 0;
+        }
     }
 
     AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
@@ -478,8 +777,59 @@ const NSInteger POSTER_TAG = -1;
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self heightForRowInHeaderSection:indexPath.row];
-    } else {
+    }
+
+    if (indexPath.section == 1) {
         return [self heightForRowInNetflixSection:indexPath.row];
+    }
+
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        if (indexPath.row == 0) {
+            return tableView.rowHeight;
+        } else {
+            NSInteger theaterIndex = [self getTheaterIndex:indexPath.section];
+            Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+
+            return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
+                                                    stale:[self.model isStale:theater]] + 18;
+        }
+    }
+
+    // show hidden theaters
+    return tableView.rowHeight;
+}
+
+
+- (UITableViewCell*) cellForTheaterSection:(NSInteger) theaterIndex
+                                       row:(NSInteger) row {
+    if (row == 0) {
+        static NSString* reuseIdentifier = @"theaterReuseIdentifier";
+        TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+
+        Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+        [cell setTheater:theater];
+
+        return cell;
+    } else {
+        static NSString* reuseIdentifier = @"detailsReuseIdentifier";
+        MovieShowtimesCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+
+        Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+        BOOL stale = [self.model isStale:theater];
+        [cell setStale:stale];
+
+        [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
+
+        return cell;
     }
 }
 
@@ -506,12 +856,36 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
-    if (row == 0) {
-        return [self createNetflixRatingsCell];
-    } else {
-        return [netflixStatusCells objectAtIndex:row - 1];
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (![self isTheaterSection:section]) {
+        return nil;
     }
+
+    Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:section]];
+    if (![self.model isStale:theater]) {
+        return nil;
+    }
+
+    return [self.model showtimesRetrievedOnString:theater];
+}
+
+
+- (UITableViewCell*) showHiddenTheatersCell {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.textAlignment = UITextAlignmentCenter;
+
+    if (self.hiddenTheaterCount == 1) {
+        cell.text = NSLocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
+    } else {
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
+                     self.hiddenTheaterCount];
+    }
+
+    cell.textColor = [ColorCache commandColor];
+    cell.font = [UIFont boldSystemFontOfSize:14];
+
+    return cell;
 }
 
 
@@ -525,7 +899,54 @@ const NSInteger POSTER_TAG = -1;
         return [self cellForNetflixRow:indexPath.row];
     }
 
-    return nil;
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        return [self cellForTheaterSection:[self getTheaterIndex:indexPath.section] row:indexPath.row];
+    }
+
+    return [self showHiddenTheatersCell];
+}
+
+
+- (void) didSelectShowHiddenTheaters {
+    NSIndexPath* startPath = self.tableView.indexPathForSelectedRow;
+    [self.tableView deselectRowAtIndexPath:startPath animated:NO];
+
+    filterTheatersByDistance = NO;
+    [self majorRefresh];
+
+    // this animates showing the theaters.  but it's unfortunately too slow
+    /*
+     NSInteger currentTheaterCount = self.theatersArray.count;
+     filterTheatersByDistance = NO;
+
+     [self initializeData];
+
+     NSInteger newTheaterCount = self.theatersArray.count;
+
+     if (currentTheaterCount >= newTheaterCount) {
+     return;
+     }
+
+     NSInteger startSection = startPath.section;
+     [self.tableView beginUpdates];
+     {
+     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:startSection] withRowAnimation:UITableViewRowAnimationBottom];
+
+     NSMutableIndexSet* sectionsToAdd = [NSMutableIndexSet indexSet];
+
+     for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
+     [sectionsToAdd addIndex:startSection + i];
+     }
+
+     [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationBottom];
+     }
+     [self.tableView endUpdates];
+
+     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
+     atScrollPosition:UITableViewScrollPositionMiddle
+     animated:YES];
+     */
 }
 
 
@@ -552,6 +973,11 @@ const NSInteger POSTER_TAG = -1;
     [moviePlayer autorelease];
 
     [[OperationQueue operationQueue] resume];
+}
+
+
+- (void) readReviews {
+    [abstractNavigationController pushReviews:movie animated:YES];
 }
 
 
@@ -760,9 +1186,74 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
+        return;
+    }
+
+    NSDate* searchDate = [array lastObject];
+
+    if (![lookupResult.movies containsObject:movie]) {
+        NSString* text =
+        [NSString stringWithFormat:
+         NSLocalizedString(@"No listings found for '%@' on %@", @"No listings found for 'The Dark Knight' on 5/18/2008"),
+         movie.canonicalTitle,
+         [DateUtilities formatShortDate:searchDate]];
+
+        [self onDataProviderUpdateFailure:text context:array];
+    } else {
+        // Find the most up to date version of this movie
+        self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
+
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
+    }
+}
+
+
+- (void) emailListings {
+    NSString* subject = [NSString stringWithFormat:@"%@ - %@",
+                              movie.canonicalTitle,
+                              [DateUtilities formatFullDate:self.model.searchDate]];
+
+    NSMutableString* body = [NSMutableString string];
+
+    for (int i = 0; i < theatersArray.count; i++) {
+        [body appendString:@"<p>"];
+
+        Theater* theater = [theatersArray objectAtIndex:i];
+        NSArray* performances = [showtimesArray objectAtIndex:i];
+
+        [body appendString:theater.name];
+        [body appendString:@"<br/>"];
+        [body appendString:@"<a href=\""];
+        [body appendString:theater.mapUrl];
+        [body appendString:@"\">"];
+        [body appendString:[self.model simpleAddressForTheater:theater]];
+        [body appendString:@"</a>"];
+
+        [body appendString:@"<br/>"];
+        [body appendString:[Utilities generateShowtimeLinks:self.model
+                                                      movie:movie
+                                                    theater:theater
+                                               performances:performances]];
+    }
+
+    [self openMailWithSubject:subject body:body];
+}
+
+
+- (void) pushTicketsView:(Theater*) theater
+                animated:(BOOL) animated {
+    [abstractNavigationController pushTicketsView:movie
+                                  theater:theater
+                                    title:theater.name
+                                 animated:animated];
+}
+
+
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    if (row == 1) {
+    if (row == 2) {
         expandedDetails = !expandedDetails;
 
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
@@ -788,13 +1279,26 @@ const NSInteger POSTER_TAG = -1;
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         [self tableView:tableView didSelectHeaderRow:indexPath.row];
+        return;
     }
-}
 
+    if (indexPath.section == 1) {
+        return;
+    }
 
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    return UITableViewCellAccessoryNone;
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
+
+        if (indexPath.row == 0) {
+            [abstractNavigationController pushTheaterDetails:theater animated:YES];
+        } else {
+            [self pushTicketsView:theater animated:YES];
+        }
+        return;
+    }
+
+    [self didSelectShowHiddenTheaters];
 }
 
 
@@ -849,16 +1353,6 @@ const NSInteger POSTER_TAG = -1;
     } else {
         [self deleteMovieWasTappedForRow:imageView.tag / 2];
     }
-}
-
-
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-    if (section == 1) {
-        return NSLocalizedString(@"Netflix", nil);
-    }
-
-    return nil;
 }
 
 @end
