@@ -16,7 +16,6 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"
 #import "Review.h"
@@ -74,12 +73,6 @@
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     self.reviews = nil;
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

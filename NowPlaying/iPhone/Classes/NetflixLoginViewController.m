@@ -18,7 +18,6 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "Controller.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "NetflixAuthentication.h"
 #import "NetflixNavigationController.h"
@@ -71,12 +70,6 @@
 
 - (Controller*) controller {
     return [Controller controller];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

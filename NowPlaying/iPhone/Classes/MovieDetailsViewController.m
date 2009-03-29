@@ -25,7 +25,6 @@
 #import "DVD.h"
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "LargePosterCache.h"
 #import "LookupResult.h"

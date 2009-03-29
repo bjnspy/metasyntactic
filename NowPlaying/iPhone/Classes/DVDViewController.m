@@ -20,7 +20,6 @@
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "TappableLabel.h"
 

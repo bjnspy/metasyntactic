@@ -23,7 +23,6 @@
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationManager.h"
 #import "LocationUtilities.h"

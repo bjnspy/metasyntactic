@@ -15,7 +15,6 @@
 #import "NotificationCenter.h"
 
 #import "AppDelegate.h"
-#import "GlobalActivityIndicator.h"
 #import "Pulser.h"
 
 @interface NotificationCenter()
