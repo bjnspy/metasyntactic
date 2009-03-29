@@ -163,7 +163,7 @@
 - (NSInteger) calculateSynopsisMax {
     // in order to not make the synopsis too long, we trim it a bit.
     // We do this by first figuring out how much can go on the right of the
-    // poster (i.e. synopsisSplit), doubling that amount, and then terminating
+    // poster (i.e. synopsisSplit), tripling that amount, and then terminating
     // at the first period that follows.
     if (synopsisSplit == synopsis.length) {
         // we didn't even need to split the synopsis. so there's no need to
@@ -171,7 +171,7 @@
         return synopsis.length;
     }
 
-    NSInteger guess = synopsisSplit * 2;
+    NSInteger guess = synopsisSplit * 3;
     if (guess >= synopsis.length) {
         // we have enough room to fit the full synopsis in.
         return synopsis.length;

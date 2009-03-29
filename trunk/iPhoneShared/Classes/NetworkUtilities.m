@@ -233,8 +233,7 @@ static Pulser* pulser = nil;
 }
 
 
-+ (BOOL) isReachableWithoutRequiringConnection:(SCNetworkReachabilityFlags) flags
-{
++ (BOOL) isReachableWithoutRequiringConnection:(SCNetworkReachabilityFlags) flags {
     // kSCNetworkReachabilityFlagsReachable indicates that the specified nodename or address can
     // be reached using the current network configuration.
     BOOL isReachable = flags & kSCNetworkReachabilityFlagsReachable;
@@ -255,6 +254,17 @@ static Pulser* pulser = nil;
 }
 
 
++ (BOOL) isNetworkAvailableWorker:(SCNetworkReachabilityRef) networkReachability {
+    SCNetworkReachabilityFlags flags;
+    BOOL gotFlags = SCNetworkReachabilityGetFlags(networkReachability, &flags);
+    if (!gotFlags) {
+        return NO;
+    }
+    
+    return [self isReachableWithoutRequiringConnection:flags];
+}
+
+
 + (BOOL) isNetworkAvailable {
     struct sockaddr_in zeroAddress;
     bzero(&zeroAddress, sizeof(zeroAddress));
@@ -262,16 +272,13 @@ static Pulser* pulser = nil;
     zeroAddress.sin_len = sizeof(zeroAddress);
     zeroAddress.sin_family = AF_INET;
 
-    SCNetworkReachabilityRef networkReachability =
-    SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
+    SCNetworkReachabilityRef networkReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
 
-    SCNetworkReachabilityFlags flags;
-    BOOL gotFlags = SCNetworkReachabilityGetFlags(networkReachability, &flags);
-    if (!gotFlags) {
-        return NO;
-    }
+    BOOL result = [self isNetworkAvailableWorker:networkReachability];
 
-    return [self isReachableWithoutRequiringConnection:flags];
+    CFRelease(networkReachability);
+    
+    return result;
 }
 
 @end
