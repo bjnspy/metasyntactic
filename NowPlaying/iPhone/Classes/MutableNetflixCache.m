@@ -150,8 +150,8 @@
 
     [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
                                   onTarget:self
-                                  argument:error
-                                  argument:delegate];
+                                  withObject:error
+                                  withObject:delegate];
 }
 
 
@@ -161,7 +161,7 @@
     [self saveQueue:queue];
     [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
                                   onTarget:self
-                                  argument:delegate];
+                                  withObject:delegate];
 }
 
 
@@ -171,7 +171,7 @@
     [self saveQueue:queue];
     [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
                                   onTarget:self
-                                  argument:delegate];
+                                  withObject:delegate];
 }
 
 
@@ -243,7 +243,10 @@
     NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
     [self saveQueue:finalQueue];
 
-    [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:) onTarget:self argument:movie argument:delegate];
+    [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:)
+                                  onTarget:self
+                                withObject:movie
+                                withObject:delegate];
 }
 
 

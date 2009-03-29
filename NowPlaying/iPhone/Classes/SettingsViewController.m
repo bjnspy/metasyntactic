@@ -357,6 +357,11 @@ typedef enum {
 }
 
 
+- (void) onScreenRotationEnabledChanged:(UISwitch*) sender {
+    [self.model setScreenRotationEnabled:sender.on];
+}
+
+
 - (void) pushSearchDatePicker {
     SearchDatePickerViewController* pickerController =
     [SearchDatePickerViewController pickerWithNavigationController:abstractNavigationController

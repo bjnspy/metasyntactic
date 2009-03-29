@@ -21,6 +21,7 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
+#import "NoScoreMovieTitleCell.h"
 #import "PerfectGreenMovieTitleCell.h"
 #import "RedMovieTitleCell.h"
 #import "RottenMovieTitleCell.h"
@@ -29,7 +30,6 @@
 #import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
-
 
 
 @interface MovieTitleCell()
@@ -110,8 +110,12 @@
 
 + (MovieTitleCell*) movieTitleCellForScore:(Score*) score
                                inTableView:(UITableView*) tableView {
+    if ([Model model].noScores) {
+        return [self movieTitleCellForClass:[NoScoreMovieTitleCell class] inTableView:tableView];
+    }
+    
     NSInteger scoreValue = score.scoreValue;
-    if (score == nil || scoreValue == -1 || [Model model].noScores) {
+    if (score == nil || scoreValue == -1) {
         return [self movieTitleCellForClass:[UnknownMovieTitleCell class] inTableView:tableView];
     }
 

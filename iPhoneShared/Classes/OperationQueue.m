@@ -14,12 +14,14 @@
 
 #import "OperationQueue.h"
 
+#import "MutablePointerSet.h"
 #import "Operation.h"
 #import "Operation1.h"
 #import "Operation2.h"
 
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
+//@property (retain) MutablePointerSet* operations;
 @property (retain) NSMutableArray* boundedOperations;
 @property (retain) NSLock* dataGate;
 @end
@@ -30,11 +32,13 @@
 static OperationQueue* operationQueue = nil;
 
 @synthesize queue;
+//@synthesize operations;
 @synthesize boundedOperations;
 @synthesize dataGate;
 
 - (void) dealloc {
     self.queue = nil;
+    //self.operations = nil;
     self.boundedOperations = nil;
     self.dataGate = nil;
 
@@ -42,17 +46,50 @@ static OperationQueue* operationQueue = nil;
 }
 
 
-- (void) restart {
+- (void) addOperation:(Operation*) operation {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(addOperation:) withObject:operation waitUntilDone:NO];
+        return;
+    }
+    
     [dataGate lock];
     {
+        //[operations addObject:operation];
+        [queue addOperation:operation];
+        
+        if (operation.queuePriority >= Priority) {
+            priorityOperationsCount++;
+        }
+    }
+    [dataGate unlock];
+}
+
+
+- (void) restart:(Operation*) operationToKill {
+    [dataGate lock];
+    {
+        //MutablePointerSet* oldOperations = [[operations retain] autorelease];
+        //[oldOperations removeObject:operationToKill];
+        
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
         //queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         queue.maxConcurrentOperationCount = 1;
         
+        //self.operations = [MutablePointerSet set];
         self.boundedOperations = [NSMutableArray array];
         priorityOperationsCount = 0;
+        
+        //for (NSValue* value in oldOperations.mutableSet) {
+        //    id op = (id)value.pointerValue;
+        //    [self addOperation:op];
+        //}
     }
     [dataGate unlock];
+}
+
+
+- (void) restart {
+    [self restart:nil];
 }
 
 
@@ -73,20 +110,6 @@ static OperationQueue* operationQueue = nil;
     }
 
     return operationQueue;
-}
-
-
-- (void) addOperation:(Operation*) operation {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(addOperation:) withObject:operation waitUntilDone:NO];
-        return;
-    }
-    
-    [dataGate lock];
-    {
-        [queue addOperation:operation];
-    }
-    [dataGate unlock];
 }
 
 
@@ -141,7 +164,7 @@ static OperationQueue* operationQueue = nil;
 }
 
 
-const NSInteger MAX_BOUNDED_OPERATIONS = 5;
+const NSInteger MAX_BOUNDED_OPERATIONS = 4;
 - (void) addBoundedOperation:(Operation*) operation {
     [dataGate lock];
     {
@@ -154,9 +177,9 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
         }
 
         // make the last priority operation dependent on this one.
-        if (boundedOperations.count > 0) {
-            [(NSOperation*)boundedOperations.lastObject addDependency:operation];
-        }
+        //if (boundedOperations.count > 0) {
+        //    [(NSOperation*)boundedOperations.lastObject addDependency:operation];
+        //}
 
         [boundedOperations addObject:operation];
     }
@@ -259,23 +282,15 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 5;
 }
 
 
-- (void) notifyOperationCreated:(QueuePriority) priority {
-    [dataGate lock];
-    {
-        if (priority >= Priority) {
-            priorityOperationsCount++;
-        }
-    }
-    [dataGate unlock];
-}
-
-
-- (void) notifyOperationDestroyed:(QueuePriority) priority {
+- (void) notifyOperationDestroyed:(Operation*) operation
+                     withPriority:(QueuePriority) priority {
     [dataGate lock];
     {
         if (priority >= Priority) {
             priorityOperationsCount--;
         }
+        
+        //[operations removeObject:operation];
     }
     [dataGate unlock];
 }

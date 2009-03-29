@@ -23,14 +23,14 @@
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
-                   argument:(id) argument1
-                   argument:(id) argument2
+                 withObject:(id) argument1
+                 withObject:(id) argument2
                        gate:(id<NSLocking>) gate
                     visible:(BOOL) visible {
     BackgroundInvocation2* invocation = [BackgroundInvocation2 invocationWithTarget:target
                                                                            selector:selector
-                                                                           argument:argument1
-                                                                           argument:argument2
+                                                                         withObject:argument1
+                                                                         withObject:argument2
                                                                                gate:gate
                                                                             visible:visible];
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
@@ -39,12 +39,12 @@
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
-                   argument:(id) argument
+                 withObject:(id) argument
                        gate:(id<NSLocking>) gate
                     visible:(BOOL) visible {
     BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
                                                                          selector:selector
-                                                                         argument:argument
+                                                                       withObject:argument
                                                                              gate:gate
                                                                           visible:visible];
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
@@ -57,7 +57,7 @@
                     visible:(BOOL) visible {
     [self backgroundSelector:selector
                     onTarget:target
-                    argument:nil
+                  withObject:nil
                         gate:gate
                      visible:visible];
 }
@@ -65,19 +65,19 @@
 
 + (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
-                   argument:(id) argument {
+                 withObject:(id) argument {
     [target performSelectorOnMainThread:selector withObject:argument waitUntilDone:NO];
 }
 
 
 + (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
-                   argument:(id) argument1
-                   argument:(id) argument2 {
+                 withObject:(id) argument1
+                 withObject:(id) argument2 {
     Invocation2* invocation = [Invocation2 invocationWithTarget:target
                                                        selector:selector
-                                                       argument:argument1
-                                                       argument:argument2];
+                                                     withObject:argument1
+                                                     withObject:argument2];
     [invocation performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 }
 

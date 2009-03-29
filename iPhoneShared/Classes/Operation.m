@@ -36,7 +36,7 @@
 @synthesize gate;
 
 - (void) dealloc {
-    [operationQueue notifyOperationDestroyed:priority];
+    [operationQueue notifyOperationDestroyed:self withPriority:priority];
 
     self.operationQueue = nil;
     self.target = nil;
@@ -62,8 +62,6 @@
         self.gate = gate_;
         priority = priority_;
         self.queuePriority = priority_;
-
-        [operationQueue notifyOperationCreated:priority_];
     }
 
     return self;
@@ -83,17 +81,6 @@
                                          gate:gate
                                      priority:priority] autorelease];
 }
-
-/*
-- (BOOL)isEqual:(id)anObject {
-    if (![anObject isKindOfClass:[Operation class]]) {
-        return NO;
-    }
-
-    Operation* other = anObject;
-    return target == other.target && selector == other.selector;
-}
- */
 
 
 - (void) mainWorker {
@@ -141,11 +128,11 @@
     @try {
         [super start];
     } @catch (NSException* exception) {
-        NSLog(@"******** Received exception ********");
-        [operationQueue restart];
+        NSLog(@"******** Received exception ******** : %@", exception);
+        [operationQueue restart:self];
     } @catch (id exception) {
         NSLog(@"******** Received unknown exception ********");
-        [operationQueue restart];
+        [operationQueue restart:self];
     }
 }
 
