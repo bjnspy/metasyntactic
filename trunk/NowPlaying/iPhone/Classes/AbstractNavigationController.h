@@ -20,6 +20,7 @@
 
 #ifndef IPHONE_OS_VERSION_3
     BOOL isViewLoaded;
+    SearchViewController* searchViewController;
 #endif
 }
 
@@ -47,6 +48,10 @@
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;
+
+#ifndef IPHONE_OS_VERSION_3
+- (void) showSearchView;
+#endif
 
 // @protected
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;

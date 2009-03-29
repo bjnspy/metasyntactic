@@ -12,23 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractPosterCell.h"
+#ifndef IPHONE_OS_VERSION_3
+#import "AbstractTableViewController.h"
+#import "SearchEngineDelegate.h"
 
-@interface DVDCell : AbstractPosterCell {
+@interface SearchViewController : AbstractTableViewController<SearchEngineDelegate,UISearchBarDelegate> {
 @private
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* ratedTitleLabel;
-    UILabel* formatTitleLabel;
-
-    UILabel* directorLabel;
-    UILabel* castLabel;
-    UILabel* genreLabel;
-    UILabel* ratedLabel;
-    UILabel* formatLabel;
+    AbstractSearchEngine* searchEngine;
+    SearchResult* searchResult;
+    
+    UISearchBar* searchBar;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 @end
+#endif

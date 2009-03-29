@@ -35,11 +35,16 @@
 #import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
+#ifndef IPHONE_OS_VERSION_3
+#import "NetflixSearchViewController.h"
+#endif
 
 @interface NetflixViewController()
 #ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) NetflixSearchDisplayController* searchDisplayController;
+#else
+@property (retain) NetflixSearchViewController* searchViewController;
 #endif
 @end
 
@@ -64,12 +69,16 @@ typedef enum {
 #ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
+#else
+@synthesize searchViewController;
 #endif
 
 - (void) dealloc {
 #ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
+#else
+    self.searchViewController = nil;
 #endif
 
     [super dealloc];
@@ -164,18 +173,20 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
-    if (self.hasAccount) {
 #ifdef IPHONE_OS_VERSION_3
+    if (self.hasAccount) {
         self.tableView.tableHeaderView = searchBar;
-#endif
     } else {
         self.tableView.tableHeaderView = nil;
     }
+#endif
+
     [self initializeInfoButton];
     [self setupTableStyle];
     [self setupTitle];
     [self determinePopularMovieCount];
     [self reloadTableViewData];
+
 #ifdef IPHONE_OS_VERSION_3
     [searchDisplayController majorRefresh];
 #endif
@@ -211,7 +222,7 @@ typedef enum {
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (self.hasAccount) {
-        return 7;
+        return LogOutSection + 1;
     } else {
         return 2;
     }
@@ -342,7 +353,11 @@ typedef enum {
 
 #ifndef IPHONE_OS_VERSION_3
 - (void) didSelectSearchSection {
-
+    if (searchViewController == nil) {
+        self.searchViewController = [[[NetflixSearchViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
+    }
+    
+    [abstractNavigationController pushViewController:searchViewController animated:YES];
 }
 #endif
 

@@ -12,23 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractPosterCell.h"
+#ifndef IPHONE_OS_VERSION_3
+#import "AbstractTableViewController.h"
+#import "SearchEngineDelegate.h"
 
-@interface DVDCell : AbstractPosterCell {
+@interface NetflixSearchViewController : AbstractTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
 @private
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* ratedTitleLabel;
-    UILabel* formatTitleLabel;
-
-    UILabel* directorLabel;
-    UILabel* castLabel;
-    UILabel* genreLabel;
-    UILabel* ratedLabel;
-    UILabel* formatLabel;
+    UISearchBar* searchBar;
+    NetflixSearchEngine* searchEngine;
+    
+    NSArray* movies;
+    NSArray* people;
 }
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
+
+- (id) initWithNavigationController:(AbstractNavigationController*) abstractNavigationController;
 
 @end
+#endif

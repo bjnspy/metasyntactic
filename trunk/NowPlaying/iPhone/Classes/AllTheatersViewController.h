@@ -21,6 +21,8 @@
 #ifdef IPHONE_OS_VERSION_3
     UISearchBar* searchBar;
     LocalSearchDisplayController* searchDisplayController;
+#else
+    
 #endif
 
     NSArray* sortedTheaters;
