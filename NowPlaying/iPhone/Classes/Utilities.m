@@ -122,20 +122,6 @@
 }
 
 
-+ (NSInteger) hashString:(NSString*) string {
-    if (string.length == 0) {
-        return 0;
-    }
-
-    int result = [string characterAtIndex:0];
-    for (int i = 1; i < string.length; i++) {
-        result = 31 * result + [string characterAtIndex:i];
-    }
-
-    return result;
-}
-
-
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary {
     if (dictionary == nil) {
         return [NSDictionary dictionary];
@@ -194,34 +180,6 @@
     }
 
     return body;
-}
-
-
-+ (NSString*) stripHtmlCodes:(NSString*) string {
-    if (string == nil) {
-        return @"";
-    }
-
-    NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", nil];
-
-    for (NSString* code in htmlCodes) {
-        string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
-        string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"</%@>", code] withString:@""];
-    }
-
-    return string;
-}
-
-
-+ (NSString*) asciiString:(NSString*) string {
-    NSString* asciiString = [[[NSString alloc] initWithData:[string dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
-                                                   encoding:NSASCIIStringEncoding] autorelease];
-    return asciiString;
-}
-
-
-+ (NSString*) stringFromUnichar:(unichar) c {
-    return [NSString stringWithCharacters:&c length:1];
 }
 
 @end

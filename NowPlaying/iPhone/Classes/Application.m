@@ -126,21 +126,6 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) netflixKey {
-    return @"83k9wpqt34hcka5bfb2kkf8s";
-}
-
-
-+ (NSString*) netflixSecret {
-    return @"GGR5uHEucN";
-}
-
-
-+ (NSString*) netflixApplicationName {
-    return @"NowPlaying";
-}
-
-
 + (void) deleteDirectories {
     [gate lock];
     {
@@ -248,9 +233,9 @@ static DifferenceEngine* differenceEngine = nil;
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
 
-        emptyStarString = [[Utilities stringFromUnichar:(unichar)0x2606] retain];
-        halfStarString = [[Utilities stringFromUnichar:(unichar)0x272F] retain];
-        starString = [[Utilities stringFromUnichar:[self starCharacter]] retain];
+        emptyStarString = [[StringUtilities stringFromUnichar:(unichar)0x2606] retain];
+        halfStarString = [[StringUtilities stringFromUnichar:(unichar)0x272F] retain];
+        starString = [[StringUtilities stringFromUnichar:[self starCharacter]] retain];
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
@@ -436,28 +421,28 @@ static DifferenceEngine* differenceEngine = nil;
         while ((fileName = [enumerator nextObject]) != nil) {
             NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
             NSDictionary* attributes = [enumerator fileAttributes];
-            
+
             // don't delete folders yet
             if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
                 NSLog(@"Application:emptyTrashBackgroundEntryPoint - %@", fullPath.lastPathComponent);
                 [manager removeItemAtPath:fullPath error:NULL];
             }
-            
+
             [NSThread sleepForTimeInterval:1];
-            
+
             [pool release];
             pool = [[NSAutoreleasePool alloc] init];
         }
-        
+
         [pool release];
     }
-    
+
     // Now remove the directories.
     for (NSString* fileName in [FileUtilities directoryContentsNames:trashDirectory]) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
-            
+
             [manager removeItemAtPath:fullPath error:NULL];
             [NSThread sleepForTimeInterval:1];
         }
@@ -495,7 +480,7 @@ static DifferenceEngine* differenceEngine = nil;
             withManager:(NSFileManager*) manager {
     if ((rand() % 1000) < 50) {
         NSDictionary* attributes = [enumerator fileAttributes];
-        
+
         // don't delete folders
         if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];

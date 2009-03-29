@@ -113,7 +113,7 @@
     if ([Model model].noScores) {
         return [self movieTitleCellForClass:[NoScoreMovieTitleCell class] inTableView:tableView];
     }
-    
+
     NSInteger scoreValue = score.scoreValue;
     if (score == nil || scoreValue == -1) {
         return [self movieTitleCellForClass:[UnknownMovieTitleCell class] inTableView:tableView];

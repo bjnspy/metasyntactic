@@ -22,6 +22,7 @@
 @property (retain) NSArray* upcomingMovies;
 @property (retain) NSArray* dvds;
 @property (retain) NSArray* bluray;
+@property (retain) NSArray* people;
 @end
 
 
@@ -34,6 +35,7 @@
 @synthesize upcomingMovies;
 @synthesize dvds;
 @synthesize bluray;
+@synthesize people;
 
 - (void) dealloc {
     self.requestId = 0;
@@ -43,6 +45,7 @@
     self.upcomingMovies = nil;
     self.dvds = nil;
     self.bluray = nil;
+    self.people = nil;
 
     [super dealloc];
 }
@@ -54,7 +57,8 @@
          theaters:(NSArray*) theaters__
    upcomingMovies:(NSArray*) upcomingMovies__
              dvds:(NSArray*) dvds__
-           bluray:(NSArray*) bluray__ {
+           bluray:(NSArray*) bluray__
+           people:(NSArray*) people__ {
     if (self = [super init]) {
         self.requestId = requestId__;
         self.value = value__;
@@ -63,6 +67,7 @@
         self.upcomingMovies = upcomingMovies__;
         self.dvds = dvds__;
         self.bluray = bluray__;
+        self.people = people__;
     }
 
     return self;
@@ -75,14 +80,16 @@
                       theaters:(NSArray*) theaters
                 upcomingMovies:(NSArray*) upcomingMovies
                           dvds:(NSArray*) dvds
-                        bluray:(NSArray*) bluray {
+                        bluray:(NSArray*) bluray
+                        people:(NSArray*) people {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value
                                       movies:movies
                                     theaters:theaters
                               upcomingMovies:upcomingMovies
                                         dvds:dvds
-                                      bluray:bluray] autorelease];
+                                      bluray:bluray
+                                      people:people] autorelease];
 }
 
 @end

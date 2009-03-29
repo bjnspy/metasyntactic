@@ -75,10 +75,10 @@ static CacheUpdater* cacheUpdater = nil;
                                                 priority:Now];
     } else {
         [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:)
-                                                onTarget:self
-                                              withObject:movie
-                                                    gate:nil
-                                                priority:Priority];
+                                                       onTarget:self
+                                                     withObject:movie
+                                                           gate:nil
+                                                       priority:Priority];
     }
 }
 
@@ -103,10 +103,10 @@ static CacheUpdater* cacheUpdater = nil;
 
 - (Operation1*) addSearchMovie:(Movie*) movie {
     return [[OperationQueue operationQueue] performSelector:@selector(processMovie:)
-                                                onTarget:self
-                                              withObject:movie
-                                                    gate:nil
-                                                priority:Search];
+                                                   onTarget:self
+                                                 withObject:movie
+                                                       gate:nil
+                                                   priority:Search];
 }
 
 
@@ -116,10 +116,10 @@ static CacheUpdater* cacheUpdater = nil;
     }
 
     [[OperationQueue operationQueue] performSelector:@selector(processMovie:)
-                                         onTarget:self
-                                       withObject:movie
-                                             gate:nil
-                                         priority:Low];
+                                            onTarget:self
+                                          withObject:movie
+                                                gate:nil
+                                            priority:Low];
 }
 
 

@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "Model.h"
+#import "NetflixAuthentication.h"
 
 @implementation AbstractNetflixCache
 
@@ -65,8 +66,8 @@
 
 
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
-                                                secret:[Application netflixSecret]];
+    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                                secret:[NetflixAuthentication secret]];
 
     OAToken* token = [OAToken tokenWithKey:self.model.netflixKey
                                     secret:self.model.netflixSecret];

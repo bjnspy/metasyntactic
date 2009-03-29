@@ -77,7 +77,7 @@
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.searchBar.showsScopeBar = YES;
-        
+
         [self setupDefaultScopeButtonTitles];
     }
 

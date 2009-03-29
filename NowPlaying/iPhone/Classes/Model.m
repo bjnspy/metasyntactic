@@ -642,6 +642,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
+    [self synchronize];
 }
 
 
@@ -1683,6 +1684,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     }
 
     return result;
+}
+
+
+- (BOOL) scoresEnabled {
+    return YES;
 }
 
 @end

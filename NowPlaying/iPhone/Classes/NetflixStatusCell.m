@@ -19,7 +19,6 @@
 #import "NetflixCache.h"
 #import "Queue.h"
 #import "Status.h"
-#import "SwitchCell.h"
 #import "TappableImageView.h"
 #import "UITableViewCell+Utilities.h"
 

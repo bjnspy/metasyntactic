@@ -20,6 +20,7 @@
 #import "Controller.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
+#import "NetflixAuthentication.h"
 #import "NetflixNavigationController.h"
 #import "OperationQueue.h"
 
@@ -171,8 +172,8 @@
 
 
 - (void) requestAuthorizationTokenWorker {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
-                                                secret:[Application netflixSecret]];
+    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                                secret:[NetflixAuthentication secret]];
 
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/request_token"];
 
@@ -251,8 +252,8 @@
     NSString* accessUrl =
     [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=%@&application_name=%@&oauth_callback=nowplaying://popviewcontroller",
      authorizationToken.key,
-     [Application netflixKey],
-     [Application netflixApplicationName]];
+     [NetflixAuthentication key],
+     [NetflixAuthentication applicationName]];
 
     [navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
     didShowBrowser = YES;
@@ -278,8 +279,8 @@
 
 
 - (void) requestAccessTokenWorker {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[Application netflixKey]
-                                                secret:[Application netflixSecret]];
+    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                                secret:[NetflixAuthentication secret]];
 
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/access_token"];
 

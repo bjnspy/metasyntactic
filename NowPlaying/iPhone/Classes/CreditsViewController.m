@@ -344,7 +344,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void) sendFeedback {
     NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
-                      [Model version],
+                      [Application version],
                       self.model.userAddress,
                       self.model.searchRadius,
                       [DateUtilities formatShortDate:self.model.searchDate],
@@ -380,8 +380,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [self presentModalViewController:controller animated:YES];
     } else {
 #endif
+        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
         NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
-        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
+        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
         [Application openBrowser:url];
 #ifdef IPHONE_OS_VERSION_3
     }

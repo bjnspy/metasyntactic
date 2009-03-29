@@ -42,7 +42,6 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
-
 - (void) refresh;
 
 @end

@@ -19,6 +19,7 @@
 #import "Movie.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "Utilities.h"
 
@@ -47,7 +48,7 @@
             return NO;
         }
 
-        NSString* lowercaseText = [[Utilities asciiString:text] lowercaseString];
+        NSString* lowercaseText = [[StringUtilities asciiString:text] lowercaseString];
 
         NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
         if (range.length > 0) {

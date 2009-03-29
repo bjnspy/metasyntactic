@@ -57,11 +57,11 @@
     self.applicationTabBarController = nil;
     self.postersViewController = nil;
     self.visible = NO;
-    
+
 #ifndef IPHONE_OS_VERSION_3
     self.isViewLoaded = NO;
     self.searchViewController = nil;
-#endif 
+#endif
 
     [super dealloc];
 }
@@ -296,7 +296,7 @@
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
     }
-    
+
     [self pushViewController:searchViewController animated:YES];
     //[searchViewController onShow];
 }

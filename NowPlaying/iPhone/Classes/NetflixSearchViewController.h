@@ -20,7 +20,7 @@
 @private
     UISearchBar* searchBar;
     NetflixSearchEngine* searchEngine;
-    
+
     NSArray* movies;
     NSArray* people;
 }

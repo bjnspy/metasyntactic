@@ -19,10 +19,6 @@
 + (NSString*) version;
 + (NSString*) nameAndVersion;
 
-+ (NSString*) netflixKey;
-+ (NSString*) netflixSecret;
-+ (NSString*) netflixApplicationName;
-
 + (NSString*) trashDirectory;
 
 + (NSString*) dataDirectory;
