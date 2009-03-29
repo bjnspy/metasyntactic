@@ -1321,13 +1321,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) isStale:(Theater*) theater {
-    NSNumber* stale = theater.isStale;
-    if (stale == nil) {
-        stale = [NSNumber numberWithBool:[dataProvider isStale:theater]];
-        theater.isStale = stale;
-    }
-
-    return [stale boolValue];
+    return [dataProvider isStale:theater];
 }
 
 

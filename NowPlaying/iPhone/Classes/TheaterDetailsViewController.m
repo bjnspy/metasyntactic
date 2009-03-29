@@ -358,10 +358,10 @@
 
         [self onDataProviderUpdateFailure:text context:array];
     } else {
-        [super onDataProviderUpdateSuccess:lookupResult context:array];
-
         // find the up to date version of this theater
         self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
+
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
     }
 }
 

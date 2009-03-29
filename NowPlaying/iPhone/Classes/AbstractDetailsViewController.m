@@ -216,11 +216,13 @@
 
     NSDate* searchDate = [array lastObject];
 
-    // Save the results.  this will also force a refresh
+    // Save the results.
     [self.model setSearchDate:searchDate];
     [self.model.dataProvider saveResult:lookupResult];
 
     [self dismissUpdateListingsViewController];
+    
+    [self reloadTableViewData];
 }
 
 

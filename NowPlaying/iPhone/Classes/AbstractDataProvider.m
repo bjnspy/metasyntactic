@@ -38,6 +38,7 @@
 @property (retain) NSDictionary* synchronizationInformationData;
 @property (retain) NSMutableDictionary* performancesData;
 @property (retain) NSDictionary* bookmarksData;
+@property (retain) NSMutableDictionary* cachedIsStale;
 @end
 
 
@@ -48,6 +49,7 @@
 @synthesize performancesData;
 @synthesize synchronizationInformationData;
 @synthesize bookmarksData;
+@synthesize cachedIsStale;
 
 - (void) dealloc {
     self.moviesData = nil;
@@ -55,6 +57,7 @@
     self.performancesData = nil;
     self.synchronizationInformationData = nil;
     self.bookmarksData = nil;
+    self.cachedIsStale = nil;
 
     [super dealloc];
 }
@@ -63,6 +66,7 @@
 - (id) init {
     if (self = [super init]) {
         self.performancesData = [NSMutableDictionary dictionary];
+        self.cachedIsStale = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -289,6 +293,7 @@
         self.theatersData = result.theaters;
         self.synchronizationInformationData = result.synchronizationInformation;
         self.performancesData = [NSMutableDictionary dictionary];
+        self.cachedIsStale = [NSMutableDictionary dictionary];
     }
     [dataGate unlock];
 
@@ -622,7 +627,7 @@
 }
 
 
-- (BOOL) isStale:(Theater*) theater {
+- (NSNumber*) isStaleWorker:(Theater*) theater {
 #if 0
     NSDate* globalSyncDate = [self lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
@@ -637,8 +642,25 @@
         return NO;
     }
 
-    return ![DateUtilities isToday:theaterSyncDate];
+    BOOL result = ![DateUtilities isToday:theaterSyncDate];
+    return [NSNumber numberWithBool:result];
 #endif
+}
+
+
+- (BOOL) isStale:(Theater*) theater {
+    BOOL result;
+    [dataGate lock];
+    {
+        NSNumber* number = [cachedIsStale objectForKey:theater.name];
+        if (number == nil) {
+            number = [self isStaleWorker:theater];
+            [cachedIsStale setObject:number forKey:theater.name];
+        }
+        result = number.boolValue;
+    }
+    [dataGate unlock];
+    return result;
 }
 
 
