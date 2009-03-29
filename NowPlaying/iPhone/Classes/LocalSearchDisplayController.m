@@ -34,13 +34,17 @@
 }
 
 
+- (void) setupDefaultScopeButtonTitles {
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), nil];
+}
+
+
 - (id) initNavigationController:(AbstractNavigationController*) navigationController__
                       searchBar:(UISearchBar*) searchBar__
             contentsController:(UIViewController*) viewController__ {
     if (self = [super initNavigationController:navigationController__
                                      searchBar:searchBar__
                             contentsController:viewController__]) {
-        self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), NSLocalizedString(@"Upcoming", nil), NSLocalizedString(@"DVD", nil), nil];
         self.searchBar.selectedScopeButtonIndex = self.model.localSearchSelectedScopeButtonIndex;
     }
 
@@ -53,34 +57,42 @@
 }
 
 
-- (BOOL) shouldShowMovies {
+- (BOOL) shouldShowAll {
     return self.searchBar.selectedScopeButtonIndex == 0;
 }
 
 
-- (BOOL) shouldShowTheaters {
+- (BOOL) shouldShowMovies {
     return self.searchBar.selectedScopeButtonIndex == 1;
 }
 
 
-- (BOOL) shouldShowUpcoming {
+- (BOOL) shouldShowTheaters {
     return self.searchBar.selectedScopeButtonIndex == 2;
 }
 
 
-- (BOOL) shouldShowDVDBluray {
-    return self.searchBar.selectedScopeButtonIndex == 3;
-}
+- (BOOL) hasResults {
+    if (searchResult == nil) {
+        return NO;
+    }
+    
+    if (searchResult.theaters.count > 0) {
+        if ([self shouldShowTheaters] || [self shouldShowAll]) {
+            return YES;
+        }
+    }
 
+    if (searchResult.movies.count > 0 ||
+        searchResult.upcomingMovies.count > 0 ||
+        searchResult.dvds.count > 0 ||
+        searchResult.bluray.count > 0) {
+        if ([self shouldShowMovies] || [self shouldShowAll]) {
+            return YES;
+        }
+    }
 
-- (BOOL) noResults {
-    return
-    searchResult != nil &&
-    (searchResult.movies.count == 0 || ![self shouldShowMovies]) &&
-    (searchResult.theaters.count == 0 || ![self shouldShowTheaters]) &&
-    (searchResult.upcomingMovies.count == 0 || ![self shouldShowUpcoming]) &&
-    (searchResult.dvds.count == 0 || ![self shouldShowDVDBluray]) &&
-    (searchResult.bluray.count == 0 || ![self shouldShowDVDBluray]);
+    return NO;
 }
 
 
@@ -89,7 +101,7 @@
         return 1;
     }
 
-    if ([self noResults]) {
+    if (![self hasResults]) {
         return 1;
     }
 
@@ -103,19 +115,19 @@
         return 0;
     }
 
-    if ([self noResults]) {
+    if (![self hasResults]) {
         return 0;
     }
 
-    if (section == 0 && [self shouldShowMovies]) {
+    if (section == 0 && ([self shouldShowMovies] || [self shouldShowAll])) {
         return searchResult.movies.count;
-    } else if (section == 1 && [self shouldShowTheaters]) {
+    } else if (section == 1 && ([self shouldShowTheaters] || [self shouldShowAll])) {
         return searchResult.theaters.count;
-    } else if (section == 2 && [self shouldShowUpcoming]) {
+    } else if (section == 2 && ([self shouldShowMovies] || [self shouldShowAll])) {
         return searchResult.upcomingMovies.count;
-    } else if (section == 3 && [self shouldShowDVDBluray]) {
+    } else if (section == 3 && ([self shouldShowMovies] || [self shouldShowAll])) {
         return searchResult.dvds.count;
-    } else if (section == 4 && [self shouldShowDVDBluray]) {
+    } else if (section == 4 && ([self shouldShowMovies] || [self shouldShowAll])) {
         return searchResult.bluray.count;
     } else {
         return 0;
@@ -199,7 +211,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if ([self noResults]) {
+    if (![self hasResults]) {
         return [self noResultsCell];
     }
 
@@ -300,27 +312,27 @@
         return nil;
     }
 
-    if ([self noResults]) {
+    if (![self hasResults]) {
         return NSLocalizedString(@"No information found", nil);
     }
 
-    if (section == 0 && [self shouldShowMovies]) {
+    if (section == 0 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.movies.count != 0) {
             return NSLocalizedString(@"Movies", nil);
         }
-    } else if (section == 1 && [self shouldShowTheaters]) {
+    } else if (section == 1 && ([self shouldShowTheaters] || [self shouldShowAll])) {
         if (searchResult.theaters.count != 0) {
             return NSLocalizedString(@"Theaters", nil);
         }
-    } else if (section == 2 && [self shouldShowUpcoming]) {
+    } else if (section == 2 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.upcomingMovies.count != 0) {
             return NSLocalizedString(@"Upcoming", nil);
         }
-    } else if (section == 3 && [self shouldShowDVDBluray]) {
+    } else if (section == 3 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.dvds.count != 0) {
             return NSLocalizedString(@"DVD", nil);
         }
-    } else if (section == 4 && [self shouldShowDVDBluray]) {
+    } else if (section == 4 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.bluray.count != 0) {
             return NSLocalizedString(@"Blu-ray", nil);
         }
@@ -333,6 +345,24 @@
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
     self.model.localSearchSelectedScopeButtonIndex = selectedScope;
     [self.searchResultsTableView reloadData];
+}
+
+
+- (void) initializeData:(SearchResult*) result {
+    NSInteger theaters = result.theaters.count;
+    NSInteger movies = result.movies.count + result.upcomingMovies.count + result.dvds.count + result.bluray.count;
+    
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
+                                        [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
+                                        [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", nil), movies],
+                                        [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", nil), theaters],
+                                        nil];
+}
+
+
+- (void) reportResult:(SearchResult*) result {
+    [self initializeData:result];
+    [super reportResult:result];
 }
 
 @end
