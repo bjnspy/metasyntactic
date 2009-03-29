@@ -21,7 +21,6 @@
 #import "DifferenceEngine.h"
 #import "Feed.h"
 #import "FileUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "IMDbCache.h"
 #import "IdentitySet.h"
 #import "ImageUtilities.h"

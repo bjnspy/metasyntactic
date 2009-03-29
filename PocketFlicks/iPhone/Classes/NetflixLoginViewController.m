@@ -18,7 +18,6 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "Controller.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "NetflixAuthentication.h"
 #import "NetflixNavigationController.h"

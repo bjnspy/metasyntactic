@@ -15,7 +15,6 @@
 #import "BackgroundInvocation.h"
 
 #import "AppDelegate.h"
-#import "GlobalActivityIndicator.h"
 
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
@@ -82,13 +81,7 @@
 
     [gate lock];
     {
-        if (visible) {
-            [GlobalActivityIndicator addVisibleBackgroundTask];
-        }
         [self invokeSelector];
-        if (visible) {
-            [GlobalActivityIndicator removeVisibleBackgroundTask];
-        }
     }
     [gate unlock];
 

@@ -18,7 +18,6 @@
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "Feed.h"
-#import "GlobalActivityIndicator.h"
 #import "IdentitySet.h"
 #import "ImageCache.h"
 #import "Model.h"

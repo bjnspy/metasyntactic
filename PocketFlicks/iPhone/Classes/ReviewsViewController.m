@@ -16,7 +16,6 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"
 #import "Review.h"

@@ -25,7 +25,6 @@
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "LargePosterCache.h"
 #import "Movie.h"
