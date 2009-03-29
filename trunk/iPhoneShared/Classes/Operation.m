@@ -14,7 +14,6 @@
 
 #import "Operation.h"
 
-#import "GlobalActivityIndicator.h"
 #import "OperationQueue.h"
 
 
@@ -102,17 +101,9 @@
 
     NSLog(@"Starting: %@", name);
 
-    BOOL visible = (self.queuePriority >= Priority);
-
     [gate lock];
     {
-        if (visible) {
-            [GlobalActivityIndicator addVisibleBackgroundTask];
-        }
         [self mainWorker];
-        if (visible) {
-            [GlobalActivityIndicator removeVisibleBackgroundTask];
-        }
     }
     [gate unlock];
 

@@ -21,7 +21,6 @@
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
@@ -128,12 +127,6 @@
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     self.performances = nil;
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

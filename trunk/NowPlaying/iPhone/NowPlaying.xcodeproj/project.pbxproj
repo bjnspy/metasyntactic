@@ -245,7 +245,6 @@
 		746397930F7EC8D600B2F64C /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
 		746397940F7EC8D600B2F64C /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		746397950F7EC8D600B2F64C /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
-		746397960F7EC8D600B2F64C /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		746397970F7EC8D600B2F64C /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		746397980F7EC8D600B2F64C /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		746397990F7EC8D600B2F64C /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
@@ -475,7 +474,6 @@
 		749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
 		749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
-		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
 		7498FDA80F7DB99B0045F883 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498FDA70F7DB99B0045F883 /* AttributeCell.m */; };
@@ -1003,8 +1001,6 @@
 		749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
 		749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieDetailsCell.h; sourceTree = "<group>"; };
 		749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieDetailsCell.m; sourceTree = "<group>"; };
-		749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicator.h; sourceTree = "<group>"; };
-		749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicator.m; sourceTree = "<group>"; };
 		749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
 		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
@@ -1608,8 +1604,6 @@
 				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74489CCD0DDD11D600F565B1 /* ViewControllers */,
 				740245660E78488D00ECE1B4 /* Views */,
-				749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */,
-				749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */,
 				7477B3230F378CBA00FED03B /* NotificationCenter.h */,
 				7477B3240F378CBA00FED03B /* NotificationCenter.m */,
 				74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */,
@@ -2586,7 +2580,6 @@
 				749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */,
 				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
-				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
 				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
 				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
 				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
@@ -2834,7 +2827,6 @@
 				746397930F7EC8D600B2F64C /* CollapsedMovieDetailsCell.m in Sources */,
 				746397940F7EC8D600B2F64C /* ExpandedMovieDetailsCell.m in Sources */,
 				746397950F7EC8D600B2F64C /* AbstractMovieDetailsCell.m in Sources */,
-				746397960F7EC8D600B2F64C /* GlobalActivityIndicator.m in Sources */,
 				746397970F7EC8D600B2F64C /* ThreadingUtilities.m in Sources */,
 				746397980F7EC8D600B2F64C /* ActionsView.m in Sources */,
 				746397990F7EC8D600B2F64C /* BackgroundInvocation.m in Sources */,

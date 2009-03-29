@@ -16,7 +16,6 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -95,7 +94,6 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     self.tableView.rowHeight = 100;
     [self internalRefresh];
 }

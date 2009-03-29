@@ -18,7 +18,6 @@
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "Feed.h"
-#import "GlobalActivityIndicator.h"
 #import "IdentitySet.h"
 #import "ImageCache.h"
 #import "Model.h"
@@ -176,10 +175,6 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-
-    if (!self.isEditable) {
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
-    }
 
     self.tableView.rowHeight = 100;
     [self internalRefresh];

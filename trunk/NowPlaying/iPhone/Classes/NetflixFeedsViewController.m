@@ -17,7 +17,6 @@
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
 #import "Feed.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
@@ -64,12 +63,6 @@
 
 
 - (void) minorRefreshWorker {
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

@@ -30,7 +30,6 @@
 @property (retain) ApplicationTabBarController* tabBarController;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
-@property (retain) UIView* globalActivityView;
 @end
 
 
@@ -42,14 +41,12 @@ static AppDelegate* appDelegate = nil;
 @synthesize tabBarController;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
-@synthesize globalActivityView;
 
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
-    self.globalActivityView = nil;
 
     [super dealloc];
 }
@@ -60,19 +57,12 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) setupGlobalActivityIndicator {
-    self.globalActivityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-}
-
-
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
 
     appDelegate = self;
-
-    [self setupGlobalActivityIndicator];
 
     [Model model];
     [Controller controller];
@@ -139,11 +129,6 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
-}
-
-
-+ (UIView*) globalActivityView {
-    return appDelegate.globalActivityView;
 }
 
 

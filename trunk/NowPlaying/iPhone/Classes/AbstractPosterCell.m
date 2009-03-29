@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "CacheUpdater.h"
-#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"

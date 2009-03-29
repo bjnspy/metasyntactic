@@ -20,7 +20,6 @@
 #import "AutoresizingCell.h"
 #import "ColorCache.h"
 #import "Controller.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -197,12 +196,6 @@ typedef enum {
 #ifdef IPHONE_OS_VERSION_3
     [searchDisplayController minorRefresh];
 #endif
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

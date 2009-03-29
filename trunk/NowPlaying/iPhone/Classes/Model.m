@@ -28,7 +28,6 @@
 #import "DifferenceEngine.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "LargePosterCache.h"

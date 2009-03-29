@@ -14,7 +14,6 @@
 
 #import "AllMoviesViewController.h"
 
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"

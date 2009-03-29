@@ -16,7 +16,6 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MutableMultiDictionary.h"
@@ -85,12 +84,6 @@
 
 
 - (void) minorRefreshWorker {
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 }
 
 

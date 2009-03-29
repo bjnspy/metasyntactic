@@ -14,7 +14,6 @@
 
 #import "UpcomingMoviesViewController.h"
 
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"

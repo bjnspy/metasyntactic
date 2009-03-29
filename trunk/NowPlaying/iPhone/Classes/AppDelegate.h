@@ -19,8 +19,6 @@
 
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
-
-    UIView* globalActivityView;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
@@ -33,6 +31,5 @@
 + (void) majorRefresh:(BOOL) force;
 
 + (UIWindow*) window;
-+ (UIView*) globalActivityView;
 
 @end
