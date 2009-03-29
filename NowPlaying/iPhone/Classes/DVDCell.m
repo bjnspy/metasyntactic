@@ -126,8 +126,7 @@
 }
 
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier
-               model:(Model*) model_ {
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;

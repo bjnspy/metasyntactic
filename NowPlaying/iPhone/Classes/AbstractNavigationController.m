@@ -28,12 +28,17 @@
 #import "TicketsViewController.h"
 #import "WebViewController.h"
 
+#ifndef IPHONE_OS_VERSION_3
+#import "SearchViewController.h"
+#endif
+
 @interface AbstractNavigationController()
 @property (assign) ApplicationTabBarController* applicationTabBarController;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 #ifndef IPHONE_OS_VERSION_3
 @property BOOL isViewLoaded;
+@property (retain) SearchViewController* searchViewController;
 #endif
 @end
 
@@ -45,12 +50,18 @@
 @synthesize visible;
 #ifndef IPHONE_OS_VERSION_3
 @synthesize isViewLoaded;
+@synthesize searchViewController;
 #endif
 
 - (void) dealloc {
     self.applicationTabBarController = nil;
     self.postersViewController = nil;
     self.visible = NO;
+    
+#ifndef IPHONE_OS_VERSION_3
+    self.isViewLoaded = NO;
+    self.searchViewController = nil;
+#endif 
 
     [super dealloc];
 }
@@ -279,5 +290,21 @@
     UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:controller animated:YES];
 }
+
+#ifndef IPHONE_OS_VERSION_3
+- (void) showSearchView {
+    if (searchViewController == nil) {
+        self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
+    }
+    
+    [self pushViewController:searchViewController animated:YES];
+    //[searchViewController onShow];
+}
+
+//- (void) hideSearchView {
+//    [searchViewController onHide];
+//    [self dismissModalViewControllerAnimated:YES];
+//}
+#endif
 
 @end

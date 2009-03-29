@@ -142,3 +142,8 @@
 @class XmlElement;
 @class XmlParser;
 @class XmlSerializer;
+
+#ifndef IPHONE_OS_VERSION_3
+@class NetflixSearchViewController;
+@class SearchViewController;
+#endif
