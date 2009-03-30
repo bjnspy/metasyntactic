@@ -112,8 +112,7 @@ static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NETFLIX_UPDATED_APPLICATION_KEYS           = @"netflixUpdatedApplicationKeys";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
-
-static NSString* RUN_COUNT                              = @"runCount";
+static NSString* RUN_COUNT                                  = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
 static NSString* SCREEN_ROTATION_DISABLED                   = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                                = @"searchDate";
