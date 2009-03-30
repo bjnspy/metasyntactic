@@ -1232,9 +1232,9 @@ const NSInteger POSTER_TAG = -1;
 
         [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
-                                                      movie:movie
-                                                    theater:theater
-                                               performances:performances]];
+                     movie:movie
+                   theater:theater
+              performances:performances]];
     }
 
     [self openMailWithSubject:subject body:body];

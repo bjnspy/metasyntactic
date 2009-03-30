@@ -329,7 +329,7 @@
     self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
-                                                                                contentsController:self] autorelease];
+                                                                         contentsController:self] autorelease];
 #else
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     searchButton.showsTouchWhenHighlighted = YES;

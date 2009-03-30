@@ -133,7 +133,7 @@
 
 - (void) initializeData {
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
-                                                                         context:self.model];
+                                       context:self.model];
 
     NSMutableArray* array = [NSMutableArray array];
     for (Movie* movie in movies) {
@@ -318,9 +318,9 @@
         [body appendString:movie.displayTitle];
         [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
-                                                      movie:movie
-                                                    theater:theater
-                                               performances:performances]];
+                     movie:movie
+                   theater:theater
+              performances:performances]];
     }
 
     [self openMailWithSubject:subject body:body];

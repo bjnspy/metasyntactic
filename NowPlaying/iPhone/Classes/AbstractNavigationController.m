@@ -229,8 +229,8 @@
     }
 
     UIViewController* viewController = [[[TicketsViewController alloc] initWithTheater:theater
-                                                                                    movie:movie
-                                                                                    title:title] autorelease];
+                                                                                 movie:movie
+                                                                                 title:title] autorelease];
 
     [self pushViewController:viewController animated:animated];
 }
@@ -260,7 +260,7 @@
 
     self.postersViewController =
     [[[PostersViewController alloc] initWithMovie:movie
-                                                    posterCount:posterCount] autorelease];
+                                      posterCount:posterCount] autorelease];
 
     [self pushViewController:postersViewController animated:YES];
 }
@@ -268,7 +268,7 @@
 
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated {
     WebViewController* controller = [[[WebViewController alloc] initWithAddress:address
-                                                                            showSafariButton:showSafariButton] autorelease];
+                                                               showSafariButton:showSafariButton] autorelease];
     [self pushViewController:controller animated:animated];
 }
 

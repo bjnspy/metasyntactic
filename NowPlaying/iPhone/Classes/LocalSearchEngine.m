@@ -167,10 +167,10 @@
 
     [self reportResult:currentlyExecutingRequest
                 movies:movies
-               theaters:theaters
-         upcomingMovies:upcomingMovies
-                   dvds:dvds
-                 bluray:bluray];
+              theaters:theaters
+        upcomingMovies:upcomingMovies
+                  dvds:dvds
+                bluray:bluray];
 }
 
 @end

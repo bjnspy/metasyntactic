@@ -144,7 +144,7 @@
 
     if (status == noErr) {
         [self setKey:[NSString stringWithCString:list.attr[0].data
-                                          length:list.attr[0].length]];
+              length:list.attr[0].length]];
         if (password != NULL) {
             char passwordBuffer[1024];
 

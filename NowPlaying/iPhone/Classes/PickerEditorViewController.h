@@ -22,10 +22,10 @@
 }
 
 - (id) initWithTitle:(NSString*) title
-                     text:(NSString*) text
-                   object:(id) object
-                 selector:(SEL) selector
-                   values:(NSArray*) values
-             defaultValue:(NSString*) defaultValue;
+                text:(NSString*) text
+              object:(id) object
+            selector:(SEL) selector
+              values:(NSArray*) values
+        defaultValue:(NSString*) defaultValue;
 
 @end
