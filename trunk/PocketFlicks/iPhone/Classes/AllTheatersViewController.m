@@ -146,7 +146,7 @@
 - (void) sortTheatersByDistance {
     NSDictionary* theaterDistanceMap = self.model.theaterDistanceMap;
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
-                           context:theaterDistanceMap];
+                                                                context:theaterDistanceMap];
 
     NSString* favorites = NSLocalizedString(@"Favorites", nil);
     NSString* reallyCloseBy = NSLocalizedString(@"Really close by", nil);
@@ -243,7 +243,7 @@
 
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                              [NSArray arrayWithObjects:
+                                             [NSArray arrayWithObjects:
                                NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"),
                                NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"),
                                nil]] autorelease];

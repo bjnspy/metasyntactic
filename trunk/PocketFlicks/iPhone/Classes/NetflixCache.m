@@ -107,31 +107,31 @@ static NSDictionary* availabilityMap = nil;
 
         mostPopularTitlesToAddresses =
         [[NSDictionary dictionaryWithObjects:
-          [NSArray arrayWithObjects:
-           @"http://rss.netflix.com/Top100RSS",
-           @"http://www.netflix.com/TopWatchInstantlyRSS",
-           @"http://rss.netflix.com/NewReleasesRSS",
-           @"http://www.netflix.com/NewWatchInstantlyRSS",
-           @"http://rss.netflix.com/Top25RSS?gid=296",
-           @"http://rss.netflix.com/Top25RSS?gid=623",
-           @"http://rss.netflix.com/Top25RSS?gid=2444",
-           @"http://rss.netflix.com/Top25RSS?gid=302",
-           @"http://rss.netflix.com/Top25RSS?gid=306",
-           @"http://rss.netflix.com/Top25RSS?gid=307",
-           @"http://rss.netflix.com/Top25RSS?gid=864",
-           @"http://rss.netflix.com/Top25RSS?gid=315",
-           @"http://rss.netflix.com/Top25RSS?gid=2108",
-           @"http://rss.netflix.com/Top25RSS?gid=2514",
-           @"http://rss.netflix.com/Top25RSS?gid=330",
-           @"http://rss.netflix.com/Top25RSS?gid=338",
-           @"http://rss.netflix.com/Top25RSS?gid=343",
-           @"http://rss.netflix.com/Top25RSS?gid=2310",
-           @"http://rss.netflix.com/Top25RSS?gid=371",
-           @"http://rss.netflix.com/Top25RSS?gid=373",
-           @"http://rss.netflix.com/Top25RSS?gid=2223",
-           @"http://rss.netflix.com/Top25RSS?gid=2190",
-           @"http://rss.netflix.com/Top25RSS?gid=2197",
-           @"http://rss.netflix.com/Top25RSS?gid=387",
+                   [NSArray arrayWithObjects:
+                                      @"http://rss.netflix.com/Top100RSS",
+                                      @"http://www.netflix.com/TopWatchInstantlyRSS",
+                                      @"http://rss.netflix.com/NewReleasesRSS",
+                                      @"http://www.netflix.com/NewWatchInstantlyRSS",
+                                      @"http://rss.netflix.com/Top25RSS?gid=296",
+                                      @"http://rss.netflix.com/Top25RSS?gid=623",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2444",
+                                      @"http://rss.netflix.com/Top25RSS?gid=302",
+                                      @"http://rss.netflix.com/Top25RSS?gid=306",
+                                      @"http://rss.netflix.com/Top25RSS?gid=307",
+                                      @"http://rss.netflix.com/Top25RSS?gid=864",
+                                      @"http://rss.netflix.com/Top25RSS?gid=315",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2108",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2514",
+                                      @"http://rss.netflix.com/Top25RSS?gid=330",
+                                      @"http://rss.netflix.com/Top25RSS?gid=338",
+                                      @"http://rss.netflix.com/Top25RSS?gid=343",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2310",
+                                      @"http://rss.netflix.com/Top25RSS?gid=371",
+                                      @"http://rss.netflix.com/Top25RSS?gid=373",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2223",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2190",
+                                      @"http://rss.netflix.com/Top25RSS?gid=2197",
+                                      @"http://rss.netflix.com/Top25RSS?gid=387",
            nil]
                                      forKeys:mostPopularTitles] retain];
 
@@ -268,14 +268,14 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) queueFile:(Feed*) feed {
     return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:feed.key]]
-            stringByAppendingPathExtension:@"plist"];
+                                                  stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) queueEtagFile:(Feed*) feed {
     NSString* name = [NSString stringWithFormat:@"%@-etag", feed.key];
     return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:name]]
-            stringByAppendingPathExtension:@"plist"];
+                                                  stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -427,7 +427,7 @@ static NSDictionary* availabilityMap = nil;
             if ([@"availability" isEqual:child.name]) {
                 for (XmlElement* grandChild in child.children) {
                     if ([@"category" isEqual:grandChild.name] &&
-                        [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
+                                     [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
                         [formats addObject:[grandChild attributeValue:@"term"]];
                     }
                 }
@@ -857,9 +857,9 @@ static NSDictionary* availabilityMap = nil;
 
     if (firstName.length > 0 || lastName.length > 0) {
         [self.model setNetflixFirstName:firstName
-         lastName:lastName
-         canInstantWatch:canInstantWatch
-         preferredFormats:preferredFormats];
+                               lastName:lastName
+                        canInstantWatch:canInstantWatch
+                       preferredFormats:preferredFormats];
         [AppDelegate majorRefresh];
     }
 }
@@ -892,7 +892,7 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) seriesFile:(NSString*) seriesKey {
     return
     [[[Application netflixSeriesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
-     stringByAppendingPathExtension:@"plist"];
+                                           stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -966,14 +966,14 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) userRatingsFile:(Movie*) movie {
     return [[[Application netflixUserRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-            stringByAppendingPathExtension:@"plist"];
+                                                       stringByAppendingPathExtension:@"plist"];
 
 }
 
 
 - (NSString*) predictedRatingsFile:(Movie*) movie {
     return [[[Application netflixPredictedRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-            stringByAppendingPathExtension:@"plist"];
+                                                            stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -1641,9 +1641,9 @@ static NSDictionary* availabilityMap = nil;
 - (NSArray*) statusesForMovie:(Movie*) movie {
     NSMutableArray* array = nil;
     NSArray* searchQueues = [NSArray arrayWithObjects:
-                             [self queueForKey:[NetflixCache dvdQueueKey]],
-                             [self queueForKey:[NetflixCache instantQueueKey]],
-                             [self queueForKey:[NetflixCache atHomeKey]],
+                                    [self queueForKey:[NetflixCache dvdQueueKey]],
+                                    [self queueForKey:[NetflixCache instantQueueKey]],
+                                    [self queueForKey:[NetflixCache atHomeKey]],
                              nil];
 
     for (Queue* queue in searchQueues) {

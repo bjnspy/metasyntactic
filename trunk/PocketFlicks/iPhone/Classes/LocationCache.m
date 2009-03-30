@@ -119,7 +119,7 @@
 
 - (NSString*) locationFile:(NSString*) address {
     return [[[self locationDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
-            stringByAppendingPathExtension:@"plist"];
+                                      stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -154,7 +154,7 @@
 
 
 - (void) saveLocation:(Location*) location
-          forAddress:(NSString*) address {
+           forAddress:(NSString*) address {
     if (location == nil || address.length == 0) {
         return;
     }

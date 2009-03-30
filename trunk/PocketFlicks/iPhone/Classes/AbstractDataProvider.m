@@ -306,7 +306,7 @@
     NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
-                               [FileUtilities readObject:[self performancesFile:theater.name]]];
+                                                  [FileUtilities readObject:[self performancesFile:theater.name]]];
         [performancesData setObject:theaterPerformances
                              forKey:theater.name];
     }

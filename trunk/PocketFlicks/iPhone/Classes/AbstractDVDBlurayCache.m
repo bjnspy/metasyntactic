@@ -206,9 +206,9 @@
     self.updated = YES;
 
     [[OperationQueue operationQueue] performSelector:@selector(updateMoviesBackgroundEntryPoint)
-                                         onTarget:self
-                                             gate:nil
-                                          priority:Priority];
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Priority];
 }
 
 
@@ -323,7 +323,7 @@
 - (NSString*) detailsFile:(Movie*) movie set:(PointerSet*) movies {
     if (movies == nil || [movies containsObject:movie]) {
         return [[[self detailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@".plist"];
+                                                stringByAppendingString:@".plist"];
     }
 
     return nil;

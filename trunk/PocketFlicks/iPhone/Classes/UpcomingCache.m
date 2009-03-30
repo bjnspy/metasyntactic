@@ -474,9 +474,9 @@
     self.updated = YES;
 
     [[OperationQueue operationQueue] performSelector:@selector(updateIndexBackgroundEntryPoint)
-                                         onTarget:self
-                                             gate:nil
-                                         priority:Priority];
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Priority];
 }
 
 
@@ -560,8 +560,8 @@
 
 
 - (void) updateMovieDetails:(Movie*) movie
-                studio:(NSString*) studio
-                 title:(NSString*) title {
+                     studio:(NSString*) studio
+                      title:(NSString*) title {
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
 }
@@ -572,8 +572,8 @@
     NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
 
     [self updateMovieDetails:movie
-                 studio:studio
-                  title:title];
+                      studio:studio
+                       title:title];
 }
 
 

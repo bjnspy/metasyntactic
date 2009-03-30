@@ -456,7 +456,7 @@
 - (void) onSave:(id) sender {
     if (deletedMovies.count == 0 && reorderedMovies.count == 0) {
         // user didn't do anything.  same as a cancel:
-        [self onCancel:sender];
+                                       [self onCancel:sender];
     } else {
         [self.tableView setEditing:NO animated:YES];
         [self enterReadonlyMode];

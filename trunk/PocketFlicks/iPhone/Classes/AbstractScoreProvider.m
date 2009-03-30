@@ -114,7 +114,7 @@
 
 - (NSString*) reviewsFile:(NSString*) title {
     return [[reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
-            stringByAppendingPathExtension:@"plist"];
+                              stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -563,11 +563,11 @@
         if (lastLookupDate == nil ||
             (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY))) {
             [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
-                                                 onTarget:self
-                                               withObject:score
-                                               withObject:location
-                                                     gate:runGate
-                                                 priority:Low];
+                                                    onTarget:self
+                                                  withObject:score
+                                                  withObject:location
+                                                        gate:runGate
+                                                    priority:Low];
         }
     }
 }

@@ -418,8 +418,8 @@
     [self reloadTableViewData];
 
     [self tryScrollToCurrentDate];
-    
-    
+
+
 #ifdef IPHONE_OS_VERSION_3
     [searchDisplayController majorRefresh];
 #endif

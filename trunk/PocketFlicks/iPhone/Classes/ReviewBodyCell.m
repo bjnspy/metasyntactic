@@ -85,8 +85,8 @@
 
     CGSize size = CGSizeMake(width, 2000);
     size = [review.text sizeWithFont:[FontCache helvetica14]
-            constrainedToSize:size
-            lineBreakMode:UILineBreakModeWordWrap];
+                   constrainedToSize:size
+                       lineBreakMode:UILineBreakModeWordWrap];
 
     return size.height + 10;
 }
