@@ -117,11 +117,11 @@ static CacheUpdater* cacheUpdater = nil;
 
 - (Operation2*) addSearchMovie:(Movie*) movie {
     return [[OperationQueue operationQueue] performSelector:@selector(processMovie:notifications:)
-                                            onTarget:self
-                                          withObject:movie
-                                          withObject:[NSNumber numberWithBool:NO]
-                                                gate:nil
-                                            priority:Search];
+                                                   onTarget:self
+                                                 withObject:movie
+                                                 withObject:[NSNumber numberWithBool:NO]
+                                                       gate:nil
+                                                   priority:Search];
 }
 
 
@@ -129,7 +129,7 @@ static CacheUpdater* cacheUpdater = nil;
     if (movie == nil) {
         return;
     }
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(processMovie:notifications:)
                                             onTarget:self
                                           withObject:movie
