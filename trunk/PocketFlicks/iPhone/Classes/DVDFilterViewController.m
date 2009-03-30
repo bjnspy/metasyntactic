@@ -32,8 +32,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = NSLocalizedString(@"Settings", nil);
     }
 

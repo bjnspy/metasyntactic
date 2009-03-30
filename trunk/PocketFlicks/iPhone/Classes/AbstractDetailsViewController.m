@@ -37,8 +37,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController__ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController__]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
     }
 
     return self;
@@ -52,10 +52,9 @@
 
 - (void) changeDate {
     SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:abstractNavigationController
-                                                            object:self
-                                                          selector:@selector(onSearchDateChanged:)];
-    [abstractNavigationController pushViewController:pickerController animated:YES];
+    [SearchDatePickerViewController pickerWithObject:self
+                                            selector:@selector(onSearchDateChanged:)];
+    [self.navigationController pushViewController:pickerController animated:YES];
 }
 
 

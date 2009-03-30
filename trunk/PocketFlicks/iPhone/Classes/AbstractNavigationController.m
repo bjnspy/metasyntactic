@@ -193,8 +193,7 @@
 
 
 - (void) pushReviews:(Movie*) movie animated:(BOOL) animated {
-    ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
-                                                                                               movie:movie] autorelease];
+    ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithMovie:movie] autorelease];
 
     [self pushViewController:controller animated:animated];
 }
@@ -206,9 +205,7 @@
         return;
     }
 
-    UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
-                                                                                                   movie:movie] autorelease];
-
+    UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithMovie:movie] autorelease];
     [self pushViewController:viewController animated:animated];
 }
 
@@ -218,9 +215,7 @@
         return;
     }
 
-    UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
-                                                                                                   theater:theater] autorelease];
-
+    UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithTheater:theater] autorelease];
     [self pushViewController:viewController animated:animated];
 }
 
@@ -233,8 +228,7 @@
         return;
     }
 
-    UIViewController* viewController = [[[TicketsViewController alloc] initWithController:self
-                                                                                  theater:theater
+    UIViewController* viewController = [[[TicketsViewController alloc] initWithTheater:theater
                                                                                     movie:movie
                                                                                     title:title] autorelease];
 
@@ -265,17 +259,15 @@
     }
 
     self.postersViewController =
-    [[[PostersViewController alloc] initWithNavigationController:self
-                                                           movie:movie
-                                                     posterCount:posterCount] autorelease];
+    [[[PostersViewController alloc] initWithMovie:movie
+                                                    posterCount:posterCount] autorelease];
 
     [self pushViewController:postersViewController animated:YES];
 }
 
 
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated {
-    WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:self
-                                                                                     address:address
+    WebViewController* controller = [[[WebViewController alloc] initWithAddress:address
                                                                             showSafariButton:showSafariButton] autorelease];
     [self pushViewController:controller animated:animated];
 }
@@ -287,24 +279,18 @@
 
 
 - (void) pushInfoControllerAnimated:(BOOL) animated {
-    UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
+    UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
     [self pushViewController:controller animated:YES];
 }
 
 #ifndef IPHONE_OS_VERSION_3
 - (void) showSearchView {
     if (searchViewController == nil) {
-        self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
+        self.searchViewController = [[[SearchViewController alloc] init] autorelease];
     }
 
     [self pushViewController:searchViewController animated:YES];
-    //[searchViewController onShow];
 }
-
-//- (void) hideSearchView {
-//    [searchViewController onHide];
-//    [self dismissModalViewControllerAnimated:YES];
-//}
 #endif
 
 @end

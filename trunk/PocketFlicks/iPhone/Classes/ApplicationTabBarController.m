@@ -184,26 +184,6 @@
 }
 
 
-- (void) switchToMovies {
-    self.selectedViewController = [self moviesNavigationController];
-}
-
-
-- (void) switchToTheaters {
-    self.selectedViewController = [self theatersNavigationController];
-}
-
-
-- (void) switchToUpcoming {
-    self.selectedViewController = [self upcomingMoviesNavigationController];
-}
-
-
-- (void) switchToDVD {
-    self.selectedViewController = [self dvdNavigationController];
-}
-
-
 - (AbstractNavigationController*) selectedNavigationController {
     return (id)self.selectedViewController;
 }

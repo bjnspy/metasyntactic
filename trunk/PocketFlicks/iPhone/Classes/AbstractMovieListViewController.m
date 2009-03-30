@@ -302,8 +302,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController__ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController__]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
     }
 
     return self;
@@ -328,8 +328,7 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:abstractNavigationController
-                                                                                         searchBar:searchBar
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                                 contentsController:self] autorelease];
 #else
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -467,7 +466,7 @@
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -548,7 +547,7 @@
 
 
 - (void) showInfo {
-    [abstractNavigationController pushInfoControllerAnimated:YES];
+    [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
 @end

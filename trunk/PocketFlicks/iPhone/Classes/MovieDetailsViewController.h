@@ -48,8 +48,7 @@
     NSInteger posterCount;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                              movie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie;
 
 + (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model;
 

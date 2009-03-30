@@ -52,9 +52,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.searchEngine = [NetflixSearchEngine engineWithDelegate:self];
     }
 
@@ -70,7 +69,7 @@
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    searchBar.tintColor = abstractNavigationController.navigationBar.tintColor;
+    searchBar.tintColor = self.navigationController.navigationBar.tintColor;
     [searchBar sizeToFit];
 
     self.navigationItem.titleView = searchBar;
@@ -170,7 +169,7 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         Movie* movie = [movies objectAtIndex:indexPath.row];
-        [abstractNavigationController pushMovieDetails:movie animated:YES];
+        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
     } else {
 
     }

@@ -54,12 +54,10 @@
 }
 
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController__
-                     searchBar:(UISearchBar*) searchBar__
+- (id)initWithSearchBar:(UISearchBar*) searchBar__
             contentsController:(UIViewController*) viewController__ {
-    if (self = [super initNavigationController:navigationController__
-                                     searchBar:searchBar__
-                            contentsController:viewController__]) {
+    if (self = [super initWithSearchBar:searchBar__
+                     contentsController:viewController__]) {
         self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
         self.searchBar.placeholder = NSLocalizedString(@"Search Netflix", nil);
     }
@@ -171,15 +169,8 @@
 }
 
 
-- (ApplicationTabBarController*) applicationTabBarController {
-    return navigationController.applicationTabBarController;
-}
-
-
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
-
     Movie* movie = nil;
     if ([self shouldShowAll]) {
         movie = [movies objectAtIndex:indexPath.row];
@@ -191,7 +182,7 @@
         return;
     }
 
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

@@ -51,23 +51,23 @@
 }
 
 
-- (id) initWithId:(NSInteger) requestId__
-            value:(NSString*) value__
-           movies:(NSArray*) movies__
-         theaters:(NSArray*) theaters__
-   upcomingMovies:(NSArray*) upcomingMovies__
-             dvds:(NSArray*) dvds__
-           bluray:(NSArray*) bluray__
-           people:(NSArray*) people__ {
+- (id) initWithId:(NSInteger) requestId_
+            value:(NSString*) value_
+           movies:(NSArray*) movies_
+         theaters:(NSArray*) theaters_
+   upcomingMovies:(NSArray*) upcomingMovies_
+             dvds:(NSArray*) dvds_
+           bluray:(NSArray*) bluray_
+           people:(NSArray*) people_ {
     if (self = [super init]) {
-        self.requestId = requestId__;
-        self.value = value__;
-        self.movies = movies__;
-        self.theaters = theaters__;
-        self.upcomingMovies = upcomingMovies__;
-        self.dvds = dvds__;
-        self.bluray = bluray__;
-        self.people = people__;
+        self.requestId = requestId_;
+        self.value = value_;
+        self.movies = movies_;
+        self.theaters = theaters_;
+        self.upcomingMovies = upcomingMovies_;
+        self.dvds = dvds_;
+        self.bluray = bluray_;
+        self.people = people_;
     }
 
     return self;

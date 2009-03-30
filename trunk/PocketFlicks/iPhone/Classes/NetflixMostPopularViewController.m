@@ -39,8 +39,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = NSLocalizedString(@"Most Popular", nil);
     }
 
@@ -134,9 +134,8 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
 
-    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:abstractNavigationController
-                                                                                                                              category:title] autorelease];
-    [abstractNavigationController pushViewController:controller animated:YES];
+    NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithCategory:title] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

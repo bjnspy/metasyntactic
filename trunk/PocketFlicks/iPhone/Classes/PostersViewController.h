@@ -35,8 +35,7 @@
 #endif
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                              movie:(Movie*) movie
+- (id) initWithMovie:(Movie*) movie
                         posterCount:(NSInteger) posterCount;
 
 @end

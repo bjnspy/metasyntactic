@@ -260,8 +260,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = NSLocalizedString(@"Theaters", nil);
     }
 
@@ -304,8 +304,7 @@
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initNavigationController:abstractNavigationController
-                                                                                         searchBar:searchBar
+    self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                                 contentsController:self] autorelease];
 #else
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -376,7 +375,7 @@
 
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [abstractNavigationController pushTheaterDetails:theater animated:YES];
+    [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
@@ -499,7 +498,7 @@
 
 
 - (void) showInfo {
-    [abstractNavigationController pushInfoControllerAnimated:YES];
+    [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
 @end

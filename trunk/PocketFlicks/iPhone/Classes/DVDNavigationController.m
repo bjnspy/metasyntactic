@@ -63,7 +63,7 @@
     [super loadView];
 
     if (dvdViewController == nil) {
-        self.dvdViewController = [[[DVDViewController alloc] initWithNavigationController:self] autorelease];
+        self.dvdViewController = [[[DVDViewController alloc] init] autorelease];
         [self pushViewController:dvdViewController animated:NO];
     }
 }

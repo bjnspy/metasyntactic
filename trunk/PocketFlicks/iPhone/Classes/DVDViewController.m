@@ -100,8 +100,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) controller {
-    if (self = [super initWithNavigationController:controller]) {
+- (id) init {
+    if (self = [super init]) {
         [self setupTitle];
     }
 

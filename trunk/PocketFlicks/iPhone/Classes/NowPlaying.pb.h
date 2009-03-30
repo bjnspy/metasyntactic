@@ -45,8 +45,8 @@
 
 @interface ShowtimeProto : PBGeneratedMessage {
  @private
-  BOOL hasTime:1;
-  BOOL hasUrl:1;
+  BOOL hasTime;
+  BOOL hasUrl;
   NSString* time;
   NSString* url;
   NSMutableArray* mutableDubbedList;
@@ -126,8 +126,8 @@
 
 @interface AllShowtimesProto : PBGeneratedMessage {
  @private
-  BOOL hasVendor:1;
-  BOOL hasCaptioning:1;
+  BOOL hasVendor;
+  BOOL hasCaptioning;
   NSString* vendor;
   NSString* captioning;
   NSMutableArray* mutableShowtimesList;
@@ -197,16 +197,16 @@
 
 @interface MovieProto : PBGeneratedMessage {
  @private
-  BOOL hasLength:1;
-  BOOL hasScore:1;
-  BOOL hasIdentifier:1;
-  BOOL hasTitle:1;
-  BOOL hasLanguage:1;
-  BOOL hasGenre:1;
-  BOOL hasDescription:1;
-  BOOL hasRawRating:1;
-  BOOL hasIMDbUrl:1;
-  BOOL hasReleaseDate:1;
+  BOOL hasLength;
+  BOOL hasScore;
+  BOOL hasIdentifier;
+  BOOL hasTitle;
+  BOOL hasLanguage;
+  BOOL hasGenre;
+  BOOL hasDescription;
+  BOOL hasRawRating;
+  BOOL hasIMDbUrl;
+  BOOL hasReleaseDate;
   int32_t length;
   int32_t score;
   NSString* identifier;
@@ -370,16 +370,16 @@
 
 @interface TheaterProto : PBGeneratedMessage {
  @private
-  BOOL hasLatitude:1;
-  BOOL hasLongitude:1;
-  BOOL hasIdentifier:1;
-  BOOL hasName:1;
-  BOOL hasStreetAddress:1;
-  BOOL hasCity:1;
-  BOOL hasState:1;
-  BOOL hasPostalCode:1;
-  BOOL hasCountry:1;
-  BOOL hasPhone:1;
+  BOOL hasLatitude;
+  BOOL hasLongitude;
+  BOOL hasIdentifier;
+  BOOL hasName;
+  BOOL hasStreetAddress;
+  BOOL hasCity;
+  BOOL hasState;
+  BOOL hasPostalCode;
+  BOOL hasCountry;
+  BOOL hasPhone;
   Float64 latitude;
   Float64 longitude;
   NSString* identifier;
@@ -532,7 +532,7 @@
 
 @interface TheaterListingsProto_TheaterAndMovieShowtimesProto : PBGeneratedMessage {
  @private
-  BOOL hasTheater:1;
+  BOOL hasTheater;
   TheaterProto* theater;
   NSMutableArray* mutableMovieAndShowtimesList;
 }
@@ -562,8 +562,8 @@
 
 @interface TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto : PBGeneratedMessage {
  @private
-  BOOL hasMovieIdentifier:1;
-  BOOL hasShowtimes:1;
+  BOOL hasMovieIdentifier;
+  BOOL hasShowtimes;
   NSString* movieIdentifier;
   AllShowtimesProto* showtimes;
 }
@@ -693,14 +693,14 @@
 
 @interface ReviewProto : PBGeneratedMessage {
  @private
-  BOOL hasRating:1;
-  BOOL hasTitle:1;
-  BOOL hasUrl:1;
-  BOOL hasSnippet:1;
-  BOOL hasContent:1;
-  BOOL hasPublisher:1;
-  BOOL hasAuthor:1;
-  BOOL hasDate:1;
+  BOOL hasRating;
+  BOOL hasTitle;
+  BOOL hasUrl;
+  BOOL hasSnippet;
+  BOOL hasContent;
+  BOOL hasPublisher;
+  BOOL hasAuthor;
+  BOOL hasDate;
   Float32 rating;
   NSString* title;
   NSString* url;

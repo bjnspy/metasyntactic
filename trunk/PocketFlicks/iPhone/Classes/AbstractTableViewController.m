@@ -20,7 +20,6 @@
 #import "OperationQueue.h"
 
 @interface AbstractTableViewController()
-@property (assign) AbstractNavigationController* abstractNavigationController;
 @property (retain) NSArray* visibleIndexPaths;
 @property BOOL visible;
 @end
@@ -28,26 +27,14 @@
 
 @implementation AbstractTableViewController
 
-@synthesize abstractNavigationController;
 @synthesize visibleIndexPaths;
 @synthesize visible;
 
 - (void) dealloc {
-    self.abstractNavigationController = nil;
     self.visibleIndexPaths = nil;
     self.visible = NO;
 
     [super dealloc];
-}
-
-
-- (id)       initWithStyle:(UITableViewStyle) style_
-      navigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:style_]) {
-        self.abstractNavigationController = navigationController_;
-    }
-
-    return self;
 }
 
 
@@ -61,9 +48,14 @@
 }
 
 
+- (AbstractNavigationController*) abstractNavigationController {
+    return (id)self.navigationController;
+}
+
+
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [self.model saveNavigationStack:abstractNavigationController];
+    [self.model saveNavigationStack:self.navigationController];
 }
 
 

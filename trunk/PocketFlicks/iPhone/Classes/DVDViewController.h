@@ -19,8 +19,6 @@
     UISegmentedControl* segmentedControl;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 - (BOOL) sortingByTitle;
 
 @end

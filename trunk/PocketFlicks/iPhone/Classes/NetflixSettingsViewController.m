@@ -19,23 +19,18 @@
 #import "Model.h"
 
 @interface NetflixSettingsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
 @implementation NetflixSettingsViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+- (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = navigationController_;
     }
 
     return self;
@@ -52,14 +47,8 @@
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
-}
-
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self majorRefresh];
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 

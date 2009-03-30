@@ -100,13 +100,12 @@
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) navigationController_
-                  theater:(Theater*) theater__
-                    movie:(Movie*) movie__
-                    title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
-        self.theater = theater__;
-        self.movie = movie__;
+- (id) initWithTheater:(Theater*) theater_
+                 movie:(Movie*) movie_
+                 title:(NSString*) title_ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.theater = theater_;
+        self.movie = movie_;
         self.title = title_;
     }
 
@@ -294,7 +293,7 @@
         return;
     }
 
-    [abstractNavigationController pushBrowser:performance.url animated:YES];
+    [self.abstractNavigationController pushBrowser:performance.url animated:YES];
 }
 
 

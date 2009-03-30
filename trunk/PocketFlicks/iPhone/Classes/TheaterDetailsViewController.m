@@ -96,9 +96,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            theater:(Theater*) theater__ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) initWithTheater:(Theater*) theater__ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.theater = theater__;
     }
 
@@ -330,7 +329,7 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [abstractNavigationController pushTicketsView:movie
+    [self.abstractNavigationController pushTicketsView:movie
                                           theater:theater
                                             title:movie.displayTitle
                                          animated:animated];
@@ -390,7 +389,7 @@
 
         Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [abstractNavigationController pushMovieDetails:movie animated:YES];
+            [self.abstractNavigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

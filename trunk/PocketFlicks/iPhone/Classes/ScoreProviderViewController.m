@@ -32,8 +32,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = NSLocalizedString(@"Reviews", nil);
     }
 
@@ -95,7 +95,7 @@
     }
 
     [self.controller setScoreProviderIndex:selectPath.row];
-    [abstractNavigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
