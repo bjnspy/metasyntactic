@@ -20,6 +20,7 @@
 #import "Controller.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "NetflixNavigationController.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "Pulser.h"
