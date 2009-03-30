@@ -79,7 +79,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
         labelHeight += 2;
     }
     top -= labelHeight;
-
+    
     CGRect frame = CGRectMake(0, top, viewFrame.size.width, labelHeight);
 
     notificationLabel.frame = frame;

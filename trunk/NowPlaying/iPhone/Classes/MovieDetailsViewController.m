@@ -436,9 +436,9 @@ const NSInteger POSTER_TAG = -1;
         self.navigationItem.titleView = label;
     } else {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = movie.displayTitle;
+        label.text = movie.canonicalTitle;
 
-        self.title = movie.displayTitle;
+        self.title = movie.canonicalTitle;
         self.navigationItem.titleView = label;
     }
 }
