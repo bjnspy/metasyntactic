@@ -206,13 +206,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void PrimitiveFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "BOOL has$capitalized_name$:1;\n");
+    printer->Print(variables_, "BOOL has$capitalized_name$;\n");
   }
 
 
   void PrimitiveFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     if (descriptor_->type() ==  FieldDescriptor::TYPE_BOOL) {
-      printer->Print(variables_, "$storage_type$ $name$:1;\n");
+      printer->Print(variables_, "$storage_type$ $name$;\n");
     } else {
       printer->Print(variables_, "$storage_type$ $name$;\n");
     }
@@ -226,7 +226,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void PrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
-        "@property (retain, readonly) $storage_type$ $name$;\n");
+        "@property (readonly, retain) $storage_type$ $name$;\n");
     } else if (GetObjectiveCType(descriptor_) == OBJECTIVECTYPE_BOOLEAN) {
       printer->Print(variables_,
         "- (BOOL) $name$;\n");
@@ -251,19 +251,19 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void PrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
-      "  return has$capitalized_name$ != 0;\n"
+      "  return has$capitalized_name$;\n"
       "}\n"
       "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
-      "  has$capitalized_name$ = (has$capitalized_name$_ != 0);\n"
+      "  has$capitalized_name$ = has$capitalized_name$_;\n"
       "}\n");
 
     if (GetObjectiveCType(descriptor_) == OBJECTIVECTYPE_BOOLEAN) {
       printer->Print(variables_,
         "- (BOOL) $name$ {\n"
-        "  return $name$ != 0;\n"
+        "  return $name$;\n"
         "}\n"
         "- (void) set$capitalized_name$:(BOOL) $name$_ {\n"
-        "  $name$ = ($name$_ != 0);\n"
+        "  $name$ = $name$_;\n"
         "}\n");
     } else {
       printer->Print(variables_, "@synthesize $name$;\n");

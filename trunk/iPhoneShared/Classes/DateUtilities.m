@@ -291,7 +291,7 @@ static BOOL use24HourTime;
 
 + (NSDate*) dateWithNaturalLanguageString:(NSString*) string {
     //return nil;
-    return [NSDate dateWithNaturalLanguageString:string];
+    return [(id)[NSDate class] dateWithNaturalLanguageString:string];
 }
 
 
