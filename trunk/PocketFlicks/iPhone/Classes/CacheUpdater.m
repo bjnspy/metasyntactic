@@ -93,7 +93,7 @@ static CacheUpdater* cacheUpdater = nil;
 
     BOOL notifications = notificationNumber.boolValue;
     if (notifications) {
-        [NotificationCenter addNotification:movie.displayTitle];
+        [NotificationCenter addNotification:movie.canonicalTitle];
     }
 
     Model* model = [Model model];
