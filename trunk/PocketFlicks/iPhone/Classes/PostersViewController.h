@@ -36,6 +36,6 @@
 }
 
 - (id) initWithMovie:(Movie*) movie
-                        posterCount:(NSInteger) posterCount;
+         posterCount:(NSInteger) posterCount;
 
 @end

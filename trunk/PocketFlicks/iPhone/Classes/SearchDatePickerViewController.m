@@ -27,15 +27,15 @@
 
 
 - (id) initWithValues:(NSArray*) values_
-                       defaultValue:(NSString*) defaultValue_
-                             object:(id) object_
-                           selector:(SEL) selector_ {
+         defaultValue:(NSString*) defaultValue_
+               object:(id) object_
+             selector:(SEL) selector_ {
     if (self = [super initWithTitle:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
-                                    text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
-                                  object:object_
-                                selector:selector_
-                                  values:values_
-                            defaultValue:defaultValue_]) {
+                               text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
+                             object:object_
+                           selector:selector_
+                             values:values_
+                       defaultValue:defaultValue_]) {
     }
 
     return self;

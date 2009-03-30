@@ -292,13 +292,13 @@ typedef enum {
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
     return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
-                                           on:self.model.netflixEnabled
-                                     selector:@selector(onNetflixEnabledChanged:)];
+                                       on:self.model.netflixEnabled
+                                 selector:@selector(onNetflixEnabledChanged:)];
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
-          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == SendFeedbackSection) {
         return [self cellForHeaderRow:indexPath.row];
     } else if (indexPath.section == StandardSettingsSection) {
@@ -372,11 +372,11 @@ typedef enum {
 
     PickerEditorViewController* controller =
     [[[PickerEditorViewController alloc] initWithTitle:NSLocalizedString(@"Search Distance", nil)
-                                                       text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
-                                                     object:self
-                                                   selector:@selector(onSearchRadiusChanged:)
-                                                     values:values
-                                               defaultValue:defaultValue] autorelease];
+                                                  text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
+                                                object:self
+                                              selector:@selector(onSearchRadiusChanged:)
+                                                values:values
+                                          defaultValue:defaultValue] autorelease];
 
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -417,12 +417,12 @@ typedef enum {
 
         TextFieldEditorViewController* controller =
         [[[TextFieldEditorViewController alloc] initWithTitle:NSLocalizedString(@"Location", nil)
-                                                            object:self
-                                                          selector:@selector(onUserAddressChanged:)
-                                                              text:self.model.userAddress
-                                                           message:message
-                                                       placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
-                                                              type:UIKeyboardTypeDefault] autorelease];
+                                                       object:self
+                                                     selector:@selector(onUserAddressChanged:)
+                                                         text:self.model.userAddress
+                                                      message:message
+                                                  placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
+                                                         type:UIKeyboardTypeDefault] autorelease];
 
         [self.navigationController pushViewController:controller animated:YES];
     } else if (row == 1) {

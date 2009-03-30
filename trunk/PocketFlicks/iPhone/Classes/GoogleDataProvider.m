@@ -331,11 +331,11 @@
                                                 country:country];
 
     [theaters addObject:[Theater theaterWithIdentifier:identifier
-                                                  name:name
-                                           phoneNumber:phone
-                                              location:location
-                                   originatingLocation:originatingLocation
-                                           movieTitles:movieToShowtimesMap.allKeys]];
+                   name:name
+            phoneNumber:phone
+               location:location
+    originatingLocation:originatingLocation
+            movieTitles:movieToShowtimesMap.allKeys]];
 }
 
 

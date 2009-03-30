@@ -52,11 +52,11 @@
 
 
 - (id) initWithTitle:(NSString*) title_
-                     text:(NSString*) text_
-                   object:(id) object_
-                 selector:(SEL) selector_
-                   values:(NSArray*) values__
-             defaultValue:(NSString*) defaultValue {
+                text:(NSString*) text_
+              object:(id) object_
+            selector:(SEL) selector_
+              values:(NSArray*) values__
+        defaultValue:(NSString*) defaultValue {
     if (self = [super initWithObject:object_ selector:selector_]) {
         self.values = values__;
 

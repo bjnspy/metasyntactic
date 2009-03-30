@@ -40,9 +40,9 @@
 
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar__
-            contentsController:(UIViewController*) viewController__ {
+      contentsController:(UIViewController*) viewController__ {
     if (self = [super initWithSearchBar:searchBar__
-                            contentsController:viewController__]) {
+                     contentsController:viewController__]) {
         self.searchBar.selectedScopeButtonIndex = self.model.localSearchSelectedScopeButtonIndex;
     }
 
@@ -339,9 +339,9 @@
     NSInteger movies = result.movies.count + result.upcomingMovies.count + result.dvds.count + result.bluray.count;
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                        [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
-                                        [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", nil), movies],
-                                        [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", nil), theaters],
+                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", nil), movies],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", nil), theaters],
                                         nil];
 }
 

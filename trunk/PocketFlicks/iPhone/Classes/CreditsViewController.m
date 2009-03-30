@@ -294,9 +294,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
                       [LocaleUtilities englishLanguage]];
 
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-            [StringUtilities nonNilString:self.model.netflixUserId],
-            [StringUtilities nonNilString:self.model.netflixKey],
-            [StringUtilities nonNilString:self.model.netflixSecret]];
+           [StringUtilities nonNilString:self.model.netflixUserId],
+           [StringUtilities nonNilString:self.model.netflixKey],
+           [StringUtilities nonNilString:self.model.netflixSecret]];
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {

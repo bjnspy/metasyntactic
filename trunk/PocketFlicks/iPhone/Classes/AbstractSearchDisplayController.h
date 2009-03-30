@@ -21,7 +21,7 @@
 }
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar
-             contentsController:(UIViewController*) viewController;
+      contentsController:(UIViewController*) viewController;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
