@@ -58,10 +58,10 @@
 
         switch (descriptor.objectiveCType) {
             case PBObjectiveCTypeMessage:
-self.messageDefaultInstance = [type performSelector:@selector(defaultInstance)];
+                self.messageDefaultInstance = [type performSelector:@selector(defaultInstance)];
                 break;
             case PBObjectiveCTypeEnum:
-self.enumValueOf = @selector(valueOfDescriptor:),
+                self.enumValueOf = @selector(valueOfDescriptor:),
                 self.enumGetValueDescriptor = @selector(valueDescriptor);
                 break;
         }
@@ -129,7 +129,7 @@ self.enumValueOf = @selector(valueOfDescriptor:),
                 return [[[messageDefaultInstance builder] mergeFromMessage:value] build];
             }
         case PBObjectiveCTypeEnum:
-     return [type performSelector:enumValueOf withObject:value];
+            return [type performSelector:enumValueOf withObject:value];
         default:
             return value;
     }

@@ -72,12 +72,12 @@
     NSInteger index = 0;
     NSRange range;
     while ((range = [string rangeOfString:@"<a href"
-                                  options:0
-                                    range:NSMakeRange(index, string.length - index)]).length > 0) {
+                                    options:0
+                                      range:NSMakeRange(index, string.length - index)]).length > 0) {
         index = range.location + 1;
         NSRange closeAngleRange = [string rangeOfString:@">"
-                                                options:0
-                                                  range:NSMakeRange(range.location, string.length - range.location)];
+                                                  options:0
+                                                    range:NSMakeRange(range.location, string.length - range.location)];
         if (closeAngleRange.length > 0) {
             string = [NSString stringWithFormat:@"%@%@", [string substringToIndex:range.location], [string substringFromIndex:closeAngleRange.location + 1]];
         }
@@ -91,8 +91,8 @@
     NSInteger index = 0;
     NSRange range;
     while ((range = [string rangeOfString:@"&#x"
-                                  options:0
-                                    range:NSMakeRange(index, string.length - index)]).length > 0) {
+                                    options:0
+                                      range:NSMakeRange(index, string.length - index)]).length > 0) {
         NSRange semiColonRange = [string rangeOfString:@";" options:0 range:NSMakeRange(range.location, string.length - range.location)];
 
         index = range.location + 1;
@@ -102,9 +102,9 @@
             unsigned hex;
             if ([scanner scanHexInt:&hex] && hex > 0) {
                 string = [NSString stringWithFormat:@"%@%@%@",
-                           [string substringToIndex:range.location],
-                 [StringUtilities stringFromUnichar:(unichar) hex],
-                         [string substringFromIndex:semiColonRange.location + 1]];
+                            [string substringToIndex:range.location],
+                            [StringUtilities stringFromUnichar:(unichar) hex],
+                            [string substringFromIndex:semiColonRange.location + 1]];
             }
         }
     }
@@ -129,8 +129,8 @@
         NSInteger end = MIN(start + 1000, textLength);
 
         NSRange newlineRange = [string rangeOfCharacterFromSet:newlineCharacterSet
-                                                       options:0
-                                                         range:NSMakeRange(end, textLength - end)];
+                                                          options:0
+                                                            range:NSMakeRange(end, textLength - end)];
 
         if (newlineRange.length > 0) {
             if (newlineRange.location < 2000 + start) {

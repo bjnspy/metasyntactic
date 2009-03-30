@@ -45,7 +45,7 @@
         self.section = section_;
         self.title = section.title;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+        
         self.chunks = [StringUtilities splitIntoChunks:section.text];
     }
 

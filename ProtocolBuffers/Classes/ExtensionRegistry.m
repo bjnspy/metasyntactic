@@ -88,7 +88,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
-                               fieldNumber:(int32_t) fieldNumber {
+                                               fieldNumber:(int32_t) fieldNumber {
     return [extensionsByNumber objectForKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
 
@@ -135,7 +135,7 @@ static PBExtensionRegistry* EMPTY = nil;
                          forKey:extension.descriptor.fullName];
     [extensionsByNumber setObject:extension
                            forKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:extension.descriptor.containingType
-                           number:extension.descriptor.number]];
+                                                                                     number:extension.descriptor.number]];
 
     PBFieldDescriptor* field = extension.descriptor;
 

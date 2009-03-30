@@ -123,7 +123,7 @@
 
             if (i >= 2 && j >= 2) {
                 NSInteger transposes = 1 + ((S[(i - 1)] == T[j]) ? 0 : 1) +
-                                           ((S[i] == T[(j - 1)]) ? 0 : 1);
+                ((S[i] == T[(j - 1)]) ? 0 : 1);
                 NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
 
                 costTable[i][j] = MIN(cost, tCost);
@@ -145,7 +145,7 @@
 
     if (cost > 1) {
         if ([from rangeOfString:to options:NSCaseInsensitiveSearch].location != NSNotFound ||
-              [to rangeOfString:from options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            [to rangeOfString:from options:NSCaseInsensitiveSearch].location != NSNotFound) {
             return 1;
         }
     }
@@ -212,7 +212,7 @@
                 NSString* other = [array objectAtIndex:i];
                 if (other.length > 4) {
                     if (([string rangeOfString:other options:NSCaseInsensitiveSearch].length > 0) ||
-                         ([other rangeOfString:string options:NSCaseInsensitiveSearch].length > 0)) {
+                        ([other rangeOfString:string options:NSCaseInsensitiveSearch].length > 0)) {
                         return i;
                     }
                 }

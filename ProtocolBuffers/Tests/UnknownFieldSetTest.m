@@ -152,22 +152,22 @@
     PBUnknownFieldSet* set1 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
-       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
+      addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
 
     PBUnknownFieldSet* set2 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
-       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
+      addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
 
     PBUnknownFieldSet* set3 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
-       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
+      addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
 
     PBUnknownFieldSet* set4 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
-       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
+      addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
 
     TestEmptyMessage* source1 = (id)[[[TestEmptyMessage builder] setUnknownFields:set1] build];
     TestEmptyMessage* source2 = (id)[[[TestEmptyMessage builder] setUnknownFields:set2] build];
@@ -200,7 +200,7 @@
 
     PBUnknownFieldSet* fields =
     [[[PBUnknownFieldSet builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
-                                        forNumber:123456] build];
+                                                 forNumber:123456] build];
 
     NSData* data = fields.data;
     TestAllTypes* destination = [TestAllTypes parseFromData:data];
@@ -257,7 +257,7 @@
 - (void) testLargeVarint {
     NSData* data =
     [[[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
-                                  forNumber:1] build] data];
+                                   forNumber:1] build] data];
 
     PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
     PBField* field = [parsed getField:1];
@@ -274,14 +274,14 @@
 
     NSData* data = [[[[[PBUnknownFieldSet builder]
                        addField:[[[PBMutableField field]
-                      addVarint:[TestAllTypes_NestedEnum BAR].number]
-                      addVarint:5]
-                      forNumber:singularField.number]
-                       addField:[[[[[PBMutableField field]
-                      addVarint:[TestAllTypes_NestedEnum FOO].number]
-                      addVarint:4]
-                      addVarint:[TestAllTypes_NestedEnum BAZ].number]
-                      addVarint:6]
+                                  addVarint:[TestAllTypes_NestedEnum BAR].number]
+                                 addVarint:5]
+                       forNumber:singularField.number]
+                      addField:[[[[[PBMutableField field]
+                                   addVarint:[TestAllTypes_NestedEnum FOO].number]
+                                  addVarint:4]
+                                 addVarint:[TestAllTypes_NestedEnum BAZ].number]
+                                addVarint:6]
                       forNumber:repeatedField.number] build] data];
 
     {
@@ -294,7 +294,7 @@
                              message.repeatedNestedEnumList, @"");
 
         STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithLongLong:5]],
-                      [message.unknownFields getField:singularField.number].varintList, @"");
+                             [message.unknownFields getField:singularField.number].varintList, @"");
 
         NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithLongLong:4], [NSNumber numberWithLongLong:6], nil];
         STAssertEqualObjects(array2,
@@ -311,7 +311,7 @@
         STAssertEqualObjects(array1,
                      [message getExtension:[UnittestRoot repeatedNestedEnumExtension]], @"");
         STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithInt:5]],
-                      [message.unknownFields getField:singularField.number].varintList, @"");
+                     [message.unknownFields getField:singularField.number].varintList, @"");
 
         NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:6], nil];
         STAssertEqualObjects(array2,

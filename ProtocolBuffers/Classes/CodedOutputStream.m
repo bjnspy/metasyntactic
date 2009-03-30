@@ -65,7 +65,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
                                      bufferSize:(int32_t) bufferSize {
     NSMutableData* data = [NSMutableData dataWithLength:bufferSize];
     return [[[PBCodedOutputStream alloc] initWithOutputStream:output
-                                                         data:data] autorelease];
+                                                       data:data] autorelease];
 }
 
 
@@ -105,7 +105,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 /** Write an {@code int64} field, including tag, to the stream. */
 - (void) writeInt64:(int32_t) fieldNumber
-              value:(int64_t) value {
+               value:(int64_t) value {
     [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint64:value];
 }
@@ -152,7 +152,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 - (void) writeString:(int32_t) fieldNumber
                value:(NSString*) value {
     // TODO(cyrusn): we could probably use:
-        // NSString:getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
+    // NSString:getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
     // to write directly into our buffer.
     [self writeTag:fieldNumber format:PBWireFormatLengthDelimited];
     NSData* data = [value dataUsingEncoding:NSUTF8StringEncoding];
@@ -306,7 +306,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         case PBFieldDescriptorTypeSInt64:   [self writeSInt64:number      value:[value longLongValue]]; break;
         case PBFieldDescriptorTypeEnum:     [self writeEnum:number        value:[value number]]; break;
         default:
-@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
 

@@ -134,7 +134,7 @@ const int32_t BUFFER_SIZE = 4096;
             [self readRawLittleEndian64];
             return YES;
         case PBWireFormatLengthDelimited:
-                       [self skipRawData:[self readRawVarint32]];
+            [self skipRawData:[self readRawVarint32]];
             return YES;
         case PBWireFormatStartGroup:
             [self skipMessage];
@@ -148,7 +148,7 @@ const int32_t BUFFER_SIZE = 4096;
             [self readRawLittleEndian32];
             return YES;
         default:
-@throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
     }
 }
 
@@ -229,7 +229,7 @@ const int32_t BUFFER_SIZE = 4096;
         return result;
     } else {
         // Slow path:  Build a byte array first then copy it.
-NSData* data = [self readRawData:size];
+        NSData* data = [self readRawData:size];
         return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     }
 }
@@ -292,7 +292,7 @@ NSData* data = [self readRawData:size];
         return result;
     } else {
         // Slow path:  Build a byte array first then copy it.
-return [self readRawData:size];
+        return [self readRawData:size];
     }
 }
 
@@ -365,10 +365,10 @@ return [self readRawData:size];
         case PBFieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:  [self readSInt64]];
 
         case PBFieldDescriptorTypeGroup:
-  @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle nested groups." userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle nested groups." userInfo:nil];
 
         case PBFieldDescriptorTypeMessage:
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle embedded messages." userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle embedded messages." userInfo:nil];
 
         case PBFieldDescriptorTypeEnum:
             // We don't hanlde enums because we don't know what to do if the

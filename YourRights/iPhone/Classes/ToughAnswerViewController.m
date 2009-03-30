@@ -37,7 +37,7 @@
 
 
 - (id) initWithQuestion:(NSString*) question_
-                 answer:(NSString*) answer_ {
+                     answer:(NSString*) answer_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.question = question_;
         self.answer = answer_;

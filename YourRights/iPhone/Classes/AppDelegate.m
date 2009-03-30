@@ -48,7 +48,7 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
     appDelegate = self;
-
+    
     [Model model];
     [Controller controller];
     [OperationQueue operationQueue];
@@ -59,9 +59,9 @@ static AppDelegate* appDelegate = nil;
 
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
-
+    
     [NotificationCenter attachToViewController:navigationController];
-
+    
     [[Controller controller] start];
 }
 

@@ -83,8 +83,8 @@
 
     CGSize size = CGSizeMake(width, 2000);
     size = [item.description sizeWithFont:[FontCache helvetica14]
-                        constrainedToSize:size
-                            lineBreakMode:UILineBreakModeWordWrap];
+            constrainedToSize:size
+            lineBreakMode:UILineBreakModeWordWrap];
 
     return size.height + 10;
 }

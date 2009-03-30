@@ -91,19 +91,19 @@
     // are interleaved with field numbers.
     NSData* data = [[[[[[[[TestFieldOrderings builder]
                           setMyInt:1]
-                       setMyString:@"foo"]
+                         setMyString:@"foo"]
                         setMyFloat:1.0]
-                      setExtension:[UnittestRoot myExtensionInt] value:[NSNumber numberWithInt:23]]
+                       setExtension:[UnittestRoot myExtensionInt] value:[NSNumber numberWithInt:23]]
                       setExtension:[UnittestRoot myExtensionString] value:@"bar"] build] data];
     [self assertFieldsInOrder:data];
 
     PBDescriptor* descriptor = [TestFieldOrderings descriptor];
     NSData* dynamic_data = [[[[[[[[PBDynamicMessage builderWithType:[TestFieldOrderings descriptor]]
-                                                           setField:[descriptor findFieldByName:@"my_int"] value:[NSNumber numberWithInt:1L]]
-                                                           setField:[descriptor findFieldByName:@"my_string"] value:@"foo"]
-                                                           setField:[descriptor findFieldByName:@"my_float"] value:[NSNumber numberWithFloat:1.0]]
-                                                           setField:[UnittestRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
-                                                           setField:[UnittestRoot myExtensionString].descriptor value:@"bar"] build] data];
+                                  setField:[descriptor findFieldByName:@"my_int"] value:[NSNumber numberWithInt:1L]]
+                                 setField:[descriptor findFieldByName:@"my_string"] value:@"foo"]
+                                setField:[descriptor findFieldByName:@"my_float"] value:[NSNumber numberWithFloat:1.0]]
+                               setField:[UnittestRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
+                              setField:[UnittestRoot myExtensionString].descriptor value:@"bar"] build] data];
 
     [self assertFieldsInOrder:dynamic_data];
 }
@@ -117,13 +117,13 @@ const int UNKNOWN_TYPE_ID = 1550055;
     // Set up a TestMessageSet with two known messages and an unknown one.
     PBUnknownFieldSet* unknownFields =
     [[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
-                                 forNumber:UNKNOWN_TYPE_ID] build];
+                                    forNumber:UNKNOWN_TYPE_ID] build];
 
     TestMessageSet* messageSet =
     (id)[[[[[TestMessageSet builder]
         setExtension:[TestMessageSetExtension1 messageSetExtension] value:[[[TestMessageSetExtension1 builder] setI:123] build]]
-        setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2 builder] setStr:@"foo"] build]]
-    setUnknownFields:unknownFields] build];
+       setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2 builder] setStr:@"foo"] build]]
+      setUnknownFields:unknownFields] build];
 
     NSData* data = messageSet.data;
 
@@ -159,8 +159,8 @@ const int UNKNOWN_TYPE_ID = 1550055;
     RawMessageSet* raw =
     [[[[[RawMessageSet builder]
          addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1 builder] setI:123] build] data]] build]]
-         addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 builder] setStr:@"foo"] build] data]] build]]
-         addItem:[[[[RawMessageSet_Item builder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
+        addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 builder] setStr:@"foo"] build] data]] build]]
+       addItem:[[[[RawMessageSet_Item builder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
       build];
 
 
