@@ -594,6 +594,16 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (BOOL) dataProviderEnabled {
+    return YES;
+}
+
+
+- (BOOL) scoresEnabled {
+    return YES;
+}
+
+
 - (BOOL) dvdBlurayEnabled {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
 }
@@ -1714,11 +1724,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     }
 
     return result;
-}
-
-
-- (BOOL) scoresEnabled {
-    return YES;
 }
 
 @end

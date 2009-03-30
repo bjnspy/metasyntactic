@@ -81,9 +81,6 @@ typedef enum {
 
 
 - (void) reload {
-    self.tableView.rowHeight = 38;
-    //self.tableView.sectionHeaderHeight = 2;
-    self.tableView.sectionFooterHeight = 0;
     [self reloadTableViewData];
 }
 

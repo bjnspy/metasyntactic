@@ -609,7 +609,7 @@
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
-    if (NO) {
+    if (self.model.dataProviderEnabled) {
         if (request.force || ![self tooSoon:self.lastLookupDate]) {
             NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
             [NotificationCenter addNotifications:notifications];

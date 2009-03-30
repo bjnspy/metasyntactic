@@ -77,6 +77,7 @@ enum ViewControllerType {
 
 - (BOOL) scoresEnabled;
 
+- (BOOL) dataProviderEnabled;
 - (BOOL) dvdBlurayEnabled;
 - (BOOL) upcomingEnabled;
 - (BOOL) netflixEnabled;

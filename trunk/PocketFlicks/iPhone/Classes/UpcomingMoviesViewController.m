@@ -144,6 +144,7 @@
 
 
 - (void) minorRefreshWorker {
+    [super minorRefreshWorker];
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
