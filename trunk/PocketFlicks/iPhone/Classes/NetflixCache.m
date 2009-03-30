@@ -1150,7 +1150,7 @@ static NSDictionary* availabilityMap = nil;
     NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
 
     [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
-                                            onTarget:[AppDelegate class]
+                                            onTarget:[NotificationCenter class]
                                           withObject:notification
                                                 gate:nil
                                             priority:Normal];
@@ -1166,7 +1166,7 @@ static NSDictionary* availabilityMap = nil;
     }
 
     [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
-                                            onTarget:[AppDelegate class]
+                                            onTarget:[NotificationCenter class]
                                           withObject:notification
                                                 gate:nil
                                             priority:Normal];

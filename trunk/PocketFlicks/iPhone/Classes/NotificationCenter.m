@@ -71,14 +71,16 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
     CGRect viewFrame = self.view.frame;
 
-    NSInteger top = viewFrame.size.height - LABEL_HEIGHT;
+    NSInteger labelHeight = LABEL_HEIGHT;
+    NSInteger top = viewFrame.size.height;
     if ([viewController isKindOfClass:[UITabBarController class]]) {
         top -= TAB_BAR_HEIGHT;
-        notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
     } else {
-        notificationLabel.backgroundColor = [UIColor blackColor];
+        labelHeight += 2;
     }
-    CGRect frame = CGRectMake(0, top, viewFrame.size.width, LABEL_HEIGHT);
+    top -= labelHeight;
+    
+    CGRect frame = CGRectMake(0, top, viewFrame.size.width, labelHeight);
 
     notificationLabel.frame = frame;
     frame.size.height = 1;
@@ -109,6 +111,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
         notificationLabel.alpha = 0;
         notificationLabel.text = NSLocalizedString(@"Updating", nil);
         notificationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+        notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
 
         blackLabel.backgroundColor = [UIColor blackColor];
         blackLabel.alpha = 0;

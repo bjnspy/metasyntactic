@@ -29,7 +29,6 @@
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NetflixNavigationController* navigationController;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
@@ -41,14 +40,12 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
-@synthesize navigationController;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
 
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
-    self.navigationController = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
 
@@ -73,15 +70,15 @@ static AppDelegate* appDelegate = nil;
     [CacheUpdater cacheUpdater];
     [OperationQueue operationQueue];
     self.tabBarController = [ApplicationTabBarController controller];
-    self.navigationController = [[[NetflixNavigationController alloc] initWithTabBarController:tabBarController] autorelease];
-
+    UIViewController* netflixNavigationController = tabBarController.netflixNavigationController;
+    
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
-    [window addSubview:navigationController.view];
+    [window addSubview:netflixNavigationController.view];
     [window makeKeyAndVisible];
 
-    [NotificationCenter attachToViewController:navigationController];
+    [NotificationCenter attachToViewController:netflixNavigationController];
 
     // Ok.  We've set up all our global state.  Now get the ball rolling.
     [[Controller controller] start];

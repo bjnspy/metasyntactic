@@ -16,7 +16,6 @@
 @private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-    NetflixNavigationController* navigationController;
 
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
@@ -24,7 +23,6 @@
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) ApplicationTabBarController* tabBarController;
-@property (readonly, retain) NetflixNavigationController* navigationController;
 
 + (AppDelegate*) appDelegate;
 

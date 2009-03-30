@@ -21,8 +21,10 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "ScoreCache.h"
+#import "ThreadingUtilities.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "WikipediaCache.h"
@@ -68,23 +70,31 @@ static CacheUpdater* cacheUpdater = nil;
 
 - (void) prioritizeMovie:(Movie*) movie now:(BOOL) now {
     if (now) {
-        [[OperationQueue operationQueue] performSelector:@selector(processMovie:)
+        [ThreadingUtilities backgroundSelector:@selector(processMovie:notifications:)
                                                 onTarget:self
                                               withObject:movie
+                                              withObject:[NSNumber numberWithBool:YES]
                                                     gate:nil
-                                                priority:Now];
+                                                visible:YES];
     } else {
-        [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:)
+        [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:notifications:)
                                                        onTarget:self
                                                      withObject:movie
+                                                     withObject:[NSNumber numberWithBool:NO]
                                                            gate:nil
                                                        priority:Priority];
     }
 }
 
 
-- (void) processMovie:(Movie*) movie {
+- (void) processMovie:(Movie*) movie
+        notifications:(NSNumber*) notificationNumber {
     NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);
+
+    BOOL notifications = notificationNumber.boolValue;
+    if (notifications) {
+        [NotificationCenter addNotification:movie.displayTitle];
+    }
 
     Model* model = [Model model];
     [model.posterCache       processMovie:movie];
@@ -98,6 +108,10 @@ static CacheUpdater* cacheUpdater = nil;
     [model.amazonCache       processMovie:movie];
     [model.wikipediaCache    processMovie:movie];
     [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
+    
+    if (notifications) {
+        [NotificationCenter removeNotification:movie.canonicalTitle];
+    }
 }
 
 
