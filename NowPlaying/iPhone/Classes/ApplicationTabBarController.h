@@ -14,11 +14,11 @@
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
 @private
-    MoviesNavigationController* moviesNavigationController;
-    TheatersNavigationController* theatersNavigationController;
-    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-    DVDNavigationController* dvdNavigationController;
-    NetflixNavigationController* netflixNavigationController;
+    MoviesNavigationController* moviesNavigationControllerData;
+    TheatersNavigationController* theatersNavigationControllerData;
+    UpcomingMoviesNavigationController* upcomingMoviesNavigationControllerData;
+    DVDNavigationController* dvdNavigationControllerData;
+    NetflixNavigationController* netflixNavigationControllerData;
 }
 
 + (ApplicationTabBarController*) controller;
@@ -32,6 +32,7 @@
 - (void) switchToDVD;
 
 - (AbstractNavigationController*) selectedNavigationController;
+- (UINavigationController*) netflixNavigationController;
 
 - (void) resetTabs;
 
