@@ -34,6 +34,7 @@
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
+#import "NetflixCell.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
 #import "OperationQueue.h"
@@ -49,7 +50,6 @@
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
-
 
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;

@@ -110,6 +110,7 @@ static NSString* NETFLIX_PREFERRED_FORMATS                  = @"netflixPreferred
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
+static NSString* NETFLIX_UPDATED_APPLICATION_KEYS           = @"netflixUpdatedApplicationKeys";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                                  = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
@@ -207,6 +208,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
 &VOTED_FOR_ICON,
+&NETFLIX_UPDATED_APPLICATION_KEYS,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -459,11 +461,24 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
-     [LocaleUtilities displayCountry]];
+     [LocaleUtilities displayCountry],
+     [Application name]];
 
     [AlertUtilities showOkAlert:warning];
+}
+
+
+- (void) updateNetflixKeys {
+    BOOL updatedNetflixApplicationKeys = [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_UPDATED_APPLICATION_KEYS];
+    if (updatedNetflixApplicationKeys) {
+        return;
+    }
+
+    [self setNetflixKey:nil secret:nil userId:nil];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NETFLIX_UPDATED_APPLICATION_KEYS];
+    [self synchronize];
 }
 
 const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
@@ -528,6 +543,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         [self checkCountry];
         [self loadData];
         [self checkDate];
+        //[self updateNetflixKeys];
 
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cache];
