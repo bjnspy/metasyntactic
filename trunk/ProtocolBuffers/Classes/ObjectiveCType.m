@@ -17,15 +17,15 @@
 id PBObjectiveCTypeDefault(PBObjectiveCType type) {
     switch (type) {
         case PBObjectiveCTypeInt32:
-            return [NSNumber numberWithInt:0];
+    return [NSNumber numberWithInt:0];
         case PBObjectiveCTypeInt64:
-            return [NSNumber numberWithLongLong:0];
+return [NSNumber numberWithLongLong:0];
         case PBObjectiveCTypeFloat32:
-            return [NSNumber numberWithFloat:0];
+    return [NSNumber numberWithFloat:0];
         case PBObjectiveCTypeFloat64:
-            return [NSNumber numberWithDouble:0];
+   return [NSNumber numberWithDouble:0];
         case PBObjectiveCTypeBool:
-            return [NSNumber numberWithBool:NO];
+  return [NSNumber numberWithBool:NO];
         case PBObjectiveCTypeString:
             return @"";
         case PBObjectiveCTypeData:
@@ -35,7 +35,7 @@ id PBObjectiveCTypeDefault(PBObjectiveCType type) {
         case PBObjectiveCTypeMessage:
             return nil;
         default:
-            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
 
@@ -62,6 +62,6 @@ PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType t
         case PBFieldDescriptorTypeEnum:     return PBObjectiveCTypeEnum;
 
         default:
-            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }

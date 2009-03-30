@@ -45,7 +45,7 @@ static BOOL use24HourTime;
         calendar = [[NSCalendar currentCalendar] retain];
         {
             NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                        fromDate:[NSDate date]];
+                                                            fromDate:[NSDate date]];
             todayComponents.hour = 12;
             today = [[calendar dateFromComponents:todayComponents] retain];
         }
@@ -316,7 +316,7 @@ static BOOL use24HourTime;
 
 + (NSDate*) currentTimeWorker {
     return [calendar dateFromComponents:[calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit
-                                                    fromDate:[NSDate date]]];
+                               fromDate:[NSDate date]]];
 }
 
 

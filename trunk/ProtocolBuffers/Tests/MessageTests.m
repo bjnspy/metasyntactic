@@ -22,8 +22,8 @@
     return [[[[[[TestAllTypes builder]
                 setOptionalInt32:1]
                setOptionalString:@"foo"]
-              setOptionalForeignMessage:[ForeignMessage defaultInstance]]
-             addRepeatedString:@"bar"]
+       setOptionalForeignMessage:[ForeignMessage defaultInstance]]
+               addRepeatedString:@"bar"]
             build];
 }
 
@@ -32,8 +32,8 @@
     return [[[[[[TestAllTypes builder]
                 setOptionalInt64:2]
                setOptionalString:@"baz"]
-              setOptionalForeignMessage:[[[ForeignMessage builder] setC:3] build]]
-             addRepeatedString:@"qux"]
+       setOptionalForeignMessage:[[[ForeignMessage builder] setC:3] build]]
+               addRepeatedString:@"qux"]
             build];
 }
 
@@ -41,11 +41,11 @@
 - (TestAllTypes*) mergeResult {
     return [[[[[[[[TestAllTypes builder]
                   setOptionalInt32:1]
-                 setOptionalInt64:2]
-                setOptionalString:@"foo"]
-               setOptionalForeignMessage:[[[ForeignMessage builder] setC:3] build]]
-              addRepeatedString:@"qux"]
-             addRepeatedString:@"bar"]
+                  setOptionalInt64:2]
+                 setOptionalString:@"foo"]
+         setOptionalForeignMessage:[[[ForeignMessage builder] setC:3] build]]
+                 addRepeatedString:@"qux"]
+                 addRepeatedString:@"bar"]
             build];
 }
 
@@ -53,7 +53,7 @@
 - (void) testMergeFrom {
     TestAllTypes* result =
     [[[TestAllTypes builderWithPrototype:self.mergeDestination]
-      mergeFromTestAllTypes:self.mergeSource] build];
+                   mergeFromTestAllTypes:self.mergeSource] build];
 
     STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
@@ -66,7 +66,7 @@
  */
 - (void) testMergeFromDynamic {
     TestAllTypes* result = [[[TestAllTypes builderWithPrototype:self.mergeDestination]
-                             mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
+                                               mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
                             build];
 
     STAssertEqualObjects(result.data, self.mergeResult.data, @"");
@@ -77,7 +77,7 @@
 - (void) testDynamicMergeFrom {
     PBDynamicMessage* result =
     [[[PBDynamicMessage builderWithMessage:self.mergeDestination]
-      mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
+                          mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
      build];
 
     STAssertEqualObjects(result.data, self.mergeResult.data, @"");
@@ -201,8 +201,8 @@
 - (void) testNestedUninitializedException {
     STAssertThrows([[[[[TestRequiredForeign builder]
                        setOptionalMessage:self.testRequiredUninitialized]
-                      addRepeatedMessage:self.testRequiredUninitialized]
-                     addRepeatedMessage:self.testRequiredUninitialized]
+                       addRepeatedMessage:self.testRequiredUninitialized]
+                       addRepeatedMessage:self.testRequiredUninitialized]
                     build], @"");
 }
 
@@ -213,8 +213,8 @@
     TestRequiredForeign* message =
     [[[[[TestRequiredForeign builder]
         setOptionalMessage:self.testRequiredUninitialized]
-       addRepeatedMessage:self.testRequiredUninitialized]
-      addRepeatedMessage:self.testRequiredUninitialized]
+        addRepeatedMessage:self.testRequiredUninitialized]
+        addRepeatedMessage:self.testRequiredUninitialized]
      buildPartial];
 
     STAssertFalse(message.isInitialized, @"");
@@ -230,8 +230,8 @@
     TestRequiredForeign* message =
     [[[[[TestRequiredForeign builder]
         setOptionalMessage:self.testRequiredUninitialized]
-       addRepeatedMessage:self.testRequiredUninitialized]
-      addRepeatedMessage:self.testRequiredUninitialized]
+        addRepeatedMessage:self.testRequiredUninitialized]
+        addRepeatedMessage:self.testRequiredUninitialized]
      buildPartial];
 
     NSData* data = message.data;

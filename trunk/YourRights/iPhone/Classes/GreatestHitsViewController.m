@@ -53,7 +53,7 @@
 
 - (UISegmentedControl*) setupSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                                    [NSArray arrayWithObjects:
+                                                   [NSArray arrayWithObjects:
                                      NSLocalizedString(@"Year", nil),
                                      NSLocalizedString(@"Category", nil),
                                      NSLocalizedString(@"Pursuer", nil),

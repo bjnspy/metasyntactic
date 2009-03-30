@@ -63,7 +63,7 @@ property_definition(text);
 
 
 + (id) elementWithName:(NSString*) name_
-              child:(XmlElement*) child_ {
+                 child:(XmlElement*) child_ {
     return [XmlElement elementWithName:name_ children:[NSArray arrayWithObject:child_]];
 }
 
@@ -205,8 +205,8 @@ property_definition(text);
 
 
 - (void) elements:(NSString*) name_
-              recurse:(BOOL) recurse
-               result:(NSMutableArray*) result {
+          recurse:(BOOL) recurse
+           result:(NSMutableArray*) result {
     for (XmlElement* child in children) {
         if ([name_ isEqualToString:child.name]) {
             [result addObject:child];

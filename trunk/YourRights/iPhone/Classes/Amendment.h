@@ -33,6 +33,6 @@
 + (Amendment*) amendmentWithSynopsis:(NSString*) synopsis
                                 year:(NSInteger) year
                                 link:(NSString*) link
-                                sections:(NSArray*) sections;
+                            sections:(NSArray*) sections;
 
 @end

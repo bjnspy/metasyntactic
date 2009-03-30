@@ -54,7 +54,7 @@
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = [Application name];
-        
+
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
@@ -185,7 +185,7 @@
         if (indexPath.row == 0) {
             Constitution* constitution = [UnitedStatesConstitution unitedStatesConstitution];
             ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithConstitution:constitution
-                                                                                                                 title:title] autorelease];
+                                                                                                         title:title] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 1) {
             DeclarationOfIndependenceViewController* controller = [[[DeclarationOfIndependenceViewController alloc] initWithDeclaration:self.model.declarationOfIndependence] autorelease];
@@ -193,7 +193,7 @@
         } else if (indexPath.row == 2) {
             Constitution* constitution = [ArticlesOfConfederation articlesOfConfederation];
             ConstitutionViewController* controller = [[[ConstitutionViewController alloc] initWithConstitution:constitution
-                                                                                                                 title:title] autorelease];
+                                                                                                         title:title] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else {
             Constitution* constitution = [FederalistPapers federalistPapers];

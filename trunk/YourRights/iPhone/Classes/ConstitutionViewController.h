@@ -20,6 +20,6 @@
 }
 
 - (id) initWithConstitution:(Constitution*) constitution
-                              title:(NSString*) title;
+                      title:(NSString*) title;
 
 @end

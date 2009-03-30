@@ -21,9 +21,9 @@
 }
 
 + (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass;
+                                              name:(NSString*) name
+                                      messageClass:(Class) messageClass
+                                      builderClass:(Class) builderClass;
 
 - (id) get:(PBGeneratedMessage*) message;
 - (id) getRepeated:(PBGeneratedMessage*) message index:(int32_t) index;

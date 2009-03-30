@@ -96,10 +96,10 @@
         self.mutableExtensions = [NSMutableArray array];
         for (PBFieldDescriptorProto* f in proto.extensionList) {
             [mutableExtensions addObject:[PBFieldDescriptor descriptorWithProto:f
-                                                                           file:self
-                                                                         parent:nil
-                                                                          index:mutableExtensions.count
-                                                                    isExtension:YES]];
+                                    file:self
+                                  parent:nil
+                                   index:mutableExtensions.count
+                             isExtension:YES]];
         }
     }
 
@@ -133,11 +133,11 @@
 
 
 + (PBFileDescriptor*) descriptorWithProto:(PBFileDescriptorProto*) proto
-                           dependencies:(NSArray*) dependencies
-                                   pool:(PBDescriptorPool*) pool {
+                             dependencies:(NSArray*) dependencies
+                                     pool:(PBDescriptorPool*) pool {
     return [[[PBFileDescriptor alloc] initWithProto:proto
-                                     dependencies:dependencies
-                                             pool:pool] autorelease];
+                                       dependencies:dependencies
+                                               pool:pool] autorelease];
 }
 
 
