@@ -34,5 +34,6 @@
 
 /* protected */
 - (void) majorRefreshWorker;
+- (void) minorRefreshWorker;
 
 @end
