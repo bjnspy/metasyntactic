@@ -61,7 +61,7 @@
 
 
 - (id)initWithSearchBar:(UISearchBar*) searchBar__
-            contentsController:(UIViewController*) viewController__ {
+     contentsController:(UIViewController*) viewController__ {
     if (self = [super initWithSearchBar:searchBar__ contentsController:viewController__]) {
         self.delegate = self;
         self.searchResultsDataSource = self;

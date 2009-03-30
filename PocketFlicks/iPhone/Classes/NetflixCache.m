@@ -543,10 +543,10 @@ static NSDictionary* availabilityMap = nil;
                    movies:(NSMutableArray*) movies
                     saved:(NSMutableArray*) saved {
     if (![@"queue_item" isEqual:element.name] &&
-        ![@"rental_history_item" isEqual:element.name] &&
-        ![@"at_home_item" isEqual:element.name] &&
-        ![@"recommendation" isEqual:element.name] &&
-        ![@"catalog_title" isEqual:element.name]) {
+![@"rental_history_item" isEqual:element.name] &&
+      ![@"at_home_item" isEqual:element.name] &&
+    ![@"recommendation" isEqual:element.name] &&
+     ![@"catalog_title" isEqual:element.name]) {
         return;
     }
 
@@ -582,7 +582,7 @@ static NSDictionary* availabilityMap = nil;
     etag = [response.allHeaderFields objectForKey:@"Etag"];
     NSRange lastQuoteRange;
     if ([etag hasPrefix:@"\""] &&
-        (lastQuoteRange = [etag rangeOfString:@"\"" options:NSBackwardsSearch]).length > 0) {
+(lastQuoteRange = [etag rangeOfString:@"\"" options:NSBackwardsSearch]).length > 0) {
         return [etag substringWithRange:NSMakeRange(1, lastQuoteRange.location - 1)];
     }
 
@@ -700,8 +700,8 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"5"],
+              [OARequestParameter parameterWithName:@"term" value:query],
+              [OARequestParameter parameterWithName:@"max_results" value:@"5"],
                            nil];
 
     [request setParameters:parameters];
@@ -731,9 +731,9 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"expand" value:@"formats"],
-                           [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"30"],
+              [OARequestParameter parameterWithName:@"expand" value:@"formats"],
+              [OARequestParameter parameterWithName:@"term" value:query],
+              [OARequestParameter parameterWithName:@"max_results" value:@"30"],
                            nil];
 
     [request setParameters:parameters];
@@ -1187,8 +1187,8 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) rssMovieFile:(NSString*) identifier address:(NSString*) address {
     return [[[self rssFeedDirectory:address]
-             stringByAppendingPathComponent:[FileUtilities sanitizeFileName:identifier]]
-            stringByAppendingPathExtension:@"plist"];
+     stringByAppendingPathComponent:[FileUtilities sanitizeFileName:identifier]]
+     stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -1675,8 +1675,8 @@ static NSDictionary* availabilityMap = nil;
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"1"],
+              [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
+              [OARequestParameter parameterWithName:@"max_results" value:@"1"],
                            nil];
 
     [request setParameters:parameters];

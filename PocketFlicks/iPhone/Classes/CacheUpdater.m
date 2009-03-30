@@ -71,11 +71,11 @@ static CacheUpdater* cacheUpdater = nil;
 - (void) prioritizeMovie:(Movie*) movie now:(BOOL) now {
     if (now) {
         [ThreadingUtilities backgroundSelector:@selector(processMovie:notifications:)
-                                                onTarget:self
-                                              withObject:movie
-                                              withObject:[NSNumber numberWithBool:YES]
-                                                    gate:nil
-                                                visible:YES];
+                                      onTarget:self
+                                    withObject:movie
+                                    withObject:[NSNumber numberWithBool:YES]
+                                          gate:nil
+                                       visible:YES];
     } else {
         [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:notifications:)
                                                        onTarget:self

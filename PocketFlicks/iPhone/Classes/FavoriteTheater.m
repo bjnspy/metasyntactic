@@ -69,7 +69,7 @@ property_definition(originatingLocation);
     return
     [[dictionary objectForKey:name_key] isKindOfClass:[NSString class]] &&
     [[dictionary objectForKey:originatingLocation_key] isKindOfClass:[NSDictionary class]] &&
-    [Location canReadDictionary:[dictionary objectForKey:originatingLocation_key]];
+  [Location canReadDictionary:[dictionary objectForKey:originatingLocation_key]];
 }
 
 

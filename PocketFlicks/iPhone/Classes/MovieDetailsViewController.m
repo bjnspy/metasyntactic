@@ -1233,9 +1233,9 @@ const NSInteger POSTER_TAG = -1;
 
         [body appendString:@"<br/>"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
-                                                      movie:movie
-                                                    theater:theater
-                                               performances:performances]];
+                     movie:movie
+                   theater:theater
+              performances:performances]];
     }
 
     [self openMailWithSubject:subject body:body];
@@ -1245,9 +1245,9 @@ const NSInteger POSTER_TAG = -1;
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
     [self.abstractNavigationController pushTicketsView:movie
-                                          theater:theater
-                                            title:theater.name
-                                         animated:animated];
+                                               theater:theater
+                                                 title:theater.name
+                                              animated:animated];
 }
 
 

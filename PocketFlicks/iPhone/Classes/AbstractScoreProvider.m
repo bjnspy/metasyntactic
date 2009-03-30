@@ -410,10 +410,10 @@
         NSInteger scoreValue = [score intValue];
 
         [result addObject:[Review reviewWithText:text
-                                           score:scoreValue
-                                            link:link
-                                          author:author
-                                          source:source]];
+                    score:scoreValue
+                     link:link
+                   author:author
+                   source:source]];
     }
 
     return result;

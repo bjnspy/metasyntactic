@@ -21,11 +21,11 @@
 }
 
 - (id) initWithTitle:(NSString*) title
-                   object:(id) object
-                 selector:(SEL) selector
-                     text:(NSString*) text
-                  message:(NSString*) message
-              placeHolder:(NSString*) placeHolder
-                     type:(UIKeyboardType) type;
+              object:(id) object
+            selector:(SEL) selector
+                text:(NSString*) text
+             message:(NSString*) message
+         placeHolder:(NSString*) placeHolder
+                type:(UIKeyboardType) type;
 
 @end

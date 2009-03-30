@@ -233,7 +233,7 @@
             self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search area", nil)];
         } else if (theaters.count > 1) {
             self.sectionTitles = [NSArray arrayWithObject:
-                                  [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", nil), theaters.count]];
+                               [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", nil), theaters.count]];
         } else {
             self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
         }
@@ -305,7 +305,7 @@
     self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
-                                                                                contentsController:self] autorelease];
+                                                                         contentsController:self] autorelease];
 #else
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     searchButton.showsTouchWhenHighlighted = YES;

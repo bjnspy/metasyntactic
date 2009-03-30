@@ -55,7 +55,7 @@
 
 
 - (id)initWithSearchBar:(UISearchBar*) searchBar__
-            contentsController:(UIViewController*) viewController__ {
+     contentsController:(UIViewController*) viewController__ {
     if (self = [super initWithSearchBar:searchBar__
                      contentsController:viewController__]) {
         self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
@@ -224,9 +224,9 @@
     self.instantMovies = instant;
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                        [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies.count],
-                                        [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", nil), discs.count],
-                                        [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", nil), instant.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", nil), discs.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", nil), instant.count],
                                         nil];
 }
 

@@ -23,8 +23,8 @@
 }
 
 - (id) initWithTheater:(Theater*) theater
-                    movie:(Movie*) movie
-                    title:(NSString*) title;
+                 movie:(Movie*) movie
+                 title:(NSString*) title;
 
 - (Movie*) movie;
 - (Theater*) theater;

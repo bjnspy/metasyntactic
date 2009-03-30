@@ -371,7 +371,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             NSMutableArray* elements = [NSMutableArray array];
             for (id element in previousValue) {
                 if ([element isKindOfClass:[NSDictionary class]] &&
-                    [Movie canReadDictionary:element]) {
+                  [Movie canReadDictionary:element]) {
                     [elements addObject:element];
                 }
             }
@@ -387,7 +387,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
             for (id element in previousValue) {
                 if ([element isKindOfClass:[NSDictionary class]] &&
-                    [FavoriteTheater canReadDictionary:element]) {
+        [FavoriteTheater canReadDictionary:element]) {
                     [elements addObject:element];
                 }
             }
@@ -461,7 +461,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry],
      [Application name]];
