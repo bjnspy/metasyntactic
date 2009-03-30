@@ -23,7 +23,7 @@
 }
 
 - (id) initWithSectionTitle:(NSString*) sectionTitle
-                   question:(NSString*) question
-                     answer:(NSString*) answer;
+                           question:(NSString*) question
+                             answer:(NSString*) answer;
 
 @end

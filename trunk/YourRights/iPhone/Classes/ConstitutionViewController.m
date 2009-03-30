@@ -39,7 +39,7 @@
 
 
 - (id) initWithConstitution:(Constitution*) constitution_
-                      title:(NSString*) title_ {
+                              title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.constitution = constitution_;
         self.title = title_;
@@ -116,7 +116,7 @@
     Article* article = [constitution.articles objectAtIndex:row];
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, article.title];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
     return cell;
 }
 

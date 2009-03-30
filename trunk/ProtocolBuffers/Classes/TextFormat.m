@@ -215,7 +215,7 @@ int32_t digitValue(unichar c) {
                         }
 
                         default:
-@throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
+                            @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
                     }
                 }
             } else {

@@ -57,7 +57,7 @@
 
 - (void) initializeData {
     self.titlesWithArticles = [NSMutableArray array];
-
+    
     for (NSString* title in [RSSCache titles]) {
         NSArray* items = [self.model.rssCache itemsForTitle:title];
         if (items.count > 0) {
@@ -88,7 +88,7 @@
 
 
 - (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
+       titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && titlesWithArticles.count == 0) {
         if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             return NSLocalizedString(@"Downloading data", nil);

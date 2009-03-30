@@ -1,16 +1,10 @@
-// Copyright 2008 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  CodedOuputStreamTests.m
+//  ProtocolBuffers
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//  Created by Cyrus Najmabadi on 10/11/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 #import "CodedOuputStreamTests.h"
 
@@ -178,12 +172,12 @@
      (0x1bLL << 28)];
     // 41256202580718336
     [self assertWriteVarint:
-bytes(0x80, 0xe6, 0xeb, 0x9c, 0xc3, 0xc9, 0xa4, 0x49) value:
+     bytes(0x80, 0xe6, 0xeb, 0x9c, 0xc3, 0xc9, 0xa4, 0x49) value:
      (0x00 << 0) | (0x66 << 7) | (0x6b << 14) | (0x1c << 21) |
      (0x43LL << 28) | (0x49LL << 35) | (0x24LL << 42) | (0x49LL << 49)];
     // 11964378330978735131
     [self assertWriteVarint:
-bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
+     bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
      (0x1b << 0) | (0x28 << 7) | (0x79 << 14) | (0x42 << 21) |
      (0x3bLL << 28) | (0x56LL << 35) | (0x00LL << 42) |
      (0x05LL << 49) | (0x26LL << 56) | (0x01LL << 63)];
@@ -196,10 +190,10 @@ bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
     [self assertWriteLittleEndian32:bytes(0xf0, 0xde, 0xbc, 0x9a) value:0x9abcdef0];
 
     [self assertWriteLittleEndian64:
-bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
+     bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
      0x123456789abcdef0LL];
     [self assertWriteLittleEndian64:
-bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
+     bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
      0x9abcdef012345678LL];
 }
 

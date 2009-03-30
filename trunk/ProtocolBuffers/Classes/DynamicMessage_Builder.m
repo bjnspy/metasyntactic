@@ -59,8 +59,8 @@
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
     return [[[PBDynamicMessage_Builder alloc] initWithType:type
-                                                    fields:[PBFieldSet set]
-                                             unknownFields:[PBUnknownFieldSet defaultInstance]] autorelease];
+                                                  fields:[PBFieldSet set]
+                                           unknownFields:[PBUnknownFieldSet defaultInstance]] autorelease];
 }
 
 
@@ -110,7 +110,7 @@
 
 
 - (PBDynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                                      extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+                                    extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     PBUnknownFieldSet_Builder* unknownFieldsBuilder = [PBUnknownFieldSet builderWithUnknownFields:unknownFields];
     [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];
     self.unknownFields = [unknownFieldsBuilder build];
@@ -190,8 +190,8 @@
 
 
 - (PBDynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
-                                         index:(int32_t) index
-                                         value:(id) value {
+                                       index:(int32_t) index
+                                       value:(id) value {
     [self verifyContainingType:field];
     [fields setRepeatedField:field index:index value:value];
     return self;
@@ -199,7 +199,7 @@
 
 
 - (PBDynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
-                                         value:(id) value {
+                                       value:(id) value {
     [self verifyContainingType:field];
     [fields addRepeatedField:field value:value];
     return self;

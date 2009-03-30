@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 /**
  * A table of known extensions, searchable by name or field number.  When
  * parsing a protocol message that might have extensions, you must provide
@@ -96,6 +97,6 @@
  *         otherwise.
  */
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
-                               fieldNumber:(int32_t) fieldNumber;
+                                               fieldNumber:(int32_t) fieldNumber;
 
 @end

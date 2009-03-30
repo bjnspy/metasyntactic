@@ -44,7 +44,7 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.article = article_;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+        
         NSMutableArray* array = [NSMutableArray array];
         for (Section* section in article_.sections) {
             [array addObject:[StringUtilities splitIntoChunks:section.text]];
@@ -160,7 +160,7 @@
     if (indexPath.section < article.sections.count) {
         NSArray* chunks = [sectionChunks objectAtIndex:indexPath.section];
         NSString* chunk = [chunks objectAtIndex:indexPath.row];
-
+        
         return [WrappableCell height:chunk accessoryType:UITableViewCellAccessoryNone];
     } else {
         return tableView.rowHeight;

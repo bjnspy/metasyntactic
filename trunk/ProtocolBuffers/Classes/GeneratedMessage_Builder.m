@@ -150,7 +150,7 @@
     PBGeneratedMessage* result = self.internalGetResult;
     result.unknownFields =
     [[[PBUnknownFieldSet builderWithUnknownFields:result.unknownFields]
-                               mergeUnknownFields:unknownFields] build];
+      mergeUnknownFields:unknownFields] build];
     return self;
 }
 

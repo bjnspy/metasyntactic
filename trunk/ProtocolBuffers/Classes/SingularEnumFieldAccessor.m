@@ -47,9 +47,9 @@
 
 
 + (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                              name:(NSString*) name
-                                      messageClass:(Class) messageClass
-                                      builderClass:(Class) builderClass {
+                                                             name:(NSString*) name
+                                                     messageClass:(Class) messageClass
+                                                     builderClass:(Class) builderClass {
     return [[[PBSingularEnumFieldAccessor alloc] initWithField:field
                                                           name:name
                                                   messageClass:messageClass

@@ -155,11 +155,11 @@ static DeclarationOfIndependence* declarationOfIndependence;
     @"He has affected to render the Military independent of and superior to the Civil Power.\n\n"
     @"He has combined with others to subject us to a jurisdiction foreign to our constitution, and unacknowledged by our laws; giving his Assent to their Acts of pretended Legislation:\n\n"
     @"For quartering large bodies of armed troops among us:\n\n"
-@"For protecting them, by a mock Trial from punishment for any Murders which they should commit on the Inhabitants of these States:\n\n"
-   @"For cutting off our Trade with all parts of the world:\n\n"
-            @"For imposing Taxes on us without our Consent:\n\n"
-@"For depriving us in many cases, of the benefit of Trial by Jury:\n\n"
-@"For transporting us beyond Seas to be tried for pretended offences:\n\n"
+    @"For protecting them, by a mock Trial from punishment for any Murders which they should commit on the Inhabitants of these States:\n\n"
+    @"For cutting off our Trade with all parts of the world:\n\n"
+    @"For imposing Taxes on us without our Consent:\n\n"
+    @"For depriving us in many cases, of the benefit of Trial by Jury:\n\n"
+    @"For transporting us beyond Seas to be tried for pretended offences:\n\n"
     @"For abolishing the free System of English Laws in a neighbouring Province, establishing therein an Arbitrary government, and enlarging its Boundaries so as to render it at once an example and fit instrument for introducing the same absolute rule into these Colonies\n\n"
     @"For taking away our Charters, abolishing our most valuable Laws and altering fundamentally the Forms of our Governments:\n\n"
     @"For suspending our own Legislatures, and declaring themselves invested with power to legislate for us in all cases whatsoever.\n\n"
@@ -176,86 +176,86 @@ static DeclarationOfIndependence* declarationOfIndependence;
     MultiDictionary* signers = [MultiDictionary dictionary];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Josiah Bartlett", @"http://en.wikipedia.org/wiki/Josiah_Bartlett"),
-person(@"William Whipple", @"http://en.wikipedia.org/wiki/William_Whipple"),
-person(@"Matthew Thornton", @"http://en.wikipedia.org/wiki/Matthew_Thornton"), nil] forKey:@"New Hampshire"];
+                         person(@"Josiah Bartlett", @"http://en.wikipedia.org/wiki/Josiah_Bartlett"),
+                         person(@"William Whipple", @"http://en.wikipedia.org/wiki/William_Whipple"),
+                         person(@"Matthew Thornton", @"http://en.wikipedia.org/wiki/Matthew_Thornton"), nil] forKey:@"New Hampshire"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"John Hancock", @"http://en.wikipedia.org/wiki/John_Hancock"),
-person(@"Samuel Adams", @"http://en.wikipedia.org/wiki/Samuel_adams"),
-person(@"John Adams", @"http://en.wikipedia.org/wiki/John_Adams"),
-person(@"Robert Treat Paine", @"http://en.wikipedia.org/wiki/Robert_Treat_Paine"),
-person(@"Elbridge Gerry", @"http://en.wikipedia.org/wiki/Elbridge_Gerry"), nil] forKey:@"Massachusetts"];
+                         person(@"John Hancock", @"http://en.wikipedia.org/wiki/John_Hancock"),
+                         person(@"Samuel Adams", @"http://en.wikipedia.org/wiki/Samuel_adams"),
+                         person(@"John Adams", @"http://en.wikipedia.org/wiki/John_Adams"),
+                         person(@"Robert Treat Paine", @"http://en.wikipedia.org/wiki/Robert_Treat_Paine"),
+                         person(@"Elbridge Gerry", @"http://en.wikipedia.org/wiki/Elbridge_Gerry"), nil] forKey:@"Massachusetts"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Stephen Hopkins", @"http://en.wikipedia.org/wiki/Stephen_Hopkins_(politician)"),
-person(@"William Ellery", @"http://en.wikipedia.org/wiki/William_Ellery"), nil] forKey:@"Rhode Island"];
+                         person(@"Stephen Hopkins", @"http://en.wikipedia.org/wiki/Stephen_Hopkins_(politician)"),
+                         person(@"William Ellery", @"http://en.wikipedia.org/wiki/William_Ellery"), nil] forKey:@"Rhode Island"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"),
-person(@"Samuel Huntington", @"http://en.wikipedia.org/wiki/Samuel_Huntington_(statesman)"),
-person(@"William Williams", @"http://en.wikipedia.org/wiki/William_Williams_(signer)"),
-person(@"Oliver Wolcott", @"http://en.wikipedia.org/wiki/Oliver_Wolcott"), nil] forKey:@"Connecticut"];
+                         person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"),
+                         person(@"Samuel Huntington", @"http://en.wikipedia.org/wiki/Samuel_Huntington_(statesman)"),
+                         person(@"William Williams", @"http://en.wikipedia.org/wiki/William_Williams_(signer)"),
+                         person(@"Oliver Wolcott", @"http://en.wikipedia.org/wiki/Oliver_Wolcott"), nil] forKey:@"Connecticut"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"William Floyd", @"http://en.wikipedia.org/wiki/William_Floyd"),
-person(@"Philip Livingston", @"http://en.wikipedia.org/wiki/Philip_Livingston"),
-person(@"Francis Lewis", @"http://en.wikipedia.org/wiki/Francis_Lewis"),
-person(@"Lewis Morris", @"http://en.wikipedia.org/wiki/Lewis_Morris"), nil] forKey:@"New York"];
+                         person(@"William Floyd", @"http://en.wikipedia.org/wiki/William_Floyd"),
+                         person(@"Philip Livingston", @"http://en.wikipedia.org/wiki/Philip_Livingston"),
+                         person(@"Francis Lewis", @"http://en.wikipedia.org/wiki/Francis_Lewis"),
+                         person(@"Lewis Morris", @"http://en.wikipedia.org/wiki/Lewis_Morris"), nil] forKey:@"New York"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Richard Stockton", @"http://en.wikipedia.org/wiki/Richard_Stockton_(1730-1781)"),
-person(@"John Witherspoon", @"http://en.wikipedia.org/wiki/John_Witherspoon"),
-person(@"Francis Hopkinson", @"http://en.wikipedia.org/wiki/Francis_Hopkinson"),
-person(@"John Hart", @"http://en.wikipedia.org/wiki/John_Hart"),
-person(@"Abraham Clark", @"http://en.wikipedia.org/wiki/Abraham_Clark"), nil] forKey:@"New Jersey"];
+                         person(@"Richard Stockton", @"http://en.wikipedia.org/wiki/Richard_Stockton_(1730-1781)"),
+                         person(@"John Witherspoon", @"http://en.wikipedia.org/wiki/John_Witherspoon"),
+                         person(@"Francis Hopkinson", @"http://en.wikipedia.org/wiki/Francis_Hopkinson"),
+                         person(@"John Hart", @"http://en.wikipedia.org/wiki/John_Hart"),
+                         person(@"Abraham Clark", @"http://en.wikipedia.org/wiki/Abraham_Clark"), nil] forKey:@"New Jersey"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
-person(@"Benjamin Rush", @"http://en.wikipedia.org/wiki/Benjamin_Rush"),
-person(@"Benjamin Franklin", @"http://en.wikipedia.org/wiki/Benjamin_Franklin"),
-person(@"John Morton", @"http://en.wikipedia.org/wiki/John_Morton_(politician)"),
-person(@"George Clymer", @"http://en.wikipedia.org/wiki/George_Clymer"),
-person(@"James Smith", @"http://en.wikipedia.org/wiki/James_Smith_(political_figure)"),
-person(@"George Taylor", @"http://en.wikipedia.org/wiki/George_Taylor_(delegate)"),
-person(@"James Wilson", @"http://en.wikipedia.org/wiki/James_Wilson"),
-person(@"George Ross", @"http://en.wikipedia.org/wiki/George_Ross_(delegate)"), nil] forKey:@"Pennsylvania"];
+                         person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
+                         person(@"Benjamin Rush", @"http://en.wikipedia.org/wiki/Benjamin_Rush"),
+                         person(@"Benjamin Franklin", @"http://en.wikipedia.org/wiki/Benjamin_Franklin"),
+                         person(@"John Morton", @"http://en.wikipedia.org/wiki/John_Morton_(politician)"),
+                         person(@"George Clymer", @"http://en.wikipedia.org/wiki/George_Clymer"),
+                         person(@"James Smith", @"http://en.wikipedia.org/wiki/James_Smith_(political_figure)"),
+                         person(@"George Taylor", @"http://en.wikipedia.org/wiki/George_Taylor_(delegate)"),
+                         person(@"James Wilson", @"http://en.wikipedia.org/wiki/James_Wilson"),
+                         person(@"George Ross", @"http://en.wikipedia.org/wiki/George_Ross_(delegate)"), nil] forKey:@"Pennsylvania"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Caesar Rodney", @"http://en.wikipedia.org/wiki/Caesar_Rodney"),
-person(@"George Read", @"http://en.wikipedia.org/wiki/George_Read_(signer)"),
-person(@"Thomas McKean", @"http://en.wikipedia.org/wiki/Thomas_McKean"), nil] forKey:@"Delaware"];
+                         person(@"Caesar Rodney", @"http://en.wikipedia.org/wiki/Caesar_Rodney"),
+                         person(@"George Read", @"http://en.wikipedia.org/wiki/George_Read_(signer)"),
+                         person(@"Thomas McKean", @"http://en.wikipedia.org/wiki/Thomas_McKean"), nil] forKey:@"Delaware"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Samuel Chase", @"http://en.wikipedia.org/wiki/Samuel_Chase"),
-person(@"William Paca", @"http://en.wikipedia.org/wiki/William_Paca"),
-person(@"Thomas Stone", @"http://en.wikipedia.org/wiki/Thomas_Stone"),
-person(@"Charles Carroll of Carrollton", @"http://en.wikipedia.org/wiki/Charles_Carroll_of_Carrollton"), nil] forKey:@"Maryland"];
+                         person(@"Samuel Chase", @"http://en.wikipedia.org/wiki/Samuel_Chase"),
+                         person(@"William Paca", @"http://en.wikipedia.org/wiki/William_Paca"),
+                         person(@"Thomas Stone", @"http://en.wikipedia.org/wiki/Thomas_Stone"),
+                         person(@"Charles Carroll of Carrollton", @"http://en.wikipedia.org/wiki/Charles_Carroll_of_Carrollton"), nil] forKey:@"Maryland"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"George Wythe", @"http://en.wikipedia.org/wiki/George_Wythe"),
-person(@"Richard Henry Lee", @"http://en.wikipedia.org/wiki/Richard_Henry_Lee"),
-person(@"Thomas Jefferson", @"http://en.wikipedia.org/wiki/Thomas_Jefferson"),
-person(@"Benjamin Harrison", @"http://en.wikipedia.org/wiki/Benjamin_Harrison"),
-person(@"Thomas Nelson Jr.", @"http://en.wikipedia.org/wiki/Thomas_Nelson,_Jr."),
-person(@"Francis Lightfoot Lee", @"http://en.wikipedia.org/wiki/Francis_Lightfoot_Lee"),
-person(@"Carter Braxton", @"http://en.wikipedia.org/wiki/Carter_Braxton"), nil] forKey:@"Virginia"];
+                         person(@"George Wythe", @"http://en.wikipedia.org/wiki/George_Wythe"),
+                         person(@"Richard Henry Lee", @"http://en.wikipedia.org/wiki/Richard_Henry_Lee"),
+                         person(@"Thomas Jefferson", @"http://en.wikipedia.org/wiki/Thomas_Jefferson"),
+                         person(@"Benjamin Harrison", @"http://en.wikipedia.org/wiki/Benjamin_Harrison"),
+                         person(@"Thomas Nelson Jr.", @"http://en.wikipedia.org/wiki/Thomas_Nelson,_Jr."),
+                         person(@"Francis Lightfoot Lee", @"http://en.wikipedia.org/wiki/Francis_Lightfoot_Lee"),
+                         person(@"Carter Braxton", @"http://en.wikipedia.org/wiki/Carter_Braxton"), nil] forKey:@"Virginia"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"William Hooper", @"http://en.wikipedia.org/wiki/William_Hooper"),
-person(@"Joseph Hewes", @"http://en.wikipedia.org/wiki/Joseph_Hewes"),
-person(@"John Penn", @"http://en.wikipedia.org/wiki/John_Penn_(delegate)"), nil] forKey:@"North Carolina"];
+                         person(@"William Hooper", @"http://en.wikipedia.org/wiki/William_Hooper"),
+                         person(@"Joseph Hewes", @"http://en.wikipedia.org/wiki/Joseph_Hewes"),
+                         person(@"John Penn", @"http://en.wikipedia.org/wiki/John_Penn_(delegate)"), nil] forKey:@"North Carolina"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Edward Rutledge", @"http://en.wikipedia.org/wiki/Edward_Rutledge"),
-person(@"Thomas Heyward Jr.", @"http://en.wikipedia.org/wiki/Thomas_Heyward"),
-person(@"Thomas Lynch Jr.", @"http://en.wikipedia.org/wiki/Thomas_Lynch,_Jr."),
-person(@"Arthur Middleton", @"http://en.wikipedia.org/wiki/Arthur_Middleton"), nil] forKey:@"South Carolina"];
+                         person(@"Edward Rutledge", @"http://en.wikipedia.org/wiki/Edward_Rutledge"),
+                         person(@"Thomas Heyward Jr.", @"http://en.wikipedia.org/wiki/Thomas_Heyward"),
+                         person(@"Thomas Lynch Jr.", @"http://en.wikipedia.org/wiki/Thomas_Lynch,_Jr."),
+                         person(@"Arthur Middleton", @"http://en.wikipedia.org/wiki/Arthur_Middleton"), nil] forKey:@"South Carolina"];
 
     [signers addObjects:[NSArray arrayWithObjects:
-person(@"Button Gwinnett", @"http://en.wikipedia.org/wiki/Button_Gwinnett"),
-person(@"Lyman Hall", @"http://en.wikipedia.org/wiki/Lyman_Hall"),
-person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] forKey:@"Georgia"];
+                         person(@"Button Gwinnett", @"http://en.wikipedia.org/wiki/Button_Gwinnett"),
+                         person(@"Lyman Hall", @"http://en.wikipedia.org/wiki/Lyman_Hall"),
+                         person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] forKey:@"Georgia"];
 
     NSDate* date = [DateUtilities dateWithNaturalLanguageString:@"July 4, 1776"];
 
@@ -345,7 +345,7 @@ person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] fo
                          [NSArray array],
                          [NSArray array],
                          [NSArray arrayWithObjects:
-                                            @"http://www.dhs.gov/xabout/structure/editorial_0373.shtm",
+                          @"http://www.dhs.gov/xabout/structure/editorial_0373.shtm",
                           @"civil.liberties@dhs.gov",
                           @"http://airconsumer.ost.dot.gov/problems.htm",
                           @"airconsumer@ost.dot.gov",
@@ -896,7 +896,7 @@ person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] fo
          NSLocalizedString(@"Yes. You should continue to give money to the causes you believe "
                            @"in, but you should be careful in choosing which charities to support."
                            @"For helpful tips, see Muslim Advocates’ guide on charitable giving: "
-                                                                                           @"http://www.muslimadvocates.org/documents/safe_donating.html.", nil),
+                           @"http://www.muslimadvocates.org/documents/safe_donating.html.", nil),
          NSLocalizedString(@"Yes. Worshipping as you want is your constitutional right. You "
                            @"have the right to go to a place of worship, attend and hear sermons "
                            @"and religious lectures, participate in community activities, and pray "
@@ -913,7 +913,7 @@ person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"), nil] fo
 
         NSArray* charitableDonationsLinks =
         [NSArray arrayWithObjects:
-        [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
+         [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
          [NSArray array],
          [NSArray array], nil];
 
@@ -965,7 +965,7 @@ static Model* model = nil;
     if (model == nil) {
         model = [[Model alloc] init];
     }
-
+    
     return model;
 }
 

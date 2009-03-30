@@ -81,7 +81,7 @@
 
 
 - (void)                            tableView:(UITableView*) tableView
-     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
+      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < items.count) {
         Item* item = [items objectAtIndex:indexPath.section];
         if (item.link) {
