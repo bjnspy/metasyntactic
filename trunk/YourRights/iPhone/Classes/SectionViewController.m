@@ -16,6 +16,7 @@
 
 #import "ACLUInfoViewController.h"
 #import "ACLUNewsViewController.h"
+#import "Application.h"
 #import "AutoResizingCell.h"
 #import "ArticlesOfConfederation.h"
 #import "Constitution.h"
@@ -23,7 +24,6 @@
 #import "CreditsViewController.h"
 #import "DeclarationOfIndependenceViewController.h"
 #import "FederalistPapers.h"
-#import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
 #import "FederalistPapersViewController.h"
 #import "Model.h"
@@ -35,37 +35,32 @@
 #import "YourRightsNavigationController.h"
 
 @interface SectionViewController()
-@property (retain) UITableView* tableView;
-@property (retain) CreditsViewController* creditsViewController;
 @end
 
 
 @implementation SectionViewController
 
-@synthesize tableView;
-@synthesize creditsViewController;
 
 - (void) dealloc {
-    self.tableView = nil;
-    self.creditsViewController = nil;
-
     [super dealloc];
 }
 
 
 - (Model*) model {
-    return (id)[(id)self.navigationController model];
+    return [Model model];
 }
 
 
 - (id) init {
-    if (self = [super init]) {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.title = [Application name];
+        
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
         button.frame = frame;
 
-        [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(onInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
 
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
@@ -74,86 +69,27 @@
 }
 
 
-- (void) createCreditsView {
-    if (creditsViewController != nil) {
-        return;
-    }
-
-    self.creditsViewController = [[[CreditsViewController alloc] init] autorelease];
-    self.creditsViewController.view.frame = tableView.frame;
-}
-
-
-- (void) flipView:(id) sender {
-    [self createCreditsView];
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:1];
-
-        if (tableView.superview) {
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                                   forView:self.view
-                                     cache:YES];
-            [tableView removeFromSuperview];
-            [self.view addSubview:creditsViewController.tableView];
-        } else {
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                                   forView:self.view
-                                     cache:YES];
-            [creditsViewController.tableView removeFromSuperview];
-            [self.view addSubview:tableView];
-        }
-    }
-    [UIView commitAnimations];
-}
-
-
-- (UITableView*) createTableView:(CGRect) tableViewRect {
-    UITableView* table = [[[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain] autorelease];
-    table.delegate = self;
-    table.dataSource = self;
-
-    // add the subviews and set their resize behavior
-    table.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    return table;
-}
-
-
-- (void) loadView {
-    self.navigationItem.titleView =
-    [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
-
-    CGRect rect = [UIScreen mainScreen].bounds;
-
-    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
-    self.view.autoresizesSubviews = YES;
-
-    self.tableView = [self createTableView:rect];
-
-    [self.view addSubview:tableView];
+- (void) onInfoTapped:(id) sender {
+    CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return NO;
+    return YES;
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 
@@ -227,7 +163,7 @@
 }
 
 
-- (CGFloat)         tableView:(UITableView*) tableView_
+- (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
 
@@ -298,7 +234,5 @@
 
     return nil;
 }
-
-
 
 @end

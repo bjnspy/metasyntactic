@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ACLUNewsViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface ACLUNewsViewController : AbstractTableViewController {
 @private
     NSMutableArray* titlesWithArticles;
 }

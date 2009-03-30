@@ -19,7 +19,7 @@
     NSMutableDictionary* titleToItems;
 }
 
-+ (RSSCache*) cacheWithModel:(Model*) model;
++ (RSSCache*) cache;
 
 - (void) update;
 - (NSArray*) itemsForTitle:(NSString*) title;

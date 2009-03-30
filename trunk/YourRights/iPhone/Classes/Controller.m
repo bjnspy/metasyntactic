@@ -14,7 +14,23 @@
 
 #import "Controller.h"
 
+#import "Model.h"
+#import "RSSCache.h"
 
 @implementation Controller
+
+static Controller* controller = nil;
+
++ (Controller*) controller {
+    if (controller == nil) {
+        controller = [[Controller alloc] init];
+    }
+    
+    return controller;
+}
+
+- (void) start {
+    [[Model model].rssCache update];
+}
 
 @end

@@ -12,34 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "YourRightsAppDelegate.h"
+#import "AppDelegate.h"
 
+#import "Controller.h"
 #import "Model.h"
+#import "OperationQueue.h"
 #import "Pulser.h"
+#import "NotificationCenter.h"
 #import "SectionViewController.h"
 #import "YourRightsNavigationController.h"
 
-@interface YourRightsAppDelegate()
+@interface AppDelegate()
 @property (retain) YourRightsNavigationController* navigationController;
-@property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
 
-@implementation YourRightsAppDelegate
+@implementation AppDelegate
 
-static YourRightsAppDelegate* appDelegate = nil;
+static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize navigationController;
-@synthesize model;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
 
 - (void) dealloc {
     self.window = nil;
     self.navigationController = nil;
-    self.model = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
     [super dealloc];
@@ -49,16 +49,20 @@ static YourRightsAppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
     appDelegate = self;
     
-    SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
-    self.navigationController = [[[YourRightsNavigationController alloc] initWithRootViewController:controller] autorelease];
+    [Model model];
+    [Controller controller];
+    [OperationQueue operationQueue];
+    self.navigationController = [[[YourRightsNavigationController alloc] init] autorelease];
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
 
-    self.model = [[[Model alloc] init] autorelease];
-
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
+    
+    [NotificationCenter attachToViewController:navigationController];
+    
+    [[Controller controller] start];
 }
 
 

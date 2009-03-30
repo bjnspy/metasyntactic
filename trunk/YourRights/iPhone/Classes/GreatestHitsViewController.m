@@ -18,7 +18,6 @@
 #import "Model.h"
 #import "MultiDictionary.h"
 #import "Decision.h"
-#import "GlobalActivityIndicator.h"
 #import "WebViewController.h"
 #import "YourRightsNavigationController.h"
 
@@ -48,7 +47,7 @@
 
 
 - (Model*) model {
-    return (id)[(id)self.navigationController model];
+    return [Model model];
 }
 
 
@@ -203,16 +202,13 @@
 }
 
 
-- (void) majorRefresh {
-    [self initializeData];
-    [self.tableView reloadData];
+- (void) minorRefreshWorker {
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    [self majorRefresh];
+- (void) majorRefreshWorker {
+    [self initializeData];
+    [self reloadTableViewData];
 }
 
 

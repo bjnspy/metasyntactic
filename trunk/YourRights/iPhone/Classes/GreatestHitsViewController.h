@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GreatestHitsViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface GreatestHitsViewController : AbstractTableViewController {
 @private
     NSArray* sectionTitles;
     MultiDictionary* sectionTitleToDecisions;

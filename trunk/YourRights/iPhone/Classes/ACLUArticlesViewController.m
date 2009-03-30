@@ -16,7 +16,6 @@
 
 #import "ArticleBodyCell.h"
 #import "ArticleTitleCell.h"
-#import "GlobalActivityIndicator.h"
 #import "Item.h"
 #import "Model.h"
 #import "RSSCache.h"
@@ -52,20 +51,17 @@
 
 
 - (Model*) model {
-    return (id)[(id)self.navigationController model];
+    return [Model model];
 }
 
 
-- (void) majorRefresh {
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
     self.items = [self.model.rssCache itemsForTitle:title];
-    [self.tableView reloadData];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    [self majorRefresh];
+    [self reloadTableViewData];
 }
 
 
@@ -126,7 +122,7 @@
 
         ArticleTitleCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ArticleTitleCell alloc] initWithModel:self.model frame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ArticleTitleCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         }
 
         [cell setItem:item];

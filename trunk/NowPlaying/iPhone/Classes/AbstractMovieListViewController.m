@@ -144,7 +144,7 @@
 
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
-            [map addObject:movie forKey:[Application starString]];
+            [map addObject:movie forKey:[StringUtilities starString]];
             continue;
         }
 
@@ -171,7 +171,7 @@
     if ([LocaleUtilities isJapanese]) {
         NSMutableArray* array = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
         [array sortUsingSelector:@selector(compare:)];
-        [array insertObject:[Application starString] atIndex:0];
+        [array insertObject:[StringUtilities starString] atIndex:0];
 
         self.sectionTitles = array;
     } else {
@@ -187,7 +187,7 @@
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
 
-    NSString* bookmarksString = [Application starString];
+    NSString* bookmarksString = [StringUtilities starString];
     NSString* moviesString = NSLocalizedString(@"Movies", nil);
 
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
@@ -216,7 +216,7 @@
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
 
-    NSString* starString = [Application starString];
+    NSString* starString = [StringUtilities starString];
 
     NSMutableArray* array = [NSMutableArray array];
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
@@ -269,7 +269,7 @@
         [array addObject:UITableViewIndexSearch];
 #endif
         if (self.model.prioritizeBookmarks) {
-            [array addObject:[Application starString]];
+            [array addObject:[StringUtilities starString]];
         }
 
         [array addObjectsFromArray:[NSArray arrayWithObjects:
@@ -492,7 +492,7 @@
         }
     }
 
-    if ([title isEqual:[Application starString]]) {
+    if ([title isEqual:[StringUtilities starString]]) {
         return NSLocalizedString(@"Bookmarks", nil);
     }
 
@@ -524,8 +524,8 @@
 #endif
     if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
-    } else if (firstChar == [Application starCharacter]) {
-        return [sectionTitles indexOfObject:[Application starString]];
+    } else if (firstChar == [StringUtilities starCharacter]) {
+        return [sectionTitles indexOfObject:[StringUtilities starString]];
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];

@@ -12,11 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractFullScreenViewController : UIViewController {
-@protected
+@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@private
+    UIWindow *window;
+    YourRightsNavigationController* navigationController;
+
+    Pulser* minorRefreshPulser;
+    Pulser* majorRefreshPulser;
 }
 
-/* @protected */
-- (AbstractNavigationController*) abstractNavigationController;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+
++ (void) minorRefresh;
++ (void) majorRefresh;
++ (void) majorRefresh:(BOOL) force;
 
 @end

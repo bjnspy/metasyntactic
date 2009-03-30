@@ -19,7 +19,7 @@
 
 @property (readonly, retain) RSSCache* rssCache;
 
-+ (NSString*) version;
++ (Model*) model;
 
 - (NSArray*) sectionTitles;
 - (NSArray*) shortSectionTitles;
@@ -42,6 +42,9 @@
 - (NSString*) feedbackUrl;
 
 - (DeclarationOfIndependence*) declarationOfIndependence;
-//+ (NSArray*)
+
+- (void) saveNavigationStack:(UINavigationController*) controller;
+
+- (BOOL) screenRotationEnabled;
 
 @end

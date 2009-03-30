@@ -21,6 +21,7 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "StringUtilities.h"
 #import "TappableImageView.h"
 
 @interface NetflixCell()
@@ -190,11 +191,11 @@
     for (int i = 0; i < 5; i++) {
         CGFloat value = score - i;
         if (value <= 0) {
-            [result appendString:[Application emptyStarString]];
+            [result appendString:[StringUtilities emptyStarString]];
         } else if (value >= 1) {
-            [result appendString:[Application starString]];
+            [result appendString:[StringUtilities starString]];
         } else {
-            [result appendString:[Application halfStarString]];
+            [result appendString:[StringUtilities halfStarString]];
         }
     }
 

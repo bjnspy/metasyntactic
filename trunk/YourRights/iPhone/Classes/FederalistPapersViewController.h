@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FederalistPapersViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface FederalistPapersViewController : AbstractTableViewController {
 @private
     Constitution* constitution;
 }

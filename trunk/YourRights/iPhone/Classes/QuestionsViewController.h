@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface QuestionsViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface QuestionsViewController : AbstractTableViewController {
 @private
     NSString* sectionTitle;
     NSString* preamble;

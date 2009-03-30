@@ -14,10 +14,9 @@
 
 #import "YourRightsNavigationController.h"
 
-#import "RootViewController.h"
 #import "SectionViewController.h"
 #import "WebViewController.h"
-#import "YourRightsAppDelegate.h"
+#import "AppDelegate.h"
 
 @interface YourRightsNavigationController()
 @end
@@ -25,43 +24,17 @@
 @implementation YourRightsNavigationController
 
 - (void) dealloc {
-
     [super dealloc];
 }
 
 
-- (Model*) model {
-    return (id)[(id)[[UIApplication sharedApplication] delegate] model];
-}
-
-
-- (void) refresh:(SEL) selector {
-    for (id controller in self.viewControllers) {
-        if ([controller respondsToSelector:selector]) {
-            [controller performSelector:selector];
-        }
+- (id) init {
+    if (self = [super init]) {
+        SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
+        [self pushViewController:controller animated:NO];
     }
-}
-
-
-- (void) majorRefresh {
-    [self refresh:@selector(majorRefresh)];
-}
-
-
-- (void) minorRefresh {
-    [self refresh:@selector(minorRefresh)];
-}
-
-
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
-    [self pushBrowser:address animated:animated showSafariButton:YES];
-}
-
-
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton {
-    WebViewController* controller = [[[WebViewController alloc] initWithAddress:address showSafariButton:showSafariButton] autorelease];
-    [self pushViewController:controller animated:animated];
+    
+    return self;
 }
 
 @end

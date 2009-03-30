@@ -31,4 +31,9 @@
 
 + (NSInteger) hashString:(NSString*) string;
 
++ (unichar) starCharacter;
++ (NSString*) emptyStarString;
++ (NSString*) halfStarString;
++ (NSString*) starString;
+
 @end

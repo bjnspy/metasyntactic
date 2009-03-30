@@ -22,6 +22,7 @@
 #import "Model.h"
 #import "MutableMultiDictionary.h"
 #import "SettingsViewController.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -108,7 +109,7 @@
 
     for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
-            [map addObject:theater forKey:[Application starString]];
+            [map addObject:theater forKey:[StringUtilities starString]];
             continue;
         }
 
@@ -278,7 +279,7 @@
 #ifdef IPHONE_OS_VERSION_3
          UITableViewIndexSearch,
 #endif
-         [Application starString],
+         [StringUtilities starString],
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
@@ -419,7 +420,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     NSString* sectionTitle = [sectionTitles objectAtIndex:section];
-    if ([sectionTitle isEqual:[Application starString]]) {
+    if ([sectionTitle isEqual:[StringUtilities starString]]) {
         return NSLocalizedString(@"Favorites", nil);
     }
 
@@ -448,8 +449,8 @@
 #endif
     if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
-    } else if (firstChar == [Application starCharacter]) {
-        return [sectionTitles indexOfObject:[Application starString]];
+    } else if (firstChar == [StringUtilities starCharacter]) {
+        return [sectionTitles indexOfObject:[StringUtilities starString]];
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];

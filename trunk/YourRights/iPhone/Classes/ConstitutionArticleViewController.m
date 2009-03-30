@@ -15,7 +15,6 @@
 #import "ConstitutionArticleViewController.h"
 
 #import "Article.h"
-#import "GlobalActivityIndicator.h"
 #import "Section.h"
 #import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
@@ -64,14 +63,12 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+- (void) minorRefreshWorker {
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 

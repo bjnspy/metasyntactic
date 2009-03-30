@@ -15,6 +15,7 @@
 #import "Model.h"
 
 #import "Amendment.h"
+#import "Application.h"
 #import "Article.h"
 #import "Constitution.h"
 #import "DateUtilities.h"
@@ -45,14 +46,8 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.5.0";
-
 static Constitution* federalistPapers;
 static DeclarationOfIndependence* declarationOfIndependence;
-
-+ (NSString*) version {
-    return currentVersion;
-}
 
 
 + (void) setupToughQuestions {
@@ -956,31 +951,22 @@ static DeclarationOfIndependence* declarationOfIndependence;
 }
 
 
-- (void) updateCaches:(NSNumber*) number {
-    NSInteger value = [number integerValue];
-
-    switch (value) {
-        case 0:
-            [rssCache update];
-            break;
-
-        default:
-            return;
-    }
-
-    [self performSelector:@selector(updateCaches:)
-               withObject:[NSNumber numberWithInt:value + 1]
-               afterDelay:1];
-}
-
-
 - (id) init {
     if (self = [super init]) {
-        self.rssCache = [RSSCache cacheWithModel:self];
-        [self updateCaches:[NSNumber numberWithInt:0]];
+        self.rssCache = [RSSCache cache];
     }
 
     return self;
+}
+
+static Model* model = nil;
+
++ (Model*) model {
+    if (model == nil) {
+        model = [[Model alloc] init];
+    }
+    
+    return model;
 }
 
 
@@ -1081,7 +1067,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 - (NSString*) feedbackUrl {
     NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
-                      currentVersion,
+                      [Application version],
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
@@ -1100,6 +1086,15 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 - (DeclarationOfIndependence*) declarationOfIndependence {
     return declarationOfIndependence;
+}
+
+
+- (void) saveNavigationStack:(UINavigationController*) controller {
+}
+
+
+- (BOOL) screenRotationEnabled {
+    return YES;
 }
 
 @end

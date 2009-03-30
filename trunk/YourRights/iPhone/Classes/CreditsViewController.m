@@ -39,13 +39,25 @@ typedef enum {
 }
 
 
-- (Model*) model {
-    return (id)[(id)self.navigationController model];
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.title = [Application nameAndVersion];
+    }
+    return self;
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (Model*) model {
+    return [Model model];
+}
+
+
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 

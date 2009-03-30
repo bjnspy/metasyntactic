@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ACLUInfoViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface ACLUInfoViewController : AbstractTableViewController {
 @private
     NSArray* isArray;
     NSArray* isNotArray;

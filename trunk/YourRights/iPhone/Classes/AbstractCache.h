@@ -15,10 +15,6 @@
 @interface AbstractCache : NSObject {
 @protected
     NSCondition* gate;
-    Model* model;
 }
-
-/* @protected */
-- (id) initWithModel:(Model*) model;
 
 @end

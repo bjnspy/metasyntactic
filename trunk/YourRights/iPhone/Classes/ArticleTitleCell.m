@@ -17,28 +17,23 @@
 #import "Item.h"
 
 @interface ArticleTitleCell()
-@property (retain) Model* model;
 @property (retain) UILabel* titleLabel;
 @end
 
 @implementation ArticleTitleCell
 
-@synthesize model;
 @synthesize titleLabel;
 
 - (void) dealloc {
-    self.model = nil;
     self.titleLabel = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithModel:(Model*) model_
-               frame:(CGRect) frame
+- (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.titleLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];

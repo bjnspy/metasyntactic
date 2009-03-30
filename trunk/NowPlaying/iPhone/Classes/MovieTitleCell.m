@@ -26,6 +26,7 @@
 #import "RedMovieTitleCell.h"
 #import "RottenMovieTitleCell.h"
 #import "Score.h"
+#import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
 #import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
@@ -171,7 +172,7 @@
     self.detailTextLabel.text = movie.ratingAndRuntimeString;
 
     if ([[Model model] isBookmarked:movie]) {
-        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
     } else {
         self.textLabel.text = movie.displayTitle;
     }
