@@ -69,7 +69,7 @@ static NSLock* gate;
                                                                    fromDate:[DateUtilities today]];
 
     NSString* url = [NSString stringWithFormat:
-                     @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
+                                        @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                      [Application host],
                      postalCode,
                      components.year,

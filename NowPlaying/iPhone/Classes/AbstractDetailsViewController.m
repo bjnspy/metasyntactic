@@ -184,7 +184,7 @@
 
     self.updateId++;
     NSArray* array = [NSArray arrayWithObjects:
-                      [NSNumber numberWithInt:updateId],
+                       [NSNumber numberWithInt:updateId],
                       searchDate,
                       nil];
     [self.model.dataProvider update:searchDate delegate:self context:array force:YES];

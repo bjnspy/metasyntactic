@@ -36,7 +36,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewCellStyleDefault
-               reuseIdentifier:nil]) {
+                    reuseIdentifier:nil]) {
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         label.font = self.font;

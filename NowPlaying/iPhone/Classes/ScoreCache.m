@@ -160,9 +160,9 @@
     for (id<ScoreProvider> provider in self.scoreProviders) {
         if (provider != currentScoreProvider && provider != noneScoreProvider) {
             [[OperationQueue operationQueue] performSelector:@selector(updateWithoutNotifications)
-                                                 onTarget:provider
-                                                     gate:nil
-                                                  priority:Priority];
+                                                    onTarget:provider
+                                                        gate:nil
+                                                    priority:Priority];
         }
     }
 }

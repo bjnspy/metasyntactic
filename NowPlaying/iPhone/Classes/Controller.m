@@ -100,10 +100,10 @@ static Controller* controller = nil;
 - (void) reportError:(NSString*) error {
     /*
      UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-     message:NSLocalizedString(@"No information found", nil)
-     delegate:nil
-     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-     otherButtonTitles:nil] autorelease];
+                                                      message:NSLocalizedString(@"No information found", nil)
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                            otherButtonTitles:nil] autorelease];
 
      [alert show];
      */
@@ -113,9 +113,9 @@ static Controller* controller = nil;
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
     [[OperationQueue operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
-                                         onTarget:self
-                                             gate:determineLocationGate
-                                          priority:Now];
+                                            onTarget:self
+                                                gate:determineLocationGate
+                                            priority:Now];
 }
 
 

@@ -530,9 +530,9 @@ const NSInteger POSTER_TAG = -1;
     posterCount = 0;
 
     [[OperationQueue operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                   priority:Now];
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Now];
 }
 
 
@@ -943,8 +943,8 @@ const NSInteger POSTER_TAG = -1;
      [self.tableView endUpdates];
 
      [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
-     atScrollPosition:UITableViewScrollPositionMiddle
-     animated:YES];
+                           atScrollPosition:UITableViewScrollPositionMiddle
+                                   animated:YES];
      */
 }
 
@@ -1244,9 +1244,9 @@ const NSInteger POSTER_TAG = -1;
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
     [self.abstractNavigationController pushTicketsView:movie
-                                  theater:theater
-                                    title:theater.name
-                                 animated:animated];
+                                               theater:theater
+                                                 title:theater.name
+                                              animated:animated];
 }
 
 
@@ -1316,10 +1316,10 @@ const NSInteger POSTER_TAG = -1;
     }
 
     [[OperationQueue operationQueue] performSelector:@selector(downloadAllPostersForMovie:)
-                                         onTarget:self.model.largePosterCache
-                                       withObject:movie
-                                             gate:nil
-                                         priority:Now];
+                                            onTarget:self.model.largePosterCache
+                                          withObject:movie
+                                                gate:nil
+                                            priority:Now];
 
     [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
 }
