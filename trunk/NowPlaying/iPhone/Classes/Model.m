@@ -102,7 +102,7 @@ static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelec
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                    = @"navigationStackValues";
 static NSString* NETFLIX_CAN_INSTANT_WATCH                  = @"netflixCanInstantWatch";
-static NSString* NETFLIX_ENABLED                            = @"netflixEnabled";
+static NSString* NETFLIX_DISABLED                           = @"netflixDisabled";
 static NSString* NETFLIX_FIRST_NAME                         = @"netflixFirstName";
 static NSString* NETFLIX_KEY                                = @"netflixKey";
 static NSString* NETFLIX_LAST_NAME                          = @"netflixLastName";
@@ -147,7 +147,7 @@ static NSString** ALL_KEYS[] = {
 &NAVIGATION_STACK_TYPES,
 &NAVIGATION_STACK_VALUES,
 &NETFLIX_CAN_INSTANT_WATCH,
-&NETFLIX_ENABLED,
+&NETFLIX_DISABLED,
 &NETFLIX_FIRST_NAME,
 &NETFLIX_KEY,
 &NETFLIX_LAST_NAME,
@@ -201,7 +201,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &UPCOMING_AND_DVD_HIDE_UPCOMING,
 &PRIORITIZE_BOOKMARKS,
 &USE_NORMAL_FONTS,
-&NETFLIX_ENABLED,
+&NETFLIX_DISABLED,
 &NETFLIX_CAN_INSTANT_WATCH,
 &SCREEN_ROTATION_DISABLED,
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
@@ -615,12 +615,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) netflixEnabled {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_ENABLED];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_DISABLED];
 }
 
 
 - (void) setNetflixEnabled:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:NETFLIX_ENABLED];
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
 
     if (!value) {
         [self setNetflixKey:nil secret:nil userId:nil];

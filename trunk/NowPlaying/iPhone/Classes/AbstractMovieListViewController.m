@@ -406,11 +406,23 @@
 }
 
 
+- (void) minorRefreshWorker {
+#ifdef IPHONE_OS_VERSION_3
+    [searchDisplayController minorRefresh];
+#endif
+}
+
+
 - (void) majorRefreshWorker {
     [self sortMovies];
     [self reloadTableViewData];
 
     [self tryScrollToCurrentDate];
+    
+    
+#ifdef IPHONE_OS_VERSION_3
+    [searchDisplayController majorRefresh];
+#endif
 }
 
 
