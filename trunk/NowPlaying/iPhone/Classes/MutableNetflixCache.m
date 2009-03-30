@@ -187,9 +187,9 @@
     [request setHTTPMethod:@"POST"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
-                           [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
-                           [OARequestParameter parameterWithName:@"etag" value:queue.etag],
+              [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
+              [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
+              [OARequestParameter parameterWithName:@"etag" value:queue.etag],
                            nil];
 
     [request setParameters:parameters];
@@ -595,7 +595,7 @@
     }
 
     // TODO: what do we do if this fails?!
-    NSString* etag = [self downloadEtag:queue.feed];
+NSString* etag = [self downloadEtag:queue.feed];
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
     [newMovies removeObjectIdenticalTo:movie];

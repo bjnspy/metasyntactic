@@ -350,15 +350,15 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
                       [DateUtilities formatShortDate:self.model.searchDate],
                       self.model.currentScoreProvider,
                       (self.model.autoUpdateLocation ? @"yes" : @"no"),
-                      (self.model.prioritizeBookmarks ? @"yes" : @"no"),
+                     (self.model.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
     if (self.model.netflixEnabled) {
         body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-                [StringUtilities nonNilString:self.model.netflixUserId],
-                [StringUtilities nonNilString:self.model.netflixKey],
-                [StringUtilities nonNilString:self.model.netflixSecret]];
+               [StringUtilities nonNilString:self.model.netflixUserId],
+               [StringUtilities nonNilString:self.model.netflixKey],
+               [StringUtilities nonNilString:self.model.netflixSecret]];
     }
 
     NSString* subject;
