@@ -266,8 +266,8 @@
 
     self.postersViewController =
     [[[PostersViewController alloc] initWithNavigationController:self
-                                                          movie:movie
-                                                    posterCount:posterCount] autorelease];
+                                                           movie:movie
+                                                     posterCount:posterCount] autorelease];
 
     [self pushViewController:postersViewController animated:YES];
 }

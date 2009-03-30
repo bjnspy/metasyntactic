@@ -84,7 +84,7 @@
 
 
 - (void) onSetSamePerson:(Person*) person_
-                  owner:(id) owner  {
+                   owner:(id) owner  {
     // refreshing with the same movie.
     // update our image if necessary.
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
@@ -93,7 +93,7 @@
 
 
 - (void) onSetDifferentPerson:(Person*) person_
-                       owner:(id) owner  {
+                        owner:(id) owner  {
     // switching to a new movie.  update everything.
     self.person = person_;
 
@@ -109,7 +109,7 @@
 
 
 - (void) setPerson:(Person*) person_
-            owner:(id) owner {
+             owner:(id) owner {
     titleLabel.text = person_.name;
 
     if (person == person_) {

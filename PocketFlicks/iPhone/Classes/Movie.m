@@ -220,10 +220,10 @@ static NSString* articles[] = {
     [[dictionary objectForKey:studio_key] isKindOfClass:[NSString class]] &&
     [[dictionary objectForKey:releaseDate_key] isKindOfClass:[NSDate class]] &&
     [[dictionary objectForKey:length_key] isKindOfClass:[NSNumber class]] &&
-    [self isStringArray:[dictionary objectForKey:directors_key]] &&
-    [self isStringArray:[dictionary objectForKey:cast_key]] &&
-    [self isStringArray:[dictionary objectForKey:genres_key]] &&
-    [self isStringDictionary:[dictionary objectForKey:additionalFields_key]];
+          [self isStringArray:[dictionary objectForKey:directors_key]] &&
+          [self isStringArray:[dictionary objectForKey:cast_key]] &&
+          [self isStringArray:[dictionary objectForKey:genres_key]] &&
+     [self isStringDictionary:[dictionary objectForKey:additionalFields_key]];
 }
 
 

@@ -310,7 +310,7 @@
       shouldStartLoadWithRequest:(NSURLRequest*) request
                   navigationType:(UIWebViewNavigationType) navigationType {
     if ([[NSURLRequest class] respondsToSelector:@selector(setAllowsAnyHTTPSCertificate:forHost:)]) {
-        [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:request.URL.host];
+        [(id)[NSURLRequest class] setAllowsAnyHTTPSCertificate:YES forHost:request.URL.host];
     }
 
     if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {

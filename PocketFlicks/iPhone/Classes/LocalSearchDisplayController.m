@@ -41,7 +41,7 @@
 
 - (id) initNavigationController:(AbstractNavigationController*) navigationController__
                       searchBar:(UISearchBar*) searchBar__
-            contentsController:(UIViewController*) viewController__ {
+             contentsController:(UIViewController*) viewController__ {
     if (self = [super initNavigationController:navigationController__
                                      searchBar:searchBar__
                             contentsController:viewController__]) {

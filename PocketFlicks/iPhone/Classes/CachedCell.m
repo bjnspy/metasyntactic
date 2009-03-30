@@ -19,10 +19,10 @@
 @synthesize indexPath;
 @synthesize cellCache;
 
-- (void) dealloc { 
+- (void) dealloc {
     self.indexPath = nil;
     self.cellCache = nil;
-    
+
     [super dealloc];
 }
 
@@ -31,7 +31,7 @@
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
     }
-    
+
     return self;
 }
 
@@ -48,22 +48,22 @@
         UIImage* cached = [cellCache objectForKey:indexPath];
         if (cached == nil) {
             CGRect bounds = self.bounds;
-            
+
             UIGraphicsBeginImageContext(bounds.size);
             {
                 [super drawRect:rect];
                 cached = UIGraphicsGetImageFromCurrentImageContext();
             }
             UIGraphicsEndImageContext();
-            
+
             [cellCache setObject:cached forKey:indexPath];
         } else {
             NSLog(@"");
         }
-        
+
         [cached drawAtPoint:CGPointMake(0,0)];
     }
-    
+
     /*
     [super drawRect:rect];
 
@@ -73,17 +73,17 @@
         UIImage* cached = [cellCache objectForKey:indexPath];
         if (cached == nil) {
             CGRect bounds = self.bounds;
-            
+
             UIGraphicsBeginImageContext(bounds.size);
             {
                 [self drawRectWorker:rect];
                 cached = UIGraphicsGetImageFromCurrentImageContext();
             }
             UIGraphicsEndImageContext();
-            
+
             [cellCache setObject:cached forKey:indexPath];
         }
-        
+
         [cached drawAtPoint:CGPointMake(0,0)];
     }
      */

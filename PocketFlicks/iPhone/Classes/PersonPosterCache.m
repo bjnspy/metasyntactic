@@ -120,7 +120,7 @@
     for (XmlElement* imElement in imElements) {
         NSString* name = [imElement attributeValue:@"title"];
         if ([self hasProperSuffix:name] &&
-            ![self isStockImage:name]) {
+              ![self isStockImage:name]) {
             imageName = name;
             break;
         }
