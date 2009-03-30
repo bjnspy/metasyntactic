@@ -51,9 +51,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain
-               navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.searchEngine = [LocalSearchEngine engineWithDelegate:self];
     }
 
@@ -268,56 +267,43 @@
 }
 
 
-- (ApplicationTabBarController*) applicationTabBarController {
-    return abstractNavigationController.applicationTabBarController;
-}
-
-
 - (void) didSelectMovieRow:(NSInteger) row {
-    [self.applicationTabBarController switchToMovies];
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
-    [self.applicationTabBarController switchToTheaters];
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushTheaterDetails:theater animated:YES];
+    [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
-    [self.applicationTabBarController switchToUpcoming];
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
-    [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.dvds objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
-    [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.bluray objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.navigationController popViewControllerAnimated:NO];
-
     if (indexPath.section == 0) {
         return [self didSelectMovieRow:indexPath.row];
     } else if (indexPath.section == 1) {

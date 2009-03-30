@@ -66,8 +66,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -338,7 +338,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [abstractNavigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -406,7 +406,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
     if (section == VoteForIconSection) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-        [abstractNavigationController pushBrowser:url showSafariButton:NO animated:YES];
+        [self.abstractNavigationController pushBrowser:url showSafariButton:NO animated:YES];
     } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
         NSString* url = nil;
         if (section == WrittenBySection) {

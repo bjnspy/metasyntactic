@@ -20,6 +20,6 @@
     NSArray* movies;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController category:(NSString*) category;
+- (id) initWithCategory:(NSString*) category;
 
 @end

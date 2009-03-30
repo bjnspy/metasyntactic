@@ -46,9 +46,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              movie:(Movie*) movie__ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) initWithMovie:(Movie*) movie__ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.movie = movie__;
     }
 
@@ -143,15 +142,15 @@
     if (indexPath.section < reviews.count) {
         Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link) {
-            [abstractNavigationController pushBrowser:review.link animated:YES];
+            [self.abstractNavigationController pushBrowser:review.link animated:YES];
         }
     } else {
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
             Score* score = [self.model metacriticScoreForMovie:movie];
             NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
-            [abstractNavigationController pushBrowser:address animated:YES];
+            [self.abstractNavigationController pushBrowser:address animated:YES];
         } else if (self.model.googleScores) {
-            [abstractNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
+            [self.abstractNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
         }
     }
 }

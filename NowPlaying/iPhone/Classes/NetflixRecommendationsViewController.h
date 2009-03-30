@@ -20,6 +20,4 @@
     MultiDictionary* genreToMovies;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

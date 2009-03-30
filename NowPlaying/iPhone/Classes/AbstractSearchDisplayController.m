@@ -28,19 +28,16 @@
 #import "UpcomingMovieCell.h"
 
 @interface AbstractSearchDisplayController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) AbstractSearchEngine* searchEngineData;
 @property (retain) SearchResult* searchResult;
 @end
 
 @implementation AbstractSearchDisplayController
 
-@synthesize navigationController;
 @synthesize searchEngineData;
 @synthesize searchResult;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.searchEngineData = nil;
     self.searchResult = nil;
 
@@ -63,12 +60,9 @@
 }
 
 
-- (id)initNavigationController:(AbstractNavigationController*) navigationController__
-                     searchBar:(UISearchBar *)searchBar__
-            contentsController:(UIViewController *)viewController__ {
+- (id)initWithSearchBar:(UISearchBar*) searchBar__
+     contentsController:(UIViewController*) viewController__ {
     if (self = [super initWithSearchBar:searchBar__ contentsController:viewController__]) {
-        self.navigationController = navigationController__;
-
         self.delegate = self;
         self.searchResultsDataSource = self;
         self.searchResultsDelegate = self;
@@ -82,6 +76,11 @@
     }
 
     return self;
+}
+
+
+- (AbstractNavigationController*) abstractNavigationController {
+    return [(id)self.searchContentsController abstractNavigationController];
 }
 
 

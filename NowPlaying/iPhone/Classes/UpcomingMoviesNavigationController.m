@@ -54,7 +54,7 @@
     [super loadView];
 
     if (upcomingMoviesViewController == nil) {
-        self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
+        self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] init] autorelease];
         [self pushViewController:upcomingMoviesViewController animated:NO];
     }
 }

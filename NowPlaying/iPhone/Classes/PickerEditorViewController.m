@@ -51,14 +51,13 @@
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) controller_
-                    title:(NSString*) title_
+- (id) initWithTitle:(NSString*) title_
                      text:(NSString*) text_
                    object:(id) object_
                  selector:(SEL) selector_
                    values:(NSArray*) values__
              defaultValue:(NSString*) defaultValue {
-    if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
+    if (self = [super initWithObject:object_ selector:selector_]) {
         self.values = values__;
 
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];

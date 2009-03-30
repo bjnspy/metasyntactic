@@ -107,9 +107,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            feedKey:(NSString*) feedKey_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) initWithFeedKey:(NSString*) feedKey_ {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];
@@ -380,7 +379,7 @@
             movie = [queue.saved objectAtIndex:indexPath.row];
         }
 
-        [abstractNavigationController pushMovieDetails:movie animated:YES];
+        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
     }
 }
 

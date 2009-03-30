@@ -21,9 +21,8 @@
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) navigationController
-               withObject:(id) object
-             withSelector:(SEL) selector;
+- (id) initWithObject:(id) object
+             selector:(SEL) selector;
 
 - (void) cancel:(id) sender;
 - (void) save:(id) sender;

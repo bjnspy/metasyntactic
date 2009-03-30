@@ -25,8 +25,5 @@
     NSArray* people;
 }
 
-
-- (id) initWithNavigationController:(AbstractNavigationController*) abstractNavigationController;
-
 @end
 #endif

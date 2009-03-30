@@ -19,8 +19,7 @@
     NSArray* feedKeys;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                           feedKeys:(NSArray*) feedKeys
-                              title:(NSString*) title;
+- (id) initWithFeedKeys:(NSArray*) feedKeys
+                  title:(NSString*) title;
 
 @end

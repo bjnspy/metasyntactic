@@ -16,17 +16,18 @@
 #ifdef IPHONE_OS_VERSION_3
 @interface AbstractSearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @protected
-    AbstractNavigationController* navigationController;
     AbstractSearchEngine* searchEngineData;
     SearchResult* searchResult;
 }
 
-- (id) initNavigationController:(AbstractNavigationController*) navigationController
-                      searchBar:(UISearchBar*) searchBar
+- (id) initWithSearchBar:(UISearchBar*) searchBar
              contentsController:(UIViewController*) viewController;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
+
+/* @protected */
+- (AbstractNavigationController*) abstractNavigationController;
 
 @end
 #endif

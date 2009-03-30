@@ -28,8 +28,7 @@
 #endif
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                            address:(NSString*) address
-                   showSafariButton:(BOOL) showSafariButton;
+- (id) initWithAddress:(NSString*) address
+      showSafariButton:(BOOL) showSafariButton;
 
 @end
