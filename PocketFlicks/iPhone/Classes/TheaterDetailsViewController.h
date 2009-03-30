@@ -24,7 +24,6 @@
     NSArray* movieShowtimes;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                            theater:(Theater*) theater;
+- (id) initWithTheater:(Theater*) theater;
 
 @end

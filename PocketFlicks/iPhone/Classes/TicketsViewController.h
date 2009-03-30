@@ -22,8 +22,7 @@
     NSArray* performances;
 }
 
-- (id) initWithController:(AbstractNavigationController*) navigationController
-                  theater:(Theater*) theater
+- (id) initWithTheater:(Theater*) theater
                     movie:(Movie*) movie
                     title:(NSString*) title;
 

@@ -44,8 +44,8 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = NSLocalizedString(@"Recommendations", nil);
     }
 
@@ -108,9 +108,9 @@
     NSString* genre = [genres objectAtIndex:indexPath.row];
 
     NetflixGenreRecommendationsViewController* controller =
-    [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:abstractNavigationController genre:genre] autorelease];
+    [[[NetflixGenreRecommendationsViewController alloc] initWithGenre:genre] autorelease];
 
-    [abstractNavigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

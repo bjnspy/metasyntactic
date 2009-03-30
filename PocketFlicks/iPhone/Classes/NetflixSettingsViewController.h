@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixSettingsViewController : UITableViewController {
-@private
-    AbstractNavigationController* navigationController;
-}
+#import "AbstractTableViewController.h"
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
+@interface NetflixSettingsViewController : AbstractTableViewController {
+@private
+}
 
 @end

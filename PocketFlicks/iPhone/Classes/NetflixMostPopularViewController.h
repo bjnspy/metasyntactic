@@ -19,6 +19,4 @@
     NSDictionary* titleToCount;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

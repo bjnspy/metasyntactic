@@ -34,7 +34,6 @@
     BOOL readonlyMode;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                            feedKey:(NSString*) feedKey;
+- (id) initWithFeedKey:(NSString*) feedKey;
 
 @end

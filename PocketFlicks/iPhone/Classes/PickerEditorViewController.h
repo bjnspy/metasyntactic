@@ -21,8 +21,7 @@
     UILabel* label;
 }
 
-- (id) initWithController:(AbstractNavigationController*) navigationController
-                    title:(NSString*) title
+- (id) initWithTitle:(NSString*) title
                      text:(NSString*) text
                    object:(id) object
                  selector:(SEL) selector

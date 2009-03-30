@@ -19,6 +19,4 @@
     UISegmentedControl* segmentedControl;
 }
 
-- (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
-
 @end

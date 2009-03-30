@@ -65,10 +65,9 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            address:(NSString*) address__
-                   showSafariButton:(BOOL) showSafariButton__ {
-    if (self = [super initWithNavigationController:navigationController_]) {
+- (id) initWithAddress:(NSString*) address__
+      showSafariButton:(BOOL) showSafariButton__ {
+    if (self = [super init]) {
         self.address = address__;
         self.showSafariButton = showSafariButton__;
     }
@@ -303,6 +302,10 @@
 #ifdef IPHONE_OS_VERSION_3
     [self.abstractNavigationController setToolbarHidden:YES animated:NO];
 #endif
+}
+
+
+- (void) setAllowsAnyHTTPSCertificate:(BOOL) allows forHost:(NSString*) host {
 }
 
 

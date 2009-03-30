@@ -32,15 +32,14 @@
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) controller
-                    title:(NSString*) title
+- (id) initWithTitle:(NSString*) title
                    object:(id) object_
                  selector:(SEL) selector_
                      text:(NSString*) text
                   message:(NSString*) message
               placeHolder:(NSString*) placeHolder
                      type:(UIKeyboardType) type {
-    if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
+    if (self = [super initWithObject:object_ selector:selector_]) {
         self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
         textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 

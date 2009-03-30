@@ -60,8 +60,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = [Application nameAndVersion];
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -283,7 +283,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [abstractNavigationController pushViewController:controller animated:YES];
+    [self.abstractNavigationController pushViewController:controller animated:YES];
 }
 
 

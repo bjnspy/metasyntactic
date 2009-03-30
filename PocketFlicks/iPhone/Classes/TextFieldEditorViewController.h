@@ -20,8 +20,7 @@
     UILabel* messageLabel;
 }
 
-- (id) initWithController:(AbstractNavigationController*) navigationController
-                    title:(NSString*) title
+- (id) initWithTitle:(NSString*) title
                    object:(id) object
                  selector:(SEL) selector
                      text:(NSString*) text

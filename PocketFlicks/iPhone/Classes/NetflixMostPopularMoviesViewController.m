@@ -45,15 +45,10 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                           category:(NSString*) category_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) initWithCategory:(NSString*) category_ {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.category = category_;
         self.title = category_;
-
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = category;
-        self.navigationItem.titleView = label;
     }
 
     return self;
@@ -145,7 +140,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

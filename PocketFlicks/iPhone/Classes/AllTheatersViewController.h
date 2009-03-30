@@ -32,6 +32,4 @@
     NSArray* indexTitles;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

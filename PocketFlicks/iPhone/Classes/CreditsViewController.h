@@ -24,6 +24,4 @@
     NSDictionary* localizers;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

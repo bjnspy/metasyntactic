@@ -24,7 +24,5 @@
     UISearchBar* searchBar;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end
 #endif

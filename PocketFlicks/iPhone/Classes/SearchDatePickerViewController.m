@@ -26,13 +26,11 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                         withValues:(NSArray*) values_
+- (id) initWithValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_
                              object:(id) object_
                            selector:(SEL) selector_ {
-    if (self = [super initWithController:navigationController_
-                                   title:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
+    if (self = [super initWithTitle:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
                                     text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
                                   object:object_
                                 selector:selector_
@@ -49,9 +47,8 @@
 }
 
 
-+ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController
-                                                            object:(id) object
-                                                          selector:(SEL) selector {
++ (SearchDatePickerViewController*) pickerWithObject:(id) object
+                                            selector:(SEL) selector {
     NSMutableArray* values = [NSMutableArray array];
     NSDate* today = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -64,11 +61,10 @@
     }
     NSString* defaultValue = [DateUtilities formatFullDate:[[Model model] searchDate]];
 
-    return [[[SearchDatePickerViewController alloc] initWithNavigationController:navigationController
-                                                                      withValues:values
-                                                                    defaultValue:defaultValue
-                                                                          object:object
-                                                                        selector:selector] autorelease];
+    return [[[SearchDatePickerViewController alloc] initWithValues:values
+                                                      defaultValue:defaultValue
+                                                            object:object
+                                                          selector:selector] autorelease];
 }
 
 
