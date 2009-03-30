@@ -81,9 +81,6 @@ typedef enum {
 
 
 - (void) reload {
-    self.tableView.rowHeight = 38;
-    //self.tableView.sectionHeaderHeight = 2;
-    self.tableView.sectionFooterHeight = 0;
     [self reloadTableViewData];
 }
 
@@ -318,13 +315,6 @@ typedef enum {
 
 - (void) onNetflixEnabledChanged:(UISwitch*) sender {
     [self.controller setNetflixEnabled:sender.on];
-
-    if (self.model.netflixEnabled) {
-        NSString* message = NSLocalizedString(@"This is the first release of Netflix support in Now Playing. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button above.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
-        [AlertUtilities showOkAlert:message];
-    }
-
-    [self reloadTableViewData];
 }
 
 

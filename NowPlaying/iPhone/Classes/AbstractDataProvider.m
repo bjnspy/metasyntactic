@@ -609,13 +609,15 @@
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
-    if (request.force || ![self tooSoon:self.lastLookupDate]) {
-        NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
-        [NotificationCenter addNotifications:notifications];
-        {
-            [self updateBackgroundEntryPointWorker:request];
+    if (self.model.dataProviderEnabled) {
+        if (request.force || ![self tooSoon:self.lastLookupDate]) {
+            NSArray* notifications = [NSArray arrayWithObjects:NSLocalizedString(@"movies", nil), NSLocalizedString(@"theaters", nil), nil];
+            [NotificationCenter addNotifications:notifications];
+            {
+                [self updateBackgroundEntryPointWorker:request];
+            }
+            [NotificationCenter removeNotifications:notifications];
         }
-        [NotificationCenter removeNotifications:notifications];
     }
 
     [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
