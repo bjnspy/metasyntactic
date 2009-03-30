@@ -33,10 +33,9 @@
 }
 
 
-- (id) initWithController:(AbstractNavigationController*) navigationController_
-               withObject:(id) object__
-             withSelector:(SEL) selector__ {
-    if (self = [super initWithNavigationController:navigationController_]) {
+- (id) initWithObject:(id) object__
+             selector:(SEL) selector__ {
+    if (self = [super init]) {
         self.object = object__;
         self.selector = selector__;
     }

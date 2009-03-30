@@ -20,7 +20,6 @@
     NSArray* reviews;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) controller
-                              movie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie;
 
 @end

@@ -26,11 +26,6 @@
 - (void) majorRefresh;
 - (void) minorRefresh;
 
-- (void) switchToMovies;
-- (void) switchToTheaters;
-- (void) switchToUpcoming;
-- (void) switchToDVD;
-
 - (AbstractNavigationController*) selectedNavigationController;
 - (UINavigationController*) netflixNavigationController;
 

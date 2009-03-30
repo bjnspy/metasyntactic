@@ -45,7 +45,7 @@
     [super loadView];
 
     if (netflixViewController == nil) {
-        self.netflixViewController = [[[NetflixViewController alloc] initWithNavigationController:self] autorelease];
+        self.netflixViewController = [[[NetflixViewController alloc] init] autorelease];
         [self pushViewController:netflixViewController animated:NO];
     }
 }

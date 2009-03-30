@@ -19,8 +19,6 @@
     UISegmentedControl* segmentedControl;
 }
 
-- (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
-
 - (BOOL) sortingByTitle;
 
 @end

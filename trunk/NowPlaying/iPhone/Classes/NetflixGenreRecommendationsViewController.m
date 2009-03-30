@@ -44,15 +44,15 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              genre:(NSString*) genre_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) initWithGenre:(NSString*) genre_ {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.genre = genre_;
         self.title = genre_;
-
+/*
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = genre;
         self.navigationItem.titleView = label;
+ */
     }
 
     return self;
@@ -154,7 +154,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

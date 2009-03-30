@@ -18,6 +18,4 @@
 @private
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

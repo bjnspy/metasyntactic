@@ -26,6 +26,4 @@
     NSInteger mostPopularTitleCount;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
 @end

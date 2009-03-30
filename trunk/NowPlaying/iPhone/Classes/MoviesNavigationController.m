@@ -53,7 +53,7 @@
     [super loadView];
 
     if (allMoviesViewController == nil) {
-        self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
+        self.allMoviesViewController = [[[AllMoviesViewController alloc] init] autorelease];
         [self pushViewController:allMoviesViewController animated:NO];
     }
 }

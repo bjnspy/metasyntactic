@@ -47,7 +47,7 @@
     [super loadView];
 
     if (allTheatersViewController == nil) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
+        self.allTheatersViewController = [[[AllTheatersViewController alloc] init] autorelease];
         [self pushViewController:allTheatersViewController animated:NO];
     }
 }

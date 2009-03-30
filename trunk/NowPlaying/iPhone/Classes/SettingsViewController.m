@@ -61,8 +61,8 @@ typedef enum {
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped navigationController:navigationController_]) {
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = [Application nameAndVersion];
     }
 
@@ -351,11 +351,10 @@ typedef enum {
 
 - (void) pushSearchDatePicker {
     SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:abstractNavigationController
-                                                            object:self
-                                                          selector:@selector(onSearchDateChanged:)];
+    [SearchDatePickerViewController pickerWithObject:self
+                                            selector:@selector(onSearchDateChanged:)];
 
-    [abstractNavigationController pushViewController:pickerController animated:YES];
+    [self.navigationController pushViewController:pickerController animated:YES];
 }
 
 
@@ -372,21 +371,20 @@ typedef enum {
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
     PickerEditorViewController* controller =
-    [[[PickerEditorViewController alloc] initWithController:abstractNavigationController
-                                                      title:NSLocalizedString(@"Search Distance", nil)
+    [[[PickerEditorViewController alloc] initWithTitle:NSLocalizedString(@"Search Distance", nil)
                                                        text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
                                                      object:self
                                                    selector:@selector(onSearchRadiusChanged:)
                                                      values:values
                                                defaultValue:defaultValue] autorelease];
 
-    [abstractNavigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectCreditsRow:(NSInteger) row {
-    CreditsViewController* controller = [[[CreditsViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
-    [abstractNavigationController pushViewController:controller animated:YES];
+    CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -418,8 +416,7 @@ typedef enum {
         }
 
         TextFieldEditorViewController* controller =
-        [[[TextFieldEditorViewController alloc] initWithController:abstractNavigationController
-                                                             title:NSLocalizedString(@"Location", nil)
+        [[[TextFieldEditorViewController alloc] initWithTitle:NSLocalizedString(@"Location", nil)
                                                             object:self
                                                           selector:@selector(onUserAddressChanged:)
                                                               text:self.model.userAddress
@@ -427,15 +424,15 @@ typedef enum {
                                                        placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
                                                               type:UIKeyboardTypeDefault] autorelease];
 
-        [abstractNavigationController pushViewController:controller animated:YES];
+        [self.navigationController pushViewController:controller animated:YES];
     } else if (row == 1) {
         [self pushFilterDistancePicker];
     } else if (row == 2) {
         [self pushSearchDatePicker];
     } else if (row == 3) {
         ScoreProviderViewController* controller =
-        [[[ScoreProviderViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
-        [abstractNavigationController pushViewController:controller animated:YES];
+        [[[ScoreProviderViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -447,8 +444,8 @@ typedef enum {
 
 - (void) didSelectDvdBlurayRow:(NSInteger) row {
     if (row == 1) {
-        DVDFilterViewController* controller = [[[DVDFilterViewController alloc] initWithNavigationController:abstractNavigationController] autorelease];
-        [abstractNavigationController pushViewController:controller animated:YES];
+        DVDFilterViewController* controller = [[[DVDFilterViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

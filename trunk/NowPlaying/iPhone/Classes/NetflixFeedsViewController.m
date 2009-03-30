@@ -40,10 +40,9 @@
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                           feedKeys:(NSArray*) feedKeys_
-                              title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStylePlain navigationController:navigationController_]) {
+- (id) initWithFeedKeys:(NSArray*) feedKeys_
+                  title:(NSString*) title_ {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = title_;
         self.feedKeys = feedKeys_;
     }
@@ -138,9 +137,8 @@
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
-    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:abstractNavigationController
-                                                                                                       feedKey:feed.key] autorelease];
-    [abstractNavigationController pushViewController:controller animated:YES];
+    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:feed.key] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

@@ -64,10 +64,9 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              movie:(Movie*) movie_
-                        posterCount:(NSInteger) posterCount_ {
-    if (self = [super initWithNavigationController:navigationController_]) {
+- (id) initWithMovie:(Movie*) movie_
+         posterCount:(NSInteger) posterCount_ {
+    if (self = [super init]) {
         self.movie = movie_;
         posterCount = posterCount_;
 

@@ -14,18 +14,15 @@
 
 @interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate> {
 @protected
-    AbstractNavigationController* abstractNavigationController;
-
     BOOL visible;
     NSArray* visibleIndexPaths;
 }
-
-- (id) initWithStyle:(UITableViewStyle) style navigationController:(AbstractNavigationController*) navigationController;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
 
 /* @protected */
+- (AbstractNavigationController*) abstractNavigationController;
 - (void) reloadTableViewData;
 - (void) didReceiveMemoryWarningWorker;
 
