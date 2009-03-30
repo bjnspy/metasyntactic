@@ -41,6 +41,9 @@ string UnderscoresToCamelCase(const MethodDescriptor* method);
 // Strips ".proto" or ".protodevel" from the end of a filename.
 string StripProto(const string& filename);
 
+//
+bool IsBootstrapFile(const FileDescriptor* file);
+
 // Gets the name of the file we're going to generate (sans the .pb.h
 // extension).  This does not include the path to that file.
 string FileName(const FileDescriptor* file);

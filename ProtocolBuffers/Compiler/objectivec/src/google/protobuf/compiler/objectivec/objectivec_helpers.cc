@@ -97,6 +97,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  bool IsBootstrapFile(const FileDescriptor* file) {
+    return file->name() == "google/protobuf/descriptor.proto";
+  }
+
+
   string FileName(const FileDescriptor* file) {
     string basename;
 
@@ -126,26 +131,27 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  string FileClassName(const FileDescriptor* file) {
-    if (file->options().HasExtension(objectivec_file_options)) {
+  string FileClassPrefix(const FileDescriptor* file) {
+    if (IsBootstrapFile(file)) {
+      return "PB";
+    } else if (file->options().HasExtension(objectivec_file_options)) {
       ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
      
-      return options.objectivec_class_prefix() + FileName(file) + "Root";
+      return options.objectivec_class_prefix();
     } else {
-      return FileName(file) + "Root";
+      return "";
     }
+  }
+
+
+  string FileClassName(const FileDescriptor* file) {
+    return FileClassPrefix(file) + FileName(file) + "Root";
   }
 
 
   string ToObjectiveCName(const string& full_name, const FileDescriptor* file) {
     string result;
-
-    if (file->options().HasExtension(objectivec_file_options)) {
-      ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
-     
-      result += options.objectivec_class_prefix();
-    }
-
+    result += FileClassPrefix(file);
     result += full_name;
     return result;
   }
@@ -173,13 +179,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   string ClassName(const Descriptor* descriptor) {
     string name;
-    
-    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
-      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
-
-      name += options.objectivec_class_prefix();
-    }
-
+    name += FileClassPrefix(descriptor->file());
     name += ClassNameWorker(descriptor);
     return name;
   }
@@ -187,12 +187,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   string ClassName(const EnumDescriptor* descriptor) {
     string name;
-    
-    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
-      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
-
-      name += options.objectivec_class_prefix();
-    }
+    name += FileClassPrefix(descriptor->file());
     name += ClassNameWorker(descriptor);
     return name;
   }
@@ -200,13 +195,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   string ClassName(const ServiceDescriptor* descriptor) {
     string name;
-    
-    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
-      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
-
-      name += options.objectivec_class_prefix();
-    }
-
+    name += FileClassPrefix(descriptor->file());
     name += descriptor->name();
     return name;
   }

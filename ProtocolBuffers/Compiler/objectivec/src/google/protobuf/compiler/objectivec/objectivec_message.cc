@@ -729,7 +729,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) {
     printer->Print(
-      "- ($classname$*) internalGetResult {\n"
+      "- ($PBExtendableMessage$*) internalGetResult {\n"
       "  return result;\n"
       "}\n"
       "- ($classname$_Builder*) clear {\n"

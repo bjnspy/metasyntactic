@@ -102,7 +102,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "BOOL has$capitalized_name$:1;\n");
+    printer->Print(variables_, "BOOL has$capitalized_name$;\n");
   }
 
 
@@ -118,7 +118,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (retain, readonly) $storage_type$ $name$;\n");
+      "@property (readonly, retain) $storage_type$ $name$;\n");
   }
 
 
@@ -139,10 +139,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
-      "  return has$capitalized_name$ != 0;\n"
+      "  return has$capitalized_name$;\n"
       "}\n"
       "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
-      "  has$capitalized_name$ = (has$capitalized_name$_ != 0);\n"
+      "  has$capitalized_name$ = has$capitalized_name$_;\n"
       "}\n"
       "@synthesize $name$;\n");
   }

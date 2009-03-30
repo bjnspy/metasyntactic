@@ -4431,7 +4431,7 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   }
   return self;
 }
-- (PBFileOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBFileOptions_Builder*) clear {
@@ -4779,7 +4779,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   }
   return self;
 }
-- (PBMessageOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBMessageOptions_Builder*) clear {
@@ -5125,7 +5125,7 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
   }
   return self;
 }
-- (PBFieldOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBFieldOptions_Builder*) clear {
@@ -5407,7 +5407,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   }
   return self;
 }
-- (PBEnumOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBEnumOptions_Builder*) clear {
@@ -5637,7 +5637,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   }
   return self;
 }
-- (PBEnumValueOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBEnumValueOptions_Builder*) clear {
@@ -5867,7 +5867,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   }
   return self;
 }
-- (PBServiceOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBServiceOptions_Builder*) clear {
@@ -6097,7 +6097,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   }
   return self;
 }
-- (PBMethodOptions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (PBMethodOptions_Builder*) clear {
