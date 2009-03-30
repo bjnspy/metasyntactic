@@ -846,4 +846,3 @@
 - (ReviewsListProto_Builder*) addAllReviews:(NSArray*) values;
 - (ReviewsListProto_Builder*) clearReviewsList;
 @end
-

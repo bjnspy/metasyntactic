@@ -66,7 +66,7 @@
 
 - (UISegmentedControl*) setupSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                              [NSArray arrayWithObjects:
+                                                   [NSArray arrayWithObjects:
                                NSLocalizedString(@"Release", nil),
                                NSLocalizedString(@"Title", nil),
                                nil]] autorelease];

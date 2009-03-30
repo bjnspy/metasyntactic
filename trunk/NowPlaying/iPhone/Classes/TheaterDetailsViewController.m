@@ -330,9 +330,9 @@
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
     [self.abstractNavigationController pushTicketsView:movie
-                                  theater:theater
-                                    title:movie.displayTitle
-                                 animated:animated];
+                                               theater:theater
+                                                 title:movie.displayTitle
+                                              animated:animated];
 }
 
 

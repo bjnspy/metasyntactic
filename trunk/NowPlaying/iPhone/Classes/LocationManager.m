@@ -178,10 +178,10 @@
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [locationManager stopUpdatingLocation];
             [[OperationQueue operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
-                                                 onTarget:self
-                                               withObject:newLocation
-                                                     gate:gate
-                                                  priority:Now];
+                                                    onTarget:self
+                                                  withObject:newLocation
+                                                        gate:gate
+                                                    priority:Now];
         }
     }
 }

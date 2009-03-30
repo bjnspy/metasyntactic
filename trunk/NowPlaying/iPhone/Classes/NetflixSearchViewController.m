@@ -152,8 +152,8 @@
          PersonCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
          if (cell == nil) {
          cell = [[[PersonCell alloc] initWithFrame:CGRectZero
-         reuseIdentifier:reuseIdentifier
-         model:self.model] autorelease];
+                                   reuseIdentifier:reuseIdentifier
+                                             model:self.model] autorelease];
          }
 
          Person* person = [people objectAtIndex:indexPath.row];

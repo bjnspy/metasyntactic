@@ -159,9 +159,9 @@
     [self setupButton];
 
     [[OperationQueue operationQueue] performSelector:@selector(requestAuthorizationToken)
-                                  onTarget:self
-                                      gate:nil
-                                   priority:Now];
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Now];
 }
 
 
@@ -266,9 +266,9 @@
     button.enabled = NO;
 
     [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
-                                         onTarget:self
-                                             gate:nil
-                                         priority:Now];
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Now];
 }
 
 
