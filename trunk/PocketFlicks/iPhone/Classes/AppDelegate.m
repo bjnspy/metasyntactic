@@ -71,7 +71,7 @@ static AppDelegate* appDelegate = nil;
     [OperationQueue operationQueue];
     self.tabBarController = [ApplicationTabBarController controller];
     UIViewController* netflixNavigationController = tabBarController.netflixNavigationController;
-    
+
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 

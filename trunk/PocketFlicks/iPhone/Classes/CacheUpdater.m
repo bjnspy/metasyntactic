@@ -108,7 +108,7 @@ static CacheUpdater* cacheUpdater = nil;
     [model.amazonCache       processMovie:movie];
     [model.wikipediaCache    processMovie:movie];
     [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
-    
+
     if (notifications) {
         [NotificationCenter removeNotification:movie.canonicalTitle];
     }
