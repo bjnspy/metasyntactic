@@ -50,10 +50,10 @@
 
     NSArray* array =
     [NSArray arrayWithObjects:
-     [NSNumber numberWithInt:1],
-     [NSNumber numberWithInt:2],
-     [NSNumber numberWithInt:3],
-     [NSNumber numberWithInt:4], nil];
+      [NSNumber numberWithInt:1],
+      [NSNumber numberWithInt:2],
+      [NSNumber numberWithInt:3],
+      [NSNumber numberWithInt:4], nil];
 
     [builder addAllRepeatedInt32:array];
     [builder addAllRepeatedForeignEnum:[NSArray arrayWithObject:[ForeignEnum FOREIGN_BAZ]]];

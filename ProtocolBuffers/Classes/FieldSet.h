@@ -31,10 +31,10 @@
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<PBMessage_Builder>) builder;
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
-                 extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                           builder:(id<PBMessage_Builder>) builder
-                               tag:(int32_t) tag;
+                          unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
+                      extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+                                builder:(id<PBMessage_Builder>) builder
+                                    tag:(int32_t) tag;
 
 + (PBFieldSet*) set;
 + (PBFieldSet*) emptySet;

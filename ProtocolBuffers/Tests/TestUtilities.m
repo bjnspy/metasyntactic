@@ -63,13 +63,13 @@
     [message setExtension:[UnittestRoot repeatedBytesExtension] index:1 value:[TestUtilities getData:@"516"]];
 
     [message setExtension:[UnittestRoot repeatedGroupExtension] index:1 value:
-     [[[RepeatedGroup_extension builder] setA:517] build]];
+[[[RepeatedGroup_extension builder] setA:517] build]];
     [message setExtension:[UnittestRoot repeatedNestedMessageExtension] index:1 value:
-     [[[TestAllTypes_NestedMessage builder] setBb:518] build]];
+[[[TestAllTypes_NestedMessage builder] setBb:518] build]];
     [message setExtension:[UnittestRoot repeatedForeignMessageExtension] index:1 value:
-     [[[ForeignMessage builder] setC:519] build]];
+[[[ForeignMessage builder] setC:519] build]];
     [message setExtension:[UnittestRoot repeatedImportMessageExtension] index:1 value:
-     [[[ImportMessage builder] setD:520] build]];
+[[[ImportMessage builder] setD:520] build]];
 
     [message setExtension:[UnittestRoot repeatedNestedEnumExtension] index:1 value:
      [TestAllTypes_NestedEnum FOO]];

@@ -99,7 +99,7 @@
     Section* section = [article.sections objectAtIndex:indexPath.row];
     FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithSection:section] autorelease];
     [self.navigationController pushViewController:controller
-                                    animated:YES];
+                                         animated:YES];
 }
 
 

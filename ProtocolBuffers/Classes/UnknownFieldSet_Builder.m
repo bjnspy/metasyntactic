@@ -79,7 +79,7 @@
             return lastField;
         }
         // Note:  addField() will reset lastField and lastFieldNumber.
-        [self addField:lastField forNumber:lastFieldNumber];
+ [self addField:lastField forNumber:lastFieldNumber];
     }
     if (number == 0) {
         return nil;
@@ -182,13 +182,13 @@
     int32_t number = PBWireFormatGetTagFieldNumber(tag);
     switch (PBWireFormatGetTagWireType(tag)) {
         case PBWireFormatVarint:
-            [[self getFieldBuilder:number] addVarint:[input readInt64]];
+         [[self getFieldBuilder:number] addVarint:[input readInt64]];
             return YES;
         case PBWireFormatFixed64:
-            [[self getFieldBuilder:number] addFixed64:[input readFixed64]];
+          [[self getFieldBuilder:number] addFixed64:[input readFixed64]];
             return YES;
         case PBWireFormatLengthDelimited:
-            [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
+                  [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
             return YES;
         case PBWireFormatStartGroup: {
             PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet builder];
@@ -199,10 +199,10 @@
         case PBWireFormatEndGroup:
             return NO;
         case PBWireFormatFixed32:
-            [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
+          [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
             return YES;
         default:
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
     }
 }
 

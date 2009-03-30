@@ -19,7 +19,7 @@
 @synthesize window;
 
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
 
     // Override point for customization after application launch
     [window makeKeyAndVisible];

@@ -259,49 +259,49 @@
 
         switch (self.type) {
             case PBFieldDescriptorTypeInt32:
-            case PBFieldDescriptorTypeSInt32:
-            case PBFieldDescriptorTypeSFixed32:
-                self.defaultValue = [NSNumber numberWithInt:[PBTextFormat parseInt32:proto.defaultValue]];
+           case PBFieldDescriptorTypeSInt32:
+         case PBFieldDescriptorTypeSFixed32:
+self.defaultValue = [NSNumber numberWithInt:[PBTextFormat parseInt32:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeUInt32:
-            case PBFieldDescriptorTypeFixed32: {
+           case PBFieldDescriptorTypeFixed32: {
                 self.defaultValue = [NSNumber numberWithInt:[PBTextFormat parseUInt32:proto.defaultValue]];
                 break;
             }
             case PBFieldDescriptorTypeInt64:
-            case PBFieldDescriptorTypeSInt64:
-            case PBFieldDescriptorTypeSFixed64:
-                self.defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseInt64:proto.defaultValue]];
+           case PBFieldDescriptorTypeSInt64:
+         case PBFieldDescriptorTypeSFixed64:
+self.defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseInt64:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeUInt64:
-            case PBFieldDescriptorTypeFixed64: {
+           case PBFieldDescriptorTypeFixed64: {
                 self.defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseUInt64:proto.defaultValue]];
                 break;
             }
             case PBFieldDescriptorTypeFloat:
-                self.defaultValue = [NSNumber numberWithFloat:[proto.defaultValue floatValue]];
+self.defaultValue = [NSNumber numberWithFloat:[proto.defaultValue floatValue]];
                 break;
             case PBFieldDescriptorTypeDouble:
-                self.defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
+self.defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
                 break;
             case PBFieldDescriptorTypeBool:
-                self.defaultValue = [NSNumber numberWithBool:[@"true" isEqual:proto.defaultValue]];
+self.defaultValue = [NSNumber numberWithBool:[@"true" isEqual:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeString:
                 self.defaultValue = proto.defaultValue;
                 break;
             case PBFieldDescriptorTypeData:
-                self.defaultValue = [PBTextFormat unescapeBytes:proto.defaultValue];
+self.defaultValue = [PBTextFormat unescapeBytes:proto.defaultValue];
                 break;
             case PBFieldDescriptorTypeEnum:
-                self.defaultValue = [enumType findValueByName:proto.defaultValue];
+self.defaultValue = [enumType findValueByName:proto.defaultValue];
                 if (defaultValue == nil) {
                     @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Unknown enum default value:" userInfo:nil];
                 }
                 break;
             case PBFieldDescriptorTypeMessage:
-            case PBFieldDescriptorTypeGroup:
-                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Message type had default value." userInfo:nil];
+              case PBFieldDescriptorTypeGroup:
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Message type had default value." userInfo:nil];
         }
     } else {
         // Determine the default default for this field.

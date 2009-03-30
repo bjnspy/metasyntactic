@@ -170,8 +170,8 @@
         NSString* question = [questions objectAtIndex:indexPath.row];
         NSString* answer = [self.model answerForQuestion:question withSectionTitle:sectionTitle];
         AnswerViewController* controller = [[[AnswerViewController alloc] initWithSectionTitle:sectionTitle
-                                                                                              question:question
-                                                                                                answer:answer] autorelease];
+                                                                                      question:question
+                                                                                        answer:answer] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.section == 2) {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];

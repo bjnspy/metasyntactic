@@ -112,7 +112,7 @@
     for (int32_t blockSize = 1; blockSize <= 16; blockSize *= 2) {
         PBCodedInputStream* input =
         [PBCodedInputStream streamWithInputStream:
-         [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
+            [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
         STAssertTrue(value == [input readRawLittleEndian32], @"");
     }
 }
@@ -130,7 +130,7 @@
     for (int32_t blockSize = 1; blockSize <= 16; blockSize *= 2) {
         PBCodedInputStream* input =
         [PBCodedInputStream streamWithInputStream:
-         [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
+            [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
         STAssertTrue(value == [input readRawLittleEndian64], @"");
     }
 }
@@ -180,12 +180,12 @@
      (0x1bLL << 28)];
     // 41256202580718336
     [self assertReadVarint:
-     bytes(0x80, 0xe6, 0xeb, 0x9c, 0xc3, 0xc9, 0xa4, 0x49) value:
+bytes(0x80, 0xe6, 0xeb, 0x9c, 0xc3, 0xc9, 0xa4, 0x49) value:
      (0x00 << 0) | (0x66 << 7) | (0x6b << 14) | (0x1c << 21) |
      (0x43LL << 28) | (0x49LL << 35) | (0x24LL << 42) | (0x49LL << 49)];
     // 11964378330978735131
     [self assertReadVarint:
-     bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
+bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
      (0x1b << 0) | (0x28 << 7) | (0x79 << 14) | (0x42 << 21) |
      (0x3bLL << 28) | (0x56LL << 35) | (0x00LL << 42) |
      (0x05LL << 49) | (0x26LL << 56) | (0x01LL << 63)];
@@ -201,10 +201,10 @@
     [self assertReadLittleEndian32:bytes(0xf0, 0xde, 0xbc, 0x9a) value:0x9abcdef0];
 
     [self assertReadLittleEndian64:
-     bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
+bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
      0x123456789abcdef0LL];
     [self assertReadLittleEndian64:
-     bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
+bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
      0x9abcdef012345678LL];
 }
 
@@ -222,7 +222,7 @@
     // Try different block sizes.
     for (int32_t blockSize = 1; blockSize < 256; blockSize *= 2) {
         message2 = [TestAllTypes parseFromInputStream:
-                    [SmallBlockInputStream streamWithData:rawBytes blockSize:blockSize]];
+                [SmallBlockInputStream streamWithData:rawBytes blockSize:blockSize]];
         [TestUtilities assertAllFieldsSet:message2];
     }
 }
@@ -274,7 +274,7 @@
 
     // Make sure all the other fields were parsed correctly.
     TestAllTypes* message3 = [[[TestAllTypes builderWithPrototype:message2]
-                               setOptionalBytes:[[TestUtilities allSet] optionalBytes]] build];
+                                                 setOptionalBytes:[[TestUtilities allSet] optionalBytes]] build];
 
     [TestUtilities assertAllFieldsSet:message3];
 }

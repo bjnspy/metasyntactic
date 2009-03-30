@@ -142,13 +142,13 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         case PBObjectiveCTypeString:  isValid = [value isKindOfClass:[NSString class]]; break;
         case PBObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
         case PBObjectiveCTypeEnum:
-            if ([value isKindOfClass:[PBEnumValueDescriptor class]]) {
+         if ([value isKindOfClass:[PBEnumValueDescriptor class]]) {
                 PBEnumValueDescriptor* enumValue = value;
                 isValid = (enumValue.type == field.enumType);
             }
             break;
         case PBObjectiveCTypeMessage:
-            isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
+ isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
             [(id<PBMessage>)value descriptor] == field.messageType;
             break;
     }
@@ -568,7 +568,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 break;
             }
             default:
-                value = [input readPrimitiveField:field.type];
+value = [input readPrimitiveField:field.type];
                 break;
         }
 

@@ -25,7 +25,7 @@ static Controller* controller = nil;
     if (controller == nil) {
         controller = [[Controller alloc] init];
     }
-    
+
     return controller;
 }
 
