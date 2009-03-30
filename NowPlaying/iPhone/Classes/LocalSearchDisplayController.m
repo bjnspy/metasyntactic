@@ -251,22 +251,19 @@
 - (void) didSelectDvdRow:(NSInteger) row {
     Movie* movie = [searchResult.dvds objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
-    [self.applicationTabBarController switchToDVD];
     Movie* movie = [searchResult.bluray objectAtIndex:row];
 
-    [self.applicationTabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
-
     if (indexPath.section == 0) {
         return [self didSelectMovieRow:indexPath.row];
     } else if (indexPath.section == 1) {

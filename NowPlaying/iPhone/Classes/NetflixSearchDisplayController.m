@@ -171,8 +171,6 @@
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
-
     Movie* movie = nil;
     if ([self shouldShowAll]) {
         movie = [movies objectAtIndex:indexPath.row];
