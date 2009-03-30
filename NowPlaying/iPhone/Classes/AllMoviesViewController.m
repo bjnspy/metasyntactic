@@ -132,10 +132,6 @@
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
 - (UITableViewCell*) createCell:(Movie*) movie {
     return [MovieTitleCell movieTitleCellForMovie:movie inTableView:self.tableView];
 }
