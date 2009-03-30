@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ToughAnswerViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface ToughAnswerViewController : AbstractTableViewController {
 @private
     NSString* question;
     NSString* answer;

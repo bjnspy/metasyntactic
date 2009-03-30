@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "Model.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "UITableViewCell+Utilities.h"
 
@@ -91,7 +92,7 @@
 
 - (void) setTheater:(Theater*) theater {
     if ([self.model isFavoriteTheater:theater]) {
-        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
+        self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], theater.name];
     } else {
         self.textLabel.text = theater.name;
     }

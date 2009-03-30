@@ -14,7 +14,6 @@
 
 #import "ToughAnswerViewController.h"
 
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
@@ -48,8 +47,12 @@
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 
@@ -59,13 +62,6 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 

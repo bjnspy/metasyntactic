@@ -24,14 +24,6 @@
 
 @implementation Application
 
-static NSLock* gate = nil;
-
-// Special directories
-static NSString* cacheDirectory = nil;
-static NSString* supportDirectory = nil;
-static NSString* tempDirectory = nil;
-static NSString* trashDirectory = nil;
-
 // Application storage directories
 static NSString* dataDirectory = nil;
 static NSString* imdbDirectory = nil;
@@ -101,33 +93,11 @@ static NSString** directories[] = {
 &upcomingTrailersDirectory,
 };
 
-static NSString* emptyStarString = nil;
-static NSString* halfStarString = nil;
-static NSString* starString = nil;
-
 static DifferenceEngine* differenceEngine = nil;
 
 
-+ (NSString*) name {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-}
-
-
-+ (NSString*) version {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-}
-
-
-+ (NSString*) nameAndVersion {
-    NSString* appName = [self name];
-    NSString* appVersion = [self version];
-
-    return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-}
-
-
 + (void) deleteDirectories {
-    [gate lock];
+    [[self gate] lock];
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
@@ -137,12 +107,12 @@ static DifferenceEngine* differenceEngine = nil;
             }
         }
     }
-    [gate unlock];
+    [[self gate] unlock];
 }
 
 
 + (void) createDirectories {
-    [gate lock];
+    [[self gate] lock];
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
@@ -150,44 +120,13 @@ static DifferenceEngine* differenceEngine = nil;
             [FileUtilities createDirectory:directory];
         }
     }
-    [gate unlock];
-}
-
-
-+ (void) emptyTrash {
-    [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:NO];
+    [[self gate] unlock];
 }
 
 
 + (void) initializeDirectories {
-    tempDirectory = [NSTemporaryDirectory() retain];
-
     {
-        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-        NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-        NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-        [FileUtilities createDirectory:directory];
-        cacheDirectory = [directory retain];
-    }
-
-    {
-        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-        NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-        NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-        [FileUtilities createDirectory:directory];
-        supportDirectory = [directory retain];
-    }
-
-    {
-        NSString* directory = [cacheDirectory stringByAppendingPathComponent:@"Trash"];
-        [FileUtilities createDirectory:directory];
-        trashDirectory = [directory retain];
-    }
-
-    {
+        NSString* cacheDirectory = [self cacheDirectory];
         dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
         imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
         amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
@@ -231,37 +170,15 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
-        gate = [[NSRecursiveLock alloc] init];
-
-        emptyStarString = [[StringUtilities stringFromUnichar:(unichar)0x2606] retain];
-        halfStarString = [[StringUtilities stringFromUnichar:(unichar)0x272F] retain];
-        starString = [[StringUtilities stringFromUnichar:[self starCharacter]] retain];
-
         differenceEngine = [[DifferenceEngine engine] retain];
 
         [self initializeDirectories];
-        [self emptyTrash];
     }
 }
 
 
-+ (NSString*) cacheDirectory {
-    return cacheDirectory;
-}
-
-
-+ (NSString*) supportDirectory {
-    return supportDirectory;
-}
-
-
-+ (NSString*) trashDirectory {
-    return trashDirectory;
-}
-
-
-+ (NSString*) tempDirectory {
-    return tempDirectory;
++ (NSArray*) directoriesToKeep {
+    return [NSArray arrayWithObject:userLocationsDirectory];
 }
 
 
@@ -410,205 +327,25 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) emptyTrashBackgroundEntryPoint {
-    NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
-    NSFileManager* manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
-
-    {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        NSString* fileName;
-        while ((fileName = [enumerator nextObject]) != nil) {
-            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
-            NSDictionary* attributes = [enumerator fileAttributes];
-
-            // don't delete folders yet
-            if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-                NSLog(@"Application:emptyTrashBackgroundEntryPoint - %@", fullPath.lastPathComponent);
-                [manager removeItemAtPath:fullPath error:NULL];
-            }
-
-            [NSThread sleepForTimeInterval:1];
-
-            [pool release];
-            pool = [[NSAutoreleasePool alloc] init];
-        }
-
-        [pool release];
-    }
-
-    // Now remove the directories.
-    for (NSString* fileName in [FileUtilities directoryContentsNames:trashDirectory]) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
-
-            [manager removeItemAtPath:fullPath error:NULL];
-            [NSThread sleepForTimeInterval:1];
-        }
-        [pool release];
-    }
-
-    NSLog(@"Application:emptyTrashBackgroundEntryPoint - stop");
-}
-
-
 + (void) resetDirectories {
-    [gate lock];
+    [[self gate] lock];
     {
         [self deleteDirectories];
         [self createDirectories];
     }
-    [gate unlock];
+    [[self gate] unlock];
 }
 
 
 + (void) resetNetflixDirectories {
-    [gate lock];
+    [[self gate] lock];
     {
         [self moveItemToTrash:netflixUserRatingsDirectory];
         [self moveItemToTrash:netflixPredictedRatingsDirectory];
         [self moveItemToTrash:netflixQueuesDirectory];
         [self createDirectories];
     }
-    [gate unlock];
-}
-
-
-+ (void) clearStaleItem:(NSString*) fullPath
-           inEnumerator:(NSDirectoryEnumerator*) enumerator
-            withManager:(NSFileManager*) manager {
-    if ((rand() % 1000) < 50) {
-        NSDictionary* attributes = [enumerator fileAttributes];
-
-        // don't delete folders
-        if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
-            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
-            if (lastModifiedDate != nil) {
-                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - %@", fullPath.lastPathComponent);
-                    [manager removeItemAtPath:fullPath error:NULL];
-                }
-            }
-        }
-    }
-}
-
-
-+ (void) clearStaleDataBackgroundEntryPoint {
-    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - start");
-    NSFileManager* manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:cacheDirectory];
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-    NSString* fileName;
-    while ((fileName = [enumerator nextObject]) != nil) {
-        NSString* fullPath = [cacheDirectory stringByAppendingPathComponent:fileName];
-        if ([userLocationsDirectory isEqual:fullPath]) {
-            [enumerator skipDescendents];
-        } else {
-            [self clearStaleItem:fullPath inEnumerator:enumerator withManager:manager];
-        }
-
-        [pool release];
-        pool = [[NSAutoreleasePool alloc] init];
-    }
-    [pool release];
-    NSLog(@"Application:clearStaleDataBackgroundEntryPoint - stop");
-}
-
-
-+ (void) clearStaleData {
-    [ThreadingUtilities backgroundSelector:@selector(clearStaleDataBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:NO];
-}
-
-
-+ (void) moveItemToTrash:(NSString*) path {
-    [gate lock];
-    {
-        NSString* trashPath = [self uniqueTrashDirectory];
-        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-
-        // safeguard, just in case.
-        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
-    }
-    [gate unlock];
-}
-
-
-+ (NSString*) randomString {
-    NSMutableString* string = [NSMutableString string];
-    for (int i = 0; i < 8; i++) {
-        [string appendFormat:@"%c", ((rand() % 26) + 'a')];
-    }
-    return string;
-}
-
-
-+ (NSString*) uniqueDirectory:(NSString*) parentDirectory
-                       create:(BOOL) create {
-    NSString* finalDir;
-
-    [gate lock];
-    {
-        do {
-            NSString* random = [Application randomString];
-            finalDir = [parentDirectory stringByAppendingPathComponent:random];
-        } while ([[NSFileManager defaultManager] fileExistsAtPath:finalDir]);
-
-        if (create) {
-            [FileUtilities createDirectory:finalDir];
-        }
-    }
-    [gate unlock];
-
-    return finalDir;
-}
-
-
-+ (NSString*) uniqueTemporaryDirectory {
-    return [self uniqueDirectory:[Application tempDirectory] create:YES];
-}
-
-
-+ (NSString*) uniqueTrashDirectory {
-    return [self uniqueDirectory:[Application trashDirectory] create:NO];
-}
-
-
-+ (void) openBrowser:(NSString*) address {
-    if (address.length == 0) {
-        return;
-    }
-
-    NSURL* url = [NSURL URLWithString:address];
-    [[UIApplication sharedApplication] openURL:url];
-}
-
-
-+ (void) openMap:(NSString*) address {
-    [self openBrowser:address];
-}
-
-
-+ (void) makeCall:(NSString*) phoneNumber {
-    if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
-        return;
-    }
-
-    NSRange xRange = [phoneNumber rangeOfString:@"x"];
-    if (xRange.length > 0 && xRange.location >= 12) {
-        // 222-222-2222 x222
-        // remove extension
-        phoneNumber = [phoneNumber substringToIndex:xRange.location];
-    }
-
-    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [StringUtilities stringByAddingPercentEscapes:phoneNumber]];
-
-    [self openBrowser:urlString];
+    [[self gate] unlock];
 }
 
 
@@ -628,44 +365,5 @@ static DifferenceEngine* differenceEngine = nil;
      return @"metaboxoffice2";
     //*/
 }
-
-+ (NSString*) emptyStarString {
-    return emptyStarString;
-}
-
-
-+ (unichar) starCharacter {
-    return (unichar)0x2605;
-}
-
-
-+ (NSString*) halfStarString {
-    return halfStarString;
-}
-
-
-+ (NSString*) starString {
-    return starString;
-}
-
-
-+ (BOOL) useKilometers {
-    // yeah... so the UK supposedly uses metric...
-    // except they don't. so we special case them to stick with 'miles' in the UI.
-    BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
-    BOOL isUK = [@"GB" isEqual:[LocaleUtilities isoCountry]];
-
-    return isMetric && !isUK;
-}
-
-
-+ (BOOL) canSendMail {
-#ifdef IPHONE_OS_VERSION_3
-    return [MFMailComposeViewController canSendMail];
-#else
-    return YES;
-#endif
-}
-    //
 
 @end

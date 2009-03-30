@@ -14,13 +14,8 @@
 
 @interface ArticleTitleCell : UITableViewCell {
 @private
-    Model* model;
     UILabel* titleLabel;
 }
-
-- (id) initWithModel:(Model*) model
-               frame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setItem:(Item*) Item;
 

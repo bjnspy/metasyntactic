@@ -12,17 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Application : NSObject {
+#import "AbstractApplication.h"
+
+@interface Application : AbstractApplication {
 
 }
 
-+ (NSString*) name;
-+ (NSString*) nameAndVersion;
-
-+ (void) moveItemToTrash:(NSString*) path;
-
 + (NSString*) rssDirectory;
-+ (NSString*) tempDirectory;
-+ (NSString*) trashDirectory;
 
 @end

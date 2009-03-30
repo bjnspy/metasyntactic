@@ -12,14 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Application : NSObject {
+#import "AbstractApplication.h"
+
+@interface Application : AbstractApplication {
 }
-
-+ (NSString*) name;
-+ (NSString*) version;
-+ (NSString*) nameAndVersion;
-
-+ (NSString*) trashDirectory;
 
 + (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
@@ -57,27 +53,9 @@
 
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;
-+ (void) clearStaleData;
-
-+ (NSString*) uniqueTemporaryDirectory;
-+ (NSString*) uniqueTrashDirectory;
-
-+ (void) moveItemToTrash:(NSString*) path;
-
-+ (void) openBrowser:(NSString*) address;
-+ (void) openMap:(NSString*) address;
-+ (void) makeCall:(NSString*) phoneNumber;
 
 + (DifferenceEngine*) differenceEngine;
 
 + (NSString*) host;
-
-+ (unichar) starCharacter;
-+ (NSString*) emptyStarString;
-+ (NSString*) halfStarString;
-+ (NSString*) starString;
-
-+ (BOOL) useKilometers;
-+ (BOOL) canSendMail;
 
 @end

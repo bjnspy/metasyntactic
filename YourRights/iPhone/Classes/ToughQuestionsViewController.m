@@ -15,7 +15,6 @@
 #import "ToughQuestionsViewController.h"
 
 #import "AnswerViewController.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "ToughAnswerViewController.h"
 #import "ViewControllerUtilities.h"
@@ -34,7 +33,7 @@
 
 
 - (Model*) model {
-    return (id)[(id)self.navigationController model];
+    return [Model model];
 }
 
 
@@ -53,8 +52,12 @@
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 
@@ -64,13 +67,6 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 

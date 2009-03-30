@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ConstitutionSignersViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface ConstitutionSignersViewController : AbstractTableViewController {
 @private
     MultiDictionary* signers;
     NSArray* keys;

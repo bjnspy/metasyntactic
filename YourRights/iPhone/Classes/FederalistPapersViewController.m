@@ -22,7 +22,6 @@
 #import "ConstitutionArticleViewController.h"
 #import "ConstitutionSignersViewController.h"
 #import "FederalistPapersArticleViewController.h"
-#import "GlobalActivityIndicator.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
@@ -56,14 +55,12 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+- (void) minorRefreshWorker {
 }
 
 
-- (void) majorRefresh {
-    [self.tableView reloadData];
+- (void) majorRefreshWorker {
+    [self reloadTableViewData];
 }
 
 

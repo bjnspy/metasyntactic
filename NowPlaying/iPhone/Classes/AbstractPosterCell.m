@@ -19,7 +19,7 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
-
+#import "StringUtilities.h"
 
 @implementation AbstractPosterCell
 
@@ -83,7 +83,7 @@
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
     if ([self.model isBookmarked:movie_]) {
-        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie_.displayTitle];
     } else {
         titleLabel.text = movie_.displayTitle;
     }

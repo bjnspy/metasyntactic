@@ -16,9 +16,9 @@
 
 #import "ACLUArticlesViewController.h"
 #import "AutoResizingCell.h"
-#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "NetworkUtilities.h"
+#import "OperationQueue.h"
 #import "RSSCache.h"
 #import "YourRightsNavigationController.h"
 
@@ -47,58 +47,37 @@
 
 
 - (Model*) model {
-    return (id)[(id)self.navigationController model];
+    return [Model model];
 }
 
 
-- (void) majorRefresh {
-    self.titlesWithArticles = [NSMutableArray array];
+- (void) minorRefreshWorker {
+}
 
+
+- (void) initializeData {
+    self.titlesWithArticles = [NSMutableArray array];
+    
     for (NSString* title in [RSSCache titles]) {
         NSArray* items = [self.model.rssCache itemsForTitle:title];
         if (items.count > 0) {
             [titlesWithArticles addObject:title];
         }
     }
-
-    [self.tableView reloadData];
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    [self majorRefresh];
+- (void) majorRefreshWorker {
+    [self initializeData];
+    [self reloadTableViewData];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return MAX(titlesWithArticles.count, 1);
 }
 
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (titlesWithArticles.count == 0) {
         return 0;
@@ -111,7 +90,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
        titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && titlesWithArticles.count == 0) {
-        if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
             return NSLocalizedString(@"Downloading data", nil);
         } else if (![NetworkUtilities isNetworkAvailable]) {
             return NSLocalizedString(@"Network unavailable", nil);

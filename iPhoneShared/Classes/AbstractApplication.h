@@ -12,23 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractFullScreenViewController.h"
-
-@interface WebViewController : AbstractFullScreenViewController<UIWebViewDelegate> {
-@private
-    UIWebView* webView;
-    UIActivityIndicatorView* activityView;
-    UILabel* label;
-    NSString* address;
-    BOOL showSafariButton;
-    BOOL errorReported;
-
-#ifndef IPHONE_OS_VERSION_3
-    UIToolbar* toolbar;
-#endif
+@interface AbstractApplication : NSObject {
+@protected
+    
 }
 
-- (id) initWithAddress:(NSString*) address
-      showSafariButton:(BOOL) showSafariButton;
++ (NSLock*) gate;
+
++ (NSString*) name;
++ (NSString*) version;
++ (NSString*) nameAndVersion;
+
++ (NSString*) cacheDirectory;
++ (NSString*) tempDirectory;
++ (NSString*) trashDirectory;
+
++ (NSString*) uniqueTemporaryDirectory;
++ (NSString*) uniqueTrashDirectory;
+
++ (void) moveItemToTrash:(NSString*) path;
+
++ (void) openBrowser:(NSString*) address;
++ (void) openMap:(NSString*) address;
++ (void) makeCall:(NSString*) phoneNumber;
+
++ (BOOL) useKilometers;
++ (BOOL) canSendMail;
+
+/* @protected */
++ (NSLock*) gate;
++ (void) clearStaleData;
 
 @end

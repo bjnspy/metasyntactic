@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FederalistPapersSectionViewController : UITableViewController {
+#import "AbstractTableViewController.h"
+
+@interface FederalistPapersSectionViewController : AbstractTableViewController {
 @private
     Section* section;
     NSArray* chunks;

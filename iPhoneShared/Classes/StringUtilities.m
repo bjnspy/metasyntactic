@@ -170,4 +170,24 @@
     return result;
 }
 
+
++ (unichar) starCharacter {
+    return (unichar)0x2605;
+}
+
+
++ (NSString*) emptyStarString {
+    return [[StringUtilities stringFromUnichar:(unichar)0x2606] retain];
+}
+
+
++ (NSString*) halfStarString {
+    return [[StringUtilities stringFromUnichar:(unichar)0x272F] retain];
+}
+
+
++ (NSString*) starString {
+    return [[StringUtilities stringFromUnichar:[self starCharacter]] retain];
+}
+
 @end

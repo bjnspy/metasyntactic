@@ -14,13 +14,14 @@
 
 #import "RSSCache.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "FileUtilities.h"
 #import "Item.h"
 #import "NetworkUtilities.h"
-#import "ThreadingUtilities.h"
+#import "NotificationCenter.h"
+#import "OperationQueue.h"
 #import "XmlElement.h"
-#import "YourRightsAppDelegate.h"
 
 @interface RSSCache()
 @property (retain) NSMutableDictionary* titleToItems;
@@ -100,8 +101,8 @@ static NSDictionary* titleToIdentifier;
 }
 
 
-- (id) initWithModel:(Model*) model_ {
-    if (self = [super initWithModel:model_]) {
+- (id) init {
+    if (self = [super init ]) {
         self.titleToItems = [NSMutableDictionary dictionary];
     }
 
@@ -109,16 +110,16 @@ static NSDictionary* titleToIdentifier;
 }
 
 
-+ (RSSCache*) cacheWithModel:(Model*) model {
-    return [[[RSSCache alloc] initWithModel:model] autorelease];
++ (RSSCache*) cache {
+    return [[[RSSCache alloc] init] autorelease];
 }
 
 
 - (void) update {
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:gate
-                                   visible:YES];
+    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
+                                            onTarget:self
+                                                gate:gate
+                                            priority:Now];
 }
 
 
@@ -190,14 +191,18 @@ static NSDictionary* titleToIdentifier;
             return;
         }
     }
-
-    NSArray* items = [self downloadFeed:identifier];
-
-    if (items.count > 0) {
-        [self saveItems:items toFile:file];
-        NSArray* arguments = [NSArray arrayWithObjects:title, items, nil];
-        [self performSelectorOnMainThread:@selector(reportFeed:) withObject:arguments waitUntilDone:NO];
+    
+    [NotificationCenter addNotification:title];
+    {
+        NSArray* items = [self downloadFeed:identifier];
+        
+        if (items.count > 0) {
+            [self saveItems:items toFile:file];
+            NSArray* arguments = [NSArray arrayWithObjects:title, items, nil];
+            [self performSelectorOnMainThread:@selector(reportFeed:) withObject:arguments waitUntilDone:NO];
+        }
     }
+    [NotificationCenter removeNotification:title];
 }
 
 
@@ -206,7 +211,7 @@ static NSDictionary* titleToIdentifier;
     NSArray* items = [arguments objectAtIndex:1];
 
     [titleToItems setObject:items forKey:title];
-    [YourRightsAppDelegate majorRefresh];
+    [AppDelegate majorRefresh];
 }
 
 
