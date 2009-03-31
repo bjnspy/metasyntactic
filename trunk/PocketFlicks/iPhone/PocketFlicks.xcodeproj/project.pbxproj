@@ -1088,8 +1088,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				744CA3370F43769F000DC92A /* DeliveredByNetflix.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
+				744CA3370F43769F000DC92A /* DeliveredByNetflix.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
