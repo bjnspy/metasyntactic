@@ -60,29 +60,29 @@ static NSDictionary* titleToIdentifier;
                    NSLocalizedString(@"Women's Rights News", nil), nil] retain];
 
         titleToIdentifier = [[NSDictionary dictionaryWithObjects:
-                              [NSArray arrayWithObjects:
-                               @"http://action.aclu.org/feed/rss2_0/alerts.rss",
-                               @"http://www.aclu.org/newsroom/Index_rss.xml",
-                               @"http://www.aclu.org/crimjustice/feed.xml",
-                               @"http://www.aclu.org/capital/feed.xml",
-                               @"http://www.aclu.org/disability/feed.xml",
-                               @"http://www.aclu.org/drugpolicy/feed.xml",
-                               @"http://www.aclu.org/freespeech/feed.xml",
-                               @"http://www.aclu.org/hiv/feed.xml",
-                               @"http://www.aclu.org/immigrants/feed.xml",
-                               @"http://www.aclu.org/lgbt/feed.xml",
-                               @"http://www.aclu.org/natsec/feed.xml",
-                               @"http://www.aclu.org/police/feed.xml",
-                               @"http://www.aclu.org/prison/feed.xml",
-                               @"http://www.aclu.org/privacy/feed.xml",
-                               @"http://www.aclu.org/racialjustice/feed.xml",
-                               @"http://www.aclu.org/police/racialprofiling/feed.xml",
-                               @"http://www.aclu.org/religion/feed.xml",
-                               @"http://www.aclu.org/reproductiverights/feed.xml",
-                               @"http://www.aclu.org/rightsofthepoor/feed.xml",
-                               @"http://www.aclu.org/safefree/feed.xml",
-                               @"http://www.aclu.org/votingrights/feed.xml",
-                               @"http://www.aclu.org/womensrights/feed.xml", nil]
+                                       [NSArray arrayWithObjects:
+                                                          @"http://action.aclu.org/feed/rss2_0/alerts.rss",
+                                                          @"http://www.aclu.org/newsroom/Index_rss.xml",
+                                                          @"http://www.aclu.org/crimjustice/feed.xml",
+                                                          @"http://www.aclu.org/capital/feed.xml",
+                                                          @"http://www.aclu.org/disability/feed.xml",
+                                                          @"http://www.aclu.org/drugpolicy/feed.xml",
+                                                          @"http://www.aclu.org/freespeech/feed.xml",
+                                                          @"http://www.aclu.org/hiv/feed.xml",
+                                                          @"http://www.aclu.org/immigrants/feed.xml",
+                                                          @"http://www.aclu.org/lgbt/feed.xml",
+                                                          @"http://www.aclu.org/natsec/feed.xml",
+                                                          @"http://www.aclu.org/police/feed.xml",
+                                                          @"http://www.aclu.org/prison/feed.xml",
+                                                          @"http://www.aclu.org/privacy/feed.xml",
+                                                          @"http://www.aclu.org/racialjustice/feed.xml",
+                                                          @"http://www.aclu.org/police/racialprofiling/feed.xml",
+                                                          @"http://www.aclu.org/religion/feed.xml",
+                                                          @"http://www.aclu.org/reproductiverights/feed.xml",
+                                                          @"http://www.aclu.org/rightsofthepoor/feed.xml",
+                                                          @"http://www.aclu.org/safefree/feed.xml",
+                                                          @"http://www.aclu.org/votingrights/feed.xml",
+                                                          @"http://www.aclu.org/womensrights/feed.xml", nil]
                                                          forKeys:titles] retain];
     }
 }
@@ -191,11 +191,11 @@ static NSDictionary* titleToIdentifier;
             return;
         }
     }
-    
+
     [NotificationCenter addNotification:title];
     {
         NSArray* items = [self downloadFeed:identifier];
-        
+
         if (items.count > 0) {
             [self saveItems:items toFile:file];
             NSArray* arguments = [NSArray arrayWithObjects:title, items, nil];

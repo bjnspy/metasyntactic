@@ -43,7 +43,7 @@ static NSString* trashDirectory = nil;
 + (NSString*) nameAndVersion {
     NSString* appName = [self name];
     NSString* appVersion = [self version];
-    
+
     return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 }
 
@@ -58,7 +58,7 @@ static NSString* trashDirectory = nil;
 
 + (void) initializeDirectories {
     tempDirectory = [NSTemporaryDirectory() retain];
-    
+
     {
         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
         NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -66,7 +66,7 @@ static NSString* trashDirectory = nil;
         [FileUtilities createDirectory:directory];
         cacheDirectory = [directory retain];
     }
-    
+
     {
         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
         NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -74,7 +74,7 @@ static NSString* trashDirectory = nil;
         [FileUtilities createDirectory:directory];
         supportDirectory = [directory retain];
     }
-    
+
     {
         NSString* directory = [cacheDirectory stringByAppendingPathComponent:@"Trash"];
         [FileUtilities createDirectory:directory];
@@ -86,7 +86,7 @@ static NSString* trashDirectory = nil;
 + (void) initialize {
     if (self == [AbstractApplication class]) {
         gate = [[NSRecursiveLock alloc] init];
-        
+
         [self initializeDirectories];
         [self emptyTrash];
     }
@@ -122,41 +122,41 @@ static NSString* trashDirectory = nil;
     NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
     NSFileManager* manager = [NSFileManager defaultManager];
     NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
-    
+
     {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         NSString* fileName;
         while ((fileName = [enumerator nextObject]) != nil) {
             NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
             NSDictionary* attributes = [enumerator fileAttributes];
-            
+
             // don't delete folders yet
             if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
                 NSLog(@"Application:emptyTrashBackgroundEntryPoint - %@", fullPath.lastPathComponent);
                 [manager removeItemAtPath:fullPath error:NULL];
             }
-            
+
             [NSThread sleepForTimeInterval:1];
-            
+
             [pool release];
             pool = [[NSAutoreleasePool alloc] init];
         }
-        
+
         [pool release];
     }
-    
+
     // Now remove the directories.
     for (NSString* fileName in [FileUtilities directoryContentsNames:trashDirectory]) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             NSString* fullPath = [trashDirectory stringByAppendingPathComponent:fileName];
-            
+
             [manager removeItemAtPath:fullPath error:NULL];
             [NSThread sleepForTimeInterval:1];
         }
         [pool release];
     }
-    
+
     NSLog(@"Application:emptyTrashBackgroundEntryPoint - stop");
 }
 
@@ -166,7 +166,7 @@ static NSString* trashDirectory = nil;
             withManager:(NSFileManager*) manager {
     if ((rand() % 1000) < 50) {
         NSDictionary* attributes = [enumerator fileAttributes];
-        
+
         // don't delete folders
         if (![[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
@@ -191,7 +191,7 @@ static NSString* trashDirectory = nil;
     NSFileManager* manager = [NSFileManager defaultManager];
     NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:cacheDirectory];
     NSArray* directoriesToKeep = [self directoriesToKeep];
-    
+
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     NSString* fileName;
     while ((fileName = [enumerator nextObject]) != nil) {
@@ -201,7 +201,7 @@ static NSString* trashDirectory = nil;
         } else {
             [self clearStaleItem:fullPath inEnumerator:enumerator withManager:manager];
         }
-        
+
         [pool release];
         pool = [[NSAutoreleasePool alloc] init];
     }
@@ -223,7 +223,7 @@ static NSString* trashDirectory = nil;
     {
         NSString* trashPath = [self uniqueTrashDirectory];
         [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-        
+
         // safeguard, just in case.
         [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     }
@@ -243,20 +243,20 @@ static NSString* trashDirectory = nil;
 + (NSString*) uniqueDirectory:(NSString*) parentDirectory
                        create:(BOOL) create {
     NSString* finalDir;
-    
+
     [gate lock];
     {
         do {
             NSString* random = [self randomString];
             finalDir = [parentDirectory stringByAppendingPathComponent:random];
         } while ([[NSFileManager defaultManager] fileExistsAtPath:finalDir]);
-        
+
         if (create) {
             [FileUtilities createDirectory:finalDir];
         }
     }
     [gate unlock];
-    
+
     return finalDir;
 }
 
@@ -275,7 +275,7 @@ static NSString* trashDirectory = nil;
     if (address.length == 0) {
         return;
     }
-    
+
     NSURL* url = [NSURL URLWithString:address];
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -290,16 +290,16 @@ static NSString* trashDirectory = nil;
     if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
         return;
     }
-    
+
     NSRange xRange = [phoneNumber rangeOfString:@"x"];
     if (xRange.length > 0 && xRange.location >= 12) {
         // 222-222-2222 x222
         // remove extension
         phoneNumber = [phoneNumber substringToIndex:xRange.location];
     }
-    
+
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", [StringUtilities stringByAddingPercentEscapes:phoneNumber]];
-    
+
     [self openBrowser:urlString];
 }
 
@@ -309,7 +309,7 @@ static NSString* trashDirectory = nil;
     // except they don't. so we special case them to stick with 'miles' in the UI.
     BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
     BOOL isUK = [@"GB" isEqual:[LocaleUtilities isoCountry]];
-    
+
     return isMetric && !isUK;
 }
 

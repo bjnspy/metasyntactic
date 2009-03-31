@@ -121,7 +121,7 @@ static MainThreadGate* gate;
 
 + (NSString*) sanitizeFileName:(NSString*) name {
     return [[name stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"]
-            stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
+                  stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
 }
 
 
