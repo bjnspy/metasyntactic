@@ -46,6 +46,6 @@ PBFieldDescriptorProto_Type* PBFieldDescriptorTypeTo(PBFieldDescriptorType type)
         case PBFieldDescriptorTypeSInt32:   return [PBFieldDescriptorProto_Type TYPE_SINT32];
         case PBFieldDescriptorTypeSInt64:   return [PBFieldDescriptorProto_Type TYPE_SINT64];
         default:
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }

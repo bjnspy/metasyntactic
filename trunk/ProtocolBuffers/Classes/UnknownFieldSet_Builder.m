@@ -79,7 +79,7 @@
             return lastField;
         }
         // Note:  addField() will reset lastField and lastFieldNumber.
-        [self addField:lastField forNumber:lastFieldNumber];
+ [self addField:lastField forNumber:lastFieldNumber];
     }
     if (number == 0) {
         return nil;
@@ -202,7 +202,7 @@
             [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
             return YES;
         default:
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
     }
 }
 
