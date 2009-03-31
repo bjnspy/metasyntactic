@@ -148,7 +148,7 @@ const int32_t BUFFER_SIZE = 4096;
             [self readRawLittleEndian32];
             return YES;
         default:
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
     }
 }
 
@@ -229,7 +229,7 @@ const int32_t BUFFER_SIZE = 4096;
         return result;
     } else {
         // Slow path:  Build a byte array first then copy it.
-        NSData* data = [self readRawData:size];
+NSData* data = [self readRawData:size];
         return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     }
 }
@@ -292,7 +292,7 @@ const int32_t BUFFER_SIZE = 4096;
         return result;
     } else {
         // Slow path:  Build a byte array first then copy it.
-        return [self readRawData:size];
+return [self readRawData:size];
     }
 }
 

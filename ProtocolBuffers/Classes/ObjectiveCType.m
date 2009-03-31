@@ -35,7 +35,7 @@ id PBObjectiveCTypeDefault(PBObjectiveCType type) {
         case PBObjectiveCTypeMessage:
             return nil;
         default:
-            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
 
@@ -62,6 +62,6 @@ PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType t
         case PBFieldDescriptorTypeEnum:     return PBObjectiveCTypeEnum;
 
         default:
-            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
+@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }

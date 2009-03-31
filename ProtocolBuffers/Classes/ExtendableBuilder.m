@@ -27,7 +27,7 @@
 
 
 - (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
-                                       value:(id) value {
+                                value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
@@ -37,13 +37,13 @@
 
 
 - (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
-                                       index:(int32_t) index
-                                       value:(id) value {
+                                index:(int32_t) index
+                                value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions setRepeatedField:extension.descriptor
-     index:index
-     value:[extension singularToReflectionType:value]];
+                                   index:index
+                                   value:[extension singularToReflectionType:value]];
 
     return self;
 }
@@ -51,7 +51,7 @@
 
 /** Append a value to a repeated extension. */
 - (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension
-                                       value:(id) value {
+                                value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions addRepeatedField:extension.descriptor value:[extension singularToReflectionType:value]];

@@ -93,9 +93,9 @@
         self.mutableNestedTypes = [NSMutableArray array];
         for (PBDescriptorProto* p in proto.nestedTypeList) {
             [mutableNestedTypes addObject:[PBDescriptor descriptorWithProto:p
-                                                                       file:file
-                                                                     parent:self
-                                                                      index:mutableNestedTypes.count]];
+                                     file:file
+                                   parent:self
+                                    index:mutableNestedTypes.count]];
         }
 
         self.mutableEnumTypes = [NSMutableArray array];
@@ -106,19 +106,19 @@
         self.mutableFields = [NSMutableArray array];
         for (PBFieldDescriptorProto* f in proto.fieldList) {
             [mutableFields addObject:[PBFieldDescriptor descriptorWithProto:f
-                                                                       file:file
-                                                                     parent:self
-                                                                      index:mutableFields.count
-                                                                isExtension:NO]];
+                                file:file
+                              parent:self
+                               index:mutableFields.count
+                         isExtension:NO]];
         }
 
         self.mutableExtensions = [NSMutableArray array];
         for (PBFieldDescriptorProto* e in proto.extensionList) {
             [mutableExtensions addObject:[PBFieldDescriptor descriptorWithProto:e
-                                                                           file:file
-                                                                         parent:self
-                                                                          index:mutableExtensions.count
-                                                                    isExtension:YES]];
+                                    file:file
+                                  parent:self
+                                   index:mutableExtensions.count
+                             isExtension:YES]];
         }
 
         [file.pool addSymbol:self];

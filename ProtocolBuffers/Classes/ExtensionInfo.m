@@ -51,7 +51,7 @@
 
 
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
-                                        defaultInstance:(id<PBMessage>) defaultInstance {
+                        defaultInstance:(id<PBMessage>) defaultInstance {
     return [[[PBExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
 }
 

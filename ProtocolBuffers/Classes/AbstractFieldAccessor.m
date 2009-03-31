@@ -40,8 +40,8 @@
 - (NSString*) camelName:(NSString*) name {
     return
     [NSString stringWithFormat:@"%c%@",
-     tolower([name characterAtIndex:0]),
-     [name substringFromIndex:1]];
+tolower([name characterAtIndex:0]),
+      [name substringFromIndex:1]];
 }
 
 @end

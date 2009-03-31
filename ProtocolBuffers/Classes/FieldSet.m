@@ -568,7 +568,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 break;
             }
             default:
-                value = [input readPrimitiveField:field.type];
+value = [input readPrimitiveField:field.type];
                 break;
         }
 
