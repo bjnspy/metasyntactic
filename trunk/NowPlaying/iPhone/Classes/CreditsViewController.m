@@ -371,7 +371,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 #ifdef IPHONE_OS_VERSION_3
     if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
-        controller.delegate = self;
+        controller.mailComposeDelegate = self;
 
         [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
         [controller setSubject:subject];

@@ -233,7 +233,7 @@
 - (void) openMailWithSubject:(NSString*) subject
                         body:(NSString*) body {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
-    controller.delegate = self;
+    controller.mailComposeDelegate = self;
 
     [controller setSubject:subject];
     [controller setMessageBody:body isHTML:YES];
