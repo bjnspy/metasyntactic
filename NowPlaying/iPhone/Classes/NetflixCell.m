@@ -119,7 +119,9 @@
 
     CGRect frame = view.frame;
     frame.size.height += 80;
+#ifdef IPHONE_OS_VERSION_3
     frame.size.width += 20;
+#endif
     view.frame = frame;
 
     self.tappableArrow = view;

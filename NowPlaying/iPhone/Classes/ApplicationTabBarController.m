@@ -113,35 +113,40 @@
 
 - (id) init {
     if (self = [super initWithNibName:nil bundle:nil]) {
-        [self resetTabs];
-
-        if (self.model.userAddress.length == 0) {
-            self.selectedViewController = [self moviesNavigationController];
-            [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
-        } else {
-            AbstractNavigationController* controller;
-            if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
-                controller = [self.viewControllers objectAtIndex:0];
-            } else {
-                controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
-            }
-
-            self.selectedViewController = controller;
-            [controller navigateToLastViewedPage];
-
-            if ([NetworkUtilities isNetworkAvailable]) {
-                if (!self.model.votedForIcon) {
-                    [self.model setVotedForIcon];
-
-                    [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
-                }
-            }
-        }
-
         self.delegate = self;
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    
+    [self resetTabs];
+    
+    if (self.model.userAddress.length == 0) {
+        self.selectedViewController = [self moviesNavigationController];
+        [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
+    } else {
+        AbstractNavigationController* controller;
+        if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
+            controller = [self.viewControllers objectAtIndex:0];
+        } else {
+            controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
+        }
+        
+        self.selectedViewController = controller;
+        [controller navigateToLastViewedPage];
+        
+        if ([NetworkUtilities isNetworkAvailable]) {
+            if (!self.model.votedForIcon) {
+                [self.model setVotedForIcon];
+                
+                [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
+            }
+        }
+    }
 }
 
 
@@ -159,11 +164,6 @@
 
 + (ApplicationTabBarController*) controller {
     return [[[ApplicationTabBarController alloc] init] autorelease];
-}
-
-
-- (void) loadView {
-    [super loadView];
 }
 
 
