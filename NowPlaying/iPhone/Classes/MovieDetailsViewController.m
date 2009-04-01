@@ -825,7 +825,6 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
         BOOL stale = [self.model isStale:theater];
         [cell setStale:stale];
-
         [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
 
         return cell;

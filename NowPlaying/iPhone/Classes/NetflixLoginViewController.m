@@ -25,7 +25,6 @@
 #import "OperationQueue.h"
 
 @interface NetflixLoginViewController()
-@property (assign) NetflixNavigationController* navigationController;
 @property (retain) UILabel* messageLabel;
 @property (retain) UILabel* statusLabel;
 @property (retain) UIActivityIndicatorView* activityIndicator;
@@ -36,7 +35,6 @@
 
 @implementation NetflixLoginViewController
 
-@synthesize navigationController;
 @synthesize messageLabel;
 @synthesize statusLabel;
 @synthesize activityIndicator;
@@ -44,7 +42,6 @@
 @synthesize authorizationToken;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.messageLabel = nil;
     self.statusLabel = nil;
     self.activityIndicator = nil;
@@ -55,9 +52,8 @@
 }
 
 
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
-    if (self = [super init]) {
-        self.navigationController = navigationController_;
+- (id) init {
+    if (self = [super initWithNibName:nil bundle:nil]) {
     }
     return self;
 }
@@ -249,7 +245,7 @@
      [NetflixAuthentication key],
      [NetflixAuthentication applicationName]];
 
-    [navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
+    [(id)self.navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
     didShowBrowser = YES;
 }
 

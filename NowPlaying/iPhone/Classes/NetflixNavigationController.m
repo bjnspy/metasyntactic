@@ -31,8 +31,8 @@
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {
+- (id) init {
+    if (self = [super init]) {
         self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
         self.title = NSLocalizedString(@"Netflix", nil);
     }

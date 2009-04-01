@@ -19,6 +19,4 @@
     DVDViewController* dvdViewController;
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-
 @end

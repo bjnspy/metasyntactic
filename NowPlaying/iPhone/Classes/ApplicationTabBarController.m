@@ -56,45 +56,45 @@
 }
 
 
-- (UINavigationController*) moviesNavigationController {
+- (MoviesNavigationController*) moviesNavigationController {
     if (moviesNavigationControllerData == nil) {
-        self.moviesNavigationControllerData = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.moviesNavigationControllerData = [[[MoviesNavigationController alloc] init] autorelease];
     }
 
     return moviesNavigationControllerData;
 }
 
 
-- (UINavigationController*) theatersNavigationController {
+- (TheatersNavigationController*) theatersNavigationController {
     if (theatersNavigationControllerData == nil) {
-        self.theatersNavigationControllerData = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.theatersNavigationControllerData = [[[TheatersNavigationController alloc] init] autorelease];
     }
 
     return theatersNavigationControllerData;
 }
 
 
-- (UINavigationController*) upcomingMoviesNavigationController {
+- (UpcomingMoviesNavigationController*) upcomingMoviesNavigationController {
     if (upcomingMoviesNavigationControllerData == nil) {
-        self.upcomingMoviesNavigationControllerData = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.upcomingMoviesNavigationControllerData = [[[UpcomingMoviesNavigationController alloc] init] autorelease];
     }
 
     return upcomingMoviesNavigationControllerData;
 }
 
 
-- (UINavigationController*) dvdNavigationController {
+- (DVDNavigationController*) dvdNavigationController {
     if (dvdNavigationControllerData == nil) {
-        self.dvdNavigationControllerData = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.dvdNavigationControllerData = [[[DVDNavigationController alloc] init] autorelease];
     }
 
     return dvdNavigationControllerData;
 }
 
 
-- (UINavigationController*) netflixNavigationController {
+- (NetflixNavigationController*) netflixNavigationController {
     if (netflixNavigationControllerData == nil) {
-        self.netflixNavigationControllerData = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.netflixNavigationControllerData = [[[NetflixNavigationController alloc] init] autorelease];
     }
 
     return netflixNavigationControllerData;
@@ -117,7 +117,7 @@
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self moviesNavigationController];
-            [moviesNavigationControllerData pushInfoControllerAnimated:NO];
+            [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -143,6 +143,11 @@
     }
 
     return self;
+}
+
+
+- (void) pushInfoControllerAnimated {
+    [self.moviesNavigationController pushInfoControllerAnimated:YES];
 }
 
 
