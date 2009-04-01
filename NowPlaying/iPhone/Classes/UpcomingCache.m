@@ -372,15 +372,7 @@
 }
 
 
-- (NSArray*) updateIndexBackgroundEntryPointWorker {
-    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-
-    if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return nil;
-        }
-    }
-
+- (void) updateIndexBackgroundEntryPointWorker {
     NSString* localHash = self.hashValue;
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]];
     if (serverHash.length == 0) {
@@ -390,7 +382,7 @@
     if ([localHash isEqual:serverHash]) {
         // save the hash again so we don't check for a few more days.
         [FileUtilities writeObject:serverHash toFile:self.hashFile];
-        return nil;
+        return;
     }
 
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
@@ -399,7 +391,7 @@
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
-        return nil;
+        return;
     }
 
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
@@ -436,25 +428,29 @@
     [dataGate unlock];
 
     [AppDelegate majorRefresh];
+}
 
-    return movies;
+
+- (BOOL) tooSoon {
+    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
+    return lastLookupDate != nil &&
+    (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY));
 }
 
 
 - (void) updateIndexBackgroundEntryPoint {
-    NSArray* movies;
-    NSString* notification = NSLocalizedString(@"upcoming", nil);
-    [NotificationCenter addNotification:notification];
-    {
-        movies = [self updateIndexBackgroundEntryPointWorker];
-    }
-    [NotificationCenter removeNotification:notification];
-
-    if (movies.count == 0) {
-        movies = [[self loadMovies] allValues];
+    if (![self tooSoon]) {
+        NSString* notification = NSLocalizedString(@"upcoming", nil);
+        [NotificationCenter addNotification:notification];
+        {
+            [self updateIndexBackgroundEntryPointWorker];
+        }
+        [NotificationCenter removeNotification:notification];
     }
 
     [self clearUpdatedMovies];
+    
+    NSArray* movies = self.movieMap.allValues;
     [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
