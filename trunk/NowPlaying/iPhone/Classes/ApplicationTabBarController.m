@@ -112,7 +112,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if (self = [super initWithNibName:nil bundle:nil]) {
         [self resetTabs];
 
         if (self.model.userAddress.length == 0) {
@@ -133,8 +133,7 @@
                 if (!self.model.votedForIcon) {
                     [self.model setVotedForIcon];
 
-                    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-                    [controller pushBrowser:url showSafariButton:NO animated:YES];
+                    [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
                 }
             }
         }
@@ -143,6 +142,13 @@
     }
 
     return self;
+}
+
+
+- (void) pushVoteBrowser {
+    AbstractNavigationController* controller = self.selectedNavigationController;
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
+    [controller pushBrowser:url showSafariButton:NO animated:YES];
 }
 
 
