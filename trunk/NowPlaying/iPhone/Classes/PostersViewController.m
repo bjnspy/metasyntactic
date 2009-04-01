@@ -701,7 +701,7 @@ const double LOAD_DELAY = 1;
 - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
-    
+
     [self setPage:page];
 }
 

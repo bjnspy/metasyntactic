@@ -122,9 +122,9 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     [self resetTabs];
-    
+
     if (self.model.userAddress.length == 0) {
         self.selectedViewController = [self moviesNavigationController];
         [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
@@ -135,14 +135,14 @@
         } else {
             controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
         }
-        
+
         self.selectedViewController = controller;
         [controller navigateToLastViewedPage];
-        
+
         if ([NetworkUtilities isNetworkAvailable]) {
             if (!self.model.votedForIcon) {
                 [self.model setVotedForIcon];
-                
+
                 [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
             }
         }
@@ -174,7 +174,7 @@
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
-    
+
     for (id viewController in self.viewControllers) {
         [viewController onTabBarItemSelected];
     }

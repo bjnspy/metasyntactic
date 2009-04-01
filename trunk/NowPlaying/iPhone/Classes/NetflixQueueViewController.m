@@ -260,7 +260,7 @@
         cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
         cell.tappableArrow.delegate = self;
     }
-    
+
     [self setAccessoryForCell:cell atIndexPath:indexPath];
 
     Movie* movie;
@@ -301,7 +301,7 @@
 
 - (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
     [self enterReadonlyMode];
-    
+
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     {
@@ -315,7 +315,7 @@
         activityIndicator.frame = frame;
     }
     cell.accessoryView = activityIndicator;
-    
+
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
     [self.model.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self];
 }
@@ -364,18 +364,18 @@
         [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
         return;
     }
-    
+
     if ([self indexPathOutOfBounds:indexPath]) {
         return;
     }
-    
+
     Movie* movie;
     if (indexPath.section == 0) {
         movie = [queue.movies objectAtIndex:indexPath.row];
     } else {
         movie = [queue.saved objectAtIndex:indexPath.row];
     }
-    
+
     [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -488,7 +488,7 @@
     if (readonlyMode) {
         return;
     }
-    
+
     UITableViewCell* cell = nil;
     for (UIView* superview = imageView.superview; superview != nil; superview = superview.superview) {
         if ([superview isKindOfClass:[UITableViewCell class]]) {
@@ -496,11 +496,11 @@
             break;
         }
     }
-    
+
     if (cell == nil) {
         return;
     }
-    
+
     NSIndexPath* path = [self.tableView indexPathForCell:cell];
     [self upArrowTappedForRowAtIndexPath:path];
 }
