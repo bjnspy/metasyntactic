@@ -112,10 +112,10 @@
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         showtimesLabel.numberOfLines = 0;
         showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
-        
+
         self.warningImageView = [[[UIImageView alloc] initWithImage:[ImageCache warning16x16]] autorelease];
         warningImageView.contentMode = UIViewContentModeCenter;
-        
+
         [self.contentView addSubview:showtimesLabel];
     }
 
@@ -154,7 +154,7 @@
                                                                   stale:stale];
 
     showtimesLabel.frame = showtimesFrame;
-    
+
     CGRect cellFrame = self.contentView.frame;
     CGRect imageFrame = warningImageView.frame;
     imageFrame.origin.x = 8;

@@ -449,7 +449,7 @@
     }
 
     [self clearUpdatedMovies];
-    
+
     NSArray* movies = self.movieMap.allValues;
     [[CacheUpdater cacheUpdater] addMovies:movies];
 }
