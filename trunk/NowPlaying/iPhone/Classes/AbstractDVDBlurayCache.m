@@ -360,24 +360,17 @@
 }
 
 
-- (NSArray*) updateMoviesBackgroundEntryPointWorker {
-    NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
-    if (lastUpdateDate != nil) {
-        if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return nil;
-        }
-    }
-
+- (void) updateMoviesBackgroundEntryPointWorker {
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress];
 
     if (element == nil) {
-        return nil;
+        return;
     }
 
     NSDictionary* map = [self processElement:element];
 
     if (map.count == 0) {
-        return nil;
+        return;
     }
 
     [self saveData:map];
@@ -402,7 +395,7 @@
     [self setBookmarks:bookmarks];
     [self setMovies:movies];
 
-    return map.allKeys;
+    [AppDelegate majorRefresh];
 }
 
 
@@ -411,22 +404,26 @@
 }
 
 
-- (void) updateMoviesBackgroundEntryPoint {
-    NSArray* movies;
-    NSString* notification = [self notificationString];
-    [NotificationCenter addNotification:notification];
-    {
-        movies = [self updateMoviesBackgroundEntryPointWorker];
-    }
-    [NotificationCenter removeNotification:notification];
+- (BOOL) tooSoon {
+    NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
+    return lastUpdateDate != nil &&
+    (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY));
+}
 
-    if (movies.count == 0) {
-        movies = [self loadMovies];
-    } else {
-        [AppDelegate majorRefresh];
+
+- (void) updateMoviesBackgroundEntryPoint {
+    if (![self tooSoon]) {
+        NSString* notification = [self notificationString];
+        [NotificationCenter addNotification:notification];
+        {
+            [self updateMoviesBackgroundEntryPointWorker];
+        }
+        [NotificationCenter removeNotification:notification];
     }
 
     [self clearUpdatedMovies];
+    
+    NSArray* movies = self.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
