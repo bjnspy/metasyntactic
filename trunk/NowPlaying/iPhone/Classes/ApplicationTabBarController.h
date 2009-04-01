@@ -23,9 +23,6 @@
 
 + (ApplicationTabBarController*) controller;
 
-- (void) majorRefresh;
-- (void) minorRefresh;
-
 - (AbstractNavigationController*) selectedNavigationController;
 - (NetflixNavigationController*) netflixNavigationController;
 
