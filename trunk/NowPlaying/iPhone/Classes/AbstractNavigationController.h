@@ -14,7 +14,6 @@
 
 @interface AbstractNavigationController : UINavigationController {
 @protected
-    ApplicationTabBarController* applicationTabBarController;
     PostersViewController* postersViewController;
     BOOL visible;
 
@@ -24,9 +23,7 @@
 #endif
 }
 
-@property (readonly, assign) ApplicationTabBarController* applicationTabBarController;
-
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
+- (id) init;
 
 - (void) majorRefresh;
 - (void) minorRefresh;

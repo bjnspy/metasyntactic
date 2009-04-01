@@ -20,6 +20,13 @@
 
 @implementation AbstractFullScreenTableViewController
 
+- (id)initWithStyle:(UITableViewStyle)style {
+    if (self = [super initWithStyle:style]) {
+    }
+    return self;
+}
+
+
 - (BOOL) hidesBottomBarWhenPushed {
     return YES;
 }

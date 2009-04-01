@@ -33,7 +33,6 @@
 #endif
 
 @interface AbstractNavigationController()
-@property (assign) ApplicationTabBarController* applicationTabBarController;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 #ifndef IPHONE_OS_VERSION_3
@@ -45,7 +44,6 @@
 
 @implementation AbstractNavigationController
 
-@synthesize applicationTabBarController;
 @synthesize postersViewController;
 @synthesize visible;
 #ifndef IPHONE_OS_VERSION_3
@@ -54,7 +52,6 @@
 #endif
 
 - (void) dealloc {
-    self.applicationTabBarController = nil;
     self.postersViewController = nil;
     self.visible = NO;
 
@@ -67,9 +64,8 @@
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+- (id) init {
     if (self = [super init]) {
-        self.applicationTabBarController = controller;
     }
 
     return self;

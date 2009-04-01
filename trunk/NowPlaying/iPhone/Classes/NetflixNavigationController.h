@@ -19,6 +19,4 @@
     NetflixViewController* netflixViewController;
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-
 @end

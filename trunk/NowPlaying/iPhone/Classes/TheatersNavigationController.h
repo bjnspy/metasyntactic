@@ -19,6 +19,4 @@
     AllTheatersViewController* allTheatersViewController;
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-
 @end

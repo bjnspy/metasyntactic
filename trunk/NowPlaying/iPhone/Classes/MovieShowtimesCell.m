@@ -25,6 +25,7 @@
 @interface MovieShowtimesCell()
 @property (retain) UILabel* showtimesLabel;
 @property (retain) NSArray* showtimesData;
+@property (retain) UIImageView* warningImageView;
 @end
 
 
@@ -32,10 +33,12 @@
 
 @synthesize showtimesLabel;
 @synthesize showtimesData;
+@synthesize warningImageView;
 
 - (void) dealloc {
     self.showtimesLabel = nil;
     self.showtimesData = nil;
+    self.warningImageView = nil;
 
     [super dealloc];
 }
@@ -109,7 +112,10 @@
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         showtimesLabel.numberOfLines = 0;
         showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
-
+        
+        self.warningImageView = [[[UIImageView alloc] initWithImage:[ImageCache warning16x16]] autorelease];
+        warningImageView.contentMode = UIViewContentModeCenter;
+        
         [self.contentView addSubview:showtimesLabel];
     }
 
@@ -117,11 +123,12 @@
 }
 
 
-- (void) setStale:(BOOL) stale {
+- (void) setStale:(BOOL) stale_ {
+    stale = stale_;
     if (stale) {
-        self.image = [ImageCache warning16x16];
+        [self.contentView addSubview:warningImageView];
     } else {
-        self.image = nil;
+        [warningImageView removeFromSuperview];
     }
 }
 
@@ -130,10 +137,10 @@
     [super layoutSubviews];
 
     CGRect showtimesFrame = showtimesLabel.frame;
-    if (self.image == nil) {
-        showtimesFrame.origin.x = 8;
-    } else {
+    if (stale) {
         showtimesFrame.origin.x = 32;
+    } else{
+        showtimesFrame.origin.x = 8;
     }
     showtimesFrame.origin.y = 9;
 
@@ -144,9 +151,15 @@
 
     showtimesFrame.size.width = width;
     showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
-                                                                  stale:(self.image != nil)];
+                                                                  stale:stale];
 
     showtimesLabel.frame = showtimesFrame;
+    
+    CGRect cellFrame = self.contentView.frame;
+    CGRect imageFrame = warningImageView.frame;
+    imageFrame.origin.x = 8;
+    imageFrame.origin.y = (int)((cellFrame.size.height - imageFrame.size.height) / 2);
+    warningImageView.frame = imageFrame;
 }
 
 

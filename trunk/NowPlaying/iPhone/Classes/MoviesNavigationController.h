@@ -21,6 +21,4 @@
 
 @property (readonly, retain) AllMoviesViewController* allMoviesViewController;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-
 @end

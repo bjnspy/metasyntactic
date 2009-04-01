@@ -19,6 +19,4 @@
     UpcomingMoviesViewController* upcomingMoviesViewController;
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-
 @end
