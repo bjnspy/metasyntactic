@@ -289,4 +289,13 @@
 }
 #endif
 
+
+- (void) onTabBarItemSelected {
+    for (id controller in self.viewControllers) {
+        if ([controller respondsToSelector:@selector(onTabBarItemSelected)]) {
+            [controller onTabBarItemSelected];
+        }
+    }
+}
+
 @end

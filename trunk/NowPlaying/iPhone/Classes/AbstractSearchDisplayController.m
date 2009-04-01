@@ -71,8 +71,6 @@
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.searchBar.showsScopeBar = YES;
-
-        [self setupDefaultScopeButtonTitles];
     }
 
     return self;
@@ -167,6 +165,11 @@
 
 - (void) minorRefresh {
     [self reload];
+}
+
+
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    [self setupDefaultScopeButtonTitles];
 }
 
 @end

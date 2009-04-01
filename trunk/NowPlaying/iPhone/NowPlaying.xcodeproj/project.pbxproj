@@ -1328,14 +1328,10 @@
 				742ED7880EF45AFF000D5245 /* External */,
 				74447D550DC8474A00CC146C /* UI */,
 				7474FE910E6359BC00BAA43D /* Caches */,
-				748AB37B0EB6C57C004918A6 /* Collections */,
 				74EB7B3D0EE34373005BD3F0 /* Data */,
 				74F3B2430E3CE79900DD25DA /* DataProvider */,
-				745184B40E91D8D600D4E0C5 /* ProtocolBuffers */,
 				744246FE0E89F79000ACDBCF /* Search */,
-				74E6F0190E723FA200A4C2BE /* Threading */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
-				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
 				7406A7850F104D1D00795555 /* AppDelegate.h */,
@@ -1501,32 +1497,8 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				74616EDE0F15DE9D0004B610 /* AlertUtilities.h */,
-				74616EDF0F15DE9D0004B610 /* AlertUtilities.m */,
-				74616D440F15D3420004B610 /* Base64.h */,
-				74616D450F15D3420004B610 /* Base64.m */,
-				74616EE00F15DE9D0004B610 /* DateUtilities.h */,
-				74616EE10F15DE9D0004B610 /* DateUtilities.m */,
-				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
-				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
-				74616EE20F15DE9D0004B610 /* FileUtilities.h */,
-				74616EE30F15DE9D0004B610 /* FileUtilities.m */,
-				74616EE40F15DE9D0004B610 /* ImageUtilities.h */,
-				74616EE50F15DE9D0004B610 /* ImageUtilities.m */,
-				74616EE60F15DE9D0004B610 /* LocaleUtilities.h */,
-				74616EE70F15DE9D0004B610 /* LocaleUtilities.m */,
 				74166B0C0EC94A5700FFD29A /* LocationManager.h */,
 				74166B0D0EC94A5700FFD29A /* LocationManager.m */,
-				74A9164B0F7FFCD600832767 /* LocationUtilities.h */,
-				74A9164C0F7FFCD600832767 /* LocationUtilities.m */,
-				74616EE80F15DE9D0004B610 /* NetworkUtilities.h */,
-				74616EE90F15DE9D0004B610 /* NetworkUtilities.m */,
-				7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */,
-				7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */,
-				74616EEA0F15DE9D0004B610 /* Pulser.h */,
-				74616EEB0F15DE9D0004B610 /* Pulser.m */,
-				74616D720F15D45D0004B610 /* StringUtilities.h */,
-				74616D730F15D45D0004B610 /* StringUtilities.m */,
 				74616FB70F15E0B70004B610 /* Utilities.h */,
 				74616FB80F15E0B70004B610 /* Utilities.m */,
 			);
@@ -1964,6 +1936,11 @@
 			isa = PBXGroup;
 			children = (
 				748BA6260F816D9200D79388 /* UI */,
+				748AB37B0EB6C57C004918A6 /* Collections */,
+				745184B40E91D8D600D4E0C5 /* ProtocolBuffers */,
+				74E6F0190E723FA200A4C2BE /* Threading */,
+				74E6DEFC0F83D58400FFE59C /* Utilities */,
+				74D6F2B40DCC14420097A984 /* Xml */,
 				748BA7BD0F81787C00D79388 /* AbstractApplication.h */,
 				748BA7BE0F81787C00D79388 /* AbstractApplication.m */,
 			);
@@ -2223,6 +2200,37 @@
 			name = Classes;
 			path = ../../ProtocolBuffers/Classes;
 			sourceTree = SOURCE_ROOT;
+		};
+		74E6DEFC0F83D58400FFE59C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				74616EDE0F15DE9D0004B610 /* AlertUtilities.h */,
+				74616EDF0F15DE9D0004B610 /* AlertUtilities.m */,
+				74616D440F15D3420004B610 /* Base64.h */,
+				74616D450F15D3420004B610 /* Base64.m */,
+				74616EE00F15DE9D0004B610 /* DateUtilities.h */,
+				74616EE10F15DE9D0004B610 /* DateUtilities.m */,
+				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
+				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
+				74616EE20F15DE9D0004B610 /* FileUtilities.h */,
+				74616EE30F15DE9D0004B610 /* FileUtilities.m */,
+				74616EE40F15DE9D0004B610 /* ImageUtilities.h */,
+				74616EE50F15DE9D0004B610 /* ImageUtilities.m */,
+				74616EE60F15DE9D0004B610 /* LocaleUtilities.h */,
+				74616EE70F15DE9D0004B610 /* LocaleUtilities.m */,
+				74A9164B0F7FFCD600832767 /* LocationUtilities.h */,
+				74A9164C0F7FFCD600832767 /* LocationUtilities.m */,
+				74616EE80F15DE9D0004B610 /* NetworkUtilities.h */,
+				74616EE90F15DE9D0004B610 /* NetworkUtilities.m */,
+				7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */,
+				7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */,
+				74616EEA0F15DE9D0004B610 /* Pulser.h */,
+				74616EEB0F15DE9D0004B610 /* Pulser.m */,
+				74616D720F15D45D0004B610 /* StringUtilities.h */,
+				74616D730F15D45D0004B610 /* StringUtilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
 		};
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;

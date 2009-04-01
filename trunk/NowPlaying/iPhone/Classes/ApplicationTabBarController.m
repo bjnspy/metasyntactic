@@ -174,6 +174,10 @@
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
+    
+    for (id viewController in self.viewControllers) {
+        [viewController onTabBarItemSelected];
+    }
 }
 
 
