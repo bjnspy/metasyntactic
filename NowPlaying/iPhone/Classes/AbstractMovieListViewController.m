@@ -550,4 +550,11 @@
     [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
 
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) onTabBarItemSelected {
+    [searchDisplayController setActive:NO animated:YES];
+}
+#endif
+
 @end

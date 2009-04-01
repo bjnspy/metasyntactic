@@ -44,6 +44,8 @@
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;
 
+- (void) onTabBarItemSelected;
+
 #ifndef IPHONE_OS_VERSION_3
 - (void) showSearchView;
 #endif
