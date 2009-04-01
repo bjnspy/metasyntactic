@@ -23,8 +23,6 @@
 #endif
 }
 
-- (id) init;
-
 - (void) majorRefresh;
 - (void) minorRefresh;
 
