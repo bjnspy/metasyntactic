@@ -24,7 +24,6 @@
     Queue* queue;
 
     UIBarButtonItem* backButton;
-    BOOL upArrowTapped;
 
     NSMutableArray* mutableMovies;
     NSMutableArray* mutableSaved;

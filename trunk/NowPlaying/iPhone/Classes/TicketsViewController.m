@@ -233,7 +233,6 @@
     AttributeCell* cell = [[[AttributeCell alloc] init] autorelease];
 #endif
 
-
     if (row == 0) {
         cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
         cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
