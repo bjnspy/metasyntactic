@@ -14,6 +14,7 @@
 
 #import "Movie.h"
 
+#import "CollectionUtilities.h"
 #import "StringUtilities.h"
 #import "Utilities.h"
 
@@ -137,10 +138,10 @@ static NSString* articles[] = {
         self.poster = [StringUtilities nonNilString:poster_];
         self.synopsis = [StringUtilities nonNilString:synopsis_];
         self.studio = [StringUtilities nonNilString:studio_];
-        self.directors = [Utilities nonNilArray:directors_];
-        self.cast = [Utilities nonNilArray:cast_];
-        self.genres = [Utilities nonNilArray:genres_];
-        self.additionalFields = [Utilities nonNilDictionary:additionalFields_];
+        self.directors = [CollectionUtilities nonNilArray:directors_];
+        self.cast = [CollectionUtilities nonNilArray:cast_];
+        self.genres = [CollectionUtilities nonNilArray:genres_];
+        self.additionalFields = [CollectionUtilities nonNilDictionary:additionalFields_];
     }
 
     return self;

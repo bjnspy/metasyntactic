@@ -17,11 +17,7 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
-#import "DVDFilterViewController.h"
-#import "DVDNavigationController.h"
-#import "DateUtilities.h"
 #import "Model.h"
-#import "TappableLabel.h"
 
 @interface DVDViewController()
 @property (retain) UISegmentedControl* segmentedControl;

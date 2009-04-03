@@ -14,8 +14,6 @@
 
 #import "ApplicationTabBarController.h"
 
-#import "AllMoviesViewController.h"
-#import "AppDelegate.h"
 #import "Application.h"
 #import "Controller.h"
 #import "DVDNavigationController.h"
@@ -24,7 +22,6 @@
 #import "NetflixNavigationController.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
-#import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 

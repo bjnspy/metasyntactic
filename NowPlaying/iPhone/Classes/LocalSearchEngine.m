@@ -18,11 +18,8 @@
 #import "Model.h"
 #import "Movie.h"
 #import "SearchRequest.h"
-#import "SearchResult.h"
 #import "StringUtilities.h"
 #import "Theater.h"
-#import "Utilities.h"
-
 
 @implementation LocalSearchEngine
 

@@ -15,16 +15,10 @@
 #ifdef IPHONE_OS_VERSION_3
 #import "AbstractSearchDisplayController.h"
 
-#import "AbstractNavigationController.h"
-#import "AppDelegate.h"
-#import "ApplicationTabBarController.h"
 #import "Controller.h"
-#import "DVDCell.h"
 #import "LocalSearchEngine.h"
 #import "Model.h"
-#import "MovieTitleCell.h"
 #import "SearchResult.h"
-#import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
 
 @interface AbstractSearchDisplayController()

@@ -27,8 +27,6 @@
 #import "OperationQueue.h"
 #import "Review.h"
 #import "Score.h"
-#import "ScoreCache.h"
-#import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "XmlElement.h"
 #import "XmlParser.h"

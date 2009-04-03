@@ -15,13 +15,11 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "ImageCache.h"
 #import "LocalSearchDisplayController.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "Model.h"
 #import "MutableMultiDictionary.h"
-#import "SettingsViewController.h"
 #import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"

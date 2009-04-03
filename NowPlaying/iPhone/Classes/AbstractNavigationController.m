@@ -14,15 +14,12 @@
 
 #import "AbstractNavigationController.h"
 
-#import "AppDelegate.h"
-#import "ApplicationTabBarController.h"
 #import "Controller.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
-#import "SearchViewController.h"
 #import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"

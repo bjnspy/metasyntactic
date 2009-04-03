@@ -14,6 +14,7 @@
 
 #import "Theater.h"
 
+#import "CollectionUtilities.h"
 #import "DateUtilities.h"
 #import "Location.h"
 #import "StringUtilities.h"
@@ -75,7 +76,7 @@ property_definition(movieTitles);
         self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];
         self.location = location_;
         self.originatingLocation = originatingLocation_;
-        self.movieTitles = [Utilities nonNilArray:movieTitles_];
+        self.movieTitles = [CollectionUtilities nonNilArray:movieTitles_];
     }
 
     return self;

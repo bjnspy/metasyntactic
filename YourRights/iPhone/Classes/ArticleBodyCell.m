@@ -16,7 +16,6 @@
 
 #import "FontCache.h"
 #import "Item.h"
-#import "Utilities.h"
 
 @interface ArticleBodyCell()
 @property (retain) Item* item;

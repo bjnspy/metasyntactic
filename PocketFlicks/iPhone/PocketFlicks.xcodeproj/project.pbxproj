@@ -55,6 +55,8 @@
 		744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		744CA3380F43769F000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA3370F43769F000DC92A /* DeliveredByNetflix.png */; };
+		74537E750F86AE8000D457CB /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537E720F86AE8000D457CB /* CollectionUtilities.m */; };
+		74537E760F86AE8000D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537E740F86AE8000D457CB /* NSArray+Utilities.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
 		745F37590EE99B4600636D8E /* Bookmark-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37570EE99B4500636D8E /* Bookmark-Active.png */; };
 		745F375A0EE99B4600636D8E /* Bookmark-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37580EE99B4500636D8E /* Bookmark-Inactive.png */; };
@@ -447,6 +449,10 @@
 		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		744CA3370F43769F000DC92A /* DeliveredByNetflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeliveredByNetflix.png; path = Resources/DeliveredByNetflix.png; sourceTree = "<group>"; };
+		74537E710F86AE8000D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionUtilities.h; path = ../../iPhoneShared/Classes/CollectionUtilities.h; sourceTree = SOURCE_ROOT; };
+		74537E720F86AE8000D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionUtilities.m; path = ../../iPhoneShared/Classes/CollectionUtilities.m; sourceTree = SOURCE_ROOT; };
+		74537E730F86AE8000D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "../../iPhoneShared/Classes/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		74537E740F86AE8000D457CB /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "../../iPhoneShared/Classes/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		745E203A0E58858A00105751 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
 		745E203B0E58858A00105751 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
@@ -1196,32 +1202,6 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				74616EA90F15DDDF0004B610 /* AlertUtilities.h */,
-				74616EAA0F15DDDF0004B610 /* AlertUtilities.m */,
-				74616CCE0F15D2C40004B610 /* Base64.h */,
-				74616CCF0F15D2C40004B610 /* Base64.m */,
-				74616EAB0F15DDDF0004B610 /* DateUtilities.h */,
-				74616EAC0F15DDDF0004B610 /* DateUtilities.m */,
-				74616D7D0F15D8260004B610 /* DifferenceEngine.h */,
-				74616D7E0F15D8260004B610 /* DifferenceEngine.m */,
-				74616EAD0F15DDDF0004B610 /* FileUtilities.h */,
-				74616EAE0F15DDDF0004B610 /* FileUtilities.m */,
-				74616EAF0F15DDDF0004B610 /* ImageUtilities.h */,
-				74616EB00F15DDDF0004B610 /* ImageUtilities.m */,
-				74616EB10F15DDDF0004B610 /* LocaleUtilities.h */,
-				74616EB20F15DDDF0004B610 /* LocaleUtilities.m */,
-				74A917260F80080F00832767 /* LocationManager.h */,
-				74A917270F80080F00832767 /* LocationManager.m */,
-				74A9164F0F7FFD1D00832767 /* LocationUtilities.h */,
-				74A916500F7FFD1D00832767 /* LocationUtilities.m */,
-				74616EB30F15DDDF0004B610 /* NetworkUtilities.h */,
-				74616EB40F15DDDF0004B610 /* NetworkUtilities.m */,
-				740102400F26F15800258353 /* NSMutableArray+Utilities.h */,
-				740102410F26F15800258353 /* NSMutableArray+Utilities.m */,
-				74616EB50F15DDDF0004B610 /* Pulser.h */,
-				74616EB60F15DDDF0004B610 /* Pulser.m */,
-				74616D6E0F15D4460004B610 /* StringUtilities.h */,
-				74616D6F0F15D4460004B610 /* StringUtilities.m */,
 				74A918710F8010BC00832767 /* Utilities.h */,
 				74A918720F8010BC00832767 /* Utilities.m */,
 			);
@@ -1346,6 +1326,43 @@
 				74A916E30F80064500832767 /* TheaterNameCell.m */,
 			);
 			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		74537E6F0F86AE5400D457CB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				74537E710F86AE8000D457CB /* CollectionUtilities.h */,
+				74537E720F86AE8000D457CB /* CollectionUtilities.m */,
+				74537E730F86AE8000D457CB /* NSArray+Utilities.h */,
+				74537E740F86AE8000D457CB /* NSArray+Utilities.m */,
+				74616EA90F15DDDF0004B610 /* AlertUtilities.h */,
+				74616EAA0F15DDDF0004B610 /* AlertUtilities.m */,
+				74616CCE0F15D2C40004B610 /* Base64.h */,
+				74616CCF0F15D2C40004B610 /* Base64.m */,
+				74616EAB0F15DDDF0004B610 /* DateUtilities.h */,
+				74616EAC0F15DDDF0004B610 /* DateUtilities.m */,
+				74616D7D0F15D8260004B610 /* DifferenceEngine.h */,
+				74616D7E0F15D8260004B610 /* DifferenceEngine.m */,
+				74616EAD0F15DDDF0004B610 /* FileUtilities.h */,
+				74616EAE0F15DDDF0004B610 /* FileUtilities.m */,
+				74616EAF0F15DDDF0004B610 /* ImageUtilities.h */,
+				74616EB00F15DDDF0004B610 /* ImageUtilities.m */,
+				74616EB10F15DDDF0004B610 /* LocaleUtilities.h */,
+				74616EB20F15DDDF0004B610 /* LocaleUtilities.m */,
+				74A917260F80080F00832767 /* LocationManager.h */,
+				74A917270F80080F00832767 /* LocationManager.m */,
+				74A9164F0F7FFD1D00832767 /* LocationUtilities.h */,
+				74A916500F7FFD1D00832767 /* LocationUtilities.m */,
+				74616EB30F15DDDF0004B610 /* NetworkUtilities.h */,
+				74616EB40F15DDDF0004B610 /* NetworkUtilities.m */,
+				740102400F26F15800258353 /* NSMutableArray+Utilities.h */,
+				740102410F26F15800258353 /* NSMutableArray+Utilities.m */,
+				74616EB50F15DDDF0004B610 /* Pulser.h */,
+				74616EB60F15DDDF0004B610 /* Pulser.m */,
+				74616D6E0F15D4460004B610 /* StringUtilities.h */,
+				74616D6F0F15D4460004B610 /* StringUtilities.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		74616C8E0F15D2A80004B610 /* Expat */ = {
@@ -1537,6 +1554,7 @@
 			isa = PBXGroup;
 			children = (
 				748BA6310F816DD900D79388 /* UI */,
+				74537E6F0F86AE5400D457CB /* Utilities */,
 				748BA6580F816EA500D79388 /* AbstractApplication.h */,
 				748BA6590F816EA500D79388 /* AbstractApplication.m */,
 			);
@@ -2446,6 +2464,8 @@
 				748BA6430F816E0B00D79388 /* AbstractFullScreenTableViewController.m in Sources */,
 				748BA6440F816E0B00D79388 /* AbstractFullScreenViewController.m in Sources */,
 				748BA65A0F816EA500D79388 /* AbstractApplication.m in Sources */,
+				74537E750F86AE8000D457CB /* CollectionUtilities.m in Sources */,
+				74537E760F86AE8000D457CB /* NSArray+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

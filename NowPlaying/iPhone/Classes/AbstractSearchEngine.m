@@ -14,14 +14,11 @@
 
 #import "AbstractSearchEngine.h"
 
-#import "AppDelegate.h"
 #import "Model.h"
-#import "Movie.h"
 #import "NotificationCenter.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
-#import "Utilities.h"
 
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate;

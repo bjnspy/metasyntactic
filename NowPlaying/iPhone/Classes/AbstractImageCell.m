@@ -14,9 +14,10 @@
 
 #import "AbstractImageCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 #import "ImageCache.h"
 #import "OperationQueue.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface AbstractImageCell()
