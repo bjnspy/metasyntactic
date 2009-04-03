@@ -26,7 +26,7 @@
 #import "Person.h"
 #import "RSSCache.h"
 #import "Section.h"
-#import "Utilities.h"
+#import "StringUtilities.h"
 
 @interface Model()
 @property (retain) RSSCache* rssCache;
@@ -1073,7 +1073,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
     NSString* subject = @"Your%20Rights%20Feedback";
 
-    NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
+    NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
 }

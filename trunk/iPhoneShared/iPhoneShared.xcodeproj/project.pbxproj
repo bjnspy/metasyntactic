@@ -14,6 +14,8 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		740102290F26EF7800258353 /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 740102280F26EF7800258353 /* NSMutableArray+Utilities.m */; };
+		74537D4B0F86AA6C00D457CB /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */; };
+		74537D4E0F86AAE600D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */; };
 		74616C4B0F15D1EE0004B610 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		74616C4C0F15D1EE0004B610 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
 		74616C4D0F15D1EE0004B610 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C460F15D1EE0004B610 /* xmltok.c */; };
@@ -39,8 +41,6 @@
 		74616D8E0F15D8A10004B610 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D8A0F15D8A10004B610 /* PriorityMutex.m */; };
 		74616DB70F15D9590004B610 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAC0F15D9590004B610 /* IdentityObject.m */; };
 		74616DB80F15D9590004B610 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAE0F15D9590004B610 /* IdentitySet.m */; };
-		74616DB90F15D9590004B610 /* LinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB00F15D9590004B610 /* LinkedNode.m */; };
-		74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB20F15D9590004B610 /* LinkedSet.m */; };
 		74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB40F15D9590004B610 /* MultiDictionary.m */; };
 		74616DBC0F15D9590004B610 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB60F15D9590004B610 /* PointerSet.m */; };
 		74616DFB0F15DAC00004B610 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF40F15DAC00004B610 /* XmlDocument.m */; };
@@ -53,7 +53,6 @@
 		74616E500F15DC800004B610 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E460F15DC800004B610 /* ImageUtilities.m */; };
 		74616E510F15DC800004B610 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E480F15DC800004B610 /* LocaleUtilities.m */; };
 		74616E520F15DC800004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E4A0F15DC800004B610 /* NetworkUtilities.m */; };
-		74616E530F15DC800004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E4C0F15DC800004B610 /* Utilities.m */; };
 		74616E650F15DCC10004B610 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E640F15DCC10004B610 /* ViewControllerUtilities.m */; };
 		74616E800F15DD0F0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E7F0F15DD0F0004B610 /* Pulser.m */; };
 		74616E890F15DD300004B610 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74616E880F15DD300004B610 /* SystemConfiguration.framework */; };
@@ -71,6 +70,10 @@
 		32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneShared_Prefix.pch; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
 		740102280F26EF7800258353 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utilities.m"; sourceTree = "<group>"; };
+		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
+		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
+		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
+		74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
 		74616C370F15D1EE0004B610 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
 		74616C380F15D1EE0004B610 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
 		74616C390F15D1EE0004B610 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
@@ -133,10 +136,6 @@
 		74616DAC0F15D9590004B610 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityObject.m; sourceTree = "<group>"; };
 		74616DAD0F15D9590004B610 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
 		74616DAE0F15D9590004B610 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
-		74616DAF0F15D9590004B610 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedNode.h; sourceTree = "<group>"; };
-		74616DB00F15D9590004B610 /* LinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedNode.m; sourceTree = "<group>"; };
-		74616DB10F15D9590004B610 /* LinkedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedSet.h; sourceTree = "<group>"; };
-		74616DB20F15D9590004B610 /* LinkedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedSet.m; sourceTree = "<group>"; };
 		74616DB30F15D9590004B610 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
 		74616DB40F15D9590004B610 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
 		74616DB50F15D9590004B610 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
@@ -163,8 +162,6 @@
 		74616E480F15DC800004B610 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		74616E490F15DC800004B610 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
 		74616E4A0F15DC800004B610 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
-		74616E4B0F15DC800004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		74616E4C0F15DC800004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74616E630F15DCC10004B610 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		74616E640F15DCC10004B610 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		74616E7E0F15DD0F0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
@@ -338,8 +335,6 @@
 				74616E480F15DC800004B610 /* LocaleUtilities.m */,
 				74616E490F15DC800004B610 /* NetworkUtilities.h */,
 				74616E4A0F15DC800004B610 /* NetworkUtilities.m */,
-				74616E4B0F15DC800004B610 /* Utilities.h */,
-				74616E4C0F15DC800004B610 /* Utilities.m */,
 				74616D760F15D7F50004B610 /* DifferenceEngine.h */,
 				74616D770F15D7F50004B610 /* DifferenceEngine.m */,
 				74616D6A0F15D42A0004B610 /* StringUtilities.h */,
@@ -348,6 +343,10 @@
 				74616C870F15D2450004B610 /* Base64.m */,
 				740102270F26EF7800258353 /* NSMutableArray+Utilities.h */,
 				740102280F26EF7800258353 /* NSMutableArray+Utilities.m */,
+				74537D490F86AA6C00D457CB /* CollectionUtilities.h */,
+				74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */,
+				74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */,
+				74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -374,10 +373,6 @@
 				74616DAC0F15D9590004B610 /* IdentityObject.m */,
 				74616DAD0F15D9590004B610 /* IdentitySet.h */,
 				74616DAE0F15D9590004B610 /* IdentitySet.m */,
-				74616DAF0F15D9590004B610 /* LinkedNode.h */,
-				74616DB00F15D9590004B610 /* LinkedNode.m */,
-				74616DB10F15D9590004B610 /* LinkedSet.h */,
-				74616DB20F15D9590004B610 /* LinkedSet.m */,
 				74616DB30F15D9590004B610 /* MultiDictionary.h */,
 				74616DB40F15D9590004B610 /* MultiDictionary.m */,
 				74616DB50F15D9590004B610 /* PointerSet.h */,
@@ -490,8 +485,6 @@
 				74616D8E0F15D8A10004B610 /* PriorityMutex.m in Sources */,
 				74616DB70F15D9590004B610 /* IdentityObject.m in Sources */,
 				74616DB80F15D9590004B610 /* IdentitySet.m in Sources */,
-				74616DB90F15D9590004B610 /* LinkedNode.m in Sources */,
-				74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */,
 				74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */,
 				74616DBC0F15D9590004B610 /* PointerSet.m in Sources */,
 				74616DFB0F15DAC00004B610 /* XmlDocument.m in Sources */,
@@ -504,10 +497,11 @@
 				74616E500F15DC800004B610 /* ImageUtilities.m in Sources */,
 				74616E510F15DC800004B610 /* LocaleUtilities.m in Sources */,
 				74616E520F15DC800004B610 /* NetworkUtilities.m in Sources */,
-				74616E530F15DC800004B610 /* Utilities.m in Sources */,
 				74616E650F15DCC10004B610 /* ViewControllerUtilities.m in Sources */,
 				74616E800F15DD0F0004B610 /* Pulser.m in Sources */,
 				740102290F26EF7800258353 /* NSMutableArray+Utilities.m in Sources */,
+				74537D4B0F86AA6C00D457CB /* CollectionUtilities.m in Sources */,
+				74537D4E0F86AAE600D457CB /* NSArray+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

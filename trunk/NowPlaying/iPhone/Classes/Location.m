@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "StringUtilities.h"
-#import "Utilities.h"
 
 @interface Location()
 @property double latitude;

@@ -16,8 +16,6 @@
 #import "LocalSearchDisplayController.h"
 
 #import "AbstractNavigationController.h"
-#import "AppDelegate.h"
-#import "ApplicationTabBarController.h"
 #import "DVDCell.h"
 #import "LocalSearchEngine.h"
 #import "Model.h"

@@ -23,14 +23,8 @@
 #import "DateUtilities.h"
 #import "LocationManager.h"
 #import "Model.h"
-#import "NetflixCache.h"
 #import "OperationQueue.h"
-#import "PosterCache.h"
-#import "ScoreCache.h"
-#import "TrailerCache.h"
-#import "UpcomingCache.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;

@@ -14,7 +14,6 @@
 
 #import "AbstractTableViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "Controller.h"
 #import "Model.h"
 #import "OperationQueue.h"

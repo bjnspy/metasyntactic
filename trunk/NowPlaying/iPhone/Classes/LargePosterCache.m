@@ -23,7 +23,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 
 @interface LargePosterCache()

@@ -14,12 +14,21 @@
 
 #import "NSMutableArray+Utilities.h"
 
-@implementation NSMutableArray(NSArrayUtilities)
+@implementation NSMutableArray(NSMutableArrayUtilities)
 
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index {
     for (NSInteger i = array.count - 1; i >= 0; i--) {
         [self insertObject:[array objectAtIndex:i] atIndex:index];
     }
+}
+
+
+- (id) removeRandomElement {
+    NSInteger index = rand() % self.count;
+    id value = [[[self objectAtIndex:index] retain] autorelease];
+    [self removeObjectAtIndex:index];
+    
+    return value;
 }
 
 @end

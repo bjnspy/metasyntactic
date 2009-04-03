@@ -79,6 +79,10 @@
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
+		74537DCB0F86AD2400D457CB /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DC80F86AD2400D457CB /* CollectionUtilities.m */; };
+		74537DCC0F86AD2400D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */; };
+		74537DCD0F86AD2400D457CB /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DC80F86AD2400D457CB /* CollectionUtilities.m */; };
+		74537DCE0F86AD2400D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */; };
 		74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
@@ -794,6 +798,10 @@
 		744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeliveredByNetflix.png; path = Resources/DeliveredByNetflix.png; sourceTree = "<group>"; };
 		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
+		74537DC70F86AD2400D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionUtilities.h; path = ../../iPhoneShared/Classes/CollectionUtilities.h; sourceTree = SOURCE_ROOT; };
+		74537DC80F86AD2400D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionUtilities.m; path = ../../iPhoneShared/Classes/CollectionUtilities.m; sourceTree = SOURCE_ROOT; };
+		74537DC90F86AD2400D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "../../iPhoneShared/Classes/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "../../iPhoneShared/Classes/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
 		74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -2202,6 +2210,10 @@
 		74E6DEFC0F83D58400FFE59C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74537DC70F86AD2400D457CB /* CollectionUtilities.h */,
+				74537DC80F86AD2400D457CB /* CollectionUtilities.m */,
+				74537DC90F86AD2400D457CB /* NSArray+Utilities.h */,
+				74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */,
 				74616EDE0F15DE9D0004B610 /* AlertUtilities.h */,
 				74616EDF0F15DE9D0004B610 /* AlertUtilities.m */,
 				74616D440F15D3420004B610 /* Base64.h */,
@@ -2806,6 +2818,8 @@
 				748BA62C0F816DB500D79388 /* AbstractFullScreenTableViewController.m in Sources */,
 				748BA62D0F816DB500D79388 /* AbstractFullScreenViewController.m in Sources */,
 				748BA7BF0F81787C00D79388 /* AbstractApplication.m in Sources */,
+				74537DCB0F86AD2400D457CB /* CollectionUtilities.m in Sources */,
+				74537DCC0F86AD2400D457CB /* NSArray+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3052,6 +3066,8 @@
 				748BA62E0F816DB500D79388 /* AbstractFullScreenTableViewController.m in Sources */,
 				748BA62F0F816DB500D79388 /* AbstractFullScreenViewController.m in Sources */,
 				748BA7C00F81787C00D79388 /* AbstractApplication.m in Sources */,
+				74537DCD0F86AD2400D457CB /* CollectionUtilities.m in Sources */,
+				74537DCE0F86AD2400D457CB /* NSArray+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3211,7 +3227,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3259,7 +3275,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3304,7 +3320,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3331,7 +3347,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
