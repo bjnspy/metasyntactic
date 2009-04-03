@@ -490,7 +490,7 @@
 
     NSString* title = score.canonicalTitle;
     NSString* reviewsFile = [self reviewsFile:title];
-    
+
     NSDate* modificationDate = [FileUtilities modificationDate:reviewsFile];
     if (modificationDate != nil) {
         if (ABS([modificationDate timeIntervalSinceNow]) < 2) {
@@ -498,13 +498,13 @@
             if (reviews.count > 0) {
                 return;
             }
-            
+
             if (!force) {
                 return;
             }
         }
     }
-    
+
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address];

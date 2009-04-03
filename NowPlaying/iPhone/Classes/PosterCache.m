@@ -96,7 +96,7 @@
 
 - (void) updateMovieDetails:(Movie*) movie force:force {
     NSString* path = [self posterFilePath:movie];
-    
+
     NSDate* modificationDate = [FileUtilities modificationDate:path];
     if (modificationDate != nil) {
         if ([FileUtilities size:path] > 0) {

@@ -485,7 +485,7 @@
     }
 
     NSString* synopsisFile = [self synopsisFile:movie];
-                             
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
     if (lastLookupDate != nil) {
@@ -494,7 +494,7 @@
             if (synopsis.length > 0) {
                 return;
             }
-            
+
             if (!force) {
                 return;
             }
@@ -538,7 +538,7 @@
     }
 
     NSString* trailersFile = [self trailersFile:movie];
-    
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
@@ -546,7 +546,7 @@
             if (trailers.count > 0) {
                 return;
             }
-            
+
             if (!force) {
                 return;
             }
