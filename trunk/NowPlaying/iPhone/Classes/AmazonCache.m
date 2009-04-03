@@ -47,7 +47,7 @@
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     NSString* path = [self amazonFile:movie];
-    
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
@@ -55,7 +55,7 @@
             // we have a real imdb value for this movie
             return;
         }
-        
+
         if (!force) {
             // we have a sentinel.  only update if it's been long enough
             if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {

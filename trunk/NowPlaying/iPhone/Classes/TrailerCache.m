@@ -68,7 +68,7 @@
             if (values.count > 0) {
                 return;
             }
-            
+
             if (!force) {
                 return;
             }
