@@ -58,11 +58,20 @@
 }
 
 
-- (void) updateMovieDetailsWorker:(Movie*) movie {
-    NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
+- (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
+    NSString* file = [self trailerFile:movie];
+
+    NSDate* downloadDate = [FileUtilities modificationDate:file];
     if (downloadDate != nil) {
         if ([self tooSoon:downloadDate]) {
-            return;
+            NSArray* values = [FileUtilities readObject:file];
+            if (values.count > 0) {
+                return;
+            }
+            
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -146,9 +155,9 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     if ([self tryGenerateIndex]) {
-        [self updateMovieDetailsWorker:movie];
+        [self updateMovieDetailsWorker:movie force:force];
     }
 }
 

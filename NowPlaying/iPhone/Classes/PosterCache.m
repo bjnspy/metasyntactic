@@ -94,18 +94,18 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:force {
     NSString* path = [self posterFilePath:movie];
-
-    if ([FileUtilities fileExists:path]) {
+    
+    NSDate* modificationDate = [FileUtilities modificationDate:path];
+    if (modificationDate != nil) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
 
-        if ([FileUtilities size:path] == 0) {
+        if (!force) {
             // sentinel value.  only update if it's been long enough.
-            NSDate* modificationDate = [FileUtilities modificationDate:path];
             if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
                 return;
             }

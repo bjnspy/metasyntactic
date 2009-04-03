@@ -428,10 +428,7 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
-    if (![self.moviesSet containsObject:movie]) {
-        return;
-    }
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
 }
 
 

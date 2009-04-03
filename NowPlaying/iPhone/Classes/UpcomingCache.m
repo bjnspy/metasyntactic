@@ -477,6 +477,7 @@
 
 
 - (void) updateSynopsisAndCast:(Movie*) movie
+                         force:(BOOL) force
                         studio:(NSString*) studio
                          title:(NSString*) title {
     if (studio.length == 0 || title.length == 0) {
@@ -484,11 +485,19 @@
     }
 
     NSString* synopsisFile = [self synopsisFile:movie];
+                             
     NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_WEEK) {
-            return;
+            NSString* synopsis = [FileUtilities readObject:synopsisFile];
+            if (synopsis.length > 0) {
+                return;
+            }
+            
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -513,14 +522,15 @@
         [cast removeObjectAtIndex:0];
     }
 
-    [FileUtilities writeObject:synopsis toFile:synopsisFile];
-    [FileUtilities writeObject:cast toFile:[self castFile:movie]];
+            [FileUtilities writeObject:cast toFile:[self castFile:movie]];
+            [FileUtilities writeObject:synopsis toFile:synopsisFile];
 
     [AppDelegate minorRefresh];
 }
 
 
 - (void) updateTrailers:(Movie*) movie
+                  force:(BOOL) force
                  studio:(NSString*) studio
                   title:(NSString*) title {
     if (studio.length == 0 || title.length == 0) {
@@ -528,11 +538,18 @@
     }
 
     NSString* trailersFile = [self trailersFile:movie];
+    
     NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
-
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
+            NSArray* trailers = [FileUtilities readObject:trailersFile];
+            if (trailers.count > 0) {
+                return;
+            }
+            
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -556,18 +573,20 @@
 
 
 - (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force
                      studio:(NSString*) studio
                       title:(NSString*) title {
-    [self updateSynopsisAndCast:movie studio:studio title:title];
-    [self updateTrailers:movie studio:studio title:title];
+    [self updateSynopsisAndCast:movie force:force studio:studio title:title];
+    [self updateTrailers:movie force:force studio:studio title:title];
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     NSString* studio = [self.studioKeys objectForKey:movie.canonicalTitle];
     NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
 
     [self updateMovieDetails:movie
+                       force:force
                       studio:studio
                        title:title];
 }

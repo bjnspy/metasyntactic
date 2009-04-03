@@ -125,13 +125,13 @@
 }
 
 
-- (void) processMovie:(Movie*) movie {
+- (void) processMovie:(Movie*) movie force:(BOOL) force{
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
     if (currentScoreProvider == rottenTomatoesScoreProvider) {
         currentScoreProvider = metacriticScoreProvider;
     }
 
-    [currentScoreProvider processMovie:movie];
+    [currentScoreProvider processMovie:movie force:force];
 }
 
 

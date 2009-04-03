@@ -26,7 +26,7 @@
 
 + (ScoreCache*) cache;
 
-- (void) processMovie:(Movie*) movie;
+- (void) processMovie:(Movie*) movie force:(BOOL) force;
 
 - (void) update;
 - (Score*) scoreForMovie:(Movie*) movie;
