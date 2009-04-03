@@ -482,11 +482,29 @@
 
 
 - (void) downloadReviews:(Score*) score
-                location:(Location*) location {
+                location:(Location*) location
+                   force:(BOOL) force {
     if (score == nil || location == nil) {
         return;
     }
 
+    NSString* title = score.canonicalTitle;
+    NSString* reviewsFile = [self reviewsFile:title];
+    
+    NSDate* modificationDate = [FileUtilities modificationDate:reviewsFile];
+    if (modificationDate != nil) {
+        if (ABS([modificationDate timeIntervalSinceNow]) < 2) {
+            NSArray* reviews = [FileUtilities readObject:reviewsFile];
+            if (reviews.count > 0) {
+                return;
+            }
+            
+            if (!force) {
+                return;
+            }
+        }
+    }
+    
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address];
@@ -496,7 +514,6 @@
         return;
     }
 
-    NSString* title = score.canonicalTitle;
     if ([serverHash isEqual:localHash]) {
         // save the hash again so we don't check for a few more days.
         [FileUtilities writeObject:serverHash toFile:[self reviewsHashFile:title]];
@@ -530,13 +547,9 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     Score* score = [self.scores objectForKey:[self.movieMap objectForKey:movie.canonicalTitle]];
     if (score == nil) {
-        return;
-    }
-
-    if ([FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
         return;
     }
 
@@ -545,7 +558,7 @@
         return;
     }
 
-    [self downloadReviews:score location:location];
+    [self downloadReviews:score location:location force:force];
 }
 
 

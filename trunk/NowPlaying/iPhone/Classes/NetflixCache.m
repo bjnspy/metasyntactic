@@ -46,7 +46,7 @@
 @property (retain) NSDictionary* queuesData;
 @property (retain) NSDate* lastQuotaErrorDate;
 
-- (void) updateMovieDetails:(Movie*) movie;
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
 @end
 
 
@@ -936,7 +936,7 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
-    [self updateMovieDetails:series];
+    [self updateMovieDetails:series force:NO];
 }
 
 
@@ -1279,7 +1279,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     if (![movie isNetflix]) {
         return;
     }

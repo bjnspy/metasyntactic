@@ -186,7 +186,6 @@
 		746397580F7EC8D600B2F64C /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89EF0F0ECF10009DC326 /* Theaters.png */; };
 		746397590F7EC8D600B2F64C /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F00F0ECF10009DC326 /* TryntLogo.png */; };
 		7463975A0F7EC8D600B2F64C /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F10F0ECF10009DC326 /* UpArrow.png */; };
-		7463975B0F7EC8D600B2F64C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F20F0ECF10009DC326 /* Upcoming.png */; };
 		7463975C0F7EC8D600B2F64C /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F30F0ECF10009DC326 /* VideoETALogo.png */; };
 		7463975D0F7EC8D600B2F64C /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F40F0ECF10009DC326 /* Warning-16x16.png */; };
 		7463975E0F7EC8D600B2F64C /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F50F0ECF10009DC326 /* Warning-32x32.png */; };
@@ -577,7 +576,6 @@
 		74DD8A280F0ECF10009DC326 /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89EF0F0ECF10009DC326 /* Theaters.png */; };
 		74DD8A290F0ECF10009DC326 /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F00F0ECF10009DC326 /* TryntLogo.png */; };
 		74DD8A2A0F0ECF10009DC326 /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F10F0ECF10009DC326 /* UpArrow.png */; };
-		74DD8A2B0F0ECF10009DC326 /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F20F0ECF10009DC326 /* Upcoming.png */; };
 		74DD8A2C0F0ECF10009DC326 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F30F0ECF10009DC326 /* VideoETALogo.png */; };
 		74DD8A2D0F0ECF10009DC326 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F40F0ECF10009DC326 /* Warning-16x16.png */; };
 		74DD8A2E0F0ECF10009DC326 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F50F0ECF10009DC326 /* Warning-32x32.png */; };
@@ -622,6 +620,8 @@
 		74E17FC90E95FEFE00F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC40E95FEFE00F8D0D3 /* ExtendableBuilder.m */; };
 		74E17FCA0E95FEFE00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */; };
 		74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */; };
+		74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
+		74E6E1250F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
 		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
 		74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
 		74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */; };
@@ -905,7 +905,6 @@
 		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		746398600F7EC8D600B2F64C /* BoxOffice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		746398620F7EC8D600B2F64C /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		746398630F7EC97200B2F64C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		746398740F7EC99800B2F64C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		746398780F7EC99C00B2F64C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1138,7 +1137,6 @@
 		74DD89EF0F0ECF10009DC326 /* Theaters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Theaters.png; path = Resources/Theaters.png; sourceTree = "<group>"; };
 		74DD89F00F0ECF10009DC326 /* TryntLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TryntLogo.png; path = Resources/TryntLogo.png; sourceTree = "<group>"; };
 		74DD89F10F0ECF10009DC326 /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UpArrow.png; path = Resources/UpArrow.png; sourceTree = "<group>"; };
-		74DD89F20F0ECF10009DC326 /* Upcoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upcoming.png; path = Resources/Upcoming.png; sourceTree = "<group>"; };
 		74DD89F30F0ECF10009DC326 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
 		74DD89F40F0ECF10009DC326 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "Resources/Warning-16x16.png"; sourceTree = "<group>"; };
 		74DD89F50F0ECF10009DC326 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "Resources/Warning-32x32.png"; sourceTree = "<group>"; };
@@ -1234,6 +1232,7 @@
 		74E17FC70E95FEFE00F8D0D3 /* ServiceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDescriptor.h; sourceTree = "<group>"; };
 		74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptor.m; sourceTree = "<group>"; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
+		74E6E1230F84301C00FFE59C /* Upcoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upcoming.png; path = Resources/Upcoming.png; sourceTree = "<group>"; };
 		74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRatingsCell.h; sourceTree = "<group>"; };
 		74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRatingsCell.m; sourceTree = "<group>"; };
 		74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.0.png"; path = "Resources/RedStar-0.0.png"; sourceTree = "<group>"; };
@@ -1442,12 +1441,11 @@
 				74DD89EF0F0ECF10009DC326 /* Theaters.png */,
 				74DD89F00F0ECF10009DC326 /* TryntLogo.png */,
 				74DD89F10F0ECF10009DC326 /* UpArrow.png */,
-				74DD89F20F0ECF10009DC326 /* Upcoming.png */,
+				74E6E1230F84301C00FFE59C /* Upcoming.png */,
 				74DD89F30F0ECF10009DC326 /* VideoETALogo.png */,
 				74DD89F40F0ECF10009DC326 /* Warning-16x16.png */,
 				74DD89F50F0ECF10009DC326 /* Warning-32x32.png */,
 				74DD89F60F0ECF10009DC326 /* YahooLogo.png */,
-				746398620F7EC8D600B2F64C /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2471,7 +2469,6 @@
 				74DD8A280F0ECF10009DC326 /* Theaters.png in Resources */,
 				74DD8A290F0ECF10009DC326 /* TryntLogo.png in Resources */,
 				74DD8A2A0F0ECF10009DC326 /* UpArrow.png in Resources */,
-				74DD8A2B0F0ECF10009DC326 /* Upcoming.png in Resources */,
 				74DD8A2C0F0ECF10009DC326 /* VideoETALogo.png in Resources */,
 				74DD8A2D0F0ECF10009DC326 /* Warning-16x16.png in Resources */,
 				74DD8A2E0F0ECF10009DC326 /* Warning-32x32.png in Resources */,
@@ -2480,6 +2477,7 @@
 				747D98CE0F3047E7000B5A68 /* Netflix.png in Resources */,
 				744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */,
 				7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */,
+				74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2550,7 +2548,6 @@
 				746397580F7EC8D600B2F64C /* Theaters.png in Resources */,
 				746397590F7EC8D600B2F64C /* TryntLogo.png in Resources */,
 				7463975A0F7EC8D600B2F64C /* UpArrow.png in Resources */,
-				7463975B0F7EC8D600B2F64C /* Upcoming.png in Resources */,
 				7463975C0F7EC8D600B2F64C /* VideoETALogo.png in Resources */,
 				7463975D0F7EC8D600B2F64C /* Warning-16x16.png in Resources */,
 				7463975E0F7EC8D600B2F64C /* Warning-32x32.png in Resources */,
@@ -2559,6 +2556,7 @@
 				746397610F7EC8D600B2F64C /* Netflix.png in Resources */,
 				746397620F7EC8D600B2F64C /* DeliveredByNetflix.png in Resources */,
 				746397630F7EC8D600B2F64C /* DeleteMovie.png in Resources */,
+				74E6E1250F84301C00FFE59C /* Upcoming.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
