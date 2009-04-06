@@ -26,7 +26,7 @@
 
 #import "OAHMAC_SHA1SignatureProvider.h"
 
-#import "Base64.h"
+//#import "Base64.h"
 
 @implementation OAHMAC_SHA1SignatureProvider
 

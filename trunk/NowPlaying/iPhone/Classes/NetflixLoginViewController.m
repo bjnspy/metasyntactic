@@ -15,7 +15,7 @@
 #import "NetflixLoginViewController.h"
 
 #import "AlertUtilities.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #import "Application.h"
 #import "Controller.h"
 #import "Model.h"

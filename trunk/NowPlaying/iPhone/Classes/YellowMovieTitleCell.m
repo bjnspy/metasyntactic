@@ -14,8 +14,8 @@
 
 #import "YellowMovieTitleCell.h"
 
-#import "ColorCache.h"
-#import "FontCache.h"
+//#import "ColorCache.h"
+//#import "FontCache.h"
 #import "ImageCache.h"
 
 @implementation YellowMovieTitleCell

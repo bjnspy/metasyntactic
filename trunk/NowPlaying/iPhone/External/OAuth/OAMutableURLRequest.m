@@ -26,14 +26,14 @@
 
 #import "OAMutableURLRequest.h"
 
-#import "NSMutableURLRequest+Parameters.h"
-#import "NSString+URLEncoding.h"
-#import "NSURL+Base.h"
-#import "OAConsumer.h"
-#import "OAHMAC_SHA1SignatureProvider.h"
-#import "OARequestParameter.h"
-#import "OASignatureProviding.h"
-#import "OAToken.h"
+//#import "NSMutableURLRequest+Parameters.h"
+//#import "NSString+URLEncoding.h"
+//#import "NSURL+Base.h"
+//#import "OAConsumer.h"
+//#import "OAHMAC_SHA1SignatureProvider.h"
+//#import "OARequestParameter.h"
+//#import "OASignatureProviding.h"
+//#import "OAToken.h"
 
 @interface OAMutableURLRequest()
 @property (retain) OAConsumer* consumer;

@@ -25,7 +25,7 @@
 
 
 #import "OARequestParameter.h"
-#import "NSString+URLEncoding.h"
+//#import "NSString+URLEncoding.h"
 
 @interface OARequestParameter()
 @property (copy) NSString* name;

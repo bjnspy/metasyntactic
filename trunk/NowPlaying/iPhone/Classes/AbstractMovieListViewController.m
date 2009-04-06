@@ -14,7 +14,7 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 #import "DateUtilities.h"
 #import "LocalSearchDisplayController.h"

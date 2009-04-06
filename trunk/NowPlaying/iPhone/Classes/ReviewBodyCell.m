@@ -16,8 +16,8 @@
 
 #import "FontCache.h"
 #import "Review.h"
-#import "UITableViewCell+Utilities.h"
-#import "Utilities.h"
+//#import "UITableViewCell+Utilities.h"
+//#import "Utilities.h"
 
 
 @interface ReviewBodyCell()
