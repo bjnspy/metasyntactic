@@ -129,7 +129,7 @@ typedef enum {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    NSString* text = [NSString stringWithFormat:@"%@ / %@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"About", nil), NSLocalizedString(@"Help", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Help", nil), NSLocalizedString(@"Send Feedback", nil)];
     cell.text = text;
 
     return cell;
