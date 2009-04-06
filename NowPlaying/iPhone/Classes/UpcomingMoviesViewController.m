@@ -17,7 +17,7 @@
 #import "Model.h"
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"
-#import "UpcomingMoviesNavigationController.h"
+//#import "UpcomingMoviesNavigationController.h"
 
 @interface UpcomingMoviesViewController()
 @property (retain) UISegmentedControl* segmentedControl;

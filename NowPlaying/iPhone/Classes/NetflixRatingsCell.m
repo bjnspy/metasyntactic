@@ -17,7 +17,7 @@
 #import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "Model.h"
-#import "Movie.h"
+//#import "Movie.h"
 #import "MutableNetflixCache.h"
 #import "TappableImageView.h"
 

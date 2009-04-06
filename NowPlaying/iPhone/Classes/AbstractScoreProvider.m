@@ -584,6 +584,12 @@
 }
 
 
+- (void) downloadReviews:(Score*) score
+                location:(Location*) location {
+    [self downloadReviews:score location:location force:NO];
+}
+
+
 - (void) update:(BOOL) notifications {
     [runGate lock];
     {

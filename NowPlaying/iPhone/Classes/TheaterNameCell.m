@@ -14,11 +14,11 @@
 
 #import "TheaterNameCell.h"
 
-#import "Application.h"
+//#import "Application.h"
 #import "Model.h"
 #import "StringUtilities.h"
 #import "Theater.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 
 @interface TheaterNameCell()

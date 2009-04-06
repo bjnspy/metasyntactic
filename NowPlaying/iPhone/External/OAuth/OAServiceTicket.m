@@ -25,7 +25,7 @@
 
 
 #import "OAServiceTicket.h"
-#import "OAMutableURLRequest.h"
+//#import "OAMutableURLRequest.h"
 
 @interface OAServiceTicket()
 @property (retain) OAMutableURLRequest* request;

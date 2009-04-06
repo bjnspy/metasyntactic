@@ -14,7 +14,7 @@
 
 #import "AbstractMovieDetailsCell.h"
 
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 @interface AbstractMovieDetailsCell()
 @property (retain) Movie* movie;

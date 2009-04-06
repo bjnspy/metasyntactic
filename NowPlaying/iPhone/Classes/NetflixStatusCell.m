@@ -15,12 +15,12 @@
 #import "NetflixStatusCell.h"
 
 #import "ImageCache.h"
-#import "Model.h"
-#import "NetflixCache.h"
+//#import "Model.h"
+//#import "NetflixCache.h"
 #import "Queue.h"
 #import "Status.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 
 @interface NetflixStatusCell()

@@ -14,8 +14,8 @@
 
 #import "MutableNetflixCache.h"
 
-#import "AppDelegate.h"
-#import "Feed.h"
+//#import "AppDelegate.h"
+//#import "Feed.h"
 #import "FileUtilities.h"
 #import "IdentitySet.h"
 #import "Model.h"
@@ -31,7 +31,7 @@
 #import "Queue.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
-#import "Utilities.h"
+//#import "Utilities.h"
 #import "XmlElement.h"
 
 @interface MutableNetflixCache()
