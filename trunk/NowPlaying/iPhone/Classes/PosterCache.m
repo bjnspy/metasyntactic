@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "ApplePosterDownloader.h"
 #import "Application.h"
-//#import "DifferenceEngine.h"
 #import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
@@ -26,7 +25,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-//#import "Utilities.h"
 
 @interface PosterCache()
 @end

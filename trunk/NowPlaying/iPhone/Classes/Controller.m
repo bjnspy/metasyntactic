@@ -24,6 +24,7 @@
 #import "LocationManager.h"
 #import "Model.h"
 #import "OperationQueue.h"
+#import "ScoreCache.h"
 #import "UserLocationCache.h"
 
 @interface Controller()

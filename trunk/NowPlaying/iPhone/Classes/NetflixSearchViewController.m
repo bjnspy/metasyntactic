@@ -15,12 +15,12 @@
 #ifndef IPHONE_OS_VERSION_3
 #import "NetflixSearchViewController.h"
 
-//#import "AbstractNavigationController.h"
-//#import "ColorCache.h"
-//#import "Model.h"
-//#import "NetflixCell.h"
-//#import "NetflixSearchEngine.h"
-//#import "SearchResult.h"
+#import "AbstractNavigationController.h"
+#import "ColorCache.h"
+#import "Model.h"
+#import "NetflixCell.h"
+#import "NetflixSearchEngine.h"
+#import "SearchResult.h"
 
 @interface NetflixSearchViewController()
 @property (retain) UISearchBar* searchBar;

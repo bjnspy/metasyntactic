@@ -15,21 +15,12 @@
 #import "PersonPosterCache.h"
 
 #import "AppDelegate.h"
-//#import "ApplePosterDownloader.h"
 #import "Application.h"
-//#import "DifferenceEngine.h"
-//#import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
-//#import "ImdbPosterDownloader.h"
-//#import "LargePosterCache.h"
-//#import "Model.h"
-//#import "Movie.h"
 #import "NetworkUtilities.h"
 #import "Person.h"
 #import "StringUtilities.h"
-//#import "ThreadingUtilities.h"
-//#import "Utilities.h"
 #import "XmlElement.h"
 
 @interface PersonPosterCache()

@@ -14,29 +14,21 @@
 
 #import "SettingsViewController.h"
 
-//#import "AbstractNavigationController.h"
-//#import "AlertUtilities.h"
-//#import "AppDelegate.h"
 #import "Application.h"
-//#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
 #import "DateUtilities.h"
 #import "Location.h"
 #import "LocationManager.h"
-//#import "LocationUtilities.h"
 #import "Model.h"
-//#import "NotificationCenter.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 #import "UserLocationCache.h"
-//#import "Utilities.h"
-
 
 @interface SettingsViewController()
 @end
@@ -137,8 +129,7 @@ typedef enum {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    //NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Vote for Icon", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"About", nil), NSLocalizedString(@"Help", nil)];
     cell.text = text;
 
     return cell;
