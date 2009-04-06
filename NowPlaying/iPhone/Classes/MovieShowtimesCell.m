@@ -14,12 +14,11 @@
 
 #import "MovieShowtimesCell.h"
 
-//#import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Performance.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 
 
 @interface MovieShowtimesCell()

@@ -14,12 +14,9 @@
 
 #import "UpcomingMovieCell.h"
 
-//#import "Application.h"
 #import "DateUtilities.h"
-//#import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
-//#import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
 @interface UpcomingMovieCell()

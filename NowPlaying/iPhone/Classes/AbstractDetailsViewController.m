@@ -15,10 +15,12 @@
 #import "AbstractDetailsViewController.h"
 
 #import "AlertUtilities.h"
+#import "Application.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "Model.h"
 #import "SearchDatePickerViewController.h"
+#import "StringUtilities.h"
 
 @interface AbstractDetailsViewController()
 @property NSInteger updateId;
@@ -248,8 +250,8 @@
 - (void) openMailWithSubject:(NSString*) subject
                         body:(NSString*) body {
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
- [StringUtilities stringByAddingPercentEscapes:subject],
- [StringUtilities stringByAddingPercentEscapes:body]];
+                     [StringUtilities stringByAddingPercentEscapes:subject],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }

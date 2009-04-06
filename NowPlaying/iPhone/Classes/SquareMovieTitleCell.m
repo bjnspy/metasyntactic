@@ -16,7 +16,6 @@
 
 #import "ColorCache.h"
 #import "FontCache.h"
-//#import "ImageCache.h"
 
 @implementation SquareMovieTitleCell
 

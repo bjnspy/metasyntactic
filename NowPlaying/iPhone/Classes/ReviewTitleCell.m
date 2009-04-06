@@ -19,7 +19,7 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Review.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 
 
 @interface ReviewTitleCell()

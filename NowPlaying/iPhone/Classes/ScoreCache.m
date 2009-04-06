@@ -14,17 +14,12 @@
 
 #import "ScoreCache.h"
 
-//#import "AppDelegate.h"
-//#import "Application.h"
-//#import "FileUtilities.h"
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
 #import "Model.h"
 #import "NoneScoreProvider.h"
 #import "OperationQueue.h"
 #import "RottenTomatoesScoreProvider.h"
-//#import "Score.h"
-//#import "ScoreProvider.h"
 
 @interface ScoreCache()
 @property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;

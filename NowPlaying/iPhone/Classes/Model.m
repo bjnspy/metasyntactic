@@ -23,9 +23,7 @@
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "DateUtilities.h"
-//#import "DifferenceEngine.h"
 #import "FavoriteTheater.h"
-//#import "FileUtilities.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "LargePosterCache.h"
@@ -42,7 +40,6 @@
 #import "Score.h"
 #import "ScoreCache.h"
 #import "SettingsViewController.h"
-//#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -50,7 +47,6 @@
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
-//#import "Utilities.h"
 #import "WikipediaCache.h"
 
 @interface Model()

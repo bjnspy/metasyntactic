@@ -14,11 +14,7 @@
 
 #import "MovieTitleCell.h"
 
-//#import "Application.h"
-//#import "ColorCache.h"
-//#import "FontCache.h"
 #import "GreenMovieTitleCell.h"
-//#import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NoScoreMovieTitleCell.h"
@@ -28,7 +24,7 @@
 #import "Score.h"
 #import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
 
