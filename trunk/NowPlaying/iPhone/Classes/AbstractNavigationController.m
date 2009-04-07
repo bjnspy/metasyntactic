@@ -14,7 +14,10 @@
 
 #import "AbstractNavigationController.h"
 
+#import "Application.h"
 #import "Controller.h"
+#import "DateUtilities.h"
+#import "LocaleUtilities.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
@@ -22,6 +25,7 @@
 #import "ReviewsViewController.h"
 #import "SearchViewController.h"
 #import "SettingsViewController.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -294,5 +298,69 @@
         }
     }
 }
+
+
+- (void) sendFeedback:(BOOL) addTheater {
+    NSString* body = @"";
+    
+    if (addTheater) {
+        body = [body stringByAppendingFormat:@"\n\nPlease provide the following:\nTheater Name: \nPhone Number: "];
+    }
+
+    body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
+                      [Application version],
+                      [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion], 
+                      self.model.userAddress,
+                      self.model.searchRadius,
+                      [DateUtilities formatShortDate:self.model.searchDate],
+                      self.model.currentScoreProvider,
+                      (self.model.autoUpdateLocation ? @"yes" : @"no"),
+                      (self.model.prioritizeBookmarks ? @"yes" : @"no"),
+                      [LocaleUtilities englishCountry],
+                      [LocaleUtilities englishLanguage]];
+    
+    if (self.model.netflixEnabled && self.model.netflixUserId.length > 0) {
+        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+                [StringUtilities nonNilString:self.model.netflixUserId],
+                [StringUtilities nonNilString:self.model.netflixKey],
+                [StringUtilities nonNilString:self.model.netflixSecret]];
+    }
+    
+    NSString* subject;
+    if ([LocaleUtilities isJapanese]) {
+        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+    } else {
+        subject = @"Now Playing Feedback";
+    }
+    
+#ifdef IPHONE_OS_VERSION_3
+    if ([Application canSendMail]) {
+        MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+        controller.mailComposeDelegate = self;
+        
+        [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
+        [controller setSubject:subject];
+        [controller setMessageBody:body isHTML:NO];
+        
+        [self presentModalViewController:controller animated:YES];
+    } else {
+#endif
+        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
+        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
+        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
+        [Application openBrowser:url];
+#ifdef IPHONE_OS_VERSION_3
+    }
+#endif
+}
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) mailComposeController:(MFMailComposeViewController*)controller
+           didFinishWithResult:(MFMailComposeResult)result
+                         error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+#endif
 
 @end

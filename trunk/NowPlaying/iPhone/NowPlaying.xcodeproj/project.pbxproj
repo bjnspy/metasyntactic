@@ -60,6 +60,8 @@
 		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
+		744004E10F8B09A000E9F879 /* BalloonInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 744004E00F8B09A000E9F879 /* BalloonInputField.png */; };
+		744004E20F8B09A000E9F879 /* BalloonInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 744004E00F8B09A000E9F879 /* BalloonInputField.png */; };
 		744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744105510F72057F00FF3954 /* AutoresizingCell.m */; };
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
 		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
@@ -760,6 +762,7 @@
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
 		743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
 		743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
+		744004E00F8B09A000E9F879 /* BalloonInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BalloonInputField.png; path = Resources/BalloonInputField.png; sourceTree = "<group>"; };
 		744105500F72057F00FF3954 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
 		744105510F72057F00FF3954 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
 		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
@@ -1408,6 +1411,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				744004E00F8B09A000E9F879 /* BalloonInputField.png */,
 				741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */,
 				741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
@@ -2526,6 +2530,7 @@
 				74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */,
 				741A280F0F8ADF59003CDB4E /* AnswerBalloon.png in Resources */,
 				741A28100F8ADF59003CDB4E /* QuestionBalloon.png in Resources */,
+				744004E10F8B09A000E9F879 /* BalloonInputField.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2607,6 +2612,7 @@
 				74E6E1250F84301C00FFE59C /* Upcoming.png in Resources */,
 				741A28110F8ADF59003CDB4E /* AnswerBalloon.png in Resources */,
 				741A28120F8ADF59003CDB4E /* QuestionBalloon.png in Resources */,
+				744004E20F8B09A000E9F879 /* BalloonInputField.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
