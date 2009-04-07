@@ -62,7 +62,7 @@
 
         //UIImage* image = [UIImage imageNamed:@"BalloonInputField.png"];
         //UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:13 topCapHeight:12];
-        
+
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
