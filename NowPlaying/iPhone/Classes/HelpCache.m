@@ -110,8 +110,8 @@
                     NSLocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
     result = [NSArray arrayWithObjects:questions, answers, nil];
-    [FileUtilities writeObject:result toFile:file]; 
-    
+    [FileUtilities writeObject:result toFile:file];
+
     return result;
 }
 
