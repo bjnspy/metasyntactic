@@ -90,7 +90,7 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
 
-    width -= 110;
+    width -= (50 + 60);
 
     CGSize contentSize = [text sizeWithFont:[self contentFont]
                           constrainedToSize:CGSizeMake(width, 2000)
@@ -106,7 +106,7 @@
     CGFloat height = [QuestionCell height:contentLabel.text];
 
     CGRect contentFrame = contentLabel.frame;
-    contentFrame.size.width = self.contentView.frame.size.width - 90;
+    contentFrame.size.width = self.contentView.frame.size.width - (30 + 60);
     contentFrame.size.height = height - (4 + 8);
 
     contentLabel.frame = contentFrame;
