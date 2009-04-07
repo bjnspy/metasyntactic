@@ -183,7 +183,11 @@
     if (section == 0) {
         CGFloat height = [actionsView height];
 
+#ifdef IPHONE_OS_VERSION_3
         return height + 1;
+#else
+        return height + 8;
+#endif
     }
 
     return -1;
