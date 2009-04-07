@@ -140,12 +140,18 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateInternationalDataCache {
+    [self.model.internationalDataCache update];
+}
+
+
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
     [self updateUpcomingCache];
     [self updateDVDCache];
     [self updateNetflixCache];
+    [self updateInternationalDataCache];
 
     NSArray* movies = self.model.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];

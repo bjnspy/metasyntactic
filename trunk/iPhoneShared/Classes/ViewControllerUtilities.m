@@ -16,7 +16,7 @@
 
 @implementation ViewControllerUtilities
 
-+ (UILabel*) viewControllerTitleLabel {
++ (UILabel*) viewControllerTitleLabel:(NSString*) text {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
 
     label.adjustsFontSizeToFitWidth = YES;
@@ -28,8 +28,14 @@
     label.textAlignment = UITextAlignmentCenter;
     label.minimumFontSize = 14;
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    label.text = text;
 
     return label;
+}
+
+
++ (UILabel*) viewControllerTitleLabel {
+    return [self viewControllerTitleLabel:@""];
 }
 
 @end

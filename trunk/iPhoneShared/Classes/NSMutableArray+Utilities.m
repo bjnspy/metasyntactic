@@ -27,7 +27,7 @@
     NSInteger index = rand() % self.count;
     id value = [[[self objectAtIndex:index] retain] autorelease];
     [self removeObjectAtIndex:index];
-    
+
     return value;
 }
 

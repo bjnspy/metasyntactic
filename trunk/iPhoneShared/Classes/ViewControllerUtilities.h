@@ -16,5 +16,6 @@
 }
 
 + (UILabel*) viewControllerTitleLabel;
++ (UILabel*) viewControllerTitleLabel:(NSString*) text;
 
 @end

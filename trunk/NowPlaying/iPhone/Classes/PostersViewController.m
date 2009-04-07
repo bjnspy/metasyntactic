@@ -702,9 +702,4 @@ const double LOAD_DELAY = 1;
     [self setPage:page];
 }
 
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return NO;
-}
-
 @end

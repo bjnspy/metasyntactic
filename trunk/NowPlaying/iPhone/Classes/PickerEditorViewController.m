@@ -134,9 +134,4 @@
     return [values objectAtIndex:row];
 }
 
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
 @end

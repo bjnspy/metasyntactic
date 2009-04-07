@@ -175,15 +175,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     // I don't want to clean anything else up here due to the complicated

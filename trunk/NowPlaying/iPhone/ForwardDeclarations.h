@@ -61,6 +61,7 @@
 @class ImageCache;
 @class IMDbCache;
 @class ImdbPosterDownloader;
+@class InternationalDataCache;
 @class Invocation;
 @class LargePosterCache;
 @class Location;

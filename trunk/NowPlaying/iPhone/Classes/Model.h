@@ -36,6 +36,7 @@ enum ViewControllerType {
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
     MutableNetflixCache* netflixCache;
+    InternationalDataCache* internationalDataCache;
 
     id<DataProvider> dataProvider;
 
@@ -63,6 +64,7 @@ enum ViewControllerType {
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) UpcomingCache* upcomingCache;
 @property (readonly, retain) MutableNetflixCache* netflixCache;
+@property (readonly, retain) InternationalDataCache* internationalDataCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;

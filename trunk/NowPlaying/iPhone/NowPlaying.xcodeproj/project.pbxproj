@@ -44,6 +44,12 @@
 		7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
 		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
+		741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
+		741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
+		741A280F0F8ADF59003CDB4E /* AnswerBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */; };
+		741A28100F8ADF59003CDB4E /* QuestionBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */; };
+		741A28110F8ADF59003CDB4E /* AnswerBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */; };
+		741A28120F8ADF59003CDB4E /* QuestionBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
@@ -83,6 +89,10 @@
 		74537DCC0F86AD2400D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */; };
 		74537DCD0F86AD2400D457CB /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DC80F86AD2400D457CB /* CollectionUtilities.m */; };
 		74537DCE0F86AD2400D457CB /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */; };
+		745380410F89D58F00D457CB /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380400F89D58F00D457CB /* FAQViewController.m */; };
+		745380420F89D58F00D457CB /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380400F89D58F00D457CB /* FAQViewController.m */; };
+		745380630F89D87400D457CB /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
+		745380640F89D87400D457CB /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
 		74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
@@ -727,6 +737,10 @@
 		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
 		74166B0C0EC94A5700FFD29A /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
+		741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
+		741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AnswerBalloon.png; path = Resources/AnswerBalloon.png; sourceTree = "<group>"; };
+		741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuestionBalloon.png; path = Resources/QuestionBalloon.png; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
 		74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
 		742C07B10F08B0890087F4E0 /* AmazonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonCache.h; sourceTree = "<group>"; };
@@ -802,6 +816,10 @@
 		74537DC80F86AD2400D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionUtilities.m; path = ../../iPhoneShared/Classes/CollectionUtilities.m; sourceTree = SOURCE_ROOT; };
 		74537DC90F86AD2400D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "../../iPhoneShared/Classes/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		74537DCA0F86AD2400D457CB /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "../../iPhoneShared/Classes/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		7453803F0F89D58F00D457CB /* FAQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQViewController.h; sourceTree = "<group>"; };
+		745380400F89D58F00D457CB /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
+		745380610F89D87400D457CB /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
+		745380620F89D87400D457CB /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
 		74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
 		74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -1390,6 +1408,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */,
+				741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */,
 				747D98CD0F3047E7000B5A68 /* Netflix.png */,
@@ -1677,14 +1697,11 @@
 		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				745380600F89D85800D457CB /* SettingCells */,
 				74798DCB0F74BE590057E111 /* ImageCells */,
 				7445B4450F7D64CA00864071 /* MovieTitleCells */,
-				7498FDA60F7DB99B0045F883 /* AttributeCell.h */,
-				7498FDA70F7DB99B0045F883 /* AttributeCell.m */,
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
-				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
-				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
 				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
 				74798D000F74B7C80057E111 /* SwitchCell.m */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
@@ -1719,6 +1736,19 @@
 				74E17FC20E95FEEB00F8D0D3 /* ForwardDeclarations.h */,
 			);
 			name = ProtocolBuffers;
+			sourceTree = "<group>";
+		};
+		745380600F89D85800D457CB /* SettingCells */ = {
+			isa = PBXGroup;
+			children = (
+				7498FDA60F7DB99B0045F883 /* AttributeCell.h */,
+				7498FDA70F7DB99B0045F883 /* AttributeCell.m */,
+				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
+				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
+				745380610F89D87400D457CB /* QuestionCell.h */,
+				745380620F89D87400D457CB /* QuestionCell.m */,
+			);
+			name = SettingCells;
 			sourceTree = "<group>";
 		};
 		74616D040F15D3260004B610 /* Expat */ = {
@@ -1853,6 +1883,8 @@
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
+				741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */,
+				741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -2046,6 +2078,8 @@
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
 				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
+				7453803F0F89D58F00D457CB /* FAQViewController.h */,
+				745380400F89D58F00D457CB /* FAQViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2490,6 +2524,8 @@
 				744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */,
 				7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */,
 				74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */,
+				741A280F0F8ADF59003CDB4E /* AnswerBalloon.png in Resources */,
+				741A28100F8ADF59003CDB4E /* QuestionBalloon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2569,6 +2605,8 @@
 				746397620F7EC8D600B2F64C /* DeliveredByNetflix.png in Resources */,
 				746397630F7EC8D600B2F64C /* DeleteMovie.png in Resources */,
 				74E6E1250F84301C00FFE59C /* Upcoming.png in Resources */,
+				741A28110F8ADF59003CDB4E /* AnswerBalloon.png in Resources */,
+				741A28120F8ADF59003CDB4E /* QuestionBalloon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2820,6 +2858,9 @@
 				748BA7BF0F81787C00D79388 /* AbstractApplication.m in Sources */,
 				74537DCB0F86AD2400D457CB /* CollectionUtilities.m in Sources */,
 				74537DCC0F86AD2400D457CB /* NSArray+Utilities.m in Sources */,
+				745380410F89D58F00D457CB /* FAQViewController.m in Sources */,
+				745380630F89D87400D457CB /* QuestionCell.m in Sources */,
+				741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3068,6 +3109,9 @@
 				748BA7C00F81787C00D79388 /* AbstractApplication.m in Sources */,
 				74537DCD0F86AD2400D457CB /* CollectionUtilities.m in Sources */,
 				74537DCE0F86AD2400D457CB /* NSArray+Utilities.m in Sources */,
+				745380420F89D58F00D457CB /* FAQViewController.m in Sources */,
+				745380640F89D87400D457CB /* QuestionCell.m in Sources */,
+				741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3241,8 +3285,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
+				PROVISIONING_PROFILE = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
 				SDKROOT = iphoneos3.0;
 			};
 			name = AdHoc;

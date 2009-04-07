@@ -439,9 +439,4 @@
     return -1;
 }
 
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
 @end

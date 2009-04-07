@@ -14,7 +14,7 @@
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return dictionary;
 }
 
@@ -23,7 +23,7 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     return array;
 }
 

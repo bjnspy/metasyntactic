@@ -492,11 +492,6 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
 - (void) showInfo {
     [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
