@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  HelpCache.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 4/7/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "HelpCache.h"
 
@@ -45,12 +51,12 @@
     if (self.model.userAddress.length == 0) {
         return;
     }
-    
+
     if (updated) {
         return;
     }
     updated = YES;
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                             onTarget:self
                                                 gate:nil
@@ -68,7 +74,7 @@
     if (result.count > 0) {
         return result;
     }
-    
+
     NSArray* questions = [NSArray arrayWithObjects:
                       NSLocalizedString(@"Why did my theater disappear?", nil),
                       [NSString stringWithFormat:NSLocalizedString(@"%@ doesn't list my favorite theater. Can you add it?", nil), [Application name]],
@@ -83,7 +89,7 @@
                       NSLocalizedString(@"Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?", nil),
                       [NSString stringWithFormat:NSLocalizedString(@"Could you provide an option to let me choose the icon I want for the %@?", nil), [Application name]],
                       [NSString stringWithFormat:NSLocalizedString(@"What can I do if I have a question that hasn't been answered?", nil)], nil];
-    
+
     NSArray* answers = [NSArray arrayWithObjects:
                     [NSString stringWithFormat:NSLocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.", nil), [Application name]],
                     NSLocalizedString(@"I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!", nil),
@@ -107,7 +113,7 @@
     if (questionsAndAnswersData == nil) {
         self.questionsAndAnswersData = [self loadQuestionsAndAnswers];
     }
-    
+
     // Return through property to ensure safe pointer
     return self.questionsAndAnswersData;
 }
@@ -124,30 +130,30 @@
 }
 
 
-- (void) updateBackgroundEntryPointWorker {    
+- (void) updateBackgroundEntryPointWorker {
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings", [Application host]];
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
-    
+
     NSMutableArray* questions = [NSMutableArray array];
     NSMutableArray* answers = [NSMutableArray array];
-    
+
     for (XmlElement* child in element.children) {
         NSString* question = [child attributeValue:@"question"];
         NSString* answer = [child attributeValue:@"answer"];
-        
+
         if (question.length > 0 && answer.length > 0) {
             [questions addObject:question];
             [answers addObject:answer];
         }
     }
-    
+
     if (questions.count == 0 || answers.count == 0) {
         return;
     }
 
     NSArray* result = [NSArray arrayWithObjects:questions, answers, nil];
-    [FileUtilities writeObject:result toFile:[self questionsAndAnswersFile]]; 
-    
+    [FileUtilities writeObject:result toFile:[self questionsAndAnswersFile]];
+
     [dataGate lock];
     {
         self.questionsAndAnswersData = result;
