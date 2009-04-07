@@ -14,8 +14,6 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "DateUtilities.h"
 #import "ImageCache.h"
 #import "LocalSearchDisplayController.h"
@@ -25,6 +23,8 @@
 #import "MoviesNavigationController.h"
 #import "MutableMultiDictionary.h"
 #import "StringUtilities.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface AbstractMovieListViewController()
 #ifdef IPHONE_OS_VERSION_3

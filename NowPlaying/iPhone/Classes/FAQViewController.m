@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  FAQViewController.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 4/6/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "FAQViewController.h"
 
@@ -58,7 +64,7 @@
 
         self.answers = [NSArray arrayWithObjects:
                         [NSString stringWithFormat:NSLocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When they do, they will reappear automatically in %@.", nil), [Application name]],
-                        NSLocalizedString(@"I can absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need both the theater name and its telephone number. Thanks!", nil),
+                        NSLocalizedString(@"I can absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!", nil),
                         NSLocalizedString(@"Licensing restrictions with certain data providers only allow for a subset of all movie reviews. Sorry!", nil),
                         NSLocalizedString(@"Unfortunately, Movietickets.com will not provide ticketing support if i also provide ticketing through Fandango.com.", nil),
                         NSLocalizedString(@"Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.", nil),
@@ -73,7 +79,7 @@
         self.title = NSLocalizedString(@"Help", nil);
         self.tableView.backgroundColor = [UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+
         NSArray* selectors = [NSArray arrayWithObjects:
                               [NSValue valueWithPointer:@selector(sendFeedback)],
                               [NSValue valueWithPointer:@selector(addTheater)],nil];
@@ -168,7 +174,7 @@
     if (section == 0) {
         return actionsView;
     }
-    
+
     return nil;
 }
 
@@ -176,24 +182,24 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         CGFloat height = [actionsView height];
-        
+
         return height + 1;
     }
-    
+
     return -1;
 }
 
 
 - (void) sendFeedback:(BOOL) addTheater {
     NSString* body = @"";
-    
+
     if (addTheater) {
         body = [body stringByAppendingFormat:@"\n\nPlease provide the following:\nTheater Name: \nPhone Number: "];
     }
-    
+
     body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
             [Application version],
-            [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion], 
+            [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
             self.model.userAddress,
             self.model.searchRadius,
             [DateUtilities formatShortDate:self.model.searchDate],
@@ -202,30 +208,30 @@
             (self.model.prioritizeBookmarks ? @"yes" : @"no"),
             [LocaleUtilities englishCountry],
             [LocaleUtilities englishLanguage]];
-    
+
     if (self.model.netflixEnabled && self.model.netflixUserId.length > 0) {
         body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
                 [StringUtilities nonNilString:self.model.netflixUserId],
                 [StringUtilities nonNilString:self.model.netflixKey],
                 [StringUtilities nonNilString:self.model.netflixSecret]];
     }
-    
+
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
         subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
     } else {
         subject = @"Now Playing Feedback";
     }
-    
+
 #ifdef IPHONE_OS_VERSION_3
     if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
         controller.mailComposeDelegate = self;
-        
+
         [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
         [controller setSubject:subject];
         [controller setMessageBody:body isHTML:NO];
-        
+
         [self presentModalViewController:controller animated:YES];
     } else {
 #endif

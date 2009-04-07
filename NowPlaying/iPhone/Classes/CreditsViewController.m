@@ -14,8 +14,6 @@
 
 #import "CreditsViewController.h"
 
-#import "UITableViewCell+Utilities.h"
-
 #import "AbstractNavigationController.h"
 #import "Application.h"
 #import "DateUtilities.h"
@@ -24,6 +22,8 @@
 #import "Model.h"
 #import "SettingCell.h"
 #import "StringUtilities.h"
+#import "UITableViewCell+Utilities.h"
+
 
 @interface CreditsViewController()
 @property (retain) NSArray* languages;
