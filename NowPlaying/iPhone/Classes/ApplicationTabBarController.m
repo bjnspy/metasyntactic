@@ -233,15 +233,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation {
-    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
                                  duration:(NSTimeInterval) duration {
     [NotificationCenter willChangeInterfaceOrientation];
@@ -250,6 +241,7 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [NotificationCenter didChangeInterfaceOrientation];
+    [self majorRefresh];
 }
 
 @end

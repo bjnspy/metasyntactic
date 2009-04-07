@@ -26,6 +26,7 @@
 #import "FavoriteTheater.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
+#import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
@@ -63,6 +64,7 @@
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
+@property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) NSSet* bookmarkedTitlesData;
 @property (retain) NSDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -241,6 +243,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize trailerCache;
 @synthesize upcomingCache;
 @synthesize netflixCache;
+@synthesize internationalDataCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 
@@ -263,6 +266,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.trailerCache = nil;
     self.upcomingCache = nil;
     self.netflixCache = nil;
+    self.internationalDataCache = nil;
 
     [super dealloc];
 }
@@ -551,6 +555,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         self.scoreCache = [ScoreCache cache];
         self.upcomingCache = [UpcomingCache cache];
         self.netflixCache = [MutableNetflixCache cache];
+        self.internationalDataCache = [InternationalDataCache cache];
 
         [self clearCaches];
 
@@ -575,6 +580,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [scoreCache didReceiveMemoryWarning];
     [upcomingCache didReceiveMemoryWarning];
     [netflixCache didReceiveMemoryWarning];
+    [internationalDataCache didReceiveMemoryWarning];
 }
 
 

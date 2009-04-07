@@ -189,9 +189,4 @@
     //[self reloadTableViewData];
 }
 
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
 @end

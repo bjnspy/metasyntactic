@@ -231,13 +231,12 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
 
-    return
-        self.model.screenRotationEnabled &&
-        postersViewController == nil;
+    return self.model.screenRotationEnabled && postersViewController == nil;
 }
 
 

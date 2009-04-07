@@ -84,15 +84,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     self.genreToMovies = [MultiDictionary dictionary];

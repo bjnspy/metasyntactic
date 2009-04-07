@@ -19,6 +19,7 @@
 #import "AbstractNavigationController.h"
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FAQViewController.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
@@ -33,7 +34,7 @@
 @implementation CreditsViewController
 
 typedef enum {
-    VoteForIconSection,
+    HelpSendFeedbackSection,
     WrittenBySection,
     MyOtherApplicationsSection,
     GraphicsBySection,
@@ -119,10 +120,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == VoteForIconSection) {
-        return 1;
+    if (section == HelpSendFeedbackSection) {
+        return 2;
     } else if (section == WrittenBySection) {
-        return 3;
+        return 2;
     } else if (section == MyOtherApplicationsSection) {
         return 3;
     } else if (section == GraphicsBySection) {
@@ -239,13 +240,15 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
-    } else if (section == VoteForIconSection) {
-        cell.text = NSLocalizedString(@"Vote for Icon", nil);
+    } else if (section == HelpSendFeedbackSection) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        if (row == 0) {
+            cell.text = NSLocalizedString(@"Frequently Asked Questions", nil);
+        } else {
+            cell.text = NSLocalizedString(@"Send Feedback", nil);
+        }
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"Send Feedback", nil);
-        } else if (row == 1) {
             cell.text = NSLocalizedString(@"Project website", nil);
         } else {
             cell.text = NSLocalizedString(@"Write Review", nil);
@@ -271,7 +274,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
-    if (indexPath.section == VoteForIconSection) {
+    if (indexPath.section == HelpSendFeedbackSection) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -314,8 +317,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return
-        [NSString stringWithFormat:NSLocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!", nil), [Application name]];
+        return [NSString stringWithFormat:NSLocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!", nil), [Application name]];
     }  else if (section == LastSection) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
@@ -404,15 +406,17 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    if (section == VoteForIconSection) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-        [self.abstractNavigationController pushBrowser:url showSafariButton:NO animated:YES];
+    if (section == HelpSendFeedbackSection) {
+        if (row == 0) {
+            UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            [self sendFeedback];
+        }
     } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
         NSString* url = nil;
         if (section == WrittenBySection) {
             if (row == 0) {
-                return [self sendFeedback];
-            } else if (row == 1) {
                 url = @"http://metasyntactic.googlecode.com";
             } else {
                 url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
@@ -465,11 +469,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     return [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 @end

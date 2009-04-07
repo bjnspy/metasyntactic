@@ -1295,11 +1295,6 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
 - (void) posterImageViewWasTapped {
     if (!UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return;
