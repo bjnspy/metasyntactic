@@ -14,11 +14,7 @@
 
 #import "AbstractFullScreenTableViewController.h"
 
-@interface CreditsViewController : AbstractFullScreenTableViewController
-#ifdef IPHONE_OS_VERSION_3
-    <MFMailComposeViewControllerDelegate>
-#endif
-{
+@interface CreditsViewController : AbstractFullScreenTableViewController {
 @private
     NSArray* languages;
     NSDictionary* localizers;

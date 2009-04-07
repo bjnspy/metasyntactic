@@ -283,8 +283,8 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self setNeedsLayout];
-}
+//- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+//    [self setNeedsLayout];
+//}
 
 @end

@@ -344,63 +344,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (void) sendFeedback {
-    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
-                      [Application version],
-                      self.model.userAddress,
-                      self.model.searchRadius,
-                      [DateUtilities formatShortDate:self.model.searchDate],
-                      self.model.currentScoreProvider,
-                      (self.model.autoUpdateLocation ? @"yes" : @"no"),
-                     (self.model.prioritizeBookmarks ? @"yes" : @"no"),
-                      [LocaleUtilities englishCountry],
-                      [LocaleUtilities englishLanguage]];
-
-    if (self.model.netflixEnabled) {
-        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-               [StringUtilities nonNilString:self.model.netflixUserId],
-               [StringUtilities nonNilString:self.model.netflixKey],
-               [StringUtilities nonNilString:self.model.netflixSecret]];
-    }
-
-    NSString* subject;
-    if ([LocaleUtilities isJapanese]) {
-        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
-    } else {
-        subject = @"Now Playing Feedback";
-    }
-
-#ifdef IPHONE_OS_VERSION_3
-    if ([Application canSendMail]) {
-        MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
-        controller.mailComposeDelegate = self;
-
-        [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
-        [controller setSubject:subject];
-        [controller setMessageBody:body isHTML:NO];
-
-        [self presentModalViewController:controller animated:YES];
-    } else {
-#endif
-        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
-        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
-        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
-        [Application openBrowser:url];
-#ifdef IPHONE_OS_VERSION_3
-    }
-#endif
-}
-
-
-#ifdef IPHONE_OS_VERSION_3
-- (void) mailComposeController:(MFMailComposeViewController*)controller
-           didFinishWithResult:(MFMailComposeResult)result
-                         error:(NSError*)error {
-    [self dismissModalViewControllerAnimated:YES];
-}
-#endif
-
-
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -411,7 +354,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else {
-            [self sendFeedback];
+            [self.abstractNavigationController sendFeedback:NO];
         }
     } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
         NSString* url = nil;

@@ -12,6 +12,7 @@
 @private
     NSArray* questions;
     NSArray* answers;
+    ActionsView* actionsView;
 }
 
 @end

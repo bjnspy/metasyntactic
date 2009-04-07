@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractNavigationController : UINavigationController {
+@interface AbstractNavigationController : UINavigationController
+#ifdef IPHONE_OS_VERSION_3
+<MFMailComposeViewControllerDelegate>
+#endif
+{
 @protected
     PostersViewController* postersViewController;
     BOOL visible;
@@ -49,6 +53,8 @@
 #ifndef IPHONE_OS_VERSION_3
 - (void) showSearchView;
 #endif
+
+- (void) sendFeedback:(BOOL) addTheater;
 
 // @protected
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;
