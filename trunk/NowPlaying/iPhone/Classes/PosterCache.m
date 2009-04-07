@@ -21,6 +21,7 @@
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
+#import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
@@ -61,6 +62,12 @@
 
 - (NSData*) downloadPosterWorker:(Movie*) movie {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
+    if (data != nil) {
+        return data;
+    }
+    
+    Movie* internationalMovie = [self.model.internationalDataCache findInternationalMovie:movie];
+    data = [NetworkUtilities dataWithContentsOfAddress:internationalMovie.poster];
     if (data != nil) {
         return data;
     }
@@ -110,8 +117,7 @@
         }
     }
 
-    NSData* data = [self downloadPosterWorker:movie];
-
+    NSData* data = [self downloadPosterWorker:movie];    
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
 
