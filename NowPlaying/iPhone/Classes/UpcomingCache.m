@@ -428,7 +428,7 @@
 - (BOOL) tooSoon {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
     return lastLookupDate != nil &&
-    (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY));
+    (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS);
 }
 
 
@@ -535,7 +535,7 @@
 
     NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
     if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
             NSArray* trailers = [FileUtilities readObject:trailersFile];
             if (trailers.count > 0) {
                 return;

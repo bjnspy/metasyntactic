@@ -491,7 +491,7 @@
 
     NSDate* modificationDate = [FileUtilities modificationDate:reviewsFile];
     if (modificationDate != nil) {
-        if (ABS([modificationDate timeIntervalSinceNow]) < 2) {
+        if (ABS([modificationDate timeIntervalSinceNow]) < THREE_DAYS) {
             NSArray* reviews = [FileUtilities readObject:reviewsFile];
             if (reviews.count > 0) {
                 return;
@@ -572,7 +572,7 @@
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
         if (lastLookupDate == nil ||
-            (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY))) {
+            (ABS(lastLookupDate.timeIntervalSinceNow) > THREE_DAYS)) {
             [[OperationQueue operationQueue] performSelector:@selector(downloadReviews:location:)
                                                     onTarget:self
                                                   withObject:score

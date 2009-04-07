@@ -37,6 +37,7 @@ enum ViewControllerType {
     UpcomingCache* upcomingCache;
     MutableNetflixCache* netflixCache;
     InternationalDataCache* internationalDataCache;
+    HelpCache* helpCache;
 
     id<DataProvider> dataProvider;
 
@@ -65,11 +66,10 @@ enum ViewControllerType {
 @property (readonly, retain) UpcomingCache* upcomingCache;
 @property (readonly, retain) MutableNetflixCache* netflixCache;
 @property (readonly, retain) InternationalDataCache* internationalDataCache;
+@property (readonly, retain) HelpCache* helpCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
-
-- (void) didReceiveMemoryWarning;
 
 - (BOOL) votedForIcon;
 - (void) setVotedForIcon;

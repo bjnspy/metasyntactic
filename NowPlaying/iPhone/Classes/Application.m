@@ -56,6 +56,7 @@ static NSString* upcomingSynopsesDirectory = nil;
 static NSString* upcomingTrailersDirectory = nil;
 
 static NSString* internationalDirectory = nil;
+static NSString* helpDirectory = nil;
 
 static NSString** directories[] = {
 &dataDirectory,
@@ -67,6 +68,7 @@ static NSString** directories[] = {
 &dvdDetailsDirectory,
 &blurayDirectory,
 &blurayDetailsDirectory,
+&helpDirectory,
 &internationalDirectory,
 &netflixDirectory,
 &netflixQueuesDirectory,
@@ -162,6 +164,8 @@ static DifferenceEngine* differenceEngine = nil;
         upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
+        
+        helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
 
         [self createDirectories];
     }
@@ -329,6 +333,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) internationalDirectory {
     return internationalDirectory;
+}
+
+
++ (NSString*) helpDirectory {
+    return helpDirectory;
 }
 
 
