@@ -11,7 +11,7 @@
 @interface InternationalDataCache : AbstractCache {
 @private
     BOOL updated;
-    
+
     NSDictionary* indexData;
 }
 

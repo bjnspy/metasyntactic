@@ -162,7 +162,7 @@ static DifferenceEngine* differenceEngine = nil;
         upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
-        
+
         [self createDirectories];
     }
 }
