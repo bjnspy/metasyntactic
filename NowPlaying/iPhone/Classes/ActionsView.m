@@ -165,7 +165,11 @@
 
         CGRect frame = button.frame;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
+#ifdef IPHONE_OS_VERSION_3
         frame.origin.y = (8 + frame.size.height) * row + (shiftDown ? 8 : 0);
+#else
+        frame.origin.y = (8 + frame.size.height) * row + 8;
+#endif
 
         if (i == 0 && oddNumberOfButtons) {
             frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
