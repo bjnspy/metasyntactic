@@ -12,7 +12,11 @@
 #import "ActionsView.h"
 #import "Application.h"
 #import "ColorCache.h"
+#import "DateUtilities.h"
+#import "LocaleUtilities.h"
+#import "Model.h"
 #import "QuestionCell.h"
+#import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
 
 @interface FAQViewController()
@@ -54,10 +58,10 @@
 
         self.answers = [NSArray arrayWithObjects:
                         [NSString stringWithFormat:NSLocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When they do, they will reappear automatically in %@.", nil), [Application name]],
-                        NSLocalizedString(@"I can absolutely try. Please tap the 'Add Theater' button to contact me. I'll need both the theater name and its telephone number. Thanks!", nil),
+                        NSLocalizedString(@"I can absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need both the theater name and its telephone number. Thanks!", nil),
                         NSLocalizedString(@"Licensing restrictions with certain data providers only allow for a subset of all movie reviews. Sorry!", nil),
                         NSLocalizedString(@"Unfortunately, Movietickets.com will not provide ticketing support if i also provide ticketing through Fandango.com.", nil),
-                        NSLocalizedString(@"Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is far away from you.", nil),
+                        NSLocalizedString(@"Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.", nil),
                         [NSString stringWithFormat:NSLocalizedString(@"%@ aggressively caches all data locally on your %@ so that it will be usable even without a network connection.  The only data not cached are movie trailers.", nil), [Application name], [[UIDevice currentDevice] localizedModel]],
                         [NSString stringWithFormat:NSLocalizedString(@"To make scrolling as fast and as smooth as possible, %@ does not show the poster until scrolling has stopped.", nil), [Application name]],
                         NSLocalizedString(@"Log out of Netflix and log back in with the user name and password for your alternative queue.", nil),
@@ -66,7 +70,7 @@
                         NSLocalizedString(@"Apple does not provide a mechanism for Apps to change their icon. When they do, i will provide this capability.", nil),
                         NSLocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Frequently Asked Questions", nil)];
+        self.title = NSLocalizedString(@"Help", nil);
         self.tableView.backgroundColor = [UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -86,6 +90,11 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -175,13 +184,77 @@
 }
 
 
+- (void) sendFeedback:(BOOL) addTheater {
+    NSString* body = @"";
+    
+    if (addTheater) {
+        body = [body stringByAppendingFormat:@"\n\nPlease provide the following:\nTheater Name: \nPhone Number: "];
+    }
+    
+    body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
+            [Application version],
+            [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion], 
+            self.model.userAddress,
+            self.model.searchRadius,
+            [DateUtilities formatShortDate:self.model.searchDate],
+            self.model.currentScoreProvider,
+            (self.model.autoUpdateLocation ? @"yes" : @"no"),
+            (self.model.prioritizeBookmarks ? @"yes" : @"no"),
+            [LocaleUtilities englishCountry],
+            [LocaleUtilities englishLanguage]];
+    
+    if (self.model.netflixEnabled && self.model.netflixUserId.length > 0) {
+        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+                [StringUtilities nonNilString:self.model.netflixUserId],
+                [StringUtilities nonNilString:self.model.netflixKey],
+                [StringUtilities nonNilString:self.model.netflixSecret]];
+    }
+    
+    NSString* subject;
+    if ([LocaleUtilities isJapanese]) {
+        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+    } else {
+        subject = @"Now Playing Feedback";
+    }
+    
+#ifdef IPHONE_OS_VERSION_3
+    if ([Application canSendMail]) {
+        MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
+        controller.mailComposeDelegate = self;
+        
+        [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
+        [controller setSubject:subject];
+        [controller setMessageBody:body isHTML:NO];
+        
+        [self presentModalViewController:controller animated:YES];
+    } else {
+#endif
+        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
+        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
+        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
+        [Application openBrowser:url];
+#ifdef IPHONE_OS_VERSION_3
+    }
+#endif
+}
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) mailComposeController:(MFMailComposeViewController*)controller
+           didFinishWithResult:(MFMailComposeResult)result
+                         error:(NSError*)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+#endif
+
+
 - (void) sendFeedback {
-    [self.abstractNavigationController sendFeedback:NO];
+    [self sendFeedback:NO];
 }
 
 
 - (void) addTheater {
-    [self.abstractNavigationController sendFeedback:YES];
+    [self sendFeedback:YES];
 }
 
 @end

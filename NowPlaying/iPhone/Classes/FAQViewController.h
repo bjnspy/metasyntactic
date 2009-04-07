@@ -8,7 +8,11 @@
 
 #import "AbstractFullScreenTableViewController.h"
 
-@interface FAQViewController : AbstractFullScreenTableViewController {
+@interface FAQViewController : AbstractFullScreenTableViewController
+#ifdef IPHONE_OS_VERSION_3
+<MFMailComposeViewControllerDelegate>
+#endif
+{
 @private
     NSArray* questions;
     NSArray* answers;
