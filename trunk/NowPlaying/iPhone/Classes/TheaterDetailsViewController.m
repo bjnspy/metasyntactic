@@ -15,6 +15,7 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
+#import "AttributeCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
@@ -25,7 +26,7 @@
 #import "MovieTitleCell.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"

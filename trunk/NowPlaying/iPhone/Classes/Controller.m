@@ -23,6 +23,7 @@
 #import "DateUtilities.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "MutableNetflixCache.h"
 #import "OperationQueue.h"
 #import "UserLocationCache.h"
 
