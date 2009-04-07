@@ -399,7 +399,7 @@
 - (BOOL) tooSoon {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
     return lastUpdateDate != nil &&
-    (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY));
+    (ABS(lastUpdateDate.timeIntervalSinceNow) < THREE_DAYS);
 }
 
 

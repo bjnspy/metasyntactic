@@ -143,7 +143,7 @@
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
-            if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
                 return;
             }
         }

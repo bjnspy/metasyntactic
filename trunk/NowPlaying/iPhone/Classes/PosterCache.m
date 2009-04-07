@@ -111,7 +111,7 @@
 
         if (!force) {
             // sentinel value.  only update if it's been long enough.
-            if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
                 return;
             }
         }

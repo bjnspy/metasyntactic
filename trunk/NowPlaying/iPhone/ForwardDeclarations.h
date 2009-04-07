@@ -57,6 +57,7 @@
 @class FavoriteTheater;
 @class Feed;
 @class FontCache;
+@class HelpCache;
 @class IdentitySet;
 @class ImageCache;
 @class IMDbCache;

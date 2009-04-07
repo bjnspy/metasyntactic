@@ -74,6 +74,8 @@
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
+		744594B10F8BD8C9002C1B61 /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744594B00F8BD8C9002C1B61 /* HelpCache.m */; };
+		744594B20F8BD8C9002C1B61 /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744594B00F8BD8C9002C1B61 /* HelpCache.m */; };
 		7445B4480F7D64F300864071 /* RottenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4470F7D64F300864071 /* RottenMovieTitleCell.m */; };
 		7445B44B0F7D64FD00864071 /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B44A0F7D64FD00864071 /* TomatoMovieTitleCell.m */; };
 		7445B44E0F7D650500864071 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B44D0F7D650500864071 /* UnknownMovieTitleCell.m */; };
@@ -790,6 +792,8 @@
 		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
 		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
+		744594AF0F8BD8C9002C1B61 /* HelpCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCache.h; sourceTree = "<group>"; };
+		744594B00F8BD8C9002C1B61 /* HelpCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCache.m; sourceTree = "<group>"; };
 		7445B4460F7D64F300864071 /* RottenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenMovieTitleCell.h; sourceTree = "<group>"; };
 		7445B4470F7D64F300864071 /* RottenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenMovieTitleCell.m; sourceTree = "<group>"; };
 		7445B4490F7D64FD00864071 /* TomatoMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoMovieTitleCell.h; sourceTree = "<group>"; };
@@ -1889,6 +1893,8 @@
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 				741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */,
 				741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */,
+				744594AF0F8BD8C9002C1B61 /* HelpCache.h */,
+				744594B00F8BD8C9002C1B61 /* HelpCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -2867,6 +2873,7 @@
 				745380410F89D58F00D457CB /* FAQViewController.m in Sources */,
 				745380630F89D87400D457CB /* QuestionCell.m in Sources */,
 				741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
+				744594B10F8BD8C9002C1B61 /* HelpCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3118,6 +3125,7 @@
 				745380420F89D58F00D457CB /* FAQViewController.m in Sources */,
 				745380640F89D87400D457CB /* QuestionCell.m in Sources */,
 				741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
+				744594B20F8BD8C9002C1B61 /* HelpCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

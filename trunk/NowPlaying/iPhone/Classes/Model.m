@@ -25,6 +25,7 @@
 #import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "GoogleDataProvider.h"
+#import "HelpCache.h"
 #import "IMDbCache.h"
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
@@ -65,6 +66,7 @@
 @property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
 @property (retain) InternationalDataCache* internationalDataCache;
+@property (retain) HelpCache* helpCache;
 @property (retain) NSSet* bookmarkedTitlesData;
 @property (retain) NSDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -244,6 +246,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize upcomingCache;
 @synthesize netflixCache;
 @synthesize internationalDataCache;
+@synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 
@@ -267,6 +270,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.upcomingCache = nil;
     self.netflixCache = nil;
     self.internationalDataCache = nil;
+    self.helpCache = nil;
 
     [super dealloc];
 }
@@ -490,7 +494,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
-    if (interval < (30 * ONE_DAY)) {
+    if (interval < ONE_MONTH) {
         return;
     }
 
@@ -556,6 +560,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         self.upcomingCache = [UpcomingCache cache];
         self.netflixCache = [MutableNetflixCache cache];
         self.internationalDataCache = [InternationalDataCache cache];
+        self.helpCache = [HelpCache cache];
 
         [self clearCaches];
 
@@ -565,22 +570,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     return self;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    [largePosterCache didReceiveMemoryWarning];
-    [imdbCache didReceiveMemoryWarning];
-    [amazonCache didReceiveMemoryWarning];
-    [wikipediaCache didReceiveMemoryWarning];
-    [trailerCache didReceiveMemoryWarning];
-    [blurayCache didReceiveMemoryWarning];
-    [dvdCache didReceiveMemoryWarning];
-    [posterCache didReceiveMemoryWarning];
-    [scoreCache didReceiveMemoryWarning];
-    [upcomingCache didReceiveMemoryWarning];
-    [netflixCache didReceiveMemoryWarning];
-    [internationalDataCache didReceiveMemoryWarning];
 }
 
 

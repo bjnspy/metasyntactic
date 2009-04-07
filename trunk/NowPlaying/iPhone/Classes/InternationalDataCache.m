@@ -249,7 +249,7 @@ static NSString* trailers_key = @"trailers";
 - (void) updateBackgroundEntryPointWorker {
     NSDate* modificationDate = [FileUtilities modificationDate:[self indexFile]];
     if (modificationDate != nil) {
-        if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+        if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
             return;
         }
     }

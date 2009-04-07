@@ -114,6 +114,23 @@ static Controller* controller = nil;
 }
 
 
+- (void) didReceiveMemoryWarning {
+    [self.model.largePosterCache didReceiveMemoryWarning];
+    [self.model.imdbCache didReceiveMemoryWarning];
+    [self.model.amazonCache didReceiveMemoryWarning];
+    [self.model.wikipediaCache didReceiveMemoryWarning];
+    [self.model.trailerCache didReceiveMemoryWarning];
+    [self.model.blurayCache didReceiveMemoryWarning];
+    [self.model.dvdCache didReceiveMemoryWarning];
+    [self.model.posterCache didReceiveMemoryWarning];
+    [self.model.scoreCache didReceiveMemoryWarning];
+    [self.model.upcomingCache didReceiveMemoryWarning];
+    [self.model.netflixCache didReceiveMemoryWarning];
+    [self.model.internationalDataCache didReceiveMemoryWarning];
+    [self.model.helpCache didReceiveMemoryWarning];
+}
+
+
 - (void) updateScoreCache {
     [self.model.scoreCache update];
 }
@@ -145,6 +162,11 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateHelpCache {
+    [self.model.helpCache update];
+}
+
+
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
@@ -152,6 +174,7 @@ static Controller* controller = nil;
     [self updateDVDCache];
     [self updateNetflixCache];
     [self updateInternationalDataCache];
+    [self updateHelpCache];
 
     NSArray* movies = self.model.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];

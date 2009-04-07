@@ -52,7 +52,7 @@
 
 
 - (BOOL) tooSoon:(NSDate*) date {
-    return date.timeIntervalSinceNow < (3 * ONE_DAY);
+    return date.timeIntervalSinceNow < THREE_DAYS;
 }
 
 
