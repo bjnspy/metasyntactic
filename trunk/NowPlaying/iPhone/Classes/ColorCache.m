@@ -23,6 +23,7 @@ static UIColor* footerColor = nil;
 static UIColor* netflixRed = nil;
 static UIColor* starYellow = nil;
 static UIColor* tintColor = nil;
+static UIColor* helpBlue = nil;
 
 + (void) initialize {
     if (self == [ColorCache class]) {
@@ -33,6 +34,7 @@ static UIColor* tintColor = nil;
         netflixRed      = [[UIColor colorWithRed:100.0/255.5 green:14.0/255.0 blue:17.0/255.0 alpha:1] retain];
         netflixYellow   = [[UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1] retain];
         starYellow      = [[UIColor colorWithRed:255.0/255.0 green:220.0/255.0 blue:40.0/255.0 alpha:1] retain];
+        helpBlue        = [[UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1] retain];
     }
 }
 
@@ -69,6 +71,11 @@ static UIColor* tintColor = nil;
 
 + (UIColor*) starYellow {
     return starYellow;
+}
+
+
++ (UIColor*) helpBlue {
+    return helpBlue;
 }
 
 @end

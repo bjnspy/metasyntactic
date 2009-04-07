@@ -19,7 +19,7 @@
 #import "Model.h"
 #import "MovieDetailsViewController.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 
 @interface MovieOverviewCell()

@@ -16,7 +16,6 @@
 
 #import "AbstractNavigationController.h"
 #import "Application.h"
-#import "AttributeCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "LookupResult.h"
@@ -24,7 +23,7 @@
 #import "Movie.h"
 #import "Performance.h"
 #import "Theater.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"

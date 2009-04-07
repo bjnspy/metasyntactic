@@ -24,7 +24,7 @@
 #import "Score.h"
 #import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
 

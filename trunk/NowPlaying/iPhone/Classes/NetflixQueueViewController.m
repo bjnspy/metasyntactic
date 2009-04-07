@@ -22,7 +22,7 @@
 #import "NetflixCell.h"
 #import "Queue.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;

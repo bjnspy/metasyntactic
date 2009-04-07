@@ -41,7 +41,7 @@
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"

@@ -15,7 +15,7 @@
 #ifndef IPHONE_OS_VERSION_3
 #import "AttributeCell.h"
 
-#import "ColorCache.h"
+//#import "ColorCache.h"
 
 @interface AttributeCell()
 @property (retain) UILabel* textLabel;

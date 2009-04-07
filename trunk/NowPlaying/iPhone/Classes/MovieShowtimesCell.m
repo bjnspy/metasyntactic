@@ -18,7 +18,7 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Performance.h"
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 
 @interface MovieShowtimesCell()

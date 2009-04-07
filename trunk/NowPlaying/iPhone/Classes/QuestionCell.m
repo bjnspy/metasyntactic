@@ -14,7 +14,8 @@
 
 #import "QuestionCell.h"
 
-#import "UITableViewCell+Utilities.h"
+#import "ColorCache.h"
+//#import "UITableViewCell+Utilities.h"
 
 @interface QuestionCell()
 @property (retain) UILabel* contentLabel;
@@ -36,11 +37,11 @@
 }
 
 
-- (id) initWithQuestion:(BOOL) question_
+- (id) initWithQuestion:(BOOL) question
         reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
-        question = question_;
-        self.backgroundColor = [UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1];
+        self.backgroundColor = [ColorCache helpBlue];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.contentLabel = [[[UILabel alloc] init] autorelease];
         contentLabel.font = [QuestionCell contentFont];
@@ -49,22 +50,30 @@
         contentLabel.backgroundColor = [UIColor clearColor];
         [contentLabel sizeToFit];
 
+        CGRect contentFrame = contentLabel.frame;
+        contentFrame.origin.y = 4;
+        contentFrame.origin.x = question ? 15 : 20;
+        contentLabel.frame = contentFrame;
+        
         [self.contentView addSubview:contentLabel];
 
+        UIImage* image;
         if (question) {
-            UIImage* image = [UIImage imageNamed:@"QuestionBalloon.png"];
-            UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
-            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
+            image = [UIImage imageNamed:@"QuestionBalloon.png"];
         } else {
-            UIImage* image = [UIImage imageNamed:@"AnswerBalloon.png"];
-            UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
-            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
+            image = [UIImage imageNamed:@"AnswerBalloon.png"];
         }
 
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
+        self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
     }
 
     return self;
+}
+
+
+- (NSString*) text {
+    return contentLabel.text;
 }
 
 
@@ -73,7 +82,7 @@
 }
 
 
-+ (CGFloat) height:(BOOL) question text:(NSString*) text {
++ (CGFloat) height:(NSString*) text {
     double width;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
@@ -94,11 +103,9 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGFloat height = [QuestionCell height:question text:contentLabel.text];
+    CGFloat height = [QuestionCell height:contentLabel.text];
 
     CGRect contentFrame = contentLabel.frame;
-    contentFrame.origin.y = 4;
-    contentFrame.origin.x = question ? 15 : 20;
     contentFrame.size.width = self.contentView.frame.size.width - 30;
     contentFrame.size.height = height - 12;
 
