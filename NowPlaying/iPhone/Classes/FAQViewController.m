@@ -73,18 +73,6 @@
                                              arguments:arguments
                                              shiftDown:NO];
         actionsView.backgroundColor = self.tableView.backgroundColor;
-        /*
-        NSMutableString* value = [NSMutableString string];
-        for (NSInteger i = 0; i < questions.count; i++) {
-            NSString* question = [questions objectAtIndex:i];
-            NSString* answer = [answers objectAtIndex:i];
-            question = [question stringByReplacingOccurrencesOfString:@"Now Playing" withString:@"''' + program + '''"];
-            answer = [answer stringByReplacingOccurrencesOfString:@"Now Playing" withString:@"''' + program + '''"];
-            [value appendFormat:@"                <item question=\"%@\"\n", question];
-            [value appendFormat:@"                        answer=\"%@\"/>\n", answer];
-        }
-        NSLog(@"%@", value);
-         */
     }
 
     return self;
