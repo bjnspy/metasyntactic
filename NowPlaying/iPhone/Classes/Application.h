@@ -52,7 +52,6 @@
 + (NSString*) upcomingTrailersDirectory;
 
 + (NSString*) internationalDirectory;
-+ (NSString*) internationalDataDirectory;
 
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;

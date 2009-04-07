@@ -65,7 +65,7 @@
     if (data != nil) {
         return data;
     }
-    
+
     Movie* internationalMovie = [self.model.internationalDataCache findInternationalMovie:movie];
     data = [NetworkUtilities dataWithContentsOfAddress:internationalMovie.poster];
     if (data != nil) {
@@ -117,7 +117,7 @@
         }
     }
 
-    NSData* data = [self downloadPosterWorker:movie];    
+    NSData* data = [self downloadPosterWorker:movie];
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
 
