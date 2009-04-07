@@ -16,10 +16,12 @@
 
 #import "Application.h"
 #import "FileUtilities.h"
+#import "LocaleUtilities.h"
 #import "Model.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
+#import "StringUtilities.h"
 #import "XmlElement.h"
 
 @interface HelpCache()
@@ -65,12 +67,14 @@
 
 
 - (NSString*) questionsAndAnswersFile {
-    return [[Application helpDirectory] stringByAppendingPathComponent:@"Index.plist"];
+    NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities isoLanguage]];
+    return [[Application helpDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (NSArray*) loadQuestionsAndAnswers {
-    NSArray* result = [FileUtilities readObject:[self questionsAndAnswersFile]];
+    NSString* file = [self questionsAndAnswersFile];
+    NSArray* result = [FileUtilities readObject:file];
     if (result.count > 0) {
         return result;
     }
@@ -105,7 +109,10 @@
                     NSLocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
                     NSLocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
-    return [NSArray arrayWithObjects:questions, answers, nil];
+    result = [NSArray arrayWithObjects:questions, answers, nil];
+    [FileUtilities writeObject:result toFile:file]; 
+    
+    return result;
 }
 
 
@@ -131,7 +138,11 @@
 
 
 - (void) updateBackgroundEntryPointWorker {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings", [Application host]];
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings?language=%@&program=%@",
+    [Application host],
+    [LocaleUtilities isoLanguage],
+    [StringUtilities stringByAddingPercentEscapes:[Application name]]];
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
 
     NSMutableArray* questions = [NSMutableArray array];
