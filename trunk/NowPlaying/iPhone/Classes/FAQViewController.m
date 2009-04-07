@@ -57,7 +57,7 @@
                         NSLocalizedString(@"IMDb's licensing fees are unfortunately too high for me to afford. Sorry!", nil),
                         NSLocalizedString(@"See the section on IMDb.", nil),
                         NSLocalizedString(@"Apple does not provide a mechanism for Apps to change their icon. When they do, i will provide this capability.", nil), nil];
-        
+
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Frequently Asked Questions", nil)];
         self.tableView.backgroundColor = [UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -96,25 +96,25 @@
     if (indexPath.section % 2 == 0) {
         static NSString* reuseIdentifier = @"questionCell";
         QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        
+
         if (cell == nil) {
             cell = [[[QuestionCell alloc] initWithQuestion:YES reuseIdentifier:reuseIdentifier] autorelease];
         }
         NSString* text = [questions objectAtIndex:indexPath.section / 2];
         cell.text = text;
 
-        return cell;   
+        return cell;
     } else {
         static NSString* reuseIdentifier = @"answerCell";
         QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[QuestionCell alloc] initWithQuestion:NO reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         NSString* text = [answers objectAtIndex:indexPath.section / 2];
         cell.text = text;
 
-        return cell;  
+        return cell;
     }
 }
 
@@ -123,11 +123,11 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section % 2 == 0) {
         NSString* text = [questions objectAtIndex:indexPath.section / 2];
-        
+
         return [QuestionCell height:YES text:text];
     } else {
         NSString* text = [answers objectAtIndex:indexPath.section / 2];
-        
+
         return [QuestionCell height:NO text:text];
     }
 }

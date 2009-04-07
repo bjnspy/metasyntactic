@@ -35,7 +35,7 @@
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
         question = question_;
         self.backgroundColor = [UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1];
-        
+
         self.contentLabel = [[[UILabel alloc] init] autorelease];
         contentLabel.font = [QuestionCell contentFont];
         contentLabel.numberOfLines = 0;
@@ -44,7 +44,7 @@
         [contentLabel sizeToFit];
 
         [self.contentView addSubview:contentLabel];
-        
+
         if (question) {
             UIImage* image = [UIImage imageNamed:@"QuestionBalloon.png"];
             UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
@@ -52,12 +52,12 @@
         } else {
             UIImage* image = [UIImage imageNamed:@"AnswerBalloon.png"];
             UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
-            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];            
+            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
         }
-        
+
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+
     return self;
 }
 
@@ -74,13 +74,13 @@
     } else {
         width = [UIScreen mainScreen].bounds.size.width;
     }
-    
+
     width -= 50;
-    
+
     CGSize contentSize = [text sizeWithFont:[self contentFont]
                           constrainedToSize:CGSizeMake(width, 2000)
                               lineBreakMode:UILineBreakModeWordWrap];
-    
+
     return contentSize.height + 4 + 8;
 }
 
@@ -89,7 +89,7 @@
     [super layoutSubviews];
 
     CGFloat height = [QuestionCell height:question text:contentLabel.text];
-    
+
     CGRect contentFrame = contentLabel.frame;
     contentFrame.origin.y = 4;
     contentFrame.origin.x = question ? 15 : 20;
