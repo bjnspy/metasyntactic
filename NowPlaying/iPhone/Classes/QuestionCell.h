@@ -14,12 +14,11 @@
 
 @interface QuestionCell : UITableViewCell {
 @private
-    BOOL question;
     UILabel* contentLabel;
 }
 
 - (id) initWithQuestion:(BOOL) question reuseIdentifier:(NSString*) reuseIdentifier;
 
-+ (CGFloat) height:(BOOL) question text:(NSString*) text;
++ (CGFloat) height:(NSString*) text;
 
 @end

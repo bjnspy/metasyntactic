@@ -15,7 +15,6 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "ImageCache.h"
 #import "LocalSearchDisplayController.h"
 #import "LocaleUtilities.h"
 #import "Location.h"

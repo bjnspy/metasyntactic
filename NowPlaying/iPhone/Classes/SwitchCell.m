@@ -14,7 +14,7 @@
 
 #import "SwitchCell.h"
 
-#import "UITableViewCell+Utilities.h"
+//#import "UITableViewCell+Utilities.h"
 
 @interface SwitchCell()
 @property (retain) UISwitch* switchControl;
