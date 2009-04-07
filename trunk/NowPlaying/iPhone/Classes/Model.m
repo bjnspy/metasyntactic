@@ -1208,7 +1208,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (directors.count > 0) {
         return directors;
     }
-    
+
     directors = [internationalDataCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
@@ -1233,7 +1233,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (cast.count > 0) {
         return cast;
     }
-    
+
     cast = [internationalDataCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
@@ -1267,7 +1267,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (result.length > 0) {
         return result;
     }
-    
+
     result = [internationalDataCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
@@ -1611,7 +1611,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     if (synopsis.length > 0) {
         [options addObject:synopsis];
     }
-    
+
     if (options.count == 0 || [LocaleUtilities isEnglish]) {
         synopsis = [self scoreForMovie:movie].synopsis;
         if (synopsis.length > 0) {
@@ -1655,7 +1655,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     if (result.count > 0) {
         return result;
     }
-    
+
     return [upcomingCache trailersForMovie:movie];
 }
 

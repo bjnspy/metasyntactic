@@ -60,11 +60,11 @@ static NSString* trailers_key = @"trailers";
 - (id) init {
     if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
-        
+
         self.allowableCountries =
         [NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil];
     }
-    
+
     return self;
 }
 
@@ -84,7 +84,7 @@ static NSString* trailers_key = @"trailers";
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSString* title in dictionary) {
         [result setObject:[Movie movieWithDictionary:[dictionary objectForKey:title]] forKey:title];
@@ -226,7 +226,7 @@ static NSString* trailers_key = @"trailers";
         self.movieMap = [NSMutableDictionary dictionary];
     }
     [dataGate unlock];
-    
+
     [AppDelegate majorRefresh];
 }
 
@@ -236,12 +236,12 @@ static NSString* trailers_key = @"trailers";
     NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
                              [Application host],
                              [StringUtilities stringByAddingPercentEscapes:address]];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress];
     if (element == nil) {
         return;
     }
-    
+
     [self processElement:element];
 }
 
@@ -253,7 +253,7 @@ static NSString* trailers_key = @"trailers";
             return;
         }
     }
-    
+
     NSString* notification = NSLocalizedString(@"international data", nil);
     [NotificationCenter addNotification:notification];
     {
@@ -267,7 +267,7 @@ static NSString* trailers_key = @"trailers";
     if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
         return;
     }
-    
+
     [self updateBackgroundEntryPointWorker];
     //[[CacheUpdater cacheUpdater] addMovies:self.index.allValues];
 }
@@ -275,17 +275,17 @@ static NSString* trailers_key = @"trailers";
 
 - (Movie*) findMovieWorker:(NSString*) title {
     NSDictionary* index = self.index;
-    
+
     Movie* result;
     if ((result = [index objectForKey:title]) != nil) {
         return result;
     }
-    
+
     NSString* closestTitle = [engine findClosestMatch:title inArray:index.allKeys];
     if (closestTitle.length == 0) {
         return nil;
     }
-    
+
     return [index objectForKey:closestTitle];
 }
 
@@ -311,7 +311,7 @@ static NSString* trailers_key = @"trailers";
     if ([result isKindOfClass:[Movie class]]) {
         return result;
     }
-    
+
     return nil;
 }
 

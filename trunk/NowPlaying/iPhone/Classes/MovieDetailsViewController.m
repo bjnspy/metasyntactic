@@ -949,7 +949,7 @@ const NSInteger POSTER_TAG = -1;
     if (url == nil) {
         return;
     }
-    
+
     [[OperationQueue operationQueue] temporarilySuspend:90];
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
 
