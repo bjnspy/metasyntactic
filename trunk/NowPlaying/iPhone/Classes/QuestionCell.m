@@ -52,20 +52,20 @@
 
         CGRect contentFrame = contentLabel.frame;
         contentFrame.origin.y = 4;
-        contentFrame.origin.x = question ? 15 : 20;
+        contentFrame.origin.x = question ? 75 : 20;
         contentLabel.frame = contentFrame;
 
         [self.contentView addSubview:contentLabel];
 
-        UIImage* image;
         if (question) {
-            image = [UIImage imageNamed:@"QuestionBalloon.png"];
+            UIImage* image = [UIImage imageNamed:@"QuestionBalloon.png"];
+            UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:85 topCapHeight:18];
+            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
         } else {
-            image = [UIImage imageNamed:@"AnswerBalloon.png"];
+            UIImage* image = [UIImage imageNamed:@"AnswerBalloon.png"];
+            UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:85 topCapHeight:18];
+            self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
         }
-
-        UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:25 topCapHeight:18];
-        self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
     }
 
     return self;
@@ -90,7 +90,7 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
 
-    width -= 50;
+    width -= 110;
 
     CGSize contentSize = [text sizeWithFont:[self contentFont]
                           constrainedToSize:CGSizeMake(width, 2000)
@@ -106,8 +106,8 @@
     CGFloat height = [QuestionCell height:contentLabel.text];
 
     CGRect contentFrame = contentLabel.frame;
-    contentFrame.size.width = self.contentView.frame.size.width - 30;
-    contentFrame.size.height = height - 12;
+    contentFrame.size.width = self.contentView.frame.size.width - 90;
+    contentFrame.size.height = height - (4 + 8);
 
     contentLabel.frame = contentFrame;
 }
