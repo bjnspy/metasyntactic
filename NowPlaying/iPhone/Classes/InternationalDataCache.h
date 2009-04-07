@@ -16,14 +16,19 @@
 
 @interface InternationalDataCache : AbstractCache {
 @private
+    NSSet* allowableCountries;
+    DifferenceEngine* engine;
     BOOL updated;
 
     NSDictionary* indexData;
+    NSMutableDictionary* movieMap;
 }
 
 + (InternationalDataCache*) cache;
 
 - (void) update;
+
+- (Movie*) findInternationalMovie:(Movie*) movie;
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;

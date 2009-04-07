@@ -944,10 +944,14 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
-    [[OperationQueue operationQueue] temporarilySuspend:90];
     NSString* urlString = trailer;
-    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
-    //MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"movie.mp4" ofType:nil]]];
+    NSURL* url = [NSURL URLWithString:urlString];
+    if (url == nil) {
+        return;
+    }
+    
+    [[OperationQueue operationQueue] temporarilySuspend:90];
+    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(movieFinishedPlaying:)

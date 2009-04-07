@@ -1208,6 +1208,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (directors.count > 0) {
         return directors;
     }
+    
+    directors = [internationalDataCache directorsForMovie:movie];
+    if (directors.count > 0) {
+        return directors;
+    }
 
     directors = [upcomingCache directorsForMovie:movie];
     if (directors.count > 0) {
@@ -1225,6 +1230,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSArray*) castForMovie:(Movie*) movie {
     NSArray* cast = movie.cast;
+    if (cast.count > 0) {
+        return cast;
+    }
+    
+    cast = [internationalDataCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
     }
@@ -1254,6 +1264,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
     NSString* result = movie.imdbAddress;
+    if (result.length > 0) {
+        return result;
+    }
+    
+    result = [internationalDataCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
     }
@@ -1592,6 +1607,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
         [options addObject:synopsis];
     }
 
+    synopsis = [internationalDataCache synopsisForMovie:movie];
+    if (synopsis.length > 0) {
+        [options addObject:synopsis];
+    }
+    
     if (options.count == 0 || [LocaleUtilities isEnglish]) {
         synopsis = [self scoreForMovie:movie].synopsis;
         if (synopsis.length > 0) {
@@ -1626,11 +1646,16 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* result = [trailerCache trailersForMovie:movie];
+    NSArray* result = [internationalDataCache trailersForMovie:movie];
     if (result.count > 0) {
         return result;
     }
 
+    result = [trailerCache trailersForMovie:movie];
+    if (result.count > 0) {
+        return result;
+    }
+    
     return [upcomingCache trailersForMovie:movie];
 }
 
