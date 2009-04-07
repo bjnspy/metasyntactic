@@ -121,7 +121,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
     if (section == HelpSendFeedbackSection) {
-        return 2;
+        return 1;
     } else if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
@@ -242,11 +242,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [cell.contentView addSubview:imageView];
     } else if (section == HelpSendFeedbackSection) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        if (row == 0) {
-            cell.text = NSLocalizedString(@"Frequently Asked Questions", nil);
-        } else {
-            cell.text = NSLocalizedString(@"Send Feedback", nil);
-        }
+        cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Help", nil), NSLocalizedString(@"Send Feedback", nil), nil];
     } else if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Project website", nil);
@@ -350,12 +346,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger row = indexPath.row;
 
     if (section == HelpSendFeedbackSection) {
-        if (row == 0) {
-            UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
-        } else {
-            [self.abstractNavigationController sendFeedback:NO];
-        }
+        UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
         NSString* url = nil;
         if (section == WrittenBySection) {
