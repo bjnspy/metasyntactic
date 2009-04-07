@@ -15,7 +15,7 @@
 #import "SettingCell.h"
 
 #import "ColorCache.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 
 
 @interface SettingCell()

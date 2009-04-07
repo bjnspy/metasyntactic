@@ -15,7 +15,7 @@
 #import "QuestionCell.h"
 
 #import "ColorCache.h"
-//#import "UITableViewCell+Utilities.h"
+#import "UITableViewCell+Utilities.h"
 
 @interface QuestionCell()
 @property (retain) UILabel* contentLabel;
@@ -54,7 +54,7 @@
         contentFrame.origin.y = 4;
         contentFrame.origin.x = question ? 15 : 20;
         contentLabel.frame = contentFrame;
-        
+
         [self.contentView addSubview:contentLabel];
 
         UIImage* image;
