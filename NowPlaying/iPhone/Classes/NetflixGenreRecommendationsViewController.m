@@ -44,11 +44,6 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.genre = genre_;
         self.title = genre_;
-/*
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = genre;
-        self.navigationItem.titleView = label;
- */
     }
 
     return self;

@@ -77,22 +77,25 @@
 }
 
 
-- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
-    [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    for (int i = 0; i < self.model.scoreProviders.count; i++) {
-        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-
-        if ([cellPath isEqual:selectPath]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+    for (UITableViewCell* cell in tableView.visibleCells) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
+        
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
-    [self.controller setScoreProviderIndex:selectPath.row];
+    [self.controller setScoreProviderIndex:indexPath.row];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    return NSLocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
 }
 
 

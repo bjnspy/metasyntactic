@@ -22,8 +22,10 @@
 #import "Location.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "PickerEditorViewController.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
+#import "SearchDistancePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
@@ -349,25 +351,15 @@ typedef enum {
 }
 
 
-- (void) onSearchDateChanged:(NSString*) dateString {
-    [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
+- (void) onSearchDateChanged:(NSDate*) date {
+    [self.controller setSearchDate:date];
+    [self reloadTableViewData];
 }
 
 
 - (void) pushFilterDistancePicker {
-    NSArray* values = [NSArray arrayWithObjects:
-                       @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",
-                       @"10", @"15", @"20", @"25", @"30",
-                       @"35", @"40", @"45", @"50", nil];
-    NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-
-    PickerEditorViewController* controller =
-    [[[PickerEditorViewController alloc] initWithTitle:NSLocalizedString(@"Search Distance", nil)
-                                                  text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
-                                                object:self
-                                              selector:@selector(onSearchRadiusChanged:)
-                                                values:values
-                                          defaultValue:defaultValue] autorelease];
+    SearchDistancePickerViewController* controller = 
+    [[[SearchDistancePickerViewController alloc] init] autorelease];
 
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -466,11 +458,6 @@ typedef enum {
     userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self.controller setUserAddress:userAddress];
-}
-
-
-- (void) onSearchRadiusChanged:(NSString*) radius {
-    [self.controller setSearchRadius:radius.intValue];
     [self reloadTableViewData];
 }
 

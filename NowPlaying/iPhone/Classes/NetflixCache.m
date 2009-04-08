@@ -792,8 +792,6 @@ static NSDictionary* availabilityMap = nil;
                                      movies:movies
                                       saved:saved];
         [self saveQueue:queue];
-
-        [AppDelegate majorRefresh];
     }
 }
 
@@ -852,7 +850,6 @@ static NSDictionary* availabilityMap = nil;
                                lastName:lastName
                         canInstantWatch:canInstantWatch
                        preferredFormats:preferredFormats];
-        [AppDelegate majorRefresh];
     }
 }
 

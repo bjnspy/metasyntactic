@@ -226,8 +226,6 @@ static NSString* trailers_key = @"trailers";
         self.movieMap = [NSMutableDictionary dictionary];
     }
     [dataGate unlock];
-
-    [AppDelegate majorRefresh];
 }
 
 

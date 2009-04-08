@@ -241,9 +241,6 @@ static Controller* controller = nil;
 
     [self markDataProviderOutOfDate];
     [self spawnDetermineLocationThread];
-
-    // Force a refresh so the UI displays this new address.
-    [AppDelegate majorRefresh:YES];
 }
 
 

@@ -173,8 +173,7 @@
 }
 
 
-- (void) onSearchDateChanged:(NSString*) dateString {
-    NSDate* searchDate = [DateUtilities dateWithNaturalLanguageString:dateString];
+- (void) onSearchDateChanged:(NSDate*) searchDate {
     if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
         return;
     }
