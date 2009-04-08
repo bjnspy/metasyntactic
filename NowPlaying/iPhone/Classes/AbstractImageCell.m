@@ -16,7 +16,6 @@
 
 #import "ImageCache.h"
 #import "OperationQueue.h"
-#import "UITableViewCell+Utilities.h"
 
 
 
@@ -48,8 +47,13 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {
+#endif
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
 
         titleLabel.font = [UIFont boldSystemFontOfSize:18];

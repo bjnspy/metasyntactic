@@ -14,8 +14,6 @@
 
 #import "AbstractMovieDetailsCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 @interface AbstractMovieDetailsCell()
 @property (retain) Movie* movie;
 @end
@@ -33,7 +31,11 @@
 
 
 - (id) initWithMovie:(Movie*) movie__ {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
+#else
+    if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
+#endif
         self.movie = movie__;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

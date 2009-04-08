@@ -26,7 +26,6 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSearchViewController.h"
-#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3
@@ -213,7 +212,12 @@ typedef enum {
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+#endif
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 #ifdef IPHONE_OS_VERSION_3

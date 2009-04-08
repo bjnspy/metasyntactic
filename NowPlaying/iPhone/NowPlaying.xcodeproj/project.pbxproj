@@ -97,7 +97,6 @@
 		745380420F89D58F00D457CB /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380400F89D58F00D457CB /* FAQViewController.m */; };
 		745380630F89D87400D457CB /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
 		745380640F89D87400D457CB /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
-		74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
 		74616D330F15D3260004B610 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 74616D080F15D3260004B610 /* COPYING */; };
@@ -430,7 +429,6 @@
 		7463984B0F7EC8D600B2F64C /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */; };
 		7463984C0F7EC8D600B2F64C /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */; };
 		7463984D0F7EC8D600B2F64C /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */; };
-		7463984E0F7EC8D600B2F64C /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */; };
 		7463984F0F7EC8D600B2F64C /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498FDA70F7DB99B0045F883 /* AttributeCell.m */; };
 		746398750F7EC99800B2F64C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398740F7EC99800B2F64C /* SystemConfiguration.framework */; };
 		746398790F7EC99C00B2F64C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398780F7EC99C00B2F64C /* MediaPlayer.framework */; };
@@ -827,8 +825,6 @@
 		745380400F89D58F00D457CB /* FAQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQViewController.m; sourceTree = "<group>"; };
 		745380610F89D87400D457CB /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		745380620F89D87400D457CB /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
-		74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
-		74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
 		7457FE910E21A41A00929D3E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
 		745A08840F2EB444002F64C6 /* AbstractImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageCell.h; sourceTree = "<group>"; };
@@ -1617,8 +1613,6 @@
 				740245660E78488D00ECE1B4 /* Views */,
 				7477B3230F378CBA00FED03B /* NotificationCenter.h */,
 				7477B3240F378CBA00FED03B /* NotificationCenter.m */,
-				74567F570F7DA09800AA86F9 /* UITableViewCell+Utilities.h */,
-				74567F580F7DA09800AA86F9 /* UITableViewCell+Utilities.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2847,7 +2841,6 @@
 				7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */,
 				74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */,
 				74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */,
-				74567F590F7DA09800AA86F9 /* UITableViewCell+Utilities.m in Sources */,
 				7498FDA80F7DB99B0045F883 /* AttributeCell.m in Sources */,
 				746399F70F7ED2E700B2F64C /* SearchViewController.m in Sources */,
 				74639A8E0F7ED9BE00B2F64C /* NetflixSearchViewController.m in Sources */,
@@ -3101,7 +3094,6 @@
 				7463984B0F7EC8D600B2F64C /* NoScoreMovieTitleCell.m in Sources */,
 				7463984C0F7EC8D600B2F64C /* SquareMovieTitleCell.m in Sources */,
 				7463984D0F7EC8D600B2F64C /* PerfectGreenMovieTitleCell.m in Sources */,
-				7463984E0F7EC8D600B2F64C /* UITableViewCell+Utilities.m in Sources */,
 				7463984F0F7EC8D600B2F64C /* AttributeCell.m in Sources */,
 				74A910C70F7F2D8600832767 /* MutablePointerSet.m in Sources */,
 				74A915350F7FF94B00832767 /* AbstractScoreProvider.m in Sources */,

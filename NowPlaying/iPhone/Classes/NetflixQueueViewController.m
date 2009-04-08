@@ -22,7 +22,6 @@
 #import "NetflixCell.h"
 #import "Queue.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;
@@ -236,7 +235,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     static NSString* reuseIdentifier = @"reuseIdentifier";

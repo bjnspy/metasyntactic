@@ -19,7 +19,6 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Review.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface ReviewTitleCell()
@@ -50,8 +49,13 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {
+#endif
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.scoreLabel  = [[[UILabel alloc] init] autorelease];

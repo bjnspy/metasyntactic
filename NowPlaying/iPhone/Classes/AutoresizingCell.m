@@ -14,8 +14,6 @@
 
 #import "AutoResizingCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
 @property (retain) UIColor* textColorData;
@@ -35,8 +33,13 @@
 }
 
 - (id) init {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:nil]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:nil]) {
+#endif
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         label.font = self.font;
