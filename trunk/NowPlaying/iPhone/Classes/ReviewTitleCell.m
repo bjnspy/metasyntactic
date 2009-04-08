@@ -62,14 +62,16 @@
         [self.contentView addSubview:scoreLabel];
 
 #ifndef IPHONE_OS_VERSION_3
-        self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
         textLabel.font = [UIFont boldSystemFontOfSize:14];
         detailTextLabel.font = [UIFont systemFontOfSize:12];
 
         [self.contentView addSubview:textLabel];
         [self.contentView addSubview:detailTextLabel];
+#else
+        self.textLabel.backgroundColor = [UIColor clearColor];   
 #endif
     }
 
