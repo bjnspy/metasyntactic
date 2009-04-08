@@ -42,11 +42,6 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.category = category_;
         self.title = category_;
-/*
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = category;
-        self.navigationItem.titleView = label;
- */
     }
 
     return self;

@@ -56,7 +56,7 @@
         self.questions = [qAndA objectAtIndex:0];
         self.answers = [qAndA objectAtIndex:1];
 
-        self.title = NSLocalizedString(@"Help", nil);
+        self.title = [NSString stringWithFormat:NSLocalizedString(@"%d Questions & Answers", nil), questions.count];
         self.tableView.backgroundColor = [ColorCache helpBlue];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
@@ -148,6 +148,15 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return actionsView;
+    } else if (section % 2 == 0) {
+        UILabel* label = [[[UILabel alloc] init] autorelease];
+        label.text = [NSString stringWithFormat:@"#%d", (section / 2) + 1];
+        label.backgroundColor = [ColorCache helpBlue];
+        label.textAlignment = UITextAlignmentCenter;
+        label.textColor = [UIColor grayColor];
+        label.font = [UIFont boldSystemFontOfSize:14];
+        [label sizeToFit];
+        return label;
     }
 
     return nil;
@@ -163,6 +172,8 @@
 #else
         return height + 8;
 #endif
+    } else if (section % 2 == 0) {
+        return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
     }
 
     return -1;

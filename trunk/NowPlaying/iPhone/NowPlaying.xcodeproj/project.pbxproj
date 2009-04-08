@@ -661,6 +661,8 @@
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74F265BC0F7DE28E00EECA23 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
+		74F321DB0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
+		74F321DC0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
 		74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B22C0E3CE71A00DD25DA /* DataProvider.m */; };
 		74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */; };
 		74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2E60E3CF02400DD25DA /* LookupResult.m */; };
@@ -1301,6 +1303,8 @@
 		74F187210E2710A400AB5E1E /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
 		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		74F265BB0F7DE28E00EECA23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDistancePickerViewController.h; sourceTree = "<group>"; };
+		74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDistancePickerViewController.m; sourceTree = "<group>"; };
 		74F3B22B0E3CE71A00DD25DA /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
 		74F3B22C0E3CE71A00DD25DA /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
 		74F3B2D80E3CEF6000DD25DA /* AbstractDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDataProvider.h; sourceTree = "<group>"; };
@@ -2082,6 +2086,8 @@
 				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
+				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
 				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
@@ -2874,6 +2880,7 @@
 				745380630F89D87400D457CB /* QuestionCell.m in Sources */,
 				741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 				744594B10F8BD8C9002C1B61 /* HelpCache.m in Sources */,
+				74F321DB0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3126,6 +3133,7 @@
 				745380640F89D87400D457CB /* QuestionCell.m in Sources */,
 				741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 				744594B20F8BD8C9002C1B61 /* HelpCache.m in Sources */,
+				74F321DC0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -99,23 +99,6 @@
     return [[[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:token realm:realm] autorelease];
 }
 
-/*
-+ (OAMutableURLRequest*) requestWithURL:(NSURL*) url
-                               consumer:(OAConsumer*) consumer
-                                  token:(OAToken*) token
-                                  realm:(NSString*) realm
-                                  nonce:(NSString*) nonce
-                              timestamp:(NSString*) timestamp {
-    OAMutableURLRequest* request =
-    [OAMutableURLRequest requestWithURL:url consumer:consumer token:token realm:realm];
-
-    request.nonce = nonce;
-    request.timestamp = timestamp;
-
-    return request;
-}
- */
-
 
 - (NSString*) signatureBaseString {
     // OAuth Spec, Section 9.1.1 "Normalize Request Parameters"
