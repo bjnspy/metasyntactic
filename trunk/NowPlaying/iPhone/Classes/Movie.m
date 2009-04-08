@@ -384,7 +384,7 @@ static NSString* articles[] = {
 
 - (NSString*) ratingString {
     NSString* ratingValue = [[Model model] ratingForMovie:self];
-    
+
     if ([Movie isUnrated:ratingValue]) {
         return NSLocalizedString(@"Unrated", nil);
     }  else {
@@ -396,25 +396,25 @@ static NSString* articles[] = {
 + (NSString*) runtimeString:(NSInteger) length {
     NSString* hoursString = @"";
     NSString* minutesString = @"";
-    
+
     if (length > 0) {
         NSInteger hours = length / 60;
         NSInteger minutes = length % 60;
-        
+
         if (hours == 1) {
             hoursString = NSLocalizedString(@"1 hour", nil);
         } else if (hours > 1) {
             hoursString = [NSString stringWithFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-        
+
         if (minutes == 1) {
             minutesString = NSLocalizedString(@"1 minute", nil);
         } else if (minutes > 1) {
             minutesString = [NSString stringWithFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-    
-    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", "2 hours 34 minutes"), hoursString, minutesString];    
+
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", "2 hours 34 minutes"), hoursString, minutesString];
 }
 
 

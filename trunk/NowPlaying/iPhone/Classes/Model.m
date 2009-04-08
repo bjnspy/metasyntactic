@@ -618,7 +618,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (value == nil) {
         return [LocaleUtilities isUnitedStates];
     }
-    
+
     return !value.boolValue;
 }
 
@@ -1193,17 +1193,17 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (date != nil) {
         return date;
     }
-    
+
     date = [internationalDataCache releaseDateForMovie:movie];
     if (date != nil) {
         return date;
     }
-    
+
     date = [upcomingCache releaseDateForMovie:movie];
     if (date != nil) {
         return date;
     }
-    
+
     return nil;
 }
 
@@ -1223,7 +1223,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (rating.length > 0) {
         return rating;
     }
-    
+
     return [internationalDataCache ratingForMovie:movie];
 }
 
