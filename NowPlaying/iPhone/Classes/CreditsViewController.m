@@ -227,7 +227,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
 #endif
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];

@@ -691,7 +691,7 @@ const NSInteger POSTER_TAG = -1;
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
 #endif
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:label];
 
@@ -878,7 +878,7 @@ const NSInteger POSTER_TAG = -1;
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
 #endif
-    
+
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {
