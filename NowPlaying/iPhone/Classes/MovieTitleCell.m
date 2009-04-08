@@ -61,10 +61,10 @@
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
 #ifndef IPHONE_OS_VERSION_3
-        self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         textLabel.font = [UIFont boldSystemFontOfSize:18];
-        textLabel.adjustsFontSizeToFitWidth = YES;
-        textLabel.minimumFontSize = 14;
+        //textLabel.adjustsFontSizeToFitWidth = YES;
+        //textLabel.minimumFontSize = 14;
         textLabel.textColor = [UIColor blackColor];
 
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -148,7 +148,7 @@
         frame = CGRectMake(50, 25, 0, 14);
     }
 
-    frame.size.width = self.contentView.frame.size.width - frame.origin.x;
+    frame.size.width = self.contentView.frame.size.width - frame.origin.x - 10;
 
     detailTextLabel.frame = frame;
 
