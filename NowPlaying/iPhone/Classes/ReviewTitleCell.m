@@ -71,7 +71,9 @@
         [self.contentView addSubview:textLabel];
         [self.contentView addSubview:detailTextLabel];
 #else
-        self.textLabel.backgroundColor = [UIColor clearColor];   
+        // Hack.  For some reason, we can see the edge of this label peeking
+        // beyond the edge of the cell.  So make it clear.
+        self.textLabel.backgroundColor = [UIColor clearColor];
 #endif
     }
 
