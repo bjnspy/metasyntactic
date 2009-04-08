@@ -108,7 +108,7 @@
                     reuseIdentifier:reuseIdentifier]) {
 #else
     if (self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:reuseIdentifier]) {   
+                    reuseIdentifier:reuseIdentifier]) {
 #endif
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 

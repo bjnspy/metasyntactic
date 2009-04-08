@@ -249,7 +249,7 @@
 #ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 #else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];    
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 #endif
 
     cell.textAlignment = UITextAlignmentCenter;

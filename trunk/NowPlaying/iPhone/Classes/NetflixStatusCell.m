@@ -78,7 +78,7 @@
     if (self = [super initWithFrame:CGRectZero
                     reuseIdentifier:nil]) {
 #endif
-        
+
         self.status = status_;
 
         self.font = [UIFont boldSystemFontOfSize:16];

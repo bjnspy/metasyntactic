@@ -217,7 +217,7 @@ typedef enum {
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
 #endif
-    
+
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 #ifdef IPHONE_OS_VERSION_3

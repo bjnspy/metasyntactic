@@ -58,7 +58,7 @@
     if (self = [super initWithFrame:CGRectZero
                     reuseIdentifier:reuseIdentifier]) {
 #endif
-        
+
         self.separatorLine = [[[UILabel alloc] init] autorelease];
 
 #ifndef IPHONE_OS_VERSION_3

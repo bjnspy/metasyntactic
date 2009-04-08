@@ -62,7 +62,7 @@
                     reuseIdentifier:reuseIdentifier]) {
 #else
     if (self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:reuseIdentifier]) {   
+                    reuseIdentifier:reuseIdentifier]) {
 #endif
 
 #ifndef IPHONE_OS_VERSION_3
