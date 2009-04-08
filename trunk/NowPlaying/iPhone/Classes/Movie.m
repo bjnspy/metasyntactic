@@ -15,6 +15,7 @@
 #import "Movie.h"
 
 #import "CollectionUtilities.h"
+#import "Model.h"
 #import "StringUtilities.h"
 
 @interface Movie()
@@ -368,7 +369,7 @@ static NSString* articles[] = {
 }
 
 
-- (BOOL) isUnrated {
++ (BOOL) isUnrated:(NSString*) rating {
     return rating.length == 0 ||
     [rating isEqual:@"NR"] ||
     [rating isEqual:@"UR"] ||
@@ -376,37 +377,49 @@ static NSString* articles[] = {
 }
 
 
+- (BOOL) isUnrated {
+    return [Movie isUnrated:rating];
+}
+
+
 - (NSString*) ratingString {
-    if (self.isUnrated) {
+    NSString* ratingValue = [[Model model] ratingForMovie:self];
+    
+    if ([Movie isUnrated:ratingValue]) {
         return NSLocalizedString(@"Unrated", nil);
     }  else {
-        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
+        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), ratingValue];
     }
 }
 
 
-- (NSString*) runtimeString {
++ (NSString*) runtimeString:(NSInteger) length {
     NSString* hoursString = @"";
     NSString* minutesString = @"";
-
+    
     if (length > 0) {
         NSInteger hours = length / 60;
         NSInteger minutes = length % 60;
-
+        
         if (hours == 1) {
             hoursString = NSLocalizedString(@"1 hour", nil);
         } else if (hours > 1) {
             hoursString = [NSString stringWithFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-
+        
         if (minutes == 1) {
             minutesString = NSLocalizedString(@"1 minute", nil);
         } else if (minutes > 1) {
             minutesString = [NSString stringWithFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", "2 hours 34 minutes"), hoursString, minutesString];    
+}
 
-    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", "2 hours 34 minutes"), hoursString, minutesString];
+
+- (NSString*) runtimeString {
+    return [Movie runtimeString:[[Model model] lengthForMovie:self]];
 }
 
 

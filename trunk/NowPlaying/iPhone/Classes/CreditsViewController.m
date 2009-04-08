@@ -39,6 +39,7 @@ typedef enum {
     MovieDetailsBySection,
     GeolocationServicesBySection,
     DVDDetailsSection,
+    FilmTrailersBySection,
     LocalizedBySection,
     LicenseSection,
     LastSection = LicenseSection
@@ -134,6 +135,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return 3;
     } else if (section == DVDDetailsSection) {
         return 2;
+    } else if (section == FilmTrailersBySection) {
+        return 1;
     } else if (section == LocalizedBySection) {
         return localizers.count;
     } else if (section == LicenseSection) {
@@ -266,6 +269,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
+    } else if (section == FilmTrailersBySection) {
+        cell.text = @"Filmtrailers.com";
     } else if (section == LicenseSection) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -273,7 +278,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
     if (indexPath.section == HelpSendFeedbackSection) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
+    } else if (indexPath.section >= WrittenBySection && indexPath.section <= FilmTrailersBySection) {
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -303,6 +308,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     } else if (section == DVDDetailsSection) {
         return NSLocalizedString(@"DVD/Blu-ray details:", nil);
+    } else if (section == FilmTrailersBySection) {
+        return NSLocalizedString(@"Film trailers provided by:", nil);
     } else if (section == LocalizedBySection) {
         return NSLocalizedString(@"Localized by:", nil);
     }
@@ -349,7 +356,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == HelpSendFeedbackSection) {
         UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
-    } else if (section >= WrittenBySection && section <= DVDDetailsSection) {
+    } else if (section >= WrittenBySection && section <= FilmTrailersBySection) {
         NSString* url = nil;
         if (section == WrittenBySection) {
             if (row == 0) {
@@ -391,6 +398,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             } else {
                 url = @"http://www.netflix.com";
             }
+        } else if (section == FilmTrailersBySection) {
+            url = @"http://filmtrailer.com";
         }
 
         [Application openBrowser:url];

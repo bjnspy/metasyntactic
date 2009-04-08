@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "CacheUpdater.h"
+#import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
@@ -29,10 +30,10 @@
 #import "XmlElement.h"
 
 @interface InternationalDataCache()
-@property (retain) NSSet* allowableCountries;
 @property (retain) DifferenceEngine* engine;
 @property (retain) NSDictionary* indexData;
 @property (retain) NSMutableDictionary* movieMap;
+@property (retain) NSMutableDictionary* ratingCache;
 @property BOOL updated;
 @end
 
@@ -41,17 +42,17 @@
 
 static NSString* trailers_key = @"trailers";
 
-@synthesize allowableCountries;
 @synthesize engine;
 @synthesize indexData;
 @synthesize movieMap;
+@synthesize ratingCache;
 @synthesize updated;
 
 - (void) dealloc {
-    self.allowableCountries = nil;
     self.engine = nil;
     self.indexData = nil;
     self.movieMap = nil;
+    self.ratingCache = nil;
 
     [super dealloc];
 }
@@ -60,9 +61,12 @@ static NSString* trailers_key = @"trailers";
 - (id) init {
     if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
-
-        self.allowableCountries =
-        [NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil];
+        self.ratingCache = [NSMutableDictionary dictionary];
+        
+        mapRatingWorker = NSSelectorFromString([NSString stringWithFormat:@"mapRating_%@:", [LocaleUtilities isoCountry]]);
+        if (![self respondsToSelector:mapRatingWorker]) {
+            mapRatingWorker = nil;
+        }
     }
 
     return self;
@@ -70,12 +74,20 @@ static NSString* trailers_key = @"trailers";
 
 
 + (InternationalDataCache*) cache {
+    NSSet* allowableCountries =
+    [NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil];
+    
+    if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
+        return nil;
+    }
+    
     return [[[InternationalDataCache alloc] init] autorelease];
 }
 
 
 - (NSString*) indexFile {
-    return [[Application internationalDirectory] stringByAppendingPathComponent:@"Index.plist"];
+    NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities isoCountry]];
+    return [[Application internationalDirectory] stringByAppendingPathComponent:name];
 }
 
 
@@ -155,6 +167,147 @@ static NSString* trailers_key = @"trailers";
 }
 
 
+- (NSString*) mapRating_FR:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"U";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_DK:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"A";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_NL:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"AL";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_SE:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"Btl";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_DE:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"FSK 0";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return [NSString stringWithFormat:@"FSK %@", value];
+}
+
+
+- (NSString*) mapRating_IT:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"T";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return [NSString stringWithFormat:@"VM %@", value];
+}
+
+
+- (NSString*) mapRating_ES:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"Todos los publicos";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_CH:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"0";
+    }
+    
+    if (i == 0) {
+        return @"";
+    }
+    
+    return value;
+}
+
+
+- (NSString*) mapRating_FI:(NSString*) value {
+    NSInteger i = value.intValue;
+    if (i == 99) {
+        return @"K-3";
+    }
+
+    return [NSString stringWithFormat:@"K-%@", value];
+}
+
+
+- (NSString*) mapRating:(NSString*) value {
+    if (value.length == 0) {
+        return nil;
+    }
+
+    NSString* result = [ratingCache objectForKey:value];
+    if (result == nil) {
+        if (mapRatingWorker != nil) {
+            result = [self performSelector:mapRatingWorker withObject:value];
+        } else {
+            result = @"";
+        }
+        
+        [ratingCache setObject:result forKey:value];
+    }
+    return result;
+}
+
+
 - (Movie*) processMovieElement:(XmlElement*) element {
     static NSInteger identifier = 1;
 
@@ -178,14 +331,18 @@ static NSString* trailers_key = @"trailers";
     NSArray* cast = [self extractArray:[element element:@"actors"]];
     NSArray* genres = [self extractArray:[element element:@"categories"]];
 
+    NSInteger length = [[[element element:@"duration"] text] intValue];
+    NSDate* releaseDate = [DateUtilities parseIS08601Date:[[element element:@"release"] text]];
+    NSString* rating = [self mapRating:[[element element:@"rating"] text]];
+    
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
     [additionalFields setObject:trailers forKey:trailers_key];
 
     return [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", identifier++]
                                 title:title
-                               rating:nil
-                               length:0
-                          releaseDate:nil
+                               rating:rating
+                               length:length
+                          releaseDate:releaseDate
                           imdbAddress:imdbAddress
                                poster:poster
                              synopsis:synopsis
@@ -235,8 +392,9 @@ static NSString* trailers_key = @"trailers";
                              [Application host],
                              [StringUtilities stringByAddingPercentEscapes:address]];
 
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress];
-    if (element == nil) {
+    XmlElement* element;
+    if ((element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress]) == nil &&
+        (element = [NetworkUtilities xmlWithContentsOfAddress:address]) == nil) {
         return;
     }
 
@@ -244,7 +402,7 @@ static NSString* trailers_key = @"trailers";
 }
 
 
-- (void) updateBackgroundEntryPointWorker {
+- (void) updateBackgroundEntryPoint {
     NSDate* modificationDate = [FileUtilities modificationDate:[self indexFile]];
     if (modificationDate != nil) {
         if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -258,16 +416,6 @@ static NSString* trailers_key = @"trailers";
         [self downloadIndex];
     }
     [NotificationCenter removeNotification:notification];
-}
-
-
-- (void) updateBackgroundEntryPoint {
-    if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
-        return;
-    }
-
-    [self updateBackgroundEntryPointWorker];
-    //[[CacheUpdater cacheUpdater] addMovies:self.index.allValues];
 }
 
 
@@ -289,10 +437,6 @@ static NSString* trailers_key = @"trailers";
 
 
 - (Movie*) findInternationalMovie:(Movie*) movie {
-    if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
-        return nil;
-    }
-
     id result;
     [dataGate lock];
     {
@@ -336,6 +480,21 @@ static NSString* trailers_key = @"trailers";
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
     return [[self findInternationalMovie:movie] imdbAddress];
+}
+
+
+- (NSDate*) releaseDateForMovie:(Movie*) movie {
+    return [[self findInternationalMovie:movie] releaseDate];
+}
+
+
+- (NSString*) ratingForMovie:(Movie*) movie {
+    return [[self findInternationalMovie:movie] rating];
+}
+
+
+- (NSInteger) lengthForMovie:(Movie*) movie {
+    return [[self findInternationalMovie:movie] length];
 }
 
 @end

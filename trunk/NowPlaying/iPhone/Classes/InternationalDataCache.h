@@ -16,12 +16,14 @@
 
 @interface InternationalDataCache : AbstractCache {
 @private
-    NSSet* allowableCountries;
     DifferenceEngine* engine;
     BOOL updated;
 
     NSDictionary* indexData;
     NSMutableDictionary* movieMap;
+
+    NSMutableDictionary* ratingCache;
+    SEL mapRatingWorker;
 }
 
 + (InternationalDataCache*) cache;
@@ -35,5 +37,8 @@
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
+- (NSDate*) releaseDateForMovie:(Movie*) movie;
+- (NSString*) ratingForMovie:(Movie*) movie;
+- (NSInteger) lengthForMovie:(Movie*) movie;
 
 @end
