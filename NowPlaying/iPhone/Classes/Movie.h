@@ -81,7 +81,6 @@
 - (NSDictionary*) dictionary;
 
 - (BOOL) isUnrated;
-- (NSString*) ratingString;
 - (NSString*) runtimeString;
 - (NSString*) ratingAndRuntimeString;
 

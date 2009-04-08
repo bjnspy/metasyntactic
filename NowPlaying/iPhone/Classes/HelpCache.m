@@ -109,10 +109,7 @@
                     NSLocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
                     NSLocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
-    result = [NSArray arrayWithObjects:questions, answers, nil];
-    [FileUtilities writeObject:result toFile:file];
-
-    return result;
+    return [NSArray arrayWithObjects:questions, answers, nil];
 }
 
 

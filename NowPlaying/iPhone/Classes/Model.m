@@ -614,7 +614,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) netflixEnabled {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_DISABLED];
+    NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_DISABLED];
+    if (value == nil) {
+        return [LocaleUtilities isUnitedStates];
+    }
+    
+    return !value.boolValue;
 }
 
 
@@ -1184,11 +1189,42 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
-    if (movie.releaseDate != nil) {
-        return movie.releaseDate;
+    NSDate* date = movie.releaseDate;
+    if (date != nil) {
+        return date;
+    }
+    
+    date = [internationalDataCache releaseDateForMovie:movie];
+    if (date != nil) {
+        return date;
+    }
+    
+    date = [upcomingCache releaseDateForMovie:movie];
+    if (date != nil) {
+        return date;
+    }
+    
+    return nil;
+}
+
+
+- (NSInteger) lengthForMovie:(Movie*) movie {
+    NSInteger length = movie.length;
+    if (length > 0) {
+        return length;
     }
 
-    return [upcomingCache releaseDateForMovie:movie];
+    return [internationalDataCache lengthForMovie:movie];
+}
+
+
+- (NSString*) ratingForMovie:(Movie*) movie {
+    NSString* rating = movie.rating;
+    if (rating.length > 0) {
+        return rating;
+    }
+    
+    return [internationalDataCache ratingForMovie:movie];
 }
 
 

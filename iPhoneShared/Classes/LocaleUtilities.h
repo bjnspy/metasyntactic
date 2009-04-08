@@ -24,6 +24,7 @@
 
 + (NSString*) displayLanguage:(NSString*) isoLanguage;
 
++ (BOOL) isUnitedStates;
 + (BOOL) isEnglish;
 + (BOOL) isJapanese;
 

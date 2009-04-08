@@ -155,10 +155,11 @@
         label.textAlignment = UITextAlignmentCenter;
         label.textColor = [UIColor grayColor];
         label.font = [UIFont boldSystemFontOfSize:14];
+        label.contentMode = UIViewContentModeBottom;
         [label sizeToFit];
         return label;
     }
-
+    
     return nil;
 }
 
@@ -176,7 +177,7 @@
         return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
     }
 
-    return -1;
+    return -4;
 }
 
 

@@ -66,6 +66,11 @@
 }
 
 
++ (BOOL) isUnitedStates {
+    return [@"US" isEqual:[self isoCountry]];
+}
+
+
 + (BOOL) isJapanese {
     return [@"ja" isEqual:[self isoLanguage]];
 }
@@ -83,6 +88,7 @@
                                  @"DE", // Germany
                                  @"DK", // Denmark
                                  @"ES", // Spain
+                                 @"FR", // France 
                                  @"HU", // Hungary
                                  @"JP", // Japan
                                  @"GB", // Great Britain
@@ -92,6 +98,7 @@
                                  @"PL", // Poland
                                  @"US", // United States
                                  @"SG", // Singapore
+                                 @"SK", // Slovakia
                                  @"TR", // Turkey
                                  nil];
 
