@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  SearchDistancePickerViewController.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 4/8/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "SearchDistancePickerViewController.h"
 
@@ -71,10 +77,10 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    
+
     NSString* value = [values objectAtIndex:indexPath.row];
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-        
+
     if (indexPath.row == 0) {
         cell.text = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
     } else {
@@ -86,7 +92,7 @@
     if ([value isEqual:defaultValue]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    
+
     return cell;
 }
 
@@ -94,17 +100,17 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     for (UITableViewCell* cell in tableView.visibleCells) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
+
     NSString* radius = [values objectAtIndex:indexPath.row];
     [self.controller setSearchRadius:radius.intValue];
-    
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -116,12 +122,12 @@
 
 
 - (void) majorRefreshWorker {
-    
+
 }
 
 
 - (void) minorRefreshWorker {
-    
+
 }
 
 @end

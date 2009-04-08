@@ -69,11 +69,11 @@
 - (NSDate*) dateForRow:(NSInteger) row {
     NSDate* today = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    
+
     NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
     [components setDay:row];
     NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
-    
+
     return date;
 }
 
@@ -82,17 +82,17 @@
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
     NSDate* date = [self dateForRow:indexPath.row];
-    
+
     if ([DateUtilities isToday:date]) {
         cell.textLabel.text = NSLocalizedString(@"Today", nil);
     } else {
         cell.textLabel.text = [DateUtilities formatFullDate:date];
     }
-    
+
     if ([DateUtilities isSameDay:date date:self.model.searchDate]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    
+
     return cell;
 }
 
@@ -100,14 +100,14 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     for (UITableViewCell* cell in tableView.visibleCells) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
+
     [self.navigationController popViewControllerAnimated:YES];
     [object performSelector:selector withObject:[self dateForRow:indexPath.row]];
 }
@@ -120,12 +120,12 @@
 
 
 - (void) majorRefreshWorker {
-    
+
 }
 
 
 - (void) minorRefreshWorker {
-    
+
 }
 
 @end
