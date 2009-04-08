@@ -62,7 +62,7 @@ static NSString* trailers_key = @"trailers";
     if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
         self.ratingCache = [NSMutableDictionary dictionary];
-        
+
         mapRatingWorker = NSSelectorFromString([NSString stringWithFormat:@"mapRating_%@:", [LocaleUtilities isoCountry]]);
         if (![self respondsToSelector:mapRatingWorker]) {
             mapRatingWorker = nil;
@@ -76,11 +76,11 @@ static NSString* trailers_key = @"trailers";
 + (InternationalDataCache*) cache {
     NSSet* allowableCountries =
     [NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil];
-    
+
     if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
         return nil;
     }
-    
+
     return [[[InternationalDataCache alloc] init] autorelease];
 }
 
@@ -172,11 +172,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"U";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -186,11 +186,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"A";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -200,11 +200,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"AL";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -214,11 +214,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"Btl";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -228,11 +228,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"FSK 0";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return [NSString stringWithFormat:@"FSK %@", value];
 }
 
@@ -242,11 +242,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"T";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return [NSString stringWithFormat:@"VM %@", value];
 }
 
@@ -256,11 +256,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"Todos los publicos";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -270,11 +270,11 @@ static NSString* trailers_key = @"trailers";
     if (i == 99) {
         return @"0";
     }
-    
+
     if (i == 0) {
         return @"";
     }
-    
+
     return value;
 }
 
@@ -301,7 +301,7 @@ static NSString* trailers_key = @"trailers";
         } else {
             result = @"";
         }
-        
+
         [ratingCache setObject:result forKey:value];
     }
     return result;
@@ -334,7 +334,7 @@ static NSString* trailers_key = @"trailers";
     NSInteger length = [[[element element:@"duration"] text] intValue];
     NSDate* releaseDate = [DateUtilities parseIS08601Date:[[element element:@"release"] text]];
     NSString* rating = [self mapRating:[[element element:@"rating"] text]];
-    
+
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
     [additionalFields setObject:trailers forKey:trailers_key];
 

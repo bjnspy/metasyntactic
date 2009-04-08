@@ -159,7 +159,7 @@
         [label sizeToFit];
         return label;
     }
-    
+
     return nil;
 }
 
