@@ -19,7 +19,6 @@
 #import "Model.h"
 #import "MovieDetailsViewController.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface MovieOverviewCell()
@@ -75,7 +74,11 @@
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
         activityView:(ActivityIndicatorViewWithBackground*) activityView {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
+#else
+    if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
+#endif
         self.movie = movie_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.posterImage = posterImage_;

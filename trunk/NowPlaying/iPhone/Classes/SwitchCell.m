@@ -14,8 +14,6 @@
 
 #import "SwitchCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 @interface SwitchCell()
 @property (retain) UISwitch* switchControl;
 @end
@@ -32,7 +30,11 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier]) {
+#endif
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.switchControl = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         self.accessoryView = switchControl;

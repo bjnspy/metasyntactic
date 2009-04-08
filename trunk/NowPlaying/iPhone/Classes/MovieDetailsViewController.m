@@ -41,7 +41,6 @@
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
-#import "UITableViewCell+Utilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
@@ -665,7 +664,11 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) createDvdDetailsCell {
     if (dvd == nil) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -683,7 +686,12 @@ const NSInteger POSTER_TAG = -1;
     frame.size.width = 300;
     label.frame = frame;
 
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:label];
 
@@ -865,7 +873,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (UITableViewCell*) showHiddenTheatersCell {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+    
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {

@@ -18,7 +18,6 @@
 #import "ImageCache.h"
 #import "Model.h"
 #import "Performance.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface MovieShowtimesCell()
@@ -104,8 +103,13 @@
 
 
 - (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {   
+#endif
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];

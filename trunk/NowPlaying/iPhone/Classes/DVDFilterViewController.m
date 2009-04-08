@@ -16,7 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface DVDFilterViewController()
@@ -81,7 +80,11 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
+#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+#else
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+#endif
     }
 
     if (indexPath.row == 0) {

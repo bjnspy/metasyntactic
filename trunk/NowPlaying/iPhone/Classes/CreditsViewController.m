@@ -19,7 +19,6 @@
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface CreditsViewController()
@@ -223,7 +222,12 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return [self localizationCellForRow:row];
     }
 
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];

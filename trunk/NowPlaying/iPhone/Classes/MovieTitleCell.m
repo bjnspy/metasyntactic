@@ -24,7 +24,6 @@
 #import "Score.h"
 #import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
-#import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
 
@@ -58,8 +57,14 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {   
+#endif
+
 #ifndef IPHONE_OS_VERSION_3
         self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         textLabel.font = [UIFont boldSystemFontOfSize:18];

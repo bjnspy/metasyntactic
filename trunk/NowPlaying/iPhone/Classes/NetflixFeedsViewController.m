@@ -18,7 +18,6 @@
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface NetflixFeedsViewController()
@@ -102,7 +101,11 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
 
     NSArray* feeds = self.feeds;
 

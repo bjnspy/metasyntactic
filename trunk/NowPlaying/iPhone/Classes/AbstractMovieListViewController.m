@@ -23,7 +23,6 @@
 #import "MoviesNavigationController.h"
 #import "MutableMultiDictionary.h"
 #import "StringUtilities.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface AbstractMovieListViewController()
@@ -439,7 +438,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];

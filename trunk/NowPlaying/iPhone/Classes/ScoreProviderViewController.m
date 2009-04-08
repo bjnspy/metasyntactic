@@ -16,7 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface ScoreProviderViewController()
 @end
@@ -64,7 +63,11 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
+#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+#else
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+#endif
     }
     // Configure the cell
     if (indexPath.row == self.model.scoreProviderIndex) {
