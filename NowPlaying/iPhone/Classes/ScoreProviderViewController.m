@@ -84,7 +84,7 @@
     for (UITableViewCell* cell in tableView.visibleCells) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-        
+
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 

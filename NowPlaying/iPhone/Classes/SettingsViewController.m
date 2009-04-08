@@ -22,7 +22,6 @@
 #import "Location.h"
 #import "LocationManager.h"
 #import "Model.h"
-#import "PickerEditorViewController.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
@@ -358,7 +357,7 @@ typedef enum {
 
 
 - (void) pushFilterDistancePicker {
-    SearchDistancePickerViewController* controller = 
+    SearchDistancePickerViewController* controller =
     [[[SearchDistancePickerViewController alloc] init] autorelease];
 
     [self.navigationController pushViewController:controller animated:YES];

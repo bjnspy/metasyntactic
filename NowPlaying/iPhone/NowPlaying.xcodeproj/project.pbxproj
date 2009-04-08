@@ -229,7 +229,6 @@
 		746397730F7EC8D600B2F64C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 		746397740F7EC8D600B2F64C /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		746397750F7EC8D600B2F64C /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
-		746397760F7EC8D600B2F64C /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		746397770F7EC8D600B2F64C /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		746397780F7EC8D600B2F64C /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
 		746397790F7EC8D600B2F64C /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
@@ -534,7 +533,6 @@
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
-		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */; };
 		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
@@ -1105,8 +1103,6 @@
 		74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
-		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
-		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		74CCF8E50EA800AC009C7A8E /* PackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDescriptor.h; sourceTree = "<group>"; };
 		74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDescriptor.m; sourceTree = "<group>"; };
@@ -2084,14 +2080,12 @@
 				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
 				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
 				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
-				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
-				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
 				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
 				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
-				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
-				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
 				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 				7453803F0F89D58F00D457CB /* FAQViewController.h */,
@@ -2652,7 +2646,6 @@
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
 				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
 				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
-				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
 				74EC04F50DD2B704006953A4 /* Location.m in Sources */,
 				742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */,
 				743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */,
@@ -2907,7 +2900,6 @@
 				746397730F7EC8D600B2F64C /* ImdbPosterDownloader.m in Sources */,
 				746397740F7EC8D600B2F64C /* EditorViewController.m in Sources */,
 				746397750F7EC8D600B2F64C /* TextFieldEditorViewController.m in Sources */,
-				746397760F7EC8D600B2F64C /* PickerEditorViewController.m in Sources */,
 				746397770F7EC8D600B2F64C /* Location.m in Sources */,
 				746397780F7EC8D600B2F64C /* TicketsViewController.m in Sources */,
 				746397790F7EC8D600B2F64C /* MovieShowtimesCell.m in Sources */,
