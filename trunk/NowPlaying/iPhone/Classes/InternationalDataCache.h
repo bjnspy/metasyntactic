@@ -21,16 +21,15 @@
 
     NSDictionary* indexData;
     NSMutableDictionary* movieMap;
-
-    NSMutableDictionary* ratingCache;
-    SEL mapRatingWorker;
+    
+    NSMutableDictionary* ratingAndRuntimeCache;
 }
 
 + (InternationalDataCache*) cache;
 
-- (void) update;
++ (BOOL) isAllowableCountry;
 
-- (Movie*) findInternationalMovie:(Movie*) movie;
+- (void) update;
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;
@@ -40,5 +39,6 @@
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 - (NSString*) ratingForMovie:(Movie*) movie;
 - (NSInteger) lengthForMovie:(Movie*) movie;
+- (NSString*) ratingAndRuntimeForMovie:(Movie*) movie;
 
 @end

@@ -26,15 +26,42 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "PreviewNetworksPosterDownloader.h"
 
 @interface PosterCache()
+@property (retain) ImdbPosterDownloader* imdbPosterDownloader;
+@property (retain) ApplePosterDownloader* applePosterDownloader;
+@property (retain) FandangoPosterDownloader* fandangoPosterDownloader;
+@property (retain) PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
 @end
 
 
 @implementation PosterCache
 
+@synthesize imdbPosterDownloader;
+@synthesize applePosterDownloader;
+@synthesize fandangoPosterDownloader;
+@synthesize previewNetworksPosterDownloader;
+
 - (void) dealloc {
+    self.imdbPosterDownloader = nil;
+    self.applePosterDownloader = nil;
+    self.fandangoPosterDownloader = nil;
+    self.previewNetworksPosterDownloader = nil;
+
     [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
+        self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
+        self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
+        self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
+    }
+    
+    return self;
 }
 
 
@@ -66,23 +93,22 @@
         return data;
     }
 
-    Movie* internationalMovie = [self.model.internationalDataCache findInternationalMovie:movie];
-    data = [NetworkUtilities dataWithContentsOfAddress:internationalMovie.poster];
+    data = [previewNetworksPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [ApplePosterDownloader download:movie];
+    data = [applePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [FandangoPosterDownloader download:movie];
+    data = [fandangoPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [ImdbPosterDownloader download:movie];
+    data = [imdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }

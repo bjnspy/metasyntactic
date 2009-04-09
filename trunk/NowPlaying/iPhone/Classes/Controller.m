@@ -170,10 +170,10 @@ static Controller* controller = nil;
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
+    [self updateInternationalDataCache];
     [self updateUpcomingCache];
     [self updateDVDCache];
     [self updateNetflixCache];
-    [self updateInternationalDataCache];
     [self updateHelpCache];
 
     NSArray* movies = self.model.movies;

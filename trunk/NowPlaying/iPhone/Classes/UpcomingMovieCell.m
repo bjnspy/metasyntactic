@@ -168,17 +168,15 @@
     castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
 
-    NSString* rating;
-    if (movie.isUnrated) {		
+    NSString* rating = [self.model ratingForMovie:movie];
+    if (rating.length == 0) {		
         rating = NSLocalizedString(@"Not yet rated", nil);		
-    } else {		
-        rating = movie.rating;		
     }
 
     if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
-        if (!movie.isUnrated) {
+        if (rating.length > 0) {
             releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
         }
 

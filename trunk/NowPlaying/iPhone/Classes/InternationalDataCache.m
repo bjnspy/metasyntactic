@@ -33,7 +33,7 @@
 @property (retain) DifferenceEngine* engine;
 @property (retain) NSDictionary* indexData;
 @property (retain) NSMutableDictionary* movieMap;
-@property (retain) NSMutableDictionary* ratingCache;
+@property (retain) NSMutableDictionary* ratingAndRuntimeCache;
 @property BOOL updated;
 @end
 
@@ -42,31 +42,39 @@
 
 static NSString* trailers_key = @"trailers";
 
+static NSSet* allowableCountries = nil;
+
++ (void) initialize {
+    if (self == [InternationalDataCache class]) {
+        allowableCountries = [[NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil] retain];
+    }
+}
+
 @synthesize engine;
 @synthesize indexData;
 @synthesize movieMap;
-@synthesize ratingCache;
 @synthesize updated;
+@synthesize ratingAndRuntimeCache;
 
 - (void) dealloc {
     self.engine = nil;
     self.indexData = nil;
     self.movieMap = nil;
-    self.ratingCache = nil;
+    self.ratingAndRuntimeCache = nil;
 
     [super dealloc];
+}
+
+
++ (BOOL) isAllowableCountry {
+    return [allowableCountries containsObject:[LocaleUtilities isoCountry]];        
 }
 
 
 - (id) init {
     if (self = [super init]) {
         self.engine = [DifferenceEngine engine];
-        self.ratingCache = [NSMutableDictionary dictionary];
-
-        mapRatingWorker = NSSelectorFromString([NSString stringWithFormat:@"mapRating_%@:", [LocaleUtilities isoCountry]]);
-        if (![self respondsToSelector:mapRatingWorker]) {
-            mapRatingWorker = nil;
-        }
+        self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -74,13 +82,6 @@ static NSString* trailers_key = @"trailers";
 
 
 + (InternationalDataCache*) cache {
-    NSSet* allowableCountries =
-    [NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil];
-
-    if (![allowableCountries containsObject:[LocaleUtilities isoCountry]]) {
-        return nil;
-    }
-
     return [[[InternationalDataCache alloc] init] autorelease];
 }
 
@@ -289,7 +290,9 @@ static NSString* trailers_key = @"trailers";
 }
 
 
-- (NSString*) mapRating:(NSString*) value {
+- (NSString*) mapRating:(NSString*) value
+            ratingCache:(NSMutableDictionary*) ratingCache
+        mapRatingWorker:(SEL) mapRatingWorker  {
     if (value.length == 0) {
         return nil;
     }
@@ -308,7 +311,9 @@ static NSString* trailers_key = @"trailers";
 }
 
 
-- (Movie*) processMovieElement:(XmlElement*) element {
+- (Movie*) processMovieElement:(XmlElement*) element
+                   ratingCache:(NSMutableDictionary*) ratingCache
+               mapRatingWorker:(SEL) mapRatingWorker {
     static NSInteger identifier = 1;
 
     NSString* imdbId = [element attributeValue:@"imdb"];
@@ -320,7 +325,7 @@ static NSString* trailers_key = @"trailers";
     }
 
     NSString* synopsis = [[element element:@"description"] text];
-    NSString* poster = [[element element:@"poster"] text];
+    //NSString* poster = [[element element:@"poster"] text];
 
     NSMutableArray* trailers = [NSMutableArray array];
     for (XmlElement* trailerElement in [element elements:@"trailer"]) {
@@ -333,7 +338,7 @@ static NSString* trailers_key = @"trailers";
 
     NSInteger length = [[[element element:@"duration"] text] intValue];
     NSDate* releaseDate = [DateUtilities parseIS08601Date:[[element element:@"release"] text]];
-    NSString* rating = [self mapRating:[[element element:@"rating"] text]];
+    NSString* rating = [self mapRating:[[element element:@"rating"] text] ratingCache:ratingCache mapRatingWorker:mapRatingWorker];
 
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
     [additionalFields setObject:trailers forKey:trailers_key];
@@ -344,7 +349,7 @@ static NSString* trailers_key = @"trailers";
                                length:length
                           releaseDate:releaseDate
                           imdbAddress:imdbAddress
-                               poster:poster
+                               poster:nil
                              synopsis:synopsis
                                studio:nil
                             directors:directors
@@ -355,11 +360,17 @@ static NSString* trailers_key = @"trailers";
 
 
 - (void) processElement:(XmlElement*) element {
+    NSMutableDictionary* ratingCache = [NSMutableDictionary dictionary];
+    SEL mapRatingWorker = NSSelectorFromString([NSString stringWithFormat:@"mapRating_%@:", [LocaleUtilities isoCountry]]);
+    if (![self respondsToSelector:mapRatingWorker]) {
+        mapRatingWorker = nil;
+    }
+    
     NSMutableArray* movies = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            Movie* movie = [self processMovieElement:child];
+            Movie* movie = [self processMovieElement:child ratingCache:ratingCache mapRatingWorker:mapRatingWorker];
             if (movie != nil) {
                 [movies addObject:movie];
             }
@@ -381,6 +392,7 @@ static NSString* trailers_key = @"trailers";
     {
         self.indexData = dictionary;
         self.movieMap = [NSMutableDictionary dictionary];
+        self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
     }
     [dataGate unlock];
 }
@@ -403,6 +415,10 @@ static NSString* trailers_key = @"trailers";
 
 
 - (void) updateBackgroundEntryPoint {
+    if (![InternationalDataCache isAllowableCountry]) {
+        return;
+    }
+    
     NSDate* modificationDate = [FileUtilities modificationDate:[self indexFile]];
     if (modificationDate != nil) {
         if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -495,6 +511,40 @@ static NSString* trailers_key = @"trailers";
 
 - (NSInteger) lengthForMovie:(Movie*) movie {
     return [[self findInternationalMovie:movie] length];
+}
+
+
+- (NSString*) ratingAndRuntimeForMovieWorker:(Movie*) movie {
+    NSString* rating = [self.model ratingForMovie:movie];
+    NSString* ratingString;
+    if (rating.length == 0) {
+        ratingString = NSLocalizedString(@"Unrated", nil);
+    } else {
+        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
+    }
+    
+    NSString* runtimeString = @"";
+    NSInteger length = [self.model lengthForMovie:movie];
+    if (length > 0) {
+        runtimeString = [Movie runtimeString:length];
+    }
+
+    return [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), ratingString, runtimeString];
+}
+
+
+- (NSString*) ratingAndRuntimeForMovie:(Movie*) movie {
+    NSString* result;
+    [dataGate lock];
+    {
+        result = [ratingAndRuntimeCache objectForKey:movie];
+        if (result == nil) {
+            result = [self ratingAndRuntimeForMovieWorker:movie];
+            [ratingAndRuntimeCache setObject:result forKey:movie];
+        }
+    }
+    [dataGate unlock];
+    return result;
 }
 
 @end

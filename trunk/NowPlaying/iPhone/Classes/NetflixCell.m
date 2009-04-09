@@ -221,11 +221,9 @@
     formatsLabel.text   = [[[[self.model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
     availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
 
-    NSString* rating;
-    if (movie.isUnrated) {		
+    NSString* rating = [self.model ratingForMovie:movie];
+    if (rating.length == 0) {		
         rating = NSLocalizedString(@"Unrated", nil);		
-    } else {		
-        rating = movie.rating;		
     }
 
     ratedLabel.text = rating;
