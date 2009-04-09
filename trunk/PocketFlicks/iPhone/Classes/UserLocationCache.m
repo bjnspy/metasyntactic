@@ -14,12 +14,10 @@
 
 #import "UserLocationCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "NotificationCenter.h"
-#import "Utilities.h"
 
 @interface UserLocationCache()
 @end

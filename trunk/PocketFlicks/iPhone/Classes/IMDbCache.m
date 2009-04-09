@@ -17,11 +17,9 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "FileUtilities.h"
-#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "StringUtilities.h"
-#import "Utilities.h"
 
 @interface IMDbCache()
 @end
@@ -45,15 +43,15 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:force {
     if (movie.imdbAddress.length > 0) {
         // don't even bother if the movie has an imdb address in it
         return;
     }
 
     NSString* path = [self imdbFile:movie];
-    NSDate* lastLookupDate = [FileUtilities modificationDate:path];
 
+    NSDate* lastLookupDate = [FileUtilities modificationDate:path];
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
@@ -61,9 +59,11 @@
             return;
         }
 
-        // we have a sentinel.  only update if it's been long enough
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
+        if (!force) {
+            // we have a sentinel.  only update if it's been long enough
+            if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
+                return;
+            }
         }
     }
 

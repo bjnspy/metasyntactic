@@ -14,7 +14,6 @@
 
 #import "AbstractNetflixCache.h"
 
-#import "Application.h"
 #import "Model.h"
 #import "NetflixAuthentication.h"
 

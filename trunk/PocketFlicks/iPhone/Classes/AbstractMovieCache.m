@@ -14,10 +14,6 @@
 
 #import "AbstractMovieCache.h"
 
-#import "AppDelegate.h"
-#import "Movie.h"
-#import "OperationQueue.h"
-
 @interface AbstractMovieCache()
 @property (retain) NSMutableSet* updatedMovies;
 @end
@@ -74,17 +70,17 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (void) processMovie:(Movie*) movie {
+- (void) processMovie:(Movie*) movie force:(BOOL) force {
     if ([self checkMovie:movie]) {
         return;
     }
 
-    [self updateMovieDetails:movie];
+    [self updateMovieDetails:movie force:force];
 }
 
 @end

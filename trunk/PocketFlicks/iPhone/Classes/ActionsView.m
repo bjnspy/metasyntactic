@@ -47,20 +47,26 @@
 }
 
 
-- (id) initWithTarget:(id) target__
-            selectors:(NSArray*) selectors__
-               titles:(NSArray*) titles__
-            arguments:(NSArray*) arguments__ {
+- (id) initWithTarget:(id) target_
+            selectors:(NSArray*) selectors_
+               titles:(NSArray*) titles_
+            arguments:(NSArray*) arguments_
+            shiftDown:(BOOL) shiftDown_ {
     if (self = [super initWithFrame:CGRectZero]) {
-        self.target = target__;
-        self.selectors = selectors__;
-        self.titles = titles__;
-        self.arguments = arguments__;
+        self.target = target_;
+        self.selectors = selectors_;
+        self.titles = titles_;
+        self.arguments = arguments_;
+        shiftDown = shiftDown_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+
+        //UIImage* image = [UIImage imageNamed:@"BalloonInputField.png"];
+        //UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:13 topCapHeight:12];
 
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            //[button setBackgroundImage:stretchedImage forState:UIControlStateNormal];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
 
@@ -88,11 +94,21 @@
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
-                      arguments:(NSArray*) arguments {
+                      arguments:(NSArray*) arguments
+                      shiftDown:(BOOL) shiftDown {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
                                          titles:titles
-                                      arguments:arguments] autorelease];
+                                      arguments:arguments
+                                      shiftDown:shiftDown] autorelease];
+}
+
+
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles
+                      arguments:(NSArray*) arguments {
+    return [self viewWithTarget:target selectors:selectors titles:titles arguments:arguments shiftDown:YES];
 }
 
 
@@ -112,13 +128,13 @@
 }
 
 
-- (CGSize) sizeThatFits:(CGSize) size withModel:(Model*) model {
+- (CGSize) sizeThatFits:(CGSize) size {
     if (buttons.count == 0) {
         return CGSizeZero;
     }
 
     double width;
-    if ([model screenRotationEnabled] &&
+    if ([[Model model] screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
@@ -149,7 +165,11 @@
 
         CGRect frame = button.frame;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
+#ifdef IPHONE_OS_VERSION_3
+        frame.origin.y = (8 + frame.size.height) * row + (shiftDown ? 8 : 0);
+#else
         frame.origin.y = (8 + frame.size.height) * row + 8;
+#endif
 
         if (i == 0 && oddNumberOfButtons) {
             frame.size.width = (self.frame.size.width - 2 * frame.origin.x);

@@ -21,29 +21,14 @@
 
 @implementation ApplePosterDownloader
 
-static NSDictionary* movieNameToPosterMap = nil;
-static NSLock* gate;
-
-
-+ (void) initialize {
-    if (self == [ApplePosterDownloader class]) {
-        gate = [[NSLock alloc] init];
-    }
-}
-
-
-+ (void) createMapWorker {
-    if (movieNameToPosterMap != nil) {
-        return;
-    }
-
+- (NSDictionary*) createMapWorker {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
     NSString* index = [NetworkUtilities stringWithContentsOfAddress:url];
     if (index == nil) {
-        return;
+        return nil;
     }
 
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
@@ -57,32 +42,7 @@ static NSLock* gate;
         }
     }
 
-    movieNameToPosterMap = result;
-}
-
-
-+ (void) createMap {
-    [gate lock];
-    {
-        [self createMapWorker];
-    }
-    [gate unlock];
-}
-
-
-+ (NSData*) download:(Movie*) movie {
-    [self createMap];
-    if (movieNameToPosterMap == nil) {
-        return nil;
-    }
-
-    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
-    if (key == nil) {
-        return nil;
-    }
-
-    NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
+    return result;
 }
 
 @end

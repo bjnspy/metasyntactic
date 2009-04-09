@@ -21,10 +21,17 @@
 
     NSArray* buttons;
 
+    BOOL shiftDown;
     CGFloat height;
 }
 
 @property (readonly) CGFloat height;
+
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles
+                      arguments:(NSArray*) arguments
+                      shiftDown:(BOOL) shiftDown;
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors

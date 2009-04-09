@@ -18,13 +18,11 @@
 #import "ApplicationTabBarController.h"
 #import "CacheUpdater.h"
 #import "Controller.h"
-#import "LocationManager.h"
 #import "Model.h"
 #import "NetflixNavigationController.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "Pulser.h"
-#import "TappableImageView.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
