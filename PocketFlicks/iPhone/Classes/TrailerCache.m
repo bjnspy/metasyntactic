@@ -18,10 +18,8 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
-#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "OperationQueue.h"
 
 @interface TrailerCache()
 @property (retain) NSDictionary* index;
@@ -54,15 +52,24 @@
 
 
 - (BOOL) tooSoon:(NSDate*) date {
-    return date.timeIntervalSinceNow < (3 * ONE_DAY);
+    return date.timeIntervalSinceNow < THREE_DAYS;
 }
 
 
-- (void) updateMovieDetailsWorker:(Movie*) movie {
-    NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
+- (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
+    NSString* file = [self trailerFile:movie];
+
+    NSDate* downloadDate = [FileUtilities modificationDate:file];
     if (downloadDate != nil) {
         if ([self tooSoon:downloadDate]) {
-            return;
+            NSArray* values = [FileUtilities readObject:file];
+            if (values.count > 0) {
+                return;
+            }
+
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -146,9 +153,9 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     if ([self tryGenerateIndex]) {
-        [self updateMovieDetailsWorker:movie];
+        [self updateMovieDetailsWorker:movie force:force];
     }
 }
 

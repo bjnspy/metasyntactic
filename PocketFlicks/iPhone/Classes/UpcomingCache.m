@@ -19,17 +19,11 @@
 #import "CacheUpdater.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
-#import "IMDbCache.h"
-#import "ImageUtilities.h"
-#import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetflixCache.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
-#import "Utilities.h"
-#import "WikipediaCache.h"
 #import "XmlElement.h"
 
 @interface UpcomingCache()
@@ -372,15 +366,7 @@
 }
 
 
-- (NSArray*) updateIndexBackgroundEntryPointWorker {
-    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-
-    if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return nil;
-        }
-    }
-
+- (void) updateIndexBackgroundEntryPointWorker {
     NSString* localHash = self.hashValue;
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]];
     if (serverHash.length == 0) {
@@ -390,7 +376,7 @@
     if ([localHash isEqual:serverHash]) {
         // save the hash again so we don't check for a few more days.
         [FileUtilities writeObject:serverHash toFile:self.hashFile];
-        return nil;
+        return;
     }
 
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
@@ -399,7 +385,7 @@
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
-        return nil;
+        return;
     }
 
     [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
@@ -436,25 +422,29 @@
     [dataGate unlock];
 
     [AppDelegate majorRefresh];
+}
 
-    return movies;
+
+- (BOOL) tooSoon {
+    NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
+    return lastLookupDate != nil &&
+    (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS);
 }
 
 
 - (void) updateIndexBackgroundEntryPoint {
-    NSArray* movies;
-    NSString* notification = NSLocalizedString(@"upcoming", nil);
-    [NotificationCenter addNotification:notification];
-    {
-        movies = [self updateIndexBackgroundEntryPointWorker];
-    }
-    [NotificationCenter removeNotification:notification];
-
-    if (movies.count == 0) {
-        movies = [[self loadMovies] allValues];
+    if (![self tooSoon]) {
+        NSString* notification = NSLocalizedString(@"upcoming", nil);
+        [NotificationCenter addNotification:notification];
+        {
+            [self updateIndexBackgroundEntryPointWorker];
+        }
+        [NotificationCenter removeNotification:notification];
     }
 
     [self clearUpdatedMovies];
+
+    NSArray* movies = self.movieMap.allValues;
     [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
@@ -481,6 +471,7 @@
 
 
 - (void) updateSynopsisAndCast:(Movie*) movie
+                         force:(BOOL) force
                         studio:(NSString*) studio
                          title:(NSString*) title {
     if (studio.length == 0 || title.length == 0) {
@@ -488,11 +479,19 @@
     }
 
     NSString* synopsisFile = [self synopsisFile:movie];
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_WEEK) {
-            return;
+            NSString* synopsis = [FileUtilities readObject:synopsisFile];
+            if (synopsis.length > 0) {
+                return;
+            }
+
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -517,14 +516,15 @@
         [cast removeObjectAtIndex:0];
     }
 
-    [FileUtilities writeObject:synopsis toFile:synopsisFile];
-    [FileUtilities writeObject:cast toFile:[self castFile:movie]];
+            [FileUtilities writeObject:cast toFile:[self castFile:movie]];
+            [FileUtilities writeObject:synopsis toFile:synopsisFile];
 
     [AppDelegate minorRefresh];
 }
 
 
 - (void) updateTrailers:(Movie*) movie
+                  force:(BOOL) force
                  studio:(NSString*) studio
                   title:(NSString*) title {
     if (studio.length == 0 || title.length == 0) {
@@ -532,11 +532,18 @@
     }
 
     NSString* trailersFile = [self trailersFile:movie];
-    NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
 
+    NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
     if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
+            NSArray* trailers = [FileUtilities readObject:trailersFile];
+            if (trailers.count > 0) {
+                return;
+            }
+
+            if (!force) {
+                return;
+            }
         }
     }
 
@@ -560,18 +567,20 @@
 
 
 - (void) updateMovieDetails:(Movie*) movie
+                      force:(BOOL) force
                      studio:(NSString*) studio
                       title:(NSString*) title {
-    [self updateSynopsisAndCast:movie studio:studio title:title];
-    [self updateTrailers:movie studio:studio title:title];
+    [self updateSynopsisAndCast:movie force:force studio:studio title:title];
+    [self updateTrailers:movie force:force studio:studio title:title];
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     NSString* studio = [self.studioKeys objectForKey:movie.canonicalTitle];
     NSString* title = [self.titleKeys objectForKey:movie.canonicalTitle];
 
     [self updateMovieDetails:movie
+                       force:force
                       studio:studio
                        title:title];
 }
