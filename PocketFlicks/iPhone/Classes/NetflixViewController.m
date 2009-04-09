@@ -155,6 +155,18 @@ typedef enum {
 }
 
 
+- (void) initializeInfoButton {
+    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+
+    infoButton.contentMode = UIViewContentModeCenter;
+    CGRect frame = infoButton.frame;
+    frame.size.width += 4;
+    infoButton.frame = frame;
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
 - (void) majorRefreshWorker {
 #ifdef IPHONE_OS_VERSION_3
     if (self.hasAccount) {
@@ -163,6 +175,8 @@ typedef enum {
         self.tableView.tableHeaderView = nil;
     }
 #endif
+
+    //[self initializeInfoButton];
     [self setupTableStyle];
     [self setupTitle];
     [self determinePopularMovieCount];
@@ -178,15 +192,6 @@ typedef enum {
 #ifdef IPHONE_OS_VERSION_3
     [searchDisplayController minorRefresh];
 #endif
-}
-
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
 }
 
 
@@ -230,19 +235,19 @@ typedef enum {
                 cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
                 cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
                 cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
                 cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
                 cell.image = [UIImage imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
@@ -250,7 +255,7 @@ cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
                 cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
                 break;
             case AboutSendFeedbackSection:
-   cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
+                cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
                 cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
                 break;
             case LogOutSection:
@@ -272,7 +277,7 @@ cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
-
+    
     if (cell.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
@@ -412,5 +417,12 @@ cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
 - (void) showInfo {
     [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) onTabBarItemSelected {
+    [searchDisplayController setActive:NO animated:YES];
+}
+#endif
 
 @end

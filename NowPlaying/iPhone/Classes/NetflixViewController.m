@@ -240,16 +240,16 @@ typedef enum {
                 }
                 break;
             case DVDSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
                 break;
             case InstantSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
                 break;
             case RecommendationsSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
                 break;
             case AtHomeSection:
-cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
                 break;
             case RentalHistorySection:
                 cell.text = NSLocalizedString(@"Rental History", nil);

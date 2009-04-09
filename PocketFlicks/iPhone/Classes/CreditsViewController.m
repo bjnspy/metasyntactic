@@ -190,7 +190,12 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return [self localizationCellForRow:row];
     }
 
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];
@@ -283,7 +288,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     textView.textColor = [UIColor grayColor];
 
     [controller.view addSubview:textView];
-    [self.abstractNavigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -373,11 +378,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     return [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 @end
