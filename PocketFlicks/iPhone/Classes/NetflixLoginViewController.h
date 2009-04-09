@@ -14,7 +14,6 @@
 
 @interface NetflixLoginViewController : UIViewController {
 @private
-    NetflixNavigationController* navigationController;
     UILabel* messageLabel;
     UILabel* statusLabel;
     UIActivityIndicatorView* activityIndicator;
@@ -23,7 +22,5 @@
     OAToken* authorizationToken;
     BOOL didShowBrowser;
 }
-
-- (id) initWithNavigationController:(NetflixNavigationController*) navigationController;
 
 @end

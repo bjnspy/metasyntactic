@@ -14,9 +14,7 @@
 
 #import "NetflixCell.h"
 
-#import "Application.h"
 #import "ColorCache.h"
-#import "DateUtilities.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
@@ -119,7 +117,9 @@
 
     CGRect frame = view.frame;
     frame.size.height += 80;
+#ifdef IPHONE_OS_VERSION_3
     frame.size.width += 20;
+#endif
     view.frame = frame;
 
     self.tappableArrow = view;
@@ -221,11 +221,9 @@
     formatsLabel.text   = [[[[self.model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
     availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
 
-    NSString* rating;
-    if (movie.isUnrated) {		
+    NSString* rating = [self.model ratingForMovie:movie];
+    if (rating.length == 0) {		
         rating = NSLocalizedString(@"Unrated", nil);		
-    } else {		
-        rating = movie.rating;		
     }
 
     ratedLabel.text = rating;

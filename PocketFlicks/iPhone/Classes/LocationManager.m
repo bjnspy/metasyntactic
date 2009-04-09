@@ -15,7 +15,6 @@
 #import "LocationManager.h"
 
 #import "AlertUtilities.h"
-#import "AppDelegate.h"
 #import "Controller.h"
 #import "Location.h"
 #import "LocationUtilities.h"

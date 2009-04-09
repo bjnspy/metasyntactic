@@ -16,19 +16,15 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
-#import "FileUtilities.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "LookupResult.h"
-#import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
 #import "Performance.h"
 #import "StringUtilities.h"
 #import "Theater.h"
-#import "Utilities.h"
-#import "XmlElement.h"
 
 @interface GoogleDataProvider()
 @property (retain) NSCalendar* calendar;

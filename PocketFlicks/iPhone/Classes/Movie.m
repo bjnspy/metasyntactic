@@ -15,8 +15,8 @@
 #import "Movie.h"
 
 #import "CollectionUtilities.h"
+#import "Model.h"
 #import "StringUtilities.h"
-#import "Utilities.h"
 
 @interface Movie()
 @property (copy) NSString* identifier;
@@ -32,7 +32,6 @@
 @property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
-@property (copy) NSString* cachedRatingAndRuntimeString;
 @property (retain) NSDictionary* additionalFields;
 @end
 
@@ -53,7 +52,6 @@ property_definition(directors);
 property_definition(cast);
 property_definition(genres);
 property_definition(additionalFields);
-@synthesize cachedRatingAndRuntimeString;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -69,7 +67,6 @@ property_definition(additionalFields);
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
-    self.cachedRatingAndRuntimeString = nil;
     self.additionalFields = nil;
 
     [super dealloc];
@@ -242,8 +239,11 @@ static NSString* articles[] = {
                         genres:(NSArray*) genres
               additionalFields:(NSDictionary*) additionalFields {
     rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (rating.length == 0) {
-        rating = @"NR";
+    if (rating.length == 0 ||
+        [@"NR" isEqual:rating] ||
+        [@"UR" isEqual:rating] ||
+        [@"Not Rated" isEqual:rating]) {
+        rating = @"";
     }
 
     return [[[Movie alloc] initWithIdentifier:identifier
@@ -369,24 +369,7 @@ static NSString* articles[] = {
 }
 
 
-- (BOOL) isUnrated {
-    return rating.length == 0 ||
-    [rating isEqual:@"NR"] ||
-    [rating isEqual:@"UR"] ||
-    [rating isEqual:@"Not Rated"];
-}
-
-
-- (NSString*) ratingString {
-    if (self.isUnrated) {
-        return NSLocalizedString(@"Unrated", nil);
-    }  else {
-        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
-    }
-}
-
-
-- (NSString*) runtimeString {
++ (NSString*) runtimeString:(NSInteger) length {
     NSString* hoursString = @"";
     NSString* minutesString = @"";
 
@@ -408,16 +391,6 @@ static NSString* articles[] = {
     }
 
     return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", "2 hours 34 minutes"), hoursString, minutesString];
-}
-
-
-- (NSString*) ratingAndRuntimeString {
-    if (cachedRatingAndRuntimeString == nil) {
-        self.cachedRatingAndRuntimeString =
-        [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), self.ratingString, self.runtimeString];
-    }
-
-    return cachedRatingAndRuntimeString;
 }
 
 

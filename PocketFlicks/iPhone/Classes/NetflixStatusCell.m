@@ -15,12 +15,9 @@
 #import "NetflixStatusCell.h"
 
 #import "ImageCache.h"
-#import "Model.h"
-#import "NetflixCache.h"
 #import "Queue.h"
 #import "Status.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface NetflixStatusCell()
@@ -74,8 +71,14 @@
 
 
 - (id) initWithStatus:(Status*) status_ {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:nil]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:nil]) {
+#endif
+
         self.status = status_;
 
         self.font = [UIFont boldSystemFontOfSize:16];

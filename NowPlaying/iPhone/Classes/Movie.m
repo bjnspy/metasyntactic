@@ -32,7 +32,6 @@
 @property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
-//@property (copy) NSString* cachedRatingAndRuntimeString;
 @property (retain) NSDictionary* additionalFields;
 @end
 
@@ -53,7 +52,6 @@ property_definition(directors);
 property_definition(cast);
 property_definition(genres);
 property_definition(additionalFields);
-//@synthesize cachedRatingAndRuntimeString;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -69,7 +67,6 @@ property_definition(additionalFields);
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
-//    self.cachedRatingAndRuntimeString = nil;
     self.additionalFields = nil;
 
     [super dealloc];

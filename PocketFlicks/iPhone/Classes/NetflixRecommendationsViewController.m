@@ -14,16 +14,12 @@
 
 #import "NetflixRecommendationsViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "AppDelegate.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MutableMultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
 #import "Queue.h"
-#import "UITableViewCell+Utilities.h"
-
 
 @interface NetflixRecommendationsViewController()
 @property (retain) NSArray* genres;
@@ -87,15 +83,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     self.genreToMovies = [MultiDictionary dictionary];
@@ -127,7 +114,11 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
 
     NSString* genre = [genres objectAtIndex:indexPath.row];
     NSInteger count = [[genreToMovies objectsForKey:genre] count];

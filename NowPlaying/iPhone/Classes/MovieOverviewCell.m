@@ -285,9 +285,4 @@
     return cell.height;
 }
 
-
-//- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-//    [self setNeedsLayout];
-//}
-
 @end
