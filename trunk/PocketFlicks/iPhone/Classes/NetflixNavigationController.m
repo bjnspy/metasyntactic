@@ -14,6 +14,8 @@
 
 #import "NetflixNavigationController.h"
 
+#import "Application.h"
+#import "ColorCache.h"
 #import "NetflixViewController.h"
 
 @interface NetflixNavigationController()
