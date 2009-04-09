@@ -88,7 +88,7 @@
                                  @"DE", // Germany
                                  @"DK", // Denmark
                                  @"ES", // Spain
-                                 @"FR", // France 
+                                 @"FR", // France
                                  @"HU", // Hungary
                                  @"JP", // Japan
                                  @"GB", // Great Britain
