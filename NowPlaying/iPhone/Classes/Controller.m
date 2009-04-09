@@ -241,6 +241,9 @@ static Controller* controller = nil;
 
     [self markDataProviderOutOfDate];
     [self spawnDetermineLocationThread];
+
+    // Refresh the UI so we show the found location.
+    [AppDelegate majorRefresh:YES];
 }
 
 
