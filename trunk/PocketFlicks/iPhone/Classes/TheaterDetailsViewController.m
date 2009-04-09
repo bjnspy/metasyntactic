@@ -24,10 +24,8 @@
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
-#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
-#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
@@ -224,7 +222,11 @@
 
 
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+#endif
 
     cell.textColor = [ColorCache commandColor];
     cell.font = [UIFont boldSystemFontOfSize:14];
@@ -438,11 +440,6 @@
     }
 
     return -1;
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 @end

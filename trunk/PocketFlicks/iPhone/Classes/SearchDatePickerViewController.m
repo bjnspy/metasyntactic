@@ -14,31 +14,40 @@
 
 #import "SearchDatePickerViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "DateUtilities.h"
 #import "Model.h"
 
+@interface SearchDatePickerViewController()
+@property (retain) id object;
+@property SEL selector;
+@end
+
 @implementation SearchDatePickerViewController
 
+@synthesize object;
+@synthesize selector;
 
 - (void) dealloc {
+    self.object = nil;
+
     [super dealloc];
 }
 
 
-- (id) initWithValues:(NSArray*) values_
-         defaultValue:(NSString*) defaultValue_
-               object:(id) object_
+- (id) initWithObject:(id) object_
              selector:(SEL) selector_ {
-    if (self = [super initWithTitle:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
-                               text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
-                             object:object_
-                           selector:selector_
-                             values:values_
-                       defaultValue:defaultValue_]) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.object = object_;
+        self.selector = selector_;
+        self.title = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
     }
 
     return self;
+}
+
+
++ (SearchDatePickerViewController*) pickerWithObject:(id) object selector:(SEL) selector {
+    return [[[SearchDatePickerViewController alloc] initWithObject:object selector:selector] autorelease];
 }
 
 
@@ -47,34 +56,88 @@
 }
 
 
-+ (SearchDatePickerViewController*) pickerWithObject:(id) object
-                                            selector:(SEL) selector {
-    NSMutableArray* values = [NSMutableArray array];
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
+    return 1;
+}
+
+
+- (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
+    return 7;
+}
+
+
+- (NSDate*) dateForRow:(NSInteger) row {
     NSDate* today = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    for (int i = 0; i < 7; i++) {
-        NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-        [components setDay:i];
-        NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
 
-        [values addObject:[DateUtilities formatFullDate:date]];
+    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+    [components setDay:row];
+    NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
+
+    return date;
+}
+
+
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+#ifdef IPHONE_OS_VERSION_3
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+
+    NSDate* date = [self dateForRow:indexPath.row];
+
+#ifdef IPHONE_OS_VERSION_3
+    if ([DateUtilities isToday:date]) {
+        cell.textLabel.text = NSLocalizedString(@"Today", nil);
+    } else {
+        cell.textLabel.text = [DateUtilities formatFullDate:date];
     }
-    NSString* defaultValue = [DateUtilities formatFullDate:[[Model model] searchDate]];
+#else
+    if ([DateUtilities isToday:date]) {
+        cell.text = NSLocalizedString(@"Today", nil);
+    } else {
+        cell.text = [DateUtilities formatFullDate:date];
+    }
+#endif
 
-    return [[[SearchDatePickerViewController alloc] initWithValues:values
-                                                      defaultValue:defaultValue
-                                                            object:object
-                                                          selector:selector] autorelease];
+    if ([DateUtilities isSameDay:date date:self.model.searchDate]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+
+    return cell;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    for (UITableViewCell* cell in tableView.visibleCells) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    [self.navigationController popViewControllerAnimated:YES];
+    [object performSelector:selector withObject:[self dateForRow:indexPath.row]];
 }
 
 
-- (void) viewWillDisappear:(BOOL) animated {
-    [super viewWillDisappear:animated];
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    return NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil);
+}
+
+
+- (void) majorRefreshWorker {
+
+}
+
+
+- (void) minorRefreshWorker {
+
 }
 
 @end

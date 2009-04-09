@@ -16,9 +16,6 @@
 
 #import "FontCache.h"
 #import "Review.h"
-#import "UITableViewCell+Utilities.h"
-#import "Utilities.h"
-
 
 @interface ReviewBodyCell()
 @property (retain) Review* review;
@@ -40,7 +37,11 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier]) {
+#endif
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];

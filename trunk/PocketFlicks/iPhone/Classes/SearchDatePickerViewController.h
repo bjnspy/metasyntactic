@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "PickerEditorViewController.h"
+#import "AbstractFullScreenTableViewController.h"
 
-@interface SearchDatePickerViewController : PickerEditorViewController {
+@interface SearchDatePickerViewController : AbstractFullScreenTableViewController {
+@private
+    id object;
+    SEL selector;
 }
 
-+ (SearchDatePickerViewController*) pickerWithObject:(id) object
-                                            selector:(SEL) selector;
++ (SearchDatePickerViewController*) pickerWithObject:(id) object selector:(SEL) selector;
 
 @end

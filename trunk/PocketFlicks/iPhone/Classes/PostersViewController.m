@@ -16,12 +16,9 @@
 
 #import "AbstractNavigationController.h"
 #import "AppDelegate.h"
-#import "ColorCache.h"
 #import "LargePosterCache.h"
 #import "Model.h"
-#import "NotificationCenter.h"
 #import "TappableScrollView.h"
-#import "TappableScrollViewDelegate.h"
 #import "ThreadingUtilities.h"
 
 @interface PostersViewController()
@@ -678,34 +675,31 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
+        if (
 #ifdef IPHONE_OS_VERSION_3
-        if (self.abstractNavigationController.toolbarHidden) {
+            self.abstractNavigationController.toolbarHidden
 #else
-            if (toolbar.alpha == 0) {
+            toolbar.alpha == 0
 #endif
-                [self showToolBar];
-            } else {
-                [self hideToolBar];
-            }
+            ) {
+            [self showToolBar];
+        } else {
+            [self hideToolBar];
         }
     }
+}
 
 
-    - (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
-        [self hideToolBar];
-    }
+- (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
+    [self hideToolBar];
+}
 
 
-    - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
-        CGFloat pageWidth = scrollView.frame.size.width;
-        NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
+- (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
 
-        [self setPage:page];
-    }
-
-
-    - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-        return NO;
-    }
+    [self setPage:page];
+}
 
 @end
