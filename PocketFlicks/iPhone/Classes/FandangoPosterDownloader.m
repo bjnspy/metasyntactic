@@ -23,16 +23,7 @@
 
 @implementation FandangoPosterDownloader
 
-static NSDictionary* movieNameToPosterMap = nil;
-static NSLock* gate;
-
-+ (void) initialize {
-    if (self == [FandangoPosterDownloader class]) {
-        gate = [[NSLock alloc] init];
-    }
-}
-
-+ (void) processFandangoElement:(XmlElement*) element {
+- (NSDictionary*) processFandangoElement:(XmlElement*) element {
     NSMutableDictionary* map = [NSMutableDictionary dictionary];
 
     XmlElement* dataElement = [element element:@"data"];
@@ -51,25 +42,16 @@ static NSLock* gate;
         [map setObject:poster forKey:title];
     }
 
-    if (map.count == 0) {
-        return;
-    }
-
-    movieNameToPosterMap = [map retain];
+    return map;
 }
 
 
-+ (void) createMovieMapWorker {
-    if (movieNameToPosterMap != nil) {
-        return;
-    }
-
+- (NSDictionary*) createMapWorker {
     NSString* postalCode = @"10009";
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                    fromDate:[DateUtilities today]];
 
-    NSString* url = [NSString stringWithFormat:
-                                        @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                      [Application host],
                      postalCode,
                      components.year,
@@ -77,34 +59,11 @@ static NSLock* gate;
                      components.day];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
-
-    [self processFandangoElement:element];
-}
-
-
-+ (void) createMovieMap {
-    [gate lock];
-    {
-        [self createMovieMapWorker];
-    }
-    [gate unlock];
-}
-
-
-+ (NSData*) download:(Movie*) movie {
-    [self createMovieMap];
-
-    if (movieNameToPosterMap == nil) {
+    if (element == nil) {
         return nil;
     }
 
-    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
-    if (key == nil) {
-        return nil;
-    }
-
-    NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
+    return [self processFandangoElement:element];
 }
 
 @end

@@ -21,7 +21,6 @@
 #import "Location.h"
 #import "Model.h"
 #import "MutableMultiDictionary.h"
-#import "SettingsViewController.h"
 #import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -493,13 +492,15 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
 - (void) showInfo {
     [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) onTabBarItemSelected {
+    [searchDisplayController setActive:NO animated:YES];
+}
+#endif
 
 @end

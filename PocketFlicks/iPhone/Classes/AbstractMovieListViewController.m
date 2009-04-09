@@ -14,7 +14,6 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "Application.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
 #import "LocalSearchDisplayController.h"
@@ -23,10 +22,7 @@
 #import "Movie.h"
 #import "MoviesNavigationController.h"
 #import "MutableMultiDictionary.h"
-#import "SettingsViewController.h"
 #import "StringUtilities.h"
-#import "UITableViewCell+Utilities.h"
-#import "Utilities.h"
 
 
 @interface AbstractMovieListViewController()
@@ -442,7 +438,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
@@ -541,13 +541,15 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
 - (void) showInfo {
     [self.abstractNavigationController pushInfoControllerAnimated:YES];
 }
+
+
+#ifdef IPHONE_OS_VERSION_3
+- (void) onTabBarItemSelected {
+    [searchDisplayController setActive:NO animated:YES];
+}
+#endif
 
 @end

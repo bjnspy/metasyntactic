@@ -16,7 +16,6 @@
 
 #import "Model.h"
 #import "MovieTitleCell.h"
-#import "MoviesNavigationController.h"
 
 @interface AllMoviesViewController()
 @property (retain) UISegmentedControl* segmentedControl;

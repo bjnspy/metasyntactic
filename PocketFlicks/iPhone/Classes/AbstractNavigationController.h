@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractNavigationController : UINavigationController {
+@interface AbstractNavigationController : UINavigationController
+{
 @protected
-    ApplicationTabBarController* applicationTabBarController;
     PostersViewController* postersViewController;
     BOOL visible;
 
@@ -23,10 +23,6 @@
     SearchViewController* searchViewController;
 #endif
 }
-
-@property (readonly, assign) ApplicationTabBarController* applicationTabBarController;
-
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
@@ -48,6 +44,8 @@
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;
+
+- (void) onTabBarItemSelected;
 
 #ifndef IPHONE_OS_VERSION_3
 - (void) showSearchView;

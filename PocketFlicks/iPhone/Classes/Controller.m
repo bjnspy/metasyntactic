@@ -23,14 +23,9 @@
 #import "DateUtilities.h"
 #import "LocationManager.h"
 #import "Model.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "OperationQueue.h"
-#import "PosterCache.h"
-#import "ScoreCache.h"
-#import "TrailerCache.h"
-#import "UpcomingCache.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
 
 @interface Controller()
 @property (retain) NSLock* determineLocationGate;
@@ -119,6 +114,23 @@ static Controller* controller = nil;
 }
 
 
+- (void) didReceiveMemoryWarning {
+    [self.model.largePosterCache didReceiveMemoryWarning];
+    [self.model.imdbCache didReceiveMemoryWarning];
+    [self.model.amazonCache didReceiveMemoryWarning];
+    [self.model.wikipediaCache didReceiveMemoryWarning];
+    [self.model.trailerCache didReceiveMemoryWarning];
+    [self.model.blurayCache didReceiveMemoryWarning];
+    [self.model.dvdCache didReceiveMemoryWarning];
+    [self.model.posterCache didReceiveMemoryWarning];
+    [self.model.scoreCache didReceiveMemoryWarning];
+    [self.model.upcomingCache didReceiveMemoryWarning];
+    [self.model.netflixCache didReceiveMemoryWarning];
+    [self.model.internationalDataCache didReceiveMemoryWarning];
+    [self.model.helpCache didReceiveMemoryWarning];
+}
+
+
 - (void) updateScoreCache {
     [self.model.scoreCache update];
 }
@@ -145,12 +157,24 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateInternationalDataCache {
+    [self.model.internationalDataCache update];
+}
+
+
+- (void) updateHelpCache {
+    [self.model.helpCache update];
+}
+
+
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
+    [self updateInternationalDataCache];
     [self updateUpcomingCache];
     [self updateDVDCache];
     [self updateNetflixCache];
+    [self updateHelpCache];
 
     NSArray* movies = self.model.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];
@@ -218,7 +242,7 @@ static Controller* controller = nil;
     [self markDataProviderOutOfDate];
     [self spawnDetermineLocationThread];
 
-    // Force a refresh so the UI displays this new address.
+    // Refresh the UI so we show the found location.
     [AppDelegate majorRefresh:YES];
 }
 

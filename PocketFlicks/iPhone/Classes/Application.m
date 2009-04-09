@@ -16,11 +16,6 @@
 
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
-#import "LocaleUtilities.h"
-#import "Model.h"
-#import "StringUtilities.h"
-#import "ThreadingUtilities.h"
-#import "Utilities.h"
 
 @implementation Application
 
@@ -60,6 +55,9 @@ static NSString* upcomingCastDirectory = nil;
 static NSString* upcomingSynopsesDirectory = nil;
 static NSString* upcomingTrailersDirectory = nil;
 
+static NSString* internationalDirectory = nil;
+static NSString* helpDirectory = nil;
+
 static NSString** directories[] = {
 &dataDirectory,
 &imdbDirectory,
@@ -70,6 +68,8 @@ static NSString** directories[] = {
 &dvdDetailsDirectory,
 &blurayDirectory,
 &blurayDetailsDirectory,
+&helpDirectory,
+&internationalDirectory,
 &netflixDirectory,
 &netflixQueuesDirectory,
 &netflixSeriesDirectory,
@@ -94,24 +94,6 @@ static NSString** directories[] = {
 };
 
 static DifferenceEngine* differenceEngine = nil;
-
-
-+ (NSString*) name {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-}
-
-
-+ (NSString*) version {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-}
-
-
-+ (NSString*) nameAndVersion {
-    NSString* appName = [self name];
-    NSString* appVersion = [self version];
-
-    return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-}
 
 
 + (void) deleteDirectories {
@@ -139,24 +121,6 @@ static DifferenceEngine* differenceEngine = nil;
         }
     }
     [[self gate] unlock];
-}
-
-
-+ (void) resetDirectories {
-    [[self gate] lock];
-    {
-        [self deleteDirectories];
-        [self createDirectories];
-    }
-    [[self gate] unlock];
-}
-
-
-+ (void) emptyTrash {
-    [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:nil
-                                   visible:NO];
 }
 
 
@@ -198,6 +162,10 @@ static DifferenceEngine* differenceEngine = nil;
         upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
         upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
         upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
+
+        internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
+
+        helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
 
         [self createDirectories];
     }
@@ -360,6 +328,26 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) upcomingTrailersDirectory {
     return upcomingTrailersDirectory;
+}
+
+
++ (NSString*) internationalDirectory {
+    return internationalDirectory;
+}
+
+
++ (NSString*) helpDirectory {
+    return helpDirectory;
+}
+
+
++ (void) resetDirectories {
+    [[self gate] lock];
+    {
+        [self deleteDirectories];
+        [self createDirectories];
+    }
+    [[self gate] unlock];
 }
 
 
