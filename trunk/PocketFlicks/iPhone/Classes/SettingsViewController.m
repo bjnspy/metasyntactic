@@ -14,29 +14,21 @@
 
 #import "SettingsViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "AlertUtilities.h"
-#import "AppDelegate.h"
 #import "Application.h"
-#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
 #import "DateUtilities.h"
 #import "Location.h"
 #import "LocationManager.h"
-#import "LocationUtilities.h"
 #import "Model.h"
-#import "NotificationCenter.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
+#import "SearchDistancePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
-#import "UITableViewCell+Utilities.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
-
 
 @interface SettingsViewController()
 @end
@@ -134,11 +126,15 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    //NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Vote for Icon", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
     cell.text = text;
 
     return cell;
@@ -358,25 +354,15 @@ typedef enum {
 }
 
 
-- (void) onSearchDateChanged:(NSString*) dateString {
-    [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
+- (void) onSearchDateChanged:(NSDate*) date {
+    [self.controller setSearchDate:date];
+    [self reloadTableViewData];
 }
 
 
 - (void) pushFilterDistancePicker {
-    NSArray* values = [NSArray arrayWithObjects:
-                       @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",
-                       @"10", @"15", @"20", @"25", @"30",
-                       @"35", @"40", @"45", @"50", nil];
-    NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-
-    PickerEditorViewController* controller =
-    [[[PickerEditorViewController alloc] initWithTitle:NSLocalizedString(@"Search Distance", nil)
-                                                  text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil)
-                                                object:self
-                                              selector:@selector(onSearchRadiusChanged:)
-                                                values:values
-                                          defaultValue:defaultValue] autorelease];
+    SearchDistancePickerViewController* controller =
+    [[[SearchDistancePickerViewController alloc] init] autorelease];
 
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -475,11 +461,6 @@ typedef enum {
     userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self.controller setUserAddress:userAddress];
-}
-
-
-- (void) onSearchRadiusChanged:(NSString*) radius {
-    [self.controller setSearchRadius:radius.intValue];
     [self reloadTableViewData];
 }
 

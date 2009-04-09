@@ -14,22 +14,20 @@
 
 #import "Model.h"
 
-#import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "AmazonCache.h"
-#import "AppDelegate.h"
 #import "Application.h"
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "DateUtilities.h"
-#import "DifferenceEngine.h"
 #import "FavoriteTheater.h"
-#import "FileUtilities.h"
 #import "GoogleDataProvider.h"
+#import "HelpCache.h"
 #import "IMDbCache.h"
+#import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
@@ -44,7 +42,6 @@
 #import "Score.h"
 #import "ScoreCache.h"
 #import "SettingsViewController.h"
-#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -52,7 +49,6 @@
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
 #import "WikipediaCache.h"
 
 @interface Model()
@@ -69,6 +65,8 @@
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
+@property (retain) InternationalDataCache* internationalDataCache;
+@property (retain) HelpCache* helpCache;
 @property (retain) NSSet* bookmarkedTitlesData;
 @property (retain) NSDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -247,6 +245,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize trailerCache;
 @synthesize upcomingCache;
 @synthesize netflixCache;
+@synthesize internationalDataCache;
+@synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 
@@ -269,6 +269,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.trailerCache = nil;
     self.upcomingCache = nil;
     self.netflixCache = nil;
+    self.internationalDataCache = nil;
+    self.helpCache = nil;
 
     [super dealloc];
 }
@@ -492,7 +494,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
-    if (interval < (30 * ONE_DAY)) {
+    if (interval < ONE_MONTH) {
         return;
     }
 
@@ -557,6 +559,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         self.scoreCache = [ScoreCache cache];
         self.upcomingCache = [UpcomingCache cache];
         self.netflixCache = [MutableNetflixCache cache];
+        self.internationalDataCache = [InternationalDataCache cache];
+        self.helpCache = [HelpCache cache];
 
         [self clearCaches];
 
@@ -566,21 +570,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     return self;
-}
-
-
-- (void) didReceiveMemoryWarning {
-    [largePosterCache didReceiveMemoryWarning];
-    [imdbCache didReceiveMemoryWarning];
-    [amazonCache didReceiveMemoryWarning];
-    [wikipediaCache didReceiveMemoryWarning];
-    [trailerCache didReceiveMemoryWarning];
-    [blurayCache didReceiveMemoryWarning];
-    [dvdCache didReceiveMemoryWarning];
-    [posterCache didReceiveMemoryWarning];
-    [scoreCache didReceiveMemoryWarning];
-    [upcomingCache didReceiveMemoryWarning];
-    [netflixCache didReceiveMemoryWarning];
 }
 
 
@@ -627,7 +616,13 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) netflixEnabled {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_DISABLED];
+    return YES;
+    NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_DISABLED];
+    if (value == nil) {
+        return [LocaleUtilities isUnitedStates];
+    }
+
+    return !value.boolValue;
 }
 
 
@@ -1198,16 +1193,57 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
-    if (movie.releaseDate != nil) {
-        return movie.releaseDate;
+    NSDate* date = movie.releaseDate;
+    if (date != nil) {
+        return date;
     }
 
-    return [upcomingCache releaseDateForMovie:movie];
+    date = [internationalDataCache releaseDateForMovie:movie];
+    if (date != nil) {
+        return date;
+    }
+
+    date = [upcomingCache releaseDateForMovie:movie];
+    if (date != nil) {
+        return date;
+    }
+
+    return nil;
+}
+
+
+- (NSInteger) lengthForMovie:(Movie*) movie {
+    NSInteger length = movie.length;
+    if (length > 0) {
+        return length;
+    }
+
+    return [internationalDataCache lengthForMovie:movie];
+}
+
+
+- (NSString*) ratingForMovie:(Movie*) movie {
+    NSString* rating = movie.rating;
+    if (rating.length > 0) {
+        return rating;
+    }
+
+    return [internationalDataCache ratingForMovie:movie];
+}
+
+
+- (NSString*) ratingAndRuntimeForMovie:(Movie*) movie {
+    return [internationalDataCache ratingAndRuntimeForMovie:movie];
 }
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
     NSArray* directors = movie.directors;
+    if (directors.count > 0) {
+        return directors;
+    }
+
+    directors = [internationalDataCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
     }
@@ -1228,6 +1264,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSArray*) castForMovie:(Movie*) movie {
     NSArray* cast = movie.cast;
+    if (cast.count > 0) {
+        return cast;
+    }
+
+    cast = [internationalDataCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
     }
@@ -1257,6 +1298,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
     NSString* result = movie.imdbAddress;
+    if (result.length > 0) {
+        return result;
+    }
+
+    result = [internationalDataCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
     }
@@ -1595,6 +1641,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
         [options addObject:synopsis];
     }
 
+    synopsis = [internationalDataCache synopsisForMovie:movie];
+    if (synopsis.length > 0) {
+        [options addObject:synopsis];
+    }
+
     if (options.count == 0 || [LocaleUtilities isEnglish]) {
         synopsis = [self scoreForMovie:movie].synopsis;
         if (synopsis.length > 0) {
@@ -1629,7 +1680,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* result = [trailerCache trailersForMovie:movie];
+    NSArray* result = [internationalDataCache trailersForMovie:movie];
+    if (result.count > 0) {
+        return result;
+    }
+
+    result = [trailerCache trailersForMovie:movie];
     if (result.count > 0) {
         return result;
     }
