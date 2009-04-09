@@ -14,10 +14,8 @@
 
 #import "BlurayCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "Model.h"
-#import "NotificationCenter.h"
 
 @implementation BlurayCache
 

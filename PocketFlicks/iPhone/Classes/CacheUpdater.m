@@ -20,9 +20,10 @@
 #import "IMDbCache.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
+#import "PosterCache.h"
 #import "ScoreCache.h"
 #import "ThreadingUtilities.h"
 #import "TrailerCache.h"
@@ -70,14 +71,14 @@ static CacheUpdater* cacheUpdater = nil;
 
 - (void) prioritizeMovie:(Movie*) movie now:(BOOL) now {
     if (now) {
-        [ThreadingUtilities backgroundSelector:@selector(processMovie:notifications:)
+        [ThreadingUtilities backgroundSelector:@selector(processMovie:force:)
                                       onTarget:self
                                     withObject:movie
                                     withObject:[NSNumber numberWithBool:YES]
                                           gate:nil
                                        visible:YES];
     } else {
-        [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:notifications:)
+        [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:force:)
                                                        onTarget:self
                                                      withObject:movie
                                                      withObject:[NSNumber numberWithBool:NO]
@@ -88,35 +89,35 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (void) processMovie:(Movie*) movie
-        notifications:(NSNumber*) notificationNumber {
+                force:(NSNumber*) forceNumber {
     NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);
 
-    BOOL notifications = notificationNumber.boolValue;
-    if (notifications) {
+    BOOL force = forceNumber.boolValue;
+    if (force) {
         [NotificationCenter addNotification:movie.canonicalTitle];
     }
 
     Model* model = [Model model];
-    [model.posterCache       processMovie:movie];
-    [model.netflixCache      processMovie:movie];
-    [model.upcomingCache     processMovie:movie];
-    [model.dvdCache          processMovie:movie];
-    [model.blurayCache       processMovie:movie];
-    [model.scoreCache        processMovie:movie];
-    [model.trailerCache      processMovie:movie];
-    [model.imdbCache         processMovie:movie];
-    [model.amazonCache       processMovie:movie];
-    [model.wikipediaCache    processMovie:movie];
+    [model.posterCache       processMovie:movie force:force];
+    [model.netflixCache      processMovie:movie force:force];
+    [model.upcomingCache     processMovie:movie force:force];
+    [model.dvdCache          processMovie:movie force:force];
+    [model.blurayCache       processMovie:movie force:force];
+    [model.scoreCache        processMovie:movie force:force];
+    [model.trailerCache      processMovie:movie force:force];
+    [model.imdbCache         processMovie:movie force:force];
+    [model.amazonCache       processMovie:movie force:force];
+    [model.wikipediaCache    processMovie:movie force:force];
     [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
 
-    if (notifications) {
+    if (force) {
         [NotificationCenter removeNotification:movie.canonicalTitle];
     }
 }
 
 
 - (Operation2*) addSearchMovie:(Movie*) movie {
-    return [[OperationQueue operationQueue] performSelector:@selector(processMovie:notifications:)
+    return [[OperationQueue operationQueue] performSelector:@selector(processMovie:force:)
                                                    onTarget:self
                                                  withObject:movie
                                                  withObject:[NSNumber numberWithBool:NO]
@@ -130,7 +131,7 @@ static CacheUpdater* cacheUpdater = nil;
         return;
     }
 
-    [[OperationQueue operationQueue] performSelector:@selector(processMovie:notifications:)
+    [[OperationQueue operationQueue] performSelector:@selector(processMovie:force:)
                                             onTarget:self
                                           withObject:movie
                                           withObject:[NSNumber numberWithBool:NO]

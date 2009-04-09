@@ -20,7 +20,7 @@
     NSMutableSet* updatedMovies;
 }
 
-- (void) processMovie:(Movie*) movie;
+- (void) processMovie:(Movie*) movie force:(BOOL) force;
 
 - (void) clearUpdatedMovies;
 

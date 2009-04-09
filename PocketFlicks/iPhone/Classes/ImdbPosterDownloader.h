@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ImdbPosterDownloader : NSObject {
-}
+#import "AbstractPosterDownloader.h"
 
-+ (NSData*) download:(Movie*) movie;
+@interface ImdbPosterDownloader : AbstractPosterDownloader {
+}
 
 @end

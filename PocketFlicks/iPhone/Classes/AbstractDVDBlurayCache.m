@@ -14,25 +14,17 @@
 
 #import "AbstractDVDBlurayCache.h"
 
-#import "AmazonCache.h"
 #import "AppDelegate.h"
-#import "Application.h"
 #import "CacheUpdater.h"
 #import "DVD.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
-#import "IMDbCache.h"
-#import "ImageUtilities.h"
-#import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetflixCache.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
 #import "OperationQueue.h"
 #import "PointerSet.h"
-#import "StringUtilities.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @interface AbstractDVDBlurayCache()
@@ -360,24 +352,17 @@
 }
 
 
-- (NSArray*) updateMoviesBackgroundEntryPointWorker {
-    NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
-    if (lastUpdateDate != nil) {
-        if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return nil;
-        }
-    }
-
+- (void) updateMoviesBackgroundEntryPointWorker {
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress];
 
     if (element == nil) {
-        return nil;
+        return;
     }
 
     NSDictionary* map = [self processElement:element];
 
     if (map.count == 0) {
-        return nil;
+        return;
     }
 
     [self saveData:map];
@@ -402,7 +387,7 @@
     [self setBookmarks:bookmarks];
     [self setMovies:movies];
 
-    return map.allKeys;
+    [AppDelegate majorRefresh];
 }
 
 
@@ -411,30 +396,31 @@
 }
 
 
-- (void) updateMoviesBackgroundEntryPoint {
-    NSArray* movies;
-    NSString* notification = [self notificationString];
-    [NotificationCenter addNotification:notification];
-    {
-        movies = [self updateMoviesBackgroundEntryPointWorker];
-    }
-    [NotificationCenter removeNotification:notification];
+- (BOOL) tooSoon {
+    NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
+    return lastUpdateDate != nil &&
+    (ABS(lastUpdateDate.timeIntervalSinceNow) < THREE_DAYS);
+}
 
-    if (movies.count == 0) {
-        movies = [self loadMovies];
-    } else {
-        [AppDelegate majorRefresh];
+
+- (void) updateMoviesBackgroundEntryPoint {
+    if (![self tooSoon]) {
+        NSString* notification = [self notificationString];
+        [NotificationCenter addNotification:notification];
+        {
+            [self updateMoviesBackgroundEntryPointWorker];
+        }
+        [NotificationCenter removeNotification:notification];
     }
 
     [self clearUpdatedMovies];
+
+    NSArray* movies = self.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
-    if (![self.moviesSet containsObject:movie]) {
-        return;
-    }
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
 }
 
 
