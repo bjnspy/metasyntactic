@@ -45,6 +45,7 @@
 		741C74C10F8DC53D003747AD /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74C00F8DC53D003747AD /* HelpCache.m */; };
 		741C74DB0F8DC59E003747AD /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74DA0F8DC59E003747AD /* AbstractPosterDownloader.m */; };
 		741C74E90F8DC5D4003747AD /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */; };
+		741C75A50F8DCB1B003747AD /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */; };
 		741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 741EFEEB0F0F214C002FD93B /* NetflixCredits.png */; };
 		741EFF140F0F24B8002FD93B /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
@@ -315,7 +316,6 @@
 		74EFA1530F7940F3008680B2 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA14F0F7940F3008680B2 /* OperationQueue.m */; };
 		74EFA1D60F7943B5008680B2 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1D50F7943B5008680B2 /* NotificationCenter.m */; };
 		74EFA2170F794438008680B2 /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA2160F794438008680B2 /* MutableMultiDictionary.m */; };
-		74EFA30E0F7949C8008680B2 /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA30D0F7949C8008680B2 /* AbstractTableViewController.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -435,6 +435,8 @@
 		741C74DA0F8DC59E003747AD /* AbstractPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterDownloader.m; sourceTree = "<group>"; };
 		741C74E70F8DC5D4003747AD /* SearchDistancePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDistancePickerViewController.h; sourceTree = "<group>"; };
 		741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDistancePickerViewController.m; sourceTree = "<group>"; };
+		741C75A30F8DCB1B003747AD /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractTableViewController.h; path = ../../iPhoneShared/Classes/AbstractTableViewController.h; sourceTree = SOURCE_ROOT; };
+		741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractTableViewController.m; path = ../../iPhoneShared/Classes/AbstractTableViewController.m; sourceTree = SOURCE_ROOT; };
 		741EFEEB0F0F214C002FD93B /* NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixCredits.png; path = Resources/NetflixCredits.png; sourceTree = "<group>"; };
 		741EFF120F0F24B8002FD93B /* NetflixSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSettingsViewController.h; sourceTree = "<group>"; };
 		741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSettingsViewController.m; sourceTree = "<group>"; };
@@ -967,8 +969,6 @@
 		74EFA1D50F7943B5008680B2 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
 		74EFA2150F794438008680B2 /* MutableMultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableMultiDictionary.h; path = ../../iPhoneShared/Classes/MutableMultiDictionary.h; sourceTree = SOURCE_ROOT; };
 		74EFA2160F794438008680B2 /* MutableMultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutableMultiDictionary.m; path = ../../iPhoneShared/Classes/MutableMultiDictionary.m; sourceTree = SOURCE_ROOT; };
-		74EFA30C0F7949C8008680B2 /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
-		74EFA30D0F7949C8008680B2 /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -1595,12 +1595,12 @@
 		748BA6320F816DDD00D79388 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				741C75A30F8DCB1B003747AD /* AbstractTableViewController.h */,
+				741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */,
 				748BA63F0F816E0B00D79388 /* AbstractFullScreenTableViewController.h */,
 				748BA6400F816E0B00D79388 /* AbstractFullScreenTableViewController.m */,
 				748BA6410F816E0B00D79388 /* AbstractFullScreenViewController.h */,
 				748BA6420F816E0B00D79388 /* AbstractFullScreenViewController.m */,
-				74EFA30C0F7949C8008680B2 /* AbstractTableViewController.h */,
-				74EFA30D0F7949C8008680B2 /* AbstractTableViewController.m */,
 				748BA6180F816D2500D79388 /* WebViewController.h */,
 				748BA6190F816D2500D79388 /* WebViewController.m */,
 			);
@@ -2366,7 +2366,6 @@
 				74EFA1530F7940F3008680B2 /* OperationQueue.m in Sources */,
 				74EFA1D60F7943B5008680B2 /* NotificationCenter.m in Sources */,
 				74EFA2170F794438008680B2 /* MutableMultiDictionary.m in Sources */,
-				74EFA30E0F7949C8008680B2 /* AbstractTableViewController.m in Sources */,
 				74A912950F7F559900832767 /* CacheUpdater.m in Sources */,
 				74A912C10F7F57BB00832767 /* UITableViewCell+Utilities.m in Sources */,
 				74A915080F7FF88F00832767 /* AbstractDVDBlurayCache.m in Sources */,
@@ -2496,6 +2495,7 @@
 				741C74C10F8DC53D003747AD /* HelpCache.m in Sources */,
 				741C74DB0F8DC59E003747AD /* AbstractPosterDownloader.m in Sources */,
 				741C74E90F8DC5D4003747AD /* SearchDistancePickerViewController.m in Sources */,
+				741C75A50F8DCB1B003747AD /* AbstractTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
