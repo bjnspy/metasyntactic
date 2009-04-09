@@ -35,8 +35,8 @@
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {
+- (id) init {
+    if (self = [super init]) {
         self.title = NSLocalizedString(@"Upcoming", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
     }

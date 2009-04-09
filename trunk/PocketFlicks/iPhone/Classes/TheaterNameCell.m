@@ -14,11 +14,9 @@
 
 #import "TheaterNameCell.h"
 
-#import "Application.h"
 #import "Model.h"
 #import "StringUtilities.h"
 #import "Theater.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface TheaterNameCell()
@@ -46,8 +44,13 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
+#else
+        if (self = [super initWithFrame:CGRectZero
+                        reuseIdentifier:reuseIdentifier]) {
+#endif
 
 #ifndef IPHONE_OS_VERSION_3
         self.textLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
