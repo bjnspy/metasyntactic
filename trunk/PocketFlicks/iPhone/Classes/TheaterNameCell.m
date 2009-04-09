@@ -16,8 +16,8 @@
 
 #import "Application.h"
 #import "Model.h"
-#import "Theater.h"
 #import "StringUtilities.h"
+#import "Theater.h"
 #import "UITableViewCell+Utilities.h"
 
 

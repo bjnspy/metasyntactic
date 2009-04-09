@@ -72,14 +72,14 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances {
     NSMutableString* body = [NSMutableString string];
-    
+
     for (int i = 0; i < performances.count; i++) {
         if (i != 0) {
             [body appendString:@", "];
         }
-        
+
         Performance* performance = [performances objectAtIndex:i];
-        
+
         if (performance.url.length == 0) {
             [body appendString:performance.timeString];
         } else {
@@ -90,7 +90,7 @@
             [body appendString:@"</a>"];
         }
     }
-    
+
     return body;
 }
 

@@ -30,6 +30,7 @@
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
+#import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
 #import "Queue.h"
 #import "SettingsViewController.h"
@@ -37,7 +38,6 @@
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3
-#import "NetflixSearchViewController.h"
 #endif
 
 @interface NetflixViewController()
