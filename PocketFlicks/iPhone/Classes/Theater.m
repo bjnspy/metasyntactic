@@ -15,10 +15,8 @@
 #import "Theater.h"
 
 #import "CollectionUtilities.h"
-#import "DateUtilities.h"
 #import "Location.h"
 #import "StringUtilities.h"
-#import "Utilities.h"
 
 @interface Theater()
     @property (copy) NSString* identifier;
