@@ -14,26 +14,13 @@
 
 #import "Utilities.h"
 
-#import "DataProvider.h"
-#import "DateUtilities.h"
-#import "Model.h"
 #import "Performance.h"
-#import "Theater.h"
 #import "XmlDocument.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
 #import "XmlSerializer.h"
 
 @implementation Utilities
-
-+ (NSString*) titleForMovie:(XmlElement*) element {
-    if ([element attributeValue:@"year"] == nil) {
-        return [element attributeValue:@"name"];
-    } else {
-        return [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), [element attributeValue:@"name"], [element attributeValue:@"year"]];
-    }
-}
-
 
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString

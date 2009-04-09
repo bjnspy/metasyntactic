@@ -15,8 +15,6 @@
 @interface Utilities : NSObject {
 }
 
-+ (NSString*) titleForMovie:(XmlElement*) element;
-
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString
                          atHost:(NSString*) host

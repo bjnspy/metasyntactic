@@ -22,61 +22,6 @@
 
 @implementation Utilities
 
-
-+ (id) findSmallestElementInArray:(NSArray*) array
-                    usingFunction:(NSInteger(*)(id, id, void*)) comparator
-                          context:(void*) context {
-    if (array.count == 0) {
-        return nil;
-    }
-
-    id value = [array objectAtIndex:0];
-
-    for (NSInteger i = 1; i < array.count; i++) {
-        id current = [array objectAtIndex:i];
-
-        NSComparisonResult result = comparator(value, current, context);
-        if (result == NSOrderedDescending) {
-            value = current;
-        }
-    }
-
-    return value;
-}
-
-
-+ (id) findSmallestElementInArray:(NSArray*) array
-                    usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
-                         context1:(void*) context1
-                         context2:(void*) context2 {
-    if (array.count == 0) {
-        return nil;
-    }
-
-    id value = [array objectAtIndex:0];
-
-    for (NSInteger i = 1; i < array.count; i++) {
-        id current = [array objectAtIndex:i];
-
-        NSComparisonResult result = comparator(value, current, context1, context2);
-        if (result == NSOrderedDescending) {
-            value = current;
-        }
-    }
-
-    return value;
-}
-
-
-+ (NSString*) titleForMovie:(XmlElement*) element {
-    if ([element attributeValue:@"year"] == nil) {
-        return [element attributeValue:@"name"];
-    } else {
-        return [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), [element attributeValue:@"name"], [element attributeValue:@"year"]];
-    }
-}
-
-
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString
                          atHost:(NSString*) host
@@ -106,48 +51,6 @@
     }
 
     return [XmlParser parse:result];
-}
-
-
-+ (id) removeRandomElement:(NSMutableArray*) array {
-    NSInteger index = rand() % array.count;
-    id value = [array objectAtIndex:index];
-    [array removeObjectAtIndex:index];
-
-    return value;
-}
-
-
-+ (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary {
-    if (dictionary == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    return dictionary;
-}
-
-
-+ (NSArray*) nonNilArray:(NSArray*) array {
-    if (array == nil) {
-        return [NSArray array];
-    }
-
-    return array;
-}
-
-
-+ (NSString*)                      string:(NSString*) string
-      byAddingPercentEscapesUsingEncoding:(NSStringEncoding) encoding {
-    string = [string stringByAddingPercentEscapesUsingEncoding:encoding];
-    string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
-    string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-
-    return string;
-}
-
-
-+ (NSString*) stringByAddingPercentEscapes:(NSString*) string {
-    return [self string:string byAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 

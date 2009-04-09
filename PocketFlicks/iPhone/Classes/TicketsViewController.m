@@ -15,20 +15,15 @@
 #import "TicketsViewController.h"
 
 #import "AbstractNavigationController.h"
-#import "AppDelegate.h"
 #import "Application.h"
 #import "AttributeCell.h"
 #import "ColorCache.h"
-#import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
 #import "Performance.h"
-#import "SearchDatePickerViewController.h"
-#import "StringUtilities.h"
 #import "Theater.h"
-#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
@@ -200,8 +195,13 @@
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
+#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:reuseIdentifier] autorelease];
+#else
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
+                                       reuseIdentifier:reuseIdentifier] autorelease];
+#endif
 
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
@@ -233,7 +233,6 @@
     AttributeCell* cell = [[[AttributeCell alloc] init] autorelease];
 #endif
 
-
     if (row == 0) {
         cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
         cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
@@ -247,7 +246,11 @@
 
 
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+#endif
 
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];
