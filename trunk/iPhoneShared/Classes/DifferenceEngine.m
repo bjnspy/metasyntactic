@@ -202,7 +202,7 @@
     if (array == nil || string == nil) {
         return NSNotFound;
     }
-    
+
     {
         NSInteger index = [array indexOfObject:string];
         if (index != NSNotFound) {

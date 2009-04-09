@@ -293,8 +293,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (void) sendFeedback {
-    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nCountry: %@\nLanguage: %@",
                       [Application version],
+                      [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
