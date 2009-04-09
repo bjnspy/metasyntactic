@@ -15,7 +15,10 @@
 #import "NetflixViewController.h"
 
 #import "Application.h"
+#import "AutoResizingCell.h"
+#import "ColorCache.h"
 #import "Controller.h"
+#import "CreditsViewController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -26,6 +29,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSearchViewController.h"
+#import "NetflixSettingsViewController.h"
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3
@@ -277,7 +281,7 @@ typedef enum {
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
-    
+
     if (cell.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
