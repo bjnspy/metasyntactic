@@ -60,7 +60,7 @@
         self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
         self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
     }
-    
+
     return self;
 }
 

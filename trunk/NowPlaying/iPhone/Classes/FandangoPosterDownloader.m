@@ -41,7 +41,7 @@
 
         [map setObject:poster forKey:title];
     }
-    
+
     return map;
 }
 
@@ -62,7 +62,7 @@
     if (element == nil) {
         return nil;
     }
-    
+
     return [self processFandangoElement:element];
 }
 

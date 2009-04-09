@@ -215,7 +215,7 @@
     }
     UILabel* firstLabel = [titleToLabel objectForKey:[titles objectAtIndex:0]];
     CGFloat firstTitleWidth = [firstLabel.text sizeWithFont:firstLabel.font].width;
-    
+
     titleWidth = MAX(titleWidth + 20, firstTitleWidth + 40);
 
     for (UILabel* label in titleToLabel.allValues) {

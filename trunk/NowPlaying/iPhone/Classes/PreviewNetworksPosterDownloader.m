@@ -1,17 +1,23 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  PreviewNetworksPosterDownloader.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 4/8/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "PreviewNetworksPosterDownloader.h"
 
 #import "Application.h"
-#import "Movie.h"
 #import "InternationalDataCache.h"
 #import "LocaleUtilities.h"
+#import "Movie.h"
 #import "NetworkUtilities.h"
 #import "StringUtilities.h"
 #import "XmlElement.h"
@@ -25,14 +31,14 @@
         {
             NSString* title = [[child element:@"title"] text];
             NSString* poster = [[child element:@"poster"] text];
-            
+
             if (title.length > 0 && poster.length > 0) {
                 [map setObject:poster forKey:title];
             }
         }
         [pool release];
     }
-    
+
     return map;
 }
 
@@ -41,18 +47,18 @@
     if (![InternationalDataCache isAllowableCountry]) {
         return nil;
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"http://%@.iphone.filmtrailer.com/v2.0/cinema/AllCinemaMovies/?channel_user_id=391100099-1&format=mov&size=xlarge", [[LocaleUtilities isoCountry] lowercaseString]];
     NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
                              [Application host],
                              [StringUtilities stringByAddingPercentEscapes:address]];
-    
+
     XmlElement* element;
     if ((element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress]) == nil &&
         (element = [NetworkUtilities xmlWithContentsOfAddress:address]) == nil) {
         return nil;
     }
-    
+
     return [self processElement:element];
 }
 

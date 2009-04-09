@@ -21,7 +21,7 @@
 
     NSDictionary* indexData;
     NSMutableDictionary* movieMap;
-    
+
     NSMutableDictionary* ratingAndRuntimeCache;
 }
 

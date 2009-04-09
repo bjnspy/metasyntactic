@@ -67,7 +67,7 @@ static NSSet* allowableCountries = nil;
 
 
 + (BOOL) isAllowableCountry {
-    return [allowableCountries containsObject:[LocaleUtilities isoCountry]];        
+    return [allowableCountries containsObject:[LocaleUtilities isoCountry]];
 }
 
 
@@ -365,7 +365,7 @@ static NSSet* allowableCountries = nil;
     if (![self respondsToSelector:mapRatingWorker]) {
         mapRatingWorker = nil;
     }
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -418,7 +418,7 @@ static NSSet* allowableCountries = nil;
     if (![InternationalDataCache isAllowableCountry]) {
         return;
     }
-    
+
     NSDate* modificationDate = [FileUtilities modificationDate:[self indexFile]];
     if (modificationDate != nil) {
         if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -522,7 +522,7 @@ static NSSet* allowableCountries = nil;
     } else {
         ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
     }
-    
+
     NSString* runtimeString = @"";
     NSInteger length = [self.model lengthForMovie:movie];
     if (length > 0) {
