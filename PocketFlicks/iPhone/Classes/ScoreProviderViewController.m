@@ -14,12 +14,8 @@
 
 #import "ScoreProviderViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "ApplicationTabBarController.h"
 #import "Controller.h"
 #import "Model.h"
-#import "UITableViewCell+Utilities.h"
-
 
 @interface ScoreProviderViewController()
 @end
@@ -67,7 +63,11 @@
     static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
+#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+#else
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+#endif
     }
     // Configure the cell
     if (indexPath.row == self.model.scoreProviderIndex) {
@@ -80,22 +80,25 @@
 }
 
 
-- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
-    [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    for (int i = 0; i < self.model.scoreProviders.count; i++) {
-        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-
-        if ([cellPath isEqual:selectPath]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+    for (UITableViewCell* cell in tableView.visibleCells) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
-    [self.controller setScoreProviderIndex:selectPath.row];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    [self.controller setScoreProviderIndex:indexPath.row];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    return NSLocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
 }
 
 

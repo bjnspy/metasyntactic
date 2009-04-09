@@ -14,18 +14,12 @@
 
 #import "ReviewsViewController.h"
 
-#import "AppDelegate.h"
-#import "Application.h"
 #import "Model.h"
 #import "MoviesNavigationController.h"
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
 #import "Score.h"
-#import "UITableViewCell+Utilities.h"
-#import "Utilities.h"
-#import "WebViewController.h"
-
 
 @interface ReviewsViewController()
 @property (retain) Movie* movie;
@@ -114,7 +108,11 @@
     if (indexPath.section < reviews.count) {
         return [self reviewCellForRow:indexPath.row section:indexPath.section];
     } else {
+#ifdef IPHONE_OS_VERSION_3
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
             cell.text = @"Metacritic.com";
@@ -192,11 +190,6 @@
 
 - (void) majorRefreshWorker {
     //[self reloadTableViewData];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 @end

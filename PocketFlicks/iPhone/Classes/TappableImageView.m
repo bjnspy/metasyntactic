@@ -36,6 +36,11 @@
 }
 
 
+- (void)touchesBegan:(NSSet*) touches
+           withEvent:(UIEvent* )event {
+}
+
+
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
     if (delegate != nil) {
         UITouch* touch = touches.anyObject;
