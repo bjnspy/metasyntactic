@@ -94,8 +94,8 @@
 
     return self;
 }
-    
-    
+
+
 - (Model*) model {
     return [Model model];
 }
