@@ -20,7 +20,7 @@
     SEL selector;
 }
 
-
+/* @protected */
 - (id) initWithObject:(id) object
              selector:(SEL) selector;
 

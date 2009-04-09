@@ -112,11 +112,9 @@
 
 - (void) addRating:(MutableMultiDictionary*) dictionary {
     NSString* title = NSLocalizedString(@"Rated:", nil);
-    NSString* value;
-    if (movie.isUnrated) {
+    NSString* value = [self.model ratingForMovie:movie];
+    if (value.length == 0) {
         value = NSLocalizedString(@"Unrated", nil);
-    } else {
-        value = movie.rating;
     }
 
     [self addTitle:title andValue:value to:dictionary];
@@ -124,12 +122,13 @@
 
 
 - (void) addRunningTime:(MutableMultiDictionary*) dictionary {
-    if (movie.length <= 0) {
+    NSInteger length = [self.model lengthForMovie:movie];
+    if (length <= 0) {
         return;
     }
 
     NSString* title = NSLocalizedString(@"Running time:", nil);
-    NSString* value = movie.runtimeString;
+    NSString* value = [Movie runtimeString:length];
 
     [self addTitle:title andValue:value to:dictionary];
 }
@@ -214,7 +213,10 @@
     for (UILabel* label in titleToLabel.allValues) {
         titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
     }
-    titleWidth += 20;
+    UILabel* firstLabel = [titleToLabel objectForKey:[titles objectAtIndex:0]];
+    CGFloat firstTitleWidth = [firstLabel.text sizeWithFont:firstLabel.font].width;
+
+    titleWidth = MAX(titleWidth + 20, firstTitleWidth + 40);
 
     for (UILabel* label in titleToLabel.allValues) {
         CGRect frame = label.frame;

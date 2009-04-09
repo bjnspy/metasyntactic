@@ -24,6 +24,8 @@
 
 + (Controller*) controller;
 
+- (void) didReceiveMemoryWarning;
+
 - (void) start;
 
 - (void) setSearchDate:(NSDate*) searchDate;

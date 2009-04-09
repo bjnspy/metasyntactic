@@ -14,8 +14,6 @@
 
 #import "AbstractNavigationController.h"
 
-#import "AppDelegate.h"
-#import "ApplicationTabBarController.h"
 #import "Controller.h"
 #import "Model.h"
 #import "Movie.h"
@@ -33,7 +31,6 @@
 #endif
 
 @interface AbstractNavigationController()
-@property (assign) ApplicationTabBarController* applicationTabBarController;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 #ifndef IPHONE_OS_VERSION_3
@@ -45,7 +42,6 @@
 
 @implementation AbstractNavigationController
 
-@synthesize applicationTabBarController;
 @synthesize postersViewController;
 @synthesize visible;
 #ifndef IPHONE_OS_VERSION_3
@@ -54,7 +50,6 @@
 #endif
 
 - (void) dealloc {
-    self.applicationTabBarController = nil;
     self.postersViewController = nil;
     self.visible = NO;
 
@@ -67,9 +62,8 @@
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super init]) {
-        self.applicationTabBarController = controller;
+- (id) init {
+    if (self = [super initWithNibName:nil bundle:nil]) {
     }
 
     return self;
@@ -237,13 +231,12 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
 
-    return
-        self.model.screenRotationEnabled &&
-        postersViewController == nil;
+    return self.model.screenRotationEnabled && postersViewController == nil;
 }
 
 
@@ -292,5 +285,14 @@
     [self pushViewController:searchViewController animated:YES];
 }
 #endif
+
+
+- (void) onTabBarItemSelected {
+    for (id controller in self.viewControllers) {
+        if ([controller respondsToSelector:@selector(onTabBarItemSelected)]) {
+            [controller onTabBarItemSelected];
+        }
+    }
+}
 
 @end

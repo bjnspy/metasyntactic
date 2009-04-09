@@ -14,8 +14,6 @@
 
 #import "ApplicationTabBarController.h"
 
-#import "AllMoviesViewController.h"
-#import "AppDelegate.h"
 #import "Application.h"
 #import "Controller.h"
 #import "DVDNavigationController.h"
@@ -24,7 +22,6 @@
 #import "NetflixNavigationController.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
-#import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 
@@ -56,45 +53,45 @@
 }
 
 
-- (UINavigationController*) moviesNavigationController {
+- (MoviesNavigationController*) moviesNavigationController {
     if (moviesNavigationControllerData == nil) {
-        self.moviesNavigationControllerData = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.moviesNavigationControllerData = [[[MoviesNavigationController alloc] init] autorelease];
     }
 
     return moviesNavigationControllerData;
 }
 
 
-- (UINavigationController*) theatersNavigationController {
+- (TheatersNavigationController*) theatersNavigationController {
     if (theatersNavigationControllerData == nil) {
-        self.theatersNavigationControllerData = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.theatersNavigationControllerData = [[[TheatersNavigationController alloc] init] autorelease];
     }
 
     return theatersNavigationControllerData;
 }
 
 
-- (UINavigationController*) upcomingMoviesNavigationController {
+- (UpcomingMoviesNavigationController*) upcomingMoviesNavigationController {
     if (upcomingMoviesNavigationControllerData == nil) {
-        self.upcomingMoviesNavigationControllerData = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.upcomingMoviesNavigationControllerData = [[[UpcomingMoviesNavigationController alloc] init] autorelease];
     }
 
     return upcomingMoviesNavigationControllerData;
 }
 
 
-- (UINavigationController*) dvdNavigationController {
+- (DVDNavigationController*) dvdNavigationController {
     if (dvdNavigationControllerData == nil) {
-        self.dvdNavigationControllerData = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.dvdNavigationControllerData = [[[DVDNavigationController alloc] init] autorelease];
     }
 
     return dvdNavigationControllerData;
 }
 
 
-- (UINavigationController*) netflixNavigationController {
+- (NetflixNavigationController*) netflixNavigationController {
     if (netflixNavigationControllerData == nil) {
-        self.netflixNavigationControllerData = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.netflixNavigationControllerData = [[[NetflixNavigationController alloc] init] autorelease];
     }
 
     return netflixNavigationControllerData;
@@ -112,33 +109,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
-        [self resetTabs];
-
-        if (self.model.userAddress.length == 0) {
-            self.selectedViewController = [self moviesNavigationController];
-            [moviesNavigationControllerData pushInfoControllerAnimated:NO];
-        } else {
-            AbstractNavigationController* controller;
-            if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
-                controller = [self.viewControllers objectAtIndex:0];
-            } else {
-                controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
-            }
-
-            self.selectedViewController = controller;
-            [controller navigateToLastViewedPage];
-
-            if ([NetworkUtilities isNetworkAvailable]) {
-                if (!self.model.votedForIcon) {
-                    [self.model setVotedForIcon];
-
-                    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-                    [controller pushBrowser:url showSafariButton:NO animated:YES];
-                }
-            }
-        }
-
+    if (self = [super initWithNibName:nil bundle:nil]) {
         self.delegate = self;
     }
 
@@ -146,13 +117,50 @@
 }
 
 
-+ (ApplicationTabBarController*) controller {
-    return [[[ApplicationTabBarController alloc] init] autorelease];
+- (void) loadView {
+    [super loadView];
+
+    [self resetTabs];
+
+    if (self.model.userAddress.length == 0) {
+        self.selectedViewController = [self moviesNavigationController];
+        [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
+    } else {
+        AbstractNavigationController* controller;
+        if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
+            controller = [self.viewControllers objectAtIndex:0];
+        } else {
+            controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
+        }
+
+        self.selectedViewController = controller;
+        [controller navigateToLastViewedPage];
+
+        if ([NetworkUtilities isNetworkAvailable]) {
+            if (!self.model.votedForIcon) {
+                [self.model setVotedForIcon];
+
+                [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
+            }
+        }
+    }
 }
 
 
-- (void) loadView {
-    [super loadView];
+- (void) pushVoteBrowser {
+    AbstractNavigationController* controller = self.selectedNavigationController;
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
+    [controller pushBrowser:url showSafariButton:NO animated:YES];
+}
+
+
+- (void) pushInfoControllerAnimated {
+    [self.moviesNavigationController pushInfoControllerAnimated:YES];
+}
+
+
++ (ApplicationTabBarController*) controller {
+    return [[[ApplicationTabBarController alloc] init] autorelease];
 }
 
 
@@ -162,6 +170,10 @@
 
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
+    }
+
+    for (id viewController in self.viewControllers) {
+        [viewController onTabBarItemSelected];
     }
 }
 
@@ -221,15 +233,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation {
-    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
                                  duration:(NSTimeInterval) duration {
     [NotificationCenter willChangeInterfaceOrientation];
@@ -238,6 +241,7 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [NotificationCenter didChangeInterfaceOrientation];
+    [self majorRefresh];
 }
 
 @end

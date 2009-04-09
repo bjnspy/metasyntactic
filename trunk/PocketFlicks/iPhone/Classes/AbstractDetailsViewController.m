@@ -14,7 +14,6 @@
 
 #import "AbstractDetailsViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "Application.h"
 #import "DataProvider.h"
@@ -174,8 +173,7 @@
 }
 
 
-- (void) onSearchDateChanged:(NSString*) dateString {
-    NSDate* searchDate = [DateUtilities dateWithNaturalLanguageString:dateString];
+- (void) onSearchDateChanged:(NSDate*) searchDate {
     if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
         return;
     }
@@ -233,7 +231,7 @@
 - (void) openMailWithSubject:(NSString*) subject
                         body:(NSString*) body {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
-    controller.delegate = self;
+    controller.mailComposeDelegate = self;
 
     [controller setSubject:subject];
     [controller setMessageBody:body isHTML:YES];
@@ -251,8 +249,8 @@
 - (void) openMailWithSubject:(NSString*) subject
                         body:(NSString*) body {
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
- [StringUtilities stringByAddingPercentEscapes:subject],
- [StringUtilities stringByAddingPercentEscapes:body]];
+                     [StringUtilities stringByAddingPercentEscapes:subject],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }
