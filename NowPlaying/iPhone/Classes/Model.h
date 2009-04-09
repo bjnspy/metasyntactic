@@ -179,6 +179,7 @@ enum ViewControllerType {
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 - (NSString*) ratingForMovie:(Movie*) movie;
+- (NSString*) ratingAndRuntimeForMovie:(Movie*) movie;
 - (NSInteger) lengthForMovie:(Movie*) movie;
 - (DVD*) dvdDetailsForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;

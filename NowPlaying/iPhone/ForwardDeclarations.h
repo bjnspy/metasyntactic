@@ -54,6 +54,7 @@
 @class DVDViewController;
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
+@class FandangoPosterDownloader;
 @class FavoriteTheater;
 @class Feed;
 @class FontCache;
@@ -99,10 +100,10 @@
 @class Person;
 @class PersonPosterCache;
 @class Performance;
-@class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;
 @class PostersViewController;
+@class PreviewNetworksPosterDownloader;
 @class PriorityMutex;
 @class Pulser;
 @class Queue;

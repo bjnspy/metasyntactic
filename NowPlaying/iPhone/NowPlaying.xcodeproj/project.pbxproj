@@ -50,6 +50,10 @@
 		741A28100F8ADF59003CDB4E /* QuestionBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */; };
 		741A28110F8ADF59003CDB4E /* AnswerBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */; };
 		741A28120F8ADF59003CDB4E /* QuestionBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */; };
+		741C73910F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */; };
+		741C73920F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */; };
+		741C73950F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */; };
+		741C73960F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
@@ -743,6 +747,10 @@
 		741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
 		741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AnswerBalloon.png; path = Resources/AnswerBalloon.png; sourceTree = "<group>"; };
 		741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuestionBalloon.png; path = Resources/QuestionBalloon.png; sourceTree = "<group>"; };
+		741C738F0F8D8C6A003747AD /* PreviewNetworksPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewNetworksPosterDownloader.h; sourceTree = "<group>"; };
+		741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
+		741C73930F8D8D75003747AD /* AbstractPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterDownloader.h; sourceTree = "<group>"; };
+		741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterDownloader.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
 		74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
 		742C07B10F08B0890087F4E0 /* AmazonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonCache.h; sourceTree = "<group>"; };
@@ -1851,12 +1859,16 @@
 			children = (
 				74088BD50DCD0AA800954696 /* PosterCache.h */,
 				74088BD60DCD0AA800954696 /* PosterCache.m */,
+				741C73930F8D8D75003747AD /* AbstractPosterDownloader.h */,
+				741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */,
 				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
 				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
 				7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */,
 				7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */,
 				74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */,
 				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
+				741C738F0F8D8C6A003747AD /* PreviewNetworksPosterDownloader.h */,
+				741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */,
 				7410D73F0EC2C0740079BF1E /* LargePosterCache.h */,
 				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
 				74D3CC750F2DB7520007C783 /* PersonPosterCache.h */,
@@ -2867,6 +2879,8 @@
 				741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 				744594B10F8BD8C9002C1B61 /* HelpCache.m in Sources */,
 				74F321DB0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */,
+				741C73920F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m in Sources */,
+				741C73960F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3118,6 +3132,8 @@
 				741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */,
 				744594B20F8BD8C9002C1B61 /* HelpCache.m in Sources */,
 				74F321DC0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */,
+				741C73910F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m in Sources */,
+				741C73950F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

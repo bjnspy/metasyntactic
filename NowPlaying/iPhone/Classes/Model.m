@@ -1228,6 +1228,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (NSString*) ratingAndRuntimeForMovie:(Movie*) movie {
+    return [internationalDataCache ratingAndRuntimeForMovie:movie];
+}
+
+
 - (NSArray*) directorsForMovie:(Movie*) movie {
     NSArray* directors = movie.directors;
     if (directors.count > 0) {

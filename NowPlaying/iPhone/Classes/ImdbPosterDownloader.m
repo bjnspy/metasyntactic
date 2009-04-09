@@ -22,7 +22,7 @@
 
 @implementation ImdbPosterDownloader
 
-+ (NSString*) imdbId:(Movie*) movie {
+- (NSString*) imdbId:(Movie*) movie {
     NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
         NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
@@ -42,7 +42,7 @@
 }
 
 
-+ (NSString*) imageUrl:(NSString*) imdbId {
+- (NSString*) imageUrl:(NSString*) imdbId {
     if (imdbId == nil) {
         return nil;
     }
@@ -60,7 +60,7 @@
 }
 
 
-+ (NSData*) downloadImage:(NSString*) imageUrl {
+- (NSData*) downloadImage:(NSString*) imageUrl {
     if (imageUrl == nil) {
         return nil;
     }
@@ -69,7 +69,7 @@
 }
 
 
-+ (NSData*) download:(Movie*) movie {
+- (NSData*) download:(Movie*) movie {
     NSString* imdbId = [self imdbId:movie];
     NSString* imageUrl = [self imageUrl:imdbId];
     return [self downloadImage:imageUrl];

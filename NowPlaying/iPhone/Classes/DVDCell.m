@@ -172,17 +172,15 @@
     genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
     formatLabel.text    = dvd.format;
 
-    NSString* rating;
-    if (movie.isUnrated) {		
+    NSString* rating = [self.model ratingForMovie:movie];
+    if (rating.length == 0) {		
         rating = NSLocalizedString(@"Not yet rated", nil);		
-    } else {		
-        rating = movie.rating;		
     }
 
     if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
-        if (!movie.isUnrated) {
+        if (rating.length > 0) {
             releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
         }
 

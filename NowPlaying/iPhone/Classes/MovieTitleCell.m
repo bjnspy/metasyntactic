@@ -15,6 +15,7 @@
 #import "MovieTitleCell.h"
 
 #import "GreenMovieTitleCell.h"
+#import "InternationalDataCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NoScoreMovieTitleCell.h"
@@ -93,6 +94,11 @@
 
     return self;
 }
+    
+    
+- (Model*) model {
+    return [Model model];
+}
 
 
 + (NSString*) reuseIdentifier {
@@ -147,7 +153,7 @@
 
 #ifndef IPHONE_OS_VERSION_3
     CGRect frame;
-    if ([Model model].noScores) {
+    if (self.model.noScores) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
@@ -170,9 +176,9 @@
 
 
 - (void) setMovie:(Movie*) movie {
-    self.detailTextLabel.text = movie.ratingAndRuntimeString;
+    self.detailTextLabel.text = [self.model ratingAndRuntimeForMovie:movie];
 
-    if ([[Model model] isBookmarked:movie]) {
+    if ([self.model isBookmarked:movie]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
     } else {
         self.textLabel.text = movie.displayTitle;
