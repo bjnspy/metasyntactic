@@ -19,5 +19,5 @@
 - (NSArray*) reviewsForMovie:(Movie*) movie;
 - (void) updateWithNotifications;
 - (void) updateWithoutNotifications;
-- (void) processMovie:(Movie*) movie;
+- (void) processMovie:(Movie*) movie force:(BOOL) force;
 @end

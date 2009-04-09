@@ -15,7 +15,6 @@
 #import "SettingCell.h"
 
 #import "ColorCache.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface SettingCell()
@@ -52,8 +51,14 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleValue1
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {
+#endif
+
         self.separatorLine = [[[UILabel alloc] init] autorelease];
 
 #ifndef IPHONE_OS_VERSION_3
