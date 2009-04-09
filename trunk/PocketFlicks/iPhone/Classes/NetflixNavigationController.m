@@ -14,8 +14,6 @@
 
 #import "NetflixNavigationController.h"
 
-#import "Application.h"
-#import "ColorCache.h"
 #import "NetflixViewController.h"
 
 @interface NetflixNavigationController()
@@ -33,8 +31,8 @@
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {
+- (id) init {
+    if (self = [super init]) {
         self.title = [Application name];
     }
 

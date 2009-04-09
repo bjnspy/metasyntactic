@@ -15,21 +15,12 @@
 #import "PersonPosterCache.h"
 
 #import "AppDelegate.h"
-#import "ApplePosterDownloader.h"
 #import "Application.h"
-#import "DifferenceEngine.h"
-#import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
-#import "ImdbPosterDownloader.h"
-#import "LargePosterCache.h"
-#import "Model.h"
-#import "Movie.h"
 #import "NetworkUtilities.h"
 #import "Person.h"
 #import "StringUtilities.h"
-#import "ThreadingUtilities.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @interface PersonPosterCache()
@@ -152,7 +143,7 @@
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
-            if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
                 return;
             }
         }

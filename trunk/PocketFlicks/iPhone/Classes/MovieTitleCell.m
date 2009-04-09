@@ -14,11 +14,8 @@
 
 #import "MovieTitleCell.h"
 
-#import "Application.h"
-#import "ColorCache.h"
-#import "FontCache.h"
 #import "GreenMovieTitleCell.h"
-#import "ImageCache.h"
+#import "InternationalDataCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NoScoreMovieTitleCell.h"
@@ -28,7 +25,6 @@
 #import "Score.h"
 #import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
-#import "UITableViewCell+Utilities.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"
 
@@ -62,10 +58,16 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
+#ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier]) {
+#else
+    if (self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:reuseIdentifier]) {
+#endif
+
 #ifndef IPHONE_OS_VERSION_3
-        self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         textLabel.font = [UIFont boldSystemFontOfSize:18];
         textLabel.adjustsFontSizeToFitWidth = YES;
         textLabel.minimumFontSize = 14;
@@ -91,6 +93,11 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -146,7 +153,7 @@
 
 #ifndef IPHONE_OS_VERSION_3
     CGRect frame;
-    if ([Model model].noScores) {
+    if (self.model.noScores) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
@@ -169,9 +176,9 @@
 
 
 - (void) setMovie:(Movie*) movie {
-    self.detailTextLabel.text = movie.ratingAndRuntimeString;
+    self.detailTextLabel.text = [self.model ratingAndRuntimeForMovie:movie];
 
-    if ([[Model model] isBookmarked:movie]) {
+    if ([self.model isBookmarked:movie]) {
         self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
     } else {
         self.textLabel.text = movie.displayTitle;

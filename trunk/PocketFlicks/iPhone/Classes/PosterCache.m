@@ -17,25 +17,51 @@
 #import "AppDelegate.h"
 #import "ApplePosterDownloader.h"
 #import "Application.h"
-#import "DifferenceEngine.h"
 #import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
+#import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "Utilities.h"
+#import "PreviewNetworksPosterDownloader.h"
 
 @interface PosterCache()
+@property (retain) ImdbPosterDownloader* imdbPosterDownloader;
+@property (retain) ApplePosterDownloader* applePosterDownloader;
+@property (retain) FandangoPosterDownloader* fandangoPosterDownloader;
+@property (retain) PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
 @end
 
 
 @implementation PosterCache
 
+@synthesize imdbPosterDownloader;
+@synthesize applePosterDownloader;
+@synthesize fandangoPosterDownloader;
+@synthesize previewNetworksPosterDownloader;
+
 - (void) dealloc {
+    self.imdbPosterDownloader = nil;
+    self.applePosterDownloader = nil;
+    self.fandangoPosterDownloader = nil;
+    self.previewNetworksPosterDownloader = nil;
+
     [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
+        self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
+        self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
+        self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
+    }
+
+    return self;
 }
 
 
@@ -67,17 +93,22 @@
         return data;
     }
 
-    data = [ApplePosterDownloader download:movie];
+    data = [previewNetworksPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [FandangoPosterDownloader download:movie];
+    data = [applePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [ImdbPosterDownloader download:movie];
+    data = [fandangoPosterDownloader download:movie];
+    if (data != nil) {
+        return data;
+    }
+
+    data = [imdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
@@ -94,26 +125,25 @@
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:force {
     NSString* path = [self posterFilePath:movie];
 
-    if ([FileUtilities fileExists:path]) {
+    NSDate* modificationDate = [FileUtilities modificationDate:path];
+    if (modificationDate != nil) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
 
-        if ([FileUtilities size:path] == 0) {
+        if (!force) {
             // sentinel value.  only update if it's been long enough.
-            NSDate* modificationDate = [FileUtilities modificationDate:path];
-            if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
                 return;
             }
         }
     }
 
     NSData* data = [self downloadPosterWorker:movie];
-
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
 

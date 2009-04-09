@@ -14,7 +14,6 @@
 
 #import "PerfectGreenMovieTitleCell.h"
 
-#import "ColorCache.h"
 #import "ImageCache.h"
 
 @implementation PerfectGreenMovieTitleCell

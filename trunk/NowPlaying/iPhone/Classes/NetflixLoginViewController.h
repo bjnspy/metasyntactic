@@ -23,6 +23,4 @@
     BOOL didShowBrowser;
 }
 
-- (id) init;
-
 @end

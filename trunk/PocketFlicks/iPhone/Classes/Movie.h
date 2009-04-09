@@ -29,8 +29,6 @@
 
     NSString* displayTitle;
 
-    NSString* cachedRatingAndRuntimeString;
-
     NSDictionary* additionalFields;
 }
 
@@ -80,10 +78,7 @@
 
 - (NSDictionary*) dictionary;
 
-- (BOOL) isUnrated;
-- (NSString*) ratingString;
-- (NSString*) runtimeString;
-- (NSString*) ratingAndRuntimeString;
++ (NSString*) runtimeString:(NSInteger) length;
 
 + (NSString*) makeCanonical:(NSString*) title;
 + (NSString*) makeDisplay:(NSString*) title;

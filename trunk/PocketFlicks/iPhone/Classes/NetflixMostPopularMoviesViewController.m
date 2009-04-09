@@ -15,16 +15,9 @@
 #import "NetflixMostPopularMoviesViewController.h"
 
 #import "AbstractNavigationController.h"
-#import "AppDelegate.h"
 #import "Model.h"
-#import "Movie.h"
-#import "MultiDictionary.h"
 #import "MutableNetflixCache.h"
-#import "NetflixCache.h"
 #import "NetflixCell.h"
-#import "NetworkUtilities.h"
-#import "Queue.h"
-#import "ViewControllerUtilities.h"
 
 @interface NetflixMostPopularMoviesViewController()
 @property (copy) NSString* category;
@@ -91,15 +84,6 @@
     [super viewWillAppear:animated];
     self.tableView.rowHeight = 100;
     [self internalRefresh];
-}
-
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
 }
 
 

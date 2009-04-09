@@ -16,18 +16,12 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
-#import "AppDelegate.h"
-#import "Feed.h"
 #import "IdentitySet.h"
-#import "ImageCache.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "Queue.h"
 #import "TappableImageView.h"
-#import "UITableViewCell+Utilities.h"
-#import "ViewControllerUtilities.h"
-
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;
@@ -180,15 +174,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
     [super didReceiveMemoryWarningWorker];
     // I don't want to clean anything else up here due to the complicated
@@ -250,7 +235,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
@@ -309,7 +298,9 @@
         activityIndicator.contentMode = UIViewContentModeCenter;
         CGRect frame = activityIndicator.frame;
         frame.size.height += 80;
+#ifdef IPHONE_OS_VERSION_3
         frame.size.width += 20;
+#endif
         activityIndicator.frame = frame;
     }
     cell.accessoryView = activityIndicator;
@@ -363,24 +354,18 @@
         return;
     }
 
-    if (upArrowTapped) {
-        upArrowTapped = NO;
-        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
-        [self upArrowTappedForRowAtIndexPath:indexPath];
-    } else {
-        if ([self indexPathOutOfBounds:indexPath]) {
-            return;
-        }
-
-        Movie* movie;
-        if (indexPath.section == 0) {
-            movie = [queue.movies objectAtIndex:indexPath.row];
-        } else {
-            movie = [queue.saved objectAtIndex:indexPath.row];
-        }
-
-        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    if ([self indexPathOutOfBounds:indexPath]) {
+        return;
     }
+
+    Movie* movie;
+    if (indexPath.section == 0) {
+        movie = [queue.movies objectAtIndex:indexPath.row];
+    } else {
+        movie = [queue.saved objectAtIndex:indexPath.row];
+    }
+
+    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -454,8 +439,8 @@
 
 - (void) onSave:(id) sender {
     if (deletedMovies.count == 0 && reorderedMovies.count == 0) {
-        // user didn't do anything.  same as a cancel:
-                                       [self onCancel:sender];
+        // user didn't do anything.  same as a cancel.
+        [self onCancel:sender];
     } else {
         [self.tableView setEditing:NO animated:YES];
         [self enterReadonlyMode];
@@ -489,7 +474,24 @@
 
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
-    upArrowTapped = YES;
+    if (readonlyMode) {
+        return;
+    }
+
+    UITableViewCell* cell = nil;
+    for (UIView* superview = imageView.superview; superview != nil; superview = superview.superview) {
+        if ([superview isKindOfClass:[UITableViewCell class]]) {
+            cell = (id)superview;
+            break;
+        }
+    }
+
+    if (cell == nil) {
+        return;
+    }
+
+    NSIndexPath* path = [self.tableView indexPathForCell:cell];
+    [self upArrowTappedForRowAtIndexPath:path];
 }
 
 @end

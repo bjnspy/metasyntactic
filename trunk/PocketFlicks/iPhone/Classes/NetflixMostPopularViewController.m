@@ -14,13 +14,10 @@
 
 #import "NetflixMostPopularViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "AppDelegate.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
 #import "OperationQueue.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface NetflixMostPopularViewController()
@@ -79,15 +76,6 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return MAX([[NetflixCache mostPopularTitles] count], 1);
 }
@@ -108,7 +96,12 @@
 
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
+#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+#else
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+#endif
+
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 #ifdef IPHONE_OS_VERSION_3

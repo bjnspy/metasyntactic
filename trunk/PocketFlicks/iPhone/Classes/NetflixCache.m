@@ -21,24 +21,16 @@
 #import "DifferenceEngine.h"
 #import "Feed.h"
 #import "FileUtilities.h"
-#import "IMDbCache.h"
-#import "IdentitySet.h"
-#import "ImageUtilities.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetflixAddMovieDelegate.h"
-#import "NetflixModifyQueueDelegate.h"
-#import "NetflixMoveMovieDelegate.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
-#import "Operation.h"
 #import "OperationQueue.h"
 #import "Person.h"
 #import "PersonPosterCache.h"
 #import "Queue.h"
 #import "Status.h"
 #import "StringUtilities.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @interface NetflixCache()
@@ -46,7 +38,7 @@
 @property (retain) NSDictionary* queuesData;
 @property (retain) NSDate* lastQuotaErrorDate;
 
-- (void) updateMovieDetails:(Movie*) movie;
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
 @end
 
 
@@ -800,8 +792,6 @@ static NSDictionary* availabilityMap = nil;
                                      movies:movies
                                       saved:saved];
         [self saveQueue:queue];
-
-        [AppDelegate majorRefresh];
     }
 }
 
@@ -860,7 +850,6 @@ static NSDictionary* availabilityMap = nil;
                                lastName:lastName
                         canInstantWatch:canInstantWatch
                        preferredFormats:preferredFormats];
-        [AppDelegate majorRefresh];
     }
 }
 
@@ -936,7 +925,7 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
-    [self updateMovieDetails:series];
+    [self updateMovieDetails:series force:NO];
 }
 
 
@@ -1279,7 +1268,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
     if (![movie isNetflix]) {
         return;
     }

@@ -16,6 +16,10 @@
 
 @interface PosterCache : AbstractMovieCache {
 @private
+    ImdbPosterDownloader* imdbPosterDownloader;
+    ApplePosterDownloader* applePosterDownloader;
+    FandangoPosterDownloader* fandangoPosterDownloader;
+    PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
 }
 
 + (PosterCache*) cache;

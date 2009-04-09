@@ -18,7 +18,6 @@
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AlertUtilities.h"
 #import "AppDelegate.h"
-#import "Application.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
@@ -32,21 +31,16 @@
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
-#import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
-#import "NetflixCell.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
 #import "OperationQueue.h"
-#import "PosterCache.h"
 #import "Score.h"
 #import "Status.h"
-#import "StringUtilities.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
-#import "UITableViewCell+Utilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
@@ -671,7 +665,11 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) createDvdDetailsCell {
     if (dvd == nil) {
+#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
     }
 
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -689,7 +687,12 @@ const NSInteger POSTER_TAG = -1;
     frame.size.width = 300;
     label.frame = frame;
 
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:label];
 
@@ -826,7 +829,6 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
         BOOL stale = [self.model isStale:theater];
         [cell setStale:stale];
-
         [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
 
         return cell;
@@ -872,7 +874,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (UITableViewCell*) showHiddenTheatersCell {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
+
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {
@@ -951,10 +958,14 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
-    [[OperationQueue operationQueue] temporarilySuspend:90];
     NSString* urlString = trailer;
-    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
-    //MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"movie.mp4" ofType:nil]]];
+    NSURL* url = [NSURL URLWithString:urlString];
+    if (url == nil) {
+        return;
+    }
+
+    [[OperationQueue operationQueue] temporarilySuspend:90];
+    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(movieFinishedPlaying:)
@@ -1299,11 +1310,6 @@ const NSInteger POSTER_TAG = -1;
     }
 
     [self didSelectShowHiddenTheaters];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 

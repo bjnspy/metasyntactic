@@ -22,12 +22,8 @@
 #import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
 #import "Score.h"
-#import "ScoreCache.h"
 #import "StringUtilities.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
-#import "XmlElement.h"
-
 
 @implementation GoogleScoreProvider
 

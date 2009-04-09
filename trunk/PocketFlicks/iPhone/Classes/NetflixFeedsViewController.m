@@ -14,14 +14,10 @@
 
 #import "NetflixFeedsViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "AppDelegate.h"
 #import "Feed.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
-#import "Queue.h"
-#import "UITableViewCell+Utilities.h"
 
 
 @interface NetflixFeedsViewController()
@@ -65,15 +61,6 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-        return YES;
-    }
-
-    return self.model.screenRotationEnabled;
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }
@@ -114,7 +101,11 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+#else
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+#endif
 
     NSArray* feeds = self.feeds;
 
