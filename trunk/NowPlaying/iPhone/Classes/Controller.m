@@ -264,6 +264,9 @@ static Controller* controller = nil;
 - (void) setAutoUpdateLocation:(BOOL) value {
     [self.model setAutoUpdateLocation:value];
     [locationManager autoUpdateLocation];
+    
+    // Refresh the UI so we show the new state.
+    [AppDelegate majorRefresh:YES];
 }
 
 
