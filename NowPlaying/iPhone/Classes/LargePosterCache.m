@@ -246,7 +246,10 @@ const int START_YEAR = 1912;
     }
     self.updated = YES;
 
-    [ThreadingUtilities backgroundSelector:@selector(ensureIndices) onTarget:self gate:nil visible:NO];
+    [ThreadingUtilities backgroundSelector:@selector(ensureIndices)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:NO];
 }
 
 
