@@ -34,7 +34,7 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSURLRequest*) createRequest:(NSURL*) url {
++ (NSMutableURLRequest*) createRequest:(NSURL*) url {
     if (url == nil) {
         return nil;
     }
