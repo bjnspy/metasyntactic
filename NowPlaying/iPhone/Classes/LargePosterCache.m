@@ -92,20 +92,7 @@ const int START_YEAR = 1912;
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     UIImage* image = [UIImage imageWithData:data];
-
-    CGSize size = image.size;
-    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-        NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                    toHeight:FULL_SCREEN_POSTER_HEIGHT];
-        image = [UIImage imageWithData:data];
-        [FileUtilities writeData:resizedData toFile:path];
-    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
-        NSData* resizedData = [ImageUtilities scaleImageData:data
-                                                    toHeight:FULL_SCREEN_POSTER_WIDTH];
-        image = [UIImage imageWithData:data];
-        [FileUtilities writeData:resizedData toFile:path];
-    }
-
+    
     return image;
 }
 
@@ -349,7 +336,34 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) uploadUrl:(NSString*) url data:(NSData*) data {
+- (NSData*) resizeImage:(NSData*) data {
+    UIImage* image = [[[UIImage alloc] initWithData:data] autorelease];
+    if (image == nil) {
+        return nil;
+    }
+    
+    CGSize size = image.size;
+    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        return [ImageUtilities scaleImageData:data
+                                     toHeight:FULL_SCREEN_POSTER_HEIGHT];
+        
+    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        return [ImageUtilities scaleImageData:data
+                                     toHeight:FULL_SCREEN_POSTER_WIDTH];
+    }
+    
+    return data;
+}
+
+
+- (NSData*) uploadUrl:(NSString*) url data:(NSData*) data {
+    // First resize down to our max image dimensions
+    data = [self resizeImage:data];
+    if (data.length == 0) {
+        // we couldn't resize.  throw this data away.
+        return nil;
+    }
+    
     NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource", [Application host]];
     
     NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];
@@ -366,17 +380,24 @@ const int START_YEAR = 1912;
     [NSURLConnection sendSynchronousRequest:request
                           returningResponse:&urlResponse
                                       error:&error];
+    
+    return data;
 }
 
 
 - (NSData*) downloadUrlData:(NSString*) url {
     NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
 
+    // Try first from the cache.
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl];
     if (data.length == 0) {
+        
+        // Wasn't in the cache.  Get directly from the source.
         data = [NetworkUtilities dataWithContentsOfAddress:url];
-        if (data.length > 1024) {
-            [self uploadUrl:url data:data];
+        if (data.length > 0) {
+            
+            // Now store in the cache.
+            data = [self uploadUrl:url data:data];
         }
     }
     
