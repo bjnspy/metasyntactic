@@ -375,7 +375,7 @@ const int START_YEAR = 1912;
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl];
     if (data.length == 0) {
         data = [NetworkUtilities dataWithContentsOfAddress:url];
-        if (data.length > 0) {
+        if (data.length > 1024) {
             [self uploadUrl:url data:data];
         }
     }
