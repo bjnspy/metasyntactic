@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
+#import "Base64.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
@@ -23,7 +24,9 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
+#import "NSMutableURLRequest+Parameters.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieNames;
@@ -346,6 +349,41 @@ const int START_YEAR = 1912;
 }
 
 
+- (void) uploadUrl:(NSString*) url data:(NSData*) data {
+    NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource", [Application host]];
+    
+    NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSArray* parameters = [NSArray arrayWithObjects:
+                           [OARequestParameter parameterWithName:@"q" value:url],
+                           [OARequestParameter parameterWithName:@"body" value:[Base64 encode:data]], nil];
+    
+    [request setParameters:parameters];
+    
+    NSURLResponse* urlResponse = nil;
+    NSError* error = nil;
+    [NSURLConnection sendSynchronousRequest:request
+                          returningResponse:&urlResponse
+                                      error:&error];
+}
+
+
+- (NSData*) downloadUrlData:(NSString*) url {
+    NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
+
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl];
+    if (data.length == 0) {
+        data = [NetworkUtilities dataWithContentsOfAddress:url];
+        if (data.length > 0) {
+            [self uploadUrl:url data:data];
+        }
+    }
+    
+    return data;
+}
+
+
 - (void) downloadPosterForMovieWorker:(Movie*) movie
                                  urls:(NSArray*) urls
                                 index:(NSInteger) index {
@@ -356,8 +394,11 @@ const int START_YEAR = 1912;
 
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
-        NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]];
-        if (data != nil) {
+        NSString* url = [urls objectAtIndex:index];
+        
+        NSData* data = [self downloadUrlData:url];
+        
+        if (data.length > 0) {
             [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
             [AppDelegate minorRefresh];
         }

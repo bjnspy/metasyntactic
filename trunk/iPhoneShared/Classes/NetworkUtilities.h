@@ -31,4 +31,6 @@
 
 + (BOOL) isNetworkAvailable;
 
++ (NSMutableURLRequest*) createRequest:(NSURL*) url;
+
 @end
