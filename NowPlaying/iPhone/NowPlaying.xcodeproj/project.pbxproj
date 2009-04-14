@@ -24,8 +24,6 @@
 		7401C4CE0F95096B006D8281 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7463988C0F7EC9AB00B2F64C /* CoreGraphics.framework */; };
 		7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398900F7EC9AE00B2F64C /* UIKit.framework */; };
 		7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398940F7EC9B200B2F64C /* Foundation.framework */; };
-		7401C4D10F950970006D8281 /* libProtocolBuffersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C4C20F9508EA006D8281 /* libProtocolBuffersLibrary.a */; };
-		7401C4D20F950974006D8281 /* libProtocolBuffersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C4C20F9508EA006D8281 /* libProtocolBuffersLibrary.a */; };
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
@@ -35,6 +33,8 @@
 		7408FDC80F27C81100BD86B6 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDC70F27C81100BD86B6 /* Status.m */; };
 		7408FDCC0F27C83500BD86B6 /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */; };
 		7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */; };
+		740993CD0F951026008FBC23 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */; };
+		740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
 		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
@@ -585,26 +585,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7401C4C10F9508EA006D8281 /* PBXContainerItemProxy */ = {
+		740993C90F951015008FBC23 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */;
-			remoteInfo = ProtocolBuffersLibrary;
-		};
-		7401C4C30F9508EA006D8281 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
-			remoteInfo = UnitTests;
-		};
-		7401C4C50F9508FB006D8281 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */;
+			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */;
-			remoteInfo = ProtocolBuffersLibrary;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
+		};
+		740993CB0F95101D008FBC23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
+		};
+		74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteInfo = ProtocolBuffers;
+		};
+		74C3EDB00F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7401C1A80F950347006D8281;
+			remoteInfo = UnitTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -624,8 +631,6 @@
 		7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFeedsViewController.m; sourceTree = "<group>"; };
 		7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixQueueViewController.h; sourceTree = "<group>"; };
 		7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixQueueViewController.m; sourceTree = "<group>"; };
-		7401C4530F9506F4006D8281 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = ../../ProtocolBuffersLibrary/Classes/ProtocolBuffers.h; sourceTree = SOURCE_ROOT; };
-		7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffersLibrary.xcodeproj; path = ../../ProtocolBuffersLibrary/ProtocolBuffersLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
 		740224570E53F342006C58A2 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		740224580E53F346006C58A2 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		740224590E53F351006C58A2 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -647,6 +652,7 @@
 		7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+Utilities.m"; path = "../../iPhoneShared/Classes/NSMutableArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStatusCell.h; sourceTree = "<group>"; };
 		7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStatusCell.m; sourceTree = "<group>"; };
+		740993D70F951085008FBC23 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = ../../ProtocolBuffers/Classes/ProtocolBuffers.h; sourceTree = SOURCE_ROOT; };
 		740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
 		740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
 		740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
@@ -1027,6 +1033,7 @@
 		74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
 		74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreenMovieTitleCell.h; sourceTree = "<group>"; };
 		74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreenMovieTitleCell.m; sourceTree = "<group>"; };
+		74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ../../ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
 		74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
@@ -1157,7 +1164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7401C4D10F950970006D8281 /* libProtocolBuffersLibrary.a in Frameworks */,
+				740993CD0F951026008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
 				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
 				7401C4CA0F95096B006D8281 /* AddressBook.framework in Frameworks */,
@@ -1175,7 +1182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7401C4D20F950974006D8281 /* libProtocolBuffersLibrary.a in Frameworks */,
+				740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				746398750F7EC99800B2F64C /* SystemConfiguration.framework in Frameworks */,
 				746398790F7EC99C00B2F64C /* MediaPlayer.framework in Frameworks */,
 				7463987D0F7EC99F00B2F64C /* AddressBook.framework in Frameworks */,
@@ -1228,7 +1235,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */,
+				74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1331,15 +1338,6 @@
 				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
 			);
 			name = Frameworks3;
-			sourceTree = "<group>";
-		};
-		7401C4BD0F9508EA006D8281 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7401C4C20F9508EA006D8281 /* libProtocolBuffersLibrary.a */,
-				7401C4C40F9508EA006D8281 /* UnitTests.octest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		740245660E78488D00ECE1B4 /* Views */ = {
@@ -1576,7 +1574,7 @@
 		745184B40E91D8D600D4E0C5 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				7401C4530F9506F4006D8281 /* ProtocolBuffers.h */,
+				740993D70F951085008FBC23 /* ProtocolBuffers.h */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1943,6 +1941,15 @@
 			name = Location;
 			sourceTree = "<group>";
 		};
+		74C3EDAA0F950F6C00FFEE5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */,
+				74C3EDB10F950F6C00FFEE5A /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		74D6F2B40DCC14420097A984 /* Xml */ = {
 			isa = PBXGroup;
 			children = (
@@ -2118,7 +2125,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				7401C4C60F9508FB006D8281 /* PBXTargetDependency */,
+				740993CA0F951015008FBC23 /* PBXTargetDependency */,
 			);
 			name = BoxOffice3;
 			productName = BoxOffice;
@@ -2136,6 +2143,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				740993CC0F95101D008FBC23 /* PBXTargetDependency */,
 			);
 			name = BoxOffice2;
 			productName = BoxOffice;
@@ -2186,8 +2194,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7401C4BD0F9508EA006D8281 /* Products */;
-					ProjectRef = 7401C4BC0F9508EA006D8281 /* ProtocolBuffersLibrary.xcodeproj */;
+					ProductGroup = 74C3EDAA0F950F6C00FFEE5A /* Products */;
+					ProjectRef = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2199,18 +2207,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7401C4C20F9508EA006D8281 /* libProtocolBuffersLibrary.a */ = {
+		74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libProtocolBuffersLibrary.a;
-			remoteRef = 7401C4C10F9508EA006D8281 /* PBXContainerItemProxy */;
+			path = libProtocolBuffers.a;
+			remoteRef = 74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7401C4C40F9508EA006D8281 /* UnitTests.octest */ = {
+		74C3EDB10F950F6C00FFEE5A /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
-			remoteRef = 7401C4C30F9508EA006D8281 /* PBXContainerItemProxy */;
+			remoteRef = 74C3EDB00F950F6C00FFEE5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2804,10 +2812,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7401C4C60F9508FB006D8281 /* PBXTargetDependency */ = {
+		740993CA0F951015008FBC23 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ProtocolBuffersLibrary;
-			targetProxy = 7401C4C50F9508FB006D8281 /* PBXContainerItemProxy */;
+			name = ProtocolBuffers;
+			targetProxy = 740993C90F951015008FBC23 /* PBXContainerItemProxy */;
+		};
+		740993CC0F95101D008FBC23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 740993CB0F95101D008FBC23 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
