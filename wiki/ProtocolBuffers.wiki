@@ -54,13 +54,9 @@ The compiler will read the files `src/foo.proto` and `src/bar/baz.proto` and pro
 
 Once you have generated the `.pb.h` and `.pb.m` files for the `.proto` file you care about, you can then add them to your project.  However, in order to build properly several changes must be made to your project.
 
-  # Download and unzip the latest `ProtocolBuffers-*-*-*.gz` file in the download section.  Move the resultant directory to where your project is stored.
-  # Open your existing project and the ProtocolBuffers.xcodeproj project in XCode: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step1.png
-  # Drag the ProtocolBuffers project into your project: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step2.png
-  # Your project should now look like: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step3.png
-  # Now, expand the targets you care about and drag the libProtocolBuffer.a library into their `Link Binary With Libraries` group: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step4.png
-  # Your project should now look like: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step5.png
-  # Finally, add a reference to `ProtocolBuffers\Classes\ProtocolBuffers.h` to your project and a `#import "ProtocolBuffers.h"` line to your precompiled header.
+  # Download and unzip the latest `ProtocolBuffers-*.*.*.tar.gz` file in the download section.  Move the resultant directory to where your project is stored.
+  # Open your existing project and a reference to either `libProtocolBuffers.a` (if you are building for OSX) or `libProtocolBuffers-iPhone.a` (if you are building for the iPhone).
+  # Add a reference to `ProtocolBuffers.h` in your project and add the following line to your pch file: `#import "ProtocolBuffers.h"`
   # Compile and enjoy!
 
 
