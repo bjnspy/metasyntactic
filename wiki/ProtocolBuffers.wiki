@@ -25,7 +25,7 @@ Then you compile it with protoc-objc, the protocol buffer compiler, to produce c
 You use that code like this to produce raw protobuf data from a message:
 
 {{{
-Person* person = [[[[[Person builder] setId:123] setName:@"Bob"] setEmail:@"bob@example.com] build];
+Person* person = [[[[[Person builder] setId:123] setName:@"Bob"] setEmail:@"bob@example.com"] build];
 NSData* data = [person data];
 }}}
 
@@ -34,6 +34,35 @@ Or like this to read a message back from raw protobuf data:
 NSData* raw_data = ...;
 Person* person = [Person parseFromData:raw_data];
 }}}
+
+= Gory Details =
+
+== Compiler Invocation ==
+
+For full details on the protobuf compiler, please see the official details [http://code.google.com/apis/protocolbuffers/docs/overview.html here]
+
+The protocol buffer compiler (`protoc-objc`) produces Objective-C output when invoked with the `--objc_out=` command-line flag. The parameter to the `--objc_out=` option is the directory where you want the compiler to write your Objective-C output. The compiler creates a header file and an implementation file for each `.proto` file input. The names of the output files are computed by taking the name of the .proto file and making two changes:
+  * The extension (`.proto`) is replaced with either `.pb.h` or `.pb.m` for the header or implementation file, respectively.
+  * The proto path (specified with the `--proto_path=` or `-I` command-line flag) is replaced with the output path (specified with the `--objc_out=` flag).
+So, for example, let's say you invoke the compiler as follows:
+{{{
+protoc-objc --proto_path=src --objc_out=build/gen src/foo.proto src/bar/baz.proto
+}}}
+The compiler will read the files `src/foo.proto` and `src/bar/baz.proto` and produce four output files: `build/gen/foo.pb.h`, `build/gen/foo.pb.m`, `build/gen/bar/baz.pb.h`, `build/gen/bar/baz.pb.m`. The compiler will automatically create the directory `build/gen/bar` if necessary, but it will not create `build` or `build/gen`; they must already exist.
+
+== Project Integration ==
+
+Once you have generated the `.pb.h` and `.pb.m` files for the `.proto` file you care about, you can then add them to your project.  However, in order to build properly several changes must be made to your project.
+
+  # Download and unzip the latest `ProtocolBuffers-*-*-*.gz` file in the download section.  Move the resultant directory to where your project is stored.
+  # Open your existing project and the ProtocolBuffers.xcodeproj project in XCode: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step1.png
+  # Drag the ProtocolBuffers project into your project: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step2.png
+  # Your project should now look like: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step3.png
+  # Now, expand the targets you care about, and drag the libProtocolBuffer.a library into their `Link Binary With Libraries` group: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step4.png
+  # Your project should now look like: <br> http://metasyntactic.googlecode.com/svn/trunk/ProtocolBuffers/Resources/Step5.png
+  # Finally, add a reference to `ProtocolBuffers\Classes\ProtocolBuffers.h` to your project and a `#import "ProtocolBuffers.h"` line to your precompiled header.
+  # Compile and enjoy!
+
 
 = Extensions =
 
