@@ -152,11 +152,19 @@ static Pulser* pulser = nil;
 
 
 + (NSData*) dataWithContentsOfAddress:(NSString*) address {
+    return [self dataWithContentsOfAddress:address
+                                  response:NULL];
+}
+
+
++ (NSData*) dataWithContentsOfAddress:(NSString*) address
+                             response:(NSHTTPURLResponse**) response {
     if (address.length == 0) {
         return nil;
     }
 
-    return [self dataWithContentsOfUrl:[NSURL URLWithString:address]];
+    return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
+                              response:response];
 }
 
 
@@ -208,8 +216,16 @@ static Pulser* pulser = nil;
 }
 
 
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url 
+                         response:(NSHTTPURLResponse**) response {
+    return [self dataWithContentsOfUrlRequest:[self createRequest:url]
+                                     response:response];    
+}
+
+
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url {
-    return [self dataWithContentsOfUrlRequest:[self createRequest:url]];
+    return [self dataWithContentsOfUrl:url
+                              response:NULL];
 }
 
 
@@ -229,7 +245,8 @@ static Pulser* pulser = nil;
         return nil;
     }
 
-    return [self dataWithContentsOfUrlRequestWorker:request response:response];
+    return [self dataWithContentsOfUrlRequestWorker:request
+                                           response:response];
 }
 
 
