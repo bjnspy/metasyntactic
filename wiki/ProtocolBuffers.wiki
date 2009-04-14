@@ -90,3 +90,9 @@ By using these options, you can integrate existing protobuf definitions, while s
 in Objective-C you would say:
 
 {{{import "ProtocolBuffers\PBDescriptor.h"}}}
+
+= Help/Support =
+
+If you need any help/support with this feel free to email me at cyrus.najmabadi@gmail.com.
+
+Cheers!
