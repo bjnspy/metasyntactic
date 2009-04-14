@@ -34,3 +34,30 @@ Or like this to read a message back from raw protobuf data:
 NSData* raw_data = ...;
 Person* person = [Person parseFromData:raw_data];
 }}}
+
+= Extensions =
+
+In order to more seamlessly integrate with Objective-C code, this library also extends the standard google.protobuf.FileOptions message with the following options:
+
+{{{
+  // Sets the ObjectiveC package where classes generated from this .proto
+  // will be placed.  This is typically used since Objective C libraries output
+  // all their headers into a single directory.  i.e.  Foundation\*
+  // AddressBook\*   UIKit\*   etc. etc.
+  optional string objectivec_package = 1;
+  
+  // The string to be prefixed in front of all classes in order to make them
+  // 'cocoa-y'.  i.e. 'NS/AB/CF/PB' for the
+  // NextStep/AddressBook/CoreFoundation/ProtocolBuffer libraries respectively.
+  // This will commonly be the capitalized letters from the above defined
+  // 'objectivec_directory'
+  optional string objectivec_class_prefix = 2;
+}}}
+
+By using these options, you can integrate existing protobuf definitions, while still producing Objective-C code that meets expected styling standards.  For example, this library uses those options above to emit the core protobuf Descriptor types into a "ProtocolBuffers" directory with a common "PB" prefix on all classes.  Thus, while you would say the following in java:
+
+{{{import google.protobuf.Descriptor;}}}
+
+in Objective-C you would say:
+
+{{{import "ProtocolBuffers\PBDescriptor.h"}}}
