@@ -154,27 +154,47 @@
 
 
 /** Tests writeRawVarint32() and writeRawVarint64(). */
-- (void) testWriteVarint {
+- (void) testWriteVarint1 {
     [self assertWriteVarint:bytes(0x00) value:0];
+}
+
+- (void) testWriteVarint2 {
     [self assertWriteVarint:bytes(0x01) value:1];
+}
+
+- (void) testWriteVarint3 {
     [self assertWriteVarint:bytes(0x7f) value:127];
+}
+
+- (void) testWriteVarint4 {
     // 14882
     [self assertWriteVarint:bytes(0xa2, 0x74) value:(0x22 << 0) | (0x74 << 7)];
+}
+
+- (void) testWriteVarint5 {
     // 2961488830
     [self assertWriteVarint:bytes(0xbe, 0xf7, 0x92, 0x84, 0x0b) value:
      (0x3e << 0) | (0x77 << 7) | (0x12 << 14) | (0x04 << 21) |
      (0x0bLL << 28)];
+}
 
+- (void) testWriteVarint6 {
     // 64-bit
     // 7256456126
     [self assertWriteVarint:bytes(0xbe, 0xf7, 0x92, 0x84, 0x1b) value:
      (0x3e << 0) | (0x77 << 7) | (0x12 << 14) | (0x04 << 21) |
      (0x1bLL << 28)];
+}
+
+- (void) testWriteVarint7 {
     // 41256202580718336
     [self assertWriteVarint:
      bytes(0x80, 0xe6, 0xeb, 0x9c, 0xc3, 0xc9, 0xa4, 0x49) value:
      (0x00 << 0) | (0x66 << 7) | (0x6b << 14) | (0x1c << 21) |
      (0x43LL << 28) | (0x49LL << 35) | (0x24LL << 42) | (0x49LL << 49)];
+}
+
+- (void) testWriteVarint8 {
     // 11964378330978735131
     [self assertWriteVarint:
      bytes(0x9b, 0xa8, 0xf9, 0xc2, 0xbb, 0xd6, 0x80, 0x85, 0xa6, 0x01) value:
