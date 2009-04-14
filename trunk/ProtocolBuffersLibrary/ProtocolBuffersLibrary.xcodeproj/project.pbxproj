@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7401C1AE0F950373006D8281 /* CodedInputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B69B0F94FDF800A0C422 /* CodedInputStreamTests.m */; };
+		7401C1AF0F950373006D8281 /* CodedOuputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B69D0F94FDF800A0C422 /* CodedOuputStreamTests.m */; };
+		7401C1B00F950373006D8281 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B69F0F94FDF800A0C422 /* CoreTests.m */; };
+		7401C1B10F950373006D8281 /* DescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6A10F94FDF800A0C422 /* DescriptorTests.m */; };
+		7401C1B20F950373006D8281 /* GeneratedMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6A30F94FDF800A0C422 /* GeneratedMessageTests.m */; };
+		7401C1B30F950373006D8281 /* MessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6A60F94FDF800A0C422 /* MessageTests.m */; };
+		7401C1B40F950373006D8281 /* MicroTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6A80F94FDF800A0C422 /* MicroTest.m */; };
+		7401C1B50F950373006D8281 /* SmallBlockInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AA0F94FDF800A0C422 /* SmallBlockInputStream.m */; };
+		7401C1B60F950373006D8281 /* TestUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AC0F94FDF800A0C422 /* TestUtilities.m */; };
+		7401C1B70F950373006D8281 /* Unittest.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AE0F94FDF800A0C422 /* Unittest.pb.m */; };
+		7401C1B80F950373006D8281 /* UnittestEmbedOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B00F94FDF800A0C422 /* UnittestEmbedOptimizeFor.pb.m */; };
+		7401C1B90F950373006D8281 /* UnittestImport.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B20F94FDF800A0C422 /* UnittestImport.pb.m */; };
+		7401C1BA0F950373006D8281 /* UnittestMset.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B40F94FDF900A0C422 /* UnittestMset.pb.m */; };
+		7401C1BB0F950373006D8281 /* UnittestOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B60F94FDF900A0C422 /* UnittestOptimizeFor.pb.m */; };
+		7401C1BC0F950373006D8281 /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B80F94FDF900A0C422 /* UnknownFieldSetTest.m */; };
+		7401C1BD0F950373006D8281 /* UtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6BA0F94FDF900A0C422 /* UtilitiesTests.m */; };
+		7401C1BE0F950373006D8281 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6BC0F94FDF900A0C422 /* WireFormatTests.m */; };
+		7401C1C10F950386006D8281 /* libProtocolBuffersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */; };
+		7401C1C30F950395006D8281 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C1C20F950395006D8281 /* SenTestingKit.framework */; };
 		7461B5360F94FB4600A0C422 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		7461B5390F94FB4E00A0C422 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4880F94F99000A0C422 /* AbstractFieldAccessor.m */; };
 		7461B53A0F94FB4E00A0C422 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B48A0F94F99000A0C422 /* AbstractMessage.m */; };
@@ -54,9 +73,22 @@
 		7461B5640F94FB4E00A0C422 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E80F94F99000A0C422 /* WireFormat.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7401C1BF0F950382006D8281 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */;
+			remoteInfo = ProtocolBuffersLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* ProtocolBuffersLibrary_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffersLibrary_Prefix.pch; sourceTree = "<group>"; };
+		7401C1A80F950347006D8281 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = UnitTests.octest; path = build/Debug/UnitTests.octest; sourceTree = "<group>"; };
+		7401C1A90F950347006D8281 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		7401C1C20F950395006D8281 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7461B4870F94F99000A0C422 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		7461B4880F94F99000A0C422 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		7461B4890F94F99000A0C422 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
@@ -195,6 +227,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7401C1A50F950347006D8281 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7401C1C10F950386006D8281 /* libProtocolBuffersLibrary.a in Frameworks */,
+				7401C1C30F950395006D8281 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7461B52C0F94FAF800A0C422 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */,
+				7401C1A80F950347006D8281 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,6 +275,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				7401C1C20F950395006D8281 /* SenTestingKit.framework */,
 				7461B6940F94FDDD00A0C422 /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -258,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* ProtocolBuffersLibrary-Info.plist */,
+				7401C1A90F950347006D8281 /* UnitTests-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -467,6 +511,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7401C1A70F950347006D8281 /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7401C1AC0F950347006D8281 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				7401C1A30F950347006D8281 /* Resources */,
+				7401C1A40F950347006D8281 /* Sources */,
+				7401C1A50F950347006D8281 /* Frameworks */,
+				7401C1A60F950347006D8281 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7401C1C00F950382006D8281 /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 7401C1A80F950347006D8281 /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffersLibrary" */;
@@ -497,11 +560,62 @@
 			projectRoot = "";
 			targets = (
 				7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */,
+				7401C1A70F950347006D8281 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		7401C1A30F950347006D8281 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7401C1A60F950347006D8281 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		7401C1A40F950347006D8281 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7401C1AE0F950373006D8281 /* CodedInputStreamTests.m in Sources */,
+				7401C1AF0F950373006D8281 /* CodedOuputStreamTests.m in Sources */,
+				7401C1B00F950373006D8281 /* CoreTests.m in Sources */,
+				7401C1B10F950373006D8281 /* DescriptorTests.m in Sources */,
+				7401C1B20F950373006D8281 /* GeneratedMessageTests.m in Sources */,
+				7401C1B30F950373006D8281 /* MessageTests.m in Sources */,
+				7401C1B40F950373006D8281 /* MicroTest.m in Sources */,
+				7401C1B50F950373006D8281 /* SmallBlockInputStream.m in Sources */,
+				7401C1B60F950373006D8281 /* TestUtilities.m in Sources */,
+				7401C1B70F950373006D8281 /* Unittest.pb.m in Sources */,
+				7401C1B80F950373006D8281 /* UnittestEmbedOptimizeFor.pb.m in Sources */,
+				7401C1B90F950373006D8281 /* UnittestImport.pb.m in Sources */,
+				7401C1BA0F950373006D8281 /* UnittestMset.pb.m in Sources */,
+				7401C1BB0F950373006D8281 /* UnittestOptimizeFor.pb.m in Sources */,
+				7401C1BC0F950373006D8281 /* UnknownFieldSetTest.m in Sources */,
+				7401C1BD0F950373006D8281 /* UtilitiesTests.m in Sources */,
+				7401C1BE0F950373006D8281 /* WireFormatTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7461B52B0F94FAF800A0C422 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,7 +669,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7401C1C00F950382006D8281 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */;
+			targetProxy = 7401C1BF0F950382006D8281 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7401C1AA0F950347006D8281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7401C1AB0F950347006D8281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		7461B52F0F94FAFA00A0C422 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,6 +793,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7401C1AC0F950347006D8281 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7401C1AA0F950347006D8281 /* Debug */,
+				7401C1AB0F950347006D8281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffersLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
