@@ -9,3 +9,28 @@ This project contains a port of Protocol Buffers that can be used in OSX 10.5 an
 The port includes a new Protocol Buffer compiler (protoc-objc) and a Protocol Buffer static library that you link into any project that you want protobuf support for.  The protoc-objc supports all the features of the protobuf 2 language and when given .proto files as input will generate the specialized Objective-C classes necessary to both read and write instances of the messages contained therein.  These classes, along with the supplied static library, will then allow your code to read and write protobuf instances simply and in a typesafe manner.
 
 = Quick Example =
+
+You write a .proto file like this:
+
+{{{
+message Person {
+  required int32 id = 1;
+  required string name = 2;
+  optional string email = 3;
+}
+}}}
+
+Then you compile it with protoc-objc, the protocol buffer compiler, to produce code in Objective-C.
+
+You use that code like this to produce raw protobuf data from a message:
+
+{{{
+Person* person = [[[[[Person builder] setId:123] setName:@"Bob"] setEmail:@"bob@example.com] build];
+NSData* data = [person data];
+}}}
+
+Or like this to read a message back from raw protobuf data:
+{{{
+NSData* raw_data = ...;
+Person* person = [Person parseFromData:raw_data];
+}}}
