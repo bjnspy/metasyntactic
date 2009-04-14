@@ -62,7 +62,6 @@
 		745E98680E941F0E007FD139 /* ExtendableMessage.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63940E93F81600F78C70 /* ExtendableMessage.h */; };
 		745E98690E941F0E007FD139 /* ExtensionWriter.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63A10E93FD6000F78C70 /* ExtensionWriter.h */; };
 		745E986A0E941F0E007FD139 /* GeneratedExtension.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63F20E94071100F78C70 /* GeneratedExtension.h */; };
-		745E98EB0E9420B2007FD139 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745E98EA0E9420B2007FD139 /* SenTestingKit.framework */; };
 		747C0AE50E9CBA61004B9278 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C0AE30E9CBA61004B9278 /* WireFormatTests.m */; };
 		749E63960E93F81600F78C70 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63950E93F81600F78C70 /* ExtendableMessage.m */; };
 		749E63A30E93FD6000F78C70 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63A20E93FD6000F78C70 /* ExtensionWriter.m */; };
@@ -91,7 +90,6 @@
 		74C575980EA15310009A9432 /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5758B0EA15310009A9432 /* PackageDescriptor.m */; };
 		74C575990EA15310009A9432 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5758D0EA15310009A9432 /* ServiceDescriptor.m */; };
 		74C800000EA0F0CC000AE9FA /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */; };
-		74C800010EA0F0CC000AE9FA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745E98EA0E9420B2007FD139 /* SenTestingKit.framework */; };
 		74C800040EA0F0D2000AE9FA /* MicroTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01400E9C620600911656 /* MicroTest.m */; };
 		74C800050EA0F0D2000AE9FA /* CodedInputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */; };
 		74C800060EA0F0D2000AE9FA /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */; };
@@ -259,7 +257,6 @@
 		745170C40E90747C00D4E0C5 /* SingularFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingularFieldAccessor.m; sourceTree = "<group>"; };
 		74517E700E90CDED00D4E0C5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		745180080E916ED800D4E0C5 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = Classes/ProtocolBuffers.h; sourceTree = "<group>"; };
-		745E98EA0E9420B2007FD139 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		745E98F40E94211C007FD139 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		745E98FB0E942186007FD139 /* UtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilitiesTests.h; sourceTree = "<group>"; };
 		745E98FC0E942186007FD139 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilitiesTests.m; sourceTree = "<group>"; };
@@ -360,7 +357,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				74C800000EA0F0CC000AE9FA /* ProtocolBuffers.framework in Frameworks */,
-				74C800010EA0F0CC000AE9FA /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
-				745E98EB0E9420B2007FD139 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +472,6 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				745E98EA0E9420B2007FD139 /* SenTestingKit.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
