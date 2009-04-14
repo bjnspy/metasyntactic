@@ -14,6 +14,7 @@
 
 #import "NotificationCenter.h"
 
+#import "Model.h"
 #import "Pulser.h"
 
 @interface NotificationCenter()
@@ -125,8 +126,13 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 }
 
 
+- (Model*) model {
+    return [Model model];
+}
+
+
 - (void) showNotifications {
-    if (disabledCount == 0) {
+    if (disabledCount == 0 && self.model.notificationsEnabled) {
         [self.view bringSubviewToFront:notificationLabel];
         [self.view bringSubviewToFront:blackLabel];
 

@@ -74,8 +74,11 @@ enum ViewControllerType {
 - (BOOL) votedForIcon;
 - (void) setVotedForIcon;
 
+- (BOOL) notificationsEnabled;
+- (void) setNotificationsEnabled:(BOOL) value;
+
 - (BOOL) screenRotationEnabled;
-- (void) setScreenRotationEnabled:(BOOL) enabled;
+- (void) setScreenRotationEnabled:(BOOL) value;
 
 - (BOOL) scoresEnabled;
 
