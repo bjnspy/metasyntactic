@@ -5,3 +5,7 @@
 Protocol Buffers are a way of encoding structured data in an efficient yet extensible format.  For more information see the main page [http://code.google.com/p/protobuf/ here].
 
 This project contains a port of Protocol Buffers that can be used in OSX 10.5 and later and on the iPhone OS 2.0 and later.
+
+The port includes a new Protocol Buffer compiler (protoc-objc) and a Protocol Buffer static library that you link into any project that you want protobuf support for.  The protoc-objc supports all the features of the protobuf 2 language and when given .proto files as input will generate the specialized Objective-C classes necessary to both read and write instances of the messages contained therein.  These classes, along with the supplied static library, will then allow your code to read and write protobuf instances simply and in a typesafe manner.
+
+= Quick Example =
