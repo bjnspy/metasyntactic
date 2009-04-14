@@ -1,0 +1,7 @@
+#summary Objective-C Protocol Buffers for OSX and the iPhone
+
+= Introduction =
+
+Protocol Buffers are a way of encoding structured data in an efficient yet extensible format.  For more information see the main page [http://code.google.com/p/protobuf/ here].
+
+This project contains a port of Protocol Buffers that can be used in OSX 10.5 and later and on the iPhone OS 2.0 and later.
