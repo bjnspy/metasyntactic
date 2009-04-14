@@ -98,7 +98,7 @@
  */
 - (void) assertWriteVarint:(NSData*) data value:(int64_t) value {
     // Only do 32-bit write if the value fits in 32 bits.
-    if (logicalRightShift32(value, 32) == 0) {
+    if (logicalRightShift64(value, 32) == 0) {
         NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
         PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
         [output writeRawVarint32:(int32_t)value];
@@ -128,7 +128,7 @@
     // Try different block sizes.
     for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
         // Only do 32-bit write if the value fits in 32 bits.
-        if (logicalRightShift32(value, 32) == 0) {
+        if (logicalRightShift64(value, 32) == 0) {
             NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
             PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
 
