@@ -23,10 +23,10 @@
 #import "ImageUtilities.h"
 #import "Model.h"
 #import "Movie.h"
+#import "NSMutableURLRequest+Parameters.h"
 #import "NetworkUtilities.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
-#import "NSMutableURLRequest+Parameters.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieNames;
@@ -92,7 +92,7 @@ const int START_YEAR = 1912;
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     UIImage* image = [UIImage imageWithData:data];
-    
+
     return image;
 }
 
@@ -341,17 +341,17 @@ const int START_YEAR = 1912;
     if (image == nil) {
         return nil;
     }
-    
+
     CGSize size = image.size;
     if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
         return [ImageUtilities scaleImageData:data
                                      toHeight:FULL_SCREEN_POSTER_HEIGHT];
-        
+
     } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
         return [ImageUtilities scaleImageData:data
                                      toHeight:FULL_SCREEN_POSTER_WIDTH];
     }
-    
+
     return data;
 }
 
@@ -365,25 +365,25 @@ const int START_YEAR = 1912;
         // we couldn't resize.  throw this data away.
         return nil;
     }
-    
+
     NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource", [Application host]];
-    
+
     NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];
     [request setHTTPMethod:@"POST"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"q" value:url],
                            [OARequestParameter parameterWithName:@"insertion_key" value:insertionKey],
                            [OARequestParameter parameterWithName:@"body" value:[Base64 encode:data]], nil];
-    
+
     [request setParameters:parameters];
-    
+
     NSURLResponse* urlResponse = nil;
     NSError* error = nil;
     [NSURLConnection sendSynchronousRequest:request
                           returningResponse:&urlResponse
                                       error:&error];
-    
+
     return data;
 }
 
@@ -398,15 +398,15 @@ const int START_YEAR = 1912;
 
         // Wasn't in the cache.  Get directly from the source.
         data = [NetworkUtilities dataWithContentsOfAddress:url];
-        
+
         NSString* insertionKey = [[response allHeaderFields] objectForKey:@"Insertion-Key"];
         if (data.length > 0 && insertionKey.length > 0) {
-            
+
             // Now store in the cache.
             data = [self uploadUrl:url data:data insertionKey:insertionKey];
         }
     }
-    
+
     return data;
 }
 
@@ -422,9 +422,9 @@ const int START_YEAR = 1912;
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
         NSString* url = [urls objectAtIndex:index];
-        
+
         NSData* data = [self downloadUrlData:url];
-        
+
         if (data.length > 0) {
             [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
             [AppDelegate minorRefresh];
