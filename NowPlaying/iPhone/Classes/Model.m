@@ -109,6 +109,7 @@ static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSel
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NETFLIX_UPDATED_APPLICATION_KEYS           = @"netflixUpdatedApplicationKeys";
+static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                                  = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
@@ -153,6 +154,7 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID,
+&NOTIFICATIONS_DISABLED,
 &PRIORITIZE_BOOKMARKS,
 &RUN_COUNT,
 &SCORE_PROVIDER_INDEX,
@@ -201,6 +203,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &USE_NORMAL_FONTS,
 &NETFLIX_DISABLED,
 &NETFLIX_CAN_INSTANT_WATCH,
+&NOTIFICATIONS_DISABLED,
 &SCREEN_ROTATION_DISABLED,
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &DVD_BLURAY_DISABLED,
@@ -570,6 +573,16 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     }
 
     return self;
+}
+
+
+- (BOOL) notificationsEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATIONS_DISABLED];
+}
+
+
+- (void) setNotificationsEnabled:(BOOL) enabled {
+    [[NSUserDefaults standardUserDefaults] setBool:!enabled forKey:NOTIFICATIONS_DISABLED];
 }
 
 
