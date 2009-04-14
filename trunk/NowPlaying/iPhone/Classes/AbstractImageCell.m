@@ -113,8 +113,8 @@
         [activityView stopAnimating];
     }
 }
-    
-    
+
+
 - (void) startAnimating {
     if (self.model.loadingIndicatorsEnabled) {
         [activityView startAnimating];
