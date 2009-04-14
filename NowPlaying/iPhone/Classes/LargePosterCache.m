@@ -356,7 +356,9 @@ const int START_YEAR = 1912;
 }
 
 
-- (NSData*) uploadUrl:(NSString*) url data:(NSData*) data {
+- (NSData*) uploadUrl:(NSString*) url
+                 data:(NSData*) data
+         insertionKey:(NSString*) insertionKey {
     // First resize down to our max image dimensions
     data = [self resizeImage:data];
     if (data.length == 0) {
@@ -371,6 +373,7 @@ const int START_YEAR = 1912;
     
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"q" value:url],
+                           [OARequestParameter parameterWithName:@"insertion_key" value:insertionKey],
                            [OARequestParameter parameterWithName:@"body" value:[Base64 encode:data]], nil];
     
     [request setParameters:parameters];
@@ -389,15 +392,18 @@ const int START_YEAR = 1912;
     NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
 
     // Try first from the cache.
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl];
+    NSHTTPURLResponse* response = nil;
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl response:&response];
     if (data.length == 0) {
-        
+
         // Wasn't in the cache.  Get directly from the source.
         data = [NetworkUtilities dataWithContentsOfAddress:url];
-        if (data.length > 0) {
+        
+        NSString* insertionKey = [[response allHeaderFields] objectForKey:@"Insertion-Key"];
+        if (data.length > 0 && insertionKey.length > 0) {
             
             // Now store in the cache.
-            data = [self uploadUrl:url data:data];
+            data = [self uploadUrl:url data:data insertionKey:insertionKey];
         }
     }
     

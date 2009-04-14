@@ -25,7 +25,9 @@
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url;
 + (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address;
++ (NSData*) dataWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url;
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response;
 
