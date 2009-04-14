@@ -54,7 +54,7 @@ The compiler will read the files `src/foo.proto` and `src/bar/baz.proto` and pro
 
 Once you have generated the `.pb.h` and `.pb.m` files for the `.proto` file you care about, you can then add them to your project.  However, in order to build properly several changes must be made to your project.
 
-  # Download and unzip the latest `ProtocolBuffers-*.*.*.tar.gz` file in the download section.  Move the resultant directory to where your project is stored.
+  # Download and unzip the latest `ProtocolBuffers-*.*.*-Redistributable.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section.  Move the resultant directory to where your project is stored.
   # Open your existing project and a reference to either `libProtocolBuffers.a` (if you are building for OSX) or `libProtocolBuffers-iPhone.a` (if you are building for the iPhone).
   # Add a reference to `ProtocolBuffers.h` in your project and add the following line to your pch file: `#import "ProtocolBuffers.h"`
   # Compile and enjoy!
