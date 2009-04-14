@@ -24,7 +24,7 @@
 		7401C1BC0F950373006D8281 /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B80F94FDF900A0C422 /* UnknownFieldSetTest.m */; };
 		7401C1BD0F950373006D8281 /* UtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6BA0F94FDF900A0C422 /* UtilitiesTests.m */; };
 		7401C1BE0F950373006D8281 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6BC0F94FDF900A0C422 /* WireFormatTests.m */; };
-		7401C1C10F950386006D8281 /* libProtocolBuffersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */; };
+		7401C1C10F950386006D8281 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */; };
 		7401C1C30F950395006D8281 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C1C20F950395006D8281 /* SenTestingKit.framework */; };
 		7461B5360F94FB4600A0C422 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		7461B5390F94FB4E00A0C422 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4880F94F99000A0C422 /* AbstractFieldAccessor.m */; };
@@ -79,13 +79,13 @@
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffersLibrary;
+			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* ProtocolBuffersLibrary_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffersLibrary_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		7401C1A80F950347006D8281 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7401C1A90F950347006D8281 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		7401C1C20F950395006D8281 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -187,7 +187,7 @@
 		7461B4E60F94F99000A0C422 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		7461B4E70F94F99000A0C422 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
 		7461B4E80F94F99000A0C422 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
-		7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libProtocolBuffersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libProtocolBuffers.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7461B69A0F94FDF800A0C422 /* CodedInputStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodedInputStreamTests.h; path = Tests/CodedInputStreamTests.h; sourceTree = "<group>"; };
 		7461B69B0F94FDF800A0C422 /* CodedInputStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodedInputStreamTests.m; path = Tests/CodedInputStreamTests.m; sourceTree = "<group>"; };
 		7461B69C0F94FDF800A0C422 /* CodedOuputStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodedOuputStreamTests.h; path = Tests/CodedOuputStreamTests.h; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		7461B6BA0F94FDF900A0C422 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilitiesTests.m; path = Tests/UtilitiesTests.m; sourceTree = "<group>"; };
 		7461B6BB0F94FDF900A0C422 /* WireFormatTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WireFormatTests.h; path = Tests/WireFormatTests.h; sourceTree = "<group>"; };
 		7461B6BC0F94FDF900A0C422 /* WireFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WireFormatTests.m; path = Tests/WireFormatTests.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* ProtocolBuffersLibrary-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ProtocolBuffersLibrary-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* ProtocolBuffers-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ProtocolBuffers-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,7 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7401C1C10F950386006D8281 /* libProtocolBuffersLibrary.a in Frameworks */,
+				7401C1C10F950386006D8281 /* libProtocolBuffers.a in Frameworks */,
 				7401C1C30F950395006D8281 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +266,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */,
+				7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */,
 				7401C1A80F950347006D8281 /* UnitTests.octest */,
 			);
 			name = Products;
@@ -288,7 +288,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* ProtocolBuffersLibrary_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* ProtocolBuffers_Prefix.pch */,
 				7461B48D0F94F99000A0C422 /* Bootstrap.h */,
 				7461B4BB0F94F99000A0C422 /* ForwardDeclarations.h */,
 				7461B4CD0F94F99000A0C422 /* ProtocolBuffers.h */,
@@ -299,7 +299,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107310486CEB800E47090 /* ProtocolBuffersLibrary-Info.plist */,
+				8D1107310486CEB800E47090 /* ProtocolBuffers-Info.plist */,
 				7401C1A90F950347006D8281 /* UnitTests-Info.plist */,
 			);
 			name = Resources;
@@ -530,9 +530,9 @@
 			productReference = 7401C1A80F950347006D8281 /* UnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */ = {
+		7461B52D0F94FAF800A0C422 /* ProtocolBuffers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffersLibrary" */;
+			buildConfigurationList = 7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */;
 			buildPhases = (
 				7461B52A0F94FAF800A0C422 /* Headers */,
 				7461B52B0F94FAF800A0C422 /* Sources */,
@@ -542,9 +542,9 @@
 			);
 			dependencies = (
 			);
-			name = ProtocolBuffersLibrary;
-			productName = "ProtocolBuffersLibrary-iPhoneDevice";
-			productReference = 7461B52E0F94FAF800A0C422 /* libProtocolBuffersLibrary.a */;
+			name = ProtocolBuffers;
+			productName = "ProtocolBuffers-iPhoneDevice";
+			productReference = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -552,14 +552,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ProtocolBuffersLibrary" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ProtocolBuffers" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */,
+				7461B52D0F94FAF800A0C422 /* ProtocolBuffers */,
 				7401C1A70F950347006D8281 /* UnitTests */,
 			);
 		};
@@ -672,7 +672,7 @@
 /* Begin PBXTargetDependency section */
 		7401C1C00F950382006D8281 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7461B52D0F94FAF800A0C422 /* ProtocolBuffersLibrary */;
+			target = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
 			targetProxy = 7401C1BF0F950382006D8281 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -740,10 +740,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ProtocolBuffersLibrary_Prefix.pch;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PRODUCT_NAME = ProtocolBuffersLibrary;
+				PRODUCT_NAME = ProtocolBuffers;
 			};
 			name = Debug;
 		};
@@ -755,10 +755,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ProtocolBuffersLibrary_Prefix.pch;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PRODUCT_NAME = ProtocolBuffersLibrary;
+				PRODUCT_NAME = ProtocolBuffers;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -802,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffersLibrary" */ = {
+		7461B5330F94FAFD00A0C422 /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7461B52F0F94FAFA00A0C422 /* Debug */,
@@ -811,7 +811,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ProtocolBuffersLibrary" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ProtocolBuffers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
