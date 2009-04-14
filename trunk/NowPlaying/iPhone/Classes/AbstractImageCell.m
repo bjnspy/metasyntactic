@@ -15,8 +15,8 @@
 #import "AbstractImageCell.h"
 
 #import "ImageCache.h"
+#import "Model.h"
 #import "OperationQueue.h"
-
 
 
 @interface AbstractImageCell()
@@ -43,6 +43,11 @@
     self.titleLabel = nil;
 
     [super dealloc];
+}
+
+
+- (Model*) model {
+    return [Model model];
 }
 
 
@@ -100,6 +105,21 @@
 - (void) prioritizeImage {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
+    
+    
+- (void) prepareForReuse {
+    [super prepareForReuse];
+    if (!self.model.loadingIndicatorsEnabled) {
+        [activityView stopAnimating];
+    }
+}
+    
+    
+- (void) startAnimating {
+    if (self.model.loadingIndicatorsEnabled) {
+        [activityView startAnimating];
+    }
+}
 
 
 - (void) loadImage {
@@ -134,7 +154,7 @@
 
     switch (state) {
         case Loading: {
-            [activityView startAnimating];
+            [self startAnimating];
             imageView.image = nil;
             imageView.alpha = 0;
             return;
@@ -161,7 +181,7 @@
 
 
 - (void) clearImage {
-    [activityView startAnimating];
+    [self startAnimating];
 
     state = Loading;
     imageView.image = nil;

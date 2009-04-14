@@ -361,9 +361,11 @@ const NSInteger POSTER_TAG = -1;
         self.movie = movie_;
 
         // Only want to do this once.
-        self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
-        [posterActivityView startAnimating];
-        [posterActivityView sizeToFit];
+        if (self.model.loadingIndicatorsEnabled) {
+            self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
+            [posterActivityView startAnimating];
+            [posterActivityView sizeToFit];
+        }
 
         posterCount = -1;
     }
