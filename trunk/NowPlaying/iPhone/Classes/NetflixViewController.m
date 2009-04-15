@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "Controller.h"
+#import "CreditsViewController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -26,6 +27,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSearchViewController.h"
+#import "NetflixSettingsViewController.h"
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3
@@ -230,6 +232,7 @@ typedef enum {
 #ifndef IPHONE_OS_VERSION_3
             case SearchSection:
                 cell.text = NSLocalizedString(@"Search", nil);
+                cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
                 break;
 #endif
             case MostPopularSection:
@@ -238,34 +241,58 @@ typedef enum {
                 } else {
                     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
+                cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.image = [UIImage imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
                 cell.text = NSLocalizedString(@"Rental History", nil);
+                cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
                 cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
+                cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
         }
     } else {
         if (indexPath.row == 0) {
             cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
+            cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
+            cell.accessoryView = nil;
         } else if (indexPath.row == 1) {
             cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
+            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
+
+    if (cell.text.length == 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryView = nil;
+    }
+
+    NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
+    NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
+    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
+    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:selectedBackgroundName]] autorelease];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    cell.backgroundView = backgroundView;
+    cell.selectedBackgroundView = selectedBackgroundView;
 
     return cell;
 }
@@ -319,6 +346,18 @@ typedef enum {
 
 - (void) didSelectRecomendationsRow {
     NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+- (void) didSelectAboutSendFeedbackRow {
+    CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+- (void) didSelectSettingsRow {
+    NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

@@ -85,6 +85,7 @@ enum ViewControllerType {
 
 - (BOOL) scoresEnabled;
 
+- (BOOL) largePosterCacheEnabled;
 - (BOOL) dataProviderEnabled;
 - (BOOL) dvdBlurayEnabled;
 - (BOOL) upcomingEnabled;

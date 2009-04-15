@@ -609,6 +609,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (BOOL) largePosterCacheEnabled {
+    return self.userAddress.length > 0;
+}
+
+
 - (BOOL) dataProviderEnabled {
     return YES;
 }

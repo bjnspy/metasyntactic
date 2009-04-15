@@ -274,12 +274,12 @@ typedef enum {
             cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
             cell.accessoryView = nil;
-        } else if (indexPath.row == 1) {
-            cell.text = NSLocalizedString(@"Send Feedback", nil);
-            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
         } else if (indexPath.row == 0) {
             cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+        } else if (indexPath.row == 1) {
+            cell.text = NSLocalizedString(@"Send Feedback", nil);
+            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
         }
     }
 
@@ -287,7 +287,6 @@ typedef enum {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
-
 
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
     NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
@@ -407,13 +406,12 @@ typedef enum {
     } else {
         if (indexPath.row == 2) {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
-            [Application openBrowser:address];
-        } else if (indexPath.row == 1) {
-            CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            [self.abstractNavigationController pushBrowser:address animated:YES];
         } else if (indexPath.row == 0) {
             NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 1) {
+            [self didSelectAboutSendFeedbackRow];
         }
     }
 }

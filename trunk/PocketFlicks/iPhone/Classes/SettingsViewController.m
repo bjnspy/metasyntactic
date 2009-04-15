@@ -108,7 +108,7 @@ typedef enum {
     if (section == SendFeedbackSection) {
         return 1;
     } else if (section == StandardSettingsSection) {
-        return 8;
+        return 10;
     } else if (section == UpcomingSection) {
         return 1;
     } else if (section == DVDBluraySection) {
@@ -226,7 +226,7 @@ typedef enum {
         }
 
         return [self createSettingCellWithKey:key value:value placeholder:placeholder];
-    } else if (row >= 4 && row <= 7) {
+    } else if (row >= 4 && row <= 9) {
         NSString* text;
         BOOL on;
         SEL selector;
@@ -246,6 +246,14 @@ typedef enum {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
+        } else if (row == 8) {
+            text = NSLocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it");
+            on = self.model.notificationsEnabled;
+            selector = @selector(onShowNotificationsChanged:);
+        } else if (row == 9) {
+            text = NSLocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it");
+            on = self.model.loadingIndicatorsEnabled;
+            selector = @selector(onLoadingIndicatorsChanged:);
         }
 
         return [self createSwitchCellWithText:text on:on selector:selector];
@@ -342,6 +350,16 @@ typedef enum {
 
 - (void) onScreenRotationEnabledChanged:(UISwitch*) sender {
     [self.model setScreenRotationEnabled:sender.on];
+}
+
+
+- (void) onShowNotificationsChanged:(UISwitch*) sender {
+    [self.model setNotificationsEnabled:sender.on];
+}
+
+
+- (void) onLoadingIndicatorsChanged:(UISwitch*) sender {
+    [self.model setLoadingIndicatorsEnabled:sender.on];
 }
 
 
