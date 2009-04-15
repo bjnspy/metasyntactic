@@ -26,8 +26,8 @@ You use that code like this to produce raw protobuf data from a message:
 
 {{{
 Person* person = [[[[[Person builder] setId:123]
-                                                           setName:@"Bob"]
-                                                           setEmail:@"bob@example.com"] build];
+                                    setName:@"Bob"]
+                                   setEmail:@"bob@example.com"] build];
 NSData* data = [person data];
 }}}
 
