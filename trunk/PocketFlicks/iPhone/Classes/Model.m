@@ -614,39 +614,49 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (BOOL) helpCacheEnabled {
+    return self.userAddress.length > 0;
+}
+
+
+- (BOOL) internationalDataCacheEnabled {
+    return self.userAddress.length > 0;
+}
+
+
 - (BOOL) dataProviderEnabled {
-    return NO;
+    return self.userAddress.length > 0;
 }
 
 
-- (BOOL) scoresEnabled {
-    return NO;
+- (BOOL) scoreCacheEnabled {
+    return self.userAddress.length > 0;
 }
 
 
-- (BOOL) dvdBlurayEnabled {
-    return NO;
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
+- (BOOL) dvdBlurayCacheEnabled {
+    return self.userAddress.length > 0 &&
+           ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
 }
 
 
-- (void) setDvdBlurayEnabled:(BOOL) value {
+- (void) setDvdBlurayCacheEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_BLURAY_DISABLED];
 }
 
 
-- (BOOL) upcomingEnabled {
-    return NO;
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
+- (BOOL) upcomingCacheEnabled {
+    return self.userAddress.length > 0 &&
+           ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
 }
 
 
-- (void) setUpcomingEnabled:(BOOL) value {
+- (void) setUpcomingCacheEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_DISABLED];
 }
 
 
-- (BOOL) netflixEnabled {
+- (BOOL) netflixCacheEnabled {
     return YES;
     NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_DISABLED];
     if (value == nil) {
@@ -657,7 +667,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (void) setNetflixEnabled:(BOOL) value {
+- (void) setNetflixCacheEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
 
     if (!value) {
@@ -739,7 +749,6 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSInteger) scoreProviderIndex {
-    return 3;
     if (self.cachedScoreProviderIndex == -1) {
         self.cachedScoreProviderIndex = [self scoreProviderIndexWorker];
     }

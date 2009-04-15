@@ -271,7 +271,7 @@ static Controller* controller = nil;
 
 
 - (void) setDvdBlurayEnabled:(BOOL) value {
-    [self.model setDvdBlurayEnabled:value];
+    [self.model setDvdBlurayCacheEnabled:value];
     [[AppDelegate appDelegate].tabBarController resetTabs];
     [self updateDVDCache];
 }
@@ -290,14 +290,14 @@ static Controller* controller = nil;
 
 
 - (void) setUpcomingEnabled:(BOOL) value {
-    [self.model setUpcomingEnabled:value];
+    [self.model setUpcomingCacheEnabled:value];
     [[AppDelegate appDelegate].tabBarController resetTabs];
     [self updateUpcomingCache];
 }
 
 
 - (void) setNetflixEnabled:(BOOL) value {
-    [self.model setNetflixEnabled:value];
+    [self.model setNetflixCacheEnabled:value];
     [[AppDelegate appDelegate].tabBarController resetTabs];
     [Application resetNetflixDirectories];
     [self updateNetflixCache];

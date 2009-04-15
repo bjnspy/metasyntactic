@@ -200,7 +200,7 @@
             [LocaleUtilities englishCountry],
             [LocaleUtilities englishLanguage]];
 
-    if (self.model.netflixEnabled && self.model.netflixUserId.length > 0) {
+    if (self.model.netflixCacheEnabled && self.model.netflixUserId.length > 0) {
         body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
                 [StringUtilities nonNilString:self.model.netflixUserId],
                 [StringUtilities nonNilString:self.model.netflixKey],
