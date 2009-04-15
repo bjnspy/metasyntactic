@@ -206,13 +206,13 @@
 
     [controllers addObject:[self moviesNavigationController]];
     [controllers addObject:[self theatersNavigationController]];
-    if (self.model.upcomingEnabled) {
+    if (self.model.upcomingCacheEnabled) {
         [controllers addObject:[self upcomingMoviesNavigationController]];
     }
-    if (self.model.dvdBlurayEnabled) {
+    if (self.model.dvdBlurayCacheEnabled) {
         [controllers addObject:[self dvdNavigationController]];
     }
-    if (self.model.netflixEnabled) {
+    if (self.model.netflixCacheEnabled) {
         [controllers addObject:[self netflixNavigationController]];
     }
 

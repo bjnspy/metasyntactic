@@ -50,7 +50,7 @@
 
 
 - (void) update {
-    if (self.model.userAddress.length == 0) {
+    if (!self.model.helpCacheEnabled) {
         return;
     }
 

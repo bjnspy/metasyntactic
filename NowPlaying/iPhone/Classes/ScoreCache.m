@@ -131,11 +131,7 @@
 
 
 - (void) update {
-    if (self.model.userAddress.length == 0) {
-        return;
-    }
-
-    if (!self.model.scoresEnabled) {
+    if (!self.model.scoreCacheEnabled) {
         return;
     }
 

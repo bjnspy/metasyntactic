@@ -83,16 +83,19 @@ enum ViewControllerType {
 - (BOOL) screenRotationEnabled;
 - (void) setScreenRotationEnabled:(BOOL) value;
 
-- (BOOL) scoresEnabled;
-
-- (BOOL) largePosterCacheEnabled;
 - (BOOL) dataProviderEnabled;
-- (BOOL) dvdBlurayEnabled;
-- (BOOL) upcomingEnabled;
-- (BOOL) netflixEnabled;
-- (void) setDvdBlurayEnabled:(BOOL) value;
-- (void) setUpcomingEnabled:(BOOL) value;
-- (void) setNetflixEnabled:(BOOL) value;
+
+- (BOOL) scoreCacheEnabled;
+- (BOOL) helpCacheEnabled;
+- (BOOL) internationalDataCacheEnabled;
+- (BOOL) largePosterCacheEnabled;
+- (BOOL) dvdBlurayCacheEnabled;
+- (BOOL) upcomingCacheEnabled;
+- (BOOL) netflixCacheEnabled;
+
+- (void) setDvdBlurayCacheEnabled:(BOOL) value;
+- (void) setUpcomingCacheEnabled:(BOOL) value;
+- (void) setNetflixCacheEnabled:(BOOL) value;
 
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;

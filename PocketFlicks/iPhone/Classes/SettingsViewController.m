@@ -112,7 +112,7 @@ typedef enum {
     } else if (section == UpcomingSection) {
         return 1;
     } else if (section == DVDBluraySection) {
-        if (self.model.dvdBlurayEnabled) {
+        if (self.model.dvdBlurayCacheEnabled) {
             return 2;
         } else {
             return 1;
@@ -265,7 +265,7 @@ typedef enum {
 
 - (UITableViewCell*) cellForUpcomingRow:(NSInteger) row {
     return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
-                                       on:self.model.upcomingEnabled
+                                       on:self.model.upcomingCacheEnabled
                                  selector:@selector(onUpcomingEnabledChanged:)];
 }
 
@@ -273,10 +273,10 @@ typedef enum {
 - (UITableViewCell*) cellForDvdBlurayRow:(NSInteger) row {
     if (row == 0) {
         return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
-                                           on:self.model.dvdBlurayEnabled
+                                           on:self.model.dvdBlurayCacheEnabled
                                      selector:@selector(onDvdBlurayEnabledChanged:)];
     } else {
-        NSString* key = NSLocalizedString(@"Show", nil);;
+        NSString* key = NSLocalizedString(@"Show", nil);
         NSString* value = @"";
 
         if (self.model.dvdMoviesShowBoth) {
@@ -296,7 +296,7 @@ typedef enum {
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
     return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
-                                       on:self.model.netflixEnabled
+                                       on:self.model.netflixCacheEnabled
                                  selector:@selector(onNetflixEnabledChanged:)];
 }
 
