@@ -96,6 +96,7 @@ static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX          = @"dvdMoviesSelecte
 static NSString* FAVORITE_THEATERS                          = @"favoriteTheaters";
 static NSString* FIRST_LAUNCH_DATE                          = @"firstLaunchDate";
 static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST             = @"hasShownWriteReviewRequest";
+static NSString* LOADING_INDIACTORS_DISABLED                = @"loadingIndicatorsDisabled";
 static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelectedScopeButtonIndex";
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                    = @"navigationStackValues";
@@ -109,6 +110,7 @@ static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSel
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NETFLIX_UPDATED_APPLICATION_KEYS           = @"netflixUpdatedApplicationKeys";
+static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                                  = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
@@ -141,6 +143,7 @@ static NSString** ALL_KEYS[] = {
 &FAVORITE_THEATERS,
 &FIRST_LAUNCH_DATE,
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
+&LOADING_INDIACTORS_DISABLED,
 &LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &NAVIGATION_STACK_TYPES,
 &NAVIGATION_STACK_VALUES,
@@ -153,6 +156,7 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID,
+&NOTIFICATIONS_DISABLED,
 &PRIORITIZE_BOOKMARKS,
 &RUN_COUNT,
 &SCORE_PROVIDER_INDEX,
@@ -199,8 +203,10 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &UPCOMING_AND_DVD_HIDE_UPCOMING,
 &PRIORITIZE_BOOKMARKS,
 &USE_NORMAL_FONTS,
+&LOADING_INDIACTORS_DISABLED,
 &NETFLIX_DISABLED,
 &NETFLIX_CAN_INSTANT_WATCH,
+&NOTIFICATIONS_DISABLED,
 &SCREEN_ROTATION_DISABLED,
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &DVD_BLURAY_DISABLED,
@@ -573,13 +579,33 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (BOOL) loadingIndicatorsEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:LOADING_INDIACTORS_DISABLED];
+}
+
+
+- (void) setLoadingIndicatorsEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:LOADING_INDIACTORS_DISABLED];
+}
+
+
+- (BOOL) notificationsEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATIONS_DISABLED];
+}
+
+
+- (void) setNotificationsEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NOTIFICATIONS_DISABLED];
+}
+
+
 - (BOOL) screenRotationEnabled {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:SCREEN_ROTATION_DISABLED];
 }
 
 
-- (void) setScreenRotationEnabled:(BOOL) enabled {
-    [[NSUserDefaults standardUserDefaults] setBool:!enabled forKey:SCREEN_ROTATION_DISABLED];
+- (void) setScreenRotationEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:SCREEN_ROTATION_DISABLED];
 }
 
 
@@ -1727,7 +1753,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (void) saveNavigationStack:(UINavigationController*) controller {
-    return;
     NSMutableArray* types = [NSMutableArray array];
     NSMutableArray* values = [NSMutableArray array];
 
