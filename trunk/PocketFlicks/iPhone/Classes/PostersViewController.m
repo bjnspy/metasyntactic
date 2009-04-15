@@ -253,17 +253,20 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    if (scrollView.dragging || scrollView.decelerating) {
+    if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
         // should this be 'afterDelay:0'?  That way we do it on the next run
         // loop cycle (which should happen after dragging/decelerating is done).
         // 1/30/09. Right now, i'm going with 'no'.  I'm not totally certain if this
         // won't call back into us immediately, and i don't want to peg the CPU
         // while dragging.  Waiting a sec is safer.
-        [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
+        [self performSelector:@selector(addImageToView:)
+                   withObject:arguments
+                   afterDelay:LOAD_DELAY];
         return;
     }
 
-    [self addImage:[arguments objectAtIndex:1] toView:[arguments objectAtIndex:2]];
+    [self addImage:[arguments objectAtIndex:1]
+            toView:[arguments objectAtIndex:2]];
 }
 
 
@@ -318,7 +321,7 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    if (scrollView.dragging || scrollView.decelerating) {
+    if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
         return;
     }
