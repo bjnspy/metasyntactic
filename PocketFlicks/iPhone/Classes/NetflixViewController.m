@@ -112,6 +112,7 @@ typedef enum {
 - (void) initializeSearchDisplay {
 #ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
+    searchBar.tintColor = [ColorCache netflixYellow];
     [searchBar sizeToFit];
 
     self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
