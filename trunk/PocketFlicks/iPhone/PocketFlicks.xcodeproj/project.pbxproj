@@ -289,6 +289,362 @@
 		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
 		74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
 		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
+		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		74E1480E0F95949500FB7BDA /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
+		74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
+		74E148100F95949500FB7BDA /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA40E6BC98800075068 /* CurrentPosition.png */; };
+		74E148110F95949500FB7BDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
+		74E148120F95949500FB7BDA /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA60E6BC98800075068 /* DownArrow.png */; };
+		74E148130F95949500FB7BDA /* Empty Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA70E6BC98800075068 /* Empty Star.png */; };
+		74E148140F95949500FB7BDA /* FandangoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA80E6BC98800075068 /* FandangoLogo.png */; };
+		74E148150F95949500FB7BDA /* Filled Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA90E6BC98800075068 /* Filled Star.png */; };
+		74E148160F95949500FB7BDA /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAA0E6BC98800075068 /* Fresh.png */; };
+		74E148170F95949500FB7BDA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAB0E6BC98800075068 /* Icon.png */; };
+		74E148180F95949500FB7BDA /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAC0E6BC98800075068 /* ImageNotAvailable.png */; };
+		74E148190F95949500FB7BDA /* MetacriticLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAD0E6BC98800075068 /* MetacriticLogo.png */; };
+		74E1481A0F95949500FB7BDA /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAE0E6BC98800075068 /* More.png */; };
+		74E1481B0F95949500FB7BDA /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAF0E6BC98800075068 /* Movies.png */; };
+		74E1481C0F95949500FB7BDA /* NeutralSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB00E6BC98800075068 /* NeutralSquare.png */; };
+		74E1481D0F95949500FB7BDA /* Numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB10E6BC98800075068 /* Numbers.png */; };
+		74E1481E0F95949500FB7BDA /* Rating-Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB20E6BC98800075068 /* Rating-Blue.png */; };
+		74E1481F0F95949500FB7BDA /* Rating-Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB30E6BC98800075068 /* Rating-Green.png */; };
+		74E148200F95949500FB7BDA /* Rating-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB40E6BC98800075068 /* Rating-Red.png */; };
+		74E148210F95949500FB7BDA /* Rating-Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB50E6BC98800075068 /* Rating-Unknown.png */; };
+		74E148220F95949500FB7BDA /* Rating-Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB60E6BC98800075068 /* Rating-Yellow.png */; };
+		74E148230F95949500FB7BDA /* Rotten-Faded.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB70E6BC98800075068 /* Rotten-Faded.png */; };
+		74E148240F95949500FB7BDA /* Rotten-Full.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB80E6BC98800075068 /* Rotten-Full.png */; };
+		74E148250F95949500FB7BDA /* RottenTomatoesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB90E6BC98800075068 /* RottenTomatoesLogo.png */; };
+		74E148260F95949500FB7BDA /* Spinner0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBA0E6BC98800075068 /* Spinner0.png */; };
+		74E148270F95949500FB7BDA /* Spinner1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBB0E6BC98800075068 /* Spinner1.png */; };
+		74E148280F95949500FB7BDA /* Spinner2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBC0E6BC98800075068 /* Spinner2.png */; };
+		74E148290F95949500FB7BDA /* Spinner3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBD0E6BC98800075068 /* Spinner3.png */; };
+		74E1482A0F95949500FB7BDA /* Spinner4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBE0E6BC98800075068 /* Spinner4.png */; };
+		74E1482B0F95949500FB7BDA /* Spinner5.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBF0E6BC98800075068 /* Spinner5.png */; };
+		74E1482C0F95949500FB7BDA /* Spinner6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC00E6BC98800075068 /* Spinner6.png */; };
+		74E1482D0F95949500FB7BDA /* Spinner7.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC10E6BC98800075068 /* Spinner7.png */; };
+		74E1482E0F95949500FB7BDA /* Spinner8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC20E6BC98800075068 /* Spinner8.png */; };
+		74E1482F0F95949500FB7BDA /* Spinner9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC30E6BC98800075068 /* Spinner9.png */; };
+		74E148300F95949500FB7BDA /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC40E6BC98800075068 /* Theaters.png */; };
+		74E148310F95949500FB7BDA /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC50E6BC98800075068 /* TryntLogo.png */; };
+		74E148320F95949500FB7BDA /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC60E6BC98800075068 /* UpArrow.png */; };
+		74E148330F95949500FB7BDA /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC70E6BC98800075068 /* Upcoming.png */; };
+		74E148340F95949500FB7BDA /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC80E6BC98800075068 /* Warning-16x16.png */; };
+		74E148350F95949500FB7BDA /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC90E6BC98800075068 /* YahooLogo.png */; };
+		74E148360F95949500FB7BDA /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
+		74E148370F95949500FB7BDA /* DownDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */; };
+		74E148380F95949500FB7BDA /* RightDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */; };
+		74E148390F95949500FB7BDA /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
+		74E1483A0F95949500FB7BDA /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 741373F20E89CF1B00CF4900 /* Search.png */; };
+		74E1483B0F95949500FB7BDA /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = 747AB7A60EB956B2002438D0 /* DVD.png */; };
+		74E1483C0F95949500FB7BDA /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
+		74E1483D0F95949500FB7BDA /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD00EC391A0008C661D /* LeftArrow.png */; };
+		74E1483E0F95949500FB7BDA /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD10EC391A0008C661D /* RightArrow.png */; };
+		74E1483F0F95949500FB7BDA /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
+		74E148400F95949500FB7BDA /* ImageLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 747412900EC7C0B500625001 /* ImageLoading.png */; };
+		74E148410F95949500FB7BDA /* BlackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC959C0EE5C610004E044E /* BlackButton.png */; };
+		74E148420F95949500FB7BDA /* FlipUp-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC99030EE5F874004E044E /* FlipUp-Normal.png */; };
+		74E148430F95949500FB7BDA /* FlipUp-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC99040EE5F874004E044E /* FlipUp-Selected.png */; };
+		74E148440F95949500FB7BDA /* FlipUp-Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC993D0EE5FCFA004E044E /* FlipUp-Highlighted.png */; };
+		74E148450F95949500FB7BDA /* Bookmark-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37570EE99B4500636D8E /* Bookmark-Active.png */; };
+		74E148460F95949500FB7BDA /* Bookmark-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37580EE99B4500636D8E /* Bookmark-Inactive.png */; };
+		74E148470F95949500FB7BDA /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */; };
+		74E148480F95949500FB7BDA /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */; };
+		74E148490F95949500FB7BDA /* NetflixBrowse.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2010EFA0D7A000490CA /* NetflixBrowse.png */; };
+		74E1484A0F95949500FB7BDA /* NetflixCellBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */; };
+		74E1484B0F95949500FB7BDA /* NetflixCellBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */; };
+		74E1484C0F95949500FB7BDA /* NetflixCellBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20D0EFA0D7A000490CA /* NetflixCellBackground-2.png */; };
+		74E1484D0F95949500FB7BDA /* NetflixCellBackground-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20E0EFA0D7A000490CA /* NetflixCellBackground-3.png */; };
+		74E1484E0F95949500FB7BDA /* NetflixCellBackground-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20F0EFA0D7A000490CA /* NetflixCellBackground-4.png */; };
+		74E1484F0F95949500FB7BDA /* NetflixCellBackground-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2100EFA0D7A000490CA /* NetflixCellBackground-5.png */; };
+		74E148500F95949500FB7BDA /* NetflixCellBackground-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2110EFA0D7A000490CA /* NetflixCellBackground-6.png */; };
+		74E148510F95949500FB7BDA /* NetflixCellBackground-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2120EFA0D7A000490CA /* NetflixCellBackground-7.png */; };
+		74E148520F95949500FB7BDA /* NetflixCellBackground-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2130EFA0D7A000490CA /* NetflixCellBackground-8.png */; };
+		74E148530F95949500FB7BDA /* NetflixChevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2140EFA0D7A000490CA /* NetflixChevron.png */; };
+		74E148540F95949500FB7BDA /* NetflixDVDQueue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2150EFA0D7A000490CA /* NetflixDVDQueue.png */; };
+		74E148550F95949500FB7BDA /* NetflixHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2160EFA0D7A000490CA /* NetflixHistory.png */; };
+		74E148560F95949500FB7BDA /* NetflixHome.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2170EFA0D7A000490CA /* NetflixHome.png */; };
+		74E148570F95949500FB7BDA /* NetflixInstantQueue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2180EFA0D7A000490CA /* NetflixInstantQueue.png */; };
+		74E148580F95949500FB7BDA /* NetflixLogOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2190EFA0D7A000490CA /* NetflixLogOff.png */; };
+		74E148590F95949500FB7BDA /* NetflixRecommendations.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21A0EFA0D7A000490CA /* NetflixRecommendations.png */; };
+		74E1485A0F95949500FB7BDA /* NetflixSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21B0EFA0D7A000490CA /* NetflixSearch.png */; };
+		74E1485B0F95949500FB7BDA /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
+		74E1485C0F95949500FB7BDA /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
+		74E1485D0F95949500FB7BDA /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
+		74E1485E0F95949500FB7BDA /* NetflixCellSelectedBackground-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A980EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png */; };
+		74E1485F0F95949500FB7BDA /* NetflixCellSelectedBackground-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A990EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png */; };
+		74E148600F95949500FB7BDA /* NetflixCellSelectedBackground-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9A0EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png */; };
+		74E148610F95949500FB7BDA /* NetflixCellSelectedBackground-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */; };
+		74E148620F95949500FB7BDA /* NetflixCellSelectedBackground-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */; };
+		74E148630F95949500FB7BDA /* NetflixCellSelectedBackground-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */; };
+		74E148640F95949500FB7BDA /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
+		74E148650F95949500FB7BDA /* RedStar-0.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */; };
+		74E148660F95949500FB7BDA /* RedStar-0.4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */; };
+		74E148670F95949500FB7BDA /* RedStar-0.6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */; };
+		74E148680F95949500FB7BDA /* RedStar-0.8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */; };
+		74E148690F95949500FB7BDA /* RedStar-1.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */; };
+		74E1486A0F95949500FB7BDA /* ClearRating.png in Resources */ = {isa = PBXBuildFile; fileRef = 741648DB0EFC5D15000EC7B5 /* ClearRating.png */; };
+		74E1486B0F95949500FB7BDA /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
+		74E1486C0F95949500FB7BDA /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
+		74E1486D0F95949500FB7BDA /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
+		74E1486E0F95949500FB7BDA /* NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 741EFEEB0F0F214C002FD93B /* NetflixCredits.png */; };
+		74E1486F0F95949500FB7BDA /* NetflixMostPopular.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406A6ED0F101DF400795555 /* NetflixMostPopular.png */; };
+		74E148700F95949500FB7BDA /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F427D50F1FC69D002EECC5 /* DeleteMovie.png */; };
+		74E148710F95949500FB7BDA /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA3370F43769F000DC92A /* DeliveredByNetflix.png */; };
+		74E148730F95949500FB7BDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		74E148740F95949500FB7BDA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
+		74E148750F95949500FB7BDA /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
+		74E148760F95949500FB7BDA /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
+		74E148770F95949500FB7BDA /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
+		74E148780F95949500FB7BDA /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
+		74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
+		74E1487A0F95949500FB7BDA /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
+		74E1487B0F95949500FB7BDA /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
+		74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
+		74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
+		74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
+		74E1487F0F95949500FB7BDA /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
+		74E148800F95949500FB7BDA /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
+		74E148810F95949500FB7BDA /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
+		74E148820F95949500FB7BDA /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
+		74E148830F95949500FB7BDA /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
+		74E148840F95949500FB7BDA /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
+		74E148850F95949500FB7BDA /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
+		74E148860F95949500FB7BDA /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
+		74E148870F95949500FB7BDA /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
+		74E148880F95949500FB7BDA /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
+		74E148890F95949500FB7BDA /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
+		74E1488A0F95949500FB7BDA /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
+		74E1488B0F95949500FB7BDA /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
+		74E1488C0F95949500FB7BDA /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
+		74E1488D0F95949500FB7BDA /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
+		74E1488E0F95949500FB7BDA /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
+		74E1488F0F95949500FB7BDA /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
+		74E148900F95949500FB7BDA /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7410D7400EC2C0740079BF1E /* LargePosterCache.m */; };
+		74E148910F95949500FB7BDA /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
+		74E148920F95949500FB7BDA /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
+		74E148930F95949500FB7BDA /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
+		74E148940F95949500FB7BDA /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
+		74E148950F95949500FB7BDA /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
+		74E148960F95949500FB7BDA /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
+		74E148970F95949500FB7BDA /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
+		74E148980F95949500FB7BDA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
+		74E148990F95949500FB7BDA /* NetflixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */; };
+		74E1489A0F95949500FB7BDA /* NetflixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */; };
+		74E1489B0F95949500FB7BDA /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EE8A0EF57C1100058CDD /* NetflixCache.m */; };
+		74E1489C0F95949500FB7BDA /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFD10EF5935700058CDD /* Feed.m */; };
+		74E1489D0F95949500FB7BDA /* NetflixFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */; };
+		74E1489E0F95949500FB7BDA /* NetflixQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */; };
+		74E1489F0F95949500FB7BDA /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
+		74E148A00F95949500FB7BDA /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
+		74E148A10F95949500FB7BDA /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
+		74E148A20F95949500FB7BDA /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
+		74E148A30F95949500FB7BDA /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
+		74E148A40F95949500FB7BDA /* NetflixRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */; };
+		74E148A50F95949500FB7BDA /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
+		74E148A60F95949500FB7BDA /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
+		74E148A70F95949500FB7BDA /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
+		74E148A80F95949500FB7BDA /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E530F034C4100E5450A /* MutableNetflixCache.m */; };
+		74E148A90F95949500FB7BDA /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
+		74E148AA0F95949500FB7BDA /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
+		74E148AB0F95949500FB7BDA /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */; };
+		74E148AC0F95949500FB7BDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7630F104C2200795555 /* AppDelegate.m */; };
+		74E148AD0F95949500FB7BDA /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7650F104C2200795555 /* Controller.m */; };
+		74E148AE0F95949500FB7BDA /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7670F104C2200795555 /* Model.m */; };
+		74E148AF0F95949500FB7BDA /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */; };
+		74E148B00F95949500FB7BDA /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */; };
+		74E148B10F95949500FB7BDA /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C9C0F15D2A80004B610 /* xmlparse.c */; };
+		74E148B20F95949500FB7BDA /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C9D0F15D2A80004B610 /* xmlrole.c */; };
+		74E148B30F95949500FB7BDA /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C9F0F15D2A80004B610 /* xmltok.c */; };
+		74E148B40F95949500FB7BDA /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616CA10F15D2A80004B610 /* xmltok_impl.c */; };
+		74E148B50F95949500FB7BDA /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616CA30F15D2A80004B610 /* xmltok_ns.c */; };
+		74E148B60F95949500FB7BDA /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CA60F15D2A80004B610 /* NSMutableURLRequest+Parameters.m */; };
+		74E148B70F95949500FB7BDA /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CA80F15D2A80004B610 /* NSString+URLEncoding.m */; };
+		74E148B80F95949500FB7BDA /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CAA0F15D2A80004B610 /* NSURL+Base.m */; };
+		74E148B90F95949500FB7BDA /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CAC0F15D2A80004B610 /* OAConsumer.m */; };
+		74E148BA0F95949500FB7BDA /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CAE0F15D2A80004B610 /* OADataFetcher.m */; };
+		74E148BB0F95949500FB7BDA /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CB00F15D2A80004B610 /* OAHMAC_SHA1SignatureProvider.m */; };
+		74E148BC0F95949500FB7BDA /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CB20F15D2A80004B610 /* OAMutableURLRequest.m */; };
+		74E148BD0F95949500FB7BDA /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CB40F15D2A80004B610 /* OAPlaintextSignatureProvider.m */; };
+		74E148BE0F95949500FB7BDA /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CB60F15D2A80004B610 /* OARequestParameter.m */; };
+		74E148BF0F95949500FB7BDA /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CB80F15D2A80004B610 /* OAServiceTicket.m */; };
+		74E148C00F95949500FB7BDA /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CBB0F15D2A80004B610 /* OAToken.m */; };
+		74E148C10F95949500FB7BDA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616CCF0F15D2C40004B610 /* Base64.m */; };
+		74E148C20F95949500FB7BDA /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D6F0F15D4460004B610 /* StringUtilities.m */; };
+		74E148C30F95949500FB7BDA /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D7E0F15D8260004B610 /* DifferenceEngine.m */; };
+		74E148C40F95949500FB7BDA /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D910F15D8B80004B610 /* Invocation.m */; };
+		74E148C50F95949500FB7BDA /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D930F15D8B80004B610 /* Invocation2.m */; };
+		74E148C60F95949500FB7BDA /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D950F15D8B80004B610 /* MainThreadGate.m */; };
+		74E148C70F95949500FB7BDA /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D970F15D8B80004B610 /* PriorityMutex.m */; };
+		74E148C80F95949500FB7BDA /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DCB0F15D9BA0004B610 /* IdentityObject.m */; };
+		74E148C90F95949500FB7BDA /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DCD0F15D9BA0004B610 /* IdentitySet.m */; };
+		74E148CA0F95949500FB7BDA /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DD30F15D9BA0004B610 /* MultiDictionary.m */; };
+		74E148CB0F95949500FB7BDA /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DD50F15D9BA0004B610 /* PointerSet.m */; };
+		74E148CC0F95949500FB7BDA /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E140F15DB2F0004B610 /* XmlDocument.m */; };
+		74E148CD0F95949500FB7BDA /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E160F15DB2F0004B610 /* XmlElement.m */; };
+		74E148CE0F95949500FB7BDA /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E180F15DB2F0004B610 /* XmlParser.m */; };
+		74E148CF0F95949500FB7BDA /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E1A0F15DB2F0004B610 /* XmlSerializer.m */; };
+		74E148D00F95949500FB7BDA /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EA70F15DDBB0004B610 /* ViewControllerUtilities.m */; };
+		74E148D10F95949500FB7BDA /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EAA0F15DDDF0004B610 /* AlertUtilities.m */; };
+		74E148D20F95949500FB7BDA /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EAC0F15DDDF0004B610 /* DateUtilities.m */; };
+		74E148D30F95949500FB7BDA /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EAE0F15DDDF0004B610 /* FileUtilities.m */; };
+		74E148D40F95949500FB7BDA /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB00F15DDDF0004B610 /* ImageUtilities.m */; };
+		74E148D50F95949500FB7BDA /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB20F15DDDF0004B610 /* LocaleUtilities.m */; };
+		74E148D60F95949500FB7BDA /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB40F15DDDF0004B610 /* NetworkUtilities.m */; };
+		74E148D70F95949500FB7BDA /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB60F15DDDF0004B610 /* Pulser.m */; };
+		74E148D80F95949500FB7BDA /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */; };
+		74E148D90F95949500FB7BDA /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4292C0F200E60002EECC5 /* Status.m */; };
+		74E148DA0F95949500FB7BDA /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 740102410F26F15800258353 /* NSMutableArray+Utilities.m */; };
+		74E148DB0F95949500FB7BDA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FE510F2A5D7F00D71F36 /* Person.m */; };
+		74E148DC0F95949500FB7BDA /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FEF70F2A66DF00D71F36 /* PersonCell.m */; };
+		74E148DD0F95949500FB7BDA /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */; };
+		74E148DE0F95949500FB7BDA /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */; };
+		74E148DF0F95949500FB7BDA /* AbstractMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7497B0BB0F632483002595EF /* AbstractMovieCache.m */; };
+		74E148E00F95949500FB7BDA /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1490F7940F3008680B2 /* Operation.m */; };
+		74E148E10F95949500FB7BDA /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA14B0F7940F3008680B2 /* Operation1.m */; };
+		74E148E20F95949500FB7BDA /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA14D0F7940F3008680B2 /* Operation2.m */; };
+		74E148E30F95949500FB7BDA /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA14F0F7940F3008680B2 /* OperationQueue.m */; };
+		74E148E40F95949500FB7BDA /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1D50F7943B5008680B2 /* NotificationCenter.m */; };
+		74E148E50F95949500FB7BDA /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA2160F794438008680B2 /* MutableMultiDictionary.m */; };
+		74E148E60F95949500FB7BDA /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912940F7F559900832767 /* CacheUpdater.m */; };
+		74E148E70F95949500FB7BDA /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912C00F7F57BB00832767 /* UITableViewCell+Utilities.m */; };
+		74E148E80F95949500FB7BDA /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915030F7FF88F00832767 /* AbstractDVDBlurayCache.m */; };
+		74E148E90F95949500FB7BDA /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915050F7FF88F00832767 /* BlurayCache.m */; };
+		74E148EA0F95949500FB7BDA /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915070F7FF88F00832767 /* DVDCache.m */; };
+		74E148EB0F95949500FB7BDA /* AbstractScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9150F0F7FF92A00832767 /* AbstractScoreProvider.m */; };
+		74E148EC0F95949500FB7BDA /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915110F7FF92A00832767 /* GoogleScoreProvider.m */; };
+		74E148ED0F95949500FB7BDA /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915130F7FF92A00832767 /* MetacriticScoreProvider.m */; };
+		74E148EE0F95949500FB7BDA /* NoneScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915150F7FF92A00832767 /* NoneScoreProvider.m */; };
+		74E148EF0F95949500FB7BDA /* RottenTomatoesScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915170F7FF92A00832767 /* RottenTomatoesScoreProvider.m */; };
+		74E148F00F95949500FB7BDA /* ScoreCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915190F7FF92A00832767 /* ScoreCache.m */; };
+		74E148F10F95949500FB7BDA /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915460F7FF99100832767 /* Score.m */; };
+		74E148F20F95949500FB7BDA /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915490F7FF9D200832767 /* UpcomingCache.m */; };
+		74E148F30F95949500FB7BDA /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915530F7FFA0200832767 /* DVD.m */; };
+		74E148F40F95949500FB7BDA /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9155B0F7FFA2600832767 /* Review.m */; };
+		74E148F50F95949500FB7BDA /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9156D0F7FFA9400832767 /* Location.m */; };
+		74E148F60F95949500FB7BDA /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915700F7FFAB300832767 /* LocationCache.m */; };
+		74E148F70F95949500FB7BDA /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915720F7FFAB300832767 /* UserLocationCache.m */; };
+		74E148F80F95949500FB7BDA /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915810F7FFB7A00832767 /* AbstractDataProvider.m */; };
+		74E148F90F95949500FB7BDA /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915830F7FFB7A00832767 /* DataProvider.m */; };
+		74E148FA0F95949500FB7BDA /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915860F7FFB7A00832767 /* GoogleDataProvider.m */; };
+		74E148FB0F95949500FB7BDA /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915880F7FFB7A00832767 /* LookupRequest.m */; };
+		74E148FC0F95949500FB7BDA /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9158A0F7FFB7A00832767 /* LookupResult.m */; };
+		74E148FD0F95949500FB7BDA /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9158C0F7FFB7A00832767 /* NowPlaying.pb.m */; };
+		74E148FE0F95949500FB7BDA /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915950F7FFB9600832767 /* Theater.m */; };
+		74E148FF0F95949500FB7BDA /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9159F0F7FFC1400832767 /* AbstractFieldAccessor.m */; };
+		74E149000F95949500FB7BDA /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915A10F7FFC1400832767 /* AbstractMessage.m */; };
+		74E149010F95949500FB7BDA /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915A30F7FFC1400832767 /* AbstractMessage_Builder.m */; };
+		74E149020F95949500FB7BDA /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915A50F7FFC1400832767 /* CodedInputStream.m */; };
+		74E149030F95949500FB7BDA /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915A70F7FFC1400832767 /* CodedOutputStream.m */; };
+		74E149040F95949500FB7BDA /* Descriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915A90F7FFC1400832767 /* Descriptor.m */; };
+		74E149050F95949500FB7BDA /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915AB0F7FFC1400832767 /* Descriptor.pb.m */; };
+		74E149060F95949500FB7BDA /* DescriptorPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915AD0F7FFC1400832767 /* DescriptorPool.m */; };
+		74E149070F95949500FB7BDA /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915AF0F7FFC1400832767 /* DescriptorPool_DescriptorIntPair.m */; };
+		74E149080F95949500FB7BDA /* DynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915B10F7FFC1400832767 /* DynamicMessage.m */; };
+		74E149090F95949500FB7BDA /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915B30F7FFC1400832767 /* DynamicMessage_Builder.m */; };
+		74E1490A0F95949500FB7BDA /* EnumDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915B50F7FFC1400832767 /* EnumDescriptor.m */; };
+		74E1490B0F95949500FB7BDA /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915B70F7FFC1400832767 /* EnumValueDescriptor.m */; };
+		74E1490C0F95949500FB7BDA /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915B90F7FFC1400832767 /* ExtendableBuilder.m */; };
+		74E1490D0F95949500FB7BDA /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915BB0F7FFC1400832767 /* ExtendableMessage.m */; };
+		74E1490E0F95949500FB7BDA /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915BD0F7FFC1400832767 /* ExtensionInfo.m */; };
+		74E1490F0F95949500FB7BDA /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915BF0F7FFC1400832767 /* ExtensionRegistry.m */; };
+		74E149100F95949500FB7BDA /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915C10F7FFC1400832767 /* ExtensionRegistry_DescriptorIntPair.m */; };
+		74E149110F95949500FB7BDA /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915C30F7FFC1400832767 /* ExtensionWriter.m */; };
+		74E149120F95949500FB7BDA /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915C50F7FFC1400832767 /* Field.m */; };
+		74E149130F95949500FB7BDA /* FieldAccessorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915C80F7FFC1400832767 /* FieldAccessorTable.m */; };
+		74E149140F95949500FB7BDA /* FieldDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915CA0F7FFC1400832767 /* FieldDescriptor.m */; };
+		74E149150F95949500FB7BDA /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915CC0F7FFC1400832767 /* FieldDescriptorType.m */; };
+		74E149160F95949500FB7BDA /* FieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915CE0F7FFC1400832767 /* FieldSet.m */; };
+		74E149170F95949500FB7BDA /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915D00F7FFC1400832767 /* FileDescriptor.m */; };
+		74E149180F95949500FB7BDA /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915D20F7FFC1400832767 /* GeneratedExtension.m */; };
+		74E149190F95949500FB7BDA /* GeneratedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915D40F7FFC1400832767 /* GeneratedMessage.m */; };
+		74E1491A0F95949500FB7BDA /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915D60F7FFC1400832767 /* GeneratedMessage_Builder.m */; };
+		74E1491B0F95949500FB7BDA /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915DB0F7FFC1400832767 /* MethodDescriptor.m */; };
+		74E1491C0F95949500FB7BDA /* MutableField.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915DD0F7FFC1400832767 /* MutableField.m */; };
+		74E1491D0F95949500FB7BDA /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915DF0F7FFC1400832767 /* ObjectiveCType.m */; };
+		74E1491E0F95949500FB7BDA /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915E10F7FFC1400832767 /* PackageDescriptor.m */; };
+		74E1491F0F95949500FB7BDA /* RepeatedEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915E40F7FFC1400832767 /* RepeatedEnumFieldAccessor.m */; };
+		74E149200F95949500FB7BDA /* RepeatedFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915E60F7FFC1400832767 /* RepeatedFieldAccessor.m */; };
+		74E149210F95949500FB7BDA /* RepeatedMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915E80F7FFC1400832767 /* RepeatedMessageFieldAccessor.m */; };
+		74E149220F95949500FB7BDA /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915ED0F7FFC1400832767 /* ServiceDescriptor.m */; };
+		74E149230F95949500FB7BDA /* SingularEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915EF0F7FFC1400832767 /* SingularEnumFieldAccessor.m */; };
+		74E149240F95949500FB7BDA /* SingularFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915F10F7FFC1400832767 /* SingularFieldAccessor.m */; };
+		74E149250F95949500FB7BDA /* SingularMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915F30F7FFC1400832767 /* SingularMessageFieldAccessor.m */; };
+		74E149260F95949500FB7BDA /* TextFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915F50F7FFC1400832767 /* TextFormat.m */; };
+		74E149270F95949500FB7BDA /* UnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915F70F7FFC1400832767 /* UnknownFieldSet.m */; };
+		74E149280F95949500FB7BDA /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915F90F7FFC1400832767 /* UnknownFieldSet_Builder.m */; };
+		74E149290F95949500FB7BDA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915FB0F7FFC1400832767 /* Utilities.m */; };
+		74E1492A0F95949500FB7BDA /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915FD0F7FFC1400832767 /* WireFormat.m */; };
+		74E1492B0F95949500FB7BDA /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9162C0F7FFC2A00832767 /* Performance.m */; };
+		74E1492C0F95949500FB7BDA /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9162F0F7FFC8200832767 /* FavoriteTheater.m */; };
+		74E1492D0F95949500FB7BDA /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916500F7FFD1D00832767 /* LocationUtilities.m */; };
+		74E1492E0F95949500FB7BDA /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916A50F80026C00832767 /* AllTheatersViewController.m */; };
+		74E1492F0F95949500FB7BDA /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916A70F80026C00832767 /* TheaterDetailsViewController.m */; };
+		74E149300F95949500FB7BDA /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916B50F80055400832767 /* ReviewsViewController.m */; };
+		74E149310F95949500FB7BDA /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916B80F80056B00832767 /* TicketsViewController.m */; };
+		74E149320F95949500FB7BDA /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916C20F8005AB00832767 /* UpcomingMoviesViewController.m */; };
+		74E149330F95949500FB7BDA /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916C60F8005D200832767 /* DVDCell.m */; };
+		74E149340F95949500FB7BDA /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916C80F8005D200832767 /* UpcomingMovieCell.m */; };
+		74E149350F95949500FB7BDA /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916DE0F80060C00832767 /* AbstractMovieListViewController.m */; };
+		74E149360F95949500FB7BDA /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916E30F80064500832767 /* TheaterNameCell.m */; };
+		74E149370F95949500FB7BDA /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916E80F80067400832767 /* ReviewBodyCell.m */; };
+		74E149380F95949500FB7BDA /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916EA0F80067400832767 /* ReviewTitleCell.m */; };
+		74E149390F95949500FB7BDA /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916EF0F80069700832767 /* DVDViewController.m */; };
+		74E1493A0F95949500FB7BDA /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916F30F8006AE00832767 /* MovieShowtimesCell.m */; };
+		74E1493B0F95949500FB7BDA /* AllMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A916F70F8006D400832767 /* AllMoviesViewController.m */; };
+		74E1493C0F95949500FB7BDA /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917120F80078F00832767 /* ApplicationTabBarController.m */; };
+		74E1493D0F95949500FB7BDA /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917160F8007CF00832767 /* DVDNavigationController.m */; };
+		74E1493E0F95949500FB7BDA /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917180F8007CF00832767 /* MoviesNavigationController.m */; };
+		74E1493F0F95949500FB7BDA /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9171A0F8007CF00832767 /* TheatersNavigationController.m */; };
+		74E149400F95949500FB7BDA /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9171C0F8007CF00832767 /* UpcomingMoviesNavigationController.m */; };
+		74E149410F95949500FB7BDA /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917270F80080F00832767 /* LocationManager.m */; };
+		74E149420F95949500FB7BDA /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9172B0F80083300832767 /* WarningView.m */; };
+		74E149430F95949500FB7BDA /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917490F80087B00832767 /* SearchDatePickerViewController.m */; };
+		74E149440F95949500FB7BDA /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9174C0F8008DD00832767 /* GreenMovieTitleCell.m */; };
+		74E149450F95949500FB7BDA /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9174E0F8008DD00832767 /* MovieTitleCell.m */; };
+		74E149460F95949500FB7BDA /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917500F8008DD00832767 /* NoScoreMovieTitleCell.m */; };
+		74E149470F95949500FB7BDA /* RedMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917520F8008DD00832767 /* RedMovieTitleCell.m */; };
+		74E149480F95949500FB7BDA /* RottenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917540F8008DD00832767 /* RottenMovieTitleCell.m */; };
+		74E149490F95949500FB7BDA /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917560F8008DD00832767 /* SquareMovieTitleCell.m */; };
+		74E1494A0F95949500FB7BDA /* TomatoMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917580F8008DD00832767 /* TomatoMovieTitleCell.m */; };
+		74E1494B0F95949500FB7BDA /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9175A0F8008DD00832767 /* UnknownMovieTitleCell.m */; };
+		74E1494C0F95949500FB7BDA /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9175C0F8008DD00832767 /* YellowMovieTitleCell.m */; };
+		74E1494D0F95949500FB7BDA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917860F80096400832767 /* SettingsViewController.m */; };
+		74E1494E0F95949500FB7BDA /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9178E0F80098E00832767 /* ScoreProviderViewController.m */; };
+		74E1494F0F95949500FB7BDA /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917920F8009B700832767 /* DVDFilterViewController.m */; };
+		74E149500F95949500FB7BDA /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917C80F800CD300832767 /* NetflixAuthentication.m */; };
+		74E149510F95949500FB7BDA /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9181B0F800E9100832767 /* SwitchCell.m */; };
+		74E149520F95949500FB7BDA /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9184E0F800FD900832767 /* PerfectGreenMovieTitleCell.m */; };
+		74E149530F95949500FB7BDA /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918560F80102A00832767 /* AbstractSearchDisplayController.m */; };
+		74E149540F95949500FB7BDA /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918580F80102A00832767 /* LocalSearchDisplayController.m */; };
+		74E149550F95949500FB7BDA /* NetflixSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A9185A0F80102A00832767 /* NetflixSearchDisplayController.m */; };
+		74E149560F95949500FB7BDA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918720F8010BC00832767 /* Utilities.m */; };
+		74E149570F95949500FB7BDA /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918A10F80136500832767 /* SearchViewController.m */; };
+		74E149580F95949500FB7BDA /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918A90F80138100832767 /* LocalSearchEngine.m */; };
+		74E149590F95949500FB7BDA /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA4E70F81696600D79388 /* BackgroundInvocation.m */; };
+		74E1495A0F95949500FB7BDA /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA4E90F81696600D79388 /* BackgroundInvocation2.m */; };
+		74E1495B0F95949500FB7BDA /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA51A0F816A0500D79388 /* ThreadingUtilities.m */; };
+		74E1495C0F95949500FB7BDA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA6190F816D2500D79388 /* WebViewController.m */; };
+		74E1495D0F95949500FB7BDA /* AbstractFullScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA6400F816E0B00D79388 /* AbstractFullScreenTableViewController.m */; };
+		74E1495E0F95949500FB7BDA /* AbstractFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA6420F816E0B00D79388 /* AbstractFullScreenViewController.m */; };
+		74E1495F0F95949500FB7BDA /* AbstractApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA6590F816EA500D79388 /* AbstractApplication.m */; };
+		74E149600F95949500FB7BDA /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537E720F86AE8000D457CB /* CollectionUtilities.m */; };
+		74E149610F95949500FB7BDA /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537E740F86AE8000D457CB /* NSArray+Utilities.m */; };
+		74E149620F95949500FB7BDA /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74B80F8DC4E4003747AD /* PreviewNetworksPosterDownloader.m */; };
+		74E149630F95949500FB7BDA /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74BC0F8DC511003747AD /* InternationalDataCache.m */; };
+		74E149640F95949500FB7BDA /* HelpCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74C00F8DC53D003747AD /* HelpCache.m */; };
+		74E149650F95949500FB7BDA /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74DA0F8DC59E003747AD /* AbstractPosterDownloader.m */; };
+		74E149660F95949500FB7BDA /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */; };
+		74E149670F95949500FB7BDA /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */; };
+		74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */; };
+		74E1496C0F95949500FB7BDA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
+		74E1496D0F95949500FB7BDA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
+		74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
+		74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
+		74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1497A0F9594B700FB7BDA /* MessageUI.framework */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -933,6 +1289,9 @@
 		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
 		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
 		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
+		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E149790F95949500FB7BDA /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
+		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
@@ -1042,6 +1401,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74E149680F95949500FB7BDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
+				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
+				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
+				74E1496C0F95949500FB7BDA /* CFNetwork.framework in Frameworks */,
+				74E1496D0F95949500FB7BDA /* CoreFoundation.framework in Frameworks */,
+				74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */,
+				74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */,
+				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
+				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
+				74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1078,6 +1454,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* PocketFlicks.app */,
+				74E149770F95949500FB7BDA /* PocketFlicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1091,6 +1468,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				748B23570E843AFE00322E25 /* Entitlements.plist */,
+				74E1497A0F9594B700FB7BDA /* MessageUI.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1172,6 +1550,7 @@
 				74F94FC80E6BC98800075068 /* Warning-16x16.png */,
 				744592060E6CA06C002D05C3 /* Warning-32x32.png */,
 				74F94FC90E6BC98800075068 /* YahooLogo.png */,
+				74E149790F95949500FB7BDA /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2069,9 +2448,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* PocketFlicks */ = {
+		1D6058900D05DD3D006BFB54 /* PocketFlicks2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlicks" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlicks2" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -2081,9 +2460,26 @@
 			);
 			dependencies = (
 			);
-			name = PocketFlicks;
+			name = PocketFlicks2;
 			productName = PocketFlicks;
 			productReference = 1D6058910D05DD3D006BFB54 /* PocketFlicks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74E1480B0F95949500FB7BDA /* PocketFlicks3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks3" */;
+			buildPhases = (
+				74E1480C0F95949500FB7BDA /* Resources */,
+				74E148720F95949500FB7BDA /* Sources */,
+				74E149680F95949500FB7BDA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PocketFlicks3;
+			productName = PocketFlicks;
+			productReference = 74E149770F95949500FB7BDA /* PocketFlicks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2130,7 +2526,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* PocketFlicks */,
+				1D6058900D05DD3D006BFB54 /* PocketFlicks2 */,
+				74E1480B0F95949500FB7BDA /* PocketFlicks3 */,
 			);
 		};
 /* End PBXProject section */
@@ -2241,6 +2638,114 @@
 				7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */,
 				74F427D60F1FC69D002EECC5 /* DeleteMovie.png in Resources */,
 				744CA3380F43769F000DC92A /* DeliveredByNetflix.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74E1480C0F95949500FB7BDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */,
+				74E1480E0F95949500FB7BDA /* License.txt in Resources */,
+				74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */,
+				74E148100F95949500FB7BDA /* CurrentPosition.png in Resources */,
+				74E148110F95949500FB7BDA /* Default.png in Resources */,
+				74E148120F95949500FB7BDA /* DownArrow.png in Resources */,
+				74E148130F95949500FB7BDA /* Empty Star.png in Resources */,
+				74E148140F95949500FB7BDA /* FandangoLogo.png in Resources */,
+				74E148150F95949500FB7BDA /* Filled Star.png in Resources */,
+				74E148160F95949500FB7BDA /* Fresh.png in Resources */,
+				74E148170F95949500FB7BDA /* Icon.png in Resources */,
+				74E148180F95949500FB7BDA /* ImageNotAvailable.png in Resources */,
+				74E148190F95949500FB7BDA /* MetacriticLogo.png in Resources */,
+				74E1481A0F95949500FB7BDA /* More.png in Resources */,
+				74E1481B0F95949500FB7BDA /* Movies.png in Resources */,
+				74E1481C0F95949500FB7BDA /* NeutralSquare.png in Resources */,
+				74E1481D0F95949500FB7BDA /* Numbers.png in Resources */,
+				74E1481E0F95949500FB7BDA /* Rating-Blue.png in Resources */,
+				74E1481F0F95949500FB7BDA /* Rating-Green.png in Resources */,
+				74E148200F95949500FB7BDA /* Rating-Red.png in Resources */,
+				74E148210F95949500FB7BDA /* Rating-Unknown.png in Resources */,
+				74E148220F95949500FB7BDA /* Rating-Yellow.png in Resources */,
+				74E148230F95949500FB7BDA /* Rotten-Faded.png in Resources */,
+				74E148240F95949500FB7BDA /* Rotten-Full.png in Resources */,
+				74E148250F95949500FB7BDA /* RottenTomatoesLogo.png in Resources */,
+				74E148260F95949500FB7BDA /* Spinner0.png in Resources */,
+				74E148270F95949500FB7BDA /* Spinner1.png in Resources */,
+				74E148280F95949500FB7BDA /* Spinner2.png in Resources */,
+				74E148290F95949500FB7BDA /* Spinner3.png in Resources */,
+				74E1482A0F95949500FB7BDA /* Spinner4.png in Resources */,
+				74E1482B0F95949500FB7BDA /* Spinner5.png in Resources */,
+				74E1482C0F95949500FB7BDA /* Spinner6.png in Resources */,
+				74E1482D0F95949500FB7BDA /* Spinner7.png in Resources */,
+				74E1482E0F95949500FB7BDA /* Spinner8.png in Resources */,
+				74E1482F0F95949500FB7BDA /* Spinner9.png in Resources */,
+				74E148300F95949500FB7BDA /* Theaters.png in Resources */,
+				74E148310F95949500FB7BDA /* TryntLogo.png in Resources */,
+				74E148320F95949500FB7BDA /* UpArrow.png in Resources */,
+				74E148330F95949500FB7BDA /* Upcoming.png in Resources */,
+				74E148340F95949500FB7BDA /* Warning-16x16.png in Resources */,
+				74E148350F95949500FB7BDA /* YahooLogo.png in Resources */,
+				74E148360F95949500FB7BDA /* Warning-32x32.png in Resources */,
+				74E148370F95949500FB7BDA /* DownDisclosureTriangle.png in Resources */,
+				74E148380F95949500FB7BDA /* RightDisclosureTriangle.png in Resources */,
+				74E148390F95949500FB7BDA /* Entitlements.plist in Resources */,
+				74E1483A0F95949500FB7BDA /* Search.png in Resources */,
+				74E1483B0F95949500FB7BDA /* DVD.png in Resources */,
+				74E1483C0F95949500FB7BDA /* VideoETALogo.png in Resources */,
+				74E1483D0F95949500FB7BDA /* LeftArrow.png in Resources */,
+				74E1483E0F95949500FB7BDA /* RightArrow.png in Resources */,
+				74E1483F0F95949500FB7BDA /* BlackCircle.png in Resources */,
+				74E148400F95949500FB7BDA /* ImageLoading.png in Resources */,
+				74E148410F95949500FB7BDA /* BlackButton.png in Resources */,
+				74E148420F95949500FB7BDA /* FlipUp-Normal.png in Resources */,
+				74E148430F95949500FB7BDA /* FlipUp-Selected.png in Resources */,
+				74E148440F95949500FB7BDA /* FlipUp-Highlighted.png in Resources */,
+				74E148450F95949500FB7BDA /* Bookmark-Active.png in Resources */,
+				74E148460F95949500FB7BDA /* Bookmark-Inactive.png in Resources */,
+				74E148470F95949500FB7BDA /* Navigate-Back.png in Resources */,
+				74E148480F95949500FB7BDA /* Navigate-Forward.png in Resources */,
+				74E148490F95949500FB7BDA /* NetflixBrowse.png in Resources */,
+				74E1484A0F95949500FB7BDA /* NetflixCellBackground-0.png in Resources */,
+				74E1484B0F95949500FB7BDA /* NetflixCellBackground-1.png in Resources */,
+				74E1484C0F95949500FB7BDA /* NetflixCellBackground-2.png in Resources */,
+				74E1484D0F95949500FB7BDA /* NetflixCellBackground-3.png in Resources */,
+				74E1484E0F95949500FB7BDA /* NetflixCellBackground-4.png in Resources */,
+				74E1484F0F95949500FB7BDA /* NetflixCellBackground-5.png in Resources */,
+				74E148500F95949500FB7BDA /* NetflixCellBackground-6.png in Resources */,
+				74E148510F95949500FB7BDA /* NetflixCellBackground-7.png in Resources */,
+				74E148520F95949500FB7BDA /* NetflixCellBackground-8.png in Resources */,
+				74E148530F95949500FB7BDA /* NetflixChevron.png in Resources */,
+				74E148540F95949500FB7BDA /* NetflixDVDQueue.png in Resources */,
+				74E148550F95949500FB7BDA /* NetflixHistory.png in Resources */,
+				74E148560F95949500FB7BDA /* NetflixHome.png in Resources */,
+				74E148570F95949500FB7BDA /* NetflixInstantQueue.png in Resources */,
+				74E148580F95949500FB7BDA /* NetflixLogOff.png in Resources */,
+				74E148590F95949500FB7BDA /* NetflixRecommendations.png in Resources */,
+				74E1485A0F95949500FB7BDA /* NetflixSearch.png in Resources */,
+				74E1485B0F95949500FB7BDA /* NetflixCellSelectedBackground-0.png in Resources */,
+				74E1485C0F95949500FB7BDA /* NetflixCellSelectedBackground-1.png in Resources */,
+				74E1485D0F95949500FB7BDA /* NetflixCellSelectedBackground-2.png in Resources */,
+				74E1485E0F95949500FB7BDA /* NetflixCellSelectedBackground-3.png in Resources */,
+				74E1485F0F95949500FB7BDA /* NetflixCellSelectedBackground-4.png in Resources */,
+				74E148600F95949500FB7BDA /* NetflixCellSelectedBackground-5.png in Resources */,
+				74E148610F95949500FB7BDA /* NetflixCellSelectedBackground-6.png in Resources */,
+				74E148620F95949500FB7BDA /* NetflixCellSelectedBackground-7.png in Resources */,
+				74E148630F95949500FB7BDA /* NetflixCellSelectedBackground-8.png in Resources */,
+				74E148640F95949500FB7BDA /* RedStar-0.0.png in Resources */,
+				74E148650F95949500FB7BDA /* RedStar-0.2.png in Resources */,
+				74E148660F95949500FB7BDA /* RedStar-0.4.png in Resources */,
+				74E148670F95949500FB7BDA /* RedStar-0.6.png in Resources */,
+				74E148680F95949500FB7BDA /* RedStar-0.8.png in Resources */,
+				74E148690F95949500FB7BDA /* RedStar-1.0.png in Resources */,
+				74E1486A0F95949500FB7BDA /* ClearRating.png in Resources */,
+				74E1486B0F95949500FB7BDA /* NetflixCellBackground-9.png in Resources */,
+				74E1486C0F95949500FB7BDA /* NetflixCellSelectedBackground-9.png in Resources */,
+				74E1486D0F95949500FB7BDA /* NetflixSettings.png in Resources */,
+				74E1486E0F95949500FB7BDA /* NetflixCredits.png in Resources */,
+				74E1486F0F95949500FB7BDA /* NetflixMostPopular.png in Resources */,
+				74E148700F95949500FB7BDA /* DeleteMovie.png in Resources */,
+				74E148710F95949500FB7BDA /* DeliveredByNetflix.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2499,6 +3004,258 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		74E148720F95949500FB7BDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E148730F95949500FB7BDA /* main.m in Sources */,
+				74E148740F95949500FB7BDA /* Movie.m in Sources */,
+				74E148750F95949500FB7BDA /* Application.m in Sources */,
+				74E148760F95949500FB7BDA /* MovieDetailsViewController.m in Sources */,
+				74E148770F95949500FB7BDA /* AbstractNavigationController.m in Sources */,
+				74E148780F95949500FB7BDA /* PosterCache.m in Sources */,
+				74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */,
+				74E1487A0F95949500FB7BDA /* EditorViewController.m in Sources */,
+				74E1487B0F95949500FB7BDA /* TextFieldEditorViewController.m in Sources */,
+				74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */,
+				74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */,
+				74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */,
+				74E1487F0F95949500FB7BDA /* AttributeCell.m in Sources */,
+				74E148800F95949500FB7BDA /* SettingCell.m in Sources */,
+				74E148810F95949500FB7BDA /* ImageCache.m in Sources */,
+				74E148820F95949500FB7BDA /* FontCache.m in Sources */,
+				74E148830F95949500FB7BDA /* ColorCache.m in Sources */,
+				74E148840F95949500FB7BDA /* AutoResizingCell.m in Sources */,
+				74E148850F95949500FB7BDA /* MovieOverviewCell.m in Sources */,
+				74E148860F95949500FB7BDA /* ApplePosterDownloader.m in Sources */,
+				74E148870F95949500FB7BDA /* CollapsedMovieDetailsCell.m in Sources */,
+				74E148880F95949500FB7BDA /* ExpandedMovieDetailsCell.m in Sources */,
+				74E148890F95949500FB7BDA /* AbstractMovieDetailsCell.m in Sources */,
+				74E1488A0F95949500FB7BDA /* ActionsView.m in Sources */,
+				74E1488B0F95949500FB7BDA /* FandangoPosterDownloader.m in Sources */,
+				74E1488C0F95949500FB7BDA /* SearchRequest.m in Sources */,
+				74E1488D0F95949500FB7BDA /* SearchResult.m in Sources */,
+				74E1488E0F95949500FB7BDA /* IMDbCache.m in Sources */,
+				74E1488F0F95949500FB7BDA /* TappableImageView.m in Sources */,
+				74E148900F95949500FB7BDA /* LargePosterCache.m in Sources */,
+				74E148910F95949500FB7BDA /* PostersViewController.m in Sources */,
+				74E148920F95949500FB7BDA /* TappableScrollView.m in Sources */,
+				74E148930F95949500FB7BDA /* ActivityIndicatorViewWithBackground.m in Sources */,
+				74E148940F95949500FB7BDA /* AbstractPosterCell.m in Sources */,
+				74E148950F95949500FB7BDA /* TappableLabel.m in Sources */,
+				74E148960F95949500FB7BDA /* AbstractCache.m in Sources */,
+				74E148970F95949500FB7BDA /* AbstractDetailsViewController.m in Sources */,
+				74E148980F95949500FB7BDA /* NetflixNavigationController.m in Sources */,
+				74E148990F95949500FB7BDA /* NetflixViewController.m in Sources */,
+				74E1489A0F95949500FB7BDA /* NetflixLoginViewController.m in Sources */,
+				74E1489B0F95949500FB7BDA /* NetflixCache.m in Sources */,
+				74E1489C0F95949500FB7BDA /* Feed.m in Sources */,
+				74E1489D0F95949500FB7BDA /* NetflixFeedsViewController.m in Sources */,
+				74E1489E0F95949500FB7BDA /* NetflixQueueViewController.m in Sources */,
+				74E1489F0F95949500FB7BDA /* Queue.m in Sources */,
+				74E148A00F95949500FB7BDA /* NetflixSearchViewController.m in Sources */,
+				74E148A10F95949500FB7BDA /* NetflixSearchEngine.m in Sources */,
+				74E148A20F95949500FB7BDA /* AbstractSearchEngine.m in Sources */,
+				74E148A30F95949500FB7BDA /* NetflixRatingsCell.m in Sources */,
+				74E148A40F95949500FB7BDA /* NetflixRecommendationsViewController.m in Sources */,
+				74E148A50F95949500FB7BDA /* NetflixGenreRecommendationsViewController.m in Sources */,
+				74E148A60F95949500FB7BDA /* NetflixCell.m in Sources */,
+				74E148A70F95949500FB7BDA /* AbstractNetflixCache.m in Sources */,
+				74E148A80F95949500FB7BDA /* MutableNetflixCache.m in Sources */,
+				74E148A90F95949500FB7BDA /* WikipediaCache.m in Sources */,
+				74E148AA0F95949500FB7BDA /* AmazonCache.m in Sources */,
+				74E148AB0F95949500FB7BDA /* NetflixSettingsViewController.m in Sources */,
+				74E148AC0F95949500FB7BDA /* AppDelegate.m in Sources */,
+				74E148AD0F95949500FB7BDA /* Controller.m in Sources */,
+				74E148AE0F95949500FB7BDA /* Model.m in Sources */,
+				74E148AF0F95949500FB7BDA /* NetflixMostPopularViewController.m in Sources */,
+				74E148B00F95949500FB7BDA /* NetflixMostPopularMoviesViewController.m in Sources */,
+				74E148B10F95949500FB7BDA /* xmlparse.c in Sources */,
+				74E148B20F95949500FB7BDA /* xmlrole.c in Sources */,
+				74E148B30F95949500FB7BDA /* xmltok.c in Sources */,
+				74E148B40F95949500FB7BDA /* xmltok_impl.c in Sources */,
+				74E148B50F95949500FB7BDA /* xmltok_ns.c in Sources */,
+				74E148B60F95949500FB7BDA /* NSMutableURLRequest+Parameters.m in Sources */,
+				74E148B70F95949500FB7BDA /* NSString+URLEncoding.m in Sources */,
+				74E148B80F95949500FB7BDA /* NSURL+Base.m in Sources */,
+				74E148B90F95949500FB7BDA /* OAConsumer.m in Sources */,
+				74E148BA0F95949500FB7BDA /* OADataFetcher.m in Sources */,
+				74E148BB0F95949500FB7BDA /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				74E148BC0F95949500FB7BDA /* OAMutableURLRequest.m in Sources */,
+				74E148BD0F95949500FB7BDA /* OAPlaintextSignatureProvider.m in Sources */,
+				74E148BE0F95949500FB7BDA /* OARequestParameter.m in Sources */,
+				74E148BF0F95949500FB7BDA /* OAServiceTicket.m in Sources */,
+				74E148C00F95949500FB7BDA /* OAToken.m in Sources */,
+				74E148C10F95949500FB7BDA /* Base64.m in Sources */,
+				74E148C20F95949500FB7BDA /* StringUtilities.m in Sources */,
+				74E148C30F95949500FB7BDA /* DifferenceEngine.m in Sources */,
+				74E148C40F95949500FB7BDA /* Invocation.m in Sources */,
+				74E148C50F95949500FB7BDA /* Invocation2.m in Sources */,
+				74E148C60F95949500FB7BDA /* MainThreadGate.m in Sources */,
+				74E148C70F95949500FB7BDA /* PriorityMutex.m in Sources */,
+				74E148C80F95949500FB7BDA /* IdentityObject.m in Sources */,
+				74E148C90F95949500FB7BDA /* IdentitySet.m in Sources */,
+				74E148CA0F95949500FB7BDA /* MultiDictionary.m in Sources */,
+				74E148CB0F95949500FB7BDA /* PointerSet.m in Sources */,
+				74E148CC0F95949500FB7BDA /* XmlDocument.m in Sources */,
+				74E148CD0F95949500FB7BDA /* XmlElement.m in Sources */,
+				74E148CE0F95949500FB7BDA /* XmlParser.m in Sources */,
+				74E148CF0F95949500FB7BDA /* XmlSerializer.m in Sources */,
+				74E148D00F95949500FB7BDA /* ViewControllerUtilities.m in Sources */,
+				74E148D10F95949500FB7BDA /* AlertUtilities.m in Sources */,
+				74E148D20F95949500FB7BDA /* DateUtilities.m in Sources */,
+				74E148D30F95949500FB7BDA /* FileUtilities.m in Sources */,
+				74E148D40F95949500FB7BDA /* ImageUtilities.m in Sources */,
+				74E148D50F95949500FB7BDA /* LocaleUtilities.m in Sources */,
+				74E148D60F95949500FB7BDA /* NetworkUtilities.m in Sources */,
+				74E148D70F95949500FB7BDA /* Pulser.m in Sources */,
+				74E148D80F95949500FB7BDA /* NetflixStatusCell.m in Sources */,
+				74E148D90F95949500FB7BDA /* Status.m in Sources */,
+				74E148DA0F95949500FB7BDA /* NSMutableArray+Utilities.m in Sources */,
+				74E148DB0F95949500FB7BDA /* Person.m in Sources */,
+				74E148DC0F95949500FB7BDA /* PersonCell.m in Sources */,
+				74E148DD0F95949500FB7BDA /* AbstractImageCell.m in Sources */,
+				74E148DE0F95949500FB7BDA /* PersonPosterCache.m in Sources */,
+				74E148DF0F95949500FB7BDA /* AbstractMovieCache.m in Sources */,
+				74E148E00F95949500FB7BDA /* Operation.m in Sources */,
+				74E148E10F95949500FB7BDA /* Operation1.m in Sources */,
+				74E148E20F95949500FB7BDA /* Operation2.m in Sources */,
+				74E148E30F95949500FB7BDA /* OperationQueue.m in Sources */,
+				74E148E40F95949500FB7BDA /* NotificationCenter.m in Sources */,
+				74E148E50F95949500FB7BDA /* MutableMultiDictionary.m in Sources */,
+				74E148E60F95949500FB7BDA /* CacheUpdater.m in Sources */,
+				74E148E70F95949500FB7BDA /* UITableViewCell+Utilities.m in Sources */,
+				74E148E80F95949500FB7BDA /* AbstractDVDBlurayCache.m in Sources */,
+				74E148E90F95949500FB7BDA /* BlurayCache.m in Sources */,
+				74E148EA0F95949500FB7BDA /* DVDCache.m in Sources */,
+				74E148EB0F95949500FB7BDA /* AbstractScoreProvider.m in Sources */,
+				74E148EC0F95949500FB7BDA /* GoogleScoreProvider.m in Sources */,
+				74E148ED0F95949500FB7BDA /* MetacriticScoreProvider.m in Sources */,
+				74E148EE0F95949500FB7BDA /* NoneScoreProvider.m in Sources */,
+				74E148EF0F95949500FB7BDA /* RottenTomatoesScoreProvider.m in Sources */,
+				74E148F00F95949500FB7BDA /* ScoreCache.m in Sources */,
+				74E148F10F95949500FB7BDA /* Score.m in Sources */,
+				74E148F20F95949500FB7BDA /* UpcomingCache.m in Sources */,
+				74E148F30F95949500FB7BDA /* DVD.m in Sources */,
+				74E148F40F95949500FB7BDA /* Review.m in Sources */,
+				74E148F50F95949500FB7BDA /* Location.m in Sources */,
+				74E148F60F95949500FB7BDA /* LocationCache.m in Sources */,
+				74E148F70F95949500FB7BDA /* UserLocationCache.m in Sources */,
+				74E148F80F95949500FB7BDA /* AbstractDataProvider.m in Sources */,
+				74E148F90F95949500FB7BDA /* DataProvider.m in Sources */,
+				74E148FA0F95949500FB7BDA /* GoogleDataProvider.m in Sources */,
+				74E148FB0F95949500FB7BDA /* LookupRequest.m in Sources */,
+				74E148FC0F95949500FB7BDA /* LookupResult.m in Sources */,
+				74E148FD0F95949500FB7BDA /* NowPlaying.pb.m in Sources */,
+				74E148FE0F95949500FB7BDA /* Theater.m in Sources */,
+				74E148FF0F95949500FB7BDA /* AbstractFieldAccessor.m in Sources */,
+				74E149000F95949500FB7BDA /* AbstractMessage.m in Sources */,
+				74E149010F95949500FB7BDA /* AbstractMessage_Builder.m in Sources */,
+				74E149020F95949500FB7BDA /* CodedInputStream.m in Sources */,
+				74E149030F95949500FB7BDA /* CodedOutputStream.m in Sources */,
+				74E149040F95949500FB7BDA /* Descriptor.m in Sources */,
+				74E149050F95949500FB7BDA /* Descriptor.pb.m in Sources */,
+				74E149060F95949500FB7BDA /* DescriptorPool.m in Sources */,
+				74E149070F95949500FB7BDA /* DescriptorPool_DescriptorIntPair.m in Sources */,
+				74E149080F95949500FB7BDA /* DynamicMessage.m in Sources */,
+				74E149090F95949500FB7BDA /* DynamicMessage_Builder.m in Sources */,
+				74E1490A0F95949500FB7BDA /* EnumDescriptor.m in Sources */,
+				74E1490B0F95949500FB7BDA /* EnumValueDescriptor.m in Sources */,
+				74E1490C0F95949500FB7BDA /* ExtendableBuilder.m in Sources */,
+				74E1490D0F95949500FB7BDA /* ExtendableMessage.m in Sources */,
+				74E1490E0F95949500FB7BDA /* ExtensionInfo.m in Sources */,
+				74E1490F0F95949500FB7BDA /* ExtensionRegistry.m in Sources */,
+				74E149100F95949500FB7BDA /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
+				74E149110F95949500FB7BDA /* ExtensionWriter.m in Sources */,
+				74E149120F95949500FB7BDA /* Field.m in Sources */,
+				74E149130F95949500FB7BDA /* FieldAccessorTable.m in Sources */,
+				74E149140F95949500FB7BDA /* FieldDescriptor.m in Sources */,
+				74E149150F95949500FB7BDA /* FieldDescriptorType.m in Sources */,
+				74E149160F95949500FB7BDA /* FieldSet.m in Sources */,
+				74E149170F95949500FB7BDA /* FileDescriptor.m in Sources */,
+				74E149180F95949500FB7BDA /* GeneratedExtension.m in Sources */,
+				74E149190F95949500FB7BDA /* GeneratedMessage.m in Sources */,
+				74E1491A0F95949500FB7BDA /* GeneratedMessage_Builder.m in Sources */,
+				74E1491B0F95949500FB7BDA /* MethodDescriptor.m in Sources */,
+				74E1491C0F95949500FB7BDA /* MutableField.m in Sources */,
+				74E1491D0F95949500FB7BDA /* ObjectiveCType.m in Sources */,
+				74E1491E0F95949500FB7BDA /* PackageDescriptor.m in Sources */,
+				74E1491F0F95949500FB7BDA /* RepeatedEnumFieldAccessor.m in Sources */,
+				74E149200F95949500FB7BDA /* RepeatedFieldAccessor.m in Sources */,
+				74E149210F95949500FB7BDA /* RepeatedMessageFieldAccessor.m in Sources */,
+				74E149220F95949500FB7BDA /* ServiceDescriptor.m in Sources */,
+				74E149230F95949500FB7BDA /* SingularEnumFieldAccessor.m in Sources */,
+				74E149240F95949500FB7BDA /* SingularFieldAccessor.m in Sources */,
+				74E149250F95949500FB7BDA /* SingularMessageFieldAccessor.m in Sources */,
+				74E149260F95949500FB7BDA /* TextFormat.m in Sources */,
+				74E149270F95949500FB7BDA /* UnknownFieldSet.m in Sources */,
+				74E149280F95949500FB7BDA /* UnknownFieldSet_Builder.m in Sources */,
+				74E149290F95949500FB7BDA /* Utilities.m in Sources */,
+				74E1492A0F95949500FB7BDA /* WireFormat.m in Sources */,
+				74E1492B0F95949500FB7BDA /* Performance.m in Sources */,
+				74E1492C0F95949500FB7BDA /* FavoriteTheater.m in Sources */,
+				74E1492D0F95949500FB7BDA /* LocationUtilities.m in Sources */,
+				74E1492E0F95949500FB7BDA /* AllTheatersViewController.m in Sources */,
+				74E1492F0F95949500FB7BDA /* TheaterDetailsViewController.m in Sources */,
+				74E149300F95949500FB7BDA /* ReviewsViewController.m in Sources */,
+				74E149310F95949500FB7BDA /* TicketsViewController.m in Sources */,
+				74E149320F95949500FB7BDA /* UpcomingMoviesViewController.m in Sources */,
+				74E149330F95949500FB7BDA /* DVDCell.m in Sources */,
+				74E149340F95949500FB7BDA /* UpcomingMovieCell.m in Sources */,
+				74E149350F95949500FB7BDA /* AbstractMovieListViewController.m in Sources */,
+				74E149360F95949500FB7BDA /* TheaterNameCell.m in Sources */,
+				74E149370F95949500FB7BDA /* ReviewBodyCell.m in Sources */,
+				74E149380F95949500FB7BDA /* ReviewTitleCell.m in Sources */,
+				74E149390F95949500FB7BDA /* DVDViewController.m in Sources */,
+				74E1493A0F95949500FB7BDA /* MovieShowtimesCell.m in Sources */,
+				74E1493B0F95949500FB7BDA /* AllMoviesViewController.m in Sources */,
+				74E1493C0F95949500FB7BDA /* ApplicationTabBarController.m in Sources */,
+				74E1493D0F95949500FB7BDA /* DVDNavigationController.m in Sources */,
+				74E1493E0F95949500FB7BDA /* MoviesNavigationController.m in Sources */,
+				74E1493F0F95949500FB7BDA /* TheatersNavigationController.m in Sources */,
+				74E149400F95949500FB7BDA /* UpcomingMoviesNavigationController.m in Sources */,
+				74E149410F95949500FB7BDA /* LocationManager.m in Sources */,
+				74E149420F95949500FB7BDA /* WarningView.m in Sources */,
+				74E149430F95949500FB7BDA /* SearchDatePickerViewController.m in Sources */,
+				74E149440F95949500FB7BDA /* GreenMovieTitleCell.m in Sources */,
+				74E149450F95949500FB7BDA /* MovieTitleCell.m in Sources */,
+				74E149460F95949500FB7BDA /* NoScoreMovieTitleCell.m in Sources */,
+				74E149470F95949500FB7BDA /* RedMovieTitleCell.m in Sources */,
+				74E149480F95949500FB7BDA /* RottenMovieTitleCell.m in Sources */,
+				74E149490F95949500FB7BDA /* SquareMovieTitleCell.m in Sources */,
+				74E1494A0F95949500FB7BDA /* TomatoMovieTitleCell.m in Sources */,
+				74E1494B0F95949500FB7BDA /* UnknownMovieTitleCell.m in Sources */,
+				74E1494C0F95949500FB7BDA /* YellowMovieTitleCell.m in Sources */,
+				74E1494D0F95949500FB7BDA /* SettingsViewController.m in Sources */,
+				74E1494E0F95949500FB7BDA /* ScoreProviderViewController.m in Sources */,
+				74E1494F0F95949500FB7BDA /* DVDFilterViewController.m in Sources */,
+				74E149500F95949500FB7BDA /* NetflixAuthentication.m in Sources */,
+				74E149510F95949500FB7BDA /* SwitchCell.m in Sources */,
+				74E149520F95949500FB7BDA /* PerfectGreenMovieTitleCell.m in Sources */,
+				74E149530F95949500FB7BDA /* AbstractSearchDisplayController.m in Sources */,
+				74E149540F95949500FB7BDA /* LocalSearchDisplayController.m in Sources */,
+				74E149550F95949500FB7BDA /* NetflixSearchDisplayController.m in Sources */,
+				74E149560F95949500FB7BDA /* Utilities.m in Sources */,
+				74E149570F95949500FB7BDA /* SearchViewController.m in Sources */,
+				74E149580F95949500FB7BDA /* LocalSearchEngine.m in Sources */,
+				74E149590F95949500FB7BDA /* BackgroundInvocation.m in Sources */,
+				74E1495A0F95949500FB7BDA /* BackgroundInvocation2.m in Sources */,
+				74E1495B0F95949500FB7BDA /* ThreadingUtilities.m in Sources */,
+				74E1495C0F95949500FB7BDA /* WebViewController.m in Sources */,
+				74E1495D0F95949500FB7BDA /* AbstractFullScreenTableViewController.m in Sources */,
+				74E1495E0F95949500FB7BDA /* AbstractFullScreenViewController.m in Sources */,
+				74E1495F0F95949500FB7BDA /* AbstractApplication.m in Sources */,
+				74E149600F95949500FB7BDA /* CollectionUtilities.m in Sources */,
+				74E149610F95949500FB7BDA /* NSArray+Utilities.m in Sources */,
+				74E149620F95949500FB7BDA /* PreviewNetworksPosterDownloader.m in Sources */,
+				74E149630F95949500FB7BDA /* InternationalDataCache.m in Sources */,
+				74E149640F95949500FB7BDA /* HelpCache.m in Sources */,
+				74E149650F95949500FB7BDA /* AbstractPosterDownloader.m in Sources */,
+				74E149660F95949500FB7BDA /* SearchDistancePickerViewController.m in Sources */,
+				74E149670F95949500FB7BDA /* AbstractTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2593,7 +3350,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = AdHoc;
 		};
@@ -2633,7 +3390,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -2648,6 +3405,84 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = PocketFlicks;
+			};
+			name = Distribution;
+		};
+		74E149730F95949500FB7BDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_3,
+					DEBUG,
+				);
+				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				PRODUCT_NAME = PocketFlicks;
+			};
+			name = Debug;
+		};
+		74E149740F95949500FB7BDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_3,
+					RELEASE,
+				);
+				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				PRODUCT_NAME = PocketFlicks;
+			};
+			name = Release;
+		};
+		74E149750F95949500FB7BDA /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_3,
+					ADHOC,
+				);
+				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				PRODUCT_NAME = PocketFlicks;
+			};
+			name = AdHoc;
+		};
+		74E149760F95949500FB7BDA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_3,
+					DISTRIBUTION,
+				);
+				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Distribution;
@@ -2674,7 +3509,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -2702,20 +3537,31 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlicks" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlicks2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				749862270E8439DA00AE718F /* AdHoc */,
 				74BB1B140E21493D0066328E /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74E149730F95949500FB7BDA /* Debug */,
+				74E149740F95949500FB7BDA /* Release */,
+				74E149750F95949500FB7BDA /* AdHoc */,
+				74E149760F95949500FB7BDA /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
