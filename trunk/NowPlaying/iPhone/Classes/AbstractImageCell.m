@@ -105,8 +105,8 @@
 - (void) prioritizeImage {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
-    
-    
+
+
 - (void) prepareForReuse {
     [super prepareForReuse];
     if (!self.model.loadingIndicatorsEnabled) {
