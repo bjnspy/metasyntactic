@@ -158,14 +158,23 @@
 
 - (void) locationManager:(CLLocationManager*) manager
         didFailWithError:(NSError*) error {
+    BOOL userDenied = error.domain == kCLErrorDomain && error.code == kCLErrorDenied;
     if (userInvoked) {
-        [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
+        if (userDenied) {
+            [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.\nUser denied use of the location service.", nil)];
+        } else {
+            [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
+        }
     }
 
     [self stopAll];
 
     // intermittent failures are not uncommon. retry in a minute.
     [self enqueueUpdateRequest:ONE_MINUTE];
+
+    if (userDenied && self.model.autoUpdateLocation) {
+        [self.controller setAutoUpdateLocation:NO];
+    }
 }
 
 
