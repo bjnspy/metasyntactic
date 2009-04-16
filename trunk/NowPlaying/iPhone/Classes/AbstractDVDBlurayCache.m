@@ -184,6 +184,10 @@
 
 
 - (void) update {
+    if (self.model.userAddress.length == 0) {
+        return;
+    }
+
     if (!self.model.dvdBlurayCacheEnabled) {
         return;
     }

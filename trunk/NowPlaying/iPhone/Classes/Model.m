@@ -635,8 +635,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) dvdBlurayCacheEnabled {
-    return self.userAddress.length > 0 &&
-           ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
 }
 
 
@@ -646,8 +645,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) upcomingCacheEnabled {
-    return self.userAddress.length > 0 &&
-           ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
 }
 
 
