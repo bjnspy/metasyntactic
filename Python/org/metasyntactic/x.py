@@ -13,13 +13,7 @@ class Serializer:
         return self.to_string(v)
 
 class X:
-    @staticmethod
-    def to_string(e, serializer=Serializer()):
-        return ElementTree.tostring(X.to_element(e, serializer), encoding="UTF-8")
-
-    @staticmethod
-    def to_element(e, serializer=Serializer()):
-        return e.to_element(serializer)
+    pass
 
 class N:
     def __init__(self):
@@ -65,6 +59,8 @@ class T(N):
     def _clone(self):
         return T(self.__text)
 
+    def __repr__(self):
+        return "T(" + repr(self.__text) + ")"
 
 class E(N):
     def __init__(self, tag, *remainder):
@@ -156,8 +152,7 @@ class E(N):
         if previous is not None:
             previous._set_next(child)
     
-
-    def to_element(self, serializer):
+    def to_element(self, serializer=Serializer()):
         a = dict((serializer.attribute_key_to_string(k),
                   serializer.attribute_value_to_string(v))
                  for (k,v) in self.__attributes.items())
@@ -184,3 +179,12 @@ class E(N):
             i = i + 1
         
         return e
+        
+    def to_string(self, serializer=Serializer()):
+        return ElementTree.tostring(self.to_element(serializer), encoding="UTF-8")
+    
+    def __repr__(self):
+        return "E(" + repr(self.__tag) + ", " + repr(self.__attributes) + ", " + repr(self.__children) + ")"
+        
+    def __str__(self):
+        return self.to_string()
