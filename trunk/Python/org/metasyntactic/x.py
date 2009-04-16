@@ -13,7 +13,11 @@ class Serializer:
         return self.to_string(v)
 
 class X:
-    pass
+    class XMetaClass(type):
+        def __getattr__(self, name):
+            return lambda *remainder: E(name, remainder)
+
+    __metaclass__ = XMetaClass
 
 class N:
     def __init__(self):
@@ -64,6 +68,11 @@ class T(N):
 
 class E(N):
     def __init__(self, tag, *remainder):
+        if isinstance(tag, str):
+            tag = unicode(tag)
+        elif not isinstance(tag,unicode):
+            raise Exception()
+
         N.__init__(self);
         self.__tag = tag
         self.__children = []
@@ -184,7 +193,14 @@ class E(N):
         return ElementTree.tostring(self.to_element(serializer), encoding="UTF-8")
     
     def __repr__(self):
-        return "E(" + repr(self.__tag) + ", " + repr(self.__attributes) + ", " + repr(self.__children) + ")"
+        args = [repr(self.__tag)]
+        if len(self.__attributes) > 0:
+            args.append(repr(self.__attributes))
+        
+        if len(self.__children) > 0:
+            args.append(repr(self.__children))
+
+        return "E(" + ", ".join(args) + ")"
         
     def __str__(self):
         return self.to_string()
