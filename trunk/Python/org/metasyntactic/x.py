@@ -15,7 +15,7 @@ class Serializer:
 class X:
     @staticmethod
     def to_string(e, serializer=Serializer()):
-        return ElementTree.tostring(X.to_element(e, serializer), encoding="UTF8")
+        return ElementTree.tostring(X.to_element(e, serializer), encoding="UTF-8")
 
     @staticmethod
     def to_element(e, serializer=Serializer()):
@@ -36,6 +36,9 @@ class N:
     def previous(self):
         return self.__previous
 
+    # only subclasses can set these values.  they are not public so that
+    # no one external can break our invariants.  If people outside of
+    # this module access these setters then all bets are off
     def _set_parent(self, parent):
         self.__parent = parent
         
@@ -69,9 +72,8 @@ class E(N):
         self.__tag = tag
         self.__children = []
         self.__attributes = {}
-        for child in remainder:
-            self.append(child)
-            
+        self.append(remainder)
+
     def _clone(self):
         return E(self.__tag, self.__attributes, map(lambda n: n._clone(), self.__children))
 
@@ -82,6 +84,8 @@ class E(N):
         return self.__attributes.iteritems()
 
     def iternodes(self):
+        # easier way to do this?  i want to expose the stream of children, but
+        # not let anyone modify it.
         for c in self.__children:
             yield c
     
@@ -97,7 +101,8 @@ class E(N):
     def append(self, child):
         if child is None:
             return
-        elif isinstance(child, N):
+
+        if isinstance(child, N):
             self.__attach(child)
         elif isinstance(child, dict):
             self.__attributes.update(child.iteritems())
@@ -141,9 +146,10 @@ class E(N):
             clone = child._clone()
             child.parent().__swap(child, clone)
             
-        # simple case.  unowned child.  just stitch it in.
+        # child is now unowned.  just stitch it in.
         previous = None if len(self.__children) == 0 else self.__children[-1]
         self.__children.append(child)
+
         child._set_parent(self)
         child._set_next(None)
         child._set_previous(previous)
@@ -157,7 +163,11 @@ class E(N):
                  for (k,v) in self.__attributes.items())
         e = ElementTree.Element(self.tag(), a)
         e.text = ""
+        e.tail = ""
 
+        # text nodes belong to the last element child we've encountered.
+        # if we haven't seen any element children yet, then then text node
+        # belongs to this element.
         i = 0
         length = len(self.__children)
         last_child = None
