@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from xml.etree import ElementTree
+import xml.dom.minidom as minidom
 
 class Serializer:
     def to_string(self, v):
@@ -12,15 +12,50 @@ class Serializer:
     def attribute_value_to_string(self, v):
         return self.to_string(v)
 
-class X:
+    def convert(self, iteritems):
+        return ((self.attribute_key_to_string(k), self.attribute_value_to_string(v))
+                    for (k,v) in iteritems)
+
+
+class XE:
     class XMetaClass(type):
         def __getattr__(self, name):
-            return lambda *remainder: E(name, remainder)
+            return lambda *remainder: XElement(name, remainder)
 
     __metaclass__ = XMetaClass
 
-class N:
+
+class X:
+    @classmethod
+    def comment(cls, text):
+        return XText(text)
+
+    @classmethod
+    def document(cls, root, *remainder):
+        return XDocument(root, remainder)
+
+    @classmethod
+    def document_type(cls, public_id=u"", system_id=u"", internal_subset=u"",
+                      name=u"",entities={}, notations={}):
+        return XDocumentType(public_id, system_id, internal_subset,
+                             name, entities, notations)
+
+    @classmethod
+    def element(cls, tag, *remainder):
+        return XElement(tag, remainder)
+
+    @classmethod
+    def processing_instruction(cls, target, text=u""):
+        return XProcessingInstruction(target, text)
+    
+    @classmethod
+    def text(cls, text):
+        return XText(text)
+    
+
+class XNode:
     def __init__(self):
+        self.__children = []
         self.__parent = None
         self.__next = None
         self.__previous = None
@@ -34,91 +69,19 @@ class N:
     def previous(self):
         return self.__previous
 
-    # only subclasses can set these values.  they are not public so that
-    # no one external can break our invariants.  If people outside of
-    # this module access these setters then all bets are off
-    def _set_parent(self, parent):
-        self.__parent = parent
-        
-    def _set_next(self, next):
-        self.__next = next
-    
-    def _set_previous(self, previous):
-        self.__previous = previous
-
-
-class T(N):
-    def __init__(self, text):
-        N.__init__(self);
-        if isinstance(text, unicode):
-            self.__text = text
-        elif isinstance(text, str):
-            self.__text = unicode(text)
-        else:
-            raise Exception()
-
-    def text(self):
-        return self.__text
-    
-    def _clone(self):
-        return T(self.__text)
-
-    def __repr__(self):
-        return "T(" + repr(self.__text) + ")"
-
-class E(N):
-    def __init__(self, tag, *remainder):
-        if isinstance(tag, str):
-            tag = unicode(tag)
-        elif not isinstance(tag,unicode):
-            raise Exception()
-
-        N.__init__(self);
-        self.__tag = tag
-        self.__children = []
-        self.__attributes = {}
-        self.append(remainder)
-
-    def _clone(self):
-        return E(self.__tag, self.__attributes, map(lambda n: n._clone(), self.__children))
-
-    def tag(self):
-        return self.__tag
-
-    def iterattributes(self):
-        return self.__attributes.iteritems()
-
-    def iternodes(self):
-        # easier way to do this?  i want to expose the stream of children, but
-        # not let anyone modify it.
-        for c in self.__children:
-            yield c
-    
-    def iterelements(self):
-        return filter(lambda n: isinstance(n, E), self.iternodes())
-
-    def itertext(self):
-        return map(lambda t: t.text, filter(lambda n: isinstance(n, T), self.iternodes()))
-
-    def text(self):
-        "".join(self.itertext())
-    
-    def append(self, child):
+    def _append(self, child):
         if child is None:
             return
 
-        if isinstance(child, N):
+        if isinstance(child, XNode):
             self.__attach(child)
-        elif isinstance(child, dict):
-            self.__attributes.update(child.iteritems())
         elif isinstance(child, unicode) or isinstance(child, str):
-            self.append(T(child))
+            self.append(XText(child))
         elif hasattr(child,'__iter__'):
             for grand_child in child:
                 self.append(grand_child)
         else:
             raise Exception()
-
 
     def __swap(self, old_child, new_child):
         index = self.__children.index(old_child)
@@ -127,80 +90,242 @@ class E(N):
 
         # first attach the new child to this parent and stitch in into the list
         #of siblings
-        new_child._set_parent(self)
-        new_child._set_next(old_child.next())
-        new_child._set_previous(old_child.previous())
+        new_child.__parent = self
+        new_child.__next = old_child.__next
+        new_child.__previous = old_child.__previous
 
-        if new_child.next() is not None:
-            new_child.next()._set_previous(new_child)
+        if new_child.__next is not None:
+            new_child.__next.__previous = new_child
         
-        if new_child.previous() is not None:
-            new_child.previous()._set_next(new_child)
+        if new_child.__previous is not None:
+            new_child.__previous.__next = new_child
 
         # Now, totally disconnect the old child
-        old_child._set_parent(None)
-        old_child._set_next(None)
-        old_child._set_previous(None)
-
+        old_child.__parent = None
+        old_child.__next = None
+        old_child.__previous = None
 
     def __attach(self, child):
-        if child.parent() is not None:
+        if child.__parent is not None:
             # complicated case. this child belongs to another tree.  clone it
             # and jam the clone into the other tree.  then put this child into
             # this tree
             clone = child._clone()
-            child.parent().__swap(child, clone)
+            child.__parent.__swap(child, clone)
             
         # child is now unowned.  just stitch it in.
         previous = None if len(self.__children) == 0 else self.__children[-1]
         self.__children.append(child)
 
-        child._set_parent(self)
-        child._set_next(None)
-        child._set_previous(previous)
+        child.__parent = self
+        child.__next = None
+        child.__previous = previous
         if previous is not None:
-            previous._set_next(child)
-    
-    def to_element(self, serializer=Serializer()):
-        a = dict((serializer.attribute_key_to_string(k),
-                  serializer.attribute_value_to_string(v))
-                 for (k,v) in self.__attributes.items())
-        e = ElementTree.Element(self.tag(), a)
-        e.text = ""
-        e.tail = ""
+            previous.__next = child
 
-        # text nodes belong to the last element child we've encountered.
-        # if we haven't seen any element children yet, then then text node
-        # belongs to this element.
-        i = 0
-        length = len(self.__children)
-        last_child = None
-        while i < length:
-            c = self.__children[i]
-            if isinstance(c, T):
-                if last_child is None:
-                    e.text += c.text()
-                else:
-                    last_child.tail += c.text()
-            else:
-                last_child = c.to_element(serializer)
-                e.append(last_child)
-            i = i + 1
-        
-        return e
-        
-    def to_string(self, serializer=Serializer()):
-        return ElementTree.tostring(self.to_element(serializer), encoding="UTF-8")
+    def iternodes(self):
+        return (c for c in self.__children)
     
+    def iterelements(self):
+        return (c for c in self.__children if isinstance(c, XElement));
+
+    def itertext(self):
+        return (c.text for c in self.__children if isinstance(n, XText))
+
+    def text(self):
+        "".join(self.itertext())
+
+
+class XComment(XNode):
+    def __init__(self, text):
+        XNode.__init__(self);
+        self.__text = unicode(text)
+
+    def text(self):
+        return self.__text
+    
+    def _clone(self):
+        return XComment(self.__text)
+
+    def __repr__(self):
+        return "XComment(" + repr(self.__text) + ")"
+
+    def _to_dom_worker(self, dom, document, serializer):
+        return document.createComment(self.__text)
+    
+
+class XDocument(XNode):
+    def __init__(self, root, *remainder):
+        XNode.__init__(self)
+        self.__root = root
+        self.append(remainder)
+    
+    def _clone(self):
+        return XDocument(self.__root._clone(), (n._clone() for n in self.iternodes()))
+    
+    def append(self, child):
+        self._append(child)
+    
+    def __repr__(self):
+        args = [repr(self.__root)]
+
+        children = list(self.iternodes())
+        if len(children) > 0:
+            args.append(repr(children))
+
+        return "XDocument(" + ", ".join(args) + ")"
+
+    def to_dom(self, serializer):
+        dom = minidom.getDOMImplementation()
+        document = dom.createDocument(None, self.__root.tag(), None)
+        
+        for n in self.iternodes():
+            document.appendChild(n._to_dom_worker(dom, document, serializer))
+
+        self.__root._append_to_dom_element(document.documentElement, dom, document, serializer)
+
+        return document
+
+    def to_string(self, serializer=Serializer()):
+        return self.to_dom(serializer).toxml("utf-8")
+
+
+class XDocumentType(XNode):
+    def __init__(self, public_id=u"", system_id=u"", internal_subset=u"",
+                 name=u"",entities={}, notations={}):
+        self.__public_id = unicode(public_id)
+        self.__system_id = unicode(system_id)
+        self.__internal_subset = unicode(internal_subset)
+        self.__name = unicode(name)
+        self.__entities = entities
+        self.__notations = notations
+    
+    def _clone(self):
+        return XDocumentType(self.__public_id, self.__system_id,
+                             self.__internal_subset, self.__name,
+                             self.__entities, self.__notations)
+
+    def __repr__(self):
+        values = [repr(self.__public_id), repr(self.__system_id),
+                  repr(self.__internal_subset), repr(self.__name),
+                  repr(self.__entities), repr(self.__notations)]
+        return "XDocumentType(" + ", ".join(values) + ")"
+
+    def _to_dom_worker(self, dom, document, serializer):
+        dt = dom_implementation.createDocumentType(self.__name,
+                                                   self.__public_id,
+                                                   self.__system_id)
+        dt.entities = serializer.convert(self.__entities)
+        dt.notations = serializer.convert(self.__notations)
+        
+        return dt
+
+
+class XElement(XNode):
+    def __init__(self, tag, *remainder):
+        XNode.__init__(self);
+        self.__tag = unicode(tag)
+        self.__attributes = {}
+        self.append(remainder)
+
+    def _clone(self):
+        return XElement(self.__tag, self.__attributes, (n._clone() for n in self.iternodes()))
+
+    def tag(self):
+        return self.__tag
+
+    def iterattributes(self):
+        return self.__attributes.iteritems()
+    
+    def append(self, child):
+        if child is None:
+            return
+        
+        if isinstance(child, dict):
+            self.__attributes.update(child.iteritems())
+        else:
+            self._append(child)
+    
+    @classmethod   
+    def from_element(cls, element):
+        return Element.parse(ElementTree.tostring(element, encoding="UTF-8"))
+    
+    @classmethod
+    def parse(cls, text):
+        dom = minidom.parseString(text)
+
+    def to_dom(self, serializer):
+        dom = minidom.getDOMImplementation()
+        document = dom.createDocument(None, self.__tag, None)
+        self._append_to_dom_element(document.documentElement, dom, document, serializer)
+        return document
+
+    def _append_to_dom_element(self, element, dom, document, serializer):
+        for n in self.iternodes():
+            element.appendChild(n._to_dom_worker(dom, document, serializer))
+
+        for (k,v) in serializer.convert(self.iterattributes()):
+            element.setAttribute(k,v)
+
+    def _to_dom_worker(self, dom, document, serializer):
+        element = document.createElement(self.__tag)
+        self._append_to_dom_element(element, dom, document, serializer)
+        return element
+
+    def to_string(self, serializer=Serializer()):
+        return self.to_dom(serializer).toxml("utf-8")
+
     def __repr__(self):
         args = [repr(self.__tag)]
         if len(self.__attributes) > 0:
             args.append(repr(self.__attributes))
         
-        if len(self.__children) > 0:
-            args.append(repr(self.__children))
+        children = list(self.iternodes())
+        if len(children) > 0:
+            args.append(repr(children))
 
-        return "E(" + ", ".join(args) + ")"
-        
+        return "XElement(" + ", ".join(args) + ")"
+
+
     def __str__(self):
         return self.to_string()
+    
+
+class XProcessingInstruction(XNode):
+    def __init__(self, target, text=u""):
+        XNode.__init__(self)
+        self.__target = unicode(target)
+        self.__text = unicode(text)
+
+    def target(self):
+        return self.__target
+    
+    def text(self):
+        return self.__text
+    
+    def _clone(self):
+        return XProcessingInstruction(self.__target, self.__text)
+
+    def __repr__(self):
+        return "XProcessingInstruction(" + repr(self.__target) + ", " + repr(self.__text) + ")"
+
+    def _to_dom_worker(self, dom, document, serializer):
+        return document.createProcessingInstruction(self.__target, self.__text)
+
+
+class XText(XNode):
+    def __init__(self, text):
+        XNode.__init__(self);
+        self.__text = unicode(text)
+
+    def text(self):
+        return self.__text
+    
+    def _clone(self):
+        return XText(self.__text)
+
+    def __repr__(self):
+        return "XText(" + repr(self.__text) + ")"
+
+    def _to_dom_worker(self, dom, document, serializer):
+        return document.createTextNode(self.__text)
