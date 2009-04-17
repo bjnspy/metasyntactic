@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import xml as xml
+import xml.dom as xmldom
 import xml.dom.minidom as minidom
 
 class Serializer:
@@ -51,7 +53,51 @@ class X:
     @classmethod
     def text(cls, text):
         return XText(text)
+        
+    @classmethod
+    def parse(cls, text):
+        document = minidom.parseString(text)
+        return X.from_dom(document)
+
+    @classmethod
+    def from_dom(cls, dom):
+        if (dom.nodeType == xmldom.Node.ELEMENT_NODE):
+            return XElement._from_dom(dom)
+
+        if dom.nodeType == xmldom.Node.TEXT_NODE:
+            return XText._from_dom(dom)
+
+        if dom.nodeType == xmldom.Node.PROCESSING_INSTRUCTION_NODE:
+            return XProcessingInstruction._from_dom(dom)
+
+        if dom.nodeType == xmldom.Node.COMMENT_NODE:
+            return XComment._from_dom(dom)
+            
+        if dom.nodeType == xmldom.Node.DOCUMENT_NODE:
+            return XDocument._from_dom(dom)
+            
+        if dom.nodeType == xmldom.Node.DOCUMENT_TYPE_NODE:
+            return XDocumentType._from_dom(dom)
+        
+        raise Exception(str(type(dom)))
     
+    @classmethod
+    def _convert_named_node_map(cls, nnm):
+        d = {}
+        if not nnm is None:
+            for i in range(nnm.length):
+                attr = nnm.item(i)
+                d[attr.name] = attr.value
+        return d
+    
+    @classmethod
+    def _convert_node_list(cls, nl):
+        l = []
+        if not nl is None:
+            for i in range(nl.length):
+                n = nl.item(i)
+                l.append(X.from_dom(n))
+        return l
 
 class XNode:
     def __init__(self):
@@ -152,7 +198,11 @@ class XComment(XNode):
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createComment(self.__text)
-    
+
+    @classmethod
+    def _from_dom(cls, dom):
+        return XComment(dom.data)
+
 
 class XDocument(XNode):
     def __init__(self, root, *remainder):
@@ -189,6 +239,11 @@ class XDocument(XNode):
     def to_string(self, serializer=Serializer()):
         return self.to_dom(serializer).toxml("utf-8")
 
+    @classmethod
+    def _from_dom(cls, dom):
+        return XDocument(X.from_dom(dom.documentElement),
+                         X._convert_node_list(dom.childNodes))
+
 
 class XDocumentType(XNode):
     def __init__(self, public_id=u"", system_id=u"", internal_subset=u"",
@@ -219,6 +274,15 @@ class XDocumentType(XNode):
         dt.notations = serializer.convert(self.__notations)
         
         return dt
+        
+    @classmethod
+    def _from_dom(cls, dom):
+        return XDocumentType(public_id=dom.publicId,
+                             system_id=dom.systemId,
+                             iternal_subset=dom.internalSubset,
+                             name=dom.name,
+                             entities=X._convert_named_node_map(dom.entities),
+                             notations=X._convert_named_node_map(dom.notations))
 
 
 class XElement(XNode):
@@ -246,15 +310,11 @@ class XElement(XNode):
         else:
             self._append(child)
     
-    @classmethod   
-    def from_element(cls, element):
-        return Element.parse(ElementTree.tostring(element, encoding="UTF-8"))
-    
     @classmethod
     def parse(cls, text):
         dom = minidom.parseString(text)
 
-    def to_dom(self, serializer):
+    def to_dom(self, serializer=Serializer()):
         dom = minidom.getDOMImplementation()
         document = dom.createDocument(None, self.__tag, None)
         self._append_to_dom_element(document.documentElement, dom, document, serializer)
@@ -271,6 +331,7 @@ class XElement(XNode):
         element = document.createElement(self.__tag)
         self._append_to_dom_element(element, dom, document, serializer)
         return element
+        
 
     def to_string(self, serializer=Serializer()):
         return self.to_dom(serializer).toxml("utf-8")
@@ -286,9 +347,14 @@ class XElement(XNode):
 
         return "XElement(" + ", ".join(args) + ")"
 
-
     def __str__(self):
         return self.to_string()
+        
+    @classmethod
+    def _from_dom(cls, dom):
+        return XElement(dom.tagName,
+                        X._convert_named_node_map(dom.attributes),
+                        X._convert_node_list(dom.childNodes))
     
 
 class XProcessingInstruction(XNode):
@@ -311,6 +377,10 @@ class XProcessingInstruction(XNode):
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createProcessingInstruction(self.__target, self.__text)
+    
+    @classmethod
+    def _from_dom(cls, dom):
+        return XProcessingInstruction(dom.target, dom.data)
 
 
 class XText(XNode):
@@ -329,3 +399,7 @@ class XText(XNode):
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createTextNode(self.__text)
+    
+    @classmethod
+    def _from_dom(cls, dom):
+        return XText(dom.data)
