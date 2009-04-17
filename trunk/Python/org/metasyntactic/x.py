@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" Classes to declaratively generate and process XML in a pythonic manner.
+""" Classes to declaratively generate and process XML.
 
 This module provides a way to for clients to declaratively produce XML in
 a manner missing in most python XML libraries.  It aims to be very lightweight,
@@ -53,6 +53,14 @@ class Serializer(object):
     """
     def to_string(self, v):
         return str(v)
+    
+    def object_to_string(self, v):
+        """
+        Used to convert the values of X.object nodes into strings.  Override
+        this if you want to specialize that behavior.  By default, just defers
+        to Serializer.to_string
+        """
+        return self.to_string(v)
  
     def attribute_key_to_string(self, k):
         return self.to_string(k)
@@ -60,7 +68,7 @@ class Serializer(object):
     def attribute_value_to_string(self, v):
         return self.to_string(v)
 
-    def convert(self, iteritems):
+    def _convert(self, iteritems):
         if iteritems is None:
             return None
 
@@ -305,15 +313,15 @@ class _Node(object):
             self.__attach(child)
         elif isinstance(child, unicode) or isinstance(child, str):
             # If its a string of some sort, then add a text node
-            self.append(X.text(child))
+            self._append(X.text(child))
         elif hasattr(child,'__iter__'):
             # enumerate all the items in the iterable, then add each one
             # individually
             for grand_child in child:
-                self.append(grand_child)
+                self._append(grand_child)
         else:
             # Otherwise, add it as an object
-            self.append(X.object(child))
+            self._append(X.object(child))
 
     def __swap(self, old_child, new_child):
         """ Replaces an existing child node of ours with a new child """
@@ -416,8 +424,8 @@ class _Document(_Node):
     def __init__(self, root, *remainder):
         _Node.__init__(self)
         self.__root = root
-        self.append(root)
-        self.append(remainder)
+        self._append(root)
+        self._append(remainder)
     
     def __iternodes_without_root(self):
         return (n for n in self.iternodes() if n != self.__root)
@@ -425,9 +433,6 @@ class _Document(_Node):
     def _clone(self):
         return X.document(self.__root._clone(),
                           (n._clone() for n in self.__iternodes_without_root()))
-    
-    def append(self, child):
-        self._append(child)
     
     def __repr__(self):
         args = [repr(self.__root)]
@@ -493,8 +498,8 @@ class _DocumentType(_Node):
         dt = dom_implementation.createDocumentType(self.__name,
                                                    self.__public_id,
                                                    self.__system_id)
-        dt.entities = serializer.convert(self.__entities)
-        dt.notations = serializer.convert(self.__notations)
+        dt.entities = serializer._convert(self.__entities)
+        dt.notations = serializer._convert(self.__notations)
 
         return dt
 
@@ -516,7 +521,7 @@ class _Element(_Node):
         _Node.__init__(self);
         self.__tag = unicode(tag)
         self.__attributes = None
-        self.append(remainder)
+        self.__append(remainder)
 
     def _clone(self):
         return X.element(self.__tag, self.__attributes,
@@ -531,7 +536,7 @@ class _Element(_Node):
 
         return self.__attributes.iteritems()
     
-    def append(self, child):
+    def __append(self, child):
         if child is None:
             return
 
@@ -555,7 +560,7 @@ class _Element(_Node):
         for n in self.iternodes():
             element.appendChild(n._to_dom_worker(dom, document, serializer))
 
-        for (k,v) in serializer.convert(self.iterattributes()):
+        for (k,v) in serializer._convert(self.iterattributes()):
             element.setAttribute(k,v)
 
     def _to_dom_worker(self, dom, document, serializer):
