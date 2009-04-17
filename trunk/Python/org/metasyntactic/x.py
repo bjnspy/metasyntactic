@@ -208,6 +208,7 @@ class X(object):
             COMMENT_NODE
             DOCUMENT_NODE
             DOCUMENT_TYPE_NODE
+            CDATA_SECTION_NODE
         """
         if dom.nodeType == xmldom.Node.ELEMENT_NODE:
             return _Element._from_dom(dom)
@@ -226,6 +227,10 @@ class X(object):
 
         if dom.nodeType == xmldom.Node.DOCUMENT_TYPE_NODE:
             return _DocumentType._from_dom(dom)
+
+        if dom.nodeType == xmldom.Node.CDATA_SECTION_NODE:
+            # Treat CDATA just like text
+            return _Text._from_dom(dom)
         
         raise Exception("Unknown dom type")
     
@@ -521,9 +526,6 @@ class _Element(_Node):
         return self.__attributes.iteritems()
     
     def _append(self, child):
-        if child is None:
-            return
-
         if isinstance(child, dict):
             if self.__attributes is None:
                 self.__attributes = {}
