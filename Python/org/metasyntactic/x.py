@@ -90,7 +90,7 @@ class XE:
             # above example.  Return a continuation that will take any
             # remainder arguments and pass it along to the actual XElement
             # constructor
-            return lambda *remainder: _Element(name, remainder)
+            return lambda *rest, **kwargs: _Element(name, rest, kwargs)
 
     __metaclass__ = XEMetaClass
 
@@ -354,7 +354,7 @@ class _Node(object):
         an iterable view over it is available
         """
         if self.__children is None:
-            return []
+            return [].__iter__()
 
         return (c for c in self.__children)
     
@@ -499,11 +499,12 @@ class _DocumentType(_Node):
 
 class _Element(_Node):
     """ An XML element """
-    def __init__(self, tag, *remainder):
+    def __init__(self, tag, *remainder, **kwargs):
         _Node.__init__(self);
         self.__tag = unicode(tag)
         self.__attributes = None
-        self.__append(remainder)
+        self._append(remainder)
+        self._append(kwargs)
 
     def _clone(self):
         return X.element(self.__tag, self.__attributes,
@@ -519,7 +520,7 @@ class _Element(_Node):
 
         return self.__attributes.iteritems()
     
-    def __append(self, child):
+    def _append(self, child):
         if child is None:
             return
 
@@ -530,7 +531,7 @@ class _Element(_Node):
             self.__attributes.update(child.iteritems())
         else:
             # defer to superclass to handle this
-            self._append(child)
+            super(_Element, self)._append(child)
 
     def to_dom(self, serializer=Serializer()):
         dom = minidom.getDOMImplementation()
