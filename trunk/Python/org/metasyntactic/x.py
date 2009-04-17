@@ -140,7 +140,7 @@ class X(object):
     def element(cls, tag, *remainder):
         """
         Creates an XML element.  The tag of the element (i.e. the text
-        directly following the open backet) is the only required element.  All
+        directly following the open bracket) is the only required element.  All
         additional features are provided in the 'remainder' list.  This list
         will be decomposed and the constituent elements will become part of
         the resultant element.  The decomposition strategy is as follows:
@@ -209,7 +209,7 @@ class X(object):
             DOCUMENT_NODE
             DOCUMENT_TYPE_NODE
         """
-        if (dom.nodeType == xmldom.Node.ELEMENT_NODE):
+        if dom.nodeType == xmldom.Node.ELEMENT_NODE:
             return _Element._from_dom(dom)
 
         if dom.nodeType == xmldom.Node.TEXT_NODE:
@@ -236,7 +236,7 @@ class X(object):
         normal python dictionary.
         """
         d = {}
-        if not nnm is None:
+        if nnm is not None:
             for i in range(nnm.length):
                 attr = nnm.item(i)
                 d[attr.name] = attr.value
@@ -249,11 +249,12 @@ class X(object):
         python list
         """
         l = []
-        if not nl is None:
+        if nl is not None:
             for i in range(nl.length):
                 n = nl.item(i)
                 l.append(X.from_dom(n))
         return l
+
 
 class _Node(object):
     """
@@ -269,12 +270,15 @@ class _Node(object):
         self.__next = None
         self.__previous = None
 
+    @property
     def parent(self):
         return self.__parent
 
+    @property
     def next(self):
         return self.__next
 
+    @property
     def previous(self):
         return self.__previous
 
@@ -354,17 +358,19 @@ class _Node(object):
 
         return (c for c in self.__children)
     
+    __iter__ = iternodes
+    
     def iterelements(self):
         """
         Returns all the element children of this node, skipping all others
         """
-        return (c for c in self.iternodes() if isinstance(c, XElement));
+        return (c for c in self if isinstance(c, XElement));
 
     def itertext(self):
         """
         Returns all the text children of this node, skipping all others
         """
-        return (c.text for c in self.iternodes() if isinstance(n, XText))
+        return (c.text for c in self if isinstance(n, XText))
 
     def text(self):
         """ Returns all the text joined together into one string """
@@ -377,6 +383,7 @@ class _Comment(_Node):
         _Node.__init__(self);
         self.__text = unicode(text)
 
+    @property
     def text(self):
         return self.__text
     
@@ -403,7 +410,7 @@ class _Document(_Node):
         self._append(remainder)
     
     def __iternodes_without_root(self):
-        return (n for n in self.iternodes() if n != self.__root)
+        return (n for n in self if n != self.__root)
     
     def _clone(self):
         return X.document(self.__root._clone(),
@@ -500,8 +507,9 @@ class _Element(_Node):
 
     def _clone(self):
         return X.element(self.__tag, self.__attributes,
-                         (n._clone() for n in self.iternodes()))
+                         (n._clone() for n in self))
 
+    @property
     def tag(self):
         return self.__tag
 
@@ -532,7 +540,7 @@ class _Element(_Node):
         return document
 
     def _append_to_dom_element(self, element, dom, document, serializer):
-        for n in self.iternodes():
+        for n in self:
             element.appendChild(n._to_dom_worker(dom, document, serializer))
 
         for (k,v) in serializer._convert(self.iterattributes()):
@@ -573,6 +581,7 @@ class _Object(_Node):
         _Node.__init__(self);
         self.__value = value
 
+    @property
     def value(self):
         return self.__value
     
@@ -593,9 +602,11 @@ class _ProcessingInstruction(_Node):
         self.__target = unicode(target)
         self.__text = unicode(text)
 
+    @property
     def target(self):
         return self.__target
     
+    @property
     def text(self):
         return self.__text
     
@@ -620,6 +631,7 @@ class _Text(_Node):
         _Node.__init__(self);
         self.__text = unicode(text)
 
+    @property
     def text(self):
         return self.__text
     
