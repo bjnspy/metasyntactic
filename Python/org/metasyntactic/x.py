@@ -3,6 +3,7 @@
 import xml as xml
 import xml.dom as xmldom
 import xml.dom.minidom as minidom
+from xml import xpath
 
 class Serializer:
     def to_string(self, v):
@@ -30,7 +31,7 @@ class XE:
 class X:
     @classmethod
     def comment(cls, text):
-        return XText(text)
+        return XComment(text)
 
     @classmethod
     def document(cls, root, *remainder):
@@ -304,15 +305,11 @@ class XElement(XNode):
     def append(self, child):
         if child is None:
             return
-        
+
         if isinstance(child, dict):
             self.__attributes.update(child.iteritems())
         else:
             self._append(child)
-    
-    @classmethod
-    def parse(cls, text):
-        dom = minidom.parseString(text)
 
     def to_dom(self, serializer=Serializer()):
         dom = minidom.getDOMImplementation()
@@ -331,7 +328,6 @@ class XElement(XNode):
         element = document.createElement(self.__tag)
         self._append_to_dom_element(element, dom, document, serializer)
         return element
-        
 
     def to_string(self, serializer=Serializer()):
         return self.to_dom(serializer).toxml("utf-8")
@@ -340,7 +336,7 @@ class XElement(XNode):
         args = [repr(self.__tag)]
         if len(self.__attributes) > 0:
             args.append(repr(self.__attributes))
-        
+
         children = list(self.iternodes())
         if len(children) > 0:
             args.append(repr(children))
@@ -349,7 +345,7 @@ class XElement(XNode):
 
     def __str__(self):
         return self.to_string()
-        
+
     @classmethod
     def _from_dom(cls, dom):
         return XElement(dom.tagName,
