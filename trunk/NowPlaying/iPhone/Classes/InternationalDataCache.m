@@ -520,7 +520,7 @@ static NSSet* allowableCountries = nil;
     if (rating.length == 0) {
         ratingString = NSLocalizedString(@"Unrated", nil);
     } else {
-        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
+        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", @"%@ will be replaced with a movie rating.  i.e.: Rated PG-13"), rating];
     }
 
     NSString* runtimeString = @"";

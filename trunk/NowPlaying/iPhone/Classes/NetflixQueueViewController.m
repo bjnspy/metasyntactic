@@ -332,7 +332,7 @@
 
 
 - (void) onModifyFailure:(NSString*) error {
-    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Reordering queue failed:\n\n%@", nil), error];
+    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Reordering queue failed:\n\n%@", @"Error shown when we tried to reorder a user's movie queue on the server but failed.  %@ is replaced with the actual error.  i.e.: Could not connect to server"), error];
     [AlertUtilities showOkAlert:message];
 
     [self exitReadonlyMode];

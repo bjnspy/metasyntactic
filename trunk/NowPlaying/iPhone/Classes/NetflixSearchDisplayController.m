@@ -50,7 +50,7 @@
 
 
 - (void) setupDefaultScopeButtonTitles {
-    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Disc", nil), NSLocalizedString(@"Instant", nil), nil];
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), NSLocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), NSLocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
 }
 
 
@@ -224,9 +224,9 @@
     self.instantMovies = instant;
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies.count],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", nil), discs.count],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", nil), instant.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", @"Used to display the count of all instant watch search results.  i.e.: Instant (15)"), instant.count],
                                         nil];
 }
 

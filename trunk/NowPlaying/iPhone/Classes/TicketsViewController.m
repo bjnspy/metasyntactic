@@ -211,12 +211,12 @@
 
     if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil),
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", @"%@ will be replaced with a movie showtime.  i.e. '3:15pm'"),
                      performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil),
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", @"%@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm"),
                      performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -257,9 +257,9 @@
     cell.textColor = [ColorCache commandColor];
 
     if (row == 0) {
-        cell.text = NSLocalizedString(@"E-mail listings", @"This string must it on a button half the width of the screen.  It means 'email the theater listings to a friend'");
+        cell.text = NSLocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
     } else {
-        cell.text = NSLocalizedString(@"Change date", nil);
+        cell.text = NSLocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
     }
 
     return cell;

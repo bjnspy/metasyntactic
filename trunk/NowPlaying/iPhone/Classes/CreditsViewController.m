@@ -249,7 +249,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Help", nil), NSLocalizedString(@"Send Feedback", nil), nil];
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"Project website", nil);
+            cell.text = NSLocalizedString(@"Project website", @"Takes the user to the website for this application");
         } else {
             cell.text = NSLocalizedString(@"Write Review", nil);
         }

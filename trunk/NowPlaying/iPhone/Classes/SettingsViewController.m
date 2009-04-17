@@ -134,7 +134,7 @@ typedef enum {
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), NSLocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
     cell.text = text;
 
     return cell;
@@ -239,19 +239,19 @@ typedef enum {
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
         } else if (row == 6) {
-            text = NSLocalizedString(@"Screen Rotation", nil);
+            text = NSLocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
             on = self.model.screenRotationEnabled;
             selector = @selector(onScreenRotationEnabledChanged:);
         } else if (row == 7) {
-            text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
+            text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
         } else if (row == 8) {
-            text = NSLocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it");
+            text = NSLocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
             on = self.model.notificationsEnabled;
             selector = @selector(onShowNotificationsChanged:);
         } else if (row == 9) {
-            text = NSLocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it");
+            text = NSLocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
             on = self.model.loadingIndicatorsEnabled;
             selector = @selector(onLoadingIndicatorsChanged:);
         }
@@ -276,17 +276,17 @@ typedef enum {
                                            on:self.model.dvdBlurayCacheEnabled
                                      selector:@selector(onDvdBlurayEnabledChanged:)];
     } else {
-        NSString* key = NSLocalizedString(@"Show", nil);
+        NSString* key = NSLocalizedString(@"Options", @"Button to change the visibility options for DVD or Bluray.");
         NSString* value = @"";
 
         if (self.model.dvdMoviesShowBoth) {
-            value = NSLocalizedString(@"Both", nil);
+            value = NSLocalizedString(@"Show Both", @"When the user wants to see 'Both' DVD and Bluray items");
         } else if (self.model.dvdMoviesShowOnlyDVDs) {
-            value = NSLocalizedString(@"DVD Only", nil);
+            value = NSLocalizedString(@"DVD Only", @"When the user wants to see only DVD items and not Bluray");
         } else if (self.model.dvdMoviesShowOnlyBluray) {
-            value = NSLocalizedString(@"Blu-ray Only", nil);
+            value = NSLocalizedString(@"Blu-ray Only", @"When the user wants to see only Bluray items and not DVD");
         } else {
-            value = NSLocalizedString(@"Neither", nil);
+            value = NSLocalizedString(@"Show Neither", @"When the user does not want to see Bluray or DVD items");
         }
 
         return [self createSettingCellWithKey:key value:value];
