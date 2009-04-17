@@ -38,7 +38,7 @@ class X:
 
     @classmethod
     def document_type(cls, public_id=u"", system_id=u"", internal_subset=u"",
-                      name=u"",entities={}, notations={}):
+                      name=u"",entities=None, notations=None):
         return XDocumentType(public_id, system_id, internal_subset,
                              name, entities, notations)
 
@@ -247,13 +247,13 @@ class XDocument(XNode):
 
 class XDocumentType(XNode):
     def __init__(self, public_id=u"", system_id=u"", internal_subset=u"",
-                 name=u"",entities={}, notations={}):
+                 name=u"",entities=None, notations=None):
         self.__public_id = unicode(public_id)
         self.__system_id = unicode(system_id)
         self.__internal_subset = unicode(internal_subset)
         self.__name = unicode(name)
-        self.__entities = entities
-        self.__notations = notations
+        self.__entities = {} if entities is None else entities;
+        self.__notations = {} if notations is None else notations;
     
     def _clone(self):
         return XDocumentType(self.__public_id, self.__system_id,
