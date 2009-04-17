@@ -194,7 +194,7 @@ class XComment(XNode):
         return XComment(self.__text)
 
     def __repr__(self):
-        return "XComment(" + repr(self.__text) + ")"
+        return self.__class__.__name__ + "(" + repr(self.__text) + ")"
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createComment(self.__text)
@@ -223,7 +223,7 @@ class XDocument(XNode):
         if len(children) > 0:
             args.append(repr(children))
 
-        return "XDocument(" + ", ".join(args) + ")"
+        return self.__class__.__name__ + "(" + ", ".join(args) + ")"
 
     def to_dom(self, serializer):
         dom = minidom.getDOMImplementation()
@@ -261,10 +261,10 @@ class XDocumentType(XNode):
                              self.__entities, self.__notations)
 
     def __repr__(self):
-        values = [repr(self.__public_id), repr(self.__system_id),
-                  repr(self.__internal_subset), repr(self.__name),
-                  repr(self.__entities), repr(self.__notations)]
-        return "XDocumentType(" + ", ".join(values) + ")"
+        return (self.__class__.__name__ + "(" +
+                ", ".join((repr(self.__public_id), repr(self.__system_id),
+                           repr(self.__internal_subset), repr(self.__name),
+                           repr(self.__entities), repr(self.__notations))) + ")")
 
     def _to_dom_worker(self, dom, document, serializer):
         dt = dom_implementation.createDocumentType(self.__name,
@@ -345,7 +345,7 @@ class XElement(XNode):
         if len(children) > 0:
             args.append(repr(children))
 
-        return "XElement(" + ", ".join(args) + ")"
+        return self.__class__.__name__ + "(" + ", ".join(args) + ")"
 
     def __str__(self):
         return self.to_string()
@@ -373,7 +373,8 @@ class XProcessingInstruction(XNode):
         return XProcessingInstruction(self.__target, self.__text)
 
     def __repr__(self):
-        return "XProcessingInstruction(" + repr(self.__target) + ", " + repr(self.__text) + ")"
+        return (self.__class__.__name__ + "(" +
+                ", ".join((repr(self.__target), repr(self.__text))) + ")")
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createProcessingInstruction(self.__target, self.__text)
@@ -395,7 +396,7 @@ class XText(XNode):
         return XText(self.__text)
 
     def __repr__(self):
-        return "XText(" + repr(self.__text) + ")"
+        return self.__class__.__name__ + "(" + repr(self.__text) + ")"
 
     def _to_dom_worker(self, dom, document, serializer):
         return document.createTextNode(self.__text)
