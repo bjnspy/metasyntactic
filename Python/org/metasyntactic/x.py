@@ -118,11 +118,6 @@ class X(object):
         return _Comment(text)
 
     @classmethod
-    def c(cls, text):
-        """ Shorthand form of as X.comment """
-        return X.comment(text)
-
-    @classmethod
     def document(cls, root, *remainder):
         """
         Creates an XML document out of a root XML element and any
@@ -132,11 +127,6 @@ class X(object):
         return _Document(root, remainder)
     
     @classmethod
-    def d(cls, root, *remainder):
-        """ Shorthand form of as X.document """
-        return X.document(root, remainder)
-
-    @classmethod
     def document_type(cls, public_id=u"", system_id=u"", internal_subset=u"",
                       name=u"",entities=None, notations=None):
         """
@@ -145,13 +135,6 @@ class X(object):
         """
         return _DocumentType(public_id, system_id, internal_subset,
                              name, entities, notations)
-
-    @classmethod
-    def dt(cls, public_id=u"", system_id=u"", internal_subset=u"",
-           name=u"",entities=None, notations=None):
-        """ Shorthand form of as X.dt """
-        return X.document_type(public_id, system_id, internal_subset,
-                               name, entities, notations)
 
     @classmethod
     def element(cls, tag, *remainder):
@@ -172,11 +155,6 @@ class X(object):
         return _Element(tag, remainder)
 
     @classmethod
-    def e(cls, tag, *remainder):
-        """ Shorthand form of as X.e """
-        return X.element(tag, remainder)
-
-    @classmethod
     def object(cls, value):
         """
         Enacapsulates a python value so it can be stored in an XML document.
@@ -184,11 +162,6 @@ class X(object):
         passed into the to_string method.
         """
         return _Object(value)
-
-    @classmethod
-    def o(cls, value):
-        """ Shorthand form of as X.object """
-        return X.object(value)
 
     @classmethod
     def processing_instruction(cls, target, text=u""):
@@ -199,19 +172,21 @@ class X(object):
         return _ProcessingInstruction(target, text)
     
     @classmethod
-    def pi(cls, target, text=u""):
-        """ Shorthand form of as X.pi """
-        return X.processing_instruction(target, text)
-    
-    @classmethod
     def text(cls, text):
         """ Creates a normal XML text node. """
         return _Text(text)
-    
-    @classmethod
-    def t(cls, text):
-        """ Shorthand form of as X.text """
-        return X.text(text)
+   
+    """
+    Shorthand accessors for the above methods.  Useful if you care about
+    brevity when constructing your XML
+    """
+    c = comment
+    d = document
+    dt = document_type
+    e = element
+    o = object
+    pi = processing_instruction
+    t = text
     
     @classmethod
     def parse(cls, text):
