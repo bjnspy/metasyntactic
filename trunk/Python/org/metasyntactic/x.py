@@ -3,7 +3,6 @@
 import xml as xml
 import xml.dom as xmldom
 import xml.dom.minidom as minidom
-from xml import xpath
 
 class Serializer:
     def to_string(self, v):
@@ -73,10 +72,10 @@ class X:
 
         if dom.nodeType == xmldom.Node.COMMENT_NODE:
             return XComment._from_dom(dom)
-            
+
         if dom.nodeType == xmldom.Node.DOCUMENT_NODE:
             return XDocument._from_dom(dom)
-            
+
         if dom.nodeType == xmldom.Node.DOCUMENT_TYPE_NODE:
             return XDocumentType._from_dom(dom)
         
@@ -159,7 +158,7 @@ class XNode:
             # this tree
             clone = child._clone()
             child.__parent.__swap(child, clone)
-            
+
         # child is now unowned.  just stitch it in.
         previous = None if len(self.__children) == 0 else self.__children[-1]
         self.__children.append(child)
@@ -273,9 +272,9 @@ class XDocumentType(XNode):
                                                    self.__system_id)
         dt.entities = serializer.convert(self.__entities)
         dt.notations = serializer.convert(self.__notations)
-        
+
         return dt
-        
+
     @classmethod
     def _from_dom(cls, dom):
         return XDocumentType(public_id=dom.publicId,
