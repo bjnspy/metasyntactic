@@ -95,7 +95,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 1) {
-        return NSLocalizedString(@"Preferred Formats", nil);
+        return NSLocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
     }
 
     return nil;

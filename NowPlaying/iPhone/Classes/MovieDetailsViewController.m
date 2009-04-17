@@ -169,13 +169,13 @@ const NSInteger POSTER_TAG = -1;
 
     if (trailer.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
-        [titles addObject:NSLocalizedString(@"Play trailer", nil)];
+        [titles addObject:NSLocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
         [arguments addObject:[NSNull null]];
     }
 
     if (reviewsArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
-        [titles addObject:NSLocalizedString(@"Read reviews", nil)];
+        [titles addObject:NSLocalizedString(@"Read reviews", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to read the critics' reviews for a movie")];
         [arguments addObject:[NSNull null]];
     }
 
@@ -187,7 +187,7 @@ const NSInteger POSTER_TAG = -1;
 
     if (netflixMovie != nil && netflixStatusCells.count == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
-        [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
+        [titles addObject:NSLocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
         [arguments addObject:[NSNull null]];
     }
 
@@ -200,7 +200,7 @@ const NSInteger POSTER_TAG = -1;
     if ((selectors.count + websites.count) > 6) {
         // condense to one button
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
-        [titles addObject:NSLocalizedString(@"Websites", nil)];
+        [titles addObject:NSLocalizedString(@"Websites", @"Title for a button. Needs to be very short. 2-3 words *max*. When tapped, will show the user a list of websites with additional information about the movie")];
         [arguments addObject:[NSNull null]];
     } else {
         // show individual buttons

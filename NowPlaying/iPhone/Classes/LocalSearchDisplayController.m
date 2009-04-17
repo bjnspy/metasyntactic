@@ -200,7 +200,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
     return cell;
 }
 
@@ -338,8 +338,8 @@
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
                                       [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", nil), movies],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", nil), theaters],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies],
+                                      [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", @"Used to display the count of all theater search results.  i.e.: Theaters (15)"), theaters],
                                         nil];
 }
 

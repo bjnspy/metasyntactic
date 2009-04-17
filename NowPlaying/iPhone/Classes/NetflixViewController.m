@@ -237,7 +237,7 @@ typedef enum {
 #endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.text = NSLocalizedString(@"Most Popular", nil);
+                    cell.text = NSLocalizedString(@"Most Popular", @"The most popular movies currently");
                 } else {
                     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }

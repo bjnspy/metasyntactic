@@ -233,7 +233,7 @@
             self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search area", nil)];
         } else if (theaters.count > 1) {
             self.sectionTitles = [NSArray arrayWithObject:
-                               [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", nil), theaters.count]];
+                               [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", @"i.e.: 10 theaters outside search area"), theaters.count]];
         } else {
             self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
         }
@@ -244,8 +244,8 @@
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                              [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"),
-                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"),
+                               NSLocalizedString(@"Distance", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by distance"),
+                               NSLocalizedString(@"Name", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by their name"),
                                nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;

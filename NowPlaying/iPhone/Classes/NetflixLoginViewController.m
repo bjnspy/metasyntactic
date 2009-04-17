@@ -73,7 +73,7 @@
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", nil), [Application name], [Application name]];
+     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", @"The %@'s will be replaced with the program name.  i.e. 'Now Playing'"), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -89,7 +89,7 @@
 - (void) setupStatus {
     self.statusLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     statusLabel.backgroundColor = [UIColor clearColor];
-    statusLabel.text = NSLocalizedString(@"Requesting authorization", nil);
+    statusLabel.text = NSLocalizedString(@"requesting authorization", nil);
     statusLabel.textColor = [UIColor whiteColor];
     [statusLabel sizeToFit];
 
@@ -257,7 +257,7 @@
     // we're coming back after showing the user the the access page
 
     [activityIndicator startAnimating];
-    statusLabel.text = NSLocalizedString(@"Requesting access", nil);
+    statusLabel.text = NSLocalizedString(@"requesting access", nil);
     button.enabled = NO;
 
     [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
