@@ -1,17 +1,16 @@
 // Copyright 2008 Cyrus Najmabadi
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 //     http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 #import "NetflixCache.h"
 
 #import "AppDelegate.h"
@@ -805,7 +804,7 @@ static NSDictionary* availabilityMap = nil;
     } else {
         NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
         NSString* title = [self titleForKey:feed.key includeCount:NO];
-        NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), title];
+        NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", title];
         [NotificationCenter addNotification:notification];
         {
             [self downloadQueueWorker:feed];
@@ -1103,7 +1102,7 @@ static NSDictionary* availabilityMap = nil;
         }
     }
 
-    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
+    NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
     [NotificationCenter addNotification:notification];
     {
         NSLog(@"Downlading RSS Feed: %@", address);
@@ -1136,7 +1135,7 @@ static NSDictionary* availabilityMap = nil;
         return;
     }
 
-    NSString* notification = [NSString stringWithFormat:NSLocalizedString(@"Netflix '%@'", nil), [mostPopularAddressesToTitles objectForKey:address]];
+    NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
 
     [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
                                             onTarget:[NotificationCenter class]
@@ -1400,7 +1399,7 @@ static NSDictionary* availabilityMap = nil;
     }
     [self clearUpdatedMovies];
 
-    NSString* notification = NSLocalizedString(@"Netflix", nil);
+    NSString* notification = @"Netflix";
     [NotificationCenter addNotification:notification];
     {
         [self updateBackgroundEntryPointWorker];
