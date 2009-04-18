@@ -1,17 +1,16 @@
 // Copyright 2008 Cyrus Najmabadi
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 //     http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 #import "NetflixLoginViewController.h"
 
 #import "AlertUtilities.h"
@@ -89,7 +88,7 @@
 - (void) setupStatus {
     self.statusLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     statusLabel.backgroundColor = [UIColor clearColor];
-    statusLabel.text = NSLocalizedString(@"requesting authorization", nil);
+    statusLabel.text = NSLocalizedString(@"Requesting authorization", nil);
     statusLabel.textColor = [UIColor whiteColor];
     [statusLabel sizeToFit];
 
@@ -181,7 +180,7 @@
 
 
 - (void) requestAuthorizationToken {
-    NSString* notification = NSLocalizedString(@"requesting authorization", nil);
+    NSString* notification = [NSLocalizedString(@"Requesting authorization", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAuthorizationTokenWorker];
@@ -257,7 +256,7 @@
     // we're coming back after showing the user the the access page
 
     [activityIndicator startAnimating];
-    statusLabel.text = NSLocalizedString(@"requesting access", nil);
+    statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
 
     [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
@@ -288,7 +287,7 @@
 
 
 - (void) requestAccessToken {
-    NSString* notification = NSLocalizedString(@"requesting access", nil);
+    NSString* notification = [NSLocalizedString(@"Requesting access", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAccessTokenWorker];
