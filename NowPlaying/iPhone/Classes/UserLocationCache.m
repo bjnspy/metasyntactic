@@ -109,7 +109,7 @@
     if (location == nil) {
         NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
 
-        NSString* notification = NSLocalizedString(@"location", nil);
+        NSString* notification = [NSLocalizedString(@"Location", nil) lowercaseString];
         [NotificationCenter addNotification:notification];
         {
             NSLog(@"UserLocationCache:downloadWorker - Downloading address address");
