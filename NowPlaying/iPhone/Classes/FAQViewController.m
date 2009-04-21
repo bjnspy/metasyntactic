@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "FAQViewController.h"
 
 #import "ActionsView.h"
@@ -69,8 +70,7 @@
         self.actionsView = [ActionsView viewWithTarget:self
                                              selectors:selectors
                                                 titles:titles
-                                             arguments:arguments
-                                             shiftDown:NO];
+                                             arguments:arguments];
         actionsView.backgroundColor = self.tableView.backgroundColor;
     }
 
@@ -167,11 +167,7 @@
     if (section == 0) {
         CGFloat height = [actionsView height];
 
-#ifdef IPHONE_OS_VERSION_3
-        return height + 1;
-#else
         return height + 8;
-#endif
     } else if (section % 2 == 0) {
         return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
     }

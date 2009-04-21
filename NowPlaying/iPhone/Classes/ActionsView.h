@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 @interface ActionsView : UIView {
 @private
     id target;
@@ -20,17 +21,10 @@
 
     NSArray* buttons;
 
-    BOOL shiftDown;
     CGFloat height;
 }
 
 @property (readonly) CGFloat height;
-
-+ (ActionsView*) viewWithTarget:(id) target
-                      selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles
-                      arguments:(NSArray*) arguments
-                      shiftDown:(BOOL) shiftDown;
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors

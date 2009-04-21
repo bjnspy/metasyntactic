@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "AbstractMovieListViewController.h"
 
 #import "DateUtilities.h"
@@ -223,7 +224,7 @@
                 [array insertObject:starString atIndex:0];
             }
         } else {
-            NSString* title = NSLocalizedString(@"Unknown Release Ddate", nil);
+            NSString* title = NSLocalizedString(@"Unknown Release Date", nil);
             NSDate* releaseDate = [self.model releaseDateForMovie:movie];
 
             if (releaseDate != nil) {
@@ -306,7 +307,7 @@
 
 
 - (void) initializeInfoButton {
-    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
 
     infoButton.contentMode = UIViewContentModeCenter;

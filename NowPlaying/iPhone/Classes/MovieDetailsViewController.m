@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "MovieDetailsViewController.h"
 
 #import "ActionsView.h"
@@ -850,8 +851,7 @@ const NSInteger POSTER_TAG = -1;
       heightForFooterInSection:(NSInteger) section {
     if (section == 0) {
         CGFloat height = [actionsView height];
-
-        return height + 1;
+        return height;
     }
 
     return -1;

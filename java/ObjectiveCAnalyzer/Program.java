@@ -11,6 +11,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -36,7 +37,7 @@ public class Program {
         //printForwardDeclaration();
     }
 
-    private static void findStringsFiles(File directory) {
+    private static void findStringsFiles(final File directory) {
         for (final File child : directory.listFiles()) {
             if (".svn".equals(child.getName())) {
                 continue;
@@ -59,9 +60,9 @@ public class Program {
         //removeUnusedImports(child);
         //trimRight(child);
         //insertCopyright(child);
-        organizeStringsFile(child);
+        //organizeStringsFile(child);
         //formatCode(child);
-        //normalizeProjectFile(child);
+        normalizeProjectFile(child);
         //trim(child);
     }
 
@@ -176,7 +177,7 @@ public class Program {
         }
 
         Map<String, Pair> localizableEntries = null;
-        for (File file : stringsFiles) {
+        for (final File file : stringsFiles) {
             if (file.getPath().contains("en.lproj")) {
                 localizableEntries = getLocalizableEntries(file);
                 break;
@@ -200,7 +201,7 @@ public class Program {
                 missingStrings.addAll(difference);
             }
 
-            File locFile = new File("/Temp/Localization/" + new Locale(getLanguage(path)).getDisplayName(Locale.ENGLISH) + ".txt");
+            final File locFile = new File("/Temp/Localization/" + new Locale(getLanguage(path)).getDisplayName(Locale.ENGLISH) + ".txt");
             locFile.delete();
             if (!missingStrings.isEmpty()) {
                 System.out.println("Identifiers missing in: " + path);
@@ -263,9 +264,9 @@ public class Program {
 
                 text = commentText("// ", text);
 
-                for (String s : missingStrings) {
+                for (final String s : missingStrings) {
                     text += "\n\n";
-                    Pair pair = localizableEntries.get(s);
+                    final Pair pair = localizableEntries.get(s);
                     if (pair != null && !"/* No comment provided by engineer. */".equals(pair.second)) {
                         text += "// " + stripComment(pair.second) + "\n";
                     }
@@ -292,17 +293,17 @@ public class Program {
         private String first;
         private String second;
 
-        private Pair(String first, String second) {
+        private Pair(final String first, final String second) {
             this.first = first;
             this.second = second;
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (this == o) return true;
             if (!(o instanceof Pair)) return false;
 
-            Pair pair = (Pair) o;
+            final Pair pair = (Pair) o;
 
             if (!first.equals(pair.first)) return false;
             if (!second.equals(pair.second)) return false;
@@ -393,7 +394,7 @@ public class Program {
         }
 
         Map<String, Pair> englishEntries = null;
-        for (File file : stringsFiles) {
+        for (final File file : stringsFiles) {
             if (file.getPath().contains("en.lproj")) {
                 englishEntries = getLocalizableEntries(file);
                 break;
@@ -408,9 +409,9 @@ public class Program {
 
         for (final Map.Entry<String, Pair> entry : localizableEntries.entrySet()) {
             printer.println();
-            String english = entry.getKey();
-            String translated = entry.getValue().first;
-            Pair englishPair = englishEntries.get(english);
+            final String english = entry.getKey();
+            final String translated = entry.getValue().first;
+            final Pair englishPair = englishEntries.get(english);
             String comment = englishPair == null ? null : englishPair.second;
 
             if (comment == null) {
@@ -456,77 +457,99 @@ public class Program {
         return map;
     }
 
-    private static void normalizeProjectFile(File child) throws IOException, NoSuchAlgorithmException {
+    private static void normalizeProjectFile(final File child) throws IOException, NoSuchAlgorithmException {
         if (!child.getPath().endsWith(".pbxproj")) {
             return;
         }
 
-        hashMap.clear();
-        final LineNumberReader in = new LineNumberReader(new FileReader(child));
+        final String fileText = readFile(child);
 
-//        StringBuffer result;
-        final StringWriter stringWriter = new StringWriter();
-        final PrintWriter printer = new PrintWriter(stringWriter);
+        final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
+        final SortedSet<HashAndHint> values = new TreeSet<HashAndHint>();
+        final Map<String, String> hashingMap = new LinkedHashMap<String, String>();
 
-        Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
+        {
+            final Matcher matcher = pattern.matcher(fileText);
 
-        String line;
-        while ((line = in.readLine()) != null) {
-            int index = 0;
-            Matcher matcher = pattern.matcher(line);
-            while (matcher.find(index)) {
-                int start = matcher.start();
-                printer.print(line.substring(index, start));
+            while (matcher.find()) {
+                final HashAndHint hah = new HashAndHint(matcher.group(1), matcher.group(2));
+                values.add(hah);
+            }
+        }
 
-                String hash = getHash(matcher.group(1), matcher.group(2));
+        {
+            BigInteger start = new BigInteger(new byte[]{
+                    0x10, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+            });
+            for (final HashAndHint hah : values) {
+                final String hash =  start.toString(16);
+                hashingMap.put(hah.hash, hash);
+                start = start.add(BigInteger.ONE);
+            }
+        }
+        {
+            final Matcher matcher = pattern.matcher(fileText);
+            final StringBuffer sb = new StringBuffer(fileText.length());
+            while (matcher.find()) {
+                final String oldHash = matcher.group(1);
+                final String newHash = hashingMap.get(oldHash);
+                matcher.appendReplacement(sb, newHash + " /* " + matcher.group(2) + " */");
+            }
+            matcher.appendTail(sb);
 
-                printer.print(hash + " /* " + matcher.group(2) + " */");
-                index = matcher.end();
-                //printer.print(line.substring(start, index));
+            final String result = sb.toString();
+            //System.out.println(result);
+
+            if (!result.trim().equals(fileText.trim())) {
+                writeFile(child, result);
+            }
+        }
+    }
+
+    private static class HashAndHint implements Comparable<HashAndHint> {
+        private final String hash;
+        private final String hint;
+
+        private HashAndHint(final String hash, final String hint) {
+            this.hash = hash;
+            this.hint = hint;
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            if (this == o) return true;
+            if (!(o instanceof HashAndHint)) return false;
+
+            final HashAndHint that = (HashAndHint) o;
+
+            if (!hash.equals(that.hash)) return false;
+            if (!hint.equals(that.hint)) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = hash.hashCode();
+            result = 31 * result + hint.hashCode();
+            return result;
+        }
+
+        @Override
+        public int compareTo(final HashAndHint hashAndHint) {
+            if (hashAndHint == this) {
+                return 0;
             }
 
-            printer.println(line.substring(index, line.length()));
+            final int val = hint.compareTo(hashAndHint.hint);
+            if (val != 0) {
+                return val;
+            }
+
+            return hash.compareTo(hashAndHint.hash);
         }
-
-        printer.flush();
-        String result = stringWriter.toString();
-        if (!result.trim().equals(readFile(child).trim())) {
-            writeFile(child, result);
-        }
-    }
-
-    static private final String Base16 = "0123456789ABCDEF";
-
-    public static String toString(byte[] b) {
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-        for (int i = 0; i < b.length; i++) {
-            short value = (short) (b[i] & 0xFF);
-            byte high = (byte) (value >> 4);
-            byte low = (byte) (value & 0xF);
-            os.write(Base16.charAt(high));
-            os.write(Base16.charAt(low));
-        }
-        return new String(os.toByteArray());
-    }
-
-    static Map<String, String> hashMap = new HashMap<String, String>();
-
-    private static String getHash(String originalHash, String hint) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        String result = hashMap.get(originalHash);
-        if (result == null) {
-            MessageDigest digest = MessageDigest.getInstance("SHA-512");
-
-            int index = 0;
-            do {
-                byte[] bytes = digest.digest((hint + "-" + index).getBytes("utf8"));
-                result = toString(bytes).substring(0, 24);
-                index++;
-            } while (hashMap.values().contains(result));
-            hashMap.put(originalHash, result);
-        }
-
-        return result;
     }
 
 

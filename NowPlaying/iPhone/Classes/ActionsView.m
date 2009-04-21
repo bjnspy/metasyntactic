@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "ActionsView.h"
 
 #import "Model.h"
@@ -49,14 +50,12 @@
 - (id) initWithTarget:(id) target_
             selectors:(NSArray*) selectors_
                titles:(NSArray*) titles_
-            arguments:(NSArray*) arguments_
-            shiftDown:(BOOL) shiftDown_ {
+            arguments:(NSArray*) arguments_ {
     if (self = [super initWithFrame:CGRectZero]) {
         self.target = target_;
         self.selectors = selectors_;
         self.titles = titles_;
         self.arguments = arguments_;
-        shiftDown = shiftDown_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         //UIImage* image = [UIImage imageNamed:@"BalloonInputField.png"];
@@ -93,21 +92,11 @@
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
-                      arguments:(NSArray*) arguments
-                      shiftDown:(BOOL) shiftDown {
+                      arguments:(NSArray*) arguments {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
                                          titles:titles
-                                      arguments:arguments
-                                      shiftDown:shiftDown] autorelease];
-}
-
-
-+ (ActionsView*) viewWithTarget:(id) target
-                      selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles
-                      arguments:(NSArray*) arguments {
-    return [self viewWithTarget:target selectors:selectors titles:titles arguments:arguments shiftDown:YES];
+                                      arguments:arguments] autorelease];
 }
 
 
@@ -164,11 +153,7 @@
 
         CGRect frame = button.frame;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
-#ifdef IPHONE_OS_VERSION_3
-        frame.origin.y = (8 + frame.size.height) * row + (shiftDown ? 8 : 0);
-#else
         frame.origin.y = (8 + frame.size.height) * row + 8;
-#endif
 
         if (i == 0 && oddNumberOfButtons) {
             frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
