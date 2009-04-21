@@ -178,17 +178,17 @@
 
 
 + (NSString*) emptyStarString {
-    return [[StringUtilities stringFromUnichar:(unichar)0x2606] retain];
+    return [StringUtilities stringFromUnichar:(unichar)0x2606];
 }
 
 
 + (NSString*) halfStarString {
-    return [[StringUtilities stringFromUnichar:(unichar)0x272F] retain];
+    return [StringUtilities stringFromUnichar:(unichar)0x272F];
 }
 
 
 + (NSString*) starString {
-    return [[StringUtilities stringFromUnichar:[self starCharacter]] retain];
+    return [StringUtilities stringFromUnichar:[self starCharacter]];
 }
 
 @end

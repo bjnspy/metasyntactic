@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "AbstractNavigationController.h"
 
 #import "Controller.h"
@@ -61,14 +62,6 @@
 }
 
 
-- (id) init {
-    if (self = [super initWithNibName:nil bundle:nil]) {
-    }
-
-    return self;
-}
-
-
 - (void) loadView {
     [super loadView];
 
@@ -81,7 +74,17 @@
 
 
 - (void) refreshWithSelector:(SEL) selector {
-    if (!self.isViewLoaded || !visible) {
+    if (!self.isViewLoaded) {
+        return;
+    }
+
+    if (self.modalViewController != nil) {
+        if ([self.modalViewController respondsToSelector:selector]) {
+            [self.modalViewController performSelector:selector];
+        }
+    }
+
+    if (!visible) {
         return;
     }
 
@@ -272,7 +275,11 @@
 
 - (void) pushInfoControllerAnimated:(BOOL) animated {
     UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
-    [self pushViewController:controller animated:YES];
+    UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
+#ifdef IPHONE_OS_VERSION_3
+    navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+#endif
+    [self presentModalViewController:navigationController animated:YES];
 }
 
 #ifndef IPHONE_OS_VERSION_3

@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #import "SettingsViewController.h"
 
 #import "Application.h"
@@ -89,6 +90,12 @@ typedef enum {
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     [self.controller.locationManager addLocationSpinner:self.navigationItem];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
+}
+
+
+- (void) onDone {
+    [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
 
