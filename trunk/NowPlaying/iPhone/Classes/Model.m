@@ -1265,7 +1265,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return rating;
     }
 
-    return [internationalDataCache ratingForMovie:movie];
+    rating = [internationalDataCache ratingForMovie:movie];
+    if (rating.length > 0) {
+        return rating;
+    }
+    
+    return nil;
 }
 
 
