@@ -562,7 +562,7 @@
 
 
 - (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"adding movie", nil);
+    NSString* notification = NSLocalizedString(@"adding movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue");
     [NotificationCenter addNotification:notification];
     {
         [self addMovieToQueueBackgroundEntryPointWorker:arguments];

@@ -469,7 +469,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+     NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", @"The first %@ will be replaced with the device the user is on (i.e.: iPhone), the second %@ is replaced with the program name (i.e.: Now playing)"),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry],
      [Application name]];
@@ -520,8 +520,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
                                                      message:NSLocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
                                                     delegate:self
-                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
-                                           otherButtonTitles:NSLocalizedString(@"Write Review", nil), nil] autorelease];
+                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
+                                           otherButtonTitles:NSLocalizedString(@"Write Review", @"Must be short. 1-2 words max. Label for a button a user can tap to write a review"), nil] autorelease];
     alert.tag = CHECK_DATE_ALERT_VIEW_TAG;
     [alert show];
 }
@@ -635,8 +635,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) dvdBlurayCacheEnabled {
-    return self.userAddress.length > 0 &&
-           ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
 }
 
 
@@ -646,8 +645,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (BOOL) upcomingCacheEnabled {
-    return self.userAddress.length > 0 &&
-           ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
 }
 
 
@@ -1268,7 +1266,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         return rating;
     }
 
-    return [internationalDataCache ratingForMovie:movie];
+    rating = [internationalDataCache ratingForMovie:movie];
+    if (rating.length > 0) {
+        return rating;
+    }
+
+    return nil;
 }
 
 
@@ -1460,7 +1463,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         // we're showing out of date information
         NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Theater last reported show times on\n%@.", nil),
+                NSLocalizedString(@"Theater last reported show times on\n%@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
                 [DateUtilities formatLongDate:theaterSyncDate]];
     } else {
         NSDate* globalSyncDate = [dataProvider lastLookupDate];
@@ -1469,7 +1472,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         }
 
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Show times retrieved on %@.", nil),
+                NSLocalizedString(@"Show times retrieved on %@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
                 [DateUtilities formatLongDate:globalSyncDate]];
     }
 }

@@ -1,11 +1,11 @@
 // Copyright 2008 Cyrus Najmabadi
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,7 +78,7 @@
     if (result.count > 0) {
         return result;
     }
-    
+
     NSArray* questions = [NSArray arrayWithObjects:
                           NSLocalizedString(@"Why did my theater disappear?", nil),
                           [NSString stringWithFormat:NSLocalizedString(@"%@ doesn't list my favorite theater. Can you add it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
@@ -94,7 +94,7 @@
                           [NSString stringWithFormat:NSLocalizedString(@"Could you provide an option to let me choose the icon I want for the %@?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           [NSString stringWithFormat:NSLocalizedString(@"%@ contains missing/incorrect translations. Can you fix it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           [NSString stringWithFormat:NSLocalizedString(@"What can I do if I have a question that hasn't been answered?", nil)], nil];
-    
+
     NSArray* answers = [NSArray arrayWithObjects:
                         [NSString stringWithFormat:NSLocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                         NSLocalizedString(@"I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!", nil),

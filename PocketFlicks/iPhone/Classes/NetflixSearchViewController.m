@@ -123,7 +123,7 @@
     if (section == 0 && movies.count > 0) {
         return NSLocalizedString(@"Movies", nil);
     } else if (section == 1 && people.count > 0) {
-        return NSLocalizedString(@"People", nil);
+        return NSLocalizedString(@"People", @"Category for people matched by a search");
     }
 
     return nil;
