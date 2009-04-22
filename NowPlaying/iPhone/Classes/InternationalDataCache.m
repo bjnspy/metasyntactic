@@ -311,6 +311,20 @@ static NSSet* allowableCountries = nil;
 }
 
 
+- (NSDate*) parseDate:(NSString*) string {
+    if (string.length == 10 && [string characterAtIndex:2] == '/' && [string characterAtIndex:5] == '/') {
+        NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+        components.year = [[string substringWithRange:NSMakeRange(6, 4)] intValue];
+        components.month = [[string substringWithRange:NSMakeRange(3, 2)] intValue];
+        components.day = [[string substringWithRange:NSMakeRange(0, 2)] intValue];
+        
+        return [[NSCalendar currentCalendar] dateFromComponents:components];
+    }
+    
+    return nil;
+}
+
+
 - (Movie*) processMovieElement:(XmlElement*) element
                    ratingCache:(NSMutableDictionary*) ratingCache
                mapRatingWorker:(SEL) mapRatingWorker {
@@ -337,7 +351,7 @@ static NSSet* allowableCountries = nil;
     NSArray* genres = [self extractArray:[element element:@"categories"]];
 
     NSInteger length = [[[element element:@"duration"] text] intValue];
-    NSDate* releaseDate = [DateUtilities parseIS08601Date:[[element element:@"release"] text]];
+    NSDate* releaseDate = [self parseDate:[[element element:@"release"] text]];
     NSString* rating = [self mapRating:[[element element:@"rating"] text] ratingCache:ratingCache mapRatingWorker:mapRatingWorker];
 
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
