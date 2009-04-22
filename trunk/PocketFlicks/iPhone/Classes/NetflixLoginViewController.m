@@ -73,7 +73,7 @@
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", nil), [Application name], [Application name]];
+     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", @"The %@'s will be replaced with the program name.  i.e. 'Now Playing'"), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -181,7 +181,7 @@
 
 
 - (void) requestAuthorizationToken {
-    NSString* notification = NSLocalizedString(@"requesting authorization", nil);
+    NSString* notification = [NSLocalizedString(@"Requesting authorization", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAuthorizationTokenWorker];
@@ -288,7 +288,7 @@
 
 
 - (void) requestAccessToken {
-    NSString* notification = NSLocalizedString(@"requesting access", nil);
+    NSString* notification = [NSLocalizedString(@"Requesting access", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAccessTokenWorker];

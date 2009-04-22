@@ -140,7 +140,7 @@
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:67];
         self.ratedLabel = [self createValueLabel:67 forTitle:ratedTitleLabel];
 
-        self.netflixTitleLabel = [self createTitleLabel:NSLocalizedString(@"Netflix:", nil) yPosition:82];
+        self.netflixTitleLabel = [self createTitleLabel:@"Netflix:" yPosition:82];
         self.netflixLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
         netflixLabel.font = [UIFont systemFontOfSize:17];
 

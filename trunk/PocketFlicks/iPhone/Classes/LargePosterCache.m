@@ -438,13 +438,9 @@ const int START_YEAR = 1912;
                            urls:(NSArray*) urls
                           index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
-    [dataGate lock];
-    {
-        if (![FileUtilities fileExists:[self posterFilePath:movie index:index]]) {
-            [self downloadPosterForMovieWorker:movie urls:urls index:index];
-        }
+    if (![FileUtilities fileExists:[self posterFilePath:movie index:index]]) {
+        [self downloadPosterForMovieWorker:movie urls:urls index:index];
     }
-    [dataGate unlock];
 }
 
 

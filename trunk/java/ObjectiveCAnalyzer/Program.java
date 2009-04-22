@@ -32,7 +32,7 @@ public class Program {
             throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
         findStringsFiles(new File(args[0]));
         processDirectory(new File(args[0]));
-        processStringsFiles();
+        //processStringsFiles();
         //generateAndroidFiles();
         //printForwardDeclaration();
     }
@@ -58,11 +58,11 @@ public class Program {
         //generateForwardDeclarations(child);
         //checkDealloc(child);
         //removeUnusedImports(child);
-        //trimRight(child);
+        trimRight(child);
         //insertCopyright(child);
         //organizeStringsFile(child);
         //formatCode(child);
-        normalizeProjectFile(child);
+        //normalizeProjectFile(child);
         //trim(child);
     }
 

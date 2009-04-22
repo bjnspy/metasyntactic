@@ -140,7 +140,7 @@
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:67];
         self.ratedLabel = [self createValueLabel:67];
 
-        self.formatTitleLabel = [self createTitleLabel:NSLocalizedString(@"Format:", nil) yPosition:82];
+        self.formatTitleLabel = [self createTitleLabel:NSLocalizedString(@"Format:", @"Label for the format of a movie.  i.e.:  Format: Widescreen") yPosition:82];
         self.formatLabel = [self createValueLabel:82];
 
         titleWidth = 0;

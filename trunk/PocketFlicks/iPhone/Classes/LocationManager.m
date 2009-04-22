@@ -198,7 +198,7 @@
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
     Location* userLocation;
 
-    NSString* notification = NSLocalizedString(@"location", nil);
+    NSString* notification = [NSLocalizedString(@"Location", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         userLocation = [LocationUtilities findLocation:location];

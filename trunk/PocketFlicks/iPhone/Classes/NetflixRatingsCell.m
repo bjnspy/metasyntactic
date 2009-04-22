@@ -192,7 +192,7 @@
 
 
 - (void) changeFailedWithError:(NSString*) error {
-    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Could not change rating:\n\n%@", nil), error];
+    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Could not change rating:\n\n%@", @"%@ is the underlying error.  i.e. 'Could not connect to server'"), error];
     [AlertUtilities showOkAlert:message];
 
     [self setupRating];
