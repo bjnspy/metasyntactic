@@ -255,7 +255,7 @@
                forControlEvents:UIControlEventValueChanged];
 
     CGRect rect = segmentedControl.frame;
-    rect.size.width = 240;
+    rect.size.width = 310;
     segmentedControl.frame = rect;
 }
 
