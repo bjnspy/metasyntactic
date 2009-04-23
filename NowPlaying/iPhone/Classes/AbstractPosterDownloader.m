@@ -100,7 +100,7 @@
         self.movieNameToPosterMap = [self createMap];
     }
 
-    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
+    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle.lowercaseString inArray:movieNameToPosterMap.allKeys];
     if (key == nil) {
         return nil;
     }

@@ -37,7 +37,7 @@
             continue;
         }
 
-        title = [Movie makeCanonical:title];
+        title = [[Movie makeCanonical:title] lowercaseString];
 
         [map setObject:poster forKey:title];
     }

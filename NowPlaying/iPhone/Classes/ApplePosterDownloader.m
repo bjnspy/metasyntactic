@@ -35,7 +35,7 @@
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
 
         if (columns.count >= 2) {
-            NSString* movieName = [Movie makeCanonical:[columns objectAtIndex:0]];
+            NSString* movieName = [[Movie makeCanonical:[columns objectAtIndex:0]] lowercaseString];
             NSString* posterUrl = [columns objectAtIndex:1];
 
             [result setObject:posterUrl forKey:movieName];

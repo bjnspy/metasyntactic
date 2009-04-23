@@ -78,7 +78,7 @@
       forControlEvents:UIControlEventValueChanged];
 
     CGRect rect = control.frame;
-    rect.size.width = 240;
+    rect.size.width = 310;
     control.frame = rect;
 
     return control;

@@ -29,7 +29,7 @@
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            NSString* title = [[child element:@"title"] text];
+            NSString* title = [[[child element:@"title"] text] lowercaseString];
             NSString* poster = [[child element:@"poster"] text];
 
             if (title.length > 0 && poster.length > 0) {
