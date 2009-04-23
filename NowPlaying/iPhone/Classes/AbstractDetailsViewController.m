@@ -98,7 +98,11 @@
     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
     button.backgroundColor = [UIColor blackColor];
+#ifdef IPHONE_OS_VERSION_3
     button.titleLabel.font = [button.titleLabel.font fontWithSize:button.titleLabel.font.pointSize + 4];
+#else
+    button.font = [button.font fontWithSize:button.font.pointSize + 4];
+#endif
     button.opaque = NO;
     button.backgroundColor = [UIColor clearColor];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
