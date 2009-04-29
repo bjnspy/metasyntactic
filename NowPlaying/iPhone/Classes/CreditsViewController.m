@@ -229,17 +229,17 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     UIImage* image = [self getImage:indexPath];
-    
+
     if (image != nil) {
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        
+
         NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
         NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-        
+
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-        
+
         [cell.contentView addSubview:imageView];
     } else if (section == HelpSendFeedbackSection) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
