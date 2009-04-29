@@ -53,6 +53,8 @@
 		74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
 		741720B50FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */; };
 		741720B60FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */; };
+		7417219E0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */; };
+		7417219F0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */; };
 		741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
 		741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
 		741A280F0F8ADF59003CDB4E /* AnswerBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */; };
@@ -691,6 +693,8 @@
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		741720B30FA8EEDB00C10C98 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Utilities.h"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Utilities.m"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		7417219C0FA8F58900C10C98 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
+		7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
 		741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
 		741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
 		741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AnswerBalloon.png; path = Resources/AnswerBalloon.png; sourceTree = "<group>"; };
@@ -1718,27 +1722,29 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				741172AE0F60909100E09FD8 /* DVD */,
 				74A915760F7FFAC400832767 /* Location */,
 				747DA1630EF83B0D0066B881 /* Netflix */,
 				7474FE8F0E63595400BAA43D /* Posters */,
 				7491444F0E764D0E00CC42A8 /* Scores */,
+				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				741172C10F60957000E09FD8 /* Websites */,
 				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
-				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 				741172B00F60927C00E09FD8 /* AbstractMovieCache.h */,
-				741172B10F60927C00E09FD8 /* AbstractMovieCache.m */,
 				74EFA4770F79CE17008680B2 /* CacheUpdater.h */,
-				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
-				74F187200E2710A400AB5E1E /* TrailerCache.h */,
-				74F187210E2710A400AB5E1E /* TrailerCache.m */,
-				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
-				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
-				741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */,
-				741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */,
 				744594AF0F8BD8C9002C1B61 /* HelpCache.h */,
+				741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */,
+				7417219C0FA8F58900C10C98 /* LocalizableStringsCache.h */,
+				74F187200E2710A400AB5E1E /* TrailerCache.h */,
+				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
+				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
+				741172B10F60927C00E09FD8 /* AbstractMovieCache.m */,
+				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
 				744594B00F8BD8C9002C1B61 /* HelpCache.m */,
+				741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */,
+				7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */,
+				74F187210E2710A400AB5E1E /* TrailerCache.m */,
+				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -2611,6 +2617,7 @@
 				741C75980F8DCAD0003747AD /* AbstractTableViewController.m in Sources */,
 				74E14A690F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */,
 				741720B60FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */,
+				7417219E0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2822,6 +2829,7 @@
 				741C75970F8DCAD0003747AD /* AbstractTableViewController.m in Sources */,
 				74E14A680F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */,
 				741720B50FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */,
+				7417219F0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

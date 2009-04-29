@@ -30,6 +30,7 @@
 + (NSString*) scoresDirectory;
 + (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;
++ (NSString*) localizableStringsDirectory;
 
 + (NSString*) dvdDirectory;
 + (NSString*) dvdDetailsDirectory;
