@@ -90,7 +90,9 @@ typedef enum {
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     [self.controller.locationManager addLocationSpinner:self.navigationItem];
+#if IPHONE_OS_VERSION_3
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
+#endif
 }
 
 

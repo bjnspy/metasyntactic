@@ -275,11 +275,14 @@
 
 - (void) pushInfoControllerAnimated:(BOOL) animated {
     UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
+    
+#if IPHONE_OS_VERSION_3
     UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
-#ifdef IPHONE_OS_VERSION_3
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-#endif
     [self presentModalViewController:navigationController animated:YES];
+#else
+    [self pushViewController:controller animated:YES];
+#endif
 }
 
 #ifndef IPHONE_OS_VERSION_3
