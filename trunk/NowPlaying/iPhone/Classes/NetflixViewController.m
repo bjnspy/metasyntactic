@@ -58,6 +58,7 @@ typedef enum {
     AtHomeSection,
     RentalHistorySection,
     LogOutSection,
+    LastSection = LogOutSection
 } Sections;
 
 #ifdef IPHONE_OS_VERSION_3
@@ -200,7 +201,7 @@ typedef enum {
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (self.hasAccount) {
-        return LogOutSection + 1;
+        return LastSection + 1;
     } else {
         return 2;
     }
@@ -285,6 +286,7 @@ typedef enum {
         cell.accessoryView = nil;
     }
 
+#if 0
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
     NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
     UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
@@ -293,6 +295,7 @@ typedef enum {
     selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
+#endif
 
     return cell;
 }

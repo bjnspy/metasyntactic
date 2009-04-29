@@ -1265,22 +1265,17 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				744004E00F8B09A000E9F879 /* BalloonInputField.png */,
-				741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */,
-				741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
-				744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */,
-				747D98CD0F3047E7000B5A68 /* Netflix.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
-				740224540E53F323006C58A2 /* Localizable.strings */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */,
+				744004E00F8B09A000E9F879 /* BalloonInputField.png */,
 				74DD89BE0F0ECF10009DC326 /* BlackButton.png */,
 				74DD89BF0F0ECF10009DC326 /* BlackCircle.png */,
 				74DD89C00F0ECF10009DC326 /* Bookmark-Active.png */,
 				74DD89C10F0ECF10009DC326 /* Bookmark-Inactive.png */,
 				74DD89C20F0ECF10009DC326 /* CurrentPosition.png */,
 				74DD89C30F0ECF10009DC326 /* Default.png */,
+				744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */,
 				74DD89C40F0ECF10009DC326 /* DownArrow.png */,
 				74DD89C50F0ECF10009DC326 /* DownDisclosureTriangle.png */,
 				74DD89C60F0ECF10009DC326 /* DVD.png */,
@@ -1301,8 +1296,10 @@
 				74DD89D50F0ECF10009DC326 /* Movies.png */,
 				74DD89D60F0ECF10009DC326 /* Navigate-Back.png */,
 				74DD89D70F0ECF10009DC326 /* Navigate-Forward.png */,
+				747D98CD0F3047E7000B5A68 /* Netflix.png */,
 				74DD89D80F0ECF10009DC326 /* NeutralSquare.png */,
 				74DD89D90F0ECF10009DC326 /* Numbers.png */,
+				741A280E0F8ADF59003CDB4E /* QuestionBalloon.png */,
 				74DD89DA0F0ECF10009DC326 /* Rating-Blue.png */,
 				74DD89DB0F0ECF10009DC326 /* Rating-Green.png */,
 				74DD89DC0F0ECF10009DC326 /* Rating-Red.png */,
@@ -1332,6 +1329,9 @@
 				74DD89F40F0ECF10009DC326 /* Warning-16x16.png */,
 				74DD89F50F0ECF10009DC326 /* Warning-32x32.png */,
 				74DD89F60F0ECF10009DC326 /* YahooLogo.png */,
+				740224540E53F323006C58A2 /* Localizable.strings */,
+				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

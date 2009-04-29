@@ -80,6 +80,7 @@
     }
 
     NSArray* questions = [NSArray arrayWithObjects:
+                          [NSString stringWithFormat:NSLocalizedString(@"%@ contains missing/incorrect translations. Can you fix it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           NSLocalizedString(@"Why did my theater disappear?", nil),
                           [NSString stringWithFormat:NSLocalizedString(@"%@ doesn't list my favorite theater. Can you add it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           [NSString stringWithFormat:NSLocalizedString(@"Why don't I see ratings and reviews for all movies in %@?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
@@ -92,10 +93,10 @@
                           [NSString stringWithFormat:NSLocalizedString(@"Why doesn't %@ provide Yahoo ratings and reviews?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           NSLocalizedString(@"Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?", nil),
                           [NSString stringWithFormat:NSLocalizedString(@"Could you provide an option to let me choose the icon I want for the %@?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
-                          [NSString stringWithFormat:NSLocalizedString(@"%@ contains missing/incorrect translations. Can you fix it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                           [NSString stringWithFormat:NSLocalizedString(@"What can I do if I have a question that hasn't been answered?", nil)], nil];
 
     NSArray* answers = [NSArray arrayWithObjects:
+                        NSLocalizedString(@"Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.", nil),
                         [NSString stringWithFormat:NSLocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                         NSLocalizedString(@"I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!", nil),
                         NSLocalizedString(@"Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!", nil),
@@ -108,7 +109,6 @@
                         NSLocalizedString(@"See the section on IMDb.", nil),
                         NSLocalizedString(@"Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.", nil),
                         NSLocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
-                        NSLocalizedString(@"Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.", nil),
                         NSLocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
     return [NSArray arrayWithObjects:questions, answers, nil];
