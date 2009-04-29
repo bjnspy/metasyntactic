@@ -28,6 +28,8 @@ static NSString* userLocationsDirectory = nil;
 static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
 static NSString* trailersDirectory = nil;
+static NSString* localizableStringsDirectory = nil;
+
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
@@ -70,6 +72,7 @@ static NSString** directories[] = {
 &blurayDetailsDirectory,
 &helpDirectory,
 &internationalDirectory,
+&localizableStringsDirectory,
 &netflixDirectory,
 &netflixQueuesDirectory,
 &netflixSeriesDirectory,
@@ -135,7 +138,8 @@ static DifferenceEngine* differenceEngine = nil;
         scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
         reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
         trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-
+        localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
+        
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
         moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
         largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
@@ -243,6 +247,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) reviewsDirectory {
     return reviewsDirectory;
+}
+
+
++ (NSString*) localizableStringsDirectory {
+    return localizableStringsDirectory;
 }
 
 
@@ -372,12 +381,13 @@ static DifferenceEngine* differenceEngine = nil;
 + (NSString*) host {
 #if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
-#endif
-    /*
+#else
+    //*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";
-    //*/
+     //*/
+#endif
 }
 
 @end

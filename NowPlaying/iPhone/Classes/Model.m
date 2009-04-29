@@ -30,6 +30,7 @@
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
+#import "LocalizableStringsCache.h"
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
@@ -67,6 +68,7 @@
 @property (retain) MutableNetflixCache* netflixCache;
 @property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) HelpCache* helpCache;
+@property (retain) LocalizableStringsCache* localizableStringsCache;
 @property (retain) NSSet* bookmarkedTitlesData;
 @property (retain) NSDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -253,6 +255,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize netflixCache;
 @synthesize internationalDataCache;
 @synthesize helpCache;
+@synthesize localizableStringsCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 
@@ -277,6 +280,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.netflixCache = nil;
     self.internationalDataCache = nil;
     self.helpCache = nil;
+    self.localizableStringsCache = nil;
 
     [super dealloc];
 }
@@ -567,6 +571,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         self.netflixCache = [MutableNetflixCache cache];
         self.internationalDataCache = [InternationalDataCache cache];
         self.helpCache = [HelpCache cache];
+        self.localizableStringsCache = [LocalizableStringsCache cache];
 
         [self clearCaches];
 

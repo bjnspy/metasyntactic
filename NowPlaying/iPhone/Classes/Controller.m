@@ -167,6 +167,11 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateLocalizableStringsCache {
+    [self.model.localizableStringsCache update];
+}
+
+
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
@@ -175,6 +180,7 @@ static Controller* controller = nil;
     [self updateDVDCache];
     [self updateNetflixCache];
     [self updateHelpCache];
+    [self updateLocalizableStringsCache];
 
     NSArray* movies = self.model.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];

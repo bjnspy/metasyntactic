@@ -31,3 +31,5 @@
 #define FULL_SCREEN_POSTER_WIDTH 310
 
 #define CACHE_LIMIT (30.0 * ONE_DAY)
+
+#define LocalizedString(key, comment) [[[Model model] localizableStringsCache] localizedString:key]

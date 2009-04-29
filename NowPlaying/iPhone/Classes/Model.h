@@ -38,6 +38,7 @@ enum ViewControllerType {
     MutableNetflixCache* netflixCache;
     InternationalDataCache* internationalDataCache;
     HelpCache* helpCache;
+    LocalizableStringsCache* localizableStringsCache;
 
     id<DataProvider> dataProvider;
 
@@ -67,6 +68,7 @@ enum ViewControllerType {
 @property (readonly, retain) MutableNetflixCache* netflixCache;
 @property (readonly, retain) InternationalDataCache* internationalDataCache;
 @property (readonly, retain) HelpCache* helpCache;
+@property (readonly, retain) LocalizableStringsCache* localizableStringsCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
