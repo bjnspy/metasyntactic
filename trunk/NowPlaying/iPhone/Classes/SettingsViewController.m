@@ -28,6 +28,7 @@
 #import "SettingCell.h"
 #import "SwitchCell.h"
 #import "TextFieldEditorViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "UserLocationCache.h"
 
 @interface SettingsViewController()

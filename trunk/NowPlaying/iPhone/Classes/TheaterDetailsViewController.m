@@ -26,6 +26,7 @@
 #import "MovieTitleCell.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"

@@ -91,9 +91,9 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
         final String uri = webServicesInvocationHandler.getWsdlUri();
         final QName portQName = new QName(uri, port.getName());
 
-        final Dispatch<Source> dispatch = getService().createDispatch(portQName, Source.class, javax.xml.ws.Service.Mode.PAYLOAD);
-
         final Element element = convertArguments(objects, bindingOp);
+
+        final Dispatch<Source> dispatch = getService().createDispatch(portQName, Source.class, javax.xml.ws.Service.Mode.PAYLOAD);
         final Source source = dispatch.invoke(new DOMSource(element));
 
         final StringWriter writer = new StringWriter();

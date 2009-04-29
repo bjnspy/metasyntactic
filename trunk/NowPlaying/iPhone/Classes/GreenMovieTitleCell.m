@@ -15,13 +15,14 @@
 #import "GreenMovieTitleCell.h"
 
 #import "ImageCache.h"
+#import "UITableViewCell+Utilities.h"
 
 @implementation GreenMovieTitleCell
-
 
 + (NSString*) reuseIdentifier {
     return @"GreenMovieTitleCell";
 }
+
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {

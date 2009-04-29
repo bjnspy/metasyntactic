@@ -24,10 +24,10 @@
 #import "Movie.h"
 #import "Performance.h"
 #import "Theater.h"
+#import "UITableViewCell+Utilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
-
 
 @interface TicketsViewController()
 @property (retain) Movie* movie;

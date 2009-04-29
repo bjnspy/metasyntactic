@@ -23,6 +23,7 @@
 #import "Model.h"
 #import "QuestionCell.h"
 #import "StringUtilities.h"
+#import "UITableViewCell+Utilities.h"
 
 @interface FAQViewController()
 @property (retain) NSArray* questions;

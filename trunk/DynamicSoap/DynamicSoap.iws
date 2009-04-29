@@ -34,7 +34,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="57" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="132" class="com.google.DynamicSoap" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -47,7 +47,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="116" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="120" class="com.google.DynamicSoap" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -60,7 +60,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="104" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="115" class="com.google.DynamicSoap" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -73,7 +73,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="99" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="117" class="com.google.DynamicSoap" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -86,7 +86,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="101" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="70" class="com.google.DynamicSoap" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -99,7 +99,20 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="60" class="com.google.DynamicSoap" package="com.google">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java" line="66" class="com.google.DynamicSoap" package="com.google">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/google/ServiceInvocationHandler.java" line="93" class="com.google.ServiceInvocationHandler" package="com.google">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -153,11 +166,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DynamicSoap.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DynamicSoap.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.7737003">
-              <folding />
+            <state line="74" column="59" selection-start="3090" selection-end="3090" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -174,7 +189,7 @@
       <file leaf-file-name="WebServicesInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/google/WebServicesInvocationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="10" selection-start="1232" selection-end="1232" vertical-scroll-proportion="0.0">
+            <state line="47" column="39" selection-start="1606" selection-end="1606" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -182,10 +197,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServiceInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ServiceInvocationHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/google/ServiceInvocationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="27" selection-start="5484" selection-end="5484" vertical-scroll-proportion="0.0">
+            <state line="147" column="0" selection-start="6273" selection-end="6273" vertical-scroll-proportion="0.33333334">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -527,7 +542,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="456" y="22" width="965" height="878" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -546,7 +561,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
@@ -698,15 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/google/WebServicesInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="10" selection-start="1232" selection-end="1232" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/google/AbstractInvocationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="4" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.0">
@@ -721,9 +727,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/google/ServiceInvocationHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/com/google/WebServicesInvocationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="27" selection-start="5484" selection-end="5484" vertical-scroll-proportion="0.0">
+        <state line="47" column="39" selection-start="1606" selection-end="1606" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -732,8 +738,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/google/DynamicSoap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.7737003">
-          <folding />
+        <state line="74" column="59" selection-start="3090" selection-end="3090" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/google/ServiceInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="147" column="0" selection-start="6273" selection-end="6273" vertical-scroll-proportion="0.33333334">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

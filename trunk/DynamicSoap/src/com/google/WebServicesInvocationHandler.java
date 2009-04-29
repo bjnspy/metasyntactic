@@ -44,8 +44,8 @@ public class WebServicesInvocationHandler extends AbstractInvocationHandler {
         return definition;
     }
 
-    public Collection<ServiceInvocationHandler> getServices() throws IOException, WSDLException {
-        return getServiceMap().values();
+    public Set<String> getServices() throws IOException, WSDLException {
+        return getServiceMap().keySet();
     }
 
     private SortedMap<String, ServiceInvocationHandler> getServiceMap() throws IOException, WSDLException {
