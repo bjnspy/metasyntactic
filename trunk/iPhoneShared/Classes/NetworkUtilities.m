@@ -216,10 +216,10 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url 
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url
                          response:(NSHTTPURLResponse**) response {
     return [self dataWithContentsOfUrlRequest:[self createRequest:url]
-                                     response:response];    
+                                     response:response];
 }
 
 
