@@ -23,7 +23,7 @@
 #import "SearchResult.h"
 #import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
-
+#import "UITableViewCell+Utilities.h"
 
 @implementation LocalSearchDisplayController
 

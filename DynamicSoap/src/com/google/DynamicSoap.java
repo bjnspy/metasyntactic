@@ -21,7 +21,6 @@ import org.exolab.castor.xml.schema.SimpleType;
 import org.exolab.castor.xml.schema.reader.SchemaReader;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.w3c.dom.Element;
 
 import javax.wsdl.Definition;
 import javax.wsdl.WSDLException;
@@ -34,7 +33,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.ws.Dispatch;
@@ -43,10 +41,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URL;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DynamicSoap {
 
@@ -55,9 +53,27 @@ public class DynamicSoap {
     }
 
     public static void main(final String... args) throws Throwable {
-        final WebServicesInvocationHandler handler = new DynamicSoap().soap("http://www.weather.gov/forecasts/xml/DWMLgen/wsdl/ndfdXML.wsdl");
-        ServiceInvocationHandler serviceHandler = handler.getService("ndfdXML");
+        amazon();
+        weather();
+    }
+
+    private static void amazon() throws IOException, WSDLException, TransformerException, ParserConfigurationException {
+        final WebServicesInvocationHandler handler = new DynamicSoap().soap("http://soap.amazon.com/schemas2/AmazonWebServices.wsdl");
+        System.out.println(handler.getServices());
+
+        final ServiceInvocationHandler serviceHandler = handler.getService("AmazonSearchService");
         System.out.println(serviceHandler.getOperations());
+
+        serviceHandler.invoke("PowerSearchRequest");
+    }
+
+    private static void weather() throws IOException, WSDLException, TransformerException, ParserConfigurationException {
+        final WebServicesInvocationHandler handler = new DynamicSoap().soap("http://www.weather.gov/forecasts/xml/DWMLgen/wsdl/ndfdXML.wsdl");
+        System.out.println(handler.getServices());
+
+        final ServiceInvocationHandler serviceHandler = handler.getService("ndfdXML");
+        System.out.println(serviceHandler.getOperations());
+
         serviceHandler.invoke("LatLonListSquare", 40.760423, -73.987942, 0.1, 0.1, 0.01);
         serviceHandler.invoke("LatLonListSquare", createMap(
                 "centerPointLat", 40.760423,
@@ -67,8 +83,8 @@ public class DynamicSoap {
                 "resolution", 0.01));
     }
 
-    private static Map<Object,Object> createMap(final Object... args) {
-        final Map<Object,Object> map = new HashMap<Object,Object>();
+    private static Map<Object, Object> createMap(final Object... args) {
+        final Map<Object, Object> map = new HashMap<Object, Object>();
         for (int i = 0; i < args.length; i += 2) {
             map.put(args[i], args[i + 1]);
         }
@@ -127,8 +143,8 @@ public class DynamicSoap {
         final List<UnknownExtensibilityElement> result = new ArrayList<UnknownExtensibilityElement>();
         for (final ExtensibilityElement element : cast(extensibilityElements, ExtensibilityElement.class)) {
             if (element.getElementType().getLocalPart().equals("schema") &&
-                     element instanceof UnknownExtensibilityElement) {
-                result.add((UnknownExtensibilityElement)element);
+                    element instanceof UnknownExtensibilityElement) {
+                result.add((UnknownExtensibilityElement) element);
             }
         }
         return result;

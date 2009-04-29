@@ -18,7 +18,7 @@
 #import "Queue.h"
 #import "Status.h"
 #import "TappableImageView.h"
-
+#import "UITableViewCell+Utilities.h"
 
 @interface NetflixStatusCell()
 @property (retain) TappableImageView* deleteImageView;

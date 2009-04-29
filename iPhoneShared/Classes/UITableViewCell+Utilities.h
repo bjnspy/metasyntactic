@@ -12,29 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "UnknownMovieTitleCell.h"
+@interface UITableViewCell(UITableViewCellUtilities)
+#ifdef IPHONE_OS_VERSION_3
+- (UIFont*) font;
+- (UIImage*) image;
+- (NSString*) text;
 
-#import "ImageCache.h"
-#import "UITableViewCell+Utilities.h"
-
-@implementation UnknownMovieTitleCell
-
-+ (NSString*) reuseIdentifier {
-    return @"UnknownMovieTitleCell";
-}
-
-
-- (id) init {
-    if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
-        self.image = [ImageCache unknownRatingImage];
-        [scoreLabel removeFromSuperview];
-    }
-
-    return self;
-}
-
-
-- (void) setScore:(Score*) score {
-}
-
+- (void) setText:(NSString*) text;
+- (void) setImage:(UIImage*) image;
+- (void) setTextColor:(UIColor*) color;
+- (void) setFont:(UIFont*) font;
+- (void) setTextAlignment:(UITextAlignment) alignment;
+#endif
 @end

@@ -28,6 +28,7 @@
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3

@@ -51,6 +51,8 @@
 		7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
 		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
+		741720B50FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */; };
+		741720B60FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */; };
 		741A273E0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
 		741A273F0F8AA84E003CDB4E /* InternationalDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */; };
 		741A280F0F8ADF59003CDB4E /* AnswerBalloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */; };
@@ -687,6 +689,8 @@
 		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
 		74166B0C0EC94A5700FFD29A /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		741720B30FA8EEDB00C10C98 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Utilities.h"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Utilities.m"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
 		741A273D0F8AA84E003CDB4E /* InternationalDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternationalDataCache.m; sourceTree = "<group>"; };
 		741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AnswerBalloon.png; path = Resources/AnswerBalloon.png; sourceTree = "<group>"; };
@@ -2001,6 +2005,8 @@
 		74E6DEFC0F83D58400FFE59C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				741720B30FA8EEDB00C10C98 /* UITableViewCell+Utilities.h */,
+				741720B40FA8EEDB00C10C98 /* UITableViewCell+Utilities.m */,
 				74537DC70F86AD2400D457CB /* CollectionUtilities.h */,
 				74537DC80F86AD2400D457CB /* CollectionUtilities.m */,
 				74537DC90F86AD2400D457CB /* NSArray+Utilities.h */,
@@ -2604,6 +2610,7 @@
 				741C73960F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */,
 				741C75980F8DCAD0003747AD /* AbstractTableViewController.m in Sources */,
 				74E14A690F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */,
+				741720B60FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2814,6 +2821,7 @@
 				741C73950F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */,
 				741C75970F8DCAD0003747AD /* AbstractTableViewController.m in Sources */,
 				74E14A680F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */,
+				741720B50FA8EEDB00C10C98 /* UITableViewCell+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
