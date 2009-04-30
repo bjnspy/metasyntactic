@@ -95,9 +95,9 @@ static Controller* controller = nil;
 - (void) reportError:(NSString*) error {
     /*
      UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                      message:NSLocalizedString(@"No information found", nil)
+                                                      message:LocalizedString(@"No information found", nil)
                                                      delegate:nil
-                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                            cancelButtonTitle:LocalizedString(@"OK", nil)
                                             otherButtonTitles:nil] autorelease];
 
      [alert show];
@@ -167,11 +167,6 @@ static Controller* controller = nil;
 }
 
 
-- (void) updateLocalizableStringsCache {
-    [self.model.localizableStringsCache update];
-}
-
-
 - (void) updateAllCaches {
     [self updateScoreCache];
     [self updateLargePosterCache];
@@ -180,7 +175,6 @@ static Controller* controller = nil;
     [self updateDVDCache];
     [self updateNetflixCache];
     [self updateHelpCache];
-    [self updateLocalizableStringsCache];
 
     NSArray* movies = self.model.movies;
     [[CacheUpdater cacheUpdater] addMovies:movies];
@@ -214,7 +208,7 @@ static Controller* controller = nil;
 - (void) reportUserLocation:(Location*) location {
     NSAssert([NSThread isMainThread], nil);
     if (self.model.userAddress.length > 0 && location == nil) {
-        [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
+        [AlertUtilities showOkAlert:LocalizedString(@"Could not find location.", nil)];
     }
 
     [self spawnDataProviderLookupThread];

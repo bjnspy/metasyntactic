@@ -155,7 +155,7 @@
         return nil;
     } else if (section == 2 && performances.count) {
         if ([DateUtilities isToday:self.model.searchDate]) {
-            return NSLocalizedString(@"Today", nil);
+            return LocalizedString(@"Today", nil);
         } else {
             return [DateUtilities formatFullDate:self.model.searchDate];
         }
@@ -211,12 +211,12 @@
 
     if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", @"%@ will be replaced with a movie showtime.  i.e. '3:15pm'"),
+        cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (No Online Ticketing)", @"%@ will be replaced with a movie showtime.  i.e. '3:15pm'"),
                      performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", @"%@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm"),
+        cell.text = [NSString stringWithFormat:LocalizedString(@"Order tickets for %@", @"%@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm"),
                      performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -234,10 +234,10 @@
 #endif
 
     if (row == 0) {
-        cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
+        cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
         cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
     } else {
-        cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
+        cell.textLabel.text = LocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
         cell.detailTextLabel.text = theater.phoneNumber;
     }
 
@@ -257,9 +257,9 @@
     cell.textColor = [ColorCache commandColor];
 
     if (row == 0) {
-        cell.text = NSLocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
+        cell.text = LocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
     } else {
-        cell.text = NSLocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
+        cell.text = LocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
     }
 
     return cell;
@@ -349,7 +349,7 @@
     if (lookupResultPerformances.count == 0) {
         NSString* text =
         [NSString stringWithFormat:
-         NSLocalizedString(@"No listings found for '%@' at '%@' on %@", @"No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008"),
+         LocalizedString(@"No listings found for '%@' at '%@' on %@", @"No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008"),
          movie.canonicalTitle,
          theater.name,
          [DateUtilities formatShortDate:searchDate]];

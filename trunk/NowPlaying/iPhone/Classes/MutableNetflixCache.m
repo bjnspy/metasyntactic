@@ -248,7 +248,7 @@
 
 
 - (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"moving movie", nil);
+    NSString* notification = LocalizedString(@"moving movie", nil);
     [NotificationCenter addNotification:notification];
     {
         [self moveMovieToTopOfQueueBackgroundEntryPointWorker:arguments];
@@ -388,14 +388,14 @@
     if (element == nil) {
         // we failed.  restore the rating to its original value
         NSLog(@"Couldn't parse Netflix response.", nil);
-        return NSLocalizedString(@"Could not connect to Netflix.", nil);
+        return LocalizedString(@"Could not connect to Netflix.", nil);
     }
 
     XmlElement* ratingsItemElement = [element element:@"ratings_item"];
     NSString* identifier = [[ratingsItemElement element:@"id"] text];
     if (identifier.length == 0) {
         NSLog(@"No identifier returned.", nil);
-        return NSLocalizedString(@"An unknown error occurred.", nil);
+        return LocalizedString(@"An unknown error occurred.", nil);
     }
 
     NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
@@ -444,7 +444,7 @@
 
 
 - (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"movie rating", nil);
+    NSString* notification = LocalizedString(@"movie rating", nil);
     [NotificationCenter addNotification:notification];
     {
         [self changeRatingBackgroundEntryPointWorker:arguments];
@@ -562,7 +562,7 @@
 
 
 - (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"adding movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue");
+    NSString* notification = LocalizedString(@"adding movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue");
     [NotificationCenter addNotification:notification];
     {
         [self addMovieToQueueBackgroundEntryPointWorker:arguments];
@@ -681,7 +681,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
 
 - (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
-    NSString* notification = NSLocalizedString(@"updating queue", nil);
+    NSString* notification = LocalizedString(@"updating queue", nil);
     [NotificationCenter addNotification:notification];
     {
         [self modifyQueueBackgroundEntryPointWorker:arguments];

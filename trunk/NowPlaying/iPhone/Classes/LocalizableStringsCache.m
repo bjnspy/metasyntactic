@@ -12,71 +12,73 @@
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
 #import "NetworkUtilities.h"
+#import "NotificationCenter.h"
 #import "OperationQueue.h"
 
 @interface LocalizableStringsCache()
+@property (retain) NSLock* gate;
 @property (retain) NSDictionary* indexData;
 @end
 
 @implementation LocalizableStringsCache
 
+@synthesize gate;
 @synthesize indexData;
 
+static LocalizableStringsCache* instance = nil;
+
 - (void) dealloc {
+    self.gate = nil;
     self.indexData = nil;
     [super dealloc];
 }
 
 
-+ (LocalizableStringsCache*) cache {
-    return [[[LocalizableStringsCache alloc] init] autorelease];
+- (id) init {
+    if (self = [super init]) {
+        self.gate = [[[NSLock alloc] init] autorelease];
+        
+        [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
+                                                onTarget:self
+                                                    gate:nil
+                                                priority:Priority];
+    }
+
+    return self;
 }
 
 
-- (void) update {
-    if (updated) {
-        return;
++ (LocalizableStringsCache*) cache {
+    if (instance == nil) {
+        instance = [[LocalizableStringsCache alloc] init];
     }
-    updated = YES;
     
-    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
-                                            onTarget:self
-                                                gate:nil
-                                            priority:Priority];
+    return instance;
 }
 
 
 - (NSString*) hashFile {
-    NSString* language = [LocaleUtilities isoLanguage];
-    NSString* name = [NSString stringWithFormat:@"%@-hash.plist", language];
+    NSString* name = [NSString stringWithFormat:@"%@-hash.plist", [LocaleUtilities preferredLanguage]];
     return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (NSString*) indexFile {
-    NSString* language = [LocaleUtilities isoLanguage];
-    NSString* name = [NSString stringWithFormat:@"%@.plist", language];
+    NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities preferredLanguage]];
     return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
 }
 
 
-- (void) updateBackgroundEntryPoint {
-    NSString* hashFile = self.hashFile;
-    NSDate* modificationDate = [FileUtilities modificationDate:hashFile];
-    if (modificationDate != nil) {
-        if (ABS(modificationDate.timeIntervalSinceNow) < ONE_WEEK) {
-            return;
-        }
-    }
-
+- (void) updateBackgroundEntryPointWorker {
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocalizableStrings?id=%@&language=%@",
                          [Application host],
                          [[NSBundle mainBundle] bundleIdentifier],
-                         [LocaleUtilities isoLanguage]];
+                         [LocaleUtilities preferredLanguage]];
     NSString* hashAddress = [address stringByAppendingString:@"&hash=true"];
                          
+    NSString* localHash = [FileUtilities readObject:self.hashFile];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:hashAddress];
-    if (serverHash.length > 0 && [address isEqual:serverHash]) {
+    if (serverHash.length > 0 && [localeHash isEqual:localHash]) {
         return;
     }
 
@@ -86,13 +88,29 @@
     }
     
     [FileUtilities writeObject:dict toFile:self.indexFile];
-    [FileUtilities writeObject:serverHash toFile:hashFile];
-    [self performSelectorOnMainThread:@selector(reportResult:) withObject:dict waitUntilDone:NO];
+    [FileUtilities writeObject:serverHash toFile:self.hashFile];
+    [gate lock];
+    {
+        self.indexData = dict;
+    }
+    [gate unlock];
 }
 
 
-- (void) reportResult:(NSDictionary*) dict {
-    self.indexData = dict;
+- (void) updateBackgroundEntryPoint {
+    NSDate* modificationDate = [FileUtilities modificationDate:self.hashFile];
+    if (modificationDate != nil) {
+        if (ABS(modificationDate.timeIntervalSinceNow) < ONE_WEEK) {
+            return;
+        }
+    }
+ 
+    NSString* notification = [LocalizedString(@"Translations", nil) lowercaseString];
+    [NotificationCenter addNotification:notification];
+    {
+        [self updateBackgroundEntryPointWorker];
+    }
+    [NotificationCenter removeNotification:notification];
 }
 
 
@@ -106,12 +124,24 @@
 }
 
 
-- (NSDictionary*) index {
+- (NSDictionary*) indexNoLock {
     if (indexData == nil) {
         self.indexData = [self loadIndex];
     }
     
+    // access through pointer so we always get value value back.
     return self.indexData;
+}
+
+
+- (NSDictionary*) index {
+    NSDictionary* result;
+    [gate lock];
+    {
+        result = [self indexNoLock];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -122,6 +152,11 @@
     }
     
     return [[NSBundle mainBundle] localizedStringForKey:key value:key table:nil];
+}
+
+
++ (NSString*) localizedString:(NSString*) key {
+    return [[LocalizableStringsCache cache] localizedString:key];
 }
 
 @end

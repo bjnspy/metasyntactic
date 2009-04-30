@@ -66,7 +66,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = NSLocalizedString(@"About", nil);
+        self.title = LocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:@"Michal Štoppl"      forKey:@"cs"];
@@ -243,12 +243,12 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [cell.contentView addSubview:imageView];
     } else if (section == HelpSendFeedbackSection) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Help", nil), NSLocalizedString(@"Send Feedback", nil), nil];
+        cell.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Help", nil), LocalizedString(@"Send Feedback", nil), nil];
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"Project website", @"Takes the user to the website for this application");
+            cell.text = LocalizedString(@"Project website", @"Takes the user to the website for this application");
         } else {
-            cell.text = NSLocalizedString(@"Write Review", nil);
+            cell.text = LocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
@@ -259,7 +259,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             cell.text = @"Your Rights (Free)";
         }
     } else if (section == GraphicsBySection) {
-        cell.text = NSLocalizedString(@"Website", nil);
+        cell.text = LocalizedString(@"Website", nil);
     } else if (section == GeolocationServicesBySection) {
         if (row == 1) {
             cell.text = @"GeoNames";
@@ -269,7 +269,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == FilmTrailersBySection) {
         cell.text = @"Filmtrailers.com";
     } else if (section == LicenseSection) {
-        cell.text = NSLocalizedString(@"License", nil);
+        cell.text = LocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 #endif
@@ -292,25 +292,25 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
+        return LocalizedString(@"Written by Cyrus Najmabadi", nil);
     } else if (section == MyOtherApplicationsSection) {
-        return NSLocalizedString(@"My other applications", nil);
+        return LocalizedString(@"My other applications", nil);
     } else if (section == GraphicsBySection) {
-        return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
+        return LocalizedString(@"Graphics by Jeffrey Nee", nil);
     } else if (section == ReviewsBySection) {
-        return NSLocalizedString(@"Movie reviews provided by:", nil);
+        return LocalizedString(@"Movie reviews provided by:", nil);
     } else if (section == TicketSalesBySection) {
-        return NSLocalizedString(@"Ticket sales provided by:", nil);
+        return LocalizedString(@"Ticket sales provided by:", nil);
     } else if (section == MovieDetailsBySection) {
-        return NSLocalizedString(@"Movie details provided by:", nil);
+        return LocalizedString(@"Movie details provided by:", nil);
     } else if (section == GeolocationServicesBySection) {
-        return NSLocalizedString(@"Geolocation services provided by:", nil);
+        return LocalizedString(@"Geolocation services provided by:", nil);
     } else if (section == DVDDetailsSection) {
-        return NSLocalizedString(@"DVD/Blu-ray details:", nil);
+        return LocalizedString(@"DVD/Blu-ray details:", nil);
     } else if (section == FilmTrailersBySection) {
-        return NSLocalizedString(@"Film trailers provided by:", nil);
+        return LocalizedString(@"Film trailers provided by:", nil);
     } else if (section == LocalizedBySection) {
-        return NSLocalizedString(@"Localized by:", nil);
+        return LocalizedString(@"Localized by:", nil);
     }
 
     return nil;
@@ -320,7 +320,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return [NSString stringWithFormat:NSLocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!", nil), [Application name]];
+        return [NSString stringWithFormat:LocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!", nil), [Application name]];
     }  else if (section == LastSection) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
@@ -331,7 +331,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
-    controller.title = NSLocalizedString(@"License", nil);
+    controller.title = LocalizedString(@"License", nil);
 
     UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     textView.editable = NO;

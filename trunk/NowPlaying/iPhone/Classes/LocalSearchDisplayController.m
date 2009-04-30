@@ -33,7 +33,7 @@
 
 
 - (void) setupDefaultScopeButtonTitles {
-    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", nil), NSLocalizedString(@"Movies", nil), NSLocalizedString(@"Theaters", nil), nil];
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", nil), LocalizedString(@"Movies", nil), LocalizedString(@"Theaters", nil), nil];
 }
 
 
@@ -200,7 +200,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
+    cell.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
     return cell;
 }
 
@@ -297,28 +297,28 @@
     }
 
     if (![self hasResults]) {
-        return NSLocalizedString(@"No information found", nil);
+        return LocalizedString(@"No information found", nil);
     }
 
     if (section == 0 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.movies.count != 0) {
-            return NSLocalizedString(@"Movies", nil);
+            return LocalizedString(@"Movies", nil);
         }
     } else if (section == 1 && ([self shouldShowTheaters] || [self shouldShowAll])) {
         if (searchResult.theaters.count != 0) {
-            return NSLocalizedString(@"Theaters", nil);
+            return LocalizedString(@"Theaters", nil);
         }
     } else if (section == 2 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.upcomingMovies.count != 0) {
-            return NSLocalizedString(@"Upcoming", nil);
+            return LocalizedString(@"Upcoming", nil);
         }
     } else if (section == 3 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.dvds.count != 0) {
-            return NSLocalizedString(@"DVD", nil);
+            return LocalizedString(@"DVD", nil);
         }
     } else if (section == 4 && ([self shouldShowMovies] || [self shouldShowAll])) {
         if (searchResult.bluray.count != 0) {
-            return NSLocalizedString(@"Blu-ray", nil);
+            return LocalizedString(@"Blu-ray", nil);
         }
     }
 
@@ -337,9 +337,9 @@
     NSInteger movies = result.movies.count + result.upcomingMovies.count + result.dvds.count + result.bluray.count;
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", nil), movies + theaters],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Theaters (%d)", @"Used to display the count of all theater search results.  i.e.: Theaters (15)"), theaters],
+                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", nil), movies + theaters],
+                                      [NSString stringWithFormat:LocalizedString(@"Movies (%d)", @"Used to display the count of all movie search results.  i.e.: Movies (15)"), movies],
+                                      [NSString stringWithFormat:LocalizedString(@"Theaters (%d)", @"Used to display the count of all theater search results.  i.e.: Theaters (15)"), theaters],
                                         nil];
 }
 

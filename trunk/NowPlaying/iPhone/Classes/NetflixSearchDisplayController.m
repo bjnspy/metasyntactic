@@ -51,7 +51,7 @@
 
 
 - (void) setupDefaultScopeButtonTitles {
-    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:NSLocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), NSLocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), NSLocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
+    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), LocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), LocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
 }
 
 
@@ -60,7 +60,7 @@
     if (self = [super initWithSearchBar:searchBar__
                      contentsController:viewController__]) {
         self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
-        self.searchBar.placeholder = NSLocalizedString(@"Search Netflix", nil);
+        self.searchBar.placeholder = LocalizedString(@"Search Netflix", nil);
     }
 
     return self;
@@ -144,7 +144,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    cell.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", nil), searchResult.value];
     return cell;
 }
 
@@ -200,7 +200,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if ([self noResults]) {
-        return NSLocalizedString(@"No information found", nil);
+        return LocalizedString(@"No information found", nil);
     }
 
     return nil;
@@ -225,9 +225,9 @@
     self.instantMovies = instant;
 
     self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-                                      [NSString stringWithFormat:NSLocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],
-                                      [NSString stringWithFormat:NSLocalizedString(@"Instant (%d)", @"Used to display the count of all instant watch search results.  i.e.: Instant (15)"), instant.count],
+                                      [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
+                                      [NSString stringWithFormat:LocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],
+                                      [NSString stringWithFormat:LocalizedString(@"Instant (%d)", @"Used to display the count of all instant watch search results.  i.e.: Instant (15)"), instant.count],
                                         nil];
 }
 

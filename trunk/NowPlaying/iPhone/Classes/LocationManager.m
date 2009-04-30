@@ -161,9 +161,9 @@
     BOOL userDenied = error.domain == kCLErrorDomain && error.code == kCLErrorDenied;
     if (userInvoked) {
         if (userDenied) {
-            [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.\nUser denied use of the location service.", nil)];
+            [AlertUtilities showOkAlert:LocalizedString(@"Could not find location.\nUser denied use of the location service.", nil)];
         } else {
-            [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
+            [AlertUtilities showOkAlert:LocalizedString(@"Could not find location.", nil)];
         }
     }
 
@@ -198,7 +198,7 @@
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
     Location* userLocation;
 
-    NSString* notification = [NSLocalizedString(@"Location", nil) lowercaseString];
+    NSString* notification = [LocalizedString(@"Location", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         userLocation = [LocationUtilities findLocation:location];

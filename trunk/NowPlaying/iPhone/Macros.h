@@ -32,4 +32,4 @@
 
 #define CACHE_LIMIT (30.0 * ONE_DAY)
 
-#define LocalizedString(key, comment) [[[Model model] localizableStringsCache] localizedString:key]
+#define LocalizedString(key, comment) [LocalizableStringsCache localizedString:key]

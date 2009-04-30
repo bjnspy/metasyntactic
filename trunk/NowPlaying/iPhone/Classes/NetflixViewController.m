@@ -132,7 +132,7 @@ typedef enum {
     if (self.model.netflixCache.lastQuotaErrorDate != nil &&
         self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
+        label.text = LocalizedString(@"Over Quota - Try Again Later", nil);
         self.navigationItem.titleView = label;
     } else {
         self.navigationItem.titleView = nil;
@@ -233,15 +233,15 @@ typedef enum {
         switch (row) {
 #ifndef IPHONE_OS_VERSION_3
             case SearchSection:
-                cell.text = NSLocalizedString(@"Search", nil);
+                cell.text = LocalizedString(@"Search", nil);
                 cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
                 break;
 #endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.text = NSLocalizedString(@"Most Popular", @"The most popular movies currently");
+                    cell.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
                 } else {
-                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
+                    cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
                 cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
@@ -262,22 +262,22 @@ typedef enum {
                 cell.image = [UIImage imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
-                cell.text = NSLocalizedString(@"Rental History", nil);
+                cell.text = LocalizedString(@"Rental History", nil);
                 cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
-                cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
+                cell.text = LocalizedString(@"Log Out of Netflix", nil);
                 cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
         }
     } else {
         if (indexPath.row == 0) {
-            cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
+            cell.text = LocalizedString(@"Sign Up for New Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
             cell.accessoryView = nil;
         } else if (indexPath.row == 1) {
-            cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
+            cell.text = LocalizedString(@"Log In to Existing Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
@@ -304,10 +304,10 @@ typedef enum {
 
 - (void) didSelectLogoutRow {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"Really log out of Netflix?", nil)
+                                                     message:LocalizedString(@"Really log out of Netflix?", nil)
                                                     delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                           otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
+                                           cancelButtonTitle:LocalizedString(@"No", nil)
+                                           otherButtonTitles:LocalizedString(@"Yes", nil), nil] autorelease];
 
     alert.delegate = self;
     [alert show];
@@ -343,7 +343,7 @@ typedef enum {
 
     NetflixFeedsViewController* controller =
     [[[NetflixFeedsViewController alloc] initWithFeedKeys:keys
-                                                    title:NSLocalizedString(@"Rental History", nil)] autorelease];
+                                                    title:LocalizedString(@"Rental History", nil)] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

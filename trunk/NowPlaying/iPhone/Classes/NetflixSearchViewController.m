@@ -121,9 +121,9 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && movies.count > 0) {
-        return NSLocalizedString(@"Movies", nil);
+        return LocalizedString(@"Movies", nil);
     } else if (section == 1 && people.count > 0) {
-        return NSLocalizedString(@"People", @"Category for people matched by a search");
+        return LocalizedString(@"People", @"Category for people matched by a search");
     }
 
     return nil;

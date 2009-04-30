@@ -373,7 +373,7 @@
         }
     }
 
-    NSString* notificationString = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", @"%@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic"), [[Model model] currentScoreProvider]];
+    NSString* notificationString = [NSString stringWithFormat:LocalizedString(@"%@ scores", @"%@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic"), [[Model model] currentScoreProvider]];
     if (notification) {
         [NotificationCenter addNotification:notificationString];
     }
@@ -427,7 +427,7 @@
     [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
      [Application host],
      country,
-     [LocaleUtilities isoLanguage],
+     [LocaleUtilities preferredLanguage],
      score.identifier,
      score.provider,
      (int)(location.latitude * 1000000),

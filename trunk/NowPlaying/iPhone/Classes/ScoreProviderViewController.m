@@ -31,7 +31,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = NSLocalizedString(@"Reviews", nil);
+        self.title = LocalizedString(@"Reviews", nil);
     }
 
     return self;
@@ -99,7 +99,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    return NSLocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
+    return LocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
 }
 
 

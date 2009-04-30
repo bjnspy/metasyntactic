@@ -31,7 +31,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = NSLocalizedString(@"Settings", nil);
+        self.title = LocalizedString(@"Settings", nil);
     }
 
     return self;
@@ -88,9 +88,9 @@
     }
 
     if (indexPath.row == 0) {
-        cell.text = NSLocalizedString(@"DVD", nil);
+        cell.text = LocalizedString(@"DVD", nil);
     } else if (indexPath.row == 1) {
-        cell.text = NSLocalizedString(@"Blu-ray", nil);
+        cell.text = LocalizedString(@"Blu-ray", nil);
     }
 
     [self setCheckmarkForCell:cell atRow:indexPath.row];

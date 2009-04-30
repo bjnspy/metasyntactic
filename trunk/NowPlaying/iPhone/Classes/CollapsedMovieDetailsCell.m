@@ -45,7 +45,7 @@
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
 
-        if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
+        if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
             ratingAndRuntimeLabel.text = [self.model ratingForMovie:movie];
         } else {
             ratingAndRuntimeLabel.text = [self.model ratingAndRuntimeForMovie:movie];

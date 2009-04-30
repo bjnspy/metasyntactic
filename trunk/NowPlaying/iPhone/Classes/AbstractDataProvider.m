@@ -553,7 +553,7 @@
 - (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
-        [request.delegate onDataProviderUpdateFailure:NSLocalizedString(@"Could not find location.", nil) context:request.context];
+        [request.delegate onDataProviderUpdateFailure:LocalizedString(@"Could not find location.", nil) context:request.context];
         return;
     }
 
@@ -562,7 +562,7 @@
                                      searchDate:request.searchDate
                                    theaterNames:nil];
     if (result.movies.count == 0 || result.theaters.count == 0) {
-        [request.delegate onDataProviderUpdateFailure:NSLocalizedString(@"No information found", nil) context:request.context];
+        [request.delegate onDataProviderUpdateFailure:LocalizedString(@"No information found", nil) context:request.context];
         return;
     }
 
@@ -609,8 +609,8 @@
         if (request.force || ![self tooSoon:self.lastLookupDate]) {
             NSArray* notifications =
             [NSArray arrayWithObjects:
-             [NSLocalizedString(@"Movies", nil) lowercaseString],
-             [NSLocalizedString(@"Theaters", nil) lowercaseString], nil];
+             [LocalizedString(@"Movies", nil) lowercaseString],
+             [LocalizedString(@"Theaters", nil) lowercaseString], nil];
             [NotificationCenter addNotifications:notifications];
             {
                 [self updateBackgroundEntryPointWorker:request];

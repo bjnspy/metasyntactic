@@ -73,7 +73,7 @@
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", @"The %@'s will be replaced with the program name.  i.e. 'Now Playing'"), [Application name], [Application name]];
+     LocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", @"The %@'s will be replaced with the program name.  i.e. 'Now Playing'"), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -89,7 +89,7 @@
 - (void) setupStatus {
     self.statusLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     statusLabel.backgroundColor = [UIColor clearColor];
-    statusLabel.text = NSLocalizedString(@"Requesting authorization", nil);
+    statusLabel.text = LocalizedString(@"Requesting authorization", nil);
     statusLabel.textColor = [UIColor whiteColor];
     [statusLabel sizeToFit];
 
@@ -119,8 +119,8 @@
 
 - (void) setupButton {
     self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:NSLocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
-    [button setTitle:NSLocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
+    [button setTitle:LocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
+    [button setTitle:LocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
 
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
@@ -181,7 +181,7 @@
 
 
 - (void) requestAuthorizationToken {
-    NSString* notification = [NSLocalizedString(@"Requesting authorization", nil) lowercaseString];
+    NSString* notification = [LocalizedString(@"Requesting authorization", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAuthorizationTokenWorker];
@@ -213,11 +213,11 @@
 
 - (void) reportError:(NSError*) error {
     NSAssert([NSThread isMainThread], nil);
-    [AlertUtilities showOkAlert:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
+    [AlertUtilities showOkAlert:LocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
 
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
-    statusLabel.text = NSLocalizedString(@"Error occurred", nil);
+    statusLabel.text = LocalizedString(@"Error occurred", nil);
 }
 
 
@@ -257,7 +257,7 @@
     // we're coming back after showing the user the the access page
 
     [activityIndicator startAnimating];
-    statusLabel.text = NSLocalizedString(@"Requesting access", nil);
+    statusLabel.text = LocalizedString(@"Requesting access", nil);
     button.enabled = NO;
 
     [[OperationQueue operationQueue] performSelector:@selector(requestAccessToken)
@@ -288,7 +288,7 @@
 
 
 - (void) requestAccessToken {
-    NSString* notification = [NSLocalizedString(@"Requesting access", nil) lowercaseString];
+    NSString* notification = [LocalizedString(@"Requesting access", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self requestAccessTokenWorker];
@@ -323,7 +323,7 @@
     statusLabel.text = @"";
     messageLabel.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [Application name]];
+     LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [Application name]];
 
     [self.controller setNetflixKey:token.key secret:token.secret userId:[token.fields objectForKey:@"user_id"]];
 }

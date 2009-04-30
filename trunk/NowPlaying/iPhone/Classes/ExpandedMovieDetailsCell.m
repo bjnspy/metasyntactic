@@ -111,10 +111,10 @@
 
 
 - (void) addRating:(MutableMultiDictionary*) dictionary {
-    NSString* title = NSLocalizedString(@"Rated:", nil);
+    NSString* title = LocalizedString(@"Rated:", nil);
     NSString* value = [self.model ratingForMovie:movie];
     if (value.length == 0) {
-        value = NSLocalizedString(@"Unrated", nil);
+        value = LocalizedString(@"Unrated", nil);
     }
 
     [self addTitle:title andValue:value to:dictionary];
@@ -127,7 +127,7 @@
         return;
     }
 
-    NSString* title = NSLocalizedString(@"Running time:", nil);
+    NSString* title = LocalizedString(@"Running time:", nil);
     NSString* value = [Movie runtimeString:length];
 
     [self addTitle:title andValue:value to:dictionary];
@@ -139,7 +139,7 @@
         return;
     }
 
-    NSString* title = NSLocalizedString(@"Release date:", nil);
+    NSString* title = LocalizedString(@"Release date:", nil);
 
     NSString* value;
     if (movie.isNetflix) {
@@ -158,7 +158,7 @@
         return;
     }
 
-    NSString* title = NSLocalizedString(@"Genre:", nil);
+    NSString* title = LocalizedString(@"Genre:", nil);
     NSString* value = [genres componentsJoinedByString:@", "];
     if (value.length == 0) {
         return;
@@ -173,7 +173,7 @@
         return;
     }
 
-    NSString* title = NSLocalizedString(@"Studio:", nil);
+    NSString* title = LocalizedString(@"Studio:", nil);
     NSString* value = movie.studio;
 
     [self addTitle:title andValue:value to:dictionary];
@@ -188,9 +188,9 @@
 
     NSString* title;
     if (directors.count == 1) {
-        title = NSLocalizedString(@"Director:", nil);
+        title = LocalizedString(@"Director:", nil);
     } else {
-        title = NSLocalizedString(@"Directors:", nil);
+        title = LocalizedString(@"Directors:", nil);
     }
 
     [self addTitle:title andValues:directors to:dictionary];
@@ -203,7 +203,7 @@
         return;
     }
 
-    NSString* title = NSLocalizedString(@"Cast:", nil);
+    NSString* title = LocalizedString(@"Cast:", nil);
     [self addTitle:title andValues:cast to:dictionary];
 }
 

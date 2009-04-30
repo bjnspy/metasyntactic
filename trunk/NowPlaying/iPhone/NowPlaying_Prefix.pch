@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
 #import "ForwardDeclarations.h"
+#import "LocalizableStringsCache.h"
 #import "Macros.h"
 #import "OAuthConsumer.h"
 #import "ProtocolBuffers.h"
