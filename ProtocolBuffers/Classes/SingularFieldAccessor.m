@@ -18,7 +18,6 @@
 #import "ObjectiveCType.h"
 
 @interface PBSingularFieldAccessor()
-    @property (retain) PBFieldDescriptor* field;
     @property SEL getSelector;
     @property SEL setSelector;
     @property SEL hasSelector;
@@ -28,14 +27,12 @@
 
 @implementation PBSingularFieldAccessor
 
-@synthesize field;
 @synthesize getSelector;
 @synthesize setSelector;
 @synthesize hasSelector;
 @synthesize clearSelector;
 
 - (void) dealloc {
-    self.field = nil;
     self.getSelector = 0;
     self.setSelector = 0;
     self.hasSelector = 0;
@@ -72,7 +69,7 @@
 - (id) get:(PBGeneratedMessage*) message {
     IMP imp = [message methodForSelector:getSelector];
 
-    switch (PBObjectiveCTypeFromFieldDescriptorType(self.field.type)) {
+    switch (PBObjectiveCTypeFromFieldDescriptorType(field.type)) {
         default: {
             return imp(message, getSelector);
         }
@@ -103,7 +100,7 @@
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
     IMP imp = [builder methodForSelector:setSelector];
 
-    switch (PBObjectiveCTypeFromFieldDescriptorType(self.field.type)) {
+    switch (PBObjectiveCTypeFromFieldDescriptorType(field.type)) {
         default: {
             imp(builder, setSelector, value);
             return;

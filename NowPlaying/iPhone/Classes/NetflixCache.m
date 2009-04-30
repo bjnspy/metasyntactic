@@ -1400,7 +1400,7 @@ static NSDictionary* availabilityMap = nil;
     }
     [self clearUpdatedMovies];
 
-    NSString* notification = @"Netflix";
+    NSString* notification = LocalizedString(@"Netflix", nil);
     [NotificationCenter addNotification:notification];
     {
         [self updateBackgroundEntryPointWorker];

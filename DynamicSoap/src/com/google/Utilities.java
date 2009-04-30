@@ -13,20 +13,31 @@
 // limitations under the License.
 package com.google;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 public class Utilities {
     private Utilities() {
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> Iterable<T> cast(final Iterable iterable, final Class<T> clazz) {
         return new Iterable<T>() {
             public Iterator<T> iterator() {
                 return cast(iterable.iterator(), clazz);
             }
         };
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> cast(final List list, final Class<T> clazz) {
+        final List<T> result = new ArrayList<T>();
+        for (final Object value : list) {
+            checkValue(value, clazz);
+            result.add((T)value);
+        }
+        return result;
     }
 
     public static <T> Iterator<T> cast(final Iterator iterator, final Class<T> clazz) {
@@ -37,17 +48,21 @@ public class Utilities {
 
             @SuppressWarnings("unchecked")
             public T next() {
-                final Object next = iterator.next();
-                if (next != null && !clazz.isInstance(next)) {
-                    throw new ClassCastException("Got instance of: " + next.getClass().getName() + ", but expected: " + clazz.getName());
-                }
-                return (T) next;
+                final Object value = iterator.next();
+                checkValue(value, clazz);
+                return (T) value;
             }
 
             public void remove() {
                 iterator.remove();
             }
         };
+    }
+
+    private static <T> void checkValue(final Object value, final Class<T> clazz) {
+        if (value != null && !clazz.isInstance(value)) {
+            throw new ClassCastException("Got instance of: " + value.getClass().getName() + ", but expected: " + clazz.getName());
+        }
     }
 
     public static <T> Iterable<T> iterable(final Iterator<T> iterator) {

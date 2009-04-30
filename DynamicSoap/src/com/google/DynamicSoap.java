@@ -58,13 +58,21 @@ public class DynamicSoap {
     }
 
     private static void amazon() throws IOException, WSDLException, TransformerException, ParserConfigurationException {
-        final WebServicesInvocationHandler handler = new DynamicSoap().soap("http://soap.amazon.com/schemas2/AmazonWebServices.wsdl");
+        final WebServicesInvocationHandler handler = new DynamicSoap().soap("http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.wsdl");
         System.out.println(handler.getServices());
 
-        final ServiceInvocationHandler serviceHandler = handler.getService("AmazonSearchService");
+        final ServiceInvocationHandler serviceHandler = handler.getService("AWSECommerceService");
         System.out.println(serviceHandler.getOperations());
 
-        serviceHandler.invoke("PowerSearchRequest");
+        serviceHandler.invoke("ItemSearch",
+                (Object) new Object[]{"ItemSearch",
+                        new Object[]{"AWSAccessKeyId", "1RRVC0BHDPKTXB98FCR2"},
+                        new Object[]{"AssociateTag", "cyrusnajma-20"},
+                        new Object[]{"Request",
+                                new Object[]{"SearchIndex", "DVD"},
+                                new Object[]{"Title", "Terminator 2"}
+                        }
+                });
     }
 
     private static void weather() throws IOException, WSDLException, TransformerException, ParserConfigurationException {

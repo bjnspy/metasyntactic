@@ -21,6 +21,7 @@
 + (NSString*) displayLanguage;
 + (NSString*) englishCountry;
 + (NSString*) englishLanguage;
++ (NSString*) preferredLanguage;
 
 + (NSString*) displayLanguage:(NSString*) isoLanguage;
 

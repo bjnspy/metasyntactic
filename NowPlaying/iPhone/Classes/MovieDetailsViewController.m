@@ -256,7 +256,7 @@ const NSInteger POSTER_TAG = -1;
 
     NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
     if (netflixAddress.length > 0) {
-        [map setObject:netflixAddress forKey:@"Netflix"];
+        [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
 
     Score* score = [self.model rottenTomatoesScoreForMovie:movie];
@@ -611,7 +611,7 @@ const NSInteger POSTER_TAG = -1;
       titleForHeaderInSection:(NSInteger) section {
     if (section == 1) {
         if ([self hasNetflixRating] || netflixStatusCells.count > 0) {
-            return @"Netflix";
+            return LocalizedString(@"Netflix", nil);
         }
     } else if (section == 2 && theatersArray.count > 0) {
         if (self.model.isSearchDateToday) {

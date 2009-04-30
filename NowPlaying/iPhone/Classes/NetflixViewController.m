@@ -88,7 +88,7 @@ typedef enum {
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.title = @"Netflix";
+        self.title = LocalizedString(@"Netflix", nil);
     }
 
     return self;
