@@ -120,7 +120,7 @@
 - (void) setupTitle {
     NSString* text;
     if (readonlyMode) {
-        text = NSLocalizedString(@"Please Wait", nil);
+        text = LocalizedString(@"Please Wait", nil);
     } else {
         text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
     }
@@ -203,7 +203,7 @@
             return [self.model.netflixCache noInformationFound];
         }
     } else if (mutableSaved.count > 0 && section == 1) {
-        return NSLocalizedString(@"Saved", nil);
+        return LocalizedString(@"Saved", nil);
     }
 
     return nil;
@@ -332,7 +332,7 @@
 
 
 - (void) onModifyFailure:(NSString*) error {
-    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Reordering queue failed:\n\n%@", @"Error shown when we tried to reorder a user's movie queue on the server but failed.  %@ is replaced with the actual error.  i.e.: Could not connect to server"), error];
+    NSString* message = [NSString stringWithFormat:LocalizedString(@"Reordering queue failed:\n\n%@", @"Error shown when we tried to reorder a user's movie queue on the server but failed.  %@ is replaced with the actual error.  i.e.: Could not connect to server"), error];
     [AlertUtilities showOkAlert:message];
 
     [self exitReadonlyMode];

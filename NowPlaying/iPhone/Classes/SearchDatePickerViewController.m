@@ -39,7 +39,7 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.object = object_;
         self.selector = selector_;
-        self.title = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
+        self.title = LocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
     }
 
     return self;
@@ -89,13 +89,13 @@
 
 #ifdef IPHONE_OS_VERSION_3
     if ([DateUtilities isToday:date]) {
-        cell.textLabel.text = NSLocalizedString(@"Today", nil);
+        cell.textLabel.text = LocalizedString(@"Today", nil);
     } else {
         cell.textLabel.text = [DateUtilities formatFullDate:date];
     }
 #else
     if ([DateUtilities isToday:date]) {
-        cell.text = NSLocalizedString(@"Today", nil);
+        cell.text = LocalizedString(@"Today", nil);
     } else {
         cell.text = [DateUtilities formatFullDate:date];
     }
@@ -127,7 +127,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    return NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil);
+    return LocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil);
 }
 
 

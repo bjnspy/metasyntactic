@@ -71,30 +71,30 @@ static NSDictionary* availabilityMap = nil;
     if (self == [NetflixCache class]) {
         mostPopularTitles =
         [[NSArray arrayWithObjects:
-          NSLocalizedString(@"Top DVDs", @"Movie category"),
-          NSLocalizedString(@"Top 'Instant Watch'", @"Movie category"),
-          NSLocalizedString(@"New DVDs", @"Movie category"),
-          NSLocalizedString(@"New 'Instant Watch'", @"Movie category"),
-          NSLocalizedString(@"Action & Adventure", @"Movie category"),
-          NSLocalizedString(@"Anime & Animation", @"Movie category"),
-          NSLocalizedString(@"Blu-ray", nil),
-          NSLocalizedString(@"Children & Family", @"Movie category"),
-          NSLocalizedString(@"Classics", @"Movie category"),
-          NSLocalizedString(@"Comedy", @"Movie category"),
-          NSLocalizedString(@"Documentary", @"Movie category"),
-          NSLocalizedString(@"Drama", @"Movie category"),
-          NSLocalizedString(@"Faith & Spirituality", @"Movie category"),
-          NSLocalizedString(@"Foreign", @"Movie category"),
-          NSLocalizedString(@"Gay & Lesbian", @"Movie category"),
-          NSLocalizedString(@"Horror", @"Movie category"),
-          NSLocalizedString(@"Independent", @"Movie category"),
-          NSLocalizedString(@"Music & Musicals", @"Movie category"),
-          NSLocalizedString(@"Romance", @"Movie category"),
-          NSLocalizedString(@"Sci-Fi & Fantasy", @"Movie category"),
-          NSLocalizedString(@"Special Interest", @"Movie category"),
-          NSLocalizedString(@"Sports & Fitness", @"Movie category"),
-          NSLocalizedString(@"Television", @"Movie category"),
-          NSLocalizedString(@"Thrillers", @"Movie category"),
+          LocalizedString(@"Top DVDs", @"Movie category"),
+          LocalizedString(@"Top 'Instant Watch'", @"Movie category"),
+          LocalizedString(@"New DVDs", @"Movie category"),
+          LocalizedString(@"New 'Instant Watch'", @"Movie category"),
+          LocalizedString(@"Action & Adventure", @"Movie category"),
+          LocalizedString(@"Anime & Animation", @"Movie category"),
+          LocalizedString(@"Blu-ray", nil),
+          LocalizedString(@"Children & Family", @"Movie category"),
+          LocalizedString(@"Classics", @"Movie category"),
+          LocalizedString(@"Comedy", @"Movie category"),
+          LocalizedString(@"Documentary", @"Movie category"),
+          LocalizedString(@"Drama", @"Movie category"),
+          LocalizedString(@"Faith & Spirituality", @"Movie category"),
+          LocalizedString(@"Foreign", @"Movie category"),
+          LocalizedString(@"Gay & Lesbian", @"Movie category"),
+          LocalizedString(@"Horror", @"Movie category"),
+          LocalizedString(@"Independent", @"Movie category"),
+          LocalizedString(@"Music & Musicals", @"Movie category"),
+          LocalizedString(@"Romance", @"Movie category"),
+          LocalizedString(@"Sci-Fi & Fantasy", @"Movie category"),
+          LocalizedString(@"Special Interest", @"Movie category"),
+          LocalizedString(@"Sports & Fitness", @"Movie category"),
+          LocalizedString(@"Television", @"Movie category"),
+          LocalizedString(@"Thrillers", @"Movie category"),
           nil] retain];
 
         mostPopularTitlesToAddresses =
@@ -139,18 +139,18 @@ static NSDictionary* availabilityMap = nil;
 
         availabilityMap =
         [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                              NSLocalizedString(@"Awaiting Release", @"Movie can't be shipped because it hasn't been released yet"),
-                                              NSLocalizedString(@"Available Now", @"Movie is available to be shipped now"),
-                                              NSLocalizedString(@"Saved", @"Movie is the user's 'Saved to watch later' queue"),
-                                              NSLocalizedString(@"Short Wait", @"There will be a short wait before the movie is released"),
-                                              NSLocalizedString(@"Short Wait", nil),
-                                              NSLocalizedString(@"Long Wait", @"There will be a long wait before the movie is released"),
-                                              NSLocalizedString(@"Very Long Wait", @"There will be a very long wait before the movie is released"),
-                                              NSLocalizedString(@"Available Soon", @"Movie will be released soon"),
-                                              NSLocalizedString(@"Not Rentable", @"Movie is not currently rentable"),
-                                              NSLocalizedString(@"Unknown Release Date", @"The release date for a movie is unknown."),
-                                              NSLocalizedString(@"Unknown Release Date", nil),
-                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              LocalizedString(@"Awaiting Release", @"Movie can't be shipped because it hasn't been released yet"),
+                                              LocalizedString(@"Available Now", @"Movie is available to be shipped now"),
+                                              LocalizedString(@"Saved", @"Movie is the user's 'Saved to watch later' queue"),
+                                              LocalizedString(@"Short Wait", @"There will be a short wait before the movie is released"),
+                                              LocalizedString(@"Short Wait", nil),
+                                              LocalizedString(@"Long Wait", @"There will be a long wait before the movie is released"),
+                                              LocalizedString(@"Very Long Wait", @"There will be a very long wait before the movie is released"),
+                                              LocalizedString(@"Available Soon", @"Movie will be released soon"),
+                                              LocalizedString(@"Not Rentable", @"Movie is not currently rentable"),
+                                              LocalizedString(@"Unknown Release Date", @"The release date for a movie is unknown."),
+                                              LocalizedString(@"Unknown Release Date", nil),
+                                              LocalizedString(@"Unknown Release Date", nil),
                                               nil]
                                      forKeys:[NSArray arrayWithObjects:
                                               @"awaiting release",
@@ -189,11 +189,11 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) noInformationFound {
     if ([[OperationQueue operationQueue] hasPriorityOperations]) {
-        return NSLocalizedString(@"Downloading data", nil);
+        return LocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
-        return NSLocalizedString(@"Network unavailable", nil);
+        return LocalizedString(@"Network unavailable", nil);
     } else {
-        return NSLocalizedString(@"No information found", nil);
+        return LocalizedString(@"No information found", nil);
     }
 }
 
@@ -1532,9 +1532,9 @@ static NSDictionary* availabilityMap = nil;
     NSString* synopsis = [self synopsisForMovieWorker:movie];
     if (synopsis.length == 0) {
         if ([NetworkUtilities isNetworkAvailable]) {
-            return NSLocalizedString(@"Downloading information.", nil);
+            return LocalizedString(@"Downloading information.", nil);
         } else {
-            return NSLocalizedString(@"No synopsis available.", nil);
+            return LocalizedString(@"No synopsis available.", nil);
         }
     }
 
@@ -1561,19 +1561,19 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount {
     NSString* title = nil;
     if ([key isEqual:[NetflixCache dvdQueueKey]]) {
-        title = NSLocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
+        title = LocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
     } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
-        title = NSLocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
+        title = LocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
     } else if ([key isEqual:[NetflixCache atHomeKey]]) {
-        title = NSLocalizedString(@"At Home", @"The list of Netflix movies currently at the user's house");
+        title = LocalizedString(@"At Home", @"The list of Netflix movies currently at the user's house");
     } else if ([key isEqual:[NetflixCache rentalHistoryWatchedKey]]) {
-        title = NSLocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
+        title = LocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
     } else if ([key isEqual:[NetflixCache rentalHistoryReturnedKey]]) {
-        title = NSLocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
+        title = LocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
     } else if ([key isEqual:[NetflixCache rentalHistoryKey]]) {
-        title = NSLocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
+        title = LocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
     } else if ([key isEqual:[NetflixCache recommendationKey]]) {
-        title = NSLocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
+        title = LocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
     }
 
     Queue* queue;
@@ -1582,7 +1582,7 @@ static NSDictionary* availabilityMap = nil;
     }
 
     NSString* number = [NSString stringWithFormat:@"%d", queue.movies.count + queue.saved.count];
-    return [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
+    return [NSString stringWithFormat:LocalizedString(@"%@ (%@)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
             title, number];
 }
 
@@ -1609,13 +1609,13 @@ static NSDictionary* availabilityMap = nil;
     }
 
     if (queue.isAtHomeQueue) {
-        description = NSLocalizedString(@"At Home", nil);
+        description = LocalizedString(@"At Home", nil);
     } else {
         NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
         if (saved) {
-            description = [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+            description = [NSString stringWithFormat:LocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
         } else {
-            description = [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (position + 1), queueTitle];
+            description = [NSString stringWithFormat:LocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (position + 1), queueTitle];
         }
     }
 
@@ -1751,10 +1751,10 @@ static NSDictionary* availabilityMap = nil;
         return message;
     } else if (element == nil) {
         NSLog(@"Could not parse Netflix result.", nil);
-        return NSLocalizedString(@"Could not connect to Netflix.", nil);
+        return LocalizedString(@"Could not connect to Netflix.", nil);
     } else {
         NSLog(@"Netflix response had no 'message' element", nil);
-        return NSLocalizedString(@"An unknown error occurred.", nil);
+        return LocalizedString(@"An unknown error occurred.", nil);
     }
 }
 

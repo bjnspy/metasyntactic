@@ -242,7 +242,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    cell.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", nil), searchResult.value];
     return cell;
 }
 
@@ -361,28 +361,28 @@
     }
 
     if ([self noResults]) {
-        return NSLocalizedString(@"No information found", nil);
+        return LocalizedString(@"No information found", nil);
     }
 
     if (section == 0) {
         if (searchResult.movies.count != 0) {
-            return NSLocalizedString(@"Movies", nil);
+            return LocalizedString(@"Movies", nil);
         }
     } else if (section == 1) {
         if (searchResult.theaters.count != 0) {
-            return NSLocalizedString(@"Theaters", nil);
+            return LocalizedString(@"Theaters", nil);
         }
     } else if (section == 2) {
         if (searchResult.upcomingMovies.count != 0) {
-            return NSLocalizedString(@"Upcoming", nil);
+            return LocalizedString(@"Upcoming", nil);
         }
     } else if (section == 3) {
         if (searchResult.dvds.count != 0) {
-            return NSLocalizedString(@"DVD", nil);
+            return LocalizedString(@"DVD", nil);
         }
     } else if (section == 4) {
         if (searchResult.bluray.count != 0) {
-            return NSLocalizedString(@"Blu-ray", nil);
+            return LocalizedString(@"Blu-ray", nil);
         }
     }
 

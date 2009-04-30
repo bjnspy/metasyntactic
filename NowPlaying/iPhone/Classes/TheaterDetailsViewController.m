@@ -192,7 +192,7 @@
       titleForHeaderInSection:(NSInteger) section {
     if (section == 2 && movies.count > 0) {
         if ([DateUtilities isToday:self.model.searchDate]) {
-            return NSLocalizedString(@"Today", nil);
+            return LocalizedString(@"Today", nil);
         } else {
             return [DateUtilities formatFullDate:self.model.searchDate];
         }
@@ -211,10 +211,10 @@
 #endif
 
     if (row == 0) {
-        cell.textLabel.text = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
+        cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
         cell.detailTextLabel.text = [self.model simpleAddressForTheater:theater];
     } else {
-        cell.textLabel.text = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
+        cell.textLabel.text = LocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
         cell.detailTextLabel.text = theater.phoneNumber;
     }
 
@@ -234,9 +234,9 @@
     cell.textAlignment = UITextAlignmentCenter;
 
     if (row == 0) {
-        cell.text = NSLocalizedString(@"E-mail listings", nil);
+        cell.text = LocalizedString(@"E-mail listings", nil);
     } else {
-        cell.text = NSLocalizedString(@"Change date", nil);
+        cell.text = LocalizedString(@"Change date", nil);
     }
 
     return cell;
@@ -354,7 +354,7 @@
     if (![lookupResult.theaters containsObject:theater]) {
         NSString* text =
         [NSString stringWithFormat:
-         NSLocalizedString(@"No listings found at '%@' on %@", @"No listings found at 'Regal Meridian 6' on 5/18/2008"),
+         LocalizedString(@"No listings found at '%@' on %@", @"No listings found at 'Regal Meridian 6' on 5/18/2008"),
          theater.name,
          [DateUtilities formatShortDate:searchDate]];
 
@@ -405,7 +405,7 @@
     if (section == 1) {
         if (movies.count == 0) {
             return [NSString stringWithFormat:
-                    NSLocalizedString(@"This theater has not yet reported its show times. "
+                    LocalizedString(@"This theater has not yet reported its show times. "
                                       "When they become available, %@ will retrieve them automatically.", nil),
                     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
         }

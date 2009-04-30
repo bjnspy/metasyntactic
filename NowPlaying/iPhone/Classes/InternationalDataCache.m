@@ -440,7 +440,7 @@ static NSSet* allowableCountries = nil;
         }
     }
 
-    NSString* notification = [NSLocalizedString(@"International Data", nil) lowercaseString];
+    NSString* notification = [LocalizedString(@"International Data", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self downloadIndex];
@@ -532,9 +532,9 @@ static NSSet* allowableCountries = nil;
     NSString* rating = [self.model ratingForMovie:movie];
     NSString* ratingString;
     if (rating.length == 0) {
-        ratingString = NSLocalizedString(@"Unrated", nil);
+        ratingString = LocalizedString(@"Unrated", nil);
     } else {
-        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", @"%@ will be replaced with a movie rating.  i.e.: Rated PG-13"), rating];
+        ratingString = [NSString stringWithFormat:LocalizedString(@"Rated %@", @"%@ will be replaced with a movie rating.  i.e.: Rated PG-13"), rating];
     }
 
     NSString* runtimeString = @"";
@@ -543,7 +543,7 @@ static NSSet* allowableCountries = nil;
         runtimeString = [Movie runtimeString:length];
     }
 
-    return [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), ratingString, runtimeString];
+    return [NSString stringWithFormat:LocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), ratingString, runtimeString];
 }
 
 

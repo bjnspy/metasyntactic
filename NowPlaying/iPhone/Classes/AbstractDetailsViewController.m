@@ -59,7 +59,7 @@
 
 - (UILabel*) createLabel {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    label.text = NSLocalizedString(@"Updating Listings", nil);
+    label.text = LocalizedString(@"Updating Listings", nil);
     label.backgroundColor = [UIColor clearColor];
     label.opaque = NO;
     label.font = [UIFont boldSystemFontOfSize:24];
@@ -106,7 +106,7 @@
     button.opaque = NO;
     button.backgroundColor = [UIColor clearColor];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    [button setTitle:LocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(onCancelTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];

@@ -109,7 +109,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
         notificationLabel.shadowColor = [UIColor darkGrayColor];
         notificationLabel.shadowOffset = CGSizeMake(0, 1);
         notificationLabel.alpha = 0;
-        notificationLabel.text = NSLocalizedString(@"Updating", nil);
+        notificationLabel.text = LocalizedString(@"Updating", nil);
         notificationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
 
@@ -166,7 +166,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
         return nil;
     }
 
-    return [NSString stringWithFormat:NSLocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
+    return [NSString stringWithFormat:LocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
 }
 
 

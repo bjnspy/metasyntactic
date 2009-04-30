@@ -69,7 +69,7 @@
                                             @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
                          [Application host],
                          country,
-                         [LocaleUtilities isoLanguage],
+                         [LocaleUtilities preferredLanguage],
                          [StringUtilities stringByAddingPercentEscapes:location.postalCode],
                          day,
                          (int)(location.latitude * 1000000),

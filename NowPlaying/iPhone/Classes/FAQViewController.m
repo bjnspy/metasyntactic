@@ -57,7 +57,7 @@
         self.questions = [qAndA objectAtIndex:0];
         self.answers = [qAndA objectAtIndex:1];
 
-        self.title = [NSString stringWithFormat:NSLocalizedString(@"%d Questions & Answers", @"i.e.: 20 Questions & Answers"), questions.count];
+        self.title = [NSString stringWithFormat:LocalizedString(@"%d Questions & Answers", @"i.e.: 20 Questions & Answers"), questions.count];
         self.tableView.backgroundColor = [ColorCache helpBlue];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
@@ -65,8 +65,8 @@
                               [NSValue valueWithPointer:@selector(sendFeedback)],
                               [NSValue valueWithPointer:@selector(addTheater)],nil];
         NSArray* titles = [NSArray arrayWithObjects:
-                           NSLocalizedString(@"Send Feedback", nil),
-                           NSLocalizedString(@"Add Theater", @"Title for a button that the user can use to request that a theater be added to the program"), nil];
+                           LocalizedString(@"Send Feedback", nil),
+                           LocalizedString(@"Add Theater", @"Title for a button that the user can use to request that a theater be added to the program"), nil];
         NSArray* arguments = [NSArray arrayWithObjects:[NSNull null], [NSNull null], nil];
         self.actionsView = [ActionsView viewWithTarget:self
                                              selectors:selectors

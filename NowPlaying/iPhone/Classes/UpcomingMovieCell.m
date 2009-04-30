@@ -119,17 +119,17 @@
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
 
-        self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
+        self.directorTitleLabel = [self createTitleLabel:LocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22];
 
-        self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil) yPosition:37];
+        self.castTitleLabel = [self createTitleLabel:LocalizedString(@"Cast:", nil) yPosition:37];
         self.castLabel = [self createValueLabel:38];
         castLabel.numberOfLines = 0;
 
-        self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil) yPosition:67];
+        self.genreTitleLabel = [self createTitleLabel:LocalizedString(@"Genre:", nil) yPosition:67];
         self.genreLabel = [self createValueLabel:67];
 
-        self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
+        self.ratedTitleLabel = [self createTitleLabel:LocalizedString(@"Rated:", nil) yPosition:82];
         self.ratedLabel = [self createValueLabel:82];
 
         titleWidth = 0;
@@ -170,14 +170,14 @@
 
     NSString* rating = [self.model ratingForMovie:movie];
     if (rating.length == 0) {		
-        rating = NSLocalizedString(@"Not yet rated", nil);		
+        rating = LocalizedString(@"Not yet rated", nil);		
     }
 
     if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (rating.length > 0) {
-            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
+            releaseDate = [NSString stringWithFormat:LocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
         }
 
         ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
@@ -186,9 +186,9 @@
     }
 
     if (movie.directors.count <= 1) {
-        directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
+        directorTitleLabel.text = LocalizedString(@"Director:", nil);
     } else {
-        directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
+        directorTitleLabel.text = LocalizedString(@"Directors:", nil);
     }
 
     for (UILabel* label in self.allLabels) {

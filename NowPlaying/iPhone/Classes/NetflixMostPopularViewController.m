@@ -38,7 +38,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.title = NSLocalizedString(@"Most Popular", nil);
+        self.title = LocalizedString(@"Most Popular", nil);
     }
 
     return self;
@@ -114,9 +114,9 @@
     NSNumber* count = [titleToCount objectForKey:title];
 
 #ifdef IPHONE_OS_VERSION_3
-    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
 #else
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
+    cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
 #endif
 
     return cell;
@@ -136,7 +136,7 @@
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0 && titleToCount.count == 0) {
         if ([[OperationQueue operationQueue] hasPriorityOperations]) {
-            return NSLocalizedString(@"Downloading data", nil);
+            return LocalizedString(@"Downloading data", nil);
         }
 
         return self.model.netflixCache.noInformationFound;

@@ -36,7 +36,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = NSLocalizedString(@"Search Distance", nil);
+        self.title = LocalizedString(@"Search Distance", nil);
         self.values = [NSArray arrayWithObjects:
                        @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",
                        @"10", @"15", @"20", @"25", @"30",
@@ -87,11 +87,11 @@
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
     if (indexPath.row == 0) {
-        cell.text = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
+        cell.text = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
     } else {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
+        cell.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", nil),
                      value,
-                     ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
+                     ([Application useKilometers] ? LocalizedString(@"kilometers", nil) : LocalizedString(@"miles", nil))];
     }
 
     if ([value isEqual:defaultValue]) {
@@ -122,7 +122,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    return NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil);
+    return LocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil);
 }
 
 

@@ -8,13 +8,10 @@
 
 @interface LocalizableStringsCache : NSObject {
 @private
-    BOOL updated;
+    NSLock* gate;
     NSDictionary* indexData;
 }
 
-+ (LocalizableStringsCache*) cache;
-
-- (void) update;
-- (NSString*) localizedString:(NSString*) key;
++ (NSString*) localizedString:(NSString*) key;
 
 @end

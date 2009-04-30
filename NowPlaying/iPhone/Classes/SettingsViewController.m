@@ -143,7 +143,7 @@ typedef enum {
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), NSLocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), LocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
     cell.text = text;
 
     return cell;
@@ -202,35 +202,35 @@ typedef enum {
         NSString* value = @"";
         NSString* placeholder = @"";
         if (row == 0) {
-            key = NSLocalizedString(@"Location", nil);
+            key = LocalizedString(@"Location", nil);
             Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
             if (location.postalCode.length == 0) {
                 value = self.model.userAddress;
             } else {
                 value = location.postalCode;
             }
-            placeholder = NSLocalizedString(@"Tap to enter location", nil);
+            placeholder = LocalizedString(@"Tap to enter location", nil);
         } else if (row == 1) {
-            key = NSLocalizedString(@"Search Distance", nil);
+            key = LocalizedString(@"Search Distance", nil);
 
             if (self.model.searchRadius == 1) {
-                value = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
+                value = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
             } else {
-                value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
+                value = [NSString stringWithFormat:LocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
                          self.model.searchRadius,
-                         ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
+                         ([Application useKilometers] ? LocalizedString(@"kilometers", nil) : LocalizedString(@"miles", nil))];
             }
         } else if (row == 2) {
-            key = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
+            key = LocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
 
             NSDate* date = self.model.searchDate;
             if ([DateUtilities isToday:date]) {
-                value = NSLocalizedString(@"Today", nil);
+                value = LocalizedString(@"Today", nil);
             } else {
                 value = [DateUtilities formatLongDate:date];
             }
         } else if (row == 3) {
-            key = NSLocalizedString(@"Reviews", nil);
+            key = LocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
         }
 
@@ -240,27 +240,27 @@ typedef enum {
         BOOL on;
         SEL selector;
         if (row == 4) {
-            text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
+            text = LocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
+            text = LocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
         } else if (row == 6) {
-            text = NSLocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
+            text = LocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
             on = self.model.screenRotationEnabled;
             selector = @selector(onScreenRotationEnabledChanged:);
         } else if (row == 7) {
-            text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
+            text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
         } else if (row == 8) {
-            text = NSLocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
+            text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
             on = self.model.notificationsEnabled;
             selector = @selector(onShowNotificationsChanged:);
         } else if (row == 9) {
-            text = NSLocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
+            text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
             on = self.model.loadingIndicatorsEnabled;
             selector = @selector(onLoadingIndicatorsChanged:);
         }
@@ -273,7 +273,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForUpcomingRow:(NSInteger) row {
-    return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
+    return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
                                        on:self.model.upcomingCacheEnabled
                                  selector:@selector(onUpcomingEnabledChanged:)];
 }
@@ -281,21 +281,21 @@ typedef enum {
 
 - (UITableViewCell*) cellForDvdBlurayRow:(NSInteger) row {
     if (row == 0) {
-        return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
+        return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
                                            on:self.model.dvdBlurayCacheEnabled
                                      selector:@selector(onDvdBlurayEnabledChanged:)];
     } else {
-        NSString* key = NSLocalizedString(@"Options", @"Button to change the visibility options for DVD or Bluray.");
+        NSString* key = LocalizedString(@"Options", @"Button to change the visibility options for DVD or Bluray.");
         NSString* value = @"";
 
         if (self.model.dvdMoviesShowBoth) {
-            value = NSLocalizedString(@"Show Both", @"When the user wants to see 'Both' DVD and Bluray items");
+            value = LocalizedString(@"Show Both", @"When the user wants to see 'Both' DVD and Bluray items");
         } else if (self.model.dvdMoviesShowOnlyDVDs) {
-            value = NSLocalizedString(@"DVD Only", @"When the user wants to see only DVD items and not Bluray");
+            value = LocalizedString(@"DVD Only", @"When the user wants to see only DVD items and not Bluray");
         } else if (self.model.dvdMoviesShowOnlyBluray) {
-            value = NSLocalizedString(@"Blu-ray Only", @"When the user wants to see only Bluray items and not DVD");
+            value = LocalizedString(@"Blu-ray Only", @"When the user wants to see only Bluray items and not DVD");
         } else {
-            value = NSLocalizedString(@"Show Neither", @"When the user does not want to see Bluray or DVD items");
+            value = LocalizedString(@"Show Neither", @"When the user does not want to see Bluray or DVD items");
         }
 
         return [self createSettingCellWithKey:key value:value];
@@ -304,7 +304,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
-    return [self createSwitchCellWithText:NSLocalizedString(@"Enabled", nil)
+    return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
                                        on:self.model.netflixCacheEnabled
                                  selector:@selector(onNetflixEnabledChanged:)];
 }
@@ -410,7 +410,7 @@ typedef enum {
         } else {
             Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
             if (location.postalCode == nil) {
-                message = NSLocalizedString(@"Could not find location.", nil);
+                message = LocalizedString(@"Could not find location.", nil);
             } else {
                 NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode
                                                                           value:location.country];
@@ -429,12 +429,12 @@ typedef enum {
         }
 
         TextFieldEditorViewController* controller =
-        [[[TextFieldEditorViewController alloc] initWithTitle:NSLocalizedString(@"Location", nil)
+        [[[TextFieldEditorViewController alloc] initWithTitle:LocalizedString(@"Location", nil)
                                                        object:self
                                                      selector:@selector(onUserAddressChanged:)
                                                          text:self.model.userAddress
                                                       message:message
-                                                  placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
+                                                  placeHolder:LocalizedString(@"City/State or Postal Code", nil)
                                                          type:UIKeyboardTypeDefault] autorelease];
 
         [self.navigationController pushViewController:controller animated:YES];
@@ -495,11 +495,11 @@ typedef enum {
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == UpcomingSection) {
-        return NSLocalizedString(@"Upcoming", nil);
+        return LocalizedString(@"Upcoming", nil);
     } else if (section == DVDBluraySection) {
-        return NSLocalizedString(@"DVD/Blu-ray", nil);
+        return LocalizedString(@"DVD/Blu-ray", nil);
     } else if (section == NetflixSection) {
-        return NSLocalizedString(@"Netflix", nil);
+        return LocalizedString(@"Netflix", nil);
     }
 
     return nil;
