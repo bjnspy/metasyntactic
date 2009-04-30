@@ -139,7 +139,7 @@ static DifferenceEngine* differenceEngine = nil;
         reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
         trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
         localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
-LocalizedString
+
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
         moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
         largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
