@@ -137,10 +137,11 @@
 
 
 - (void) updateBackgroundEntryPointWorker {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings?language=%@&program=%@",
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings?id=%@&language=%@&program=%@",
                          [Application host],
+                         [[NSBundle mainBundle] bundleIdentifier],
                          [LocaleUtilities preferredLanguage],
-                         [[NSBundle mainBundle] bundleIdentifier]];
+                         [StringUtilities stringByAddingPercentEscapes:[Application name]]];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
 
