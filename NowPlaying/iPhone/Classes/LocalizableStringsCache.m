@@ -37,7 +37,7 @@ static LocalizableStringsCache* instance = nil;
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-        
+LocalizedString
         [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                                 onTarget:self
                                                     gate:nil
@@ -52,7 +52,7 @@ static LocalizableStringsCache* instance = nil;
     if (instance == nil) {
         instance = [[LocalizableStringsCache alloc] init];
     }
-    
+LocalizedString
     return instance;
 }
 
@@ -75,7 +75,7 @@ static LocalizableStringsCache* instance = nil;
                          [[NSBundle mainBundle] bundleIdentifier],
                          [LocaleUtilities preferredLanguage]];
     NSString* hashAddress = [address stringByAppendingString:@"&hash=true"];
-                         
+LocalizedString
     NSString* localHash = [FileUtilities readObject:self.hashFile];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:hashAddress];
     if (serverHash.length > 0 && [localeHash isEqual:localHash]) {
@@ -86,7 +86,7 @@ static LocalizableStringsCache* instance = nil;
     if (dict.count <= 0) {
         return;
     }
-    
+LocalizedString
     [FileUtilities writeObject:dict toFile:self.indexFile];
     [FileUtilities writeObject:serverHash toFile:self.hashFile];
     [gate lock];
@@ -104,7 +104,7 @@ static LocalizableStringsCache* instance = nil;
             return;
         }
     }
- 
+LocalizedString
     NSString* notification = [LocalizedString(@"Translations", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
@@ -119,7 +119,7 @@ static LocalizableStringsCache* instance = nil;
     if (result.count == 0) {
         return [NSDictionary dictionary];
     }
-    
+LocalizedString
     return result;
 }
 
@@ -128,7 +128,7 @@ static LocalizableStringsCache* instance = nil;
     if (indexData == nil) {
         self.indexData = [self loadIndex];
     }
-    
+LocalizedString
     // access through pointer so we always get value value back.
     return self.indexData;
 }
@@ -150,7 +150,7 @@ static LocalizableStringsCache* instance = nil;
     if (result.length > 0) {
         return result;
     }
-    
+LocalizedString
     return [[NSBundle mainBundle] localizedStringForKey:key value:key table:nil];
 }
 
