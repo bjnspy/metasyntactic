@@ -72,11 +72,6 @@
 }
 
 
-- (NSString*) netflixDirectory {
-    return [self.directory stringByAppendingPathComponent:@"Netflix"];
-}
-
-
 - (NSString*) moviesFile {
     return [[self directory] stringByAppendingPathComponent:@"Movies.plist"];
 }

@@ -90,7 +90,7 @@
     activityView.frame = frame;
 
     self.label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = NSLocalizedString(@"Loading", nil);
+    label.text = LocalizedString(@"Loading", nil);
     [label sizeToFit];
 
     frame = label.frame;
@@ -174,7 +174,7 @@
 
     if (showSafariButton) {
         self.navigationItem.rightBarButtonItem =
-        [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Safari", nil)
+        [[[UIBarButtonItem alloc] initWithTitle:LocalizedString(@"Safari", nil)
                                           style:UIBarButtonItemStyleDone
                                          target:self
                                          action:@selector(open:)] autorelease];
@@ -257,9 +257,9 @@
     }
 
     if (error.domain == NSURLErrorDomain && error.code == -1009) {
-        NSString* title = NSLocalizedString(@"Cannot Open Page", nil);
+        NSString* title = LocalizedString(@"Cannot Open Page", nil);
         NSString* message =
-        [NSString stringWithFormat:NSLocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
+        [NSString stringWithFormat:LocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
 
         [AlertUtilities showOkAlert:message withTitle:title];
         self.errorReported = YES;

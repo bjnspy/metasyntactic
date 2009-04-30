@@ -17,6 +17,37 @@
 
 @implementation LocaleUtilities
 
+static NSString* preferredLanguage = nil;
+
++ (void) initialize {
+    if (self == [LocaleUtilities class]) {
+        NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
+        if (preferredLocalizations.count > 0) {
+            NSString* language = [preferredLocalizations objectAtIndex:0];
+            NSString* canonicalLanguage = [(NSString*)CFLocaleCreateCanonicalLanguageIdentifierFromString(NULL, (CFStringRef)language) autorelease];
+            if ([[NSLocale ISOLanguageCodes] containsObject:canonicalLanguage]) {
+                preferredLanguage = canonicalLanguage;
+            }
+        }
+
+        if (preferredLanguage.length == 0) {
+            preferredLanguage = [self isoLanguage];
+        }
+
+        if (preferredLanguage.length == 0) {
+            preferredLanguage = @"en";
+        }
+
+        [preferredLanguage retain];
+    }
+}
+
+
++ (NSString*) preferredLanguage {
+    return preferredLanguage;
+}
+
+
 + (NSString*) isoCountry {
     return [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
 }
@@ -39,7 +70,7 @@
 
 
 + (NSString*) displayLanguage {
-    NSString* isoLanguage = [self isoLanguage];
+    NSString* isoLanguage = [self preferredLanguage];
     return [self displayLanguage:isoLanguage];
 }
 
@@ -56,13 +87,13 @@
 
 
 + (NSString*) englishLanguage {
-    NSString* isoLanguage = [self isoLanguage];
+    NSString* isoLanguage = [self preferredLanguage];
     return [[self englishLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
 }
 
 
 + (BOOL) isEnglish {
-    return [@"en" isEqual:[self isoLanguage]];
+    return [@"en" isEqual:[self preferredLanguage]];
 }
 
 
@@ -72,7 +103,7 @@
 
 
 + (BOOL) isJapanese {
-    return [@"ja" isEqual:[self isoLanguage]];
+    return [@"ja" isEqual:[self preferredLanguage]];
 }
 
 

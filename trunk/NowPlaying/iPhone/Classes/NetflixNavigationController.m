@@ -34,7 +34,7 @@
 - (id) init {
     if (self = [super init]) {
         self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
-        self.title = @"Netflix";
+        self.title = LocalizedString(@"Netflix", nil);
     }
 
     return self;

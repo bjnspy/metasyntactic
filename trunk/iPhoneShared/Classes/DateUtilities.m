@@ -119,24 +119,24 @@ static BOOL use24HourTime;
 + (NSString*) yearsAgoString:(NSInteger) year {
     return [self agoString:year
                        map:yearsAgoMap
-                  singular:NSLocalizedString(@"1 year ago", nil)
-                    plural:NSLocalizedString(@"%d years ago", nil)];
+                  singular:LocalizedString(@"1 year ago", nil)
+                    plural:LocalizedString(@"%d years ago", nil)];
 }
 
 
 + (NSString*) monthsAgoString:(NSInteger) month {
     return [self agoString:month
                        map:monthsAgoMap
-                  singular:NSLocalizedString(@"1 month ago", nil)
-                    plural:NSLocalizedString(@"%d months ago", nil)];
+                  singular:LocalizedString(@"1 month ago", nil)
+                    plural:LocalizedString(@"%d months ago", nil)];
 }
 
 
 + (NSString*) weeksAgoString:(NSInteger) week {
     return [self agoString:week
                        map:weeksAgoMap
-                  singular:NSLocalizedString(@"1 week ago", nil)
-                    plural:NSLocalizedString(@"%d weeks ago", nil)];
+                  singular:LocalizedString(@"1 week ago", nil)
+                    plural:LocalizedString(@"%d weeks ago", nil)];
 }
 
 
@@ -157,21 +157,21 @@ static BOOL use24HourTime;
                                                 options:0];
 
     if (components.day == 0) {
-        return NSLocalizedString(@"Today", nil);
+        return LocalizedString(@"Today", nil);
     } else if (components.day == 1) {
-        return NSLocalizedString(@"Yesterday", nil);
+        return LocalizedString(@"Yesterday", nil);
     } else {
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
 
         NSInteger weekday = components2.weekday;
         switch (weekday) {
-            case 1: return NSLocalizedString(@"Last Sunday", nil);
-            case 2: return NSLocalizedString(@"Last Monday", nil);
-            case 3: return NSLocalizedString(@"Last Tuesday", nil);
-            case 4: return NSLocalizedString(@"Last Wednesday", nil);
-            case 5: return NSLocalizedString(@"Last Thursday", nil);
-            case 6: return NSLocalizedString(@"Last Friday", nil);
-            default: return NSLocalizedString(@"Last Saturday", nil);
+            case 1: return LocalizedString(@"Last Sunday", nil);
+            case 2: return LocalizedString(@"Last Monday", nil);
+            case 3: return LocalizedString(@"Last Tuesday", nil);
+            case 4: return LocalizedString(@"Last Wednesday", nil);
+            case 5: return LocalizedString(@"Last Thursday", nil);
+            case 6: return LocalizedString(@"Last Friday", nil);
+            default: return LocalizedString(@"Last Saturday", nil);
         }
     }
 }

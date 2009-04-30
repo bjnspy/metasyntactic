@@ -32,7 +32,7 @@
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                           cancelButtonTitle:LocalizedString(@"OK", nil)
                                            otherButtonTitles:nil] autorelease];
 
     [alert show];

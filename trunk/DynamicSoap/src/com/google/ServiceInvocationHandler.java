@@ -16,6 +16,7 @@ package com.google;
 import static com.google.Utilities.cast;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 import javax.wsdl.*;
@@ -88,22 +89,33 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
             return null;
         }
 
-        final String uri = webServicesInvocationHandler.getWsdlUri();
-        final QName portQName = new QName(uri, port.getName());
+        //final String uri = webServicesInvocationHandler.getWsdlUri();
+        //final QName portQName = new QName(uri, port.getName());
+        final QName portQName = new QName(
+                getService().getServiceName().getNamespaceURI(),
+                port.getName());
 
         final Element element = convertArguments(objects, bindingOp);
+        System.out.println(toString(element));
 
         final Dispatch<Source> dispatch = getService().createDispatch(portQName, Source.class, javax.xml.ws.Service.Mode.PAYLOAD);
         final Source source = dispatch.invoke(new DOMSource(element));
 
-        final StringWriter writer = new StringWriter();
-        TransformerFactory.newInstance().newTransformer().transform(source, new StreamResult(writer));
-
+        final String responseContent = toString(source);
         // Write out the response content.
-        final String responseContent = writer.toString();
-        System.out.println(responseContent);
+        System.out.println(toString(source));
 
         return responseContent;
+    }
+
+    private static String toString(final Source source) throws TransformerException {
+        final StringWriter writer = new StringWriter();
+        TransformerFactory.newInstance().newTransformer().transform(source, new StreamResult(writer));
+        return writer.toString();
+    }
+
+    private static String toString(final Element element) throws TransformerException {
+        return toString(new DOMSource(element));
     }
 
     private static Element convertArguments(final Object[] objects, final BindingOperation bindingOp) throws ParserConfigurationException, TransformerException {
@@ -116,7 +128,7 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
 
     private static Element convertMapArgument(final Map map, final BindingOperation bindingOp) throws ParserConfigurationException {
         final Message message = bindingOp.getOperation().getInput().getMessage();
-        final List<Part> parts = message.getOrderedParts(null);
+        final List<Part> parts = cast(message.getOrderedParts(null), Part.class);
         if (parts.size() != map.size()) {
             throw new RuntimeException("Not enough arguments provided");
         }
@@ -127,15 +139,7 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
 
         for (final Part part : parts) {
             final Object value = map.get(part.getName());
-            if (value != null) {
-                final Element child = document.createElement(part.getName());
-                root.appendChild(child);
-
-                final String text = convertObjectToType(value, part.getTypeName());
-
-                final Text textNode = document.createTextNode(text);
-                child.appendChild(textNode);
-            }
+            processPart(document, root, part, value);
         }
 
         return root;
@@ -144,7 +148,7 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
     private static Element convertArrayArgument(final Object[] objects, final BindingOperation bindingOp) throws ParserConfigurationException, TransformerException {
         final Message message = bindingOp.getOperation().getInput().getMessage();
 
-        final List<Part> parts = message.getOrderedParts(null);
+        final List<Part> parts = cast(message.getOrderedParts(null), Part.class);
         if (parts.size() != objects.length) {
             throw new RuntimeException("Not enough arguments provided");
         }
@@ -157,22 +161,53 @@ public class ServiceInvocationHandler extends AbstractInvocationHandler {
             final Part part = parts.get(i);
             final Object value = objects[i];
 
-            if (value != null) {
-                final Element child = document.createElement(part.getName());
-                root.appendChild(child);
-
-                final String text = convertObjectToType(value, part.getTypeName());
-
-                final Text textNode = document.createTextNode(text);
-                child.appendChild(textNode);
-            }
+            processPart(document, root, part, value);
         }
 
         return root;
     }
 
-    private static String convertObjectToType(final Object value, final QName typeName) {
-        return String.valueOf(value);
+    private static void processPart(final Document document, final Node root, final Part part, final Object value) {
+        if (value != null) {
+            final Element child = document.createElement(part.getName());
+            root.appendChild(child);
+
+            final Node convertedNode = convertObjectToPart(value, part.getTypeName(), document);
+            child.appendChild(convertedNode);
+        }
+    }
+
+    private static Node convertObjectToPart(final Object value, final QName typeName, final Document document) {
+        if (value.getClass().isArray()) {
+            final Object[] array = (Object[]) value;
+            return convertObjectArrayToPart(array, typeName, document);
+        } else {
+            return document.createTextNode(String.valueOf(value));
+        }
+    }
+
+    private static Node convertObjectArrayToPart(final Object[] array, final QName typeName, final Document document) {
+        final Element result = document.createElement(String.valueOf(array[0]));
+
+        for (int i = 1; i < array.length; i++) {
+            final Object child = array[i];
+            if (child.getClass().isArray()) {
+                final Node childNode = convertObjectArrayToPart((Object[]) child, typeName, document);
+                result.appendChild(childNode);
+            } else if (child instanceof Map) {
+                @SuppressWarnings("unchecked")
+                final Map<Object, Object> map = (Map<Object, Object>) child;
+                for (final Map.Entry<Object, Object> entry : map.entrySet()) {
+                    result.setAttribute(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
+                }
+            } else {
+                final String text = String.valueOf(child);
+                final Text textNode = document.createTextNode(text);
+                result.appendChild(textNode);
+            }
+        }
+
+        return result;
     }
 
     private javax.xml.ws.Service getService() throws MalformedURLException {
