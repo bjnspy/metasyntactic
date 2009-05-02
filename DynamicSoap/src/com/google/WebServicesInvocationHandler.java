@@ -20,9 +20,12 @@ import javax.wsdl.WSDLException;
 import javax.wsdl.Service;
 import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLReader;
+import javax.wsdl.xml.WSDLLocator;
 import javax.xml.namespace.QName;
 import java.io.IOException;
 import java.util.*;
+
+import org.xml.sax.InputSource;
 
 public class WebServicesInvocationHandler extends AbstractInvocationHandler {
     private final String wsdlUri;
