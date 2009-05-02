@@ -37,11 +37,6 @@ static LocalizableStringsCache* instance = nil;
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-
-        [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
-                                                onTarget:self
-                                                    gate:nil
-                                                priority:Priority];
     }
 
     return self;
@@ -66,6 +61,24 @@ static LocalizableStringsCache* instance = nil;
 - (NSString*) indexFile {
     NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities preferredLanguage]];
     return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
+}
+
+
+- (void) update {
+    if (updated) {
+        return;
+    }
+    updated = YES;
+    
+    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
+                                            onTarget:self
+                                                gate:nil
+                                            priority:Priority];
+}
+
+
++ (void) update {
+    [[LocalizableStringsCache cache] update];
 }
 
 

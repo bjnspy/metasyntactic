@@ -10,8 +10,10 @@
 @private
     NSLock* gate;
     NSDictionary* indexData;
+    BOOL updated;
 }
 
 + (NSString*) localizedString:(NSString*) key;
++ (void) update;
 
 @end
