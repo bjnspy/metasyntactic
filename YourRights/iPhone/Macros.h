@@ -27,3 +27,5 @@
 - (void) set##name2:(type) name1 { self.name1##_ = name1; }
 
 #define CACHE_LIMIT (30.0 * ONE_DAY)
+
+#define LocalizedString NSLocalizedString

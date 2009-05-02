@@ -15,6 +15,7 @@
 #import "CreditsViewController.h"
 
 #import "Application.h"
+#import "AutoResizingCell.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 #import "YourRightsNavigationController.h"
@@ -63,6 +64,12 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
+}
+
+
+- (void) onDone {
+    [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -92,29 +99,29 @@ typedef enum {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"Send Feedback", nil);
+            cell.textLabel.text = NSLocalizedString(@"Send Feedback", nil);
         } else if (row == 1) {
-            cell.text = NSLocalizedString(@"Project Website", nil);
+            cell.textLabel.text = NSLocalizedString(@"Project Website", nil);
         } else {
-            cell.text = NSLocalizedString(@"Write Review", nil);
+            cell.textLabel.text = NSLocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"Now Playing (Free)";
+            cell.textLabel.text = @"Now Playing (Free)";
         } else if (row == 1) {
-            cell.text = @"ComiXology ($3.99)";
+            cell.textLabel.text = @"ComiXology ($3.99)";
         } else {
-            cell.text = @"PocketFlix ($1.99)";
+            cell.textLabel.text = @"PocketFlix ($1.99)";
         }
     } else if (section == InformationProvidedBySection) {
-        cell.text = NSLocalizedString(@"American Civil Liberties Union", nil);
+        cell.textLabel.text = NSLocalizedString(@"American Civil Liberties Union", nil);
     } else if (section == LicenseSection) {
-        cell.text = NSLocalizedString(@"License", nil);
+        cell.textLabel.text = NSLocalizedString(@"License", nil);
     }
 
     return cell;

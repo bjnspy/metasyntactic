@@ -89,11 +89,11 @@
 
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     Article* article = [constitution.articles objectAtIndex:indexPath.row];
-    cell.text = article.title;
+    cell.textLabel.text = article.title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

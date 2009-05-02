@@ -110,11 +110,11 @@
 
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     Article* article = [constitution.articles objectAtIndex:row];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, article.title];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, article.title];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
@@ -126,11 +126,11 @@
 
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     Amendment* amendment = [constitution.amendments objectAtIndex:row];
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, amendment.synopsis];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d. %@", nil), row + 1, amendment.synopsis];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
@@ -150,10 +150,10 @@
 
     AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
-    cell.text = NSLocalizedString(@"Signers", nil);
+    cell.textLabel.text = NSLocalizedString(@"Signers", nil);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

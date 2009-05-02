@@ -13,11 +13,8 @@
 // limitations under the License.
 
 @interface AutoResizingCell : UITableViewCell {
-@private
-    UILabel* label;
-    UIColor* textColorData;
 }
 
-@property (readonly, retain) UILabel* label;
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
 @end

@@ -109,13 +109,13 @@
 
     AutoResizingCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
 
     NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
     NSArray* items = [self.model.rssCache itemsForTitle:title];
 
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), title, items.count];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), title, items.count];
 
     return cell;
 }

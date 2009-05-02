@@ -14,8 +14,6 @@
 
 @interface LocalizableStringsCache : NSObject {
 @private
-    NSDictionary* index;
-    BOOL updated;
 }
 
 + (NSString*) localizedString:(NSString*) key;
