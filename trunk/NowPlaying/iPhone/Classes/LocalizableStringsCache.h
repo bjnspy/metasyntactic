@@ -14,8 +14,7 @@
 
 @interface LocalizableStringsCache : NSObject {
 @private
-    NSLock* gate;
-    NSDictionary* indexData;
+    NSDictionary* index;
     BOOL updated;
 }
 
