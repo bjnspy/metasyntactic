@@ -22,27 +22,33 @@
 #import "OperationQueue.h"
 
 @interface LocalizableStringsCache()
-@property (retain) NSLock* gate;
-@property (retain) NSDictionary* indexData;
+@property (retain) NSDictionary* index;
 @end
 
 @implementation LocalizableStringsCache
 
-@synthesize gate;
-@synthesize indexData;
+@synthesize index;
 
 static LocalizableStringsCache* instance = nil;
 
 - (void) dealloc {
-    self.gate = nil;
-    self.indexData = nil;
+    self.index = nil;
     [super dealloc];
+}
+
+
+- (NSString*) indexFile {
+    NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities preferredLanguage]];
+    return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.index = [NSDictionary dictionaryWithContentsOfFile:self.indexFile];
+        if (index.count == 0) {
+            self.index = [NSDictionary dictionary];
+        }
     }
 
     return self;
@@ -60,12 +66,6 @@ static LocalizableStringsCache* instance = nil;
 
 - (NSString*) hashFile {
     NSString* name = [NSString stringWithFormat:@"%@-hash.plist", [LocaleUtilities preferredLanguage]];
-    return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
-}
-
-
-- (NSString*) indexFile {
-    NSString* name = [NSString stringWithFormat:@"%@.plist", [LocaleUtilities preferredLanguage]];
     return [[Application localizableStringsDirectory] stringByAppendingPathComponent:name];
 }
 
@@ -108,11 +108,6 @@ static LocalizableStringsCache* instance = nil;
 
     [FileUtilities writeObject:dict toFile:self.indexFile];
     [FileUtilities writeObject:serverHash toFile:self.hashFile];
-    [gate lock];
-    {
-        self.indexData = dict;
-    }
-    [gate unlock];
 }
 
 
@@ -133,39 +128,8 @@ static LocalizableStringsCache* instance = nil;
 }
 
 
-- (NSDictionary*) loadIndex {
-    NSDictionary* result = [FileUtilities readObject:self.indexFile];
-    if (result.count == 0) {
-        return [NSDictionary dictionary];
-    }
-
-    return result;
-}
-
-
-- (NSDictionary*) indexNoLock {
-    if (indexData == nil) {
-        self.indexData = [self loadIndex];
-    }
-
-    // access through pointer so we always get value value back.
-    return self.indexData;
-}
-
-
-- (NSDictionary*) index {
-    NSDictionary* result;
-    [gate lock];
-    {
-        result = [self indexNoLock];
-    }
-    [gate unlock];
-    return result;
-}
-
-
 - (NSString*) localizedString:(NSString*) key {
-    NSString* result = [self.index objectForKey:key];
+    NSString* result = [index objectForKey:key];
     if (result.length > 0) {
         return result;
     }
