@@ -71,7 +71,7 @@
 
 - (void) onInfoTapped:(id) sender {
     CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-    
+
     UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:navigationController animated:YES];

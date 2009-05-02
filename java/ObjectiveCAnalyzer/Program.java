@@ -63,7 +63,7 @@ public class Program {
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        //trim(child);
+        trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
