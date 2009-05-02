@@ -1799,7 +1799,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
         } else {
             break;
         }
-        
+
         if (type == -1 || value == nil) {
             continue;
         }

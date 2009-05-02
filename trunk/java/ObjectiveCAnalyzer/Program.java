@@ -58,8 +58,8 @@ public class Program {
         //generateForwardDeclarations(child);
         //checkDealloc(child);
         //removeUnusedImports(child);
+        insertCopyright(child);
         trimRight(child);
-        //insertCopyright(child);
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
