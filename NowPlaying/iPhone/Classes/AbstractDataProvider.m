@@ -653,10 +653,10 @@
     BOOL result;
     [dataGate lock];
     {
-        NSNumber* number = [cachedIsStale objectForKey:theater.name];
+        NSNumber* number = [self.cachedIsStale objectForKey:theater.name];
         if (number == nil) {
             number = [self isStaleWorker:theater];
-            [cachedIsStale setObject:number forKey:theater.name];
+            [self.cachedIsStale setObject:number forKey:theater.name];
         }
         result = number.boolValue;
     }
