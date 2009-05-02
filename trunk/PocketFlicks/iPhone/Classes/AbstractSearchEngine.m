@@ -82,7 +82,7 @@
 
 
 - (void) search:(SearchRequest*) request {
-    NSString* notification = [NSLocalizedString(@"searching", nil) lowercaseString];
+    NSString* notification = [LocalizedString(@"searching", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
         [self searchWorker:request];

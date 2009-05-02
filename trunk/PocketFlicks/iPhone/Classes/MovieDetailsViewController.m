@@ -169,44 +169,44 @@ const NSInteger POSTER_TAG = -1;
 
     if (trailer.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
-        [titles addObject:NSLocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
+        [titles addObject:LocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
         [arguments addObject:[NSNull null]];
     }
 
     if (reviewsArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
-        [titles addObject:NSLocalizedString(@"Read reviews", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to read the critics' reviews for a movie")];
+        [titles addObject:LocalizedString(@"Read reviews", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to read the critics' reviews for a movie")];
         [arguments addObject:[NSNull null]];
     }
 
     if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
-        [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
+        [titles addObject:LocalizedString(@"E-mail listings", nil)];
         [arguments addObject:[NSNull null]];
     }
 
     if (netflixMovie != nil && netflixStatusCells.count == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
-        [titles addObject:NSLocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
+        [titles addObject:LocalizedString(@"Add to Netflix", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue")];
         [arguments addObject:[NSNull null]];
     }
 
     if (![self isUpcomingMovie] && ![self isDVD] && ![self isNetflix]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
-        [titles addObject:NSLocalizedString(@"Change date", nil)];
+        [titles addObject:LocalizedString(@"Change date", nil)];
         [arguments addObject:[NSNull null]];
     }
 
     if ((selectors.count + websites.count) > 6) {
         // condense to one button
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
-        [titles addObject:NSLocalizedString(@"Websites", @"Title for a button. Needs to be very short. 2-3 words *max*. When tapped, will show the user a list of websites with additional information about the movie")];
+        [titles addObject:LocalizedString(@"Websites", @"Title for a button. Needs to be very short. 2-3 words *max*. When tapped, will show the user a list of websites with additional information about the movie")];
         [arguments addObject:[NSNull null]];
     } else {
         // show individual buttons
         for (NSString* name in [websites.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
             [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite:)]];
-            NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Visit %@", nil), name];
+            NSString* title = [NSString stringWithFormat:LocalizedString(@"Visit %@", nil), name];
             [titles addObject:title];
             [arguments addObject:[websites objectForKey:name]];
         }
@@ -427,7 +427,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) setupTitle {
     if (readonlyMode) {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = NSLocalizedString(@"Please Wait", nil);
+        label.text = LocalizedString(@"Please Wait", nil);
 
         self.navigationItem.titleView = label;
     } else {
@@ -616,7 +616,7 @@ const NSInteger POSTER_TAG = -1;
     } else if (section == 2 && theatersArray.count > 0) {
         if (self.model.isSearchDateToday) {
             //[DateUtilities isToday:self.model.searchDate]) {
-            return NSLocalizedString(@"Today", nil);
+            return LocalizedString(@"Today", nil);
         } else {
             return [DateUtilities formatFullDate:self.model.searchDate];
         }
@@ -679,9 +679,9 @@ const NSInteger POSTER_TAG = -1;
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = UITextAlignmentCenter;
     if ([@"1" isEqual:dvd.discs]) {
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - 1 disc.", @"$19.99.  Widescreen DVD - 1 disc."), dvd.price, dvd.format];
+        label.text = [NSString stringWithFormat:LocalizedString(@"$%@. %@ - 1 disc.", @"$19.99.  Widescreen DVD - 1 disc."), dvd.price, dvd.format];
     } else {
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - %@ discs.", @"$19.99.  Widescreen DVD - 2 discs."), dvd.price, dvd.format, dvd.discs];
+        label.text = [NSString stringWithFormat:LocalizedString(@"$%@. %@ - %@ discs.", @"$19.99.  Widescreen DVD - 2 discs."), dvd.price, dvd.format, dvd.discs];
     }
     [label sizeToFit];
     CGRect frame = label.frame;
@@ -884,9 +884,9 @@ const NSInteger POSTER_TAG = -1;
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {
-        cell.text = NSLocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
+        cell.text = LocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
     } else {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
+        cell.text = [NSString stringWithFormat:LocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
                      self.hiddenTheaterCount];
     }
 
@@ -1012,7 +1012,7 @@ const NSInteger POSTER_TAG = -1;
         [actionSheet addButtonWithTitle:key];
     }
 
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = keys.count;
 
     [actionSheet showInView:[AppDelegate window]];
@@ -1114,16 +1114,16 @@ const NSInteger POSTER_TAG = -1;
     // we always offer the Disc queue unless the movie is instant-only.
     // (rare, but it does happen).
     if (!(formats.count == 1 && [formats containsObject:@"instant"])) {
-        [actionSheet addButtonWithTitle:NSLocalizedString(@"Disc Queue", nil)];
-        [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Disc Queue", nil)];
+        [actionSheet addButtonWithTitle:LocalizedString(@"Disc Queue", nil)];
+        [actionSheet addButtonWithTitle:LocalizedString(@"Top of Disc Queue", nil)];
     }
 
     if ([formats containsObject:@"instant"]) {
-        [actionSheet addButtonWithTitle:NSLocalizedString(@"Instant Queue", nil)];
-        [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Instant Queue", nil)];
+        [actionSheet addButtonWithTitle:LocalizedString(@"Instant Queue", nil)];
+        [actionSheet addButtonWithTitle:LocalizedString(@"Top of Instant Queue", nil)];
     }
 
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
 
     [actionSheet showInView:[AppDelegate window]];
@@ -1208,7 +1208,7 @@ const NSInteger POSTER_TAG = -1;
     if (![lookupResult.movies containsObject:movie]) {
         NSString* text =
         [NSString stringWithFormat:
-         NSLocalizedString(@"No listings found for '%@' on %@", @"No listings found for 'The Dark Knight' on 5/18/2008"),
+         LocalizedString(@"No listings found for '%@' on %@", @"No listings found for 'The Dark Knight' on 5/18/2008"),
          movie.canonicalTitle,
          [DateUtilities formatShortDate:searchDate]];
 

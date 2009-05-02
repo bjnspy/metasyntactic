@@ -155,9 +155,9 @@ const double LOAD_DELAY = 1;
 - (void) createDownloadViews:(UIView*) pageView page:(NSInteger) page {
     NSString* text;
     if ([self.model.largePosterCache posterExistsForMovie:movie index:page]) {
-        text = NSLocalizedString(@"Loading poster", nil);
+        text = LocalizedString(@"Loading poster", nil);
     } else {
-        text = NSLocalizedString(@"Downloading poster", nil);
+        text = LocalizedString(@"Downloading poster", nil);
     }
     UILabel* downloadingLabel = [self createDownloadingLabel:text];
     UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
@@ -353,7 +353,7 @@ const double LOAD_DELAY = 1;
     savingLabel.backgroundColor = [UIColor clearColor];
     savingLabel.opaque = NO;
     savingLabel.shadowColor = [UIColor darkGrayColor];
-    savingLabel.text = NSLocalizedString(@"Saving", nil);
+    savingLabel.text = LocalizedString(@"Saving", nil);
     [savingLabel sizeToFit];
 
     NSMutableArray* items = [NSMutableArray array];
@@ -380,7 +380,7 @@ const double LOAD_DELAY = 1;
 - (void) setupNormalToolbar {
     NSString* title =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPage + 1), posterCount];
+     LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPage + 1), posterCount];
 
     UILabel* label = [[[UILabel alloc] init] autorelease];
     label.text = title;
@@ -524,17 +524,17 @@ const double LOAD_DELAY = 1;
         actionSheet =
         [[[UIActionSheet alloc] initWithTitle:nil
                                      delegate:self
-                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                            cancelButtonTitle:LocalizedString(@"Cancel", nil)
                        destructiveButtonTitle:nil
-                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", @"Button to let the user save a poster to their photo library"),
-          NSLocalizedString(@"Save All to Photo Library", @"Button to let the user save all the posters to their photo library"), nil] autorelease];
+                            otherButtonTitles:LocalizedString(@"Save to Photo Library", @"Button to let the user save a poster to their photo library"),
+          LocalizedString(@"Save All to Photo Library", @"Button to let the user save all the posters to their photo library"), nil] autorelease];
     } else {
         actionSheet =
         [[[UIActionSheet alloc] initWithTitle:nil
                                      delegate:self
-                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                            cancelButtonTitle:LocalizedString(@"Cancel", nil)
                        destructiveButtonTitle:nil
-                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil), nil] autorelease];
+                            otherButtonTitles:LocalizedString(@"Save to Photo Library", nil), nil] autorelease];
     }
 
     [actionSheet showInView:[AppDelegate window]];
@@ -542,7 +542,7 @@ const double LOAD_DELAY = 1;
 
 
 - (void) reportSingleSave:(NSNumber*) number {
-    NSString* text = [NSString stringWithFormat:NSLocalizedString(@"Saving %d of %d", @"i.e.: Saving 5 of 15.  Used when saving a list of posters"), number.integerValue + 1, posterCount];
+    NSString* text = [NSString stringWithFormat:LocalizedString(@"Saving %d of %d", @"i.e.: Saving 5 of 15.  Used when saving a list of posters"), number.integerValue + 1, posterCount];
     [self updateSavingToolbar:text];
 }
 

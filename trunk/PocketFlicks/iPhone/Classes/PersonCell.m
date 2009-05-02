@@ -51,7 +51,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.bioTitleLabel = [self createTitleLabel:NSLocalizedString(@"Bio:", nil) yPosition:22];
+        self.bioTitleLabel = [self createTitleLabel:LocalizedString(@"Bio:", nil) yPosition:22];
         self.bioLabel = [self createValueLabel:22 + 1 forTitle:bioTitleLabel];
         bioLabel.numberOfLines = 0;
 
@@ -129,7 +129,7 @@
     [self loadImage];
 
     NSString* biography = person.biography;
-    bioLabel.text = biography.length > 0 ? biography : NSLocalizedString(@"No biography available.", nil);
+    bioLabel.text = biography.length > 0 ? biography : LocalizedString(@"No biography available.", nil);
 
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
