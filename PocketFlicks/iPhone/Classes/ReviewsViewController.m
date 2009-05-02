@@ -57,7 +57,7 @@
 - (void) loadView {
     [super loadView];
 
-    self.title = NSLocalizedString(@"Reviews", nil);
+    self.title = LocalizedString(@"Reviews", nil);
 
     self.reviews = [self.model reviewsForMovie:movie];
 }

@@ -378,19 +378,19 @@ static NSString* articles[] = {
         NSInteger minutes = length % 60;
 
         if (hours == 1) {
-            hoursString = NSLocalizedString(@"1 hour", nil);
+            hoursString = LocalizedString(@"1 hour", nil);
         } else if (hours > 1) {
-            hoursString = [NSString stringWithFormat:NSLocalizedString(@"%d hours", @"i.e.: 2 hours"), hours];
+            hoursString = [NSString stringWithFormat:LocalizedString(@"%d hours", @"i.e.: 2 hours"), hours];
         }
 
         if (minutes == 1) {
-            minutesString = NSLocalizedString(@"1 minute", nil);
+            minutesString = LocalizedString(@"1 minute", nil);
         } else if (minutes > 1) {
-            minutesString = [NSString stringWithFormat:NSLocalizedString(@"%d minutes", @"i.e.: 30 minutes"), minutes];
+            minutesString = [NSString stringWithFormat:LocalizedString(@"%d minutes", @"i.e.: 30 minutes"), minutes];
         }
     }
 
-    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
+    return [NSString stringWithFormat:LocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
 }
 
 

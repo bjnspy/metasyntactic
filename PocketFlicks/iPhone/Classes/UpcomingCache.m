@@ -434,7 +434,7 @@
 
 - (void) updateIndexBackgroundEntryPoint {
     if (![self tooSoon]) {
-        NSString* notification = [NSLocalizedString(@"Upcoming", nil) lowercaseString];
+        NSString* notification = [LocalizedString(@"Upcoming", nil) lowercaseString];
         [NotificationCenter addNotification:notification];
         {
             [self updateIndexBackgroundEntryPointWorker];

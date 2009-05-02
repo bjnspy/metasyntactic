@@ -66,8 +66,8 @@
 - (UISegmentedControl*) setupSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                                    [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Release", nil),
-                               NSLocalizedString(@"Title", nil),
+                               LocalizedString(@"Release", nil),
+                               LocalizedString(@"Title", nil),
                                nil]] autorelease];
 
     control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -94,7 +94,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.title = NSLocalizedString(@"Upcoming", nil);
+        self.title = LocalizedString(@"Upcoming", nil);
     }
 
     return self;
@@ -108,7 +108,7 @@
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
-    self.title = NSLocalizedString(@"Upcoming", nil);
+    self.title = LocalizedString(@"Upcoming", nil);
     self.tableView.rowHeight = 100;
 }
 

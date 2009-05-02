@@ -42,7 +42,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.title = NSLocalizedString(@"Recommendations", nil);
+        self.title = LocalizedString(@"Recommendations", nil);
     }
 
     return self;
@@ -124,7 +124,7 @@
     NSInteger count = [[genreToMovies objectsForKey:genre] count];
     cell.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ (%@)", nil),
+     LocalizedString(@"%@ (%@)", nil),
      genre, [NSNumber numberWithInteger:count]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 

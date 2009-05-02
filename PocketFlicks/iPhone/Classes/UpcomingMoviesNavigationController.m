@@ -37,7 +37,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.title = NSLocalizedString(@"Upcoming", nil);
+        self.title = LocalizedString(@"Upcoming", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
     }
 

@@ -89,9 +89,9 @@
 
 - (void) setupTitle {
     if (self.model.dvdMoviesShowOnlyBluray) {
-        self.title = NSLocalizedString(@"Blu-ray", nil);
+        self.title = LocalizedString(@"Blu-ray", nil);
     } else {
-        self.title = NSLocalizedString(@"DVD", nil);
+        self.title = LocalizedString(@"DVD", nil);
     }
 }
 
@@ -113,8 +113,8 @@
 - (UISegmentedControl*) createSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                                    [NSArray arrayWithObjects:
-                                     NSLocalizedString(@"Release", nil),
-                                     NSLocalizedString(@"Title", nil),
+                                     LocalizedString(@"Release", nil),
+                                     LocalizedString(@"Title", nil),
                                      nil]] autorelease];
 
     control.segmentedControlStyle = UISegmentedControlStyleBar;

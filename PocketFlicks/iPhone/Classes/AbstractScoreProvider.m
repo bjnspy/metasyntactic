@@ -373,7 +373,7 @@
         }
     }
 
-    NSString* notificationString = [NSString stringWithFormat:NSLocalizedString(@"%@ scores", @"%@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic"), [[Model model] currentScoreProvider]];
+    NSString* notificationString = [NSString stringWithFormat:LocalizedString(@"%@ scores", @"%@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic"), [[Model model] currentScoreProvider]];
     if (notification) {
         [NotificationCenter addNotification:notificationString];
     }

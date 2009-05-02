@@ -148,15 +148,15 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
 
-    NSString* favorites = NSLocalizedString(@"Favorites", nil);
-    NSString* reallyCloseBy = NSLocalizedString(@"Really close by", nil);
-    NSString* reallyFarAway = NSLocalizedString(@"Really far away", nil);
-    NSString* unknownDistance = NSLocalizedString(@"Unknown Distance", nil);
+    NSString* favorites = LocalizedString(@"Favorites", nil);
+    NSString* reallyCloseBy = LocalizedString(@"Really close by", nil);
+    NSString* reallyFarAway = LocalizedString(@"Really far away", nil);
+    NSString* unknownDistance = LocalizedString(@"Unknown Distance", nil);
 
-    NSString* singularUnit = ([Application useKilometers] ? NSLocalizedString(@"kilometer", nil) :
-                              NSLocalizedString(@"mile", nil));
-    NSString* pluralUnit = ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) :
-                            NSLocalizedString(@"miles", nil));
+    NSString* singularUnit = ([Application useKilometers] ? LocalizedString(@"kilometer", nil) :
+                              LocalizedString(@"mile", nil));
+    NSString* pluralUnit = ([Application useKilometers] ? LocalizedString(@"kilometers", nil) :
+                            LocalizedString(@"miles", nil));
 
     int distances[] = {
         1, 2, 5, 10, 15, 20, 30, 40, 50
@@ -166,9 +166,9 @@
     for (int i = 0; i < ArrayLength(distances); i++) {
         int distance = distances[i];
         if (distance == 1) {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular. refers to a distance like 'Less than 1 mile away'"), singularUnit]];
+            [distancesArray addObject:[NSString stringWithFormat:LocalizedString(@"Less than 1 %@ away", @"singular. refers to a distance like 'Less than 1 mile away'"), singularUnit]];
         } else {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural. refers to a distance like 'Less than 2 miles away'"), distance, pluralUnit]];
+            [distancesArray addObject:[NSString stringWithFormat:LocalizedString(@"Less than %d %@ away", @"plural. refers to a distance like 'Less than 2 miles away'"), distance, pluralUnit]];
         }
     }
 
@@ -230,10 +230,10 @@
     if (sectionTitles.count == 0) {
         NSArray* theaters = self.model.theaters;
         if (theaters.count == 1) {
-            self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search area", nil)];
+            self.sectionTitles = [NSArray arrayWithObject:LocalizedString(@"1 theater outside search area", nil)];
         } else if (theaters.count > 1) {
             self.sectionTitles = [NSArray arrayWithObject:
-                               [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", @"i.e.: 10 theaters outside search area"), theaters.count]];
+                               [NSString stringWithFormat:LocalizedString(@"%d theaters outside search area", @"i.e.: 10 theaters outside search area"), theaters.count]];
         } else {
             self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
         }
@@ -244,8 +244,8 @@
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                              [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Distance", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by distance"),
-                               NSLocalizedString(@"Name", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by their name"),
+                               LocalizedString(@"Distance", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by distance"),
+                               LocalizedString(@"Name", @"Must be very short. 1 word max. This is on a button that allows users to sort theaters by their name"),
                                nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -262,7 +262,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.title = NSLocalizedString(@"Theaters", nil);
+        self.title = LocalizedString(@"Theaters", nil);
     }
 
     return self;
@@ -339,7 +339,7 @@
 
     [self setupIndexTitles];
 
-    self.title = NSLocalizedString(@"Theaters", nil);
+    self.title = LocalizedString(@"Theaters", nil);
 }
 
 
@@ -420,7 +420,7 @@
       titleForHeaderInSection:(NSInteger) section {
     NSString* sectionTitle = [sectionTitles objectAtIndex:section];
     if ([sectionTitle isEqual:[StringUtilities starString]]) {
-        return NSLocalizedString(@"Favorites", nil);
+        return LocalizedString(@"Favorites", nil);
     }
 
     return sectionTitle;

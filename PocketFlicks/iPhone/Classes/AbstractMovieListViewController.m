@@ -184,7 +184,7 @@
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
 
     NSString* bookmarksString = [StringUtilities starString];
-    NSString* moviesString = NSLocalizedString(@"Movies", nil);
+    NSString* moviesString = LocalizedString(@"Movies", nil);
 
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
     MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
@@ -224,7 +224,7 @@
                 [array insertObject:starString atIndex:0];
             }
         } else {
-            NSString* title = NSLocalizedString(@"Unknown Release Date", nil);
+            NSString* title = LocalizedString(@"Unknown Release Date", nil);
             NSDate* releaseDate = [self.model releaseDateForMovie:movie];
 
             if (releaseDate != nil) {
@@ -487,13 +487,13 @@
 
     if (self.sortingByScore) {
         // Hide the header if sorting by score and we have no bookmarked movies
-        if (sectionTitles.count == 1 && [NSLocalizedString(@"Movies", nil) isEqual:title]) {
+        if (sectionTitles.count == 1 && [LocalizedString(@"Movies", nil) isEqual:title]) {
             return nil;
         }
     }
 
     if ([title isEqual:[StringUtilities starString]]) {
-        return NSLocalizedString(@"Bookmarks", nil);
+        return LocalizedString(@"Bookmarks", nil);
     }
 
     return title;

@@ -79,7 +79,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if (indexPath.section == 0) {
-        cell.text = NSLocalizedString(@"Instant Watch", nil);
+        cell.text = LocalizedString(@"Instant Watch", nil);
         UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
         switch_.enabled = NO;
         switch_.on = self.model.netflixCanInstantWatch;
@@ -95,7 +95,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 1) {
-        return NSLocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
+        return LocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
     }
 
     return nil;
@@ -105,7 +105,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == 1) {
-        return NSLocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
+        return LocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
     }
 
     return nil;

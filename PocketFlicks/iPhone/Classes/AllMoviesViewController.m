@@ -65,9 +65,9 @@
 - (UISegmentedControl*) setupSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                                    [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Release", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on how recently they were released."),
-                               NSLocalizedString(@"Title", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on their title."),
-                               NSLocalizedString(@"Score", @"Must be very short. 1 word max. This is on a button that allows users to sort movies by how well they were rated."),
+                               LocalizedString(@"Release", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on how recently they were released."),
+                               LocalizedString(@"Title", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on their title."),
+                               LocalizedString(@"Score", @"Must be very short. 1 word max. This is on a button that allows users to sort movies by how well they were rated."),
                                nil]] autorelease];
 
     control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -93,7 +93,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.title = NSLocalizedString(@"Movies", nil);
+        self.title = LocalizedString(@"Movies", nil);
     }
 
     return self;
@@ -124,7 +124,7 @@
         segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
         [segmentedControl removeSegmentAtIndex:2 animated:NO];
     } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
-        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
+        [segmentedControl insertSegmentWithTitle:LocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
     [super majorRefresh];

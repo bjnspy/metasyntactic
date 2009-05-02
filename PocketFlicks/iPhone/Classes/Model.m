@@ -469,7 +469,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-     NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", @"The first %@ will be replaced with the device the user is on (i.e.: iPhone), the second %@ is replaced with the program name (i.e.: Now playing)"),
+     LocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", @"The first %@ will be replaced with the device the user is on (i.e.: iPhone), the second %@ is replaced with the program name (i.e.: Now playing)"),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry],
      [Application name]];
@@ -517,11 +517,11 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
     [self synchronize];
 
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
-                                                     message:NSLocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"A message from Cyrus", nil)
+                                                     message:LocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
                                                     delegate:self
-                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
-                                           otherButtonTitles:NSLocalizedString(@"Write Review", @"Must be short. 1-2 words max. Label for a button a user can tap to write a review"), nil] autorelease];
+                                           cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
+                                           otherButtonTitles:LocalizedString(@"Write Review", @"Must be short. 1-2 words max. Label for a button a user can tap to write a review"), nil] autorelease];
     alert.tag = CHECK_DATE_ALERT_VIEW_TAG;
     [alert show];
 }
@@ -790,7 +790,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
             @"RottenTomatoes",
             @"Metacritic",
             @"Google",
-            NSLocalizedString(@"None", @"This is what a user picks when they don't want any reviews."),
+            LocalizedString(@"None", @"This is what a user picks when they don't want any reviews."),
             nil];
 }
 
@@ -1463,7 +1463,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         // we're showing out of date information
         NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Theater last reported show times on\n%@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
+                LocalizedString(@"Theater last reported show times on\n%@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
                 [DateUtilities formatLongDate:theaterSyncDate]];
     } else {
         NSDate* globalSyncDate = [dataProvider lastLookupDate];
@@ -1472,7 +1472,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
         }
 
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Show times retrieved on %@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
+                LocalizedString(@"Show times retrieved on %@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
                 [DateUtilities formatLongDate:globalSyncDate]];
     }
 }
@@ -1707,7 +1707,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     }
 
     if (options.count == 0) {
-        return NSLocalizedString(@"No synopsis available.", nil);
+        return LocalizedString(@"No synopsis available.", nil);
     }
 
 
@@ -1744,17 +1744,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 - (NSString*) noInformationFound {
     if (self.userAddress.length == 0) {
-        return NSLocalizedString(@"Please enter your location", nil);
+        return LocalizedString(@"Please enter your location", nil);
     } else if ([[OperationQueue operationQueue] hasPriorityOperations]) {
-        return NSLocalizedString(@"Downloading data", nil);
+        return LocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
-        return NSLocalizedString(@"Network unavailable", nil);
+        return LocalizedString(@"Network unavailable", nil);
     } else if (![LocaleUtilities isSupportedCountry]) {
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Local results unavailable", nil),
+                LocalizedString(@"Local results unavailable", nil),
                 [LocaleUtilities displayCountry]];
     } else {
-        return NSLocalizedString(@"No information found", nil);
+        return LocalizedString(@"No information found", nil);
     }
 }
 
