@@ -101,7 +101,7 @@
         return cell;
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-        cell.text = NSLocalizedString(@"Signers", nil);
+        cell.textLabel.text = NSLocalizedString(@"Signers", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }

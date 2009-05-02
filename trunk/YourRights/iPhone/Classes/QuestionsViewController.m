@@ -135,15 +135,15 @@
     } else {
         NSString* link = [links objectAtIndex:indexPath.row];
         UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-        cell.textColor = [UIColor blueColor];
-        cell.text = link;
+        cell.textLabel.textColor = [UIColor blueColor];
+        cell.textLabel.text = link;
         if ([link rangeOfString:@"@"].length > 0) {
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         } else {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        cell.font = [UIFont systemFontOfSize:14];
-        cell.lineBreakMode = UILineBreakModeMiddleTruncation;
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
         return cell;
     }
 }

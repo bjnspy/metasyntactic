@@ -93,7 +93,7 @@
         return cell;
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-        cell.text = @"Wikipedia";
+        cell.textLabel.text = @"Wikipedia";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }

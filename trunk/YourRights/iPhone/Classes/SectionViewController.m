@@ -71,7 +71,10 @@
 
 - (void) onInfoTapped:(id) sender {
     CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+    
+    UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
+    navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:navigationController animated:YES];
 }
 
 
@@ -142,8 +145,8 @@
     NSString* text = [self titleForIndexPath:indexPath];
 
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-        cell.text = text;
+        UITableViewCell *cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:nil] autorelease];
+        cell.textLabel.text = text;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         return cell;
