@@ -21,6 +21,7 @@
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
+#import "UITableViewCell+Utilities.h"
 
 @interface NetflixSearchDisplayController()
 @property (retain) NSArray* movies;

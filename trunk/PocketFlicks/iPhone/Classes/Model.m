@@ -30,6 +30,7 @@
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
+#import "LocalizableStringsCache.h"
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
@@ -1774,8 +1775,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     NSMutableArray* values = [NSMutableArray array];
 
     for (id viewController in controller.viewControllers) {
-        NSInteger type;
-        id value;
+        NSInteger type = -1;
+        id value = nil;
         if ([viewController isKindOfClass:[MovieDetailsViewController class]]) {
             type = MovieDetails;
             value = [[viewController movie] canonicalTitle];
@@ -1793,11 +1794,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                    [viewController isKindOfClass:[UpcomingMoviesViewController class]] ||
                    [viewController isKindOfClass:[DVDViewController class]]) {
             continue;
-        } else if ([viewController isKindOfClass:[NetflixViewController class]] ||
-                   [viewController isKindOfClass:[SettingsViewController class]]) {
-            break;
         } else {
             break;
+        }
+
+        if (type == -1 || value == nil) {
+            continue;
         }
 
         [types addObject:[NSNumber numberWithInt:type]];
