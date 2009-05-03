@@ -14,6 +14,8 @@
 
 #import "AutoResizingCell.h"
 
+#import "UITableViewCell+Utilities.h"
+
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
 @property (retain) UIColor* textColorData;
@@ -91,7 +93,7 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        label.textColor = self.selectedTextColor;
+        label.textColor = [UIColor whiteColor];
     } else {
         label.textColor = textColorData;
     }
