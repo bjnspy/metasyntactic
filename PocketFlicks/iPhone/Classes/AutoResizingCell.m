@@ -14,8 +14,6 @@
 
 #import "AutoResizingCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
 @property (retain) UIColor* textColorData;
@@ -34,16 +32,15 @@
     [super dealloc];
 }
 
-- (id) initWithFrame:(CGRect) frame
-     reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id) init {
+    if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
         self.textColorData = [UIColor blackColor];
-        self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        label.font = self.font;
+        self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        label.font = [UIFont boldSystemFontOfSize:20];
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 12;
         label.lineBreakMode = UILineBreakModeMiddleTruncation;
-
+        
         CGRect frame = label.frame;
         frame.origin.x = 10;
         label.frame = frame;
@@ -61,20 +58,27 @@
     CGRect labelFrame = label.frame;
     CGRect contentFrame = self.contentView.frame;
 
+#ifdef IPHONE_OS_VERSION_3
+    if (self.imageView.image != nil) {
+        labelFrame.origin.x = 15 + self.imageView.image.size.width;
+    }
+#else
     if (self.image != nil) {
         labelFrame.origin.x = 15 + self.image.size.width;
     }
+#endif
 
-    labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
-    labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
-
+    labelFrame.size.width = contentFrame.size.width - labelFrame.origin.x - 15;
+    //labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
+    labelFrame.origin.y = 0;
+    labelFrame.size.height = contentFrame.size.height;
+    
     label.frame = labelFrame;
 }
 
 
 - (void) setText:(NSString*) text {
     label.text = text;
-    [label sizeToFit];
 }
 
 
@@ -83,7 +87,7 @@
 }
 
 
-- (void) setTextColor:(UIColor*) color {
+- (void) setLabelTextColor:(UIColor*) color {
     label.textColor = color;
     self.textColorData = color;
 }
