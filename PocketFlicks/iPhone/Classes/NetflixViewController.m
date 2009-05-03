@@ -30,6 +30,7 @@
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
+#import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
 
 #ifndef IPHONE_OS_VERSION_3
@@ -61,6 +62,7 @@ typedef enum {
     RentalHistorySection,
     AboutSendFeedbackSection,
     LogOutSection,
+    LastSection = LogOutSection
 } Sections;
 
 #ifdef IPHONE_OS_VERSION_3
@@ -91,7 +93,6 @@ typedef enum {
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
        self.title = [Application name];
-
         [self setupTableStyle];
     }
 
@@ -161,7 +162,7 @@ typedef enum {
 
 
 - (void) initializeInfoButton {
-    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
 
     infoButton.contentMode = UIViewContentModeCenter;
@@ -233,7 +234,7 @@ typedef enum {
 #endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.text = LocalizedString(@"Most Popular", nil);
+                    cell.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
                 } else {
                     cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
@@ -267,6 +268,7 @@ typedef enum {
                 cell.text = LocalizedString(@"Log Out of Netflix", nil);
                 cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryView = nil;
+                cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
         }
     } else {

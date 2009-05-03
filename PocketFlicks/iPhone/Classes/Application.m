@@ -29,6 +29,7 @@ static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
 static NSString* trailersDirectory = nil;
 static NSString* localizableStringsDirectory = nil;
+
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
