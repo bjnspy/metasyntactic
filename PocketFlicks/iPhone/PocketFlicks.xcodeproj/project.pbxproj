@@ -645,6 +645,8 @@
 		74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1497A0F9594B700FB7BDA /* MessageUI.framework */; };
+		74E3EA520FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */; };
+		74E3EA530FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -1292,6 +1294,8 @@
 		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E149790F95949500FB7BDA /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74E3EA500FAD1509004D8599 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Utilities.h"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Utilities.m"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
@@ -1725,36 +1729,38 @@
 		74537E6F0F86AE5400D457CB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				74537E710F86AE8000D457CB /* CollectionUtilities.h */,
-				74537E720F86AE8000D457CB /* CollectionUtilities.m */,
-				74537E730F86AE8000D457CB /* NSArray+Utilities.h */,
-				74537E740F86AE8000D457CB /* NSArray+Utilities.m */,
 				74616EA90F15DDDF0004B610 /* AlertUtilities.h */,
-				74616EAA0F15DDDF0004B610 /* AlertUtilities.m */,
 				74616CCE0F15D2C40004B610 /* Base64.h */,
-				74616CCF0F15D2C40004B610 /* Base64.m */,
+				74537E710F86AE8000D457CB /* CollectionUtilities.h */,
 				74616EAB0F15DDDF0004B610 /* DateUtilities.h */,
-				74616EAC0F15DDDF0004B610 /* DateUtilities.m */,
 				74616D7D0F15D8260004B610 /* DifferenceEngine.h */,
-				74616D7E0F15D8260004B610 /* DifferenceEngine.m */,
 				74616EAD0F15DDDF0004B610 /* FileUtilities.h */,
-				74616EAE0F15DDDF0004B610 /* FileUtilities.m */,
 				74616EAF0F15DDDF0004B610 /* ImageUtilities.h */,
-				74616EB00F15DDDF0004B610 /* ImageUtilities.m */,
 				74616EB10F15DDDF0004B610 /* LocaleUtilities.h */,
-				74616EB20F15DDDF0004B610 /* LocaleUtilities.m */,
 				74A917260F80080F00832767 /* LocationManager.h */,
-				74A917270F80080F00832767 /* LocationManager.m */,
 				74A9164F0F7FFD1D00832767 /* LocationUtilities.h */,
-				74A916500F7FFD1D00832767 /* LocationUtilities.m */,
 				74616EB30F15DDDF0004B610 /* NetworkUtilities.h */,
-				74616EB40F15DDDF0004B610 /* NetworkUtilities.m */,
+				74537E730F86AE8000D457CB /* NSArray+Utilities.h */,
 				740102400F26F15800258353 /* NSMutableArray+Utilities.h */,
-				740102410F26F15800258353 /* NSMutableArray+Utilities.m */,
 				74616EB50F15DDDF0004B610 /* Pulser.h */,
-				74616EB60F15DDDF0004B610 /* Pulser.m */,
 				74616D6E0F15D4460004B610 /* StringUtilities.h */,
+				74E3EA500FAD1509004D8599 /* UITableViewCell+Utilities.h */,
+				74616EAA0F15DDDF0004B610 /* AlertUtilities.m */,
+				74616CCF0F15D2C40004B610 /* Base64.m */,
+				74537E720F86AE8000D457CB /* CollectionUtilities.m */,
+				74616EAC0F15DDDF0004B610 /* DateUtilities.m */,
+				74616D7E0F15D8260004B610 /* DifferenceEngine.m */,
+				74616EAE0F15DDDF0004B610 /* FileUtilities.m */,
+				74616EB00F15DDDF0004B610 /* ImageUtilities.m */,
+				74616EB20F15DDDF0004B610 /* LocaleUtilities.m */,
+				74A917270F80080F00832767 /* LocationManager.m */,
+				74A916500F7FFD1D00832767 /* LocationUtilities.m */,
+				74616EB40F15DDDF0004B610 /* NetworkUtilities.m */,
+				74537E740F86AE8000D457CB /* NSArray+Utilities.m */,
+				740102410F26F15800258353 /* NSMutableArray+Utilities.m */,
+				74616EB60F15DDDF0004B610 /* Pulser.m */,
 				74616D6F0F15D4460004B610 /* StringUtilities.m */,
+				74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1974,13 +1980,13 @@
 		748BA6320F816DDD00D79388 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				741C75A30F8DCB1B003747AD /* AbstractTableViewController.h */,
-				741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */,
 				748BA63F0F816E0B00D79388 /* AbstractFullScreenTableViewController.h */,
-				748BA6400F816E0B00D79388 /* AbstractFullScreenTableViewController.m */,
 				748BA6410F816E0B00D79388 /* AbstractFullScreenViewController.h */,
-				748BA6420F816E0B00D79388 /* AbstractFullScreenViewController.m */,
+				741C75A30F8DCB1B003747AD /* AbstractTableViewController.h */,
 				748BA6180F816D2500D79388 /* WebViewController.h */,
+				748BA6400F816E0B00D79388 /* AbstractFullScreenTableViewController.m */,
+				748BA6420F816E0B00D79388 /* AbstractFullScreenViewController.m */,
+				741C75A40F8DCB1B003747AD /* AbstractTableViewController.m */,
 				748BA6190F816D2500D79388 /* WebViewController.m */,
 			);
 			name = ViewControllers;
@@ -3001,6 +3007,7 @@
 				741C74DB0F8DC59E003747AD /* AbstractPosterDownloader.m in Sources */,
 				741C74E90F8DC5D4003747AD /* SearchDistancePickerViewController.m in Sources */,
 				741C75A50F8DCB1B003747AD /* AbstractTableViewController.m in Sources */,
+				74E3EA520FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3253,6 +3260,7 @@
 				74E149650F95949500FB7BDA /* AbstractPosterDownloader.m in Sources */,
 				74E149660F95949500FB7BDA /* SearchDistancePickerViewController.m in Sources */,
 				74E149670F95949500FB7BDA /* AbstractTableViewController.m in Sources */,
+				74E3EA530FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

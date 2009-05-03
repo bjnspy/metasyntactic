@@ -21,6 +21,7 @@
 #import "CacheUpdater.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
+#import "LocalizableStringsCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
@@ -167,7 +168,13 @@ static Controller* controller = nil;
 }
 
 
+- (void) updateLocalizableStringsCache {
+    [LocalizableStringsCache update];
+}
+
+
 - (void) updateAllCaches {
+    [self updateLocalizableStringsCache];
     [self updateScoreCache];
     [self updateLargePosterCache];
     [self updateInternationalDataCache];

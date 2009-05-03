@@ -143,7 +143,11 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    if (!selected) {
+    if (selected) {
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.detailTextLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.textLabel.textColor = [UIColor blackColor];
         [self setValueColor];
     }
 }

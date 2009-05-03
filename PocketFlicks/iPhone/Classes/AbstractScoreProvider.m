@@ -427,7 +427,7 @@
     [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
      [Application host],
      country,
-     [LocaleUtilities isoLanguage],
+     [LocaleUtilities preferredLanguage],
      score.identifier,
      score.provider,
      (int)(location.latitude * 1000000),

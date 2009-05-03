@@ -115,6 +115,7 @@
 @class ScoreCache;
 @class ScoreProviderViewController;
 @class SearchDatePickerViewController;
+@class LocalizableStringsCache;
 @class LocalSearchDisplayController;
 @class LocalSearchEngine;
 @class MutablePointerSet;

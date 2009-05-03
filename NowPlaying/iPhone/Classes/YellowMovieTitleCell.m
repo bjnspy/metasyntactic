@@ -19,10 +19,10 @@
 
 @implementation YellowMovieTitleCell
 
-
 + (NSString*) reuseIdentifier {
     return @"YellowMovieTitleCell";
 }
+
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {

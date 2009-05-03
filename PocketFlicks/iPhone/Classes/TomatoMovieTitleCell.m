@@ -15,14 +15,14 @@
 #import "TomatoMovieTitleCell.h"
 
 #import "ImageCache.h"
-
+#import "UITableViewCell+Utilities.h"
 
 @implementation TomatoMovieTitleCell
-
 
 + (NSString*) reuseIdentifier {
     return @"TomatoMovieTitleCell";
 }
+
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
