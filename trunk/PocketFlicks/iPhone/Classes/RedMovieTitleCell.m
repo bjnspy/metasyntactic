@@ -15,6 +15,7 @@
 #import "RedMovieTitleCell.h"
 
 #import "ImageCache.h"
+#import "UITableViewCell+Utilities.h"
 
 @implementation RedMovieTitleCell
 

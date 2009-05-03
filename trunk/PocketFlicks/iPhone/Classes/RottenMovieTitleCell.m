@@ -15,6 +15,7 @@
 #import "RottenMovieTitleCell.h"
 
 #import "ImageCache.h"
+#import "UITableViewCell+Utilities.h"
 
 @implementation RottenMovieTitleCell
 
