@@ -165,7 +165,6 @@
 		74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD00EC391A0008C661D /* LeftArrow.png */; };
 		74A70AD30EC391A0008C661D /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD10EC391A0008C661D /* RightArrow.png */; };
 		74A912950F7F559900832767 /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912940F7F559900832767 /* CacheUpdater.m */; };
-		74A912C10F7F57BB00832767 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912C00F7F57BB00832767 /* UITableViewCell+Utilities.m */; };
 		74A915080F7FF88F00832767 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915030F7FF88F00832767 /* AbstractDVDBlurayCache.m */; };
 		74A915090F7FF88F00832767 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915050F7FF88F00832767 /* BlurayCache.m */; };
 		74A9150A0F7FF88F00832767 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915070F7FF88F00832767 /* DVDCache.m */; };
@@ -506,7 +505,6 @@
 		74E148E40F95949500FB7BDA /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA1D50F7943B5008680B2 /* NotificationCenter.m */; };
 		74E148E50F95949500FB7BDA /* MutableMultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA2160F794438008680B2 /* MutableMultiDictionary.m */; };
 		74E148E60F95949500FB7BDA /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912940F7F559900832767 /* CacheUpdater.m */; };
-		74E148E70F95949500FB7BDA /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A912C00F7F57BB00832767 /* UITableViewCell+Utilities.m */; };
 		74E148E80F95949500FB7BDA /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915030F7FF88F00832767 /* AbstractDVDBlurayCache.m */; };
 		74E148E90F95949500FB7BDA /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915050F7FF88F00832767 /* BlurayCache.m */; };
 		74E148EA0F95949500FB7BDA /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A915070F7FF88F00832767 /* DVDCache.m */; };
@@ -647,6 +645,8 @@
 		74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1497A0F9594B700FB7BDA /* MessageUI.framework */; };
 		74E3EA520FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */; };
 		74E3EA530FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */; };
+		74E3EAA50FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */; };
+		74E3EAA60FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -1032,8 +1032,6 @@
 		74A70AD10EC391A0008C661D /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
 		74A912930F7F559900832767 /* CacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUpdater.h; sourceTree = "<group>"; };
 		74A912940F7F559900832767 /* CacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheUpdater.m; sourceTree = "<group>"; };
-		74A912BF0F7F57BB00832767 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
-		74A912C00F7F57BB00832767 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
 		74A914BC0F7F702C00832767 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		74A915020F7FF88F00832767 /* AbstractDVDBlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDVDBlurayCache.h; sourceTree = "<group>"; };
 		74A915030F7FF88F00832767 /* AbstractDVDBlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDVDBlurayCache.m; sourceTree = "<group>"; };
@@ -1296,6 +1294,8 @@
 		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74E3EA500FAD1509004D8599 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Utilities.h"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		74E3EA510FAD1509004D8599 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Utilities.m"; path = "../../iPhoneShared/Classes/UITableViewCell+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		74E3EAA30FAD1CDA004D8599 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
+		74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
@@ -1643,8 +1643,6 @@
 				740245660E78488D00ECE1B4 /* Views */,
 				74EFA1D40F7943B5008680B2 /* NotificationCenter.h */,
 				74EFA1D50F7943B5008680B2 /* NotificationCenter.m */,
-				74A912BF0F7F57BB00832767 /* UITableViewCell+Utilities.h */,
-				74A912C00F7F57BB00832767 /* UITableViewCell+Utilities.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1897,26 +1895,28 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				74A915010F7FF84900832767 /* DVD */,
 				74A915750F7FFAB600832767 /* Location */,
 				747DA1630EF83B0D0066B881 /* Netflix */,
 				7474FE8F0E63595400BAA43D /* Posters */,
 				74A9150B0F7FF89800832767 /* Scores */,
+				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				7497B0BE0F6324A2002595EF /* Websites */,
 				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
-				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 				7497B0BA0F632483002595EF /* AbstractMovieCache.h */,
-				7497B0BB0F632483002595EF /* AbstractMovieCache.m */,
 				74A912930F7F559900832767 /* CacheUpdater.h */,
-				74A912940F7F559900832767 /* CacheUpdater.m */,
 				741C74BF0F8DC53D003747AD /* HelpCache.h */,
-				741C74C00F8DC53D003747AD /* HelpCache.m */,
 				741C74BB0F8DC511003747AD /* InternationalDataCache.h */,
-				741C74BC0F8DC511003747AD /* InternationalDataCache.m */,
+				74E3EAA30FAD1CDA004D8599 /* LocalizableStringsCache.h */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
-				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74A915480F7FF9D200832767 /* UpcomingCache.h */,
+				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
+				7497B0BB0F632483002595EF /* AbstractMovieCache.m */,
+				74A912940F7F559900832767 /* CacheUpdater.m */,
+				741C74C00F8DC53D003747AD /* HelpCache.m */,
+				741C74BC0F8DC511003747AD /* InternationalDataCache.m */,
+				74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */,
+				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74A915490F7FF9D200832767 /* UpcomingCache.m */,
 			);
 			name = Caches;
@@ -2878,7 +2878,6 @@
 				74EFA1D60F7943B5008680B2 /* NotificationCenter.m in Sources */,
 				74EFA2170F794438008680B2 /* MutableMultiDictionary.m in Sources */,
 				74A912950F7F559900832767 /* CacheUpdater.m in Sources */,
-				74A912C10F7F57BB00832767 /* UITableViewCell+Utilities.m in Sources */,
 				74A915080F7FF88F00832767 /* AbstractDVDBlurayCache.m in Sources */,
 				74A915090F7FF88F00832767 /* BlurayCache.m in Sources */,
 				74A9150A0F7FF88F00832767 /* DVDCache.m in Sources */,
@@ -3008,6 +3007,7 @@
 				741C74E90F8DC5D4003747AD /* SearchDistancePickerViewController.m in Sources */,
 				741C75A50F8DCB1B003747AD /* AbstractTableViewController.m in Sources */,
 				74E3EA520FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */,
+				74E3EAA50FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3131,7 +3131,6 @@
 				74E148E40F95949500FB7BDA /* NotificationCenter.m in Sources */,
 				74E148E50F95949500FB7BDA /* MutableMultiDictionary.m in Sources */,
 				74E148E60F95949500FB7BDA /* CacheUpdater.m in Sources */,
-				74E148E70F95949500FB7BDA /* UITableViewCell+Utilities.m in Sources */,
 				74E148E80F95949500FB7BDA /* AbstractDVDBlurayCache.m in Sources */,
 				74E148E90F95949500FB7BDA /* BlurayCache.m in Sources */,
 				74E148EA0F95949500FB7BDA /* DVDCache.m in Sources */,
@@ -3261,6 +3260,7 @@
 				74E149660F95949500FB7BDA /* SearchDistancePickerViewController.m in Sources */,
 				74E149670F95949500FB7BDA /* AbstractTableViewController.m in Sources */,
 				74E3EA530FAD1509004D8599 /* UITableViewCell+Utilities.m in Sources */,
+				74E3EAA60FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3358,7 +3358,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHoc;
 		};
@@ -3398,7 +3398,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Distribution;
 		};
@@ -3517,7 +3517,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -3545,7 +3545,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;
 		};

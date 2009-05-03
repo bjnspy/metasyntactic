@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef IPHONE_OS_VERSION_3
-typedef enum {
-    UITableViewCellStyleDefault,
-    UITableViewCellStyleSubtitle,
-    UITableViewCellStyleValue1,
-    UITableViewCellStyleValue2,
-} UITableViewCellStyle;
+@interface LocalizableStringsCache : NSObject {
+@private
+}
 
-@interface UITableViewCell(UITableViewCellUtilities)
-- (id) initWithStyle:(UITableViewCellStyle) style reuseIdentifier:(NSString*) reuseIdentifier;
++ (NSString*) localizedString:(NSString*) key;
++ (void) update;
+
 @end
-#endif
