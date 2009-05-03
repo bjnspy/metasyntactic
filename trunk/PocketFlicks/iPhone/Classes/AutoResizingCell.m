@@ -40,7 +40,7 @@
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 12;
         label.lineBreakMode = UILineBreakModeMiddleTruncation;
-        
+
         CGRect frame = label.frame;
         frame.origin.x = 10;
         label.frame = frame;
@@ -72,7 +72,7 @@
     //labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
     labelFrame.origin.y = 0;
     labelFrame.size.height = contentFrame.size.height;
-    
+
     label.frame = labelFrame;
 }
 

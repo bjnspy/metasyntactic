@@ -219,7 +219,7 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger row = indexPath.row;
     AutoResizingCell* cell = [[[AutoResizingCell alloc] init] autorelease];
-    
+
     cell.label.backgroundColor = [UIColor clearColor];
     [cell setLabelTextColor:[UIColor whiteColor]];
     cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
