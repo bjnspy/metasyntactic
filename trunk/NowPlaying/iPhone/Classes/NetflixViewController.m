@@ -279,7 +279,6 @@ typedef enum {
         if (indexPath.row == 0) {
             cell.text = LocalizedString(@"Sign Up for New Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
-            cell.accessoryView = nil;
         } else if (indexPath.row == 1) {
             cell.text = LocalizedString(@"Log In to Existing Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
