@@ -60,7 +60,7 @@ public class Program {
         //removeUnusedImports(child);
         insertCopyright(child);
         trimRight(child);
-        //organizeStringsFile(child);
+        organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
         trim(child);
