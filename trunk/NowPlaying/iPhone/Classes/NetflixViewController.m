@@ -15,6 +15,8 @@
 #import "NetflixViewController.h"
 
 #import "Application.h"
+#import "AutoResizingCell.h"
+#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "Model.h"
@@ -89,6 +91,7 @@ typedef enum {
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.title = LocalizedString(@"Netflix", nil);
+        [self setupTableStyle];
     }
 
     return self;
@@ -268,6 +271,7 @@ typedef enum {
             case LogOutSection:
                 cell.text = LocalizedString(@"Log Out of Netflix", nil);
                 cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+                cell.accessoryView = nil;
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
         }
