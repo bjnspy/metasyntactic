@@ -32,4 +32,4 @@
 
 #define CACHE_LIMIT (30.0 * ONE_DAY)
 
-#define LocalizedString NSLocalizedString
+#define LocalizedString(key, comment) [LocalizableStringsCache localizedString:key]

@@ -31,4 +31,5 @@
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "expat.h"
+#import "LocalizableStringsCache.h"
 #endif
