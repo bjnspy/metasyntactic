@@ -15,20 +15,21 @@
 @interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    ApplicationTabBarController* tabBarController;
+    UIViewController* viewController;
 
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
-@property (readonly, retain) ApplicationTabBarController* tabBarController;
 
 + (AppDelegate*) appDelegate;
 
 + (void) minorRefresh;
 + (void) majorRefresh;
 + (void) majorRefresh:(BOOL) force;
+
++ (void) resetTabs;
 
 + (UIWindow*) window;
 

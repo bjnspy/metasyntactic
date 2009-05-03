@@ -20,4 +20,6 @@
 
 @property (readonly, retain) UILabel* label;
 
+- (void) setLabelTextColor:(UIColor*) color;
+
 @end

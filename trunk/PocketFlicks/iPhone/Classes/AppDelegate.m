@@ -26,7 +26,7 @@
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
-@property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) UIViewController* viewController;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
@@ -37,13 +37,13 @@
 static AppDelegate* appDelegate = nil;
 
 @synthesize window;
-@synthesize tabBarController;
+@synthesize viewController;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
 
 - (void) dealloc {
     self.window = nil;
-    self.tabBarController = nil;
+    self.viewController = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
 
@@ -67,16 +67,15 @@ static AppDelegate* appDelegate = nil;
     [Controller controller];
     [CacheUpdater cacheUpdater];
     [OperationQueue operationQueue];
-    self.tabBarController = [ApplicationTabBarController controller];
-    UIViewController* netflixNavigationController = tabBarController.netflixNavigationController;
+    self.viewController = [[[NetflixNavigationController alloc] init] autorelease];
 
-    self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:5];
 
-    [window addSubview:netflixNavigationController.view];
+    [window addSubview:viewController.view];
     [window makeKeyAndVisible];
 
-    [NotificationCenter attachToViewController:netflixNavigationController];
+    [NotificationCenter attachToViewController:viewController];
 
     // Ok.  We've set up all our global state.  Now get the ball rolling.
     [[Controller controller] start];
@@ -124,6 +123,15 @@ static AppDelegate* appDelegate = nil;
 
 + (void) minorRefresh {
     [appDelegate minorRefresh];
+}
+
+
+- (void) resetTabs {
+}
+
+
++ (void) resetTabs {
+    [appDelegate resetTabs];
 }
 
 
