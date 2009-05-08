@@ -154,6 +154,7 @@
 		74616EF30F15DE9D0004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE90F15DE9D0004B610 /* NetworkUtilities.m */; };
 		74616EF40F15DE9D0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EEB0F15DE9D0004B610 /* Pulser.m */; };
 		74616FB90F15E0B70004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
+		7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
 		7463971C0F7EC8D600B2F64C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		7463971D0F7EC8D600B2F64C /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		7463971E0F7EC8D600B2F64C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
@@ -580,7 +581,6 @@
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
-		74F265BC0F7DE28E00EECA23 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
 		74F321DB0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
 		74F321DC0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
 		74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B22C0E3CE71A00DD25DA /* DataProvider.m */; };
@@ -1186,7 +1186,7 @@
 				7401C4CE0F95096B006D8281 /* CoreGraphics.framework in Frameworks */,
 				7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */,
 				7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */,
-				74F265BC0F7DE28E00EECA23 /* MessageUI.framework in Frameworks */,
+				7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3058,7 +3058,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = AdHoc;
 		};
@@ -3109,7 +3109,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -3161,7 +3161,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -3189,7 +3189,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

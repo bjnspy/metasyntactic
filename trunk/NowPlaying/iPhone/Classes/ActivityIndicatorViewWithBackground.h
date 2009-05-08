@@ -14,7 +14,7 @@
 
 @interface ActivityIndicatorViewWithBackground : UIView {
 @private
-    UIImageView* imageView;
+    UIImageView* backgroundView;
     UIActivityIndicatorView* activityIndicator;
 }
 
