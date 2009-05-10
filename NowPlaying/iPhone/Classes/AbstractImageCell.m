@@ -66,7 +66,11 @@
         titleLabel.minimumFontSize = 14;
 
         state = Loading;
-        self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
+        if (self.model.loadingIndicatorsEnabled) {
+            self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
+        } else {
+            self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoadingNeutral]] autorelease];
+        }
         imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
 
         self.imageView = [[[UIImageView alloc] init] autorelease];
