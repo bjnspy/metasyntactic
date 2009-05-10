@@ -30,6 +30,7 @@ static UIImage* greenRatingImage = nil;
 static UIImage* unknownRatingImage = nil;
 
 static UIImage* imageLoading = nil;
+static UIImage* imageLoadingNeutral = nil;
 static UIImage* imageNotAvailable = nil;
 
 static UIImage* upArrow = nil;
@@ -55,6 +56,7 @@ static UIImage* warning32x32 = nil;
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
 
         imageLoading        = [[UIImage imageNamed:@"ImageLoading.png"] retain];
+        imageLoadingNeutral = [[UIImage imageNamed:@"ImageLoading-Neutral.png"] retain];
         imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
 
         upArrow             = [[UIImage imageNamed:@"UpArrow.png"] retain];
@@ -119,6 +121,11 @@ static UIImage* warning32x32 = nil;
 
 + (UIImage*) imageLoading {
     return imageLoading;
+}
+
+
++ (UIImage*) imageLoadingNeutral {
+    return imageLoadingNeutral;
 }
 
 
