@@ -15,18 +15,18 @@
 #import "ActivityIndicatorViewWithBackground.h"
 
 @interface ActivityIndicatorViewWithBackground()
-@property (retain) UIImageView* imageView;
+@property (retain) UIImageView* backgroundView;
 @property (retain) UIActivityIndicatorView* activityIndicator;
 @end
 
 
 @implementation ActivityIndicatorViewWithBackground
 
-@synthesize imageView;
+@synthesize backgroundView;
 @synthesize activityIndicator;
 
 - (void) dealloc {
-    self.imageView = nil;
+    self.backgroundView = nil;
     self.activityIndicator = nil;
 
     [super dealloc];
@@ -36,8 +36,8 @@
 - (id) init {
     if (self = [super init]) {
         UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
-        self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        self.frame = imageView.frame;
+        self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        self.frame = backgroundView.frame;
 
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         activityIndicator.hidesWhenStopped = YES;
@@ -46,10 +46,10 @@
         frame.origin.x = frame.origin.y = 4;
         activityIndicator.frame = frame;
 
-        [self addSubview:imageView];
+        [self addSubview:backgroundView];
         [self addSubview:activityIndicator];
 
-        [self sendSubviewToBack:imageView];
+        [self sendSubviewToBack:backgroundView];
     }
 
     return self;
@@ -63,7 +63,7 @@
         [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
 
         activityIndicator.alpha = 0;
-        imageView.alpha = 0;
+        backgroundView.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -77,14 +77,14 @@
 
 
 - (void) startAnimating {
-    imageView.alpha = 0;
+    backgroundView.alpha = 0;
     activityIndicator.alpha = 0;
 
     [activityIndicator startAnimating];
 
     [UIView beginAnimations:nil context:NULL];
     {
-        imageView.alpha = 0.75;
+        backgroundView.alpha = 0.75;
         activityIndicator.alpha = 1;
     }
     [UIView commitAnimations];
