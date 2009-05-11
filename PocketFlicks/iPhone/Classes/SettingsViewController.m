@@ -15,6 +15,7 @@
 #import "SettingsViewController.h"
 
 #import "Application.h"
+#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
@@ -37,6 +38,7 @@
 
 @implementation SettingsViewController
 
+static BOOL refreshed = NO;
 
 typedef enum {
     SendFeedbackSection,
@@ -44,12 +46,12 @@ typedef enum {
     UpcomingSection,
     DVDBluraySection,
     NetflixSection,
-    LastSection = NetflixSection
+    RefreshSection,
+    LastSection = RefreshSection
 } SettingsSection;
 
 
 - (void) dealloc {
-
     [super dealloc];
 }
 
@@ -127,6 +129,8 @@ typedef enum {
             return 1;
         }
     } else if (section == NetflixSection) {
+        return 1;
+    } else if (section == RefreshSection) {
         return 1;
     }
 
@@ -310,6 +314,19 @@ typedef enum {
 }
 
 
+- (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
+    if (refreshed) {
+        cell.textLabel.textColor = [UIColor grayColor];
+    } else {
+        cell.textLabel.textColor = [ColorCache commandColor];
+    }
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == SendFeedbackSection) {
@@ -320,8 +337,10 @@ typedef enum {
         return [self cellForUpcomingRow:indexPath.row];
     } else if (indexPath.section == DVDBluraySection) {
         return [self cellForDvdBlurayRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == NetflixSection) {
         return [self cellForNetflixRow:indexPath.row];
+    } else {
+        return [self cellForRefreshRow:indexPath.row];
     }
 }
 
@@ -468,6 +487,15 @@ typedef enum {
 }
 
 
+- (void) didSelectRefreshRow:(NSInteger) row {
+    if (refreshed) {
+        return;
+    }    
+    refreshed = YES;
+    [self reload];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == SendFeedbackSection) {
@@ -478,8 +506,10 @@ typedef enum {
         [self didSelectUpcomingRow:indexPath.row];
     } else if (indexPath.section == DVDBluraySection) {
         [self didSelectDvdBlurayRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == NetflixSection) {
         [self didSelectNetflixRow:indexPath.row];
+    } else {
+        [self didSelectRefreshRow:indexPath.row];
     }
 }
 

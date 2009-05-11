@@ -15,6 +15,7 @@
 #import "SettingsViewController.h"
 
 #import "Application.h"
+#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
@@ -37,6 +38,7 @@
 
 @implementation SettingsViewController
 
+static BOOL refreshed = NO;
 
 typedef enum {
     SendFeedbackSection,
@@ -44,12 +46,12 @@ typedef enum {
     UpcomingSection,
     DVDBluraySection,
     NetflixSection,
-    LastSection = NetflixSection
+    RefreshSection,
+    LastSection = RefreshSection
 } SettingsSection;
 
 
 - (void) dealloc {
-
     [super dealloc];
 }
 
@@ -128,6 +130,12 @@ typedef enum {
         }
     } else if (section == NetflixSection) {
         return 1;
+    } else if (section == RefreshSection) {
+        if (self.model.userAddress.length == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     return 0;
@@ -310,6 +318,21 @@ typedef enum {
 }
 
 
+- (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
+    if (refreshed) {
+        cell.textLabel.textColor = [UIColor grayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        cell.textLabel.textColor = [ColorCache commandColor];
+    }
+
+    return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == SendFeedbackSection) {
@@ -320,8 +343,10 @@ typedef enum {
         return [self cellForUpcomingRow:indexPath.row];
     } else if (indexPath.section == DVDBluraySection) {
         return [self cellForDvdBlurayRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == NetflixSection) {
         return [self cellForNetflixRow:indexPath.row];
+    } else {
+        return [self cellForRefreshRow:indexPath.row];
     }
 }
 
@@ -468,6 +493,19 @@ typedef enum {
 }
 
 
+- (void) didSelectRefreshRow:(NSInteger) row {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    if (refreshed) {
+        return;
+    }
+    refreshed = YES;
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+    cell.textLabel.textColor = [UIColor grayColor];
+
+    [[Controller controller] start:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == SendFeedbackSection) {
@@ -478,8 +516,10 @@ typedef enum {
         [self didSelectUpcomingRow:indexPath.row];
     } else if (indexPath.section == DVDBluraySection) {
         [self didSelectDvdBlurayRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == NetflixSection) {
         [self didSelectNetflixRow:indexPath.row];
+    } else {
+        [self didSelectRefreshRow:indexPath.row];
     }
 }
 

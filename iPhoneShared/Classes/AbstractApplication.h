@@ -36,6 +36,7 @@
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;
 
++ (BOOL) isIPhone;
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
 
