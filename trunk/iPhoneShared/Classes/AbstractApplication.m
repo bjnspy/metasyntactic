@@ -287,8 +287,13 @@ static NSString* trashDirectory = nil;
 }
 
 
++ (BOOL) isIPhone {
+    return [[[UIDevice currentDevice] model] isEqual:@"iPhone"];
+}
+
+
 + (void) makeCall:(NSString*) phoneNumber {
-    if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
+    if (![self isIPhone]) {
         return;
     }
 

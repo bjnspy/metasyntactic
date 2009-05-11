@@ -27,6 +27,7 @@
 - (void) didReceiveMemoryWarning;
 
 - (void) start;
+- (void) start:(BOOL) force;
 
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setUserAddress:(NSString*) userAddress;
