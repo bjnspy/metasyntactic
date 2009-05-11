@@ -131,7 +131,11 @@ typedef enum {
     } else if (section == NetflixSection) {
         return 1;
     } else if (section == RefreshSection) {
-        return 1;
+        if (self.model.userAddress.length == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     return 0;
@@ -317,13 +321,15 @@ typedef enum {
 - (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.textLabel.textAlignment = UITextAlignmentCenter;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
     if (refreshed) {
         cell.textLabel.textColor = [UIColor grayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textLabel.textColor = [ColorCache commandColor];
     }
+
+    return cell;
 }
 
 
@@ -488,11 +494,15 @@ typedef enum {
 
 
 - (void) didSelectRefreshRow:(NSInteger) row {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     if (refreshed) {
         return;
-    }    
+    }
     refreshed = YES;
-    [self reload];
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+    cell.textLabel.textColor = [UIColor grayColor];
+
+    [[Controller controller] start:YES];
 }
 
 
