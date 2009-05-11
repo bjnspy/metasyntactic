@@ -29,6 +29,7 @@
 + (UIImage*) unknownRatingImage;
 
 + (UIImage*) imageLoading;
++ (UIImage*) imageLoadingNeutral;
 + (UIImage*) imageNotAvailable;
 
 + (UIImage*) upArrow;
