@@ -13,13 +13,14 @@
 //limitations under the License.
 package org.metasyntactic.data;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.IOException;
+
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
-import java.io.IOException;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 public class DVD extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 646917504411422447L;

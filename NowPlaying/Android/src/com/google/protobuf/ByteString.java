@@ -1,22 +1,41 @@
 // Protocol Buffers - Google's data interchange format
-// Copyright 2008 Google Inc.
+// Copyright 2008 Google Inc.  All rights reserved.
 // http://code.google.com/p/protobuf/
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//     * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//     * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.protobuf;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FilterOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 
 /**
  * Immutable array of bytes.
@@ -27,7 +46,7 @@ import java.io.*;
 public final class ByteString {
   private final byte[] bytes;
 
-  private ByteString(final byte[] bytes) {
+  private ByteString(byte[] bytes) {
     this.bytes = bytes;
   }
 
@@ -36,8 +55,8 @@ public final class ByteString {
    *
    * @throws ArrayIndexOutOfBoundsException {@code index} is < 0 or >= size
    */
-  public byte byteAt(final int index) {
-    return this.bytes[index];
+  public byte byteAt(int index) {
+    return bytes[index];
   }
 
   /**
@@ -65,8 +84,8 @@ public final class ByteString {
   /**
    * Copies the given bytes into a {@code ByteString}.
    */
-  public static ByteString copyFrom(final byte[] bytes, final int offset, final int size) {
-    final byte[] copy = new byte[size];
+  public static ByteString copyFrom(byte[] bytes, int offset, int size) {
+    byte[] copy = new byte[size];
     System.arraycopy(bytes, offset, copy, 0, size);
     return new ByteString(copy);
   }
@@ -74,25 +93,27 @@ public final class ByteString {
   /**
    * Copies the given bytes into a {@code ByteString}.
    */
-  public static ByteString copyFrom(final byte[] bytes) {
+  public static ByteString copyFrom(byte[] bytes) {
     return copyFrom(bytes, 0, bytes.length);
   }
 
   /**
-   * Encodes {@code text} into a sequence of bytes using the named charset and returns the result as a {@code
-   * ByteString}.
+   * Encodes {@code text} into a sequence of bytes using the named charset
+   * and returns the result as a {@code ByteString}.
    */
-  public static ByteString copyFrom(final String text, final String charsetName) throws UnsupportedEncodingException {
+  public static ByteString copyFrom(String text, String charsetName)
+      throws UnsupportedEncodingException {
     return new ByteString(text.getBytes(charsetName));
   }
 
   /**
-   * Encodes {@code text} into a sequence of UTF-8 bytes and returns the result as a {@code ByteString}.
+   * Encodes {@code text} into a sequence of UTF-8 bytes and returns the
+   * result as a {@code ByteString}.
    */
-  public static ByteString copyFromUtf8(final String text) {
+  public static ByteString copyFromUtf8(String text) {
     try {
       return new ByteString(text.getBytes("UTF-8"));
-    } catch (final UnsupportedEncodingException e) {
+    } catch (UnsupportedEncodingException e) {
       throw new RuntimeException("UTF-8 not supported?", e);
     }
   }
@@ -106,36 +127,48 @@ public final class ByteString {
    * @param target buffer to copy into
    * @param offset in the target buffer
    */
-  public void copyTo(final byte[] target, final int offset) {
-    System.arraycopy(this.bytes, 0, target, offset, this.bytes.length);
+  public void copyTo(byte[] target, int offset) {
+    System.arraycopy(bytes, 0, target, offset, bytes.length);
   }
 
   /**
    * Copies bytes into a buffer.
    *
-   * @param target       buffer to copy into
+   * @param target buffer to copy into
    * @param sourceOffset offset within these bytes
    * @param targetOffset offset within the target buffer
-   * @param size         number of bytes to copy
+   * @param size number of bytes to copy
    */
-  public void copyTo(final byte[] target, final int sourceOffset, final int targetOffset, final int size) {
-    System.arraycopy(this.bytes, sourceOffset, target, targetOffset, size);
+  public void copyTo(byte[] target, int sourceOffset, int targetOffset,
+      int size) {
+    System.arraycopy(bytes, sourceOffset, target, targetOffset, size);
   }
 
   /**
    * Copies bytes to a {@code byte[]}.
    */
   public byte[] toByteArray() {
-    final int size = this.bytes.length;
-    final byte[] copy = new byte[size];
+    int size = this.bytes.length;
+    byte[] copy = new byte[size];
     System.arraycopy(this.bytes, 0, copy, 0, size);
     return copy;
   }
 
   /**
-   * Constructs a new {@code String} by decoding the bytes using the specified charset.
+   * Constructs a new read-only {@code java.nio.ByteBuffer} with the
+   * same backing byte array.
    */
-  public String toString(final String charsetName) throws UnsupportedEncodingException {
+  public ByteBuffer asReadOnlyByteBuffer() {
+    ByteBuffer byteBuffer = ByteBuffer.wrap(this.bytes);
+    return byteBuffer.asReadOnlyBuffer();
+  }
+
+  /**
+   * Constructs a new {@code String} by decoding the bytes using the
+   * specified charset.
+   */
+  public String toString(String charsetName)
+      throws UnsupportedEncodingException {
     return new String(this.bytes, charsetName);
   }
 
@@ -145,7 +178,7 @@ public final class ByteString {
   public String toStringUtf8() {
     try {
       return new String(this.bytes, "UTF-8");
-    } catch (final UnsupportedEncodingException e) {
+    } catch (UnsupportedEncodingException e) {
       throw new RuntimeException("UTF-8 not supported?", e);
     }
   }
@@ -153,7 +186,8 @@ public final class ByteString {
   // =================================================================
   // equals() and hashCode()
 
-  @Override   public boolean equals(final Object o) {
+  @Override
+  public boolean equals(Object o) {
     if (o == this) {
       return true;
     }
@@ -162,14 +196,14 @@ public final class ByteString {
       return false;
     }
 
-    final ByteString other = (ByteString) o;
-    final int size = this.bytes.length;
+    ByteString other = (ByteString) o;
+    int size = this.bytes.length;
     if (size != other.bytes.length) {
       return false;
     }
 
-    final byte[] bytes = this.bytes;
-    final byte[] otherBytes = other.bytes;
+    byte[] bytes = this.bytes;
+    byte[] otherBytes = other.bytes;
     for (int i = 0; i < size; i++) {
       if (bytes[i] != otherBytes[i]) {
         return false;
@@ -181,12 +215,13 @@ public final class ByteString {
 
   volatile int hash = 0;
 
-  @Override   public int hashCode() {
+  @Override
+  public int hashCode() {
     int h = this.hash;
 
     if (h == 0) {
-      final byte[] bytes = this.bytes;
-      final int size = this.bytes.length;
+      byte[] bytes = this.bytes;
+      int size = this.bytes.length;
 
       h = size;
       for (int i = 0; i < size; i++) {
@@ -209,17 +244,18 @@ public final class ByteString {
    * Creates an {@code InputStream} which can be used to read the bytes.
    */
   public InputStream newInput() {
-    return new ByteArrayInputStream(this.bytes);
+    return new ByteArrayInputStream(bytes);
   }
 
   /**
-   * Creates a {@link CodedInputStream} which can be used to read the bytes. Using this is more efficient than creating
-   * a {@link CodedInputStream} wrapping the result of {@link #newInput()}.
+   * Creates a {@link CodedInputStream} which can be used to read the bytes.
+   * Using this is more efficient than creating a {@link CodedInputStream}
+   * wrapping the result of {@link #newInput()}.
    */
   public CodedInputStream newCodedInput() {
     // We trust CodedInputStream not to modify the bytes, or to give anyone
     // else access to them.
-    return CodedInputStream.newInstance(this.bytes);
+    return CodedInputStream.newInstance(bytes);
   }
 
   // =================================================================
@@ -228,7 +264,7 @@ public final class ByteString {
   /**
    * Creates a new {@link Output} with the given initial capacity.
    */
-  public static Output newOutput(final int initialCapacity) {
+  public static Output newOutput(int initialCapacity) {
     return new Output(new ByteArrayOutputStream(initialCapacity));
   }
 
@@ -240,7 +276,8 @@ public final class ByteString {
   }
 
   /**
-   * Outputs to a {@code ByteString} instance. Call {@link #toByteString()} to create the {@code ByteString} instance.
+   * Outputs to a {@code ByteString} instance. Call {@link #toByteString()} to
+   * create the {@code ByteString} instance.
    */
   public static final class Output extends FilterOutputStream {
     private final ByteArrayOutputStream bout;
@@ -248,7 +285,7 @@ public final class ByteString {
     /**
      * Constructs a new output with the given initial capacity.
      */
-    private Output(final ByteArrayOutputStream bout) {
+    private Output(ByteArrayOutputStream bout) {
       super(bout);
       this.bout = bout;
     }
@@ -257,49 +294,49 @@ public final class ByteString {
      * Creates a {@code ByteString} instance from this {@code Output}.
      */
     public ByteString toByteString() {
-      final byte[] byteArray = this.bout.toByteArray();
+      byte[] byteArray = bout.toByteArray();
       return new ByteString(byteArray);
     }
   }
 
   /**
-   * Constructs a new ByteString builder, which allows you to efficiently construct a {@code ByteString} by writing to a
-   * {@link CodedOutputSteam}. Using this is much more efficient than calling {@code newOutput()} and wrapping that in a
-   * {@code CodedOutputStream}.
-   * <p/>
-   * <p>This is package-private because it's a somewhat confusing interface. Users can call {@link
-   * Message#toByteString()} instead of calling this directly.
+   * Constructs a new ByteString builder, which allows you to efficiently
+   * construct a {@code ByteString} by writing to a {@link CodedOutputSteam}.
+   * Using this is much more efficient than calling {@code newOutput()} and
+   * wrapping that in a {@code CodedOutputStream}.
    *
-   * @param size The target byte size of the {@code ByteString}.  You must write exactly this many bytes before building
-   *             the result.
+   * <p>This is package-private because it's a somewhat confusing interface.
+   * Users can call {@link Message#toByteString()} instead of calling this
+   * directly.
+   *
+   * @param size The target byte size of the {@code ByteString}.  You must
+   *             write exactly this many bytes before building the result.
    */
-  static CodedBuilder newCodedBuilder(final int size) {
+  static CodedBuilder newCodedBuilder(int size) {
     return new CodedBuilder(size);
   }
 
-  /**
-   * See {@link ByteString#newCodedBuilder(int)}.
-   */
+  /** See {@link ByteString#newCodedBuilder(int)}. */
   static final class CodedBuilder {
     private final CodedOutputStream output;
     private final byte[] buffer;
 
-    private CodedBuilder(final int size) {
-      this.buffer = new byte[size];
-      this.output = CodedOutputStream.newInstance(this.buffer);
+    private CodedBuilder(int size) {
+      buffer = new byte[size];
+      output = CodedOutputStream.newInstance(buffer);
     }
 
     public ByteString build() {
-      this.output.checkNoSpaceLeft();
+      output.checkNoSpaceLeft();
 
       // We can be confident that the CodedOutputStream will not modify the
       // underlying bytes anymore because it already wrote all of them.  So,
       // no need to make a copy.
-      return new ByteString(this.buffer);
+      return new ByteString(buffer);
     }
 
     public CodedOutputStream getCodedOutput() {
-      return this.output;
+      return output;
     }
   }
 }
