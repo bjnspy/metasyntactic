@@ -13,35 +13,12 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
-import android.content.Context;
-import android.content.Intent;
-import com.google.protobuf.InvalidProtocolBufferException;
-import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.activities.R;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.protobuf.NowPlaying;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.time.Days;
-import org.metasyntactic.time.Hours;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,6 +34,32 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.commons.collections.map.MultiValueMap;
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.protobuf.NowPlaying;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.time.Days;
+import org.metasyntactic.time.Hours;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+
+import android.content.Context;
+import android.content.Intent;
+
+import com.google.protobuf.InvalidProtocolBufferException;
 
 public class DataProvider {
   public enum State {
@@ -317,9 +320,11 @@ public class DataProvider {
     final NowPlaying.TheaterListingsProto theaterListings;
     try {
       // LogUtilities.i("DEBUG", "Started parse from trace");
-      // Debug.startMethodTracing("parse_from", 50000000);
+      //Debug.startMethodTracing("parse_from", 50000000);
+      final long start = System.currentTimeMillis();
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      // Debug.stopMethodTracing();
+      LogUtilities.i("DEBUG", "Parsing took: " + (System.currentTimeMillis() - start));
+      //Debug.stopMethodTracing();
       // LogUtilities.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);

@@ -489,28 +489,16 @@
   <string name="kilometer">kilometer</string>
   <!--kilometers-->
   <string name="kilometers">kilometers</string>
-  <!--location-->
-  <string name="location">location</string>
   <!--mile-->
   <string name="mile">mile</string>
   <!--miles-->
   <string name="miles">miles</string>
   <!--movie rating-->
   <string name="movie_rating">movie rating</string>
-  <!--movies-->
-  <string name="movies">movies</string>
   <!--moving movie-->
   <string name="moving_movie">moving movie</string>
-  <!--requesting access-->
-  <string name="requesting_access">requesting access</string>
-  <!--requesting authorization-->
-  <string name="requesting_authorization">requesting authorization</string>
   <!--searching-->
   <string name="searching">searching</string>
-  <!--theaters-->
-  <string name="theaters">theaters</string>
-  <!--upcoming-->
-  <string name="upcoming">upcoming</string>
   <!--updating queue-->
   <string name="updating_queue">updating queue</string>
 </resources>

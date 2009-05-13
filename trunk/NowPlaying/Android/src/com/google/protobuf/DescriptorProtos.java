@@ -3,327 +3,246 @@
 package com.google.protobuf;
 
 public final class DescriptorProtos {
-  private DescriptorProtos() {
+  private DescriptorProtos() {}
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
   }
-
-  public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
-    return descriptor;
-  }
-
-  private static final com.google.protobuf.Descriptors.FileDescriptor descriptor = buildDescriptor();
-
-  private static com.google.protobuf.Descriptors.FileDescriptor buildDescriptor() {
-    final java.lang.String descriptorData = "\n google/protobuf/descriptor.proto\022\017goog" +
-                                            "le.protobuf\"G\n\021FileDescriptorSet\0222\n\004file" +
-                                            "\030\001 \003(\0132$.google.protobuf.FileDescriptorP" +
-                                            "roto\"\334\002\n\023FileDescriptorProto\022\014\n\004name\030\001 \001" +
-                                            "(\t\022\017\n\007package\030\002 \001(\t\022\022\n\ndependency\030\003 \003(\t\022" +
-                                            "6\n\014message_type\030\004 \003(\0132 .google.protobuf." +
-                                            "DescriptorProto\0227\n\tenum_type\030\005 \003(\0132$.goo" +
-                                            "gle.protobuf.EnumDescriptorProto\0228\n\007serv" +
-                                            "ice\030\006 \003(\0132\'.google.protobuf.ServiceDescr" +
-                                            "iptorProto\0228\n\textension\030\007 \003(\0132%.google.p" +
-                                            "rotobuf.FieldDescriptorProto\022-\n\007options\030" +
-                                            "\010 \001(\0132\034.google.protobuf.FileOptions\"\251\003\n\017" +
-                                            "DescriptorProto\022\014\n\004name\030\001 \001(\t\0224\n\005field\030\002" +
-                                            " \003(\0132%.google.protobuf.FieldDescriptorPr" +
-                                            "oto\0228\n\textension\030\006 \003(\0132%.google.protobuf" +
-                                            ".FieldDescriptorProto\0225\n\013nested_type\030\003 \003" +
-                                            "(\0132 .google.protobuf.DescriptorProto\0227\n\t" +
-                                            "enum_type\030\004 \003(\0132$.google.protobuf.EnumDe" +
-                                            "scriptorProto\022H\n\017extension_range\030\005 \003(\0132/" +
-                                            ".google.protobuf.DescriptorProto.Extensi" +
-                                            "onRange\0220\n\007options\030\007 \001(\0132\037.google.protob" +
-                                            "uf.MessageOptions\032,\n\016ExtensionRange\022\r\n\005s" +
-                                            "tart\030\001 \001(\005\022\013\n\003end\030\002 \001(\005\"\224\005\n\024FieldDescrip" +
-                                            "torProto\022\014\n\004name\030\001 \001(\t\022\016\n\006number\030\003 \001(\005\022:" +
-                                            "\n\005label\030\004 \001(\0162+.google.protobuf.FieldDes" +
-                                            "criptorProto.Label\0228\n\004type\030\005 \001(\0162*.googl" +
-                                            "e.protobuf.FieldDescriptorProto.Type\022\021\n\t" +
-                                            "type_name\030\006 \001(\t\022\020\n\010extendee\030\002 \001(\t\022\025\n\rdef" +
-                                            "ault_value\030\007 \001(\t\022.\n\007options\030\010 \001(\0132\035.goog" +
-                                            "le.protobuf.FieldOptions\"\266\002\n\004Type\022\017\n\013TYP" +
-                                            "E_DOUBLE\020\001\022\016\n\nTYPE_FLOAT\020\002\022\016\n\nTYPE_INT64" +
-                                            "\020\003\022\017\n\013TYPE_UINT64\020\004\022\016\n\nTYPE_INT32\020\005\022\020\n\014T" +
-                                            "YPE_FIXED64\020\006\022\020\n\014TYPE_FIXED32\020\007\022\r\n\tTYPE_" +
-                                            "BOOL\020\010\022\017\n\013TYPE_STRING\020\t\022\016\n\nTYPE_GROUP\020\n\022" +
-                                            "\020\n\014TYPE_MESSAGE\020\013\022\016\n\nTYPE_BYTES\020\014\022\017\n\013TYP" +
-                                            "E_UINT32\020\r\022\r\n\tTYPE_ENUM\020\016\022\021\n\rTYPE_SFIXED" +
-                                            "32\020\017\022\021\n\rTYPE_SFIXED64\020\020\022\017\n\013TYPE_SINT32\020\021" +
-                                            "\022\017\n\013TYPE_SINT64\020\022\"C\n\005Label\022\022\n\016LABEL_OPTI" +
-                                            "ONAL\020\001\022\022\n\016LABEL_REQUIRED\020\002\022\022\n\016LABEL_REPE" +
-                                            "ATED\020\003\"\214\001\n\023EnumDescriptorProto\022\014\n\004name\030\001" +
-                                            " \001(\t\0228\n\005value\030\002 \003(\0132).google.protobuf.En" +
-                                            "umValueDescriptorProto\022-\n\007options\030\003 \001(\0132" +
-                                            "\034.google.protobuf.EnumOptions\"l\n\030EnumVal" +
-                                            "ueDescriptorProto\022\014\n\004name\030\001 \001(\t\022\016\n\006numbe" +
-                                            "r\030\002 \001(\005\0222\n\007options\030\003 \001(\0132!.google.protob" +
-                                            "uf.EnumValueOptions\"\220\001\n\026ServiceDescripto" +
-                                            "rProto\022\014\n\004name\030\001 \001(\t\0226\n\006method\030\002 \003(\0132&.g" +
-                                            "oogle.protobuf.MethodDescriptorProto\0220\n\007" +
-                                            "options\030\003 \001(\0132\037.google.protobuf.ServiceO" +
-                                            "ptions\"\177\n\025MethodDescriptorProto\022\014\n\004name\030" +
-                                            "\001 \001(\t\022\022\n\ninput_type\030\002 \001(\t\022\023\n\013output_type" +
-                                            "\030\003 \001(\t\022/\n\007options\030\004 \001(\0132\036.google.protobu" +
-                                            "f.MethodOptions\"\230\002\n\013FileOptions\022\024\n\014java_" +
-                                            "package\030\001 \001(\t\022\034\n\024java_outer_classname\030\010 " +
-                                            "\001(\t\022\"\n\023java_multiple_files\030\n \001(\010:\005false\022" +
-                                            "J\n\014optimize_for\030\t \001(\0162).google.protobuf." +
-                                            "FileOptions.OptimizeMode:\tCODE_SIZE\022\032\n\022o" +
-                                            "bjectivec_package\030\013 \001(\t\022\037\n\027objectivec_cl" +
-                                            "ass_prefix\030\014 \001(\t\"(\n\014OptimizeMode\022\t\n\005SPEE" +
-                                            "D\020\001\022\r\n\tCODE_SIZE\020\002\"8\n\016MessageOptions\022&\n\027" +
-                                            "message_set_wire_format\030\001 \001(\010:\005false\"\205\001\n" +
-                                            "\014FieldOptions\0222\n\005ctype\030\001 \001(\0162#.google.pr" +
-                                            "otobuf.FieldOptions.CType\022\034\n\024experimenta" +
-                                            "l_map_key\030\t \001(\t\"#\n\005CType\022\010\n\004CORD\020\001\022\020\n\014ST" +
-                                            "RING_PIECE\020\002\"\r\n\013EnumOptions\"\022\n\020EnumValue" +
-                                            "Options\"\020\n\016ServiceOptions\"\017\n\rMethodOptio" +
-                                            "nsB>\n\023com.google.protobufB\020DescriptorPro" +
-                                            "tosH\001Z\017ProtocolBuffersb\002PB";
-    try {
-      return com.google.protobuf.Descriptors.FileDescriptor
-          .internalBuildGeneratedFileFrom(descriptorData, new com.google.protobuf.Descriptors.FileDescriptor[]{});
-    } catch (final Exception e) {
-      throw new RuntimeException(
-          "Failed to parse protocol buffer descriptor for " + "\"google/protobuf/descriptor.proto\".", e);
-    }
-  }
-
-  public static final class FileDescriptorSet extends com.google.protobuf.GeneratedMessage {
+  public static final class FileDescriptorSet extends
+      com.google.protobuf.GeneratedMessage {
     // Use FileDescriptorSet.newBuilder() to construct.
-    private FileDescriptorSet() {
-    }
-
+    private FileDescriptorSet() {}
+    
     private static final FileDescriptorSet defaultInstance = new FileDescriptorSet();
-
     public static FileDescriptorSet getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public FileDescriptorSet getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileDescriptorSet_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
     }
-
+    
     // repeated .google.protobuf.FileDescriptorProto file = 1;
-    private java.util.List<com.google.protobuf.DescriptorProtos.FileDescriptorProto> file_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.FileDescriptorProto> file_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.FileDescriptorProto> getFileList() {
-      return this.file_;
+      return file_;
     }
-
-    public int getFileCount() {
-      return this.file_.size();
+    public int getFileCount() { return file_.size(); }
+    public com.google.protobuf.DescriptorProtos.FileDescriptorProto getFile(int index) {
+      return file_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.FileDescriptorProto getFile(final int index) {
-      return this.file_.get(index);
-    }
-
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.FileDescriptorProto element : getFileList()) {
+        if (!element.isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      for (final com.google.protobuf.DescriptorProtos.FileDescriptorProto element : getFileList()) {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (com.google.protobuf.DescriptorProtos.FileDescriptorProto element : getFileList()) {
         output.writeMessage(1, element);
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
-      for (final com.google.protobuf.DescriptorProtos.FileDescriptorProto element : getFileList()) {
+      for (com.google.protobuf.DescriptorProtos.FileDescriptorProto element : getFileList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(1, element);
+          .computeMessageSize(1, element);
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(final byte[] data,
-                                                                                   final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(final java.io.InputStream input,
-                                                                                   final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileDescriptorSet parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileDescriptorSet prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.FileDescriptorSet prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileDescriptorSet.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.FileDescriptorSet result = new com.google.protobuf.DescriptorProtos.FileDescriptorSet();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.FileDescriptorSet internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.FileDescriptorSet();
+        result = new com.google.protobuf.DescriptorProtos.FileDescriptorSet();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.FileDescriptorSet.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorSet getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.FileDescriptorSet.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorSet build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.FileDescriptorSet buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorSet buildPartial() {
-        if (this.result.file_ != java.util.Collections.EMPTY_LIST) {
-          this.result.file_ = java.util.Collections.unmodifiableList(this.result.file_);
+        if (result.file_ != java.util.Collections.EMPTY_LIST) {
+          result.file_ =
+            java.util.Collections.unmodifiableList(result.file_);
         }
-        final com.google.protobuf.DescriptorProtos.FileDescriptorSet returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.FileDescriptorSet returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.FileDescriptorSet) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.FileDescriptorSet) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.FileDescriptorSet)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.FileDescriptorSet other) {
-        if (other == com.google.protobuf.DescriptorProtos.FileDescriptorSet.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.FileDescriptorSet other) {
+        if (other == com.google.protobuf.DescriptorProtos.FileDescriptorSet.getDefaultInstance()) return this;
         if (!other.file_.isEmpty()) {
-          if (this.result.file_.isEmpty()) {
-            this.result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
+          if (result.file_.isEmpty()) {
+            result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
           }
-          this.result.file_.addAll(other.file_);
+          result.file_.addAll(other.file_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
             }
             case 10: {
-              final com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FileDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.FileDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addFile(subBuilder.buildPartial());
               break;
@@ -331,233 +250,199 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // repeated .google.protobuf.FileDescriptorProto file = 1;
       public java.util.List<com.google.protobuf.DescriptorProtos.FileDescriptorProto> getFileList() {
-        return java.util.Collections.unmodifiableList(this.result.file_);
+        return java.util.Collections.unmodifiableList(result.file_);
       }
-
       public int getFileCount() {
-        return this.result.getFileCount();
+        return result.getFileCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.FileDescriptorProto getFile(final int index) {
-        return this.result.getFile(index);
+      public com.google.protobuf.DescriptorProtos.FileDescriptorProto getFile(int index) {
+        return result.getFile(index);
       }
-
-      public Builder setFile(final int index, final com.google.protobuf.DescriptorProtos.FileDescriptorProto value) {
-        this.result.file_.set(index, value);
+      public Builder setFile(int index, com.google.protobuf.DescriptorProtos.FileDescriptorProto value) {
+        result.file_.set(index, value);
         return this;
       }
-
-      public Builder setFile(final int index,
-                             final com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder builderForValue) {
-        this.result.file_.set(index, builderForValue.build());
+      public Builder setFile(int index, com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder builderForValue) {
+        result.file_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addFile(final com.google.protobuf.DescriptorProtos.FileDescriptorProto value) {
-        if (this.result.file_.isEmpty()) {
-          this.result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
+      public Builder addFile(com.google.protobuf.DescriptorProtos.FileDescriptorProto value) {
+        if (result.file_.isEmpty()) {
+          result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
         }
-        this.result.file_.add(value);
+        result.file_.add(value);
         return this;
       }
-
-      public Builder addFile(final com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder builderForValue) {
-        if (this.result.file_.isEmpty()) {
-          this.result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
+      public Builder addFile(com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder builderForValue) {
+        if (result.file_.isEmpty()) {
+          result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
         }
-        this.result.file_.add(builderForValue.build());
+        result.file_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllFile(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FileDescriptorProto> values) {
-        if (this.result.file_.isEmpty()) {
-          this.result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FileDescriptorProto> values) {
+        if (result.file_.isEmpty()) {
+          result.file_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FileDescriptorProto>();
         }
-        super.addAll(values, this.result.file_);
+        super.addAll(values, result.file_);
         return this;
       }
-
       public Builder clearFile() {
-        this.result.file_ = java.util.Collections.emptyList();
+        result.file_ = java.util.Collections.emptyList();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class FileDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class FileDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use FileDescriptorProto.newBuilder() to construct.
-    private FileDescriptorProto() {
-    }
-
+    private FileDescriptorProto() {}
+    
     private static final FileDescriptorProto defaultInstance = new FileDescriptorProto();
-
     public static FileDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public FileDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // optional string package = 2;
     private boolean hasPackage;
     private java.lang.String package_ = "";
-
-    public boolean hasPackage() {
-      return this.hasPackage;
-    }
-
-    public java.lang.String getPackage() {
-      return this.package_;
-    }
-
+    public boolean hasPackage() { return hasPackage; }
+    public java.lang.String getPackage() { return package_; }
+    
     // repeated string dependency = 3;
-    private java.util.List<java.lang.String> dependency_ = java.util.Collections.emptyList();
-
+    private java.util.List<java.lang.String> dependency_ =
+      java.util.Collections.emptyList();
     public java.util.List<java.lang.String> getDependencyList() {
-      return this.dependency_;
+      return dependency_;
     }
-
-    public int getDependencyCount() {
-      return this.dependency_.size();
+    public int getDependencyCount() { return dependency_.size(); }
+    public java.lang.String getDependency(int index) {
+      return dependency_.get(index);
     }
-
-    public java.lang.String getDependency(final int index) {
-      return this.dependency_.get(index);
-    }
-
+    
     // repeated .google.protobuf.DescriptorProto message_type = 4;
-    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> messageType_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> messageType_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> getMessageTypeList() {
-      return this.messageType_;
+      return messageType_;
     }
-
-    public int getMessageTypeCount() {
-      return this.messageType_.size();
+    public int getMessageTypeCount() { return messageType_.size(); }
+    public com.google.protobuf.DescriptorProtos.DescriptorProto getMessageType(int index) {
+      return messageType_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.DescriptorProto getMessageType(final int index) {
-      return this.messageType_.get(index);
-    }
-
+    
     // repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
-    private java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> enumType_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> enumType_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> getEnumTypeList() {
-      return this.enumType_;
+      return enumType_;
     }
-
-    public int getEnumTypeCount() {
-      return this.enumType_.size();
+    public int getEnumTypeCount() { return enumType_.size(); }
+    public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(int index) {
+      return enumType_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
-      return this.enumType_.get(index);
-    }
-
+    
     // repeated .google.protobuf.ServiceDescriptorProto service = 6;
-    private java.util.List<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> service_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> service_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> getServiceList() {
-      return this.service_;
+      return service_;
     }
-
-    public int getServiceCount() {
-      return this.service_.size();
+    public int getServiceCount() { return service_.size(); }
+    public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getService(int index) {
+      return service_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getService(final int index) {
-      return this.service_.get(index);
-    }
-
+    
     // repeated .google.protobuf.FieldDescriptorProto extension = 7;
-    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> extension_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> extension_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getExtensionList() {
-      return this.extension_;
+      return extension_;
     }
-
-    public int getExtensionCount() {
-      return this.extension_.size();
+    public int getExtensionCount() { return extension_.size(); }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(int index) {
+      return extension_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
-      return this.extension_.get(index);
-    }
-
+    
     // optional .google.protobuf.FileOptions options = 8;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.FileOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .FileOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.FileOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.FileOptions options_ = com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.FileOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getMessageTypeList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.ServiceDescriptorProto element : getServiceList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
       if (hasPackage()) {
         output.writeString(2, getPackage());
       }
-      for (final java.lang.String element : getDependencyList()) {
+      for (java.lang.String element : getDependencyList()) {
         output.writeString(3, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto element : getMessageTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getMessageTypeList()) {
         output.writeMessage(4, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
         output.writeMessage(5, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto element : getServiceList()) {
+      for (com.google.protobuf.DescriptorProtos.ServiceDescriptorProto element : getServiceList()) {
         output.writeMessage(6, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
         output.writeMessage(7, element);
       }
       if (hasOptions()) {
@@ -565,190 +450,192 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
       if (hasPackage()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(2, getPackage());
+          .computeStringSize(2, getPackage());
       }
-      for (final java.lang.String element : getDependencyList()) {
+      for (java.lang.String element : getDependencyList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(3, element);
+          .computeStringSize(3, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto element : getMessageTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getMessageTypeList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, element);
+          .computeMessageSize(4, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, element);
+          .computeMessageSize(5, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto element : getServiceList()) {
+      for (com.google.protobuf.DescriptorProtos.ServiceDescriptorProto element : getServiceList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(6, element);
+          .computeMessageSize(6, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(7, element);
+          .computeMessageSize(7, element);
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(8, getOptions());
+          .computeMessageSize(8, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(final byte[] data,
-                                                                                     final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                     final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.FileDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.FileDescriptorProto result = new com.google.protobuf.DescriptorProtos.FileDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.FileDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.FileDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.FileDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.FileDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.FileDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.FileDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileDescriptorProto buildPartial() {
-        if (this.result.dependency_ != java.util.Collections.EMPTY_LIST) {
-          this.result.dependency_ = java.util.Collections.unmodifiableList(this.result.dependency_);
+        if (result.dependency_ != java.util.Collections.EMPTY_LIST) {
+          result.dependency_ =
+            java.util.Collections.unmodifiableList(result.dependency_);
         }
-        if (this.result.messageType_ != java.util.Collections.EMPTY_LIST) {
-          this.result.messageType_ = java.util.Collections.unmodifiableList(this.result.messageType_);
+        if (result.messageType_ != java.util.Collections.EMPTY_LIST) {
+          result.messageType_ =
+            java.util.Collections.unmodifiableList(result.messageType_);
         }
-        if (this.result.enumType_ != java.util.Collections.EMPTY_LIST) {
-          this.result.enumType_ = java.util.Collections.unmodifiableList(this.result.enumType_);
+        if (result.enumType_ != java.util.Collections.EMPTY_LIST) {
+          result.enumType_ =
+            java.util.Collections.unmodifiableList(result.enumType_);
         }
-        if (this.result.service_ != java.util.Collections.EMPTY_LIST) {
-          this.result.service_ = java.util.Collections.unmodifiableList(this.result.service_);
+        if (result.service_ != java.util.Collections.EMPTY_LIST) {
+          result.service_ =
+            java.util.Collections.unmodifiableList(result.service_);
         }
-        if (this.result.extension_ != java.util.Collections.EMPTY_LIST) {
-          this.result.extension_ = java.util.Collections.unmodifiableList(this.result.extension_);
+        if (result.extension_ != java.util.Collections.EMPTY_LIST) {
+          result.extension_ =
+            java.util.Collections.unmodifiableList(result.extension_);
         }
-        final com.google.protobuf.DescriptorProtos.FileDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.FileDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.FileDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.FileDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.FileDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.FileDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.FileDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.FileDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.FileDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
@@ -756,62 +643,68 @@ public final class DescriptorProtos {
           setPackage(other.getPackage());
         }
         if (!other.dependency_.isEmpty()) {
-          if (this.result.dependency_.isEmpty()) {
-            this.result.dependency_ = new java.util.ArrayList<java.lang.String>();
+          if (result.dependency_.isEmpty()) {
+            result.dependency_ = new java.util.ArrayList<java.lang.String>();
           }
-          this.result.dependency_.addAll(other.dependency_);
+          result.dependency_.addAll(other.dependency_);
         }
         if (!other.messageType_.isEmpty()) {
-          if (this.result.messageType_.isEmpty()) {
-            this.result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+          if (result.messageType_.isEmpty()) {
+            result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
           }
-          this.result.messageType_.addAll(other.messageType_);
+          result.messageType_.addAll(other.messageType_);
         }
         if (!other.enumType_.isEmpty()) {
-          if (this.result.enumType_.isEmpty()) {
-            this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+          if (result.enumType_.isEmpty()) {
+            result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
           }
-          this.result.enumType_.addAll(other.enumType_);
+          result.enumType_.addAll(other.enumType_);
         }
         if (!other.service_.isEmpty()) {
-          if (this.result.service_.isEmpty()) {
-            this.result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
+          if (result.service_.isEmpty()) {
+            result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
           }
-          this.result.service_.addAll(other.service_);
+          result.service_.addAll(other.service_);
         }
         if (!other.extension_.isEmpty()) {
-          if (this.result.extension_.isEmpty()) {
-            this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          if (result.extension_.isEmpty()) {
+            result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
           }
-          this.result.extension_.addAll(other.extension_);
+          result.extension_.addAll(other.extension_);
         }
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -829,51 +722,31 @@ public final class DescriptorProtos {
               break;
             }
             case 34: {
-              final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .DescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.DescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.DescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addMessageType(subBuilder.buildPartial());
               break;
             }
             case 42: {
-              final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .EnumDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.EnumDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addEnumType(subBuilder.buildPartial());
               break;
             }
             case 50: {
-              final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .ServiceDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addService(subBuilder.buildPartial());
               break;
             }
             case 58: {
-              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addExtension(subBuilder.buildPartial());
               break;
             }
             case 66: {
-              final com.google.protobuf.DescriptorProtos.FileOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FileOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FileOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.FileOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -884,435 +757,368 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // optional string package = 2;
       public boolean hasPackage() {
-        return this.result.hasPackage();
+        return result.hasPackage();
       }
-
       public java.lang.String getPackage() {
-        return this.result.getPackage();
+        return result.getPackage();
       }
-
-      public Builder setPackage(final java.lang.String value) {
-        this.result.hasPackage = true;
-        this.result.package_ = value;
+      public Builder setPackage(java.lang.String value) {
+        result.hasPackage = true;
+        result.package_ = value;
         return this;
       }
-
       public Builder clearPackage() {
-        this.result.hasPackage = false;
-        this.result.package_ = "";
+        result.hasPackage = false;
+        result.package_ = "";
         return this;
       }
-
+      
       // repeated string dependency = 3;
       public java.util.List<java.lang.String> getDependencyList() {
-        return java.util.Collections.unmodifiableList(this.result.dependency_);
+        return java.util.Collections.unmodifiableList(result.dependency_);
       }
-
       public int getDependencyCount() {
-        return this.result.getDependencyCount();
+        return result.getDependencyCount();
       }
-
-      public java.lang.String getDependency(final int index) {
-        return this.result.getDependency(index);
+      public java.lang.String getDependency(int index) {
+        return result.getDependency(index);
       }
-
-      public Builder setDependency(final int index, final java.lang.String value) {
-        this.result.dependency_.set(index, value);
+      public Builder setDependency(int index, java.lang.String value) {
+        result.dependency_.set(index, value);
         return this;
       }
-
-      public Builder addDependency(final java.lang.String value) {
-        if (this.result.dependency_.isEmpty()) {
-          this.result.dependency_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addDependency(java.lang.String value) {
+        if (result.dependency_.isEmpty()) {
+          result.dependency_ = new java.util.ArrayList<java.lang.String>();
         }
-        this.result.dependency_.add(value);
+        result.dependency_.add(value);
         return this;
       }
-
-      public Builder addAllDependency(final java.lang.Iterable<? extends java.lang.String> values) {
-        if (this.result.dependency_.isEmpty()) {
-          this.result.dependency_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllDependency(
+          java.lang.Iterable<? extends java.lang.String> values) {
+        if (result.dependency_.isEmpty()) {
+          result.dependency_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, this.result.dependency_);
+        super.addAll(values, result.dependency_);
         return this;
       }
-
       public Builder clearDependency() {
-        this.result.dependency_ = java.util.Collections.emptyList();
+        result.dependency_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.DescriptorProto message_type = 4;
       public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> getMessageTypeList() {
-        return java.util.Collections.unmodifiableList(this.result.messageType_);
+        return java.util.Collections.unmodifiableList(result.messageType_);
       }
-
       public int getMessageTypeCount() {
-        return this.result.getMessageTypeCount();
+        return result.getMessageTypeCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.DescriptorProto getMessageType(final int index) {
-        return this.result.getMessageType(index);
+      public com.google.protobuf.DescriptorProtos.DescriptorProto getMessageType(int index) {
+        return result.getMessageType(index);
       }
-
-      public Builder setMessageType(final int index, final com.google.protobuf.DescriptorProtos.DescriptorProto value) {
-        this.result.messageType_.set(index, value);
+      public Builder setMessageType(int index, com.google.protobuf.DescriptorProtos.DescriptorProto value) {
+        result.messageType_.set(index, value);
         return this;
       }
-
-      public Builder setMessageType(final int index,
-                                    final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
-        this.result.messageType_.set(index, builderForValue.build());
+      public Builder setMessageType(int index, com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
+        result.messageType_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addMessageType(final com.google.protobuf.DescriptorProtos.DescriptorProto value) {
-        if (this.result.messageType_.isEmpty()) {
-          this.result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+      public Builder addMessageType(com.google.protobuf.DescriptorProtos.DescriptorProto value) {
+        if (result.messageType_.isEmpty()) {
+          result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        this.result.messageType_.add(value);
+        result.messageType_.add(value);
         return this;
       }
-
-      public Builder addMessageType(
-          final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
-        if (this.result.messageType_.isEmpty()) {
-          this.result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+      public Builder addMessageType(com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
+        if (result.messageType_.isEmpty()) {
+          result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        this.result.messageType_.add(builderForValue.build());
+        result.messageType_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllMessageType(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto> values) {
-        if (this.result.messageType_.isEmpty()) {
-          this.result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto> values) {
+        if (result.messageType_.isEmpty()) {
+          result.messageType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        super.addAll(values, this.result.messageType_);
+        super.addAll(values, result.messageType_);
         return this;
       }
-
       public Builder clearMessageType() {
-        this.result.messageType_ = java.util.Collections.emptyList();
+        result.messageType_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
       public java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> getEnumTypeList() {
-        return java.util.Collections.unmodifiableList(this.result.enumType_);
+        return java.util.Collections.unmodifiableList(result.enumType_);
       }
-
       public int getEnumTypeCount() {
-        return this.result.getEnumTypeCount();
+        return result.getEnumTypeCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
-        return this.result.getEnumType(index);
+      public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(int index) {
+        return result.getEnumType(index);
       }
-
-      public Builder setEnumType(final int index,
-                                 final com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
-        this.result.enumType_.set(index, value);
+      public Builder setEnumType(int index, com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
+        result.enumType_.set(index, value);
         return this;
       }
-
-      public Builder setEnumType(final int index,
-                                 final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
-        this.result.enumType_.set(index, builderForValue.build());
+      public Builder setEnumType(int index, com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
+        result.enumType_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addEnumType(final com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+      public Builder addEnumType(com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        this.result.enumType_.add(value);
+        result.enumType_.add(value);
         return this;
       }
-
-      public Builder addEnumType(
-          final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+      public Builder addEnumType(com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        this.result.enumType_.add(builderForValue.build());
+        result.enumType_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllEnumType(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumDescriptorProto> values) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumDescriptorProto> values) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        super.addAll(values, this.result.enumType_);
+        super.addAll(values, result.enumType_);
         return this;
       }
-
       public Builder clearEnumType() {
-        this.result.enumType_ = java.util.Collections.emptyList();
+        result.enumType_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.ServiceDescriptorProto service = 6;
       public java.util.List<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> getServiceList() {
-        return java.util.Collections.unmodifiableList(this.result.service_);
+        return java.util.Collections.unmodifiableList(result.service_);
       }
-
       public int getServiceCount() {
-        return this.result.getServiceCount();
+        return result.getServiceCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getService(final int index) {
-        return this.result.getService(index);
+      public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getService(int index) {
+        return result.getService(index);
       }
-
-      public Builder setService(final int index,
-                                final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto value) {
-        this.result.service_.set(index, value);
+      public Builder setService(int index, com.google.protobuf.DescriptorProtos.ServiceDescriptorProto value) {
+        result.service_.set(index, value);
         return this;
       }
-
-      public Builder setService(final int index,
-                                final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder builderForValue) {
-        this.result.service_.set(index, builderForValue.build());
+      public Builder setService(int index, com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder builderForValue) {
+        result.service_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addService(final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto value) {
-        if (this.result.service_.isEmpty()) {
-          this.result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
+      public Builder addService(com.google.protobuf.DescriptorProtos.ServiceDescriptorProto value) {
+        if (result.service_.isEmpty()) {
+          result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
         }
-        this.result.service_.add(value);
+        result.service_.add(value);
         return this;
       }
-
-      public Builder addService(
-          final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder builderForValue) {
-        if (this.result.service_.isEmpty()) {
-          this.result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
+      public Builder addService(com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder builderForValue) {
+        if (result.service_.isEmpty()) {
+          result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
         }
-        this.result.service_.add(builderForValue.build());
+        result.service_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllService(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> values) {
-        if (this.result.service_.isEmpty()) {
-          this.result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.ServiceDescriptorProto> values) {
+        if (result.service_.isEmpty()) {
+          result.service_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.ServiceDescriptorProto>();
         }
-        super.addAll(values, this.result.service_);
+        super.addAll(values, result.service_);
         return this;
       }
-
       public Builder clearService() {
-        this.result.service_ = java.util.Collections.emptyList();
+        result.service_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.FieldDescriptorProto extension = 7;
       public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getExtensionList() {
-        return java.util.Collections.unmodifiableList(this.result.extension_);
+        return java.util.Collections.unmodifiableList(result.extension_);
       }
-
       public int getExtensionCount() {
-        return this.result.getExtensionCount();
+        return result.getExtensionCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
-        return this.result.getExtension(index);
+      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(int index) {
+        return result.getExtension(index);
       }
-
-      public Builder setExtension(final int index,
-                                  final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        this.result.extension_.set(index, value);
+      public Builder setExtension(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        result.extension_.set(index, value);
         return this;
       }
-
-      public Builder setExtension(final int index,
-                                  final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        this.result.extension_.set(index, builderForValue.build());
+      public Builder setExtension(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        result.extension_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addExtension(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addExtension(com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.extension_.add(value);
+        result.extension_.add(value);
         return this;
       }
-
-      public Builder addExtension(
-          final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addExtension(com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.extension_.add(builderForValue.build());
+        result.extension_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllExtension(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        super.addAll(values, this.result.extension_);
+        super.addAll(values, result.extension_);
         return this;
       }
-
       public Builder clearExtension() {
-        this.result.extension_ = java.util.Collections.emptyList();
+        result.extension_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // optional .google.protobuf.FileOptions options = 8;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.FileOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.FileOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.FileOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.FileOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.FileOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.FileOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .FileOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .FileOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.FileOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.FileOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class DescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class DescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use DescriptorProto.newBuilder() to construct.
-    private DescriptorProto() {
-    }
-
+    private DescriptorProto() {}
+    
     private static final DescriptorProto defaultInstance = new DescriptorProto();
-
     public static DescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public DescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_DescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
     }
-
-    public static final class ExtensionRange extends com.google.protobuf.GeneratedMessage {
+    
+    public static final class ExtensionRange extends
+        com.google.protobuf.GeneratedMessage {
       // Use ExtensionRange.newBuilder() to construct.
-      private ExtensionRange() {
-      }
-
+      private ExtensionRange() {}
+      
       private static final ExtensionRange defaultInstance = new ExtensionRange();
-
       public static ExtensionRange getDefaultInstance() {
         return defaultInstance;
       }
-
+      
       public ExtensionRange getDefaultInstanceForType() {
         return defaultInstance;
       }
-
-      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+      
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
         return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
       }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+      
+      @Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
         return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
       }
-
+      
       // optional int32 start = 1;
       private boolean hasStart;
       private int start_ = 0;
-
-      public boolean hasStart() {
-        return this.hasStart;
-      }
-
-      public int getStart() {
-        return this.start_;
-      }
-
+      public boolean hasStart() { return hasStart; }
+      public int getStart() { return start_; }
+      
       // optional int32 end = 2;
       private boolean hasEnd;
       private int end_ = 0;
-
-      public boolean hasEnd() {
-        return this.hasEnd;
-      }
-
-      public int getEnd() {
-        return this.end_;
-      }
-
+      public boolean hasEnd() { return hasEnd; }
+      public int getEnd() { return end_; }
+      
+      @Override
       public final boolean isInitialized() {
         return true;
       }
-
-      public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      
+      @Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
         if (hasStart()) {
           output.writeInt32(1, getStart());
         }
@@ -1321,182 +1127,184 @@ public final class DescriptorProtos {
         }
         getUnknownFields().writeTo(output);
       }
-
+      
       private int memoizedSerializedSize = -1;
-
+      @Override
       public int getSerializedSize() {
-        int size = this.memoizedSerializedSize;
-        if (size != -1) {
-          return size;
-        }
-
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+      
         size = 0;
         if (hasStart()) {
           size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(1, getStart());
+            .computeInt32Size(1, getStart());
         }
         if (hasEnd()) {
           size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(2, getEnd());
+            .computeInt32Size(2, getEnd());
         }
         size += getUnknownFields().getSerializedSize();
-        this.memoizedSerializedSize = size;
+        memoizedSerializedSize = size;
         return size;
       }
-
+      
       public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data).buildParsed();
-      }
-
-      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data, extensionRegistry)
-            .buildParsed();
-      }
-
-      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(final byte[] data)
+          com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data).buildParsed();
       }
-
-      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(final byte[] data,
-                                                                                                  final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data, extensionRegistry)
-            .buildParsed();
+                 .buildParsed();
       }
-
+      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
       public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final java.io.InputStream input) throws java.io.IOException {
+          byte[] data,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input).buildParsed();
       }
-
       public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
           throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry)
-            .buildParsed();
+                 .buildParsed();
       }
-
       public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input).buildParsed();
       }
-
       public static com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange parseFrom(
-          final com.google.protobuf.CodedInputStream input,
-          final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry)
-            .buildParsed();
+                 .buildParsed();
       }
-
-      public static Builder newBuilder() {
-        return new Builder();
-      }
-
-      public Builder newBuilderForType() {
-        return new Builder();
-      }
-
-      public static Builder newBuilder(
-          final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange prototype) {
+      
+      public static Builder newBuilder() { return new Builder(); }
+      public Builder newBuilderForType() { return new Builder(); }
+      public static Builder newBuilder(com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange prototype) {
         return new Builder().mergeFrom(prototype);
       }
-
-      public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> {
         // Construct using com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.newBuilder()
-        private Builder() {
-        }
-
+        private Builder() {}
+        
         com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange result = new com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange();
-
+        
+        @Override
         protected com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange internalGetResult() {
-          return this.result;
+          return result;
         }
-
+        
+        @Override
         public Builder clear() {
-          this.result = new com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange();
+          result = new com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange();
           return this;
         }
-
+        
+        @Override
         public Builder clone() {
-          return new Builder().mergeFrom(this.result);
+          return new Builder().mergeFrom(result);
         }
-
-        public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+        
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
           return com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.getDescriptor();
         }
-
+        
         public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getDefaultInstanceForType() {
           return com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.getDefaultInstance();
         }
-
+        
         public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange build() {
           if (!isInitialized()) {
-            throw new com.google.protobuf.UninitializedMessageException(this.result);
+            throw new com.google.protobuf.UninitializedMessageException(
+              result);
           }
           return buildPartial();
         }
-
+        
         private com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange buildParsed()
             throws com.google.protobuf.InvalidProtocolBufferException {
           if (!isInitialized()) {
-            throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+            throw new com.google.protobuf.UninitializedMessageException(
+              result).asInvalidProtocolBufferException();
           }
           return buildPartial();
         }
-
+        
         public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange buildPartial() {
-          final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange returnMe = this.result;
-          this.result = null;
+          com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange returnMe = result;
+          result = null;
           return returnMe;
         }
-
-        public Builder mergeFrom(final com.google.protobuf.Message other) {
+        
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange) {
-            return mergeFrom((com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange) other);
+            return mergeFrom((com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
-
-        public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange other) {
-          if (other == com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.getDefaultInstance()) {
-            return this;
-          }
+        
+        public Builder mergeFrom(com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange other) {
+          if (other == com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.getDefaultInstance()) return this;
           if (other.hasStart()) {
             setStart(other.getStart());
           }
           if (other.hasEnd()) {
             setEnd(other.getEnd());
           }
-          mergeUnknownFields(other.getUnknownFields());
+          this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
-
-        public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-          return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-        }
-
-        public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                                 final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        
+        @Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
-          final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-              .protobuf
-              .UnknownFieldSet
-              .newBuilder(getUnknownFields());
+          return mergeFrom(input,
+            com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+        }
+        
+        @Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws java.io.IOException {
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder(
+              this.getUnknownFields());
           while (true) {
-            final int tag = input.readTag();
+            int tag = input.readTag();
             switch (tag) {
               case 0:
-                setUnknownFields(unknownFields.build());
+                this.setUnknownFields(unknownFields.build());
                 return this;
               default: {
-                if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                  setUnknownFields(unknownFields.build());
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  this.setUnknownFields(unknownFields.build());
                   return this;
                 }
                 break;
@@ -1512,185 +1320,156 @@ public final class DescriptorProtos {
             }
           }
         }
-
+        
+        
         // optional int32 start = 1;
         public boolean hasStart() {
-          return this.result.hasStart();
+          return result.hasStart();
         }
-
         public int getStart() {
-          return this.result.getStart();
+          return result.getStart();
         }
-
-        public Builder setStart(final int value) {
-          this.result.hasStart = true;
-          this.result.start_ = value;
+        public Builder setStart(int value) {
+          result.hasStart = true;
+          result.start_ = value;
           return this;
         }
-
         public Builder clearStart() {
-          this.result.hasStart = false;
-          this.result.start_ = 0;
+          result.hasStart = false;
+          result.start_ = 0;
           return this;
         }
-
+        
         // optional int32 end = 2;
         public boolean hasEnd() {
-          return this.result.hasEnd();
+          return result.hasEnd();
         }
-
         public int getEnd() {
-          return this.result.getEnd();
+          return result.getEnd();
         }
-
-        public Builder setEnd(final int value) {
-          this.result.hasEnd = true;
-          this.result.end_ = value;
+        public Builder setEnd(int value) {
+          result.hasEnd = true;
+          result.end_ = value;
           return this;
         }
-
         public Builder clearEnd() {
-          this.result.hasEnd = false;
-          this.result.end_ = 0;
+          result.hasEnd = false;
+          result.end_ = 0;
           return this;
         }
       }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // repeated .google.protobuf.FieldDescriptorProto field = 2;
-    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> field_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> field_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getFieldList() {
-      return this.field_;
+      return field_;
     }
-
-    public int getFieldCount() {
-      return this.field_.size();
+    public int getFieldCount() { return field_.size(); }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getField(int index) {
+      return field_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getField(final int index) {
-      return this.field_.get(index);
-    }
-
+    
     // repeated .google.protobuf.FieldDescriptorProto extension = 6;
-    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> extension_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> extension_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getExtensionList() {
-      return this.extension_;
+      return extension_;
     }
-
-    public int getExtensionCount() {
-      return this.extension_.size();
+    public int getExtensionCount() { return extension_.size(); }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(int index) {
+      return extension_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
-      return this.extension_.get(index);
-    }
-
+    
     // repeated .google.protobuf.DescriptorProto nested_type = 3;
-    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> nestedType_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> nestedType_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> getNestedTypeList() {
-      return this.nestedType_;
+      return nestedType_;
     }
-
-    public int getNestedTypeCount() {
-      return this.nestedType_.size();
+    public int getNestedTypeCount() { return nestedType_.size(); }
+    public com.google.protobuf.DescriptorProtos.DescriptorProto getNestedType(int index) {
+      return nestedType_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.DescriptorProto getNestedType(final int index) {
-      return this.nestedType_.get(index);
-    }
-
+    
     // repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
-    private java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> enumType_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> enumType_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> getEnumTypeList() {
-      return this.enumType_;
+      return enumType_;
     }
-
-    public int getEnumTypeCount() {
-      return this.enumType_.size();
+    public int getEnumTypeCount() { return enumType_.size(); }
+    public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(int index) {
+      return enumType_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
-      return this.enumType_.get(index);
-    }
-
+    
     // repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
-    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> extensionRange_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> extensionRange_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> getExtensionRangeList() {
-      return this.extensionRange_;
+      return extensionRange_;
     }
-
-    public int getExtensionRangeCount() {
-      return this.extensionRange_.size();
+    public int getExtensionRangeCount() { return extensionRange_.size(); }
+    public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getExtensionRange(int index) {
+      return extensionRange_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getExtensionRange(final int index) {
-      return this.extensionRange_.get(index);
-    }
-
+    
     // optional .google.protobuf.MessageOptions options = 7;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.MessageOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .MessageOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.MessageOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.MessageOptions options_ = com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.MessageOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getFieldList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getNestedTypeList()) {
+        if (!element.isInitialized()) return false;
+      }
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getFieldList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getFieldList()) {
         output.writeMessage(2, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto element : getNestedTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getNestedTypeList()) {
         output.writeMessage(3, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
         output.writeMessage(4, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange element : getExtensionRangeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange element : getExtensionRangeList()) {
         output.writeMessage(5, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
         output.writeMessage(6, element);
       }
       if (hasOptions()) {
@@ -1698,246 +1477,254 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getFieldList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getFieldList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, element);
+          .computeMessageSize(2, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto element : getNestedTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto element : getNestedTypeList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, element);
+          .computeMessageSize(3, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumDescriptorProto element : getEnumTypeList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, element);
+          .computeMessageSize(4, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange element : getExtensionRangeList()) {
+      for (com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange element : getExtensionRangeList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, element);
+          .computeMessageSize(5, element);
       }
-      for (final com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
+      for (com.google.protobuf.DescriptorProtos.FieldDescriptorProto element : getExtensionList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(6, element);
+          .computeMessageSize(6, element);
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(7, getOptions());
+          .computeMessageSize(7, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(final byte[] data,
-                                                                                 final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                 final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.DescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.DescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.DescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.DescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.DescriptorProto result = new com.google.protobuf.DescriptorProtos.DescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.DescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.DescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.DescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.DescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.DescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.DescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.DescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.DescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.DescriptorProto buildPartial() {
-        if (this.result.field_ != java.util.Collections.EMPTY_LIST) {
-          this.result.field_ = java.util.Collections.unmodifiableList(this.result.field_);
+        if (result.field_ != java.util.Collections.EMPTY_LIST) {
+          result.field_ =
+            java.util.Collections.unmodifiableList(result.field_);
         }
-        if (this.result.extension_ != java.util.Collections.EMPTY_LIST) {
-          this.result.extension_ = java.util.Collections.unmodifiableList(this.result.extension_);
+        if (result.extension_ != java.util.Collections.EMPTY_LIST) {
+          result.extension_ =
+            java.util.Collections.unmodifiableList(result.extension_);
         }
-        if (this.result.nestedType_ != java.util.Collections.EMPTY_LIST) {
-          this.result.nestedType_ = java.util.Collections.unmodifiableList(this.result.nestedType_);
+        if (result.nestedType_ != java.util.Collections.EMPTY_LIST) {
+          result.nestedType_ =
+            java.util.Collections.unmodifiableList(result.nestedType_);
         }
-        if (this.result.enumType_ != java.util.Collections.EMPTY_LIST) {
-          this.result.enumType_ = java.util.Collections.unmodifiableList(this.result.enumType_);
+        if (result.enumType_ != java.util.Collections.EMPTY_LIST) {
+          result.enumType_ =
+            java.util.Collections.unmodifiableList(result.enumType_);
         }
-        if (this.result.extensionRange_ != java.util.Collections.EMPTY_LIST) {
-          this.result.extensionRange_ = java.util.Collections.unmodifiableList(this.result.extensionRange_);
+        if (result.extensionRange_ != java.util.Collections.EMPTY_LIST) {
+          result.extensionRange_ =
+            java.util.Collections.unmodifiableList(result.extensionRange_);
         }
-        final com.google.protobuf.DescriptorProtos.DescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.DescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.DescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.DescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.DescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.DescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.DescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.DescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.DescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
         if (!other.field_.isEmpty()) {
-          if (this.result.field_.isEmpty()) {
-            this.result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          if (result.field_.isEmpty()) {
+            result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
           }
-          this.result.field_.addAll(other.field_);
+          result.field_.addAll(other.field_);
         }
         if (!other.extension_.isEmpty()) {
-          if (this.result.extension_.isEmpty()) {
-            this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          if (result.extension_.isEmpty()) {
+            result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
           }
-          this.result.extension_.addAll(other.extension_);
+          result.extension_.addAll(other.extension_);
         }
         if (!other.nestedType_.isEmpty()) {
-          if (this.result.nestedType_.isEmpty()) {
-            this.result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+          if (result.nestedType_.isEmpty()) {
+            result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
           }
-          this.result.nestedType_.addAll(other.nestedType_);
+          result.nestedType_.addAll(other.nestedType_);
         }
         if (!other.enumType_.isEmpty()) {
-          if (this.result.enumType_.isEmpty()) {
-            this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+          if (result.enumType_.isEmpty()) {
+            result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
           }
-          this.result.enumType_.addAll(other.enumType_);
+          result.enumType_.addAll(other.enumType_);
         }
         if (!other.extensionRange_.isEmpty()) {
-          if (this.result.extensionRange_.isEmpty()) {
-            this.result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
+          if (result.extensionRange_.isEmpty()) {
+            result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
           }
-          this.result.extensionRange_.addAll(other.extensionRange_);
+          result.extensionRange_.addAll(other.extensionRange_);
         }
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -1947,62 +1734,37 @@ public final class DescriptorProtos {
               break;
             }
             case 18: {
-              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addField(subBuilder.buildPartial());
               break;
             }
             case 26: {
-              final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .DescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.DescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.DescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addNestedType(subBuilder.buildPartial());
               break;
             }
             case 34: {
-              final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .EnumDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.EnumDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addEnumType(subBuilder.buildPartial());
               break;
             }
             case 42: {
-              final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .DescriptorProto
-                  .ExtensionRange
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder subBuilder = com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addExtensionRange(subBuilder.buildPartial());
               break;
             }
             case 50: {
-              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addExtension(subBuilder.buildPartial());
               break;
             }
             case 58: {
-              final com.google.protobuf.DescriptorProtos.MessageOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .MessageOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.MessageOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.MessageOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -2013,377 +1775,316 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // repeated .google.protobuf.FieldDescriptorProto field = 2;
       public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getFieldList() {
-        return java.util.Collections.unmodifiableList(this.result.field_);
+        return java.util.Collections.unmodifiableList(result.field_);
       }
-
       public int getFieldCount() {
-        return this.result.getFieldCount();
+        return result.getFieldCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getField(final int index) {
-        return this.result.getField(index);
+      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getField(int index) {
+        return result.getField(index);
       }
-
-      public Builder setField(final int index, final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        this.result.field_.set(index, value);
+      public Builder setField(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        result.field_.set(index, value);
         return this;
       }
-
-      public Builder setField(final int index,
-                              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        this.result.field_.set(index, builderForValue.build());
+      public Builder setField(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        result.field_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addField(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        if (this.result.field_.isEmpty()) {
-          this.result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addField(com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        if (result.field_.isEmpty()) {
+          result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.field_.add(value);
+        result.field_.add(value);
         return this;
       }
-
-      public Builder addField(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        if (this.result.field_.isEmpty()) {
-          this.result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addField(com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        if (result.field_.isEmpty()) {
+          result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.field_.add(builderForValue.build());
+        result.field_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllField(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
-        if (this.result.field_.isEmpty()) {
-          this.result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
+        if (result.field_.isEmpty()) {
+          result.field_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        super.addAll(values, this.result.field_);
+        super.addAll(values, result.field_);
         return this;
       }
-
       public Builder clearField() {
-        this.result.field_ = java.util.Collections.emptyList();
+        result.field_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.FieldDescriptorProto extension = 6;
       public java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> getExtensionList() {
-        return java.util.Collections.unmodifiableList(this.result.extension_);
+        return java.util.Collections.unmodifiableList(result.extension_);
       }
-
       public int getExtensionCount() {
-        return this.result.getExtensionCount();
+        return result.getExtensionCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
-        return this.result.getExtension(index);
+      public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(int index) {
+        return result.getExtension(index);
       }
-
-      public Builder setExtension(final int index,
-                                  final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        this.result.extension_.set(index, value);
+      public Builder setExtension(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        result.extension_.set(index, value);
         return this;
       }
-
-      public Builder setExtension(final int index,
-                                  final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        this.result.extension_.set(index, builderForValue.build());
+      public Builder setExtension(int index, com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        result.extension_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addExtension(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addExtension(com.google.protobuf.DescriptorProtos.FieldDescriptorProto value) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.extension_.add(value);
+        result.extension_.add(value);
         return this;
       }
-
-      public Builder addExtension(
-          final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+      public Builder addExtension(com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder builderForValue) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        this.result.extension_.add(builderForValue.build());
+        result.extension_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllExtension(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
-        if (this.result.extension_.isEmpty()) {
-          this.result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.FieldDescriptorProto> values) {
+        if (result.extension_.isEmpty()) {
+          result.extension_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.FieldDescriptorProto>();
         }
-        super.addAll(values, this.result.extension_);
+        super.addAll(values, result.extension_);
         return this;
       }
-
       public Builder clearExtension() {
-        this.result.extension_ = java.util.Collections.emptyList();
+        result.extension_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.DescriptorProto nested_type = 3;
       public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto> getNestedTypeList() {
-        return java.util.Collections.unmodifiableList(this.result.nestedType_);
+        return java.util.Collections.unmodifiableList(result.nestedType_);
       }
-
       public int getNestedTypeCount() {
-        return this.result.getNestedTypeCount();
+        return result.getNestedTypeCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.DescriptorProto getNestedType(final int index) {
-        return this.result.getNestedType(index);
+      public com.google.protobuf.DescriptorProtos.DescriptorProto getNestedType(int index) {
+        return result.getNestedType(index);
       }
-
-      public Builder setNestedType(final int index, final com.google.protobuf.DescriptorProtos.DescriptorProto value) {
-        this.result.nestedType_.set(index, value);
+      public Builder setNestedType(int index, com.google.protobuf.DescriptorProtos.DescriptorProto value) {
+        result.nestedType_.set(index, value);
         return this;
       }
-
-      public Builder setNestedType(final int index,
-                                   final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
-        this.result.nestedType_.set(index, builderForValue.build());
+      public Builder setNestedType(int index, com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
+        result.nestedType_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addNestedType(final com.google.protobuf.DescriptorProtos.DescriptorProto value) {
-        if (this.result.nestedType_.isEmpty()) {
-          this.result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+      public Builder addNestedType(com.google.protobuf.DescriptorProtos.DescriptorProto value) {
+        if (result.nestedType_.isEmpty()) {
+          result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        this.result.nestedType_.add(value);
+        result.nestedType_.add(value);
         return this;
       }
-
-      public Builder addNestedType(final com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
-        if (this.result.nestedType_.isEmpty()) {
-          this.result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+      public Builder addNestedType(com.google.protobuf.DescriptorProtos.DescriptorProto.Builder builderForValue) {
+        if (result.nestedType_.isEmpty()) {
+          result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        this.result.nestedType_.add(builderForValue.build());
+        result.nestedType_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllNestedType(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto> values) {
-        if (this.result.nestedType_.isEmpty()) {
-          this.result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto> values) {
+        if (result.nestedType_.isEmpty()) {
+          result.nestedType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto>();
         }
-        super.addAll(values, this.result.nestedType_);
+        super.addAll(values, result.nestedType_);
         return this;
       }
-
       public Builder clearNestedType() {
-        this.result.nestedType_ = java.util.Collections.emptyList();
+        result.nestedType_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
       public java.util.List<com.google.protobuf.DescriptorProtos.EnumDescriptorProto> getEnumTypeList() {
-        return java.util.Collections.unmodifiableList(this.result.enumType_);
+        return java.util.Collections.unmodifiableList(result.enumType_);
       }
-
       public int getEnumTypeCount() {
-        return this.result.getEnumTypeCount();
+        return result.getEnumTypeCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
-        return this.result.getEnumType(index);
+      public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(int index) {
+        return result.getEnumType(index);
       }
-
-      public Builder setEnumType(final int index,
-                                 final com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
-        this.result.enumType_.set(index, value);
+      public Builder setEnumType(int index, com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
+        result.enumType_.set(index, value);
         return this;
       }
-
-      public Builder setEnumType(final int index,
-                                 final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
-        this.result.enumType_.set(index, builderForValue.build());
+      public Builder setEnumType(int index, com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
+        result.enumType_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addEnumType(final com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+      public Builder addEnumType(com.google.protobuf.DescriptorProtos.EnumDescriptorProto value) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        this.result.enumType_.add(value);
+        result.enumType_.add(value);
         return this;
       }
-
-      public Builder addEnumType(
-          final com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+      public Builder addEnumType(com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder builderForValue) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        this.result.enumType_.add(builderForValue.build());
+        result.enumType_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllEnumType(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumDescriptorProto> values) {
-        if (this.result.enumType_.isEmpty()) {
-          this.result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumDescriptorProto> values) {
+        if (result.enumType_.isEmpty()) {
+          result.enumType_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumDescriptorProto>();
         }
-        super.addAll(values, this.result.enumType_);
+        super.addAll(values, result.enumType_);
         return this;
       }
-
       public Builder clearEnumType() {
-        this.result.enumType_ = java.util.Collections.emptyList();
+        result.enumType_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
       public java.util.List<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> getExtensionRangeList() {
-        return java.util.Collections.unmodifiableList(this.result.extensionRange_);
+        return java.util.Collections.unmodifiableList(result.extensionRange_);
       }
-
       public int getExtensionRangeCount() {
-        return this.result.getExtensionRangeCount();
+        return result.getExtensionRangeCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getExtensionRange(final int index) {
-        return this.result.getExtensionRange(index);
+      public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getExtensionRange(int index) {
+        return result.getExtensionRange(index);
       }
-
-      public Builder setExtensionRange(final int index,
-                                       final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange value) {
-        this.result.extensionRange_.set(index, value);
+      public Builder setExtensionRange(int index, com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange value) {
+        result.extensionRange_.set(index, value);
         return this;
       }
-
-      public Builder setExtensionRange(final int index,
-                                       final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder builderForValue) {
-        this.result.extensionRange_.set(index, builderForValue.build());
+      public Builder setExtensionRange(int index, com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder builderForValue) {
+        result.extensionRange_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addExtensionRange(
-          final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange value) {
-        if (this.result.extensionRange_.isEmpty()) {
-          this.result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
+      public Builder addExtensionRange(com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange value) {
+        if (result.extensionRange_.isEmpty()) {
+          result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
         }
-        this.result.extensionRange_.add(value);
+        result.extensionRange_.add(value);
         return this;
       }
-
-      public Builder addExtensionRange(
-          final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder builderForValue) {
-        if (this.result.extensionRange_.isEmpty()) {
-          this.result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
+      public Builder addExtensionRange(com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder builderForValue) {
+        if (result.extensionRange_.isEmpty()) {
+          result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
         }
-        this.result.extensionRange_.add(builderForValue.build());
+        result.extensionRange_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllExtensionRange(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> values) {
-        if (this.result.extensionRange_.isEmpty()) {
-          this.result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange> values) {
+        if (result.extensionRange_.isEmpty()) {
+          result.extensionRange_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange>();
         }
-        super.addAll(values, this.result.extensionRange_);
+        super.addAll(values, result.extensionRange_);
         return this;
       }
-
       public Builder clearExtensionRange() {
-        this.result.extensionRange_ = java.util.Collections.emptyList();
+        result.extensionRange_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // optional .google.protobuf.MessageOptions options = 7;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.MessageOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.MessageOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.MessageOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.MessageOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.MessageOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.MessageOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .MessageOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .MessageOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.MessageOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.MessageOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class FieldDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class FieldDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use FieldDescriptorProto.newBuilder() to construct.
-    private FieldDescriptorProto() {
-    }
-
+    private FieldDescriptorProto() {}
+    
     private static final FieldDescriptorProto defaultInstance = new FieldDescriptorProto();
-
     public static FieldDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public FieldDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FieldDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
     }
-
+    
     public static enum Type {
       TYPE_DOUBLE(0, 1),
       TYPE_FLOAT(1, 2),
@@ -2402,261 +2103,185 @@ public final class DescriptorProtos {
       TYPE_SFIXED32(14, 15),
       TYPE_SFIXED64(15, 16),
       TYPE_SINT32(16, 17),
-      TYPE_SINT64(17, 18),;
-
-      public final int getNumber() {
-        return this.value;
-      }
-
-      public static Type valueOf(final int value) {
+      TYPE_SINT64(17, 18),
+      ;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static Type valueOf(int value) {
         switch (value) {
-          case 1:
-            return TYPE_DOUBLE;
-          case 2:
-            return TYPE_FLOAT;
-          case 3:
-            return TYPE_INT64;
-          case 4:
-            return TYPE_UINT64;
-          case 5:
-            return TYPE_INT32;
-          case 6:
-            return TYPE_FIXED64;
-          case 7:
-            return TYPE_FIXED32;
-          case 8:
-            return TYPE_BOOL;
-          case 9:
-            return TYPE_STRING;
-          case 10:
-            return TYPE_GROUP;
-          case 11:
-            return TYPE_MESSAGE;
-          case 12:
-            return TYPE_BYTES;
-          case 13:
-            return TYPE_UINT32;
-          case 14:
-            return TYPE_ENUM;
-          case 15:
-            return TYPE_SFIXED32;
-          case 16:
-            return TYPE_SFIXED64;
-          case 17:
-            return TYPE_SINT32;
-          case 18:
-            return TYPE_SINT64;
-          default:
-            return null;
+          case 1: return TYPE_DOUBLE;
+          case 2: return TYPE_FLOAT;
+          case 3: return TYPE_INT64;
+          case 4: return TYPE_UINT64;
+          case 5: return TYPE_INT32;
+          case 6: return TYPE_FIXED64;
+          case 7: return TYPE_FIXED32;
+          case 8: return TYPE_BOOL;
+          case 9: return TYPE_STRING;
+          case 10: return TYPE_GROUP;
+          case 11: return TYPE_MESSAGE;
+          case 12: return TYPE_BYTES;
+          case 13: return TYPE_UINT32;
+          case 14: return TYPE_ENUM;
+          case 15: return TYPE_SFIXED32;
+          case 16: return TYPE_SFIXED64;
+          case 17: return TYPE_SINT32;
+          case 18: return TYPE_SINT64;
+          default: return null;
         }
       }
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
-        return getDescriptor().getValues().get(this.index);
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
       }
-
-      public final com.google.protobuf.Descriptors.EnumDescriptor getDescriptorForType() {
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
         return getDescriptor();
       }
-
-      public static final com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
         return com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDescriptor().getEnumTypes().get(0);
       }
-
+      
       private static final Type[] VALUES = {
-          TYPE_DOUBLE,
-          TYPE_FLOAT,
-          TYPE_INT64,
-          TYPE_UINT64,
-          TYPE_INT32,
-          TYPE_FIXED64,
-          TYPE_FIXED32,
-          TYPE_BOOL,
-          TYPE_STRING,
-          TYPE_GROUP,
-          TYPE_MESSAGE,
-          TYPE_BYTES,
-          TYPE_UINT32,
-          TYPE_ENUM,
-          TYPE_SFIXED32,
-          TYPE_SFIXED64,
-          TYPE_SINT32,
-          TYPE_SINT64,
+        TYPE_DOUBLE, TYPE_FLOAT, TYPE_INT64, TYPE_UINT64, TYPE_INT32, TYPE_FIXED64, TYPE_FIXED32, TYPE_BOOL, TYPE_STRING, TYPE_GROUP, TYPE_MESSAGE, TYPE_BYTES, TYPE_UINT32, TYPE_ENUM, TYPE_SFIXED32, TYPE_SFIXED64, TYPE_SINT32, TYPE_SINT64, 
       };
-
-      public static Type valueOf(final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
       }
-
       private final int index;
       private final int value;
-
-      private Type(final int index, final int value) {
+      private Type(int index, int value) {
         this.index = index;
         this.value = value;
       }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
     }
-
+    
     public static enum Label {
       LABEL_OPTIONAL(0, 1),
       LABEL_REQUIRED(1, 2),
-      LABEL_REPEATED(2, 3),;
-
-      public final int getNumber() {
-        return this.value;
-      }
-
-      public static Label valueOf(final int value) {
+      LABEL_REPEATED(2, 3),
+      ;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static Label valueOf(int value) {
         switch (value) {
-          case 1:
-            return LABEL_OPTIONAL;
-          case 2:
-            return LABEL_REQUIRED;
-          case 3:
-            return LABEL_REPEATED;
-          default:
-            return null;
+          case 1: return LABEL_OPTIONAL;
+          case 2: return LABEL_REQUIRED;
+          case 3: return LABEL_REPEATED;
+          default: return null;
         }
       }
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
-        return getDescriptor().getValues().get(this.index);
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
       }
-
-      public final com.google.protobuf.Descriptors.EnumDescriptor getDescriptorForType() {
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
         return getDescriptor();
       }
-
-      public static final com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
         return com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDescriptor().getEnumTypes().get(1);
       }
-
-      private static final Label[] VALUES = {LABEL_OPTIONAL, LABEL_REQUIRED, LABEL_REPEATED,};
-
-      public static Label valueOf(final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      
+      private static final Label[] VALUES = {
+        LABEL_OPTIONAL, LABEL_REQUIRED, LABEL_REPEATED, 
+      };
+      public static Label valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
       }
-
       private final int index;
       private final int value;
-
-      private Label(final int index, final int value) {
+      private Label(int index, int value) {
         this.index = index;
         this.value = value;
       }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // optional int32 number = 3;
     private boolean hasNumber;
     private int number_ = 0;
-
-    public boolean hasNumber() {
-      return this.hasNumber;
-    }
-
-    public int getNumber() {
-      return this.number_;
-    }
-
+    public boolean hasNumber() { return hasNumber; }
+    public int getNumber() { return number_; }
+    
     // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
     private boolean hasLabel;
     private com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label label_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label.LABEL_OPTIONAL;
-
-    public boolean hasLabel() {
-      return this.hasLabel;
-    }
-
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label getLabel() {
-      return this.label_;
-    }
-
+    public boolean hasLabel() { return hasLabel; }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label getLabel() { return label_; }
+    
     // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
     private boolean hasType;
     private com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type type_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_DOUBLE;
-
-    public boolean hasType() {
-      return this.hasType;
-    }
-
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type getType() {
-      return this.type_;
-    }
-
+    public boolean hasType() { return hasType; }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type getType() { return type_; }
+    
     // optional string type_name = 6;
     private boolean hasTypeName;
     private java.lang.String typeName_ = "";
-
-    public boolean hasTypeName() {
-      return this.hasTypeName;
-    }
-
-    public java.lang.String getTypeName() {
-      return this.typeName_;
-    }
-
+    public boolean hasTypeName() { return hasTypeName; }
+    public java.lang.String getTypeName() { return typeName_; }
+    
     // optional string extendee = 2;
     private boolean hasExtendee;
     private java.lang.String extendee_ = "";
-
-    public boolean hasExtendee() {
-      return this.hasExtendee;
-    }
-
-    public java.lang.String getExtendee() {
-      return this.extendee_;
-    }
-
+    public boolean hasExtendee() { return hasExtendee; }
+    public java.lang.String getExtendee() { return extendee_; }
+    
     // optional string default_value = 7;
     private boolean hasDefaultValue;
     private java.lang.String defaultValue_ = "";
-
-    public boolean hasDefaultValue() {
-      return this.hasDefaultValue;
-    }
-
-    public java.lang.String getDefaultValue() {
-      return this.defaultValue_;
-    }
-
+    public boolean hasDefaultValue() { return hasDefaultValue; }
+    public java.lang.String getDefaultValue() { return defaultValue_; }
+    
     // optional .google.protobuf.FieldOptions options = 8;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.FieldOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .FieldOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.FieldOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.FieldOptions options_ = com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.FieldOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
@@ -2683,175 +2308,172 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
       if (hasExtendee()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(2, getExtendee());
+          .computeStringSize(2, getExtendee());
       }
       if (hasNumber()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, getNumber());
+          .computeInt32Size(3, getNumber());
       }
       if (hasLabel()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(4, getLabel().getNumber());
+          .computeEnumSize(4, getLabel().getNumber());
       }
       if (hasType()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(5, getType().getNumber());
+          .computeEnumSize(5, getType().getNumber());
       }
       if (hasTypeName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(6, getTypeName());
+          .computeStringSize(6, getTypeName());
       }
       if (hasDefaultValue()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(7, getDefaultValue());
+          .computeStringSize(7, getDefaultValue());
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(8, getOptions());
+          .computeMessageSize(8, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(final byte[] data,
-                                                                                      final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                      final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FieldDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.FieldDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FieldDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.FieldDescriptorProto result = new com.google.protobuf.DescriptorProtos.FieldDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.FieldDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.FieldDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.FieldDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.FieldDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldDescriptorProto buildPartial() {
-        final com.google.protobuf.DescriptorProtos.FieldDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.FieldDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.FieldDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.FieldDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.FieldDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.FieldDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.FieldDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
@@ -2876,30 +2498,36 @@ public final class DescriptorProtos {
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -2917,13 +2545,8 @@ public final class DescriptorProtos {
               break;
             }
             case 32: {
-              final int rawValue = input.readEnum();
-              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label value = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldDescriptorProto
-                  .Label
-                  .valueOf(rawValue);
+              int rawValue = input.readEnum();
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label value = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(4, rawValue);
               } else {
@@ -2932,13 +2555,8 @@ public final class DescriptorProtos {
               break;
             }
             case 40: {
-              final int rawValue = input.readEnum();
-              final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type value = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldDescriptorProto
-                  .Type
-                  .valueOf(rawValue);
+              int rawValue = input.readEnum();
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type value = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(5, rawValue);
               } else {
@@ -2955,11 +2573,7 @@ public final class DescriptorProtos {
               break;
             }
             case 66: {
-              final com.google.protobuf.DescriptorProtos.FieldOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.FieldOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.FieldOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -2970,280 +2584,240 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // optional int32 number = 3;
       public boolean hasNumber() {
-        return this.result.hasNumber();
+        return result.hasNumber();
       }
-
       public int getNumber() {
-        return this.result.getNumber();
+        return result.getNumber();
       }
-
-      public Builder setNumber(final int value) {
-        this.result.hasNumber = true;
-        this.result.number_ = value;
+      public Builder setNumber(int value) {
+        result.hasNumber = true;
+        result.number_ = value;
         return this;
       }
-
       public Builder clearNumber() {
-        this.result.hasNumber = false;
-        this.result.number_ = 0;
+        result.hasNumber = false;
+        result.number_ = 0;
         return this;
       }
-
+      
       // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
       public boolean hasLabel() {
-        return this.result.hasLabel();
+        return result.hasLabel();
       }
-
       public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label getLabel() {
-        return this.result.getLabel();
+        return result.getLabel();
       }
-
-      public Builder setLabel(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label value) {
-        this.result.hasLabel = true;
-        this.result.label_ = value;
+      public Builder setLabel(com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label value) {
+        result.hasLabel = true;
+        result.label_ = value;
         return this;
       }
-
       public Builder clearLabel() {
-        this.result.hasLabel = false;
-        this.result.label_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label.LABEL_OPTIONAL;
+        result.hasLabel = false;
+        result.label_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label.LABEL_OPTIONAL;
         return this;
       }
-
+      
       // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
       public boolean hasType() {
-        return this.result.hasType();
+        return result.hasType();
       }
-
       public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type getType() {
-        return this.result.getType();
+        return result.getType();
       }
-
-      public Builder setType(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type value) {
-        this.result.hasType = true;
-        this.result.type_ = value;
+      public Builder setType(com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type value) {
+        result.hasType = true;
+        result.type_ = value;
         return this;
       }
-
       public Builder clearType() {
-        this.result.hasType = false;
-        this.result.type_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_DOUBLE;
+        result.hasType = false;
+        result.type_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_DOUBLE;
         return this;
       }
-
+      
       // optional string type_name = 6;
       public boolean hasTypeName() {
-        return this.result.hasTypeName();
+        return result.hasTypeName();
       }
-
       public java.lang.String getTypeName() {
-        return this.result.getTypeName();
+        return result.getTypeName();
       }
-
-      public Builder setTypeName(final java.lang.String value) {
-        this.result.hasTypeName = true;
-        this.result.typeName_ = value;
+      public Builder setTypeName(java.lang.String value) {
+        result.hasTypeName = true;
+        result.typeName_ = value;
         return this;
       }
-
       public Builder clearTypeName() {
-        this.result.hasTypeName = false;
-        this.result.typeName_ = "";
+        result.hasTypeName = false;
+        result.typeName_ = "";
         return this;
       }
-
+      
       // optional string extendee = 2;
       public boolean hasExtendee() {
-        return this.result.hasExtendee();
+        return result.hasExtendee();
       }
-
       public java.lang.String getExtendee() {
-        return this.result.getExtendee();
+        return result.getExtendee();
       }
-
-      public Builder setExtendee(final java.lang.String value) {
-        this.result.hasExtendee = true;
-        this.result.extendee_ = value;
+      public Builder setExtendee(java.lang.String value) {
+        result.hasExtendee = true;
+        result.extendee_ = value;
         return this;
       }
-
       public Builder clearExtendee() {
-        this.result.hasExtendee = false;
-        this.result.extendee_ = "";
+        result.hasExtendee = false;
+        result.extendee_ = "";
         return this;
       }
-
+      
       // optional string default_value = 7;
       public boolean hasDefaultValue() {
-        return this.result.hasDefaultValue();
+        return result.hasDefaultValue();
       }
-
       public java.lang.String getDefaultValue() {
-        return this.result.getDefaultValue();
+        return result.getDefaultValue();
       }
-
-      public Builder setDefaultValue(final java.lang.String value) {
-        this.result.hasDefaultValue = true;
-        this.result.defaultValue_ = value;
+      public Builder setDefaultValue(java.lang.String value) {
+        result.hasDefaultValue = true;
+        result.defaultValue_ = value;
         return this;
       }
-
       public Builder clearDefaultValue() {
-        this.result.hasDefaultValue = false;
-        this.result.defaultValue_ = "";
+        result.hasDefaultValue = false;
+        result.defaultValue_ = "";
         return this;
       }
-
+      
       // optional .google.protobuf.FieldOptions options = 8;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.FieldOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.FieldOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.FieldOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.FieldOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.FieldOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.FieldOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .FieldOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .FieldOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.FieldOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.FieldOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class EnumDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class EnumDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use EnumDescriptorProto.newBuilder() to construct.
-    private EnumDescriptorProto() {
-    }
-
+    private EnumDescriptorProto() {}
+    
     private static final EnumDescriptorProto defaultInstance = new EnumDescriptorProto();
-
     public static EnumDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public EnumDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // repeated .google.protobuf.EnumValueDescriptorProto value = 2;
-    private java.util.List<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> value_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> value_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> getValueList() {
-      return this.value_;
+      return value_;
     }
-
-    public int getValueCount() {
-      return this.value_.size();
+    public int getValueCount() { return value_.size(); }
+    public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getValue(int index) {
+      return value_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getValue(final int index) {
-      return this.value_.get(index);
-    }
-
+    
     // optional .google.protobuf.EnumOptions options = 3;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.EnumOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .EnumOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.EnumOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.EnumOptions options_ = com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.EnumOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto element : getValueList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto element : getValueList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto element : getValueList()) {
         output.writeMessage(2, element);
       }
       if (hasOptions()) {
@@ -3251,194 +2825,198 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto element : getValueList()) {
+      for (com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto element : getValueList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, element);
+          .computeMessageSize(2, element);
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, getOptions());
+          .computeMessageSize(3, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(final byte[] data,
-                                                                                     final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                     final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.EnumDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.EnumDescriptorProto result = new com.google.protobuf.DescriptorProtos.EnumDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.EnumDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.EnumDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.EnumDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.EnumDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.EnumDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.EnumDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumDescriptorProto buildPartial() {
-        if (this.result.value_ != java.util.Collections.EMPTY_LIST) {
-          this.result.value_ = java.util.Collections.unmodifiableList(this.result.value_);
+        if (result.value_ != java.util.Collections.EMPTY_LIST) {
+          result.value_ =
+            java.util.Collections.unmodifiableList(result.value_);
         }
-        final com.google.protobuf.DescriptorProtos.EnumDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.EnumDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.EnumDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.EnumDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.EnumDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.EnumDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.EnumDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
         if (!other.value_.isEmpty()) {
-          if (this.result.value_.isEmpty()) {
-            this.result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
+          if (result.value_.isEmpty()) {
+            result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
           }
-          this.result.value_.addAll(other.value_);
+          result.value_.addAll(other.value_);
         }
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -3448,21 +3026,13 @@ public final class DescriptorProtos {
               break;
             }
             case 18: {
-              final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .EnumValueDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addValue(subBuilder.buildPartial());
               break;
             }
             case 26: {
-              final com.google.protobuf.DescriptorProtos.EnumOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .EnumOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.EnumOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.EnumOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -3473,201 +3043,165 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // repeated .google.protobuf.EnumValueDescriptorProto value = 2;
       public java.util.List<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> getValueList() {
-        return java.util.Collections.unmodifiableList(this.result.value_);
+        return java.util.Collections.unmodifiableList(result.value_);
       }
-
       public int getValueCount() {
-        return this.result.getValueCount();
+        return result.getValueCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getValue(final int index) {
-        return this.result.getValue(index);
+      public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getValue(int index) {
+        return result.getValue(index);
       }
-
-      public Builder setValue(final int index,
-                              final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto value) {
-        this.result.value_.set(index, value);
+      public Builder setValue(int index, com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto value) {
+        result.value_.set(index, value);
         return this;
       }
-
-      public Builder setValue(final int index,
-                              final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder builderForValue) {
-        this.result.value_.set(index, builderForValue.build());
+      public Builder setValue(int index, com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder builderForValue) {
+        result.value_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addValue(final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto value) {
-        if (this.result.value_.isEmpty()) {
-          this.result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
+      public Builder addValue(com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto value) {
+        if (result.value_.isEmpty()) {
+          result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
         }
-        this.result.value_.add(value);
+        result.value_.add(value);
         return this;
       }
-
-      public Builder addValue(
-          final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder builderForValue) {
-        if (this.result.value_.isEmpty()) {
-          this.result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
+      public Builder addValue(com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder builderForValue) {
+        if (result.value_.isEmpty()) {
+          result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
         }
-        this.result.value_.add(builderForValue.build());
+        result.value_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllValue(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> values) {
-        if (this.result.value_.isEmpty()) {
-          this.result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> values) {
+        if (result.value_.isEmpty()) {
+          result.value_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto>();
         }
-        super.addAll(values, this.result.value_);
+        super.addAll(values, result.value_);
         return this;
       }
-
       public Builder clearValue() {
-        this.result.value_ = java.util.Collections.emptyList();
+        result.value_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // optional .google.protobuf.EnumOptions options = 3;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.EnumOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.EnumOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.EnumOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.EnumOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.EnumOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.EnumOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .EnumOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .EnumOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.EnumOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.EnumOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class EnumValueDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class EnumValueDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use EnumValueDescriptorProto.newBuilder() to construct.
-    private EnumValueDescriptorProto() {
-    }
-
+    private EnumValueDescriptorProto() {}
+    
     private static final EnumValueDescriptorProto defaultInstance = new EnumValueDescriptorProto();
-
     public static EnumValueDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public EnumValueDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // optional int32 number = 2;
     private boolean hasNumber;
     private int number_ = 0;
-
-    public boolean hasNumber() {
-      return this.hasNumber;
-    }
-
-    public int getNumber() {
-      return this.number_;
-    }
-
+    public boolean hasNumber() { return hasNumber; }
+    public int getNumber() { return number_; }
+    
     // optional .google.protobuf.EnumValueOptions options = 3;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.EnumValueOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .EnumValueOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.EnumValueOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.EnumValueOptions options_ = com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.EnumValueOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
@@ -3679,155 +3213,152 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
       if (hasNumber()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(2, getNumber());
+          .computeInt32Size(2, getNumber());
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, getOptions());
+          .computeMessageSize(3, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(final byte[] data,
-                                                                                          final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
+    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
     public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final java.io.InputStream input) throws java.io.IOException {
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto result = new com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto buildPartial() {
-        final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
@@ -3837,30 +3368,36 @@ public final class DescriptorProtos {
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -3874,11 +3411,7 @@ public final class DescriptorProtos {
               break;
             }
             case 26: {
-              final com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .EnumValueOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.EnumValueOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -3889,175 +3422,150 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // optional int32 number = 2;
       public boolean hasNumber() {
-        return this.result.hasNumber();
+        return result.hasNumber();
       }
-
       public int getNumber() {
-        return this.result.getNumber();
+        return result.getNumber();
       }
-
-      public Builder setNumber(final int value) {
-        this.result.hasNumber = true;
-        this.result.number_ = value;
+      public Builder setNumber(int value) {
+        result.hasNumber = true;
+        result.number_ = value;
         return this;
       }
-
       public Builder clearNumber() {
-        this.result.hasNumber = false;
-        this.result.number_ = 0;
+        result.hasNumber = false;
+        result.number_ = 0;
         return this;
       }
-
+      
       // optional .google.protobuf.EnumValueOptions options = 3;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.EnumValueOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.EnumValueOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.EnumValueOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.EnumValueOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .EnumValueOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .EnumValueOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.EnumValueOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.EnumValueOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class ServiceDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class ServiceDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use ServiceDescriptorProto.newBuilder() to construct.
-    private ServiceDescriptorProto() {
-    }
-
+    private ServiceDescriptorProto() {}
+    
     private static final ServiceDescriptorProto defaultInstance = new ServiceDescriptorProto();
-
     public static ServiceDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public ServiceDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // repeated .google.protobuf.MethodDescriptorProto method = 2;
-    private java.util.List<com.google.protobuf.DescriptorProtos.MethodDescriptorProto> method_ = java.util
-        .Collections
-        .emptyList();
-
+    private java.util.List<com.google.protobuf.DescriptorProtos.MethodDescriptorProto> method_ =
+      java.util.Collections.emptyList();
     public java.util.List<com.google.protobuf.DescriptorProtos.MethodDescriptorProto> getMethodList() {
-      return this.method_;
+      return method_;
     }
-
-    public int getMethodCount() {
-      return this.method_.size();
+    public int getMethodCount() { return method_.size(); }
+    public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getMethod(int index) {
+      return method_.get(index);
     }
-
-    public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getMethod(final int index) {
-      return this.method_.get(index);
-    }
-
+    
     // optional .google.protobuf.ServiceOptions options = 3;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.ServiceOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .ServiceOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.ServiceOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.ServiceOptions options_ = com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.ServiceOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.MethodDescriptorProto element : getMethodList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.MethodDescriptorProto element : getMethodList()) {
+      for (com.google.protobuf.DescriptorProtos.MethodDescriptorProto element : getMethodList()) {
         output.writeMessage(2, element);
       }
       if (hasOptions()) {
@@ -4065,194 +3573,198 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
-      for (final com.google.protobuf.DescriptorProtos.MethodDescriptorProto element : getMethodList()) {
+      for (com.google.protobuf.DescriptorProtos.MethodDescriptorProto element : getMethodList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, element);
+          .computeMessageSize(2, element);
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, getOptions());
+          .computeMessageSize(3, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(final byte[] data,
-                                                                                        final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                        final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.ServiceDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.ServiceDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.ServiceDescriptorProto result = new com.google.protobuf.DescriptorProtos.ServiceDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.ServiceDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.ServiceDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.ServiceDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.ServiceDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto buildPartial() {
-        if (this.result.method_ != java.util.Collections.EMPTY_LIST) {
-          this.result.method_ = java.util.Collections.unmodifiableList(this.result.method_);
+        if (result.method_ != java.util.Collections.EMPTY_LIST) {
+          result.method_ =
+            java.util.Collections.unmodifiableList(result.method_);
         }
-        final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.ServiceDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.ServiceDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.ServiceDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.ServiceDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.ServiceDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
         if (!other.method_.isEmpty()) {
-          if (this.result.method_.isEmpty()) {
-            this.result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
+          if (result.method_.isEmpty()) {
+            result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
           }
-          this.result.method_.addAll(other.method_);
+          result.method_.addAll(other.method_);
         }
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -4262,21 +3774,13 @@ public final class DescriptorProtos {
               break;
             }
             case 18: {
-              final com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .MethodDescriptorProto
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder subBuilder = com.google.protobuf.DescriptorProtos.MethodDescriptorProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addMethod(subBuilder.buildPartial());
               break;
             }
             case 26: {
-              final com.google.protobuf.DescriptorProtos.ServiceOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .ServiceOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.ServiceOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.ServiceOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -4287,213 +3791,171 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // repeated .google.protobuf.MethodDescriptorProto method = 2;
       public java.util.List<com.google.protobuf.DescriptorProtos.MethodDescriptorProto> getMethodList() {
-        return java.util.Collections.unmodifiableList(this.result.method_);
+        return java.util.Collections.unmodifiableList(result.method_);
       }
-
       public int getMethodCount() {
-        return this.result.getMethodCount();
+        return result.getMethodCount();
       }
-
-      public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getMethod(final int index) {
-        return this.result.getMethod(index);
+      public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getMethod(int index) {
+        return result.getMethod(index);
       }
-
-      public Builder setMethod(final int index,
-                               final com.google.protobuf.DescriptorProtos.MethodDescriptorProto value) {
-        this.result.method_.set(index, value);
+      public Builder setMethod(int index, com.google.protobuf.DescriptorProtos.MethodDescriptorProto value) {
+        result.method_.set(index, value);
         return this;
       }
-
-      public Builder setMethod(final int index,
-                               final com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder builderForValue) {
-        this.result.method_.set(index, builderForValue.build());
+      public Builder setMethod(int index, com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder builderForValue) {
+        result.method_.set(index, builderForValue.build());
         return this;
       }
-
-      public Builder addMethod(final com.google.protobuf.DescriptorProtos.MethodDescriptorProto value) {
-        if (this.result.method_.isEmpty()) {
-          this.result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
+      public Builder addMethod(com.google.protobuf.DescriptorProtos.MethodDescriptorProto value) {
+        if (result.method_.isEmpty()) {
+          result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
         }
-        this.result.method_.add(value);
+        result.method_.add(value);
         return this;
       }
-
-      public Builder addMethod(
-          final com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder builderForValue) {
-        if (this.result.method_.isEmpty()) {
-          this.result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
+      public Builder addMethod(com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder builderForValue) {
+        if (result.method_.isEmpty()) {
+          result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
         }
-        this.result.method_.add(builderForValue.build());
+        result.method_.add(builderForValue.build());
         return this;
       }
-
       public Builder addAllMethod(
-          final java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.MethodDescriptorProto> values) {
-        if (this.result.method_.isEmpty()) {
-          this.result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.MethodDescriptorProto> values) {
+        if (result.method_.isEmpty()) {
+          result.method_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.MethodDescriptorProto>();
         }
-        super.addAll(values, this.result.method_);
+        super.addAll(values, result.method_);
         return this;
       }
-
       public Builder clearMethod() {
-        this.result.method_ = java.util.Collections.emptyList();
+        result.method_ = java.util.Collections.emptyList();
         return this;
       }
-
+      
       // optional .google.protobuf.ServiceOptions options = 3;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.ServiceOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.ServiceOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.ServiceOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.ServiceOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.ServiceOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.ServiceOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .ServiceOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .ServiceOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.ServiceOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.ServiceOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class MethodDescriptorProto extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class MethodDescriptorProto extends
+      com.google.protobuf.GeneratedMessage {
     // Use MethodDescriptorProto.newBuilder() to construct.
-    private MethodDescriptorProto() {
-    }
-
+    private MethodDescriptorProto() {}
+    
     private static final MethodDescriptorProto defaultInstance = new MethodDescriptorProto();
-
     public static MethodDescriptorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public MethodDescriptorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MethodDescriptorProto_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
     }
-
+    
     // optional string name = 1;
     private boolean hasName;
     private java.lang.String name_ = "";
-
-    public boolean hasName() {
-      return this.hasName;
-    }
-
-    public java.lang.String getName() {
-      return this.name_;
-    }
-
+    public boolean hasName() { return hasName; }
+    public java.lang.String getName() { return name_; }
+    
     // optional string input_type = 2;
     private boolean hasInputType;
     private java.lang.String inputType_ = "";
-
-    public boolean hasInputType() {
-      return this.hasInputType;
-    }
-
-    public java.lang.String getInputType() {
-      return this.inputType_;
-    }
-
+    public boolean hasInputType() { return hasInputType; }
+    public java.lang.String getInputType() { return inputType_; }
+    
     // optional string output_type = 3;
     private boolean hasOutputType;
     private java.lang.String outputType_ = "";
-
-    public boolean hasOutputType() {
-      return this.hasOutputType;
-    }
-
-    public java.lang.String getOutputType() {
-      return this.outputType_;
-    }
-
+    public boolean hasOutputType() { return hasOutputType; }
+    public java.lang.String getOutputType() { return outputType_; }
+    
     // optional .google.protobuf.MethodOptions options = 4;
     private boolean hasOptions;
-    private com.google.protobuf.DescriptorProtos.MethodOptions options_ = com.google
-        .protobuf
-        .DescriptorProtos
-        .MethodOptions
-        .getDefaultInstance();
-
-    public boolean hasOptions() {
-      return this.hasOptions;
-    }
-
-    public com.google.protobuf.DescriptorProtos.MethodOptions getOptions() {
-      return this.options_;
-    }
-
+    private com.google.protobuf.DescriptorProtos.MethodOptions options_ = com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance();
+    public boolean hasOptions() { return hasOptions; }
+    public com.google.protobuf.DescriptorProtos.MethodOptions getOptions() { return options_; }
+    
+    @Override
     public final boolean isInitialized() {
+      if (hasOptions()) {
+        if (!getOptions().isInitialized()) return false;
+      }
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
       if (hasName()) {
         output.writeString(1, getName());
       }
@@ -4508,159 +3970,156 @@ public final class DescriptorProtos {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasName()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getName());
+          .computeStringSize(1, getName());
       }
       if (hasInputType()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(2, getInputType());
+          .computeStringSize(2, getInputType());
       }
       if (hasOutputType()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(3, getOutputType());
+          .computeStringSize(3, getOutputType());
       }
       if (hasOptions()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, getOptions());
+          .computeMessageSize(4, getOptions());
       }
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(final byte[] data,
-                                                                                       final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(final java.io.InputStream input,
-                                                                                       final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MethodDescriptorProto parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MethodDescriptorProto prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.MethodDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MethodDescriptorProto.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.MethodDescriptorProto result = new com.google.protobuf.DescriptorProtos.MethodDescriptorProto();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.MethodDescriptorProto internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.MethodDescriptorProto();
+        result = new com.google.protobuf.DescriptorProtos.MethodDescriptorProto();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.MethodDescriptorProto.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.MethodDescriptorProto.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodDescriptorProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.MethodDescriptorProto buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodDescriptorProto buildPartial() {
-        final com.google.protobuf.DescriptorProtos.MethodDescriptorProto returnMe = this.result;
-        this.result = null;
+        com.google.protobuf.DescriptorProtos.MethodDescriptorProto returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.MethodDescriptorProto) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.MethodDescriptorProto) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.MethodDescriptorProto)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.MethodDescriptorProto other) {
-        if (other == com.google.protobuf.DescriptorProtos.MethodDescriptorProto.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.MethodDescriptorProto other) {
+        if (other == com.google.protobuf.DescriptorProtos.MethodDescriptorProto.getDefaultInstance()) return this;
         if (other.hasName()) {
           setName(other.getName());
         }
@@ -4673,30 +4132,36 @@ public final class DescriptorProtos {
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -4714,11 +4179,7 @@ public final class DescriptorProtos {
               break;
             }
             case 34: {
-              final com.google.protobuf.DescriptorProtos.MethodOptions.Builder subBuilder = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .MethodOptions
-                  .newBuilder();
+              com.google.protobuf.DescriptorProtos.MethodOptions.Builder subBuilder = com.google.protobuf.DescriptorProtos.MethodOptions.newBuilder();
               if (hasOptions()) {
                 subBuilder.mergeFrom(getOptions());
               }
@@ -4729,268 +4190,235 @@ public final class DescriptorProtos {
           }
         }
       }
-
+      
+      
       // optional string name = 1;
       public boolean hasName() {
-        return this.result.hasName();
+        return result.hasName();
       }
-
       public java.lang.String getName() {
-        return this.result.getName();
+        return result.getName();
       }
-
-      public Builder setName(final java.lang.String value) {
-        this.result.hasName = true;
-        this.result.name_ = value;
+      public Builder setName(java.lang.String value) {
+        result.hasName = true;
+        result.name_ = value;
         return this;
       }
-
       public Builder clearName() {
-        this.result.hasName = false;
-        this.result.name_ = "";
+        result.hasName = false;
+        result.name_ = "";
         return this;
       }
-
+      
       // optional string input_type = 2;
       public boolean hasInputType() {
-        return this.result.hasInputType();
+        return result.hasInputType();
       }
-
       public java.lang.String getInputType() {
-        return this.result.getInputType();
+        return result.getInputType();
       }
-
-      public Builder setInputType(final java.lang.String value) {
-        this.result.hasInputType = true;
-        this.result.inputType_ = value;
+      public Builder setInputType(java.lang.String value) {
+        result.hasInputType = true;
+        result.inputType_ = value;
         return this;
       }
-
       public Builder clearInputType() {
-        this.result.hasInputType = false;
-        this.result.inputType_ = "";
+        result.hasInputType = false;
+        result.inputType_ = "";
         return this;
       }
-
+      
       // optional string output_type = 3;
       public boolean hasOutputType() {
-        return this.result.hasOutputType();
+        return result.hasOutputType();
       }
-
       public java.lang.String getOutputType() {
-        return this.result.getOutputType();
+        return result.getOutputType();
       }
-
-      public Builder setOutputType(final java.lang.String value) {
-        this.result.hasOutputType = true;
-        this.result.outputType_ = value;
+      public Builder setOutputType(java.lang.String value) {
+        result.hasOutputType = true;
+        result.outputType_ = value;
         return this;
       }
-
       public Builder clearOutputType() {
-        this.result.hasOutputType = false;
-        this.result.outputType_ = "";
+        result.hasOutputType = false;
+        result.outputType_ = "";
         return this;
       }
-
+      
       // optional .google.protobuf.MethodOptions options = 4;
       public boolean hasOptions() {
-        return this.result.hasOptions();
+        return result.hasOptions();
       }
-
       public com.google.protobuf.DescriptorProtos.MethodOptions getOptions() {
-        return this.result.getOptions();
+        return result.getOptions();
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.MethodOptions value) {
-        this.result.hasOptions = true;
-        this.result.options_ = value;
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.MethodOptions value) {
+        result.hasOptions = true;
+        result.options_ = value;
         return this;
       }
-
-      public Builder setOptions(final com.google.protobuf.DescriptorProtos.MethodOptions.Builder builderForValue) {
-        this.result.hasOptions = true;
-        this.result.options_ = builderForValue.build();
+      public Builder setOptions(com.google.protobuf.DescriptorProtos.MethodOptions.Builder builderForValue) {
+        result.hasOptions = true;
+        result.options_ = builderForValue.build();
         return this;
       }
-
-      public Builder mergeOptions(final com.google.protobuf.DescriptorProtos.MethodOptions value) {
-        if (this.result.hasOptions() && this.result.options_ != com.google
-            .protobuf
-            .DescriptorProtos
-            .MethodOptions
-            .getDefaultInstance()) {
-          this.result.options_ = com.google
-              .protobuf
-              .DescriptorProtos
-              .MethodOptions
-              .newBuilder(this.result.options_)
-              .mergeFrom(value)
-              .buildPartial();
+      public Builder mergeOptions(com.google.protobuf.DescriptorProtos.MethodOptions value) {
+        if (result.hasOptions() &&
+            result.options_ != com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance()) {
+          result.options_ =
+            com.google.protobuf.DescriptorProtos.MethodOptions.newBuilder(result.options_).mergeFrom(value).buildPartial();
         } else {
-          this.result.options_ = value;
+          result.options_ = value;
         }
-        this.result.hasOptions = true;
+        result.hasOptions = true;
         return this;
       }
-
       public Builder clearOptions() {
-        this.result.hasOptions = false;
-        this.result.options_ = com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance();
+        result.hasOptions = false;
+        result.options_ = com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance();
         return this;
       }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class FileOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class FileOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        FileOptions> {
     // Use FileOptions.newBuilder() to construct.
-    private FileOptions() {
-    }
-
+    private FileOptions() {}
+    
     private static final FileOptions defaultInstance = new FileOptions();
-
     public static FileOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public FileOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FileOptions_fieldAccessorTable;
     }
-
+    
     public static enum OptimizeMode {
       SPEED(0, 1),
-      CODE_SIZE(1, 2),;
-
-      public final int getNumber() {
-        return this.value;
-      }
-
-      public static OptimizeMode valueOf(final int value) {
+      CODE_SIZE(1, 2),
+      ;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static OptimizeMode valueOf(int value) {
         switch (value) {
-          case 1:
-            return SPEED;
-          case 2:
-            return CODE_SIZE;
-          default:
-            return null;
+          case 1: return SPEED;
+          case 2: return CODE_SIZE;
+          default: return null;
         }
       }
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
-        return getDescriptor().getValues().get(this.index);
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
       }
-
-      public final com.google.protobuf.Descriptors.EnumDescriptor getDescriptorForType() {
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
         return getDescriptor();
       }
-
-      public static final com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
         return com.google.protobuf.DescriptorProtos.FileOptions.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final OptimizeMode[] VALUES = {SPEED, CODE_SIZE,};
-
-      public static OptimizeMode valueOf(final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      
+      private static final OptimizeMode[] VALUES = {
+        SPEED, CODE_SIZE, 
+      };
+      public static OptimizeMode valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
       }
-
       private final int index;
       private final int value;
-
-      private OptimizeMode(final int index, final int value) {
+      private OptimizeMode(int index, int value) {
         this.index = index;
         this.value = value;
       }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
     }
-
+    
     // optional string java_package = 1;
     private boolean hasJavaPackage;
     private java.lang.String javaPackage_ = "";
-
-    public boolean hasJavaPackage() {
-      return this.hasJavaPackage;
-    }
-
-    public java.lang.String getJavaPackage() {
-      return this.javaPackage_;
-    }
-
+    public boolean hasJavaPackage() { return hasJavaPackage; }
+    public java.lang.String getJavaPackage() { return javaPackage_; }
+    
     // optional string java_outer_classname = 8;
     private boolean hasJavaOuterClassname;
     private java.lang.String javaOuterClassname_ = "";
-
-    public boolean hasJavaOuterClassname() {
-      return this.hasJavaOuterClassname;
-    }
-
-    public java.lang.String getJavaOuterClassname() {
-      return this.javaOuterClassname_;
-    }
-
+    public boolean hasJavaOuterClassname() { return hasJavaOuterClassname; }
+    public java.lang.String getJavaOuterClassname() { return javaOuterClassname_; }
+    
     // optional bool java_multiple_files = 10 [default = false];
     private boolean hasJavaMultipleFiles;
     private boolean javaMultipleFiles_ = false;
-
-    public boolean hasJavaMultipleFiles() {
-      return this.hasJavaMultipleFiles;
-    }
-
-    public boolean getJavaMultipleFiles() {
-      return this.javaMultipleFiles_;
-    }
-
+    public boolean hasJavaMultipleFiles() { return hasJavaMultipleFiles; }
+    public boolean getJavaMultipleFiles() { return javaMultipleFiles_; }
+    
     // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
     private boolean hasOptimizeFor;
     private com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode optimizeFor_ = com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode.CODE_SIZE;
-
-    public boolean hasOptimizeFor() {
-      return this.hasOptimizeFor;
+    public boolean hasOptimizeFor() { return hasOptimizeFor; }
+    public com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode getOptimizeFor() { return optimizeFor_; }
+    
+    // optional bool java_optimize_for_android = 11 [default = false];
+    private boolean hasJavaOptimizeForAndroid;
+    private boolean javaOptimizeForAndroid_ = false;
+    public boolean hasJavaOptimizeForAndroid() { return hasJavaOptimizeForAndroid; }
+    public boolean getJavaOptimizeForAndroid() { return javaOptimizeForAndroid_; }
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
     }
-
-    public com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode getOptimizeFor() {
-      return this.optimizeFor_;
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
     }
-
-    // optional string objectivec_package = 11;
-    private boolean hasObjectivecPackage;
-    private java.lang.String objectivecPackage_ = "";
-
-    public boolean hasObjectivecPackage() {
-      return this.hasObjectivecPackage;
-    }
-
-    public java.lang.String getObjectivecPackage() {
-      return this.objectivecPackage_;
-    }
-
-    // optional string objectivec_class_prefix = 12;
-    private boolean hasObjectivecClassPrefix;
-    private java.lang.String objectivecClassPrefix_ = "";
-
-    public boolean hasObjectivecClassPrefix() {
-      return this.hasObjectivecClassPrefix;
-    }
-
-    public java.lang.String getObjectivecClassPrefix() {
-      return this.objectivecClassPrefix_;
-    }
-
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
       if (hasJavaPackage()) {
         output.writeString(1, getJavaPackage());
       }
@@ -5003,175 +4431,179 @@ public final class DescriptorProtos {
       if (hasJavaMultipleFiles()) {
         output.writeBool(10, getJavaMultipleFiles());
       }
-      if (hasObjectivecPackage()) {
-        output.writeString(11, getObjectivecPackage());
+      if (hasJavaOptimizeForAndroid()) {
+        output.writeBool(11, getJavaOptimizeForAndroid());
       }
-      if (hasObjectivecClassPrefix()) {
-        output.writeString(12, getObjectivecClassPrefix());
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
       }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasJavaPackage()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getJavaPackage());
+          .computeStringSize(1, getJavaPackage());
       }
       if (hasJavaOuterClassname()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(8, getJavaOuterClassname());
+          .computeStringSize(8, getJavaOuterClassname());
       }
       if (hasOptimizeFor()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(9, getOptimizeFor().getNumber());
+          .computeEnumSize(9, getOptimizeFor().getNumber());
       }
       if (hasJavaMultipleFiles()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(10, getJavaMultipleFiles());
+          .computeBoolSize(10, getJavaMultipleFiles());
       }
-      if (hasObjectivecPackage()) {
+      if (hasJavaOptimizeForAndroid()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(11, getObjectivecPackage());
+          .computeBoolSize(11, getJavaOptimizeForAndroid());
       }
-      if (hasObjectivecClassPrefix()) {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(12, getObjectivecClassPrefix());
+          .computeMessageSize(999, element);
       }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final com.google.protobuf.ByteString data)
+    
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final com.google.protobuf.ByteString data,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final byte[] data)
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final byte[] data,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(final java.io.InputStream input,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FileOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.FileOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.FileOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.FileOptions result = new com.google.protobuf.DescriptorProtos.FileOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.FileOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.FileOptions();
+        result = new com.google.protobuf.DescriptorProtos.FileOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.FileOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.FileOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FileOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.FileOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.FileOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.FileOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.FileOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.FileOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.FileOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.FileOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.FileOptions.getDefaultInstance()) return this;
         if (other.hasJavaPackage()) {
           setJavaPackage(other.getJavaPackage());
         }
@@ -5184,36 +4616,45 @@ public final class DescriptorProtos {
         if (other.hasOptimizeFor()) {
           setOptimizeFor(other.getOptimizeFor());
         }
-        if (other.hasObjectivecPackage()) {
-          setObjectivecPackage(other.getObjectivecPackage());
+        if (other.hasJavaOptimizeForAndroid()) {
+          setJavaOptimizeForAndroid(other.getJavaOptimizeForAndroid());
         }
-        if (other.hasObjectivecClassPrefix()) {
-          setObjectivecClassPrefix(other.getObjectivecClassPrefix());
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -5227,13 +4668,8 @@ public final class DescriptorProtos {
               break;
             }
             case 72: {
-              final int rawValue = input.readEnum();
-              final com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode value = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FileOptions
-                  .OptimizeMode
-                  .valueOf(rawValue);
+              int rawValue = input.readEnum();
+              com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode value = com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(9, rawValue);
               } else {
@@ -5245,359 +4681,415 @@ public final class DescriptorProtos {
               setJavaMultipleFiles(input.readBool());
               break;
             }
-            case 90: {
-              setObjectivecPackage(input.readString());
+            case 88: {
+              setJavaOptimizeForAndroid(input.readBool());
               break;
             }
-            case 98: {
-              setObjectivecClassPrefix(input.readString());
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
-
+      
+      
       // optional string java_package = 1;
       public boolean hasJavaPackage() {
-        return this.result.hasJavaPackage();
+        return result.hasJavaPackage();
       }
-
       public java.lang.String getJavaPackage() {
-        return this.result.getJavaPackage();
+        return result.getJavaPackage();
       }
-
-      public Builder setJavaPackage(final java.lang.String value) {
-        this.result.hasJavaPackage = true;
-        this.result.javaPackage_ = value;
+      public Builder setJavaPackage(java.lang.String value) {
+        result.hasJavaPackage = true;
+        result.javaPackage_ = value;
         return this;
       }
-
       public Builder clearJavaPackage() {
-        this.result.hasJavaPackage = false;
-        this.result.javaPackage_ = "";
+        result.hasJavaPackage = false;
+        result.javaPackage_ = "";
         return this;
       }
-
+      
       // optional string java_outer_classname = 8;
       public boolean hasJavaOuterClassname() {
-        return this.result.hasJavaOuterClassname();
+        return result.hasJavaOuterClassname();
       }
-
       public java.lang.String getJavaOuterClassname() {
-        return this.result.getJavaOuterClassname();
+        return result.getJavaOuterClassname();
       }
-
-      public Builder setJavaOuterClassname(final java.lang.String value) {
-        this.result.hasJavaOuterClassname = true;
-        this.result.javaOuterClassname_ = value;
+      public Builder setJavaOuterClassname(java.lang.String value) {
+        result.hasJavaOuterClassname = true;
+        result.javaOuterClassname_ = value;
         return this;
       }
-
       public Builder clearJavaOuterClassname() {
-        this.result.hasJavaOuterClassname = false;
-        this.result.javaOuterClassname_ = "";
+        result.hasJavaOuterClassname = false;
+        result.javaOuterClassname_ = "";
         return this;
       }
-
+      
       // optional bool java_multiple_files = 10 [default = false];
       public boolean hasJavaMultipleFiles() {
-        return this.result.hasJavaMultipleFiles();
+        return result.hasJavaMultipleFiles();
       }
-
       public boolean getJavaMultipleFiles() {
-        return this.result.getJavaMultipleFiles();
+        return result.getJavaMultipleFiles();
       }
-
-      public Builder setJavaMultipleFiles(final boolean value) {
-        this.result.hasJavaMultipleFiles = true;
-        this.result.javaMultipleFiles_ = value;
+      public Builder setJavaMultipleFiles(boolean value) {
+        result.hasJavaMultipleFiles = true;
+        result.javaMultipleFiles_ = value;
         return this;
       }
-
       public Builder clearJavaMultipleFiles() {
-        this.result.hasJavaMultipleFiles = false;
-        this.result.javaMultipleFiles_ = false;
+        result.hasJavaMultipleFiles = false;
+        result.javaMultipleFiles_ = false;
         return this;
       }
-
+      
       // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
       public boolean hasOptimizeFor() {
-        return this.result.hasOptimizeFor();
+        return result.hasOptimizeFor();
       }
-
       public com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode getOptimizeFor() {
-        return this.result.getOptimizeFor();
+        return result.getOptimizeFor();
       }
-
-      public Builder setOptimizeFor(final com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode value) {
-        this.result.hasOptimizeFor = true;
-        this.result.optimizeFor_ = value;
+      public Builder setOptimizeFor(com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode value) {
+        result.hasOptimizeFor = true;
+        result.optimizeFor_ = value;
         return this;
       }
-
       public Builder clearOptimizeFor() {
-        this.result.hasOptimizeFor = false;
-        this.result.optimizeFor_ = com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode.CODE_SIZE;
+        result.hasOptimizeFor = false;
+        result.optimizeFor_ = com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode.CODE_SIZE;
         return this;
       }
-
-      // optional string objectivec_package = 11;
-      public boolean hasObjectivecPackage() {
-        return this.result.hasObjectivecPackage();
+      
+      // optional bool java_optimize_for_android = 11 [default = false];
+      public boolean hasJavaOptimizeForAndroid() {
+        return result.hasJavaOptimizeForAndroid();
       }
-
-      public java.lang.String getObjectivecPackage() {
-        return this.result.getObjectivecPackage();
+      public boolean getJavaOptimizeForAndroid() {
+        return result.getJavaOptimizeForAndroid();
       }
-
-      public Builder setObjectivecPackage(final java.lang.String value) {
-        this.result.hasObjectivecPackage = true;
-        this.result.objectivecPackage_ = value;
+      public Builder setJavaOptimizeForAndroid(boolean value) {
+        result.hasJavaOptimizeForAndroid = true;
+        result.javaOptimizeForAndroid_ = value;
         return this;
       }
-
-      public Builder clearObjectivecPackage() {
-        this.result.hasObjectivecPackage = false;
-        this.result.objectivecPackage_ = "";
+      public Builder clearJavaOptimizeForAndroid() {
+        result.hasJavaOptimizeForAndroid = false;
+        result.javaOptimizeForAndroid_ = false;
         return this;
       }
-
-      // optional string objectivec_class_prefix = 12;
-      public boolean hasObjectivecClassPrefix() {
-        return this.result.hasObjectivecClassPrefix();
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
       }
-
-      public java.lang.String getObjectivecClassPrefix() {
-        return this.result.getObjectivecClassPrefix();
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
       }
-
-      public Builder setObjectivecClassPrefix(final java.lang.String value) {
-        this.result.hasObjectivecClassPrefix = true;
-        this.result.objectivecClassPrefix_ = value;
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
         return this;
       }
-
-      public Builder clearObjectivecClassPrefix() {
-        this.result.hasObjectivecClassPrefix = false;
-        this.result.objectivecClassPrefix_ = "";
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
         return this;
       }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class MessageOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class MessageOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        MessageOptions> {
     // Use MessageOptions.newBuilder() to construct.
-    private MessageOptions() {
-    }
-
+    private MessageOptions() {}
+    
     private static final MessageOptions defaultInstance = new MessageOptions();
-
     public static MessageOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public MessageOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MessageOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
     }
-
+    
     // optional bool message_set_wire_format = 1 [default = false];
     private boolean hasMessageSetWireFormat;
     private boolean messageSetWireFormat_ = false;
-
-    public boolean hasMessageSetWireFormat() {
-      return this.hasMessageSetWireFormat;
+    public boolean hasMessageSetWireFormat() { return hasMessageSetWireFormat; }
+    public boolean getMessageSetWireFormat() { return messageSetWireFormat_; }
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
     }
-
-    public boolean getMessageSetWireFormat() {
-      return this.messageSetWireFormat_;
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
     }
-
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
       if (hasMessageSetWireFormat()) {
         output.writeBool(1, getMessageSetWireFormat());
       }
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasMessageSetWireFormat()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(1, getMessageSetWireFormat());
+          .computeBoolSize(1, getMessageSetWireFormat());
       }
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(final byte[] data,
-                                                                                final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(final java.io.InputStream input,
-                                                                                final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MessageOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MessageOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.MessageOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.MessageOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MessageOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.MessageOptions result = new com.google.protobuf.DescriptorProtos.MessageOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.MessageOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.MessageOptions();
+        result = new com.google.protobuf.DescriptorProtos.MessageOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.MessageOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MessageOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MessageOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.MessageOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MessageOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.MessageOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.MessageOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.MessageOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.MessageOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.MessageOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.MessageOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.MessageOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.MessageOptions.getDefaultInstance()) return this;
         if (other.hasMessageSetWireFormat()) {
           setMessageSetWireFormat(other.getMessageSetWireFormat());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
@@ -5606,329 +5098,414 @@ public final class DescriptorProtos {
               setMessageSetWireFormat(input.readBool());
               break;
             }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
+              break;
+            }
           }
         }
       }
-
+      
+      
       // optional bool message_set_wire_format = 1 [default = false];
       public boolean hasMessageSetWireFormat() {
-        return this.result.hasMessageSetWireFormat();
+        return result.hasMessageSetWireFormat();
       }
-
       public boolean getMessageSetWireFormat() {
-        return this.result.getMessageSetWireFormat();
+        return result.getMessageSetWireFormat();
       }
-
-      public Builder setMessageSetWireFormat(final boolean value) {
-        this.result.hasMessageSetWireFormat = true;
-        this.result.messageSetWireFormat_ = value;
+      public Builder setMessageSetWireFormat(boolean value) {
+        result.hasMessageSetWireFormat = true;
+        result.messageSetWireFormat_ = value;
         return this;
       }
-
       public Builder clearMessageSetWireFormat() {
-        this.result.hasMessageSetWireFormat = false;
-        this.result.messageSetWireFormat_ = false;
+        result.hasMessageSetWireFormat = false;
+        result.messageSetWireFormat_ = false;
         return this;
       }
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class FieldOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class FieldOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        FieldOptions> {
     // Use FieldOptions.newBuilder() to construct.
-    private FieldOptions() {
-    }
-
+    private FieldOptions() {}
+    
     private static final FieldOptions defaultInstance = new FieldOptions();
-
     public static FieldOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public FieldOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FieldOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
     }
-
+    
     public static enum CType {
       CORD(0, 1),
-      STRING_PIECE(1, 2),;
-
-      public final int getNumber() {
-        return this.value;
-      }
-
-      public static CType valueOf(final int value) {
+      STRING_PIECE(1, 2),
+      ;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static CType valueOf(int value) {
         switch (value) {
-          case 1:
-            return CORD;
-          case 2:
-            return STRING_PIECE;
-          default:
-            return null;
+          case 1: return CORD;
+          case 2: return STRING_PIECE;
+          default: return null;
         }
       }
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor getValueDescriptor() {
-        return getDescriptor().getValues().get(this.index);
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
       }
-
-      public final com.google.protobuf.Descriptors.EnumDescriptor getDescriptorForType() {
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
         return getDescriptor();
       }
-
-      public static final com.google.protobuf.Descriptors.EnumDescriptor getDescriptor() {
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
         return com.google.protobuf.DescriptorProtos.FieldOptions.getDescriptor().getEnumTypes().get(0);
       }
-
-      private static final CType[] VALUES = {CORD, STRING_PIECE,};
-
-      public static CType valueOf(final com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      
+      private static final CType[] VALUES = {
+        CORD, STRING_PIECE, 
+      };
+      public static CType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException("EnumValueDescriptor is not for this type.");
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
       }
-
       private final int index;
       private final int value;
-
-      private CType(final int index, final int value) {
+      private CType(int index, int value) {
         this.index = index;
         this.value = value;
       }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
     }
-
+    
     // optional .google.protobuf.FieldOptions.CType ctype = 1;
     private boolean hasCtype;
     private com.google.protobuf.DescriptorProtos.FieldOptions.CType ctype_ = com.google.protobuf.DescriptorProtos.FieldOptions.CType.CORD;
-
-    public boolean hasCtype() {
-      return this.hasCtype;
-    }
-
-    public com.google.protobuf.DescriptorProtos.FieldOptions.CType getCtype() {
-      return this.ctype_;
-    }
-
+    public boolean hasCtype() { return hasCtype; }
+    public com.google.protobuf.DescriptorProtos.FieldOptions.CType getCtype() { return ctype_; }
+    
     // optional string experimental_map_key = 9;
     private boolean hasExperimentalMapKey;
     private java.lang.String experimentalMapKey_ = "";
-
-    public boolean hasExperimentalMapKey() {
-      return this.hasExperimentalMapKey;
+    public boolean hasExperimentalMapKey() { return hasExperimentalMapKey; }
+    public java.lang.String getExperimentalMapKey() { return experimentalMapKey_; }
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
     }
-
-    public java.lang.String getExperimentalMapKey() {
-      return this.experimentalMapKey_;
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
     }
-
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
       if (hasCtype()) {
         output.writeEnum(1, getCtype().getNumber());
       }
       if (hasExperimentalMapKey()) {
         output.writeString(9, getExperimentalMapKey());
       }
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
       if (hasCtype()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(1, getCtype().getNumber());
+          .computeEnumSize(1, getCtype().getNumber());
       }
       if (hasExperimentalMapKey()) {
         size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(9, getExperimentalMapKey());
+          .computeStringSize(9, getExperimentalMapKey());
       }
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final com.google.protobuf.ByteString data)
+    
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final com.google.protobuf.ByteString data,
-                                                                              final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final byte[] data)
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final byte[] data,
-                                                                              final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(final java.io.InputStream input,
-                                                                              final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.FieldOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FieldOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.FieldOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.FieldOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FieldOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.FieldOptions result = new com.google.protobuf.DescriptorProtos.FieldOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.FieldOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.FieldOptions();
+        result = new com.google.protobuf.DescriptorProtos.FieldOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.FieldOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.FieldOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.FieldOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.FieldOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.FieldOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.FieldOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.FieldOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.FieldOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.FieldOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance()) {
-          return this;
-        }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.FieldOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.FieldOptions.getDefaultInstance()) return this;
         if (other.hasCtype()) {
           setCtype(other.getCtype());
         }
         if (other.hasExperimentalMapKey()) {
           setExperimentalMapKey(other.getExperimentalMapKey());
         }
-        mergeUnknownFields(other.getUnknownFields());
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
               break;
             }
             case 8: {
-              final int rawValue = input.readEnum();
-              final com.google.protobuf.DescriptorProtos.FieldOptions.CType value = com.google
-                  .protobuf
-                  .DescriptorProtos
-                  .FieldOptions
-                  .CType
-                  .valueOf(rawValue);
+              int rawValue = input.readEnum();
+              com.google.protobuf.DescriptorProtos.FieldOptions.CType value = com.google.protobuf.DescriptorProtos.FieldOptions.CType.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
@@ -5940,982 +5517,2436 @@ public final class DescriptorProtos {
               setExperimentalMapKey(input.readString());
               break;
             }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
+              break;
+            }
           }
         }
       }
-
+      
+      
       // optional .google.protobuf.FieldOptions.CType ctype = 1;
       public boolean hasCtype() {
-        return this.result.hasCtype();
+        return result.hasCtype();
       }
-
       public com.google.protobuf.DescriptorProtos.FieldOptions.CType getCtype() {
-        return this.result.getCtype();
+        return result.getCtype();
       }
-
-      public Builder setCtype(final com.google.protobuf.DescriptorProtos.FieldOptions.CType value) {
-        this.result.hasCtype = true;
-        this.result.ctype_ = value;
+      public Builder setCtype(com.google.protobuf.DescriptorProtos.FieldOptions.CType value) {
+        result.hasCtype = true;
+        result.ctype_ = value;
         return this;
       }
-
       public Builder clearCtype() {
-        this.result.hasCtype = false;
-        this.result.ctype_ = com.google.protobuf.DescriptorProtos.FieldOptions.CType.CORD;
+        result.hasCtype = false;
+        result.ctype_ = com.google.protobuf.DescriptorProtos.FieldOptions.CType.CORD;
         return this;
       }
-
+      
       // optional string experimental_map_key = 9;
       public boolean hasExperimentalMapKey() {
-        return this.result.hasExperimentalMapKey();
+        return result.hasExperimentalMapKey();
       }
-
       public java.lang.String getExperimentalMapKey() {
-        return this.result.getExperimentalMapKey();
+        return result.getExperimentalMapKey();
       }
-
-      public Builder setExperimentalMapKey(final java.lang.String value) {
-        this.result.hasExperimentalMapKey = true;
-        this.result.experimentalMapKey_ = value;
+      public Builder setExperimentalMapKey(java.lang.String value) {
+        result.hasExperimentalMapKey = true;
+        result.experimentalMapKey_ = value;
         return this;
       }
-
       public Builder clearExperimentalMapKey() {
-        this.result.hasExperimentalMapKey = false;
-        this.result.experimentalMapKey_ = "";
+        result.hasExperimentalMapKey = false;
+        result.experimentalMapKey_ = "";
         return this;
       }
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class EnumOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class EnumOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        EnumOptions> {
     // Use EnumOptions.newBuilder() to construct.
-    private EnumOptions() {
-    }
-
+    private EnumOptions() {}
+    
     private static final EnumOptions defaultInstance = new EnumOptions();
-
     public static EnumOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public EnumOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
     }
-
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
+    }
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
+    }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final com.google.protobuf.ByteString data)
+    
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final com.google.protobuf.ByteString data,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final byte[] data)
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final byte[] data,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(final java.io.InputStream input,
-                                                                             final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.EnumOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.EnumOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.EnumOptions result = new com.google.protobuf.DescriptorProtos.EnumOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.EnumOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.EnumOptions();
+        result = new com.google.protobuf.DescriptorProtos.EnumOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.EnumOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.EnumOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.EnumOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.EnumOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.EnumOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.EnumOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance()) {
-          return this;
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.EnumOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.EnumOptions.getDefaultInstance()) return this;
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
+              break;
+            }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
+      
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class EnumValueOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class EnumValueOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        EnumValueOptions> {
     // Use EnumValueOptions.newBuilder() to construct.
-    private EnumValueOptions() {
-    }
-
+    private EnumValueOptions() {}
+    
     private static final EnumValueOptions defaultInstance = new EnumValueOptions();
-
     public static EnumValueOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public EnumValueOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumValueOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
     }
-
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
+    }
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
+    }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(final byte[] data,
-                                                                                  final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(final java.io.InputStream input,
-                                                                                  final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.EnumValueOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumValueOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.EnumValueOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.EnumValueOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumValueOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.EnumValueOptions result = new com.google.protobuf.DescriptorProtos.EnumValueOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.EnumValueOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.EnumValueOptions();
+        result = new com.google.protobuf.DescriptorProtos.EnumValueOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.EnumValueOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.EnumValueOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.EnumValueOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.EnumValueOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.EnumValueOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.EnumValueOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumValueOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.EnumValueOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.EnumValueOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance()) {
-          return this;
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.EnumValueOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.EnumValueOptions.getDefaultInstance()) return this;
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
+              break;
+            }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
+      
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class ServiceOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class ServiceOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        ServiceOptions> {
     // Use ServiceOptions.newBuilder() to construct.
-    private ServiceOptions() {
-    }
-
+    private ServiceOptions() {}
+    
     private static final ServiceOptions defaultInstance = new ServiceOptions();
-
     public static ServiceOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public ServiceOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_ServiceOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
     }
-
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
+    }
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
+    }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(final byte[] data,
-                                                                                final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(final java.io.InputStream input,
-                                                                                final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.ServiceOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.ServiceOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.ServiceOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.ServiceOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.ServiceOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.ServiceOptions result = new com.google.protobuf.DescriptorProtos.ServiceOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.ServiceOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.ServiceOptions();
+        result = new com.google.protobuf.DescriptorProtos.ServiceOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.ServiceOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.ServiceOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.ServiceOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.ServiceOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.ServiceOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.ServiceOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.ServiceOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.ServiceOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.ServiceOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance()) {
-          return this;
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.ServiceOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.ServiceOptions.getDefaultInstance()) return this;
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
+              break;
+            }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
+      
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  public static final class MethodOptions extends com.google.protobuf.GeneratedMessage {
+  
+  public static final class MethodOptions extends
+      com.google.protobuf.GeneratedMessage.ExtendableMessage<
+        MethodOptions> {
     // Use MethodOptions.newBuilder() to construct.
-    private MethodOptions() {
-    }
-
+    private MethodOptions() {}
+    
     private static final MethodOptions defaultInstance = new MethodOptions();
-
     public static MethodOptions getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public MethodOptions getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MethodOptions_descriptor;
     }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
       return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
     }
-
+    
+    // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> uninterpretedOption_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+      return uninterpretedOption_;
+    }
+    public int getUninterpretedOptionCount() { return uninterpretedOption_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+      return uninterpretedOption_.get(index);
+    }
+    
+    @Override
     public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        if (!element.isInitialized()) return false;
+      }
+      if (!extensionsAreInitialized()) return false;
       return true;
     }
-
-    public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      com.google.protobuf.GeneratedMessage.ExtendableMessage
+        .ExtensionWriter extensionWriter = newExtensionWriter();
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        output.writeMessage(999, element);
+      }
+      extensionWriter.writeUntil(536870912, output);
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
-
+    @Override
     public int getSerializedSize() {
-      int size = this.memoizedSerializedSize;
-      if (size != -1) {
-        return size;
-      }
-
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
       size = 0;
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption element : getUninterpretedOptionList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(999, element);
+      }
+      size += extensionsSerializedSize();
       size += getUnknownFields().getSerializedSize();
-      this.memoizedSerializedSize = size;
+      memoizedSerializedSize = size;
       return size;
     }
-
+    
     public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
-        final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
-        final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
-    }
-
-    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(final byte[] data)
+        com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(final byte[] data,
-                                                                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(final java.io.InputStream input)
+    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
-    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(final java.io.InputStream input,
-                                                                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-
     public static com.google.protobuf.DescriptorProtos.MethodOptions parseFrom(
-        final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
-          .buildParsed();
+               .buildParsed();
     }
-
-    public static Builder newBuilder() {
-      return new Builder();
-    }
-
-    public Builder newBuilderForType() {
-      return new Builder();
-    }
-
-    public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MethodOptions prototype) {
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.MethodOptions prototype) {
       return new Builder().mergeFrom(prototype);
     }
-
-    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+          com.google.protobuf.DescriptorProtos.MethodOptions, Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MethodOptions.newBuilder()
-      private Builder() {
-      }
-
+      private Builder() {}
+      
       com.google.protobuf.DescriptorProtos.MethodOptions result = new com.google.protobuf.DescriptorProtos.MethodOptions();
-
+      
+      @Override
       protected com.google.protobuf.DescriptorProtos.MethodOptions internalGetResult() {
-        return this.result;
+        return result;
       }
-
+      
+      @Override
       public Builder clear() {
-        this.result = new com.google.protobuf.DescriptorProtos.MethodOptions();
+        result = new com.google.protobuf.DescriptorProtos.MethodOptions();
         return this;
       }
-
+      
+      @Override
       public Builder clone() {
-        return new Builder().mergeFrom(this.result);
+        return new Builder().mergeFrom(result);
       }
-
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
         return com.google.protobuf.DescriptorProtos.MethodOptions.getDescriptor();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodOptions getDefaultInstanceForType() {
         return com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodOptions build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result);
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
         }
         return buildPartial();
       }
-
+      
       private com.google.protobuf.DescriptorProtos.MethodOptions buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
-
+      
       public com.google.protobuf.DescriptorProtos.MethodOptions buildPartial() {
-        final com.google.protobuf.DescriptorProtos.MethodOptions returnMe = this.result;
-        this.result = null;
+        if (result.uninterpretedOption_ != java.util.Collections.EMPTY_LIST) {
+          result.uninterpretedOption_ =
+            java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+        }
+        com.google.protobuf.DescriptorProtos.MethodOptions returnMe = result;
+        result = null;
         return returnMe;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.Message other) {
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.google.protobuf.DescriptorProtos.MethodOptions) {
-          return mergeFrom((com.google.protobuf.DescriptorProtos.MethodOptions) other);
+          return mergeFrom((com.google.protobuf.DescriptorProtos.MethodOptions)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
-
-      public Builder mergeFrom(final com.google.protobuf.DescriptorProtos.MethodOptions other) {
-        if (other == com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance()) {
-          return this;
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.MethodOptions other) {
+        if (other == com.google.protobuf.DescriptorProtos.MethodOptions.getDefaultInstance()) return this;
+        if (!other.uninterpretedOption_.isEmpty()) {
+          if (result.uninterpretedOption_.isEmpty()) {
+            result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+          }
+          result.uninterpretedOption_.addAll(other.uninterpretedOption_);
         }
-        mergeUnknownFields(other.getUnknownFields());
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
-        return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
-      }
-
-      public Builder mergeFrom(final com.google.protobuf.CodedInputStream input,
-                               final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
-            .protobuf
-            .UnknownFieldSet
-            .newBuilder(getUnknownFields());
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
         while (true) {
-          final int tag = input.readTag();
+          int tag = input.readTag();
           switch (tag) {
             case 0:
-              setUnknownFields(unknownFields.build());
+              this.setUnknownFields(unknownFields.build());
               return this;
             default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                setUnknownFields(unknownFields.build());
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
                 return this;
               }
+              break;
+            }
+            case 7994: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUninterpretedOption(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
+      
+      
+      // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption> getUninterpretedOptionList() {
+        return java.util.Collections.unmodifiableList(result.uninterpretedOption_);
+      }
+      public int getUninterpretedOptionCount() {
+        return result.getUninterpretedOptionCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getUninterpretedOption(int index) {
+        return result.getUninterpretedOption(index);
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        result.uninterpretedOption_.set(index, value);
+        return this;
+      }
+      public Builder setUninterpretedOption(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        result.uninterpretedOption_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption value) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(value);
+        return this;
+      }
+      public Builder addUninterpretedOption(com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder builderForValue) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        result.uninterpretedOption_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllUninterpretedOption(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption> values) {
+        if (result.uninterpretedOption_.isEmpty()) {
+          result.uninterpretedOption_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption>();
+        }
+        super.addAll(values, result.uninterpretedOption_);
+        return this;
+      }
+      public Builder clearUninterpretedOption() {
+        result.uninterpretedOption_ = java.util.Collections.emptyList();
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
     }
   }
-
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_FileDescriptorSet_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(0);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_FileDescriptorSet_descriptor, new java.lang.String[]{"File",},
-      com.google.protobuf.DescriptorProtos.FileDescriptorSet.class,
-      com.google.protobuf.DescriptorProtos.FileDescriptorSet.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_FileDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(1);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_FileDescriptorProto_descriptor, new java.lang.String[]{
-          "Name", "Package", "Dependency", "MessageType", "EnumType", "Service", "Extension", "Options",
-      }, com.google.protobuf.DescriptorProtos.FileDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_DescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(2);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_DescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "Field", "Extension", "NestedType", "EnumType", "ExtensionRange", "Options",},
-      com.google.protobuf.DescriptorProtos.DescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.DescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = internal_static_google_protobuf_DescriptorProto_descriptor
-      .getNestedTypes()
-      .get(0);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor,
-      new java.lang.String[]{"Start", "End",},
-      com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.class,
-      com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_FieldDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(3);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_FieldDescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "Number", "Label", "Type", "TypeName", "Extendee", "DefaultValue", "Options",},
-      com.google.protobuf.DescriptorProtos.FieldDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_EnumDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(4);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_EnumDescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "Value", "Options",},
-      com.google.protobuf.DescriptorProtos.EnumDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(5);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_EnumValueDescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "Number", "Options",},
-      com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_ServiceDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(6);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_ServiceDescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "Method", "Options",},
-      com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_MethodDescriptorProto_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(7);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_MethodDescriptorProto_descriptor,
-      new java.lang.String[]{"Name", "InputType", "OutputType", "Options",},
-      com.google.protobuf.DescriptorProtos.MethodDescriptorProto.class,
-      com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_FileOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(8);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FileOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_FileOptions_descriptor, new java.lang.String[]{
-          "JavaPackage",
-          "JavaOuterClassname",
-          "JavaMultipleFiles",
-          "OptimizeFor",
-          "ObjectivecPackage",
-          "ObjectivecClassPrefix",
-      }, com.google.protobuf.DescriptorProtos.FileOptions.class,
-      com.google.protobuf.DescriptorProtos.FileOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_MessageOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(9);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_MessageOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_MessageOptions_descriptor, new java.lang.String[]{"MessageSetWireFormat",},
-      com.google.protobuf.DescriptorProtos.MessageOptions.class,
-      com.google.protobuf.DescriptorProtos.MessageOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_FieldOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(10);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FieldOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_FieldOptions_descriptor, new java.lang.String[]{"Ctype", "ExperimentalMapKey",},
-      com.google.protobuf.DescriptorProtos.FieldOptions.class,
-      com.google.protobuf.DescriptorProtos.FieldOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_EnumOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(11);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_EnumOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_EnumOptions_descriptor, new java.lang.String[]{},
-      com.google.protobuf.DescriptorProtos.EnumOptions.class,
-      com.google.protobuf.DescriptorProtos.EnumOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_EnumValueOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(12);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_EnumValueOptions_descriptor, new java.lang.String[]{},
-      com.google.protobuf.DescriptorProtos.EnumValueOptions.class,
-      com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_ServiceOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(13);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_ServiceOptions_descriptor, new java.lang.String[]{},
-      com.google.protobuf.DescriptorProtos.ServiceOptions.class,
-      com.google.protobuf.DescriptorProtos.ServiceOptions.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_MethodOptions_descriptor = getDescriptor()
-      .getMessageTypes()
-      .get(14);
-  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_MethodOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_google_protobuf_MethodOptions_descriptor, new java.lang.String[]{},
-      com.google.protobuf.DescriptorProtos.MethodOptions.class,
-      com.google.protobuf.DescriptorProtos.MethodOptions.Builder.class);
+  
+  public static final class UninterpretedOption extends
+      com.google.protobuf.GeneratedMessage {
+    // Use UninterpretedOption.newBuilder() to construct.
+    private UninterpretedOption() {}
+    
+    private static final UninterpretedOption defaultInstance = new UninterpretedOption();
+    public static UninterpretedOption getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UninterpretedOption getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_UninterpretedOption_descriptor;
+    }
+    
+    @Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_UninterpretedOption_fieldAccessorTable;
+    }
+    
+    public static final class NamePart extends
+        com.google.protobuf.GeneratedMessage {
+      // Use NamePart.newBuilder() to construct.
+      private NamePart() {}
+      
+      private static final NamePart defaultInstance = new NamePart();
+      public static NamePart getDefaultInstance() {
+        return defaultInstance;
+      }
+      
+      public NamePart getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+      
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor;
+      }
+      
+      @Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.google.protobuf.DescriptorProtos.internal_static_google_protobuf_UninterpretedOption_NamePart_fieldAccessorTable;
+      }
+      
+      // required string name_part = 1;
+      private boolean hasNamePart;
+      private java.lang.String namePart_ = "";
+      public boolean hasNamePart() { return hasNamePart; }
+      public java.lang.String getNamePart() { return namePart_; }
+      
+      // required bool is_extension = 2;
+      private boolean hasIsExtension;
+      private boolean isExtension_ = false;
+      public boolean hasIsExtension() { return hasIsExtension; }
+      public boolean getIsExtension() { return isExtension_; }
+      
+      @Override
+      public final boolean isInitialized() {
+        if (!hasNamePart) return false;
+        if (!hasIsExtension) return false;
+        return true;
+      }
+      
+      @Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (hasNamePart()) {
+          output.writeString(1, getNamePart());
+        }
+        if (hasIsExtension()) {
+          output.writeBool(2, getIsExtension());
+        }
+        getUnknownFields().writeTo(output);
+      }
+      
+      private int memoizedSerializedSize = -1;
+      @Override
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+      
+        size = 0;
+        if (hasNamePart()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(1, getNamePart());
+        }
+        if (hasIsExtension()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(2, getIsExtension());
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+      
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data).buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return newBuilder().mergeFrom(data, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input).buildParsed();
+      }
+      public static com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        return newBuilder().mergeFrom(input, extensionRegistry)
+                 .buildParsed();
+      }
+      
+      public static Builder newBuilder() { return new Builder(); }
+      public Builder newBuilderForType() { return new Builder(); }
+      public static Builder newBuilder(com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart prototype) {
+        return new Builder().mergeFrom(prototype);
+      }
+      
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> {
+        // Construct using com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.newBuilder()
+        private Builder() {}
+        
+        com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart result = new com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart();
+        
+        @Override
+        protected com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart internalGetResult() {
+          return result;
+        }
+        
+        @Override
+        public Builder clear() {
+          result = new com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart();
+          return this;
+        }
+        
+        @Override
+        public Builder clone() {
+          return new Builder().mergeFrom(result);
+        }
+        
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.getDescriptor();
+        }
+        
+        public com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart getDefaultInstanceForType() {
+          return com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.getDefaultInstance();
+        }
+        
+        public com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart build() {
+          if (!isInitialized()) {
+            throw new com.google.protobuf.UninitializedMessageException(
+              result);
+          }
+          return buildPartial();
+        }
+        
+        private com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart buildParsed()
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          if (!isInitialized()) {
+            throw new com.google.protobuf.UninitializedMessageException(
+              result).asInvalidProtocolBufferException();
+          }
+          return buildPartial();
+        }
+        
+        public com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart buildPartial() {
+          com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart returnMe = result;
+          result = null;
+          return returnMe;
+        }
+        
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart) {
+            return mergeFrom((com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+        
+        public Builder mergeFrom(com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart other) {
+          if (other == com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.getDefaultInstance()) return this;
+          if (other.hasNamePart()) {
+            setNamePart(other.getNamePart());
+          }
+          if (other.hasIsExtension()) {
+            setIsExtension(other.getIsExtension());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+        
+        @Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return mergeFrom(input,
+            com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+        }
+        
+        @Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws java.io.IOException {
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder(
+              this.getUnknownFields());
+          while (true) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                this.setUnknownFields(unknownFields.build());
+                return this;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  this.setUnknownFields(unknownFields.build());
+                  return this;
+                }
+                break;
+              }
+              case 10: {
+                setNamePart(input.readString());
+                break;
+              }
+              case 16: {
+                setIsExtension(input.readBool());
+                break;
+              }
+            }
+          }
+        }
+        
+        
+        // required string name_part = 1;
+        public boolean hasNamePart() {
+          return result.hasNamePart();
+        }
+        public java.lang.String getNamePart() {
+          return result.getNamePart();
+        }
+        public Builder setNamePart(java.lang.String value) {
+          result.hasNamePart = true;
+          result.namePart_ = value;
+          return this;
+        }
+        public Builder clearNamePart() {
+          result.hasNamePart = false;
+          result.namePart_ = "";
+          return this;
+        }
+        
+        // required bool is_extension = 2;
+        public boolean hasIsExtension() {
+          return result.hasIsExtension();
+        }
+        public boolean getIsExtension() {
+          return result.getIsExtension();
+        }
+        public Builder setIsExtension(boolean value) {
+          result.hasIsExtension = true;
+          result.isExtension_ = value;
+          return this;
+        }
+        public Builder clearIsExtension() {
+          result.hasIsExtension = false;
+          result.isExtension_ = false;
+          return this;
+        }
+      }
+      
+      static {
+        com.google.protobuf.DescriptorProtos.getDescriptor();
+      }
+    }
+    
+    // repeated .google.protobuf.UninterpretedOption.NamePart name = 2;
+    private java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart> name_ =
+      java.util.Collections.emptyList();
+    public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart> getNameList() {
+      return name_;
+    }
+    public int getNameCount() { return name_.size(); }
+    public com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart getName(int index) {
+      return name_.get(index);
+    }
+    
+    // optional string identifier_value = 3;
+    private boolean hasIdentifierValue;
+    private java.lang.String identifierValue_ = "";
+    public boolean hasIdentifierValue() { return hasIdentifierValue; }
+    public java.lang.String getIdentifierValue() { return identifierValue_; }
+    
+    // optional uint64 positive_int_value = 4;
+    private boolean hasPositiveIntValue;
+    private long positiveIntValue_ = 0L;
+    public boolean hasPositiveIntValue() { return hasPositiveIntValue; }
+    public long getPositiveIntValue() { return positiveIntValue_; }
+    
+    // optional int64 negative_int_value = 5;
+    private boolean hasNegativeIntValue;
+    private long negativeIntValue_ = 0L;
+    public boolean hasNegativeIntValue() { return hasNegativeIntValue; }
+    public long getNegativeIntValue() { return negativeIntValue_; }
+    
+    // optional double double_value = 6;
+    private boolean hasDoubleValue;
+    private double doubleValue_ = 0D;
+    public boolean hasDoubleValue() { return hasDoubleValue; }
+    public double getDoubleValue() { return doubleValue_; }
+    
+    // optional bytes string_value = 7;
+    private boolean hasStringValue;
+    private com.google.protobuf.ByteString stringValue_ = com.google.protobuf.ByteString.EMPTY;
+    public boolean hasStringValue() { return hasStringValue; }
+    public com.google.protobuf.ByteString getStringValue() { return stringValue_; }
+    
+    @Override
+    public final boolean isInitialized() {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart element : getNameList()) {
+        if (!element.isInitialized()) return false;
+      }
+      return true;
+    }
+    
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart element : getNameList()) {
+        output.writeMessage(2, element);
+      }
+      if (hasIdentifierValue()) {
+        output.writeString(3, getIdentifierValue());
+      }
+      if (hasPositiveIntValue()) {
+        output.writeUInt64(4, getPositiveIntValue());
+      }
+      if (hasNegativeIntValue()) {
+        output.writeInt64(5, getNegativeIntValue());
+      }
+      if (hasDoubleValue()) {
+        output.writeDouble(6, getDoubleValue());
+      }
+      if (hasStringValue()) {
+        output.writeBytes(7, getStringValue());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart element : getNameList()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, element);
+      }
+      if (hasIdentifierValue()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getIdentifierValue());
+      }
+      if (hasPositiveIntValue()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, getPositiveIntValue());
+      }
+      if (hasNegativeIntValue()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, getNegativeIntValue());
+      }
+      if (hasDoubleValue()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(6, getDoubleValue());
+      }
+      if (hasStringValue()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getStringValue());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.google.protobuf.DescriptorProtos.UninterpretedOption parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return new Builder(); }
+    public Builder newBuilderForType() { return new Builder(); }
+    public static Builder newBuilder(com.google.protobuf.DescriptorProtos.UninterpretedOption prototype) {
+      return new Builder().mergeFrom(prototype);
+    }
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      // Construct using com.google.protobuf.DescriptorProtos.UninterpretedOption.newBuilder()
+      private Builder() {}
+      
+      com.google.protobuf.DescriptorProtos.UninterpretedOption result = new com.google.protobuf.DescriptorProtos.UninterpretedOption();
+      
+      @Override
+      protected com.google.protobuf.DescriptorProtos.UninterpretedOption internalGetResult() {
+        return result;
+      }
+      
+      @Override
+      public Builder clear() {
+        result = new com.google.protobuf.DescriptorProtos.UninterpretedOption();
+        return this;
+      }
+      
+      @Override
+      public Builder clone() {
+        return new Builder().mergeFrom(result);
+      }
+      
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.google.protobuf.DescriptorProtos.UninterpretedOption.getDescriptor();
+      }
+      
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption getDefaultInstanceForType() {
+        return com.google.protobuf.DescriptorProtos.UninterpretedOption.getDefaultInstance();
+      }
+      
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption build() {
+        if (!isInitialized()) {
+          throw new com.google.protobuf.UninitializedMessageException(
+            result);
+        }
+        return buildPartial();
+      }
+      
+      private com.google.protobuf.DescriptorProtos.UninterpretedOption buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        if (!isInitialized()) {
+          throw new com.google.protobuf.UninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return buildPartial();
+      }
+      
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption buildPartial() {
+        if (result.name_ != java.util.Collections.EMPTY_LIST) {
+          result.name_ =
+            java.util.Collections.unmodifiableList(result.name_);
+        }
+        com.google.protobuf.DescriptorProtos.UninterpretedOption returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.google.protobuf.DescriptorProtos.UninterpretedOption) {
+          return mergeFrom((com.google.protobuf.DescriptorProtos.UninterpretedOption)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.DescriptorProtos.UninterpretedOption other) {
+        if (other == com.google.protobuf.DescriptorProtos.UninterpretedOption.getDefaultInstance()) return this;
+        if (!other.name_.isEmpty()) {
+          if (result.name_.isEmpty()) {
+            result.name_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart>();
+          }
+          result.name_.addAll(other.name_);
+        }
+        if (other.hasIdentifierValue()) {
+          setIdentifierValue(other.getIdentifierValue());
+        }
+        if (other.hasPositiveIntValue()) {
+          setPositiveIntValue(other.getPositiveIntValue());
+        }
+        if (other.hasNegativeIntValue()) {
+          setNegativeIntValue(other.getNegativeIntValue());
+        }
+        if (other.hasDoubleValue()) {
+          setDoubleValue(other.getDoubleValue());
+        }
+        if (other.hasStringValue()) {
+          setStringValue(other.getStringValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return mergeFrom(input,
+          com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
+      }
+      
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                return this;
+              }
+              break;
+            }
+            case 18: {
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.Builder subBuilder = com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addName(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              setIdentifierValue(input.readString());
+              break;
+            }
+            case 32: {
+              setPositiveIntValue(input.readUInt64());
+              break;
+            }
+            case 40: {
+              setNegativeIntValue(input.readInt64());
+              break;
+            }
+            case 49: {
+              setDoubleValue(input.readDouble());
+              break;
+            }
+            case 58: {
+              setStringValue(input.readBytes());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      // repeated .google.protobuf.UninterpretedOption.NamePart name = 2;
+      public java.util.List<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart> getNameList() {
+        return java.util.Collections.unmodifiableList(result.name_);
+      }
+      public int getNameCount() {
+        return result.getNameCount();
+      }
+      public com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart getName(int index) {
+        return result.getName(index);
+      }
+      public Builder setName(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart value) {
+        result.name_.set(index, value);
+        return this;
+      }
+      public Builder setName(int index, com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.Builder builderForValue) {
+        result.name_.set(index, builderForValue.build());
+        return this;
+      }
+      public Builder addName(com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart value) {
+        if (result.name_.isEmpty()) {
+          result.name_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart>();
+        }
+        result.name_.add(value);
+        return this;
+      }
+      public Builder addName(com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.Builder builderForValue) {
+        if (result.name_.isEmpty()) {
+          result.name_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart>();
+        }
+        result.name_.add(builderForValue.build());
+        return this;
+      }
+      public Builder addAllName(
+          java.lang.Iterable<? extends com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart> values) {
+        if (result.name_.isEmpty()) {
+          result.name_ = new java.util.ArrayList<com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart>();
+        }
+        super.addAll(values, result.name_);
+        return this;
+      }
+      public Builder clearName() {
+        result.name_ = java.util.Collections.emptyList();
+        return this;
+      }
+      
+      // optional string identifier_value = 3;
+      public boolean hasIdentifierValue() {
+        return result.hasIdentifierValue();
+      }
+      public java.lang.String getIdentifierValue() {
+        return result.getIdentifierValue();
+      }
+      public Builder setIdentifierValue(java.lang.String value) {
+        result.hasIdentifierValue = true;
+        result.identifierValue_ = value;
+        return this;
+      }
+      public Builder clearIdentifierValue() {
+        result.hasIdentifierValue = false;
+        result.identifierValue_ = "";
+        return this;
+      }
+      
+      // optional uint64 positive_int_value = 4;
+      public boolean hasPositiveIntValue() {
+        return result.hasPositiveIntValue();
+      }
+      public long getPositiveIntValue() {
+        return result.getPositiveIntValue();
+      }
+      public Builder setPositiveIntValue(long value) {
+        result.hasPositiveIntValue = true;
+        result.positiveIntValue_ = value;
+        return this;
+      }
+      public Builder clearPositiveIntValue() {
+        result.hasPositiveIntValue = false;
+        result.positiveIntValue_ = 0L;
+        return this;
+      }
+      
+      // optional int64 negative_int_value = 5;
+      public boolean hasNegativeIntValue() {
+        return result.hasNegativeIntValue();
+      }
+      public long getNegativeIntValue() {
+        return result.getNegativeIntValue();
+      }
+      public Builder setNegativeIntValue(long value) {
+        result.hasNegativeIntValue = true;
+        result.negativeIntValue_ = value;
+        return this;
+      }
+      public Builder clearNegativeIntValue() {
+        result.hasNegativeIntValue = false;
+        result.negativeIntValue_ = 0L;
+        return this;
+      }
+      
+      // optional double double_value = 6;
+      public boolean hasDoubleValue() {
+        return result.hasDoubleValue();
+      }
+      public double getDoubleValue() {
+        return result.getDoubleValue();
+      }
+      public Builder setDoubleValue(double value) {
+        result.hasDoubleValue = true;
+        result.doubleValue_ = value;
+        return this;
+      }
+      public Builder clearDoubleValue() {
+        result.hasDoubleValue = false;
+        result.doubleValue_ = 0D;
+        return this;
+      }
+      
+      // optional bytes string_value = 7;
+      public boolean hasStringValue() {
+        return result.hasStringValue();
+      }
+      public com.google.protobuf.ByteString getStringValue() {
+        return result.getStringValue();
+      }
+      public Builder setStringValue(com.google.protobuf.ByteString value) {
+        result.hasStringValue = true;
+        result.stringValue_ = value;
+        return this;
+      }
+      public Builder clearStringValue() {
+        result.hasStringValue = false;
+        result.stringValue_ = com.google.protobuf.ByteString.EMPTY;
+        return this;
+      }
+    }
+    
+    static {
+      com.google.protobuf.DescriptorProtos.getDescriptor();
+    }
+  }
+  
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_FileDescriptorSet_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_FileDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_DescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_FieldDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_EnumDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_MethodDescriptorProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_FileOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_FileOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_MessageOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_FieldOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_EnumOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_EnumValueOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_ServiceOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_MethodOptions_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_UninterpretedOption_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_UninterpretedOption_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_google_protobuf_UninterpretedOption_NamePart_fieldAccessorTable;
+  
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+  static {
+    java.lang.String descriptorData =
+      "\n google/protobuf/descriptor.proto\022\017goog" +
+      "le.protobuf\"G\n\021FileDescriptorSet\0222\n\004file" +
+      "\030\001 \003(\0132$.google.protobuf.FileDescriptorP" +
+      "roto\"\334\002\n\023FileDescriptorProto\022\014\n\004name\030\001 \001" +
+      "(\t\022\017\n\007package\030\002 \001(\t\022\022\n\ndependency\030\003 \003(\t\022" +
+      "6\n\014message_type\030\004 \003(\0132 .google.protobuf." +
+      "DescriptorProto\0227\n\tenum_type\030\005 \003(\0132$.goo" +
+      "gle.protobuf.EnumDescriptorProto\0228\n\007serv" +
+      "ice\030\006 \003(\0132\'.google.protobuf.ServiceDescr" +
+      "iptorProto\0228\n\textension\030\007 \003(\0132%.google.p" +
+      "rotobuf.FieldDescriptorProto\022-\n\007options\030" +
+      "\010 \001(\0132\034.google.protobuf.FileOptions\"\251\003\n\017" +
+      "DescriptorProto\022\014\n\004name\030\001 \001(\t\0224\n\005field\030\002" +
+      " \003(\0132%.google.protobuf.FieldDescriptorPr" +
+      "oto\0228\n\textension\030\006 \003(\0132%.google.protobuf" +
+      ".FieldDescriptorProto\0225\n\013nested_type\030\003 \003" +
+      "(\0132 .google.protobuf.DescriptorProto\0227\n\t" +
+      "enum_type\030\004 \003(\0132$.google.protobuf.EnumDe" +
+      "scriptorProto\022H\n\017extension_range\030\005 \003(\0132/" +
+      ".google.protobuf.DescriptorProto.Extensi" +
+      "onRange\0220\n\007options\030\007 \001(\0132\037.google.protob" +
+      "uf.MessageOptions\032,\n\016ExtensionRange\022\r\n\005s" +
+      "tart\030\001 \001(\005\022\013\n\003end\030\002 \001(\005\"\224\005\n\024FieldDescrip" +
+      "torProto\022\014\n\004name\030\001 \001(\t\022\016\n\006number\030\003 \001(\005\022:" +
+      "\n\005label\030\004 \001(\0162+.google.protobuf.FieldDes" +
+      "criptorProto.Label\0228\n\004type\030\005 \001(\0162*.googl" +
+      "e.protobuf.FieldDescriptorProto.Type\022\021\n\t" +
+      "type_name\030\006 \001(\t\022\020\n\010extendee\030\002 \001(\t\022\025\n\rdef" +
+      "ault_value\030\007 \001(\t\022.\n\007options\030\010 \001(\0132\035.goog" +
+      "le.protobuf.FieldOptions\"\266\002\n\004Type\022\017\n\013TYP" +
+      "E_DOUBLE\020\001\022\016\n\nTYPE_FLOAT\020\002\022\016\n\nTYPE_INT64" +
+      "\020\003\022\017\n\013TYPE_UINT64\020\004\022\016\n\nTYPE_INT32\020\005\022\020\n\014T" +
+      "YPE_FIXED64\020\006\022\020\n\014TYPE_FIXED32\020\007\022\r\n\tTYPE_" +
+      "BOOL\020\010\022\017\n\013TYPE_STRING\020\t\022\016\n\nTYPE_GROUP\020\n\022" +
+      "\020\n\014TYPE_MESSAGE\020\013\022\016\n\nTYPE_BYTES\020\014\022\017\n\013TYP" +
+      "E_UINT32\020\r\022\r\n\tTYPE_ENUM\020\016\022\021\n\rTYPE_SFIXED" +
+      "32\020\017\022\021\n\rTYPE_SFIXED64\020\020\022\017\n\013TYPE_SINT32\020\021" +
+      "\022\017\n\013TYPE_SINT64\020\022\"C\n\005Label\022\022\n\016LABEL_OPTI" +
+      "ONAL\020\001\022\022\n\016LABEL_REQUIRED\020\002\022\022\n\016LABEL_REPE" +
+      "ATED\020\003\"\214\001\n\023EnumDescriptorProto\022\014\n\004name\030\001" +
+      " \001(\t\0228\n\005value\030\002 \003(\0132).google.protobuf.En" +
+      "umValueDescriptorProto\022-\n\007options\030\003 \001(\0132" +
+      "\034.google.protobuf.EnumOptions\"l\n\030EnumVal" +
+      "ueDescriptorProto\022\014\n\004name\030\001 \001(\t\022\016\n\006numbe" +
+      "r\030\002 \001(\005\0222\n\007options\030\003 \001(\0132!.google.protob" +
+      "uf.EnumValueOptions\"\220\001\n\026ServiceDescripto" +
+      "rProto\022\014\n\004name\030\001 \001(\t\0226\n\006method\030\002 \003(\0132&.g" +
+      "oogle.protobuf.MethodDescriptorProto\0220\n\007" +
+      "options\030\003 \001(\0132\037.google.protobuf.ServiceO" +
+      "ptions\"\177\n\025MethodDescriptorProto\022\014\n\004name\030" +
+      "\001 \001(\t\022\022\n\ninput_type\030\002 \001(\t\022\023\n\013output_type" +
+      "\030\003 \001(\t\022/\n\007options\030\004 \001(\0132\036.google.protobu" +
+      "f.MethodOptions\"\325\002\n\013FileOptions\022\024\n\014java_" +
+      "package\030\001 \001(\t\022\034\n\024java_outer_classname\030\010 " +
+      "\001(\t\022\"\n\023java_multiple_files\030\n \001(\010:\005false\022" +
+      "J\n\014optimize_for\030\t \001(\0162).google.protobuf." +
+      "FileOptions.OptimizeMode:\tCODE_SIZE\022(\n\031j" +
+      "ava_optimize_for_android\030\013 \001(\010:\005false\022C\n" +
+      "\024uninterpreted_option\030\347\007 \003(\0132$.google.pr" +
+      "otobuf.UninterpretedOption\"(\n\014OptimizeMo" +
+      "de\022\t\n\005SPEED\020\001\022\r\n\tCODE_SIZE\020\002*\t\010\350\007\020\200\200\200\200\002\"" +
+      "\210\001\n\016MessageOptions\022&\n\027message_set_wire_f" +
+      "ormat\030\001 \001(\010:\005false\022C\n\024uninterpreted_opti" +
+      "on\030\347\007 \003(\0132$.google.protobuf.Uninterprete" +
+      "dOption*\t\010\350\007\020\200\200\200\200\002\"\325\001\n\014FieldOptions\0222\n\005c" +
+      "type\030\001 \001(\0162#.google.protobuf.FieldOption" +
+      "s.CType\022\034\n\024experimental_map_key\030\t \001(\t\022C\n" +
+      "\024uninterpreted_option\030\347\007 \003(\0132$.google.pr" +
+      "otobuf.UninterpretedOption\"#\n\005CType\022\010\n\004C" +
+      "ORD\020\001\022\020\n\014STRING_PIECE\020\002*\t\010\350\007\020\200\200\200\200\002\"]\n\013En" +
+      "umOptions\022C\n\024uninterpreted_option\030\347\007 \003(\013" +
+      "2$.google.protobuf.UninterpretedOption*\t" +
+      "\010\350\007\020\200\200\200\200\002\"b\n\020EnumValueOptions\022C\n\024uninter" +
+      "preted_option\030\347\007 \003(\0132$.google.protobuf.U" +
+      "ninterpretedOption*\t\010\350\007\020\200\200\200\200\002\"`\n\016Service" +
+      "Options\022C\n\024uninterpreted_option\030\347\007 \003(\0132$" +
+      ".google.protobuf.UninterpretedOption*\t\010\350" +
+      "\007\020\200\200\200\200\002\"_\n\rMethodOptions\022C\n\024uninterprete" +
+      "d_option\030\347\007 \003(\0132$.google.protobuf.Uninte" +
+      "rpretedOption*\t\010\350\007\020\200\200\200\200\002\"\205\002\n\023Uninterpret" +
+      "edOption\022;\n\004name\030\002 \003(\0132-.google.protobuf" +
+      ".UninterpretedOption.NamePart\022\030\n\020identif" +
+      "ier_value\030\003 \001(\t\022\032\n\022positive_int_value\030\004 " +
+      "\001(\004\022\032\n\022negative_int_value\030\005 \001(\003\022\024\n\014doubl" +
+      "e_value\030\006 \001(\001\022\024\n\014string_value\030\007 \001(\014\0323\n\010N" +
+      "amePart\022\021\n\tname_part\030\001 \002(\t\022\024\n\014is_extensi" +
+      "on\030\002 \002(\010B)\n\023com.google.protobufB\020Descrip" +
+      "torProtosH\001";
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+        public com.google.protobuf.ExtensionRegistry assignDescriptors(
+            com.google.protobuf.Descriptors.FileDescriptor root) {
+          descriptor = root;
+          internal_static_google_protobuf_FileDescriptorSet_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+          internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_FileDescriptorSet_descriptor,
+              new java.lang.String[] { "File", },
+              com.google.protobuf.DescriptorProtos.FileDescriptorSet.class,
+              com.google.protobuf.DescriptorProtos.FileDescriptorSet.Builder.class);
+          internal_static_google_protobuf_FileDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_FileDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Package", "Dependency", "MessageType", "EnumType", "Service", "Extension", "Options", },
+              com.google.protobuf.DescriptorProtos.FileDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder.class);
+          internal_static_google_protobuf_DescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_DescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Field", "Extension", "NestedType", "EnumType", "ExtensionRange", "Options", },
+              com.google.protobuf.DescriptorProtos.DescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.DescriptorProto.Builder.class);
+          internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor =
+            internal_static_google_protobuf_DescriptorProto_descriptor.getNestedTypes().get(0);
+          internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor,
+              new java.lang.String[] { "Start", "End", },
+              com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.class,
+              com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.Builder.class);
+          internal_static_google_protobuf_FieldDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_FieldDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Number", "Label", "Type", "TypeName", "Extendee", "DefaultValue", "Options", },
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Builder.class);
+          internal_static_google_protobuf_EnumDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_EnumDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Value", "Options", },
+              com.google.protobuf.DescriptorProtos.EnumDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.EnumDescriptorProto.Builder.class);
+          internal_static_google_protobuf_EnumValueDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_EnumValueDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Number", "Options", },
+              com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.Builder.class);
+          internal_static_google_protobuf_ServiceDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_ServiceDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "Method", "Options", },
+              com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.Builder.class);
+          internal_static_google_protobuf_MethodDescriptorProto_descriptor =
+            getDescriptor().getMessageTypes().get(7);
+          internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_MethodDescriptorProto_descriptor,
+              new java.lang.String[] { "Name", "InputType", "OutputType", "Options", },
+              com.google.protobuf.DescriptorProtos.MethodDescriptorProto.class,
+              com.google.protobuf.DescriptorProtos.MethodDescriptorProto.Builder.class);
+          internal_static_google_protobuf_FileOptions_descriptor =
+            getDescriptor().getMessageTypes().get(8);
+          internal_static_google_protobuf_FileOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_FileOptions_descriptor,
+              new java.lang.String[] { "JavaPackage", "JavaOuterClassname", "JavaMultipleFiles", "OptimizeFor", "JavaOptimizeForAndroid", "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.FileOptions.class,
+              com.google.protobuf.DescriptorProtos.FileOptions.Builder.class);
+          internal_static_google_protobuf_MessageOptions_descriptor =
+            getDescriptor().getMessageTypes().get(9);
+          internal_static_google_protobuf_MessageOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_MessageOptions_descriptor,
+              new java.lang.String[] { "MessageSetWireFormat", "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.MessageOptions.class,
+              com.google.protobuf.DescriptorProtos.MessageOptions.Builder.class);
+          internal_static_google_protobuf_FieldOptions_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_google_protobuf_FieldOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_FieldOptions_descriptor,
+              new java.lang.String[] { "Ctype", "ExperimentalMapKey", "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.FieldOptions.class,
+              com.google.protobuf.DescriptorProtos.FieldOptions.Builder.class);
+          internal_static_google_protobuf_EnumOptions_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_google_protobuf_EnumOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_EnumOptions_descriptor,
+              new java.lang.String[] { "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.EnumOptions.class,
+              com.google.protobuf.DescriptorProtos.EnumOptions.Builder.class);
+          internal_static_google_protobuf_EnumValueOptions_descriptor =
+            getDescriptor().getMessageTypes().get(12);
+          internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_EnumValueOptions_descriptor,
+              new java.lang.String[] { "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.EnumValueOptions.class,
+              com.google.protobuf.DescriptorProtos.EnumValueOptions.Builder.class);
+          internal_static_google_protobuf_ServiceOptions_descriptor =
+            getDescriptor().getMessageTypes().get(13);
+          internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_ServiceOptions_descriptor,
+              new java.lang.String[] { "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.ServiceOptions.class,
+              com.google.protobuf.DescriptorProtos.ServiceOptions.Builder.class);
+          internal_static_google_protobuf_MethodOptions_descriptor =
+            getDescriptor().getMessageTypes().get(14);
+          internal_static_google_protobuf_MethodOptions_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_MethodOptions_descriptor,
+              new java.lang.String[] { "UninterpretedOption", },
+              com.google.protobuf.DescriptorProtos.MethodOptions.class,
+              com.google.protobuf.DescriptorProtos.MethodOptions.Builder.class);
+          internal_static_google_protobuf_UninterpretedOption_descriptor =
+            getDescriptor().getMessageTypes().get(15);
+          internal_static_google_protobuf_UninterpretedOption_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_UninterpretedOption_descriptor,
+              new java.lang.String[] { "Name", "IdentifierValue", "PositiveIntValue", "NegativeIntValue", "DoubleValue", "StringValue", },
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.class,
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.Builder.class);
+          internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor =
+            internal_static_google_protobuf_UninterpretedOption_descriptor.getNestedTypes().get(0);
+          internal_static_google_protobuf_UninterpretedOption_NamePart_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_google_protobuf_UninterpretedOption_NamePart_descriptor,
+              new java.lang.String[] { "NamePart", "IsExtension", },
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.class,
+              com.google.protobuf.DescriptorProtos.UninterpretedOption.NamePart.Builder.class);
+          return null;
+        }
+      };
+    com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        }, assigner);
+  }
 }

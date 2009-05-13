@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/com" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../../protobuf-2.0.3/java/src/main/java">
+    <content url="file://$MODULE_DIR$/../../../../protobuf-2.0.3/java/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../../protobuf-2.0.3/java/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
