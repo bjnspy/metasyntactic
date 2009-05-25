@@ -162,9 +162,7 @@
 }
 
 
-- (void) loadMovie:(id) owner {
-    [self loadImage];
-
+- (void) loadMovieWorker:(UITableViewController*) owner {
     DVD* dvd = [self.model dvdDetailsForMovie:movie];
 
     directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
@@ -177,7 +175,7 @@
         rating = LocalizedString(@"Not yet rated", nil);		
     }
 
-    if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
+    if ([(id)owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (rating.length > 0) {
