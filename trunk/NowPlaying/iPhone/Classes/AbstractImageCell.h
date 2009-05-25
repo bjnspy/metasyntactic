@@ -12,24 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-typedef enum {
-    Loading,
-    NotFound,
-    Loaded
-} ImageState;
+/*
+ typedef enum {
+ Loading,
+ NotFound,
+ Loaded
+ } ImageState;
+ */
 
 
 @interface AbstractImageCell : UITableViewCell {
 @private
-    UIImageView* imageLoadingView;
-    ImageState state;
-    UIActivityIndicatorView* activityView;
+  UIImageView* imageLoadingView;
+  //ImageState state;
+  UIActivityIndicatorView* activityView;
+  BOOL imageLoaded;
 
 @protected
-    UIImageView* imageView;
-
-    UILabel* titleLabel;
-    CGFloat titleWidth;
+  UIImageView* imageView;
+  
+  UILabel* titleLabel;
+  CGFloat titleWidth;
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
@@ -42,5 +45,7 @@ typedef enum {
 
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition;
 - (UILabel*) createValueLabel:(NSInteger) yPosition forTitle:(UILabel*) titleLabel;
+
+- (void) setCellImage:(UIImage*) image;
 
 @end

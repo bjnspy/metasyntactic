@@ -27,5 +27,6 @@
 
 // @protected
 - (void) onSetSameMovie:(Movie*) movie owner:(id) owner;
+- (void) loadMovie:(id) owner;
 
 @end

@@ -26,6 +26,8 @@
 - (void) majorRefresh;
 - (void) minorRefresh;
 
+- (UITableView*) tableView;
+
 /* @protected */
 - (AbstractNavigationController*) abstractNavigationController;
 

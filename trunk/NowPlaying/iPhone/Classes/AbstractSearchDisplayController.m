@@ -81,6 +81,11 @@
 }
 
 
+- (UITableView*) tableView {
+  return [self searchResultsTableView];
+}
+
+
 - (AbstractSearchEngine*) createSearchEngine {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }

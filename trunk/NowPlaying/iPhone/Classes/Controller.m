@@ -118,19 +118,20 @@ static Controller* controller = nil;
 
 
 - (void) didReceiveMemoryWarning {
-    [self.model.largePosterCache didReceiveMemoryWarning];
-    [self.model.imdbCache didReceiveMemoryWarning];
-    [self.model.amazonCache didReceiveMemoryWarning];
-    [self.model.wikipediaCache didReceiveMemoryWarning];
-    [self.model.trailerCache didReceiveMemoryWarning];
-    [self.model.blurayCache didReceiveMemoryWarning];
-    [self.model.dvdCache didReceiveMemoryWarning];
-    [self.model.posterCache didReceiveMemoryWarning];
-    [self.model.scoreCache didReceiveMemoryWarning];
-    [self.model.upcomingCache didReceiveMemoryWarning];
-    [self.model.netflixCache didReceiveMemoryWarning];
-    [self.model.internationalDataCache didReceiveMemoryWarning];
-    [self.model.helpCache didReceiveMemoryWarning];
+  [self.model.largePosterCache didReceiveMemoryWarning];
+  [self.model.smallPosterCache didReceiveMemoryWarning];
+  [self.model.imdbCache didReceiveMemoryWarning];
+  [self.model.amazonCache didReceiveMemoryWarning];
+  [self.model.wikipediaCache didReceiveMemoryWarning];
+  [self.model.trailerCache didReceiveMemoryWarning];
+  [self.model.blurayCache didReceiveMemoryWarning];
+  [self.model.dvdCache didReceiveMemoryWarning];
+  [self.model.posterCache didReceiveMemoryWarning];
+  [self.model.scoreCache didReceiveMemoryWarning];
+  [self.model.upcomingCache didReceiveMemoryWarning];
+  [self.model.netflixCache didReceiveMemoryWarning];
+  [self.model.internationalDataCache didReceiveMemoryWarning];
+  [self.model.helpCache didReceiveMemoryWarning];
 }
 
 
