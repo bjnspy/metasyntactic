@@ -744,6 +744,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = ProtocolBuffers;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -759,6 +760,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = ProtocolBuffers;
+				SDKROOT = iphonesimulator3.0;
 				ZERO_LINK = NO;
 			};
 			name = Release;

@@ -110,6 +110,7 @@ static NSString* preferredLanguage = nil;
 + (BOOL) isSupportedCountry {
     NSSet* supportedCountries = [NSSet setWithObjects:
                                  @"AU", // Australia
+                                 @"AR", // Argentina
                                  @"AT", // Austria
                                  @"BE", // Belgium
                                  @"BR", // Brazil
@@ -127,6 +128,7 @@ static NSString* preferredLanguage = nil;
                                  @"MY", // Malaysia
                                  @"NL", // The Netherlands
                                  @"PL", // Poland
+                                 @"PT", // Portugal
                                  @"US", // United States
                                  @"SG", // Singapore
                                  @"SK", // Slovakia
