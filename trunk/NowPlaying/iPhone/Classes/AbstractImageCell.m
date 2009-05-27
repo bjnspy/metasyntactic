@@ -228,6 +228,8 @@
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
+  [super setSelected:selected animated:animated];
+
   if (selected) {
     titleLabel.textColor = [UIColor whiteColor];
     
@@ -241,8 +243,6 @@
       label.textColor = [UIColor darkGrayColor];
     }
   }
-
-  [super setSelected:selected animated:animated];
 }
 
 
