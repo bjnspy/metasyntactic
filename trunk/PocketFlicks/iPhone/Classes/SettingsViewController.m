@@ -26,7 +26,6 @@
 #import "SearchDistancePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"
-#import "TextFieldEditorViewController.h"
 #import "UserLocationCache.h"
 
 @interface SettingsViewController()

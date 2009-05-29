@@ -14,6 +14,7 @@
 
 #import "AbstractNavigationController.h"
 
+#import "Application.h"
 #import "Controller.h"
 #import "Model.h"
 #import "Movie.h"
@@ -277,7 +278,9 @@
 
 #if IPHONE_OS_VERSION_3
     UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
-    navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    if (![Application isIPhone]) {
+        navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }
     [self presentModalViewController:navigationController animated:YES];
 #else
     [self pushViewController:controller animated:YES];

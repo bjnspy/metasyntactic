@@ -133,7 +133,7 @@
 
         self.selectedViewController = controller;
         [controller navigateToLastViewedPage];
-
+/*
         if ([NetworkUtilities isNetworkAvailable]) {
             if (!self.model.votedForIcon) {
                 [self.model setVotedForIcon];
@@ -141,6 +141,7 @@
                 [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
             }
         }
+*/
     }
 }
 
