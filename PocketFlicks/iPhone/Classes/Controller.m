@@ -70,9 +70,9 @@ static Controller* controller = nil;
 }
 
 
-- (void) spawnDataProviderLookupThread {
+- (void) spawnDataProviderLookupThread:(BOOL) force {
     NSAssert([NSThread isMainThread], nil);
-    [self.model.dataProvider update:self.model.searchDate delegate:self context:nil force:NO];
+    [self.model.dataProvider update:self.model.searchDate delegate:self context:nil force:force];
 }
 
 
@@ -103,10 +103,11 @@ static Controller* controller = nil;
 }
 
 
-- (void) spawnDetermineLocationThread {
+- (void) spawnDetermineLocationThread:(BOOL) force {
     NSAssert([NSThread isMainThread], nil);
-    [[OperationQueue operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint)
+    [[OperationQueue operationQueue] performSelector:@selector(determineLocationBackgroundEntryPoint:)
                                             onTarget:self
+                                          withObject:[NSNumber numberWithBool:force]
                                                 gate:determineLocationGate
                                             priority:Now];
 }
@@ -114,6 +115,7 @@ static Controller* controller = nil;
 
 - (void) didReceiveMemoryWarning {
     [self.model.largePosterCache didReceiveMemoryWarning];
+  [self.model.smallPosterCache didReceiveMemoryWarning];
     [self.model.imdbCache didReceiveMemoryWarning];
     [self.model.amazonCache didReceiveMemoryWarning];
     [self.model.wikipediaCache didReceiveMemoryWarning];
@@ -192,40 +194,37 @@ static Controller* controller = nil;
 }
 
 
-- (void) start {
-  [self start:NO];
-}
-
-
 - (void) start:(BOOL) force {
     NSAssert([NSThread isMainThread], nil);
-    [self spawnDetermineLocationThread];
+    [self spawnDetermineLocationThread:force];
 }
 
 
-- (void) determineLocationBackgroundEntryPoint {
+- (void) start {
+    [self start:NO];
+}
+
+
+- (void) determineLocationBackgroundEntryPoint:(NSNumber*) force {
     NSLog(@"Controller:determineLocationBackgroundEntryPoint");
     NSString* address = self.model.userAddress;
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
 
-    [self performSelectorOnMainThread:@selector(reportUserLocation:)
-                           withObject:location
-                        waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportUserLocation:force:)
+                                  onTarget:self
+                                withObject:location
+                                withObject:force];
 }
 
 
-- (void) reportUserLocation:(Location*) location {
+- (void) reportUserLocation:(Location*) location
+                      force:(NSNumber*) force {
     NSAssert([NSThread isMainThread], nil);
     if (self.model.userAddress.length > 0 && location == nil) {
         [AlertUtilities showOkAlert:LocalizedString(@"Could not find location.", nil)];
     }
 
-    [self spawnDataProviderLookupThread];
-}
-
-
-- (void) markDataProviderOutOfDate {
-    [self.model.dataProvider markOutOfDate];
+    [self spawnDataProviderLookupThread:force.boolValue];
 }
 
 
@@ -236,8 +235,7 @@ static Controller* controller = nil;
 
     [self.model setSearchDate:searchDate];
 
-    [self markDataProviderOutOfDate];
-    [self spawnDataProviderLookupThread];
+    [self spawnDataProviderLookupThread:YES];
 }
 
 
@@ -248,8 +246,7 @@ static Controller* controller = nil;
 
     [self.model setUserAddress:userAddress];
 
-    [self markDataProviderOutOfDate];
-    [self spawnDetermineLocationThread];
+    [self spawnDetermineLocationThread:YES];
 
     // Refresh the UI so we show the found location.
     [AppDelegate majorRefresh:YES];

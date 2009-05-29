@@ -57,6 +57,8 @@ static AppDelegate* appDelegate = nil;
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
 
+  [SharedApplication setSharedApplicationDelegate:self];
+
     appDelegate = self;
 
     [Model model];
@@ -138,6 +140,21 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
     [[Model model] didReceiveMemoryWarning];
+}
+
+
+- (NSString*) localizedString:(NSString*) key {
+  return [LocalizableStringsCache localizedString:key];
+}
+
+
+- (void) saveNavigationStack:(UINavigationController*) controller {
+  [[Model model] saveNavigationStack:controller];
+}
+
+
+- (BOOL) notificationsEnabled {
+  return [[Model model] notificationsEnabled];
 }
 
 @end

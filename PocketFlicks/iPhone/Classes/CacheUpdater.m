@@ -15,6 +15,7 @@
 #import "CacheUpdater.h"
 
 #import "AmazonCache.h"
+#import "AppDelegate.h"
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "IMDbCache.h"
@@ -106,6 +107,7 @@ static CacheUpdater* cacheUpdater = nil;
     [model.amazonCache       processMovie:movie force:force];
     [model.wikipediaCache    processMovie:movie force:force];
     [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
+  [AppDelegate minorRefresh];
 
     if (force) {
         [NotificationCenter removeNotification:movie.canonicalTitle];

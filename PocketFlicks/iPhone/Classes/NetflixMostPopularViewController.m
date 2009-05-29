@@ -18,7 +18,6 @@
 #import "MutableNetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
 
-
 @interface NetflixMostPopularViewController()
 @property (retain) NSDictionary* titleToCount;
 @end

@@ -32,6 +32,7 @@ enum ViewControllerType {
     PersonPosterCache* personPosterCache;
     PosterCache* posterCache;
     LargePosterCache* largePosterCache;
+  SmallPosterCache* smallPosterCache;
     ScoreCache* scoreCache;
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
@@ -61,6 +62,7 @@ enum ViewControllerType {
 @property (readonly, retain) PersonPosterCache* personPosterCache;
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;
+@property (readonly, retain) SmallPosterCache* smallPosterCache;
 @property (readonly, retain) ScoreCache* scoreCache;
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) UpcomingCache* upcomingCache;

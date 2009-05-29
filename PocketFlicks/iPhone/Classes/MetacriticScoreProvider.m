@@ -49,7 +49,7 @@
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
         for (XmlElement* movieElement in resultElement.children) {
-            NSString* title =    [movieElement attributeValue:@"title"];
+            NSString* title =    [[movieElement attributeValue:@"title"] stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];

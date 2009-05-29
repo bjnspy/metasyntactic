@@ -112,11 +112,6 @@
 }
 
 
-- (void) markOutOfDate {
-    [Application moveItemToTrash:[self lastLookupDateFile]];
-}
-
-
 - (NSArray*) loadMovies:(NSString*) file {
     NSArray* array = [FileUtilities readObject:file];
     return [Movie decodeArray:array];
