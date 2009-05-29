@@ -16,11 +16,9 @@
 
 #import "Model.h"
 #import "Movie.h"
-#import "MutableMultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
 #import "Queue.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface NetflixRecommendationsViewController()
 @property (retain) NSArray* genres;

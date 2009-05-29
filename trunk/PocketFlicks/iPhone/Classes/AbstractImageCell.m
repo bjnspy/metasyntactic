@@ -16,7 +16,6 @@
 
 #import "ImageCache.h"
 #import "Model.h"
-#import "OperationQueue.h"
 
 
 @interface AbstractImageCell()

@@ -19,7 +19,6 @@
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "TappableScrollView.h"
-#import "ThreadingUtilities.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;

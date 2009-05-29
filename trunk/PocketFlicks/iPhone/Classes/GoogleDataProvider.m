@@ -15,15 +15,11 @@
 #import "GoogleDataProvider.h"
 
 #import "Application.h"
-#import "DateUtilities.h"
-#import "LocaleUtilities.h"
 #import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
 #import "Performance.h"
-#import "StringUtilities.h"
 #import "Theater.h"
 
 @interface GoogleDataProvider()

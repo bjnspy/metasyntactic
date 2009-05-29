@@ -15,7 +15,6 @@
 #import "DVD.h"
 
 #import "Movie.h";
-#import "StringUtilities.h"
 
 @interface DVD()
 @property (copy) NSString* canonicalTitle;

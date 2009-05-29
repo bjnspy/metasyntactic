@@ -14,15 +14,12 @@
 
 #import "AppDelegate.h"
 
-#import "AlertUtilities.h"
 #import "ApplicationTabBarController.h"
 #import "CacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
 #import "NetflixNavigationController.h"
 #import "NotificationCenter.h"
-#import "OperationQueue.h"
-#import "Pulser.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;

@@ -14,9 +14,7 @@
 
 #import "Theater.h"
 
-#import "CollectionUtilities.h"
 #import "Location.h"
-#import "StringUtilities.h"
 
 @interface Theater()
     @property (copy) NSString* identifier;

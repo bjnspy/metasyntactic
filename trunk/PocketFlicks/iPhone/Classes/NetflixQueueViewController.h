@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractTableViewController.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 #import "TappableImageViewDelegate.h"

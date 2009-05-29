@@ -16,10 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "FileUtilities.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
-#import "StringUtilities.h"
 
 @interface WikipediaCache()
 @end

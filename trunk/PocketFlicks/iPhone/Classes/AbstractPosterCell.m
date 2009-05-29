@@ -17,7 +17,6 @@
 #import "CacheUpdater.h"
 #import "Model.h"
 #import "Movie.h"
-#import "StringUtilities.h"
 
 @implementation AbstractPosterCell
 

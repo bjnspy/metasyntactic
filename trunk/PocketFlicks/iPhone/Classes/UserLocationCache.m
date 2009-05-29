@@ -15,7 +15,6 @@
 #import "UserLocationCache.h"
 
 #import "Application.h"
-#import "LocaleUtilities.h"
 #import "Location.h"
 #import "NotificationCenter.h"
 

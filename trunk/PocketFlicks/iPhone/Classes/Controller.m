@@ -14,18 +14,15 @@
 
 #import "Controller.h"
 
-#import "AlertUtilities.h"
 #import "AppDelegate.h"
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "CacheUpdater.h"
 #import "DataProvider.h"
-#import "DateUtilities.h"
 #import "LocalizableStringsCache.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
-#import "OperationQueue.h"
 #import "UserLocationCache.h"
 
 @interface Controller()
@@ -196,6 +193,11 @@ static Controller* controller = nil;
 
 
 - (void) start {
+  [self start:NO];
+}
+
+
+- (void) start:(BOOL) force {
     NSAssert([NSThread isMainThread], nil);
     [self spawnDetermineLocationThread];
 }

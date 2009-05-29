@@ -15,7 +15,6 @@
 #import "TomatoMovieTitleCell.h"
 
 #import "ImageCache.h"
-#import "UITableViewCell+Utilities.h"
 
 @implementation TomatoMovieTitleCell
 

@@ -25,7 +25,6 @@
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
-#import "WebViewController.h"
 
 #ifndef IPHONE_OS_VERSION_3
 #endif
