@@ -12,19 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/*
- typedef enum {
- Loading,
- NotFound,
- Loaded
- } ImageState;
- */
-
-
 @interface AbstractImageCell : UITableViewCell {
 @private
   UIImageView* imageLoadingView;
-  //ImageState state;
   UIActivityIndicatorView* activityView;
   BOOL imageLoaded;
 
