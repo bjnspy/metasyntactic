@@ -30,6 +30,5 @@
 #import "Macros.h"
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
-#import "expat.h"
 #import "Shared.h"
 #endif

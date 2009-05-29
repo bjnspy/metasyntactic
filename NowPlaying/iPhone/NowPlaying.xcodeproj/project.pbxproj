@@ -104,7 +104,6 @@
 		745380640F89D87400D457CB /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
-		74616EDD0F15DE7D0004B610 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */; };
 		74616FB90F15E0B70004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
 		7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
 		7463971C0F7EC8D600B2F64C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
@@ -276,7 +275,6 @@
 		746398000F7EC8D600B2F64C /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A78A0F104D1D00795555 /* Model.m */; };
 		746398010F7EC8D600B2F64C /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */; };
 		746398020F7EC8D600B2F64C /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F70F1414B2003163B3 /* NetflixMostPopularViewController.m */; };
-		746398220F7EC8D600B2F64C /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */; };
 		7463982B0F7EC8D600B2F64C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
 		7463982C0F7EC8D600B2F64C /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDC70F27C81100BD86B6 /* Status.m */; };
 		7463982E0F7EC8D600B2F64C /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */; };
@@ -688,8 +686,6 @@
 		745E21430E59637300105751 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21440E59638200105751 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerUtilities.h; path = ../../iPhoneShared/Classes/ViewControllerUtilities.h; sourceTree = SOURCE_ROOT; };
-		74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewControllerUtilities.m; path = ../../iPhoneShared/Classes/ViewControllerUtilities.m; sourceTree = SOURCE_ROOT; };
 		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		746398600F7EC8D600B2F64C /* BoxOffice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1304,12 +1300,10 @@
 				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
 				74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */,
 				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
-				74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */,
 				74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */,
 				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
 				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
-				74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2104,7 +2098,6 @@
 				7406A78D0F104D1D00795555 /* Model.m in Sources */,
 				7414A5F80F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m in Sources */,
 				7414A5F90F1414B2003163B3 /* NetflixMostPopularViewController.m in Sources */,
-				74616EDD0F15DE7D0004B610 /* ViewControllerUtilities.m in Sources */,
 				74616FB90F15E0B70004B610 /* Utilities.m in Sources */,
 				7408FDC80F27C81100BD86B6 /* Status.m in Sources */,
 				7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */,
@@ -2258,7 +2251,6 @@
 				746398000F7EC8D600B2F64C /* Model.m in Sources */,
 				746398010F7EC8D600B2F64C /* NetflixMostPopularMoviesViewController.m in Sources */,
 				746398020F7EC8D600B2F64C /* NetflixMostPopularViewController.m in Sources */,
-				746398220F7EC8D600B2F64C /* ViewControllerUtilities.m in Sources */,
 				7463982B0F7EC8D600B2F64C /* Utilities.m in Sources */,
 				7463982C0F7EC8D600B2F64C /* Status.m in Sources */,
 				7463982E0F7EC8D600B2F64C /* NetflixStatusCell.m in Sources */,
@@ -2388,6 +2380,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2415,6 +2408,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2441,6 +2435,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2465,6 +2460,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2489,6 +2485,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2513,6 +2510,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2568,6 +2566,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2620,6 +2619,7 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};

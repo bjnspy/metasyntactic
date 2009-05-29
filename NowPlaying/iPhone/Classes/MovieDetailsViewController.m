@@ -40,7 +40,6 @@
 #import "TheatersNavigationController.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
-#import "ViewControllerUtilities.h"
 
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;
