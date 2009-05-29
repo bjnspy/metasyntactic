@@ -16,9 +16,7 @@
 
 #import "DecisionCell.h"
 #import "Model.h"
-#import "MultiDictionary.h"
 #import "Decision.h"
-#import "WebViewController.h"
 #import "YourRightsNavigationController.h"
 
 @interface GreatestHitsViewController()
@@ -91,7 +89,7 @@
 
 - (void) sortByYear {
     NSMutableArray* titles = [NSMutableArray array];
-    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
     for (Decision* decision in [Decision greatestHits]) {
         NSString* year = [NSString stringWithFormat:@"%d", decision.year];
@@ -110,7 +108,7 @@
 
 - (void) sortByCategory {
     NSMutableArray* titles = [NSMutableArray array];
-    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
     for (Decision* decision in [Decision greatestHits]) {
         NSString* category = [Decision categoryString:decision.category];
@@ -129,7 +127,7 @@
 
 - (void) sortByPursuer {
     NSMutableArray* titles = [NSMutableArray array];
-    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
     for (Decision* decision in [Decision greatestHits]) {
         NSString* title = [decision.title substringToIndex:1];
@@ -148,7 +146,7 @@
 
 - (void) sortByDefender {
     NSMutableArray* titles = [NSMutableArray array];
-    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
     for (Decision* decision in [Decision greatestHits]) {
         NSRange range = [decision.title rangeOfString:@"v. "];

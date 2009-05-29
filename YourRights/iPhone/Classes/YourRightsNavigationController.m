@@ -15,7 +15,6 @@
 #import "YourRightsNavigationController.h"
 
 #import "SectionViewController.h"
-#import "WebViewController.h"
 #import "AppDelegate.h"
 
 @interface YourRightsNavigationController()

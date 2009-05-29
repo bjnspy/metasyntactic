@@ -90,6 +90,10 @@
 		747C336E0FD0720300411801 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C336A0FD0720300411801 /* BackgroundInvocation2.m */; };
 		747C33FC0FD0735100411801 /* UITableViewCell+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C33FA0FD0735100411801 /* UITableViewCell+Utilities.h */; };
 		747C33FD0FD0735100411801 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C33FB0FD0735100411801 /* UITableViewCell+Utilities.m */; };
+		747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */; };
+		747C34F70FD0770B00411801 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */; };
+		747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C34FC0FD0772D00411801 /* EditorViewController.h */; };
+		747C34FF0FD0772D00411801 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34FD0FD0772D00411801 /* EditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +243,10 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C33FA0FD0735100411801 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
 		747C33FB0FD0735100411801 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
+		747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
+		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -336,10 +344,14 @@
 				747C31A50FD0695E00411801 /* AbstractFullScreenTableViewController.h */,
 				747C31A70FD0695E00411801 /* AbstractFullScreenViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
+				747C34FC0FD0772D00411801 /* EditorViewController.h */,
+				747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */,
 				747C333F0FD071A400411801 /* WebViewController.h */,
 				747C31A60FD0695E00411801 /* AbstractFullScreenTableViewController.m */,
 				747C31A80FD0695E00411801 /* AbstractFullScreenViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
+				747C34FD0FD0772D00411801 /* EditorViewController.m */,
+				747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */,
 				747C33400FD071A400411801 /* WebViewController.m */,
 			);
 			name = ViewControllers;
@@ -563,6 +575,8 @@
 				747C336B0FD0720300411801 /* BackgroundInvocation.h in Headers */,
 				747C336D0FD0720300411801 /* BackgroundInvocation2.h in Headers */,
 				747C33FC0FD0735100411801 /* UITableViewCell+Utilities.h in Headers */,
+				747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */,
+				747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +684,8 @@
 				747C336C0FD0720300411801 /* BackgroundInvocation.m in Sources */,
 				747C336E0FD0720300411801 /* BackgroundInvocation2.m in Sources */,
 				747C33FD0FD0735100411801 /* UITableViewCell+Utilities.m in Sources */,
+				747C34F70FD0770B00411801 /* TextFieldEditorViewController.m in Sources */,
+				747C34FF0FD0772D00411801 /* EditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

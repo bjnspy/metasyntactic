@@ -17,7 +17,6 @@
 #import "Amendment.h"
 #import "Article.h"
 #import "Constitution.h"
-#import "MultiDictionary.h"
 #import "Person.h"
 #import "Section.h"
 
@@ -330,7 +329,7 @@ static Constitution* unitedStatesConstitution;
      amendment21, amendment22, amendment23, amendment24, amendment25,
      amendment26, amendment27, nil];
 
-    MultiDictionary* signers = [MultiDictionary dictionary];
+    MutableMultiDictionary* signers = [MutableMultiDictionary dictionary];
     [signers addObjects:[NSArray arrayWithObjects:
 person(@"George Washington", @"http://en.wikipedia.org/wiki/George_Washington"),
 person(@"John Blair", @"http://en.wikipedia.org/wiki/John_Blair"),

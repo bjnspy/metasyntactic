@@ -17,7 +17,6 @@
 #import "AnswerViewController.h"
 #import "Model.h"
 #import "ViewControllerUtilities.h"
-#import "WebViewController.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 

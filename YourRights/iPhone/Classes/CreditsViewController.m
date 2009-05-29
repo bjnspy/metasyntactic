@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "AutoResizingCell.h"
-#import "LocaleUtilities.h"
 #import "Model.h"
 #import "YourRightsNavigationController.h"
 

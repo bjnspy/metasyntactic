@@ -15,7 +15,6 @@
 #import "AbstractNavigationController.h"
 
 #import "Model.h"
-#import "WebViewController.h"
 
 @implementation AbstractNavigationController
 

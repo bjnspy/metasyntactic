@@ -19,7 +19,6 @@
 #import "Item.h"
 #import "Model.h"
 #import "RSSCache.h"
-#import "WebViewController.h"
 #import "YourRightsNavigationController.h"
 
 @interface ACLUArticlesViewController()

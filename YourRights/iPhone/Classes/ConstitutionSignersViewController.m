@@ -16,7 +16,6 @@
 
 #import "Article.h"
 #import "AutoResizingCell.h"
-#import "MultiDictionary.h"
 #import "Person.h"
 #import "Section.h"
 #import "ViewControllerUtilities.h"

@@ -14,8 +14,6 @@
 
 #import "Item.h"
 
-#import "StringUtilities.h"
-
 @interface Item()
 @property (copy) NSString* title;
 @property (copy) NSString* link;

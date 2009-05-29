@@ -192,8 +192,6 @@
 		746397710F7EC8D600B2F64C /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		746397720F7EC8D600B2F64C /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		746397730F7EC8D600B2F64C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
-		746397740F7EC8D600B2F64C /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
-		746397750F7EC8D600B2F64C /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		746397780F7EC8D600B2F64C /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
 		746397790F7EC8D600B2F64C /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		7463977A0F7EC8D600B2F64C /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
@@ -345,7 +343,6 @@
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
 		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
-		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
@@ -385,7 +382,6 @@
 		74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */; };
 		74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */; };
 		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
-		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
 		74D3CC740F2DB73E0007C783 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3CC730F2DB73E0007C783 /* Person.m */; };
 		74D3CC770F2DB7520007C783 /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3CC760F2DB7520007C783 /* PersonPosterCache.m */; };
@@ -769,8 +765,6 @@
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
 		747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
 		747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
-		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
-		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -838,8 +832,6 @@
 		74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ../../ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
 		74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
-		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
-		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
 		74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
 		74D3CC720F2DB73E0007C783 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -1595,10 +1587,6 @@
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
 				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
-				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
-				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
-				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
-				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
 				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
 				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
@@ -2032,8 +2020,6 @@
 				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
-				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
-				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
 				742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */,
 				743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */,
 				74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */,
@@ -2188,8 +2174,6 @@
 				746397710F7EC8D600B2F64C /* AbstractNavigationController.m in Sources */,
 				746397720F7EC8D600B2F64C /* PosterCache.m in Sources */,
 				746397730F7EC8D600B2F64C /* ImdbPosterDownloader.m in Sources */,
-				746397740F7EC8D600B2F64C /* EditorViewController.m in Sources */,
-				746397750F7EC8D600B2F64C /* TextFieldEditorViewController.m in Sources */,
 				746397780F7EC8D600B2F64C /* TicketsViewController.m in Sources */,
 				746397790F7EC8D600B2F64C /* MovieShowtimesCell.m in Sources */,
 				7463977A0F7EC8D600B2F64C /* MovieTitleCell.m in Sources */,

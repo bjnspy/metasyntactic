@@ -15,9 +15,7 @@
 #import "DeclarationOfIndependenceViewController.h"
 
 #import "ConstitutionSignersViewController.h"
-#import "DateUtilities.h"
 #import "DeclarationOfIndependence.h"
-#import "StringUtilities.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 

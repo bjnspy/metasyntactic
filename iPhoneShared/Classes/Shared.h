@@ -30,7 +30,6 @@
 #import "OperationQueue.h"
 #import "PointerSet.h"
 #import "Pulser.h"
-#import "SearchDatePickerViewController.h"
 #import "SharedApplicationDelegate.h"
 #import "SharedApplication.h"
 #import "StringUtilities.h"
