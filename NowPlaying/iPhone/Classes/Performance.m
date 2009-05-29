@@ -14,9 +14,6 @@
 
 #import "Performance.h"
 
-#import "DateUtilities.h"
-#import "StringUtilities.h"
-
 @interface Performance()
 @property (copy) NSDate* time;
 @property (copy) NSString* url;

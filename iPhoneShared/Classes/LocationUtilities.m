@@ -16,7 +16,6 @@
 
 #import "Location.h"
 #import "NetworkUtilities.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation LocationUtilities

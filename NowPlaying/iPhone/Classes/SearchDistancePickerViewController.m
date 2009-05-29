@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "Controller.h"
 #import "Model.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface SearchDistancePickerViewController()
 @property (retain) NSArray* values;

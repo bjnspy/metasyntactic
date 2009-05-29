@@ -17,13 +17,9 @@
 #import "ActionsView.h"
 #import "Application.h"
 #import "ColorCache.h"
-#import "DateUtilities.h"
 #import "HelpCache.h"
-#import "LocaleUtilities.h"
 #import "Model.h"
 #import "QuestionCell.h"
-#import "StringUtilities.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface FAQViewController()
 @property (retain) NSArray* questions;

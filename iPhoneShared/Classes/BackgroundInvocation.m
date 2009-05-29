@@ -14,8 +14,6 @@
 
 #import "BackgroundInvocation.h"
 
-#import "AppDelegate.h"
-
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
 @property BOOL visible;
@@ -84,8 +82,6 @@
         [self invokeSelector];
     }
     [gate unlock];
-
-    [AppDelegate minorRefresh];
 }
 
 

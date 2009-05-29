@@ -15,7 +15,6 @@
 #import "PerfectGreenMovieTitleCell.h"
 
 #import "ImageCache.h"
-#import "UITableViewCell+Utilities.h"
 
 @implementation PerfectGreenMovieTitleCell
 

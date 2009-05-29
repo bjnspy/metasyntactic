@@ -16,10 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "DifferenceEngine.h"
-#import "FileUtilities.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
 
 @interface TrailerCache()
 @property (retain) NSDictionary* index;

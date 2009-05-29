@@ -15,10 +15,6 @@
 #import "Utilities.h"
 
 #import "Performance.h"
-#import "XmlDocument.h"
-#import "XmlElement.h"
-#import "XmlParser.h"
-#import "XmlSerializer.h"
 
 @implementation Utilities
 

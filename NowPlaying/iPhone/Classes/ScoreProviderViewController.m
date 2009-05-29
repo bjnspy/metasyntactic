@@ -16,7 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface ScoreProviderViewController()
 @end

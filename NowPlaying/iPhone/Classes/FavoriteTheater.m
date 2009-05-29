@@ -14,8 +14,6 @@
 
 #import "FavoriteTheater.h"
 
-#import "Location.h"
-
 @interface FavoriteTheater()
 @property (copy) NSString* name;
 @property (retain) Location* originatingLocation;

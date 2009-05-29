@@ -15,10 +15,7 @@
 #import "AbstractPosterDownloader.h"
 
 #import "Application.h"
-#import "DifferenceEngine.h"
-#import "FileUtilities.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
 
 @interface AbstractPosterDownloader()
 @property (retain) NSDictionary* movieNameToPosterMap;

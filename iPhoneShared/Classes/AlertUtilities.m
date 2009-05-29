@@ -14,6 +14,7 @@
 
 #import "AlertUtilities.h"
 
+#import "SharedApplication.h"
 
 @implementation AlertUtilities
 

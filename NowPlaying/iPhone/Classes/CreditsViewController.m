@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "FAQViewController.h"
-#import "LocaleUtilities.h"
 #import "Model.h"
 #import "SettingCell.h"
 

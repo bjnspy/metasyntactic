@@ -17,14 +17,8 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "CacheUpdater.h"
-#import "DateUtilities.h"
-#import "FileUtilities.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
-#import "NotificationCenter.h"
-#import "OperationQueue.h"
-#import "XmlElement.h"
 
 @interface UpcomingCache()
 @property (copy) NSString* hashData;

@@ -14,7 +14,6 @@
 
 #import "AbstractFullScreenTableViewController.h"
 
-#import "AppDelegate.h"
 #import "NotificationCenter.h"
 
 

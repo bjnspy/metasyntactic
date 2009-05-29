@@ -14,12 +14,10 @@
 
 #import "WebViewController.h"
 
-#import "AbstractNavigationController.h"
+#import "AbstractApplication.h"
 #import "AlertUtilities.h"
-#import "AppDelegate.h"
-#import "Application.h"
-#import "Model.h"
 #import "NotificationCenter.h"
+#import "SharedApplication.h"
 #import "ViewControllerUtilities.h"
 
 #define NAVIGATE_BACK_ITEM 1
@@ -73,11 +71,6 @@
     }
 
     return self;
-}
-
-
-- (Model*) model {
-    return [Model model];
 }
 
 
@@ -193,7 +186,7 @@
         url = address;
     }
 
-    [Application openBrowser:url];
+    [AbstractApplication openBrowser:url];
 }
 
 
@@ -259,7 +252,7 @@
     if (error.domain == NSURLErrorDomain && error.code == -1009) {
         NSString* title = LocalizedString(@"Cannot Open Page", nil);
         NSString* message =
-        [NSString stringWithFormat:LocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
+        [NSString stringWithFormat:LocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [AbstractApplication name]];
 
         [AlertUtilities showOkAlert:message withTitle:title];
         self.errorReported = YES;

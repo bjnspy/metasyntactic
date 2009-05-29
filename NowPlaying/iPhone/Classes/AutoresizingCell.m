@@ -14,8 +14,6 @@
 
 #import "AutoResizingCell.h"
 
-#import "UITableViewCell+Utilities.h"
-
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
 @property (retain) UIColor* textColorData;

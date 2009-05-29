@@ -14,13 +14,10 @@
 
 #import "AbstractDetailsViewController.h"
 
-#import "AlertUtilities.h"
 #import "Application.h"
 #import "DataProvider.h"
-#import "DateUtilities.h"
 #import "Model.h"
 #import "SearchDatePickerViewController.h"
-#import "StringUtilities.h"
 
 @interface AbstractDetailsViewController()
 @property NSInteger updateId;

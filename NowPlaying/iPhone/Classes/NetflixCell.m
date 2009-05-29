@@ -19,7 +19,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "StringUtilities.h"
 #import "TappableImageView.h"
 
 @interface NetflixCell()

@@ -14,6 +14,8 @@
 
 #import "DateUtilities.h"
 
+#import "SharedApplication.h"
+
 @implementation DateUtilities
 
 static NSMutableDictionary* timeDifferenceMap;

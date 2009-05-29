@@ -20,6 +20,7 @@
 @protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
 @protocol SearchEngineDelegate;
+@protocol SharedApplicationDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
@@ -27,17 +28,7 @@
 @class OAToken;
 
 @class AbstractNavigationController;
-@class ActionsView;
-@class ActivityIndicatorViewWithBackground;
-@class AmazonCache;
-@class ApplePosterDownloader;
-@class Application;
-@class AttributeCell;
-@class AutoResizingCell;
 @class BackgroundInvocation;
-@class CollapsedMovieDetailsCell;
-@class ColorCache;
-@class CreditsViewController;
 @class DateUtilities;
 @class DifferenceEngine;
 @class EditorViewController;
@@ -68,7 +59,12 @@
 @class NonClippingView;
 @class AppDelegate;
 @class Controller;
+@class Location;
 @class Model;
+@class Operation;
+@class Operation1;
+@class Operation2;
+@class OperationQueue;
 @class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;

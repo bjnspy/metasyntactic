@@ -5,6 +5,7 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonHMAC.h>
+#import <CoreLocation/CoreLocation.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
