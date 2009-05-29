@@ -30,7 +30,7 @@
 
 @protected
   UIImageView* imageView;
-  
+
   UILabel* titleLabel;
   CGFloat titleWidth;
 }

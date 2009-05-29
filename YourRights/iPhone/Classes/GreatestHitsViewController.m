@@ -14,9 +14,9 @@
 
 #import "GreatestHitsViewController.h"
 
+#import "Decision.h"
 #import "DecisionCell.h"
 #import "Model.h"
-#import "Decision.h"
 #import "YourRightsNavigationController.h"
 
 @interface GreatestHitsViewController()

@@ -259,7 +259,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   self.bookmarkedTitlesData = nil;
   self.favoriteTheatersData = nil;
   self.isSearchDateTodayData = nil;
-  
+
   self.userLocationCache = nil;
   self.blurayCache = nil;
   self.dvdCache = nil;
@@ -276,7 +276,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   self.netflixCache = nil;
   self.internationalDataCache = nil;
   self.helpCache = nil;
-  
+
   [super dealloc];
 }
 
@@ -285,7 +285,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   if (model == nil) {
     model = [[Model alloc] init];
   }
-  
+
   return model;
 }
 
@@ -295,7 +295,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   for (FavoriteTheater* theater in favoriteTheaters) {
     [result addObject:theater.dictionary];
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
 }
 
@@ -315,7 +315,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   for (Movie* movie in movies) {
     [encoded addObject:movie.dictionary];
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setObject:encoded forKey:key];
 }
 
@@ -323,7 +323,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (NSDictionary*) valuesToMigrate {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  
+
   for (NSInteger i = 0; i < ArrayLength(STRING_KEYS_TO_MIGRATE); i++) {
     NSString* key = *STRING_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -331,7 +331,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
       [result setObject:previousValue forKey:key];
     }
   }
-  
+
   for (NSInteger i = 0; i < ArrayLength(DATE_KEYS_TO_MIGRATE); i++) {
     NSString* key = *DATE_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -339,7 +339,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
       [result setObject:previousValue forKey:key];
     }
   }
-  
+
   for (NSInteger i = 0; i < ArrayLength(BOOLEAN_KEYS_TO_MIGRATE); i++) {
     NSString* key = *BOOLEAN_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -347,7 +347,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
       [result setObject:previousValue forKey:key];
     }
   }
-  
+
   for (NSInteger i = 0; i < ArrayLength(INTEGER_KEYS_TO_MIGRATE); i++) {
     NSString* key = *INTEGER_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -355,7 +355,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
       [result setObject:previousValue forKey:key];
     }
   }
-  
+
   for (NSInteger i = 0; i < ArrayLength(STRING_ARRAY_KEYS_TO_MIGRATE); i++) {
     NSString* key = *STRING_ARRAY_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -366,11 +366,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
           [elements addObject:element];
         }
       }
-      
+
       [result setObject:elements forKey:key];
     }
   }
-  
+
   for (NSInteger i = 0; i < ArrayLength(MOVIE_ARRAY_KEYS_TO_MIGRATE); i++) {
     NSString* key = *MOVIE_ARRAY_KEYS_TO_MIGRATE[i];
     id previousValue = [defaults objectForKey:key];
@@ -382,27 +382,27 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
           [elements addObject:element];
         }
       }
-      
+
       [result setObject:elements forKey:key];
     }
   }
-  
+
   {
     id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
     if ([previousValue isKindOfClass:[NSArray class]]) {
       NSMutableArray* elements = [NSMutableArray array];
-      
+
       for (id element in previousValue) {
         if ([element isKindOfClass:[NSDictionary class]] &&
             [FavoriteTheater canReadDictionary:element]) {
           [elements addObject:element];
         }
       }
-      
+
       [result setObject:elements forKey:FAVORITE_THEATERS];
     }
   }
-  
+
   return result;
 }
 
@@ -414,27 +414,27 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) loadData {
   self.dataProvider = [GoogleDataProvider provider];
-  
+
   NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
   if (version == nil || ![persistenceVersion isEqual:version]) {
     // First, capture any preferences that we can safely migrate
     NSDictionary* currentValues = [self valuesToMigrate];
-    
+
     // Now, wipe out all keys
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     for (int i = 0; i < ArrayLength(ALL_KEYS); i++) {
       NSString* key = *ALL_KEYS[i];
       [defaults removeObjectForKey:key];
     }
-    
+
     // And delete any stored state
     [Application resetDirectories];
-    
+
     // Now restore the saved preferences.
     for (NSString* key in currentValues) {
       [defaults setObject:[currentValues objectForKey:key] forKey:key];
     }
-    
+
     // Mark that we updated successfully, and flush to disc.
     [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     [self synchronize];
@@ -446,7 +446,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
   [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:RUN_COUNT];
   [self synchronize];
-  
+
   if ((runCount % 5) == 0) {
     [Application clearStaleData];
   }
@@ -457,7 +457,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   if ([LocaleUtilities isSupportedCountry]) {
     return;
   }
-  
+
   // Only warn once per upgrade.
   NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, [Application version], [LocaleUtilities isoCountry]];
   if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
@@ -465,14 +465,14 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   }
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
   [self synchronize];
-  
+
   NSString* warning =
   [NSString stringWithFormat:
    LocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", @"The first %@ will be replaced with the device the user is on (i.e.: iPhone), the second %@ is replaced with the program name (i.e.: Now playing)"),
    [UIDevice currentDevice].localizedModel,
    [LocaleUtilities displayCountry],
    [Application name]];
-  
+
   [AlertUtilities showOkAlert:warning];
 }
 
@@ -482,7 +482,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   if (updatedNetflixApplicationKeys) {
     return;
   }
-  
+
   [self setNetflixKey:nil secret:nil userId:nil];
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NETFLIX_UPDATED_APPLICATION_KEYS];
   [self synchronize];
@@ -497,25 +497,25 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:FIRST_LAUNCH_DATE];
     [self synchronize];
   }
-  
+
   NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
   if (interval < ONE_MONTH) {
     return;
   }
-  
+
   BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   if (hasShown) {
     return;
   }
-  
+
   // only 5% chance of showing it to them.
   if ((rand() % 1000) > 50) {
     return;
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   [self synchronize];
-  
+
   UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"A message from Cyrus", nil)
                                                    message:LocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
                                                   delegate:self
@@ -551,7 +551,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     [self loadData];
     [self checkDate];
     //[self updateNetflixKeys];
-    
+
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
     self.smallPosterCache = [SmallPosterCache cache];
@@ -567,14 +567,14 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     self.netflixCache = [MutableNetflixCache cache];
     self.internationalDataCache = [InternationalDataCache cache];
     self.helpCache = [HelpCache cache];
-    
+
     [self clearCaches];
-    
+
     self.searchRadius = -1;
     self.cachedScoreProviderIndex = -1;
     cachedAllMoviesSelectedSegmentIndex = -1;
   }
-  
+
   return self;
 }
 
@@ -659,14 +659,14 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (value == nil) {
     return [LocaleUtilities isUnitedStates];
   }
-  
+
   return !value.boolValue;
 }
 
 
 - (void) setNetflixCacheEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
-  
+
   if (!value) {
     [self setNetflixKey:nil secret:nil userId:nil];
   }
@@ -732,7 +732,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (result != nil) {
     return [result intValue];
   }
-  
+
   // by default, chose 'rottentomatoes' if they're an english speaking
   // country.  otherwise, choose 'google'.
   if ([LocaleUtilities isEnglish]) {
@@ -740,7 +740,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   } else {
     [self setScoreProviderIndex:2];
   }
-  
+
   return [self scoreProviderIndex];
 }
 
@@ -749,7 +749,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (self.cachedScoreProviderIndex == -1) {
     self.cachedScoreProviderIndex = [self scoreProviderIndexWorker];
   }
-  
+
   return self.cachedScoreProviderIndex;
 }
 
@@ -757,7 +757,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) setScoreProviderIndex:(NSInteger) index {
   self.cachedScoreProviderIndex = index;
   [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SCORE_PROVIDER_INDEX];
-  
+
   if (self.noScores && self.allMoviesSortingByScore) {
     [self setAllMoviesSelectedSegmentIndex:0];
   }
@@ -813,7 +813,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (cachedAllMoviesSelectedSegmentIndex == -1) {
     cachedAllMoviesSelectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
   }
-  
+
   return cachedAllMoviesSelectedSegmentIndex;
 }
 
@@ -978,7 +978,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (result == nil) {
     result = @"";
   }
-  
+
   return result;
 }
 
@@ -989,10 +989,10 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (self.searchRadiusData == 0) {
       self.searchRadiusData = 5;
     }
-    
+
     self.searchRadiusData = MAX(MIN(self.searchRadiusData, 50), 1);
   }
-  
+
   return self.searchRadiusData;
 }
 
@@ -1023,7 +1023,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (isSearchDateTodayData == nil) {
     self.isSearchDateTodayData = [NSNumber numberWithBool:[DateUtilities isToday:self.searchDate]];
   }
-  
+
   return isSearchDateTodayData.boolValue;
 }
 
@@ -1043,7 +1043,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (array.count == 0) {
     return [NSMutableSet set];
   }
-  
+
   return [NSSet setWithArray:array];
 }
 
@@ -1052,7 +1052,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (bookmarkedTitlesData == nil) {
     self.bookmarkedTitlesData = [self loadBookmarkedTitles];
   }
-  
+
   // Access through property to ensure valid value.
   return self.bookmarkedTitlesData;
 }
@@ -1078,7 +1078,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set addObject:movie.canonicalTitle];
   [self setBookmarkedTitles:set];
-  
+
   [dataProvider addBookmark:movie.canonicalTitle];
   [upcomingCache addBookmark:movie.canonicalTitle];
   [dvdCache addBookmark:movie.canonicalTitle];
@@ -1089,9 +1089,9 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) removeBookmark:(Movie*) movie {
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set removeObject:movie.canonicalTitle];
-  
+
   [self setBookmarkedTitles:set];
-  
+
   [dataProvider removeBookmark:movie.canonicalTitle];
   [upcomingCache removeBookmark:movie.canonicalTitle];
   [dvdCache removeBookmark:movie.canonicalTitle];
@@ -1104,7 +1104,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (array.count == 0) {
     return [NSArray array];
   }
-  
+
   NSMutableArray* result = [NSMutableArray array];
   for (NSDictionary* dictionary in array) {
     [result addObject:[Movie movieWithDictionary:dictionary]];
@@ -1158,13 +1158,13 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (array.count == 0) {
     return [NSMutableDictionary dictionary];
   }
-  
+
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSDictionary* dictionary in array) {
     FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
     [result setObject:theater forKey:theater.name];
   }
-  
+
   return result;
 }
 
@@ -1173,7 +1173,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (favoriteTheatersData == nil) {
     self.favoriteTheatersData = [self loadFavoriteTheaters];
   }
-  
+
   // Access through property so we always get a valid value back
   return self.favoriteTheatersData;
 }
@@ -1206,12 +1206,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (void) addFavoriteTheater:(Theater*) theater {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
-  
+
   FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                   originatingLocation:theater.originatingLocation];
-  
+
   [dictionary setObject:favoriteTheater forKey:theater.name];
-  
+
   [self setFavoriteTheaters:dictionary];
 }
 
@@ -1224,7 +1224,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) removeFavoriteTheater:(Theater*) theater {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
   [dictionary removeObjectForKey:theater.name];
-  
+
   [self setFavoriteTheaters:dictionary];
 }
 
@@ -1234,17 +1234,17 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (date != nil) {
     return date;
   }
-  
+
   date = [internationalDataCache releaseDateForMovie:movie];
   if (date != nil) {
     return date;
   }
-  
+
   date = [upcomingCache releaseDateForMovie:movie];
   if (date != nil) {
     return date;
   }
-  
+
   return nil;
 }
 
@@ -1254,7 +1254,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (length > 0) {
     return length;
   }
-  
+
   return [internationalDataCache lengthForMovie:movie];
 }
 
@@ -1264,12 +1264,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (rating.length > 0) {
     return rating;
   }
-  
+
   rating = [internationalDataCache ratingForMovie:movie];
   if (rating.length > 0) {
     return rating;
   }
-  
+
   return nil;
 }
 
@@ -1284,22 +1284,22 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (directors.count > 0) {
     return directors;
   }
-  
+
   directors = [internationalDataCache directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
-  
+
   directors = [upcomingCache directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
-  
+
   directors = [netflixCache directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
-  
+
   return [NSArray array];
 }
 
@@ -1309,22 +1309,22 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (cast.count > 0) {
     return cast;
   }
-  
+
   cast = [internationalDataCache castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
-  
+
   cast = [upcomingCache castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
-  
+
   cast = [netflixCache castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
-  
+
   return [NSArray array];
 }
 
@@ -1333,7 +1333,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (movie.genres.count > 0) {
     return movie.genres;
   }
-  
+
   return [upcomingCache genresForMovie:movie];
 }
 
@@ -1343,17 +1343,17 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (result.length > 0) {
     return result;
   }
-  
+
   result = [internationalDataCache imdbAddressForMovie:movie];
   if (result.length > 0) {
     return result;
   }
-  
+
   result = [imdbCache imdbAddressForMovie:movie];
   if (result.length > 0) {
     return result;
   }
-  
+
   return nil;
 }
 
@@ -1373,12 +1373,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (dvd != nil) {
     return dvd;
   }
-  
+
   dvd = [blurayCache detailsForMovie:movie];
   if (dvd != nil) {
     return dvd;
   }
-  
+
   return nil;
 }
 
@@ -1397,7 +1397,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
       return image;
     }
   }
-  
+
   return nil;
 }
 
@@ -1418,26 +1418,26 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
   NSMutableArray* array = [NSMutableArray array];
-  
+
   for (Theater* theater in self.theaters) {
     if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
       [array addObject:theater];
     }
   }
-  
+
   return array;
 }
 
 
 - (NSArray*) moviesAtTheater:(Theater*) theater {
   NSMutableArray* array = [NSMutableArray array];
-  
+
   for (Movie* movie in self.movies) {
     if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
       [array addObject:movie];
     }
   }
-  
+
   return array;
 }
 
@@ -1469,7 +1469,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     if (globalSyncDate == nil) {
       return @"";
     }
-    
+
     return [NSString stringWithFormat:
             LocalizedString(@"Show times retrieved on %@.", @"%@ will be replaced with a date.  i.e.: 04/30/2008"),
             [DateUtilities formatLongDate:globalSyncDate]];
@@ -1485,7 +1485,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
   NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-  
+
   for (Theater* theater in theaters) {
     double d;
     if (location != nil) {
@@ -1493,12 +1493,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     } else {
       d = UNKNOWN_DISTANCE;
     }
-    
+
     NSNumber* value = [NSNumber numberWithDouble:d];
     NSString* key = theater.name;
     [theaterDistanceMap setObject:value forKey:key];
   }
-  
+
   return theaterDistanceMap;
 }
 
@@ -1521,15 +1521,15 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (NSArray*) theatersInRange:(NSArray*) theaters {
   NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
   NSMutableArray* result = [NSMutableArray array];
-  
+
   for (Theater* theater in theaters) {
     double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
-    
+
     if ([self isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
       [result addObject:theater];
     }
   }
-  
+
   return result;
 }
 
@@ -1538,20 +1538,20 @@ NSInteger compareMoviesByScore(id t1, id t2, void* context) {
   if (t1 == t2) {
     return NSOrderedSame;
   }
-  
+
   Movie* movie1 = t1;
   Movie* movie2 = t2;
   Model* model = context;
-  
+
   int movieRating1 = [model scoreValueForMovie:movie1];
   int movieRating2 = [model scoreValueForMovie:movie2];
-  
+
   if (movieRating1 < movieRating2) {
     return NSOrderedDescending;
   } else if (movieRating1 > movieRating2) {
     return NSOrderedAscending;
   }
-  
+
   return compareMoviesByTitle(t1, t2, context);
 }
 
@@ -1560,14 +1560,14 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
   if (t1 == t2) {
     return NSOrderedSame;
   }
-  
+
   Model* model = context;
   Movie* movie1 = t1;
   Movie* movie2 = t2;
-  
+
   NSDate* releaseDate1 = [model releaseDateForMovie:movie1];
   NSDate* releaseDate2 = [model releaseDateForMovie:movie2];
-  
+
   if (releaseDate1 == nil) {
     if (releaseDate2 == nil) {
       return compareMoviesByTitle(movie1, movie2, context);
@@ -1577,7 +1577,7 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
   } else if (releaseDate2 == nil) {
     return NSOrderedAscending;
   }
-  
+
   return -[releaseDate1 compare:releaseDate2];
 }
 
@@ -1591,21 +1591,21 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
   if (t1 == t2) {
     return NSOrderedSame;
   }
-  
+
   Model* model = context;
-  
+
   Movie* movie1 = t1;
   Movie* movie2 = t2;
-  
+
   BOOL movie1Bookmarked = [model isBookmarked:movie1];
   BOOL movie2Bookmarked = [model isBookmarked:movie2];
-  
+
   if (movie1Bookmarked && !movie2Bookmarked) {
     return NSOrderedAscending;
   } else if (movie2Bookmarked && !movie1Bookmarked) {
     return NSOrderedDescending;
   }
-  
+
   return [movie1.displayTitle compare:movie2.displayTitle options:NSCaseInsensitiveSearch];
 }
 
@@ -1614,10 +1614,10 @@ NSInteger compareTheatersByName(id t1, id t2, void* context) {
   if (t1 == t2) {
     return NSOrderedSame;
   }
-  
+
   Theater* theater1 = t1;
   Theater* theater2 = t2;
-  
+
   return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
 }
 
@@ -1626,21 +1626,21 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (t1 == t2) {
     return NSOrderedSame;
   }
-  
+
   NSDictionary* theaterDistanceMap = context;
-  
+
   Theater* theater1 = t1;
   Theater* theater2 = t2;
-  
+
   double distance1 = [[theaterDistanceMap objectForKey:theater1.name] doubleValue];
   double distance2 = [[theaterDistanceMap objectForKey:theater2.name] doubleValue];
-  
+
   if (distance1 < distance2) {
     return NSOrderedAscending;
   } else if (distance1 > distance2) {
     return NSOrderedDescending;
   }
-  
+
   return compareTheatersByName(t1, t2, nil);
 }
 
@@ -1671,7 +1671,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (score == nil) {
     return -1;
   }
-  
+
   return score.scoreValue;
 }
 
@@ -1682,41 +1682,41 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (synopsis.length > 0) {
     [options addObject:synopsis];
   }
-  
+
   synopsis = [internationalDataCache synopsisForMovie:movie];
   if (synopsis.length > 0) {
     [options addObject:synopsis];
   }
-  
+
   if (options.count == 0 || [LocaleUtilities isEnglish]) {
     synopsis = [self scoreForMovie:movie].synopsis;
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }
-    
+
     synopsis = [upcomingCache synopsisForMovie:movie];
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }
-    
+
     synopsis = [netflixCache synopsisForMovie:movie];
     if (synopsis.length > 0) {
       [options addObject:synopsis];
     }
   }
-  
+
   if (options.count == 0) {
     return LocalizedString(@"No synopsis available.", nil);
   }
-  
-  
+
+
   NSString* bestOption = @"";
   for (NSString* option in options) {
     if (option.length > bestOption.length) {
       bestOption = option;
     }
   }
-  
+
   return bestOption;
 }
 
@@ -1726,12 +1726,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (result.count > 0) {
     return result;
   }
-  
+
   result = [trailerCache trailersForMovie:movie];
   if (result.count > 0) {
     return result;
   }
-  
+
   return [upcomingCache trailersForMovie:movie];
 }
 
@@ -1771,7 +1771,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 - (void) saveNavigationStack:(UINavigationController*) controller {
   NSMutableArray* types = [NSMutableArray array];
   NSMutableArray* values = [NSMutableArray array];
-  
+
   for (id viewController in controller.viewControllers) {
     NSInteger type = -1;
     id value = nil;
@@ -1795,15 +1795,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     } else {
       break;
     }
-    
+
     if (type == -1 || value == nil) {
       continue;
     }
-    
+
     [types addObject:[NSNumber numberWithInt:type]];
     [values addObject:value];
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setObject:types forKey:NAVIGATION_STACK_TYPES];
   [[NSUserDefaults standardUserDefaults] setObject:values forKey:NAVIGATION_STACK_VALUES];
 }
@@ -1814,7 +1814,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (result == nil) {
     return [NSArray array];
   }
-  
+
   return result;
 }
 
@@ -1824,7 +1824,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (result == nil) {
     return [NSArray array];
   }
-  
+
   return result;
 }
 
