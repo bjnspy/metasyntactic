@@ -15,7 +15,6 @@
 #import "UnknownMovieTitleCell.h"
 
 #import "ImageCache.h"
-#import "UITableViewCell+Utilities.h"
 
 @implementation UnknownMovieTitleCell
 

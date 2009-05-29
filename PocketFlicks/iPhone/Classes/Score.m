@@ -15,7 +15,6 @@
 #import "Score.h"
 
 #import "Movie.h"
-#import "StringUtilities.h"
 
 @interface Score()
 @property (copy) NSString* canonicalTitle;

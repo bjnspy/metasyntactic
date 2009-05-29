@@ -23,7 +23,6 @@
 #import "RedMovieTitleCell.h"
 #import "RottenMovieTitleCell.h"
 #import "Score.h"
-#import "StringUtilities.h"
 #import "TomatoMovieTitleCell.h"
 #import "UnknownMovieTitleCell.h"
 #import "YellowMovieTitleCell.h"

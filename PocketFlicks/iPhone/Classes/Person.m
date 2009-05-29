@@ -14,8 +14,6 @@
 
 #import "Person.h"
 
-#import "StringUtilities.h"
-
 @interface Person()
 @property (copy) NSString* identifier;
 @property (copy) NSString* name;

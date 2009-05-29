@@ -15,11 +15,7 @@
 #import "FandangoPosterDownloader.h"
 
 #import "Application.h"
-#import "DateUtilities.h"
-#import "DifferenceEngine.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
-#import "XmlElement.h"
 
 @implementation FandangoPosterDownloader
 

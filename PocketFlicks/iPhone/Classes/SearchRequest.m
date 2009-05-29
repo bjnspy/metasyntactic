@@ -17,7 +17,6 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "Model.h"
-#import "StringUtilities.h"
 #import "UpcomingCache.h"
 
 @interface SearchRequest()

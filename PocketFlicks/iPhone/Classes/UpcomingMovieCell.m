@@ -14,7 +14,6 @@
 
 #import "UpcomingMovieCell.h"
 
-#import "DateUtilities.h"
 #import "Model.h"
 #import "Movie.h"
 #import "UpcomingMoviesViewController.h"

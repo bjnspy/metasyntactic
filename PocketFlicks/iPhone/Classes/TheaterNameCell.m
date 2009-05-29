@@ -15,7 +15,6 @@
 #import "TheaterNameCell.h"
 
 #import "Model.h"
-#import "StringUtilities.h"
 #import "Theater.h"
 
 

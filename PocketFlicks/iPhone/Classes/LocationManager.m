@@ -14,13 +14,10 @@
 
 #import "LocationManager.h"
 
-#import "AlertUtilities.h"
 #import "Controller.h"
 #import "Location.h"
-#import "LocationUtilities.h"
 #import "Model.h"
 #import "NotificationCenter.h"
-#import "OperationQueue.h"
 #import "UserLocationCache.h"
 
 @interface LocationManager()

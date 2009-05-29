@@ -17,7 +17,6 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "StringUtilities.h"
 
 @interface Queue()
 @property (retain) Feed* feed;
