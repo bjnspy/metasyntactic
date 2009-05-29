@@ -40,7 +40,7 @@
   self.imageView = nil;
   self.activityView = nil;
   self.titleLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -61,7 +61,7 @@
 #endif
       ) {
     self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
-    
+
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumFontSize = 14;
@@ -72,31 +72,31 @@
       self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoadingNeutral]] autorelease];
     }
     imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
-    
+
     self.imageView = [[[UIImageView alloc] init] autorelease];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.alpha = 0;
-    
+
     CGRect imageFrame = imageLoadingView.frame;
     imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
     imageFrame.size.height = (int)SMALL_POSTER_HEIGHT;
     imageView.frame = imageLoadingView.frame = imageFrame;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
-    
+
     self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     activityView.hidesWhenStopped = YES;
     CGRect frame = activityView.frame;
     frame.origin.x = 25;
     frame.origin.y = 40;
     activityView.frame = frame;
-    
+
     [self.contentView addSubview:titleLabel];
     [self.contentView addSubview:imageLoadingView];
     [self.contentView addSubview:imageView];
     [self.contentView addSubview:activityView];
   }
-  
+
   return self;
 }
 
@@ -129,7 +129,7 @@
 - (void) setCellImage:(UIImage*) image {
   [activityView stopAnimating];
   imageView.image = image;
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     imageLoadingView.alpha = 0;
@@ -149,20 +149,20 @@
 
   CGSize imageSize = image.size;
   CGSize frameSize = imageView.frame.size;
-  
+
   if (imageSize.height < frameSize.height) {
     imageView.contentMode = UIViewContentModeCenter;
   } else {
     imageView.contentMode = UIViewContentModeScaleAspectFill;
   }
-  
+
   [self setCellImage:image];
 }
 
 
 - (void) clearImage {
   [self startAnimating];
-  
+
   imageLoaded = NO;
   imageView.image = nil;
   imageView.alpha = 0;
@@ -175,11 +175,11 @@
     // we're done.  nothing else to do.
     return;
   }
-  
+
   UIImage* image = [self loadImageWorker];
   if (image == nil) {
     [self prioritizeImage];
-    
+
     if ([[OperationQueue operationQueue] hasPriorityOperations]) {
       [self clearImage];
     } else {
@@ -208,14 +208,14 @@
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   CGRect imageFrame = imageView.frame;
-  
+
   CGRect titleFrame = titleLabel.frame;
   titleFrame.origin.x = (int)(imageFrame.size.width + 2);
   titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
   titleLabel.frame = titleFrame;
-  
+
   for (UILabel* label in self.valueLabels) {
     CGRect frame = label.frame;
     frame.origin.x = (int)(imageFrame.size.width + 2 + titleWidth + 5);
@@ -231,13 +231,13 @@
 
   if (selected) {
     titleLabel.textColor = [UIColor whiteColor];
-    
+
     for (UILabel* label in self.allLabels) {
       label.textColor = [UIColor whiteColor];
     }
   } else {
     titleLabel.textColor = [UIColor blackColor];
-    
+
     for (UILabel* label in self.allLabels) {
       label.textColor = [UIColor darkGrayColor];
     }
@@ -247,7 +247,7 @@
 
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  
+
   label.font = [UIFont systemFontOfSize:12];
   label.textColor = [UIColor darkGrayColor];
   label.text = title;
@@ -256,7 +256,7 @@
   CGRect frame = label.frame;
   frame.origin.y = yPosition;
   label.frame = frame;
-  
+
   return label;
 }
 
@@ -266,7 +266,7 @@
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, height)] autorelease];
   label.font = [UIFont systemFontOfSize:12];
   label.textColor = [UIColor darkGrayColor];
-  
+
   return label;
 }
 

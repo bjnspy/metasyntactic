@@ -25,7 +25,7 @@
 
 - (void) dealloc {
   self.movie = nil;
-  
+
   [super dealloc];
 }
 
@@ -33,7 +33,7 @@
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
   if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
   }
-  
+
   return self;
 }
 
@@ -76,11 +76,11 @@
                        owner:(id) owner  {
   // switching to a new movie.  update everything.
   self.movie = movie_;
-  
+
   for (UILabel* label in self.allLabels) {
     [label removeFromSuperview];
   }
-  
+
   // first see if we have this image already cached.  If so, use the cached
   // image.  Otherwise, load it from disk on the next run loop.
   UIImage* image = [self retrieveImageFromCache];
@@ -89,9 +89,9 @@
   } else {
     [self setCellImage:image];
   }
-  
+
   [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
-  
+
   // if we're scrolling fast, then actually defer loading the image till
   // later.  Otherwise do it now.
   if ([[owner tableView] isDecelerating]) {
@@ -120,7 +120,7 @@
   } else {
     titleLabel.text = movie_.displayTitle;
   }
-  
+
   if (movie == movie_) {
     [self onSetSameMovie:movie_ owner:owner];
   } else {

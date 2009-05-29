@@ -39,16 +39,16 @@ enum ViewControllerType {
   MutableNetflixCache* netflixCache;
   InternationalDataCache* internationalDataCache;
   HelpCache* helpCache;
-  
+
   id<DataProvider> dataProvider;
-  
+
   NSInteger searchRadiusData;
   NSNumber* isSearchDateTodayData;
-  
+
   // Accessed from multiple threads.  Needs lock.
   NSSet* bookmarkedTitlesData;
   NSDictionary* favoriteTheatersData;
-  
+
   NSInteger cachedScoreProviderIndex;
   NSInteger cachedAllMoviesSelectedSegmentIndex;
 }

@@ -25,11 +25,11 @@ static Constitution* articlesOfConfederation;
 
 + (void) setupArticlesOfConfederation {
   NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:@"US"];
-  
+
   NSString* preamble =
   NSLocalizedString(@"To all to whom these Presents shall come, we the undersigned Delegates of the States affixed to our Names send greeting.\n\n"
                     @"Articles of Confederation and perpetual Union between the States of New Hampshire, Massachusetts bay, Rhode Island and Providence Plantations, Connecticut, New York, New Jersey, Pennsylvania, Delaware, Maryland, Virginia, North Carolina, South Carolina and Georgia.", nil);
-  
+
   NSArray* articles =
   [NSArray arrayWithObjects:
    [Article articleWithTitle:@"Article I"
@@ -56,7 +56,7 @@ static Constitution* articlesOfConfederation;
                                                                         @"No State shall engage in any war without the consent of the United States in Congress assembled, unless such State be actually invaded by enemies, or shall have received certain advice of a resolution being formed by some nation of Indians to invade such State, and the danger is so imminent as not to admit of a delay till the United States in Congress assembled can be consulted; nor shall any State grant commissions to any ships or vessels of war, nor letters of marque or reprisal, except it be after a declaration of war by the United States in Congress assembled, and then only against the Kingdom or State and the subjects thereof, against which war has been so declared, and under such regulations as shall be established by the United States in Congress assembled, unless such State be infested by pirates, in which case vessels of war may be fitted out for that occasion, and kept so long as the danger shall continue, or until the United States in Congress assembled shall determine otherwise.", nil)]],
    [Article articleWithTitle:@"Article VII"
                      section:[Section sectionWithText:NSLocalizedString(@"When land forces are raised by any State for the common defense, all officers of or under the rank of colonel, shall be appointed by the legislature of each State respectively, by whom such forces shall be raised, or in such manner as such State shall direct, and all vacancies shall be filled up by the State which first made the appointment.", nil)]],
-   
+
    [Article articleWithTitle:@"Article VIII"
                      section:[Section sectionWithText:NSLocalizedString(@"All charges of war, and all other expenses that shall be incurred for the common defense or general welfare, and allowed by the United States in Congress assembled, shall be defrayed out of a common treasury, which shall be supplied by the several States in proportion to the value of all land within each State, granted or surveyed for any person, as such land and the buildings and improvements thereon shall be estimated according to such mode as the United States in Congress assembled, shall from time to time direct and appoint.\n\n"
                                                                         @"The taxes for paying that proportion shall be laid and levied by the authority and direction of the legislatures of the several States within the time agreed upon by the United States in Congress assembled.", nil)]],
@@ -76,17 +76,17 @@ static Constitution* articlesOfConfederation;
                      section:[Section sectionWithText:NSLocalizedString(@"All bills of credit emitted, monies borrowed, and debts contracted by, or under the authority of Congress, before the assembling of the United States, in pursuance of the present confederation, shall be deemed and considered as a charge against the United States, for payment and satisfaction whereof the said United States, and the public faith are hereby solemnly pledged.", nil)]],
    [Article articleWithTitle:@"Article XIII"
                      section:[Section sectionWithText:NSLocalizedString(@"Every State shall abide by the determination of the United States in Congress assembled, on all questions which by this confederation are submitted to them. And the Articles of this Confederation shall be inviolably observed by every State, and the Union shall be perpetual; nor shall any alteration at any time hereafter be made in any of them; unless such alteration be agreed to in a Congress of the United States, and be afterwards confirmed by the legislatures of every State.", nil)]],
-   
+
    nil];
-  
+
   NSString* conclusion = @"And Whereas it hath pleased the Great Governor of the World to incline the hearts of the legislatures we respectively represent in Congress, to approve of, and to authorize us to ratify the said Articles of Confederation and perpetual Union. Know Ye that we the undersigned delegates, by virtue of the power and authority to us given for that purpose, do by these presents, in the name and in behalf of our respective constituents, fully and entirely ratify and confirm each and every of the said Articles of Confederation and perpetual Union, and all and singular the matters and things therein contained: And we do further solemnly plight and engage the faith of our respective constituents, that they shall abide by the determinations of the United States in Congress assembled, on all questions, which by the said Confederation are submitted to them. And that the Articles thereof shall be inviolably observed by the States we respectively represent, and that the Union shall be perpetual.";
-  
+
   MutableMultiDictionary* signers = [MutableMultiDictionary dictionary];
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Josiah Bartlett", @"http://en.wikipedia.org/wiki/Josiah_Bartlett"),
                        person(@"John Wentworth Jr.", @"http://en.wikipedia.org/wiki/John_Wentworth_Jr."),nil]
                forKey:@"New Hampshire"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"John Hancock", @"http://en.wikipedia.org/wiki/John_Hancock"),
                        person(@"Samuel Adams", @"http://en.wikipedia.org/wiki/Samuel_Adams"),
@@ -95,13 +95,13 @@ static Constitution* articlesOfConfederation;
                        person(@"James Lovell", @"http://en.wikipedia.org/wiki/James_Lovell_(delegate)"),
                        person(@"Samuel Holten", @"http://en.wikipedia.org/wiki/Samuel_Holten"),nil]
                forKey:@"Massachusetts"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"William Ellery", @"http://en.wikipedia.org/wiki/William_Ellery"),
                        person(@"Henry Marchant", @"http://en.wikipedia.org/wiki/Henry_Marchant"),
                        person(@"John Collins", @"http://en.wikipedia.org/wiki/John_Collins_(delegate)"),nil]
                forKey:@"Rhode Island"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Roger Sherman", @"http://en.wikipedia.org/wiki/Roger_Sherman"),
                        person(@"Samuel Huntington", @"http://en.wikipedia.org/wiki/Samuel_Huntington_(statesman)"),
@@ -109,19 +109,19 @@ static Constitution* articlesOfConfederation;
                        person(@"Titus Hosmer", @"http://en.wikipedia.org/wiki/Titus_Hosmer"),
                        person(@"Andrew Adams", @"http://en.wikipedia.org/wiki/Andrew_Adams_(congressman)"),nil]
                forKey:@"Connecticut"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"James Duane", @"http://en.wikipedia.org/wiki/James_Duane"),
                        person(@"Francis Lewis", @"http://en.wikipedia.org/wiki/Francis_Lewis"),
                        person(@"William Duer", @"http://en.wikipedia.org/wiki/William_Duer_(1747-1799)"),
                        person(@"Gouverneur Morris", @"http://en.wikipedia.org/wiki/Gouverneur_Morris"),nil]
                forKey:@"New York"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"John Witherspoon", @"http://en.wikipedia.org/wiki/John_Witherspoon"),
                        person(@"Nathaniel Scudder", @"http://en.wikipedia.org/wiki/Nathaniel_Scudder"),nil]
                forKey:@"New Jersey"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Robert Morris", @"http://en.wikipedia.org/wiki/Robert_Morris_(financier)"),
                        person(@"Daniel Roberdeau", @"http://en.wikipedia.org/wiki/Daniel_Roberdeau"),
@@ -129,18 +129,18 @@ static Constitution* articlesOfConfederation;
                        person(@"William Clingan", @"http://en.wikipedia.org/wiki/William_Clingan"),
                        person(@"Joseph Reed", @"http://en.wikipedia.org/wiki/Joseph_Reed_(jurist)"),nil]
                forKey:@"Pennsylvania"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Thomas Mckean", @"http://en.wikipedia.org/wiki/Thomas_McKean"),
                        person(@"John Dickinson", @"http://en.wikipedia.org/wiki/John_Dickinson_(delegate)"),
                        person(@"Nicholas Van Dyke", @"http://en.wikipedia.org/wiki/Nicholas_Van_Dyke_(governor)"),nil]
                forKey:@"Deleware"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"John Hanson", @"http://en.wikipedia.org/wiki/John_Hanson"),
                        person(@"Daniel Carroll", @"http://en.wikipedia.org/wiki/Daniel_Carroll"),nil]
                forKey:@"Maryland"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Richard Henry Lee", @"http://en.wikipedia.org/wiki/Richard_Henry_Lee"),
                        person(@"John Banister", @"http://en.wikipedia.org/wiki/John_Banister_(lawyer)"),
@@ -148,13 +148,13 @@ static Constitution* articlesOfConfederation;
                        person(@"John Harvie", @"http://en.wikipedia.org/wiki/John_Harvie"),
                        person(@"Francis Lightfoot Lee", @"http://en.wikipedia.org/wiki/Francis_Lightfoot_Lee"),nil]
                forKey:@"Virginia"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"John Penn", @"http://en.wikipedia.org/wiki/John_Penn_(delegate)"),
                        person(@"Cornelius Harnett", @"http://www.google.com/url?q=http://en.wikipedia.org/wiki/Cornelius_Harnett&ei=NkioSYigCYH8tgfN7MHXDw&sa=X&oi=spellmeleon_result&resnum=1&ct=result&cd=1&usg=AFQjCNHDpzuq6d5jPavCHKx2E2VgIvpFGQ"),
                        person(@"John Williams", @"http://en.wikipedia.org/wiki/John_Williams_(delegate)"),nil]
                forKey:@"North Carolina"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"Henry Laurens", @"http://en.wikipedia.org/wiki/Henry_Laurens"),
                        person(@"William Henry Drayton", @"http://en.wikipedia.org/wiki/William_Henry_Drayton"),
@@ -162,13 +162,13 @@ static Constitution* articlesOfConfederation;
                        person(@"Richard Hutson", @"http://www.google.com/url?q=http://en.wikipedia.org/wiki/Richard_Hutson"),
                        person(@"Thomas Heyward Jr.", @"http://en.wikipedia.org/wiki/Thomas_Heyward,_Jr."),nil]
                forKey:@"South Carolina"];
-  
+
   [signers addObjects:[NSArray arrayWithObjects:
                        person(@"George Walton", @"http://en.wikipedia.org/wiki/George_Walton"),
                        person(@"Edward Telfair", @"http://en.wikipedia.org/wiki/Edward_Telfair"),
                        person(@"Edward Langworthy", @"http://en.wikipedia.org/wiki/Edward_Langworthy"),nil]
                forKey:@"Georgia"];
-  
+
   articlesOfConfederation =
   [[Constitution constitutionWithCountry:country
                                 preamble:preamble

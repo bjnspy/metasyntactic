@@ -14,8 +14,8 @@
 
 #import "YourRightsNavigationController.h"
 
-#import "SectionViewController.h"
 #import "AppDelegate.h"
+#import "SectionViewController.h"
 
 @interface YourRightsNavigationController()
 @end
