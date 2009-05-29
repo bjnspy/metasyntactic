@@ -19,7 +19,6 @@
 #import "Controller.h"
 #import "Model.h"
 #import "NetflixNavigationController.h"
-#import "NotificationCenter.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;

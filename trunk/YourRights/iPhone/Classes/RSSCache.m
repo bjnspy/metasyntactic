@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "Application.h"
 #import "Item.h"
-#import "NotificationCenter.h"
 
 @interface RSSCache()
 @property (retain) NSMutableDictionary* titleToItems;

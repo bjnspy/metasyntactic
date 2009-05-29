@@ -15,7 +15,6 @@
 #import "GoogleDataProvider.h"
 
 #import "Application.h"
-#import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "NowPlaying.pb.h"

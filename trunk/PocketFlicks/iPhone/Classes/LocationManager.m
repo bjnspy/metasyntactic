@@ -15,9 +15,7 @@
 #import "LocationManager.h"
 
 #import "Controller.h"
-#import "Location.h"
 #import "Model.h"
-#import "NotificationCenter.h"
 #import "UserLocationCache.h"
 
 @interface LocationManager()

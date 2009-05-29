@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "ImageCache.h"
 #import "LocalSearchDisplayController.h"
-#import "Location.h"
 #import "Model.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"

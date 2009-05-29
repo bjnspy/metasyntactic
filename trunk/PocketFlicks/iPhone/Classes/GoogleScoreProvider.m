@@ -15,7 +15,6 @@
 #import "GoogleScoreProvider.h"
 
 #import "Application.h"
-#import "Location.h"
 #import "Model.h"
 #import "NowPlaying.pb.h"
 #import "Score.h"

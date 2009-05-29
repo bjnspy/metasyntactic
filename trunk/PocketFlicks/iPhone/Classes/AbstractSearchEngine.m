@@ -15,7 +15,6 @@
 #import "AbstractSearchEngine.h"
 
 #import "Model.h"
-#import "NotificationCenter.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"

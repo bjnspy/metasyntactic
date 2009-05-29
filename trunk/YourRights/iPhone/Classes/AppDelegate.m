@@ -16,7 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "NotificationCenter.h"
 #import "SectionViewController.h"
 #import "YourRightsNavigationController.h"
 
