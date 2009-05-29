@@ -17,79 +17,115 @@
 #import "CacheUpdater.h"
 #import "Model.h"
 #import "Movie.h"
+#import "SmallPosterCache.h"
 
 @implementation AbstractPosterCell
 
 @synthesize movie;
 
 - (void) dealloc {
-    self.movie = nil;
+  self.movie = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-    }
+  if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+  }
 
-    return self;
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (UIImage*) loadImageWorker {
-    return [self.model smallPosterForMovie:movie];
+  UIImage* result = [self.model smallPosterForMovie:movie];
+  if (result != nil) {
+    [self.model.smallPosterCache setPoster:result forTitle:movie.canonicalTitle];
+  }
+  return result;
+}
+
+
+- (UIImage*) retrieveImageFromCache {
+  return [self.model.smallPosterCache posterForTitle:movie.canonicalTitle];
 }
 
 
 - (void) prioritizeImage {
-    [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:NO];
+  [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:NO];
 }
 
 
 - (void) onSetSameMovie:(Movie*) movie_
                   owner:(id) owner  {
-    // refreshing with the same movie.
-    // update our image if necessary.
-    [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
-    [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
+  // refreshing with the same movie.
+  // update our image if necessary.
+  [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
+
+  [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
 }
 
 
 - (void) onSetDifferentMovie:(Movie*) movie_
                        owner:(id) owner  {
-    // switching to a new movie.  update everything.
-    self.movie = movie_;
+  // switching to a new movie.  update everything.
+  self.movie = movie_;
 
-    for (UILabel* label in self.allLabels) {
-        [label removeFromSuperview];
-    }
+  for (UILabel* label in self.allLabels) {
+    [label removeFromSuperview];
+  }
 
+  // first see if we have this image already cached.  If so, use the cached
+  // image.  Otherwise, load it from disk on the next run loop.
+  UIImage* image = [self retrieveImageFromCache];
+  if (image == nil) {
     [self clearImage];
+  } else {
+    [self setCellImage:image];
+  }
 
-    [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
+  [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
+
+  // if we're scrolling fast, then actually defer loading the image till
+  // later.  Otherwise do it now.
+  if ([[owner tableView] isDecelerating]) {
     [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
+  } else {
+    [self loadMovie:owner];
+  }
+}
+
+
+- (void) loadMovieWorker:(id) owner {
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) loadMovie:(id) owner {
+  [self loadImage];
+  [self loadMovieWorker:owner];
 }
 
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-    if ([self.model isBookmarked:movie_]) {
-        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie_.displayTitle];
-    } else {
-        titleLabel.text = movie_.displayTitle;
-    }
+  if ([self.model isBookmarked:movie_]) {
+    titleLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie_.displayTitle];
+  } else {
+    titleLabel.text = movie_.displayTitle;
+  }
 
-    if (movie == movie_) {
-        [self onSetSameMovie:movie_ owner:owner];
-    } else {
-        [self onSetDifferentMovie:movie_ owner:owner];
-    }
+  if (movie == movie_) {
+    [self onSetSameMovie:movie_ owner:owner];
+  } else {
+    [self onSetDifferentMovie:movie_ owner:owner];
+  }
 }
 
 @end

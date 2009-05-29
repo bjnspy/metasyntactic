@@ -211,9 +211,7 @@
 }
 
 
-- (void) loadMovie:(id) owner {
-    [self loadImage];
-
+- (void) loadMovieWorker:(UITableViewController*) owner {
     directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];

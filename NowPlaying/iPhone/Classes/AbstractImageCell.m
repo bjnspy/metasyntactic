@@ -19,7 +19,6 @@
 
 
 @interface AbstractImageCell()
-//@property ImageState state;
 @property (retain) UIImageView* imageLoadingView;
 @property (retain) UIImageView* imageView;
 @property (retain) UIActivityIndicatorView* activityView;
@@ -29,7 +28,6 @@
 
 @implementation AbstractImageCell
 
-//@synthesize state;
 @synthesize imageLoadingView;
 @synthesize imageView;
 @synthesize activityView;

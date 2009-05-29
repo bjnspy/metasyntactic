@@ -1293,22 +1293,22 @@
 		74489CCD0DDD11D600F565B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				74A863EE0E64F23E003A2249 /* Movies */,
-				74A863EF0E64F243003A2249 /* Theaters */,
-				74A863F00E64F247003A2249 /* Upcoming */,
 				747AB7A80EB956C2002438D0 /* DVD */,
+				74A863EE0E64F23E003A2249 /* Movies */,
 				74E031770EF4C5D000B2D2BA /* Netflix */,
 				744245BA0E89DA0F00ACDBCF /* Search */,
 				74A863F20E64F255003A2249 /* Settings */,
+				74A863EF0E64F243003A2249 /* Theaters */,
+				74A863F00E64F247003A2249 /* Upcoming */,
 				74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */,
-				74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */,
 				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
-				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
-				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
-				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */,
-				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
+				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
 				74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */,
+				74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */,
+				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
+				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
+				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */,
 			);
 			name = ViewControllers;
@@ -1583,18 +1583,18 @@
 		74A863F20E64F255003A2249 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
-				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
-				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
-				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
-				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
-				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
-				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
-				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 				7453803F0F89D58F00D457CB /* FAQViewController.h */,
+				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
+				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
+				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
+				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
+				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
 				745380400F89D58F00D457CB /* FAQViewController.m */,
+				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
+				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
+				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
+				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

@@ -103,6 +103,8 @@
 		747C367B0FD07C4900411801 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C36670FD07C0200411801 /* libProtocolBuffers.a */; };
 		747C39B50FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
 		747C39B60FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
+		747C3B790FD0897A00411801 /* SmallPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C3B780FD0897A00411801 /* SmallPosterCache.m */; };
+		747C3B7A0FD0897A00411801 /* SmallPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C3B780FD0897A00411801 /* SmallPosterCache.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
@@ -529,49 +531,49 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36530FD07BF100411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801 /* libiPhoneShared.a */;
+			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		747C36660FD07C0200411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		747C36680FD07C0200411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
+			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
 		};
 		747C366F0FD07C1800411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36530FD07BF100411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* iPhoneShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		747C36710FD07C1800411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		747C36730FD07C1F00411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36530FD07BF100411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* iPhoneShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		747C36750FD07C1F00411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
@@ -744,6 +746,8 @@
 		747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ../../ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		747C39B30FD0814400411801 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		747C39B40FD0814400411801 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		747C3B770FD0897A00411801 /* SmallPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPosterCache.h; sourceTree = "<group>"; };
+		747C3B780FD0897A00411801 /* SmallPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPosterCache.m; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -1065,22 +1069,22 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				747C36430FD07B5A00411801 /* Shared */,
-				74447D550DC8474A00CC146C /* UI */,
 				7474FE910E6359BC00BAA43D /* Caches */,
 				74EB7B3D0EE34373005BD3F0 /* Data */,
 				74A915780F7FFAFF00832767 /* DataProvider */,
 				744246FE0E89F79000ACDBCF /* Search */,
+				747C36430FD07B5A00411801 /* Shared */,
+				74447D550DC8474A00CC146C /* UI */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
-				746A02140DC81A1A0079D89B /* Application.h */,
-				746A02150DC81A1A0079D89B /* Application.m */,
 				7406A7620F104C2200795555 /* AppDelegate.h */,
-				7406A7630F104C2200795555 /* AppDelegate.m */,
+				746A02140DC81A1A0079D89B /* Application.h */,
 				7406A7640F104C2200795555 /* Controller.h */,
-				7406A7650F104C2200795555 /* Controller.m */,
 				7406A7660F104C2200795555 /* Model.h */,
-				7406A7670F104C2200795555 /* Model.m */,
 				74A917C70F800CD300832767 /* NetflixAuthentication.h */,
+				7406A7630F104C2200795555 /* AppDelegate.m */,
+				746A02150DC81A1A0079D89B /* Application.m */,
+				7406A7650F104C2200795555 /* Controller.m */,
+				7406A7670F104C2200795555 /* Model.m */,
 				74A917C80F800CD300832767 /* NetflixAuthentication.m */,
 			);
 			path = Classes;
@@ -1264,9 +1268,9 @@
 		74447D550DC8474A00CC146C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74A917100F80077C00832767 /* TabBarControllers */,
 				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
-				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74489CCD0DDD11D600F565B1 /* ViewControllers */,
 				740245660E78488D00ECE1B4 /* Views */,
 			);
@@ -1399,22 +1403,24 @@
 		7474FE8F0E63595400BAA43D /* Posters */ = {
 			isa = PBXGroup;
 			children = (
-				74088BD50DCD0AA800954696 /* PosterCache.h */,
-				74088BD60DCD0AA800954696 /* PosterCache.m */,
 				741C74D90F8DC59E003747AD /* AbstractPosterDownloader.h */,
-				741C74DA0F8DC59E003747AD /* AbstractPosterDownloader.m */,
-				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
-				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
 				7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */,
-				7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */,
 				74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */,
-				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
-				741C74B70F8DC4E4003747AD /* PreviewNetworksPosterDownloader.h */,
-				741C74B80F8DC4E4003747AD /* PreviewNetworksPosterDownloader.m */,
+				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
 				7410D73F0EC2C0740079BF1E /* LargePosterCache.h */,
-				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
 				7425BFAD0F2A8AA9007A3BBD /* PersonPosterCache.h */,
+				74088BD50DCD0AA800954696 /* PosterCache.h */,
+				741C74B70F8DC4E4003747AD /* PreviewNetworksPosterDownloader.h */,
+				747C3B770FD0897A00411801 /* SmallPosterCache.h */,
+				741C74DA0F8DC59E003747AD /* AbstractPosterDownloader.m */,
+				7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */,
+				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
+				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
+				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
 				7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */,
+				74088BD60DCD0AA800954696 /* PosterCache.m */,
+				741C74B80F8DC4E4003747AD /* PreviewNetworksPosterDownloader.m */,
+				747C3B780FD0897A00411801 /* SmallPosterCache.m */,
 			);
 			name = Posters;
 			sourceTree = "<group>";
@@ -1532,20 +1538,20 @@
 			isa = PBXGroup;
 			children = (
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
 				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
-				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
-				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
 				74A9178D0F80098E00832767 /* ScoreProviderViewController.h */,
-				74A9178E0F80098E00832767 /* ScoreProviderViewController.m */,
 				74A917480F80087B00832767 /* SearchDatePickerViewController.h */,
-				74A917490F80087B00832767 /* SearchDatePickerViewController.m */,
 				741C74E70F8DC5D4003747AD /* SearchDistancePickerViewController.h */,
-				741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */,
 				74A917850F80096400832767 /* SettingsViewController.h */,
-				74A917860F80096400832767 /* SettingsViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
+				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
+				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74A9178E0F80098E00832767 /* ScoreProviderViewController.m */,
+				74A917490F80087B00832767 /* SearchDatePickerViewController.m */,
+				741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */,
+				74A917860F80096400832767 /* SettingsViewController.m */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 			);
 			name = Settings;
@@ -1555,16 +1561,16 @@
 			isa = PBXGroup;
 			children = (
 				7476FEFA0F2A671900D71F36 /* AbstractImageCell.h */,
-				7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */,
 				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
-				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
 				74A916C50F8005D200832767 /* DVDCell.h */,
-				74A916C60F8005D200832767 /* DVDCell.m */,
 				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
-				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
 				7476FEF60F2A66DF00D71F36 /* PersonCell.h */,
-				7476FEF70F2A66DF00D71F36 /* PersonCell.m */,
 				74A916C70F8005D200832767 /* UpcomingMovieCell.h */,
+				7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */,
+				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
+				74A916C60F8005D200832767 /* DVDCell.m */,
+				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
+				7476FEF70F2A66DF00D71F36 /* PersonCell.m */,
 				74A916C80F8005D200832767 /* UpcomingMovieCell.m */,
 			);
 			name = ImageCells;
@@ -2297,6 +2303,7 @@
 				741C74E90F8DC5D4003747AD /* SearchDistancePickerViewController.m in Sources */,
 				74E3EAA50FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */,
 				747C39B50FD0814400411801 /* LocationManager.m in Sources */,
+				747C3B790FD0897A00411801 /* SmallPosterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2448,6 +2455,7 @@
 				74E149660F95949500FB7BDA /* SearchDistancePickerViewController.m in Sources */,
 				74E3EAA60FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */,
 				747C39B60FD0814400411801 /* LocationManager.m in Sources */,
+				747C3B7A0FD0897A00411801 /* SmallPosterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -124,6 +124,7 @@
 @class SearchResult;
 @class SettingCell;
 @class SettingsViewController;
+@class SmallPosterCache;
 @class Status;
 @class TappableActivityIndicatorView;
 @class TappableImageView;

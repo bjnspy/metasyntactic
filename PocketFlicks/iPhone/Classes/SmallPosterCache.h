@@ -12,21 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractImageCell.h"
+#import "AbstractCache.h"
 
-@interface AbstractPosterCell : AbstractImageCell {
-@protected
-    Movie* movie;
+@interface SmallPosterCache : AbstractCache {
+@private
+  NSMutableDictionary* titleToPosterMap;
 }
 
-@property (retain) Movie* movie;
++ (SmallPosterCache*) cache;
 
-- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
-
-- (void) setMovie:(Movie*) movie owner:(id) owner;
-
-// @protected
-- (void) onSetSameMovie:(Movie*) movie owner:(id) owner;
-- (void) loadMovie:(id) owner;
+- (void) setPoster:(UIImage*) image forTitle:(NSString*) title;
+- (UIImage*) posterForTitle:(NSString*) title;
 
 @end

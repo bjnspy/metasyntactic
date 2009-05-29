@@ -15,42 +15,42 @@
 #import "AbstractCache.h"
 
 enum ViewControllerType {
-    MovieDetails = 1,
-    TheaterDetails = 2,
-    Reviews = 3,
-    Tickets = 4
+  MovieDetails = 1,
+  TheaterDetails = 2,
+  Reviews = 3,
+  Tickets = 4
 };
 
 @interface Model : AbstractCache<UIAlertViewDelegate> {
 @private
-    UserLocationCache* userLocationCache;
-    BlurayCache* blurayCache;
-    DVDCache* dvdCache;
-    IMDbCache* imdbCache;
-    AmazonCache* amazonCache;
-    WikipediaCache* wikipediaCache;
-    PersonPosterCache* personPosterCache;
-    PosterCache* posterCache;
-    LargePosterCache* largePosterCache;
+  UserLocationCache* userLocationCache;
+  BlurayCache* blurayCache;
+  DVDCache* dvdCache;
+  IMDbCache* imdbCache;
+  AmazonCache* amazonCache;
+  WikipediaCache* wikipediaCache;
+  PersonPosterCache* personPosterCache;
+  PosterCache* posterCache;
+  LargePosterCache* largePosterCache;
   SmallPosterCache* smallPosterCache;
-    ScoreCache* scoreCache;
-    TrailerCache* trailerCache;
-    UpcomingCache* upcomingCache;
-    MutableNetflixCache* netflixCache;
-    InternationalDataCache* internationalDataCache;
-    HelpCache* helpCache;
+  ScoreCache* scoreCache;
+  TrailerCache* trailerCache;
+  UpcomingCache* upcomingCache;
+  MutableNetflixCache* netflixCache;
+  InternationalDataCache* internationalDataCache;
+  HelpCache* helpCache;
 
-    id<DataProvider> dataProvider;
+  id<DataProvider> dataProvider;
 
-    NSInteger searchRadiusData;
-    NSNumber* isSearchDateTodayData;
+  NSInteger searchRadiusData;
+  NSNumber* isSearchDateTodayData;
 
-    // Accessed from multiple threads.  Needs lock.
-    NSSet* bookmarkedTitlesData;
-    NSDictionary* favoriteTheatersData;
+  // Accessed from multiple threads.  Needs lock.
+  NSSet* bookmarkedTitlesData;
+  NSDictionary* favoriteTheatersData;
 
-    NSInteger cachedScoreProviderIndex;
-    NSInteger cachedAllMoviesSelectedSegmentIndex;
+  NSInteger cachedScoreProviderIndex;
+  NSInteger cachedAllMoviesSelectedSegmentIndex;
 }
 
 @property (readonly, retain) UserLocationCache* userLocationCache;

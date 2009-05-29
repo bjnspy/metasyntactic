@@ -510,6 +510,7 @@ typedef enum {
   }
   refreshed = YES;
   UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+
 #ifdef IPHONE_OS_VERSION_3
   cell.textLabel.textColor = [UIColor grayColor];
 #else

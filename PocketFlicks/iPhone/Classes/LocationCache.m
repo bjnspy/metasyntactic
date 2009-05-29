@@ -16,7 +16,6 @@
 
 #import "Application.h"
 
-
 @interface LocationCache()
 @property (retain) NSMutableDictionary* addressToLocation;
 @end

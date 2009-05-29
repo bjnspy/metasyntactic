@@ -160,9 +160,7 @@
 }
 
 
-- (void) loadMovie:(id) owner {
-    [self loadImage];
-
+- (void) loadMovieWorker:(UITableViewController*) owner {
     directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
@@ -172,7 +170,7 @@
         rating = LocalizedString(@"Not yet rated", nil);		
     }
 
-    if ([owner sortingByTitle] || [self.model isBookmarked:movie]) {
+    if ([(id)owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (rating.length > 0) {
