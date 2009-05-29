@@ -16,8 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "OperationQueue.h"
-#import "Pulser.h"
 #import "NotificationCenter.h"
 #import "SectionViewController.h"
 #import "YourRightsNavigationController.h"
@@ -47,6 +45,7 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
+  [SharedApplication setSharedApplicationDelegate:self];
     appDelegate = self;
 
     [Model model];
@@ -104,5 +103,19 @@ static AppDelegate* appDelegate = nil;
     [appDelegate minorRefresh];
 }
 
+
+- (NSString*) localizedString:(NSString*) key {
+  return NSLocalizedString(key, nil);
+}
+
+
+- (void) saveNavigationStack:(UINavigationController*) controller {
+  [[Model model] saveNavigationStack:controller];
+}
+
+
+- (BOOL) notificationsEnabled {
+  return YES;
+}
 
 @end

@@ -22,6 +22,7 @@
 #import "LocationManager.h"
 #import "Model.h"
 #import "ScoreProviderViewController.h"
+#import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"

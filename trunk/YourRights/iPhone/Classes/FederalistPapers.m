@@ -16,7 +16,6 @@
 
 #import "Article.h"
 #import "Constitution.h"
-#import "MultiDictionary.h"
 #import "Section.h"
 
 @implementation FederalistPapers
