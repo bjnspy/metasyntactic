@@ -62,7 +62,6 @@
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
 		745F37590EE99B4600636D8E /* Bookmark-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37570EE99B4500636D8E /* Bookmark-Active.png */; };
 		745F375A0EE99B4600636D8E /* Bookmark-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37580EE99B4500636D8E /* Bookmark-Inactive.png */; };
-		74616EA80F15DDBB0004B610 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EA70F15DDBB0004B610 /* ViewControllerUtilities.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -109,7 +108,6 @@
 		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
 		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
-		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
@@ -193,7 +191,6 @@
 		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
 		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
-		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
@@ -310,8 +307,6 @@
 		74E148770F95949500FB7BDA /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		74E148780F95949500FB7BDA /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
-		74E1487A0F95949500FB7BDA /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
-		74E1487B0F95949500FB7BDA /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -365,7 +360,6 @@
 		74E148AE0F95949500FB7BDA /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7670F104C2200795555 /* Model.m */; };
 		74E148AF0F95949500FB7BDA /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */; };
 		74E148B00F95949500FB7BDA /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */; };
-		74E148D00F95949500FB7BDA /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EA70F15DDBB0004B610 /* ViewControllerUtilities.m */; };
 		74E148D80F95949500FB7BDA /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */; };
 		74E148D90F95949500FB7BDA /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4292C0F200E60002EECC5 /* Status.m */; };
 		74E148DB0F95949500FB7BDA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FE510F2A5D7F00D71F36 /* Person.m */; };
@@ -691,8 +685,6 @@
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745F37570EE99B4500636D8E /* Bookmark-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Active.png"; path = "Resources/Bookmark-Active.png"; sourceTree = "<group>"; };
 		745F37580EE99B4500636D8E /* Bookmark-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Inactive.png"; path = "Resources/Bookmark-Inactive.png"; sourceTree = "<group>"; };
-		74616EA60F15DDBB0004B610 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerUtilities.h; path = ../../iPhoneShared/Classes/ViewControllerUtilities.h; sourceTree = SOURCE_ROOT; };
-		74616EA70F15DDBB0004B610 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewControllerUtilities.m; path = ../../iPhoneShared/Classes/ViewControllerUtilities.m; sourceTree = SOURCE_ROOT; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -759,8 +751,6 @@
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
 		747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
 		747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
-		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
-		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -929,8 +919,6 @@
 		74AF0F870EC2D42200A8F639 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicks_Prefix.pch; sourceTree = "<group>"; };
-		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
-		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -1314,8 +1302,6 @@
 				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
 				74A916B70F80056B00832767 /* TicketsViewController.h */,
 				74A916B80F80056B00832767 /* TicketsViewController.m */,
-				74616EA60F15DDBB0004B610 /* ViewControllerUtilities.h */,
-				74616EA70F15DDBB0004B610 /* ViewControllerUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1538,21 +1524,17 @@
 			isa = PBXGroup;
 			children = (
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74A9178D0F80098E00832767 /* ScoreProviderViewController.h */,
 				74A917480F80087B00832767 /* SearchDatePickerViewController.h */,
 				741C74E70F8DC5D4003747AD /* SearchDistancePickerViewController.h */,
 				74A917850F80096400832767 /* SettingsViewController.h */,
-				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
-				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
 				74A9178E0F80098E00832767 /* ScoreProviderViewController.m */,
 				74A917490F80087B00832767 /* SearchDatePickerViewController.m */,
 				741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */,
 				74A917860F80096400832767 /* SettingsViewController.m */,
-				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2166,8 +2148,6 @@
 				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
-				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
-				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
 				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
 				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
@@ -2221,7 +2201,6 @@
 				7406A76A0F104C2200795555 /* Model.m in Sources */,
 				7406A7EF0F106AAA00795555 /* NetflixMostPopularViewController.m in Sources */,
 				7406A8490F107C1A00795555 /* NetflixMostPopularMoviesViewController.m in Sources */,
-				74616EA80F15DDBB0004B610 /* ViewControllerUtilities.m in Sources */,
 				74F4280D0F1FC995002EECC5 /* NetflixStatusCell.m in Sources */,
 				74F4292D0F200E60002EECC5 /* Status.m in Sources */,
 				7476FE520F2A5D7F00D71F36 /* Person.m in Sources */,
@@ -2318,8 +2297,6 @@
 				74E148770F95949500FB7BDA /* AbstractNavigationController.m in Sources */,
 				74E148780F95949500FB7BDA /* PosterCache.m in Sources */,
 				74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */,
-				74E1487A0F95949500FB7BDA /* EditorViewController.m in Sources */,
-				74E1487B0F95949500FB7BDA /* TextFieldEditorViewController.m in Sources */,
 				74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */,
 				74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */,
 				74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */,
@@ -2373,7 +2350,6 @@
 				74E148AE0F95949500FB7BDA /* Model.m in Sources */,
 				74E148AF0F95949500FB7BDA /* NetflixMostPopularViewController.m in Sources */,
 				74E148B00F95949500FB7BDA /* NetflixMostPopularMoviesViewController.m in Sources */,
-				74E148D00F95949500FB7BDA /* ViewControllerUtilities.m in Sources */,
 				74E148D80F95949500FB7BDA /* NetflixStatusCell.m in Sources */,
 				74E148D90F95949500FB7BDA /* Status.m in Sources */,
 				74E148DB0F95949500FB7BDA /* Person.m in Sources */,
@@ -2531,6 +2507,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Debug;
@@ -2546,6 +2523,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Release;
@@ -2591,6 +2569,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = AdHoc;
@@ -2631,6 +2610,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Distribution;
@@ -2652,6 +2632,7 @@
 					DEBUG,
 				);
 				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Debug;
@@ -2671,6 +2652,7 @@
 					RELEASE,
 				);
 				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Release;
@@ -2690,6 +2672,7 @@
 					ADHOC,
 				);
 				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = AdHoc;
@@ -2709,6 +2692,7 @@
 					DISTRIBUTION,
 				);
 				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Distribution;
