@@ -14,11 +14,9 @@
 
 #import "LocalSearchEngine.h"
 
-#import "Location.h"
 #import "Model.h"
 #import "Movie.h"
 #import "SearchRequest.h"
-#import "StringUtilities.h"
 #import "Theater.h"
 
 @implementation LocalSearchEngine

@@ -16,12 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "FileUtilities.h"
-#import "ImageUtilities.h"
-#import "NetworkUtilities.h"
 #import "Person.h"
-#import "StringUtilities.h"
-#import "XmlElement.h"
 
 @interface PersonPosterCache()
 //@property (retain) LinkedSet* normalPeople;

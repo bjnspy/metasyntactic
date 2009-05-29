@@ -28,8 +28,8 @@
 #import "ForwardDeclarations.h"
 #import "LocalizableStringsCache.h"
 #import "Macros.h"
-#import "OAuthConsumer.h"
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "expat.h"
+#import "Shared.h"
 #endif

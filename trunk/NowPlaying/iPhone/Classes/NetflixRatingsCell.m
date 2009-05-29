@@ -14,7 +14,6 @@
 
 #import "NetflixRatingsCell.h"
 
-#import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"

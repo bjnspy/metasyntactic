@@ -14,14 +14,10 @@
 
 #import "AppDelegate.h"
 
-#import "AlertUtilities.h"
 #import "ApplicationTabBarController.h"
 #import "CacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
-#import "NotificationCenter.h"
-#import "OperationQueue.h"
-#import "Pulser.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
@@ -59,6 +55,8 @@ static AppDelegate* appDelegate = nil;
     if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
+  
+  [SharedApplication setSharedApplicationDelegate:self];
 
     appDelegate = self;
 
@@ -142,6 +140,21 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
     [[Model model] didReceiveMemoryWarning];
+}
+
+
+- (NSString*) localizedString:(NSString*) key {
+  return [LocalizableStringsCache localizedString:key];
+}
+
+
+- (void) saveNavigationStack:(UINavigationController*) controller {
+  [[Model model] saveNavigationStack:controller];
+}
+
+
+- (BOOL) notificationsEnabled {
+  return [[Model model] notificationsEnabled];
 }
 
 @end

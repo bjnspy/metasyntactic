@@ -18,7 +18,6 @@
 #import "MetacriticScoreProvider.h"
 #import "Model.h"
 #import "NoneScoreProvider.h"
-#import "OperationQueue.h"
 #import "RottenTomatoesScoreProvider.h"
 
 @interface ScoreCache()

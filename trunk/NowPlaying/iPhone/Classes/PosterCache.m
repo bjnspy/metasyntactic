@@ -18,14 +18,11 @@
 #import "ApplePosterDownloader.h"
 #import "Application.h"
 #import "FandangoPosterDownloader.h"
-#import "FileUtilities.h"
-#import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
 #import "PreviewNetworksPosterDownloader.h"
 
 @interface PosterCache()

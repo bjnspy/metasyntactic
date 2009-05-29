@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #import "TappableScrollViewDelegate.h"
-#import "AbstractFullScreenViewController.h"
 
 @interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private

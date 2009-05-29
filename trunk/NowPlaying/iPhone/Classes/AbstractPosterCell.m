@@ -18,7 +18,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "SmallPosterCache.h"
-#import "StringUtilities.h"
 
 @implementation AbstractPosterCell
 

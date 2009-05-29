@@ -15,9 +15,7 @@
 #import "ApplePosterDownloader.h"
 
 #import "Application.h"
-#import "DifferenceEngine.h"
 #import "Movie.h"
-#import "NetworkUtilities.h"
 
 @implementation ApplePosterDownloader
 

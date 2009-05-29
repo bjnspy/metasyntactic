@@ -14,9 +14,6 @@
 
 #import "Application.h"
 
-#import "DifferenceEngine.h"
-#import "FileUtilities.h"
-
 @implementation Application
 
 // Application storage directories

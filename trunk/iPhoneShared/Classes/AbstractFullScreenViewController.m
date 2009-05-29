@@ -14,10 +14,6 @@
 
 #import "AbstractFullScreenViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "AppDelegate.h"
-#import "Controller.h"
-#import "Model.h"
 #import "NotificationCenter.h"
 
 @interface AbstractFullScreenViewController()
@@ -36,16 +32,6 @@
     }
 
     return self;
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
-}
-
-
-- (Model*) model {
-    return [Model model];
 }
 
 

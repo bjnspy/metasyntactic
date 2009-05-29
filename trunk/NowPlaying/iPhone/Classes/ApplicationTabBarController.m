@@ -20,8 +20,6 @@
 #import "Model.h"
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
-#import "NetworkUtilities.h"
-#import "NotificationCenter.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 

@@ -20,7 +20,6 @@
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
 #import "Score.h"
-#import "UITableViewCell+Utilities.h"
 
 @interface ReviewsViewController()
 @property (retain) Movie* movie;

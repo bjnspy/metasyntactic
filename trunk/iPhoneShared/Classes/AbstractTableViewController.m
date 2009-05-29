@@ -14,9 +14,8 @@
 
 #import "AbstractTableViewController.h"
 
-#import "Controller.h"
-#import "Model.h"
 #import "OperationQueue.h"
+#import "SharedApplication.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -37,16 +36,6 @@
 }
 
 
-- (Model*) model {
-    return [Model model];
-}
-
-
-- (Controller*) controller {
-    return [Controller controller];
-}
-
-
 - (AbstractNavigationController*) abstractNavigationController {
     return (id)self.navigationController;
 }
@@ -54,7 +43,7 @@
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [self.model saveNavigationStack:self.navigationController];
+    [SharedApplication saveNavigationStack:self.navigationController];
 }
 
 

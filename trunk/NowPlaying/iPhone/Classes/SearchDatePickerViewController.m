@@ -14,7 +14,6 @@
 
 #import "SearchDatePickerViewController.h"
 
-#import "DateUtilities.h"
 #import "Model.h"
 
 @interface SearchDatePickerViewController()

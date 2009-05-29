@@ -19,17 +19,12 @@
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
-#import "DateUtilities.h"
-#import "Location.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "ScoreProviderViewController.h"
-#import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
 #import "SettingCell.h"
 #import "SwitchCell.h"
-#import "TextFieldEditorViewController.h"
-#import "UITableViewCell+Utilities.h"
 #import "UserLocationCache.h"
 
 @interface SettingsViewController()
@@ -319,6 +314,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
+#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
@@ -330,6 +326,19 @@ typedef enum {
     }
 
     return cell;
+#else
+  UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+  cell.textAlignment = UITextAlignmentCenter;
+  cell.text = NSLocalizedString(@"Force Refresh", nil);
+  if (refreshed) {
+    cell.textColor = [UIColor grayColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  } else {
+    cell.textColor = [ColorCache commandColor];
+  }
+  
+  return cell;
+#endif
 }
 
 
@@ -500,8 +509,13 @@ typedef enum {
     }
     refreshed = YES;
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-    cell.textLabel.textColor = [UIColor grayColor];
-
+    
+#ifdef IPHONE_OS_VERSION_3
+  cell.textLabel.textColor = [UIColor grayColor];
+#else
+  cell.textColor = [UIColor grayColor];
+#endif
+  
     [[Controller controller] start:YES];
 }
 

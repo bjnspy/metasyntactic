@@ -15,12 +15,6 @@
 #import "LocationCache.h"
 
 #import "Application.h"
-#import "FileUtilities.h"
-#import "Location.h"
-#import "LocationUtilities.h"
-#import "NetworkUtilities.h"
-#import "StringUtilities.h"
-#import "XmlElement.h"
 
 @interface LocationCache()
 @property (retain) NSMutableDictionary* addressToLocation;

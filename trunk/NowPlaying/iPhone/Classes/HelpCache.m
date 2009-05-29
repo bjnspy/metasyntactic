@@ -15,14 +15,7 @@
 #import "HelpCache.h"
 
 #import "Application.h"
-#import "FileUtilities.h"
-#import "LocaleUtilities.h"
 #import "Model.h"
-#import "NetworkUtilities.h"
-#import "NotificationCenter.h"
-#import "OperationQueue.h"
-#import "StringUtilities.h"
-#import "XmlElement.h"
 
 @interface HelpCache()
 @property (retain) NSArray* questionsAndAnswersData;

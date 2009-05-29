@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "SearchEngineDelegate.h"
+
 @interface AbstractSearchEngine : NSObject {
 @protected
     // only accessed from the main thread.  needs no lock.

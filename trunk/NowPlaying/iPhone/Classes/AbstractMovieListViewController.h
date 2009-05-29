@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractTableViewController.h"
-
 @interface AbstractMovieListViewController : AbstractTableViewController {
 @protected
 #ifdef IPHONE_OS_VERSION_3
