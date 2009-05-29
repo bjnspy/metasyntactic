@@ -19,7 +19,6 @@
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"
-#import "Location.h"
 #import "LocationManager.h"
 #import "Model.h"
 #import "ScoreProviderViewController.h"
@@ -58,7 +57,7 @@ typedef enum {
   if (self = [super initWithStyle:UITableViewStyleGrouped]) {
     self.title = [Application nameAndVersion];
   }
-  
+
   return self;
 }
 
@@ -135,7 +134,7 @@ typedef enum {
       return 1;
     }
   }
-  
+
   return 0;
 }
 
@@ -146,12 +145,12 @@ typedef enum {
 #else
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
 #endif
-  
+
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   NSString* text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), LocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
   cell.text = text;
-  
+
   return cell;
 }
 
@@ -160,12 +159,12 @@ typedef enum {
                                            on:(BOOL) on
                                      selector:(SEL) selector {
   static NSString* reuseIdentifier = @"switchCellReuseIdentifier";
-  
+
   SwitchCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[SwitchCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell.switchControl removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
   [cell.switchControl addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
   cell.switchControl.on = on;
@@ -174,7 +173,7 @@ typedef enum {
 #else
   cell.text = text;
 #endif
-  
+
   return cell;
 }
 
@@ -187,11 +186,11 @@ typedef enum {
   if (cell == nil) {
     cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   cell.placeholder = placeholder;
   cell.textLabel.text = key;
   [cell setCellValue:value];
-  
+
   return cell;
 }
 
@@ -218,7 +217,7 @@ typedef enum {
       placeholder = LocalizedString(@"Tap to enter location", nil);
     } else if (row == 1) {
       key = LocalizedString(@"Search Distance", nil);
-      
+
       if (self.model.searchRadius == 1) {
         value = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
       } else {
@@ -228,7 +227,7 @@ typedef enum {
       }
     } else if (row == 2) {
       key = LocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
-      
+
       NSDate* date = self.model.searchDate;
       if ([DateUtilities isToday:date]) {
         value = LocalizedString(@"Today", nil);
@@ -239,7 +238,7 @@ typedef enum {
       key = LocalizedString(@"Reviews", nil);
       value = self.model.currentScoreProvider;
     }
-    
+
     return [self createSettingCellWithKey:key value:value placeholder:placeholder];
   } else if (row >= 4 && row <= 9) {
     NSString* text;
@@ -270,10 +269,10 @@ typedef enum {
       on = self.model.loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
     }
-    
+
     return [self createSwitchCellWithText:text on:on selector:selector];
   }
-  
+
   return nil;
 }
 
@@ -293,7 +292,7 @@ typedef enum {
   } else {
     NSString* key = LocalizedString(@"Options", @"Button to change the visibility options for DVD or Bluray.");
     NSString* value = @"";
-    
+
     if (self.model.dvdMoviesShowBoth) {
       value = LocalizedString(@"Show Both", @"When the user wants to see 'Both' DVD and Bluray items");
     } else if (self.model.dvdMoviesShowOnlyDVDs) {
@@ -303,7 +302,7 @@ typedef enum {
     } else {
       value = LocalizedString(@"Show Neither", @"When the user does not want to see Bluray or DVD items");
     }
-    
+
     return [self createSettingCellWithKey:key value:value];
   }
 }
@@ -327,7 +326,7 @@ typedef enum {
   } else {
     cell.textLabel.textColor = [ColorCache commandColor];
   }
-  
+
   return cell;
 #else
   UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
@@ -339,7 +338,7 @@ typedef enum {
   } else {
     cell.textColor = [ColorCache commandColor];
   }
-  
+
   return cell;
 #endif
 }
@@ -413,7 +412,7 @@ typedef enum {
   SearchDatePickerViewController* pickerController =
   [SearchDatePickerViewController pickerWithObject:self
                                           selector:@selector(onSearchDateChanged:)];
-  
+
   [self.navigationController pushViewController:pickerController animated:YES];
 }
 
@@ -427,7 +426,7 @@ typedef enum {
 - (void) pushFilterDistancePicker {
   SearchDistancePickerViewController* controller =
   [[[SearchDistancePickerViewController alloc] init] autorelease];
-  
+
   [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -441,7 +440,7 @@ typedef enum {
 - (void) didSelectSettingsRow:(NSInteger) row {
   if (row == 0) {
     NSString* message;
-    
+
     if (self.model.userAddress.length == 0) {
       message = @"";
     } else {
@@ -454,7 +453,7 @@ typedef enum {
         if (country == nil) {
           country = location.country;
         }
-        
+
         message = [NSString stringWithFormat:@"%@, %@ %@\n%@\nLatitude: %f\nLongitude: %f",
                    location.city,
                    location.state,
@@ -464,7 +463,7 @@ typedef enum {
                    location.longitude];
       }
     }
-    
+
     TextFieldEditorViewController* controller =
     [[[TextFieldEditorViewController alloc] initWithTitle:LocalizedString(@"Location", nil)
                                                    object:self
@@ -473,7 +472,7 @@ typedef enum {
                                                   message:message
                                               placeHolder:LocalizedString(@"City/State or Postal Code", nil)
                                                      type:UIKeyboardTypeDefault] autorelease];
-    
+
     [self.navigationController pushViewController:controller animated:YES];
   } else if (row == 1) {
     [self pushFilterDistancePicker];
@@ -488,7 +487,7 @@ typedef enum {
 
 
 - (void) didSelectUpcomingRow:(NSInteger) row {
-  
+
 }
 
 
@@ -501,7 +500,7 @@ typedef enum {
 
 
 - (void) didSelectNetflixRow:(NSInteger) row {
-  
+
 }
 
 
@@ -517,7 +516,7 @@ typedef enum {
 #else
   cell.textColor = [UIColor grayColor];
 #endif
-  
+
   [[Controller controller] start:YES];
 }
 
@@ -542,7 +541,7 @@ typedef enum {
 
 - (void) onUserAddressChanged:(NSString*) userAddress {
   userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   [self.controller setUserAddress:userAddress];
   [self reloadTableViewData];
 }
@@ -557,7 +556,7 @@ typedef enum {
   } else if (section == NetflixSection) {
     return LocalizedString(@"Netflix", nil);
   }
-  
+
   return nil;
 }
 

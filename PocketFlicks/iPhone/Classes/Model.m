@@ -28,7 +28,6 @@
 #import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "LocalizableStringsCache.h"
-#import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "MutableNetflixCache.h"

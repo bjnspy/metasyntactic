@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="863" column="24" selection-start="33280" selection-end="33280" vertical-scroll-proportion="-0.54901963">
+            <state line="63" column="10" selection-start="2174" selection-end="2174" vertical-scroll-proportion="1.3235294">
               <folding />
             </state>
           </provider>
@@ -233,7 +233,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.YourRights">
+  <component name="RunManager" selected="Application.PocketFlicks">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -617,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="863" column="24" selection-start="33280" selection-end="33280" vertical-scroll-proportion="-0.54901963">
+        <state line="63" column="10" selection-start="2174" selection-end="2174" vertical-scroll-proportion="1.3235294">
           <folding />
         </state>
       </provider>

@@ -15,8 +15,6 @@
 #import "UserLocationCache.h"
 
 #import "Application.h"
-#import "Location.h"
-#import "NotificationCenter.h"
 
 @interface UserLocationCache()
 @end

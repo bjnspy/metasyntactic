@@ -21,7 +21,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "MutableNetflixCache.h"
-#import "NotificationCenter.h"
 #import "PosterCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"

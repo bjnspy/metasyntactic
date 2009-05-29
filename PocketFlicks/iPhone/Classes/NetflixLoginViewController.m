@@ -19,7 +19,6 @@
 #import "Model.h"
 #import "NetflixAuthentication.h"
 #import "NetflixNavigationController.h"
-#import "NotificationCenter.h"
 
 @interface NetflixLoginViewController()
 @property (retain) UILabel* messageLabel;

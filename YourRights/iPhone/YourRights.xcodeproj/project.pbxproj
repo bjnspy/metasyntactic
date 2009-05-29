@@ -69,14 +69,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801 /* libiPhoneShared.a */;
+			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		747C34790FD075C500411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* iPhoneShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 /* End PBXContainerItemProxy section */

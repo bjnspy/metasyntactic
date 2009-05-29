@@ -14,8 +14,6 @@
 
 #import "Theater.h"
 
-#import "Location.h"
-
 @interface Theater()
     @property (copy) NSString* identifier;
     @property (copy) NSString* name;

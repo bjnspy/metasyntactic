@@ -15,7 +15,6 @@
 #import "LocationCache.h"
 
 #import "Application.h"
-#import "Location.h"
 
 
 @interface LocationCache()
