@@ -331,8 +331,8 @@
 		747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */; };
 		747BF48B0F774928008F5B2B /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF48A0F774928008F5B2B /* LocalSearchEngine.m */; };
 		747BF4AD0F774A0A008F5B2B /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4AC0F774A0A008F5B2B /* LocalSearchDisplayController.m */; };
-		747C31300FD065CC00411801 /* libiPhoneShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C31140FD0656000411801 /* libiPhoneShared2.a */; };
-		747C31310FD065D100411801 /* libiPhoneShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C31140FD0656000411801 /* libiPhoneShared2.a */; };
+		747C31300FD065CC00411801 /* libiPhoneShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C31140FD0656000411801 /* libiPhoneShared.a */; };
+		747C31310FD065D100411801 /* libiPhoneShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C31140FD0656000411801 /* libiPhoneShared.a */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */; };
@@ -489,21 +489,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C310E0FD0656000411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801 /* libiPhoneShared2.a */;
+			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
 			remoteInfo = iPhoneShared2;
 		};
 		747C312C0FD0659E00411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C310E0FD0656000411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* iPhoneShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		747C312E0FD065AC00411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C310E0FD0656000411801 /* iPhoneShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* iPhoneShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = iPhoneShared;
 		};
 		74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
@@ -945,7 +945,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747C31310FD065D100411801 /* libiPhoneShared2.a in Frameworks */,
+				747C31310FD065D100411801 /* libiPhoneShared.a in Frameworks */,
 				740993CD0F951026008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
 				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
@@ -964,7 +964,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747C31300FD065CC00411801 /* libiPhoneShared2.a in Frameworks */,
+				747C31300FD065CC00411801 /* libiPhoneShared.a in Frameworks */,
 				740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				746398750F7EC99800B2F64C /* SystemConfiguration.framework in Frameworks */,
 				746398790F7EC99C00B2F64C /* MediaPlayer.framework in Frameworks */,
@@ -1472,7 +1472,7 @@
 		747C310F0FD0656000411801 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				747C31140FD0656000411801 /* libiPhoneShared2.a */,
+				747C31140FD0656000411801 /* libiPhoneShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1804,10 +1804,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		747C31140FD0656000411801 /* libiPhoneShared2.a */ = {
+		747C31140FD0656000411801 /* libiPhoneShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libiPhoneShared2.a;
+			path = libiPhoneShared.a;
 			remoteRef = 747C31130FD0656000411801 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2380,7 +2380,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2408,7 +2407,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2435,7 +2433,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2460,7 +2457,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2485,7 +2481,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2510,7 +2505,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2538,6 +2532,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
 				SDKROOT = iphoneos3.0;
@@ -2566,7 +2561,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2591,6 +2585,7 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
 				SDKROOT = iphoneos3.0;
@@ -2619,7 +2614,6 @@
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
 					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2645,6 +2639,7 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos3.0;
@@ -2673,6 +2668,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos3.0;
