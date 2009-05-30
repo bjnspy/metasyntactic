@@ -22,9 +22,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if 0
 @interface NSMutableURLRequest (OAParameterAdditions)
 
 - (NSArray*) parameters;
 - (void) setParameters:(NSArray*) parameters;
 
 @end
+#else
+@interface NSMutableURLRequestAdditions : NSObject {
+}
+
++ (NSArray*) parametersForRequest:(NSMutableURLRequest*) request;
++ (void) setParameters:(NSArray*) parameters forRequest:(NSMutableURLRequest*) request;
+
+@end
+#endif

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @interface NSArray(NSArrayUtilities)
 - (id) findSmallestElementUsingFunction:(NSInteger(*)(id, id, void*)) comparator
                           context:(void*) context;
@@ -20,3 +21,17 @@
                          context1:(void*) context1
                          context2:(void*) context2;
 @end
+#else
+@interface NSArrayAdditions : NSObject
++ (id) findSmallestElementInArray:(NSArray*) array
+                    usingFunction:(NSInteger(*)(id, id, void*)) comparator
+                          context:(void*) context;
+
++ (id) findSmallestElementInArray:(NSArray*) array
+                    usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
+                         context1:(void*) context1
+                         context2:(void*) context2;
+
++ (NSArray*) shuffle:(NSArray*) array;
+@end
+#endif

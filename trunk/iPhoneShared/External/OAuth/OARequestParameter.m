@@ -61,12 +61,12 @@
 
 
 - (NSString*) URLEncodedName {
-    return [name encodedURLParameterString];
+  return [NSStringAdditions encodedURLParameterString:name];
 }
 
 
 - (NSString*) URLEncodedValue {
-    return [value encodedURLParameterString];
+  return [NSStringAdditions encodedURLParameterString:value];
 }
 
 

@@ -26,6 +26,7 @@
 
 #import "NSURL+Base.h"
 
+#if 0
 @implementation NSURL (OABaseAdditions)
 
 - (NSString*) URLStringWithoutQuery {
@@ -34,3 +35,13 @@
 }
 
 @end
+#else
+@implementation NSURLAdditions
+
++ (NSString*) URLStringWithoutQuery:(NSURL*) value {
+  NSArray* parts = [value.absoluteString componentsSeparatedByString:@"?"];
+  return [parts objectAtIndex:0];
+}
+
+@end
+#endif

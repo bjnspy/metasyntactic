@@ -244,22 +244,22 @@
 
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
 #ifdef IPHONE_OS_VERSION_3
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 #else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
 #endif
 
-    cell.textAlignment = UITextAlignmentCenter;
-    cell.font = [UIFont boldSystemFontOfSize:14];
-    cell.textColor = [ColorCache commandColor];
+  cell.textAlignment = UITextAlignmentCenter;
+  cell.font = [UIFont boldSystemFontOfSize:14];
+  cell.textColor = [ColorCache commandColor];
 
-    if (row == 0) {
-        cell.text = LocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
-    } else {
-        cell.text = LocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
-    }
+  if (row == 0) {
+    cell.text = LocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
+  } else {
+    cell.text = LocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
+  }
 
-    return cell;
+  return cell;
 }
 
 

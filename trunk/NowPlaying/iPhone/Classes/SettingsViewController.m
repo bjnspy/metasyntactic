@@ -127,7 +127,7 @@ typedef enum {
   } else if (section == NetflixSection) {
     return 1;
   } else if (section == RefreshSection) {
-    if (self.model.userAddress.length == 0) {
+    if (self.model.userAddress.length == 0 || refreshed) {
       return 0;
     } else {
       return 1;
@@ -504,17 +504,25 @@ typedef enum {
 
 
 - (void) didSelectRefreshRow:(NSInteger) row {
-  [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+  //[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
   if (refreshed) {
     return;
   }
   refreshed = YES;
-  UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+  
+  [self.tableView beginUpdates];
+  {
+    NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:RefreshSection]];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+  }
+  [self.tableView endUpdates];
+  
+  //UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
 
 #ifdef IPHONE_OS_VERSION_3
-  cell.textLabel.textColor = [UIColor grayColor];
+  //cell.textLabel.textColor = [UIColor grayColor];
 #else
-  cell.textColor = [UIColor grayColor];
+  //cell.textColor = [UIColor grayColor];
 #endif
 
   [[Controller controller] start:YES];

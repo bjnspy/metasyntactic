@@ -115,7 +115,7 @@
         [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_token" value:token.key] URLEncodedNameValuePair]];
     }
 
-    for (OARequestParameter* param in self.parameters) {
+    for (OARequestParameter* param in [NSMutableURLRequestAdditions parametersForRequest:self]) {
         [parameterPairs addObject:param.URLEncodedNameValuePair];
     }
 
@@ -125,8 +125,8 @@
     // OAuth Spec, Section 9.1.2 "Concatenate Request Elements"
     return [NSString stringWithFormat:@"%@&%@&%@",
             self.HTTPMethod,
-            self.URL.URLStringWithoutQuery.encodedURLParameterString,
-            normalizedRequestParameters.encodedURLString];
+            [NSStringAdditions encodedURLParameterString:[NSURLAdditions URLStringWithoutQuery:self.URL]],
+            [NSStringAdditions encodedURLString:normalizedRequestParameters]];
 }
 
 
@@ -141,15 +141,15 @@
     // set OAuth headers
     NSString* oauthToken = @"";
     if (token.key.length > 0) {
-        oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", token.key.encodedURLParameterString];
+      oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [NSStringAdditions encodedURLParameterString:token.key]];
     }
 
     NSString* oauthHeader = [NSString stringWithFormat:@"OAuth realm=\"%@\", oauth_consumer_key=\"%@\", %@oauth_signature_method=\"%@\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",
-                             realm.encodedURLParameterString,
-                             consumer.key.encodedURLParameterString,
+                             [NSStringAdditions encodedURLParameterString:realm],
+                             [NSStringAdditions encodedURLParameterString:consumer.key],
                              oauthToken,
-                             [@"HMAC-SHA1" encodedURLParameterString],
-                             signature.encodedURLParameterString,
+                             [NSStringAdditions encodedURLParameterString:@"HMAC-SHA1"],
+                             [NSStringAdditions encodedURLParameterString:signature],
                              timestamp,
                              nonce];
 

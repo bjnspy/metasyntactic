@@ -25,7 +25,7 @@
 
 #import "NSString+URLEncoding.h"
 
-
+#if 0
 @implementation NSString (OAURLEncodingAdditions)
 
 - (NSString*) encodedURLString {
@@ -49,3 +49,29 @@
 }
 
 @end
+#else
+@implementation NSStringAdditions
+
++ (NSString*) encodedURLString:(NSString*) value {
+  NSString* result =
+  (NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                     (CFStringRef)value,
+                                                     NULL,                   // characters to leave unescaped (NULL = all escaped sequences are replaced)
+                                                     CFSTR("?=&+"),          // legal URL characters to be escaped (NULL = all legal characters are replaced)
+                                                     kCFStringEncodingUTF8); // encoding
+  return [result autorelease];
+}
+
+
++ (NSString*) encodedURLParameterString:(NSString*) value {
+  NSString* result =
+  (NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                     (CFStringRef)value,
+                                                     NULL,
+                                                     CFSTR(":/=,!$&'()*+;[]@#?"),
+                                                     kCFStringEncodingUTF8);
+  return [result autorelease];
+}
+
+@end
+#endif

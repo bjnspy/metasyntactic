@@ -2360,10 +2360,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2373,13 +2369,6 @@
 					DEBUG,
 				);
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2389,10 +2378,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2400,13 +2385,6 @@
 					RELEASE,
 				);
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2416,23 +2394,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2442,21 +2409,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2466,21 +2422,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2490,21 +2435,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
@@ -2543,10 +2477,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2554,13 +2484,6 @@
 					ADHOC,
 				);
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2596,10 +2519,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2607,13 +2526,6 @@
 					DISTRIBUTION,
 				);
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../ProtocolBuffersLibrary/build/Release-iphoneos\"",
-				);
 				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};

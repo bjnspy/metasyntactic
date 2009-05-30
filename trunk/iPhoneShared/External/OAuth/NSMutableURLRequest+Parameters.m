@@ -28,6 +28,7 @@
 #import "NSURL+Base.h"
 #import "OARequestParameter.h"
 
+#if 0
 @implementation NSMutableURLRequest (OAParameterAdditions)
 
 - (NSArray*) parameters {
@@ -84,3 +85,62 @@
 }
 
 @end
+#else
+@implementation NSMutableURLRequestAdditions
+
++ (NSArray*) parametersForRequest:(NSMutableURLRequest*) request {
+  NSString* encodedParameters;
+
+  if ([request.HTTPMethod isEqualToString:@"GET"] ||
+      [request.HTTPMethod isEqualToString:@"DELETE"]) {
+    encodedParameters = request.URL.query;
+  } else {
+    // POST, PUT
+    encodedParameters = [[[NSString alloc] initWithData:request.HTTPBody
+                                               encoding:NSASCIIStringEncoding] autorelease];
+  }
+
+  if (encodedParameters.length == 0) {
+    return nil;
+  }
+
+  NSArray* encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
+  NSMutableArray* requestParameters = [NSMutableArray array];
+
+  for (NSString* encodedPair in encodedParameterPairs) {
+    NSArray* encodedPairElements = [encodedPair componentsSeparatedByString:@"="];
+    OARequestParameter* parameter = [OARequestParameter parameterWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                                                    value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [requestParameters addObject:parameter];
+  }
+
+  return requestParameters;
+}
+
+
++ (void) setParameters:(NSArray*) parameters forRequest:(NSMutableURLRequest*) request {
+  NSMutableString* encodedParameterPairs = [NSMutableString string];
+
+  int position = 1;
+  for (OARequestParameter* requestParameter in parameters) {
+    [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
+    if (position < parameters.count) {
+      [encodedParameterPairs appendString:@"&"];
+    }
+    position++;
+  }
+
+  if ([request.HTTPMethod isEqualToString:@"GET"] ||
+      [request.HTTPMethod isEqualToString:@"DELETE"]) {
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [NSURLAdditions URLStringWithoutQuery:request.URL], encodedParameterPairs]]];
+  } else {
+    // POST, PUT
+    NSData* postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    [request setHTTPBody:postData];
+    [request setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+  }
+}
+
+@end
+#endif

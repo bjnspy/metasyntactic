@@ -228,7 +228,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 #else
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+#endif
+  
     UIImage* image = [self getImage:indexPath];
 
     if (image != nil) {
@@ -271,8 +272,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.text = LocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-#endif
-
 
     if (indexPath.section == HelpSendFeedbackSection) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

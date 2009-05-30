@@ -688,7 +688,8 @@ static NSDictionary* availabilityMap = nil;
               [OARequestParameter parameterWithName:@"max_results" value:@"5"],
                            nil];
 
-    [request setParameters:parameters];
+    [NSMutableURLRequestAdditions setParameters:parameters
+                                     forRequest:request];
     [request prepare];
 
     XmlElement* element =
@@ -720,7 +721,8 @@ static NSDictionary* availabilityMap = nil;
               [OARequestParameter parameterWithName:@"max_results" value:@"30"],
                            nil];
 
-    [request setParameters:parameters];
+    [NSMutableURLRequestAdditions setParameters:parameters
+                                     forRequest:request];
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
@@ -984,8 +986,8 @@ static NSDictionary* availabilityMap = nil;
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", self.model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
     OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
-    [request setParameters:[NSArray arrayWithObject:parameter]];
-    [request prepare];
+  [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
+  [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
@@ -1137,7 +1139,7 @@ static NSDictionary* availabilityMap = nil;
                                             priority:Normal];
 
 
-    for (NSString* identifier in identifiers) {
+    for (NSString* identifier in [NSArrayAdditions shuffle:identifiers]) {
         [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
                                                 onTarget:self
                                               withObject:identifier
@@ -1320,7 +1322,7 @@ static NSDictionary* availabilityMap = nil;
 - (void) downloadRSS {
     NSLog(@"NetflixCache:downloadRSS");
 
-    for (NSString* key in mostPopularTitles) {
+    for (NSString* key in [NSArrayAdditions shuffle:mostPopularTitles]) {
         NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
         [FileUtilities createDirectory:[self rssFeedDirectory:address]];
 
@@ -1660,7 +1662,8 @@ static NSDictionary* availabilityMap = nil;
               [OARequestParameter parameterWithName:@"max_results" value:@"1"],
                            nil];
 
-    [request setParameters:parameters];
+  [NSMutableURLRequestAdditions setParameters:parameters
+                                   forRequest:request];
     [request prepare];
 
     XmlElement* element =
