@@ -255,7 +255,7 @@
     NSString* discs = [videoElement attributeValue:@"discs"];
     NSString* poster = [videoElement attributeValue:@"image"];
     NSString* synopsis = [videoElement attributeValue:@"synopsis"];
-    NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
+    NSDate* releaseDate = [DateUtilities parseISO8601Date:releaseDateString];
     NSString* url = [videoElement attributeValue:@"url"];
     NSString* length = [videoElement attributeValue:@"length"];
     NSString* studio = [videoElement attributeValue:@"studio"];

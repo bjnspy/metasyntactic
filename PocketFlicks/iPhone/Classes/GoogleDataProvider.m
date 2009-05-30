@@ -60,7 +60,7 @@
             NSArray* directors = movieProto.directorList;
             NSArray* cast = movieProto.castList;
             NSString* releaseDateString = movieProto.releaseDate;
-            NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
+            NSDate* releaseDate = [DateUtilities parseISO8601Date:releaseDateString];
 
             NSString* imdbAddress = @"";
             if (movieProto.iMDbUrl.length > 0) {
