@@ -553,21 +553,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801 /* libMetasyntacticShared.a */;
+			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
 			remoteInfo = MetasyntacticShared;
 		};
 		74E6FD090FD1B3000015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* MetasyntacticShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = MetasyntacticShared;
 		};
 		74E6FD0B0FD1B3060015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801 /* MetasyntacticShared */;
+			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
 			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */

@@ -297,7 +297,7 @@ static BOOL use24HourTime;
 }
 
 
-+ (NSDate*) parseIS08601Date:(NSString*) string {
++ (NSDate*) parseISO8601Date:(NSString*) string {
     if (string.length == 10) {
         NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
         components.year = [[string substringWithRange:NSMakeRange(0, 4)] intValue];
