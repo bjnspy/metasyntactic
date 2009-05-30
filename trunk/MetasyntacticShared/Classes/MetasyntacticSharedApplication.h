@@ -22,6 +22,10 @@
 
 + (NSString*) localizedString:(NSString*) key;
 
++ (void) minorRefresh;
++ (void) majorRefresh;
++ (void) majorRefresh:(BOOL) force;
+
 + (void) saveNavigationStack:(UINavigationController*) controller;
 
 + (BOOL) notificationsEnabled;

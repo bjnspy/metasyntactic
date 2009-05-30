@@ -39,4 +39,19 @@ static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
   return [delegate notificationsEnabled];
 }
 
+
++ (void) minorRefresh {
+  [delegate minorRefresh];
+}
+
+
++ (void) majorRefresh {
+  [delegate majorRefresh];
+}
+
+
++ (void) majorRefresh:(BOOL) force {
+  [delegate majorRefresh:force];
+}
+
 @end
