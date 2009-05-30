@@ -22,9 +22,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if 0
 @interface NSString (OAURLEncodingAdditions)
 
 - (NSString*) encodedURLString;
 - (NSString*) encodedURLParameterString;
 
 @end
+#else
+@interface NSStringAdditions : NSObject {
+
+}
+
++ (NSString*) encodedURLString:(NSString*) string;
++ (NSString*) encodedURLParameterString:(NSString*) string;
+
+@end
+#endif

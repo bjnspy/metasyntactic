@@ -367,7 +367,8 @@ const int START_YEAR = 1912;
                            [OARequestParameter parameterWithName:@"insertion_key" value:insertionKey],
                            [OARequestParameter parameterWithName:@"body" value:[Base64 encode:data]], nil];
 
-    [request setParameters:parameters];
+    [NSMutableURLRequestAdditions setParameters:parameters
+                                     forRequest:request];
 
     NSURLResponse* urlResponse = nil;
     NSError* error = nil;

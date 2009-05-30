@@ -14,6 +14,7 @@
 
 #import "NSMutableArray+Utilities.h"
 
+#if 0
 @implementation NSMutableArray(NSMutableArrayUtilities)
 
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index {
@@ -32,3 +33,31 @@
 }
 
 @end
+#else
+@implementation NSMutableArrayAdditions
+
++ (void) insertObjects:(NSArray*) array intoArray:(NSMutableArray*) value atIndex:(NSInteger) index {
+  for (NSInteger i = array.count - 1; i >= 0; i--) {
+    [value insertObject:[array objectAtIndex:i] atIndex:index];
+  }
+}
+
+
++ (id) removeRandomElement:(NSMutableArray*) array {
+  NSInteger index = rand() % array.count;
+  id value = [[[array objectAtIndex:index] retain] autorelease];
+  [array removeObjectAtIndex:index];
+
+  return value;
+}
+
+
++ (void) shuffle:(NSMutableArray*) array {
+  for (NSInteger i = [array count] - 1; i > 0; --i) {
+    NSInteger j = random() % i;
+    [array exchangeObjectAtIndex:j withObjectAtIndex:i]; 
+  }
+}
+
+@end
+#endif

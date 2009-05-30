@@ -31,6 +31,7 @@
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "MutableMultiDictionary.h"
+#import "NSArray+Utilities.h"
 #import "NSMutableArray+Utilities.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
