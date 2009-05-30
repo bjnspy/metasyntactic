@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SharedApplication.h"
+#import "MetasyntacticSharedApplication.h"
 
-#import "SharedApplicationDelegate.h"
+#import "MetasyntacticSharedApplicationDelegate.h"
 
-@implementation SharedApplication
+@implementation MetasyntacticSharedApplication
 
-static id<SharedApplicationDelegate> delegate = nil;
+static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
 
-+ (void) setSharedApplicationDelegate:(id<SharedApplicationDelegate>) delegate_ {
++ (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate_ {
   delegate = delegate_;
 }
 

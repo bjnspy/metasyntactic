@@ -14,7 +14,7 @@
 
 #import "AlertUtilities.h"
 
-#import "SharedApplication.h"
+#import "MetasyntacticSharedApplication.h"
 
 @implementation AlertUtilities
 

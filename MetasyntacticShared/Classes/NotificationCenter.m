@@ -15,7 +15,7 @@
 #import "NotificationCenter.h"
 
 #import "Pulser.h"
-#import "SharedApplication.h"
+#import "MetasyntacticSharedApplication.h"
 
 @interface NotificationCenter()
 @property (retain) UIViewController* viewController;
@@ -127,7 +127,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 
 - (void) showNotifications {
-    if (disabledCount == 0 && [SharedApplication notificationsEnabled]) {
+    if (disabledCount == 0 && [MetasyntacticSharedApplication notificationsEnabled]) {
         [self.view bringSubviewToFront:notificationLabel];
         [self.view bringSubviewToFront:blackLabel];
 

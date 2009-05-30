@@ -14,8 +14,8 @@
 
 #import "AbstractTableViewController.h"
 
+#import "MetasyntacticSharedApplication.h"
 #import "OperationQueue.h"
-#import "SharedApplication.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -43,7 +43,7 @@
 
 - (void) viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [SharedApplication saveNavigationStack:self.navigationController];
+    [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
 }
 
 

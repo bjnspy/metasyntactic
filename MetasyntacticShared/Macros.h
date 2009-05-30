@@ -29,4 +29,4 @@
 
 #define CACHE_LIMIT (30.0 * ONE_DAY)
 
-#define LocalizedString(key,comment) ([SharedApplication localizedString:(key)])
+#define LocalizedString(key,comment) ([MetasyntacticSharedApplication localizedString:(key)])

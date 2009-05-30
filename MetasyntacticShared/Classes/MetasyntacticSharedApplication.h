@@ -12,8 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol SharedApplicationDelegate
-- (NSString*) localizedString:(NSString*) key;
-- (void) saveNavigationStack:(UINavigationController*) controller;
-- (BOOL) notificationsEnabled;
+#import "MetasyntacticSharedApplicationDelegate.h"
+
+@interface MetasyntacticSharedApplication : NSObject {
+
+}
+
++ (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate;
+
++ (NSString*) localizedString:(NSString*) key;
+
++ (void) saveNavigationStack:(UINavigationController*) controller;
+
++ (BOOL) notificationsEnabled;
+
 @end

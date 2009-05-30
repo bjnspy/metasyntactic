@@ -56,7 +56,7 @@ static AppDelegate* appDelegate = nil;
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
 
-  [SharedApplication setSharedApplicationDelegate:self];
+  [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
 
     appDelegate = self;
 
