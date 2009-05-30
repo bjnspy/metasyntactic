@@ -202,8 +202,8 @@
 
 - (void) updateToolBarItems {
 #ifdef IPHONE_OS_VERSION_3
-    UIBarButtonItem* navigateBackItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [self.abstractNavigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
+    UIBarButtonItem* navigateBackItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
+    UIBarButtonItem* navigateForwardItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
 #else
     UIBarButtonItem* navigateBackItem = [toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
     UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
@@ -273,8 +273,8 @@
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
 #ifdef IPHONE_OS_VERSION_3
-    self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.abstractNavigationController.toolbar.translucent = YES;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.translucent = YES;
     [self.abstractNavigationController setToolbarHidden:NO animated:NO];
 #endif
 }

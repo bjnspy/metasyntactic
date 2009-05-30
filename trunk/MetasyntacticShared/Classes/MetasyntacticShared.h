@@ -15,10 +15,12 @@
 #import "../External/OAuth/OAuthConsumer.h"
 
 #import "AbstractApplication.h"
+#import "AbstractCache.h"
 #import "AbstractFullScreenTableViewController.h"
 #import "AbstractFullScreenViewController.h"
 #import "AbstractTableViewController.h"
 #import "AlertUtilities.h"
+#import "AttributeCell.h"
 #import "Base64.h"
 #import "CollectionUtilities.h"
 #import "DateUtilities.h"
