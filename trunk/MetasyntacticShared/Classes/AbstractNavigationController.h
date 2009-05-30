@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RootNavigationController.h"
-
-@interface TheatersNavigationController : RootNavigationController {
-@private
-    AllTheatersViewController* allTheatersViewController;
+@interface AbstractNavigationController : UINavigationController {
+@protected
+  BOOL visible;
+  
+#ifndef IPHONE_OS_VERSION_3
+  BOOL isViewLoaded;
+#endif
 }
 
 @end

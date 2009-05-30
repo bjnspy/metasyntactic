@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractNavigationController.h"
+#import "RootNavigationController.h"
 
-@interface UpcomingMoviesNavigationController : AbstractNavigationController {
+@interface UpcomingMoviesNavigationController : RootNavigationController {
 @private
     UpcomingMoviesViewController* upcomingMoviesViewController;
 }
