@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RootNavigationController.h"
+#import "CommonNavigationController.h"
 
-@interface TheatersNavigationController : RootNavigationController {
+@interface TheatersNavigationController : CommonNavigationController {
 @private
     AllTheatersViewController* allTheatersViewController;
 }

@@ -46,6 +46,11 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void) changeDate {
     SearchDatePickerViewController* pickerController =
     [SearchDatePickerViewController pickerWithObject:self

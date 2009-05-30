@@ -14,8 +14,6 @@
 
 #import "QuestionCell.h"
 
-#import "ColorCache.h"
-
 @interface QuestionCell()
 @property (retain) UILabel* contentLabel;
 @end

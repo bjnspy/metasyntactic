@@ -15,8 +15,6 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
-#import "AttributeCell.h"
-#import "ColorCache.h"
 #import "ImageCache.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -200,12 +198,7 @@
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
-                                                    reuseIdentifier:nil] autorelease];
-#else
     AttributeCell* cell = [[[AttributeCell alloc] init] autorelease];
-#endif
 
     if (row == 0) {
         cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
@@ -329,7 +322,7 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [self.commonNavigationController pushTicketsView:movie
                                                theater:theater
                                                  title:movie.displayTitle
                                               animated:animated];
@@ -389,7 +382,7 @@
 
         Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+            [self.commonNavigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

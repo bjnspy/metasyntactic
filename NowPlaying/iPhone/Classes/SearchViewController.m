@@ -16,7 +16,7 @@
 #import "SearchViewController.h"
 
 #import "AbstractImageCell.h"
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "AbstractSearchEngine.h"
 #import "AppDelegate.h"
 #import "ApplicationTabBarController.h"
@@ -267,38 +267,43 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void) didSelectMovieRow:(NSInteger) row {
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
-    [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+    [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
     Movie* movie = [searchResult.dvds objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
     Movie* movie = [searchResult.bluray objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

@@ -14,6 +14,7 @@
 
 #import "DVDNavigationController.h"
 
+#import "CommonNavigationController.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "Model.h"

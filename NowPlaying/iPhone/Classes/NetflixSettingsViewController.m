@@ -14,7 +14,7 @@
 
 #import "NetflixSettingsViewController.h"
 
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "Controller.h"
 #import "Model.h"
 

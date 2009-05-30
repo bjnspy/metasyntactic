@@ -14,7 +14,7 @@
 
 #import "NetflixGenreRecommendationsViewController.h"
 
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MutableNetflixCache.h"
@@ -133,10 +133,15 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

@@ -45,6 +45,7 @@
 @class CacheUpdater;
 @class CollapsedMovieDetailsCell;
 @class ColorCache;
+@class CommonNavigationController;
 @class CreditsViewController;
 @class DateUtilities;
 @class DifferenceEngine;

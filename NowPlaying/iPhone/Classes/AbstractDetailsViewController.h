@@ -29,4 +29,6 @@
 - (void) changeDate;
 - (void) openMailWithSubject:(NSString*) subject body:(NSString*) body;
 
+- (CommonNavigationController*) commonNavigationController;
+
 @end

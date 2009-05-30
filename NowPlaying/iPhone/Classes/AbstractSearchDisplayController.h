@@ -29,7 +29,7 @@
 - (UITableView*) tableView;
 
 /* @protected */
-- (AbstractNavigationController*) abstractNavigationController;
+- (CommonNavigationController*) commonNavigationController;
 
 @end
 #endif

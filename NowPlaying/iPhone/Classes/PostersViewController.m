@@ -14,8 +14,8 @@
 
 #import "PostersViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
+#import "CommonNavigationController.h"
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "TappableScrollView.h"
@@ -655,9 +655,14 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void) dismiss {
     shutdown = YES;
-    [self.abstractNavigationController hidePostersView];
+    [self.commonNavigationController hidePostersView];
 }
 
 

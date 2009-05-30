@@ -19,7 +19,6 @@
 #import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
-#import "ColorCache.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "ImageCache.h"
@@ -984,12 +983,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) readReviews {
-    [self.abstractNavigationController pushReviews:movie animated:YES];
+    [self.commonNavigationController pushReviews:movie animated:YES];
 }
 
 
 - (void) visitWebsite:(NSString*) website {
-    [self.abstractNavigationController pushBrowser:website animated:YES];
+    [self.commonNavigationController pushBrowser:website animated:YES];
 }
 
 
@@ -1166,7 +1165,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
                             withButtonIndex:(NSInteger) buttonIndex {
     NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
-    [self.abstractNavigationController pushBrowser:url animated:YES];
+    [self.commonNavigationController pushBrowser:url animated:YES];
 }
 
 
@@ -1251,7 +1250,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [self.commonNavigationController pushTicketsView:movie
                                                theater:theater
                                                  title:theater.name
                                               animated:animated];
@@ -1298,7 +1297,7 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
         if (indexPath.row == 0) {
-            [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+            [self.commonNavigationController pushTheaterDetails:theater animated:YES];
         } else {
             [self pushTicketsView:theater animated:YES];
         }
@@ -1324,7 +1323,7 @@ const NSInteger POSTER_TAG = -1;
                                                 gate:nil
                                             priority:Now];
 
-    [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
+    [self.commonNavigationController showPostersView:movie posterCount:posterCount];
 }
 
 

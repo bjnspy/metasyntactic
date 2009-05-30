@@ -21,4 +21,7 @@
 #endif
 }
 
+- (void) majorRefresh;
+- (void) minorRefresh;
+
 @end

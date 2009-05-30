@@ -15,8 +15,7 @@
 #ifndef IPHONE_OS_VERSION_3
 #import "NetflixSearchViewController.h"
 
-#import "AbstractNavigationController.h"
-#import "ColorCache.h"
+#import "CommonNavigationController.h"
 #import "Model.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
@@ -130,6 +129,11 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -169,7 +173,7 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         Movie* movie = [movies objectAtIndex:indexPath.row];
-        [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+        [self.commonNavigationController pushMovieDetails:movie animated:YES];
     } else {
 
     }

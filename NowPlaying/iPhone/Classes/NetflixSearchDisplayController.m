@@ -15,7 +15,7 @@
 #ifdef IPHONE_OS_VERSION_3
 #import "NetflixSearchDisplayController.h"
 
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "Model.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
@@ -182,7 +182,7 @@
         return;
     }
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

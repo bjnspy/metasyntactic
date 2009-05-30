@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "RootNavigationController.h"
+#import "CommonNavigationController.h"
 
 #import "Application.h"
 #import "Controller.h"
@@ -30,7 +30,7 @@
 #ifndef IPHONE_OS_VERSION_3
 #endif
 
-@interface RootNavigationController()
+@interface CommonNavigationController()
 @property (retain) PostersViewController* postersViewController;
 #ifndef IPHONE_OS_VERSION_3
 @property (retain) SearchViewController* searchViewController;
@@ -38,7 +38,7 @@
 @end
 
 
-@implementation RootNavigationController
+@implementation CommonNavigationController
 
 @synthesize postersViewController;
 #ifndef IPHONE_OS_VERSION_3
