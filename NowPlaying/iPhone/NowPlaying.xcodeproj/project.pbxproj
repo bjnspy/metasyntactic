@@ -249,7 +249,6 @@
 		746397E40F7EC8D600B2F64C /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		746397E50F7EC8D600B2F64C /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
 		746397E60F7EC8D600B2F64C /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */; };
-		746397E70F7EC8D600B2F64C /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
 		746397E80F7EC8D600B2F64C /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		746397E90F7EC8D600B2F64C /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
 		746397EB0F7EC8D600B2F64C /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
@@ -326,7 +325,6 @@
 		747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
-		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
 		747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */; };
 		747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */; };
 		747BF48B0F774928008F5B2B /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF48A0F774928008F5B2B /* LocalSearchEngine.m */; };
@@ -498,6 +496,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
+		};
+		74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74E602340FD1C7990015D9F8 /* libMetasyntacticShared2.a */;
+			remoteInfo = "MetasyntacticShared2 copy";
 		};
 		74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -729,8 +734,6 @@
 		747AB85F0EB963AE002438D0 /* DVDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCell.h; sourceTree = "<group>"; };
 		747AB8600EB963AE002438D0 /* DVDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCell.m; sourceTree = "<group>"; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
-		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		747BF3F80F7743F0008F5B2B /* NetflixSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchDisplayController.h; sourceTree = "<group>"; };
 		747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchDisplayController.m; sourceTree = "<group>"; };
 		747BF4760F77486F008F5B2B /* AbstractSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchDisplayController.h; sourceTree = "<group>"; };
@@ -1421,7 +1424,6 @@
 				7491444F0E764D0E00CC42A8 /* Scores */,
 				74EB7B3F0EE343F6005BD3F0 /* UI */,
 				741172C10F60957000E09FD8 /* Websites */,
-				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
 				741172B00F60927C00E09FD8 /* AbstractMovieCache.h */,
 				74EFA4770F79CE17008680B2 /* CacheUpdater.h */,
 				744594AF0F8BD8C9002C1B61 /* HelpCache.h */,
@@ -1429,7 +1431,6 @@
 				7417219C0FA8F58900C10C98 /* LocalizableStringsCache.h */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
-				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 				741172B10F60927C00E09FD8 /* AbstractMovieCache.m */,
 				74EFA4780F79CE17008680B2 /* CacheUpdater.m */,
 				744594B00F8BD8C9002C1B61 /* HelpCache.m */,
@@ -1638,6 +1639,7 @@
 			isa = PBXGroup;
 			children = (
 				74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */,
+				74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1816,6 +1818,13 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 74C3EDB00F950F6C00FFEE5A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMetasyntacticShared3.a;
+			remoteRef = 74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */ = {
@@ -2072,7 +2081,6 @@
 				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
 				74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */,
-				747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */,
 				74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */,
 				74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */,
 				74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */,
@@ -2225,7 +2233,6 @@
 				746397E40F7EC8D600B2F64C /* TappableLabel.m in Sources */,
 				746397E50F7EC8D600B2F64C /* LocationManager.m in Sources */,
 				746397E60F7EC8D600B2F64C /* DVDFilterViewController.m in Sources */,
-				746397E70F7EC8D600B2F64C /* AbstractCache.m in Sources */,
 				746397E80F7EC8D600B2F64C /* LookupRequest.m in Sources */,
 				746397E90F7EC8D600B2F64C /* AbstractDetailsViewController.m in Sources */,
 				746397EB0F7EC8D600B2F64C /* NetflixNavigationController.m in Sources */,
