@@ -363,6 +363,11 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
@@ -371,7 +376,7 @@
 
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+    [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
@@ -489,7 +494,7 @@
 
 
 - (void) showInfo {
-    [self.abstractNavigationController pushInfoControllerAnimated:YES];
+    [self.commonNavigationController pushInfoControllerAnimated:YES];
 }
 
 

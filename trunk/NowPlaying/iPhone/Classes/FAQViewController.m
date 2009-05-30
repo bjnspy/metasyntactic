@@ -16,7 +16,6 @@
 
 #import "ActionsView.h"
 #import "Application.h"
-#import "ColorCache.h"
 #import "HelpCache.h"
 #import "Model.h"
 #import "QuestionCell.h"

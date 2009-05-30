@@ -23,7 +23,7 @@
 
 + (ApplicationTabBarController*) controller;
 
-- (AbstractNavigationController*) selectedNavigationController;
+- (CommonNavigationController*) selectedNavigationController;
 - (NetflixNavigationController*) netflixNavigationController;
 
 - (void) resetTabs;

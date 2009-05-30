@@ -15,7 +15,6 @@
 #import "SettingsViewController.h"
 
 #import "Application.h"
-#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "DVDFilterViewController.h"

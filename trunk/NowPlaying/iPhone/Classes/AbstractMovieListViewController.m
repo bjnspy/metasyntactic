@@ -454,6 +454,11 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
@@ -462,7 +467,7 @@
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -538,7 +543,7 @@
 
 
 - (void) showInfo {
-    [self.abstractNavigationController pushInfoControllerAnimated:YES];
+    [self.commonNavigationController pushInfoControllerAnimated:YES];
 }
 
 

@@ -24,6 +24,7 @@
 #import "AttributeCell.h"
 #import "Base64.h"
 #import "CollectionUtilities.h"
+#import "ColorCache.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "EditorViewController.h"

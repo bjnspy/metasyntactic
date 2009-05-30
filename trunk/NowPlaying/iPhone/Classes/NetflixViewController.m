@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "AutoResizingCell.h"
-#import "ColorCache.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "Model.h"
@@ -400,6 +399,11 @@ typedef enum {
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (self.hasAccount) {
@@ -407,7 +411,7 @@ typedef enum {
     } else {
         if (indexPath.row == 0) {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
-            [self.abstractNavigationController pushBrowser:address animated:YES];
+            [self.commonNavigationController pushBrowser:address animated:YES];
         } else if (indexPath.row == 1) {
             NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
@@ -417,7 +421,7 @@ typedef enum {
 
 
 - (void) showInfo {
-    [self.abstractNavigationController pushInfoControllerAnimated:YES];
+    [self.commonNavigationController pushInfoControllerAnimated:YES];
 }
 
 

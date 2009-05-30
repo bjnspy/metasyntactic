@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface RootNavigationController : AbstractNavigationController
+@interface CommonNavigationController : AbstractNavigationController
 {
 @protected
     PostersViewController* postersViewController;

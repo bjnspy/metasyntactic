@@ -84,9 +84,9 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) majorRefresh:(NSNumber*) force {
+- (void) majorRefreshWorker:(NSNumber*) force {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(majorRefresh:) withObject:force waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
         return;
     }
 
@@ -98,12 +98,12 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-+ (void) majorRefresh:(BOOL) force {
-    [appDelegate majorRefresh:[NSNumber numberWithBool:force]];
+- (void) majorRefresh:(BOOL) force {
+    [self majorRefreshWorker:[NSNumber numberWithBool:force]];
 }
 
 
-+ (void) majorRefresh {
+- (void) majorRefresh {
     [self majorRefresh:NO];
 }
 
@@ -120,6 +120,16 @@ static AppDelegate* appDelegate = nil;
 
 + (void) minorRefresh {
     [appDelegate minorRefresh];
+}
+
+
++ (void) majorRefresh {
+  [appDelegate majorRefresh];
+}
+
+
++ (void) majorRefresh:(BOOL) force {
+  [appDelegate majorRefresh:force];
 }
 
 
