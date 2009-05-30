@@ -233,6 +233,10 @@
 		74E602520FD1C82D0015D9F8 /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E602500FD1C82D0015D9F8 /* ColorCache.m */; };
 		74E602530FD1C82D0015D9F8 /* ColorCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6024F0FD1C82D0015D9F8 /* ColorCache.h */; };
 		74E602540FD1C82D0015D9F8 /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E602500FD1C82D0015D9F8 /* ColorCache.m */; };
+		74E604D40FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E604D20FD1F1330015D9F8 /* AbstractNavigationController.h */; };
+		74E604D50FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E604D30FD1F1330015D9F8 /* AbstractNavigationController.m */; };
+		74E604D60FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E604D20FD1F1330015D9F8 /* AbstractNavigationController.h */; };
+		74E604D70FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E604D30FD1F1330015D9F8 /* AbstractNavigationController.m */; };
 		74E6FC060FD1AEB90015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
 		74E6FC070FD1AEB90015D9F8 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAD0F15D9590004B610 /* IdentitySet.h */; };
 		74E6FC080FD1AEB90015D9F8 /* MultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB30F15D9590004B610 /* MultiDictionary.h */; };
@@ -431,6 +435,8 @@
 		74E602340FD1C7990015D9F8 /* libMetasyntacticShared3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetasyntacticShared3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E6024F0FD1C82D0015D9F8 /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
 		74E602500FD1C82D0015D9F8 /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
+		74E604D20FD1F1330015D9F8 /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
+		74E604D30FD1F1330015D9F8 /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticShared.h; sourceTree = "<group>"; };
 		74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticSharedApplication.h; sourceTree = "<group>"; };
 		74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticSharedApplication.m; sourceTree = "<group>"; };
@@ -719,6 +725,7 @@
 		74616E620F15DCA60004B610 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				74E604B90FD1F10C0015D9F8 /* NavigationControllers */,
 				74E601A10FD1C7630015D9F8 /* TableViewCells */,
 				741C759E0F8DCAF0003747AD /* ViewControllers */,
 				747C31AD0FD069AE00411801 /* NotificationCenter.h */,
@@ -779,6 +786,15 @@
 				74E602500FD1C82D0015D9F8 /* ColorCache.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		74E604B90FD1F10C0015D9F8 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				74E604D20FD1F1330015D9F8 /* AbstractNavigationController.h */,
+				74E604D30FD1F1330015D9F8 /* AbstractNavigationController.m */,
+			);
+			name = NavigationControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -855,6 +871,7 @@
 				74E601370FD1C5FC0015D9F8 /* AbstractCache.h in Headers */,
 				74E601A40FD1C7700015D9F8 /* AttributeCell.h in Headers */,
 				74E602510FD1C82D0015D9F8 /* ColorCache.h in Headers */,
+				74E604D40FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +946,7 @@
 				74E601E80FD1C7990015D9F8 /* AbstractCache.h in Headers */,
 				74E601E90FD1C7990015D9F8 /* AttributeCell.h in Headers */,
 				74E602530FD1C82D0015D9F8 /* ColorCache.h in Headers */,
+				74E604D60FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1076,7 @@
 				74E601380FD1C5FC0015D9F8 /* AbstractCache.m in Sources */,
 				74E601A50FD1C7700015D9F8 /* AttributeCell.m in Sources */,
 				74E602520FD1C82D0015D9F8 /* ColorCache.m in Sources */,
+				74E604D50FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1150,7 @@
 				74E6022A0FD1C7990015D9F8 /* AbstractCache.m in Sources */,
 				74E6022B0FD1C7990015D9F8 /* AttributeCell.m in Sources */,
 				74E602540FD1C82D0015D9F8 /* ColorCache.m in Sources */,
+				74E604D70FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

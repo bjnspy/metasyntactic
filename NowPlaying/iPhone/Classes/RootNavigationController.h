@@ -12,20 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractNavigationController : UINavigationController
+@interface RootNavigationController : AbstractNavigationController
 {
 @protected
     PostersViewController* postersViewController;
-    BOOL visible;
 
 #ifndef IPHONE_OS_VERSION_3
-    BOOL isViewLoaded;
     SearchViewController* searchViewController;
 #endif
 }
-
-- (void) majorRefresh;
-- (void) minorRefresh;
 
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
