@@ -28,7 +28,7 @@
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "ProtocolBuffers.h"
-#import "Shared.h"
+#import "MetasyntacticShared.h"
 #import "TargetConditionals.h"
 #import "LocalizableStringsCache.h"
 #endif

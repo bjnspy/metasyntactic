@@ -50,7 +50,6 @@
 		747C30200FD064C500411801 /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 740102280F26EF7800258353 /* NSMutableArray+Utilities.m */; };
 		747C30210FD064C500411801 /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */; };
 		747C30220FD064C500411801 /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */; };
-		747C30230FD064C500411801 /* SharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C2F760FD0636C00411801 /* SharedApplication.m */; };
 		747C30CE0FD064D000411801 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		747C30CF0FD064D000411801 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		747C30D00FD064D000411801 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -89,8 +88,6 @@
 		747C336E0FD0720300411801 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C336A0FD0720300411801 /* BackgroundInvocation2.m */; };
 		747C33FC0FD0735100411801 /* UITableViewCell+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C33FA0FD0735100411801 /* UITableViewCell+Utilities.h */; };
 		747C33FD0FD0735100411801 /* UITableViewCell+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C33FB0FD0735100411801 /* UITableViewCell+Utilities.m */; };
-		747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */; };
-		747C34F70FD0770B00411801 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */; };
 		747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C34FC0FD0772D00411801 /* EditorViewController.h */; };
 		747C34FF0FD0772D00411801 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34FD0FD0772D00411801 /* EditorViewController.m */; };
 		74E6FC060FD1AEB90015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
@@ -132,11 +129,15 @@
 		74E6FC390FD1AEB90015D9F8 /* XmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF50F15DAC00004B610 /* XmlElement.h */; };
 		74E6FC3A0FD1AEB90015D9F8 /* XmlParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF70F15DAC00004B610 /* XmlParser.h */; };
 		74E6FC3B0FD1AEB90015D9F8 /* XmlSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF90F15DAC00004B610 /* XmlSerializer.h */; };
-		74E6FC3D0FD1AEB90015D9F8 /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2FBC0FD0647100411801 /* Shared.h */; };
-		74E6FC3E0FD1AEB90015D9F8 /* SharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2F750FD0636C00411801 /* SharedApplication.h */; };
-		74E6FC3F0FD1AEB90015D9F8 /* SharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2F780FD0637900411801 /* SharedApplicationDelegate.h */; };
 		74E6FC400FD1AEB90015D9F8 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E0C0F15DAF80004B610 /* Macros.h */; };
 		74E6FC410FD1AEB90015D9F8 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DC80F15D9870004B610 /* ForwardDeclarations.h */; };
+		74E6FC680FD1B0DA0015D9F8 /* MetasyntacticShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */; };
+		74E6FC690FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */; };
+		74E6FC6A0FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */; };
+		74E6FC6B0FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FC670FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h */; };
+		74E6FC880FD1B17B0015D9F8 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FC870FD1B17B0015D9F8 /* Prefix.pch */; };
+		74E6FCDB0FD1B2390015D9F8 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */; };
+		74E6FCDC0FD1B2390015D9F8 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,7 +145,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneShared_Prefix.pch; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
 		740102280F26EF7800258353 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utilities.m"; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
@@ -244,11 +244,7 @@
 		74616E7E0F15DD0F0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
 		74616E7F0F15DD0F0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
 		74616E880F15DD300004B610 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		747C2F750FD0636C00411801 /* SharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApplication.h; sourceTree = "<group>"; };
-		747C2F760FD0636C00411801 /* SharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedApplication.m; sourceTree = "<group>"; };
-		747C2F780FD0637900411801 /* SharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApplicationDelegate.h; sourceTree = "<group>"; };
-		747C2FBC0FD0647100411801 /* Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
-		747C2FCC0FD0648D00411801 /* libiPhoneShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiPhoneShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		747C2FCC0FD0648D00411801 /* libMetasyntacticShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetasyntacticShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		747C314D0FD067D900411801 /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
 		747C314E0FD067D900411801 /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
 		747C31580FD0683600411801 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
@@ -283,10 +279,15 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C33FA0FD0735100411801 /* UITableViewCell+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Utilities.h"; sourceTree = "<group>"; };
 		747C33FB0FD0735100411801 /* UITableViewCell+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Utilities.m"; sourceTree = "<group>"; };
-		747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
-		747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticShared.h; sourceTree = "<group>"; };
+		74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticSharedApplication.h; sourceTree = "<group>"; };
+		74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticSharedApplication.m; sourceTree = "<group>"; };
+		74E6FC670FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticSharedApplicationDelegate.h; sourceTree = "<group>"; };
+		74E6FC870FD1B17B0015D9F8 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -316,11 +317,11 @@
 				74616C780F15D21F0004B610 /* Utilities */,
 				74616DF20F15DAA80004B610 /* Xml */,
 				747C33140FD0710D00411801 /* AbstractApplication.h */,
-				747C2FBC0FD0647100411801 /* Shared.h */,
-				747C2F750FD0636C00411801 /* SharedApplication.h */,
-				747C2F780FD0637900411801 /* SharedApplicationDelegate.h */,
+				74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */,
+				74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */,
+				74E6FC670FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h */,
 				747C33150FD0710D00411801 /* AbstractApplication.m */,
-				747C2F760FD0636C00411801 /* SharedApplication.m */,
+				74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -328,7 +329,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				747C2FCC0FD0648D00411801 /* libiPhoneShared.a */,
+				747C2FCC0FD0648D00411801 /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,10 +349,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				74616E0C0F15DAF80004B610 /* Macros.h */,
 				74616DC80F15D9870004B610 /* ForwardDeclarations.h */,
-				32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */,
+				74616E0C0F15DAF80004B610 /* Macros.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				74E6FC870FD1B17B0015D9F8 /* Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -382,13 +383,13 @@
 				747C31A70FD0695E00411801 /* AbstractFullScreenViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
 				747C34FC0FD0772D00411801 /* EditorViewController.h */,
-				747C34F40FD0770B00411801 /* TextFieldEditorViewController.h */,
+				74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */,
 				747C333F0FD071A400411801 /* WebViewController.h */,
 				747C31A60FD0695E00411801 /* AbstractFullScreenTableViewController.m */,
 				747C31A80FD0695E00411801 /* AbstractFullScreenViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
 				747C34FD0FD0772D00411801 /* EditorViewController.m */,
-				747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */,
+				74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */,
 				747C33400FD071A400411801 /* WebViewController.m */,
 			);
 			name = ViewControllers;
@@ -629,7 +630,6 @@
 				747C31AB0FD0695E00411801 /* AbstractFullScreenViewController.h in Headers */,
 				747C314F0FD067D900411801 /* AbstractTableViewController.h in Headers */,
 				747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */,
-				747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */,
 				747C33410FD071A400411801 /* WebViewController.h in Headers */,
 				747C31AF0FD069AE00411801 /* NotificationCenter.h in Headers */,
 				74E6FC2A0FD1AEB90015D9F8 /* ViewControllerUtilities.h in Headers */,
@@ -653,20 +653,22 @@
 				74E6FC3A0FD1AEB90015D9F8 /* XmlParser.h in Headers */,
 				74E6FC3B0FD1AEB90015D9F8 /* XmlSerializer.h in Headers */,
 				747C33160FD0710D00411801 /* AbstractApplication.h in Headers */,
-				74E6FC3D0FD1AEB90015D9F8 /* Shared.h in Headers */,
-				74E6FC3E0FD1AEB90015D9F8 /* SharedApplication.h in Headers */,
-				74E6FC3F0FD1AEB90015D9F8 /* SharedApplicationDelegate.h in Headers */,
 				74E6FC400FD1AEB90015D9F8 /* Macros.h in Headers */,
 				74E6FC410FD1AEB90015D9F8 /* ForwardDeclarations.h in Headers */,
+				74E6FC680FD1B0DA0015D9F8 /* MetasyntacticShared.h in Headers */,
+				74E6FC690FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h in Headers */,
+				74E6FC6B0FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h in Headers */,
+				74E6FC880FD1B17B0015D9F8 /* Prefix.pch in Headers */,
+				74E6FCDB0FD1B2390015D9F8 /* TextFieldEditorViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		747C2FCB0FD0648D00411801 /* iPhoneShared */ = {
+		747C2FCB0FD0648D00411801 /* MetasyntacticShared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 747C2FF50FD0649A00411801 /* Build configuration list for PBXNativeTarget "iPhoneShared" */;
+			buildConfigurationList = 747C2FF50FD0649A00411801 /* Build configuration list for PBXNativeTarget "MetasyntacticShared" */;
 			buildPhases = (
 				747C2FC80FD0648D00411801 /* Headers */,
 				747C2FC90FD0648D00411801 /* Sources */,
@@ -676,9 +678,9 @@
 			);
 			dependencies = (
 			);
-			name = iPhoneShared;
+			name = MetasyntacticShared;
 			productName = iPhoneShared2;
-			productReference = 747C2FCC0FD0648D00411801 /* libiPhoneShared.a */;
+			productReference = 747C2FCC0FD0648D00411801 /* libMetasyntacticShared.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -686,14 +688,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneShared" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetasyntacticShared" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				747C2FCB0FD0648D00411801 /* iPhoneShared */,
+				747C2FCB0FD0648D00411801 /* MetasyntacticShared */,
 			);
 		};
 /* End PBXProject section */
@@ -746,7 +748,6 @@
 				747C30200FD064C500411801 /* NSMutableArray+Utilities.m in Sources */,
 				747C30210FD064C500411801 /* CollectionUtilities.m in Sources */,
 				747C30220FD064C500411801 /* NSArray+Utilities.m in Sources */,
-				747C30230FD064C500411801 /* SharedApplication.m in Sources */,
 				747C31500FD067D900411801 /* AbstractTableViewController.m in Sources */,
 				747C31610FD0683600411801 /* Operation.m in Sources */,
 				747C31630FD0683600411801 /* Operation1.m in Sources */,
@@ -764,8 +765,9 @@
 				747C336C0FD0720300411801 /* BackgroundInvocation.m in Sources */,
 				747C336E0FD0720300411801 /* BackgroundInvocation2.m in Sources */,
 				747C33FD0FD0735100411801 /* UITableViewCell+Utilities.m in Sources */,
-				747C34F70FD0770B00411801 /* TextFieldEditorViewController.m in Sources */,
 				747C34FF0FD0772D00411801 /* EditorViewController.m in Sources */,
+				74E6FC6A0FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m in Sources */,
+				74E6FCDC0FD1B2390015D9F8 /* TextFieldEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,8 +781,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos3.0;
@@ -794,8 +794,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos3.0;
@@ -809,6 +807,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -826,6 +826,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -839,7 +841,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		747C2FF50FD0649A00411801 /* Build configuration list for PBXNativeTarget "iPhoneShared" */ = {
+		747C2FF50FD0649A00411801 /* Build configuration list for PBXNativeTarget "MetasyntacticShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				747C2FCD0FD0648E00411801 /* Debug */,
@@ -848,7 +850,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneShared" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetasyntacticShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

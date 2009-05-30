@@ -12,18 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SharedApplicationDelegate.h"
-
-@interface SharedApplication : NSObject {
-
-}
-
-+ (void) setSharedApplicationDelegate:(id<SharedApplicationDelegate>) delegate;
-
-+ (NSString*) localizedString:(NSString*) key;
-
-+ (void) saveNavigationStack:(UINavigationController*) controller;
-
-+ (BOOL) notificationsEnabled;
-
+@protocol MetasyntacticSharedApplicationDelegate
+- (NSString*) localizedString:(NSString*) key;
+- (void) saveNavigationStack:(UINavigationController*) controller;
+- (BOOL) notificationsEnabled;
 @end

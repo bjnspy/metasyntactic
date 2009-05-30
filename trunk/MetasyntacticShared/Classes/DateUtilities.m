@@ -14,7 +14,7 @@
 
 #import "DateUtilities.h"
 
-#import "SharedApplication.h"
+#import "MetasyntacticSharedApplication.h"
 
 @implementation DateUtilities
 

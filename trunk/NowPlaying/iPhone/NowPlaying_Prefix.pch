@@ -30,5 +30,5 @@
 #import "Macros.h"
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
-#import "Shared.h"
+#import "MetasyntacticShared.h"
 #endif
