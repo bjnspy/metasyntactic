@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		747C2FF80FD064C500411801 /* iPhoneSharedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iPhoneSharedAppDelegate.m */; };
 		747C2FF90FD064C500411801 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		747C2FFA0FD064C500411801 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
 		747C2FFB0FD064C500411801 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C460F15D1EE0004B610 /* xmltok.c */; };
@@ -94,15 +93,56 @@
 		747C34F70FD0770B00411801 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34F50FD0770B00411801 /* TextFieldEditorViewController.m */; };
 		747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C34FC0FD0772D00411801 /* EditorViewController.h */; };
 		747C34FF0FD0772D00411801 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C34FD0FD0772D00411801 /* EditorViewController.m */; };
+		74E6FC060FD1AEB90015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
+		74E6FC070FD1AEB90015D9F8 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAD0F15D9590004B610 /* IdentitySet.h */; };
+		74E6FC080FD1AEB90015D9F8 /* MultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB30F15D9590004B610 /* MultiDictionary.h */; };
+		74E6FC090FD1AEB90015D9F8 /* PointerSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB50F15D9590004B610 /* PointerSet.h */; };
+		74E6FC190FD1AEB90015D9F8 /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C500F15D1FF0004B610 /* NSMutableURLRequest+Parameters.h */; };
+		74E6FC1A0FD1AEB90015D9F8 /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C520F15D1FF0004B610 /* NSString+URLEncoding.h */; };
+		74E6FC1B0FD1AEB90015D9F8 /* NSURL+Base.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C540F15D1FF0004B610 /* NSURL+Base.h */; };
+		74E6FC1C0FD1AEB90015D9F8 /* OAConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C560F15D1FF0004B610 /* OAConsumer.h */; };
+		74E6FC1D0FD1AEB90015D9F8 /* OADataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C580F15D1FF0004B610 /* OADataFetcher.h */; };
+		74E6FC1E0FD1AEB90015D9F8 /* OAHMAC_SHA1SignatureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C5A0F15D1FF0004B610 /* OAHMAC_SHA1SignatureProvider.h */; };
+		74E6FC1F0FD1AEB90015D9F8 /* OAMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C5C0F15D1FF0004B610 /* OAMutableURLRequest.h */; };
+		74E6FC200FD1AEB90015D9F8 /* OAPlaintextSignatureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C5E0F15D1FF0004B610 /* OAPlaintextSignatureProvider.h */; };
+		74E6FC210FD1AEB90015D9F8 /* OARequestParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C600F15D1FF0004B610 /* OARequestParameter.h */; };
+		74E6FC220FD1AEB90015D9F8 /* OAServiceTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C620F15D1FF0004B610 /* OAServiceTicket.h */; };
+		74E6FC230FD1AEB90015D9F8 /* OASignatureProviding.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C640F15D1FF0004B610 /* OASignatureProviding.h */; };
+		74E6FC240FD1AEB90015D9F8 /* OAToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C650F15D1FF0004B610 /* OAToken.h */; };
+		74E6FC250FD1AEB90015D9F8 /* OAuthConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C670F15D1FF0004B610 /* OAuthConsumer.h */; };
+		74E6FC260FD1AEB90015D9F8 /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D830F15D8A10004B610 /* Invocation.h */; };
+		74E6FC270FD1AEB90015D9F8 /* Invocation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D850F15D8A10004B610 /* Invocation2.h */; };
+		74E6FC280FD1AEB90015D9F8 /* MainThreadGate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D870F15D8A10004B610 /* MainThreadGate.h */; };
+		74E6FC290FD1AEB90015D9F8 /* PriorityMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D890F15D8A10004B610 /* PriorityMutex.h */; };
+		74E6FC2A0FD1AEB90015D9F8 /* ViewControllerUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E630F15DCC10004B610 /* ViewControllerUtilities.h */; };
+		74E6FC2B0FD1AEB90015D9F8 /* AlertUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E3F0F15DC800004B610 /* AlertUtilities.h */; };
+		74E6FC2C0FD1AEB90015D9F8 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616C860F15D2450004B610 /* Base64.h */; };
+		74E6FC2D0FD1AEB90015D9F8 /* CollectionUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74537D490F86AA6C00D457CB /* CollectionUtilities.h */; };
+		74E6FC2E0FD1AEB90015D9F8 /* DateUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E410F15DC800004B610 /* DateUtilities.h */; };
+		74E6FC2F0FD1AEB90015D9F8 /* DifferenceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D760F15D7F50004B610 /* DifferenceEngine.h */; };
+		74E6FC300FD1AEB90015D9F8 /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E430F15DC800004B610 /* FileUtilities.h */; };
+		74E6FC310FD1AEB90015D9F8 /* ImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E450F15DC800004B610 /* ImageUtilities.h */; };
+		74E6FC320FD1AEB90015D9F8 /* LocaleUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E470F15DC800004B610 /* LocaleUtilities.h */; };
+		74E6FC330FD1AEB90015D9F8 /* NetworkUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E490F15DC800004B610 /* NetworkUtilities.h */; };
+		74E6FC340FD1AEB90015D9F8 /* NSArray+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */; };
+		74E6FC350FD1AEB90015D9F8 /* NSMutableArray+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 740102270F26EF7800258353 /* NSMutableArray+Utilities.h */; };
+		74E6FC360FD1AEB90015D9F8 /* Pulser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E7E0F15DD0F0004B610 /* Pulser.h */; };
+		74E6FC370FD1AEB90015D9F8 /* StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616D6A0F15D42A0004B610 /* StringUtilities.h */; };
+		74E6FC380FD1AEB90015D9F8 /* XmlDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF30F15DAC00004B610 /* XmlDocument.h */; };
+		74E6FC390FD1AEB90015D9F8 /* XmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF50F15DAC00004B610 /* XmlElement.h */; };
+		74E6FC3A0FD1AEB90015D9F8 /* XmlParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF70F15DAC00004B610 /* XmlParser.h */; };
+		74E6FC3B0FD1AEB90015D9F8 /* XmlSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DF90F15DAC00004B610 /* XmlSerializer.h */; };
+		74E6FC3D0FD1AEB90015D9F8 /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2FBC0FD0647100411801 /* Shared.h */; };
+		74E6FC3E0FD1AEB90015D9F8 /* SharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2F750FD0636C00411801 /* SharedApplication.h */; };
+		74E6FC3F0FD1AEB90015D9F8 /* SharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C2F780FD0637900411801 /* SharedApplicationDelegate.h */; };
+		74E6FC400FD1AEB90015D9F8 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616E0C0F15DAF80004B610 /* Macros.h */; };
+		74E6FC410FD1AEB90015D9F8 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DC80F15D9870004B610 /* ForwardDeclarations.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* iPhoneSharedAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneSharedAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* iPhoneSharedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneSharedAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneShared_Prefix.pch; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
@@ -276,12 +316,10 @@
 				74616C780F15D21F0004B610 /* Utilities */,
 				74616DF20F15DAA80004B610 /* Xml */,
 				747C33140FD0710D00411801 /* AbstractApplication.h */,
-				1D3623240D0F684500981E51 /* iPhoneSharedAppDelegate.h */,
 				747C2FBC0FD0647100411801 /* Shared.h */,
 				747C2F750FD0636C00411801 /* SharedApplication.h */,
 				747C2F780FD0637900411801 /* SharedApplicationDelegate.h */,
 				747C33150FD0710D00411801 /* AbstractApplication.m */,
-				1D3623250D0F684500981E51 /* iPhoneSharedAppDelegate.m */,
 				747C2F760FD0636C00411801 /* SharedApplication.m */,
 			);
 			path = Classes;
@@ -321,7 +359,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -558,25 +595,69 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747C314F0FD067D900411801 /* AbstractTableViewController.h in Headers */,
+				74E6FC060FD1AEB90015D9F8 /* IdentityObject.h in Headers */,
+				74E6FC070FD1AEB90015D9F8 /* IdentitySet.h in Headers */,
+				74E6FC080FD1AEB90015D9F8 /* MultiDictionary.h in Headers */,
+				747C333D0FD0719600411801 /* MutableMultiDictionary.h in Headers */,
+				74E6FC090FD1AEB90015D9F8 /* PointerSet.h in Headers */,
+				747C33070FD070BB00411801 /* Location.h in Headers */,
+				74E6FC190FD1AEB90015D9F8 /* NSMutableURLRequest+Parameters.h in Headers */,
+				74E6FC1A0FD1AEB90015D9F8 /* NSString+URLEncoding.h in Headers */,
+				74E6FC1B0FD1AEB90015D9F8 /* NSURL+Base.h in Headers */,
+				74E6FC1C0FD1AEB90015D9F8 /* OAConsumer.h in Headers */,
+				74E6FC1D0FD1AEB90015D9F8 /* OADataFetcher.h in Headers */,
+				74E6FC1E0FD1AEB90015D9F8 /* OAHMAC_SHA1SignatureProvider.h in Headers */,
+				74E6FC1F0FD1AEB90015D9F8 /* OAMutableURLRequest.h in Headers */,
+				74E6FC200FD1AEB90015D9F8 /* OAPlaintextSignatureProvider.h in Headers */,
+				74E6FC210FD1AEB90015D9F8 /* OARequestParameter.h in Headers */,
+				74E6FC220FD1AEB90015D9F8 /* OAServiceTicket.h in Headers */,
+				74E6FC230FD1AEB90015D9F8 /* OASignatureProviding.h in Headers */,
+				74E6FC240FD1AEB90015D9F8 /* OAToken.h in Headers */,
+				74E6FC250FD1AEB90015D9F8 /* OAuthConsumer.h in Headers */,
 				747C31600FD0683600411801 /* Operation.h in Headers */,
 				747C31620FD0683600411801 /* Operation1.h in Headers */,
 				747C31640FD0683600411801 /* Operation2.h in Headers */,
 				747C31660FD0683600411801 /* OperationQueue.h in Headers */,
-				747C31A90FD0695E00411801 /* AbstractFullScreenTableViewController.h in Headers */,
-				747C31AB0FD0695E00411801 /* AbstractFullScreenViewController.h in Headers */,
-				747C31AF0FD069AE00411801 /* NotificationCenter.h in Headers */,
-				747C32F80FD0705700411801 /* ThreadingUtilities.h in Headers */,
-				747C32FD0FD0706F00411801 /* LocationUtilities.h in Headers */,
-				747C33070FD070BB00411801 /* Location.h in Headers */,
-				747C33160FD0710D00411801 /* AbstractApplication.h in Headers */,
-				747C333D0FD0719600411801 /* MutableMultiDictionary.h in Headers */,
-				747C33410FD071A400411801 /* WebViewController.h in Headers */,
 				747C336B0FD0720300411801 /* BackgroundInvocation.h in Headers */,
 				747C336D0FD0720300411801 /* BackgroundInvocation2.h in Headers */,
-				747C33FC0FD0735100411801 /* UITableViewCell+Utilities.h in Headers */,
-				747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */,
+				74E6FC260FD1AEB90015D9F8 /* Invocation.h in Headers */,
+				74E6FC270FD1AEB90015D9F8 /* Invocation2.h in Headers */,
+				74E6FC280FD1AEB90015D9F8 /* MainThreadGate.h in Headers */,
+				74E6FC290FD1AEB90015D9F8 /* PriorityMutex.h in Headers */,
+				747C32F80FD0705700411801 /* ThreadingUtilities.h in Headers */,
+				747C31A90FD0695E00411801 /* AbstractFullScreenTableViewController.h in Headers */,
+				747C31AB0FD0695E00411801 /* AbstractFullScreenViewController.h in Headers */,
+				747C314F0FD067D900411801 /* AbstractTableViewController.h in Headers */,
 				747C34FE0FD0772D00411801 /* EditorViewController.h in Headers */,
+				747C34F60FD0770B00411801 /* TextFieldEditorViewController.h in Headers */,
+				747C33410FD071A400411801 /* WebViewController.h in Headers */,
+				747C31AF0FD069AE00411801 /* NotificationCenter.h in Headers */,
+				74E6FC2A0FD1AEB90015D9F8 /* ViewControllerUtilities.h in Headers */,
+				74E6FC2B0FD1AEB90015D9F8 /* AlertUtilities.h in Headers */,
+				74E6FC2C0FD1AEB90015D9F8 /* Base64.h in Headers */,
+				74E6FC2D0FD1AEB90015D9F8 /* CollectionUtilities.h in Headers */,
+				74E6FC2E0FD1AEB90015D9F8 /* DateUtilities.h in Headers */,
+				74E6FC2F0FD1AEB90015D9F8 /* DifferenceEngine.h in Headers */,
+				74E6FC300FD1AEB90015D9F8 /* FileUtilities.h in Headers */,
+				74E6FC310FD1AEB90015D9F8 /* ImageUtilities.h in Headers */,
+				74E6FC320FD1AEB90015D9F8 /* LocaleUtilities.h in Headers */,
+				747C32FD0FD0706F00411801 /* LocationUtilities.h in Headers */,
+				74E6FC330FD1AEB90015D9F8 /* NetworkUtilities.h in Headers */,
+				74E6FC340FD1AEB90015D9F8 /* NSArray+Utilities.h in Headers */,
+				74E6FC350FD1AEB90015D9F8 /* NSMutableArray+Utilities.h in Headers */,
+				74E6FC360FD1AEB90015D9F8 /* Pulser.h in Headers */,
+				74E6FC370FD1AEB90015D9F8 /* StringUtilities.h in Headers */,
+				747C33FC0FD0735100411801 /* UITableViewCell+Utilities.h in Headers */,
+				74E6FC380FD1AEB90015D9F8 /* XmlDocument.h in Headers */,
+				74E6FC390FD1AEB90015D9F8 /* XmlElement.h in Headers */,
+				74E6FC3A0FD1AEB90015D9F8 /* XmlParser.h in Headers */,
+				74E6FC3B0FD1AEB90015D9F8 /* XmlSerializer.h in Headers */,
+				747C33160FD0710D00411801 /* AbstractApplication.h in Headers */,
+				74E6FC3D0FD1AEB90015D9F8 /* Shared.h in Headers */,
+				74E6FC3E0FD1AEB90015D9F8 /* SharedApplication.h in Headers */,
+				74E6FC3F0FD1AEB90015D9F8 /* SharedApplicationDelegate.h in Headers */,
+				74E6FC400FD1AEB90015D9F8 /* Macros.h in Headers */,
+				74E6FC410FD1AEB90015D9F8 /* ForwardDeclarations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +704,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				747C2FF70FD064C500411801 /* main.m in Sources */,
-				747C2FF80FD064C500411801 /* iPhoneSharedAppDelegate.m in Sources */,
 				747C2FF90FD064C500411801 /* xmlparse.c in Sources */,
 				747C2FFA0FD064C500411801 /* xmlrole.c in Sources */,
 				747C2FFB0FD064C500411801 /* xmltok.c in Sources */,
