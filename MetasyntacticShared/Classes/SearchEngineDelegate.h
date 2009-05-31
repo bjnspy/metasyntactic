@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LocalSearchEngine : AbstractSearchEngine {
-@private
-}
-
-+ (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;
-
+@protocol SearchEngineDelegate
+- (void) reportResult:(AbstractSearchResult*) result;
 @end

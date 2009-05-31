@@ -17,6 +17,7 @@
 #import "Model.h"
 #import "NetflixCache.h"
 #import "SearchRequest.h"
+#import "SearchResult.h"
 
 @implementation NetflixSearchEngine
 
@@ -42,13 +43,22 @@
     NSArray* people = [self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
     if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    [self reportResult:currentlyExecutingRequest
-                movies:movies
-              theaters:[NSArray array]
-        upcomingMovies:[NSArray array]
-                  dvds:[NSArray array]
-                bluray:[NSArray array]
-                people:people];
+  SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
+                                              value:currentlyExecutingRequest.value
+                                             movies:movies
+                                           theaters:[NSArray array]
+                                     upcomingMovies:[NSArray array]
+                                               dvds:[NSArray array]
+                                             bluray:[NSArray array]
+                                             people:people];
+  
+  [self reportResult:result];
+}
+
+
+- (AbstractSearchRequest*) createSearchRequest:(NSInteger) requestId
+                                         value:(NSString*) value {
+  return [SearchRequest requestWithId:requestId value:value];
 }
 
 @end

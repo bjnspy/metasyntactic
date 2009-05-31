@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
@@ -19,6 +20,9 @@
 @class OAToken;
 
 @class AbstractNavigationController;
+@class AbstractSearchEngine;
+@class AbstractSearchRequest;
+@class AbstractSearchResult;
 @class BackgroundInvocation;
 @class DateUtilities;
 @class DifferenceEngine;

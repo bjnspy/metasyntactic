@@ -20,9 +20,6 @@
 #import "UpcomingCache.h"
 
 @interface SearchRequest()
-@property NSInteger requestId;
-@property (copy) NSString* value;
-@property (copy) NSString* lowercaseValue;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* theaters;
 @property (retain) NSArray* upcomingMovies;
@@ -33,9 +30,6 @@
 
 @implementation SearchRequest
 
-@synthesize requestId;
-@synthesize value;
-@synthesize lowercaseValue;
 @synthesize movies;
 @synthesize theaters;
 @synthesize upcomingMovies;
@@ -43,42 +37,34 @@
 @synthesize bluray;
 
 - (void) dealloc {
-    self.requestId = 0;
-    self.value = nil;
-    self.lowercaseValue = nil;
-    self.movies = nil;
-    self.theaters = nil;
-    self.upcomingMovies = nil;
-    self.dvds = nil;
-    self.bluray = nil;
-
-    [super dealloc];
+  self.movies = nil;
+  self.theaters = nil;
+  self.upcomingMovies = nil;
+  self.dvds = nil;
+  self.bluray = nil;
+  
+  [super dealloc];
 }
 
 
-- (id) initWithId:(NSInteger) requestId__
-            value:(NSString*) value__
-            model:(Model*) model {
-    if (self = [super init]) {
-        self.requestId = requestId__;
-        self.value = value__;
-        self.movies = model.movies;
-        self.theaters = model.theaters;
-        self.upcomingMovies = model.upcomingCache.movies;
-        self.dvds = model.dvdCache.movies;
-        self.bluray = model.blurayCache.movies;
-
-        self.lowercaseValue = [[StringUtilities asciiString:self.value] lowercaseString];
-    }
-
-    return self;
+- (id) initWithId:(NSInteger) requestId_
+            value:(NSString*) value_ {
+  if (self = [super initWithId:requestId_ value:value_]) {
+    Model* model = [Model model];
+    self.movies = model.movies;
+    self.theaters = model.theaters;
+    self.upcomingMovies = model.upcomingCache.movies;
+    self.dvds = model.dvdCache.movies;
+    self.bluray = model.blurayCache.movies;
+  }
+  
+  return self;
 }
 
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
-                           value:(NSString*) value
-                           model:(Model*) model{
-    return [[[SearchRequest alloc] initWithId:requestId value:value model:model] autorelease];
+                           value:(NSString*) value {
+  return [[[SearchRequest alloc] initWithId:requestId value:value] autorelease];
 }
 
 @end
