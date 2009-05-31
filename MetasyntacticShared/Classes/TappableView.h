@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #import "TappableViewDelegate.h"
-
+#if 0
 @interface TappableView : UIView {
 @private
     id<TappableViewDelegate> delegate;
@@ -22,3 +22,4 @@
 @property (assign) id<TappableViewDelegate> delegate;
 
 @end
+#endif

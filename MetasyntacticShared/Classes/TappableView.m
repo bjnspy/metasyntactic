@@ -14,6 +14,7 @@
 
 #import "TappableView.h"
 
+#if 0
 @implementation TappableView
 
 @synthesize delegate;
@@ -35,3 +36,4 @@
 }
 
 @end
+#endif
