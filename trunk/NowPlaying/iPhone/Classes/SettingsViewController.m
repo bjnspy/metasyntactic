@@ -508,14 +508,14 @@ typedef enum {
     return;
   }
   refreshed = YES;
-  
+
   [self.tableView beginUpdates];
   {
     NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:RefreshSection]];
     [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
   }
   [self.tableView endUpdates];
-  
+
   //UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
 
 #ifdef IPHONE_OS_VERSION_3

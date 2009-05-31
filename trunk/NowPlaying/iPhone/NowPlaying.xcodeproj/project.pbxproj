@@ -439,7 +439,7 @@
 		74E605D60FD1F62E0015D9F8 /* libMetasyntacticShared3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */; };
 		74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
 		74E6E1250F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
-		74E6FCCE0FD1B1EF0015D9F8 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */; };
+		74E6FCCE0FD1B1EF0015D9F8 /* libMetasyntacticShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared2.a */; };
 		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
 		74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
 		74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */; };
@@ -497,14 +497,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 74E602340FD1C7990015D9F8 /* libMetasyntacticShared2.a */;
+			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
 			remoteInfo = "MetasyntacticShared2 copy";
 		};
 		74E605D40FD1F6240015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 74E601A60FD1C7990015D9F8 /* MetasyntacticShared3 */;
+			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared3;
 		};
 		74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */ = {
@@ -959,7 +959,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E6FCCE0FD1B1EF0015D9F8 /* libMetasyntacticShared.a in Frameworks */,
+				74E6FCCE0FD1B1EF0015D9F8 /* libMetasyntacticShared2.a in Frameworks */,
 				740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				746398750F7EC99800B2F64C /* SystemConfiguration.framework in Frameworks */,
 				746398790F7EC99C00B2F64C /* MediaPlayer.framework in Frameworks */,
@@ -1628,7 +1628,7 @@
 		74E6FCC50FD1B1CE0015D9F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */,
+				74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared2.a */,
 				74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */,
 			);
 			name = Products;
@@ -1815,10 +1815,10 @@
 			remoteRef = 74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */ = {
+		74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared2.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libMetasyntacticShared.a;
+			path = libMetasyntacticShared2.a;
 			remoteRef = 74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

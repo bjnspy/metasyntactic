@@ -160,7 +160,7 @@ static CacheUpdater* cacheUpdater = nil;
 - (void) addMoviesWorker:(NSArray*) movies {
   for (Movie* movie in movies) {
     [self addMovie:movie];
-  }  
+  }
 }
 
 
