@@ -55,7 +55,7 @@
 + (void) shuffle:(NSMutableArray*) array {
   for (NSInteger i = [array count] - 1; i > 0; --i) {
     NSInteger j = random() % i;
-    [array exchangeObjectAtIndex:j withObjectAtIndex:i]; 
+    [array exchangeObjectAtIndex:j withObjectAtIndex:i];
   }
 }
 

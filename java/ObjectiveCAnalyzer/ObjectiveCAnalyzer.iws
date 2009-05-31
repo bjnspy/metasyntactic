@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="33" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.5">
+            <state line="35" column="33" selection-start="1270" selection-end="1270" vertical-scroll-proportion="-0.0882353">
               <folding />
             </state>
           </provider>
@@ -233,7 +233,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.iPhoneShared">
+  <component name="RunManager" selected="Application.ComiXology">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -374,8 +374,8 @@
     <configuration default="false" name="iPhoneShared" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/iPhoneShared" />
-      <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/iPhoneShared" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/MetasyntacticShared" />
+      <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/MetasyntacticShared" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -617,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="33" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.5">
+        <state line="35" column="33" selection-start="1270" selection-end="1270" vertical-scroll-proportion="-0.0882353">
           <folding />
         </state>
       </provider>

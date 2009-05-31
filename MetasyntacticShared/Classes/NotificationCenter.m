@@ -14,8 +14,8 @@
 
 #import "NotificationCenter.h"
 
-#import "Pulser.h"
 #import "MetasyntacticSharedApplication.h"
+#import "Pulser.h"
 
 @interface NotificationCenter()
 @property (retain) UIViewController* viewController;

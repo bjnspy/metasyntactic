@@ -31,22 +31,22 @@
 
 - (void) dealloc {
   self.visible = NO;
-  
+
 #ifndef IPHONE_OS_VERSION_3
   self.isViewLoaded = NO;
 #endif
-  
+
   [super dealloc];
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
 #ifndef IPHONE_OS_VERSION_3
   self.isViewLoaded = YES;
 #endif
-  
+
   self.view.autoresizesSubviews = YES;
 }
 
@@ -55,17 +55,17 @@
   if (!self.isViewLoaded) {
     return;
   }
-  
+
   if (self.modalViewController != nil) {
     if ([self.modalViewController respondsToSelector:selector]) {
       [self.modalViewController performSelector:selector];
     }
   }
-  
+
   if (!visible) {
     return;
   }
-  
+
   for (id controller in self.viewControllers) {
     if ([controller respondsToSelector:selector]) {
       [controller performSelector:selector];
@@ -100,7 +100,7 @@
   if (visible) {
     return;
   }
-  
+
   [self popToRootViewControllerAnimated:NO];
   [super didReceiveMemoryWarning];
 }
