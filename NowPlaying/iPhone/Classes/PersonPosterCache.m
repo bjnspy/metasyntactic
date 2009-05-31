@@ -31,15 +31,15 @@
 //@synthesize prioritizedPeople;
 
 - (void) dealloc {
-    //self.normalPeople = nil;
-    //self.prioritizedPeople = nil;
+  //self.normalPeople = nil;
+  //self.prioritizedPeople = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (PersonPosterCache*) cache {
-    return [[[PersonPosterCache alloc] init] autorelease];
+  return [[[PersonPosterCache alloc] init] autorelease];
 }
 
 
@@ -57,111 +57,111 @@
 
 
 - (NSString*) posterFilePath:(Person*) person {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
-    return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (NSString*) smallPosterFilePath:(Person*) person {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
-    return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:person.name];
+  return [[[Application peoplePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
 }
 
 
 - (BOOL) hasProperSuffix:(NSString*) name {
-    NSString* lowercaseName = [name lowercaseString];
+  NSString* lowercaseName = [name lowercaseString];
 
-    return [lowercaseName hasSuffix:@"png"] ||
-           [lowercaseName hasSuffix:@"jpg"] ||
-           [lowercaseName hasSuffix:@"jpeg"];
+  return [lowercaseName hasSuffix:@"png"] ||
+  [lowercaseName hasSuffix:@"jpg"] ||
+  [lowercaseName hasSuffix:@"jpeg"];
 }
 
 
 - (BOOL) isStockImage:(NSString*) name {
-    NSString* lowercaseName = [name lowercaseString];
+  NSString* lowercaseName = [name lowercaseString];
 
-    return
-    [@"file:us-actor.png" isEqual:lowercaseName] ||
-    [@"file:spainfilm.png" isEqual:lowercaseName];
+  return
+  [@"file:us-actor.png" isEqual:lowercaseName] ||
+  [@"file:spainfilm.png" isEqual:lowercaseName];
 }
 
 
 - (NSData*) downloadPosterWorker:(Person*) person {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:person.name]];
-    NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:person.name]];
+  NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
 
-    if (wikipediaAddress.length == 0) {
-        return nil;
+  if (wikipediaAddress.length == 0) {
+    return nil;
+  }
+
+  NSRange slashRange = [wikipediaAddress rangeOfString:@"/" options:NSBackwardsSearch];
+  if (slashRange.length == 0) {
+    return nil;
+  }
+
+  NSString* wikiTitle = [wikipediaAddress substringFromIndex:slashRange.location + 1];
+  if (wikiTitle.length == 0) {
+    return nil;
+  }
+
+  NSString* wikiSearchAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=images&format=xml", wikiTitle];
+  XmlElement* apiElement = [NetworkUtilities xmlWithContentsOfAddress:wikiSearchAddress];
+  NSArray* imElements = [apiElement elements:@"im" recurse:YES];
+
+  NSString* imageName = nil;
+  for (XmlElement* imElement in imElements) {
+    NSString* name = [imElement attributeValue:@"title"];
+    if ([self hasProperSuffix:name] &&
+        ![self isStockImage:name]) {
+      imageName = name;
+      break;
     }
+  }
 
-    NSRange slashRange = [wikipediaAddress rangeOfString:@"/" options:NSBackwardsSearch];
-    if (slashRange.length == 0) {
-        return nil;
-    }
+  if (imageName.length == 0) {
+    return nil;
+  }
 
-    NSString* wikiTitle = [wikipediaAddress substringFromIndex:slashRange.location + 1];
-    if (wikiTitle.length == 0) {
-        return nil;
-    }
+  NSString* wikiDetailsAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=imageinfo&iiprop=url&format=xml", [StringUtilities stringByAddingPercentEscapes:imageName]];
+  XmlElement* apiElement2 = [NetworkUtilities xmlWithContentsOfAddress:wikiDetailsAddress];
+  XmlElement* iiElement = [apiElement2 element:@"ii" recurse:YES];
 
-    NSString* wikiSearchAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=images&format=xml", wikiTitle];
-    XmlElement* apiElement = [NetworkUtilities xmlWithContentsOfAddress:wikiSearchAddress];
-    NSArray* imElements = [apiElement elements:@"im" recurse:YES];
+  NSString* imageUrl = [iiElement attributeValue:@"url"];
 
-    NSString* imageName = nil;
-    for (XmlElement* imElement in imElements) {
-        NSString* name = [imElement attributeValue:@"title"];
-        if ([self hasProperSuffix:name] &&
-              ![self isStockImage:name]) {
-            imageName = name;
-            break;
-        }
-    }
-
-    if (imageName.length == 0) {
-        return nil;
-    }
-
-    NSString* wikiDetailsAddress = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?action=query&titles=%@&prop=imageinfo&iiprop=url&format=xml", [StringUtilities stringByAddingPercentEscapes:imageName]];
-    XmlElement* apiElement2 = [NetworkUtilities xmlWithContentsOfAddress:wikiDetailsAddress];
-    XmlElement* iiElement = [apiElement2 element:@"ii" recurse:YES];
-
-    NSString* imageUrl = [iiElement attributeValue:@"url"];
-
-    return [NetworkUtilities dataWithContentsOfAddress:imageUrl];
+  return [NetworkUtilities dataWithContentsOfAddress:imageUrl];
 }
 
 
 - (void) downloadPoster:(Person*) person {
-    NSString* path = [self posterFilePath:person];
+  NSString* path = [self posterFilePath:person];
 
-    if ([FileUtilities fileExists:path]) {
-        if ([FileUtilities size:path] > 0) {
-            // already have a real poster.
-            return;
-        }
-
-        if ([FileUtilities size:path] == 0) {
-            // sentinel value.  only update if it's been long enough.
-            NSDate* modificationDate = [FileUtilities modificationDate:path];
-            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
-                return;
-            }
-        }
+  if ([FileUtilities fileExists:path]) {
+    if ([FileUtilities size:path] > 0) {
+      // already have a real poster.
+      return;
     }
 
-    NSData* data = [self downloadPosterWorker:person];
-    if (data == nil && [NetworkUtilities isNetworkAvailable]) {
-        data = [NSData data];
+    if ([FileUtilities size:path] == 0) {
+      // sentinel value.  only update if it's been long enough.
+      NSDate* modificationDate = [FileUtilities modificationDate:path];
+      if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
+        return;
+      }
     }
+  }
 
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:path];
+  NSData* data = [self downloadPosterWorker:person];
+  if (data == nil && [NetworkUtilities isNetworkAvailable]) {
+    data = [NSData data];
+  }
 
-        if (data.length > 0) {
-            [AppDelegate minorRefresh];
-        }
+  if (data != nil) {
+    [FileUtilities writeData:data toFile:path];
+
+    if (data.length > 0) {
+      [AppDelegate minorRefresh];
     }
+  }
 }
 
 
@@ -172,20 +172,20 @@
 
 
 - (UIImage*) smallPosterForPerson:(Person*) person {
-    NSString* smallPosterPath = [self smallPosterFilePath:person];
-    NSData* smallPosterData;
+  NSString* smallPosterPath = [self smallPosterFilePath:person];
+  NSData* smallPosterData;
 
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:person]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
+  if ([FileUtilities size:smallPosterPath] == 0) {
+    NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:person]];
+    smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                            toHeight:SMALL_POSTER_HEIGHT];
 
-        [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
+    [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
+  } else {
+    smallPosterData = [FileUtilities readData:smallPosterPath];
+  }
 
-    return [UIImage imageWithData:smallPosterData];
+  return [UIImage imageWithData:smallPosterData];
 }
 
 @end
