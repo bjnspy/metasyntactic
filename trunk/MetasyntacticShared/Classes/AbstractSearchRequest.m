@@ -33,7 +33,7 @@
   self.requestId = 0;
   self.value = nil;
   self.lowercaseValue = nil;
-  
+
   [super dealloc];
 }
 
@@ -45,7 +45,7 @@
     self.value = value_;
     self.lowercaseValue = [[StringUtilities asciiString:value_] lowercaseString];
   }
-  
+
   return self;
 }
 

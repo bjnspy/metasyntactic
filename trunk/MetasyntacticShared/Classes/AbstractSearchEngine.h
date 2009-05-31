@@ -18,7 +18,7 @@
 @protected
   // only accessed from the main thread.  needs no lock.
   id<SearchEngineDelegate> delegate;
-  
+
   // accessed from both threads.  needs lock
   NSCondition* gate;
   NSInteger currentRequestId;
