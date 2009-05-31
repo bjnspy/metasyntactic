@@ -33,7 +33,7 @@
   if (self = [super init]) {
     self.pathToImageMap = [NSMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 

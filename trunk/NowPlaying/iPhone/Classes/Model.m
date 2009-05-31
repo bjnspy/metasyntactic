@@ -1406,7 +1406,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (image != nil) {
     return image;
   }
-  
+
   return [largePosterCache posterForMovie:movie loadFromDisk:loadFromDisk];
 }
 
@@ -1416,7 +1416,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (image != nil) {
     return image;
   }
-  
+
   return [largePosterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
 }
 

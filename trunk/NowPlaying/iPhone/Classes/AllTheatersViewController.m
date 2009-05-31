@@ -15,9 +15,9 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "StockImages.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
+#import "StockImages.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"

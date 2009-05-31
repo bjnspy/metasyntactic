@@ -91,7 +91,7 @@ const int START_YEAR = 1912;
                     loadFromDisk:(BOOL) loadFromDisk {
     NSString* smallPosterPath = [self smallPosterFilePath:movie
                                                     index:index];
-  
+
   if (loadFromDisk) {
     NSData* smallPosterData;
     if ([FileUtilities size:smallPosterPath] == 0 && index == 0) {
@@ -103,7 +103,7 @@ const int START_YEAR = 1912;
     } else {
       smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
   } else {
     return [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
