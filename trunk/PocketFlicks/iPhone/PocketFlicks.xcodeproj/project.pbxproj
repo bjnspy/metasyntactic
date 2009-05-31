@@ -46,6 +46,7 @@
 		74200C150FD251EF00DEE16B /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C130FD251EF00DEE16B /* CommonNavigationController.m */; };
 		74200C2B0FD2527B00DEE16B /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C2A0FD2527B00DEE16B /* StockImages.m */; };
 		74200C2C0FD2527B00DEE16B /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C2A0FD2527B00DEE16B /* StockImages.m */; };
+		74200CC80FD2562C00DEE16B /* libMetasyntacticShared3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74200BAE0FD24CB600DEE16B /* libMetasyntacticShared3.a */; };
 		7425BFAF0F2A8AA9007A3BBD /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
@@ -432,7 +433,6 @@
 		74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1497A0F9594B700FB7BDA /* MessageUI.framework */; };
 		74E3EAA50FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */; };
 		74E3EAA60FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */; };
-		74E6FD0D0FD1B30D0015D9F8 /* libMetasyntacticShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FD060FD1B2E50015D9F8 /* libMetasyntacticShared2.a */; };
 		74E6FD0E0FD1B3110015D9F8 /* libMetasyntacticShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FD060FD1B2E50015D9F8 /* libMetasyntacticShared2.a */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
@@ -510,6 +510,13 @@
 			remoteGlobalIDString = 74E602340FD1C7990015D9F8 /* libMetasyntacticShared3.a */;
 			remoteInfo = MetasyntacticShared3;
 		};
+		74200CC60FD2561C00DEE16B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 74E601A60FD1C7990015D9F8 /* MetasyntacticShared3 */;
+			remoteInfo = MetasyntacticShared3;
+		};
 		747C36660FD07C0200411801 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
@@ -546,13 +553,6 @@
 			remoteInfo = MetasyntacticShared;
 		};
 		74E6FD090FD1B3000015D9F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
-			remoteInfo = MetasyntacticShared;
-		};
-		74E6FD0B0FD1B3060015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
@@ -1004,7 +1004,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E6FD0D0FD1B30D0015D9F8 /* libMetasyntacticShared2.a in Frameworks */,
+				74200CC80FD2562C00DEE16B /* libMetasyntacticShared3.a in Frameworks */,
 				747C367B0FD07C4900411801 /* libProtocolBuffers.a in Frameworks */,
 				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
 				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
@@ -1772,7 +1772,7 @@
 			);
 			dependencies = (
 				747C36760FD07C1F00411801 /* PBXTargetDependency */,
-				74E6FD0C0FD1B3060015D9F8 /* PBXTargetDependency */,
+				74200CC70FD2561C00DEE16B /* PBXTargetDependency */,
 			);
 			name = PocketFlicks3;
 			productName = PocketFlicks;
@@ -2375,6 +2375,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		74200CC70FD2561C00DEE16B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MetasyntacticShared3;
+			targetProxy = 74200CC60FD2561C00DEE16B /* PBXContainerItemProxy */;
+		};
 		747C36720FD07C1800411801 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
@@ -2389,11 +2394,6 @@
 			isa = PBXTargetDependency;
 			name = MetasyntacticShared;
 			targetProxy = 74E6FD090FD1B3000015D9F8 /* PBXContainerItemProxy */;
-		};
-		74E6FD0C0FD1B3060015D9F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MetasyntacticShared;
-			targetProxy = 74E6FD0B0FD1B3060015D9F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2443,6 +2443,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_2,
+					DEBUG,
+				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = PocketFlicks;
 			};
@@ -2458,6 +2462,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_2,
+					RELEASE,
+				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = PocketFlicks;
 			};
@@ -2504,6 +2512,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_2,
+					ADHOC,
+				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = PocketFlicks;
 			};
@@ -2545,6 +2557,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IPHONE_OS_VERSION_2,
+					DISTRIBUTION,
+				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = PocketFlicks;
 			};
