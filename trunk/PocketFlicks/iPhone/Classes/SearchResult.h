@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SearchResult : NSObject {
+@interface SearchResult : AbstractSearchResult {
 @private
-    NSInteger requestId;
-    NSString* value;
     NSArray* movies;
     NSArray* theaters;
     NSArray* upcomingMovies;
@@ -24,8 +22,6 @@
     NSArray* people;
 }
 
-@property (readonly) NSInteger requestId;
-@property (readonly, copy) NSString* value;
 @property (readonly, retain) NSArray* movies;
 @property (readonly, retain) NSArray* theaters;
 @property (readonly, retain) NSArray* upcomingMovies;
