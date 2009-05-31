@@ -167,4 +167,9 @@ static AppDelegate* appDelegate = nil;
   return [[Model model] notificationsEnabled];
 }
 
+
+- (BOOL) screenRotationEnabled {
+  return [[Model model] screenRotationEnabled];
+}
+
 @end

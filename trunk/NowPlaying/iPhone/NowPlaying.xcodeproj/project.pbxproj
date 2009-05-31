@@ -25,7 +25,6 @@
 		7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398900F7EC9AE00B2F64C /* UIKit.framework */; };
 		7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398940F7EC9B200B2F64C /* Foundation.framework */; };
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
-		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
 		7406A78C0F104D1D00795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7880F104D1D00795555 /* Controller.m */; };
 		7406A78D0F104D1D00795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A78A0F104D1D00795555 /* Model.m */; };
@@ -216,7 +215,6 @@
 		746397930F7EC8D600B2F64C /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
 		746397940F7EC8D600B2F64C /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		746397950F7EC8D600B2F64C /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
-		746397980F7EC8D600B2F64C /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		7463979A0F7EC8D600B2F64C /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
 		7463979B0F7EC8D600B2F64C /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7463979C0F7EC8D600B2F64C /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
@@ -540,8 +538,6 @@
 		740224590E53F351006C58A2 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7402245A0E53F353006C58A2 /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7402245B0E53F35A006C58A2 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		740245670E7848BF00ECE1B4 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
-		740245680E7848BF00ECE1B4 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
 		7406A7850F104D1D00795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7406A7870F104D1D00795555 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
@@ -1113,7 +1109,6 @@
 		740245660E78488D00ECE1B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				740245670E7848BF00ECE1B4 /* ActionsView.h */,
 				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
 				74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */,
 				741669320EC92C3B00FFD29A /* TappableLabel.h */,
@@ -1121,7 +1116,6 @@
 				74AF0F860EC2D42200A8F639 /* TappableScrollView.h */,
 				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
 				744592020E6CA017002D05C3 /* WarningView.h */,
-				740245680E7848BF00ECE1B4 /* ActionsView.m */,
 				74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */,
 				741669330EC92C3B00FFD29A /* TappableLabel.m */,
 				74AF0F870EC2D42200A8F639 /* TappableScrollView.m */,
@@ -2025,7 +2019,6 @@
 				749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */,
 				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
-				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
 				743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */,
 				745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */,
 				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
@@ -2173,7 +2166,6 @@
 				746397930F7EC8D600B2F64C /* CollapsedMovieDetailsCell.m in Sources */,
 				746397940F7EC8D600B2F64C /* ExpandedMovieDetailsCell.m in Sources */,
 				746397950F7EC8D600B2F64C /* AbstractMovieDetailsCell.m in Sources */,
-				746397980F7EC8D600B2F64C /* ActionsView.m in Sources */,
 				7463979A0F7EC8D600B2F64C /* FavoriteTheater.m in Sources */,
 				7463979B0F7EC8D600B2F64C /* GoogleDataProvider.m in Sources */,
 				7463979C0F7EC8D600B2F64C /* FandangoPosterDownloader.m in Sources */,

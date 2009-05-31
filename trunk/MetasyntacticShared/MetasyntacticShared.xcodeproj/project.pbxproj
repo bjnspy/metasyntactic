@@ -15,6 +15,10 @@
 		741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
 		741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
 		741F4C360FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */; };
+		741F4CCE0FD20CEB00244D37 /* ActionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4CCC0FD20CEB00244D37 /* ActionsView.h */; };
+		741F4CCF0FD20CEB00244D37 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4CCD0FD20CEB00244D37 /* ActionsView.m */; };
+		741F4CD00FD20CEB00244D37 /* ActionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4CCC0FD20CEB00244D37 /* ActionsView.h */; };
+		741F4CD10FD20CEB00244D37 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4CCD0FD20CEB00244D37 /* ActionsView.m */; };
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		747C2FF90FD064C500411801 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		747C2FFA0FD064C500411801 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
@@ -306,6 +310,8 @@
 		741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		741F4CCC0FD20CEB00244D37 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
+		741F4CCD0FD20CEB00244D37 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
@@ -579,9 +585,11 @@
 		741F4C2A0FD2093F00244D37 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				741F4CCC0FD20CEB00244D37 /* ActionsView.h */,
 				741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */,
-				741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */,
 				741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */,
+				741F4CCD0FD20CEB00244D37 /* ActionsView.m */,
+				741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */,
 				741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */,
 			);
 			name = Views;
@@ -898,6 +906,7 @@
 				74E604D40FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
 				741F4C2F0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */,
 				741F4C310FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */,
+				741F4CCE0FD20CEB00244D37 /* ActionsView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +984,7 @@
 				74E604D60FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
 				741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */,
 				741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */,
+				741F4CD00FD20CEB00244D37 /* ActionsView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1107,6 +1117,7 @@
 				74E604D50FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
 				741F4C300FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */,
 				741F4C320FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */,
+				741F4CCF0FD20CEB00244D37 /* ActionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,6 +1194,7 @@
 				74E604D70FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
 				741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */,
 				741F4C360FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */,
+				741F4CD10FD20CEB00244D37 /* ActionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

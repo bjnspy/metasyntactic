@@ -14,7 +14,7 @@
 
 #import "ActionsView.h"
 
-#import "Model.h"
+#import "MetasyntacticSharedApplication.h"
 
 @interface ActionsView()
 @property (assign) id target;
@@ -134,7 +134,7 @@
     }
 
     double width;
-    if ([[Model model] screenRotationEnabled] &&
+    if ([MetasyntacticSharedApplication screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {

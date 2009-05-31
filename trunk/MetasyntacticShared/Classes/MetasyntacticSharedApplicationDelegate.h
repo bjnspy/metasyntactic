@@ -20,5 +20,7 @@
 - (void) majorRefresh:(BOOL) force;
 
 - (void) saveNavigationStack:(UINavigationController*) controller;
+
 - (BOOL) notificationsEnabled;
+- (BOOL) screenRotationEnabled;
 @end

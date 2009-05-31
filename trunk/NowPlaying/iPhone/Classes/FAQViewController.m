@@ -14,7 +14,6 @@
 
 #import "FAQViewController.h"
 
-#import "ActionsView.h"
 #import "Application.h"
 #import "HelpCache.h"
 #import "Model.h"

@@ -29,5 +29,6 @@
 + (void) saveNavigationStack:(UINavigationController*) controller;
 
 + (BOOL) notificationsEnabled;
++ (BOOL) screenRotationEnabled;
 
 @end
