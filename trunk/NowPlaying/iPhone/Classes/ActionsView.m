@@ -58,13 +58,9 @@
         self.arguments = arguments_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
-        //UIImage* image = [UIImage imageNamed:@"BalloonInputField.png"];
-        //UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:13 topCapHeight:12];
-
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            //[button setBackgroundImage:stretchedImage forState:UIControlStateNormal];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
 
@@ -97,6 +93,22 @@
                                       selectors:selectors
                                          titles:titles
                                       arguments:arguments] autorelease];
+}
+
+
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles {
+  NSMutableArray* arguments = [NSMutableArray array];
+  
+  for (NSInteger i = 0; i < selectors.count; i++) {
+    [arguments addObject:[NSNull null]];
+  }
+  
+  return [self viewWithTarget:target
+                    selectors:selectors
+                       titles:titles
+                    arguments:arguments];
 }
 
 
@@ -163,6 +175,20 @@
 
         button.frame = frame;
     }
+}
+
+
+- (void) disableButtons {
+  for (UIButton* button in buttons) {
+    button.enabled = NO;
+  }
+}
+
+
+- (void) enableButtons {
+  for (UIButton* button in buttons) {
+    button.enabled = YES;
+  }
 }
 
 @end
