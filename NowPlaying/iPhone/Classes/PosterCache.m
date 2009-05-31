@@ -151,15 +151,18 @@
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie {
-    NSString* path = [self posterFilePath:movie];
-    NSData* data = [FileUtilities readData:path];
-    return [UIImage imageWithData:data];
+- (UIImage*) posterForMovie:(Movie*) movie
+               loadFromDisk:(BOOL) loadFromDisk{
+  NSString* path = [self posterFilePath:movie];
+  return [self.model.imageCache imageForPath:path loadFromDisk:loadFromDisk];
 }
 
 
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
+- (UIImage*) smallPosterForMovie:(Movie*) movie
+                    loadFromDisk:(BOOL) loadFromDisk {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
+  
+  if (loadFromDisk) {
     NSData* smallPosterData;
 
     if ([FileUtilities size:smallPosterPath] == 0) {
@@ -173,6 +176,9 @@
     }
 
     return [UIImage imageWithData:smallPosterData];
+  } else {
+    return [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  }
 }
 
 @end

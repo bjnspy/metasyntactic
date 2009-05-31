@@ -31,6 +31,7 @@
 #import "EditorViewController.h"
 #import "FileUtilities.h"
 #import "IdentitySet.h"
+#import "ImageCache.h"
 #import "ImageUtilities.h"
 #import "LargeActivityIndicatorViewWithBackground.h"
 #import "LocaleUtilities.h"

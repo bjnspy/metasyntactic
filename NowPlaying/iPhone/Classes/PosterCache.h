@@ -24,7 +24,7 @@
 
 + (PosterCache*) cache;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
 
 @end

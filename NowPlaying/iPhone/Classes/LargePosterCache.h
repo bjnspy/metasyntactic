@@ -26,10 +26,10 @@
 
 - (void) update;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
 
-- (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
+- (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index loadFromDisk:(BOOL) loadFromDisk;
 - (BOOL) posterExistsForMovie:(Movie*) movie index:(NSInteger) index;
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie;
