@@ -37,7 +37,6 @@
 #import "Score.h"
 #import "ScoreCache.h"
 #import "SettingsViewController.h"
-#import "SmallPosterCache.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -57,7 +56,7 @@
 @property (retain) PersonPosterCache* personPosterCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
-@property (retain) SmallPosterCache* smallPosterCache;
+@property (retain) ImageCache* imageCache;
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
@@ -244,7 +243,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize personPosterCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
-@synthesize smallPosterCache;
+@synthesize imageCache;
 @synthesize scoreCache;
 @synthesize trailerCache;
 @synthesize upcomingCache;
@@ -269,7 +268,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   self.personPosterCache = nil;
   self.posterCache = nil;
   self.largePosterCache = nil;
-  self.smallPosterCache = nil;
+  self.imageCache = nil;
   self.scoreCache = nil;
   self.trailerCache = nil;
   self.upcomingCache = nil;
@@ -554,7 +553,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
-    self.smallPosterCache = [SmallPosterCache cache];
+    self.imageCache = [ImageCache cache];
     self.imdbCache = [IMDbCache cache];
     self.amazonCache = [AmazonCache cache];
     self.wikipediaCache = [WikipediaCache cache];
@@ -1402,17 +1401,33 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
+  UIImage* image = [posterCache posterForMovie:movie loadFromDisk:loadFromDisk];
+  if (image != nil) {
+    return image;
+  }
+  
+  return [largePosterCache posterForMovie:movie loadFromDisk:loadFromDisk];
+}
+
+
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
+  UIImage* image = [posterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+  if (image != nil) {
+    return image;
+  }
+  
+  return [largePosterCache smallPosterForMovie:movie loadFromDisk:loadFromDisk];
+}
+
+
 - (UIImage*) posterForMovie:(Movie*) movie {
-  return [self posterForMovie:movie
-                      sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
-                     selector:@selector(posterForMovie:)];
+  return [self posterForMovie:movie loadFromDisk:YES];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
-  return [self posterForMovie:movie
-                      sources:[NSArray arrayWithObjects:posterCache, largePosterCache, nil]
-                     selector:@selector(smallPosterForMovie:)];
+  return [self smallPosterForMovie:movie loadFromDisk:YES];
 }
 
 
