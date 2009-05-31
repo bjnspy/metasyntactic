@@ -46,7 +46,7 @@
   self.searchEngine = nil;
   self.searchResult = nil;
   self.searchBar = nil;
-  
+
   [super dealloc];
 }
 
@@ -55,7 +55,7 @@
   if (self = [super initWithStyle:UITableViewStylePlain]) {
     self.searchEngine = [LocalSearchEngine engineWithDelegate:self];
   }
-  
+
   return self;
 }
 
@@ -72,14 +72,14 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   self.searchBar = [[[UISearchBar alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
   searchBar.delegate = self;
   searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
   searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
   searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   [searchBar sizeToFit];
-  
+
   self.navigationItem.titleView = searchBar;
 }
 
@@ -125,7 +125,7 @@
 - (BOOL) searching {
   NSString* searchText = searchBar.text;
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
@@ -134,11 +134,11 @@
   if (searchResult == nil) {
     return 1;
   }
-  
+
   if ([self noResults]) {
     return 1;
   }
-  
+
   return 5;
 }
 
@@ -148,11 +148,11 @@
   if (searchResult == nil) {
     return 0;
   }
-  
+
   if ([self noResults]) {
     return 0;
   }
-  
+
   if (section == 0) {
     return searchResult.movies.count;
   } else if (section == 1) {
@@ -174,7 +174,7 @@
 
 - (UITableViewCell*) movieCellForRow:(NSInteger) row {
   Movie* movie = [searchResult.movies objectAtIndex:row];
-  
+
   MovieTitleCell* cell = [MovieTitleCell movieTitleCellForMovie:movie inTableView:self.tableView];
   return cell;
 }
@@ -182,14 +182,14 @@
 
 - (UITableViewCell*) theaterCellForRow:(NSInteger) row {
   Theater* theater = [searchResult.theaters objectAtIndex:row];
-  
+
   static NSString* reuseIdentifier = @"TheaterNameCellReuseIdentifier";
-  
+
   TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[TheaterNameCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setTheater:theater];
   return cell;
 }
@@ -197,14 +197,14 @@
 
 - (UITableViewCell*) upcomingMovieCellForRow:(NSInteger) row {
   Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
-  
+
   static NSString* reuseIdentifier = @"UpcomingMovieCellReuseIdentifier";
-  
+
   UpcomingMovieCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:self];
   return cell;
 }
@@ -212,14 +212,14 @@
 
 - (UITableViewCell*) dvdCellForRow:(NSInteger) row {
   Movie* movie = [searchResult.dvds objectAtIndex:row];
-  
+
   static NSString* reuseIdentifier = @"DvdCellReuseIdentifier";
-  
+
   DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:self];
   return cell;
 }
@@ -227,14 +227,14 @@
 
 - (UITableViewCell*) blurayCellForRow:(NSInteger) row {
   Movie* movie = [searchResult.bluray objectAtIndex:row];
-  
+
   static NSString* reuseIdentifier = @"BlurayCellReuseIdentifier";
-  
+
   DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:self];
   return cell;
 }
@@ -252,7 +252,7 @@
   if ([self noResults]) {
     return [self noResultsCell];
   }
-  
+
   if (indexPath.section == 0) {
     return [self movieCellForRow:indexPath.row];
   } else if (indexPath.section == 1) {
@@ -274,35 +274,35 @@
 
 - (void) didSelectMovieRow:(NSInteger) row {
   Movie* movie = [searchResult.movies objectAtIndex:row];
-  
+
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
   Theater* theater = [searchResult.theaters objectAtIndex:row];
-  
+
   [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
   Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
-  
+
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
   Movie* movie = [searchResult.dvds objectAtIndex:row];
-  
+
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
   Movie* movie = [searchResult.bluray objectAtIndex:row];
-  
+
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -334,14 +334,14 @@
 - (void) searchBar:(UISearchBar*) searchBar
      textDidChange:(NSString*) searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   if (searchText.length == 0) {
     [self.searchEngine invalidateExistingRequests];
     self.searchResult = nil;
   } else {
     [self.searchEngine submitRequest:searchText];
   }
-  
+
   [self reloadTableViewData];
 }
 
@@ -355,7 +355,7 @@
       return 100;
     }
   }
-  
+
   return self.tableView.rowHeight;
 }
 
@@ -365,11 +365,11 @@
   if (searchResult == nil) {
     return nil;
   }
-  
+
   if ([self noResults]) {
     return LocalizedString(@"No information found", nil);
   }
-  
+
   if (section == 0) {
     if (searchResult.movies.count != 0) {
       return LocalizedString(@"Movies", nil);
@@ -391,7 +391,7 @@
       return LocalizedString(@"Blu-ray", nil);
     }
   }
-  
+
   return nil;
 }
 

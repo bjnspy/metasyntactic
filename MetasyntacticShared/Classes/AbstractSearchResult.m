@@ -28,7 +28,7 @@
 - (void) dealloc {
   self.requestId = 0;
   self.value = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,7 +39,7 @@
     self.requestId = requestId_;
     self.value = value_;
   }
-  
+
   return self;
 }
 
