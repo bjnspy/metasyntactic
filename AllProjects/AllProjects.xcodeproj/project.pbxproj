@@ -14,474 +14,83 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		74200F4D0FD268FC00DEE16B /* PBXContainerItemProxy */ = {
+		742011C40FD26D3400DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */;
+			containerPortal = 742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = AtomicRobo_2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54 /* BoxOffice3.app */;
+			remoteInfo = BoxOffice3;
 		};
-		74200F4F0FD268FC00DEE16B /* PBXContainerItemProxy */ = {
+		742011C60FD26D3400DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */;
+			containerPortal = 742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = AtomicRobo_3;
+			remoteGlobalIDString = 746398600F7EC8D600B2F64C /* BoxOffice2.app */;
+			remoteInfo = BoxOffice2;
 		};
-		74200F560FD2690200DEE16B /* PBXContainerItemProxy */ = {
+		742011E20FD26D4D00DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F510FD2690200DEE16B /* Batman.xcodeproj */;
+			containerPortal = 742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = Batman2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54 /* PocketFlicks.app */;
+			remoteInfo = PocketFlicks2;
 		};
-		74200F580FD2690200DEE16B /* PBXContainerItemProxy */ = {
+		742011E40FD26D4D00DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F510FD2690200DEE16B /* Batman.xcodeproj */;
+			containerPortal = 742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = Batman3;
+			remoteGlobalIDString = 74E149770F95949500FB7BDA /* PocketFlicks.app */;
+			remoteInfo = PocketFlicks3;
 		};
-		74200F5C0FD2690D00DEE16B /* PBXContainerItemProxy */ = {
+		742011F70FD26D5E00DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF;
-			remoteInfo = AtomicRobo_2;
-		};
-		74200F5E0FD2690D00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F510FD2690200DEE16B /* Batman.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF;
-			remoteInfo = Batman2;
-		};
-		74200F620FD2691800DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2;
-			remoteInfo = AtomicRobo_3;
-		};
-		74200F640FD2691800DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F510FD2690200DEE16B /* Batman.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2;
-			remoteInfo = Batman3;
-		};
-		74200F7C0FD2695A00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */;
+			containerPortal = 742011F30FD26D5E00DEE16B /* YourRights.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = BuckarooBonzai2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54 /* YourRights.app */;
+			remoteInfo = YourRights;
 		};
-		74200F7E0FD2695A00DEE16B /* PBXContainerItemProxy */ = {
+		742011FE0FD26D7800DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = BuckarooBonzai3;
-		};
-		74200FBA0FD2696700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB71C52395CA1CABF30846C3;
-			remoteInfo = Campaign08_OS2;
-		};
-		74200FBC0FD2696700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5B6D6827F31B1A9FE7FAA654;
-			remoteInfo = Campaign08_OS3;
-		};
-		74200FD00FD2697800DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FCB0FD2697800DEE16B /* Comics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BA22B218B1777862E1CF369;
-			remoteInfo = Comics2;
-		};
-		74200FD20FD2697800DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FCB0FD2697800DEE16B /* Comics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2C5E7FE258F9116C166F12C1;
-			remoteInfo = Comics3;
-		};
-		74200FE50FD2699900DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 968568227883E6537AF6F1E0;
-			remoteInfo = ComiXology2;
-		};
-		74200FE70FD2699900DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5F07EA46B1FEFBBB563378F8;
-			remoteInfo = ComiXology3;
-		};
-		74200FFD0FD269A700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 747F09F40FCCD05F00A144AB;
-			remoteInfo = ElephantMen2;
-		};
-		74200FFF0FD269A700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC2A0CA0D67B3CFBCE0F8673;
-			remoteInfo = ElephantMen3;
-		};
-		742010150FD269B600DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010100FD269B600DEE16B /* Hush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4F9017DEDFEEFBEF74B5970;
-			remoteInfo = Hush2;
-		};
-		742010170FD269B600DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010100FD269B600DEE16B /* Hush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9321B844FB1736B73B487331;
-			remoteInfo = Hush3;
-		};
-		7420102D0FD269C300DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010280FD269C300DEE16B /* LooneyToons.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = LooneyToons2;
-		};
-		7420102F0FD269C300DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010280FD269C300DEE16B /* LooneyToons.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = LooneyToons3;
-		};
-		742010450FD269D000DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010400FD269D000DEE16B /* MichelleObama.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = MichelleObama2;
-		};
-		742010470FD269D000DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010400FD269D000DEE16B /* MichelleObama.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = MichelleObama3;
-		};
-		7420105D0FD269DD00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3A4FE2A90FB1D01500A315DE;
-			remoteInfo = RedRocket7_OS2;
-		};
-		7420105F0FD269DD00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = RedRocket7_OS3;
-		};
-		742010750FD269F400DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB71C52395CA1CABF30846C3;
-			remoteInfo = RedRocket7_1_OS2;
-		};
-		742010770FD269F400DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5B6D6827F31B1A9FE7FAA654;
-			remoteInfo = RedRocket7_1_OS3;
-		};
-		7420108D0FD26A0D00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = StandaloneSeriesTemplate2;
-		};
-		7420108F0FD26A0D00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = StandaloneSeriesTemplate3;
-		};
-		742010A50FD26A1F00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB71C52395CA1CABF30846C3;
-			remoteInfo = StandaloneTemplate2;
-		};
-		742010A70FD26A1F00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5B6D6827F31B1A9FE7FAA654;
-			remoteInfo = StandaloneTemplate3;
-		};
-		742010BD0FD26A3200DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 38376640686B6E665D00F238;
-			remoteInfo = Tokyopop2;
-		};
-		742010BF0FD26A3200DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A8EE6DEDCCD48E505B4D8A1B;
-			remoteInfo = Tokyopop3;
-		};
-		742010D50FD26A4600DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB71C52395CA1CABF30846C3;
-			remoteInfo = "X-Men455-2";
-		};
-		742010D70FD26A4600DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5B6D6827F31B1A9FE7FAA654;
-			remoteInfo = "X-Men455-3";
-		};
-		742011440FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */;
+			containerPortal = 742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* RedRocket7_OS2 */;
-			remoteInfo = RedRocket7_OS2;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* PocketFlicks2 */;
+			remoteInfo = PocketFlicks2;
 		};
-		742011460FD26A9700DEE16B /* PBXContainerItemProxy */ = {
+		742012000FD26D7800DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200FCB0FD2697800DEE16B /* Comics.xcodeproj */;
+			containerPortal = 742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D38539C86A9F171A89A6AF87 /* Comics2 */;
-			remoteInfo = Comics2;
+			remoteGlobalIDString = 7463971A0F7EC8D600B2F64C /* BoxOffice2 */;
+			remoteInfo = BoxOffice2;
 		};
-		742011480FD26A9700DEE16B /* PBXContainerItemProxy */ = {
+		742012020FD26D8400DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */;
+			containerPortal = 742011F30FD26D5E00DEE16B /* YourRights.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D071B3B191C3CB7B7BA56EF2 /* StandaloneTemplate2 */;
-			remoteInfo = StandaloneTemplate2;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* YourRights */;
+			remoteInfo = YourRights;
 		};
-		7420114A0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
+		742012040FD26D8400DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */;
+			containerPortal = 742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747F08F10FCCD05F00A144AB /* ElephantMen2 */;
-			remoteInfo = ElephantMen2;
+			remoteGlobalIDString = 74E1480B0F95949500FB7BDA /* PocketFlicks3 */;
+			remoteInfo = PocketFlicks3;
 		};
-		7420114C0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
+		742012060FD26D8400DEE16B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */;
+			containerPortal = 742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D071B3B191C3CB7B7BA56EF2 /* RedRocket7_1_OS2 */;
-			remoteInfo = RedRocket7_1_OS2;
-		};
-		7420114E0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* BuckarooBonzai2 */;
-			remoteInfo = BuckarooBonzai2;
-		};
-		742011500FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010400FD269D000DEE16B /* MichelleObama.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* MichelleObama2 */;
-			remoteInfo = MichelleObama2;
-		};
-		742011520FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D071B3B191C3CB7B7BA56EF2 /* Campaign08_OS2 */;
-			remoteInfo = Campaign08_OS2;
-		};
-		742011540FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010100FD269B600DEE16B /* Hush.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F208B59A6F8018E83106DB0B /* Hush2 */;
-			remoteInfo = Hush2;
-		};
-		742011560FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AE44C6BF8D960C0561C8443 /* ComiXology2 */;
-			remoteInfo = ComiXology2;
-		};
-		742011580FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010280FD269C300DEE16B /* LooneyToons.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* LooneyToons2 */;
-			remoteInfo = LooneyToons2;
-		};
-		7420115A0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* StandaloneSeriesTemplate2 */;
-			remoteInfo = StandaloneSeriesTemplate2;
-		};
-		7420115C0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B073EFA7F9967C13B4A69EF /* Tokyopop2 */;
-			remoteInfo = Tokyopop2;
-		};
-		7420115E0FD26A9700DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D071B3B191C3CB7B7BA56EF2 /* X-Men455-2 */;
-			remoteInfo = "X-Men455-2";
-		};
-		742011600FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* RedRocket7_OS3 */;
-			remoteInfo = RedRocket7_OS3;
-		};
-		742011620FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FCB0FD2697800DEE16B /* Comics.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9F534403233DAEB956460398 /* Comics3 */;
-			remoteInfo = Comics3;
-		};
-		742011640FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D02456CC7C8BB5896E62EAD8 /* StandaloneTemplate3 */;
-			remoteInfo = StandaloneTemplate3;
-		};
-		742011660FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 10EB2BFEF365EE10CEA0DC7A /* ElephantMen3 */;
-			remoteInfo = ElephantMen3;
-		};
-		742011680FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D02456CC7C8BB5896E62EAD8 /* RedRocket7_1_OS3 */;
-			remoteInfo = RedRocket7_1_OS3;
-		};
-		7420116A0FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* BuckarooBonzai3 */;
-			remoteInfo = BuckarooBonzai3;
-		};
-		7420116C0FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010400FD269D000DEE16B /* MichelleObama.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* MichelleObama3 */;
-			remoteInfo = MichelleObama3;
-		};
-		7420116E0FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D02456CC7C8BB5896E62EAD8 /* Campaign08_OS3 */;
-			remoteInfo = Campaign08_OS3;
-		};
-		742011700FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010100FD269B600DEE16B /* Hush.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2E3402535871FC47F21C59DD /* Hush3 */;
-			remoteInfo = Hush3;
-		};
-		742011720FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FA052938EB9CE7E1D3CB29C3 /* ComiXology3 */;
-			remoteInfo = ComiXology3;
-		};
-		742011740FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010280FD269C300DEE16B /* LooneyToons.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* LooneyToons3 */;
-			remoteInfo = LooneyToons3;
-		};
-		742011760FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* StandaloneSeriesTemplate3 */;
-			remoteInfo = StandaloneSeriesTemplate3;
-		};
-		742011780FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C8F5E76129D504FA57490B2 /* Tokyopop3 */;
-			remoteInfo = Tokyopop3;
-		};
-		7420117A0FD26AAF00DEE16B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D02456CC7C8BB5896E62EAD8 /* X-Men455-3 */;
-			remoteInfo = "X-Men455-3";
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* BoxOffice3 */;
+			remoteInfo = BoxOffice3;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		74200F280FD2688300DEE16B /* libAllProjects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAllProjects.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Atomic_Robo.xcodeproj; path = ../Atomic_Robo/Atomic_Robo.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200F510FD2690200DEE16B /* Batman.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Batman.xcodeproj; path = ../Batman/Batman.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BuckarooBanzai.xcodeproj; path = ../BuckarooBanzai/BuckarooBanzai.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Campaign08.xcodeproj; path = ../Campaign08/Campaign08.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200FCB0FD2697800DEE16B /* Comics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Comics.xcodeproj; path = ../Comics/Comics.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ComiXology.xcodeproj; path = ../ComiXology/ComiXology.xcodeproj; sourceTree = SOURCE_ROOT; };
-		74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ElephantMen.xcodeproj; path = ../ElephantMen/ElephantMen.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010100FD269B600DEE16B /* Hush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Hush.xcodeproj; path = ../Hush/Hush.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010280FD269C300DEE16B /* LooneyToons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LooneyToons.xcodeproj; path = ../LooneyToons/LooneyToons.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010400FD269D000DEE16B /* MichelleObama.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MichelleObama.xcodeproj; path = ../Michelle_Obama/MichelleObama.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RedRocket7.xcodeproj; path = ../RedRocket7/RedRocket7.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RedRocket7_1.xcodeproj; path = ../RedRocket7_1/RedRocket7_1.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StandaloneSeriesTemplate.xcodeproj; path = ../StandaloneSeriesTemplate/StandaloneSeriesTemplate.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StandaloneTemplate.xcodeproj; path = ../StandaloneTemplate/StandaloneTemplate.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tokyopop.xcodeproj; path = ../Tokyopop/Tokyopop.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "X-Men455.xcodeproj"; path = "../X-Men455/X-Men455.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NowPlaying.xcodeproj; path = ../NowPlaying/iPhone/NowPlaying.xcodeproj; sourceTree = SOURCE_ROOT; };
+		742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PocketFlicks.xcodeproj; path = ../PocketFlicks/iPhone/PocketFlicks.xcodeproj; sourceTree = SOURCE_ROOT; };
+		742011F30FD26D5E00DEE16B /* YourRights.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YourRights.xcodeproj; path = ../YourRights/iPhone/YourRights.xcodeproj; sourceTree = SOURCE_ROOT; };
 		AA747D9E0F9514B9006C5449 /* AllProjects_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProjects_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libAllProjects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAllProjects.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,22 +128,9 @@
 		0867D691FE84028FC02AAC07 /* AllProjects */ = {
 			isa = PBXGroup;
 			children = (
-				74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */,
-				74200F510FD2690200DEE16B /* Batman.xcodeproj */,
-				74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */,
-				74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */,
-				74200FCB0FD2697800DEE16B /* Comics.xcodeproj */,
-				74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */,
-				74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */,
-				742010100FD269B600DEE16B /* Hush.xcodeproj */,
-				742010280FD269C300DEE16B /* LooneyToons.xcodeproj */,
-				742010400FD269D000DEE16B /* MichelleObama.xcodeproj */,
-				742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */,
-				742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */,
-				742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */,
-				742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */,
-				742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */,
-				742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */,
+				742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */,
+				742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */,
+				742011F30FD26D5E00DEE16B /* YourRights.xcodeproj */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -566,146 +162,28 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		74200F490FD268FC00DEE16B /* Products */ = {
+		742011C00FD26D3400DEE16B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74200F4E0FD268FC00DEE16B /* Atomic_Robo.app */,
-				74200F500FD268FC00DEE16B /* Atomic_Robo.app */,
+				742011C50FD26D3400DEE16B /* BoxOffice3.app */,
+				742011C70FD26D3400DEE16B /* BoxOffice2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		74200F520FD2690200DEE16B /* Products */ = {
+		742011DE0FD26D4D00DEE16B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74200F570FD2690200DEE16B /* Batman.app */,
-				74200F590FD2690200DEE16B /* StandaloneSeriesTemplate.app */,
+				742011E30FD26D4D00DEE16B /* PocketFlicks.app */,
+				742011E50FD26D4D00DEE16B /* PocketFlicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		74200F780FD2695A00DEE16B /* Products */ = {
+		742011F40FD26D5E00DEE16B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74200F7D0FD2695A00DEE16B /* BuckarooBanzai.app */,
-				74200F7F0FD2695A00DEE16B /* BuckarooBanzai.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		74200FB60FD2696700DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74200FBB0FD2696700DEE16B /* Campaign08.app */,
-				74200FBD0FD2696700DEE16B /* Campaign08.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		74200FCC0FD2697800DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74200FD10FD2697800DEE16B /* Comics.app */,
-				74200FD30FD2697800DEE16B /* Comics.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		74200FE10FD2699900DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74200FE60FD2699900DEE16B /* ComiXology.app */,
-				74200FE80FD2699900DEE16B /* ComiXology.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		74200FF90FD269A700DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74200FFE0FD269A700DEE16B /* ElephantMen.app */,
-				742010000FD269A700DEE16B /* ElephantMen.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010110FD269B600DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010160FD269B600DEE16B /* Hush.app */,
-				742010180FD269B600DEE16B /* Hush.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010290FD269C300DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7420102E0FD269C300DEE16B /* LooneyToons.app */,
-				742010300FD269C300DEE16B /* LooneyToons.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010410FD269D000DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010460FD269D000DEE16B /* MichelleObama.app */,
-				742010480FD269D000DEE16B /* MichelleObama.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010590FD269DD00DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7420105E0FD269DD00DEE16B /* RedRocket7.app */,
-				742010600FD269DD00DEE16B /* RedRocket7.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010710FD269F400DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010760FD269F400DEE16B /* RedRocket7_1.app */,
-				742010780FD269F400DEE16B /* RedRocket7_1.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010890FD26A0D00DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7420108E0FD26A0D00DEE16B /* StandaloneSeriesTemplate.app */,
-				742010900FD26A0D00DEE16B /* StandaloneSeriesTemplate.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010A10FD26A1F00DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010A60FD26A1F00DEE16B /* StandaloneTemplate.app */,
-				742010A80FD26A1F00DEE16B /* StandaloneTemplate.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010B90FD26A3200DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010BE0FD26A3200DEE16B /* Tokyopop.app */,
-				742010C00FD26A3200DEE16B /* Tokyopop.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742010D10FD26A4600DEE16B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742010D60FD26A4600DEE16B /* X-Men455.app */,
-				742010D80FD26A4600DEE16B /* X-Men455.app */,
+				742011F80FD26D5E00DEE16B /* YourRights.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -743,22 +221,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				74200F630FD2691800DEE16B /* PBXTargetDependency */,
-				74200F650FD2691800DEE16B /* PBXTargetDependency */,
-				742011610FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011630FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011650FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011670FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011690FD26AAF00DEE16B /* PBXTargetDependency */,
-				7420116B0FD26AAF00DEE16B /* PBXTargetDependency */,
-				7420116D0FD26AAF00DEE16B /* PBXTargetDependency */,
-				7420116F0FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011710FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011730FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011750FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011770FD26AAF00DEE16B /* PBXTargetDependency */,
-				742011790FD26AAF00DEE16B /* PBXTargetDependency */,
-				7420117B0FD26AAF00DEE16B /* PBXTargetDependency */,
+				742012030FD26D8400DEE16B /* PBXTargetDependency */,
+				742012050FD26D8400DEE16B /* PBXTargetDependency */,
+				742012070FD26D8400DEE16B /* PBXTargetDependency */,
 			);
 			name = AllProjects3;
 			productName = AllProjects;
@@ -776,22 +241,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				74200F5D0FD2690D00DEE16B /* PBXTargetDependency */,
-				74200F5F0FD2690D00DEE16B /* PBXTargetDependency */,
-				742011450FD26A9700DEE16B /* PBXTargetDependency */,
-				742011470FD26A9700DEE16B /* PBXTargetDependency */,
-				742011490FD26A9700DEE16B /* PBXTargetDependency */,
-				7420114B0FD26A9700DEE16B /* PBXTargetDependency */,
-				7420114D0FD26A9700DEE16B /* PBXTargetDependency */,
-				7420114F0FD26A9700DEE16B /* PBXTargetDependency */,
-				742011510FD26A9700DEE16B /* PBXTargetDependency */,
-				742011530FD26A9700DEE16B /* PBXTargetDependency */,
-				742011550FD26A9700DEE16B /* PBXTargetDependency */,
-				742011570FD26A9700DEE16B /* PBXTargetDependency */,
-				742011590FD26A9700DEE16B /* PBXTargetDependency */,
-				7420115B0FD26A9700DEE16B /* PBXTargetDependency */,
-				7420115D0FD26A9700DEE16B /* PBXTargetDependency */,
-				7420115F0FD26A9700DEE16B /* PBXTargetDependency */,
+				742011FF0FD26D7800DEE16B /* PBXTargetDependency */,
+				742012010FD26D7800DEE16B /* PBXTargetDependency */,
 			);
 			name = AllProjects2;
 			productName = AllProjects;
@@ -811,68 +262,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 74200F490FD268FC00DEE16B /* Products */;
-					ProjectRef = 74200F480FD268FC00DEE16B /* Atomic_Robo.xcodeproj */;
+					ProductGroup = 742011C00FD26D3400DEE16B /* Products */;
+					ProjectRef = 742011BF0FD26D3400DEE16B /* NowPlaying.xcodeproj */;
 				},
 				{
-					ProductGroup = 74200F520FD2690200DEE16B /* Products */;
-					ProjectRef = 74200F510FD2690200DEE16B /* Batman.xcodeproj */;
+					ProductGroup = 742011DE0FD26D4D00DEE16B /* Products */;
+					ProjectRef = 742011DD0FD26D4D00DEE16B /* PocketFlicks.xcodeproj */;
 				},
 				{
-					ProductGroup = 74200F780FD2695A00DEE16B /* Products */;
-					ProjectRef = 74200F770FD2695A00DEE16B /* BuckarooBanzai.xcodeproj */;
-				},
-				{
-					ProductGroup = 74200FB60FD2696700DEE16B /* Products */;
-					ProjectRef = 74200FB50FD2696700DEE16B /* Campaign08.xcodeproj */;
-				},
-				{
-					ProductGroup = 74200FCC0FD2697800DEE16B /* Products */;
-					ProjectRef = 74200FCB0FD2697800DEE16B /* Comics.xcodeproj */;
-				},
-				{
-					ProductGroup = 74200FE10FD2699900DEE16B /* Products */;
-					ProjectRef = 74200FE00FD2699900DEE16B /* ComiXology.xcodeproj */;
-				},
-				{
-					ProductGroup = 74200FF90FD269A700DEE16B /* Products */;
-					ProjectRef = 74200FF80FD269A700DEE16B /* ElephantMen.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010110FD269B600DEE16B /* Products */;
-					ProjectRef = 742010100FD269B600DEE16B /* Hush.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010290FD269C300DEE16B /* Products */;
-					ProjectRef = 742010280FD269C300DEE16B /* LooneyToons.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010410FD269D000DEE16B /* Products */;
-					ProjectRef = 742010400FD269D000DEE16B /* MichelleObama.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010590FD269DD00DEE16B /* Products */;
-					ProjectRef = 742010580FD269DD00DEE16B /* RedRocket7.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010710FD269F400DEE16B /* Products */;
-					ProjectRef = 742010700FD269F400DEE16B /* RedRocket7_1.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010890FD26A0D00DEE16B /* Products */;
-					ProjectRef = 742010880FD26A0D00DEE16B /* StandaloneSeriesTemplate.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010A10FD26A1F00DEE16B /* Products */;
-					ProjectRef = 742010A00FD26A1F00DEE16B /* StandaloneTemplate.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010B90FD26A3200DEE16B /* Products */;
-					ProjectRef = 742010B80FD26A3200DEE16B /* Tokyopop.xcodeproj */;
-				},
-				{
-					ProductGroup = 742010D10FD26A4600DEE16B /* Products */;
-					ProjectRef = 742010D00FD26A4600DEE16B /* X-Men455.xcodeproj */;
+					ProductGroup = 742011F40FD26D5E00DEE16B /* Products */;
+					ProjectRef = 742011F30FD26D5E00DEE16B /* YourRights.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -884,228 +283,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		74200F4E0FD268FC00DEE16B /* Atomic_Robo.app */ = {
+		742011C50FD26D3400DEE16B /* BoxOffice3.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = Atomic_Robo.app;
-			remoteRef = 74200F4D0FD268FC00DEE16B /* PBXContainerItemProxy */;
+			path = BoxOffice3.app;
+			remoteRef = 742011C40FD26D3400DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74200F500FD268FC00DEE16B /* Atomic_Robo.app */ = {
+		742011C70FD26D3400DEE16B /* BoxOffice2.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = Atomic_Robo.app;
-			remoteRef = 74200F4F0FD268FC00DEE16B /* PBXContainerItemProxy */;
+			path = BoxOffice2.app;
+			remoteRef = 742011C60FD26D3400DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74200F570FD2690200DEE16B /* Batman.app */ = {
+		742011E30FD26D4D00DEE16B /* PocketFlicks.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = Batman.app;
-			remoteRef = 74200F560FD2690200DEE16B /* PBXContainerItemProxy */;
+			path = PocketFlicks.app;
+			remoteRef = 742011E20FD26D4D00DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74200F590FD2690200DEE16B /* StandaloneSeriesTemplate.app */ = {
+		742011E50FD26D4D00DEE16B /* PocketFlicks.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = StandaloneSeriesTemplate.app;
-			remoteRef = 74200F580FD2690200DEE16B /* PBXContainerItemProxy */;
+			path = PocketFlicks.app;
+			remoteRef = 742011E40FD26D4D00DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74200F7D0FD2695A00DEE16B /* BuckarooBanzai.app */ = {
+		742011F80FD26D5E00DEE16B /* YourRights.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = BuckarooBanzai.app;
-			remoteRef = 74200F7C0FD2695A00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200F7F0FD2695A00DEE16B /* BuckarooBanzai.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BuckarooBanzai.app;
-			remoteRef = 74200F7E0FD2695A00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FBB0FD2696700DEE16B /* Campaign08.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Campaign08.app;
-			remoteRef = 74200FBA0FD2696700DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FBD0FD2696700DEE16B /* Campaign08.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Campaign08.app;
-			remoteRef = 74200FBC0FD2696700DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FD10FD2697800DEE16B /* Comics.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Comics.app;
-			remoteRef = 74200FD00FD2697800DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FD30FD2697800DEE16B /* Comics.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Comics.app;
-			remoteRef = 74200FD20FD2697800DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FE60FD2699900DEE16B /* ComiXology.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ComiXology.app;
-			remoteRef = 74200FE50FD2699900DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FE80FD2699900DEE16B /* ComiXology.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ComiXology.app;
-			remoteRef = 74200FE70FD2699900DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74200FFE0FD269A700DEE16B /* ElephantMen.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ElephantMen.app;
-			remoteRef = 74200FFD0FD269A700DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010000FD269A700DEE16B /* ElephantMen.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = ElephantMen.app;
-			remoteRef = 74200FFF0FD269A700DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010160FD269B600DEE16B /* Hush.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Hush.app;
-			remoteRef = 742010150FD269B600DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010180FD269B600DEE16B /* Hush.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Hush.app;
-			remoteRef = 742010170FD269B600DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7420102E0FD269C300DEE16B /* LooneyToons.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = LooneyToons.app;
-			remoteRef = 7420102D0FD269C300DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010300FD269C300DEE16B /* LooneyToons.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = LooneyToons.app;
-			remoteRef = 7420102F0FD269C300DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010460FD269D000DEE16B /* MichelleObama.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MichelleObama.app;
-			remoteRef = 742010450FD269D000DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010480FD269D000DEE16B /* MichelleObama.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MichelleObama.app;
-			remoteRef = 742010470FD269D000DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7420105E0FD269DD00DEE16B /* RedRocket7.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RedRocket7.app;
-			remoteRef = 7420105D0FD269DD00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010600FD269DD00DEE16B /* RedRocket7.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RedRocket7.app;
-			remoteRef = 7420105F0FD269DD00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010760FD269F400DEE16B /* RedRocket7_1.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RedRocket7_1.app;
-			remoteRef = 742010750FD269F400DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010780FD269F400DEE16B /* RedRocket7_1.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RedRocket7_1.app;
-			remoteRef = 742010770FD269F400DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7420108E0FD26A0D00DEE16B /* StandaloneSeriesTemplate.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = StandaloneSeriesTemplate.app;
-			remoteRef = 7420108D0FD26A0D00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010900FD26A0D00DEE16B /* StandaloneSeriesTemplate.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = StandaloneSeriesTemplate.app;
-			remoteRef = 7420108F0FD26A0D00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010A60FD26A1F00DEE16B /* StandaloneTemplate.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = StandaloneTemplate.app;
-			remoteRef = 742010A50FD26A1F00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010A80FD26A1F00DEE16B /* StandaloneTemplate.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = StandaloneTemplate.app;
-			remoteRef = 742010A70FD26A1F00DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010BE0FD26A3200DEE16B /* Tokyopop.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Tokyopop.app;
-			remoteRef = 742010BD0FD26A3200DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010C00FD26A3200DEE16B /* Tokyopop.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Tokyopop.app;
-			remoteRef = 742010BF0FD26A3200DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010D60FD26A4600DEE16B /* X-Men455.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "X-Men455.app";
-			remoteRef = 742010D50FD26A4600DEE16B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742010D80FD26A4600DEE16B /* X-Men455.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "X-Men455.app";
-			remoteRef = 742010D70FD26A4600DEE16B /* PBXContainerItemProxy */;
+			path = YourRights.app;
+			remoteRef = 742011F70FD26D5E00DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1128,165 +338,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		74200F5D0FD2690D00DEE16B /* PBXTargetDependency */ = {
+		742011FF0FD26D7800DEE16B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = AtomicRobo_2;
-			targetProxy = 74200F5C0FD2690D00DEE16B /* PBXContainerItemProxy */;
+			name = PocketFlicks2;
+			targetProxy = 742011FE0FD26D7800DEE16B /* PBXContainerItemProxy */;
 		};
-		74200F5F0FD2690D00DEE16B /* PBXTargetDependency */ = {
+		742012010FD26D7800DEE16B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Batman2;
-			targetProxy = 74200F5E0FD2690D00DEE16B /* PBXContainerItemProxy */;
+			name = BoxOffice2;
+			targetProxy = 742012000FD26D7800DEE16B /* PBXContainerItemProxy */;
 		};
-		74200F630FD2691800DEE16B /* PBXTargetDependency */ = {
+		742012030FD26D8400DEE16B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = AtomicRobo_3;
-			targetProxy = 74200F620FD2691800DEE16B /* PBXContainerItemProxy */;
+			name = YourRights;
+			targetProxy = 742012020FD26D8400DEE16B /* PBXContainerItemProxy */;
 		};
-		74200F650FD2691800DEE16B /* PBXTargetDependency */ = {
+		742012050FD26D8400DEE16B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Batman3;
-			targetProxy = 74200F640FD2691800DEE16B /* PBXContainerItemProxy */;
+			name = PocketFlicks3;
+			targetProxy = 742012040FD26D8400DEE16B /* PBXContainerItemProxy */;
 		};
-		742011450FD26A9700DEE16B /* PBXTargetDependency */ = {
+		742012070FD26D8400DEE16B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = RedRocket7_OS2;
-			targetProxy = 742011440FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011470FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Comics2;
-			targetProxy = 742011460FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011490FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = StandaloneTemplate2;
-			targetProxy = 742011480FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420114B0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ElephantMen2;
-			targetProxy = 7420114A0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420114D0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RedRocket7_1_OS2;
-			targetProxy = 7420114C0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420114F0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BuckarooBonzai2;
-			targetProxy = 7420114E0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011510FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MichelleObama2;
-			targetProxy = 742011500FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011530FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Campaign08_OS2;
-			targetProxy = 742011520FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011550FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Hush2;
-			targetProxy = 742011540FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011570FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ComiXology2;
-			targetProxy = 742011560FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011590FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LooneyToons2;
-			targetProxy = 742011580FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420115B0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = StandaloneSeriesTemplate2;
-			targetProxy = 7420115A0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420115D0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Tokyopop2;
-			targetProxy = 7420115C0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		7420115F0FD26A9700DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "X-Men455-2";
-			targetProxy = 7420115E0FD26A9700DEE16B /* PBXContainerItemProxy */;
-		};
-		742011610FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RedRocket7_OS3;
-			targetProxy = 742011600FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011630FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Comics3;
-			targetProxy = 742011620FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011650FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = StandaloneTemplate3;
-			targetProxy = 742011640FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011670FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ElephantMen3;
-			targetProxy = 742011660FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011690FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RedRocket7_1_OS3;
-			targetProxy = 742011680FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		7420116B0FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BuckarooBonzai3;
-			targetProxy = 7420116A0FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		7420116D0FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MichelleObama3;
-			targetProxy = 7420116C0FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		7420116F0FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Campaign08_OS3;
-			targetProxy = 7420116E0FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011710FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Hush3;
-			targetProxy = 742011700FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011730FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ComiXology3;
-			targetProxy = 742011720FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011750FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LooneyToons3;
-			targetProxy = 742011740FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011770FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = StandaloneSeriesTemplate3;
-			targetProxy = 742011760FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		742011790FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Tokyopop3;
-			targetProxy = 742011780FD26AAF00DEE16B /* PBXContainerItemProxy */;
-		};
-		7420117B0FD26AAF00DEE16B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "X-Men455-3";
-			targetProxy = 7420117A0FD26AAF00DEE16B /* PBXContainerItemProxy */;
+			name = BoxOffice3;
+			targetProxy = 742012060FD26D8400DEE16B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
