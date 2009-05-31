@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #ifndef IPHONE_OS_VERSION_3
-#import "SearchEngineDelegate.h"
 
 @interface SearchViewController : AbstractTableViewController<SearchEngineDelegate,UISearchBarDelegate> {
 @private
