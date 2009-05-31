@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TappableScrollView : UIScrollView {
-@private
-    id<TappableScrollViewDelegate> tapDelegate;
-}
-
-@property (assign) id<TappableScrollViewDelegate> tapDelegate;
-
+@protocol PinchableViewDelegate
+- (void) view:(UIView*) view
+ pinchStarted:(CGPoint) fromUpperLeft fromLowerRight:(CGPoint) fromLowerRight;
+- (void) view:(UIView*) view
+   wasPinched:(CGPoint) fromUpperLeft fromLowerRight:(CGPoint) fromLowerRight
+           to:(CGPoint) toUpperLeft to:(CGPoint) toLowerRight;
 @end

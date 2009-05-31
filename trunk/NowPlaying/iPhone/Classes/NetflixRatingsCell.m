@@ -17,7 +17,6 @@
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "StockImages.h"
-#import "TappableImageView.h"
 
 @interface NetflixRatingsCell()
 @property (retain) NSArray* imageViews;
@@ -163,7 +162,8 @@
 
 
 - (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount {
     NSInteger value = imageView.tag;
     NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
 

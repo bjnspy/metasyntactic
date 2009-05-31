@@ -45,7 +45,6 @@
 		741648DC0EFC5D15000EC7B5 /* ClearRating.png in Resources */ = {isa = PBXBuildFile; fileRef = 741648DB0EFC5D15000EC7B5 /* ClearRating.png */; };
 		741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */; };
 		7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
-		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
 		7417219E0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */; };
 		7417219F0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */; };
@@ -232,14 +231,11 @@
 		746397D90F7EC8D600B2F64C /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		746397DA0F7EC8D600B2F64C /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		746397DB0F7EC8D600B2F64C /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
-		746397DC0F7EC8D600B2F64C /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
 		746397DD0F7EC8D600B2F64C /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7410D7400EC2C0740079BF1E /* LargePosterCache.m */; };
 		746397DE0F7EC8D600B2F64C /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
-		746397DF0F7EC8D600B2F64C /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		746397E10F7EC8D600B2F64C /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		746397E20F7EC8D600B2F64C /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		746397E30F7EC8D600B2F64C /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
-		746397E40F7EC8D600B2F64C /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
 		746397E50F7EC8D600B2F64C /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74166B0D0EC94A5700FFD29A /* LocationManager.m */; };
 		746397E60F7EC8D600B2F64C /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */; };
 		746397E80F7EC8D600B2F64C /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
@@ -356,9 +352,7 @@
 		74A917C60F800C8F00832767 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A917C40F800C8F00832767 /* NetflixAuthentication.m */; };
 		74AD65F90E92CCFC00A01FD5 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD65F80E92CCFC00A01FD5 /* DVD.m */; };
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
-		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
 		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
-		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74BEB8480F7D739800B8DD32 /* SquareMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */; };
 		74BEB8710F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */; };
@@ -571,9 +565,6 @@
 		741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRecommendationsViewController.m; sourceTree = "<group>"; };
 		7416496B0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixGenreRecommendationsViewController.h; sourceTree = "<group>"; };
 		7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixGenreRecommendationsViewController.m; sourceTree = "<group>"; };
-		741669320EC92C3B00FFD29A /* TappableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabel.h; sourceTree = "<group>"; };
-		741669330EC92C3B00FFD29A /* TappableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableLabel.m; sourceTree = "<group>"; };
-		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
 		74166B0C0EC94A5700FFD29A /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		7417219C0FA8F58900C10C98 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
@@ -787,14 +778,8 @@
 		74AD65F80E92CCFC00A01FD5 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
 		74AD66330E92D49500A01FD5 /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
 		74AD66340E92D49500A01FD5 /* DVDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCache.m; sourceTree = "<group>"; };
-		74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageView.h; sourceTree = "<group>"; };
-		74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableImageView.m; sourceTree = "<group>"; };
-		74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
 		74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
 		74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
-		74AF0F860EC2D42200A8F639 /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
-		74AF0F870EC2D42200A8F639 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
-		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
@@ -1105,16 +1090,7 @@
 		740245660E78488D00ECE1B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
-				74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */,
-				741669320EC92C3B00FFD29A /* TappableLabel.h */,
-				741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */,
-				74AF0F860EC2D42200A8F639 /* TappableScrollView.h */,
-				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
 				744592020E6CA017002D05C3 /* WarningView.h */,
-				74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */,
-				741669330EC92C3B00FFD29A /* TappableLabel.m */,
-				74AF0F870EC2D42200A8F639 /* TappableScrollView.m */,
 				744592030E6CA017002D05C3 /* WarningView.m */,
 			);
 			name = Views;
@@ -2028,14 +2004,11 @@
 				747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */,
 				747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */,
 				747AB8610EB963AE002438D0 /* DVDCell.m in Sources */,
-				74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */,
 				7410D7410EC2C0740079BF1E /* LargePosterCache.m in Sources */,
 				74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */,
-				74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */,
 				744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */,
 				744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */,
 				747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */,
-				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
 				74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */,
 				74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */,
@@ -2174,14 +2147,11 @@
 				746397D90F7EC8D600B2F64C /* DVDViewController.m in Sources */,
 				746397DA0F7EC8D600B2F64C /* DVDNavigationController.m in Sources */,
 				746397DB0F7EC8D600B2F64C /* DVDCell.m in Sources */,
-				746397DC0F7EC8D600B2F64C /* TappableImageView.m in Sources */,
 				746397DD0F7EC8D600B2F64C /* LargePosterCache.m in Sources */,
 				746397DE0F7EC8D600B2F64C /* PostersViewController.m in Sources */,
-				746397DF0F7EC8D600B2F64C /* TappableScrollView.m in Sources */,
 				746397E10F7EC8D600B2F64C /* BlurayCache.m in Sources */,
 				746397E20F7EC8D600B2F64C /* AbstractDVDBlurayCache.m in Sources */,
 				746397E30F7EC8D600B2F64C /* AbstractPosterCell.m in Sources */,
-				746397E40F7EC8D600B2F64C /* TappableLabel.m in Sources */,
 				746397E50F7EC8D600B2F64C /* LocationManager.m in Sources */,
 				746397E60F7EC8D600B2F64C /* DVDFilterViewController.m in Sources */,
 				746397E80F7EC8D600B2F64C /* LookupRequest.m in Sources */,

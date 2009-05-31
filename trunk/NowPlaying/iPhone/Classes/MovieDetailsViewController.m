@@ -31,7 +31,6 @@
 #import "Score.h"
 #import "Status.h"
 #import "StockImages.h"
-#import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -1344,7 +1343,8 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount {
     if (imageView.tag == POSTER_TAG) {
         [self posterImageViewWasTapped];
     } else if (imageView.tag % 2 == 0) {

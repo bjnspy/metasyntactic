@@ -17,7 +17,6 @@
 #import "FontCache.h"
 #import "Model.h"
 #import "MovieDetailsViewController.h"
-#import "TappableImageView.h"
 
 
 @interface MovieOverviewCell()

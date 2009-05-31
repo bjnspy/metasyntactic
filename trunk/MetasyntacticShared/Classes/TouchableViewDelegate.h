@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol TappableImageViewDelegate
-- (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount;
+@protocol TouchableViewDelegate
+- (void) viewReceviedRightToLeftSwipe:(UIView*) view;
+- (void) viewReceviedLeftToRightSwipe:(UIView*) view;
+- (void) viewReceviedTopToBottomSwipe:(UIView*) view;
+- (void) viewReceviedBottomToTopSwipe:(UIView*) view;
+- (void) view:(UIView*) receviedTouchFrom:(CGPoint) from to:(CGPoint) to;
 @end
