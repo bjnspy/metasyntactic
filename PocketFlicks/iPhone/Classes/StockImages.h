@@ -12,39 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
-
-@interface AbstractCache()
-@property (retain) NSRecursiveLock* dataGate;
-@property (retain) NSRecursiveLock* runGate;
-@end
-
-
-@implementation AbstractCache
-
-@synthesize dataGate;
-@synthesize runGate;
-
-- (void) dealloc {
-    self.dataGate = nil;
-    self.runGate = nil;
-
-    [super dealloc];
+@interface StockImages : NSObject {
 }
 
++ (UIImage*) freshImage;
++ (UIImage*) rottenFadedImage;
++ (UIImage*) rottenFullImage;
 
-- (id) init {
-    if (self = [super init]) {
-        self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
-        self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
-    }
++ (UIImage*) emptyStarImage;
++ (UIImage*) filledStarImage;
++ (UIImage*) searchImage;
 
-    return self;
-}
++ (UIImage*) redRatingImage;
++ (UIImage*) yellowRatingImage;
++ (UIImage*) greenRatingImage;
++ (UIImage*) unknownRatingImage;
 
++ (UIImage*) imageLoading;
++ (UIImage*) imageLoadingNeutral;
++ (UIImage*) imageNotAvailable;
 
-- (void) didReceiveMemoryWarning {
++ (UIImage*) upArrow;
++ (UIImage*) downArrow;
++ (UIImage*) neutralSquare;
 
-}
++ (UIImage*) warning16x16;
++ (UIImage*) warning32x32;
 
 @end

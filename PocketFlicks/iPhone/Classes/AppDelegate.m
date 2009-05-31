@@ -85,9 +85,9 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) majorRefresh:(NSNumber*) force {
+- (void) majorRefreshWorker:(NSNumber*) force {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(majorRefresh:) withObject:force waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
         return;
     }
 
