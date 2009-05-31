@@ -60,7 +60,6 @@
 #import "TappableImageViewDelegate.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
-#import "TappableView.h"
 #import "TappableViewDelegate.h"
 #import "TextFieldEditorViewController.h"
 #import "ThreadingUtilities.h"
