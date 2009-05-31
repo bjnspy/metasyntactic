@@ -14,10 +14,8 @@
 
 #import "TicketsViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "Application.h"
-#import "AttributeCell.h"
-#import "ColorCache.h"
+#import "CommonNavigationController.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
@@ -223,12 +221,7 @@
 
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
-                                                    reuseIdentifier:nil] autorelease];
-#else
-    AttributeCell* cell = [[[AttributeCell alloc] init] autorelease];
-#endif
+    AttributeCell* cell = [[[AttributeCell alloc] initWithReuseIdentifier:nil] autorelease];
 
     if (row == 0) {
         cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
@@ -293,7 +286,7 @@
         return;
     }
 
-    [self.abstractNavigationController pushBrowser:performance.url animated:YES];
+    [self.commonNavigationController pushBrowser:performance.url animated:YES];
 }
 
 

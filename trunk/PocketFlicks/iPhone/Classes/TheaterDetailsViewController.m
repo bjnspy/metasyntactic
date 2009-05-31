@@ -15,14 +15,12 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
-#import "AttributeCell.h"
-#import "ColorCache.h"
-#import "ImageCache.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
+#import "StockImages.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"
@@ -77,12 +75,12 @@
 
 - (void) initializeFavoriteButton {
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [favoriteButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
+    [favoriteButton setImage:[StockImages filledStarImage] forState:UIControlStateSelected];
     [favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
 
     CGRect frame = favoriteButton.frame;
-    frame.size = [ImageCache emptyStarImage].size;
+    frame.size = [StockImages emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
     favoriteButton.frame = frame;
@@ -200,12 +198,7 @@
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
-                                                    reuseIdentifier:nil] autorelease];
-#else
-    AttributeCell* cell = [[[AttributeCell alloc] init] autorelease];
-#endif
+    AttributeCell* cell = [[[AttributeCell alloc] initWithReuseIdentifier:nil] autorelease];
 
     if (row == 0) {
         cell.textLabel.text = LocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
@@ -329,7 +322,7 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [self.commonNavigationController pushTicketsView:movie
                                                theater:theater
                                                  title:movie.displayTitle
                                               animated:animated];
@@ -389,7 +382,7 @@
 
         Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+            [self.commonNavigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

@@ -14,11 +14,10 @@
 
 #import "PostersViewController.h"
 
-#import "AbstractNavigationController.h"
 #import "AppDelegate.h"
+#import "CommonNavigationController.h"
 #import "LargePosterCache.h"
 #import "Model.h"
-#import "TappableScrollView.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;
@@ -290,7 +289,7 @@ const double LOAD_DELAY = 1;
 
     UIImage* image = nil;
     if (delay == 0) {
-        image = [self.model.largePosterCache posterForMovie:movie index:page];
+        image = [self.model.largePosterCache posterForMovie:movie index:page loadFromDisk:YES];
     }
 
     if (image != nil) {
@@ -325,7 +324,7 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue loadFromDisk:YES];
     if (image == nil) {
         [self performSelector:@selector(loadPoster:)
                    withObject:indexAndPageView
@@ -548,7 +547,7 @@ const double LOAD_DELAY = 1;
 
 - (void) saveImage:(NSInteger) index
          nextIndex:(NSInteger) nextIndex {
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
+  UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index loadFromDisk:YES];
     if (image == nil) {
         [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
     } else {
@@ -655,9 +654,14 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void) dismiss {
     shutdown = YES;
-    [self.abstractNavigationController hidePostersView];
+    [self.commonNavigationController hidePostersView];
 }
 
 

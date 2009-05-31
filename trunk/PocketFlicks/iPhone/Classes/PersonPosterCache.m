@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
+#import "Model.h"
 #import "Person.h"
 
 @interface PersonPosterCache()
@@ -39,6 +40,11 @@
 
 + (PersonPosterCache*) cache {
     return [[[PersonPosterCache alloc] init] autorelease];
+}
+
+
+- (Model*) model {
+  return [Model model];
 }
 
 
@@ -161,8 +167,7 @@
 
 - (UIImage*) posterForPerson:(Person*) person {
     NSString* path = [self posterFilePath:person];
-    NSData* data = [FileUtilities readData:path];
-    return [UIImage imageWithData:data];
+  return [self.model.imageCache imageForPath:path];
 }
 
 

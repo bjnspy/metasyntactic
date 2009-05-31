@@ -14,15 +14,11 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "ActionsView.h"
-#import "ActivityIndicatorViewWithBackground.h"
 #import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
-#import "ColorCache.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
-#import "ImageCache.h"
 #import "LargePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -34,7 +30,7 @@
 #import "NetflixStatusCell.h"
 #import "Score.h"
 #import "Status.h"
-#import "TappableImageView.h"
+#import "StockImages.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -56,7 +52,7 @@
 @property NSInteger hiddenTheaterCount;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
-@property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
+@property (retain) SmallActivityIndicatorViewWithBackground* posterActivityView;
 @property (retain) UIButton* bookmarkButton;
 @end
 
@@ -228,7 +224,7 @@ const NSInteger POSTER_TAG = -1;
         return image;
     }
 
-    return [ImageCache imageNotAvailable];
+    return [StockImages imageNotAvailable];
 }
 
 
@@ -275,7 +271,7 @@ const NSInteger POSTER_TAG = -1;
     UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
     if (posterImage != nil) {
         // we currently have a poster.  only replace it if we have something better
-        if (image != nil && image != [ImageCache imageNotAvailable]) {
+        if (image != nil && image != [StockImages imageNotAvailable]) {
             self.posterImage = image;
         }
     }
@@ -358,7 +354,7 @@ const NSInteger POSTER_TAG = -1;
 
         // Only want to do this once.
         if (self.model.loadingIndicatorsEnabled) {
-            self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
+            self.posterActivityView = [[[SmallActivityIndicatorViewWithBackground alloc] init] autorelease];
             [posterActivityView startAnimating];
             [posterActivityView sizeToFit];
         }
@@ -404,13 +400,13 @@ const NSInteger POSTER_TAG = -1;
 - (void) initializeBookmarkButton {
     return;
     self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [bookmarkButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
+    [bookmarkButton setImage:[StockImages filledStarImage] forState:UIControlStateSelected];
 
     [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
 
     CGRect frame = bookmarkButton.frame;
-    frame.size = [ImageCache emptyStarImage].size;
+    frame.size = [StockImages emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
     bookmarkButton.frame = frame;
@@ -985,12 +981,12 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) readReviews {
-    [self.abstractNavigationController pushReviews:movie animated:YES];
+    [self.commonNavigationController pushReviews:movie animated:YES];
 }
 
 
 - (void) visitWebsite:(NSString*) website {
-    [self.abstractNavigationController pushBrowser:website animated:YES];
+    [self.commonNavigationController pushBrowser:website animated:YES];
 }
 
 
@@ -1167,7 +1163,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
                             withButtonIndex:(NSInteger) buttonIndex {
     NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
-    [self.abstractNavigationController pushBrowser:url animated:YES];
+    [self.commonNavigationController pushBrowser:url animated:YES];
 }
 
 
@@ -1252,7 +1248,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
-    [self.abstractNavigationController pushTicketsView:movie
+    [self.commonNavigationController pushTicketsView:movie
                                                theater:theater
                                                  title:theater.name
                                               animated:animated];
@@ -1299,7 +1295,7 @@ const NSInteger POSTER_TAG = -1;
         Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
         if (indexPath.row == 0) {
-            [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+            [self.commonNavigationController pushTheaterDetails:theater animated:YES];
         } else {
             [self pushTicketsView:theater animated:YES];
         }
@@ -1325,7 +1321,7 @@ const NSInteger POSTER_TAG = -1;
                                                 gate:nil
                                             priority:Now];
 
-    [self.abstractNavigationController showPostersView:movie posterCount:posterCount];
+    [self.commonNavigationController showPostersView:movie posterCount:posterCount];
 }
 
 
@@ -1348,7 +1344,8 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount {
     if (imageView.tag == POSTER_TAG) {
         [self posterImageViewWasTapped];
     } else if (imageView.tag % 2 == 0) {

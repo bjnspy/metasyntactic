@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
-
 enum ViewControllerType {
   MovieDetails = 1,
   TheaterDetails = 2,
@@ -32,7 +30,7 @@ enum ViewControllerType {
   PersonPosterCache* personPosterCache;
   PosterCache* posterCache;
   LargePosterCache* largePosterCache;
-  SmallPosterCache* smallPosterCache;
+  ImageCache* imageCache;
   ScoreCache* scoreCache;
   TrailerCache* trailerCache;
   UpcomingCache* upcomingCache;
@@ -62,7 +60,7 @@ enum ViewControllerType {
 @property (readonly, retain) PersonPosterCache* personPosterCache;
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;
-@property (readonly, retain) SmallPosterCache* smallPosterCache;
+@property (readonly, retain) ImageCache* imageCache;
 @property (readonly, retain) ScoreCache* scoreCache;
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) UpcomingCache* upcomingCache;
@@ -194,8 +192,11 @@ enum ViewControllerType {
 - (NSString*) ratingAndRuntimeForMovie:(Movie*) movie;
 - (NSInteger) lengthForMovie:(Movie*) movie;
 - (DVD*) dvdDetailsForMovie:(Movie*) movie;
+
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;

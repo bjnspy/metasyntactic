@@ -158,9 +158,9 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (void) addMovies:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        [self addMovie:movie];
-    }
+  for (Movie* movie in [NSArrayAdditions shuffle:movies]) {
+    [self addMovie:movie];
+  }
 }
 
 @end

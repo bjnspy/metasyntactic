@@ -79,32 +79,35 @@ const int START_YEAR = 1912;
 
 
 - (UIImage*) posterForMovie:(Movie*) movie
-                      index:(NSInteger) index {
-    NSString* path = [self posterFilePath:movie index:index];
-    NSData* data = [FileUtilities readData:path];
-    UIImage* image = [UIImage imageWithData:data];
-
-    return image;
+                      index:(NSInteger) index
+               loadFromDisk:(BOOL) loadFromDisk {
+  NSString* path = [self posterFilePath:movie index:index];
+  return [self.model.imageCache imageForPath:path loadFromDisk:loadFromDisk];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie
-                           index:(NSInteger) index {
-    NSData* smallPosterData;
+                           index:(NSInteger) index
+                    loadFromDisk:(BOOL) loadFromDisk {
     NSString* smallPosterPath = [self smallPosterFilePath:movie
                                                     index:index];
 
+  if (loadFromDisk) {
+    NSData* smallPosterData;
     if ([FileUtilities size:smallPosterPath] == 0 && index == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie index:index]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-        [FileUtilities writeData:smallPosterData
-                          toFile:smallPosterPath];
+      NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie index:index]];
+      smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                              toHeight:SMALL_POSTER_HEIGHT];
+      [FileUtilities writeData:smallPosterData
+                        toFile:smallPosterPath];
     } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
+      smallPosterData = [FileUtilities readData:smallPosterPath];
     }
 
     return [UIImage imageWithData:smallPosterData];
+  } else {
+    return [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  }
 }
 
 
@@ -115,15 +118,15 @@ const int START_YEAR = 1912;
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie {
-    NSAssert([NSThread isMainThread], @"");
-    return [self posterForMovie:movie index:0];
+- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
+  NSAssert([NSThread isMainThread], @"");
+  return [self posterForMovie:movie index:0 loadFromDisk:loadFromDisk];
 }
 
 
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
-    NSAssert([NSThread isMainThread], @"");
-    return [self smallPosterForMovie:movie index:0];
+- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
+  NSAssert([NSThread isMainThread], @"");
+  return [self smallPosterForMovie:movie index:0 loadFromDisk:loadFromDisk];
 }
 
 

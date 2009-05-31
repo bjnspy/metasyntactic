@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "TappableImageViewDelegate.h"
-
 @interface MovieOverviewCell : UITableViewCell {
 @private
     Movie* movie;
@@ -32,7 +30,7 @@
                                model:(Model*) model
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
-                        activityView:(ActivityIndicatorViewWithBackground*) activityView;
+                        activityView:(SmallActivityIndicatorViewWithBackground*) activityView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(Model*) model;
 
 @end

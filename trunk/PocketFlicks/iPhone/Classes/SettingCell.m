@@ -14,9 +14,6 @@
 
 #import "SettingCell.h"
 
-#import "ColorCache.h"
-
-
 @interface SettingCell()
 @property (retain) UILabel* separatorLine;
 @property (copy) NSString* value;
