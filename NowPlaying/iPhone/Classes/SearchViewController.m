@@ -16,7 +16,6 @@
 #import "SearchViewController.h"
 
 #import "AbstractImageCell.h"
-#import "AbstractSearchEngine.h"
 #import "AppDelegate.h"
 #import "ApplicationTabBarController.h"
 #import "CommonNavigationController.h"
