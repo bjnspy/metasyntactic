@@ -26,7 +26,6 @@
     [super dealloc];
 }
 
-
 - (id) initWithImage:(UIImage*) image {
     if (self = [super initWithImage:image]) {
         self.userInteractionEnabled = YES;
@@ -36,18 +35,14 @@
 }
 
 
-- (void)touchesBegan:(NSSet*) touches
-           withEvent:(UIEvent* )event {
-}
-
-
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
     if (delegate != nil) {
         UITouch* touch = touches.anyObject;
         if (touch.tapCount > 0) {
-            [delegate imageView:self wasTapped:touch.tapCount];
+            [delegate imageView:self wasTouched:touch tapCount:touch.tapCount];
         }
     }
 }
+
 
 @end

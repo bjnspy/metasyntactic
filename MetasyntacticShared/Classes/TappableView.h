@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol TappableLabelDelegate
-- (void) label:(TappableLabel*) label
-     wasTapped:(NSInteger) tapCount;
+#import "TappableViewDelegate.h"
+
+@interface TappableView : UIView {
+@private
+    id<TappableViewDelegate> delegate;
+}
+
+@property (assign) id<TappableViewDelegate> delegate;
+
 @end

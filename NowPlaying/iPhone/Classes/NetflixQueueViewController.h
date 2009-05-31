@@ -14,7 +14,6 @@
 
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
-#import "TappableImageViewDelegate.h"
 
 @interface NetflixQueueViewController : AbstractTableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private

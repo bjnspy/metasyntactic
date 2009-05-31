@@ -12,13 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TappableImageView : UIImageView {
-@private
-    id<TappableImageViewDelegate> delegate;
+@interface TappableScrollView : UIScrollView {
+    id<TappableScrollViewDelegate> tapDelegate;
 }
 
-@property (assign) id<TappableImageViewDelegate> delegate;
-
-- (id) initWithImage:(UIImage*) image;
+@property (assign) id<TappableScrollViewDelegate> tapDelegate;
 
 @end

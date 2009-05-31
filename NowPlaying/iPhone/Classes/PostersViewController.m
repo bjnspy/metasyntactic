@@ -18,7 +18,6 @@
 #import "CommonNavigationController.h"
 #import "LargePosterCache.h"
 #import "Model.h"
-#import "TappableScrollView.h"
 
 @interface PostersViewController()
 @property (retain) Movie* movie;

@@ -19,7 +19,6 @@
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "Queue.h"
-#import "TappableImageView.h"
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;
@@ -476,7 +475,8 @@
 
 
 - (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount {
     if (readonlyMode) {
         return;
     }

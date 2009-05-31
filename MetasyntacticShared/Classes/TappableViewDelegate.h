@@ -12,11 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TappableLabel : UILabel {
-@private
-    id<TappableLabelDelegate> delegate;
-}
-
-@property (retain) id<TappableLabelDelegate> delegate;
-
+@protocol TappableViewDelegate
+- (void) view:(UIView*) view
+   wasTouched:(UITouch*) touch
+     tapCount:(NSInteger) tapCount;
 @end

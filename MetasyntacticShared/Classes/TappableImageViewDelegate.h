@@ -12,27 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
-@private
-    Movie* movie;
-
-    TappableScrollView* scrollView;
-
-    NSInteger currentPage;
-    NSInteger posterCount;
-    NSMutableDictionary* pageNumberToView;
-
-    BOOL shutdown;
-
-    BOOL saving;
-    UILabel* savingLabel;
-
-#ifndef IPHONE_OS_VERSION_3
-    UIToolbar* toolbar;
-#endif
-}
-
-- (id) initWithMovie:(Movie*) movie
-         posterCount:(NSInteger) posterCount;
-
+@protocol TappableImageViewDelegate
+- (void) imageView:(TappableImageView*) imageView
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount;
 @end

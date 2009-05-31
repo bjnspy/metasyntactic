@@ -12,42 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "TappableLabel.h"
+#import "TappableView.h"
 
-#import "TappableLabelDelegate.h"
-
-@implementation TappableLabel
+@implementation TappableView
 
 @synthesize delegate;
 
 - (void) dealloc {
     self.delegate = nil;
-
     [super dealloc];
-}
-
-- (id) init {
-    if (self = [super init]) {
-        self.userInteractionEnabled = YES;
-    }
-
-    return self;
 }
 
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
+    [super touchesEnded:touches withEvent:event];
     if (delegate != nil) {
         UITouch* touch = touches.anyObject;
         if (touch.tapCount > 0) {
-            [delegate label:self wasTapped:touch.tapCount];
+            [delegate view:self wasTouched:touch tapCount:touch.tapCount];
         }
     }
-}
-
-
-- (UIView*) hitTest:(CGPoint) point
-          withEvent:(UIEvent*) event {
-    return self;
 }
 
 @end
