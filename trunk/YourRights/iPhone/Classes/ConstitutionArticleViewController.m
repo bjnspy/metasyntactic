@@ -16,7 +16,6 @@
 
 #import "Article.h"
 #import "Section.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 

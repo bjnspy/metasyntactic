@@ -22,7 +22,6 @@
 #import "ConstitutionArticleViewController.h"
 #import "ConstitutionSignersViewController.h"
 #import "FederalistPapersArticleViewController.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
 @interface FederalistPapersViewController()

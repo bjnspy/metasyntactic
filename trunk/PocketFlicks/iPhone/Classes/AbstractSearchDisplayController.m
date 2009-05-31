@@ -71,8 +71,8 @@
 }
 
 
-- (AbstractNavigationController*) abstractNavigationController {
-    return [(id)self.searchContentsController abstractNavigationController];
+- (CommonNavigationController*) commonNavigationController {
+    return [(id)self.searchContentsController commonNavigationController];
 }
 
 

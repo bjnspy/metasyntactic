@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractNavigationController.h"
-
 @interface YourRightsNavigationController : AbstractNavigationController {
 }
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton;
 
 @end

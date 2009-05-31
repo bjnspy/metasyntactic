@@ -18,7 +18,6 @@
 #import "AutoResizingCell.h"
 #import "Person.h"
 #import "Section.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 

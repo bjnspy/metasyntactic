@@ -30,7 +30,6 @@
 #import "QuestionsViewController.h"
 #import "ToughQuestionsViewController.h"
 #import "UnitedStatesConstitution.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 #import "YourRightsNavigationController.h"
 
@@ -53,7 +52,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.title = [Application name];
+      self.title = [Application name];
 
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
