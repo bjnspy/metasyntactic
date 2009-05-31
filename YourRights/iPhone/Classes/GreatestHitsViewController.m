@@ -211,8 +211,20 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
+  [super viewDidAppear:animated];
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+  [super viewWillAppear:animated];
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
+}
+
+
+- (void) onDoneTapped:(id) sender {
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 

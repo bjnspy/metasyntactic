@@ -17,7 +17,6 @@
 #import "CacheUpdater.h"
 #import "Model.h"
 #import "Movie.h"
-#import "SmallPosterCache.h"
 
 @implementation AbstractPosterCell
 
@@ -44,16 +43,12 @@
 
 
 - (UIImage*) loadImageWorker {
-  UIImage* result = [self.model smallPosterForMovie:movie];
-  if (result != nil) {
-    [self.model.smallPosterCache setPoster:result forTitle:movie.canonicalTitle];
-  }
-  return result;
+  return [self.model smallPosterForMovie:movie loadFromDisk:YES];
 }
 
 
 - (UIImage*) retrieveImageFromCache {
-  return [self.model.smallPosterCache posterForTitle:movie.canonicalTitle];
+  return [self.model smallPosterForMovie:movie loadFromDisk:NO];
 }
 
 

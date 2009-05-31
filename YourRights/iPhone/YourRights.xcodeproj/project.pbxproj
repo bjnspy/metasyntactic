@@ -19,11 +19,12 @@
 		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
 		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
+		7423723C0FD2488600E19B63 /* libMetasyntacticShared3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */; };
+		742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742372A70FD249D200E19B63 /* MessageUI.framework */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
 		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
 		742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7800F1209540079E6B0 /* QuestionsViewController.m */; };
 		742DB7840F12095C0079E6B0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7830F12095C0079E6B0 /* Model.m */; };
-		742DB8180F120DD10079E6B0 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */; };
 		742DB84D0F129F070079E6B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 742DB84C0F129F070079E6B0 /* Icon.png */; };
 		742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB87F0F12A6650079E6B0 /* WrappableCell.m */; };
 		742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8B20F12A7190079E6B0 /* AnswerViewController.m */; };
@@ -37,12 +38,9 @@
 		743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96F70F3FAB5400BA0784 /* Constitution.m */; };
 		743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FB0F3FAC1B00BA0784 /* Article.m */; };
 		743D96FF0F3FADB800BA0784 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FE0F3FADB800BA0784 /* Section.m */; };
-		7442261C0F44870600787F33 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7442261B0F44870600787F33 /* AbstractCache.m */; };
 		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
 		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
-		747C347B0FD075CD00411801 /* libiPhoneShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C34730FD0755000411801 /* libiPhoneShared.a */; };
-		748BA48A0F81646F00D79388 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA4890F81646F00D79388 /* AbstractNavigationController.m */; };
 		748BA54D0F816A8600D79388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA54C0F816A8600D79388 /* AppDelegate.m */; };
 		74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */; };
 		74954DF60F38D9C000E79E24 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954DF50F38D9C000E79E24 /* Item.m */; };
@@ -65,19 +63,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		747C34720FD0755000411801 /* PBXContainerItemProxy */ = {
+		742371D50FD2476D00E19B63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */;
+			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
-			remoteInfo = iPhoneShared;
+			remoteInfo = MetasyntacticShared2;
 		};
-		747C34790FD075C500411801 /* PBXContainerItemProxy */ = {
+		742371D70FD2476D00E19B63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */;
+			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
+			remoteInfo = MetasyntacticShared3;
+		};
+		7423723A0FD2487D00E19B63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 747C2FCB0FD0648D00411801;
-			remoteInfo = iPhoneShared;
+			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
+			remoteInfo = MetasyntacticShared3;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -102,6 +107,9 @@
 		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
 		740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
 		740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
+		742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		742371ED0FD247CE00E19B63 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		742372A70FD249D200E19B63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
 		742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
@@ -111,8 +119,6 @@
 		742DB7800F1209540079E6B0 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
 		742DB7820F12095C0079E6B0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		742DB7830F12095C0079E6B0 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
-		742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		742DB84C0F129F070079E6B0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
 		742DB87E0F12A6650079E6B0 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
 		742DB87F0F12A6650079E6B0 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
@@ -139,17 +145,11 @@
 		743D96FB0F3FAC1B00BA0784 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		743D96FD0F3FADB800BA0784 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		743D96FE0F3FADB800BA0784 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		7442261A0F44870600787F33 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
-		7442261B0F44870600787F33 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
 		745A09DD0F2EE190002F64C6 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
 		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iPhoneShared.xcodeproj; path = ../../iPhoneShared/iPhoneShared.xcodeproj; sourceTree = SOURCE_ROOT; };
-		747C34750FD0758300411801 /* Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shared.h; path = ../../iPhoneShared/Classes/Shared.h; sourceTree = SOURCE_ROOT; };
-		748BA4880F81646F00D79388 /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
-		748BA4890F81646F00D79388 /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		748BA54B0F816A8600D79388 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		748BA54C0F816A8600D79388 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		74954D040F38CD2700E79E24 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
@@ -195,12 +195,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747C347B0FD075CD00411801 /* libiPhoneShared.a in Frameworks */,
+				7423723C0FD2488600E19B63 /* libMetasyntacticShared3.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */,
 				74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */,
+				742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +239,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */,
+				742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -275,6 +276,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				742372A70FD249D200E19B63 /* MessageUI.framework */,
 				74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */,
 				740101C00F26EB8300258353 /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -284,14 +286,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		742371D10FD2476D00E19B63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				742371D60FD2476D00E19B63 /* libMetasyntacticShared2.a */,
+				742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				74954D2A0F38CE3F00E79E24 /* NavigationControllers */,
 				74954D2C0F38CE5E00E79E24 /* TableViewCells */,
 				74954D2B0F38CE4A00E79E24 /* ViewControllers */,
-				742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */,
-				742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -300,26 +309,16 @@
 			isa = PBXGroup;
 			children = (
 				74954FE00F38EA8800E79E24 /* UI */,
-				7442261A0F44870600787F33 /* AbstractCache.h */,
 				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
-				7442261B0F44870600787F33 /* AbstractCache.m */,
 				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
 		};
-		747C346F0FD0755000411801 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				747C34730FD0755000411801 /* libiPhoneShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		748BA6210F816D5200D79388 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				747C34750FD0758300411801 /* Shared.h */,
+				742371ED0FD247CE00E19B63 /* MetasyntacticShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -327,9 +326,7 @@
 		74954D2A0F38CE3F00E79E24 /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				748BA4880F81646F00D79388 /* AbstractNavigationController.h */,
 				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
-				748BA4890F81646F00D79388 /* AbstractNavigationController.m */,
 				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
 			);
 			name = NavigationControllers;
@@ -470,7 +467,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				747C347A0FD075C500411801 /* PBXTargetDependency */,
+				7423723B0FD2487D00E19B63 /* PBXTargetDependency */,
 			);
 			name = YourRights;
 			productName = YourRights;
@@ -496,8 +493,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 747C346F0FD0755000411801 /* Products */;
-					ProjectRef = 747C346E0FD0755000411801 /* iPhoneShared.xcodeproj */;
+					ProductGroup = 742371D10FD2476D00E19B63 /* Products */;
+					ProjectRef = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -508,11 +505,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		747C34730FD0755000411801 /* libiPhoneShared.a */ = {
+		742371D60FD2476D00E19B63 /* libMetasyntacticShared2.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libiPhoneShared.a;
-			remoteRef = 747C34720FD0755000411801 /* PBXContainerItemProxy */;
+			path = libMetasyntacticShared2.a;
+			remoteRef = 742371D50FD2476D00E19B63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMetasyntacticShared3.a;
+			remoteRef = 742371D70FD2476D00E19B63 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -541,7 +545,6 @@
 				742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */,
 				742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */,
 				742DB7840F12095C0079E6B0 /* Model.m in Sources */,
-				742DB8180F120DD10079E6B0 /* ViewControllerUtilities.m in Sources */,
 				742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */,
 				742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */,
 				742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */,
@@ -568,7 +571,6 @@
 				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
 				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
 				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
-				7442261C0F44870600787F33 /* AbstractCache.m in Sources */,
 				74D3892B0F58608A00B7A51C /* Person.m in Sources */,
 				74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */,
 				74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */,
@@ -579,7 +581,6 @@
 				74CF656C0F58A17F00417ED5 /* FederalistPapers.m in Sources */,
 				74CF657A0F58A29500417ED5 /* ArticlesOfConfederation.m in Sources */,
 				74CF65B60F58A44800417ED5 /* UnitedStatesConstitution.m in Sources */,
-				748BA48A0F81646F00D79388 /* AbstractNavigationController.m in Sources */,
 				748BA54D0F816A8600D79388 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,10 +588,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		747C347A0FD075C500411801 /* PBXTargetDependency */ = {
+		7423723B0FD2487D00E19B63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = iPhoneShared;
-			targetProxy = 747C34790FD075C500411801 /* PBXContainerItemProxy */;
+			name = MetasyntacticShared3;
+			targetProxy = 7423723A0FD2487D00E19B63 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -616,7 +617,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -628,7 +631,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
@@ -640,13 +645,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
 		};
@@ -658,7 +664,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
+				SDKROOT = iphoneos3.0;
 			};
 			name = AdHoc;
 		};
@@ -669,13 +677,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
 		};
@@ -687,7 +696,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -698,6 +709,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -705,7 +717,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "A30ED4E2-BC06-4B01-9DDA-8786D4B8CA10";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A30ED4E2-BC06-4B01-9DDA-8786D4B8CA10";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -716,13 +728,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "8061A567-D592-4E95-A964-C81EA473B76B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};

@@ -21,7 +21,6 @@
 #import "ConstitutionAmendmentViewController.h"
 #import "ConstitutionArticleViewController.h"
 #import "ConstitutionSignersViewController.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
 @interface ConstitutionViewController()

@@ -15,7 +15,6 @@
 #import "ToughAnswerViewController.h"
 
 #import "Model.h"
-#import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
 
 @interface ToughAnswerViewController()

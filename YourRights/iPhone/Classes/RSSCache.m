@@ -113,7 +113,7 @@ static NSDictionary* titleToIdentifier;
 - (void) update {
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                             onTarget:self
-                                                gate:gate
+                                                gate:runGate
                                             priority:Now];
 }
 
