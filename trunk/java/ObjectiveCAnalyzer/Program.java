@@ -620,25 +620,33 @@ public class Program {
         return builder.toString();
     }
 
-    private static void insertCopyright(final File child) throws IOException {
+  private static boolean isRestricted(final File child) {
         if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
-            return;
+            return true;
         }
 
         if (child.getPath().toLowerCase().contains("oauth")) {
-            return;
+            return true;
         }
 
         if (child.getParentFile().getPath().contains("Jukebox")) {
-            return;
+            return true;
         }
 
         if (child.getParentFile().getPath().contains("Medialytics")) {
-            return;
+            return true;
         }
 
         if (child.getParentFile().getPath().contains("Expat")) {
-            return;
+            return true;
+        }
+
+    return false;
+  }
+
+    private static void insertCopyright(final File child) throws IOException {
+        if (isRestricted(child)) {
+          return;
         }
 
         //if (child.getParent().toLowerCase().contains("protocolbufers")) {
@@ -862,10 +870,10 @@ public class Program {
     }
 
     private static void checkImports(final File child) throws IOException {
-        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
-            return;
-        }
-
+      if (isRestricted(child)) {
+        return;
+      }
+      
         final Collection<String> beforeImports = new ArrayList<String>();
         final Collection<String> afterImports = new ArrayList<String>();
 
