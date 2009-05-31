@@ -198,18 +198,6 @@
 }
 
 
-- (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated {
-    WebViewController* controller = [[[WebViewController alloc] initWithAddress:address
-                                                               showSafariButton:showSafariButton] autorelease];
-    [self pushViewController:controller animated:animated];
-}
-
-
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
-    [self pushBrowser:address showSafariButton:YES animated:animated];
-}
-
-
 - (void) pushInfoControllerAnimated:(BOOL) animated {
     UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
 

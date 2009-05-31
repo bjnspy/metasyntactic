@@ -15,7 +15,4 @@
 @interface YourRightsNavigationController : AbstractNavigationController {
 }
 
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton;
-
 @end

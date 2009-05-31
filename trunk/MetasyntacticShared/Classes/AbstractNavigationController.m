@@ -14,6 +14,8 @@
 
 #import "AbstractNavigationController.h"
 
+#import "WebViewController.h"
+
 @interface AbstractNavigationController()
 @property BOOL visible;
 #ifndef IPHONE_OS_VERSION_3
@@ -103,6 +105,18 @@
 
   [self popToRootViewControllerAnimated:NO];
   [super didReceiveMemoryWarning];
+}
+
+
+- (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated {
+  WebViewController* controller = [[[WebViewController alloc] initWithAddress:address
+                                                             showSafariButton:showSafariButton] autorelease];
+  [self pushViewController:controller animated:animated];
+}
+
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
+  [self pushBrowser:address showSafariButton:YES animated:animated];
 }
 
 @end
