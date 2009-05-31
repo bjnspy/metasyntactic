@@ -1370,6 +1370,7 @@
 				74D3CC750F2DB7520007C783 /* PersonPosterCache.h */,
 				74088BD50DCD0AA800954696 /* PosterCache.h */,
 				741C738F0F8D8C6A003747AD /* PreviewNetworksPosterDownloader.h */,
+				74BBEE090FCAF13B00175BDB /* SmallPosterCache.h */,
 				741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */,
 				7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */,
 				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
@@ -1378,7 +1379,6 @@
 				74D3CC760F2DB7520007C783 /* PersonPosterCache.m */,
 				74088BD60DCD0AA800954696 /* PosterCache.m */,
 				741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */,
-				74BBEE090FCAF13B00175BDB /* SmallPosterCache.h */,
 				74BBEE0A0FCAF13B00175BDB /* SmallPosterCache.m */,
 			);
 			name = Posters;

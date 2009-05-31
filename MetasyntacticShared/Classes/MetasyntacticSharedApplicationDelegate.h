@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @protocol MetasyntacticSharedApplicationDelegate
+- (void) applicationDidReceiveMemoryWarning:(UIApplication*) application;
 - (NSString*) localizedString:(NSString*) key;
 
 - (void) minorRefresh;
