@@ -12,10 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LocalSearchEngine : AbstractSearchEngine {
+@interface AbstractSearchRequest : NSObject {
 @private
+  NSInteger requestId;
+  NSString* value;
+  NSString* lowercaseValue;
 }
 
-+ (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;
+@property (readonly) NSInteger requestId;
+@property (readonly, copy) NSString* value;
+@property (readonly, copy) NSString* lowercaseValue;
+
+/* @protected */
+- (id) initWithId:(NSInteger) requestId
+            value:(NSString*) value;
 
 @end

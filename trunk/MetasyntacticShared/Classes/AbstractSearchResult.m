@@ -12,10 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LocalSearchEngine : AbstractSearchEngine {
-@private
+#import "AbstractSearchResult.h"
+
+@interface AbstractSearchResult()
+@property NSInteger requestId;
+@property (copy) NSString* value;
+@end
+
+
+@implementation AbstractSearchResult
+
+@synthesize requestId;
+@synthesize value;
+
+- (void) dealloc {
+  self.requestId = 0;
+  self.value = nil;
+  
+  [super dealloc];
 }
 
-+ (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate;
+
+- (id) initWithId:(NSInteger) requestId_
+            value:(NSString*) value_ {
+  if (self = [super init]) {
+    self.requestId = requestId_;
+    self.value = value_;
+  }
+  
+  return self;
+}
 
 @end

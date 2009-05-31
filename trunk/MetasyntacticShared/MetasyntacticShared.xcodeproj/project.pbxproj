@@ -45,6 +45,20 @@
 		741F50E80FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */; };
 		741F50EB0FD22C9400244D37 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D10FD22C9400244D37 /* TappableViewDelegate.h */; };
 		741F50EC0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */; };
+		74200D770FD25A6600DEE16B /* AbstractSearchEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D750FD25A6600DEE16B /* AbstractSearchEngine.h */; };
+		74200D780FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200D760FD25A6600DEE16B /* AbstractSearchEngine.m */; };
+		74200D790FD25A6600DEE16B /* AbstractSearchEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D750FD25A6600DEE16B /* AbstractSearchEngine.h */; };
+		74200D7A0FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200D760FD25A6600DEE16B /* AbstractSearchEngine.m */; };
+		74200D7D0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D7B0FD25AE600DEE16B /* SearchEngineDelegate.h */; };
+		74200D7F0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D7B0FD25AE600DEE16B /* SearchEngineDelegate.h */; };
+		74200D830FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D810FD25B7800DEE16B /* AbstractSearchRequest.h */; };
+		74200D840FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */; };
+		74200D850FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200D810FD25B7800DEE16B /* AbstractSearchRequest.h */; };
+		74200D860FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */; };
+		74200DA90FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */; };
+		74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */; };
+		74200DAB0FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */; };
+		74200DAC0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */; };
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		747C2FF90FD064C500411801 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		747C2FFA0FD064C500411801 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
@@ -351,6 +365,13 @@
 		741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		741F50D10FD22C9400244D37 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
 		741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
+		74200D750FD25A6600DEE16B /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
+		74200D760FD25A6600DEE16B /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
+		74200D7B0FD25AE600DEE16B /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
+		74200D810FD25B7800DEE16B /* AbstractSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchRequest.h; sourceTree = "<group>"; };
+		74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
+		74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
+		74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
@@ -537,6 +558,7 @@
 				74616DAA0F15D9420004B610 /* Collections */,
 				747C33040FD070A100411801 /* Data */,
 				74616C340F15D1CB0004B610 /* External */,
+				74200D740FD25A4F00DEE16B /* Search */,
 				74616D820F15D8910004B610 /* Threading */,
 				74616E620F15DCA60004B610 /* UI */,
 				74616C780F15D21F0004B610 /* Utilities */,
@@ -643,6 +665,20 @@
 				741F50CD0FD22C9400244D37 /* TappableScrollView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		74200D740FD25A4F00DEE16B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				74200D750FD25A6600DEE16B /* AbstractSearchEngine.h */,
+				74200D810FD25B7800DEE16B /* AbstractSearchRequest.h */,
+				74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */,
+				74200D7B0FD25AE600DEE16B /* SearchEngineDelegate.h */,
+				74200D760FD25A6600DEE16B /* AbstractSearchEngine.m */,
+				74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */,
+				74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		74616C340F15D1CB0004B610 /* External */ = {
@@ -968,6 +1004,10 @@
 				741F50DB0FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */,
 				741F50DE0FD22C9400244D37 /* TappableViewDelegate.h in Headers */,
 				741F50DF0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */,
+				74200D770FD25A6600DEE16B /* AbstractSearchEngine.h in Headers */,
+				74200D7F0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */,
+				74200D850FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */,
+				74200DAB0FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1055,6 +1095,10 @@
 				741F50E80FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */,
 				741F50EB0FD22C9400244D37 /* TappableViewDelegate.h in Headers */,
 				741F50EC0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */,
+				74200D790FD25A6600DEE16B /* AbstractSearchEngine.h in Headers */,
+				74200D7D0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */,
+				74200D830FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */,
+				74200DA90FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,6 +1236,9 @@
 				741F50D40FD22C9400244D37 /* InteractiveView.m in Sources */,
 				741F50D70FD22C9400244D37 /* TappableImageView.m in Sources */,
 				741F50DA0FD22C9400244D37 /* TappableScrollView.m in Sources */,
+				74200D780FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */,
+				74200D860FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */,
+				74200DAC0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1273,6 +1320,9 @@
 				741F50E10FD22C9400244D37 /* InteractiveView.m in Sources */,
 				741F50E40FD22C9400244D37 /* TappableImageView.m in Sources */,
 				741F50E70FD22C9400244D37 /* TappableScrollView.m in Sources */,
+				74200D7A0FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */,
+				74200D840FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */,
+				74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

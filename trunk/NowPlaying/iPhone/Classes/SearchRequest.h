@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SearchRequest : NSObject {
+@interface SearchRequest : AbstractSearchRequest {
 @private
-    NSInteger requestId;
-    NSString* value;
-    NSString* lowercaseValue;
-
     NSArray* movies;
     NSArray* theaters;
     NSArray* upcomingMovies;
@@ -25,9 +21,6 @@
     NSArray* bluray;
 }
 
-@property (readonly) NSInteger requestId;
-@property (readonly, copy) NSString* value;
-@property (readonly, copy) NSString* lowercaseValue;
 @property (readonly, retain) NSArray* movies;
 @property (readonly, retain) NSArray* theaters;
 @property (readonly, retain) NSArray* upcomingMovies;
@@ -35,7 +28,6 @@
 @property (readonly, retain) NSArray* bluray;
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
-                           value:(NSString*) value
-                           model:(Model*) model;
+                           value:(NSString*) value;
 
 @end

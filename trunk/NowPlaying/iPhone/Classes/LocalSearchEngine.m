@@ -17,6 +17,7 @@
 #import "Model.h"
 #import "Movie.h"
 #import "SearchRequest.h"
+#import "SearchResult.h"
 #import "Theater.h"
 
 @implementation LocalSearchEngine
@@ -160,12 +161,21 @@
     if ([self abortEarly:currentlyExecutingRequest]) { return; }
     //...
 
-    [self reportResult:currentlyExecutingRequest
-                movies:movies
-              theaters:theaters
-        upcomingMovies:upcomingMovies
-                  dvds:dvds
-                bluray:bluray];
+  SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
+                                              value:currentlyExecutingRequest.value 
+                                             movies:movies
+                                           theaters:theaters
+                                     upcomingMovies:upcomingMovies
+                                               dvds:dvds
+                                             bluray:bluray
+                                             people:[NSArray array]];
+  [self reportResult:result];
+}
+
+
+- (AbstractSearchRequest*) createSearchRequest:(NSInteger) requestId
+                                         value:(NSString*) value {
+  return [SearchRequest requestWithId:requestId value:value];
 }
 
 @end

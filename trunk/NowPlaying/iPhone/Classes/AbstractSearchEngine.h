@@ -12,41 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SearchEngineDelegate.h"
-
-@interface AbstractSearchEngine : NSObject {
-@protected
-    // only accessed from the main thread.  needs no lock.
-    id<SearchEngineDelegate> delegate;
-
-    // accessed from both threads.  needs lock
-    NSCondition* gate;
-    NSInteger currentRequestId;
-    SearchRequest* nextSearchRequest;
-}
-
-- (void) submitRequest:(NSString*) string;
-
-- (void) invalidateExistingRequests;
-
-/* @protected */
-- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate;
-
-- (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest;
-
-- (void) reportResult:(SearchRequest*) request
-               movies:(NSArray*) movies
-             theaters:(NSArray*) theaters
-       upcomingMovies:(NSArray*) upcomingMovies
-                 dvds:(NSArray*) dvds
-               bluray:(NSArray*) bluray;
-
-- (void) reportResult:(SearchRequest*) request
-               movies:(NSArray*) movies
-             theaters:(NSArray*) theaters
-       upcomingMovies:(NSArray*) upcomingMovies
-                 dvds:(NSArray*) dvds
-               bluray:(NSArray*) bluray
-               people:(NSArray*) people;
-
-@end
+//#import "SearchEngineDelegate.h"
+//
+//@interface AbstractSearchEngine : NSObject {
+//@protected
+//    // only accessed from the main thread.  needs no lock.
+//    id<SearchEngineDelegate> delegate;
+//
+//    // accessed from both threads.  needs lock
+//    NSCondition* gate;
+//    NSInteger currentRequestId;
+//    SearchRequest* nextSearchRequest;
+//}
+//
+//- (void) submitRequest:(NSString*) string;
+//
+//- (void) invalidateExistingRequests;
+//
+///* @protected */
+//- (id) initWithDelegate:(id<SearchEngineDelegate>) delegate;
+//
+//- (BOOL) abortEarly:(SearchRequest*) currentlyExecutingRequest;
+//
+//- (void) reportResult:(SearchRequest*) request
+//               movies:(NSArray*) movies
+//             theaters:(NSArray*) theaters
+//       upcomingMovies:(NSArray*) upcomingMovies
+//                 dvds:(NSArray*) dvds
+//               bluray:(NSArray*) bluray;
+//
+//- (void) reportResult:(SearchRequest*) request
+//               movies:(NSArray*) movies
+//             theaters:(NSArray*) theaters
+//       upcomingMovies:(NSArray*) upcomingMovies
+//                 dvds:(NSArray*) dvds
+//               bluray:(NSArray*) bluray
+//               people:(NSArray*) people;
+//
+//@end
