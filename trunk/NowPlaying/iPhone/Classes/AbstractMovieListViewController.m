@@ -14,7 +14,7 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
 #import "Movie.h"
@@ -325,7 +325,7 @@
 #else
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     searchButton.showsTouchWhenHighlighted = YES;
-    UIImage* image = [ImageCache searchImage];
+    UIImage* image = [StockImages searchImage];
     [searchButton setImage:image forState:UIControlStateNormal];
     [searchButton addTarget:self.navigationController action:@selector(showSearchView) forControlEvents:UIControlEventTouchUpInside];
 

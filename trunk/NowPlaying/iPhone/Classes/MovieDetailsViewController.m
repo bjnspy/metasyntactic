@@ -19,7 +19,7 @@
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
 #import "ExpandedMovieDetailsCell.h"
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "LargePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
@@ -225,7 +225,7 @@ const NSInteger POSTER_TAG = -1;
         return image;
     }
 
-    return [ImageCache imageNotAvailable];
+    return [StockImages imageNotAvailable];
 }
 
 
@@ -272,7 +272,7 @@ const NSInteger POSTER_TAG = -1;
     UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
     if (posterImage != nil) {
         // we currently have a poster.  only replace it if we have something better
-        if (image != nil && image != [ImageCache imageNotAvailable]) {
+        if (image != nil && image != [StockImages imageNotAvailable]) {
             self.posterImage = image;
         }
     }
@@ -400,13 +400,13 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeBookmarkButton {
     self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [bookmarkButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
+    [bookmarkButton setImage:[StockImages filledStarImage] forState:UIControlStateSelected];
 
     [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
 
     CGRect frame = bookmarkButton.frame;
-    frame.size = [ImageCache emptyStarImage].size;
+    frame.size = [StockImages emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
     bookmarkButton.frame = frame;

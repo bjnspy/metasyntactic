@@ -14,7 +14,7 @@
 
 #import "NetflixCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
@@ -109,7 +109,7 @@
 
 
 - (void) setupTappableArrow {
-    UIImage* image = [ImageCache upArrow];
+    UIImage* image = [StockImages upArrow];
     TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
     view.contentMode = UIViewContentModeCenter;
 

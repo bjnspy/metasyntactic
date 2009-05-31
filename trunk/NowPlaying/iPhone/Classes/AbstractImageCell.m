@@ -14,7 +14,7 @@
 
 #import "AbstractImageCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "Model.h"
 
 
@@ -65,9 +65,9 @@
     titleLabel.minimumFontSize = 14;
 
     if (self.model.loadingIndicatorsEnabled) {
-      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
+      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[StockImages imageLoading]] autorelease];
     } else {
-      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoadingNeutral]] autorelease];
+      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[StockImages imageLoadingNeutral]] autorelease];
     }
     imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -138,7 +138,7 @@
 
 
 - (void) setNotFoundImage {
-  [self setCellImage:[ImageCache imageNotAvailable]];
+  [self setCellImage:[StockImages imageNotAvailable]];
 }
 
 

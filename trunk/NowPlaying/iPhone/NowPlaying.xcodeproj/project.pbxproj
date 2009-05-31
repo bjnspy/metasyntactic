@@ -59,6 +59,8 @@
 		741C73920F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */; };
 		741C73950F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */; };
 		741C73960F8D8D75003747AD /* AbstractPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */; };
+		741F4EAE0FD21B9B00244D37 /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4EAD0FD21B9B00244D37 /* StockImages.m */; };
+		741F4EAF0FD21B9B00244D37 /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4EAD0FD21B9B00244D37 /* StockImages.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
@@ -197,7 +199,6 @@
 		746397800F7EC8D600B2F64C /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		746397810F7EC8D600B2F64C /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		746397820F7EC8D600B2F64C /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
-		746397830F7EC8D600B2F64C /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		746397840F7EC8D600B2F64C /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		746397850F7EC8D600B2F64C /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		746397870F7EC8D600B2F64C /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B22C0E3CE71A00DD25DA /* DataProvider.m */; };
@@ -444,7 +445,6 @@
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
 		74EFA4790F79CE17008680B2 /* CacheUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFA4780F79CE17008680B2 /* CacheUpdater.m */; };
-		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74F321DB0F8C6310009B94E7 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
@@ -588,6 +588,8 @@
 		741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
 		741C73930F8D8D75003747AD /* AbstractPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterDownloader.h; sourceTree = "<group>"; };
 		741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterDownloader.m; sourceTree = "<group>"; };
+		741F4EAC0FD21B9B00244D37 /* StockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockImages.h; sourceTree = "<group>"; };
+		741F4EAD0FD21B9B00244D37 /* StockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockImages.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
 		74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
 		742C07B10F08B0890087F4E0 /* AmazonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonCache.h; sourceTree = "<group>"; };
@@ -897,8 +899,6 @@
 		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
 		74EFA4770F79CE17008680B2 /* CacheUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUpdater.h; sourceTree = "<group>"; };
 		74EFA4780F79CE17008680B2 /* CacheUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheUpdater.m; sourceTree = "<group>"; };
-		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
-		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
 		74EFE5350E35637200B6E103 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		74F187200E2710A400AB5E1E /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
@@ -1645,9 +1645,9 @@
 			isa = PBXGroup;
 			children = (
 				74EFE5340E35637200B6E103 /* FontCache.h */,
-				74EFE4AE0E355D7500B6E103 /* ImageCache.h */,
+				741F4EAC0FD21B9B00244D37 /* StockImages.h */,
 				74EFE5350E35637200B6E103 /* FontCache.m */,
-				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
+				741F4EAD0FD21B9B00244D37 /* StockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2001,7 +2001,6 @@
 				74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */,
 				740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */,
 				740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */,
-				74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */,
 				74EFE5360E35637200B6E103 /* FontCache.m in Sources */,
 				74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */,
 				74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */,
@@ -2114,6 +2113,7 @@
 				7417219E0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */,
 				74BBEE0B0FCAF13B00175BDB /* SmallPosterCache.m in Sources */,
 				74E605A80FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */,
+				741F4EAE0FD21B9B00244D37 /* StockImages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2148,7 +2148,6 @@
 				746397800F7EC8D600B2F64C /* ReviewsViewController.m in Sources */,
 				746397810F7EC8D600B2F64C /* ReviewTitleCell.m in Sources */,
 				746397820F7EC8D600B2F64C /* ReviewBodyCell.m in Sources */,
-				746397830F7EC8D600B2F64C /* ImageCache.m in Sources */,
 				746397840F7EC8D600B2F64C /* FontCache.m in Sources */,
 				746397850F7EC8D600B2F64C /* SearchDatePickerViewController.m in Sources */,
 				746397870F7EC8D600B2F64C /* DataProvider.m in Sources */,
@@ -2259,6 +2258,7 @@
 				7417219F0FA8F58900C10C98 /* LocalizableStringsCache.m in Sources */,
 				74BBEE0C0FCAF13B00175BDB /* SmallPosterCache.m in Sources */,
 				74E605A90FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */,
+				741F4EAF0FD21B9B00244D37 /* StockImages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

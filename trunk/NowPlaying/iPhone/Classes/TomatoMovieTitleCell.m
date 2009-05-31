@@ -14,7 +14,7 @@
 
 #import "TomatoMovieTitleCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 
 @implementation TomatoMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
-        self.image = [ImageCache freshImage];
+        self.image = [StockImages freshImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.textColor = [UIColor whiteColor];

@@ -14,7 +14,7 @@
 
 #import "NetflixRatingsCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "TappableImageView.h"
@@ -104,9 +104,9 @@
         } else {
             CGFloat value = rating - i;
             if (value < 1) {
-                image = [ImageCache emptyStarImage];
+                image = [StockImages emptyStarImage];
             } else {
-                image = [ImageCache filledStarImage];
+                image = [StockImages filledStarImage];
             }
         }
 

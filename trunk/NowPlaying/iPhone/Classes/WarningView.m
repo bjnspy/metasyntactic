@@ -15,7 +15,7 @@
 #import "WarningView.h"
 
 #import "FontCache.h"
-#import "ImageCache.h"
+#import "StockImages.h"
 #import "Model.h"
 
 @interface WarningView()
@@ -55,7 +55,7 @@ const NSInteger TOP_BUFFER = 5;
         label.shadowOffset = CGSizeMake(0, 1);
         label.textAlignment = UITextAlignmentCenter;
 
-        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache warning32x32]] autorelease];
+        self.imageView = [[[UIImageView alloc] initWithImage:[StockImages warning32x32]] autorelease];
 
         [self addSubview:imageView];
         [self addSubview:label];
@@ -90,13 +90,13 @@ const NSInteger TOP_BUFFER = 5;
     {
         CGRect frame = imageView.frame;
         frame.origin.x = 20;
-        frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [ImageCache warning32x32].size.height) / 2.0));
+        frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [StockImages warning32x32].size.height) / 2.0));
         imageView.frame = frame;
     }
 }
 
 - (CGFloat) height {
-    double imageHeight = [ImageCache warning32x32].size.height;
+    double imageHeight = [StockImages warning32x32].size.height;
 
     double width;
     if ([self.model screenRotationEnabled] &&
