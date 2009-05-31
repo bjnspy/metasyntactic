@@ -249,7 +249,6 @@
 		746397F10F7EC8D600B2F64C /* NetflixQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */; };
 		746397F20F7EC8D600B2F64C /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		746397F30F7EC8D600B2F64C /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
-		746397F40F7EC8D600B2F64C /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
 		746397F50F7EC8D600B2F64C /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
 		746397F60F7EC8D600B2F64C /* NetflixRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */; };
 		746397F70F7EC8D600B2F64C /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
@@ -322,7 +321,6 @@
 		747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
-		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
@@ -599,7 +597,6 @@
 		744247030E89F7B500ACDBCF /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
 		744247050E89F7C300ACDBCF /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		744247060E89F7C300ACDBCF /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
-		744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
 		74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
@@ -730,8 +727,6 @@
 		747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
 		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
-		747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
-		747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1151,13 +1146,10 @@
 		744246FE0E89F79000ACDBCF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */,
 				747BF4890F774928008F5B2B /* LocalSearchEngine.h */,
 				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
-				744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */,
 				744247020E89F7B500ACDBCF /* SearchRequest.h */,
 				744247050E89F7C300ACDBCF /* SearchResult.h */,
-				747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */,
 				747BF48A0F774928008F5B2B /* LocalSearchEngine.m */,
 				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
 				744247030E89F7B500ACDBCF /* SearchRequest.m */,
@@ -2022,7 +2014,6 @@
 				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
 				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
 				747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */,
-				747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */,
 				74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */,
 				741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */,
 				7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */,
@@ -2165,7 +2156,6 @@
 				746397F10F7EC8D600B2F64C /* NetflixQueueViewController.m in Sources */,
 				746397F20F7EC8D600B2F64C /* Queue.m in Sources */,
 				746397F30F7EC8D600B2F64C /* NetflixSearchEngine.m in Sources */,
-				746397F40F7EC8D600B2F64C /* AbstractSearchEngine.m in Sources */,
 				746397F50F7EC8D600B2F64C /* NetflixRatingsCell.m in Sources */,
 				746397F60F7EC8D600B2F64C /* NetflixRecommendationsViewController.m in Sources */,
 				746397F70F7EC8D600B2F64C /* NetflixGenreRecommendationsViewController.m in Sources */,
