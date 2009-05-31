@@ -233,7 +233,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NowPlaying">
+  <component name="RunManager" selected="Application.PocketFlicks">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -505,7 +505,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="22" width="1174" height="878" extended-state="0" />
+    <frame x="48" y="22" width="1174" height="878" extended-state="1" />
     <editor active="false" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
