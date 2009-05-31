@@ -161,7 +161,7 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
-  
+
   if (loadFromDisk) {
     NSData* smallPosterData;
 

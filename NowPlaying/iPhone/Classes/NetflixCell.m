@@ -14,10 +14,10 @@
 
 #import "NetflixCell.h"
 
-#import "StockImages.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "StockImages.h"
 #import "TappableImageView.h"
 
 @interface NetflixCell()

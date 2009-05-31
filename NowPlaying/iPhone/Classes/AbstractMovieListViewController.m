@@ -14,11 +14,11 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "StockImages.h"
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MoviesNavigationController.h"
+#import "StockImages.h"
 
 
 @interface AbstractMovieListViewController()

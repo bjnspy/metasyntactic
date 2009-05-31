@@ -15,8 +15,8 @@
 #import "WarningView.h"
 
 #import "FontCache.h"
-#import "StockImages.h"
 #import "Model.h"
+#import "StockImages.h"
 
 @interface WarningView()
 @property (retain) UIImageView* imageView;

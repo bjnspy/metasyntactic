@@ -100,11 +100,11 @@
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles {
   NSMutableArray* arguments = [NSMutableArray array];
-  
+
   for (NSInteger i = 0; i < selectors.count; i++) {
     [arguments addObject:[NSNull null]];
   }
-  
+
   return [self viewWithTarget:target
                     selectors:selectors
                        titles:titles

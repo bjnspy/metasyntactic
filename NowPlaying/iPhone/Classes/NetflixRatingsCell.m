@@ -14,9 +14,9 @@
 
 #import "NetflixRatingsCell.h"
 
-#import "StockImages.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
+#import "StockImages.h"
 #import "TappableImageView.h"
 
 @interface NetflixRatingsCell()

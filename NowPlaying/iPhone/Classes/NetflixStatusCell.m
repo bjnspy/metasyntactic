@@ -14,9 +14,9 @@
 
 #import "NetflixStatusCell.h"
 
-#import "StockImages.h"
 #import "Queue.h"
 #import "Status.h"
+#import "StockImages.h"
 #import "TappableImageView.h"
 
 @interface NetflixStatusCell()
