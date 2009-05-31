@@ -16,7 +16,6 @@
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
-#import "TappableImageViewDelegate.h"
 
 @interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
@@ -44,7 +43,7 @@
 
     UIImage* posterImage;
     TappableImageView* posterImageView;
-    ActivityIndicatorViewWithBackground* posterActivityView;
+    SmallActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
 }
 

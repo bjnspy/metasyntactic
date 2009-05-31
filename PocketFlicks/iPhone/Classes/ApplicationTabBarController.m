@@ -124,7 +124,7 @@
     self.selectedViewController = [self moviesNavigationController];
     [self performSelector:@selector(pushInfoControllerAnimated) withObject:nil afterDelay:0];
   } else {
-    AbstractNavigationController* controller;
+    CommonNavigationController* controller;
     if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
       controller = [self.viewControllers objectAtIndex:0];
     } else {
@@ -147,7 +147,7 @@
 
 
 - (void) pushVoteBrowser {
-  AbstractNavigationController* controller = self.selectedNavigationController;
+  CommonNavigationController* controller = self.selectedNavigationController;
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
   [controller pushBrowser:url showSafariButton:NO animated:YES];
 }
@@ -195,7 +195,7 @@
 }
 
 
-- (AbstractNavigationController*) selectedNavigationController {
+- (CommonNavigationController*) selectedNavigationController {
   return (id)self.selectedViewController;
 }
 

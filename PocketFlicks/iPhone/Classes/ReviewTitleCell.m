@@ -14,11 +14,10 @@
 
 #import "ReviewTitleCell.h"
 
-#import "ColorCache.h"
 #import "FontCache.h"
-#import "ImageCache.h"
 #import "Model.h"
 #import "Review.h"
+#import "StockImages.h"
 
 @interface ReviewTitleCell()
 @property (retain) UILabel* scoreLabel;
@@ -110,14 +109,14 @@
 
 - (void) setBasicSquareImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
-        self.image = [ImageCache redRatingImage];
+        self.image = [StockImages redRatingImage];
     } else if (score > 40 && score <= 60) {
-        self.image = [ImageCache yellowRatingImage];
+        self.image = [StockImages yellowRatingImage];
     } else if (score > 60 && score <= 100) {
-        self.image = [ImageCache greenRatingImage];
+        self.image = [StockImages greenRatingImage];
     } else {
         [self clearScoreLabel];
-        self.image = [ImageCache unknownRatingImage];
+        self.image = [StockImages unknownRatingImage];
     }
 
     if (score >= 0 && score <= 100) {

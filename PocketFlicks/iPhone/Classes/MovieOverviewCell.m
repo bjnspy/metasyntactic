@@ -14,11 +14,9 @@
 
 #import "MovieOverviewCell.h"
 
-#import "ActivityIndicatorViewWithBackground.h"
 #import "FontCache.h"
 #import "Model.h"
 #import "MovieDetailsViewController.h"
-#import "TappableImageView.h"
 
 
 @interface MovieOverviewCell()
@@ -73,7 +71,7 @@
 - (id) initWithMovie:(Movie*) movie_
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
-        activityView:(ActivityIndicatorViewWithBackground*) activityView {
+        activityView:(SmallActivityIndicatorViewWithBackground*) activityView {
 #ifdef IPHONE_OS_VERSION_3
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]) {
 #else
@@ -236,7 +234,7 @@
                                model:(Model*) model
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
-                        activityView:(ActivityIndicatorViewWithBackground*) activityView {
+                        activityView:(SmallActivityIndicatorViewWithBackground*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
                                          posterImage:posterImage
                                      posterImageView:posterImageView

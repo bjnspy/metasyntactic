@@ -14,7 +14,6 @@
 
 #import "AbstractMovieDetailsCell.h"
 #import "NetflixChangeRatingDelegate.h"
-#import "TappableImageViewDelegate.h"
 
 @interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private

@@ -115,7 +115,7 @@ static Controller* controller = nil;
 
 - (void) didReceiveMemoryWarning {
   [self.model.largePosterCache didReceiveMemoryWarning];
-  [self.model.smallPosterCache didReceiveMemoryWarning];
+  [self.model.imageCache didReceiveMemoryWarning];
   [self.model.imdbCache didReceiveMemoryWarning];
   [self.model.amazonCache didReceiveMemoryWarning];
   [self.model.wikipediaCache didReceiveMemoryWarning];

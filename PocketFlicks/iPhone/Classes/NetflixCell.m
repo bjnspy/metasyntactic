@@ -14,12 +14,10 @@
 
 #import "NetflixCell.h"
 
-#import "ColorCache.h"
-#import "ImageCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "TappableImageView.h"
+#import "StockImages.h"
 
 @interface NetflixCell()
 @property (retain) UILabel* directorTitleLabel;
@@ -110,7 +108,7 @@
 
 
 - (void) setupTappableArrow {
-    UIImage* image = [ImageCache upArrow];
+    UIImage* image = [StockImages upArrow];
     TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
     view.contentMode = UIViewContentModeCenter;
 

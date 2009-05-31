@@ -503,7 +503,6 @@ typedef enum {
 
 
 - (void) didSelectRefreshRow:(NSInteger) row {
-  //[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
   if (refreshed) {
     return;
   }
@@ -515,14 +514,6 @@ typedef enum {
     [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
   }
   [self.tableView endUpdates];
-
-  //UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-
-#ifdef IPHONE_OS_VERSION_3
-  //cell.textLabel.textColor = [UIColor grayColor];
-#else
-  //cell.textColor = [UIColor grayColor];
-#endif
 
   [[Controller controller] start:YES];
 }

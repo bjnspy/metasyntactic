@@ -14,7 +14,7 @@
 
 #import "YellowMovieTitleCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 
 @implementation YellowMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
-        self.image = [ImageCache yellowRatingImage];
+        self.image = [StockImages yellowRatingImage];
     }
 
     return self;

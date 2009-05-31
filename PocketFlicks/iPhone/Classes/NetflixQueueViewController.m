@@ -14,12 +14,11 @@
 
 #import "NetflixQueueViewController.h"
 
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "Queue.h"
-#import "TappableImageView.h"
 
 @interface NetflixQueueViewController()
 @property (copy) NSString* feedKey;
@@ -345,6 +344,11 @@
 }
 
 
+- (CommonNavigationController*) commonNavigationController {
+  return (id)self.navigationController;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (readonlyMode) {
@@ -363,7 +367,7 @@
         movie = [queue.saved objectAtIndex:indexPath.row];
     }
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -471,7 +475,8 @@
 
 
 - (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+        wasTouched:(UITouch*) touch
+          tapCount:(NSInteger) tapCount {
     if (readonlyMode) {
         return;
     }

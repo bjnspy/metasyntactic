@@ -15,7 +15,7 @@
 #ifdef IPHONE_OS_VERSION_3
 #import "LocalSearchDisplayController.h"
 
-#import "AbstractNavigationController.h"
+#import "CommonNavigationController.h"
 #import "DVDCell.h"
 #import "LocalSearchEngine.h"
 #import "Model.h"
@@ -227,35 +227,35 @@
 - (void) didSelectMovieRow:(NSInteger) row {
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
-    [self.abstractNavigationController pushTheaterDetails:theater animated:YES];
+    [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
     Movie* movie = [searchResult.dvds objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectBlurayRow:(NSInteger) row {
     Movie* movie = [searchResult.bluray objectAtIndex:row];
 
-    [self.abstractNavigationController pushMovieDetails:movie animated:YES];
+    [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
