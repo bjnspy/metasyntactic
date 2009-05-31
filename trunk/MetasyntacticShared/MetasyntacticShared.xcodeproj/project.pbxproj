@@ -32,8 +32,6 @@
 		741F50D90FD22C9400244D37 /* TappableScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CC0FD22C9400244D37 /* TappableScrollView.h */; };
 		741F50DA0FD22C9400244D37 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F50CD0FD22C9400244D37 /* TappableScrollView.m */; };
 		741F50DB0FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */; };
-		741F50DC0FD22C9400244D37 /* TappableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CF0FD22C9400244D37 /* TappableView.h */; };
-		741F50DD0FD22C9400244D37 /* TappableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F50D00FD22C9400244D37 /* TappableView.m */; };
 		741F50DE0FD22C9400244D37 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D10FD22C9400244D37 /* TappableViewDelegate.h */; };
 		741F50DF0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */; };
 		741F50E00FD22C9400244D37 /* InteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50C60FD22C9400244D37 /* InteractiveView.h */; };
@@ -45,8 +43,6 @@
 		741F50E60FD22C9400244D37 /* TappableScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CC0FD22C9400244D37 /* TappableScrollView.h */; };
 		741F50E70FD22C9400244D37 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F50CD0FD22C9400244D37 /* TappableScrollView.m */; };
 		741F50E80FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */; };
-		741F50E90FD22C9400244D37 /* TappableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50CF0FD22C9400244D37 /* TappableView.h */; };
-		741F50EA0FD22C9400244D37 /* TappableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F50D00FD22C9400244D37 /* TappableView.m */; };
 		741F50EB0FD22C9400244D37 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D10FD22C9400244D37 /* TappableViewDelegate.h */; };
 		741F50EC0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */; };
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -353,8 +349,6 @@
 		741F50CC0FD22C9400244D37 /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
 		741F50CD0FD22C9400244D37 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
 		741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
-		741F50CF0FD22C9400244D37 /* TappableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableView.h; sourceTree = "<group>"; };
-		741F50D00FD22C9400244D37 /* TappableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableView.m; sourceTree = "<group>"; };
 		741F50D10FD22C9400244D37 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
 		741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
@@ -639,7 +633,6 @@
 				741F50CB0FD22C9400244D37 /* TappableImageViewDelegate.h */,
 				741F50CC0FD22C9400244D37 /* TappableScrollView.h */,
 				741F50CE0FD22C9400244D37 /* TappableScrollViewDelegate.h */,
-				741F50CF0FD22C9400244D37 /* TappableView.h */,
 				741F50D10FD22C9400244D37 /* TappableViewDelegate.h */,
 				741F50D20FD22C9400244D37 /* TouchableViewDelegate.h */,
 				741F4CCD0FD20CEB00244D37 /* ActionsView.m */,
@@ -648,7 +641,6 @@
 				741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */,
 				741F50CA0FD22C9400244D37 /* TappableImageView.m */,
 				741F50CD0FD22C9400244D37 /* TappableScrollView.m */,
-				741F50D00FD22C9400244D37 /* TappableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -974,7 +966,6 @@
 				741F50D80FD22C9400244D37 /* TappableImageViewDelegate.h in Headers */,
 				741F50D90FD22C9400244D37 /* TappableScrollView.h in Headers */,
 				741F50DB0FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */,
-				741F50DC0FD22C9400244D37 /* TappableView.h in Headers */,
 				741F50DE0FD22C9400244D37 /* TappableViewDelegate.h in Headers */,
 				741F50DF0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */,
 			);
@@ -1062,7 +1053,6 @@
 				741F50E50FD22C9400244D37 /* TappableImageViewDelegate.h in Headers */,
 				741F50E60FD22C9400244D37 /* TappableScrollView.h in Headers */,
 				741F50E80FD22C9400244D37 /* TappableScrollViewDelegate.h in Headers */,
-				741F50E90FD22C9400244D37 /* TappableView.h in Headers */,
 				741F50EB0FD22C9400244D37 /* TappableViewDelegate.h in Headers */,
 				741F50EC0FD22C9400244D37 /* TouchableViewDelegate.h in Headers */,
 			);
@@ -1202,7 +1192,6 @@
 				741F50D40FD22C9400244D37 /* InteractiveView.m in Sources */,
 				741F50D70FD22C9400244D37 /* TappableImageView.m in Sources */,
 				741F50DA0FD22C9400244D37 /* TappableScrollView.m in Sources */,
-				741F50DD0FD22C9400244D37 /* TappableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,7 +1273,6 @@
 				741F50E10FD22C9400244D37 /* InteractiveView.m in Sources */,
 				741F50E40FD22C9400244D37 /* TappableImageView.m in Sources */,
 				741F50E70FD22C9400244D37 /* TappableScrollView.m in Sources */,
-				741F50EA0FD22C9400244D37 /* TappableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
