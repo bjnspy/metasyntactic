@@ -30,5 +30,11 @@
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
                       arguments:(NSArray*) arguments;
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles;
+
+- (void) disableButtons;
+- (void) enableButtons;
 
 @end
