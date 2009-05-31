@@ -32,7 +32,7 @@
                                model:(Model*) model
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
-                        activityView:(ActivityIndicatorViewWithBackground*) activityView;
+                        activityView:(SmallActivityIndicatorViewWithBackground*) activityView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(Model*) model;
 
 @end

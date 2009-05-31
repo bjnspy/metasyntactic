@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		741F4C2F0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
+		741F4C300FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
+		741F4C310FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
+		741F4C320FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */; };
+		741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
+		741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
+		741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
+		741F4C360FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */; };
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		747C2FF90FD064C500411801 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		747C2FFA0FD064C500411801 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
@@ -294,6 +302,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
 		740102280F26EF7800258353 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utilities.m"; sourceTree = "<group>"; };
+		741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
+		741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
+		741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
@@ -564,6 +576,17 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		741F4C2A0FD2093F00244D37 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */,
+				741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */,
+				741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */,
+				741F4C2E0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		74616C340F15D1CB0004B610 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +751,7 @@
 				74E604B90FD1F10C0015D9F8 /* NavigationControllers */,
 				74E601A10FD1C7630015D9F8 /* TableViewCells */,
 				741C759E0F8DCAF0003747AD /* ViewControllers */,
+				741F4C2A0FD2093F00244D37 /* Views */,
 				747C31AD0FD069AE00411801 /* NotificationCenter.h */,
 				74616E630F15DCC10004B610 /* ViewControllerUtilities.h */,
 				747C31AE0FD069AE00411801 /* NotificationCenter.m */,
@@ -872,6 +896,8 @@
 				74E601A40FD1C7700015D9F8 /* AttributeCell.h in Headers */,
 				74E602510FD1C82D0015D9F8 /* ColorCache.h in Headers */,
 				74E604D40FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
+				741F4C2F0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */,
+				741F4C310FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +973,8 @@
 				74E601E90FD1C7990015D9F8 /* AttributeCell.h in Headers */,
 				74E602530FD1C82D0015D9F8 /* ColorCache.h in Headers */,
 				74E604D60FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */,
+				741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */,
+				741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1105,8 @@
 				74E601A50FD1C7700015D9F8 /* AttributeCell.m in Sources */,
 				74E602520FD1C82D0015D9F8 /* ColorCache.m in Sources */,
 				74E604D50FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
+				741F4C300FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */,
+				741F4C320FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1181,8 @@
 				74E6022B0FD1C7990015D9F8 /* AttributeCell.m in Sources */,
 				74E602540FD1C82D0015D9F8 /* ColorCache.m in Sources */,
 				74E604D70FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */,
+				741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */,
+				741F4C360FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,8 @@
 @class AbstractNavigationController;
 @class AbstractSearchEngine;
 @class ActionsView;
-@class ActivityIndicatorViewWithBackground;
+@class LargeActivityIndicatorViewWithBackground;
+@class SmallActivityIndicatorViewWithBackground;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
 @class AmazonCache;
