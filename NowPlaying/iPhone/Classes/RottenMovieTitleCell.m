@@ -14,7 +14,7 @@
 
 #import "RottenMovieTitleCell.h"
 
-#import "ImageCache.h"
+#import "StockImages.h"
 
 @implementation RottenMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
     if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
-        self.image = [ImageCache rottenFadedImage];
+        self.image = [StockImages rottenFadedImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:17];
         scoreLabel.textColor = [UIColor blackColor];

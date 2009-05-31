@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ImageCache.h"
+#import "StockImages.h"
 
-@implementation ImageCache
+@implementation StockImages
 
 static UIImage* freshImage = nil;
 static UIImage* rottenFadedImage = nil;
@@ -41,7 +41,7 @@ static UIImage* warning16x16 = nil;
 static UIImage* warning32x32 = nil;
 
 + (void) initialize {
-    if (self == [ImageCache class]) {
+    if (self == [StockImages class]) {
         freshImage          = [[UIImage imageNamed:@"Fresh.png"] retain];
         rottenFadedImage    = [[UIImage imageNamed:@"Rotten-Faded.png"] retain];
         rottenFullImage     = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
