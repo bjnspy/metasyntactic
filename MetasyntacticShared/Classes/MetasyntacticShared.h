@@ -20,6 +20,7 @@
 #import "AbstractFullScreenViewController.h"
 #import "AbstractNavigationController.h"
 #import "AbstractTableViewController.h"
+#import "ActionsView.h"
 #import "AlertUtilities.h"
 #import "AttributeCell.h"
 #import "Base64.h"

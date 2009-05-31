@@ -14,7 +14,6 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "ActionsView.h"
 #import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"

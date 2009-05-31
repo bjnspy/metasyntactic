@@ -40,6 +40,11 @@ static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
 }
 
 
++ (BOOL) screenRotationEnabled {
+  return [delegate screenRotationEnabled];
+}
+
+
 + (void) minorRefresh {
   [delegate minorRefresh];
 }
