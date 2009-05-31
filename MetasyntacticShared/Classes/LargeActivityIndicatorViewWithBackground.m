@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ActivityIndicatorViewWithBackground.h"
+#import "LargeActivityIndicatorViewWithBackground.h"
 
-@interface ActivityIndicatorViewWithBackground()
+@interface LargeActivityIndicatorViewWithBackground()
 @property (retain) UIImageView* backgroundView;
 @property (retain) UIActivityIndicatorView* activityIndicator;
 @end
 
 
-@implementation ActivityIndicatorViewWithBackground
+@implementation LargeActivityIndicatorViewWithBackground
 
 @synthesize backgroundView;
 @synthesize activityIndicator;
@@ -35,11 +35,11 @@
 
 - (id) init {
     if (self = [super init]) {
-        UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
+        UIImage* image = [UIImage imageNamed:@"GrayCircle.png"];
         self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
         self.frame = backgroundView.frame;
 
-        self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
         activityIndicator.hidesWhenStopped = YES;
 
         CGRect frame = activityIndicator.frame;

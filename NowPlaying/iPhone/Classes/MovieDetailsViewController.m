@@ -15,7 +15,6 @@
 #import "MovieDetailsViewController.h"
 
 #import "ActionsView.h"
-#import "ActivityIndicatorViewWithBackground.h"
 #import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
@@ -55,7 +54,7 @@
 @property NSInteger hiddenTheaterCount;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
-@property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
+@property (retain) SmallActivityIndicatorViewWithBackground* posterActivityView;
 @property (retain) UIButton* bookmarkButton;
 @end
 
@@ -357,7 +356,7 @@ const NSInteger POSTER_TAG = -1;
 
         // Only want to do this once.
         if (self.model.loadingIndicatorsEnabled) {
-            self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
+            self.posterActivityView = [[[SmallActivityIndicatorViewWithBackground alloc] init] autorelease];
             [posterActivityView startAnimating];
             [posterActivityView sizeToFit];
         }

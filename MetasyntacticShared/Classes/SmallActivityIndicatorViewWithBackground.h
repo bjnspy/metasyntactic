@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ActivityIndicatorViewWithBackground : UIView {
+@interface SmallActivityIndicatorViewWithBackground : UIView {
 @private
     UIImageView* backgroundView;
     UIActivityIndicatorView* activityIndicator;
