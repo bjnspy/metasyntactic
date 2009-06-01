@@ -15,6 +15,7 @@
 #import "AlertUtilities.h"
 
 #import "MetasyntacticSharedApplication.h"
+#import "ThreadingUtilities.h"
 
 @implementation AlertUtilities
 
@@ -25,18 +26,26 @@
 
 + (void) showOkAlert:(NSString*) message
            withTitle:(NSString*) title {
-    NSAssert([NSThread isMainThread], nil);
-    if (message.length == 0) {
-        message = @"";
-    }
+  if (![NSThread isMainThread]) {
+    [ThreadingUtilities foregroundSelector:@selector(showOkAlert:withTitle:)
+                                  onTarget:self
+                                withObject:message
+                                withObject:title];
+    return;
+  }
 
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:nil
-                                           otherButtonTitles:LocalizedString(@"OK", nil), nil] autorelease];
-
-    [alert show];
+  NSAssert([NSThread isMainThread], nil);
+  if (message.length == 0) {
+    message = @"";
+  }
+  
+  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title
+                                                   message:message
+                                                  delegate:nil
+                                         cancelButtonTitle:nil
+                                         otherButtonTitles:LocalizedString(@"OK", nil), nil] autorelease];
+  
+  [alert show];
 }
 
 @end
