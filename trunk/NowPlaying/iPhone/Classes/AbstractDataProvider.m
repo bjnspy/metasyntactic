@@ -29,9 +29,9 @@
 @interface AbstractDataProvider()
 @property (retain) ThreadsafeValue* moviesData;
 @property (retain) ThreadsafeValue* theatersData;
-@property (retain) NSDictionary* synchronizationInformationData;
+@property (retain) ThreadsafeValue* synchronizationInformationData;
 @property (retain) NSMutableDictionary* performancesData;
-@property (retain) NSDictionary* bookmarksData;
+@property (retain) ThreadsafeValue* bookmarksData;
 @property (retain) NSMutableDictionary* cachedIsStale;
 @end
 
@@ -61,6 +61,8 @@
   if (self = [super init]) {
     self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
     self.theatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadTheaters) saveSelector:@selector(saveTheaters:)];
+    self.synchronizationInformationData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadSynchronizationInformation) saveSelector:@selector(saveSynchronizationInformation:)];
+    self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
     
     self.performancesData = [NSMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
@@ -145,24 +147,8 @@
 }
 
 
-- (NSDictionary*) bookmarksNoLock {
-  if (bookmarksData == nil) {
-    self.bookmarksData = [self loadBookmarks];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.bookmarksData;
-}
-
-
 - (NSDictionary*) bookmarks {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self bookmarksNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return bookmarksData.value;
 }
 
 
@@ -175,24 +161,8 @@
 }
 
 
-- (NSDictionary*) synchronizationInformationNoLock {
-  if (synchronizationInformationData == nil) {
-    self.synchronizationInformationData = [self loadSynchronizationInformation];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.synchronizationInformationData;
-}
-
-
 - (NSDictionary*) synchronizationInformation {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self synchronizationInformationNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return synchronizationInformationData.value;
 }
 
 
@@ -206,12 +176,7 @@
 }
 
 
-- (void) setBookmarks:(NSDictionary*) bookmarks {
-  [dataGate lock];
-  {
-    self.bookmarksData = bookmarks;
-  }
-  [dataGate unlock];
+- (void) saveBookmarks:(NSDictionary*) bookmarks {
   [self.model setBookmarkedMovies:bookmarks.allValues];
 }
 
@@ -232,8 +197,6 @@
   moviesData.value = result.movies;
   theatersData.value = result.theaters;
   
-  [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
-  
   // Do this last.  It signifies that we are done
   [self setLastLookupDate];
   
@@ -250,11 +213,11 @@
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }
-  [self setBookmarks:dictionary];
+  bookmarksData.value = dictionary;
+  synchronizationInformationData.value = result.synchronizationInformation;
   
   [dataGate lock];
   {
-    self.synchronizationInformationData = result.synchronizationInformation;
     self.performancesData = [NSMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
@@ -613,8 +576,7 @@
     if ([movie.canonicalTitle isEqual:canonicalTitle]) {
       NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
       [dictionary setObject:movie forKey:canonicalTitle];
-      
-      [self setBookmarks:dictionary];
+      bookmarksData.value = dictionary;
       return;
     }
   }
@@ -624,7 +586,7 @@
 - (void) removeBookmark:(NSString*) canonicalTitle {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   [dictionary removeObjectForKey:canonicalTitle];
-  [self setBookmarks:dictionary];
+  bookmarksData.value = dictionary;
 }
 
 @end
