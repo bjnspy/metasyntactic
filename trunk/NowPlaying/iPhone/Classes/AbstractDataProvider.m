@@ -161,6 +161,11 @@
 }
 
 
+- (void) saveSynchronizationInformation:(NSDictionary*) value {
+  [FileUtilities writeObject:value toFile:self.synchronizationInformationFile];
+}
+
+
 - (NSDictionary*) synchronizationInformation {
   return synchronizationInformationData.value;
 }
