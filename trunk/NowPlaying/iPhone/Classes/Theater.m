@@ -48,6 +48,36 @@ property_definition(movieTitles);
 }
 
 
++ (NSArray*) encodeArray:(NSArray*) array {
+  if (array.count == 0) {
+    return [NSArray array];
+  }
+  
+  NSMutableArray* result = [NSMutableArray array];
+  
+  for (Theater* theater in array) {
+    [result addObject:theater.dictionary];
+  }
+  
+  return result;
+}
+
+
++ (NSArray*) decodeArray:(NSArray*) array {
+  if (array.count == 0) {
+    return [NSArray array];
+  }
+  
+  NSMutableArray* decodedTheaters = [NSMutableArray array];
+  
+  for (int i = 0; i < array.count; i++) {
+    [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
+  }
+  
+  return decodedTheaters;
+}
+
+
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
                                      name:[dictionary objectForKey:name_key]

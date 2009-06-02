@@ -33,6 +33,9 @@
 @property (readonly, retain) Location* originatingLocation;
 @property (readonly, retain) NSArray* movieTitles;
 
++ (NSArray*) encodeArray:(NSArray*) array;
++ (NSArray*) decodeArray:(NSArray*) array;
+
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
                        phoneNumber:(NSString*) phoneNumber

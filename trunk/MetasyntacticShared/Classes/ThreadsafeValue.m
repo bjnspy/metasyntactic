@@ -92,9 +92,9 @@
   [gate lock];
   {
     self.valueData = value;
-    [delegate performSelector:saveSelector withObject:value];
   }
   [gate unlock];
+  [delegate performSelector:saveSelector withObject:value];
 }
 
 @end

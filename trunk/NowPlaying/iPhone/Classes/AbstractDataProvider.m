@@ -27,8 +27,8 @@
 #import "UserLocationCache.h"
 
 @interface AbstractDataProvider()
-@property (retain) NSArray* moviesData;
-@property (retain) NSArray* theatersData;
+@property (retain) ThreadsafeValue* moviesData;
+@property (retain) ThreadsafeValue* theatersData;
 @property (retain) NSDictionary* synchronizationInformationData;
 @property (retain) NSMutableDictionary* performancesData;
 @property (retain) NSDictionary* bookmarksData;
@@ -46,353 +46,307 @@
 @synthesize cachedIsStale;
 
 - (void) dealloc {
-    self.moviesData = nil;
-    self.theatersData = nil;
-    self.performancesData = nil;
-    self.synchronizationInformationData = nil;
-    self.bookmarksData = nil;
-    self.cachedIsStale = nil;
-
-    [super dealloc];
+  self.moviesData = nil;
+  self.theatersData = nil;
+  self.performancesData = nil;
+  self.synchronizationInformationData = nil;
+  self.bookmarksData = nil;
+  self.cachedIsStale = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if (self = [super init]) {
-        self.performancesData = [NSMutableDictionary dictionary];
-        self.cachedIsStale = [NSMutableDictionary dictionary];
-    }
-
-    return self;
+  if (self = [super init]) {
+    self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
+    self.theatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadTheaters) saveSelector:@selector(saveTheaters:)];
+    
+    self.performancesData = [NSMutableDictionary dictionary];
+    self.cachedIsStale = [NSMutableDictionary dictionary];
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (NSString*) performancesDirectory {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"Performances"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Performances"];
 }
 
 
 - (NSString*) locationFile {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"Location.plist"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Location.plist"];
 }
 
 
 - (NSString*) moviesFile {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
 
 - (NSString*) theatersFile {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"Theaters.plist"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
 
 - (NSString*) synchronizationInformationFile {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
 
 - (NSString*) lastLookupDateFile {
-    return [[Application dataDirectory] stringByAppendingPathComponent:@"lastLookupDate"];
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"lastLookupDate"];
 }
 
 
 - (NSDate*) lastLookupDate {
-    return [FileUtilities modificationDate:[self lastLookupDateFile]];
+  return [FileUtilities modificationDate:[self lastLookupDateFile]];
 }
 
 
 - (void) setLastLookupDate {
-    [FileUtilities writeObject:@"" toFile:[self lastLookupDateFile]];
-}
-
-
-- (NSArray*) loadMovies:(NSString*) file {
-    NSArray* array = [FileUtilities readObject:file];
-    return [Movie decodeArray:array];
+  [FileUtilities writeObject:@"" toFile:[self lastLookupDateFile]];
 }
 
 
 - (NSArray*) loadMovies {
-    return [self loadMovies:self.moviesFile];
+  NSArray* array = [FileUtilities readObject:self.moviesFile];
+  return [Movie decodeArray:array];
 }
 
 
-- (NSArray*) moviesNoLock {
-    if (moviesData == nil) {
-        self.moviesData = [self loadMovies];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.moviesData;
+- (void) saveMovies:(NSArray*) movies {
+  [FileUtilities writeObject:[Movie encodeArray:movies] toFile:self.moviesFile];
 }
 
 
 - (NSArray*) movies {
-    NSArray* result = nil;
-    [dataGate lock];
-    {
-        result = [self moviesNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  return moviesData.value;
 }
 
 
 - (NSMutableDictionary*) loadBookmarks {
-    NSArray* movies = [self.model bookmarkedMovies];
-    if (movies.count == 0) {
-        return [NSMutableDictionary dictionary];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    for (Movie* movie in movies) {
-        [result setObject:movie forKey:movie.canonicalTitle];
-    }
-    return result;
+  NSArray* movies = [self.model bookmarkedMovies];
+  if (movies.count == 0) {
+    return [NSMutableDictionary dictionary];
+  }
+  
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  for (Movie* movie in movies) {
+    [result setObject:movie forKey:movie.canonicalTitle];
+  }
+  return result;
 }
 
 
 - (NSDictionary*) bookmarksNoLock {
-    if (bookmarksData == nil) {
-        self.bookmarksData = [self loadBookmarks];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.bookmarksData;
+  if (bookmarksData == nil) {
+    self.bookmarksData = [self loadBookmarks];
+  }
+  
+  // Access through the property so that we get back a safe pointer
+  return self.bookmarksData;
 }
 
 
 - (NSDictionary*) bookmarks {
-    NSDictionary* result = nil;
-    [dataGate lock];
-    {
-        result = [self bookmarksNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  NSDictionary* result = nil;
+  [dataGate lock];
+  {
+    result = [self bookmarksNoLock];
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (NSDictionary*) loadSynchronizationInformation {
-    NSDictionary* result = [FileUtilities readObject:self.synchronizationInformationFile];
-    if (result.count == 0) {
-        return [NSDictionary dictionary];
-    }
-    return result;
+  NSDictionary* result = [FileUtilities readObject:self.synchronizationInformationFile];
+  if (result.count == 0) {
+    return [NSDictionary dictionary];
+  }
+  return result;
 }
 
 
 - (NSDictionary*) synchronizationInformationNoLock {
-    if (synchronizationInformationData == nil) {
-        self.synchronizationInformationData = [self loadSynchronizationInformation];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.synchronizationInformationData;
+  if (synchronizationInformationData == nil) {
+    self.synchronizationInformationData = [self loadSynchronizationInformation];
+  }
+  
+  // Access through the property so that we get back a safe pointer
+  return self.synchronizationInformationData;
 }
 
 
 - (NSDictionary*) synchronizationInformation {
-    NSDictionary* result = nil;
-    [dataGate lock];
-    {
-        result = [self synchronizationInformationNoLock];
-    }
-    [dataGate unlock];
-    return result;
-}
-
-
-- (void) saveArray:(NSArray*) array to:(NSString*) file {
-    NSMutableArray* encoded = [NSMutableArray array];
-
-    for (id object in array) {
-        [encoded addObject:[object dictionary]];
-    }
-
-    [FileUtilities writeObject:encoded toFile:file];
+  NSDictionary* result = nil;
+  [dataGate lock];
+  {
+    result = [self synchronizationInformationNoLock];
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (NSString*) performancesFile:(NSString*) theaterName parentDirectory:(NSString*) directory {
-    return [[directory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
+  return [[directory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) performancesFile:(NSString*) theaterName {
-    return [self performancesFile:theaterName parentDirectory:self.performancesDirectory];
+  return [self performancesFile:theaterName parentDirectory:self.performancesDirectory];
 }
 
 
 - (void) setBookmarks:(NSDictionary*) bookmarks {
-    [dataGate lock];
-    {
-        self.bookmarksData = bookmarks;
-    }
-    [dataGate unlock];
-    [self.model setBookmarkedMovies:bookmarks.allValues];
+  [dataGate lock];
+  {
+    self.bookmarksData = bookmarks;
+  }
+  [dataGate unlock];
+  [self.model setBookmarkedMovies:bookmarks.allValues];
 }
 
 
 - (void) saveResult:(LookupResult*) result {
-    NSAssert(![NSThread isMainThread], nil);
+  NSAssert(![NSThread isMainThread], nil);
+  
+  NSString* tempDirectory = [Application uniqueTemporaryDirectory];
+  for (NSString* theaterName in result.performances) {
+    NSMutableDictionary* value = [result.performances objectForKey:theaterName];
+    
+    [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
+  }
+  
+  [Application moveItemToTrash:self.performancesDirectory];
+  [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
-    NSString* tempDirectory = [Application uniqueTemporaryDirectory];
-    for (NSString* theaterName in result.performances) {
-        NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-
-        [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
+  moviesData.value = result.movies;
+  theatersData.value = result.theaters;
+  
+  [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
+  
+  // Do this last.  It signifies that we are done
+  [self setLastLookupDate];
+  
+  for (Movie* movie in self.bookmarks.allValues) {
+    if (![result.movies containsObject:movie]) {
+      [result.movies addObject:movie];
     }
-
-    [Application moveItemToTrash:self.performancesDirectory];
-    [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
-
-    [FileUtilities writeObject:[Movie encodeArray:result.movies] toFile:self.moviesFile];
-    [self saveArray:result.theaters to:self.theatersFile];
-
-    [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
-
-    // Do this last.  It signifies that we are done
-    [self setLastLookupDate];
-
-    for (Movie* movie in self.bookmarks.allValues) {
-        if (![result.movies containsObject:movie]) {
-            [result.movies addObject:movie];
-        }
+  }
+  
+  // also determine if any of the data we found match items the user bookmarked
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+  for (Movie* movie in result.movies) {
+    if ([self.model isBookmarked:movie]) {
+      [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
-
-    // also determine if any of the data we found match items the user bookmarked
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    for (Movie* movie in result.movies) {
-        if ([self.model isBookmarked:movie]) {
-            [dictionary setObject:movie forKey:movie.canonicalTitle];
-        }
-    }
-    [self setBookmarks:dictionary];
-
-    [dataGate lock];
-    {
-        self.moviesData = result.movies;
-        self.theatersData = result.theaters;
-        self.synchronizationInformationData = result.synchronizationInformation;
-        self.performancesData = [NSMutableDictionary dictionary];
-        self.cachedIsStale = [NSMutableDictionary dictionary];
-    }
-    [dataGate unlock];
-
-    // Let the rest of the app know about the results.
-    [AppDelegate majorRefresh:YES];
+  }
+  [self setBookmarks:dictionary];
+  
+  [dataGate lock];
+  {
+    self.synchronizationInformationData = result.synchronizationInformation;
+    self.performancesData = [NSMutableDictionary dictionary];
+    self.cachedIsStale = [NSMutableDictionary dictionary];
+  }
+  [dataGate unlock];
+  
+  // Let the rest of the app know about the results.
+  [AppDelegate majorRefresh:YES];
 }
 
 
 - (NSMutableDictionary*) lookupTheaterPerformancesNoLock:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
-    if (theaterPerformances == nil) {
-        theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
-                                                  [FileUtilities readObject:[self performancesFile:theater.name]]];
-        [performancesData setObject:theaterPerformances
-                             forKey:theater.name];
-    }
-    return theaterPerformances;
+  NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
+  if (theaterPerformances == nil) {
+    theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
+                           [FileUtilities readObject:[self performancesFile:theater.name]]];
+    [performancesData setObject:theaterPerformances
+                         forKey:theater.name];
+  }
+  return theaterPerformances;
 }
 
 
 - (NSArray*) moviePerformances:(Movie*) movie
               forTheaterNoLock:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformancesNoLock:theater];
-
-    NSArray* unsureArray = [theaterPerformances objectForKey:movie.canonicalTitle];
-    if (unsureArray.count == 0) {
-        return [NSArray array];
-    }
-
-    if ([[unsureArray objectAtIndex:0] isKindOfClass:[Performance class]]) {
-        return unsureArray;
-    }
-
-    NSMutableArray* decodedArray = [NSMutableArray array];
-    for (NSDictionary* encodedPerformance in unsureArray) {
-        Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
-
-        [decodedArray addObject:performance];
-    }
-
-    [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];
-    return decodedArray;
+  NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformancesNoLock:theater];
+  
+  NSArray* unsureArray = [theaterPerformances objectForKey:movie.canonicalTitle];
+  if (unsureArray.count == 0) {
+    return [NSArray array];
+  }
+  
+  if ([[unsureArray objectAtIndex:0] isKindOfClass:[Performance class]]) {
+    return unsureArray;
+  }
+  
+  NSMutableArray* decodedArray = [NSMutableArray array];
+  for (NSDictionary* encodedPerformance in unsureArray) {
+    Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
+    
+    [decodedArray addObject:performance];
+  }
+  
+  [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];
+  return decodedArray;
 }
 
 
 - (NSArray*) moviePerformances:(Movie*) movie
                     forTheater:(Theater*) theater {
-    NSArray* result = nil;
-    [dataGate lock];
-    {
-        result = [self moviePerformances:movie forTheaterNoLock:theater];
-    }
-    [dataGate unlock];
-    return result;
+  NSArray* result = nil;
+  [dataGate lock];
+  {
+    result = [self moviePerformances:movie forTheaterNoLock:theater];
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (NSArray*) loadTheaters {
-    NSArray* array = [FileUtilities readObject:self.theatersFile];
-    if (array == nil) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* decodedTheaters = [NSMutableArray array];
-
-    for (int i = 0; i < array.count; i++) {
-        [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
-    }
-
-    return decodedTheaters;
+  NSArray* array = [FileUtilities readObject:self.theatersFile];
+  return [Theater decodeArray:array];
 }
 
 
-- (NSArray*) theatersNoLock {
-    if (theatersData == nil) {
-        self.theatersData = [self loadTheaters];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.theatersData;
+- (void) saveTheaters:(NSArray*) theaters {
+  [FileUtilities writeObject:[Theater encodeArray:theaters]
+                      toFile:self.theatersFile];
 }
 
 
 - (NSArray*) theaters {
-    NSArray* result = nil;
-    [dataGate lock];
-    {
-        result = [self theatersNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  return theatersData.value;
 }
 
 
 - (LookupResult*) lookupLocation:(Location*) location
                       searchDate:(NSDate*) searchDate
                     theaterNames:(NSArray*) theaterNames {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL)        results:(LookupResult*) lookupResult
        containsFavorite:(FavoriteTheater*) favorite {
-    for (Theater* theater in lookupResult.theaters) {
-        if ([theater.name isEqual:favorite.name]) {
-            return YES;
-        }
+  for (Theater* theater in lookupResult.theaters) {
+    if ([theater.name isEqual:favorite.name]) {
+      return YES;
     }
-
-    return NO;
+  }
+  
+  return NO;
 }
 
 
@@ -400,64 +354,64 @@
                                  toResult:(LookupResult*) lookupResult
               skippingExistingMovieTitles:(NSMutableSet*) existingMovieTitles
                                withMovies:(NSArray*) currentMovies {
-    for (NSString* movieTitle in performances.allKeys) {
-        if (![existingMovieTitles containsObject:movieTitle]) {
-            [existingMovieTitles addObject:movieTitle];
-
-            for (Movie* movie in currentMovies) {
-                if ([movie.canonicalTitle isEqual:movieTitle]) {
-                    [lookupResult.movies addObject:movie];
-                    break;
-                }
-            }
+  for (NSString* movieTitle in performances.allKeys) {
+    if (![existingMovieTitles containsObject:movieTitle]) {
+      [existingMovieTitles addObject:movieTitle];
+      
+      for (Movie* movie in currentMovies) {
+        if ([movie.canonicalTitle isEqual:movieTitle]) {
+          [lookupResult.movies addObject:movie];
+          break;
         }
+      }
     }
+  }
 }
 
 
 - (void) updateMissingFavorites:(LookupResult*) lookupResult
                      searchDate:(NSDate*) searchDate {
-    NSArray* favoriteTheaters = self.model.favoriteTheatersArray;
-    if (favoriteTheaters.count == 0) {
-        return;
+  NSArray* favoriteTheaters = self.model.favoriteTheatersArray;
+  if (favoriteTheaters.count == 0) {
+    return;
+  }
+  
+  MutableMultiDictionary* locationToMissingTheaterNames = [MutableMultiDictionary dictionary];
+  
+  for (FavoriteTheater* favorite in favoriteTheaters) {
+    if (![self results:lookupResult containsFavorite:favorite]) {
+      [locationToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingLocation];
     }
-
-    MutableMultiDictionary* locationToMissingTheaterNames = [MutableMultiDictionary dictionary];
-
-    for (FavoriteTheater* favorite in favoriteTheaters) {
-        if (![self results:lookupResult containsFavorite:favorite]) {
-            [locationToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingLocation];
-        }
+  }
+  
+  NSMutableSet* existingMovieTitles = [NSMutableSet set];
+  for (Movie* movie in lookupResult.movies) {
+    [existingMovieTitles addObject:movie.canonicalTitle];
+  }
+  
+  for (Location* location in locationToMissingTheaterNames.allKeys) {
+    NSArray* theaterNames = [locationToMissingTheaterNames objectsForKey:location];
+    LookupResult* favoritesLookupResult = [self lookupLocation:location
+                                                    searchDate:searchDate
+                                                  theaterNames:theaterNames];
+    
+    if (favoritesLookupResult == nil) {
+      continue;
     }
-
-    NSMutableSet* existingMovieTitles = [NSMutableSet set];
-    for (Movie* movie in lookupResult.movies) {
-        [existingMovieTitles addObject:movie.canonicalTitle];
+    
+    [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
+    [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
+    [lookupResult.synchronizationInformation addEntriesFromDictionary:favoritesLookupResult.synchronizationInformation];
+    
+    // the theater may refer to movies that we don't know about.
+    for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
+      // the theater may refer to movies that we don't know about.
+      [self addMissingMoviesFromPerformances:[favoritesLookupResult.performances objectForKey:theaterName]
+                                    toResult:lookupResult
+                 skippingExistingMovieTitles:existingMovieTitles
+                                  withMovies:favoritesLookupResult.movies];
     }
-
-    for (Location* location in locationToMissingTheaterNames.allKeys) {
-        NSArray* theaterNames = [locationToMissingTheaterNames objectsForKey:location];
-        LookupResult* favoritesLookupResult = [self lookupLocation:location
-                                                        searchDate:searchDate
-                                                      theaterNames:theaterNames];
-
-        if (favoritesLookupResult == nil) {
-            continue;
-        }
-
-        [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
-        [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-        [lookupResult.synchronizationInformation addEntriesFromDictionary:favoritesLookupResult.synchronizationInformation];
-
-        // the theater may refer to movies that we don't know about.
-        for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
-            // the theater may refer to movies that we don't know about.
-            [self addMissingMoviesFromPerformances:[favoritesLookupResult.performances objectForKey:theaterName]
-                                          toResult:lookupResult
-                       skippingExistingMovieTitles:existingMovieTitles
-                                        withMovies:favoritesLookupResult.movies];
-        }
-    }
+  }
 }
 
 
@@ -465,18 +419,18 @@
        delegate:(id<DataProviderUpdateDelegate>) delegate
         context:(id) context
           force:(BOOL) force {
-    LookupRequest* request = [LookupRequest requestWithSearchDate:searchDate
-                                                         delegate:delegate
-                                                          context:context
-                                                            force:force
-                                                    currentMovies:self.movies
-                                                  currentTheaters:self.theaters];
-
-    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
-                                            onTarget:self
-                                          withObject:request
-                                                gate:runGate
-                                            priority:Now];
+  LookupRequest* request = [LookupRequest requestWithSearchDate:searchDate
+                                                       delegate:delegate
+                                                        context:context
+                                                          force:force
+                                                  currentMovies:self.movies
+                                                currentTheaters:self.theaters];
+  
+  [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
+                                          onTarget:self
+                                        withObject:request
+                                              gate:runGate
+                                          priority:Now];
 }
 
 
@@ -484,193 +438,193 @@
              searchLocation:(Location*) searchLocation
               currentMovies:(NSArray*) currentMovies
             currentTheaters:(NSArray*) currentTheaters {
-    // Ok.  so if:
-    //   a) the user is doing their main search
-    //   b) we do not find data for a theater that should be showing up
-    //   c) they're close enough to their last search
-    // then we want to give them the old information we have for that
-    // theater* as well as* a warning to let them know that it may be
-    // out of date.
-    //
-    // This is to deal with the case where the user is confused because
-    // a theater they care about has been filtered out because it didn't
-    // report showtimes.
-
-    NSMutableSet* existingMovieTitles = [NSMutableSet set];
-    for (Movie* movie in lookupResult.movies) {
-        [existingMovieTitles addObject:movie.canonicalTitle];
+  // Ok.  so if:
+  //   a) the user is doing their main search
+  //   b) we do not find data for a theater that should be showing up
+  //   c) they're close enough to their last search
+  // then we want to give them the old information we have for that
+  // theater* as well as* a warning to let them know that it may be
+  // out of date.
+  //
+  // This is to deal with the case where the user is confused because
+  // a theater they care about has been filtered out because it didn't
+  // report showtimes.
+  
+  NSMutableSet* existingMovieTitles = [NSMutableSet set];
+  for (Movie* movie in lookupResult.movies) {
+    [existingMovieTitles addObject:movie.canonicalTitle];
+  }
+  
+  NSMutableSet* missingTheaters = [NSMutableSet setWithArray:currentTheaters];
+  [missingTheaters minusSet:[NSSet setWithArray:lookupResult.theaters]];
+  
+  for (Theater* theater in missingTheaters) {
+    if ([theater.location distanceToMiles:searchLocation] > 50) {
+      // Not close enough.  Consider this a brand new search in a new
+      // location.  Don't include this old theaters.
+      continue;
     }
-
-    NSMutableSet* missingTheaters = [NSMutableSet setWithArray:currentTheaters];
-    [missingTheaters minusSet:[NSSet setWithArray:lookupResult.theaters]];
-
-    for (Theater* theater in missingTheaters) {
-        if ([theater.location distanceToMiles:searchLocation] > 50) {
-            // Not close enough.  Consider this a brand new search in a new
-            // location.  Don't include this old theaters.
-            continue;
-        }
-
-        // no showtime information available.  fallback to anything we've
-        // stored (but warn the user).
-        NSString* theaterName = theater.name;
-        NSString* performancesFile = [self performancesFile:theaterName];
-        NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
-
-        if (oldPerformances == nil) {
-            continue;
-        }
-
-        NSDate* date = [self synchronizationDateForTheater:theater];
-        if (ABS(date.timeIntervalSinceNow) > ONE_MONTH) {
-            continue;
-        }
-
-        [lookupResult.performances setObject:oldPerformances forKey:theaterName];
-        [lookupResult.synchronizationInformation setObject:date forKey:theaterName];
-        [lookupResult.theaters addObject:theater];
-
-        // the theater may refer to movies that we don't know about.
-        [self addMissingMoviesFromPerformances:oldPerformances
-                                      toResult:lookupResult
-                   skippingExistingMovieTitles:existingMovieTitles
-                                    withMovies:currentMovies];
+    
+    // no showtime information available.  fallback to anything we've
+    // stored (but warn the user).
+    NSString* theaterName = theater.name;
+    NSString* performancesFile = [self performancesFile:theaterName];
+    NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
+    
+    if (oldPerformances == nil) {
+      continue;
     }
+    
+    NSDate* date = [self synchronizationDateForTheater:theater];
+    if (ABS(date.timeIntervalSinceNow) > ONE_MONTH) {
+      continue;
+    }
+    
+    [lookupResult.performances setObject:oldPerformances forKey:theaterName];
+    [lookupResult.synchronizationInformation setObject:date forKey:theaterName];
+    [lookupResult.theaters addObject:theater];
+    
+    // the theater may refer to movies that we don't know about.
+    [self addMissingMoviesFromPerformances:oldPerformances
+                                  toResult:lookupResult
+               skippingExistingMovieTitles:existingMovieTitles
+                                withMovies:currentMovies];
+  }
 }
 
 
 - (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
-    Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
-    if (location == nil) {
-        [request.delegate onDataProviderUpdateFailure:LocalizedString(@"Could not find location.", nil) context:request.context];
-        return;
-    }
-
-    // Do the primary search.
-    LookupResult* result = [self lookupLocation:location
-                                     searchDate:request.searchDate
-                                   theaterNames:nil];
-    if (result.movies.count == 0 || result.theaters.count == 0) {
-        [request.delegate onDataProviderUpdateFailure:LocalizedString(@"No information found", nil) context:request.context];
-        return;
-    }
-
-    // Lookup data for the users' favorites.
-    [self updateMissingFavorites:result searchDate:request.searchDate];
-
-    // Try to restore any theaters that went missing
-    [self addMissingTheaters:result
-              searchLocation:location
-               currentMovies:request.currentMovies
-             currentTheaters:request.currentTheaters];
-
-    [request.delegate onDataProviderUpdateSuccess:result context:request.context];
+  Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+  if (location == nil) {
+    [request.delegate onDataProviderUpdateFailure:LocalizedString(@"Could not find location.", nil) context:request.context];
+    return;
+  }
+  
+  // Do the primary search.
+  LookupResult* result = [self lookupLocation:location
+                                   searchDate:request.searchDate
+                                 theaterNames:nil];
+  if (result.movies.count == 0 || result.theaters.count == 0) {
+    [request.delegate onDataProviderUpdateFailure:LocalizedString(@"No information found", nil) context:request.context];
+    return;
+  }
+  
+  // Lookup data for the users' favorites.
+  [self updateMissingFavorites:result searchDate:request.searchDate];
+  
+  // Try to restore any theaters that went missing
+  [self addMissingTheaters:result
+            searchLocation:location
+             currentMovies:request.currentMovies
+           currentTheaters:request.currentTheaters];
+  
+  [request.delegate onDataProviderUpdateSuccess:result context:request.context];
 }
 
 
 - (BOOL) tooSoon:(NSDate*) lastDate {
-    if (lastDate == nil) {
-        return NO;
-    }
-
-    NSDate* now = [NSDate date];
-
-    if (![DateUtilities isSameDay:now date:lastDate]) {
-        // different days. we definitely need to refresh
-        return NO;
-    }
-
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
-    // same day, check if they're at least 8 hours apart.
-    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
-        return NO;
-    }
-
-    // it's been less than 8 hours. it's too soon to refresh
-    return YES;
+  if (lastDate == nil) {
+    return NO;
+  }
+  
+  NSDate* now = [NSDate date];
+  
+  if (![DateUtilities isSameDay:now date:lastDate]) {
+    // different days. we definitely need to refresh
+    return NO;
+  }
+  
+  NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
+  NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
+  
+  // same day, check if they're at least 8 hours apart.
+  if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
+    return NO;
+  }
+  
+  // it's been less than 8 hours. it's too soon to refresh
+  return YES;
 }
 
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
-    if (self.model.dataProviderEnabled) {
-        if (request.force || ![self tooSoon:self.lastLookupDate]) {
-            NSArray* notifications =
-            [NSArray arrayWithObjects:
-             [LocalizedString(@"Movies", nil) lowercaseString],
-             [LocalizedString(@"Theaters", nil) lowercaseString], nil];
-            [NotificationCenter addNotifications:notifications];
-            {
-                [self updateBackgroundEntryPointWorker:request];
-            }
-            [NotificationCenter removeNotifications:notifications];
-        }
+  if (self.model.dataProviderEnabled) {
+    if (request.force || ![self tooSoon:self.lastLookupDate]) {
+      NSArray* notifications =
+      [NSArray arrayWithObjects:
+       [LocalizedString(@"Movies", nil) lowercaseString],
+       [LocalizedString(@"Theaters", nil) lowercaseString], nil];
+      [NotificationCenter addNotifications:notifications];
+      {
+        [self updateBackgroundEntryPointWorker:request];
+      }
+      [NotificationCenter removeNotifications:notifications];
     }
-
-    [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
+  }
+  
+  [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [self.synchronizationInformation objectForKey:theater.name];
+  return [self.synchronizationInformation objectForKey:theater.name];
 }
 
 
 - (NSNumber*) isStaleWorker:(Theater*) theater {
 #if 0
-    NSDate* globalSyncDate = [self lastLookupDate];
-    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-    if (globalSyncDate == nil || theaterSyncDate == nil) {
-        return NO;
-    }
-
-    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
+  NSDate* globalSyncDate = [self lastLookupDate];
+  NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+  if (globalSyncDate == nil || theaterSyncDate == nil) {
+    return NO;
+  }
+  
+  return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
 #else
-    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-    if (theaterSyncDate == nil) {
-        return NO;
-    }
-
-    BOOL result = ![DateUtilities isToday:theaterSyncDate];
-    return [NSNumber numberWithBool:result];
+  NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+  if (theaterSyncDate == nil) {
+    return NO;
+  }
+  
+  BOOL result = ![DateUtilities isToday:theaterSyncDate];
+  return [NSNumber numberWithBool:result];
 #endif
 }
 
 
 - (BOOL) isStale:(Theater*) theater {
-    BOOL result;
-    [dataGate lock];
-    {
-        NSNumber* number = [self.cachedIsStale objectForKey:theater.name];
-        if (number == nil) {
-            number = [self isStaleWorker:theater];
-            [self.cachedIsStale setObject:number forKey:theater.name];
-        }
-        result = number.boolValue;
+  BOOL result;
+  [dataGate lock];
+  {
+    NSNumber* number = [self.cachedIsStale objectForKey:theater.name];
+    if (number == nil) {
+      number = [self isStaleWorker:theater];
+      [self.cachedIsStale setObject:number forKey:theater.name];
     }
-    [dataGate unlock];
-    return result;
+    result = number.boolValue;
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (void) addBookmark:(NSString*) canonicalTitle {
-    for (Movie* movie in self.movies) {
-        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-            [dictionary setObject:movie forKey:canonicalTitle];
-
-            [self setBookmarks:dictionary];
-            return;
-        }
+  for (Movie* movie in self.movies) {
+    if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+      NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+      [dictionary setObject:movie forKey:canonicalTitle];
+      
+      [self setBookmarks:dictionary];
+      return;
     }
+  }
 }
 
 
 - (void) removeBookmark:(NSString*) canonicalTitle {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    [dictionary removeObjectForKey:canonicalTitle];
-    [self setBookmarks:dictionary];
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
+  [dictionary removeObjectForKey:canonicalTitle];
+  [self setBookmarks:dictionary];
 }
 
 @end
