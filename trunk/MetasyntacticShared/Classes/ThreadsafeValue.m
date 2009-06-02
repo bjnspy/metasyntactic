@@ -94,7 +94,7 @@
     self.valueData = value;
   }
   [gate unlock];
-  [delegate performSelector:saveSelector withObject:value];
+  [delegate performSelectorInBackground:saveSelector withObject:value];
 }
 
 @end
