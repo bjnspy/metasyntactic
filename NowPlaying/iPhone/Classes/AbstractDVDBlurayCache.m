@@ -108,7 +108,7 @@
 }
 
 
-- (void) saveMoviesSet {
+- (void) saveMoviesSet:(PointerSet*) value {
   // nothing to do.
 }
 

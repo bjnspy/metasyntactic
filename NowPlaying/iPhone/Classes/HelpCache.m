@@ -75,8 +75,7 @@
 
 
 - (NSArray*) loadQuestionsAndAnswers {
-    NSString* file = [self questionsAndAnswersFile];
-    NSArray* result = [FileUtilities readObject:file];
+    NSArray* result = [FileUtilities readObject:self.questionsAndAnswersFile];
     if (result.count > 0) {
         return result;
     }
@@ -114,6 +113,11 @@
                         LocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
     return [NSArray arrayWithObjects:questions, answers, nil];
+}
+
+
+- (void) saveQuestionsAndAnswers:(NSArray*) value {
+  [FileUtilities writeObject:value toFile:self.questionsAndAnswersFile];
 }
 
 
