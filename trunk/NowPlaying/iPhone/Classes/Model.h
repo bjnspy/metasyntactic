@@ -44,8 +44,8 @@ enum ViewControllerType {
   NSNumber* isSearchDateTodayData;
 
   // Accessed from multiple threads.  Needs lock.
-  ThreadsafeValue*/*<NSSet>*/ bookmarkedTitlesData;
-  ThreadsafeValue*/*<NSDictionary>*/ favoriteTheatersData;
+  ThreadsafeValue*/*NSSet*/ bookmarkedTitlesData;
+  ThreadsafeValue*/*NSDictionary*/ favoriteTheatersData;
 
   NSInteger cachedScoreProviderIndex;
   NSInteger cachedAllMoviesSelectedSegmentIndex;
