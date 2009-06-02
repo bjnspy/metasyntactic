@@ -52,13 +52,13 @@ property_definition(movieTitles);
   if (array.count == 0) {
     return [NSArray array];
   }
-  
+
   NSMutableArray* result = [NSMutableArray array];
-  
+
   for (Theater* theater in array) {
     [result addObject:theater.dictionary];
   }
-  
+
   return result;
 }
 
@@ -67,13 +67,13 @@ property_definition(movieTitles);
   if (array.count == 0) {
     return [NSArray array];
   }
-  
+
   NSMutableArray* decodedTheaters = [NSMutableArray array];
-  
+
   for (int i = 0; i < array.count; i++) {
     [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
   }
-  
+
   return decodedTheaters;
 }
 

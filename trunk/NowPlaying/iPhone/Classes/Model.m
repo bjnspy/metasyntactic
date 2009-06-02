@@ -1144,8 +1144,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   for (FavoriteTheater* theater in favoriteTheaters.allValues) {
     [result addObject:theater.dictionary];
   }
-  
-  [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];  
+
+  [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
 }
 
 
