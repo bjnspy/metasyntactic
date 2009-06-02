@@ -20,7 +20,7 @@
   ThreadsafeValue*/*NSDictionary*/ synchronizationInformationData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
   NSMutableDictionary* performancesData;
-  
+
   NSMutableDictionary* cachedIsStale;
 }
 
