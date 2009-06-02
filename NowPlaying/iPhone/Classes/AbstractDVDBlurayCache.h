@@ -21,7 +21,7 @@
     // Accessed by many threads.  needs locks.
     PointerSet* moviesSetData;
     NSArray* moviesData;
-    NSDictionary* bookmarksData;
+    ThreadsafeValue*/*NSDictionary*/ bookmarksData;
 }
 
 - (void) update;

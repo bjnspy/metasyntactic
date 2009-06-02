@@ -23,8 +23,8 @@
 #import "UserLocationCache.h"
 
 @interface AbstractScoreProvider()
-@property (retain) NSDictionary* scoresData;
-@property (copy) NSString* hashData;
+@property (retain) ThreadsafeValue* scoresData;
+@property (retain) ThreadsafeValue* hashData;
 @property (retain) NSArray* moviesData;
 @property (retain) NSDictionary* movieMapData;
 @property (copy) NSString* providerDirectory;
@@ -75,6 +75,9 @@
 
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
+      
+      self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
+      self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
     }
 
     return self;
@@ -149,6 +152,22 @@
 }
 
 
+- (void) saveScores:(NSDictionary*) scores {
+  NSMutableDictionary* encodedScores = [NSMutableDictionary dictionary];
+  for (NSString* title in scores) {
+    NSDictionary* dictionary = [[scores objectForKey:title] dictionary];
+    [encodedScores setObject:dictionary forKey:title];
+  }
+  
+  [FileUtilities writeObject:encodedScores toFile:self.scoresFile];
+}
+
+
+- (NSDictionary*) scores {
+  return scoresData.value;
+}
+
+
 - (NSString*) loadHash {
     NSString* result = [FileUtilities readObject:self.hashFile];
     if (result == nil) {
@@ -158,45 +177,13 @@
 }
 
 
-- (NSDictionary*) scoresNoLock {
-    if (scoresData == nil) {
-        self.scoresData = [self loadScores];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.scoresData;
-}
-
-
-- (NSDictionary*) scores {
-    NSDictionary* result = nil;
-    [dataGate lock];
-    {
-        result = [self scoresNoLock];
-    }
-    [dataGate unlock];
-    return result;
-}
-
-
-- (NSString*) hashValueNoLock {
-    if (hashData == nil) {
-        self.hashData = [self loadHash];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.hashData;
+- (void) saveHash:(NSString*) hash {
+  [FileUtilities writeObject:hash toFile:self.hashFile];
 }
 
 
 - (NSString*) hashValue {
-    NSString* result = nil;
-    [dataGate lock];
-    {
-        result = [self hashValueNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  return hashData.value;
 }
 
 
@@ -243,18 +230,6 @@
     }
     [dataGate unlock];
     return result;
-}
-
-
-- (void) saveScores:(NSDictionary*) scores hash:(NSString*) hash {
-    NSMutableDictionary* encodedScores = [NSMutableDictionary dictionary];
-    for (NSString* title in scores) {
-        NSDictionary* dictionary = [[scores objectForKey:title] dictionary];
-        [encodedScores setObject:dictionary forKey:title];
-    }
-
-    [FileUtilities writeObject:encodedScores toFile:self.scoresFile];
-    [FileUtilities writeObject:hash toFile:self.hashFile];
 }
 
 
@@ -335,7 +310,9 @@
         return;
     }
 
-    [self saveScores:scores hash:serverHash];
+  scoresData.value = scores;
+  hashData.value = serverHash;
+
     NSArray* movies = [self.model movies];
 
     NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
@@ -345,9 +322,6 @@
         [FileUtilities writeObject:map toFile:[self movieMapFile]];
         self.moviesData = movies;
         self.movieMapData = map;
-
-        self.scoresData = scores;
-        self.hashData = serverHash;
     }
     [dataGate unlock];
 

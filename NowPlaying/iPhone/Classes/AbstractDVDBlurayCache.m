@@ -23,7 +23,7 @@
 @interface AbstractDVDBlurayCache()
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
-@property (retain) NSDictionary* bookmarksData;
+@property (retain) ThreadsafeValue* bookmarksData;
 @property BOOL updated;
 @end
 
@@ -42,6 +42,15 @@
     self.updated = NO;
 
     [super dealloc];
+}
+
+
+- (id) init {
+  if (self = [super init]) {
+    self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks:) saveSelector:@selector(saveBookmarks:)];
+  }
+  
+  return self;
 }
 
 
@@ -150,24 +159,8 @@
 }
 
 
-- (NSDictionary*) bookmarksNoLock {
-    if (bookmarksData == nil) {
-        self.bookmarksData = [self loadBookmarks];
-    }
-
-    // Access through the property so that we get back a safe pointer
-    return self.bookmarksData;
-}
-
-
 - (NSDictionary*) bookmarks {
-    NSDictionary* result = nil;
-    [dataGate lock];
-    {
-        result = [self bookmarksNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  return bookmarksData.value;
 }
 
 
@@ -330,12 +323,7 @@
 }
 
 
-- (void) setBookmarks:(NSDictionary*) bookmarks {
-    [dataGate lock];
-    {
-        self.bookmarksData = bookmarks;
-    }
-    [dataGate unlock];
+- (void) saveBookmarks:(NSDictionary*) bookmarks {
     [self.model setBookmarkedDVD:bookmarks.allValues];
 }
 
@@ -371,8 +359,7 @@
             [bookmarks setObject:movie forKey:movie.canonicalTitle];
         }
     }
-
-    [self setBookmarks:bookmarks];
+  bookmarksData.value = bookmarks;
     [self setMovies:movies];
 
     [AppDelegate majorRefresh];
@@ -427,7 +414,7 @@
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
             [dictionary setObject:movie forKey:canonicalTitle];
-            [self setBookmarks:dictionary];
+          bookmarksData.value = dictionary;
             return;
         }
     }
@@ -436,8 +423,8 @@
 
 - (void) removeBookmark:(NSString*) canonicalTitle {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
-    [dictionary removeObjectForKey:canonicalTitle];
-    [self setBookmarks:dictionary];
+  [dictionary removeObjectForKey:canonicalTitle];
+  bookmarksData.value = dictionary;
 }
 
 @end
