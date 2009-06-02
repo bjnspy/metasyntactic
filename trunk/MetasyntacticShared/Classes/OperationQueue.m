@@ -30,14 +30,18 @@
 
 static OperationQueue* operationQueue = nil;
 
++ (void) initialize {
+  if (self == [OperationQueue class]) {
+    operationQueue = [[Operation alloc] init];
+  }
+}
+
 @synthesize queue;
-//@synthesize operations;
 @synthesize boundedOperations;
 @synthesize dataGate;
 
 - (void) dealloc {
     self.queue = nil;
-    //self.operations = nil;
     self.boundedOperations = nil;
     self.dataGate = nil;
 
@@ -53,7 +57,6 @@ static OperationQueue* operationQueue = nil;
 
     [dataGate lock];
     {
-        //[operations addObject:operation];
         [queue addOperation:operation];
 
         if (operation.queuePriority >= Priority) {
@@ -67,21 +70,11 @@ static OperationQueue* operationQueue = nil;
 - (void) restart:(Operation*) operationToKill {
     [dataGate lock];
     {
-        //MutablePointerSet* oldOperations = [[operations retain] autorelease];
-        //[oldOperations removeObject:operationToKill];
-
         self.queue = [[[NSOperationQueue alloc] init] autorelease];
-        //queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
         queue.maxConcurrentOperationCount = 1;
 
-        //self.operations = [MutablePointerSet set];
         self.boundedOperations = [NSMutableArray array];
         priorityOperationsCount = 0;
-
-        //for (NSValue* value in oldOperations.mutableSet) {
-        //    id op = (id)value.pointerValue;
-        //    [self addOperation:op];
-        //}
     }
     [dataGate unlock];
 }
@@ -104,10 +97,6 @@ static OperationQueue* operationQueue = nil;
 
 
 + (OperationQueue*) operationQueue {
-    if (operationQueue == nil) {
-        operationQueue = [[OperationQueue alloc] init];
-    }
-
     return operationQueue;
 }
 
@@ -174,11 +163,6 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 4;
 
             [boundedOperations removeObjectAtIndex:0];
         }
-
-        // make the last priority operation dependent on this one.
-        //if (boundedOperations.count > 0) {
-        //    [(NSOperation*)boundedOperations.lastObject addDependency:operation];
-        //}
 
         [boundedOperations addObject:operation];
     }
@@ -288,8 +272,6 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 4;
         if (priority >= Priority) {
             priorityOperationsCount--;
         }
-
-        //[operations removeObject:operation];
     }
     [dataGate unlock];
 }

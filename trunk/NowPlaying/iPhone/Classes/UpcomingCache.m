@@ -178,7 +178,7 @@
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSDictionary* dictionary in array) {
-    Movie* movie = [Movie movieWithDictionary:dictionary];
+    Movie* movie = [Movie newWithDictionary:dictionary];
     [result setObject:movie forKey:movie.canonicalTitle];
   }
 

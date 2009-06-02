@@ -1077,7 +1077,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
   NSMutableArray* result = [NSMutableArray array];
   for (NSDictionary* dictionary in array) {
-    [result addObject:[Movie movieWithDictionary:dictionary]];
+    [result addObject:[Movie newWithDictionary:dictionary]];
   }
   return result;
 }

@@ -289,7 +289,11 @@ static NSString* articles[] = {
 }
 
 
-+ (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
++ (Movie*) newWithDictionary:(NSDictionary*) dictionary {
+  if (![self canReadDictionary:dictionary]) {
+    return nil;
+  }
+  
     return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
                                canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                  displayTitle:[dictionary objectForKey:displayTitle_key]

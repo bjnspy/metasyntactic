@@ -24,6 +24,7 @@
 /* @protected */
 - (AbstractNavigationController*) abstractNavigationController;
 - (void) reloadTableViewData;
+- (void) reloadVisibleCells;
 - (void) didReceiveMemoryWarningWorker;
 
 @end

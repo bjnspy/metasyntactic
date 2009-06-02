@@ -120,6 +120,27 @@
 }
 
 
+- (void) reload:(id) sender {
+}
+
+
+- (void) reloadVisibleCells {
+  if (!visible) {
+    return;
+  }
+  
+#ifdef IPHONE_OS_VERSION_3
+  [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+#else
+  for (UITableViewCell* cell in self.tableView.visibleCells) {
+    if ([cell respondsToSelector:@selector(reload:)]) {
+      [(id)cell reload:self];
+    }
+  }
+#endif
+}
+
+
 - (void)scrollViewDidEndDragging:(UIScrollView*) scrollView
                   willDecelerate:(BOOL) willDecelerate {
     if (willDecelerate) {
