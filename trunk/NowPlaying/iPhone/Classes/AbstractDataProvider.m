@@ -219,12 +219,12 @@
     theatersData.value = result.theaters;
     bookmarksData.value = dictionary;
     synchronizationInformationData.value = result.synchronizationInformation;
-    
+
     self.performancesData = [NSMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
   [dataGate unlock];
-  
+
   // Do this last.  It signifies that we are done
   [self setLastLookupDate];
 

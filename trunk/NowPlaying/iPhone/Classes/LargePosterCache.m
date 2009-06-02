@@ -88,7 +88,7 @@ const int START_YEAR = 1912;
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
   NSAssert([NSThread isMainThread], @"");
-  
+
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
@@ -104,7 +104,7 @@ const int START_YEAR = 1912;
                       toFile:smallPosterPath];
     return [UIImage imageWithData:smallPosterData];
   }
-  
+
   return nil;
 }
 
