@@ -26,7 +26,7 @@
 #import "Status.h"
 
 @interface NetflixCache()
-@property (retain) NSArray* feedsData;
+@property (retain) ThreadsafeValue* feedsData;
 @property (retain) NSDictionary* queuesData;
 @property (retain) NSDate* lastQuotaErrorDate;
 
@@ -174,6 +174,15 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (id) init {
+  if (self = [super init]) {
+    self.feedsData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFeeds) saveSelector:@selector(saveFeeds:)];
+  }
+  
+  return self;
+}
+
+
 - (Model*) model {
     return [Model model];
 }
@@ -209,23 +218,21 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) feedsNoLock {
-    if (feedsData == nil) {
-        self.feedsData = [self loadFeeds];
-    }
-
-    return self.feedsData;
+- (void) saveFeeds:(NSArray*) feeds {
+  NSMutableArray* result = [NSMutableArray array];
+  
+  for (Feed* feed in feeds) {
+    [result addObject:feed.dictionary];
+  }
+  
+  if (result.count > 0) {
+    [FileUtilities writeObject:result toFile:self.feedsFile];
+  }
 }
 
 
 - (NSArray*) feeds {
-    NSArray* result = nil;
-    [dataGate lock];
-    {
-        result = [self feedsNoLock];
-    }
-    [dataGate unlock];
-    return result;
+  return feedsData.value;
 }
 
 
@@ -327,7 +334,7 @@ static NSDictionary* availabilityMap = nil;
     [Application resetNetflixDirectories];
     [dataGate lock];
     {
-        self.feedsData = nil;
+      feedsData.value = nil;
         self.queuesData = nil;
     }
     [dataGate unlock];
@@ -385,21 +392,6 @@ static NSDictionary* availabilityMap = nil;
     }
 
     return feeds;
-}
-
-
-- (void) saveFeeds:(NSArray*) feeds {
-    NSLog(@"NetflixCache:saveFeeds");
-
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (Feed* feed in feeds) {
-        [result addObject:feed.dictionary];
-    }
-
-    if (result.count > 0) {
-        [FileUtilities writeObject:result toFile:self.feedsFile];
-    }
 }
 
 
@@ -1365,7 +1357,7 @@ static NSDictionary* availabilityMap = nil;
 
         [dataGate lock];
         {
-            self.feedsData = feeds;
+          feedsData.value = feeds;
             self.queuesData = dictionary;
         }
         [dataGate unlock];
