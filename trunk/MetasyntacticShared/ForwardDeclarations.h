@@ -19,6 +19,7 @@
 
 @class OAToken;
 
+@class AbstractData;
 @class AbstractNavigationController;
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;

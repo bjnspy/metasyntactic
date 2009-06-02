@@ -270,7 +270,6 @@
   [dataGate unlock];
 
   [AppDelegate majorRefresh];
-
 }
 
 - (void) updateScoresWorker {

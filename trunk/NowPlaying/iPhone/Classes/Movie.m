@@ -392,36 +392,6 @@ static NSString* articles[] = {
 }
 
 
-+ (NSArray*) encodeArray:(NSArray*) array {
-    if (array.count == 0) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (Movie* movie in array) {
-        [result addObject:movie.dictionary];
-    }
-
-    return result;
-}
-
-
-+ (NSArray*) decodeArray:(NSArray*) array {
-    if (array.count == 0) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (NSDictionary* dictionary in array) {
-        [result addObject:[Movie movieWithDictionary:dictionary]];
-    }
-
-    return result;
-}
-
-
 - (BOOL) isNetflix {
     return [identifier hasPrefix:@"http://"];
 }
