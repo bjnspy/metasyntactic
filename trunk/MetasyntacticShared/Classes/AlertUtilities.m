@@ -38,13 +38,13 @@
   if (message.length == 0) {
     message = @"";
   }
-  
+
   UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title
                                                    message:message
                                                   delegate:nil
                                          cancelButtonTitle:nil
                                          otherButtonTitles:LocalizedString(@"OK", nil), nil] autorelease];
-  
+
   [alert show];
 }
 
