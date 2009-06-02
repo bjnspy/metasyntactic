@@ -63,8 +63,8 @@
 @property (retain) MutableNetflixCache* netflixCache;
 @property (retain) InternationalDataCache* internationalDataCache;
 @property (retain) HelpCache* helpCache;
-@property (retain) ThreadsafeValue* threadsafeBookmarkedTitles;
-@property (retain) NSDictionary* favoriteTheatersData;
+@property (retain) ThreadsafeValue* bookmarkedTitlesData;
+@property (retain) ThreadsafeValue* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
 @property NSInteger cachedScoreProviderIndex;
@@ -230,7 +230,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 @synthesize dataProvider;
 
-@synthesize threadsafeBookmarkedTitles;
+@synthesize bookmarkedTitlesData;
 @synthesize favoriteTheatersData;
 @synthesize isSearchDateTodayData;
 
@@ -255,7 +255,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) dealloc {
   self.dataProvider = nil;
-  self.threadsafeBookmarkedTitles = nil;
+  self.bookmarkedTitlesData = nil;
   self.favoriteTheatersData = nil;
   self.isSearchDateTodayData = nil;
 
@@ -286,16 +286,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   }
 
   return model;
-}
-
-
-+ (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
-  NSMutableArray* result = [NSMutableArray array];
-  for (FavoriteTheater* theater in favoriteTheaters) {
-    [result addObject:theater.dictionary];
-  }
-
-  [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
 }
 
 
@@ -536,10 +526,8 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 - (id) init {
   if (self = [super init]) {
-    self.threadsafeBookmarkedTitles = [ThreadsafeValue valueWithGate:dataGate
-                                                            delegate:self
-                                                        loadSelector:@selector(loadBookmarkedTitles)
-                                                        saveSelector:@selector(saveBookmarkedTitles:)];
+    self.bookmarkedTitlesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarkedTitles) saveSelector:@selector(saveBookmarkedTitles:)];
+    self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
 
     [self checkCountry];
     [self loadData];
@@ -1048,7 +1036,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSSet*) bookmarkedTitles {
-  return threadsafeBookmarkedTitles.value;
+  return bookmarkedTitlesData.value;
 }
 
 
@@ -1060,7 +1048,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) addBookmark:(Movie*) movie {
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set addObject:movie.canonicalTitle];
-  threadsafeBookmarkedTitles.value = set;
+  bookmarkedTitlesData.value = set;
 
   [dataProvider addBookmark:movie.canonicalTitle];
   [upcomingCache addBookmark:movie.canonicalTitle];
@@ -1072,7 +1060,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 - (void) removeBookmark:(Movie*) movie {
   NSMutableSet* set = [NSMutableSet setWithSet:self.bookmarkedTitles];
   [set removeObject:movie.canonicalTitle];
-  threadsafeBookmarkedTitles.value = set;
+  bookmarkedTitlesData.value = set;
 
   [dataProvider removeBookmark:movie.canonicalTitle];
   [upcomingCache removeBookmark:movie.canonicalTitle];
@@ -1135,10 +1123,10 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (NSMutableDictionary*) loadFavoriteTheaters {
+- (NSDictionary*) loadFavoriteTheaters {
   NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
   if (array.count == 0) {
-    return [NSMutableDictionary dictionary];
+    return [NSDictionary dictionary];
   }
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
@@ -1151,38 +1139,23 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 }
 
 
-- (NSDictionary*) favoriteTheatersNoLock {
-  if (favoriteTheatersData == nil) {
-    self.favoriteTheatersData = [self loadFavoriteTheaters];
+- (void) saveFavoriteTheaters:(NSDictionary*) favoriteTheaters {
+  NSMutableArray* result = [NSMutableArray array];
+  for (FavoriteTheater* theater in favoriteTheaters.allValues) {
+    [result addObject:theater.dictionary];
   }
-
-  // Access through property so we always get a valid value back
-  return self.favoriteTheatersData;
+  
+  [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];  
 }
 
 
 - (NSDictionary*) favoriteTheaters {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self favoriteTheatersNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return favoriteTheatersData.value;
 }
 
 
 - (NSArray*) favoriteTheatersArray {
   return self.favoriteTheaters.allValues;
-}
-
-- (void) setFavoriteTheaters:(NSDictionary*) favoriteTheaters {
-  [dataGate lock];
-  {
-    self.favoriteTheatersData = favoriteTheaters;
-  }
-  [dataGate unlock];
-  [Model saveFavoriteTheaters:favoriteTheaters.allValues];
 }
 
 
@@ -1193,8 +1166,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
                                                   originatingLocation:theater.originatingLocation];
 
   [dictionary setObject:favoriteTheater forKey:theater.name];
-
-  [self setFavoriteTheaters:dictionary];
+  favoriteTheatersData.value = dictionary;
 }
 
 
@@ -1207,7 +1179,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.favoriteTheaters];
   [dictionary removeObjectForKey:theater.name];
 
-  [self setFavoriteTheaters:dictionary];
+  favoriteTheatersData.value = dictionary;
 }
 
 
