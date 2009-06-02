@@ -22,7 +22,7 @@
 
 @interface InternationalDataCache()
 @property (retain) DifferenceEngine* engine;
-@property (retain) NSDictionary* indexData;
+@property (retain) ThreadsafeValue* indexData;
 @property (retain) NSMutableDictionary* movieMap;
 @property (retain) NSMutableDictionary* ratingAndRuntimeCache;
 @property BOOL updated;
@@ -64,6 +64,7 @@ static NSSet* allowableCountries = nil;
 
 - (id) init {
     if (self = [super init]) {
+      self.indexData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadIndex) saveSelector:@selector(saveIndex:)];
         self.engine = [DifferenceEngine engine];
         self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
     }
@@ -107,24 +108,8 @@ static NSSet* allowableCountries = nil;
 }
 
 
-- (NSDictionary*) indexWorker {
-    if (indexData == nil) {
-        self.indexData = [self loadIndex];
-    }
-
-    // call through the property to ensure a good pointer
-    return self.indexData;
-}
-
-
 - (NSDictionary*) index {
-    NSDictionary* result;
-    [dataGate lock];
-    {
-        result = [self indexWorker];
-    }
-    [dataGate unlock];
-    return result;
+  return indexData.value;
 }
 
 
@@ -392,10 +377,9 @@ static NSSet* allowableCountries = nil;
         [dictionary setObject:movie forKey:movie.canonicalTitle.lowercaseString];
     }
 
-    [self saveIndex:dictionary];
+  indexData.value = dictionary;
     [dataGate lock];
     {
-        self.indexData = dictionary;
         self.movieMap = [NSMutableDictionary dictionary];
         self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
     }

@@ -21,8 +21,8 @@
 #import "Movie.h"
 
 @interface AbstractDVDBlurayCache()
-@property (retain) PointerSet* moviesSetData;
-@property (retain) NSArray* moviesData;
+@property (retain) ThreadsafeValue* moviesSetData;
+@property (retain) ThreadsafeValue* moviesData;
 @property (retain) ThreadsafeValue* bookmarksData;
 @property BOOL updated;
 @end
@@ -47,7 +47,9 @@
 
 - (id) init {
   if (self = [super init]) {
-    self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks:) saveSelector:@selector(saveBookmarks:)];
+    self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
+    self.moviesSetData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMoviesSet) saveSelector:@selector(saveMoviesSet:)];
+    self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
   }
 
   return self;
@@ -79,63 +81,40 @@
 }
 
 
-- (NSArray*) loadMovies:(NSString*) file {
-  NSArray* encodedMovies = [FileUtilities readObject:file];
+- (NSArray*) loadMovies {
+  NSArray* encodedMovies = [FileUtilities readObject:self.moviesFile];
   return [Movie decodeArray:encodedMovies];
 }
 
 
-- (NSArray*) loadMovies {
-  return [self loadMovies:self.moviesFile];
-}
-
-
-- (void) setMoviesNoLock:(NSArray*) array {
-  self.moviesData = array;
-  self.moviesSetData = [PointerSet setWithArray:array];
+- (void) saveMovies:(NSArray*) movies {
+  [FileUtilities writeObject:[Movie encodeArray:movies] toFile:self.moviesFile];
 }
 
 
 - (void) setMovies:(NSArray*) array {
-  [dataGate lock];
-  {
-    [self setMoviesNoLock:array];
-  }
-  [dataGate unlock];
-}
-
-
-- (NSArray*) moviesNoLock {
-  if (moviesData == nil) {
-    [self setMoviesNoLock:[self loadMovies]];
-  }
-
-  // Access through the property so that we get back a safe pointer
-  return self.moviesData;
+  moviesData.value = array;
+  moviesSetData.value = [PointerSet setWithArray:array];
 }
 
 
 - (NSArray*) movies {
-  NSArray* result = nil;
-  [dataGate lock];
-  {
-    result = [self moviesNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return moviesData.value;
+}
+
+
+- (PointerSet*) loadMoviesSet {
+  return [PointerSet setWithArray:self.movies];
+}
+
+
+- (void) saveMoviesSet {
+  // nothing to do.
 }
 
 
 - (PointerSet*) moviesSet {
-  PointerSet* result = nil;
-  [dataGate lock];
-  {
-    [self moviesNoLock];
-    // Access through the property so that we get back a safe pointer
-    result = self.moviesSetData;
-  }
-  [dataGate unlock];
-  return result;
+  return moviesSetData.value;
 }
 
 
@@ -144,7 +123,7 @@
 }
 
 
-- (NSMutableDictionary*) loadBookmarks {
+- (NSDictionary*) loadBookmarks {
   NSArray* movies = [self loadBookmarksArray];
   if (movies.count == 0) {
     return [NSMutableDictionary dictionary];
@@ -156,6 +135,11 @@
   }
 
   return result;
+}
+
+
+- (void) saveBookmarks:(NSDictionary*) bookmarks {
+  [self.model setBookmarkedDVD:bookmarks.allValues];
 }
 
 
@@ -311,20 +295,10 @@
 
 
 - (void) saveData:(NSDictionary*) dictionary {
-  NSArray* videos = dictionary.allKeys;
-
   for (Movie* movie in dictionary) {
     DVD* dvd = [dictionary objectForKey:movie];
     [FileUtilities writeObject:dvd.dictionary toFile:[self detailsFile:movie set:nil]];
   }
-
-  // do this last.  it signifies that we're done
-  [FileUtilities writeObject:[Movie encodeArray:videos] toFile:self.moviesFile];
-}
-
-
-- (void) saveBookmarks:(NSDictionary*) bookmarks {
-  [self.model setBookmarkedDVD:bookmarks.allValues];
 }
 
 
@@ -342,7 +316,6 @@
   }
 
   [self saveData:map];
-  [self clearUpdatedMovies];
 
   NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
   // add in any previously bookmarked movies that we now no longer know about.
@@ -361,6 +334,7 @@
   }
   bookmarksData.value = bookmarks;
   [self setMovies:movies];
+  [self clearUpdatedMovies];
 
   [AppDelegate majorRefresh];
 }

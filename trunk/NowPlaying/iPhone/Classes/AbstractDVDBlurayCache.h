@@ -19,8 +19,8 @@
   BOOL updated;
 
   // Accessed by many threads.  needs locks.
-  PointerSet* moviesSetData;
-  NSArray* moviesData;
+  ThreadsafeValue*/*PointerSet*/ moviesSetData;
+  ThreadsafeValue*/*NSArray*/ moviesData;
   ThreadsafeValue*/*NSDictionary*/ bookmarksData;
 }
 

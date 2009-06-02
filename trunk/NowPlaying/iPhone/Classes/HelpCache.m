@@ -18,7 +18,7 @@
 #import "Model.h"
 
 @interface HelpCache()
-@property (retain) NSArray* questionsAndAnswersData;
+@property (retain) ThreadsafeValue* questionsAndAnswersData;
 @end
 
 
@@ -29,6 +29,15 @@
 - (void) dealloc {
     self.questionsAndAnswersData = nil;
     [super dealloc];
+}
+
+
+- (id) init {
+  if (self = [super init]) {
+    self.questionsAndAnswersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadQuestionsAndAnswers) saveSelector:@selector(saveQuestionsAndAnswers:)];
+  }
+  
+  return self;
 }
 
 
@@ -108,24 +117,8 @@
 }
 
 
-- (NSArray*) questionsAndAnswersWorker {
-    if (questionsAndAnswersData == nil) {
-        self.questionsAndAnswersData = [self loadQuestionsAndAnswers];
-    }
-
-    // Return through property to ensure safe pointer
-    return self.questionsAndAnswersData;
-}
-
-
 - (NSArray*) questionsAndAnswers {
-    NSArray* result;
-    [dataGate lock];
-    {
-        result = [self questionsAndAnswersWorker];
-    }
-    [dataGate unlock];
-    return result;
+  return questionsAndAnswersData.value;
 }
 
 
@@ -156,13 +149,7 @@
     }
 
     NSArray* result = [NSArray arrayWithObjects:questions, answers, nil];
-    [FileUtilities writeObject:result toFile:[self questionsAndAnswersFile]];
-
-    [dataGate lock];
-    {
-        self.questionsAndAnswersData = result;
-    }
-    [dataGate unlock];
+  questionsAndAnswersData.value = result;
 }
 
 
