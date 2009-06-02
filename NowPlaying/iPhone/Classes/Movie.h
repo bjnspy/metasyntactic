@@ -49,7 +49,7 @@
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 
-+ (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
++ (Movie*) newWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating

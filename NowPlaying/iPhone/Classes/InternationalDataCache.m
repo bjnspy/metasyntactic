@@ -92,7 +92,7 @@ static NSSet* allowableCountries = nil;
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSString* title in dictionary) {
-    [result setObject:[Movie movieWithDictionary:[dictionary objectForKey:title]] forKey:title];
+    [result setObject:[Movie newWithDictionary:[dictionary objectForKey:title]] forKey:title];
   }
   return result;
 }

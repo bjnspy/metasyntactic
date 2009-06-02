@@ -899,7 +899,7 @@ static NSDictionary* availabilityMap = nil;
   NSString* file = [self seriesFile:seriesKey];
   Movie* series;
   if ([FileUtilities fileExists:file]) {
-    series = [Movie movieWithDictionary:[FileUtilities readObject:file]];
+    series = [Movie newWithDictionary:[FileUtilities readObject:file]];
   } else {
     series = [self downloadMovieWithSeriesKey:seriesKey];
     if (series != nil) {
@@ -926,7 +926,7 @@ static NSDictionary* availabilityMap = nil;
     return nil;
   }
 
-  return [Movie movieWithDictionary:dictionary];
+  return [Movie newWithDictionary:dictionary];
 }
 
 
@@ -1197,7 +1197,7 @@ static NSDictionary* availabilityMap = nil;
     for (NSString* path in paths) {
       NSDictionary* dictionary = [FileUtilities readObject:path];
       if (dictionary != nil) {
-        Movie* movie = [Movie movieWithDictionary:dictionary];
+        Movie* movie = [Movie newWithDictionary:dictionary];
         [array addObject:movie];
       }
     }
@@ -1294,7 +1294,7 @@ static NSDictionary* availabilityMap = nil;
 
   Movie* movie;
   if ([FileUtilities fileExists:file]) {
-    movie = [Movie movieWithDictionary:[FileUtilities readObject:file]];
+    movie = [Movie newWithDictionary:[FileUtilities readObject:file]];
   } else {
     movie = [self downloadRSSMovieWithIdentifier:identifier];
     if (movie.canonicalTitle.length == 0) {
@@ -1719,7 +1719,7 @@ static NSDictionary* availabilityMap = nil;
     return nil;
   }
 
-  return [Movie movieWithDictionary:dictionary];
+  return [Movie newWithDictionary:dictionary];
 }
 
 
