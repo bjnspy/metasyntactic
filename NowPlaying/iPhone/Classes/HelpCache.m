@@ -36,7 +36,7 @@
   if (self = [super init]) {
     self.questionsAndAnswersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadQuestionsAndAnswers) saveSelector:@selector(saveQuestionsAndAnswers:)];
   }
-  
+
   return self;
 }
 
@@ -55,12 +55,12 @@
   if (!self.model.helpCacheEnabled) {
     return;
   }
-  
+
   if (updated) {
     return;
   }
   updated = YES;
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                           onTarget:self
                                               gate:nil
@@ -79,7 +79,7 @@
   if (result.count > 0) {
     return result;
   }
-  
+
   NSArray* questions = [NSArray arrayWithObjects:
                         [NSString stringWithFormat:LocalizedString(@"%@ contains missing/incorrect translations. Can you fix it?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                         LocalizedString(@"Why did my theater disappear?", nil),
@@ -95,7 +95,7 @@
                         LocalizedString(@"Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?", nil),
                         [NSString stringWithFormat:LocalizedString(@"Could you provide an option to let me choose the icon I want for the %@?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
                         [NSString stringWithFormat:LocalizedString(@"What can I do if I have a question that hasn't been answered?", nil)], nil];
-  
+
   NSArray* answers = [NSArray arrayWithObjects:
                       LocalizedString(@"Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.", nil),
                       [NSString stringWithFormat:LocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"), [Application name]],
@@ -111,7 +111,7 @@
                       LocalizedString(@"Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.", nil),
                       LocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
                       LocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
-  
+
   return [NSArray arrayWithObjects:questions, answers, nil];
 }
 
@@ -132,26 +132,26 @@
                        [[NSBundle mainBundle] bundleIdentifier],
                        [LocaleUtilities preferredLanguage],
                        [StringUtilities stringByAddingPercentEscapes:[Application name]]];
-  
+
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
-  
+
   NSMutableArray* questions = [NSMutableArray array];
   NSMutableArray* answers = [NSMutableArray array];
-  
+
   for (XmlElement* child in element.children) {
     NSString* question = [child attributeValue:@"question"];
     NSString* answer = [child attributeValue:@"answer"];
-    
+
     if (question.length > 0 && answer.length > 0) {
       [questions addObject:question];
       [answers addObject:answer];
     }
   }
-  
+
   if (questions.count == 0 || answers.count == 0) {
     return;
   }
-  
+
   NSArray* result = [NSArray arrayWithObjects:questions, answers, nil];
   questionsAndAnswersData.value = result;
 }
@@ -164,7 +164,7 @@
       return;
     }
   }
-  
+
   NSString* notification = [LocalizedString(@"Help", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {

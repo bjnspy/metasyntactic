@@ -25,7 +25,7 @@
 
 - (void) dealloc {
   self.updatedMovies = nil;
-  
+
   [super dealloc];
 }
 
@@ -34,7 +34,7 @@
   if (self = [super init]) {
     self.updatedMovies = [NSMutableSet set];
   }
-  
+
   return self;
 }
 
@@ -79,7 +79,7 @@
   if ([self checkMovie:movie]) {
     return;
   }
-  
+
   [self updateMovieDetails:movie force:force];
 }
 

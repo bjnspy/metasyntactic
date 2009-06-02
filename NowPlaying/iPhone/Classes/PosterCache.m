@@ -172,11 +172,11 @@
     NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
     smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                             toHeight:SMALL_POSTER_HEIGHT];
-    
+
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     return [UIImage imageWithData:smallPosterData];
   }
-  
+
   return nil;
 }
 
