@@ -310,15 +310,15 @@
     return;
   }
 
-  scoresData.value = scores;
-  hashData.value = serverHash;
-
   NSArray* movies = [self.model movies];
 
   NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
 
   [dataGate lock];
   {
+    scoresData.value = scores;
+    hashData.value = serverHash;
+
     [FileUtilities writeObject:map toFile:[self movieMapFile]];
     self.moviesData = movies;
     self.movieMapData = map;

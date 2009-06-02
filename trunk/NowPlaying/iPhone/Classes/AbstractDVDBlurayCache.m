@@ -315,8 +315,6 @@
     return;
   }
 
-  [self saveData:map];
-
   NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
   // add in any previously bookmarked movies that we now no longer know about.
   for (Movie* movie in self.bookmarks.allValues) {
@@ -333,7 +331,10 @@
     }
   }
   bookmarksData.value = bookmarks;
+  
+  [self saveData:map];
   [self setMovies:movies];
+
   [self clearUpdatedMovies];
 
   [AppDelegate majorRefresh];

@@ -199,12 +199,6 @@
   [Application moveItemToTrash:self.performancesDirectory];
   [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
-  moviesData.value = result.movies;
-  theatersData.value = result.theaters;
-
-  // Do this last.  It signifies that we are done
-  [self setLastLookupDate];
-
   for (Movie* movie in self.bookmarks.allValues) {
     if (![result.movies containsObject:movie]) {
       [result.movies addObject:movie];
@@ -218,15 +212,21 @@
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }
-  bookmarksData.value = dictionary;
-  synchronizationInformationData.value = result.synchronizationInformation;
 
   [dataGate lock];
   {
+    moviesData.value = result.movies;
+    theatersData.value = result.theaters;
+    bookmarksData.value = dictionary;
+    synchronizationInformationData.value = result.synchronizationInformation;
+    
     self.performancesData = [NSMutableDictionary dictionary];
     self.cachedIsStale = [NSMutableDictionary dictionary];
   }
   [dataGate unlock];
+  
+  // Do this last.  It signifies that we are done
+  [self setLastLookupDate];
 
   // Let the rest of the app know about the results.
   [AppDelegate majorRefresh:YES];

@@ -343,15 +343,18 @@
     [movieMap setObject:movie forKey:movie.canonicalTitle];
   }
 
-  titleKeysData.value = titleKeys;
-  studioKeysData.value = studioKeys;
-  movieMapData.value = movieMap;
-  bookmarksData.value = dictionary;
+  [dataGate lock];
+  {
+    titleKeysData.value = titleKeys;
+    studioKeysData.value = studioKeys;
+    movieMapData.value = movieMap;
+    bookmarksData.value = dictionary;
 
-  // do this last, it signifies that we're done.
-  hashData.value = serverHash;
-
-  [self clearUpdatedMovies];
+    // do this last, it signifies that we're done.
+    hashData.value = serverHash;
+    [self clearUpdatedMovies];
+  }
+  [dataGate unlock];
 
   [AppDelegate majorRefresh];
 }
