@@ -25,8 +25,8 @@
 @interface AbstractScoreProvider()
 @property (retain) ThreadsafeValue* scoresData;
 @property (retain) ThreadsafeValue* hashData;
-@property (retain) NSArray* moviesData;
-@property (retain) NSDictionary* movieMapData;
+@property (retain) ThreadsafeValue* moviesData;
+@property (retain) ThreadsafeValue* movieMapData;
 @property (copy) NSString* providerDirectory;
 @property (copy) NSString* reviewsDirectory;
 @end
@@ -70,14 +70,16 @@
 
 - (id) init {
   if (self = [super init]) {
+    self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
+    self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
+    self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
+    self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
+
     self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
     self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
 
     [FileUtilities createDirectory:providerDirectory];
     [FileUtilities createDirectory:reviewsDirectory];
-
-    self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
-    self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
   }
 
   return self;
@@ -115,24 +117,18 @@
 }
 
 
-- (NSArray*) moviesNoLock {
-  if (moviesData == nil) {
-    self.moviesData = [NSArray array];
-  }
+- (NSArray*) loadMovies {
+  return [NSArray array];
+}
 
-  // Access through the property so that we get back a safe pointer
-  return self.moviesData;
+
+- (void) saveMovies:(NSArray*) movies {
+  // nothing to do here
 }
 
 
 - (NSArray*) movies {
-  NSArray* result = nil;
-  [dataGate lock];
-  {
-    result = [self moviesNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return moviesData.value;
 }
 
 
@@ -187,11 +183,11 @@
 }
 
 
-- (void) ensureMovieMapNoLock {
-  NSArray* moviesArray = [[Model model] movies];
-  if (moviesArray != self.moviesNoLock) {
+- (void) ensureMovieMap {
+  NSArray* moviesArray = self.model.movies;
+  if (moviesArray != self.movies) {
     NSLog(@"AbstractScoreProvider:ensureMovieMapNoLock - regenerating map");
-    self.moviesData = moviesArray;
+    moviesData.value = moviesArray;
 
     [[OperationQueue operationQueue] performSelector:@selector(regenerateMap)
                                             onTarget:self
@@ -210,26 +206,14 @@
 }
 
 
-- (NSDictionary*) movieMapNoLock {
-  if (movieMapData == nil) {
-    self.movieMapData = [self loadMovieMap];
-  }
-
-  [self ensureMovieMapNoLock];
-
-  // Access through the property so that we get back a safe pointer
-  return self.movieMapData;
+- (void) saveMovieMap:(NSDictionary*) map {
+  [FileUtilities writeObject:map toFile:self.movieMapFile];
 }
 
 
 - (NSDictionary*) movieMap {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self movieMapNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  [self ensureMovieMap];
+  return movieMapData.value;
 }
 
 
@@ -279,9 +263,8 @@
 
   [dataGate lock];
   {
-    [FileUtilities writeObject:map toFile:[self movieMapFile]];
-    self.movieMapData = map;
-    self.moviesData = movies;
+    movieMapData.value = map;
+    moviesData.value = movies;
     [self clearUpdatedMovies];
   }
   [dataGate unlock];
@@ -319,9 +302,8 @@
     scoresData.value = scores;
     hashData.value = serverHash;
 
-    [FileUtilities writeObject:map toFile:[self movieMapFile]];
-    self.moviesData = movies;
-    self.movieMapData = map;
+    movieMapData.value = map;
+    moviesData.value = movies;
   }
   [dataGate unlock];
 

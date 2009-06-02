@@ -22,10 +22,10 @@
   // Mapping from score title to score.
   ThreadsafeValue*/*NSDictionary*/ scoresData;
   ThreadsafeValue*/*NSString*/ hashData;
-  NSArray* moviesData;
+  ThreadsafeValue*/*NSArray*/ moviesData;
 
   // Mapping from google movie title to score provider title
-  NSDictionary* movieMapData;
+  ThreadsafeValue*/*NSDictionary*/ movieMapData;
 
   // -->
 

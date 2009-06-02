@@ -331,11 +331,15 @@
     }
   }
   bookmarksData.value = bookmarks;
-  
-  [self saveData:map];
-  [self setMovies:movies];
 
-  [self clearUpdatedMovies];
+  [self saveData:map];
+
+  [dataGate lock];
+  {
+    [self setMovies:movies];
+    [self clearUpdatedMovies];
+  }
+  [dataGate unlock];
 
   [AppDelegate majorRefresh];
 }
@@ -362,8 +366,6 @@
     }
     [NotificationCenter removeNotification:notification];
   }
-
-  [self clearUpdatedMovies];
 
   NSArray* movies = self.movies;
   [[CacheUpdater cacheUpdater] addMovies:movies];
