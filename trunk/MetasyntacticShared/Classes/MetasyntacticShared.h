@@ -67,6 +67,7 @@
 #import "TappableViewDelegate.h"
 #import "TextFieldEditorViewController.h"
 #import "ThreadingUtilities.h"
+#import "ThreadsafeValue.h"
 #import "TouchableViewDelegate.h"
 #import "UITableViewCell+Utilities.h"
 #import "ViewControllerUtilities.h"
