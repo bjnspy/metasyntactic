@@ -59,6 +59,10 @@
 		74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */; };
 		74200DAB0FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */; };
 		74200DAC0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */; };
+		7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */; };
+		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
+		7432BAD10FD5766300AA0D73 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */; };
+		7432BAD20FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
 		747C2FF70FD064C500411801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		747C2FF90FD064C500411801 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		747C2FFA0FD064C500411801 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
@@ -372,6 +376,8 @@
 		74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
 		74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
 		74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
+		7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
+		7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
@@ -796,6 +802,7 @@
 				74616D870F15D8A10004B610 /* MainThreadGate.h */,
 				74616D890F15D8A10004B610 /* PriorityMutex.h */,
 				747C32F60FD0705700411801 /* ThreadingUtilities.h */,
+				7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */,
 				747C33680FD0720300411801 /* BackgroundInvocation.m */,
 				747C336A0FD0720300411801 /* BackgroundInvocation2.m */,
 				74616D840F15D8A10004B610 /* Invocation.m */,
@@ -803,6 +810,7 @@
 				74616D880F15D8A10004B610 /* MainThreadGate.m */,
 				74616D8A0F15D8A10004B610 /* PriorityMutex.m */,
 				747C32F70FD0705700411801 /* ThreadingUtilities.m */,
+				7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
@@ -1008,6 +1016,7 @@
 				74200D7F0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */,
 				74200D850FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */,
 				74200DAB0FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */,
+				7432BAD10FD5766300AA0D73 /* ThreadsafeValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1099,6 +1108,7 @@
 				74200D7D0FD25AE600DEE16B /* SearchEngineDelegate.h in Headers */,
 				74200D830FD25B7800DEE16B /* AbstractSearchRequest.h in Headers */,
 				74200DA90FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */,
+				7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,6 +1249,7 @@
 				74200D780FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */,
 				74200D860FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */,
 				74200DAC0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */,
+				7432BAD20FD5766300AA0D73 /* ThreadsafeValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1334,7 @@
 				74200D7A0FD25A6600DEE16B /* AbstractSearchEngine.m in Sources */,
 				74200D840FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */,
 				74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */,
+				7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

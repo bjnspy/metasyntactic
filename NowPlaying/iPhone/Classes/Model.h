@@ -42,9 +42,10 @@ enum ViewControllerType {
 
   NSInteger searchRadiusData;
   NSNumber* isSearchDateTodayData;
+  
+  ThreadsafeValue*/*<NSSet>*/ threadsafeBookmarkedTitles;
 
   // Accessed from multiple threads.  Needs lock.
-  NSSet* bookmarkedTitlesData;
   NSDictionary* favoriteTheatersData;
 
   NSInteger cachedScoreProviderIndex;

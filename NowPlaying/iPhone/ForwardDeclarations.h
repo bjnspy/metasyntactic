@@ -23,7 +23,6 @@
 @protocol SearchEngineDelegate;
 
 @class AbstractDataProvider;
-@class AbstractSearchEngine;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
 @class AmazonCache;
@@ -87,7 +86,6 @@
 @class SearchDatePickerViewController;
 @class LocalizableStringsCache;
 @class LocalSearchEngine;
-@class SearchEngineDelegate;
 @class SearchRequest;
 @class SearchResult;
 @class SettingCell;

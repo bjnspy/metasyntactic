@@ -43,6 +43,7 @@
 @class TappableImageView;
 @class TappableScrollView;
 @class TextFieldEditorViewController;
+@class ThreadsafeValue;
 @class ViewControllerUtilities;
 @class XmlDocument;
 @class XmlElement;
