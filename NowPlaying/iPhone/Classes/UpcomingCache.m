@@ -21,11 +21,11 @@
 #import "Movie.h"
 
 @interface UpcomingCache()
-@property (copy) NSString* hashData;
-@property (retain) NSDictionary* movieMapData;
-@property (retain) NSDictionary* studioKeysData;
-@property (retain) NSDictionary* titleKeysData;
-@property (retain) NSDictionary* bookmarksData;
+@property (retain) ThreadsafeValue* hashData;
+@property (retain) ThreadsafeValue* movieMapData;
+@property (retain) ThreadsafeValue* studioKeysData;
+@property (retain) ThreadsafeValue* titleKeysData;
+@property (retain) ThreadsafeValue* bookmarksData;
 @property BOOL updated;
 @end
 
@@ -48,6 +48,19 @@
   self.updated = NO;
   
   [super dealloc];
+}
+
+
+- (id) init {
+  if (self = [super init]) {
+    self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
+    self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
+    self.studioKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadStudioKeys) saveSelector:@selector(saveStudioKeys:)];
+    self.titleKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadTitleKeys) saveSelector:@selector(saveTitleKeys:)];
+    self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
+  }
+  
+  return self;
 }
 
 
@@ -78,20 +91,6 @@
 
 - (NSString*) moviesFile {
   return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Movies.plist"];
-}
-
-
-- (void) writeData:(NSString*) hash
-            movies:(NSArray*) movies
-        studioKeys:(NSDictionary*) studioKeys
-         titleKeys:(NSDictionary*) titleKeys {
-  [FileUtilities writeObject:studioKeys toFile:self.studiosFile];
-  [FileUtilities writeObject:titleKeys toFile:self.titlesFile];
-  
-  [FileUtilities writeObject:[Movie encodeArray:movies] toFile:self.moviesFile];
-  
-  // do this last, it signifies that we're done.
-  [FileUtilities writeObject:hash toFile:self.hashFile];
 }
 
 
@@ -171,7 +170,7 @@
 }
 
 
-- (NSDictionary*) loadMovies {
+- (NSDictionary*) loadMovieMap {
   NSArray* array = [FileUtilities readObject:self.moviesFile];
   if (array.count == 0) {
     return [NSDictionary dictionary];
@@ -187,24 +186,13 @@
 }
 
 
-- (NSDictionary*) movieMapNoLock {
-  if (movieMapData == nil) {
-    self.movieMapData = [self loadMovies];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.movieMapData;
+- (void) saveMovieMap:(NSDictionary*) movieMap {
+  [FileUtilities writeObject:[Movie encodeArray:movieMap.allValues] toFile:self.moviesFile];
 }
 
 
 - (NSDictionary*) movieMap {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self movieMapNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return movieMapData.value;
 }
 
 
@@ -213,27 +201,23 @@
 }
 
 
-- (NSString*) hashValueNoLock {
-  if (hashData == nil) {
-    self.hashData = [FileUtilities readObject:self.hashFile];
-    if (hashData == nil) {
-      self.hashData = @"";
-    }
+- (NSString*) loadHash {
+  NSString* value = [FileUtilities readObject:self.hashFile];
+  if (value == nil) {
+    return @"";
   }
   
-  // Access through the property so that we get back a safe pointer
-  return self.hashData;
+  return value;
+}
+
+
+- (void) saveHash:(NSString*) hash {
+  [FileUtilities writeObject:hash toFile:self.hashFile];
 }
 
 
 - (NSString*) hashValue {
-  NSString* result = nil;
-  [dataGate lock];
-  {
-    result = [self hashValueNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return hashData.value;
 }
 
 
@@ -247,24 +231,13 @@
 }
 
 
-- (NSDictionary*) studioKeysNoLock {
-  if (studioKeysData == nil) {
-    self.studioKeysData = [self loadStudioKeys];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.studioKeysData;
+- (void) saveStudioKeys:(NSDictionary*) studioKeys {
+  [FileUtilities writeObject:studioKeys toFile:self.studiosFile];
 }
 
 
 - (NSDictionary*) studioKeys {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self studioKeysNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return studioKeysData.value;
 }
 
 
@@ -278,24 +251,13 @@
 }
 
 
-- (NSDictionary*) titleKeysNoLock {
-  if (titleKeysData == nil) {
-    self.titleKeysData = [self loadTitleKeys];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.titleKeysData;
+- (void) saveTitleKeys:(NSDictionary*) titleKeys {
+  [FileUtilities writeObject:titleKeys toFile:self.titlesFile];
 }
 
 
 - (NSDictionary*) titleKeys {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self titleKeysNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return titleKeysData.value;
 }
 
 
@@ -314,33 +276,12 @@
 }
 
 
-- (NSDictionary*) bookmarksNoLock {
-  if (bookmarksData == nil) {
-    self.bookmarksData = [self loadBookmarks];
-  }
-  
-  // Access through the property so that we get back a safe pointer
-  return self.bookmarksData;
-}
-
-
 - (NSDictionary*) bookmarks {
-  NSDictionary* result = nil;
-  [dataGate lock];
-  {
-    result = [self bookmarksNoLock];
-  }
-  [dataGate unlock];
-  return result;
+  return bookmarksData.value;
 }
 
 
-- (void) setBookmarks:(NSDictionary*) bookmarks {
-  [dataGate lock];
-  {
-    self.bookmarksData = bookmarks;
-  }
-  [dataGate unlock];
+- (void) saveBookmarks:(NSDictionary*) bookmarks {
   [self.model setBookmarkedUpcoming:bookmarks.allValues];
 }
 
@@ -381,10 +322,7 @@
   if (movies.count == 0) {
     return;
   }
-  
-  [self writeData:serverHash movies:movies studioKeys:studioKeys titleKeys:titleKeys];
-  [self clearUpdatedMovies];
-  
+
   // add in any previously bookmarked movies that we now no longer know about.
   for (Movie* movie in self.bookmarks.allValues) {
     if (![movies containsObject:movie]) {
@@ -399,21 +337,21 @@
       [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
   }
-  [self setBookmarks:dictionary];
   
   NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
   for (Movie* movie in movies) {
     [movieMap setObject:movie forKey:movie.canonicalTitle];
   }
   
-  [dataGate lock];
-  {
-    self.hashData = serverHash;
-    self.movieMapData = movieMap;
-    self.studioKeysData = studioKeys;
-    self.titleKeysData = titleKeys;
-  }
-  [dataGate unlock];
+  titleKeysData.value = titleKeys;
+  studioKeysData.value = studioKeys;
+  movieMapData.value = movieMap;
+  bookmarksData.value = dictionary;
+  
+  // do this last, it signifies that we're done.
+  hashData.value = serverHash;
+  
+  [self clearUpdatedMovies];
   
   [AppDelegate majorRefresh];
 }
@@ -630,7 +568,7 @@
     if ([movie.canonicalTitle isEqual:canonicalTitle]) {
       NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
       [dictionary setObject:movie forKey:canonicalTitle];
-      [self setBookmarks:dictionary];
+      bookmarksData.value = dictionary;
       return;
     }
   }
@@ -640,7 +578,7 @@
 - (void) removeBookmark:(NSString*) canonicalTitle {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:self.bookmarks];
   [dictionary removeObjectForKey:canonicalTitle];
-  [self setBookmarks:dictionary];
+  bookmarksData.value = dictionary;
 }
 
 @end
