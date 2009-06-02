@@ -17,8 +17,8 @@
   // Accessed from multiple threads.  needs lock
   ThreadsafeValue*/*NSArray*/ moviesData;
   ThreadsafeValue*/*NSArray*/ theatersData;
-  NSDictionary* synchronizationInformationData;
-  NSDictionary* bookmarksData;
+  ThreadsafeValue*/*NSDictionary*/ synchronizationInformationData;
+  ThreadsafeValue*/*NSDictionary*/ bookmarksData;
   NSMutableDictionary* performancesData;
   
   NSMutableDictionary* cachedIsStale;
