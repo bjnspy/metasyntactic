@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldDescriptorType.h"
-
 /**
  * Encodes and writes protocol message fields.
  *
