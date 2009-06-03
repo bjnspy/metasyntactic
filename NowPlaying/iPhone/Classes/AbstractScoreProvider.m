@@ -416,12 +416,9 @@
 - (void) saveReviews:(NSArray*) reviews
                 hash:(NSString*) hash
                title:(NSString*) title {
-  NSMutableArray* encodedReviews = [NSMutableArray array];
-  for (Review* review in reviews) {
-    [encodedReviews addObject:review.dictionary];
-  }
-
-  [self saveEncodedReviews:encodedReviews hash:hash title:title];
+  [self saveEncodedReviews:[Review encodeArray:reviews]
+                      hash:hash
+                     title:title];
 }
 
 
@@ -566,16 +563,7 @@
   NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
   NSArray* encodedResult = [FileUtilities readObject:[self reviewsFile:title]];
 
-  if (encodedResult == nil) {
-    return [NSArray array];
-  }
-
-  NSMutableArray* result = [NSMutableArray array];
-  for (NSDictionary* dictionary in encodedResult) {
-    [result addObject:[Review reviewWithDictionary:dictionary]];
-  }
-
-  return result;
+  return [Review decodeArray:encodedResult];
 }
 
 @end

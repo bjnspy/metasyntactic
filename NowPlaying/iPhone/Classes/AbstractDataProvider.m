@@ -258,12 +258,7 @@
     return unsureArray;
   }
 
-  NSMutableArray* decodedArray = [NSMutableArray array];
-  for (NSDictionary* encodedPerformance in unsureArray) {
-    Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
-
-    [decodedArray addObject:performance];
-  }
+  NSArray* decodedArray = [Performance decodeArray:unsureArray];
 
   [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];
   return decodedArray;

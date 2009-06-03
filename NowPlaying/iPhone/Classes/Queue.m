@@ -78,7 +78,7 @@ property_definition(saved);
 
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary {
-    return [Queue queueWithFeed:[Feed feedWithDictionary:[dictionary objectForKey:feed_key]]
+    return [Queue queueWithFeed:[Feed newWithDictionary:[dictionary objectForKey:feed_key]]
                            etag:[dictionary objectForKey:etag_key]
                          movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
                           saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];

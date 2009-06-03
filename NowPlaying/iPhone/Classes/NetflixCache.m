@@ -206,28 +206,16 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSArray*) loadFeeds {
   NSArray* array = [FileUtilities readObject:self.feedsFile];
-  if (array.count == 0) {
-    return [NSArray array];
-  }
-
-  NSMutableArray* result = [NSMutableArray array];
-  for (NSDictionary* dictionary in array) {
-    [result addObject:[Feed feedWithDictionary:dictionary]];
-  }
-  return result;
+  return [Feed decodeArray:array];
 }
 
 
 - (void) saveFeeds:(NSArray*) feeds {
-  NSMutableArray* result = [NSMutableArray array];
-
-  for (Feed* feed in feeds) {
-    [result addObject:feed.dictionary];
+  if (feeds.count == 0) {
+    return;
   }
 
-  if (result.count > 0) {
-    [FileUtilities writeObject:result toFile:self.feedsFile];
-  }
+  [FileUtilities writeObject:[Feed encodeArray:feeds] toFile:self.feedsFile];
 }
 
 
