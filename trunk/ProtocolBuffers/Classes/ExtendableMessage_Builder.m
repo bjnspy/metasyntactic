@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ExtendableBuilder.h"
+#import "ExtendableMessage_Builder.h"
 
 #import "ExtendableMessage.h"
 #import "ExtensionField.h"
 #import "WireFormat.h"
 
-@implementation PBExtendableBuilder
+@implementation PBExtendableMessage_Builder
 
 - (PBExtendableMessage*) internalGetResult {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
@@ -63,7 +63,7 @@
 }
 
 
-- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension
+- (PBExtendableMessage_Builder*) setExtension:(id<PBExtensionField>) extension
                                 value:(id) value {
   PBExtendableMessage* message = [self internalGetResult];
   [message ensureExtensionIsRegistered:extension];
@@ -80,7 +80,7 @@
 }
 
 
-- (PBExtendableBuilder*) addExtension:(id<PBExtensionField>) extension
+- (PBExtendableMessage_Builder*) addExtension:(id<PBExtensionField>) extension
                                 value:(id) value {
   PBExtendableMessage* message = [self internalGetResult];
   [message ensureExtensionIsRegistered:extension];
@@ -104,7 +104,7 @@
 }
 
 
-- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension
+- (PBExtendableMessage_Builder*) setExtension:(id<PBExtensionField>) extension
                                 index:(int32_t) index
                                 value:(id) value {
   PBExtendableMessage* message = [self internalGetResult];
@@ -127,7 +127,7 @@
 }
 
 
-- (PBExtendableBuilder*) clearExtension:(id<PBExtensionField>) extension {
+- (PBExtendableMessage_Builder*) clearExtension:(id<PBExtensionField>) extension {
   PBExtendableMessage* message = [self internalGetResult];
   [message ensureExtensionIsRegistered:extension];
   [message.extensionMap removeObjectForKey:[NSNumber numberWithInt:[extension fieldNumber]]];
