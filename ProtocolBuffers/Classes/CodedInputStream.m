@@ -14,7 +14,6 @@
 
 #import "CodedInputStream.h"
 
-#import "FieldDescriptorType.h"
 #import "Message_Builder.h"
 #import "Utilities.h"
 #import "WireFormat.h"

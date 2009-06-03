@@ -15,9 +15,7 @@
 #import "AbstractMessage_Builder.h"
 
 #import "CodedInputStream.h"
-#import "Descriptor.pb.h"
 #import "ExtensionRegistry.h"
-#import "FieldDescriptor.h"
 #import "FieldSet.h"
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"

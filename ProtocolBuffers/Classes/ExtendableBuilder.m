@@ -16,7 +16,6 @@
 
 #import "ExtendableMessage.h"
 #import "ExtensionField.h"
-#import "FieldDescriptor.h"
 #import "FieldSet.h"
 #import "WireFormat.h"
 

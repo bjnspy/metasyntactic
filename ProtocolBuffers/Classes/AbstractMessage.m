@@ -15,9 +15,6 @@
 #import "AbstractMessage.h"
 
 #import "CodedOutputStream.h"
-#import "Descriptor.h"
-#import "Descriptor.pb.h"
-#import "FieldDescriptor.h"
 #import "ObjectiveCType.h"
 
 @implementation PBAbstractMessage
