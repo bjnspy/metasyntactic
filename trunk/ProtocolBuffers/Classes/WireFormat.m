@@ -29,31 +29,3 @@ int32_t PBWireFormatGetTagWireType(int32_t tag) {
 int32_t PBWireFormatGetTagFieldNumber(int32_t tag) {
     return logicalRightShift32(tag, PBWireFormatTagTypeBits);
 }
-
-
-#if 0
-int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type) {
-    switch (type) {
-        case PBFieldDescriptorTypeDouble  : return PBWireFormatFixed64;
-        case PBFieldDescriptorTypeFloat   : return PBWireFormatFixed32;
-        case PBFieldDescriptorTypeInt64   : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeUInt64  : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeInt32   : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeFixed64 : return PBWireFormatFixed64;
-        case PBFieldDescriptorTypeFixed32 : return PBWireFormatFixed32;
-        case PBFieldDescriptorTypeBool    : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeString  : return PBWireFormatLengthDelimited;
-        case PBFieldDescriptorTypeGroup   : return PBWireFormatStartGroup;
-        case PBFieldDescriptorTypeMessage : return PBWireFormatLengthDelimited;
-        case PBFieldDescriptorTypeData    : return PBWireFormatLengthDelimited;
-        case PBFieldDescriptorTypeUInt32  : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeEnum    : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeSFixed32: return PBWireFormatFixed32;
-        case PBFieldDescriptorTypeSFixed64: return PBWireFormatFixed64;
-        case PBFieldDescriptorTypeSInt32  : return PBWireFormatVarint;
-        case PBFieldDescriptorTypeSInt64  : return PBWireFormatVarint;
-    }
-
-    @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
-}
-#endif

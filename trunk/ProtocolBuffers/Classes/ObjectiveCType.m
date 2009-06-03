@@ -38,32 +38,3 @@ id PBObjectiveCTypeDefault(PBObjectiveCType type) {
 @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
-
-#if 0
-
-PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType type) {
-    switch (type) {
-        case PBFieldDescriptorTypeDouble:   return PBObjectiveCTypeFloat64;
-        case PBFieldDescriptorTypeFloat:    return PBObjectiveCTypeFloat32;
-        case PBFieldDescriptorTypeInt64:    return PBObjectiveCTypeInt64;
-        case PBFieldDescriptorTypeUInt64:   return PBObjectiveCTypeInt64;
-        case PBFieldDescriptorTypeInt32:    return PBObjectiveCTypeInt32;
-        case PBFieldDescriptorTypeFixed64:  return PBObjectiveCTypeInt64;
-        case PBFieldDescriptorTypeFixed32:  return PBObjectiveCTypeInt32;
-        case PBFieldDescriptorTypeBool:     return PBObjectiveCTypeBool;
-        case PBFieldDescriptorTypeString:   return PBObjectiveCTypeString;
-        case PBFieldDescriptorTypeGroup:    return PBObjectiveCTypeMessage;
-        case PBFieldDescriptorTypeMessage:  return PBObjectiveCTypeMessage;
-        case PBFieldDescriptorTypeData:     return PBObjectiveCTypeData;
-        case PBFieldDescriptorTypeUInt32:   return PBObjectiveCTypeInt32;
-        case PBFieldDescriptorTypeSFixed32: return PBObjectiveCTypeInt32;
-        case PBFieldDescriptorTypeSFixed64: return PBObjectiveCTypeInt64;
-        case PBFieldDescriptorTypeSInt32:   return PBObjectiveCTypeInt32;
-        case PBFieldDescriptorTypeSInt64:   return PBObjectiveCTypeInt64;
-        case PBFieldDescriptorTypeEnum:     return PBObjectiveCTypeEnum;
-
-        default:
-@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
-    }
-}
-#endif

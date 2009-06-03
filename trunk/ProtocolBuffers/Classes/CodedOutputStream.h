@@ -87,21 +87,6 @@ int32_t computeTagSize(int32_t fieldNumber);
 int32_t computeRawVarint32Size(int32_t value);
 int32_t computeRawVarint64Size(int64_t value);
 
-#if 0
-/**
- * Compute the number of bytes that would be needed to encode a
- * field of arbitrary type, including tag, to the stream.
- *
- * @param type   The field's type.
- * @param number The field's number.
- * @param value  Object representing the field's value.  Must be of the exact
- *               type which would be returned by
- *               {@link Message#getField(Descriptors.FieldDescriptor)} for
- *               this field.
- */
-int32_t computeFieldSize(PBFieldDescriptorType type, int32_t number, id value);
-#endif
-
 /**
  * Compute the number of bytes that would be needed to encode a
  * MessageSet extension to the stream.  For historical reasons,
@@ -186,21 +171,5 @@ int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
  * for converting the enum value to its numeric value.
  */
 - (void) writeEnum:(int32_t) fieldNumber value:(int32_t) value;
-
-#if 0
-/**
- * Write a field of arbitrary type, including tag, to the stream.
- *
- * @param type   The field's type.
- * @param number The field's number.
- * @param value  Object representing the field's value.  Must be of the exact
- *               type which would be returned by
- *               {@link Message#getField(Descriptors.FieldDescriptor)} for
- *               this field.
- */
-- (void) writeField:(PBFieldDescriptorType) type
-             number:(int32_t) number
-              value:(id) value;
-#endif
 
 @end
