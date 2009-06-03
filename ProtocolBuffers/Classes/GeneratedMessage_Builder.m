@@ -14,8 +14,6 @@
 
 #import "GeneratedMessage_Builder.h"
 
-#import "FieldAccessor.h"
-#import "FieldAccessorTable.h"
 #import "GeneratedMessage.h"
 #import "Message.h"
 #import "Message_Builder.h"

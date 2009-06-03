@@ -14,8 +14,6 @@
 
 #import "GeneratedMessage.h"
 
-#import "FieldAccessor.h"
-#import "FieldAccessorTable.h"
 #import "UnknownFieldSet.h"
 
 @interface PBGeneratedMessage ()
