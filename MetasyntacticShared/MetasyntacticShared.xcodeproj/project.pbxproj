@@ -736,6 +736,11 @@
 		74616C360F15D1D70004B610 /* Expat */ = {
 			isa = PBXGroup;
 			children = (
+				74616C430F15D1EE0004B610 /* xmlparse.c */,
+				74616C440F15D1EE0004B610 /* xmlrole.c */,
+				74616C460F15D1EE0004B610 /* xmltok.c */,
+				74616C480F15D1EE0004B610 /* xmltok_impl.c */,
+				74616C4A0F15D1EE0004B610 /* xmltok_ns.c */,
 				74616C370F15D1EE0004B610 /* amigaconfig.h */,
 				74616C380F15D1EE0004B610 /* ascii.h */,
 				74616C390F15D1EE0004B610 /* asciitab.h */,
@@ -748,14 +753,9 @@
 				74616C400F15D1EE0004B610 /* nametab.h */,
 				74616C410F15D1EE0004B610 /* utf8tab.h */,
 				74616C420F15D1EE0004B610 /* winconfig.h */,
-				74616C430F15D1EE0004B610 /* xmlparse.c */,
-				74616C440F15D1EE0004B610 /* xmlrole.c */,
 				74616C450F15D1EE0004B610 /* xmlrole.h */,
-				74616C460F15D1EE0004B610 /* xmltok.c */,
 				74616C470F15D1EE0004B610 /* xmltok.h */,
-				74616C480F15D1EE0004B610 /* xmltok_impl.c */,
 				74616C490F15D1EE0004B610 /* xmltok_impl.h */,
-				74616C4A0F15D1EE0004B610 /* xmltok_ns.c */,
 			);
 			name = Expat;
 			sourceTree = "<group>";
