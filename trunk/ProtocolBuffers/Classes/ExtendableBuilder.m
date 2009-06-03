@@ -16,11 +16,9 @@
 
 #import "ExtendableMessage.h"
 #import "ExtensionField.h"
-#import "FieldSet.h"
 #import "WireFormat.h"
 
 @implementation PBExtendableBuilder
-
 
 - (PBExtendableMessage*) internalGetResult {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];

@@ -20,84 +20,84 @@
 
 
 BOOL allZeroes(NSString* string) {
-    for (int i = 0; i < string.length; i++) {
-        if ([string characterAtIndex:i] != '0') {
-            return NO;
-        }
+  for (int i = 0; i < string.length; i++) {
+    if ([string characterAtIndex:i] != '0') {
+      return NO;
     }
-
-    return YES;
+  }
+  
+  return YES;
 }
 
 
 /** Is this an octal digit? */
 BOOL isOctal(unichar c) {
-    return '0' <= c && c <= '7';
+  return '0' <= c && c <= '7';
 }
 
 
 /** Is this an octal digit? */
 BOOL isDecimal(unichar c) {
-    return '0' <= c && c <= '9';
+  return '0' <= c && c <= '9';
 }
 
 /** Is this a hex digit? */
 BOOL isHex(unichar c) {
-    return
-    isDecimal(c) ||
-    ('a' <= c && c <= 'f') ||
-    ('A' <= c && c <= 'F');
+  return
+  isDecimal(c) ||
+  ('a' <= c && c <= 'f') ||
+  ('A' <= c && c <= 'F');
 }
 
 
 + (int64_t) parseInteger:(NSString*) text
                 isSigned:(BOOL) isSigned
                   isLong:(BOOL) isLong {
-    if (text.length == 0) {
-        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number was blank" userInfo:nil];
+  if (text.length == 0) {
+    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number was blank" userInfo:nil];
+  }
+  
+  if (isblank([text characterAtIndex:0])) {
+    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Invalid character" userInfo:nil];
+  }
+  
+  if ([text hasPrefix:@"-"]) {
+    if (!isSigned) {
+      @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number must be positive" userInfo:nil];
     }
-
-    if (isblank([text characterAtIndex:0])) {
-        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Invalid character" userInfo:nil];
-    }
-
-    if ([text hasPrefix:@"-"]) {
-        if (!isSigned) {
-            @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number must be positive" userInfo:nil];
-        }
-    }
-
-    // now call into the appropriate conversion utilities.
-    int64_t result;
-    const char* in_string = text.UTF8String;
-    char* out_string = NULL;
-    errno = 0;
-    if (isLong) {
-        if (isSigned) {
-            result = strtoll(in_string, &out_string, 0);
-        } else {
-            result = convertUInt64ToInt64(strtoull(in_string, &out_string, 0));
-        }
+  }
+  
+  // now call into the appropriate conversion utilities.
+  int64_t result;
+  const char* in_string = text.UTF8String;
+  char* out_string = NULL;
+  errno = 0;
+  if (isLong) {
+    if (isSigned) {
+      result = strtoll(in_string, &out_string, 0);
     } else {
-        if (isSigned) {
-            result = strtol(in_string, &out_string, 0);
-        } else {
-            result = convertUInt32ToInt32(strtoul(in_string, &out_string, 0));
-        }
+      result = convertUInt64ToInt64(strtoull(in_string, &out_string, 0));
     }
-
-    // from the man pages:
-    // (Thus, i* tr is not `\0' but **endptr is `\0' on return, the entire
-    // string was valid.)
-    if (*in_string == 0 || *out_string != 0) {
-        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"IllegalNumber" userInfo:nil];
+  } else {
+    if (isSigned) {
+      result = strtol(in_string, &out_string, 0);
+    } else {
+      result = convertUInt32ToInt32(strtoul(in_string, &out_string, 0));
     }
-
-    if (errno == ERANGE) {
-        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range" userInfo:nil];
-    }
-
-    return result;
+  }
+  
+  // from the man pages:
+  // (Thus, i* tr is not `\0' but **endptr is `\0' on return, the entire
+  // string was valid.)
+  if (*in_string == 0 || *out_string != 0) {
+    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"IllegalNumber" userInfo:nil];
+  }
+  
+  if (errno == ERANGE) {
+    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range" userInfo:nil];
+  }
+  
+  return result;
 }
 
 
@@ -107,7 +107,7 @@ BOOL isHex(unichar c) {
  * respectively.
  */
 + (int32_t) parseInt32:(NSString*) text {
-    return (int32_t)[self parseInteger:text isSigned:YES isLong:NO];
+  return (int32_t)[self parseInteger:text isSigned:YES isLong:NO];
 }
 
 
@@ -117,7 +117,7 @@ BOOL isHex(unichar c) {
  * respectively.  The result is coerced to a (signed) {@code int} when returned.
  */
 + (int32_t) parseUInt32:(NSString*) text {
-    return (int32_t)[self parseInteger:text isSigned:NO isLong:NO];
+  return (int32_t)[self parseInteger:text isSigned:NO isLong:NO];
 }
 
 
@@ -127,7 +127,7 @@ BOOL isHex(unichar c) {
  * respectively.
  */
 + (int64_t) parseInt64:(NSString*) text {
-    return [self parseInteger:text isSigned:YES isLong:YES];
+  return [self parseInteger:text isSigned:YES isLong:YES];
 }
 
 
@@ -138,7 +138,7 @@ BOOL isHex(unichar c) {
  * returned.
  */
 + (int64_t) parseUInt64:(NSString*) text {
-    return [self parseInteger:text isSigned:NO isLong:YES];
+  return [self parseInteger:text isSigned:NO isLong:YES];
 }
 
 /**
@@ -147,13 +147,13 @@ BOOL isHex(unichar c) {
  * non-ASCII digits.
  */
 int32_t digitValue(unichar c) {
-    if ('0' <= c && c <= '9') {
-        return c - '0';
-    } else if ('a' <= c && c <= 'z') {
-        return c - 'a' + 10;
-    } else {
-        return c - 'A' + 10;
-    }
+  if ('0' <= c && c <= '9') {
+    return c - '0';
+  } else if ('a' <= c && c <= 'z') {
+    return c - 'a' + 10;
+  } else {
+    return c - 'A' + 10;
+  }
 }
 
 
@@ -163,71 +163,71 @@ int32_t digitValue(unichar c) {
  * "\x") are also recognized.
  */
 + (NSData*) unescapeBytes:(NSString*) input {
-    NSMutableData* result = [NSMutableData dataWithLength:input.length];
-
-    int32_t pos = 0;
-    for (int32_t i = 0; i < input.length; i++) {
-        unichar c = [input characterAtIndex:i];
-        if (c == '\\') {
-            if (i + 1 < input.length) {
-                ++i;
-                c = [input characterAtIndex:i];
-                if (isOctal(c)) {
-                    // Octal escape.
-                    int32_t code = digitValue(c);
-                    if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
-                        ++i;
-                        code = code * 8 + digitValue([input characterAtIndex:i]);
-                    }
-                    if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
-                        ++i;
-                        code = code * 8 + digitValue([input characterAtIndex:i]);
-                    }
-                    ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
-                } else {
-                    switch (c) {
-                        case 'a' : ((int8_t*)result.mutableBytes)[pos++] = 0x07; break;
-                        case 'b' : ((int8_t*)result.mutableBytes)[pos++] = '\b'; break;
-                        case 'f' : ((int8_t*)result.mutableBytes)[pos++] = '\f'; break;
-                        case 'n' : ((int8_t*)result.mutableBytes)[pos++] = '\n'; break;
-                        case 'r' : ((int8_t*)result.mutableBytes)[pos++] = '\r'; break;
-                        case 't' : ((int8_t*)result.mutableBytes)[pos++] = '\t'; break;
-                        case 'v' : ((int8_t*)result.mutableBytes)[pos++] = 0x0b; break;
-                        case '\\': ((int8_t*)result.mutableBytes)[pos++] = '\\'; break;
-                        case '\'': ((int8_t*)result.mutableBytes)[pos++] = '\''; break;
-                        case '"' : ((int8_t*)result.mutableBytes)[pos++] = '\"'; break;
-
-                        case 'x': // hex escape
-                        {
-                            int32_t code = 0;
-                            if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
-                                ++i;
-                                code = digitValue([input characterAtIndex:i]);
-                            } else {
-                                @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\x' with no digits" userInfo:nil];
-                            }
-                            if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
-                                ++i;
-                                code = code * 16 + digitValue([input characterAtIndex:i]);
-                            }
-                            ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
-                            break;
-                        }
-
-                        default:
-@throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
-                    }
-                }
-            } else {
-                @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\' at end of string" userInfo:nil];
-            }
+  NSMutableData* result = [NSMutableData dataWithLength:input.length];
+  
+  int32_t pos = 0;
+  for (int32_t i = 0; i < input.length; i++) {
+    unichar c = [input characterAtIndex:i];
+    if (c == '\\') {
+      if (i + 1 < input.length) {
+        ++i;
+        c = [input characterAtIndex:i];
+        if (isOctal(c)) {
+          // Octal escape.
+          int32_t code = digitValue(c);
+          if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
+            ++i;
+            code = code * 8 + digitValue([input characterAtIndex:i]);
+          }
+          if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
+            ++i;
+            code = code * 8 + digitValue([input characterAtIndex:i]);
+          }
+          ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
         } else {
-            ((int8_t*)result.mutableBytes)[pos++] = (int8_t)c;
+          switch (c) {
+            case 'a' : ((int8_t*)result.mutableBytes)[pos++] = 0x07; break;
+            case 'b' : ((int8_t*)result.mutableBytes)[pos++] = '\b'; break;
+            case 'f' : ((int8_t*)result.mutableBytes)[pos++] = '\f'; break;
+            case 'n' : ((int8_t*)result.mutableBytes)[pos++] = '\n'; break;
+            case 'r' : ((int8_t*)result.mutableBytes)[pos++] = '\r'; break;
+            case 't' : ((int8_t*)result.mutableBytes)[pos++] = '\t'; break;
+            case 'v' : ((int8_t*)result.mutableBytes)[pos++] = 0x0b; break;
+            case '\\': ((int8_t*)result.mutableBytes)[pos++] = '\\'; break;
+            case '\'': ((int8_t*)result.mutableBytes)[pos++] = '\''; break;
+            case '"' : ((int8_t*)result.mutableBytes)[pos++] = '\"'; break;
+              
+            case 'x': // hex escape
+            {
+              int32_t code = 0;
+              if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
+                ++i;
+                code = digitValue([input characterAtIndex:i]);
+              } else {
+                @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\x' with no digits" userInfo:nil];
+              }
+              if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
+                ++i;
+                code = code * 16 + digitValue([input characterAtIndex:i]);
+              }
+              ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
+              break;
+            }
+              
+            default:
+              @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
+          }
         }
+      } else {
+        @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\' at end of string" userInfo:nil];
+      }
+    } else {
+      ((int8_t*)result.mutableBytes)[pos++] = (int8_t)c;
     }
-
-    [result setLength:pos];
-    return result;
+  }
+  
+  [result setLength:pos];
+  return result;
 }
 
 @end
