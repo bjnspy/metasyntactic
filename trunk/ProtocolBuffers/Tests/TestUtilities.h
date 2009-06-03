@@ -19,13 +19,14 @@
 @class TestAllTypes;
 @class TestAllTypes_Builder;
 @class PBExtensionRegistry;
+@class PBMutableExtensionRegistry;
 
 @interface TestUtilities : SenTestCase {
 }
 
 + (void) setAllFields:(TestAllTypes_Builder*) message;
 + (void) setAllExtensions:(TestAllExtensions_Builder*) message;
-+ (void) registerAllExtensions:(PBExtensionRegistry*) registry;
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 
 + (TestAllTypes*) allSet;
 + (TestAllExtensions*) allExtensionsSet;

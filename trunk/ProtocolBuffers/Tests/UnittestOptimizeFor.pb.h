@@ -4,11 +4,7 @@
 
 #import "Unittest.pb.h"
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class BarRequest;
 @class BarRequest_Builder;
@@ -24,6 +20,10 @@
 @class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
+@class OneBytes;
+@class OneBytes_Builder;
+@class OneString;
+@class OneString_Builder;
 @class OptionalGroup_extension;
 @class OptionalGroup_extension_Builder;
 @class RepeatedGroup_extension;
@@ -68,6 +68,8 @@
 @class TestNestedMessageHasBits_NestedMessage_Builder;
 @class TestOptimizedForSize;
 @class TestOptimizedForSize_Builder;
+@class TestOptionalOptimizedForSize;
+@class TestOptionalOptimizedForSize_Builder;
 @class TestReallyLargeTagNumber;
 @class TestReallyLargeTagNumber_Builder;
 @class TestRecursiveMessage;
@@ -75,34 +77,33 @@
 @class TestRequired;
 @class TestRequiredForeign;
 @class TestRequiredForeign_Builder;
+@class TestRequiredOptimizedForSize;
+@class TestRequiredOptimizedForSize_Builder;
 @class TestRequired_Builder;
 @class TestService;
 @class TestSparseEnum;
 
 @interface UnittestOptimizeForRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface TestOptimizedForSize : PBExtendableMessage {
-  @private
-  BOOL hasI:1;
-  BOOL hasMsg:1;
+ @private
+  BOOL hasI;
+  BOOL hasMsg;
   int32_t i;
   ForeignMessage* msg;
 }
 - (BOOL) hasI;
 - (BOOL) hasMsg;
 @property (readonly) int32_t i;
-@property (retain, readonly) ForeignMessage* msg;
+@property (readonly, retain) ForeignMessage* msg;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestOptimizedForSize*) defaultInstance;
 - (TestOptimizedForSize*) defaultInstance;
 
-+ (PBGeneratedExtension*) testExtension;
++ (id<PBExtensionField>) testExtension;
++ (id<PBExtensionField>) testExtension2;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (TestOptimizedForSize_Builder*) builder;
@@ -117,12 +118,11 @@
 + (TestOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestOptimizedForSize_Builder : PBExtendableBuilder {
-  @private
+@interface TestOptimizedForSize_Builder : PBExtendableMessage_Builder {
+ @private
   TestOptimizedForSize* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestOptimizedForSize*) defaultInstance;
 
 - (TestOptimizedForSize_Builder*) clear;
@@ -131,8 +131,7 @@
 - (TestOptimizedForSize*) build;
 - (TestOptimizedForSize*) buildPartial;
 
-- (TestOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestOptimizedForSize_Builder*) mergeFromTestOptimizedForSize:(TestOptimizedForSize*) other;
+- (TestOptimizedForSize_Builder*) mergeFrom:(TestOptimizedForSize*) other;
 - (TestOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -148,3 +147,102 @@
 - (TestOptimizedForSize_Builder*) mergeMsg:(ForeignMessage*) value;
 - (TestOptimizedForSize_Builder*) clearMsg;
 @end
+
+@interface TestRequiredOptimizedForSize : PBGeneratedMessage {
+ @private
+  BOOL hasX;
+  int32_t x;
+}
+- (BOOL) hasX;
+@property (readonly) int32_t x;
+
++ (TestRequiredOptimizedForSize*) defaultInstance;
+- (TestRequiredOptimizedForSize*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TestRequiredOptimizedForSize_Builder*) builder;
++ (TestRequiredOptimizedForSize_Builder*) builder;
++ (TestRequiredOptimizedForSize_Builder*) builderWithPrototype:(TestRequiredOptimizedForSize*) prototype;
+
++ (TestRequiredOptimizedForSize*) parseFromData:(NSData*) data;
++ (TestRequiredOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestRequiredOptimizedForSize*) parseFromInputStream:(NSInputStream*) input;
++ (TestRequiredOptimizedForSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestRequiredOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TestRequiredOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TestRequiredOptimizedForSize_Builder : PBGeneratedMessage_Builder {
+ @private
+  TestRequiredOptimizedForSize* result;
+}
+
+- (TestRequiredOptimizedForSize*) defaultInstance;
+
+- (TestRequiredOptimizedForSize_Builder*) clear;
+- (TestRequiredOptimizedForSize_Builder*) clone;
+
+- (TestRequiredOptimizedForSize*) build;
+- (TestRequiredOptimizedForSize*) buildPartial;
+
+- (TestRequiredOptimizedForSize_Builder*) mergeFrom:(TestRequiredOptimizedForSize*) other;
+- (TestRequiredOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TestRequiredOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasX;
+- (int32_t) x;
+- (TestRequiredOptimizedForSize_Builder*) setX:(int32_t) value;
+- (TestRequiredOptimizedForSize_Builder*) clearX;
+@end
+
+@interface TestOptionalOptimizedForSize : PBGeneratedMessage {
+ @private
+  BOOL hasO;
+  TestRequiredOptimizedForSize* o;
+}
+- (BOOL) hasO;
+@property (readonly, retain) TestRequiredOptimizedForSize* o;
+
++ (TestOptionalOptimizedForSize*) defaultInstance;
+- (TestOptionalOptimizedForSize*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TestOptionalOptimizedForSize_Builder*) builder;
++ (TestOptionalOptimizedForSize_Builder*) builder;
++ (TestOptionalOptimizedForSize_Builder*) builderWithPrototype:(TestOptionalOptimizedForSize*) prototype;
+
++ (TestOptionalOptimizedForSize*) parseFromData:(NSData*) data;
++ (TestOptionalOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestOptionalOptimizedForSize*) parseFromInputStream:(NSInputStream*) input;
++ (TestOptionalOptimizedForSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestOptionalOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TestOptionalOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TestOptionalOptimizedForSize_Builder : PBGeneratedMessage_Builder {
+ @private
+  TestOptionalOptimizedForSize* result;
+}
+
+- (TestOptionalOptimizedForSize*) defaultInstance;
+
+- (TestOptionalOptimizedForSize_Builder*) clear;
+- (TestOptionalOptimizedForSize_Builder*) clone;
+
+- (TestOptionalOptimizedForSize*) build;
+- (TestOptionalOptimizedForSize*) buildPartial;
+
+- (TestOptionalOptimizedForSize_Builder*) mergeFrom:(TestOptionalOptimizedForSize*) other;
+- (TestOptionalOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TestOptionalOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasO;
+- (TestRequiredOptimizedForSize*) o;
+- (TestOptionalOptimizedForSize_Builder*) setO:(TestRequiredOptimizedForSize*) value;
+- (TestOptionalOptimizedForSize_Builder*) setOBuilder:(TestRequiredOptimizedForSize_Builder*) builderForValue;
+- (TestOptionalOptimizedForSize_Builder*) mergeO:(TestRequiredOptimizedForSize*) value;
+- (TestOptionalOptimizedForSize_Builder*) clearO;
+@end
+

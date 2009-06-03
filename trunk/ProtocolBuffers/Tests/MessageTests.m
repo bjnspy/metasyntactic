@@ -53,32 +53,7 @@
 - (void) testMergeFrom {
     TestAllTypes* result =
     [[[TestAllTypes builderWithPrototype:self.mergeDestination]
-      mergeFromTestAllTypes:self.mergeSource] build];
-
-    STAssertEqualObjects(result.data, self.mergeResult.data, @"");
-}
-
-
-/**
- * Test merging a DynamicMessage into a GeneratedMessage.  As long as they
- * have the same descriptor, this should work, but it is an entirely different
- * code path.
- */
-- (void) testMergeFromDynamic {
-    TestAllTypes* result = [[[TestAllTypes builderWithPrototype:self.mergeDestination]
-                             mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
-                            build];
-
-    STAssertEqualObjects(result.data, self.mergeResult.data, @"");
-}
-
-
-/** Test merging two DynamicMessages. */
-- (void) testDynamicMergeFrom {
-    PBDynamicMessage* result =
-    [[[PBDynamicMessage builderWithMessage:self.mergeDestination]
-      mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
-     build];
+      mergeFrom:self.mergeSource] build];
 
     STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
@@ -147,45 +122,6 @@
 }
 
 
-- (void) testRequiredDynamic {
-    PBDescriptor* descriptor = [TestRequired descriptor];
-    PBDynamicMessage_Builder* builder = [PBDynamicMessage builderWithType:descriptor];
-
-    STAssertFalse(builder.isInitialized, @"");
-    [builder setField:[descriptor findFieldByName:@"a"] value:[NSNumber numberWithInt:1]];
-    STAssertFalse(builder.isInitialized, @"");
-    [builder setField:[descriptor findFieldByName:@"b"] value:[NSNumber numberWithInt:1]];
-    STAssertFalse(builder.isInitialized, @"");
-    [builder setField:[descriptor findFieldByName:@"c"] value:[NSNumber numberWithInt:1]];
-    STAssertTrue(builder.isInitialized, @"");
-}
-
-
-- (void) testRequiredDynamicForeign {
-    PBDescriptor* descriptor = [TestRequiredForeign descriptor];
-    PBDynamicMessage_Builder* builder = [PBDynamicMessage builderWithType:descriptor];
-
-    STAssertTrue(builder.isInitialized, @"");
-
-    [builder setField:[descriptor findFieldByName:@"optional_message"]
-                value:self.testRequiredUninitialized];
-    STAssertFalse(builder.isInitialized, @"");
-
-    [builder setField:[descriptor findFieldByName:@"optional_message"]
-                value:self.testRequiredInitialized];
-    STAssertTrue(builder.isInitialized, @"");
-
-    [builder addRepeatedField:[descriptor findFieldByName:@"repeated_message"]
-                        value:self.testRequiredUninitialized];
-    STAssertFalse(builder.isInitialized, @"");
-
-    [builder setRepeatedField:[descriptor findFieldByName:@"repeated_message"]
-                        index:0
-                        value:self.testRequiredInitialized];
-    STAssertTrue(builder.isInitialized, @"");
-}
-
-
 - (void) testUninitializedException {
     STAssertThrows([[TestRequired builder] build], @"");
 }
@@ -237,25 +173,6 @@
     NSData* data = message.data;
 
     STAssertThrows([TestRequiredForeign parseFromData:data], @"");
-}
-
-
-- (void) testDynamicUninitializedException {
-    STAssertThrows([[PBDynamicMessage builderWithType:[TestRequired descriptor]] build], @"");
-}
-
-
-- (void) testDynamicBuildPartial {
-    // We're mostly testing that no exception is thrown.
-    id<PBMessage> message =
-    [[PBDynamicMessage builderWithType:[TestRequired descriptor]] buildPartial];
-    STAssertFalse([message isInitialized], @"");
-}
-
-
-- (void) testDynamicParseUnititialized {
-    PBDescriptor* descriptor = [TestRequired descriptor];
-    STAssertThrows([PBDynamicMessage parseFrom:descriptor data:[NSData data]], @"");
 }
 
 @end

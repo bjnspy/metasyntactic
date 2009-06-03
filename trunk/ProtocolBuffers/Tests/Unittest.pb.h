@@ -4,11 +4,7 @@
 
 #import "UnittestImport.pb.h"
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class BarRequest;
 @class BarRequest_Builder;
@@ -24,6 +20,10 @@
 @class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
+@class OneBytes;
+@class OneBytes_Builder;
+@class OneString;
+@class OneString_Builder;
 @class OptionalGroup_extension;
 @class OptionalGroup_extension_Builder;
 @class RepeatedGroup_extension;
@@ -79,82 +79,80 @@
 
 @interface UnittestRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
-+ (PBGeneratedExtension*) optionalInt32Extension;
-+ (PBGeneratedExtension*) optionalInt64Extension;
-+ (PBGeneratedExtension*) optionalUint32Extension;
-+ (PBGeneratedExtension*) optionalUint64Extension;
-+ (PBGeneratedExtension*) optionalSint32Extension;
-+ (PBGeneratedExtension*) optionalSint64Extension;
-+ (PBGeneratedExtension*) optionalFixed32Extension;
-+ (PBGeneratedExtension*) optionalFixed64Extension;
-+ (PBGeneratedExtension*) optionalSfixed32Extension;
-+ (PBGeneratedExtension*) optionalSfixed64Extension;
-+ (PBGeneratedExtension*) optionalFloatExtension;
-+ (PBGeneratedExtension*) optionalDoubleExtension;
-+ (PBGeneratedExtension*) optionalBoolExtension;
-+ (PBGeneratedExtension*) optionalStringExtension;
-+ (PBGeneratedExtension*) optionalBytesExtension;
-+ (PBGeneratedExtension*) optionalGroupExtension;
-+ (PBGeneratedExtension*) optionalNestedMessageExtension;
-+ (PBGeneratedExtension*) optionalForeignMessageExtension;
-+ (PBGeneratedExtension*) optionalImportMessageExtension;
-+ (PBGeneratedExtension*) optionalNestedEnumExtension;
-+ (PBGeneratedExtension*) optionalForeignEnumExtension;
-+ (PBGeneratedExtension*) optionalImportEnumExtension;
-+ (PBGeneratedExtension*) optionalStringPieceExtension;
-+ (PBGeneratedExtension*) optionalCordExtension;
-+ (PBGeneratedExtension*) repeatedInt32Extension;
-+ (PBGeneratedExtension*) repeatedInt64Extension;
-+ (PBGeneratedExtension*) repeatedUint32Extension;
-+ (PBGeneratedExtension*) repeatedUint64Extension;
-+ (PBGeneratedExtension*) repeatedSint32Extension;
-+ (PBGeneratedExtension*) repeatedSint64Extension;
-+ (PBGeneratedExtension*) repeatedFixed32Extension;
-+ (PBGeneratedExtension*) repeatedFixed64Extension;
-+ (PBGeneratedExtension*) repeatedSfixed32Extension;
-+ (PBGeneratedExtension*) repeatedSfixed64Extension;
-+ (PBGeneratedExtension*) repeatedFloatExtension;
-+ (PBGeneratedExtension*) repeatedDoubleExtension;
-+ (PBGeneratedExtension*) repeatedBoolExtension;
-+ (PBGeneratedExtension*) repeatedStringExtension;
-+ (PBGeneratedExtension*) repeatedBytesExtension;
-+ (PBGeneratedExtension*) repeatedGroupExtension;
-+ (PBGeneratedExtension*) repeatedNestedMessageExtension;
-+ (PBGeneratedExtension*) repeatedForeignMessageExtension;
-+ (PBGeneratedExtension*) repeatedImportMessageExtension;
-+ (PBGeneratedExtension*) repeatedNestedEnumExtension;
-+ (PBGeneratedExtension*) repeatedForeignEnumExtension;
-+ (PBGeneratedExtension*) repeatedImportEnumExtension;
-+ (PBGeneratedExtension*) repeatedStringPieceExtension;
-+ (PBGeneratedExtension*) repeatedCordExtension;
-+ (PBGeneratedExtension*) defaultInt32Extension;
-+ (PBGeneratedExtension*) defaultInt64Extension;
-+ (PBGeneratedExtension*) defaultUint32Extension;
-+ (PBGeneratedExtension*) defaultUint64Extension;
-+ (PBGeneratedExtension*) defaultSint32Extension;
-+ (PBGeneratedExtension*) defaultSint64Extension;
-+ (PBGeneratedExtension*) defaultFixed32Extension;
-+ (PBGeneratedExtension*) defaultFixed64Extension;
-+ (PBGeneratedExtension*) defaultSfixed32Extension;
-+ (PBGeneratedExtension*) defaultSfixed64Extension;
-+ (PBGeneratedExtension*) defaultFloatExtension;
-+ (PBGeneratedExtension*) defaultDoubleExtension;
-+ (PBGeneratedExtension*) defaultBoolExtension;
-+ (PBGeneratedExtension*) defaultStringExtension;
-+ (PBGeneratedExtension*) defaultBytesExtension;
-+ (PBGeneratedExtension*) defaultNestedEnumExtension;
-+ (PBGeneratedExtension*) defaultForeignEnumExtension;
-+ (PBGeneratedExtension*) defaultImportEnumExtension;
-+ (PBGeneratedExtension*) defaultStringPieceExtension;
-+ (PBGeneratedExtension*) defaultCordExtension;
-+ (PBGeneratedExtension*) myExtensionString;
-+ (PBGeneratedExtension*) myExtensionInt;
++ (id<PBExtensionField>) optionalInt32Extension;
++ (id<PBExtensionField>) optionalInt64Extension;
++ (id<PBExtensionField>) optionalUint32Extension;
++ (id<PBExtensionField>) optionalUint64Extension;
++ (id<PBExtensionField>) optionalSint32Extension;
++ (id<PBExtensionField>) optionalSint64Extension;
++ (id<PBExtensionField>) optionalFixed32Extension;
++ (id<PBExtensionField>) optionalFixed64Extension;
++ (id<PBExtensionField>) optionalSfixed32Extension;
++ (id<PBExtensionField>) optionalSfixed64Extension;
++ (id<PBExtensionField>) optionalFloatExtension;
++ (id<PBExtensionField>) optionalDoubleExtension;
++ (id<PBExtensionField>) optionalBoolExtension;
++ (id<PBExtensionField>) optionalStringExtension;
++ (id<PBExtensionField>) optionalBytesExtension;
++ (id<PBExtensionField>) optionalGroupExtension;
++ (id<PBExtensionField>) optionalNestedMessageExtension;
++ (id<PBExtensionField>) optionalForeignMessageExtension;
++ (id<PBExtensionField>) optionalImportMessageExtension;
++ (id<PBExtensionField>) optionalNestedEnumExtension;
++ (id<PBExtensionField>) optionalForeignEnumExtension;
++ (id<PBExtensionField>) optionalImportEnumExtension;
++ (id<PBExtensionField>) optionalStringPieceExtension;
++ (id<PBExtensionField>) optionalCordExtension;
++ (id<PBExtensionField>) repeatedInt32Extension;
++ (id<PBExtensionField>) repeatedInt64Extension;
++ (id<PBExtensionField>) repeatedUint32Extension;
++ (id<PBExtensionField>) repeatedUint64Extension;
++ (id<PBExtensionField>) repeatedSint32Extension;
++ (id<PBExtensionField>) repeatedSint64Extension;
++ (id<PBExtensionField>) repeatedFixed32Extension;
++ (id<PBExtensionField>) repeatedFixed64Extension;
++ (id<PBExtensionField>) repeatedSfixed32Extension;
++ (id<PBExtensionField>) repeatedSfixed64Extension;
++ (id<PBExtensionField>) repeatedFloatExtension;
++ (id<PBExtensionField>) repeatedDoubleExtension;
++ (id<PBExtensionField>) repeatedBoolExtension;
++ (id<PBExtensionField>) repeatedStringExtension;
++ (id<PBExtensionField>) repeatedBytesExtension;
++ (id<PBExtensionField>) repeatedGroupExtension;
++ (id<PBExtensionField>) repeatedNestedMessageExtension;
++ (id<PBExtensionField>) repeatedForeignMessageExtension;
++ (id<PBExtensionField>) repeatedImportMessageExtension;
++ (id<PBExtensionField>) repeatedNestedEnumExtension;
++ (id<PBExtensionField>) repeatedForeignEnumExtension;
++ (id<PBExtensionField>) repeatedImportEnumExtension;
++ (id<PBExtensionField>) repeatedStringPieceExtension;
++ (id<PBExtensionField>) repeatedCordExtension;
++ (id<PBExtensionField>) defaultInt32Extension;
++ (id<PBExtensionField>) defaultInt64Extension;
++ (id<PBExtensionField>) defaultUint32Extension;
++ (id<PBExtensionField>) defaultUint64Extension;
++ (id<PBExtensionField>) defaultSint32Extension;
++ (id<PBExtensionField>) defaultSint64Extension;
++ (id<PBExtensionField>) defaultFixed32Extension;
++ (id<PBExtensionField>) defaultFixed64Extension;
++ (id<PBExtensionField>) defaultSfixed32Extension;
++ (id<PBExtensionField>) defaultSfixed64Extension;
++ (id<PBExtensionField>) defaultFloatExtension;
++ (id<PBExtensionField>) defaultDoubleExtension;
++ (id<PBExtensionField>) defaultBoolExtension;
++ (id<PBExtensionField>) defaultStringExtension;
++ (id<PBExtensionField>) defaultBytesExtension;
++ (id<PBExtensionField>) defaultNestedEnumExtension;
++ (id<PBExtensionField>) defaultForeignEnumExtension;
++ (id<PBExtensionField>) defaultImportEnumExtension;
++ (id<PBExtensionField>) defaultStringPieceExtension;
++ (id<PBExtensionField>) defaultCordExtension;
++ (id<PBExtensionField>) myExtensionString;
++ (id<PBExtensionField>) myExtensionInt;
 @end
 
 @interface ForeignEnum : NSObject {
-  @private
+ @private
   int32_t index;
   int32_t value;
 }
@@ -167,15 +165,10 @@
 
 - (int32_t) number;
 + (ForeignEnum*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptor;
-+ (PBEnumDescriptor*) descriptor;
-
-+ (ForeignEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
 
 @interface TestEnumWithDupValue : NSObject {
-  @private
+ @private
   int32_t index;
   int32_t value;
 }
@@ -190,15 +183,10 @@
 
 - (int32_t) number;
 + (TestEnumWithDupValue*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptor;
-+ (PBEnumDescriptor*) descriptor;
-
-+ (TestEnumWithDupValue*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
 
 @interface TestSparseEnum : NSObject {
-  @private
+ @private
   int32_t index;
   int32_t value;
 }
@@ -215,100 +203,56 @@
 
 - (int32_t) number;
 + (TestSparseEnum*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptor;
-+ (PBEnumDescriptor*) descriptor;
-
-+ (TestSparseEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
-
-@interface TestService : NSObject<PBService> {
-}
-- (void) fooWithController:(id<PBRpcController>) controller
-                      request:(FooRequest*) request
-                       target:(id) target
-                     selector:(SEL) selector;
-- (void) barWithController:(id<PBRpcController>) controller
-                      request:(BarRequest*) request
-                       target:(id) target
-                     selector:(SEL) selector;
-
-+ (PBServiceDescriptor*) descriptor;
-- (PBServiceDescriptor*) descriptor;
-
-- (void) callMethod:(PBMethodDescriptor*) method
-         controller:(id<PBRpcController>) controller
-            request:(id<PBMessage>) request
-             target:(id) target
-           selector:(SEL) selector;
-- (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method;
-- (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method;
-@end
-
-@interface TestService_Stub : TestService {
-  @private
-  id<PBRpcChannel> channel;
-}
-@property (retain) id<PBRpcChannel> channel;
-+ (TestService_Stub*) stubWithChannel:(id<PBRpcChannel>) channel;
-
-- (void) fooWithController:(id<PBRpcController>) controller
-                        request:(FooRequest*) request
-                         target:(id) target
-                       selector:(SEL) selector;
-- (void) barWithController:(id<PBRpcController>) controller
-                        request:(BarRequest*) request
-                         target:(id) target
-                       selector:(SEL) selector;@end
 
 @interface TestAllTypes : PBGeneratedMessage {
-  @private
-  BOOL hasOptionalBool:1;
-  BOOL hasDefaultBool:1;
-  BOOL hasOptionalDouble:1;
-  BOOL hasDefaultDouble:1;
-  BOOL hasOptionalFloat:1;
-  BOOL hasDefaultFloat:1;
-  BOOL hasOptionalInt64:1;
-  BOOL hasDefaultInt64:1;
-  BOOL hasOptionalUint64:1;
-  BOOL hasDefaultUint64:1;
-  BOOL hasOptionalInt32:1;
-  BOOL hasDefaultInt32:1;
-  BOOL hasOptionalFixed64:1;
-  BOOL hasDefaultFixed64:1;
-  BOOL hasOptionalFixed32:1;
-  BOOL hasDefaultFixed32:1;
-  BOOL hasOptionalCord:1;
-  BOOL hasDefaultCord:1;
-  BOOL hasDefaultStringPiece:1;
-  BOOL hasDefaultString:1;
-  BOOL hasOptionalString:1;
-  BOOL hasOptionalStringPiece:1;
-  BOOL hasOptionalGroup:1;
-  BOOL hasOptionalForeignMessage:1;
-  BOOL hasOptionalImportMessage:1;
-  BOOL hasOptionalNestedMessage:1;
-  BOOL hasDefaultBytes:1;
-  BOOL hasOptionalBytes:1;
-  BOOL hasOptionalUint32:1;
-  BOOL hasDefaultUint32:1;
-  BOOL hasOptionalNestedEnum:1;
-  BOOL hasOptionalForeignEnum:1;
-  BOOL hasOptionalImportEnum:1;
-  BOOL hasDefaultImportEnum:1;
-  BOOL hasDefaultForeignEnum:1;
-  BOOL hasDefaultNestedEnum:1;
-  BOOL hasDefaultSfixed32:1;
-  BOOL hasOptionalSfixed32:1;
-  BOOL hasOptionalSfixed64:1;
-  BOOL hasDefaultSfixed64:1;
-  BOOL hasOptionalSint32:1;
-  BOOL hasDefaultSint32:1;
-  BOOL hasOptionalSint64:1;
-  BOOL hasDefaultSint64:1;
-  BOOL optionalBool:1;
-  BOOL defaultBool:1;
+ @private
+  BOOL hasOptionalBool;
+  BOOL hasDefaultBool;
+  BOOL hasOptionalDouble;
+  BOOL hasDefaultDouble;
+  BOOL hasOptionalFloat;
+  BOOL hasDefaultFloat;
+  BOOL hasOptionalInt64;
+  BOOL hasDefaultInt64;
+  BOOL hasOptionalUint64;
+  BOOL hasDefaultUint64;
+  BOOL hasOptionalInt32;
+  BOOL hasDefaultInt32;
+  BOOL hasOptionalFixed64;
+  BOOL hasDefaultFixed64;
+  BOOL hasOptionalFixed32;
+  BOOL hasDefaultFixed32;
+  BOOL hasOptionalCord;
+  BOOL hasDefaultCord;
+  BOOL hasDefaultStringPiece;
+  BOOL hasDefaultString;
+  BOOL hasOptionalString;
+  BOOL hasOptionalStringPiece;
+  BOOL hasOptionalGroup;
+  BOOL hasOptionalForeignMessage;
+  BOOL hasOptionalImportMessage;
+  BOOL hasOptionalNestedMessage;
+  BOOL hasDefaultBytes;
+  BOOL hasOptionalBytes;
+  BOOL hasOptionalUint32;
+  BOOL hasDefaultUint32;
+  BOOL hasOptionalNestedEnum;
+  BOOL hasOptionalForeignEnum;
+  BOOL hasOptionalImportEnum;
+  BOOL hasDefaultImportEnum;
+  BOOL hasDefaultForeignEnum;
+  BOOL hasDefaultNestedEnum;
+  BOOL hasDefaultSfixed32;
+  BOOL hasOptionalSfixed32;
+  BOOL hasOptionalSfixed64;
+  BOOL hasDefaultSfixed64;
+  BOOL hasOptionalSint32;
+  BOOL hasDefaultSint32;
+  BOOL hasOptionalSint64;
+  BOOL hasDefaultSint64;
+  BOOL optionalBool;
+  BOOL defaultBool;
   Float64 optionalDouble;
   Float64 defaultDouble;
   Float32 optionalFloat;
@@ -433,17 +377,17 @@
 @property (readonly) Float32 optionalFloat;
 @property (readonly) Float64 optionalDouble;
 - (BOOL) optionalBool;
-@property (retain, readonly) NSString* optionalString;
-@property (retain, readonly) NSData* optionalBytes;
-@property (retain, readonly) TestAllTypes_OptionalGroup* optionalGroup;
-@property (retain, readonly) TestAllTypes_NestedMessage* optionalNestedMessage;
-@property (retain, readonly) ForeignMessage* optionalForeignMessage;
-@property (retain, readonly) ImportMessage* optionalImportMessage;
-@property (retain, readonly) TestAllTypes_NestedEnum* optionalNestedEnum;
-@property (retain, readonly) ForeignEnum* optionalForeignEnum;
-@property (retain, readonly) ImportEnum* optionalImportEnum;
-@property (retain, readonly) NSString* optionalStringPiece;
-@property (retain, readonly) NSString* optionalCord;
+@property (readonly, retain) NSString* optionalString;
+@property (readonly, retain) NSData* optionalBytes;
+@property (readonly, retain) TestAllTypes_OptionalGroup* optionalGroup;
+@property (readonly, retain) TestAllTypes_NestedMessage* optionalNestedMessage;
+@property (readonly, retain) ForeignMessage* optionalForeignMessage;
+@property (readonly, retain) ImportMessage* optionalImportMessage;
+@property (readonly, retain) TestAllTypes_NestedEnum* optionalNestedEnum;
+@property (readonly, retain) ForeignEnum* optionalForeignEnum;
+@property (readonly, retain) ImportEnum* optionalImportEnum;
+@property (readonly, retain) NSString* optionalStringPiece;
+@property (readonly, retain) NSString* optionalCord;
 @property (readonly) int32_t defaultInt32;
 @property (readonly) int64_t defaultInt64;
 @property (readonly) int32_t defaultUint32;
@@ -457,13 +401,13 @@
 @property (readonly) Float32 defaultFloat;
 @property (readonly) Float64 defaultDouble;
 - (BOOL) defaultBool;
-@property (retain, readonly) NSString* defaultString;
-@property (retain, readonly) NSData* defaultBytes;
-@property (retain, readonly) TestAllTypes_NestedEnum* defaultNestedEnum;
-@property (retain, readonly) ForeignEnum* defaultForeignEnum;
-@property (retain, readonly) ImportEnum* defaultImportEnum;
-@property (retain, readonly) NSString* defaultStringPiece;
-@property (retain, readonly) NSString* defaultCord;
+@property (readonly, retain) NSString* defaultString;
+@property (readonly, retain) NSData* defaultBytes;
+@property (readonly, retain) TestAllTypes_NestedEnum* defaultNestedEnum;
+@property (readonly, retain) ForeignEnum* defaultForeignEnum;
+@property (readonly, retain) ImportEnum* defaultImportEnum;
+@property (readonly, retain) NSString* defaultStringPiece;
+@property (readonly, retain) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
 - (NSArray*) repeatedInt64List;
@@ -513,8 +457,6 @@
 - (NSArray*) repeatedCordList;
 - (NSString*) repeatedCordAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestAllTypes*) defaultInstance;
 - (TestAllTypes*) defaultInstance;
 
@@ -533,7 +475,7 @@
 @end
 
 @interface TestAllTypes_NestedEnum : NSObject {
-  @private
+ @private
   int32_t index;
   int32_t value;
 }
@@ -546,23 +488,16 @@
 
 - (int32_t) number;
 + (TestAllTypes_NestedEnum*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptor;
-+ (PBEnumDescriptor*) descriptor;
-
-+ (TestAllTypes_NestedEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
 
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
-  @private
-  BOOL hasBb:1;
+ @private
+  BOOL hasBb;
   int32_t bb;
 }
 - (BOOL) hasBb;
 @property (readonly) int32_t bb;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestAllTypes_NestedMessage*) defaultInstance;
 - (TestAllTypes_NestedMessage*) defaultInstance;
 
@@ -581,11 +516,10 @@
 @end
 
 @interface TestAllTypes_NestedMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestAllTypes_NestedMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestAllTypes_NestedMessage*) defaultInstance;
 
 - (TestAllTypes_NestedMessage_Builder*) clear;
@@ -594,8 +528,7 @@
 - (TestAllTypes_NestedMessage*) build;
 - (TestAllTypes_NestedMessage*) buildPartial;
 
-- (TestAllTypes_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestAllTypes_NestedMessage_Builder*) mergeFromTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) other;
+- (TestAllTypes_NestedMessage_Builder*) mergeFrom:(TestAllTypes_NestedMessage*) other;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -606,15 +539,13 @@
 @end
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestAllTypes_OptionalGroup*) defaultInstance;
 - (TestAllTypes_OptionalGroup*) defaultInstance;
 
@@ -633,11 +564,10 @@
 @end
 
 @interface TestAllTypes_OptionalGroup_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestAllTypes_OptionalGroup* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestAllTypes_OptionalGroup*) defaultInstance;
 
 - (TestAllTypes_OptionalGroup_Builder*) clear;
@@ -646,8 +576,7 @@
 - (TestAllTypes_OptionalGroup*) build;
 - (TestAllTypes_OptionalGroup*) buildPartial;
 
-- (TestAllTypes_OptionalGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestAllTypes_OptionalGroup_Builder*) mergeFromTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) other;
+- (TestAllTypes_OptionalGroup_Builder*) mergeFrom:(TestAllTypes_OptionalGroup*) other;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -658,15 +587,13 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestAllTypes_RepeatedGroup*) defaultInstance;
 - (TestAllTypes_RepeatedGroup*) defaultInstance;
 
@@ -685,11 +612,10 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestAllTypes_RepeatedGroup* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestAllTypes_RepeatedGroup*) defaultInstance;
 
 - (TestAllTypes_RepeatedGroup_Builder*) clear;
@@ -698,8 +624,7 @@
 - (TestAllTypes_RepeatedGroup*) build;
 - (TestAllTypes_RepeatedGroup*) buildPartial;
 
-- (TestAllTypes_RepeatedGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestAllTypes_RepeatedGroup_Builder*) mergeFromTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) other;
+- (TestAllTypes_RepeatedGroup_Builder*) mergeFrom:(TestAllTypes_RepeatedGroup*) other;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -710,11 +635,10 @@
 @end
 
 @interface TestAllTypes_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestAllTypes* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestAllTypes*) defaultInstance;
 
 - (TestAllTypes_Builder*) clear;
@@ -723,8 +647,7 @@
 - (TestAllTypes*) build;
 - (TestAllTypes*) buildPartial;
 
-- (TestAllTypes_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestAllTypes_Builder*) mergeFromTestAllTypes:(TestAllTypes*) other;
+- (TestAllTypes_Builder*) mergeFrom:(TestAllTypes*) other;
 - (TestAllTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestAllTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1126,15 +1049,13 @@
 @end
 
 @interface ForeignMessage : PBGeneratedMessage {
-  @private
-  BOOL hasC:1;
+ @private
+  BOOL hasC;
   int32_t c;
 }
 - (BOOL) hasC;
 @property (readonly) int32_t c;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (ForeignMessage*) defaultInstance;
 - (ForeignMessage*) defaultInstance;
 
@@ -1153,11 +1074,10 @@
 @end
 
 @interface ForeignMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   ForeignMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (ForeignMessage*) defaultInstance;
 
 - (ForeignMessage_Builder*) clear;
@@ -1166,8 +1086,7 @@
 - (ForeignMessage*) build;
 - (ForeignMessage*) buildPartial;
 
-- (ForeignMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (ForeignMessage_Builder*) mergeFromForeignMessage:(ForeignMessage*) other;
+- (ForeignMessage_Builder*) mergeFrom:(ForeignMessage*) other;
 - (ForeignMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ForeignMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1178,11 +1097,9 @@
 @end
 
 @interface TestAllExtensions : PBExtendableMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestAllExtensions*) defaultInstance;
 - (TestAllExtensions*) defaultInstance;
 
@@ -1200,12 +1117,11 @@
 + (TestAllExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestAllExtensions_Builder : PBExtendableBuilder {
-  @private
+@interface TestAllExtensions_Builder : PBExtendableMessage_Builder {
+ @private
   TestAllExtensions* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestAllExtensions*) defaultInstance;
 
 - (TestAllExtensions_Builder*) clear;
@@ -1214,22 +1130,19 @@
 - (TestAllExtensions*) build;
 - (TestAllExtensions*) buildPartial;
 
-- (TestAllExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestAllExtensions_Builder*) mergeFromTestAllExtensions:(TestAllExtensions*) other;
+- (TestAllExtensions_Builder*) mergeFrom:(TestAllExtensions*) other;
 - (TestAllExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestAllExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (OptionalGroup_extension*) defaultInstance;
 - (OptionalGroup_extension*) defaultInstance;
 
@@ -1248,11 +1161,10 @@
 @end
 
 @interface OptionalGroup_extension_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   OptionalGroup_extension* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (OptionalGroup_extension*) defaultInstance;
 
 - (OptionalGroup_extension_Builder*) clear;
@@ -1261,8 +1173,7 @@
 - (OptionalGroup_extension*) build;
 - (OptionalGroup_extension*) buildPartial;
 
-- (OptionalGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (OptionalGroup_extension_Builder*) mergeFromOptionalGroup_extension:(OptionalGroup_extension*) other;
+- (OptionalGroup_extension_Builder*) mergeFrom:(OptionalGroup_extension*) other;
 - (OptionalGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (OptionalGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1273,15 +1184,13 @@
 @end
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (RepeatedGroup_extension*) defaultInstance;
 - (RepeatedGroup_extension*) defaultInstance;
 
@@ -1300,11 +1209,10 @@
 @end
 
 @interface RepeatedGroup_extension_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   RepeatedGroup_extension* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (RepeatedGroup_extension*) defaultInstance;
 
 - (RepeatedGroup_extension_Builder*) clear;
@@ -1313,8 +1221,7 @@
 - (RepeatedGroup_extension*) build;
 - (RepeatedGroup_extension*) buildPartial;
 
-- (RepeatedGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (RepeatedGroup_extension_Builder*) mergeFromRepeatedGroup_extension:(RepeatedGroup_extension*) other;
+- (RepeatedGroup_extension_Builder*) mergeFrom:(RepeatedGroup_extension*) other;
 - (RepeatedGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (RepeatedGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1325,40 +1232,40 @@
 @end
 
 @interface TestRequired : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
-  BOOL hasDummy2:1;
-  BOOL hasB:1;
-  BOOL hasDummy4:1;
-  BOOL hasDummy5:1;
-  BOOL hasDummy6:1;
-  BOOL hasDummy7:1;
-  BOOL hasDummy8:1;
-  BOOL hasDummy9:1;
-  BOOL hasDummy10:1;
-  BOOL hasDummy11:1;
-  BOOL hasDummy12:1;
-  BOOL hasDummy13:1;
-  BOOL hasDummy14:1;
-  BOOL hasDummy15:1;
-  BOOL hasDummy16:1;
-  BOOL hasDummy17:1;
-  BOOL hasDummy18:1;
-  BOOL hasDummy19:1;
-  BOOL hasDummy20:1;
-  BOOL hasDummy21:1;
-  BOOL hasDummy22:1;
-  BOOL hasDummy23:1;
-  BOOL hasDummy24:1;
-  BOOL hasDummy25:1;
-  BOOL hasDummy26:1;
-  BOOL hasDummy27:1;
-  BOOL hasDummy28:1;
-  BOOL hasDummy29:1;
-  BOOL hasDummy30:1;
-  BOOL hasDummy31:1;
-  BOOL hasDummy32:1;
-  BOOL hasC:1;
+ @private
+  BOOL hasA;
+  BOOL hasDummy2;
+  BOOL hasB;
+  BOOL hasDummy4;
+  BOOL hasDummy5;
+  BOOL hasDummy6;
+  BOOL hasDummy7;
+  BOOL hasDummy8;
+  BOOL hasDummy9;
+  BOOL hasDummy10;
+  BOOL hasDummy11;
+  BOOL hasDummy12;
+  BOOL hasDummy13;
+  BOOL hasDummy14;
+  BOOL hasDummy15;
+  BOOL hasDummy16;
+  BOOL hasDummy17;
+  BOOL hasDummy18;
+  BOOL hasDummy19;
+  BOOL hasDummy20;
+  BOOL hasDummy21;
+  BOOL hasDummy22;
+  BOOL hasDummy23;
+  BOOL hasDummy24;
+  BOOL hasDummy25;
+  BOOL hasDummy26;
+  BOOL hasDummy27;
+  BOOL hasDummy28;
+  BOOL hasDummy29;
+  BOOL hasDummy30;
+  BOOL hasDummy31;
+  BOOL hasDummy32;
+  BOOL hasC;
   int32_t a;
   int32_t dummy2;
   int32_t b;
@@ -1460,13 +1367,11 @@
 @property (readonly) int32_t dummy32;
 @property (readonly) int32_t c;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestRequired*) defaultInstance;
 - (TestRequired*) defaultInstance;
 
-+ (PBGeneratedExtension*) single;
-+ (PBGeneratedExtension*) multi;
++ (id<PBExtensionField>) single;
++ (id<PBExtensionField>) multi;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (TestRequired_Builder*) builder;
@@ -1482,11 +1387,10 @@
 @end
 
 @interface TestRequired_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestRequired* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestRequired*) defaultInstance;
 
 - (TestRequired_Builder*) clear;
@@ -1495,8 +1399,7 @@
 - (TestRequired*) build;
 - (TestRequired*) buildPartial;
 
-- (TestRequired_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestRequired_Builder*) mergeFromTestRequired:(TestRequired*) other;
+- (TestRequired_Builder*) mergeFrom:(TestRequired*) other;
 - (TestRequired_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestRequired_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1667,22 +1570,20 @@
 @end
 
 @interface TestRequiredForeign : PBGeneratedMessage {
-  @private
-  BOOL hasDummy:1;
-  BOOL hasOptionalMessage:1;
+ @private
+  BOOL hasDummy;
+  BOOL hasOptionalMessage;
   int32_t dummy;
   TestRequired* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
 - (BOOL) hasDummy;
-@property (retain, readonly) TestRequired* optionalMessage;
+@property (readonly, retain) TestRequired* optionalMessage;
 @property (readonly) int32_t dummy;
 - (NSArray*) repeatedMessageList;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestRequiredForeign*) defaultInstance;
 - (TestRequiredForeign*) defaultInstance;
 
@@ -1701,11 +1602,10 @@
 @end
 
 @interface TestRequiredForeign_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestRequiredForeign* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestRequiredForeign*) defaultInstance;
 
 - (TestRequiredForeign_Builder*) clear;
@@ -1714,8 +1614,7 @@
 - (TestRequiredForeign*) build;
 - (TestRequiredForeign*) buildPartial;
 
-- (TestRequiredForeign_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestRequiredForeign_Builder*) mergeFromTestRequiredForeign:(TestRequiredForeign*) other;
+- (TestRequiredForeign_Builder*) mergeFrom:(TestRequiredForeign*) other;
 - (TestRequiredForeign_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestRequiredForeign_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1740,15 +1639,13 @@
 @end
 
 @interface TestForeignNested : PBGeneratedMessage {
-  @private
-  BOOL hasForeignNested:1;
+ @private
+  BOOL hasForeignNested;
   TestAllTypes_NestedMessage* foreignNested;
 }
 - (BOOL) hasForeignNested;
-@property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
+@property (readonly, retain) TestAllTypes_NestedMessage* foreignNested;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestForeignNested*) defaultInstance;
 - (TestForeignNested*) defaultInstance;
 
@@ -1767,11 +1664,10 @@
 @end
 
 @interface TestForeignNested_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestForeignNested* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestForeignNested*) defaultInstance;
 
 - (TestForeignNested_Builder*) clear;
@@ -1780,8 +1676,7 @@
 - (TestForeignNested*) build;
 - (TestForeignNested*) buildPartial;
 
-- (TestForeignNested_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestForeignNested_Builder*) mergeFromTestForeignNested:(TestForeignNested*) other;
+- (TestForeignNested_Builder*) mergeFrom:(TestForeignNested*) other;
 - (TestForeignNested_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestForeignNested_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1794,11 +1689,9 @@
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestEmptyMessage*) defaultInstance;
 - (TestEmptyMessage*) defaultInstance;
 
@@ -1817,11 +1710,10 @@
 @end
 
 @interface TestEmptyMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestEmptyMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestEmptyMessage*) defaultInstance;
 
 - (TestEmptyMessage_Builder*) clear;
@@ -1830,18 +1722,15 @@
 - (TestEmptyMessage*) build;
 - (TestEmptyMessage*) buildPartial;
 
-- (TestEmptyMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestEmptyMessage_Builder*) mergeFromTestEmptyMessage:(TestEmptyMessage*) other;
+- (TestEmptyMessage_Builder*) mergeFrom:(TestEmptyMessage*) other;
 - (TestEmptyMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestEmptyMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface TestEmptyMessageWithExtensions : PBExtendableMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestEmptyMessageWithExtensions*) defaultInstance;
 - (TestEmptyMessageWithExtensions*) defaultInstance;
 
@@ -1859,12 +1748,11 @@
 + (TestEmptyMessageWithExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestEmptyMessageWithExtensions_Builder : PBExtendableBuilder {
-  @private
+@interface TestEmptyMessageWithExtensions_Builder : PBExtendableMessage_Builder {
+ @private
   TestEmptyMessageWithExtensions* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestEmptyMessageWithExtensions*) defaultInstance;
 
 - (TestEmptyMessageWithExtensions_Builder*) clear;
@@ -1873,16 +1761,15 @@
 - (TestEmptyMessageWithExtensions*) build;
 - (TestEmptyMessageWithExtensions*) buildPartial;
 
-- (TestEmptyMessageWithExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestEmptyMessageWithExtensions_Builder*) mergeFromTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) other;
+- (TestEmptyMessageWithExtensions_Builder*) mergeFrom:(TestEmptyMessageWithExtensions*) other;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
-  BOOL hasBb:1;
+ @private
+  BOOL hasA;
+  BOOL hasBb;
   int32_t a;
   int32_t bb;
 }
@@ -1891,8 +1778,6 @@
 @property (readonly) int32_t a;
 @property (readonly) int32_t bb;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestReallyLargeTagNumber*) defaultInstance;
 - (TestReallyLargeTagNumber*) defaultInstance;
 
@@ -1911,11 +1796,10 @@
 @end
 
 @interface TestReallyLargeTagNumber_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestReallyLargeTagNumber* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestReallyLargeTagNumber*) defaultInstance;
 
 - (TestReallyLargeTagNumber_Builder*) clear;
@@ -1924,8 +1808,7 @@
 - (TestReallyLargeTagNumber*) build;
 - (TestReallyLargeTagNumber*) buildPartial;
 
-- (TestReallyLargeTagNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestReallyLargeTagNumber_Builder*) mergeFromTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) other;
+- (TestReallyLargeTagNumber_Builder*) mergeFrom:(TestReallyLargeTagNumber*) other;
 - (TestReallyLargeTagNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestReallyLargeTagNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -1941,19 +1824,17 @@
 @end
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
-  @private
-  BOOL hasI:1;
-  BOOL hasA:1;
+ @private
+  BOOL hasI;
+  BOOL hasA;
   int32_t i;
   TestRecursiveMessage* a;
 }
 - (BOOL) hasA;
 - (BOOL) hasI;
-@property (retain, readonly) TestRecursiveMessage* a;
+@property (readonly, retain) TestRecursiveMessage* a;
 @property (readonly) int32_t i;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestRecursiveMessage*) defaultInstance;
 - (TestRecursiveMessage*) defaultInstance;
 
@@ -1972,11 +1853,10 @@
 @end
 
 @interface TestRecursiveMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestRecursiveMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestRecursiveMessage*) defaultInstance;
 
 - (TestRecursiveMessage_Builder*) clear;
@@ -1985,8 +1865,7 @@
 - (TestRecursiveMessage*) build;
 - (TestRecursiveMessage*) buildPartial;
 
-- (TestRecursiveMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestRecursiveMessage_Builder*) mergeFromTestRecursiveMessage:(TestRecursiveMessage*) other;
+- (TestRecursiveMessage_Builder*) mergeFrom:(TestRecursiveMessage*) other;
 - (TestRecursiveMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestRecursiveMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2004,15 +1883,13 @@
 @end
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
-  @private
-  BOOL hasBb:1;
+ @private
+  BOOL hasBb;
   TestMutualRecursionB* bb;
 }
 - (BOOL) hasBb;
-@property (retain, readonly) TestMutualRecursionB* bb;
+@property (readonly, retain) TestMutualRecursionB* bb;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMutualRecursionA*) defaultInstance;
 - (TestMutualRecursionA*) defaultInstance;
 
@@ -2031,11 +1908,10 @@
 @end
 
 @interface TestMutualRecursionA_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestMutualRecursionA* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMutualRecursionA*) defaultInstance;
 
 - (TestMutualRecursionA_Builder*) clear;
@@ -2044,8 +1920,7 @@
 - (TestMutualRecursionA*) build;
 - (TestMutualRecursionA*) buildPartial;
 
-- (TestMutualRecursionA_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMutualRecursionA_Builder*) mergeFromTestMutualRecursionA:(TestMutualRecursionA*) other;
+- (TestMutualRecursionA_Builder*) mergeFrom:(TestMutualRecursionA*) other;
 - (TestMutualRecursionA_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMutualRecursionA_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2058,19 +1933,17 @@
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
-  @private
-  BOOL hasOptionalInt32:1;
-  BOOL hasA:1;
+ @private
+  BOOL hasOptionalInt32;
+  BOOL hasA;
   int32_t optionalInt32;
   TestMutualRecursionA* a;
 }
 - (BOOL) hasA;
 - (BOOL) hasOptionalInt32;
-@property (retain, readonly) TestMutualRecursionA* a;
+@property (readonly, retain) TestMutualRecursionA* a;
 @property (readonly) int32_t optionalInt32;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMutualRecursionB*) defaultInstance;
 - (TestMutualRecursionB*) defaultInstance;
 
@@ -2089,11 +1962,10 @@
 @end
 
 @interface TestMutualRecursionB_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestMutualRecursionB* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMutualRecursionB*) defaultInstance;
 
 - (TestMutualRecursionB_Builder*) clear;
@@ -2102,8 +1974,7 @@
 - (TestMutualRecursionB*) build;
 - (TestMutualRecursionB*) buildPartial;
 
-- (TestMutualRecursionB_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMutualRecursionB_Builder*) mergeFromTestMutualRecursionB:(TestMutualRecursionB*) other;
+- (TestMutualRecursionB_Builder*) mergeFrom:(TestMutualRecursionB*) other;
 - (TestMutualRecursionB_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMutualRecursionB_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2121,10 +1992,10 @@
 @end
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
-  BOOL hasFoo:1;
-  BOOL hasBar:1;
+ @private
+  BOOL hasA;
+  BOOL hasFoo;
+  BOOL hasBar;
   int32_t a;
   TestDupFieldNumber_Foo* foo;
   TestDupFieldNumber_Bar* bar;
@@ -2133,11 +2004,9 @@
 - (BOOL) hasFoo;
 - (BOOL) hasBar;
 @property (readonly) int32_t a;
-@property (retain, readonly) TestDupFieldNumber_Foo* foo;
-@property (retain, readonly) TestDupFieldNumber_Bar* bar;
+@property (readonly, retain) TestDupFieldNumber_Foo* foo;
+@property (readonly, retain) TestDupFieldNumber_Bar* bar;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber*) defaultInstance;
 - (TestDupFieldNumber*) defaultInstance;
 
@@ -2156,15 +2025,13 @@
 @end
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Foo*) defaultInstance;
 - (TestDupFieldNumber_Foo*) defaultInstance;
 
@@ -2183,11 +2050,10 @@
 @end
 
 @interface TestDupFieldNumber_Foo_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestDupFieldNumber_Foo* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestDupFieldNumber_Foo*) defaultInstance;
 
 - (TestDupFieldNumber_Foo_Builder*) clear;
@@ -2196,8 +2062,7 @@
 - (TestDupFieldNumber_Foo*) build;
 - (TestDupFieldNumber_Foo*) buildPartial;
 
-- (TestDupFieldNumber_Foo_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestDupFieldNumber_Foo_Builder*) mergeFromTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) other;
+- (TestDupFieldNumber_Foo_Builder*) mergeFrom:(TestDupFieldNumber_Foo*) other;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2208,15 +2073,13 @@
 @end
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
-  @private
-  BOOL hasA:1;
+ @private
+  BOOL hasA;
   int32_t a;
 }
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Bar*) defaultInstance;
 - (TestDupFieldNumber_Bar*) defaultInstance;
 
@@ -2235,11 +2098,10 @@
 @end
 
 @interface TestDupFieldNumber_Bar_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestDupFieldNumber_Bar* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestDupFieldNumber_Bar*) defaultInstance;
 
 - (TestDupFieldNumber_Bar_Builder*) clear;
@@ -2248,8 +2110,7 @@
 - (TestDupFieldNumber_Bar*) build;
 - (TestDupFieldNumber_Bar*) buildPartial;
 
-- (TestDupFieldNumber_Bar_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestDupFieldNumber_Bar_Builder*) mergeFromTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) other;
+- (TestDupFieldNumber_Bar_Builder*) mergeFrom:(TestDupFieldNumber_Bar*) other;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2260,11 +2121,10 @@
 @end
 
 @interface TestDupFieldNumber_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestDupFieldNumber* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestDupFieldNumber*) defaultInstance;
 
 - (TestDupFieldNumber_Builder*) clear;
@@ -2273,8 +2133,7 @@
 - (TestDupFieldNumber*) build;
 - (TestDupFieldNumber*) buildPartial;
 
-- (TestDupFieldNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestDupFieldNumber_Builder*) mergeFromTestDupFieldNumber:(TestDupFieldNumber*) other;
+- (TestDupFieldNumber_Builder*) mergeFrom:(TestDupFieldNumber*) other;
 - (TestDupFieldNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestDupFieldNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2299,15 +2158,13 @@
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
-  @private
-  BOOL hasOptionalNestedMessage:1;
+ @private
+  BOOL hasOptionalNestedMessage;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
 - (BOOL) hasOptionalNestedMessage;
-@property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
+@property (readonly, retain) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits*) defaultInstance;
 - (TestNestedMessageHasBits*) defaultInstance;
 
@@ -2326,7 +2183,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage : PBGeneratedMessage {
-  @private
+ @private
   NSMutableArray* mutableNestedmessageRepeatedInt32List;
   NSMutableArray* mutableNestedmessageRepeatedForeignmessageList;
 }
@@ -2335,8 +2192,6 @@
 - (NSArray*) nestedmessageRepeatedForeignmessageList;
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 
@@ -2355,11 +2210,10 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestNestedMessageHasBits_NestedMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clear;
@@ -2368,8 +2222,7 @@
 - (TestNestedMessageHasBits_NestedMessage*) build;
 - (TestNestedMessageHasBits_NestedMessage*) buildPartial;
 
-- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) other;
+- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFrom:(TestNestedMessageHasBits_NestedMessage*) other;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2389,11 +2242,10 @@
 @end
 
 @interface TestNestedMessageHasBits_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestNestedMessageHasBits* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestNestedMessageHasBits*) defaultInstance;
 
 - (TestNestedMessageHasBits_Builder*) clear;
@@ -2402,8 +2254,7 @@
 - (TestNestedMessageHasBits*) build;
 - (TestNestedMessageHasBits*) buildPartial;
 
-- (TestNestedMessageHasBits_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestNestedMessageHasBits_Builder*) mergeFromTestNestedMessageHasBits:(TestNestedMessageHasBits*) other;
+- (TestNestedMessageHasBits_Builder*) mergeFrom:(TestNestedMessageHasBits*) other;
 - (TestNestedMessageHasBits_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestNestedMessageHasBits_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2416,13 +2267,13 @@
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
-  @private
-  BOOL hasPrimitiveField:1;
-  BOOL hasStringField:1;
-  BOOL hasStringPieceField:1;
-  BOOL hasCordField:1;
-  BOOL hasMessageField:1;
-  BOOL hasEnumField:1;
+ @private
+  BOOL hasPrimitiveField;
+  BOOL hasStringField;
+  BOOL hasStringPieceField;
+  BOOL hasCordField;
+  BOOL hasMessageField;
+  BOOL hasEnumField;
   int32_t primitiveField;
   NSString* stringField;
   NSString* stringPieceField;
@@ -2443,11 +2294,11 @@
 - (BOOL) hasStringPieceField;
 - (BOOL) hasCordField;
 @property (readonly) int32_t primitiveField;
-@property (retain, readonly) NSString* stringField;
-@property (retain, readonly) ForeignEnum* enumField;
-@property (retain, readonly) ForeignMessage* messageField;
-@property (retain, readonly) NSString* stringPieceField;
-@property (retain, readonly) NSString* cordField;
+@property (readonly, retain) NSString* stringField;
+@property (readonly, retain) ForeignEnum* enumField;
+@property (readonly, retain) ForeignMessage* messageField;
+@property (readonly, retain) NSString* stringPieceField;
+@property (readonly, retain) NSString* cordField;
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringFieldList;
@@ -2461,8 +2312,6 @@
 - (NSArray*) repeatedCordFieldList;
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestCamelCaseFieldNames*) defaultInstance;
 - (TestCamelCaseFieldNames*) defaultInstance;
 
@@ -2481,11 +2330,10 @@
 @end
 
 @interface TestCamelCaseFieldNames_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestCamelCaseFieldNames* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestCamelCaseFieldNames*) defaultInstance;
 
 - (TestCamelCaseFieldNames_Builder*) clear;
@@ -2494,8 +2342,7 @@
 - (TestCamelCaseFieldNames*) build;
 - (TestCamelCaseFieldNames*) buildPartial;
 
-- (TestCamelCaseFieldNames_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestCamelCaseFieldNames_Builder*) mergeFromTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) other;
+- (TestCamelCaseFieldNames_Builder*) mergeFrom:(TestCamelCaseFieldNames*) other;
 - (TestCamelCaseFieldNames_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestCamelCaseFieldNames_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2575,10 +2422,10 @@
 @end
 
 @interface TestFieldOrderings : PBExtendableMessage {
-  @private
-  BOOL hasMyFloat:1;
-  BOOL hasMyInt:1;
-  BOOL hasMyString:1;
+ @private
+  BOOL hasMyFloat;
+  BOOL hasMyInt;
+  BOOL hasMyString;
   Float32 myFloat;
   int64_t myInt;
   NSString* myString;
@@ -2586,12 +2433,10 @@
 - (BOOL) hasMyString;
 - (BOOL) hasMyInt;
 - (BOOL) hasMyFloat;
-@property (retain, readonly) NSString* myString;
+@property (readonly, retain) NSString* myString;
 @property (readonly) int64_t myInt;
 @property (readonly) Float32 myFloat;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestFieldOrderings*) defaultInstance;
 - (TestFieldOrderings*) defaultInstance;
 
@@ -2609,12 +2454,11 @@
 + (TestFieldOrderings*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestFieldOrderings_Builder : PBExtendableBuilder {
-  @private
+@interface TestFieldOrderings_Builder : PBExtendableMessage_Builder {
+ @private
   TestFieldOrderings* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestFieldOrderings*) defaultInstance;
 
 - (TestFieldOrderings_Builder*) clear;
@@ -2623,8 +2467,7 @@
 - (TestFieldOrderings*) build;
 - (TestFieldOrderings*) buildPartial;
 
-- (TestFieldOrderings_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestFieldOrderings_Builder*) mergeFromTestFieldOrderings:(TestFieldOrderings*) other;
+- (TestFieldOrderings_Builder*) mergeFrom:(TestFieldOrderings*) other;
 - (TestFieldOrderings_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestFieldOrderings_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2645,13 +2488,13 @@
 @end
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
-  @private
-  BOOL hasSmallInt64:1;
-  BOOL hasLargeUint64:1;
-  BOOL hasSmallInt32:1;
-  BOOL hasUtf8String:1;
-  BOOL hasEscapedBytes:1;
-  BOOL hasLargeUint32:1;
+ @private
+  BOOL hasSmallInt64;
+  BOOL hasLargeUint64;
+  BOOL hasSmallInt32;
+  BOOL hasUtf8String;
+  BOOL hasEscapedBytes;
+  BOOL hasLargeUint32;
   int64_t smallInt64;
   int64_t largeUint64;
   int32_t smallInt32;
@@ -2665,15 +2508,13 @@
 - (BOOL) hasSmallInt32;
 - (BOOL) hasSmallInt64;
 - (BOOL) hasUtf8String;
-@property (retain, readonly) NSData* escapedBytes;
+@property (readonly, retain) NSData* escapedBytes;
 @property (readonly) int32_t largeUint32;
 @property (readonly) int64_t largeUint64;
 @property (readonly) int32_t smallInt32;
 @property (readonly) int64_t smallInt64;
-@property (retain, readonly) NSString* utf8String;
+@property (readonly, retain) NSString* utf8String;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestExtremeDefaultValues*) defaultInstance;
 - (TestExtremeDefaultValues*) defaultInstance;
 
@@ -2692,11 +2533,10 @@
 @end
 
 @interface TestExtremeDefaultValues_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestExtremeDefaultValues* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestExtremeDefaultValues*) defaultInstance;
 
 - (TestExtremeDefaultValues_Builder*) clear;
@@ -2705,8 +2545,7 @@
 - (TestExtremeDefaultValues*) build;
 - (TestExtremeDefaultValues*) buildPartial;
 
-- (TestExtremeDefaultValues_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestExtremeDefaultValues_Builder*) mergeFromTestExtremeDefaultValues:(TestExtremeDefaultValues*) other;
+- (TestExtremeDefaultValues_Builder*) mergeFrom:(TestExtremeDefaultValues*) other;
 - (TestExtremeDefaultValues_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestExtremeDefaultValues_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -2741,12 +2580,106 @@
 - (TestExtremeDefaultValues_Builder*) clearUtf8String;
 @end
 
-@interface FooRequest : PBGeneratedMessage {
-  @private
+@interface OneString : PBGeneratedMessage {
+ @private
+  BOOL hasData;
+  NSString* data;
+}
+- (BOOL) hasData;
+@property (readonly, retain) NSString* data;
+
++ (OneString*) defaultInstance;
+- (OneString*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (OneString_Builder*) builder;
++ (OneString_Builder*) builder;
++ (OneString_Builder*) builderWithPrototype:(OneString*) prototype;
+
++ (OneString*) parseFromData:(NSData*) data;
++ (OneString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OneString*) parseFromInputStream:(NSInputStream*) input;
++ (OneString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OneString*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (OneString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OneString_Builder : PBGeneratedMessage_Builder {
+ @private
+  OneString* result;
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
+- (OneString*) defaultInstance;
+
+- (OneString_Builder*) clear;
+- (OneString_Builder*) clone;
+
+- (OneString*) build;
+- (OneString*) buildPartial;
+
+- (OneString_Builder*) mergeFrom:(OneString*) other;
+- (OneString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OneString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasData;
+- (NSString*) data;
+- (OneString_Builder*) setData:(NSString*) value;
+- (OneString_Builder*) clearData;
+@end
+
+@interface OneBytes : PBGeneratedMessage {
+ @private
+  BOOL hasData;
+  NSData* data;
+}
+- (BOOL) hasData;
+@property (readonly, retain) NSData* data;
+
++ (OneBytes*) defaultInstance;
+- (OneBytes*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (OneBytes_Builder*) builder;
++ (OneBytes_Builder*) builder;
++ (OneBytes_Builder*) builderWithPrototype:(OneBytes*) prototype;
+
++ (OneBytes*) parseFromData:(NSData*) data;
++ (OneBytes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OneBytes*) parseFromInputStream:(NSInputStream*) input;
++ (OneBytes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (OneBytes*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (OneBytes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface OneBytes_Builder : PBGeneratedMessage_Builder {
+ @private
+  OneBytes* result;
+}
+
+- (OneBytes*) defaultInstance;
+
+- (OneBytes_Builder*) clear;
+- (OneBytes_Builder*) clone;
+
+- (OneBytes*) build;
+- (OneBytes*) buildPartial;
+
+- (OneBytes_Builder*) mergeFrom:(OneBytes*) other;
+- (OneBytes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OneBytes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasData;
+- (NSData*) data;
+- (OneBytes_Builder*) setData:(NSData*) value;
+- (OneBytes_Builder*) clearData;
+@end
+
+@interface FooRequest : PBGeneratedMessage {
+ @private
+}
+
 + (FooRequest*) defaultInstance;
 - (FooRequest*) defaultInstance;
 
@@ -2765,11 +2698,10 @@
 @end
 
 @interface FooRequest_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   FooRequest* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (FooRequest*) defaultInstance;
 
 - (FooRequest_Builder*) clear;
@@ -2778,18 +2710,15 @@
 - (FooRequest*) build;
 - (FooRequest*) buildPartial;
 
-- (FooRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (FooRequest_Builder*) mergeFromFooRequest:(FooRequest*) other;
+- (FooRequest_Builder*) mergeFrom:(FooRequest*) other;
 - (FooRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (FooRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface FooResponse : PBGeneratedMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (FooResponse*) defaultInstance;
 - (FooResponse*) defaultInstance;
 
@@ -2808,11 +2737,10 @@
 @end
 
 @interface FooResponse_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   FooResponse* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (FooResponse*) defaultInstance;
 
 - (FooResponse_Builder*) clear;
@@ -2821,18 +2749,15 @@
 - (FooResponse*) build;
 - (FooResponse*) buildPartial;
 
-- (FooResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (FooResponse_Builder*) mergeFromFooResponse:(FooResponse*) other;
+- (FooResponse_Builder*) mergeFrom:(FooResponse*) other;
 - (FooResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (FooResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface BarRequest : PBGeneratedMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (BarRequest*) defaultInstance;
 - (BarRequest*) defaultInstance;
 
@@ -2851,11 +2776,10 @@
 @end
 
 @interface BarRequest_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   BarRequest* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (BarRequest*) defaultInstance;
 
 - (BarRequest_Builder*) clear;
@@ -2864,18 +2788,15 @@
 - (BarRequest*) build;
 - (BarRequest*) buildPartial;
 
-- (BarRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (BarRequest_Builder*) mergeFromBarRequest:(BarRequest*) other;
+- (BarRequest_Builder*) mergeFrom:(BarRequest*) other;
 - (BarRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (BarRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface BarResponse : PBGeneratedMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (BarResponse*) defaultInstance;
 - (BarResponse*) defaultInstance;
 
@@ -2894,11 +2815,10 @@
 @end
 
 @interface BarResponse_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   BarResponse* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (BarResponse*) defaultInstance;
 
 - (BarResponse_Builder*) clear;
@@ -2907,8 +2827,8 @@
 - (BarResponse*) build;
 - (BarResponse*) buildPartial;
 
-- (BarResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (BarResponse_Builder*) mergeFromBarResponse:(BarResponse*) other;
+- (BarResponse_Builder*) mergeFrom:(BarResponse*) other;
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
+

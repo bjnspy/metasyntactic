@@ -72,7 +72,7 @@
 
 - (void) testClearExtension {
     // clearExtension() is not actually used in TestUtil, so try it manually.
-    PBExtendableBuilder* builder1 =
+    PBExtendableMessage_Builder* builder1 =
     [[TestAllExtensions builder]
      setExtension:[UnittestRoot optionalInt32Extension] value:[NSNumber numberWithInt:1]];
 
@@ -80,7 +80,7 @@
     [builder1 clearExtension:[UnittestRoot optionalInt32Extension]];
     STAssertFalse([builder1 hasExtension:[UnittestRoot optionalInt32Extension]], @"");
 
-    PBExtendableBuilder* builder2 =
+    PBExtendableMessage_Builder* builder2 =
     [[TestAllExtensions builder]
      addExtension:[UnittestRoot repeatedInt32Extension] value:[NSNumber numberWithInt:1]];
 

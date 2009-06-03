@@ -23,11 +23,11 @@
  * @author Cyrus Najmabadi
  */
 @interface PBGeneratedMessage : PBAbstractMessage {
-  @private
-    PBUnknownFieldSet* unknownFields;
-
-//@protected
-//    int32_t memoizedSerializedSize;
+@private
+  PBUnknownFieldSet* unknownFields;
+  
+@protected
+  int32_t memoizedSerializedSize;
 }
 
 //@property (readonly, retain) PBUnknownFieldSet* unknownFields;

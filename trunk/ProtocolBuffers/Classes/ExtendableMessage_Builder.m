@@ -53,6 +53,7 @@
   return [super parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag];
 }
 
+
 - (id) getExtension:(id<PBExtensionField>) extension {
   return [[self internalGetResult] getExtension:extension];
 }

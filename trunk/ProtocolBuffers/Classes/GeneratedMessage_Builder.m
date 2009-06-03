@@ -45,12 +45,6 @@
 }
 
 
-- (PBGeneratedMessage*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-
-
 - (PBUnknownFieldSet*) unknownFields {
     return self.internalGetResult.unknownFields;
 }
