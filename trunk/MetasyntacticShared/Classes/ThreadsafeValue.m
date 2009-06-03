@@ -94,7 +94,7 @@
     self.valueData = value;
   }
   [gate unlock];
-  [delegate performSelectorInBackground:saveSelector withObject:value];
+  [ThreadingUtilities backgroundSelector:saveSelector onTarget:delegate gate:nil visible:NO];
 }
 
 @end
