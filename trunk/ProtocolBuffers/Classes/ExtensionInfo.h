@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+#if 0
 /** A (Descriptor, Message) pair, returned by lookup methods. */
 @interface PBExtensionInfo : NSObject {
   @private
@@ -26,3 +26,4 @@
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<PBMessage>) defaultInstance;
 
 @end
+#endif

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "ExtensionRegistry.h"
 
 #import "Descriptor.h"
@@ -151,3 +152,56 @@ static PBExtensionRegistry* EMPTY = nil;
 }
 
 @end
+
+#else
+#import "ExtensionRegistry.h"
+
+@interface PBExtensionRegistry()
+@property (retain) NSDictionary* classMap;
+@end
+
+@implementation PBExtensionRegistry
+
+@synthesize classMap;
+
+- (void) dealloc {
+  self.classMap = nil;
+  [super dealloc];
+}
+
+static PBExtensionRegistry* emptyRegistry = nil;
+
++ (void) initialize {
+  if (self == [PBExtensionRegistry class]) {
+    emptyRegistry = [[PBExtensionRegistry alloc] initWithClassMap:[NSDictionary dictionary]];
+  }
+}
+
+
+- (id) initWithClassMap:(NSDictionary*) map_{
+  if ((self = [super init])) {
+    self.classMap = map_;
+  }
+  
+  return self;
+}
+
+
+- (id) keyForClass:(Class) clazz {
+  return NSStringFromClass(clazz);
+}
+
+
++ (PBExtensionRegistry*) emptyRegistry {
+  return emptyRegistry;
+}
+
+
+- (id<PBExtensionField>) getExtension:(Class) clazz fieldNumber:(NSInteger) fieldNumber {
+  NSDictionary* extensionMap = [classMap objectForKey:[self keyForClass:clazz]];
+  return [extensionMap objectForKey:[NSNumber numberWithInteger:fieldNumber]];
+}
+
+@end
+
+#endif

@@ -20,24 +20,6 @@
 - (id<PBMessage_Builder>) clear;
 
 /**
- * Merge {@code other} into the message being built.  {@code other} must
- * have the exact same type as {@code this} (i.e.
- * {@code getDescriptorForType() == other.getDescriptorForType()}).
- *
- * Merging occurs as follows.  For each field:<br>
- * * For singular primitive fields, if the field is set in {@code other},
- *   then {@code other}'s value overwrites the value in this message.<br>
- * * For singular message fields, if the field is set in {@code other},
- *   it is merged into the corresponding sub-message of this message
- *   using the same merging rules.<br>
- * * For repeated fields, the elements in {@code other} are concatenated
- *   with the elements in this message.
- *
- * This is equivalent to the {@code Message::MergeFrom} method in C++.
- */
-- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
-
-/**
  * Construct the final message.  Once this is called, the Builder is no
  * longer valid, and calling any other method may throw a
  * NullPointerException.  If you need to continue working with the builder
@@ -62,59 +44,10 @@
 - (BOOL) isInitialized;
 
 /**
- * Get the message's type's descriptor.
- * See {@link Message#getDescriptorForType()}.
- */
-- (PBDescriptor*) descriptor;
-
-/**
  * Get the message's type's default instance.
  * See {@link Message#getDefaultInstanceForType()}.
  */
 - (id<PBMessage>) defaultInstance;
-
-/**
- * Like {@link Message#getAllFields()}.  The returned map may or may not
- * reflect future changes to the builder.  Either way, the returned map is
- * itself unmodifiable.
- */
-- (NSDictionary*) allFields;
-
-/**
- * Create a Builder for messages of the appropriate type for the given
- * field.  Messages built with this can then be passed to setField(),
- * setRepeatedField(), or addRepeatedField().
- */
-- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field;
-
-- (BOOL) hasField:(PBFieldDescriptor*) field;
-- (id) getField:(PBFieldDescriptor*) field;
-
-/**
- * Sets a field to the given value.  The value must be of the correct type
- * for this field, i.e. the same type that
- * {@link Message#getField(Descriptors.FieldDescriptor)} would return.
- */
-- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
-- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
-- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
-
-/**
- * Sets an element of a repeated field to the given value.  The value must
- * be of the correct type for this field, i.e. the same type that
- * {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)} would
- * return.
- * @throws IllegalArgumentException The field is not a repeated field, or
- *           {@code field.getContainingType() != getDescriptorForType()}.
- */
-- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
-
-/**
- * Like {@code setRepeatedField}, but appends the value as a new element.
- * @throws IllegalArgumentException The field is not a repeated field, or
- *           {@code field.getContainingType() != getDescriptorForType()}.
- */
-- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (PBUnknownFieldSet*) unknownFields;
 - (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Type used to represent generated extensions.  The protocol compiler
  * generates a static singleton instance of this class for each extension.
@@ -86,3 +87,4 @@
 - (id) singularFromReflectionType:(id) value;
 
 @end
+#endif

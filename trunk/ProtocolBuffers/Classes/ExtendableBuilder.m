@@ -15,74 +15,16 @@
 #import "ExtendableBuilder.h"
 
 #import "ExtendableMessage.h"
+#import "ExtensionField.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
+#import "WireFormat.h"
 
 @implementation PBExtendableBuilder
 
 
 - (PBExtendableMessage*) internalGetResult {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
-                                value:(id) value {
-    PBExtendableMessage* message = self.internalGetResult;
-    [message verifyExtensionContainingType:extension];
-    [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
-
-    return self;
-}
-
-
-- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
-                                index:(int32_t) index
-                                value:(id) value {
-    PBExtendableMessage* message = self.internalGetResult;
-    [message verifyExtensionContainingType:extension];
-    [message.extensions setRepeatedField:extension.descriptor
-                                   index:index
-                                   value:[extension singularToReflectionType:value]];
-
-    return self;
-}
-
-
-/** Append a value to a repeated extension. */
-- (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension
-                                value:(id) value {
-    PBExtendableMessage* message = self.internalGetResult;
-    [message verifyExtensionContainingType:extension];
-    [message.extensions addRepeatedField:extension.descriptor value:[extension singularToReflectionType:value]];
-    return self;
-}
-
-
-/** Check if a singular extension is present. */
-- (BOOL) hasExtension:(PBGeneratedExtension*) extension {
-    return [self.internalGetResult hasExtension:extension];
-}
-
-
-/** Get the number of elements in a repeated extension. */
-- (NSArray*) getRepeatedExtension:(PBGeneratedExtension*) extension {
-    return [self.internalGetResult getRepeatedExtension:extension];
-}
-
-
-/** Get the value of an extension. */
-- (id) getExtension:(PBGeneratedExtension*) extension {
-    return [self.internalGetResult getExtension:extension];
-}
-
-
-/** Clear an extension. */
-- (PBExtendableBuilder*) clearExtension:(PBGeneratedExtension*) extension {
-    PBExtendableMessage* message = self.internalGetResult;
-    [message verifyExtensionContainingType:extension];
-    [message.extensions clearField:extension.descriptor];
-    return self;
 }
 
 
@@ -94,67 +36,138 @@
              unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag {
-    //return [message.extensions mergeFieldFrom(input, unknownFields, extensionRegistry, this, tag);
-    return [PBFieldSet mergeFieldFromCodedInputStream:input
-                                        unknownFields:unknownFields
-                                    extensionRegistry:extensionRegistry
-                                              builder:self
-                                                  tag:tag];
+  PBExtendableMessage* message = [self internalGetResult];
+  int32_t wireType = PBWireFormatGetTagWireType(tag);
+  int32_t fieldNumber = PBWireFormatGetTagFieldNumber(tag);
+  
+  id<PBExtensionField> extension = [extensionRegistry getExtension:[message class]
+                                                       fieldNumber:fieldNumber];
+  
+  if (extension != nil) {
+    if ([extension wireType] == wireType) {
+      [extension mergeFromCodedInputStream:input
+                             unknownFields:unknownFields
+                         extensionRegistry:extensionRegistry
+                                       tag:tag];
+      return YES;
+    }
+  }
+  
+  return [super parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag];
+}
+
+- (id) getExtension:(id<PBExtensionField>) extension {
+  return [[self internalGetResult] getExtension:extension];
 }
 
 
-// ---------------------------------------------------------------
-// Reflection
-
-// We don't have to override the get*() methods here because they already
-// just forward to the underlying message.
-
-- (PBGeneratedMessage_Builder*) setField:(PBFieldDescriptor*) field
-                                   value:(id) value {
-    if (field.isExtension) {
-        PBExtendableMessage* message = self.internalGetResult;
-        [message verifyContainingType:field];
-        [message.extensions setField:field value:value];
-        return self;
-    } else {
-        return (PBGeneratedMessage_Builder*)[super setField:field value:value];
-    }
+- (BOOL) hasExtension:(id<PBExtensionField>) extension {
+  return [[self internalGetResult] hasExtension:extension];
 }
 
-- (PBGeneratedMessage_Builder*) clearField:(PBFieldDescriptor*) field {
-    if (field.isExtension) {
-        PBExtendableMessage* message = self.internalGetResult;
-        [message verifyContainingType:field];
-        [message.extensions clearField:field];
-        return self;
-    } else {
-        return (PBGeneratedMessage_Builder*)[super clearField:field];
-    }
+
+- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension
+                                value:(id) value {
+  PBExtendableMessage* message = [self internalGetResult];
+  [message ensureExtensionIsRegistered:extension];
+  
+  if ([extension isRepeated]) {
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Must call addExtension() for repeated types." userInfo:nil];
+  }
+  
+  if (message.extensionMap == nil) {
+    message.extensionMap = [NSMutableDictionary dictionary];
+  }
+  [message.extensionMap setObject:value forKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+  return self;
 }
 
-- (PBGeneratedMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
-                                           index:(int32_t) index
-                                           value:(id) value {
-    if (field.isExtension) {
-        PBExtendableMessage* message = self.internalGetResult;
-        [message verifyContainingType:field];
-        [message.extensions setRepeatedField:field index:index value:value];
-        return self;
-    } else {
-        return (PBGeneratedMessage_Builder*)[super setRepeatedField:field index:index value:value];
-    }
+
+- (PBExtendableBuilder*) addExtension:(id<PBExtensionField>) extension
+                                value:(id) value {
+  PBExtendableMessage* message = [self internalGetResult];
+  [message ensureExtensionIsRegistered:extension];
+  
+  if (![extension isRepeated]) {
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Must call setExtension() for singular types." userInfo:nil];
+  }
+
+  if (message.extensionMap == nil) {
+    message.extensionMap = [NSMutableDictionary dictionary];
+  }
+  NSNumber* fieldNumber = [NSNumber numberWithInt:[extension fieldNumber]];
+  NSMutableArray* list = [message.extensionMap objectForKey:fieldNumber];
+  if (list == nil) {
+    list = [NSMutableArray array];
+    [message.extensionMap setObject:list forKey:fieldNumber];
+  }
+  
+  [list addObject:value];
+  return self;
 }
 
-- (PBGeneratedMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
-                                           value:(id) value {
-    if (field.isExtension) {
-        PBExtendableMessage* message = self.internalGetResult;
-        [message verifyContainingType:field];
-        [message.extensions addRepeatedField:field value:value];
-        return self;
-    } else {
-        return (PBGeneratedMessage_Builder*)[super addRepeatedField:field value:value];
+
+- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension
+                                index:(int32_t) index
+                                value:(id) value {
+  PBExtendableMessage* message = [self internalGetResult];
+  [message ensureExtensionIsRegistered:extension];
+  
+  if (![extension isRepeated]) {
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Must call setExtension() for singular types." userInfo:nil];
+  }
+  
+  if (message.extensionMap == nil) {
+    message.extensionMap = [NSMutableDictionary dictionary];
+  }
+  
+  NSNumber* fieldNumber = [NSNumber numberWithInt:[extension fieldNumber]];
+  NSMutableArray* list = [message.extensionMap objectForKey:fieldNumber];
+
+  [list replaceObjectAtIndex:index withObject:value];
+  
+  return self;
+}
+
+
+- (PBExtendableBuilder*) clearExtension:(id<PBExtensionField>) extension {
+  PBExtendableMessage* message = [self internalGetResult];
+  [message ensureExtensionIsRegistered:extension];
+  [message.extensionMap removeObjectForKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+  
+  return self;
+}
+
+
+- (void) mergeExtensionFields:(PBExtendableMessage*) other {
+  PBExtendableMessage* thisMessage = [self internalGetResult];
+  if ([thisMessage class] != [other class]) {
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Cannot merge extensions from a different type" userInfo:nil];
+  }
+  
+  if (other.extensionMap.count > 0) {
+    if (thisMessage.extensionMap == nil) {
+      thisMessage.extensionMap = [NSMutableDictionary dictionary];
     }
+    
+    NSDictionary* registry = other.extensionRegistry;
+    for (NSNumber* fieldNumber in other.extensionMap) {
+      id<PBExtensionField> thisField = [registry objectForKey:fieldNumber];
+      id value = [other.extensionMap objectForKey:fieldNumber];
+      
+      if ([thisField isRepeated]) {
+        NSMutableArray* list = [thisMessage.extensionMap objectForKey:fieldNumber];
+        if (list == nil) {
+          list = [NSMutableArray array];
+          [thisMessage.extensionMap setObject:list forKey:fieldNumber];
+        }
+        
+        [list addObjectsFromArray:value];
+      } else {
+        [thisMessage.extensionMap setObject:value forKey:fieldNumber];
+      }
+    }
+  }
 }
 
 @end

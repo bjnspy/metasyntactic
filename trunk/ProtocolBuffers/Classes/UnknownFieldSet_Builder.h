@@ -24,6 +24,8 @@
     PBMutableField* lastField;
 }
 
++ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) unknownFields;
+
 - (PBUnknownFieldSet*) build;
 - (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
 

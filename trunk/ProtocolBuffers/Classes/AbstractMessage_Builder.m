@@ -26,57 +26,13 @@
 
 @implementation PBAbstractMessage_Builder
 
-
 - (id<PBMessage_Builder>) clone {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (id<PBMessage_Builder>) clear {
-    for (PBFieldDescriptor* key in self.allFields) {
-        [self clearField:key];
-    }
-
-    return self;
-}
-
-
-- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other descriptor] != self.descriptor) {
-        @throw [NSException exceptionWithName:@"IllegalArgument"
-                                       reason:@"mergeFromMessage can only merge messages of the same type."
-                                     userInfo:nil];
-    }
-
-    // Note:  We don't attempt to verify that other's fields have valid
-    //   types.  Doing so would be a losing battle.  We'd have to verify
-    //   all sub-messages as well, and we'd have to make copies of all of
-    //   them to insure that they don't change after verification (since
-    //   the PBMessage interface itself cannot enforce immutability of
-    //   implementations).
-    NSDictionary* allFields = self.allFields;
-    for (PBFieldDescriptor* field in allFields) {
-        id value = [allFields objectForKey:field];
-
-        if (field.isRepeated) {
-            for (id element in value) {
-                [self addRepeatedField:field value:element];
-            }
-        } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
-            id<PBMessage> existingValue = [self getField:field];
-
-            if (existingValue == [existingValue defaultInstance]) {
-                [self setField:field value:value];
-            } else {
-                id value1 = [[[[existingValue builder] mergeFromMessage:existingValue] mergeFromMessage:value] build];
-                [self setField:field value:value1];
-            }
-        } else {
-            [self setField:field value:value];
-        }
-    }
-
-    return self;
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -87,11 +43,7 @@
 
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                   extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-    [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
-    [self setUnknownFields:[unknownFields build]];
-
-    return self;
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -157,57 +109,7 @@
 }
 
 
-- (PBDescriptor*) descriptor {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
 - (id<PBMessage>) defaultInstance {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSDictionary*) allFields {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) hasField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id) getField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -221,5 +123,22 @@
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
+
+- (PBUnknownFieldSet*) buildUnknownFields:(PBUnknownFieldSet_Builder*) builder {
+  if (builder == nil) {
+    return self.unknownFields;
+  }
+  
+  return [builder build];
+}
+
+
+- (PBUnknownFieldSet_Builder*) ensureUnknownFields:(PBUnknownFieldSet_Builder*) builder {
+  if (builder == nil) {
+    return [PBUnknownFieldSet_Builder newBuilder:self.unknownFields];
+  }
+  
+  return builder;
+}
 
 @end

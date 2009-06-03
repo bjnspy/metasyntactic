@@ -65,6 +65,7 @@
  *
  * @author Cyrus Najmabadi
  */
+#if 0
 @interface PBExtensionRegistry : NSObject {
   @private
     NSMutableDictionary* extensionsByName;
@@ -99,3 +100,18 @@
                                fieldNumber:(int32_t) fieldNumber;
 
 @end
+#else
+@interface PBExtensionRegistry : NSObject {
+@protected
+  NSDictionary* classMap;
+}
+
++ (PBExtensionRegistry*) emptyRegistry;
+- (id<PBExtensionField>) getExtension:(Class) clazz fieldNumber:(NSInteger) fieldNumber;
+
+/* @protected */
+- (id) initWithClassMap:(NSDictionary*) classMap;
+- (id) keyForClass:(Class) clazz;
+
+@end
+#endif

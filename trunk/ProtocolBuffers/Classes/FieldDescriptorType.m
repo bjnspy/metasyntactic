@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "FieldDescriptorType.h"
 
 #import "Descriptor.pb.h"
@@ -49,3 +50,4 @@ PBFieldDescriptorProto_Type* PBFieldDescriptorTypeTo(PBFieldDescriptorType type)
 @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
+#endif

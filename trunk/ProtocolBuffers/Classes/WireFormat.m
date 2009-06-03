@@ -31,6 +31,7 @@ int32_t PBWireFormatGetTagFieldNumber(int32_t tag) {
 }
 
 
+#if 0
 int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type) {
     switch (type) {
         case PBFieldDescriptorTypeDouble  : return PBWireFormatFixed64;
@@ -55,3 +56,4 @@ int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type) {
 
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
 }
+#endif

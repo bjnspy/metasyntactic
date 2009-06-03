@@ -40,98 +40,17 @@
 }
 
 
-/**
- * Get the PBFieldAccessorTable for this type.  We can't have the message
- * class pass this in to the constructor because of bootstrapping trouble
- * with DescriptorProtos.
- */
-- (PBFieldAccessorTable*) fieldAccessorTable {
-    return [(id)self.internalGetResult fieldAccessorTable];
+- (void) checkInitialized {
+  PBGeneratedMessage* result = self.internalGetResult;
+  if (result != nil && !result.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
 }
 
 
-- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other descriptor] !=
-        self.fieldAccessorTable.descriptor) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
-    }
-
-    NSDictionary* allFields = [other allFields];
-    for (PBFieldDescriptor* field in allFields) {
-        id newValue = [allFields objectForKey:field];
-
-        if (field.isRepeated) {
-            // Concatenate repeated fields.
-            for (id element in newValue) {
-                [self addRepeatedField:field value:element];
-            }
-        } else if (field.objectiveCType == PBObjectiveCTypeMessage &&
-                   [self hasField:field]) {
-            // Merge singular embedded messages.
-            id<PBMessage> oldValue = [self getField:field];
-            [self setField:field
-                     value:[[[[oldValue builder] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
-        } else {
-            // Just overwrite.
-            [self setField:field value:newValue];
-        }
-    }
-
-    return self;
-}
-
-
-- (PBDescriptor*) descriptor {
-    return self.fieldAccessorTable.descriptor;
-}
-
-
-- (NSDictionary*) allFields {
-    return self.internalGetResult.allFields;
-}
-
-
-- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] createBuilder];
-}
-
-
-- (BOOL) hasField:(PBFieldDescriptor*) field {
-    return [self.internalGetResult hasField:field];
-}
-
-
-- (id) getField:(PBFieldDescriptor*) field {
-    return [self.internalGetResult getField:field];
-}
-
-
-- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
-    [[self.fieldAccessorTable getField:field] set:self value:value];
-    return self;
-}
-
-
-- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field {
-    [[self.fieldAccessorTable getField:field] clear:self];
-    return self;
-}
-
-
-- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
-    return [self.internalGetResult getRepeatedField:field];
-}
-
-
-- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
-    [[self.fieldAccessorTable getField:field] setRepeated:self index:index value:value];
-    return self;
-}
-
-
-- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
-    [[self.fieldAccessorTable getField:field] addRepeated:self value:value];
-    return self;
+- (PBGeneratedMessage*) build {
+  [self checkInitialized];
+  return [self buildPartial];
 }
 
 
@@ -171,5 +90,12 @@
     return [unknownFields mergeFieldFrom:tag input:input];
 }
 
+
+- (void) checkInitializedParsed {
+  PBGeneratedMessage* result = self.internalGetResult;
+  if (result != nil && !result.isInitialized) {
+    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+  }  
+}
 
 @end

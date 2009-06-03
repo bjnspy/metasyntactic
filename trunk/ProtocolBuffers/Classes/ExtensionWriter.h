@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Used by subclasses to serialize extensions.  Extension ranges may be
  * interleaved with field numbers, but we must write them in canonical
@@ -31,3 +32,4 @@
 - (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output;
 
 @end
+#endif

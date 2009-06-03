@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @class PBFieldDescriptorProto_Type;
 
 typedef enum {
@@ -37,3 +38,5 @@ typedef enum {
 
 PBFieldDescriptorType PBFieldDescriptorTypeFrom(PBFieldDescriptorProto_Type* type);
 PBFieldDescriptorProto_Type* PBFieldDescriptorTypeTo(PBFieldDescriptorType type);
+
+#endif

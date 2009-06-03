@@ -14,6 +14,7 @@
 
 #import "AbstractMessage.h"
 
+#if 0
 /**
  * An implementation of {@link Message} that can represent arbitrary types,
  * given a {@link Descriptors.Descriptor}.
@@ -42,3 +43,4 @@
                        data:(NSData*) data;
 
 @end
+#endif

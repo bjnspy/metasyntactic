@@ -16,7 +16,6 @@
 
 #import "Field.h"
 
-
 @interface PBField ()
 @property (retain) NSMutableArray* mutableVarintList;
 @property (retain) NSMutableArray* mutableFixed32List;

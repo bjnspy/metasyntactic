@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Describes a {@code .proto} file, including everything defined within.
  */
@@ -93,3 +94,5 @@
 - (PBFieldDescriptor*) findExtensionByName:(NSString*) name;
 
 @end
+
+#endif

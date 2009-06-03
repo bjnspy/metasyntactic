@@ -14,11 +14,11 @@
 
 @interface PBField : NSObject {
 @protected
-    NSMutableArray* mutableVarintList;
-    NSMutableArray* mutableFixed32List;
-    NSMutableArray* mutableFixed64List;
-    NSMutableArray* mutableLengthDelimitedList;
-    NSMutableArray* mutableGroupList;
+  NSMutableArray* mutableVarintList;
+  NSMutableArray* mutableFixed32List;
+  NSMutableArray* mutableFixed64List;
+  NSMutableArray* mutableLengthDelimitedList;
+  NSMutableArray* mutableGroupList;
 }
 
 - (NSArray*) varintList;

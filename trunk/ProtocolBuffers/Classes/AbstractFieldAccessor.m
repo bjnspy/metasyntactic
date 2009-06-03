@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "AbstractFieldAccessor.h"
 
 @interface PBAbstractFieldAccessor()
@@ -45,3 +46,4 @@ tolower([name characterAtIndex:0]),
 }
 
 @end
+#endif

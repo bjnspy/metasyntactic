@@ -346,6 +346,7 @@ return [self readRawData:size];
  *         {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *         this field.
  */
+#if 0
 - (id) readPrimitiveField:(PBFieldDescriptorType) type {
     switch (type) {
         case PBFieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
@@ -378,6 +379,7 @@ return [self readRawData:size];
 
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
 }
+#endif
 
 
 // =================================================================
