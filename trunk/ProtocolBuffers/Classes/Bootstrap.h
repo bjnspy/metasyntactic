@@ -22,7 +22,6 @@
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"
 #import "Message_Builder.h"
-#import "ObjectiveCType.h"
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 #import "Utilities.h"
