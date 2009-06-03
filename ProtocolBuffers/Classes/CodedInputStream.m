@@ -335,52 +335,6 @@ return [self readRawData:size];
 }
 
 
-/**
- * Read a field of any primitive type.  Enums, groups, and embedded
- * messages are not handled by this method.
- *
- * @param type Declared type of the field.
- * @return An object representing the field's value, of the exact
- *         type which would be returned by
- *         {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
- *         this field.
- */
-#if 0
-- (id) readPrimitiveField:(PBFieldDescriptorType) type {
-    switch (type) {
-        case PBFieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
-        case PBFieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:     [self readFloat]];
-        case PBFieldDescriptorTypeInt64   : return [NSNumber numberWithLongLong:  [self readInt64]];
-        case PBFieldDescriptorTypeUInt64  : return [NSNumber numberWithLongLong:  [self readUInt64]];
-        case PBFieldDescriptorTypeInt32   : return [NSNumber numberWithInt:       [self readInt32]];
-        case PBFieldDescriptorTypeFixed64 : return [NSNumber numberWithLongLong:  [self readFixed64]];
-        case PBFieldDescriptorTypeFixed32 : return [NSNumber numberWithInt:       [self readFixed32]];
-        case PBFieldDescriptorTypeBool    : return [NSNumber numberWithBool:      [self readBool]];
-        case PBFieldDescriptorTypeString  : return [self readString];
-        case PBFieldDescriptorTypeData    : return [self readData];
-        case PBFieldDescriptorTypeUInt32  : return [NSNumber numberWithInt:       [self readUInt32]];
-        case PBFieldDescriptorTypeSFixed32: return [NSNumber numberWithInt:       [self readSFixed32]];
-        case PBFieldDescriptorTypeSFixed64: return [NSNumber numberWithLongLong:  [self readSFixed64]];
-        case PBFieldDescriptorTypeSInt32  : return [NSNumber numberWithInt:       [self readSInt32]];
-        case PBFieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:  [self readSInt64]];
-
-        case PBFieldDescriptorTypeGroup:
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle nested groups." userInfo:nil];
-
-        case PBFieldDescriptorTypeMessage:
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle embedded messages." userInfo:nil];
-
-        case PBFieldDescriptorTypeEnum:
-            // We don't hanlde enums because we don't know what to do if the
-            // value is not recognized.
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField cannot handle enums." userInfo:nil];
-    }
-
-    @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
-}
-#endif
-
-
 // =================================================================
 
 /**

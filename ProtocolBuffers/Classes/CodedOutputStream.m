@@ -272,46 +272,6 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 
 /**
- * Write a field of arbitrary type, including tag, to the stream.
- *
- * @param type   The field's type.
- * @param number The field's number.
- * @param value  Object representing the field's value.  Must be of the exact
- *               type which would be returned by
- *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
- *               this field.
- */
-#if 0
-- (void) writeField:(PBFieldDescriptorType) type
-             number:(int32_t) number
-              value:(id) value {
-    switch (type) {
-        case PBFieldDescriptorTypeDouble:   [self writeDouble:number      value:[value doubleValue]]; break;
-        case PBFieldDescriptorTypeFloat:    [self writeFloat:number       value:[value floatValue]]; break;
-        case PBFieldDescriptorTypeInt64:    [self writeInt64:number       value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeUInt64:   [self writeUInt64:number      value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeInt32:    [self writeInt32:number       value:[value intValue]]; break;
-        case PBFieldDescriptorTypeFixed64:  [self writeFixed64:number     value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeFixed32:  [self writeFixed32:number     value:[value intValue]]; break;
-        case PBFieldDescriptorTypeBool:     [self writeBool:number        value:[value boolValue]]; break;
-        case PBFieldDescriptorTypeString:   [self writeString:number      value:value]; break;
-        case PBFieldDescriptorTypeGroup:    [self writeGroup:number       value:value]; break;
-        case PBFieldDescriptorTypeMessage:  [self writeMessage:number     value:value]; break;
-        case PBFieldDescriptorTypeData:     [self writeData:number        value:value]; break;
-        case PBFieldDescriptorTypeUInt32:   [self writeUInt32:number      value:[value intValue]]; break;
-        case PBFieldDescriptorTypeSFixed32: [self writeSFixed32:number    value:[value intValue]]; break;
-        case PBFieldDescriptorTypeSFixed64: [self writeSFixed64:number    value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeSInt32:   [self writeSInt32:number      value:[value intValue]]; break;
-        case PBFieldDescriptorTypeSInt64:   [self writeSInt64:number      value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeEnum:     [self writeEnum:number        value:[value number]]; break;
-        default:
-@throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
-    }
-}
-#endif
-
-
-/**
  * Compute the number of bytes that would be needed to encode a
  * {@code double} field, including tag.
  */
@@ -518,47 +478,6 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
     computeUInt32Size(PBWireFormatMessageSetTypeId, fieldNumber) +
     computeDataSize(PBWireFormatMessageSetMessage, value);
 }
-
-
-/**
- * Compute the number of bytes that would be needed to encode a
- * field of arbitrary type, including tag, to the stream.
- *
- * @param type   The field's type.
- * @param number The field's number.
- * @param value  Object representing the field's value.  Must be of the exact
- *               type which would be returned by
- *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
- *               this field.
- */
-#if 0
-int32_t computeFieldSize(PBFieldDescriptorType type,
-                         int32_t number,
-                         id value) {
-    switch (type) {
-        case PBFieldDescriptorTypeDouble  : return computeDoubleSize  (number, [value doubleValue]);
-        case PBFieldDescriptorTypeFloat   : return computeFloatSize   (number, [value floatValue]);
-        case PBFieldDescriptorTypeInt64   : return computeInt64Size   (number, [value longLongValue]);
-        case PBFieldDescriptorTypeUInt64  : return computeUInt64Size  (number, [value longLongValue]);
-        case PBFieldDescriptorTypeInt32   : return computeInt32Size   (number, [value intValue]);
-        case PBFieldDescriptorTypeFixed64 : return computeFixed64Size (number, [value longLongValue]);
-        case PBFieldDescriptorTypeFixed32 : return computeFixed32Size (number, [value intValue]);
-        case PBFieldDescriptorTypeBool    : return computeBoolSize    (number, [value boolValue]);
-        case PBFieldDescriptorTypeString  : return computeStringSize  (number, value);
-        case PBFieldDescriptorTypeGroup   : return computeGroupSize   (number, value);
-        case PBFieldDescriptorTypeMessage : return computeMessageSize (number, value);
-        case PBFieldDescriptorTypeData    : return computeDataSize    (number, value);
-        case PBFieldDescriptorTypeUInt32  : return computeUInt32Size  (number, [value intValue]);
-        case PBFieldDescriptorTypeSFixed32: return computeSFixed32Size(number, [value intValue]);
-        case PBFieldDescriptorTypeSFixed64: return computeSFixed64Size(number, [value longLongValue]);
-        case PBFieldDescriptorTypeSInt32  : return computeSInt32Size  (number, [value intValue]);
-        case PBFieldDescriptorTypeSInt64  : return computeSInt64Size  (number, [value longLongValue]);
-        case PBFieldDescriptorTypeEnum:     return computeEnumSize    (number, [value number]);
-    }
-
-    @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
-}
-#endif
 
 
 /**

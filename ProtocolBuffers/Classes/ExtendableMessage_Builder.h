@@ -54,18 +54,6 @@
 @interface PBExtendableMessage_Builder : PBGeneratedMessage_Builder {
 }
 
-#if 0
-- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension value:(id) value;
-- (PBExtendableBuilder*) addExtension:(id<PBExtensionField>) extension value:(id) value;
-
-- (id) getExtension:(id<PBExtensionField>) extension;
-
-- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension index:(int32_t) index value:(id) value;
-
-- (BOOL) hasExtension:(id<PBExtensionField>) extension;
-- (PBExtendableBuilder*) clearExtension:id<PBExtensionField>) extension;
-#endif
-
 /* @protected */
 - (void) mergeExtensionFields:(PBExtendableMessage*) other;
 

@@ -65,42 +65,6 @@
  *
  * @author Cyrus Najmabadi
  */
-#if 0
-@interface PBExtensionRegistry : NSObject {
-  @private
-    NSMutableDictionary* extensionsByName;
-    NSMutableDictionary* extensionsByNumber;
-}
-
-+ (PBExtensionRegistry*) emptyRegistry;
-+ (PBExtensionRegistry*) registry;
-+ (PBExtensionRegistry*) registryWithExtensionsByName:(NSMutableDictionary*) extensionsByName
-                                   extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
-
-- (void) addExtension:(PBGeneratedExtension*) extension;
-- (void) addExtensionInfo:(PBExtensionInfo*) extension;
-
-/**
- * Find an extension by fully-qualified field name, in the proto namespace.
- * I.e. {@code result.descriptor.fullName()} will match {@code fullName} if
- * a match is found.
- *
- * @return Information about the extension if found, or {@code nil}
- *         otherwise.
- */
-- (PBExtensionInfo*) findExtensionByName:(NSString*) fullName;
-
-/**
- * Find an extension by containing type and field number.
- *
- * @return Information about the extension if found, or {@code nil}
- *         otherwise.
- */
-- (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
-                               fieldNumber:(int32_t) fieldNumber;
-
-@end
-#else
 @interface PBExtensionRegistry : NSObject {
 @protected
   NSDictionary* classMap;
@@ -114,4 +78,3 @@
 - (id) keyForClass:(Class) clazz;
 
 @end
-#endif
