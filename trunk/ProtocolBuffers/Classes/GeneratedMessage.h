@@ -25,7 +25,7 @@
 @interface PBGeneratedMessage : PBAbstractMessage {
 @private
   PBUnknownFieldSet* unknownFields;
-  
+
 @protected
   int32_t memoizedSerializedSize;
 }

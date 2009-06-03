@@ -121,7 +121,7 @@
   if (builder == nil) {
     return self.unknownFields;
   }
-  
+
   return [builder build];
 }
 
@@ -130,7 +130,7 @@
   if (builder == nil) {
     return [PBUnknownFieldSet_Builder newBuilder:self.unknownFields];
   }
-  
+
   return builder;
 }
 

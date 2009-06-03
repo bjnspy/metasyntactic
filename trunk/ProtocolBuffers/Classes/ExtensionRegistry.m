@@ -40,7 +40,7 @@ static PBExtensionRegistry* emptyRegistry = nil;
   if ((self = [super init])) {
     self.classMap = map_;
   }
-  
+
   return self;
 }
 

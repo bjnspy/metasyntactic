@@ -49,7 +49,7 @@ static PBField* defaultInstance = nil;
   self.mutableFixed64List = nil;
   self.mutableLengthDelimitedList = nil;
   self.mutableGroupList = nil;
-  
+
   [super dealloc];
 }
 

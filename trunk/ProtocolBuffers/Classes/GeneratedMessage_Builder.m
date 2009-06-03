@@ -86,7 +86,7 @@
   PBGeneratedMessage* result = self.internalGetResult;
   if (result != nil && !result.isInitialized) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
-  }  
+  }
 }
 
 @end
