@@ -18,10 +18,8 @@
 
 @implementation PBAbstractMessage
 
-
 - (id) init {
     if (self = [super init]) {
-        //am_memoizedSize = -1;
     }
 
     return self;
@@ -51,11 +49,11 @@
 }
 
 
-//- (void) writeToOutputStream:(NSOutputStream*) output {
-//    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
-//    [self writeToCodedOutputStream:codedOutput];
-//    [codedOutput flush];
-//}
+- (void) writeToOutputStream:(NSOutputStream*) output {
+    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
+    [self writeToCodedOutputStream:codedOutput];
+    [codedOutput flush];
+}
 
 
 - (id<PBMessage>) defaultInstance {
