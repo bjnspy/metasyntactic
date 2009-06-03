@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Feed : NSObject<NSCopying, NSCoding> {
+@interface Feed : AbstractData<NSCopying, NSCoding> {
 @private
     NSString* url;
     NSString* key;
@@ -23,8 +23,10 @@
 @property (readonly, copy) NSString* key;
 @property (readonly, copy) NSString* name;
 
-+ (Feed*) feedWithUrl:(NSString*) url key:(NSString*) key name:(NSString*) name;
-+ (Feed*) feedWithDictionary:(NSDictionary*) dictionary;
++ (Feed*) newWithDictionary:(NSDictionary*) dictionary;
++ (Feed*) feedWithUrl:(NSString*) url
+                  key:(NSString*) key
+                 name:(NSString*) name;
 
 - (NSDictionary*) dictionary;
 

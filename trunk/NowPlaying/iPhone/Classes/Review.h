@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Review : NSObject<NSCopying, NSCoding> {
+@interface Review : AbstractData<NSCopying, NSCoding> {
 @private
     NSInteger score;
     NSString* link;
@@ -27,13 +27,12 @@
 @property (readonly, copy) NSString* author;
 @property (readonly, copy) NSString* source;
 
++ (Review*) newWithDictionary:(NSDictionary*) dictionary;
 + (Review*) reviewWithText:(NSString*) text
                      score:(NSInteger) score
                       link:(NSString*) link
                     author:(NSString*) author
                     source:(NSString*) source;
-
-+ (Review*) reviewWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
 

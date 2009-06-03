@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Performance : NSObject<NSCopying, NSCoding> {
+@interface Performance : AbstractData<NSCopying, NSCoding> {
 @private
     NSDate* time;
     NSString* url;
@@ -22,7 +22,7 @@
 @property (readonly, copy) NSDate* time;
 @property (readonly, copy) NSString* url;
 
-+ (Performance*) performanceWithDictionary:(NSDictionary*) dictionary;
++ (Performance*) newWithDictionary:(NSDictionary*) dictionary;
 + (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url;
 
