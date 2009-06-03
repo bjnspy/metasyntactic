@@ -54,19 +54,19 @@
 @interface PBExtendableBuilder : PBGeneratedMessage_Builder {
 }
 
-- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
-- (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension value:(id) value;
+#if 0
+- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension value:(id) value;
+- (PBExtendableBuilder*) addExtension:(id<PBExtensionField>) extension value:(id) value;
 
-- (id) getExtension:(PBGeneratedExtension*) extension;
-- (NSArray*) getRepeatedExtension:(PBGeneratedExtension*) extension;
+- (id) getExtension:(id<PBExtensionField>) extension;
 
-- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
-- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension index:(int32_t) index value:(id) value;
+- (PBExtendableBuilder*) setExtension:(id<PBExtensionField>) extension index:(int32_t) index value:(id) value;
 
-- (BOOL) hasExtension:(PBGeneratedExtension*) extension;
-- (PBExtendableBuilder*) clearExtension:(PBGeneratedExtension*) extension;
+- (BOOL) hasExtension:(id<PBExtensionField>) extension;
+- (PBExtendableBuilder*) clearExtension:id<PBExtensionField>) extension;
+#endif
 
-//@protected
-- (PBExtendableMessage*) internalGetResult;
+/* @protected */
+- (void) mergeExtensionFields:(PBExtendableMessage*) other;
 
 @end

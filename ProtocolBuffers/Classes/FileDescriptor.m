@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "FileDescriptor.h"
 
 #import "Descriptor.pb.h"
@@ -306,3 +307,5 @@
 }
 
 @end
+
+#endif

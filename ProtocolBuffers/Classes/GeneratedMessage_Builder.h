@@ -14,6 +14,7 @@
 
 #import "AbstractMessage_Builder.h"
 
+#if 0
 @interface PBGeneratedMessage_Builder : PBAbstractMessage_Builder {
 }
 
@@ -41,3 +42,36 @@
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag;
 @end
+#else
+@interface PBGeneratedMessage_Builder : PBAbstractMessage_Builder {
+}
+
+/*
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
+- (PBDescriptor*) descriptor;
+- (NSDictionary*) allFields;
+- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field;
+
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
+
+- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+
+- (PBUnknownFieldSet*) unknownFields;
+- (BOOL) isInitialized;
+ */
+
+/* @protected */
+- (BOOL) parseUnknownField:(PBCodedInputStream*) input
+             unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
+         extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+                       tag:(int32_t) tag;
+
+@end
+#endif

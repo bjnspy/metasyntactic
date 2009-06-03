@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Users should ignore this class.  This class provides the implementation
  * with access to the fields of a message object using Java reflection.
@@ -33,3 +34,4 @@
 - (id<PBFieldAccessor>) getField:(PBFieldDescriptor*) field;
 
 @end
+#endif

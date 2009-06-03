@@ -39,6 +39,7 @@ id PBObjectiveCTypeDefault(PBObjectiveCType type) {
     }
 }
 
+#if 0
 
 PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType type) {
     switch (type) {
@@ -65,3 +66,4 @@ PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType t
 @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
+#endif

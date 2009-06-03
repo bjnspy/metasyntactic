@@ -14,6 +14,7 @@
 
 #import "ExtendableMessage.h"
 
+#if 0
 #import "DynamicMessage.h"
 #import "ExtensionWriter.h"
 #import "FieldDescriptor.h"
@@ -152,5 +153,115 @@
         return [super getRepeatedField:field];
     }
 }
+@end
+
+#else
+
+#import "ExtendableMessage.h"
+
+#import "ExtensionField.h"
+
+@implementation PBExtendableMessage
+
+@synthesize extensionMap;
+@synthesize extensionRegistry;
+
+- (void) dealloc {
+  self.extensionMap = nil;
+  self.extensionRegistry = nil;
+  [super dealloc];
+}
+
+
+- (BOOL) isInitialized:(id) object {
+  if ([object isKindOfClass:[NSArray array]]) {
+    for (id child in object) {
+      if (![self isInitialized:child]) {
+        return NO;
+      }
+    }
+  } else if ([object conformsToProtocol:@protocol(PBMessage)]) {
+    return [object isInitialized];
+  }
+  
+  return YES;
+}
+
+
+- (BOOL) extensionsAreInitialized {
+  return [self isInitialized:extensionMap.allValues];
+}
+
+
+- (id) getExtension:(id<PBExtensionField>) extension {
+  [self ensureExtensionIsRegistered:extension];
+  id value = [extensionMap objectForKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+  if (value != nil) {
+    return value;
+  }
+  
+  return [extension defaultValue];
+}
+
+
+- (void) ensureExtensionIsRegistered:(id<PBExtensionField>) extension {
+  if ([extension extendedClass] != [self class]) {
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Trying to use an extension for another type" userInfo:nil];
+  }
+  
+  if (extensionRegistry == nil) {
+    self.extensionRegistry = [NSMutableDictionary dictionary];
+  }
+  [extensionRegistry setObject:extension forKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+}
+
+
+- (BOOL) hasExtension:(id<PBExtensionField>) extension {
+  return nil != [extensionMap objectForKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+}
+
+
+- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream*) output
+                                       from:(int32_t) startInclusive
+                                         to:(int32_t) endExclusive {
+  @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
+
+- (int32_t) extensionsSerializedSize {
+  int32_t size = 0;
+  for (NSNumber* number in extensionMap) {
+    id<PBExtensionField> extension = [extensionRegistry objectForKey:number];
+    id value = [extensionMap objectForKey:number];
+    size += [extension computeSerializedSizeIncludingTag:value];
+  }
+  
+  return size;
+}
+  
 
 @end
+
+
+#endif
+/*
+private void ensureExtensionIsRegistered(
+                                            final ExtensionField<?,?> extensionField) {
+  if (getClass() != extensionField.getExtendedClass()) {
+    throw new IllegalArgumentException(
+                                       "Trying to use an extension for another type");
+  }
+  
+  if (extensionRegistry == null) {
+    extensionRegistry =
+    new HashMap<Integer,ExtensionField<?,?>>();
+  }
+  final ExtensionField<?,?> oldExtension =
+  extensionRegistry.put(extensionField.getFieldNumber(), extensionField);
+  if (oldExtension != null && oldExtension != extensionField) {
+    throw new IllegalArgumentException(
+                                       "Extension already registered with number: "
+                                       + extensionField.getFieldNumber());
+  }
+}
+ */

@@ -26,15 +26,15 @@
   @private
     PBUnknownFieldSet* unknownFields;
 
-@protected
-    int32_t memoizedSerializedSize;
+//@protected
+//    int32_t memoizedSerializedSize;
 }
 
-@property (readonly, retain) PBUnknownFieldSet* unknownFields;
+//@property (readonly, retain) PBUnknownFieldSet* unknownFields;
 
-- (NSDictionary*) allFields;
+//- (NSDictionary*) allFields;
 
 // @protected
-- (NSMutableDictionary*) allFieldsMutable;
+//- (NSMutableDictionary*) allFieldsMutable;
 
 @end

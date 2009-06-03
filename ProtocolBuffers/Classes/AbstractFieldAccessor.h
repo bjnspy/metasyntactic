@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @interface PBAbstractFieldAccessor : NSObject {
 @protected
     PBFieldDescriptor* field;
@@ -22,3 +23,4 @@
 - (NSString*) camelName:(NSString*) name;
 
 @end
+#endif

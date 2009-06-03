@@ -71,6 +71,9 @@
 		7461B5620F94FB4E00A0C422 /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E40F94F99000A0C422 /* UnknownFieldSet_Builder.m */; };
 		7461B5630F94FB4E00A0C422 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E60F94F99000A0C422 /* Utilities.m */; };
 		7461B5640F94FB4E00A0C422 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E80F94F99000A0C422 /* WireFormat.m */; };
+		748F0B9D0FD6F61E000858A9 /* MutableExtensionRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 748F0B9B0FD6F61E000858A9 /* MutableExtensionRegistry.h */; };
+		748F0B9E0FD6F61E000858A9 /* MutableExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F0B9C0FD6F61E000858A9 /* MutableExtensionRegistry.m */; };
+		748F0CB10FD70602000858A9 /* ExtensionField.h in Headers */ = {isa = PBXBuildFile; fileRef = 748F0CAF0FD70602000858A9 /* ExtensionField.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +226,9 @@
 		7461B6BA0F94FDF900A0C422 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UtilitiesTests.m; path = Tests/UtilitiesTests.m; sourceTree = "<group>"; };
 		7461B6BB0F94FDF900A0C422 /* WireFormatTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WireFormatTests.h; path = Tests/WireFormatTests.h; sourceTree = "<group>"; };
 		7461B6BC0F94FDF900A0C422 /* WireFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WireFormatTests.m; path = Tests/WireFormatTests.m; sourceTree = "<group>"; };
+		748F0B9B0FD6F61E000858A9 /* MutableExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableExtensionRegistry.h; sourceTree = "<group>"; };
+		748F0B9C0FD6F61E000858A9 /* MutableExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableExtensionRegistry.m; sourceTree = "<group>"; };
+		748F0CAF0FD70602000858A9 /* ExtensionField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionField.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ProtocolBuffers-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ProtocolBuffers-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				7461B3C30F94F83500A0C422 /* Descriptors */,
-				7461B3C50F94F84100A0C422 /* ExtensionRegistry */,
+				7461B3C50F94F84100A0C422 /* Extensions */,
 				7461B4850F94F96600A0C422 /* Fields */,
 				7461B3C60F94F84900A0C422 /* GeneratedMessage */,
 				7461B4860F94F96B00A0C422 /* IO */,
@@ -346,17 +352,24 @@
 			name = Descriptors;
 			sourceTree = "<group>";
 		};
-		7461B3C50F94F84100A0C422 /* ExtensionRegistry */ = {
+		7461B3C50F94F84100A0C422 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7461B4A20F94F99000A0C422 /* ExtendableBuilder.h */,
+				7461B4A40F94F99000A0C422 /* ExtendableMessage.h */,
+				748F0CAF0FD70602000858A9 /* ExtensionField.h */,
 				7461B4A60F94F99000A0C422 /* ExtensionInfo.h */,
-				7461B4A70F94F99000A0C422 /* ExtensionInfo.m */,
 				7461B4A80F94F99000A0C422 /* ExtensionRegistry.h */,
-				7461B4A90F94F99000A0C422 /* ExtensionRegistry.m */,
 				7461B4AA0F94F99000A0C422 /* ExtensionRegistry_DescriptorIntPair.h */,
+				748F0B9B0FD6F61E000858A9 /* MutableExtensionRegistry.h */,
+				7461B4A30F94F99000A0C422 /* ExtendableBuilder.m */,
+				7461B4A50F94F99000A0C422 /* ExtendableMessage.m */,
+				7461B4A70F94F99000A0C422 /* ExtensionInfo.m */,
+				7461B4A90F94F99000A0C422 /* ExtensionRegistry.m */,
 				7461B4AB0F94F99000A0C422 /* ExtensionRegistry_DescriptorIntPair.m */,
+				748F0B9C0FD6F61E000858A9 /* MutableExtensionRegistry.m */,
 			);
-			name = ExtensionRegistry;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		7461B3C60F94F84900A0C422 /* GeneratedMessage */ = {
@@ -364,10 +377,6 @@
 			children = (
 				7461B4870F94F99000A0C422 /* AbstractFieldAccessor.h */,
 				7461B4880F94F99000A0C422 /* AbstractFieldAccessor.m */,
-				7461B4A20F94F99000A0C422 /* ExtendableBuilder.h */,
-				7461B4A30F94F99000A0C422 /* ExtendableBuilder.m */,
-				7461B4A40F94F99000A0C422 /* ExtendableMessage.h */,
-				7461B4A50F94F99000A0C422 /* ExtendableMessage.m */,
 				7461B4AC0F94F99000A0C422 /* ExtensionWriter.h */,
 				7461B4AD0F94F99000A0C422 /* ExtensionWriter.m */,
 				7461B4B00F94F99000A0C422 /* FieldAccessor.h */,
@@ -505,6 +514,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				748F0B9D0FD6F61E000858A9 /* MutableExtensionRegistry.h in Headers */,
+				748F0CB10FD70602000858A9 /* ExtensionField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +675,7 @@
 				7461B5620F94FB4E00A0C422 /* UnknownFieldSet_Builder.m in Sources */,
 				7461B5630F94FB4E00A0C422 /* Utilities.m in Sources */,
 				7461B5640F94FB4E00A0C422 /* WireFormat.m in Sources */,
+				748F0B9E0FD6F61E000858A9 /* MutableExtensionRegistry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +713,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -744,7 +757,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = ProtocolBuffers;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};

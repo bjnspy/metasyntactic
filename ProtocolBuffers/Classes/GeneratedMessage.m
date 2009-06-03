@@ -37,58 +37,10 @@
 - (id) init {
     if (self = [super init]) {
         self.unknownFields = [PBUnknownFieldSet defaultInstance];
-        memoizedSerializedSize = -1;
+//        memoizedSerializedSize = -1;
     }
 
     return self;
-}
-
-
-- (PBFieldAccessorTable*) fieldAccessorTable {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSMutableDictionary*) allFieldsMutable {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
-    PBDescriptor* descriptor = [self fieldAccessorTable].descriptor;
-    for (PBFieldDescriptor* field in descriptor.fields) {
-        if (field.isRepeated) {
-            id value = [self getField:field];
-            if ([value count] > 0) {
-                [result setObject:value forKey:field];
-            }
-        } else {
-            if ([self hasField:field]) {
-                id value = [self getField:field];
-                if (value != nil) {
-                    [result setObject:value forKey:field];
-                }
-            }
-        }
-    }
-    return result;
-}
-
-
-- (NSDictionary*) allFields {
-    return [self allFieldsMutable];
-}
-
-
-- (BOOL) hasField:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] has:self];
-}
-
-
-- (id) getField:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] get:self];
-}
-
-
-- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] getRepeated:self];
 }
 
 @end

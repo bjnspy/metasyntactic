@@ -20,7 +20,7 @@
 #import "UnknownFieldSet_Builder.h"
 
 @interface PBUnknownFieldSet()
-    @property (retain) NSDictionary* fields;
+@property (retain) NSDictionary* fields;
 @end
 
 

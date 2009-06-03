@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Abstract base interface for protocol-buffer-based RPC services.  Services
  * themselves are abstract classes (implemented either by servers or as
@@ -92,3 +93,4 @@
  */
 - (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method;
 @end
+#endif

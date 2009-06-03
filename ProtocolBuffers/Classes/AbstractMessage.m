@@ -25,169 +25,44 @@
 
 - (id) init {
     if (self = [super init]) {
-        am_memoizedSize = -1;
+        //am_memoizedSize = -1;
     }
 
     return self;
 }
 
 
+- (NSData*) data {
+  NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
+  PBCodedOutputStream* stream = [PBCodedOutputStream streamWithData:data];
+  [self writeToCodedOutputStream:stream];
+  return data;
+}
+
+
 - (BOOL) isInitialized {
-    // Check that all required fields are present.
-    for (PBFieldDescriptor* field in self.descriptor.fields) {
-        if (field.isRequired) {
-            if (![self hasField:field]) {
-                return NO;
-            }
-        }
-    }
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
 
-    // Check that embedded messages are initialized.
-    NSDictionary* allFields = self.allFields;
-    for (PBFieldDescriptor* field in allFields) {
-        if (field.objectiveCType == PBObjectiveCTypeMessage) {
-            id value = [allFields objectForKey:field];
 
-            if (field.isRepeated) {
-                for (id<PBMessage> element in value) {
-                    if (![element isInitialized]) {
-                        return NO;
-                    }
-                }
-            } else {
-                if (![value isInitialized]) {
-                    return NO;
-                }
-            }
-        }
-    }
-
-    return YES;
+- (int32_t) serializedSize { 
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-    NSDictionary* allFields = self.allFields;
-    NSArray* sortedFields = [allFields.allKeys sortedArrayUsingSelector:@selector(compare:)];
-    for (PBFieldDescriptor* field in sortedFields) {
-        id value = [allFields objectForKey:field];
-        if (field.isRepeated) {
-            for (id element in value) {
-                [output writeField:field.type number:field.number value:element];
-            }
-        } else {
-            [output writeField:field.type number:field.number value:value];
-        }
-    }
-
-    PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptor.options.messageSetWireFormat) {
-        [unknownFields writeAsMessageSetTo:output];
-    } else {
-        [unknownFields writeToCodedOutputStream:output];
-    }
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (NSData*) data {
-    NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
-    PBCodedOutputStream* stream = [PBCodedOutputStream streamWithData:data];
-    [self writeToCodedOutputStream:stream];
-    return data;
-}
-
-
-- (void) writeToOutputStream:(NSOutputStream*) output {
-    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
-    [self writeToCodedOutputStream:codedOutput];
-    [codedOutput flush];
-}
-
-
-- (int32_t) serializedSize {
-    int32_t size = am_memoizedSize;
-    if (size != -1) {
-        return size;
-    }
-
-    size = 0;
-    NSDictionary* allFields = self.allFields;
-    for (PBFieldDescriptor* field in allFields) {
-        id value = [allFields objectForKey:field];
-
-        if (field.isRepeated) {
-            for (id element in value) {
-                size += computeFieldSize(field.type, field.number, element);
-            }
-        } else {
-            size += computeFieldSize(field.type, field.number, value);
-        }
-    }
-
-    PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptor.options.messageSetWireFormat) {
-        size += unknownFields.serializedSizeAsMessageSet;
-    } else {
-        size += unknownFields.serializedSize;
-    }
-
-    am_memoizedSize = size;
-    return size;
-}
-
-
-- (BOOL) isEqual:(id) other {
-    if (other == self) {
-        return YES;
-    }
-
-    if (![other conformsToProtocol:@protocol(PBMessage)]) {
-        return NO;
-    }
-
-    id<PBMessage> otherMessage = other;
-    if (self.descriptor != [otherMessage descriptor]) {
-        return NO;
-    }
-
-    return [self.allFields isEqual:[other allFields]];
-}
-
-
-- (NSUInteger) hash {
-    NSUInteger hash = 41;
-    hash = (19 * hash) + self.descriptor.hash;
-    hash = (53 * hash) + self.allFields.hash;
-    return hash;
-}
-
-
-- (PBDescriptor*) descriptor {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+//- (void) writeToOutputStream:(NSOutputStream*) output {
+//    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
+//    [self writeToCodedOutputStream:codedOutput];
+//    [codedOutput flush];
+//}
 
 
 - (id<PBMessage>) defaultInstance {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSDictionary*) allFields {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) hasField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (id) getField:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

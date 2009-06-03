@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * Abstract interface that provides access to a single field.  This is
  * implemented differently depending on the field type and cardinality.
@@ -29,3 +30,4 @@
 
 - (id<PBMessage_Builder>) createBuilder;
 @end
+#endif

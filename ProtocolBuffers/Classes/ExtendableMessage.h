@@ -49,8 +49,9 @@
  *
  * <p>See also {@link ExtendableBuilder}.
  */
+#if 0
 @interface PBExtendableMessage : PBGeneratedMessage {
-  @private
+@private
     PBFieldSet* extensions;
 }
 
@@ -70,3 +71,30 @@
 - (void) verifyContainingType:(PBFieldDescriptor*) field;
 
 @end
+#else
+@interface PBExtendableMessage : PBGeneratedMessage {
+@private
+  NSMutableDictionary* extensionMap;
+  NSMutableDictionary* extensionRegistry;
+}
+
+@property (retain) NSMutableDictionary* extensionMap;
+@property (retain) NSMutableDictionary* extensionRegistry;
+
+- (BOOL) hasExtension:(id<PBExtensionField>) extension;
+- (id) getExtension:(id<PBExtensionField>) extension;
+
+//@protected
+- (BOOL) extensionsAreInitialized;
+- (int32_t) extensionsSerializedSize;
+- (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream*) output
+                                       from:(int32_t) startInclusive
+                                         to:(int32_t) endExclusive;
+
+
+
+/* @internal */
+- (void) ensureExtensionIsRegistered:(id<PBExtensionField>) extension;
+
+@end
+#endif

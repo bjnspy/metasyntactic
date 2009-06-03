@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * A class which represents an arbitrary set of fields of some message type.
  * This is used to implement {@link DynamicMessage}, and also to represent
@@ -85,3 +86,4 @@
 - (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
 
 @end
+#endif

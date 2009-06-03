@@ -283,6 +283,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
+#if 0
 - (void) writeField:(PBFieldDescriptorType) type
              number:(int32_t) number
               value:(id) value {
@@ -309,6 +310,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }
+#endif
 
 
 /**
@@ -531,6 +533,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
  *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
+#if 0
 int32_t computeFieldSize(PBFieldDescriptorType type,
                          int32_t number,
                          id value) {
@@ -557,6 +560,7 @@ int32_t computeFieldSize(PBFieldDescriptorType type,
 
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
 }
+#endif
 
 
 /**

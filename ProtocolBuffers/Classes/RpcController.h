@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @protocol PBRpcController
 - (void) reset;
 - (BOOL) failed;
@@ -21,3 +22,4 @@
 - (BOOL) isCanceled;
 - (void) notifyOnCancel:(id) target selector:(SEL) selector;
 @end
+#endif

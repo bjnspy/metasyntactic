@@ -14,6 +14,7 @@
 
 #import "Message.h"
 
+#if 0
 /**
  * A partial implementation of the {@link Message} interface which implements
  * as many methods of that interface as possible in terms of other methods.
@@ -43,3 +44,29 @@
 - (id<PBMessage_Builder>) builder;
 
 @end
+#else
+/**
+ * A partial implementation of the {@link Message} interface which implements
+ * as many methods of that interface as possible in terms of other methods.
+ *
+ * @author Cyrus Najmabadi
+ */
+@interface PBAbstractMessage : NSObject<PBMessage> {
+@private
+  //int32_t am_memoizedSize;
+}
+/*
+- (NSData*) data;
+
+- (BOOL) isInitialized;
+- (int32_t) serializedSize;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+
+- (id<PBMessage>) defaultInstance;
+- (PBUnknownFieldSet*) unknownFields;
+
+- (id<PBMessage_Builder>) builder;
+ */
+
+@end
+#endif

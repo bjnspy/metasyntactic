@@ -13,7 +13,8 @@
 // limitations under the License.
 
 @interface PBUnknownFieldSet : NSObject {
-    NSDictionary* fields;
+@private
+  NSDictionary* fields;
 }
 
 @property (readonly, retain) NSDictionary* fields;

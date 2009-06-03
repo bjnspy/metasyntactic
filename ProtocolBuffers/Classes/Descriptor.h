@@ -14,7 +14,7 @@
 
 #import "GenericDescriptor.h"
 
-
+#if 0
 /**
  * Contains a collection of classes which describe protocol message types.
  *
@@ -129,3 +129,5 @@
 - (void) crossLink;
 
 @end
+
+#endif

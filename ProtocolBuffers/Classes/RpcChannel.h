@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @protocol PBRpcChannel
 - (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<PBRpcController>) controller
@@ -20,3 +21,4 @@
              target:(id) target
            selector:(SEL) selector;
 @end
+#endif

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "DynamicMessage.h"
 
 #import "Descriptor.h"
@@ -214,5 +215,5 @@
     return [PBDynamicMessage_Builder builderWithType:type];
 }
 
-
 @end
+#endif

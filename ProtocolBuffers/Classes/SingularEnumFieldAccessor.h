@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "SingularFieldAccessor.h"
 
 @interface PBSingularEnumFieldAccessor : PBSingularFieldAccessor {
@@ -29,3 +30,4 @@
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;
 
 @end
+#endif

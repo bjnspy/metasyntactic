@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 @class PBDescriptor;
 @class PBEnumDescriptor;
 @class PBEnumValueDescriptor;
@@ -1519,3 +1520,5 @@
 - (PBUninterpretedOption_Builder*) setStringValue:(NSData*) value;
 - (PBUninterpretedOption_Builder*) clearStringValue;
 @end
+
+#endif

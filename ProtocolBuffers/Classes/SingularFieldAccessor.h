@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "AbstractFieldAccessor.h"
 #import "FieldAccessor.h"
 
@@ -43,3 +44,4 @@
 - (id<PBMessage_Builder>) createBuilder;
 
 @end
+#endif

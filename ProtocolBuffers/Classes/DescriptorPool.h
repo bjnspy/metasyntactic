@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 /**
  * A private helper class which contains lookup tables containing all the
  * descriptors defined in a particular file.
@@ -71,3 +72,5 @@
                               relativeTo:(id<PBGenericDescriptor>) relativeTo;
 
 @end
+
+#endif

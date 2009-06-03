@@ -34,7 +34,7 @@ int32_t PBWireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
 int32_t PBWireFormatGetTagWireType(int32_t tag);
 int32_t PBWireFormatGetTagFieldNumber(int32_t tag);
 
-int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type);
+//int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type);
 
 #define PBWireFormatMessageSetItemTag (PBWireFormatMakeTag(PBWireFormatMessageSetItem, PBWireFormatStartGroup))
 #define PBWireFormatMessageSetItemEndTag (PBWireFormatMakeTag(PBWireFormatMessageSetItem, PBWireFormatEndGroup))

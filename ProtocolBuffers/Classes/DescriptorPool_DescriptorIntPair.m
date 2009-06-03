@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if 0
 #import "DescriptorPool_DescriptorIntPair.h"
 
 @interface PBDescriptorPool_DescriptorIntPair ()
@@ -71,3 +72,4 @@
 }
 
 @end
+#endif
