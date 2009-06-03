@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-enum PBFieldDescriptorType;
-enum PBObjectiveCType;
 enum PBWireFormat;
 
 @protocol PBMessage;
@@ -24,12 +22,13 @@ enum PBWireFormat;
 @class PBCodedInputStream;
 @class PBCodedOutputStream;
 @class PBEnumOptions;
-@class PBExtendableBuilder;
+@class PBExtendableMessage_Builder;
 @class PBExtendableMessage;
 @class PBExtensionRegistry;
 @class PBField;
 @class PBGeneratedMessage;
 @class PBGeneratedMessage_Builder;
+@class PBMutableExtensionRegistry;
 @class PBMutableField;
 @class PBUnknownFieldSet;
 @class PBUnknownFieldSet_Builder;

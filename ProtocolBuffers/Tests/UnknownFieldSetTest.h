@@ -14,13 +14,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class PBDescriptor;
 @class PBUnknownFieldSet;
 @class TestAllTypes;
 @class TestEmptyMessage;
 
 @interface UnknownFieldSetTest : SenTestCase {
-  PBDescriptor* descriptor;
   TestAllTypes* allFields;
   NSData* allFieldsData;
 
@@ -30,7 +28,6 @@
   PBUnknownFieldSet* unknownFields;
 }
 
-@property (retain) PBDescriptor* descriptor;
 @property (retain) TestAllTypes* allFields;
 @property (retain) NSData* allFieldsData;
 

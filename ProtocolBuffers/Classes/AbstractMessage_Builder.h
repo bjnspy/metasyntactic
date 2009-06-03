@@ -22,19 +22,6 @@
 @interface PBAbstractMessage_Builder : NSObject<PBMessage_Builder> {
 }
 
-/*
-- (PBUnknownFieldSet*) unknownFields;
-
-- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
-- (id<PBMessage_Builder>) mergeFromData:(NSData*) data;
-- (id<PBMessage_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input;
-- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-*/
-//- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
-
 /* @protected */
 - (PBUnknownFieldSet*) buildUnknownFields:(PBUnknownFieldSet_Builder*) builder;
 - (PBUnknownFieldSet_Builder*) ensureUnknownFields:(PBUnknownFieldSet_Builder*) builder;

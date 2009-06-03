@@ -4,11 +4,7 @@
 
 #import "UnittestOptimizeFor.pb.h"
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class BarRequest;
 @class BarRequest_Builder;
@@ -24,6 +20,10 @@
 @class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
+@class OneBytes;
+@class OneBytes_Builder;
+@class OneString;
+@class OneString_Builder;
 @class OptionalGroup_extension;
 @class OptionalGroup_extension_Builder;
 @class RepeatedGroup_extension;
@@ -70,6 +70,8 @@
 @class TestNestedMessageHasBits_NestedMessage_Builder;
 @class TestOptimizedForSize;
 @class TestOptimizedForSize_Builder;
+@class TestOptionalOptimizedForSize;
+@class TestOptionalOptimizedForSize_Builder;
 @class TestReallyLargeTagNumber;
 @class TestReallyLargeTagNumber_Builder;
 @class TestRecursiveMessage;
@@ -77,29 +79,27 @@
 @class TestRequired;
 @class TestRequiredForeign;
 @class TestRequiredForeign_Builder;
+@class TestRequiredOptimizedForSize;
+@class TestRequiredOptimizedForSize_Builder;
 @class TestRequired_Builder;
 @class TestService;
 @class TestSparseEnum;
 
 @interface UnittestEmbedOptimizeForRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface TestEmbedOptimizedForSize : PBGeneratedMessage {
-  @private
-  BOOL hasOptionalMessage:1;
+ @private
+  BOOL hasOptionalMessage;
   TestOptimizedForSize* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (retain, readonly) TestOptimizedForSize* optionalMessage;
+@property (readonly, retain) TestOptimizedForSize* optionalMessage;
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestEmbedOptimizedForSize*) defaultInstance;
 - (TestEmbedOptimizedForSize*) defaultInstance;
 
@@ -118,11 +118,10 @@
 @end
 
 @interface TestEmbedOptimizedForSize_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestEmbedOptimizedForSize* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestEmbedOptimizedForSize*) defaultInstance;
 
 - (TestEmbedOptimizedForSize_Builder*) clear;
@@ -131,8 +130,7 @@
 - (TestEmbedOptimizedForSize*) build;
 - (TestEmbedOptimizedForSize*) buildPartial;
 
-- (TestEmbedOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestEmbedOptimizedForSize_Builder*) mergeFromTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) other;
+- (TestEmbedOptimizedForSize_Builder*) mergeFrom:(TestEmbedOptimizedForSize*) other;
 - (TestEmbedOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestEmbedOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -150,3 +148,4 @@
 - (TestEmbedOptimizedForSize_Builder*) addAllRepeatedMessage:(NSArray*) values;
 - (TestEmbedOptimizedForSize_Builder*) clearRepeatedMessageList;
 @end
+

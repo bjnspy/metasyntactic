@@ -2,11 +2,7 @@
 
 #import "ProtocolBuffers.h"
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class ImportEnum;
 @class ImportMessage;
@@ -14,12 +10,10 @@
 
 @interface UnittestImportRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface ImportEnum : NSObject {
-  @private
+ @private
   int32_t index;
   int32_t value;
 }
@@ -32,23 +26,16 @@
 
 - (int32_t) number;
 + (ImportEnum*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptor;
-+ (PBEnumDescriptor*) descriptor;
-
-+ (ImportEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
 
 @interface ImportMessage : PBGeneratedMessage {
-  @private
-  BOOL hasD:1;
+ @private
+  BOOL hasD;
   int32_t d;
 }
 - (BOOL) hasD;
 @property (readonly) int32_t d;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (ImportMessage*) defaultInstance;
 - (ImportMessage*) defaultInstance;
 
@@ -67,11 +54,10 @@
 @end
 
 @interface ImportMessage_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   ImportMessage* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (ImportMessage*) defaultInstance;
 
 - (ImportMessage_Builder*) clear;
@@ -80,8 +66,7 @@
 - (ImportMessage*) build;
 - (ImportMessage*) buildPartial;
 
-- (ImportMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other;
+- (ImportMessage_Builder*) mergeFrom:(ImportMessage*) other;
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -90,3 +75,4 @@
 - (ImportMessage_Builder*) setD:(int32_t) value;
 - (ImportMessage_Builder*) clearD;
 @end
+

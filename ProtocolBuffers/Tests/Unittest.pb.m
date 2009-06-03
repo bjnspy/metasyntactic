@@ -3,1532 +3,289 @@
 #import "Unittest.pb.h"
 
 @implementation UnittestRoot
-static PBFileDescriptor* descriptor = nil;
-static PBGeneratedExtension* UnittestRoot_optionalInt32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalInt64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalUint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalUint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalSint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalSint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalFixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalFixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalFloatExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalDoubleExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalBoolExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalStringExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalBytesExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalGroupExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalNestedMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalForeignMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalImportMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestRoot_optionalCordExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedInt32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedInt64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedUint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedUint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedSint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedSint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedFixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedFixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedFloatExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedDoubleExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedBoolExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedStringExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedBytesExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedGroupExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedNestedMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedForeignMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedImportMessageExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestRoot_repeatedCordExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultInt32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultInt64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultUint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultUint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultSint32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultSint64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultFixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultFixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultFloatExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultDoubleExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultBoolExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultStringExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultBytesExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestRoot_defaultCordExtension = nil;
-static PBGeneratedExtension* UnittestRoot_myExtensionString = nil;
-static PBGeneratedExtension* UnittestRoot_myExtensionInt = nil;
-static PBDescriptor* internal_static_protobuf_unittest_TestAllTypes_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestAllTypes_descriptor {
-  return internal_static_protobuf_unittest_TestAllTypes_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor {
-  return internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor {
-  return internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor {
-  return internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_ForeignMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_ForeignMessage_descriptor {
-  return internal_static_protobuf_unittest_ForeignMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestAllExtensions_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestAllExtensions_descriptor {
-  return internal_static_protobuf_unittest_TestAllExtensions_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_OptionalGroup_extension_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_OptionalGroup_extension_descriptor {
-  return internal_static_protobuf_unittest_OptionalGroup_extension_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable {
-  return internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor {
-  return internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable {
-  return internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestRequired_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestRequired_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestRequired_descriptor {
-  return internal_static_protobuf_unittest_TestRequired_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestRequired_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestRequired_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestRequiredForeign_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestRequiredForeign_descriptor {
-  return internal_static_protobuf_unittest_TestRequiredForeign_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestForeignNested_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestForeignNested_descriptor {
-  return internal_static_protobuf_unittest_TestForeignNested_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestEmptyMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestEmptyMessage_descriptor {
-  return internal_static_protobuf_unittest_TestEmptyMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor {
-  return internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor {
-  return internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestRecursiveMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestRecursiveMessage_descriptor {
-  return internal_static_protobuf_unittest_TestRecursiveMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestMutualRecursionA_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMutualRecursionA_descriptor {
-  return internal_static_protobuf_unittest_TestMutualRecursionA_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestMutualRecursionB_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMutualRecursionB_descriptor {
-  return internal_static_protobuf_unittest_TestMutualRecursionB_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestDupFieldNumber_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestDupFieldNumber_descriptor {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor {
-  return internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor {
-  return internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor {
-  return internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestFieldOrderings_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestFieldOrderings_descriptor {
-  return internal_static_protobuf_unittest_TestFieldOrderings_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor {
-  return internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_FooRequest_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_FooRequest_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_FooRequest_descriptor {
-  return internal_static_protobuf_unittest_FooRequest_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_FooRequest_fieldAccessorTable {
-  return internal_static_protobuf_unittest_FooRequest_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_FooResponse_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_FooResponse_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_FooResponse_descriptor {
-  return internal_static_protobuf_unittest_FooResponse_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_FooResponse_fieldAccessorTable {
-  return internal_static_protobuf_unittest_FooResponse_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_BarRequest_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_BarRequest_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_BarRequest_descriptor {
-  return internal_static_protobuf_unittest_BarRequest_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_BarRequest_fieldAccessorTable {
-  return internal_static_protobuf_unittest_BarRequest_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_BarResponse_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_BarResponse_descriptor {
-  return internal_static_protobuf_unittest_BarResponse_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_BarResponse_fieldAccessorTable {
-  return internal_static_protobuf_unittest_BarResponse_fieldAccessorTable;
-}
+static id<PBExtensionField> UnittestRoot_optionalInt32Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalInt64Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalUint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalUint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalSint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalSint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalFixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalFixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalSfixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalSfixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_optionalFloatExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalDoubleExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalBoolExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalStringExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalBytesExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalGroupExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalNestedMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalForeignMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalImportMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalNestedEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalForeignEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalImportEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalStringPieceExtension = nil;
+static id<PBExtensionField> UnittestRoot_optionalCordExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedInt32Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedInt64Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedUint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedUint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedSint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedSint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedFixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedFixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedSfixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedSfixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedFloatExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedDoubleExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedBoolExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedStringExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedBytesExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedGroupExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedNestedMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedForeignMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedImportMessageExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedNestedEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedForeignEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedImportEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedStringPieceExtension = nil;
+static id<PBExtensionField> UnittestRoot_repeatedCordExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultInt32Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultInt64Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultUint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultUint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultSint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultSint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultFixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultFixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultSfixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultSfixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_defaultFloatExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultDoubleExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultBoolExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultStringExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultBytesExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultNestedEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultForeignEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultImportEnumExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultStringPieceExtension = nil;
+static id<PBExtensionField> UnittestRoot_defaultCordExtension = nil;
+static id<PBExtensionField> UnittestRoot_myExtensionString = nil;
+static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
 + (void) initialize {
   if (self == [UnittestRoot class]) {
-    descriptor = [[UnittestRoot buildDescriptor] retain];
-         UnittestRoot_optionalInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:1]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:2]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:3]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:4]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:5]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:6]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:7]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:8]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:9]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:10]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:11]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:12]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_optionalStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:13]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_optionalBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:14]
-                                                           type:[NSData class]] retain];
-         UnittestRoot_optionalGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:15]
-                                                           type:[OptionalGroup_extension class]] retain];
-         UnittestRoot_optionalNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:16]
-                                                           type:[TestAllTypes_NestedMessage class]] retain];
-         UnittestRoot_optionalForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:17]
-                                                           type:[ForeignMessage class]] retain];
-         UnittestRoot_optionalImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:18]
-                                                           type:[ImportMessage class]] retain];
-         UnittestRoot_optionalNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:19]
-                                                           type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestRoot_optionalForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:20]
-                                                           type:[ForeignEnum class]] retain];
-         UnittestRoot_optionalImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:21]
-                                                           type:[ImportEnum class]] retain];
-         UnittestRoot_optionalStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:22]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_optionalCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:23]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_repeatedInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:24]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:25]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:26]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:27]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:28]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:29]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:30]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:31]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:32]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:33]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:34]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:35]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:36]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_repeatedStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:37]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_repeatedBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:38]
-                                                           type:[NSData class]] retain];
-         UnittestRoot_repeatedGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:39]
-                                                           type:[RepeatedGroup_extension class]] retain];
-         UnittestRoot_repeatedNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:40]
-                                                           type:[TestAllTypes_NestedMessage class]] retain];
-         UnittestRoot_repeatedForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:41]
-                                                           type:[ForeignMessage class]] retain];
-         UnittestRoot_repeatedImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:42]
-                                                           type:[ImportMessage class]] retain];
-         UnittestRoot_repeatedNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:43]
-                                                           type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestRoot_repeatedForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:44]
-                                                           type:[ForeignEnum class]] retain];
-         UnittestRoot_repeatedImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:45]
-                                                           type:[ImportEnum class]] retain];
-         UnittestRoot_repeatedStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:46]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_repeatedCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:47]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_defaultInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:48]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:49]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:50]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:51]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:52]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:53]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:54]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:55]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:56]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:57]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:58]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:59]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:60]
-                                                           type:[NSNumber class]] retain];
-         UnittestRoot_defaultStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:61]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_defaultBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:62]
-                                                           type:[NSData class]] retain];
-         UnittestRoot_defaultNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:63]
-                                                           type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestRoot_defaultForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:64]
-                                                           type:[ForeignEnum class]] retain];
-         UnittestRoot_defaultImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:65]
-                                                           type:[ImportEnum class]] retain];
-         UnittestRoot_defaultStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:66]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_defaultCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:67]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_myExtensionString = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:68]
-                                                           type:[NSString class]] retain];
-         UnittestRoot_myExtensionInt = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:69]
-                                                           type:[NSNumber class]] retain];
-    internal_static_protobuf_unittest_TestAllTypes_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalInt32", @"OptionalInt64", @"OptionalUint32", @"OptionalUint64", @"OptionalSint32", @"OptionalSint64", @"OptionalFixed32", @"OptionalFixed64", @"OptionalSfixed32", @"OptionalSfixed64", @"OptionalFloat", @"OptionalDouble", @"OptionalBool", @"OptionalString", @"OptionalBytes", @"OptionalGroup", @"OptionalNestedMessage", @"OptionalForeignMessage", @"OptionalImportMessage", @"OptionalNestedEnum", @"OptionalForeignEnum", @"OptionalImportEnum", @"OptionalStringPiece", @"OptionalCord", @"RepeatedInt32", @"RepeatedInt64", @"RepeatedUint32", @"RepeatedUint64", @"RepeatedSint32", @"RepeatedSint64", @"RepeatedFixed32", @"RepeatedFixed64", @"RepeatedSfixed32", @"RepeatedSfixed64", @"RepeatedFloat", @"RepeatedDouble", @"RepeatedBool", @"RepeatedString", @"RepeatedBytes", @"RepeatedGroup", @"RepeatedNestedMessage", @"RepeatedForeignMessage", @"RepeatedImportMessage", @"RepeatedNestedEnum", @"RepeatedForeignEnum", @"RepeatedImportEnum", @"RepeatedStringPiece", @"RepeatedCord", @"DefaultInt32", @"DefaultInt64", @"DefaultUint32", @"DefaultUint64", @"DefaultSint32", @"DefaultSint64", @"DefaultFixed32", @"DefaultFixed64", @"DefaultSfixed32", @"DefaultSfixed64", @"DefaultFloat", @"DefaultDouble", @"DefaultBool", @"DefaultString", @"DefaultBytes", @"DefaultNestedEnum", @"DefaultForeignEnum", @"DefaultImportEnum", @"DefaultStringPiece", @"DefaultCord", nil];
-      internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestAllTypes class]
-                                      builderClass:[TestAllTypes_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Bb", nil];
-      internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestAllTypes_NestedMessage class]
-                                      builderClass:[TestAllTypes_NestedMessage_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:1] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestAllTypes_OptionalGroup class]
-                                      builderClass:[TestAllTypes_OptionalGroup_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:2] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestAllTypes_RepeatedGroup class]
-                                      builderClass:[TestAllTypes_RepeatedGroup_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_ForeignMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"C", nil];
-      internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_ForeignMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[ForeignMessage class]
-                                      builderClass:[ForeignMessage_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestAllExtensions_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllExtensions_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestAllExtensions class]
-                                      builderClass:[TestAllExtensions_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_OptionalGroup_extension_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_OptionalGroup_extension_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[OptionalGroup_extension class]
-                                      builderClass:[OptionalGroup_extension_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[RepeatedGroup_extension class]
-                                      builderClass:[RepeatedGroup_extension_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestRequired_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Dummy2", @"B", @"Dummy4", @"Dummy5", @"Dummy6", @"Dummy7", @"Dummy8", @"Dummy9", @"Dummy10", @"Dummy11", @"Dummy12", @"Dummy13", @"Dummy14", @"Dummy15", @"Dummy16", @"Dummy17", @"Dummy18", @"Dummy19", @"Dummy20", @"Dummy21", @"Dummy22", @"Dummy23", @"Dummy24", @"Dummy25", @"Dummy26", @"Dummy27", @"Dummy28", @"Dummy29", @"Dummy30", @"Dummy31", @"Dummy32", @"C", nil];
-      internal_static_protobuf_unittest_TestRequired_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRequired_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestRequired class]
-                                      builderClass:[TestRequired_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestRequiredForeign_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalMessage", @"RepeatedMessage", @"Dummy", nil];
-      internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRequiredForeign_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestRequiredForeign class]
-                                      builderClass:[TestRequiredForeign_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestForeignNested_descriptor = [[[self descriptor].messageTypes objectAtIndex:7] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"ForeignNested", nil];
-      internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestForeignNested_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestForeignNested class]
-                                      builderClass:[TestForeignNested_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestEmptyMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:8] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmptyMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestEmptyMessage class]
-                                      builderClass:[TestEmptyMessage_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor = [[[self descriptor].messageTypes objectAtIndex:9] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestEmptyMessageWithExtensions class]
-                                      builderClass:[TestEmptyMessageWithExtensions_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor = [[[self descriptor].messageTypes objectAtIndex:10] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Bb", nil];
-      internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestReallyLargeTagNumber class]
-                                      builderClass:[TestReallyLargeTagNumber_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestRecursiveMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:11] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"I", nil];
-      internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRecursiveMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestRecursiveMessage class]
-                                      builderClass:[TestRecursiveMessage_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestMutualRecursionA_descriptor = [[[self descriptor].messageTypes objectAtIndex:12] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Bb", nil];
-      internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMutualRecursionA_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMutualRecursionA class]
-                                      builderClass:[TestMutualRecursionA_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestMutualRecursionB_descriptor = [[[self descriptor].messageTypes objectAtIndex:13] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"OptionalInt32", nil];
-      internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMutualRecursionB_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMutualRecursionB class]
-                                      builderClass:[TestMutualRecursionB_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestDupFieldNumber_descriptor = [[[self descriptor].messageTypes objectAtIndex:14] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Foo", @"Bar", nil];
-      internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestDupFieldNumber class]
-                                      builderClass:[TestDupFieldNumber_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor = [[[internal_static_protobuf_unittest_TestDupFieldNumber_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestDupFieldNumber_Foo class]
-                                      builderClass:[TestDupFieldNumber_Foo_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor = [[[internal_static_protobuf_unittest_TestDupFieldNumber_descriptor nestedTypes] objectAtIndex:1] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
-      internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestDupFieldNumber_Bar class]
-                                      builderClass:[TestDupFieldNumber_Bar_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor = [[[self descriptor].messageTypes objectAtIndex:15] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalNestedMessage", nil];
-      internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestNestedMessageHasBits class]
-                                      builderClass:[TestNestedMessageHasBits_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor = [[[internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"NestedmessageRepeatedInt32", @"NestedmessageRepeatedForeignmessage", nil];
-      internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestNestedMessageHasBits_NestedMessage class]
-                                      builderClass:[TestNestedMessageHasBits_NestedMessage_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor = [[[self descriptor].messageTypes objectAtIndex:16] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"PrimitiveField", @"StringField", @"EnumField", @"MessageField", @"StringPieceField", @"CordField", @"RepeatedPrimitiveField", @"RepeatedStringField", @"RepeatedEnumField", @"RepeatedMessageField", @"RepeatedStringPieceField", @"RepeatedCordField", nil];
-      internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestCamelCaseFieldNames class]
-                                      builderClass:[TestCamelCaseFieldNames_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestFieldOrderings_descriptor = [[[self descriptor].messageTypes objectAtIndex:17] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"MyString", @"MyInt", @"MyFloat", nil];
-      internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestFieldOrderings_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestFieldOrderings class]
-                                      builderClass:[TestFieldOrderings_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor = [[[self descriptor].messageTypes objectAtIndex:18] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"EscapedBytes", @"LargeUint32", @"LargeUint64", @"SmallInt32", @"SmallInt64", @"Utf8String", nil];
-      internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestExtremeDefaultValues class]
-                                      builderClass:[TestExtremeDefaultValues_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_FooRequest_descriptor = [[[self descriptor].messageTypes objectAtIndex:19] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_FooRequest_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_FooRequest_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[FooRequest class]
-                                      builderClass:[FooRequest_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_FooResponse_descriptor = [[[self descriptor].messageTypes objectAtIndex:20] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_FooResponse_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_FooResponse_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[FooResponse class]
-                                      builderClass:[FooResponse_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_BarRequest_descriptor = [[[self descriptor].messageTypes objectAtIndex:21] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_BarRequest_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_BarRequest_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[BarRequest class]
-                                      builderClass:[BarRequest_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_BarResponse_descriptor = [[[self descriptor].messageTypes objectAtIndex:22] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_BarResponse_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_BarResponse_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[BarResponse class]
-                                      builderClass:[BarResponse_Builder class]] retain];
-    }
   }
 }
-+ (PBGeneratedExtension*) optionalInt32Extension {
++ (id<PBExtensionField>) optionalInt32Extension {
   return UnittestRoot_optionalInt32Extension;
 }
-+ (PBGeneratedExtension*) optionalInt64Extension {
++ (id<PBExtensionField>) optionalInt64Extension {
   return UnittestRoot_optionalInt64Extension;
 }
-+ (PBGeneratedExtension*) optionalUint32Extension {
++ (id<PBExtensionField>) optionalUint32Extension {
   return UnittestRoot_optionalUint32Extension;
 }
-+ (PBGeneratedExtension*) optionalUint64Extension {
++ (id<PBExtensionField>) optionalUint64Extension {
   return UnittestRoot_optionalUint64Extension;
 }
-+ (PBGeneratedExtension*) optionalSint32Extension {
++ (id<PBExtensionField>) optionalSint32Extension {
   return UnittestRoot_optionalSint32Extension;
 }
-+ (PBGeneratedExtension*) optionalSint64Extension {
++ (id<PBExtensionField>) optionalSint64Extension {
   return UnittestRoot_optionalSint64Extension;
 }
-+ (PBGeneratedExtension*) optionalFixed32Extension {
++ (id<PBExtensionField>) optionalFixed32Extension {
   return UnittestRoot_optionalFixed32Extension;
 }
-+ (PBGeneratedExtension*) optionalFixed64Extension {
++ (id<PBExtensionField>) optionalFixed64Extension {
   return UnittestRoot_optionalFixed64Extension;
 }
-+ (PBGeneratedExtension*) optionalSfixed32Extension {
++ (id<PBExtensionField>) optionalSfixed32Extension {
   return UnittestRoot_optionalSfixed32Extension;
 }
-+ (PBGeneratedExtension*) optionalSfixed64Extension {
++ (id<PBExtensionField>) optionalSfixed64Extension {
   return UnittestRoot_optionalSfixed64Extension;
 }
-+ (PBGeneratedExtension*) optionalFloatExtension {
++ (id<PBExtensionField>) optionalFloatExtension {
   return UnittestRoot_optionalFloatExtension;
 }
-+ (PBGeneratedExtension*) optionalDoubleExtension {
++ (id<PBExtensionField>) optionalDoubleExtension {
   return UnittestRoot_optionalDoubleExtension;
 }
-+ (PBGeneratedExtension*) optionalBoolExtension {
++ (id<PBExtensionField>) optionalBoolExtension {
   return UnittestRoot_optionalBoolExtension;
 }
-+ (PBGeneratedExtension*) optionalStringExtension {
++ (id<PBExtensionField>) optionalStringExtension {
   return UnittestRoot_optionalStringExtension;
 }
-+ (PBGeneratedExtension*) optionalBytesExtension {
++ (id<PBExtensionField>) optionalBytesExtension {
   return UnittestRoot_optionalBytesExtension;
 }
-+ (PBGeneratedExtension*) optionalGroupExtension {
++ (id<PBExtensionField>) optionalGroupExtension {
   return UnittestRoot_optionalGroupExtension;
 }
-+ (PBGeneratedExtension*) optionalNestedMessageExtension {
++ (id<PBExtensionField>) optionalNestedMessageExtension {
   return UnittestRoot_optionalNestedMessageExtension;
 }
-+ (PBGeneratedExtension*) optionalForeignMessageExtension {
++ (id<PBExtensionField>) optionalForeignMessageExtension {
   return UnittestRoot_optionalForeignMessageExtension;
 }
-+ (PBGeneratedExtension*) optionalImportMessageExtension {
++ (id<PBExtensionField>) optionalImportMessageExtension {
   return UnittestRoot_optionalImportMessageExtension;
 }
-+ (PBGeneratedExtension*) optionalNestedEnumExtension {
++ (id<PBExtensionField>) optionalNestedEnumExtension {
   return UnittestRoot_optionalNestedEnumExtension;
 }
-+ (PBGeneratedExtension*) optionalForeignEnumExtension {
++ (id<PBExtensionField>) optionalForeignEnumExtension {
   return UnittestRoot_optionalForeignEnumExtension;
 }
-+ (PBGeneratedExtension*) optionalImportEnumExtension {
++ (id<PBExtensionField>) optionalImportEnumExtension {
   return UnittestRoot_optionalImportEnumExtension;
 }
-+ (PBGeneratedExtension*) optionalStringPieceExtension {
++ (id<PBExtensionField>) optionalStringPieceExtension {
   return UnittestRoot_optionalStringPieceExtension;
 }
-+ (PBGeneratedExtension*) optionalCordExtension {
++ (id<PBExtensionField>) optionalCordExtension {
   return UnittestRoot_optionalCordExtension;
 }
-+ (PBGeneratedExtension*) repeatedInt32Extension {
++ (id<PBExtensionField>) repeatedInt32Extension {
   return UnittestRoot_repeatedInt32Extension;
 }
-+ (PBGeneratedExtension*) repeatedInt64Extension {
++ (id<PBExtensionField>) repeatedInt64Extension {
   return UnittestRoot_repeatedInt64Extension;
 }
-+ (PBGeneratedExtension*) repeatedUint32Extension {
++ (id<PBExtensionField>) repeatedUint32Extension {
   return UnittestRoot_repeatedUint32Extension;
 }
-+ (PBGeneratedExtension*) repeatedUint64Extension {
++ (id<PBExtensionField>) repeatedUint64Extension {
   return UnittestRoot_repeatedUint64Extension;
 }
-+ (PBGeneratedExtension*) repeatedSint32Extension {
++ (id<PBExtensionField>) repeatedSint32Extension {
   return UnittestRoot_repeatedSint32Extension;
 }
-+ (PBGeneratedExtension*) repeatedSint64Extension {
++ (id<PBExtensionField>) repeatedSint64Extension {
   return UnittestRoot_repeatedSint64Extension;
 }
-+ (PBGeneratedExtension*) repeatedFixed32Extension {
++ (id<PBExtensionField>) repeatedFixed32Extension {
   return UnittestRoot_repeatedFixed32Extension;
 }
-+ (PBGeneratedExtension*) repeatedFixed64Extension {
++ (id<PBExtensionField>) repeatedFixed64Extension {
   return UnittestRoot_repeatedFixed64Extension;
 }
-+ (PBGeneratedExtension*) repeatedSfixed32Extension {
++ (id<PBExtensionField>) repeatedSfixed32Extension {
   return UnittestRoot_repeatedSfixed32Extension;
 }
-+ (PBGeneratedExtension*) repeatedSfixed64Extension {
++ (id<PBExtensionField>) repeatedSfixed64Extension {
   return UnittestRoot_repeatedSfixed64Extension;
 }
-+ (PBGeneratedExtension*) repeatedFloatExtension {
++ (id<PBExtensionField>) repeatedFloatExtension {
   return UnittestRoot_repeatedFloatExtension;
 }
-+ (PBGeneratedExtension*) repeatedDoubleExtension {
++ (id<PBExtensionField>) repeatedDoubleExtension {
   return UnittestRoot_repeatedDoubleExtension;
 }
-+ (PBGeneratedExtension*) repeatedBoolExtension {
++ (id<PBExtensionField>) repeatedBoolExtension {
   return UnittestRoot_repeatedBoolExtension;
 }
-+ (PBGeneratedExtension*) repeatedStringExtension {
++ (id<PBExtensionField>) repeatedStringExtension {
   return UnittestRoot_repeatedStringExtension;
 }
-+ (PBGeneratedExtension*) repeatedBytesExtension {
++ (id<PBExtensionField>) repeatedBytesExtension {
   return UnittestRoot_repeatedBytesExtension;
 }
-+ (PBGeneratedExtension*) repeatedGroupExtension {
++ (id<PBExtensionField>) repeatedGroupExtension {
   return UnittestRoot_repeatedGroupExtension;
 }
-+ (PBGeneratedExtension*) repeatedNestedMessageExtension {
++ (id<PBExtensionField>) repeatedNestedMessageExtension {
   return UnittestRoot_repeatedNestedMessageExtension;
 }
-+ (PBGeneratedExtension*) repeatedForeignMessageExtension {
++ (id<PBExtensionField>) repeatedForeignMessageExtension {
   return UnittestRoot_repeatedForeignMessageExtension;
 }
-+ (PBGeneratedExtension*) repeatedImportMessageExtension {
++ (id<PBExtensionField>) repeatedImportMessageExtension {
   return UnittestRoot_repeatedImportMessageExtension;
 }
-+ (PBGeneratedExtension*) repeatedNestedEnumExtension {
++ (id<PBExtensionField>) repeatedNestedEnumExtension {
   return UnittestRoot_repeatedNestedEnumExtension;
 }
-+ (PBGeneratedExtension*) repeatedForeignEnumExtension {
++ (id<PBExtensionField>) repeatedForeignEnumExtension {
   return UnittestRoot_repeatedForeignEnumExtension;
 }
-+ (PBGeneratedExtension*) repeatedImportEnumExtension {
++ (id<PBExtensionField>) repeatedImportEnumExtension {
   return UnittestRoot_repeatedImportEnumExtension;
 }
-+ (PBGeneratedExtension*) repeatedStringPieceExtension {
++ (id<PBExtensionField>) repeatedStringPieceExtension {
   return UnittestRoot_repeatedStringPieceExtension;
 }
-+ (PBGeneratedExtension*) repeatedCordExtension {
++ (id<PBExtensionField>) repeatedCordExtension {
   return UnittestRoot_repeatedCordExtension;
 }
-+ (PBGeneratedExtension*) defaultInt32Extension {
++ (id<PBExtensionField>) defaultInt32Extension {
   return UnittestRoot_defaultInt32Extension;
 }
-+ (PBGeneratedExtension*) defaultInt64Extension {
++ (id<PBExtensionField>) defaultInt64Extension {
   return UnittestRoot_defaultInt64Extension;
 }
-+ (PBGeneratedExtension*) defaultUint32Extension {
++ (id<PBExtensionField>) defaultUint32Extension {
   return UnittestRoot_defaultUint32Extension;
 }
-+ (PBGeneratedExtension*) defaultUint64Extension {
++ (id<PBExtensionField>) defaultUint64Extension {
   return UnittestRoot_defaultUint64Extension;
 }
-+ (PBGeneratedExtension*) defaultSint32Extension {
++ (id<PBExtensionField>) defaultSint32Extension {
   return UnittestRoot_defaultSint32Extension;
 }
-+ (PBGeneratedExtension*) defaultSint64Extension {
++ (id<PBExtensionField>) defaultSint64Extension {
   return UnittestRoot_defaultSint64Extension;
 }
-+ (PBGeneratedExtension*) defaultFixed32Extension {
++ (id<PBExtensionField>) defaultFixed32Extension {
   return UnittestRoot_defaultFixed32Extension;
 }
-+ (PBGeneratedExtension*) defaultFixed64Extension {
++ (id<PBExtensionField>) defaultFixed64Extension {
   return UnittestRoot_defaultFixed64Extension;
 }
-+ (PBGeneratedExtension*) defaultSfixed32Extension {
++ (id<PBExtensionField>) defaultSfixed32Extension {
   return UnittestRoot_defaultSfixed32Extension;
 }
-+ (PBGeneratedExtension*) defaultSfixed64Extension {
++ (id<PBExtensionField>) defaultSfixed64Extension {
   return UnittestRoot_defaultSfixed64Extension;
 }
-+ (PBGeneratedExtension*) defaultFloatExtension {
++ (id<PBExtensionField>) defaultFloatExtension {
   return UnittestRoot_defaultFloatExtension;
 }
-+ (PBGeneratedExtension*) defaultDoubleExtension {
++ (id<PBExtensionField>) defaultDoubleExtension {
   return UnittestRoot_defaultDoubleExtension;
 }
-+ (PBGeneratedExtension*) defaultBoolExtension {
++ (id<PBExtensionField>) defaultBoolExtension {
   return UnittestRoot_defaultBoolExtension;
 }
-+ (PBGeneratedExtension*) defaultStringExtension {
++ (id<PBExtensionField>) defaultStringExtension {
   return UnittestRoot_defaultStringExtension;
 }
-+ (PBGeneratedExtension*) defaultBytesExtension {
++ (id<PBExtensionField>) defaultBytesExtension {
   return UnittestRoot_defaultBytesExtension;
 }
-+ (PBGeneratedExtension*) defaultNestedEnumExtension {
++ (id<PBExtensionField>) defaultNestedEnumExtension {
   return UnittestRoot_defaultNestedEnumExtension;
 }
-+ (PBGeneratedExtension*) defaultForeignEnumExtension {
++ (id<PBExtensionField>) defaultForeignEnumExtension {
   return UnittestRoot_defaultForeignEnumExtension;
 }
-+ (PBGeneratedExtension*) defaultImportEnumExtension {
++ (id<PBExtensionField>) defaultImportEnumExtension {
   return UnittestRoot_defaultImportEnumExtension;
 }
-+ (PBGeneratedExtension*) defaultStringPieceExtension {
++ (id<PBExtensionField>) defaultStringPieceExtension {
   return UnittestRoot_defaultStringPieceExtension;
 }
-+ (PBGeneratedExtension*) defaultCordExtension {
++ (id<PBExtensionField>) defaultCordExtension {
   return UnittestRoot_defaultCordExtension;
 }
-+ (PBGeneratedExtension*) myExtensionString {
++ (id<PBExtensionField>) myExtensionString {
   return UnittestRoot_myExtensionString;
 }
-+ (PBGeneratedExtension*) myExtensionInt {
++ (id<PBExtensionField>) myExtensionInt {
   return UnittestRoot_myExtensionInt;
-}
-+ (PBFileDescriptor*) descriptor {
-  return descriptor;
-}
-+ (PBFileDescriptor*) buildDescriptor {
-  static uint8_t descriptorData[] = {
-    10,30,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
-    110,105,116,116,101,115,116,46,112,114,111,116,111,18,17,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,26,37,103,111,111,103,
-    108,101,47,112,114,111,116,111,98,117,102,47,117,110,105,116,116,101,115,
-    116,95,105,109,112,111,114,116,46,112,114,111,116,111,34,187,21,10,12,84,
-    101,115,116,65,108,108,84,121,112,101,115,18,22,10,14,111,112,116,105,111,
-    110,97,108,95,105,110,116,51,50,24,1,32,1,40,5,18,22,10,14,111,112,116,
-    105,111,110,97,108,95,105,110,116,54,52,24,2,32,1,40,3,18,23,10,15,111,
-    112,116,105,111,110,97,108,95,117,105,110,116,51,50,24,3,32,1,40,13,18,
-    23,10,15,111,112,116,105,111,110,97,108,95,117,105,110,116,54,52,24,4,32,
-    1,40,4,18,23,10,15,111,112,116,105,111,110,97,108,95,115,105,110,116,51,
-    50,24,5,32,1,40,17,18,23,10,15,111,112,116,105,111,110,97,108,95,115,105,
-    110,116,54,52,24,6,32,1,40,18,18,24,10,16,111,112,116,105,111,110,97,108,
-    95,102,105,120,101,100,51,50,24,7,32,1,40,7,18,24,10,16,111,112,116,105,
-    111,110,97,108,95,102,105,120,101,100,54,52,24,8,32,1,40,6,18,25,10,17,
-    111,112,116,105,111,110,97,108,95,115,102,105,120,101,100,51,50,24,9,32,
-    1,40,15,18,25,10,17,111,112,116,105,111,110,97,108,95,115,102,105,120,101,
-    100,54,52,24,10,32,1,40,16,18,22,10,14,111,112,116,105,111,110,97,108,95,
-    102,108,111,97,116,24,11,32,1,40,2,18,23,10,15,111,112,116,105,111,110,
-    97,108,95,100,111,117,98,108,101,24,12,32,1,40,1,18,21,10,13,111,112,116,
-    105,111,110,97,108,95,98,111,111,108,24,13,32,1,40,8,18,23,10,15,111,112,
-    116,105,111,110,97,108,95,115,116,114,105,110,103,24,14,32,1,40,9,18,22,
-    10,14,111,112,116,105,111,110,97,108,95,98,121,116,101,115,24,15,32,1,40,
-    12,18,68,10,13,111,112,116,105,111,110,97,108,103,114,111,117,112,24,16,
-    32,1,40,10,50,45,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,84,121,112,101,115,46,79,112,116,
-    105,111,110,97,108,71,114,111,117,112,18,78,10,23,111,112,116,105,111,110,
-    97,108,95,110,101,115,116,101,100,95,109,101,115,115,97,103,101,24,18,32,
-    1,40,11,50,45,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,84,121,112,101,115,46,78,101,115,
-    116,101,100,77,101,115,115,97,103,101,18,67,10,24,111,112,116,105,111,110,
-    97,108,95,102,111,114,101,105,103,110,95,109,101,115,115,97,103,101,24,
-    19,32,1,40,11,50,33,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,70,111,114,101,105,103,110,77,101,115,115,97,103,101,
-    18,72,10,23,111,112,116,105,111,110,97,108,95,105,109,112,111,114,116,95,
-    109,101,115,115,97,103,101,24,20,32,1,40,11,50,39,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,95,105,109,112,111,114,116,
-    46,73,109,112,111,114,116,77,101,115,115,97,103,101,18,72,10,20,111,112,
-    116,105,111,110,97,108,95,110,101,115,116,101,100,95,101,110,117,109,24,
-    21,32,1,40,14,50,42,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,84,121,112,101,115,46,78,101,
-    115,116,101,100,69,110,117,109,18,61,10,21,111,112,116,105,111,110,97,108,
-    95,102,111,114,101,105,103,110,95,101,110,117,109,24,22,32,1,40,14,50,30,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    70,111,114,101,105,103,110,69,110,117,109,18,66,10,20,111,112,116,105,111,
-    110,97,108,95,105,109,112,111,114,116,95,101,110,117,109,24,23,32,1,40,
-    14,50,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,95,105,109,112,111,114,116,46,73,109,112,111,114,116,69,110,117,109,
-    18,33,10,21,111,112,116,105,111,110,97,108,95,115,116,114,105,110,103,95,
-    112,105,101,99,101,24,24,32,1,40,9,66,2,8,2,18,25,10,13,111,112,116,105,
-    111,110,97,108,95,99,111,114,100,24,25,32,1,40,9,66,2,8,1,18,22,10,14,114,
-    101,112,101,97,116,101,100,95,105,110,116,51,50,24,31,32,3,40,5,18,22,10,
-    14,114,101,112,101,97,116,101,100,95,105,110,116,54,52,24,32,32,3,40,3,
-    18,23,10,15,114,101,112,101,97,116,101,100,95,117,105,110,116,51,50,24,
-    33,32,3,40,13,18,23,10,15,114,101,112,101,97,116,101,100,95,117,105,110,
-    116,54,52,24,34,32,3,40,4,18,23,10,15,114,101,112,101,97,116,101,100,95,
-    115,105,110,116,51,50,24,35,32,3,40,17,18,23,10,15,114,101,112,101,97,116,
-    101,100,95,115,105,110,116,54,52,24,36,32,3,40,18,18,24,10,16,114,101,112,
-    101,97,116,101,100,95,102,105,120,101,100,51,50,24,37,32,3,40,7,18,24,10,
-    16,114,101,112,101,97,116,101,100,95,102,105,120,101,100,54,52,24,38,32,
-    3,40,6,18,25,10,17,114,101,112,101,97,116,101,100,95,115,102,105,120,101,
-    100,51,50,24,39,32,3,40,15,18,25,10,17,114,101,112,101,97,116,101,100,95,
-    115,102,105,120,101,100,54,52,24,40,32,3,40,16,18,22,10,14,114,101,112,
-    101,97,116,101,100,95,102,108,111,97,116,24,41,32,3,40,2,18,23,10,15,114,
-    101,112,101,97,116,101,100,95,100,111,117,98,108,101,24,42,32,3,40,1,18,
-    21,10,13,114,101,112,101,97,116,101,100,95,98,111,111,108,24,43,32,3,40,
-    8,18,23,10,15,114,101,112,101,97,116,101,100,95,115,116,114,105,110,103,
-    24,44,32,3,40,9,18,22,10,14,114,101,112,101,97,116,101,100,95,98,121,116,
-    101,115,24,45,32,3,40,12,18,68,10,13,114,101,112,101,97,116,101,100,103,
-    114,111,117,112,24,46,32,3,40,10,50,45,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,84,121,
-    112,101,115,46,82,101,112,101,97,116,101,100,71,114,111,117,112,18,78,10,
-    23,114,101,112,101,97,116,101,100,95,110,101,115,116,101,100,95,109,101,
-    115,115,97,103,101,24,48,32,3,40,11,50,45,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,84,
-    121,112,101,115,46,78,101,115,116,101,100,77,101,115,115,97,103,101,18,
-    67,10,24,114,101,112,101,97,116,101,100,95,102,111,114,101,105,103,110,
-    95,109,101,115,115,97,103,101,24,49,32,3,40,11,50,33,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,105,
-    103,110,77,101,115,115,97,103,101,18,72,10,23,114,101,112,101,97,116,101,
-    100,95,105,109,112,111,114,116,95,109,101,115,115,97,103,101,24,50,32,3,
-    40,11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,
-    115,116,95,105,109,112,111,114,116,46,73,109,112,111,114,116,77,101,115,
-    115,97,103,101,18,72,10,20,114,101,112,101,97,116,101,100,95,110,101,115,
-    116,101,100,95,101,110,117,109,24,51,32,3,40,14,50,42,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,
-    108,108,84,121,112,101,115,46,78,101,115,116,101,100,69,110,117,109,18,
-    61,10,21,114,101,112,101,97,116,101,100,95,102,111,114,101,105,103,110,
-    95,101,110,117,109,24,52,32,3,40,14,50,30,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,105,103,110,69,
-    110,117,109,18,66,10,20,114,101,112,101,97,116,101,100,95,105,109,112,111,
-    114,116,95,101,110,117,109,24,53,32,3,40,14,50,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,95,105,109,112,111,114,116,
-    46,73,109,112,111,114,116,69,110,117,109,18,33,10,21,114,101,112,101,97,
-    116,101,100,95,115,116,114,105,110,103,95,112,105,101,99,101,24,54,32,3,
-    40,9,66,2,8,2,18,25,10,13,114,101,112,101,97,116,101,100,95,99,111,114,
-    100,24,55,32,3,40,9,66,2,8,1,18,25,10,13,100,101,102,97,117,108,116,95,
-    105,110,116,51,50,24,61,32,1,40,5,58,2,52,49,18,25,10,13,100,101,102,97,
-    117,108,116,95,105,110,116,54,52,24,62,32,1,40,3,58,2,52,50,18,26,10,14,
-    100,101,102,97,117,108,116,95,117,105,110,116,51,50,24,63,32,1,40,13,58,
-    2,52,51,18,26,10,14,100,101,102,97,117,108,116,95,117,105,110,116,54,52,
-    24,64,32,1,40,4,58,2,52,52,18,27,10,14,100,101,102,97,117,108,116,95,115,
-    105,110,116,51,50,24,65,32,1,40,17,58,3,45,52,53,18,26,10,14,100,101,102,
-    97,117,108,116,95,115,105,110,116,54,52,24,66,32,1,40,18,58,2,52,54,18,
-    27,10,15,100,101,102,97,117,108,116,95,102,105,120,101,100,51,50,24,67,
-    32,1,40,7,58,2,52,55,18,27,10,15,100,101,102,97,117,108,116,95,102,105,
-    120,101,100,54,52,24,68,32,1,40,6,58,2,52,56,18,28,10,16,100,101,102,97,
-    117,108,116,95,115,102,105,120,101,100,51,50,24,69,32,1,40,15,58,2,52,57,
-    18,29,10,16,100,101,102,97,117,108,116,95,115,102,105,120,101,100,54,52,
-    24,70,32,1,40,16,58,3,45,53,48,18,27,10,13,100,101,102,97,117,108,116,95,
-    102,108,111,97,116,24,71,32,1,40,2,58,4,53,49,46,53,18,29,10,14,100,101,
-    102,97,117,108,116,95,100,111,117,98,108,101,24,72,32,1,40,1,58,5,53,50,
-    48,48,48,18,26,10,12,100,101,102,97,117,108,116,95,98,111,111,108,24,73,
-    32,1,40,8,58,4,116,114,117,101,18,29,10,14,100,101,102,97,117,108,116,95,
-    115,116,114,105,110,103,24,74,32,1,40,9,58,5,104,101,108,108,111,18,28,
-    10,13,100,101,102,97,117,108,116,95,98,121,116,101,115,24,75,32,1,40,12,
-    58,5,119,111,114,108,100,18,76,10,19,100,101,102,97,117,108,116,95,110,
-    101,115,116,101,100,95,101,110,117,109,24,81,32,1,40,14,50,42,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,84,121,112,101,115,46,78,101,115,116,101,100,69,110,117,
-    109,58,3,66,65,82,18,73,10,20,100,101,102,97,117,108,116,95,102,111,114,
-    101,105,103,110,95,101,110,117,109,24,82,32,1,40,14,50,30,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,
-    105,103,110,69,110,117,109,58,11,70,79,82,69,73,71,78,95,66,65,82,18,77,
-    10,19,100,101,102,97,117,108,116,95,105,109,112,111,114,116,95,101,110,
-    117,109,24,83,32,1,40,14,50,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,95,105,109,112,111,114,116,46,73,109,112,111,
-    114,116,69,110,117,109,58,10,73,77,80,79,82,84,95,66,65,82,18,37,10,20,
-    100,101,102,97,117,108,116,95,115,116,114,105,110,103,95,112,105,101,99,
-    101,24,84,32,1,40,9,58,3,97,98,99,66,2,8,2,18,29,10,12,100,101,102,97,117,
-    108,116,95,99,111,114,100,24,85,32,1,40,9,58,3,49,50,51,66,2,8,1,26,27,
-    10,13,78,101,115,116,101,100,77,101,115,115,97,103,101,18,10,10,2,98,98,
-    24,1,32,1,40,5,26,26,10,13,79,112,116,105,111,110,97,108,71,114,111,117,
-    112,18,9,10,1,97,24,17,32,1,40,5,26,26,10,13,82,101,112,101,97,116,101,
-    100,71,114,111,117,112,18,9,10,1,97,24,47,32,1,40,5,34,39,10,10,78,101,
-    115,116,101,100,69,110,117,109,18,7,10,3,70,79,79,16,1,18,7,10,3,66,65,
-    82,16,2,18,7,10,3,66,65,90,16,3,34,27,10,14,70,111,114,101,105,103,110,
-    77,101,115,115,97,103,101,18,9,10,1,99,24,1,32,1,40,5,34,29,10,17,84,101,
-    115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,42,8,8,1,16,128,
-    128,128,128,2,34,36,10,23,79,112,116,105,111,110,97,108,71,114,111,117,
-    112,95,101,120,116,101,110,115,105,111,110,18,9,10,1,97,24,17,32,1,40,5,
-    34,36,10,23,82,101,112,101,97,116,101,100,71,114,111,117,112,95,101,120,
-    116,101,110,115,105,111,110,18,9,10,1,97,24,47,32,1,40,5,34,213,5,10,12,
-    84,101,115,116,82,101,113,117,105,114,101,100,18,9,10,1,97,24,1,32,2,40,
-    5,18,14,10,6,100,117,109,109,121,50,24,2,32,1,40,5,18,9,10,1,98,24,3,32,
-    2,40,5,18,14,10,6,100,117,109,109,121,52,24,4,32,1,40,5,18,14,10,6,100,
-    117,109,109,121,53,24,5,32,1,40,5,18,14,10,6,100,117,109,109,121,54,24,
-    6,32,1,40,5,18,14,10,6,100,117,109,109,121,55,24,7,32,1,40,5,18,14,10,6,
-    100,117,109,109,121,56,24,8,32,1,40,5,18,14,10,6,100,117,109,109,121,57,
-    24,9,32,1,40,5,18,15,10,7,100,117,109,109,121,49,48,24,10,32,1,40,5,18,
-    15,10,7,100,117,109,109,121,49,49,24,11,32,1,40,5,18,15,10,7,100,117,109,
-    109,121,49,50,24,12,32,1,40,5,18,15,10,7,100,117,109,109,121,49,51,24,13,
-    32,1,40,5,18,15,10,7,100,117,109,109,121,49,52,24,14,32,1,40,5,18,15,10,
-    7,100,117,109,109,121,49,53,24,15,32,1,40,5,18,15,10,7,100,117,109,109,
-    121,49,54,24,16,32,1,40,5,18,15,10,7,100,117,109,109,121,49,55,24,17,32,
-    1,40,5,18,15,10,7,100,117,109,109,121,49,56,24,18,32,1,40,5,18,15,10,7,
-    100,117,109,109,121,49,57,24,19,32,1,40,5,18,15,10,7,100,117,109,109,121,
-    50,48,24,20,32,1,40,5,18,15,10,7,100,117,109,109,121,50,49,24,21,32,1,40,
-    5,18,15,10,7,100,117,109,109,121,50,50,24,22,32,1,40,5,18,15,10,7,100,117,
-    109,109,121,50,51,24,23,32,1,40,5,18,15,10,7,100,117,109,109,121,50,52,
-    24,24,32,1,40,5,18,15,10,7,100,117,109,109,121,50,53,24,25,32,1,40,5,18,
-    15,10,7,100,117,109,109,121,50,54,24,26,32,1,40,5,18,15,10,7,100,117,109,
-    109,121,50,55,24,27,32,1,40,5,18,15,10,7,100,117,109,109,121,50,56,24,28,
-    32,1,40,5,18,15,10,7,100,117,109,109,121,50,57,24,29,32,1,40,5,18,15,10,
-    7,100,117,109,109,121,51,48,24,30,32,1,40,5,18,15,10,7,100,117,109,109,
-    121,51,49,24,31,32,1,40,5,18,15,10,7,100,117,109,109,121,51,50,24,32,32,
-    1,40,5,18,9,10,1,99,24,33,32,2,40,5,50,86,10,6,115,105,110,103,108,101,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,232,7,32,1,40,11,50,31,46,112,114,111,116,111,98,117,102,95,117,110,
-    105,116,116,101,115,116,46,84,101,115,116,82,101,113,117,105,114,101,100,
-    50,85,10,5,109,117,108,116,105,18,36,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,
-    116,101,110,115,105,111,110,115,24,233,7,32,3,40,11,50,31,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    82,101,113,117,105,114,101,100,34,154,1,10,19,84,101,115,116,82,101,113,
-    117,105,114,101,100,70,111,114,101,105,103,110,18,57,10,16,111,112,116,
-    105,111,110,97,108,95,109,101,115,115,97,103,101,24,1,32,1,40,11,50,31,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    84,101,115,116,82,101,113,117,105,114,101,100,18,57,10,16,114,101,112,101,
-    97,116,101,100,95,109,101,115,115,97,103,101,24,2,32,3,40,11,50,31,46,112,
-    114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,
-    115,116,82,101,113,117,105,114,101,100,18,13,10,5,100,117,109,109,121,24,
-    3,32,1,40,5,34,90,10,17,84,101,115,116,70,111,114,101,105,103,110,78,101,
-    115,116,101,100,18,69,10,14,102,111,114,101,105,103,110,95,110,101,115,
-    116,101,100,24,1,32,1,40,11,50,45,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,84,121,112,
-    101,115,46,78,101,115,116,101,100,77,101,115,115,97,103,101,34,18,10,16,
-    84,101,115,116,69,109,112,116,121,77,101,115,115,97,103,101,34,42,10,30,
-    84,101,115,116,69,109,112,116,121,77,101,115,115,97,103,101,87,105,116,
-    104,69,120,116,101,110,115,105,111,110,115,42,8,8,1,16,128,128,128,128,
-    2,34,52,10,24,84,101,115,116,82,101,97,108,108,121,76,97,114,103,101,84,
-    97,103,78,117,109,98,101,114,18,9,10,1,97,24,1,32,1,40,5,18,13,10,2,98,
-    98,24,255,255,255,127,32,1,40,5,34,85,10,20,84,101,115,116,82,101,99,117,
-    114,115,105,118,101,77,101,115,115,97,103,101,18,50,10,1,97,24,1,32,1,40,
-    11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,82,101,99,117,114,115,105,118,101,77,101,115,115,
-    97,103,101,18,9,10,1,105,24,2,32,1,40,5,34,75,10,20,84,101,115,116,77,117,
-    116,117,97,108,82,101,99,117,114,115,105,111,110,65,18,51,10,2,98,98,24,
-    1,32,1,40,11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,77,117,116,117,97,108,82,101,99,117,114,
-    115,105,111,110,66,34,98,10,20,84,101,115,116,77,117,116,117,97,108,82,
-    101,99,117,114,115,105,111,110,66,18,50,10,1,97,24,1,32,1,40,11,50,39,46,
-    112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,
-    101,115,116,77,117,116,117,97,108,82,101,99,117,114,115,105,111,110,65,
-    18,22,10,14,111,112,116,105,111,110,97,108,95,105,110,116,51,50,24,2,32,
-    1,40,5,34,179,1,10,18,84,101,115,116,68,117,112,70,105,101,108,100,78,117,
-    109,98,101,114,18,9,10,1,97,24,1,32,1,40,5,18,54,10,3,102,111,111,24,2,
-    32,1,40,10,50,41,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,68,117,112,70,105,101,108,100,78,117,109,
-    98,101,114,46,70,111,111,18,54,10,3,98,97,114,24,3,32,1,40,10,50,41,46,
-    112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,
-    101,115,116,68,117,112,70,105,101,108,100,78,117,109,98,101,114,46,66,97,
-    114,26,16,10,3,70,111,111,18,9,10,1,97,24,1,32,1,40,5,26,16,10,3,66,97,
-    114,18,9,10,1,97,24,1,32,1,40,5,34,128,2,10,24,84,101,115,116,78,101,115,
-    116,101,100,77,101,115,115,97,103,101,72,97,115,66,105,116,115,18,90,10,
-    23,111,112,116,105,111,110,97,108,95,110,101,115,116,101,100,95,109,101,
-    115,115,97,103,101,24,1,32,1,40,11,50,57,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,78,101,115,116,
-    101,100,77,101,115,115,97,103,101,72,97,115,66,105,116,115,46,78,101,115,
-    116,101,100,77,101,115,115,97,103,101,26,135,1,10,13,78,101,115,116,101,
-    100,77,101,115,115,97,103,101,18,36,10,28,110,101,115,116,101,100,109,101,
-    115,115,97,103,101,95,114,101,112,101,97,116,101,100,95,105,110,116,51,
-    50,24,1,32,3,40,5,18,80,10,37,110,101,115,116,101,100,109,101,115,115,97,
-    103,101,95,114,101,112,101,97,116,101,100,95,102,111,114,101,105,103,110,
-    109,101,115,115,97,103,101,24,2,32,3,40,11,50,33,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,105,103,
-    110,77,101,115,115,97,103,101,34,229,3,10,23,84,101,115,116,67,97,109,101,
-    108,67,97,115,101,70,105,101,108,100,78,97,109,101,115,18,22,10,14,80,114,
-    105,109,105,116,105,118,101,70,105,101,108,100,24,1,32,1,40,5,18,19,10,
-    11,83,116,114,105,110,103,70,105,101,108,100,24,2,32,1,40,9,18,49,10,9,
-    69,110,117,109,70,105,101,108,100,24,3,32,1,40,14,50,30,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,
-    105,103,110,69,110,117,109,18,55,10,12,77,101,115,115,97,103,101,70,105,
-    101,108,100,24,4,32,1,40,11,50,33,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,70,111,114,101,105,103,110,77,101,115,
-    115,97,103,101,18,28,10,16,83,116,114,105,110,103,80,105,101,99,101,70,
-    105,101,108,100,24,5,32,1,40,9,66,2,8,2,18,21,10,9,67,111,114,100,70,105,
-    101,108,100,24,6,32,1,40,9,66,2,8,1,18,30,10,22,82,101,112,101,97,116,101,
-    100,80,114,105,109,105,116,105,118,101,70,105,101,108,100,24,7,32,3,40,
-    5,18,27,10,19,82,101,112,101,97,116,101,100,83,116,114,105,110,103,70,105,
-    101,108,100,24,8,32,3,40,9,18,57,10,17,82,101,112,101,97,116,101,100,69,
-    110,117,109,70,105,101,108,100,24,9,32,3,40,14,50,30,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,105,
-    103,110,69,110,117,109,18,63,10,20,82,101,112,101,97,116,101,100,77,101,
-    115,115,97,103,101,70,105,101,108,100,24,10,32,3,40,11,50,33,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,
-    101,105,103,110,77,101,115,115,97,103,101,18,36,10,24,82,101,112,101,97,
-    116,101,100,83,116,114,105,110,103,80,105,101,99,101,70,105,101,108,100,
-    24,11,32,3,40,9,66,2,8,2,18,29,10,17,82,101,112,101,97,116,101,100,67,111,
-    114,100,70,105,101,108,100,24,12,32,3,40,9,66,2,8,1,34,85,10,18,84,101,
-    115,116,70,105,101,108,100,79,114,100,101,114,105,110,103,115,18,17,10,
-    9,109,121,95,115,116,114,105,110,103,24,11,32,1,40,9,18,14,10,6,109,121,
-    95,105,110,116,24,1,32,1,40,3,18,16,10,8,109,121,95,102,108,111,97,116,
-    24,101,32,1,40,2,42,4,8,2,16,11,42,4,8,12,16,101,34,144,2,10,24,84,101,
-    115,116,69,120,116,114,101,109,101,68,101,102,97,117,108,116,86,97,108,
-    117,101,115,18,63,10,13,101,115,99,97,112,101,100,95,98,121,116,101,115,
-    24,1,32,1,40,12,58,40,92,48,48,48,92,48,48,49,92,48,48,55,92,48,49,48,92,
-    48,49,52,92,110,92,114,92,116,92,48,49,51,92,92,92,39,92,34,92,51,55,54,
-    18,32,10,12,108,97,114,103,101,95,117,105,110,116,51,50,24,2,32,1,40,13,
-    58,10,52,50,57,52,57,54,55,50,57,53,18,42,10,12,108,97,114,103,101,95,117,
-    105,110,116,54,52,24,3,32,1,40,4,58,20,49,56,52,52,54,55,52,52,48,55,51,
-    55,48,57,53,53,49,54,49,53,18,32,10,11,115,109,97,108,108,95,105,110,116,
-    51,50,24,4,32,1,40,5,58,11,45,50,49,52,55,52,56,51,54,52,55,18,41,10,11,
-    115,109,97,108,108,95,105,110,116,54,52,24,5,32,1,40,3,58,20,45,57,50,50,
-    51,51,55,50,48,51,54,56,53,52,55,55,53,56,48,55,18,24,10,11,117,116,102,
-    56,95,115,116,114,105,110,103,24,6,32,1,40,9,58,3,225,136,180,34,12,10,
-    10,70,111,111,82,101,113,117,101,115,116,34,13,10,11,70,111,111,82,101,
-    115,112,111,110,115,101,34,12,10,10,66,97,114,82,101,113,117,101,115,116,
-    34,13,10,11,66,97,114,82,101,115,112,111,110,115,101,42,64,10,11,70,111,
-    114,101,105,103,110,69,110,117,109,18,15,10,11,70,79,82,69,73,71,78,95,
-    70,79,79,16,4,18,15,10,11,70,79,82,69,73,71,78,95,66,65,82,16,5,18,15,10,
-    11,70,79,82,69,73,71,78,95,66,65,90,16,6,42,71,10,20,84,101,115,116,69,
-    110,117,109,87,105,116,104,68,117,112,86,97,108,117,101,18,8,10,4,70,79,
-    79,49,16,1,18,8,10,4,66,65,82,49,16,2,18,7,10,3,66,65,90,16,3,18,8,10,4,
-    70,79,79,50,16,1,18,8,10,4,66,65,82,50,16,2,42,137,1,10,14,84,101,115,116,
-    83,112,97,114,115,101,69,110,117,109,18,12,10,8,83,80,65,82,83,69,95,65,
-    16,123,18,14,10,8,83,80,65,82,83,69,95,66,16,166,231,3,18,15,10,8,83,80,
-    65,82,83,69,95,67,16,178,177,128,6,18,21,10,8,83,80,65,82,83,69,95,68,16,
-    241,255,255,255,255,255,255,255,255,1,18,21,10,8,83,80,65,82,83,69,95,69,
-    16,180,222,252,255,255,255,255,255,255,1,18,12,10,8,83,80,65,82,83,69,95,
-    70,16,0,18,12,10,8,83,80,65,82,83,69,95,71,16,2,50,153,1,10,11,84,101,115,
-    116,83,101,114,118,105,99,101,18,68,10,3,70,111,111,18,29,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,111,82,
-    101,113,117,101,115,116,26,30,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,70,111,111,82,101,115,112,111,110,115,101,
-    18,68,10,3,66,97,114,18,29,46,112,114,111,116,111,98,117,102,95,117,110,
-    105,116,116,101,115,116,46,66,97,114,82,101,113,117,101,115,116,26,30,46,
-    112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,66,
-    97,114,82,101,115,112,111,110,115,101,58,70,10,24,111,112,116,105,111,110,
-    97,108,95,105,110,116,51,50,95,101,120,116,101,110,115,105,111,110,18,36,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,1,32,
-    1,40,5,58,70,10,24,111,112,116,105,111,110,97,108,95,105,110,116,54,52,
-    95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,
-    69,120,116,101,110,115,105,111,110,115,24,2,32,1,40,3,58,71,10,25,111,112,
-    116,105,111,110,97,108,95,117,105,110,116,51,50,95,101,120,116,101,110,
-    115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,
-    116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,
-    105,111,110,115,24,3,32,1,40,13,58,71,10,25,111,112,116,105,111,110,97,
-    108,95,117,105,110,116,54,52,95,101,120,116,101,110,115,105,111,110,18,
-    36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,
-    46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,
-    4,32,1,40,4,58,71,10,25,111,112,116,105,111,110,97,108,95,115,105,110,116,
-    51,50,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,
-    108,69,120,116,101,110,115,105,111,110,115,24,5,32,1,40,17,58,71,10,25,
-    111,112,116,105,111,110,97,108,95,115,105,110,116,54,52,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,6,32,1,40,18,58,72,10,26,111,112,116,105,111,
-    110,97,108,95,102,105,120,101,100,51,50,95,101,120,116,101,110,115,105,
-    111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,
-    110,115,24,7,32,1,40,7,58,72,10,26,111,112,116,105,111,110,97,108,95,102,
-    105,120,101,100,54,52,95,101,120,116,101,110,115,105,111,110,18,36,46,112,
-    114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,
-    115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,8,32,1,40,
-    6,58,73,10,27,111,112,116,105,111,110,97,108,95,115,102,105,120,101,100,
-    51,50,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,
-    108,69,120,116,101,110,115,105,111,110,115,24,9,32,1,40,15,58,73,10,27,
-    111,112,116,105,111,110,97,108,95,115,102,105,120,101,100,54,52,95,101,
-    120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,
-    116,101,110,115,105,111,110,115,24,10,32,1,40,16,58,70,10,24,111,112,116,
-    105,111,110,97,108,95,102,108,111,97,116,95,101,120,116,101,110,115,105,
-    111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,
-    110,115,24,11,32,1,40,2,58,71,10,25,111,112,116,105,111,110,97,108,95,100,
-    111,117,98,108,101,95,101,120,116,101,110,115,105,111,110,18,36,46,112,
-    114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,
-    115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,12,32,1,40,
-    1,58,69,10,23,111,112,116,105,111,110,97,108,95,98,111,111,108,95,101,120,
-    116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,
-    101,110,115,105,111,110,115,24,13,32,1,40,8,58,71,10,25,111,112,116,105,
-    111,110,97,108,95,115,116,114,105,110,103,95,101,120,116,101,110,115,105,
-    111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,
-    110,115,24,14,32,1,40,9,58,70,10,24,111,112,116,105,111,110,97,108,95,98,
-    121,116,101,115,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,15,32,1,40,12,
-    58,113,10,23,111,112,116,105,111,110,97,108,103,114,111,117,112,95,101,
-    120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,
-    116,101,110,115,105,111,110,115,24,16,32,1,40,10,50,42,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,79,112,116,105,111,
-    110,97,108,71,114,111,117,112,95,101,120,116,101,110,115,105,111,110,58,
-    126,10,33,111,112,116,105,111,110,97,108,95,110,101,115,116,101,100,95,
-    109,101,115,115,97,103,101,95,101,120,116,101,110,115,105,111,110,18,36,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,18,
-    32,1,40,11,50,45,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,84,121,112,101,115,46,78,101,115,
-    116,101,100,77,101,115,115,97,103,101,58,115,10,34,111,112,116,105,111,
-    110,97,108,95,102,111,114,101,105,103,110,95,109,101,115,115,97,103,101,
-    95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,
-    69,120,116,101,110,115,105,111,110,115,24,19,32,1,40,11,50,33,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,
-    101,105,103,110,77,101,115,115,97,103,101,58,120,10,33,111,112,116,105,
-    111,110,97,108,95,105,109,112,111,114,116,95,109,101,115,115,97,103,101,
-    95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,
-    69,120,116,101,110,115,105,111,110,115,24,20,32,1,40,11,50,39,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,95,105,109,112,
-    111,114,116,46,73,109,112,111,114,116,77,101,115,115,97,103,101,58,120,
-    10,30,111,112,116,105,111,110,97,108,95,110,101,115,116,101,100,95,101,
-    110,117,109,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,69,120,116,101,110,115,105,111,110,115,24,21,32,1,40,14,50,42,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    84,101,115,116,65,108,108,84,121,112,101,115,46,78,101,115,116,101,100,
-    69,110,117,109,58,109,10,31,111,112,116,105,111,110,97,108,95,102,111,114,
-    101,105,103,110,95,101,110,117,109,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,22,32,1,40,14,50,30,46,112,114,111,116,111,98,117,102,95,117,110,105,
-    116,116,101,115,116,46,70,111,114,101,105,103,110,69,110,117,109,58,114,
-    10,30,111,112,116,105,111,110,97,108,95,105,109,112,111,114,116,95,101,
-    110,117,109,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,69,120,116,101,110,115,105,111,110,115,24,23,32,1,40,14,50,36,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,95,
-    105,109,112,111,114,116,46,73,109,112,111,114,116,69,110,117,109,58,81,
-    10,31,111,112,116,105,111,110,97,108,95,115,116,114,105,110,103,95,112,
-    105,101,99,101,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,24,32,1,40,9,66,
-    2,8,2,58,73,10,23,111,112,116,105,111,110,97,108,95,99,111,114,100,95,101,
-    120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,
-    116,101,110,115,105,111,110,115,24,25,32,1,40,9,66,2,8,1,58,70,10,24,114,
-    101,112,101,97,116,101,100,95,105,110,116,51,50,95,101,120,116,101,110,
-    115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,
-    116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,
-    105,111,110,115,24,31,32,3,40,5,58,70,10,24,114,101,112,101,97,116,101,
-    100,95,105,110,116,54,52,95,101,120,116,101,110,115,105,111,110,18,36,46,
-    112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,
-    101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,32,32,
-    3,40,3,58,71,10,25,114,101,112,101,97,116,101,100,95,117,105,110,116,51,
-    50,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,
-    108,69,120,116,101,110,115,105,111,110,115,24,33,32,3,40,13,58,71,10,25,
-    114,101,112,101,97,116,101,100,95,117,105,110,116,54,52,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,34,32,3,40,4,58,71,10,25,114,101,112,101,97,
-    116,101,100,95,115,105,110,116,51,50,95,101,120,116,101,110,115,105,111,
-    110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,
-    115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,
-    115,24,35,32,3,40,17,58,71,10,25,114,101,112,101,97,116,101,100,95,115,
-    105,110,116,54,52,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,36,32,3,40,18,
-    58,72,10,26,114,101,112,101,97,116,101,100,95,102,105,120,101,100,51,50,
-    95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,
-    69,120,116,101,110,115,105,111,110,115,24,37,32,3,40,7,58,72,10,26,114,
-    101,112,101,97,116,101,100,95,102,105,120,101,100,54,52,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,38,32,3,40,6,58,73,10,27,114,101,112,101,97,
-    116,101,100,95,115,102,105,120,101,100,51,50,95,101,120,116,101,110,115,
-    105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,
-    111,110,115,24,39,32,3,40,15,58,73,10,27,114,101,112,101,97,116,101,100,
-    95,115,102,105,120,101,100,54,52,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,40,32,3,40,16,58,70,10,24,114,101,112,101,97,116,101,100,95,102,108,
-    111,97,116,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,69,120,116,101,110,115,105,111,110,115,24,41,32,3,40,2,58,71,
-    10,25,114,101,112,101,97,116,101,100,95,100,111,117,98,108,101,95,101,120,
-    116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,
-    101,110,115,105,111,110,115,24,42,32,3,40,1,58,69,10,23,114,101,112,101,
-    97,116,101,100,95,98,111,111,108,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,43,32,3,40,8,58,71,10,25,114,101,112,101,97,116,101,100,95,115,116,114,
-    105,110,103,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,69,120,116,101,110,115,105,111,110,115,24,44,32,3,40,9,58,70,
-    10,24,114,101,112,101,97,116,101,100,95,98,121,116,101,115,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,45,32,3,40,12,58,113,10,23,114,101,112,101,97,
-    116,101,100,103,114,111,117,112,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,46,32,3,40,10,50,42,46,112,114,111,116,111,98,117,102,95,117,110,105,
-    116,116,101,115,116,46,82,101,112,101,97,116,101,100,71,114,111,117,112,
-    95,101,120,116,101,110,115,105,111,110,58,126,10,33,114,101,112,101,97,
-    116,101,100,95,110,101,115,116,101,100,95,109,101,115,115,97,103,101,95,
-    101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,
-    120,116,101,110,115,105,111,110,115,24,48,32,3,40,11,50,45,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,84,121,112,101,115,46,78,101,115,116,101,100,77,101,115,115,
-    97,103,101,58,115,10,34,114,101,112,101,97,116,101,100,95,102,111,114,101,
-    105,103,110,95,109,101,115,115,97,103,101,95,101,120,116,101,110,115,105,
-    111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,
-    110,115,24,49,32,3,40,11,50,33,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,70,111,114,101,105,103,110,77,101,115,115,
-    97,103,101,58,120,10,33,114,101,112,101,97,116,101,100,95,105,109,112,111,
-    114,116,95,109,101,115,115,97,103,101,95,101,120,116,101,110,115,105,111,
-    110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,
-    115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,
-    115,24,50,32,3,40,11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,
-    105,116,116,101,115,116,95,105,109,112,111,114,116,46,73,109,112,111,114,
-    116,77,101,115,115,97,103,101,58,120,10,30,114,101,112,101,97,116,101,100,
-    95,110,101,115,116,101,100,95,101,110,117,109,95,101,120,116,101,110,115,
-    105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,
-    111,110,115,24,51,32,3,40,14,50,42,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,84,121,112,
-    101,115,46,78,101,115,116,101,100,69,110,117,109,58,109,10,31,114,101,112,
-    101,97,116,101,100,95,102,111,114,101,105,103,110,95,101,110,117,109,95,
-    101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,
-    120,116,101,110,115,105,111,110,115,24,52,32,3,40,14,50,30,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,
-    105,103,110,69,110,117,109,58,114,10,30,114,101,112,101,97,116,101,100,
-    95,105,109,112,111,114,116,95,101,110,117,109,95,101,120,116,101,110,115,
-    105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,
-    111,110,115,24,53,32,3,40,14,50,36,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,95,105,109,112,111,114,116,46,73,109,112,
-    111,114,116,69,110,117,109,58,81,10,31,114,101,112,101,97,116,101,100,95,
-    115,116,114,105,110,103,95,112,105,101,99,101,95,101,120,116,101,110,115,
-    105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,
-    111,110,115,24,54,32,3,40,9,66,2,8,2,58,73,10,23,114,101,112,101,97,116,
-    101,100,95,99,111,114,100,95,101,120,116,101,110,115,105,111,110,18,36,
-    46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,
-    84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,55,
-    32,3,40,9,66,2,8,1,58,73,10,23,100,101,102,97,117,108,116,95,105,110,116,
-    51,50,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,
-    108,69,120,116,101,110,115,105,111,110,115,24,61,32,1,40,5,58,2,52,49,58,
-    73,10,23,100,101,102,97,117,108,116,95,105,110,116,54,52,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,62,32,1,40,3,58,2,52,50,58,74,10,24,100,101,
-    102,97,117,108,116,95,117,105,110,116,51,50,95,101,120,116,101,110,115,
-    105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,
-    111,110,115,24,63,32,1,40,13,58,2,52,51,58,74,10,24,100,101,102,97,117,
-    108,116,95,117,105,110,116,54,52,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,64,32,1,40,4,58,2,52,52,58,75,10,24,100,101,102,97,117,108,116,95,115,
-    105,110,116,51,50,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,65,32,1,40,17,
-    58,3,45,52,53,58,74,10,24,100,101,102,97,117,108,116,95,115,105,110,116,
-    54,52,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,
-    108,69,120,116,101,110,115,105,111,110,115,24,66,32,1,40,18,58,2,52,54,
-    58,75,10,25,100,101,102,97,117,108,116,95,102,105,120,101,100,51,50,95,
-    101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,
-    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,
-    120,116,101,110,115,105,111,110,115,24,67,32,1,40,7,58,2,52,55,58,75,10,
-    25,100,101,102,97,117,108,116,95,102,105,120,101,100,54,52,95,101,120,116,
-    101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,
-    110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,
-    110,115,105,111,110,115,24,68,32,1,40,6,58,2,52,56,58,76,10,26,100,101,
-    102,97,117,108,116,95,115,102,105,120,101,100,51,50,95,101,120,116,101,
-    110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,
-    105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,
-    115,105,111,110,115,24,69,32,1,40,15,58,2,52,57,58,77,10,26,100,101,102,
-    97,117,108,116,95,115,102,105,120,101,100,54,52,95,101,120,116,101,110,
-    115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,
-    116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,
-    105,111,110,115,24,70,32,1,40,16,58,3,45,53,48,58,75,10,23,100,101,102,
-    97,117,108,116,95,102,108,111,97,116,95,101,120,116,101,110,115,105,111,
-    110,18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,
-    115,116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,
-    115,24,71,32,1,40,2,58,4,53,49,46,53,58,77,10,24,100,101,102,97,117,108,
-    116,95,100,111,117,98,108,101,95,101,120,116,101,110,115,105,111,110,18,
-    36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,
-    46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,
-    72,32,1,40,1,58,5,53,50,48,48,48,58,74,10,22,100,101,102,97,117,108,116,
-    95,98,111,111,108,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,73,32,1,40,8,58,
-    4,116,114,117,101,58,77,10,24,100,101,102,97,117,108,116,95,115,116,114,
-    105,110,103,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    65,108,108,69,120,116,101,110,115,105,111,110,115,24,74,32,1,40,9,58,5,
-    104,101,108,108,111,58,76,10,23,100,101,102,97,117,108,116,95,98,121,116,
-    101,115,95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,
-    108,108,69,120,116,101,110,115,105,111,110,115,24,75,32,1,40,12,58,5,119,
-    111,114,108,100,58,124,10,29,100,101,102,97,117,108,116,95,110,101,115,
-    116,101,100,95,101,110,117,109,95,101,120,116,101,110,115,105,111,110,18,
-    36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,
-    46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,
-    81,32,1,40,14,50,42,46,112,114,111,116,111,98,117,102,95,117,110,105,116,
-    116,101,115,116,46,84,101,115,116,65,108,108,84,121,112,101,115,46,78,101,
-    115,116,101,100,69,110,117,109,58,3,66,65,82,58,121,10,30,100,101,102,97,
-    117,108,116,95,102,111,114,101,105,103,110,95,101,110,117,109,95,101,120,
-    116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,69,120,116,
-    101,110,115,105,111,110,115,24,82,32,1,40,14,50,30,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,70,111,114,101,105,103,
-    110,69,110,117,109,58,11,70,79,82,69,73,71,78,95,66,65,82,58,125,10,29,
-    100,101,102,97,117,108,116,95,105,109,112,111,114,116,95,101,110,117,109,
-    95,101,120,116,101,110,115,105,111,110,18,36,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,65,108,108,
-    69,120,116,101,110,115,105,111,110,115,24,83,32,1,40,14,50,36,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,95,105,109,112,
-    111,114,116,46,73,109,112,111,114,116,69,110,117,109,58,10,73,77,80,79,
-    82,84,95,66,65,82,58,85,10,30,100,101,102,97,117,108,116,95,115,116,114,
-    105,110,103,95,112,105,101,99,101,95,101,120,116,101,110,115,105,111,110,
-    18,36,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,46,84,101,115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,
-    24,84,32,1,40,9,58,3,97,98,99,66,2,8,2,58,77,10,22,100,101,102,97,117,108,
-    116,95,99,111,114,100,95,101,120,116,101,110,115,105,111,110,18,36,46,112,
-    114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,
-    115,116,65,108,108,69,120,116,101,110,115,105,111,110,115,24,85,32,1,40,
-    9,58,3,49,50,51,66,2,8,1,58,66,10,19,109,121,95,101,120,116,101,110,115,
-    105,111,110,95,115,116,114,105,110,103,18,37,46,112,114,111,116,111,98,
-    117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,70,105,101,
-    108,100,79,114,100,101,114,105,110,103,115,24,50,32,1,40,9,58,63,10,16,
-    109,121,95,101,120,116,101,110,115,105,111,110,95,105,110,116,18,37,46,
-    112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,
-    101,115,116,70,105,101,108,100,79,114,100,101,114,105,110,103,115,24,5,
-    32,1,40,5,66,17,66,13,85,110,105,116,116,101,115,116,80,114,111,116,111,
-    72,1,
-  };
-  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestImportRoot descriptor], nil];
-  
-  NSData* data = [NSData dataWithBytes:descriptorData length:12136];
-  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
-  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
@@ -1577,26 +334,6 @@ static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
     case 6: return [ForeignEnum FOREIGN_BAZ];
     default: return nil;
   }
-}
-- (PBEnumValueDescriptor*) valueDescriptor {
-  return [[ForeignEnum descriptor].values objectAtIndex:index];
-}
-- (PBEnumDescriptor*) descriptor {
-  return [ForeignEnum descriptor];
-}
-+ (PBEnumDescriptor*) descriptor {
-  return [[UnittestRoot descriptor].enumTypes objectAtIndex:0];
-}
-+ (ForeignEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [ForeignEnum descriptor]) {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-  }
-  ForeignEnum* VALUES[] = {
-    [ForeignEnum FOREIGN_FOO],
-    [ForeignEnum FOREIGN_BAR],
-    [ForeignEnum FOREIGN_BAZ],
-  };
-  return VALUES[desc.index];
 }
 @end
 
@@ -1651,28 +388,6 @@ static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
     case 3: return [TestEnumWithDupValue BAZ];
     default: return nil;
   }
-}
-- (PBEnumValueDescriptor*) valueDescriptor {
-  return [[TestEnumWithDupValue descriptor].values objectAtIndex:index];
-}
-- (PBEnumDescriptor*) descriptor {
-  return [TestEnumWithDupValue descriptor];
-}
-+ (PBEnumDescriptor*) descriptor {
-  return [[UnittestRoot descriptor].enumTypes objectAtIndex:1];
-}
-+ (TestEnumWithDupValue*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [TestEnumWithDupValue descriptor]) {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-  }
-  TestEnumWithDupValue* VALUES[] = {
-    [TestEnumWithDupValue FOO1],
-    [TestEnumWithDupValue BAR1],
-    [TestEnumWithDupValue BAZ],
-    [TestEnumWithDupValue FOO2],
-    [TestEnumWithDupValue BAR2],
-  };
-  return VALUES[desc.index];
 }
 @end
 
@@ -1745,30 +460,6 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     case 2: return [TestSparseEnum SPARSE_G];
     default: return nil;
   }
-}
-- (PBEnumValueDescriptor*) valueDescriptor {
-  return [[TestSparseEnum descriptor].values objectAtIndex:index];
-}
-- (PBEnumDescriptor*) descriptor {
-  return [TestSparseEnum descriptor];
-}
-+ (PBEnumDescriptor*) descriptor {
-  return [[UnittestRoot descriptor].enumTypes objectAtIndex:2];
-}
-+ (TestSparseEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [TestSparseEnum descriptor]) {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-  }
-  TestSparseEnum* VALUES[] = {
-    [TestSparseEnum SPARSE_A],
-    [TestSparseEnum SPARSE_B],
-    [TestSparseEnum SPARSE_C],
-    [TestSparseEnum SPARSE_D],
-    [TestSparseEnum SPARSE_E],
-    [TestSparseEnum SPARSE_F],
-    [TestSparseEnum SPARSE_G],
-  };
-  return VALUES[desc.index];
 }
 @end
 
@@ -1846,176 +537,176 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @implementation TestAllTypes
 
 - (BOOL) hasOptionalInt32 {
-  return hasOptionalInt32 != 0;
+  return hasOptionalInt32;
 }
 - (void) setHasOptionalInt32:(BOOL) hasOptionalInt32_ {
-  hasOptionalInt32 = (hasOptionalInt32_ != 0);
+  hasOptionalInt32 = hasOptionalInt32_;
 }
 @synthesize optionalInt32;
 - (BOOL) hasOptionalInt64 {
-  return hasOptionalInt64 != 0;
+  return hasOptionalInt64;
 }
 - (void) setHasOptionalInt64:(BOOL) hasOptionalInt64_ {
-  hasOptionalInt64 = (hasOptionalInt64_ != 0);
+  hasOptionalInt64 = hasOptionalInt64_;
 }
 @synthesize optionalInt64;
 - (BOOL) hasOptionalUint32 {
-  return hasOptionalUint32 != 0;
+  return hasOptionalUint32;
 }
 - (void) setHasOptionalUint32:(BOOL) hasOptionalUint32_ {
-  hasOptionalUint32 = (hasOptionalUint32_ != 0);
+  hasOptionalUint32 = hasOptionalUint32_;
 }
 @synthesize optionalUint32;
 - (BOOL) hasOptionalUint64 {
-  return hasOptionalUint64 != 0;
+  return hasOptionalUint64;
 }
 - (void) setHasOptionalUint64:(BOOL) hasOptionalUint64_ {
-  hasOptionalUint64 = (hasOptionalUint64_ != 0);
+  hasOptionalUint64 = hasOptionalUint64_;
 }
 @synthesize optionalUint64;
 - (BOOL) hasOptionalSint32 {
-  return hasOptionalSint32 != 0;
+  return hasOptionalSint32;
 }
 - (void) setHasOptionalSint32:(BOOL) hasOptionalSint32_ {
-  hasOptionalSint32 = (hasOptionalSint32_ != 0);
+  hasOptionalSint32 = hasOptionalSint32_;
 }
 @synthesize optionalSint32;
 - (BOOL) hasOptionalSint64 {
-  return hasOptionalSint64 != 0;
+  return hasOptionalSint64;
 }
 - (void) setHasOptionalSint64:(BOOL) hasOptionalSint64_ {
-  hasOptionalSint64 = (hasOptionalSint64_ != 0);
+  hasOptionalSint64 = hasOptionalSint64_;
 }
 @synthesize optionalSint64;
 - (BOOL) hasOptionalFixed32 {
-  return hasOptionalFixed32 != 0;
+  return hasOptionalFixed32;
 }
 - (void) setHasOptionalFixed32:(BOOL) hasOptionalFixed32_ {
-  hasOptionalFixed32 = (hasOptionalFixed32_ != 0);
+  hasOptionalFixed32 = hasOptionalFixed32_;
 }
 @synthesize optionalFixed32;
 - (BOOL) hasOptionalFixed64 {
-  return hasOptionalFixed64 != 0;
+  return hasOptionalFixed64;
 }
 - (void) setHasOptionalFixed64:(BOOL) hasOptionalFixed64_ {
-  hasOptionalFixed64 = (hasOptionalFixed64_ != 0);
+  hasOptionalFixed64 = hasOptionalFixed64_;
 }
 @synthesize optionalFixed64;
 - (BOOL) hasOptionalSfixed32 {
-  return hasOptionalSfixed32 != 0;
+  return hasOptionalSfixed32;
 }
 - (void) setHasOptionalSfixed32:(BOOL) hasOptionalSfixed32_ {
-  hasOptionalSfixed32 = (hasOptionalSfixed32_ != 0);
+  hasOptionalSfixed32 = hasOptionalSfixed32_;
 }
 @synthesize optionalSfixed32;
 - (BOOL) hasOptionalSfixed64 {
-  return hasOptionalSfixed64 != 0;
+  return hasOptionalSfixed64;
 }
 - (void) setHasOptionalSfixed64:(BOOL) hasOptionalSfixed64_ {
-  hasOptionalSfixed64 = (hasOptionalSfixed64_ != 0);
+  hasOptionalSfixed64 = hasOptionalSfixed64_;
 }
 @synthesize optionalSfixed64;
 - (BOOL) hasOptionalFloat {
-  return hasOptionalFloat != 0;
+  return hasOptionalFloat;
 }
 - (void) setHasOptionalFloat:(BOOL) hasOptionalFloat_ {
-  hasOptionalFloat = (hasOptionalFloat_ != 0);
+  hasOptionalFloat = hasOptionalFloat_;
 }
 @synthesize optionalFloat;
 - (BOOL) hasOptionalDouble {
-  return hasOptionalDouble != 0;
+  return hasOptionalDouble;
 }
 - (void) setHasOptionalDouble:(BOOL) hasOptionalDouble_ {
-  hasOptionalDouble = (hasOptionalDouble_ != 0);
+  hasOptionalDouble = hasOptionalDouble_;
 }
 @synthesize optionalDouble;
 - (BOOL) hasOptionalBool {
-  return hasOptionalBool != 0;
+  return hasOptionalBool;
 }
 - (void) setHasOptionalBool:(BOOL) hasOptionalBool_ {
-  hasOptionalBool = (hasOptionalBool_ != 0);
+  hasOptionalBool = hasOptionalBool_;
 }
 - (BOOL) optionalBool {
-  return optionalBool != 0;
+  return optionalBool;
 }
 - (void) setOptionalBool:(BOOL) optionalBool_ {
-  optionalBool = (optionalBool_ != 0);
+  optionalBool = optionalBool_;
 }
 - (BOOL) hasOptionalString {
-  return hasOptionalString != 0;
+  return hasOptionalString;
 }
 - (void) setHasOptionalString:(BOOL) hasOptionalString_ {
-  hasOptionalString = (hasOptionalString_ != 0);
+  hasOptionalString = hasOptionalString_;
 }
 @synthesize optionalString;
 - (BOOL) hasOptionalBytes {
-  return hasOptionalBytes != 0;
+  return hasOptionalBytes;
 }
 - (void) setHasOptionalBytes:(BOOL) hasOptionalBytes_ {
-  hasOptionalBytes = (hasOptionalBytes_ != 0);
+  hasOptionalBytes = hasOptionalBytes_;
 }
 @synthesize optionalBytes;
 - (BOOL) hasOptionalGroup {
-  return hasOptionalGroup != 0;
+  return hasOptionalGroup;
 }
 - (void) setHasOptionalGroup:(BOOL) hasOptionalGroup_ {
-  hasOptionalGroup = (hasOptionalGroup_ != 0);
+  hasOptionalGroup = hasOptionalGroup_;
 }
 @synthesize optionalGroup;
 - (BOOL) hasOptionalNestedMessage {
-  return hasOptionalNestedMessage != 0;
+  return hasOptionalNestedMessage;
 }
 - (void) setHasOptionalNestedMessage:(BOOL) hasOptionalNestedMessage_ {
-  hasOptionalNestedMessage = (hasOptionalNestedMessage_ != 0);
+  hasOptionalNestedMessage = hasOptionalNestedMessage_;
 }
 @synthesize optionalNestedMessage;
 - (BOOL) hasOptionalForeignMessage {
-  return hasOptionalForeignMessage != 0;
+  return hasOptionalForeignMessage;
 }
 - (void) setHasOptionalForeignMessage:(BOOL) hasOptionalForeignMessage_ {
-  hasOptionalForeignMessage = (hasOptionalForeignMessage_ != 0);
+  hasOptionalForeignMessage = hasOptionalForeignMessage_;
 }
 @synthesize optionalForeignMessage;
 - (BOOL) hasOptionalImportMessage {
-  return hasOptionalImportMessage != 0;
+  return hasOptionalImportMessage;
 }
 - (void) setHasOptionalImportMessage:(BOOL) hasOptionalImportMessage_ {
-  hasOptionalImportMessage = (hasOptionalImportMessage_ != 0);
+  hasOptionalImportMessage = hasOptionalImportMessage_;
 }
 @synthesize optionalImportMessage;
 - (BOOL) hasOptionalNestedEnum {
-  return hasOptionalNestedEnum != 0;
+  return hasOptionalNestedEnum;
 }
 - (void) setHasOptionalNestedEnum:(BOOL) hasOptionalNestedEnum_ {
-  hasOptionalNestedEnum = (hasOptionalNestedEnum_ != 0);
+  hasOptionalNestedEnum = hasOptionalNestedEnum_;
 }
 @synthesize optionalNestedEnum;
 - (BOOL) hasOptionalForeignEnum {
-  return hasOptionalForeignEnum != 0;
+  return hasOptionalForeignEnum;
 }
 - (void) setHasOptionalForeignEnum:(BOOL) hasOptionalForeignEnum_ {
-  hasOptionalForeignEnum = (hasOptionalForeignEnum_ != 0);
+  hasOptionalForeignEnum = hasOptionalForeignEnum_;
 }
 @synthesize optionalForeignEnum;
 - (BOOL) hasOptionalImportEnum {
-  return hasOptionalImportEnum != 0;
+  return hasOptionalImportEnum;
 }
 - (void) setHasOptionalImportEnum:(BOOL) hasOptionalImportEnum_ {
-  hasOptionalImportEnum = (hasOptionalImportEnum_ != 0);
+  hasOptionalImportEnum = hasOptionalImportEnum_;
 }
 @synthesize optionalImportEnum;
 - (BOOL) hasOptionalStringPiece {
-  return hasOptionalStringPiece != 0;
+  return hasOptionalStringPiece;
 }
 - (void) setHasOptionalStringPiece:(BOOL) hasOptionalStringPiece_ {
-  hasOptionalStringPiece = (hasOptionalStringPiece_ != 0);
+  hasOptionalStringPiece = hasOptionalStringPiece_;
 }
 @synthesize optionalStringPiece;
 - (BOOL) hasOptionalCord {
-  return hasOptionalCord != 0;
+  return hasOptionalCord;
 }
 - (void) setHasOptionalCord:(BOOL) hasOptionalCord_ {
-  hasOptionalCord = (hasOptionalCord_ != 0);
+  hasOptionalCord = hasOptionalCord_;
 }
 @synthesize optionalCord;
 @synthesize mutableRepeatedInt32List;
@@ -2043,148 +734,148 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @synthesize mutableRepeatedStringPieceList;
 @synthesize mutableRepeatedCordList;
 - (BOOL) hasDefaultInt32 {
-  return hasDefaultInt32 != 0;
+  return hasDefaultInt32;
 }
 - (void) setHasDefaultInt32:(BOOL) hasDefaultInt32_ {
-  hasDefaultInt32 = (hasDefaultInt32_ != 0);
+  hasDefaultInt32 = hasDefaultInt32_;
 }
 @synthesize defaultInt32;
 - (BOOL) hasDefaultInt64 {
-  return hasDefaultInt64 != 0;
+  return hasDefaultInt64;
 }
 - (void) setHasDefaultInt64:(BOOL) hasDefaultInt64_ {
-  hasDefaultInt64 = (hasDefaultInt64_ != 0);
+  hasDefaultInt64 = hasDefaultInt64_;
 }
 @synthesize defaultInt64;
 - (BOOL) hasDefaultUint32 {
-  return hasDefaultUint32 != 0;
+  return hasDefaultUint32;
 }
 - (void) setHasDefaultUint32:(BOOL) hasDefaultUint32_ {
-  hasDefaultUint32 = (hasDefaultUint32_ != 0);
+  hasDefaultUint32 = hasDefaultUint32_;
 }
 @synthesize defaultUint32;
 - (BOOL) hasDefaultUint64 {
-  return hasDefaultUint64 != 0;
+  return hasDefaultUint64;
 }
 - (void) setHasDefaultUint64:(BOOL) hasDefaultUint64_ {
-  hasDefaultUint64 = (hasDefaultUint64_ != 0);
+  hasDefaultUint64 = hasDefaultUint64_;
 }
 @synthesize defaultUint64;
 - (BOOL) hasDefaultSint32 {
-  return hasDefaultSint32 != 0;
+  return hasDefaultSint32;
 }
 - (void) setHasDefaultSint32:(BOOL) hasDefaultSint32_ {
-  hasDefaultSint32 = (hasDefaultSint32_ != 0);
+  hasDefaultSint32 = hasDefaultSint32_;
 }
 @synthesize defaultSint32;
 - (BOOL) hasDefaultSint64 {
-  return hasDefaultSint64 != 0;
+  return hasDefaultSint64;
 }
 - (void) setHasDefaultSint64:(BOOL) hasDefaultSint64_ {
-  hasDefaultSint64 = (hasDefaultSint64_ != 0);
+  hasDefaultSint64 = hasDefaultSint64_;
 }
 @synthesize defaultSint64;
 - (BOOL) hasDefaultFixed32 {
-  return hasDefaultFixed32 != 0;
+  return hasDefaultFixed32;
 }
 - (void) setHasDefaultFixed32:(BOOL) hasDefaultFixed32_ {
-  hasDefaultFixed32 = (hasDefaultFixed32_ != 0);
+  hasDefaultFixed32 = hasDefaultFixed32_;
 }
 @synthesize defaultFixed32;
 - (BOOL) hasDefaultFixed64 {
-  return hasDefaultFixed64 != 0;
+  return hasDefaultFixed64;
 }
 - (void) setHasDefaultFixed64:(BOOL) hasDefaultFixed64_ {
-  hasDefaultFixed64 = (hasDefaultFixed64_ != 0);
+  hasDefaultFixed64 = hasDefaultFixed64_;
 }
 @synthesize defaultFixed64;
 - (BOOL) hasDefaultSfixed32 {
-  return hasDefaultSfixed32 != 0;
+  return hasDefaultSfixed32;
 }
 - (void) setHasDefaultSfixed32:(BOOL) hasDefaultSfixed32_ {
-  hasDefaultSfixed32 = (hasDefaultSfixed32_ != 0);
+  hasDefaultSfixed32 = hasDefaultSfixed32_;
 }
 @synthesize defaultSfixed32;
 - (BOOL) hasDefaultSfixed64 {
-  return hasDefaultSfixed64 != 0;
+  return hasDefaultSfixed64;
 }
 - (void) setHasDefaultSfixed64:(BOOL) hasDefaultSfixed64_ {
-  hasDefaultSfixed64 = (hasDefaultSfixed64_ != 0);
+  hasDefaultSfixed64 = hasDefaultSfixed64_;
 }
 @synthesize defaultSfixed64;
 - (BOOL) hasDefaultFloat {
-  return hasDefaultFloat != 0;
+  return hasDefaultFloat;
 }
 - (void) setHasDefaultFloat:(BOOL) hasDefaultFloat_ {
-  hasDefaultFloat = (hasDefaultFloat_ != 0);
+  hasDefaultFloat = hasDefaultFloat_;
 }
 @synthesize defaultFloat;
 - (BOOL) hasDefaultDouble {
-  return hasDefaultDouble != 0;
+  return hasDefaultDouble;
 }
 - (void) setHasDefaultDouble:(BOOL) hasDefaultDouble_ {
-  hasDefaultDouble = (hasDefaultDouble_ != 0);
+  hasDefaultDouble = hasDefaultDouble_;
 }
 @synthesize defaultDouble;
 - (BOOL) hasDefaultBool {
-  return hasDefaultBool != 0;
+  return hasDefaultBool;
 }
 - (void) setHasDefaultBool:(BOOL) hasDefaultBool_ {
-  hasDefaultBool = (hasDefaultBool_ != 0);
+  hasDefaultBool = hasDefaultBool_;
 }
 - (BOOL) defaultBool {
-  return defaultBool != 0;
+  return defaultBool;
 }
 - (void) setDefaultBool:(BOOL) defaultBool_ {
-  defaultBool = (defaultBool_ != 0);
+  defaultBool = defaultBool_;
 }
 - (BOOL) hasDefaultString {
-  return hasDefaultString != 0;
+  return hasDefaultString;
 }
 - (void) setHasDefaultString:(BOOL) hasDefaultString_ {
-  hasDefaultString = (hasDefaultString_ != 0);
+  hasDefaultString = hasDefaultString_;
 }
 @synthesize defaultString;
 - (BOOL) hasDefaultBytes {
-  return hasDefaultBytes != 0;
+  return hasDefaultBytes;
 }
 - (void) setHasDefaultBytes:(BOOL) hasDefaultBytes_ {
-  hasDefaultBytes = (hasDefaultBytes_ != 0);
+  hasDefaultBytes = hasDefaultBytes_;
 }
 @synthesize defaultBytes;
 - (BOOL) hasDefaultNestedEnum {
-  return hasDefaultNestedEnum != 0;
+  return hasDefaultNestedEnum;
 }
 - (void) setHasDefaultNestedEnum:(BOOL) hasDefaultNestedEnum_ {
-  hasDefaultNestedEnum = (hasDefaultNestedEnum_ != 0);
+  hasDefaultNestedEnum = hasDefaultNestedEnum_;
 }
 @synthesize defaultNestedEnum;
 - (BOOL) hasDefaultForeignEnum {
-  return hasDefaultForeignEnum != 0;
+  return hasDefaultForeignEnum;
 }
 - (void) setHasDefaultForeignEnum:(BOOL) hasDefaultForeignEnum_ {
-  hasDefaultForeignEnum = (hasDefaultForeignEnum_ != 0);
+  hasDefaultForeignEnum = hasDefaultForeignEnum_;
 }
 @synthesize defaultForeignEnum;
 - (BOOL) hasDefaultImportEnum {
-  return hasDefaultImportEnum != 0;
+  return hasDefaultImportEnum;
 }
 - (void) setHasDefaultImportEnum:(BOOL) hasDefaultImportEnum_ {
-  hasDefaultImportEnum = (hasDefaultImportEnum_ != 0);
+  hasDefaultImportEnum = hasDefaultImportEnum_;
 }
 @synthesize defaultImportEnum;
 - (BOOL) hasDefaultStringPiece {
-  return hasDefaultStringPiece != 0;
+  return hasDefaultStringPiece;
 }
 - (void) setHasDefaultStringPiece:(BOOL) hasDefaultStringPiece_ {
-  hasDefaultStringPiece = (hasDefaultStringPiece_ != 0);
+  hasDefaultStringPiece = hasDefaultStringPiece_;
 }
 @synthesize defaultStringPiece;
 - (BOOL) hasDefaultCord {
-  return hasDefaultCord != 0;
+  return hasDefaultCord;
 }
 - (void) setHasDefaultCord:(BOOL) hasDefaultCord_ {
-  hasDefaultCord = (hasDefaultCord_ != 0);
+  hasDefaultCord = hasDefaultCord_;
 }
 @synthesize defaultCord;
 - (void) dealloc {
@@ -2272,7 +963,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     self.defaultDouble = 52000;
     self.defaultBool = YES;
     self.defaultString = @"hello";
-    self.defaultBytes = ([((PBFieldDescriptor*)[[TestAllTypes descriptor].fields objectAtIndex:62]) defaultValue]);
+    self.defaultBytes = [NSData dataWithBytes:"world" length:5];
     self.defaultNestedEnum = [TestAllTypes_NestedEnum BAR];
     self.defaultForeignEnum = [ForeignEnum FOREIGN_BAR];
     self.defaultImportEnum = [ImportEnum IMPORT_BAR];
@@ -2292,15 +983,6 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 }
 - (TestAllTypes*) defaultInstance {
   return defaultTestAllTypesInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable];
 }
 - (NSArray*) repeatedInt32List {
   return mutableRepeatedInt32List;
@@ -2917,7 +1599,7 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   return [[[TestAllTypes_Builder alloc] init] autorelease];
 }
 + (TestAllTypes_Builder*) builderWithPrototype:(TestAllTypes*) prototype {
-  return [[TestAllTypes builder] mergeFromTestAllTypes:prototype];
+  return [[TestAllTypes builder] mergeFrom:prototype];
 }
 - (TestAllTypes_Builder*) builder {
   return [TestAllTypes builder];
@@ -2970,26 +1652,6 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
     default: return nil;
   }
 }
-- (PBEnumValueDescriptor*) valueDescriptor {
-  return [[TestAllTypes_NestedEnum descriptor].values objectAtIndex:index];
-}
-- (PBEnumDescriptor*) descriptor {
-  return [TestAllTypes_NestedEnum descriptor];
-}
-+ (PBEnumDescriptor*) descriptor {
-  return [[TestAllTypes descriptor].enumTypes objectAtIndex:0];
-}
-+ (TestAllTypes_NestedEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [TestAllTypes_NestedEnum descriptor]) {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-  }
-  TestAllTypes_NestedEnum* VALUES[] = {
-    [TestAllTypes_NestedEnum FOO],
-    [TestAllTypes_NestedEnum BAR],
-    [TestAllTypes_NestedEnum BAZ],
-  };
-  return VALUES[desc.index];
-}
 @end
 
 @interface TestAllTypes_NestedMessage ()
@@ -2999,10 +1661,10 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
 @implementation TestAllTypes_NestedMessage
 
 - (BOOL) hasBb {
-  return hasBb != 0;
+  return hasBb;
 }
 - (void) setHasBb:(BOOL) hasBb_ {
-  hasBb = (hasBb_ != 0);
+  hasBb = hasBb_;
 }
 @synthesize bb;
 - (void) dealloc {
@@ -3025,15 +1687,6 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 - (TestAllTypes_NestedMessage*) defaultInstance {
   return defaultTestAllTypes_NestedMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_NestedMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3080,7 +1733,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   return [[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease];
 }
 + (TestAllTypes_NestedMessage_Builder*) builderWithPrototype:(TestAllTypes_NestedMessage*) prototype {
-  return [[TestAllTypes_NestedMessage builder] mergeFromTestAllTypes_NestedMessage:prototype];
+  return [[TestAllTypes_NestedMessage builder] mergeFrom:prototype];
 }
 - (TestAllTypes_NestedMessage_Builder*) builder {
   return [TestAllTypes_NestedMessage builder];
@@ -3103,7 +1756,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   }
   return self;
 }
-- (TestAllTypes_NestedMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestAllTypes_NestedMessage_Builder*) clear {
@@ -3113,16 +1766,11 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 - (TestAllTypes_NestedMessage_Builder*) clone {
   return [TestAllTypes_NestedMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_NestedMessage descriptor];
-}
 - (TestAllTypes_NestedMessage*) defaultInstance {
   return [TestAllTypes_NestedMessage defaultInstance];
 }
 - (TestAllTypes_NestedMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestAllTypes_NestedMessage*) buildPartial {
@@ -3130,16 +1778,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   self.result = nil;
   return returnMe;
 }
-- (TestAllTypes_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestAllTypes_NestedMessage class]]) {
-    return [self mergeFromTestAllTypes_NestedMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestAllTypes_NestedMessage_Builder*) mergeFromTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) other {
+- (TestAllTypes_NestedMessage_Builder*) mergeFrom:(TestAllTypes_NestedMessage*) other {
   if (other == [TestAllTypes_NestedMessage defaultInstance]) {
     return self;
   }
@@ -3199,10 +1838,10 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 @implementation TestAllTypes_OptionalGroup
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -3225,15 +1864,6 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 - (TestAllTypes_OptionalGroup*) defaultInstance {
   return defaultTestAllTypes_OptionalGroupInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_OptionalGroup descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3280,7 +1910,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   return [[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease];
 }
 + (TestAllTypes_OptionalGroup_Builder*) builderWithPrototype:(TestAllTypes_OptionalGroup*) prototype {
-  return [[TestAllTypes_OptionalGroup builder] mergeFromTestAllTypes_OptionalGroup:prototype];
+  return [[TestAllTypes_OptionalGroup builder] mergeFrom:prototype];
 }
 - (TestAllTypes_OptionalGroup_Builder*) builder {
   return [TestAllTypes_OptionalGroup builder];
@@ -3303,7 +1933,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   }
   return self;
 }
-- (TestAllTypes_OptionalGroup*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestAllTypes_OptionalGroup_Builder*) clear {
@@ -3313,16 +1943,11 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 - (TestAllTypes_OptionalGroup_Builder*) clone {
   return [TestAllTypes_OptionalGroup builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_OptionalGroup descriptor];
-}
 - (TestAllTypes_OptionalGroup*) defaultInstance {
   return [TestAllTypes_OptionalGroup defaultInstance];
 }
 - (TestAllTypes_OptionalGroup*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestAllTypes_OptionalGroup*) buildPartial {
@@ -3330,16 +1955,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   self.result = nil;
   return returnMe;
 }
-- (TestAllTypes_OptionalGroup_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestAllTypes_OptionalGroup class]]) {
-    return [self mergeFromTestAllTypes_OptionalGroup:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestAllTypes_OptionalGroup_Builder*) mergeFromTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) other {
+- (TestAllTypes_OptionalGroup_Builder*) mergeFrom:(TestAllTypes_OptionalGroup*) other {
   if (other == [TestAllTypes_OptionalGroup defaultInstance]) {
     return self;
   }
@@ -3399,10 +2015,10 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 @implementation TestAllTypes_RepeatedGroup
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -3425,15 +2041,6 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (TestAllTypes_RepeatedGroup*) defaultInstance {
   return defaultTestAllTypes_RepeatedGroupInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_RepeatedGroup descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3480,7 +2087,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return [[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease];
 }
 + (TestAllTypes_RepeatedGroup_Builder*) builderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype {
-  return [[TestAllTypes_RepeatedGroup builder] mergeFromTestAllTypes_RepeatedGroup:prototype];
+  return [[TestAllTypes_RepeatedGroup builder] mergeFrom:prototype];
 }
 - (TestAllTypes_RepeatedGroup_Builder*) builder {
   return [TestAllTypes_RepeatedGroup builder];
@@ -3503,7 +2110,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
   return self;
 }
-- (TestAllTypes_RepeatedGroup*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestAllTypes_RepeatedGroup_Builder*) clear {
@@ -3513,16 +2120,11 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_RepeatedGroup_Builder*) clone {
   return [TestAllTypes_RepeatedGroup builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes_RepeatedGroup descriptor];
-}
 - (TestAllTypes_RepeatedGroup*) defaultInstance {
   return [TestAllTypes_RepeatedGroup defaultInstance];
 }
 - (TestAllTypes_RepeatedGroup*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestAllTypes_RepeatedGroup*) buildPartial {
@@ -3530,16 +2132,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   self.result = nil;
   return returnMe;
 }
-- (TestAllTypes_RepeatedGroup_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestAllTypes_RepeatedGroup class]]) {
-    return [self mergeFromTestAllTypes_RepeatedGroup:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestAllTypes_RepeatedGroup_Builder*) mergeFromTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) other {
+- (TestAllTypes_RepeatedGroup_Builder*) mergeFrom:(TestAllTypes_RepeatedGroup*) other {
   if (other == [TestAllTypes_RepeatedGroup defaultInstance]) {
     return self;
   }
@@ -3608,7 +2201,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
   return self;
 }
-- (TestAllTypes*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestAllTypes_Builder*) clear {
@@ -3618,16 +2211,11 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_Builder*) clone {
   return [TestAllTypes builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllTypes descriptor];
-}
 - (TestAllTypes*) defaultInstance {
   return [TestAllTypes defaultInstance];
 }
 - (TestAllTypes*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestAllTypes*) buildPartial {
@@ -3635,16 +2223,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   self.result = nil;
   return returnMe;
 }
-- (TestAllTypes_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestAllTypes class]]) {
-    return [self mergeFromTestAllTypes:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestAllTypes_Builder*) mergeFromTestAllTypes:(TestAllTypes*) other {
+- (TestAllTypes_Builder*) mergeFrom:(TestAllTypes*) other {
   if (other == [TestAllTypes defaultInstance]) {
     return self;
   }
@@ -4008,7 +2587,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
       case 131: {
         TestAllTypes_OptionalGroup_Builder* subBuilder = [TestAllTypes_OptionalGroup builder];
         if (self.hasOptionalGroup) {
-          [subBuilder mergeFromTestAllTypes_OptionalGroup:self.optionalGroup];
+          [subBuilder mergeFrom:self.optionalGroup];
         }
         [input readGroup:16 builder:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalGroup:[subBuilder buildPartial]];
@@ -4017,7 +2596,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
       case 146: {
         TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage builder];
         if (self.hasOptionalNestedMessage) {
-          [subBuilder mergeFromTestAllTypes_NestedMessage:self.optionalNestedMessage];
+          [subBuilder mergeFrom:self.optionalNestedMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalNestedMessage:[subBuilder buildPartial]];
@@ -4026,7 +2605,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
       case 154: {
         ForeignMessage_Builder* subBuilder = [ForeignMessage builder];
         if (self.hasOptionalForeignMessage) {
-          [subBuilder mergeFromForeignMessage:self.optionalForeignMessage];
+          [subBuilder mergeFrom:self.optionalForeignMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalForeignMessage:[subBuilder buildPartial]];
@@ -4035,7 +2614,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
       case 162: {
         ImportMessage_Builder* subBuilder = [ImportMessage builder];
         if (self.hasOptionalImportMessage) {
-          [subBuilder mergeFromImportMessage:self.optionalImportMessage];
+          [subBuilder mergeFrom:self.optionalImportMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalImportMessage:[subBuilder buildPartial]];
@@ -4560,7 +3139,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalGroup &&
       result.optionalGroup != [TestAllTypes_OptionalGroup defaultInstance]) {
     result.optionalGroup =
-      [[[TestAllTypes_OptionalGroup builderWithPrototype:result.optionalGroup] mergeFromTestAllTypes_OptionalGroup:value] buildPartial];
+      [[[TestAllTypes_OptionalGroup builderWithPrototype:result.optionalGroup] mergeFrom:value] buildPartial];
   } else {
     result.optionalGroup = value;
   }
@@ -4590,7 +3169,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestAllTypes_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestAllTypes_NestedMessage builderWithPrototype:result.optionalNestedMessage] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage builderWithPrototype:result.optionalNestedMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -4620,7 +3199,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalForeignMessage &&
       result.optionalForeignMessage != [ForeignMessage defaultInstance]) {
     result.optionalForeignMessage =
-      [[[ForeignMessage builderWithPrototype:result.optionalForeignMessage] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage builderWithPrototype:result.optionalForeignMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalForeignMessage = value;
   }
@@ -4650,7 +3229,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalImportMessage &&
       result.optionalImportMessage != [ImportMessage defaultInstance]) {
     result.optionalImportMessage =
-      [[[ImportMessage builderWithPrototype:result.optionalImportMessage] mergeFromImportMessage:value] buildPartial];
+      [[[ImportMessage builderWithPrototype:result.optionalImportMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalImportMessage = value;
   }
@@ -5706,7 +4285,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (TestAllTypes_Builder*) clearDefaultBytes {
   result.hasDefaultBytes = NO;
-  result.defaultBytes = ([((PBFieldDescriptor*)[[TestAllTypes descriptor].fields objectAtIndex:62]) defaultValue]);
+  result.defaultBytes = [NSData dataWithBytes:"world" length:5];
   return self;
 }
 - (BOOL) hasDefaultNestedEnum {
@@ -5798,10 +4377,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 @implementation ForeignMessage
 
 - (BOOL) hasC {
-  return hasC != 0;
+  return hasC;
 }
 - (void) setHasC:(BOOL) hasC_ {
-  hasC = (hasC_ != 0);
+  hasC = hasC_;
 }
 @synthesize c;
 - (void) dealloc {
@@ -5824,15 +4403,6 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 - (ForeignMessage*) defaultInstance {
   return defaultForeignMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [ForeignMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_ForeignMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -5879,7 +4449,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   return [[[ForeignMessage_Builder alloc] init] autorelease];
 }
 + (ForeignMessage_Builder*) builderWithPrototype:(ForeignMessage*) prototype {
-  return [[ForeignMessage builder] mergeFromForeignMessage:prototype];
+  return [[ForeignMessage builder] mergeFrom:prototype];
 }
 - (ForeignMessage_Builder*) builder {
   return [ForeignMessage builder];
@@ -5902,7 +4472,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   }
   return self;
 }
-- (ForeignMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (ForeignMessage_Builder*) clear {
@@ -5912,16 +4482,11 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 - (ForeignMessage_Builder*) clone {
   return [ForeignMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [ForeignMessage descriptor];
-}
 - (ForeignMessage*) defaultInstance {
   return [ForeignMessage defaultInstance];
 }
 - (ForeignMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (ForeignMessage*) buildPartial {
@@ -5929,16 +4494,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (ForeignMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[ForeignMessage class]]) {
-    return [self mergeFromForeignMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (ForeignMessage_Builder*) mergeFromForeignMessage:(ForeignMessage*) other {
+- (ForeignMessage_Builder*) mergeFrom:(ForeignMessage*) other {
   if (other == [ForeignMessage defaultInstance]) {
     return self;
   }
@@ -6016,15 +4572,6 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 - (TestAllExtensions*) defaultInstance {
   return defaultTestAllExtensionsInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllExtensions descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllExtensions_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
     return NO;
@@ -6032,8 +4579,9 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
-  [extensionWriter writeUntil:536870912 output:output];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:1
+                                        to:536870912];
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6070,7 +4618,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return [[[TestAllExtensions_Builder alloc] init] autorelease];
 }
 + (TestAllExtensions_Builder*) builderWithPrototype:(TestAllExtensions*) prototype {
-  return [[TestAllExtensions builder] mergeFromTestAllExtensions:prototype];
+  return [[TestAllExtensions builder] mergeFrom:prototype];
 }
 - (TestAllExtensions_Builder*) builder {
   return [TestAllExtensions builder];
@@ -6093,7 +4641,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   }
   return self;
 }
-- (TestAllExtensions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (TestAllExtensions_Builder*) clear {
@@ -6103,16 +4651,11 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 - (TestAllExtensions_Builder*) clone {
   return [TestAllExtensions builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestAllExtensions descriptor];
-}
 - (TestAllExtensions*) defaultInstance {
   return [TestAllExtensions defaultInstance];
 }
 - (TestAllExtensions*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestAllExtensions*) buildPartial {
@@ -6120,16 +4663,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestAllExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestAllExtensions class]]) {
-    return [self mergeFromTestAllExtensions:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestAllExtensions_Builder*) mergeFromTestAllExtensions:(TestAllExtensions*) other {
+- (TestAllExtensions_Builder*) mergeFrom:(TestAllExtensions*) other {
   if (other == [TestAllExtensions defaultInstance]) {
     return self;
   }
@@ -6166,10 +4700,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 @implementation OptionalGroup_extension
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -6192,15 +4726,6 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 - (OptionalGroup_extension*) defaultInstance {
   return defaultOptionalGroup_extensionInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [OptionalGroup_extension descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_OptionalGroup_extension_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -6247,7 +4772,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   return [[[OptionalGroup_extension_Builder alloc] init] autorelease];
 }
 + (OptionalGroup_extension_Builder*) builderWithPrototype:(OptionalGroup_extension*) prototype {
-  return [[OptionalGroup_extension builder] mergeFromOptionalGroup_extension:prototype];
+  return [[OptionalGroup_extension builder] mergeFrom:prototype];
 }
 - (OptionalGroup_extension_Builder*) builder {
   return [OptionalGroup_extension builder];
@@ -6270,7 +4795,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   }
   return self;
 }
-- (OptionalGroup_extension*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (OptionalGroup_extension_Builder*) clear {
@@ -6280,16 +4805,11 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 - (OptionalGroup_extension_Builder*) clone {
   return [OptionalGroup_extension builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [OptionalGroup_extension descriptor];
-}
 - (OptionalGroup_extension*) defaultInstance {
   return [OptionalGroup_extension defaultInstance];
 }
 - (OptionalGroup_extension*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (OptionalGroup_extension*) buildPartial {
@@ -6297,16 +4817,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (OptionalGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[OptionalGroup_extension class]]) {
-    return [self mergeFromOptionalGroup_extension:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (OptionalGroup_extension_Builder*) mergeFromOptionalGroup_extension:(OptionalGroup_extension*) other {
+- (OptionalGroup_extension_Builder*) mergeFrom:(OptionalGroup_extension*) other {
   if (other == [OptionalGroup_extension defaultInstance]) {
     return self;
   }
@@ -6366,10 +4877,10 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 @implementation RepeatedGroup_extension
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -6392,15 +4903,6 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 - (RepeatedGroup_extension*) defaultInstance {
   return defaultRepeatedGroup_extensionInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [RepeatedGroup_extension descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -6447,7 +4949,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   return [[[RepeatedGroup_extension_Builder alloc] init] autorelease];
 }
 + (RepeatedGroup_extension_Builder*) builderWithPrototype:(RepeatedGroup_extension*) prototype {
-  return [[RepeatedGroup_extension builder] mergeFromRepeatedGroup_extension:prototype];
+  return [[RepeatedGroup_extension builder] mergeFrom:prototype];
 }
 - (RepeatedGroup_extension_Builder*) builder {
   return [RepeatedGroup_extension builder];
@@ -6470,7 +4972,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   }
   return self;
 }
-- (RepeatedGroup_extension*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (RepeatedGroup_extension_Builder*) clear {
@@ -6480,16 +4982,11 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 - (RepeatedGroup_extension_Builder*) clone {
   return [RepeatedGroup_extension builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [RepeatedGroup_extension descriptor];
-}
 - (RepeatedGroup_extension*) defaultInstance {
   return [RepeatedGroup_extension defaultInstance];
 }
 - (RepeatedGroup_extension*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (RepeatedGroup_extension*) buildPartial {
@@ -6497,16 +4994,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (RepeatedGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[RepeatedGroup_extension class]]) {
-    return [self mergeFromRepeatedGroup_extension:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (RepeatedGroup_extension_Builder*) mergeFromRepeatedGroup_extension:(RepeatedGroup_extension*) other {
+- (RepeatedGroup_extension_Builder*) mergeFrom:(RepeatedGroup_extension*) other {
   if (other == [RepeatedGroup_extension defaultInstance]) {
     return self;
   }
@@ -6598,234 +5086,234 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 @implementation TestRequired
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (BOOL) hasDummy2 {
-  return hasDummy2 != 0;
+  return hasDummy2;
 }
 - (void) setHasDummy2:(BOOL) hasDummy2_ {
-  hasDummy2 = (hasDummy2_ != 0);
+  hasDummy2 = hasDummy2_;
 }
 @synthesize dummy2;
 - (BOOL) hasB {
-  return hasB != 0;
+  return hasB;
 }
 - (void) setHasB:(BOOL) hasB_ {
-  hasB = (hasB_ != 0);
+  hasB = hasB_;
 }
 @synthesize b;
 - (BOOL) hasDummy4 {
-  return hasDummy4 != 0;
+  return hasDummy4;
 }
 - (void) setHasDummy4:(BOOL) hasDummy4_ {
-  hasDummy4 = (hasDummy4_ != 0);
+  hasDummy4 = hasDummy4_;
 }
 @synthesize dummy4;
 - (BOOL) hasDummy5 {
-  return hasDummy5 != 0;
+  return hasDummy5;
 }
 - (void) setHasDummy5:(BOOL) hasDummy5_ {
-  hasDummy5 = (hasDummy5_ != 0);
+  hasDummy5 = hasDummy5_;
 }
 @synthesize dummy5;
 - (BOOL) hasDummy6 {
-  return hasDummy6 != 0;
+  return hasDummy6;
 }
 - (void) setHasDummy6:(BOOL) hasDummy6_ {
-  hasDummy6 = (hasDummy6_ != 0);
+  hasDummy6 = hasDummy6_;
 }
 @synthesize dummy6;
 - (BOOL) hasDummy7 {
-  return hasDummy7 != 0;
+  return hasDummy7;
 }
 - (void) setHasDummy7:(BOOL) hasDummy7_ {
-  hasDummy7 = (hasDummy7_ != 0);
+  hasDummy7 = hasDummy7_;
 }
 @synthesize dummy7;
 - (BOOL) hasDummy8 {
-  return hasDummy8 != 0;
+  return hasDummy8;
 }
 - (void) setHasDummy8:(BOOL) hasDummy8_ {
-  hasDummy8 = (hasDummy8_ != 0);
+  hasDummy8 = hasDummy8_;
 }
 @synthesize dummy8;
 - (BOOL) hasDummy9 {
-  return hasDummy9 != 0;
+  return hasDummy9;
 }
 - (void) setHasDummy9:(BOOL) hasDummy9_ {
-  hasDummy9 = (hasDummy9_ != 0);
+  hasDummy9 = hasDummy9_;
 }
 @synthesize dummy9;
 - (BOOL) hasDummy10 {
-  return hasDummy10 != 0;
+  return hasDummy10;
 }
 - (void) setHasDummy10:(BOOL) hasDummy10_ {
-  hasDummy10 = (hasDummy10_ != 0);
+  hasDummy10 = hasDummy10_;
 }
 @synthesize dummy10;
 - (BOOL) hasDummy11 {
-  return hasDummy11 != 0;
+  return hasDummy11;
 }
 - (void) setHasDummy11:(BOOL) hasDummy11_ {
-  hasDummy11 = (hasDummy11_ != 0);
+  hasDummy11 = hasDummy11_;
 }
 @synthesize dummy11;
 - (BOOL) hasDummy12 {
-  return hasDummy12 != 0;
+  return hasDummy12;
 }
 - (void) setHasDummy12:(BOOL) hasDummy12_ {
-  hasDummy12 = (hasDummy12_ != 0);
+  hasDummy12 = hasDummy12_;
 }
 @synthesize dummy12;
 - (BOOL) hasDummy13 {
-  return hasDummy13 != 0;
+  return hasDummy13;
 }
 - (void) setHasDummy13:(BOOL) hasDummy13_ {
-  hasDummy13 = (hasDummy13_ != 0);
+  hasDummy13 = hasDummy13_;
 }
 @synthesize dummy13;
 - (BOOL) hasDummy14 {
-  return hasDummy14 != 0;
+  return hasDummy14;
 }
 - (void) setHasDummy14:(BOOL) hasDummy14_ {
-  hasDummy14 = (hasDummy14_ != 0);
+  hasDummy14 = hasDummy14_;
 }
 @synthesize dummy14;
 - (BOOL) hasDummy15 {
-  return hasDummy15 != 0;
+  return hasDummy15;
 }
 - (void) setHasDummy15:(BOOL) hasDummy15_ {
-  hasDummy15 = (hasDummy15_ != 0);
+  hasDummy15 = hasDummy15_;
 }
 @synthesize dummy15;
 - (BOOL) hasDummy16 {
-  return hasDummy16 != 0;
+  return hasDummy16;
 }
 - (void) setHasDummy16:(BOOL) hasDummy16_ {
-  hasDummy16 = (hasDummy16_ != 0);
+  hasDummy16 = hasDummy16_;
 }
 @synthesize dummy16;
 - (BOOL) hasDummy17 {
-  return hasDummy17 != 0;
+  return hasDummy17;
 }
 - (void) setHasDummy17:(BOOL) hasDummy17_ {
-  hasDummy17 = (hasDummy17_ != 0);
+  hasDummy17 = hasDummy17_;
 }
 @synthesize dummy17;
 - (BOOL) hasDummy18 {
-  return hasDummy18 != 0;
+  return hasDummy18;
 }
 - (void) setHasDummy18:(BOOL) hasDummy18_ {
-  hasDummy18 = (hasDummy18_ != 0);
+  hasDummy18 = hasDummy18_;
 }
 @synthesize dummy18;
 - (BOOL) hasDummy19 {
-  return hasDummy19 != 0;
+  return hasDummy19;
 }
 - (void) setHasDummy19:(BOOL) hasDummy19_ {
-  hasDummy19 = (hasDummy19_ != 0);
+  hasDummy19 = hasDummy19_;
 }
 @synthesize dummy19;
 - (BOOL) hasDummy20 {
-  return hasDummy20 != 0;
+  return hasDummy20;
 }
 - (void) setHasDummy20:(BOOL) hasDummy20_ {
-  hasDummy20 = (hasDummy20_ != 0);
+  hasDummy20 = hasDummy20_;
 }
 @synthesize dummy20;
 - (BOOL) hasDummy21 {
-  return hasDummy21 != 0;
+  return hasDummy21;
 }
 - (void) setHasDummy21:(BOOL) hasDummy21_ {
-  hasDummy21 = (hasDummy21_ != 0);
+  hasDummy21 = hasDummy21_;
 }
 @synthesize dummy21;
 - (BOOL) hasDummy22 {
-  return hasDummy22 != 0;
+  return hasDummy22;
 }
 - (void) setHasDummy22:(BOOL) hasDummy22_ {
-  hasDummy22 = (hasDummy22_ != 0);
+  hasDummy22 = hasDummy22_;
 }
 @synthesize dummy22;
 - (BOOL) hasDummy23 {
-  return hasDummy23 != 0;
+  return hasDummy23;
 }
 - (void) setHasDummy23:(BOOL) hasDummy23_ {
-  hasDummy23 = (hasDummy23_ != 0);
+  hasDummy23 = hasDummy23_;
 }
 @synthesize dummy23;
 - (BOOL) hasDummy24 {
-  return hasDummy24 != 0;
+  return hasDummy24;
 }
 - (void) setHasDummy24:(BOOL) hasDummy24_ {
-  hasDummy24 = (hasDummy24_ != 0);
+  hasDummy24 = hasDummy24_;
 }
 @synthesize dummy24;
 - (BOOL) hasDummy25 {
-  return hasDummy25 != 0;
+  return hasDummy25;
 }
 - (void) setHasDummy25:(BOOL) hasDummy25_ {
-  hasDummy25 = (hasDummy25_ != 0);
+  hasDummy25 = hasDummy25_;
 }
 @synthesize dummy25;
 - (BOOL) hasDummy26 {
-  return hasDummy26 != 0;
+  return hasDummy26;
 }
 - (void) setHasDummy26:(BOOL) hasDummy26_ {
-  hasDummy26 = (hasDummy26_ != 0);
+  hasDummy26 = hasDummy26_;
 }
 @synthesize dummy26;
 - (BOOL) hasDummy27 {
-  return hasDummy27 != 0;
+  return hasDummy27;
 }
 - (void) setHasDummy27:(BOOL) hasDummy27_ {
-  hasDummy27 = (hasDummy27_ != 0);
+  hasDummy27 = hasDummy27_;
 }
 @synthesize dummy27;
 - (BOOL) hasDummy28 {
-  return hasDummy28 != 0;
+  return hasDummy28;
 }
 - (void) setHasDummy28:(BOOL) hasDummy28_ {
-  hasDummy28 = (hasDummy28_ != 0);
+  hasDummy28 = hasDummy28_;
 }
 @synthesize dummy28;
 - (BOOL) hasDummy29 {
-  return hasDummy29 != 0;
+  return hasDummy29;
 }
 - (void) setHasDummy29:(BOOL) hasDummy29_ {
-  hasDummy29 = (hasDummy29_ != 0);
+  hasDummy29 = hasDummy29_;
 }
 @synthesize dummy29;
 - (BOOL) hasDummy30 {
-  return hasDummy30 != 0;
+  return hasDummy30;
 }
 - (void) setHasDummy30:(BOOL) hasDummy30_ {
-  hasDummy30 = (hasDummy30_ != 0);
+  hasDummy30 = hasDummy30_;
 }
 @synthesize dummy30;
 - (BOOL) hasDummy31 {
-  return hasDummy31 != 0;
+  return hasDummy31;
 }
 - (void) setHasDummy31:(BOOL) hasDummy31_ {
-  hasDummy31 = (hasDummy31_ != 0);
+  hasDummy31 = hasDummy31_;
 }
 @synthesize dummy31;
 - (BOOL) hasDummy32 {
-  return hasDummy32 != 0;
+  return hasDummy32;
 }
 - (void) setHasDummy32:(BOOL) hasDummy32_ {
-  hasDummy32 = (hasDummy32_ != 0);
+  hasDummy32 = hasDummy32_;
 }
 @synthesize dummy32;
 - (BOOL) hasC {
-  return hasC != 0;
+  return hasC;
 }
 - (void) setHasC:(BOOL) hasC_ {
-  hasC = (hasC_ != 0);
+  hasC = hasC_;
 }
 @synthesize c;
 - (void) dealloc {
@@ -6869,22 +5357,18 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   }
   return self;
 }
-static PBGeneratedExtension* TestRequired_single = nil;
-static PBGeneratedExtension* TestRequired_multi = nil;
-+ (PBGeneratedExtension*) single {
+static id<PBExtensionField> TestRequired_single = nil;
+static id<PBExtensionField> TestRequired_multi = nil;
++ (id<PBExtensionField>) single {
   return TestRequired_single;
 }
-+ (PBGeneratedExtension*) multi {
++ (id<PBExtensionField>) multi {
   return TestRequired_multi;
 }
 static TestRequired* defaultTestRequiredInstance = nil;
 + (void) initialize {
   if (self == [TestRequired class]) {
     defaultTestRequiredInstance = [[TestRequired alloc] init];
-     TestRequired_single = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
-                                                       type:[TestRequired class]] retain];
-     TestRequired_multi = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:1]
-                                                       type:[TestRequired class]] retain];
   }
 }
 + (TestRequired*) defaultInstance {
@@ -6892,15 +5376,6 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 - (TestRequired*) defaultInstance {
   return defaultTestRequiredInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestRequired descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRequired_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRequired_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!hasA) {
@@ -7148,7 +5623,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return [[[TestRequired_Builder alloc] init] autorelease];
 }
 + (TestRequired_Builder*) builderWithPrototype:(TestRequired*) prototype {
-  return [[TestRequired builder] mergeFromTestRequired:prototype];
+  return [[TestRequired builder] mergeFrom:prototype];
 }
 - (TestRequired_Builder*) builder {
   return [TestRequired builder];
@@ -7171,7 +5646,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   }
   return self;
 }
-- (TestRequired*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestRequired_Builder*) clear {
@@ -7181,16 +5656,11 @@ static TestRequired* defaultTestRequiredInstance = nil;
 - (TestRequired_Builder*) clone {
   return [TestRequired builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestRequired descriptor];
-}
 - (TestRequired*) defaultInstance {
   return [TestRequired defaultInstance];
 }
 - (TestRequired*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestRequired*) buildPartial {
@@ -7198,16 +5668,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestRequired_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestRequired class]]) {
-    return [self mergeFromTestRequired:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestRequired_Builder*) mergeFromTestRequired:(TestRequired*) other {
+- (TestRequired_Builder*) mergeFrom:(TestRequired*) other {
   if (other == [TestRequired defaultInstance]) {
     return self;
   }
@@ -8005,18 +6466,18 @@ static TestRequired* defaultTestRequiredInstance = nil;
 @implementation TestRequiredForeign
 
 - (BOOL) hasOptionalMessage {
-  return hasOptionalMessage != 0;
+  return hasOptionalMessage;
 }
 - (void) setHasOptionalMessage:(BOOL) hasOptionalMessage_ {
-  hasOptionalMessage = (hasOptionalMessage_ != 0);
+  hasOptionalMessage = hasOptionalMessage_;
 }
 @synthesize optionalMessage;
 @synthesize mutableRepeatedMessageList;
 - (BOOL) hasDummy {
-  return hasDummy != 0;
+  return hasDummy;
 }
 - (void) setHasDummy:(BOOL) hasDummy_ {
-  hasDummy = (hasDummy_ != 0);
+  hasDummy = hasDummy_;
 }
 @synthesize dummy;
 - (void) dealloc {
@@ -8042,15 +6503,6 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (TestRequiredForeign*) defaultInstance {
   return defaultTestRequiredForeignInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestRequiredForeign descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRequiredForeign_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable];
 }
 - (NSArray*) repeatedMessageList {
   return mutableRepeatedMessageList;
@@ -8126,7 +6578,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return [[[TestRequiredForeign_Builder alloc] init] autorelease];
 }
 + (TestRequiredForeign_Builder*) builderWithPrototype:(TestRequiredForeign*) prototype {
-  return [[TestRequiredForeign builder] mergeFromTestRequiredForeign:prototype];
+  return [[TestRequiredForeign builder] mergeFrom:prototype];
 }
 - (TestRequiredForeign_Builder*) builder {
   return [TestRequiredForeign builder];
@@ -8149,7 +6601,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   }
   return self;
 }
-- (TestRequiredForeign*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestRequiredForeign_Builder*) clear {
@@ -8159,16 +6611,11 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 - (TestRequiredForeign_Builder*) clone {
   return [TestRequiredForeign builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestRequiredForeign descriptor];
-}
 - (TestRequiredForeign*) defaultInstance {
   return [TestRequiredForeign defaultInstance];
 }
 - (TestRequiredForeign*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestRequiredForeign*) buildPartial {
@@ -8176,16 +6623,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestRequiredForeign_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestRequiredForeign class]]) {
-    return [self mergeFromTestRequiredForeign:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestRequiredForeign_Builder*) mergeFromTestRequiredForeign:(TestRequiredForeign*) other {
+- (TestRequiredForeign_Builder*) mergeFrom:(TestRequiredForeign*) other {
   if (other == [TestRequiredForeign defaultInstance]) {
     return self;
   }
@@ -8225,7 +6663,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
       case 10: {
         TestRequired_Builder* subBuilder = [TestRequired builder];
         if (self.hasOptionalMessage) {
-          [subBuilder mergeFromTestRequired:self.optionalMessage];
+          [subBuilder mergeFrom:self.optionalMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalMessage:[subBuilder buildPartial]];
@@ -8262,7 +6700,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestRequired defaultInstance]) {
     result.optionalMessage =
-      [[[TestRequired builderWithPrototype:result.optionalMessage] mergeFromTestRequired:value] buildPartial];
+      [[[TestRequired builderWithPrototype:result.optionalMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }
@@ -8328,10 +6766,10 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 @implementation TestForeignNested
 
 - (BOOL) hasForeignNested {
-  return hasForeignNested != 0;
+  return hasForeignNested;
 }
 - (void) setHasForeignNested:(BOOL) hasForeignNested_ {
-  hasForeignNested = (hasForeignNested_ != 0);
+  hasForeignNested = hasForeignNested_;
 }
 @synthesize foreignNested;
 - (void) dealloc {
@@ -8355,15 +6793,6 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 - (TestForeignNested*) defaultInstance {
   return defaultTestForeignNestedInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestForeignNested descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestForeignNested_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8410,7 +6839,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return [[[TestForeignNested_Builder alloc] init] autorelease];
 }
 + (TestForeignNested_Builder*) builderWithPrototype:(TestForeignNested*) prototype {
-  return [[TestForeignNested builder] mergeFromTestForeignNested:prototype];
+  return [[TestForeignNested builder] mergeFrom:prototype];
 }
 - (TestForeignNested_Builder*) builder {
   return [TestForeignNested builder];
@@ -8433,7 +6862,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   }
   return self;
 }
-- (TestForeignNested*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestForeignNested_Builder*) clear {
@@ -8443,16 +6872,11 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 - (TestForeignNested_Builder*) clone {
   return [TestForeignNested builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestForeignNested descriptor];
-}
 - (TestForeignNested*) defaultInstance {
   return [TestForeignNested defaultInstance];
 }
 - (TestForeignNested*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestForeignNested*) buildPartial {
@@ -8460,16 +6884,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestForeignNested_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestForeignNested class]]) {
-    return [self mergeFromTestForeignNested:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestForeignNested_Builder*) mergeFromTestForeignNested:(TestForeignNested*) other {
+- (TestForeignNested_Builder*) mergeFrom:(TestForeignNested*) other {
   if (other == [TestForeignNested defaultInstance]) {
     return self;
   }
@@ -8500,7 +6915,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
       case 10: {
         TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage builder];
         if (self.hasForeignNested) {
-          [subBuilder mergeFromTestAllTypes_NestedMessage:self.foreignNested];
+          [subBuilder mergeFrom:self.foreignNested];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setForeignNested:[subBuilder buildPartial]];
@@ -8527,7 +6942,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   if (result.hasForeignNested &&
       result.foreignNested != [TestAllTypes_NestedMessage defaultInstance]) {
     result.foreignNested =
-      [[[TestAllTypes_NestedMessage builderWithPrototype:result.foreignNested] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage builderWithPrototype:result.foreignNested] mergeFrom:value] buildPartial];
   } else {
     result.foreignNested = value;
   }
@@ -8565,15 +6980,6 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 - (TestEmptyMessage*) defaultInstance {
   return defaultTestEmptyMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestEmptyMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8614,7 +7020,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   return [[[TestEmptyMessage_Builder alloc] init] autorelease];
 }
 + (TestEmptyMessage_Builder*) builderWithPrototype:(TestEmptyMessage*) prototype {
-  return [[TestEmptyMessage builder] mergeFromTestEmptyMessage:prototype];
+  return [[TestEmptyMessage builder] mergeFrom:prototype];
 }
 - (TestEmptyMessage_Builder*) builder {
   return [TestEmptyMessage builder];
@@ -8637,7 +7043,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   }
   return self;
 }
-- (TestEmptyMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestEmptyMessage_Builder*) clear {
@@ -8647,16 +7053,11 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 - (TestEmptyMessage_Builder*) clone {
   return [TestEmptyMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestEmptyMessage descriptor];
-}
 - (TestEmptyMessage*) defaultInstance {
   return [TestEmptyMessage defaultInstance];
 }
 - (TestEmptyMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestEmptyMessage*) buildPartial {
@@ -8664,16 +7065,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestEmptyMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestEmptyMessage class]]) {
-    return [self mergeFromTestEmptyMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestEmptyMessage_Builder*) mergeFromTestEmptyMessage:(TestEmptyMessage*) other {
+- (TestEmptyMessage_Builder*) mergeFrom:(TestEmptyMessage*) other {
   if (other == [TestEmptyMessage defaultInstance]) {
     return self;
   }
@@ -8728,15 +7120,6 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 - (TestEmptyMessageWithExtensions*) defaultInstance {
   return defaultTestEmptyMessageWithExtensionsInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TestEmptyMessageWithExtensions descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
     return NO;
@@ -8744,8 +7127,9 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
-  [extensionWriter writeUntil:536870912 output:output];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:1
+                                        to:536870912];
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -8782,7 +7166,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return [[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease];
 }
 + (TestEmptyMessageWithExtensions_Builder*) builderWithPrototype:(TestEmptyMessageWithExtensions*) prototype {
-  return [[TestEmptyMessageWithExtensions builder] mergeFromTestEmptyMessageWithExtensions:prototype];
+  return [[TestEmptyMessageWithExtensions builder] mergeFrom:prototype];
 }
 - (TestEmptyMessageWithExtensions_Builder*) builder {
   return [TestEmptyMessageWithExtensions builder];
@@ -8805,7 +7189,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   }
   return self;
 }
-- (TestEmptyMessageWithExtensions*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (TestEmptyMessageWithExtensions_Builder*) clear {
@@ -8815,16 +7199,11 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 - (TestEmptyMessageWithExtensions_Builder*) clone {
   return [TestEmptyMessageWithExtensions builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestEmptyMessageWithExtensions descriptor];
-}
 - (TestEmptyMessageWithExtensions*) defaultInstance {
   return [TestEmptyMessageWithExtensions defaultInstance];
 }
 - (TestEmptyMessageWithExtensions*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestEmptyMessageWithExtensions*) buildPartial {
@@ -8832,16 +7211,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   self.result = nil;
   return returnMe;
 }
-- (TestEmptyMessageWithExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestEmptyMessageWithExtensions class]]) {
-    return [self mergeFromTestEmptyMessageWithExtensions:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestEmptyMessageWithExtensions_Builder*) mergeFromTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) other {
+- (TestEmptyMessageWithExtensions_Builder*) mergeFrom:(TestEmptyMessageWithExtensions*) other {
   if (other == [TestEmptyMessageWithExtensions defaultInstance]) {
     return self;
   }
@@ -8879,17 +7249,17 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 @implementation TestReallyLargeTagNumber
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (BOOL) hasBb {
-  return hasBb != 0;
+  return hasBb;
 }
 - (void) setHasBb:(BOOL) hasBb_ {
-  hasBb = (hasBb_ != 0);
+  hasBb = hasBb_;
 }
 @synthesize bb;
 - (void) dealloc {
@@ -8913,15 +7283,6 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 - (TestReallyLargeTagNumber*) defaultInstance {
   return defaultTestReallyLargeTagNumberInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestReallyLargeTagNumber descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8974,7 +7335,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   return [[[TestReallyLargeTagNumber_Builder alloc] init] autorelease];
 }
 + (TestReallyLargeTagNumber_Builder*) builderWithPrototype:(TestReallyLargeTagNumber*) prototype {
-  return [[TestReallyLargeTagNumber builder] mergeFromTestReallyLargeTagNumber:prototype];
+  return [[TestReallyLargeTagNumber builder] mergeFrom:prototype];
 }
 - (TestReallyLargeTagNumber_Builder*) builder {
   return [TestReallyLargeTagNumber builder];
@@ -8997,7 +7358,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   }
   return self;
 }
-- (TestReallyLargeTagNumber*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestReallyLargeTagNumber_Builder*) clear {
@@ -9007,16 +7368,11 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 - (TestReallyLargeTagNumber_Builder*) clone {
   return [TestReallyLargeTagNumber builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestReallyLargeTagNumber descriptor];
-}
 - (TestReallyLargeTagNumber*) defaultInstance {
   return [TestReallyLargeTagNumber defaultInstance];
 }
 - (TestReallyLargeTagNumber*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestReallyLargeTagNumber*) buildPartial {
@@ -9024,16 +7380,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestReallyLargeTagNumber_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestReallyLargeTagNumber class]]) {
-    return [self mergeFromTestReallyLargeTagNumber:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestReallyLargeTagNumber_Builder*) mergeFromTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) other {
+- (TestReallyLargeTagNumber_Builder*) mergeFrom:(TestReallyLargeTagNumber*) other {
   if (other == [TestReallyLargeTagNumber defaultInstance]) {
     return self;
   }
@@ -9117,17 +7464,17 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 @implementation TestRecursiveMessage
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (BOOL) hasI {
-  return hasI != 0;
+  return hasI;
 }
 - (void) setHasI:(BOOL) hasI_ {
-  hasI = (hasI_ != 0);
+  hasI = hasI_;
 }
 @synthesize i;
 - (void) dealloc {
@@ -9152,15 +7499,6 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 - (TestRecursiveMessage*) defaultInstance {
   return defaultTestRecursiveMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestRecursiveMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRecursiveMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9213,7 +7551,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return [[[TestRecursiveMessage_Builder alloc] init] autorelease];
 }
 + (TestRecursiveMessage_Builder*) builderWithPrototype:(TestRecursiveMessage*) prototype {
-  return [[TestRecursiveMessage builder] mergeFromTestRecursiveMessage:prototype];
+  return [[TestRecursiveMessage builder] mergeFrom:prototype];
 }
 - (TestRecursiveMessage_Builder*) builder {
   return [TestRecursiveMessage builder];
@@ -9236,7 +7574,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   }
   return self;
 }
-- (TestRecursiveMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestRecursiveMessage_Builder*) clear {
@@ -9246,16 +7584,11 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 - (TestRecursiveMessage_Builder*) clone {
   return [TestRecursiveMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestRecursiveMessage descriptor];
-}
 - (TestRecursiveMessage*) defaultInstance {
   return [TestRecursiveMessage defaultInstance];
 }
 - (TestRecursiveMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestRecursiveMessage*) buildPartial {
@@ -9263,16 +7596,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestRecursiveMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestRecursiveMessage class]]) {
-    return [self mergeFromTestRecursiveMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestRecursiveMessage_Builder*) mergeFromTestRecursiveMessage:(TestRecursiveMessage*) other {
+- (TestRecursiveMessage_Builder*) mergeFrom:(TestRecursiveMessage*) other {
   if (other == [TestRecursiveMessage defaultInstance]) {
     return self;
   }
@@ -9306,7 +7630,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
       case 10: {
         TestRecursiveMessage_Builder* subBuilder = [TestRecursiveMessage builder];
         if (self.hasA) {
-          [subBuilder mergeFromTestRecursiveMessage:self.a];
+          [subBuilder mergeFrom:self.a];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setA:[subBuilder buildPartial]];
@@ -9337,7 +7661,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   if (result.hasA &&
       result.a != [TestRecursiveMessage defaultInstance]) {
     result.a =
-      [[[TestRecursiveMessage builderWithPrototype:result.a] mergeFromTestRecursiveMessage:value] buildPartial];
+      [[[TestRecursiveMessage builderWithPrototype:result.a] mergeFrom:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -9374,10 +7698,10 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 @implementation TestMutualRecursionA
 
 - (BOOL) hasBb {
-  return hasBb != 0;
+  return hasBb;
 }
 - (void) setHasBb:(BOOL) hasBb_ {
-  hasBb = (hasBb_ != 0);
+  hasBb = hasBb_;
 }
 @synthesize bb;
 - (void) dealloc {
@@ -9401,15 +7725,6 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 - (TestMutualRecursionA*) defaultInstance {
   return defaultTestMutualRecursionAInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestMutualRecursionA descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionA_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9456,7 +7771,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return [[[TestMutualRecursionA_Builder alloc] init] autorelease];
 }
 + (TestMutualRecursionA_Builder*) builderWithPrototype:(TestMutualRecursionA*) prototype {
-  return [[TestMutualRecursionA builder] mergeFromTestMutualRecursionA:prototype];
+  return [[TestMutualRecursionA builder] mergeFrom:prototype];
 }
 - (TestMutualRecursionA_Builder*) builder {
   return [TestMutualRecursionA builder];
@@ -9479,7 +7794,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   }
   return self;
 }
-- (TestMutualRecursionA*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestMutualRecursionA_Builder*) clear {
@@ -9489,16 +7804,11 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 - (TestMutualRecursionA_Builder*) clone {
   return [TestMutualRecursionA builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMutualRecursionA descriptor];
-}
 - (TestMutualRecursionA*) defaultInstance {
   return [TestMutualRecursionA defaultInstance];
 }
 - (TestMutualRecursionA*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMutualRecursionA*) buildPartial {
@@ -9506,16 +7816,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMutualRecursionA_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMutualRecursionA class]]) {
-    return [self mergeFromTestMutualRecursionA:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMutualRecursionA_Builder*) mergeFromTestMutualRecursionA:(TestMutualRecursionA*) other {
+- (TestMutualRecursionA_Builder*) mergeFrom:(TestMutualRecursionA*) other {
   if (other == [TestMutualRecursionA defaultInstance]) {
     return self;
   }
@@ -9546,7 +7847,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
       case 10: {
         TestMutualRecursionB_Builder* subBuilder = [TestMutualRecursionB builder];
         if (self.hasBb) {
-          [subBuilder mergeFromTestMutualRecursionB:self.bb];
+          [subBuilder mergeFrom:self.bb];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setBb:[subBuilder buildPartial]];
@@ -9573,7 +7874,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   if (result.hasBb &&
       result.bb != [TestMutualRecursionB defaultInstance]) {
     result.bb =
-      [[[TestMutualRecursionB builderWithPrototype:result.bb] mergeFromTestMutualRecursionB:value] buildPartial];
+      [[[TestMutualRecursionB builderWithPrototype:result.bb] mergeFrom:value] buildPartial];
   } else {
     result.bb = value;
   }
@@ -9595,17 +7896,17 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 @implementation TestMutualRecursionB
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (BOOL) hasOptionalInt32 {
-  return hasOptionalInt32 != 0;
+  return hasOptionalInt32;
 }
 - (void) setHasOptionalInt32:(BOOL) hasOptionalInt32_ {
-  hasOptionalInt32 = (hasOptionalInt32_ != 0);
+  hasOptionalInt32 = hasOptionalInt32_;
 }
 @synthesize optionalInt32;
 - (void) dealloc {
@@ -9630,15 +7931,6 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 - (TestMutualRecursionB*) defaultInstance {
   return defaultTestMutualRecursionBInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestMutualRecursionB descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionB_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9691,7 +7983,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return [[[TestMutualRecursionB_Builder alloc] init] autorelease];
 }
 + (TestMutualRecursionB_Builder*) builderWithPrototype:(TestMutualRecursionB*) prototype {
-  return [[TestMutualRecursionB builder] mergeFromTestMutualRecursionB:prototype];
+  return [[TestMutualRecursionB builder] mergeFrom:prototype];
 }
 - (TestMutualRecursionB_Builder*) builder {
   return [TestMutualRecursionB builder];
@@ -9714,7 +8006,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   }
   return self;
 }
-- (TestMutualRecursionB*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestMutualRecursionB_Builder*) clear {
@@ -9724,16 +8016,11 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 - (TestMutualRecursionB_Builder*) clone {
   return [TestMutualRecursionB builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMutualRecursionB descriptor];
-}
 - (TestMutualRecursionB*) defaultInstance {
   return [TestMutualRecursionB defaultInstance];
 }
 - (TestMutualRecursionB*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMutualRecursionB*) buildPartial {
@@ -9741,16 +8028,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMutualRecursionB_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMutualRecursionB class]]) {
-    return [self mergeFromTestMutualRecursionB:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMutualRecursionB_Builder*) mergeFromTestMutualRecursionB:(TestMutualRecursionB*) other {
+- (TestMutualRecursionB_Builder*) mergeFrom:(TestMutualRecursionB*) other {
   if (other == [TestMutualRecursionB defaultInstance]) {
     return self;
   }
@@ -9784,7 +8062,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
       case 10: {
         TestMutualRecursionA_Builder* subBuilder = [TestMutualRecursionA builder];
         if (self.hasA) {
-          [subBuilder mergeFromTestMutualRecursionA:self.a];
+          [subBuilder mergeFrom:self.a];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setA:[subBuilder buildPartial]];
@@ -9815,7 +8093,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   if (result.hasA &&
       result.a != [TestMutualRecursionA defaultInstance]) {
     result.a =
-      [[[TestMutualRecursionA builderWithPrototype:result.a] mergeFromTestMutualRecursionA:value] buildPartial];
+      [[[TestMutualRecursionA builderWithPrototype:result.a] mergeFrom:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -9854,24 +8132,24 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 @implementation TestDupFieldNumber
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (BOOL) hasFoo {
-  return hasFoo != 0;
+  return hasFoo;
 }
 - (void) setHasFoo:(BOOL) hasFoo_ {
-  hasFoo = (hasFoo_ != 0);
+  hasFoo = hasFoo_;
 }
 @synthesize foo;
 - (BOOL) hasBar {
-  return hasBar != 0;
+  return hasBar;
 }
 - (void) setHasBar:(BOOL) hasBar_ {
-  hasBar = (hasBar_ != 0);
+  hasBar = hasBar_;
 }
 @synthesize bar;
 - (void) dealloc {
@@ -9898,15 +8176,6 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 }
 - (TestDupFieldNumber*) defaultInstance {
   return defaultTestDupFieldNumberInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9965,7 +8234,7 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   return [[[TestDupFieldNumber_Builder alloc] init] autorelease];
 }
 + (TestDupFieldNumber_Builder*) builderWithPrototype:(TestDupFieldNumber*) prototype {
-  return [[TestDupFieldNumber builder] mergeFromTestDupFieldNumber:prototype];
+  return [[TestDupFieldNumber builder] mergeFrom:prototype];
 }
 - (TestDupFieldNumber_Builder*) builder {
   return [TestDupFieldNumber builder];
@@ -9979,10 +8248,10 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 @implementation TestDupFieldNumber_Foo
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -10005,15 +8274,6 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 - (TestDupFieldNumber_Foo*) defaultInstance {
   return defaultTestDupFieldNumber_FooInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber_Foo descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -10060,7 +8320,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   return [[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease];
 }
 + (TestDupFieldNumber_Foo_Builder*) builderWithPrototype:(TestDupFieldNumber_Foo*) prototype {
-  return [[TestDupFieldNumber_Foo builder] mergeFromTestDupFieldNumber_Foo:prototype];
+  return [[TestDupFieldNumber_Foo builder] mergeFrom:prototype];
 }
 - (TestDupFieldNumber_Foo_Builder*) builder {
   return [TestDupFieldNumber_Foo builder];
@@ -10083,7 +8343,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   }
   return self;
 }
-- (TestDupFieldNumber_Foo*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestDupFieldNumber_Foo_Builder*) clear {
@@ -10093,16 +8353,11 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 - (TestDupFieldNumber_Foo_Builder*) clone {
   return [TestDupFieldNumber_Foo builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber_Foo descriptor];
-}
 - (TestDupFieldNumber_Foo*) defaultInstance {
   return [TestDupFieldNumber_Foo defaultInstance];
 }
 - (TestDupFieldNumber_Foo*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestDupFieldNumber_Foo*) buildPartial {
@@ -10110,16 +8365,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestDupFieldNumber_Foo_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestDupFieldNumber_Foo class]]) {
-    return [self mergeFromTestDupFieldNumber_Foo:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestDupFieldNumber_Foo_Builder*) mergeFromTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) other {
+- (TestDupFieldNumber_Foo_Builder*) mergeFrom:(TestDupFieldNumber_Foo*) other {
   if (other == [TestDupFieldNumber_Foo defaultInstance]) {
     return self;
   }
@@ -10179,10 +8425,10 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 @implementation TestDupFieldNumber_Bar
 
 - (BOOL) hasA {
-  return hasA != 0;
+  return hasA;
 }
 - (void) setHasA:(BOOL) hasA_ {
-  hasA = (hasA_ != 0);
+  hasA = hasA_;
 }
 @synthesize a;
 - (void) dealloc {
@@ -10205,15 +8451,6 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (TestDupFieldNumber_Bar*) defaultInstance {
   return defaultTestDupFieldNumber_BarInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber_Bar descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -10260,7 +8497,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return [[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease];
 }
 + (TestDupFieldNumber_Bar_Builder*) builderWithPrototype:(TestDupFieldNumber_Bar*) prototype {
-  return [[TestDupFieldNumber_Bar builder] mergeFromTestDupFieldNumber_Bar:prototype];
+  return [[TestDupFieldNumber_Bar builder] mergeFrom:prototype];
 }
 - (TestDupFieldNumber_Bar_Builder*) builder {
   return [TestDupFieldNumber_Bar builder];
@@ -10283,7 +8520,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
   return self;
 }
-- (TestDupFieldNumber_Bar*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestDupFieldNumber_Bar_Builder*) clear {
@@ -10293,16 +8530,11 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Bar_Builder*) clone {
   return [TestDupFieldNumber_Bar builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber_Bar descriptor];
-}
 - (TestDupFieldNumber_Bar*) defaultInstance {
   return [TestDupFieldNumber_Bar defaultInstance];
 }
 - (TestDupFieldNumber_Bar*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestDupFieldNumber_Bar*) buildPartial {
@@ -10310,16 +8542,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestDupFieldNumber_Bar_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestDupFieldNumber_Bar class]]) {
-    return [self mergeFromTestDupFieldNumber_Bar:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestDupFieldNumber_Bar_Builder*) mergeFromTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) other {
+- (TestDupFieldNumber_Bar_Builder*) mergeFrom:(TestDupFieldNumber_Bar*) other {
   if (other == [TestDupFieldNumber_Bar defaultInstance]) {
     return self;
   }
@@ -10388,7 +8611,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
   return self;
 }
-- (TestDupFieldNumber*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestDupFieldNumber_Builder*) clear {
@@ -10398,16 +8621,11 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Builder*) clone {
   return [TestDupFieldNumber builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestDupFieldNumber descriptor];
-}
 - (TestDupFieldNumber*) defaultInstance {
   return [TestDupFieldNumber defaultInstance];
 }
 - (TestDupFieldNumber*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestDupFieldNumber*) buildPartial {
@@ -10415,16 +8633,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestDupFieldNumber_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestDupFieldNumber class]]) {
-    return [self mergeFromTestDupFieldNumber:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestDupFieldNumber_Builder*) mergeFromTestDupFieldNumber:(TestDupFieldNumber*) other {
+- (TestDupFieldNumber_Builder*) mergeFrom:(TestDupFieldNumber*) other {
   if (other == [TestDupFieldNumber defaultInstance]) {
     return self;
   }
@@ -10465,7 +8674,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
       case 19: {
         TestDupFieldNumber_Foo_Builder* subBuilder = [TestDupFieldNumber_Foo builder];
         if (self.hasFoo) {
-          [subBuilder mergeFromTestDupFieldNumber_Foo:self.foo];
+          [subBuilder mergeFrom:self.foo];
         }
         [input readGroup:2 builder:subBuilder extensionRegistry:extensionRegistry];
         [self setFoo:[subBuilder buildPartial]];
@@ -10474,7 +8683,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
       case 27: {
         TestDupFieldNumber_Bar_Builder* subBuilder = [TestDupFieldNumber_Bar builder];
         if (self.hasBar) {
-          [subBuilder mergeFromTestDupFieldNumber_Bar:self.bar];
+          [subBuilder mergeFrom:self.bar];
         }
         [input readGroup:3 builder:subBuilder extensionRegistry:extensionRegistry];
         [self setBar:[subBuilder buildPartial]];
@@ -10517,7 +8726,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasFoo &&
       result.foo != [TestDupFieldNumber_Foo defaultInstance]) {
     result.foo =
-      [[[TestDupFieldNumber_Foo builderWithPrototype:result.foo] mergeFromTestDupFieldNumber_Foo:value] buildPartial];
+      [[[TestDupFieldNumber_Foo builderWithPrototype:result.foo] mergeFrom:value] buildPartial];
   } else {
     result.foo = value;
   }
@@ -10547,7 +8756,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasBar &&
       result.bar != [TestDupFieldNumber_Bar defaultInstance]) {
     result.bar =
-      [[[TestDupFieldNumber_Bar builderWithPrototype:result.bar] mergeFromTestDupFieldNumber_Bar:value] buildPartial];
+      [[[TestDupFieldNumber_Bar builderWithPrototype:result.bar] mergeFrom:value] buildPartial];
   } else {
     result.bar = value;
   }
@@ -10568,10 +8777,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 @implementation TestNestedMessageHasBits
 
 - (BOOL) hasOptionalNestedMessage {
-  return hasOptionalNestedMessage != 0;
+  return hasOptionalNestedMessage;
 }
 - (void) setHasOptionalNestedMessage:(BOOL) hasOptionalNestedMessage_ {
-  hasOptionalNestedMessage = (hasOptionalNestedMessage_ != 0);
+  hasOptionalNestedMessage = hasOptionalNestedMessage_;
 }
 @synthesize optionalNestedMessage;
 - (void) dealloc {
@@ -10595,15 +8804,6 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 }
 - (TestNestedMessageHasBits*) defaultInstance {
   return defaultTestNestedMessageHasBitsInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestNestedMessageHasBits descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -10650,7 +8850,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   return [[[TestNestedMessageHasBits_Builder alloc] init] autorelease];
 }
 + (TestNestedMessageHasBits_Builder*) builderWithPrototype:(TestNestedMessageHasBits*) prototype {
-  return [[TestNestedMessageHasBits builder] mergeFromTestNestedMessageHasBits:prototype];
+  return [[TestNestedMessageHasBits builder] mergeFrom:prototype];
 }
 - (TestNestedMessageHasBits_Builder*) builder {
   return [TestNestedMessageHasBits builder];
@@ -10687,15 +8887,6 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance {
   return defaultTestNestedMessageHasBits_NestedMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestNestedMessageHasBits_NestedMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable];
 }
 - (NSArray*) nestedmessageRepeatedInt32List {
   return mutableNestedmessageRepeatedInt32List;
@@ -10762,7 +8953,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return [[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease];
 }
 + (TestNestedMessageHasBits_NestedMessage_Builder*) builderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype {
-  return [[TestNestedMessageHasBits_NestedMessage builder] mergeFromTestNestedMessageHasBits_NestedMessage:prototype];
+  return [[TestNestedMessageHasBits_NestedMessage builder] mergeFrom:prototype];
 }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) builder {
   return [TestNestedMessageHasBits_NestedMessage builder];
@@ -10785,7 +8976,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
   return self;
 }
-- (TestNestedMessageHasBits_NestedMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clear {
@@ -10795,16 +8986,11 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clone {
   return [TestNestedMessageHasBits_NestedMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestNestedMessageHasBits_NestedMessage descriptor];
-}
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance {
   return [TestNestedMessageHasBits_NestedMessage defaultInstance];
 }
 - (TestNestedMessageHasBits_NestedMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestNestedMessageHasBits_NestedMessage*) buildPartial {
@@ -10812,16 +8998,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   self.result = nil;
   return returnMe;
 }
-- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestNestedMessageHasBits_NestedMessage class]]) {
-    return [self mergeFromTestNestedMessageHasBits_NestedMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) other {
+- (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFrom:(TestNestedMessageHasBits_NestedMessage*) other {
   if (other == [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
     return self;
   }
@@ -10949,7 +9126,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
   return self;
 }
-- (TestNestedMessageHasBits*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestNestedMessageHasBits_Builder*) clear {
@@ -10959,16 +9136,11 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_Builder*) clone {
   return [TestNestedMessageHasBits builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestNestedMessageHasBits descriptor];
-}
 - (TestNestedMessageHasBits*) defaultInstance {
   return [TestNestedMessageHasBits defaultInstance];
 }
 - (TestNestedMessageHasBits*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestNestedMessageHasBits*) buildPartial {
@@ -10976,16 +9148,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   self.result = nil;
   return returnMe;
 }
-- (TestNestedMessageHasBits_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestNestedMessageHasBits class]]) {
-    return [self mergeFromTestNestedMessageHasBits:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestNestedMessageHasBits_Builder*) mergeFromTestNestedMessageHasBits:(TestNestedMessageHasBits*) other {
+- (TestNestedMessageHasBits_Builder*) mergeFrom:(TestNestedMessageHasBits*) other {
   if (other == [TestNestedMessageHasBits defaultInstance]) {
     return self;
   }
@@ -11016,7 +9179,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
       case 10: {
         TestNestedMessageHasBits_NestedMessage_Builder* subBuilder = [TestNestedMessageHasBits_NestedMessage builder];
         if (self.hasOptionalNestedMessage) {
-          [subBuilder mergeFromTestNestedMessageHasBits_NestedMessage:self.optionalNestedMessage];
+          [subBuilder mergeFrom:self.optionalNestedMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalNestedMessage:[subBuilder buildPartial]];
@@ -11043,7 +9206,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestNestedMessageHasBits_NestedMessage builderWithPrototype:result.optionalNestedMessage] mergeFromTestNestedMessageHasBits_NestedMessage:value] buildPartial];
+      [[[TestNestedMessageHasBits_NestedMessage builderWithPrototype:result.optionalNestedMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -11075,45 +9238,45 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 @implementation TestCamelCaseFieldNames
 
 - (BOOL) hasPrimitiveField {
-  return hasPrimitiveField != 0;
+  return hasPrimitiveField;
 }
 - (void) setHasPrimitiveField:(BOOL) hasPrimitiveField_ {
-  hasPrimitiveField = (hasPrimitiveField_ != 0);
+  hasPrimitiveField = hasPrimitiveField_;
 }
 @synthesize primitiveField;
 - (BOOL) hasStringField {
-  return hasStringField != 0;
+  return hasStringField;
 }
 - (void) setHasStringField:(BOOL) hasStringField_ {
-  hasStringField = (hasStringField_ != 0);
+  hasStringField = hasStringField_;
 }
 @synthesize stringField;
 - (BOOL) hasEnumField {
-  return hasEnumField != 0;
+  return hasEnumField;
 }
 - (void) setHasEnumField:(BOOL) hasEnumField_ {
-  hasEnumField = (hasEnumField_ != 0);
+  hasEnumField = hasEnumField_;
 }
 @synthesize enumField;
 - (BOOL) hasMessageField {
-  return hasMessageField != 0;
+  return hasMessageField;
 }
 - (void) setHasMessageField:(BOOL) hasMessageField_ {
-  hasMessageField = (hasMessageField_ != 0);
+  hasMessageField = hasMessageField_;
 }
 @synthesize messageField;
 - (BOOL) hasStringPieceField {
-  return hasStringPieceField != 0;
+  return hasStringPieceField;
 }
 - (void) setHasStringPieceField:(BOOL) hasStringPieceField_ {
-  hasStringPieceField = (hasStringPieceField_ != 0);
+  hasStringPieceField = hasStringPieceField_;
 }
 @synthesize stringPieceField;
 - (BOOL) hasCordField {
-  return hasCordField != 0;
+  return hasCordField;
 }
 - (void) setHasCordField:(BOOL) hasCordField_ {
-  hasCordField = (hasCordField_ != 0);
+  hasCordField = hasCordField_;
 }
 @synthesize cordField;
 @synthesize mutableRepeatedPrimitiveFieldList;
@@ -11158,15 +9321,6 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 - (TestCamelCaseFieldNames*) defaultInstance {
   return defaultTestCamelCaseFieldNamesInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestCamelCaseFieldNames descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable];
 }
 - (NSArray*) repeatedPrimitiveFieldList {
   return mutableRepeatedPrimitiveFieldList;
@@ -11321,7 +9475,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return [[[TestCamelCaseFieldNames_Builder alloc] init] autorelease];
 }
 + (TestCamelCaseFieldNames_Builder*) builderWithPrototype:(TestCamelCaseFieldNames*) prototype {
-  return [[TestCamelCaseFieldNames builder] mergeFromTestCamelCaseFieldNames:prototype];
+  return [[TestCamelCaseFieldNames builder] mergeFrom:prototype];
 }
 - (TestCamelCaseFieldNames_Builder*) builder {
   return [TestCamelCaseFieldNames builder];
@@ -11344,7 +9498,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   }
   return self;
 }
-- (TestCamelCaseFieldNames*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestCamelCaseFieldNames_Builder*) clear {
@@ -11354,16 +9508,11 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (TestCamelCaseFieldNames_Builder*) clone {
   return [TestCamelCaseFieldNames builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestCamelCaseFieldNames descriptor];
-}
 - (TestCamelCaseFieldNames*) defaultInstance {
   return [TestCamelCaseFieldNames defaultInstance];
 }
 - (TestCamelCaseFieldNames*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestCamelCaseFieldNames*) buildPartial {
@@ -11371,16 +9520,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestCamelCaseFieldNames_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestCamelCaseFieldNames class]]) {
-    return [self mergeFromTestCamelCaseFieldNames:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestCamelCaseFieldNames_Builder*) mergeFromTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) other {
+- (TestCamelCaseFieldNames_Builder*) mergeFrom:(TestCamelCaseFieldNames*) other {
   if (other == [TestCamelCaseFieldNames defaultInstance]) {
     return self;
   }
@@ -11480,7 +9620,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
       case 34: {
         ForeignMessage_Builder* subBuilder = [ForeignMessage builder];
         if (self.hasMessageField) {
-          [subBuilder mergeFromForeignMessage:self.messageField];
+          [subBuilder mergeFrom:self.messageField];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setMessageField:[subBuilder buildPartial]];
@@ -11595,7 +9735,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (result.hasMessageField &&
       result.messageField != [ForeignMessage defaultInstance]) {
     result.messageField =
-      [[[ForeignMessage builderWithPrototype:result.messageField] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage builderWithPrototype:result.messageField] mergeFrom:value] buildPartial];
   } else {
     result.messageField = value;
   }
@@ -11831,24 +9971,24 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 @implementation TestFieldOrderings
 
 - (BOOL) hasMyString {
-  return hasMyString != 0;
+  return hasMyString;
 }
 - (void) setHasMyString:(BOOL) hasMyString_ {
-  hasMyString = (hasMyString_ != 0);
+  hasMyString = hasMyString_;
 }
 @synthesize myString;
 - (BOOL) hasMyInt {
-  return hasMyInt != 0;
+  return hasMyInt;
 }
 - (void) setHasMyInt:(BOOL) hasMyInt_ {
-  hasMyInt = (hasMyInt_ != 0);
+  hasMyInt = hasMyInt_;
 }
 @synthesize myInt;
 - (BOOL) hasMyFloat {
-  return hasMyFloat != 0;
+  return hasMyFloat;
 }
 - (void) setHasMyFloat:(BOOL) hasMyFloat_ {
-  hasMyFloat = (hasMyFloat_ != 0);
+  hasMyFloat = hasMyFloat_;
 }
 @synthesize myFloat;
 - (void) dealloc {
@@ -11875,15 +10015,6 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 - (TestFieldOrderings*) defaultInstance {
   return defaultTestFieldOrderingsInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TestFieldOrderings descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestFieldOrderings_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
     return NO;
@@ -11891,15 +10022,18 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
   if (hasMyInt) {
     [output writeInt64:1 value:self.myInt];
   }
-  [extensionWriter writeUntil:11 output:output];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:2
+                                        to:11];
   if (hasMyString) {
     [output writeString:11 value:self.myString];
   }
-  [extensionWriter writeUntil:101 output:output];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:12
+                                        to:101];
   if (hasMyFloat) {
     [output writeFloat:101 value:self.myFloat];
   }
@@ -11948,7 +10082,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return [[[TestFieldOrderings_Builder alloc] init] autorelease];
 }
 + (TestFieldOrderings_Builder*) builderWithPrototype:(TestFieldOrderings*) prototype {
-  return [[TestFieldOrderings builder] mergeFromTestFieldOrderings:prototype];
+  return [[TestFieldOrderings builder] mergeFrom:prototype];
 }
 - (TestFieldOrderings_Builder*) builder {
   return [TestFieldOrderings builder];
@@ -11971,7 +10105,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   }
   return self;
 }
-- (TestFieldOrderings*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (TestFieldOrderings_Builder*) clear {
@@ -11981,16 +10115,11 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 - (TestFieldOrderings_Builder*) clone {
   return [TestFieldOrderings builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestFieldOrderings descriptor];
-}
 - (TestFieldOrderings*) defaultInstance {
   return [TestFieldOrderings defaultInstance];
 }
 - (TestFieldOrderings*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestFieldOrderings*) buildPartial {
@@ -11998,16 +10127,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestFieldOrderings_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestFieldOrderings class]]) {
-    return [self mergeFromTestFieldOrderings:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestFieldOrderings_Builder*) mergeFromTestFieldOrderings:(TestFieldOrderings*) other {
+- (TestFieldOrderings_Builder*) mergeFrom:(TestFieldOrderings*) other {
   if (other == [TestFieldOrderings defaultInstance]) {
     return self;
   }
@@ -12118,45 +10238,45 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 @implementation TestExtremeDefaultValues
 
 - (BOOL) hasEscapedBytes {
-  return hasEscapedBytes != 0;
+  return hasEscapedBytes;
 }
 - (void) setHasEscapedBytes:(BOOL) hasEscapedBytes_ {
-  hasEscapedBytes = (hasEscapedBytes_ != 0);
+  hasEscapedBytes = hasEscapedBytes_;
 }
 @synthesize escapedBytes;
 - (BOOL) hasLargeUint32 {
-  return hasLargeUint32 != 0;
+  return hasLargeUint32;
 }
 - (void) setHasLargeUint32:(BOOL) hasLargeUint32_ {
-  hasLargeUint32 = (hasLargeUint32_ != 0);
+  hasLargeUint32 = hasLargeUint32_;
 }
 @synthesize largeUint32;
 - (BOOL) hasLargeUint64 {
-  return hasLargeUint64 != 0;
+  return hasLargeUint64;
 }
 - (void) setHasLargeUint64:(BOOL) hasLargeUint64_ {
-  hasLargeUint64 = (hasLargeUint64_ != 0);
+  hasLargeUint64 = hasLargeUint64_;
 }
 @synthesize largeUint64;
 - (BOOL) hasSmallInt32 {
-  return hasSmallInt32 != 0;
+  return hasSmallInt32;
 }
 - (void) setHasSmallInt32:(BOOL) hasSmallInt32_ {
-  hasSmallInt32 = (hasSmallInt32_ != 0);
+  hasSmallInt32 = hasSmallInt32_;
 }
 @synthesize smallInt32;
 - (BOOL) hasSmallInt64 {
-  return hasSmallInt64 != 0;
+  return hasSmallInt64;
 }
 - (void) setHasSmallInt64:(BOOL) hasSmallInt64_ {
-  hasSmallInt64 = (hasSmallInt64_ != 0);
+  hasSmallInt64 = hasSmallInt64_;
 }
 @synthesize smallInt64;
 - (BOOL) hasUtf8String {
-  return hasUtf8String != 0;
+  return hasUtf8String;
 }
 - (void) setHasUtf8String:(BOOL) hasUtf8String_ {
-  hasUtf8String = (hasUtf8String_ != 0);
+  hasUtf8String = hasUtf8String_;
 }
 @synthesize utf8String;
 - (void) dealloc {
@@ -12166,12 +10286,12 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    self.escapedBytes = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0]) defaultValue]);
+    self.escapedBytes = [NSData dataWithBytes:"\000\001\007\010\014\n\r\t\013\\\'\"\376" length:13];
     self.largeUint32 = -1;
     self.largeUint64 = -1L;
     self.smallInt32 = -2147483647;
     self.smallInt64 = -9223372036854775807L;
-    self.utf8String = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5]) defaultValue]);
+    self.utf8String = [NSString stringWithUTF8String:"\341\210\264"];
   }
   return self;
 }
@@ -12186,15 +10306,6 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues*) defaultInstance {
   return defaultTestExtremeDefaultValuesInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestExtremeDefaultValues descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12271,7 +10382,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   return [[[TestExtremeDefaultValues_Builder alloc] init] autorelease];
 }
 + (TestExtremeDefaultValues_Builder*) builderWithPrototype:(TestExtremeDefaultValues*) prototype {
-  return [[TestExtremeDefaultValues builder] mergeFromTestExtremeDefaultValues:prototype];
+  return [[TestExtremeDefaultValues builder] mergeFrom:prototype];
 }
 - (TestExtremeDefaultValues_Builder*) builder {
   return [TestExtremeDefaultValues builder];
@@ -12294,7 +10405,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   }
   return self;
 }
-- (TestExtremeDefaultValues*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestExtremeDefaultValues_Builder*) clear {
@@ -12304,16 +10415,11 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 - (TestExtremeDefaultValues_Builder*) clone {
   return [TestExtremeDefaultValues builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestExtremeDefaultValues descriptor];
-}
 - (TestExtremeDefaultValues*) defaultInstance {
   return [TestExtremeDefaultValues defaultInstance];
 }
 - (TestExtremeDefaultValues*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestExtremeDefaultValues*) buildPartial {
@@ -12321,16 +10427,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestExtremeDefaultValues_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestExtremeDefaultValues class]]) {
-    return [self mergeFromTestExtremeDefaultValues:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestExtremeDefaultValues_Builder*) mergeFromTestExtremeDefaultValues:(TestExtremeDefaultValues*) other {
+- (TestExtremeDefaultValues_Builder*) mergeFrom:(TestExtremeDefaultValues*) other {
   if (other == [TestExtremeDefaultValues defaultInstance]) {
     return self;
   }
@@ -12413,7 +10510,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues_Builder*) clearEscapedBytes {
   result.hasEscapedBytes = NO;
-  result.escapedBytes = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0]) defaultValue]);
+  result.escapedBytes = [NSData dataWithBytes:"\000\001\007\010\014\n\r\t\013\\\'\"\376" length:13];
   return self;
 }
 - (BOOL) hasLargeUint32 {
@@ -12493,7 +10590,363 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues_Builder*) clearUtf8String {
   result.hasUtf8String = NO;
-  result.utf8String = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5]) defaultValue]);
+  result.utf8String = [NSString stringWithUTF8String:"\341\210\264"];
+  return self;
+}
+@end
+
+@interface OneString ()
+@property (retain) NSString* data;
+@end
+
+@implementation OneString
+
+- (BOOL) hasData {
+  return hasData;
+}
+- (void) setHasData:(BOOL) hasData_ {
+  hasData = hasData_;
+}
+@synthesize data;
+- (void) dealloc {
+  self.data = nil;
+  [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.data = @"";
+  }
+  return self;
+}
+static OneString* defaultOneStringInstance = nil;
++ (void) initialize {
+  if (self == [OneString class]) {
+    defaultOneStringInstance = [[OneString alloc] init];
+  }
+}
++ (OneString*) defaultInstance {
+  return defaultOneStringInstance;
+}
+- (OneString*) defaultInstance {
+  return defaultOneStringInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasData) {
+    [output writeString:1 value:self.data];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (hasData) {
+    size += computeStringSize(1, self.data);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (OneString*) parseFromData:(NSData*) data {
+  return (OneString*)[[[OneString builder] mergeFromData:data] build];
+}
++ (OneString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneString*)[[[OneString builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (OneString*) parseFromInputStream:(NSInputStream*) input {
+  return (OneString*)[[[OneString builder] mergeFromInputStream:input] build];
+}
++ (OneString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneString*)[[[OneString builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OneString*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (OneString*)[[[OneString builder] mergeFromCodedInputStream:input] build];
+}
++ (OneString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneString*)[[[OneString builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OneString_Builder*) builder {
+  return [[[OneString_Builder alloc] init] autorelease];
+}
++ (OneString_Builder*) builderWithPrototype:(OneString*) prototype {
+  return [[OneString builder] mergeFrom:prototype];
+}
+- (OneString_Builder*) builder {
+  return [OneString builder];
+}
+@end
+
+@interface OneString_Builder()
+@property (retain) OneString* result;
+@end
+
+@implementation OneString_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[OneString alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (OneString_Builder*) clear {
+  self.result = [[[OneString alloc] init] autorelease];
+  return self;
+}
+- (OneString_Builder*) clone {
+  return [OneString builderWithPrototype:result];
+}
+- (OneString*) defaultInstance {
+  return [OneString defaultInstance];
+}
+- (OneString*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (OneString*) buildPartial {
+  OneString* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (OneString_Builder*) mergeFrom:(OneString*) other {
+  if (other == [OneString defaultInstance]) {
+    return self;
+  }
+  if (other.hasData) {
+    [self setData:other.data];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (OneString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (OneString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setData:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasData {
+  return result.hasData;
+}
+- (NSString*) data {
+  return result.data;
+}
+- (OneString_Builder*) setData:(NSString*) value {
+  result.hasData = YES;
+  result.data = value;
+  return self;
+}
+- (OneString_Builder*) clearData {
+  result.hasData = NO;
+  result.data = @"";
+  return self;
+}
+@end
+
+@interface OneBytes ()
+@property (retain) NSData* data;
+@end
+
+@implementation OneBytes
+
+- (BOOL) hasData {
+  return hasData;
+}
+- (void) setHasData:(BOOL) hasData_ {
+  hasData = hasData_;
+}
+@synthesize data;
+- (void) dealloc {
+  self.data = nil;
+  [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.data = [NSData data];
+  }
+  return self;
+}
+static OneBytes* defaultOneBytesInstance = nil;
++ (void) initialize {
+  if (self == [OneBytes class]) {
+    defaultOneBytesInstance = [[OneBytes alloc] init];
+  }
+}
++ (OneBytes*) defaultInstance {
+  return defaultOneBytesInstance;
+}
+- (OneBytes*) defaultInstance {
+  return defaultOneBytesInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasData) {
+    [output writeData:1 value:self.data];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (hasData) {
+    size += computeDataSize(1, self.data);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (OneBytes*) parseFromData:(NSData*) data {
+  return (OneBytes*)[[[OneBytes builder] mergeFromData:data] build];
+}
++ (OneBytes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneBytes*)[[[OneBytes builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (OneBytes*) parseFromInputStream:(NSInputStream*) input {
+  return (OneBytes*)[[[OneBytes builder] mergeFromInputStream:input] build];
+}
++ (OneBytes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneBytes*)[[[OneBytes builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OneBytes*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (OneBytes*)[[[OneBytes builder] mergeFromCodedInputStream:input] build];
+}
++ (OneBytes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (OneBytes*)[[[OneBytes builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (OneBytes_Builder*) builder {
+  return [[[OneBytes_Builder alloc] init] autorelease];
+}
++ (OneBytes_Builder*) builderWithPrototype:(OneBytes*) prototype {
+  return [[OneBytes builder] mergeFrom:prototype];
+}
+- (OneBytes_Builder*) builder {
+  return [OneBytes builder];
+}
+@end
+
+@interface OneBytes_Builder()
+@property (retain) OneBytes* result;
+@end
+
+@implementation OneBytes_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[OneBytes alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (OneBytes_Builder*) clear {
+  self.result = [[[OneBytes alloc] init] autorelease];
+  return self;
+}
+- (OneBytes_Builder*) clone {
+  return [OneBytes builderWithPrototype:result];
+}
+- (OneBytes*) defaultInstance {
+  return [OneBytes defaultInstance];
+}
+- (OneBytes*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (OneBytes*) buildPartial {
+  OneBytes* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (OneBytes_Builder*) mergeFrom:(OneBytes*) other {
+  if (other == [OneBytes defaultInstance]) {
+    return self;
+  }
+  if (other.hasData) {
+    [self setData:other.data];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (OneBytes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (OneBytes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setData:[input readData]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasData {
+  return result.hasData;
+}
+- (NSData*) data {
+  return result.data;
+}
+- (OneBytes_Builder*) setData:(NSData*) value {
+  result.hasData = YES;
+  result.data = value;
+  return self;
+}
+- (OneBytes_Builder*) clearData {
+  result.hasData = NO;
+  result.data = [NSData data];
   return self;
 }
 @end
@@ -12522,15 +10975,6 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 - (FooRequest*) defaultInstance {
   return defaultFooRequestInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [FooRequest descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_FooRequest_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_FooRequest_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12571,7 +11015,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   return [[[FooRequest_Builder alloc] init] autorelease];
 }
 + (FooRequest_Builder*) builderWithPrototype:(FooRequest*) prototype {
-  return [[FooRequest builder] mergeFromFooRequest:prototype];
+  return [[FooRequest builder] mergeFrom:prototype];
 }
 - (FooRequest_Builder*) builder {
   return [FooRequest builder];
@@ -12594,7 +11038,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   }
   return self;
 }
-- (FooRequest*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (FooRequest_Builder*) clear {
@@ -12604,16 +11048,11 @@ static FooRequest* defaultFooRequestInstance = nil;
 - (FooRequest_Builder*) clone {
   return [FooRequest builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [FooRequest descriptor];
-}
 - (FooRequest*) defaultInstance {
   return [FooRequest defaultInstance];
 }
 - (FooRequest*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (FooRequest*) buildPartial {
@@ -12621,16 +11060,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (FooRequest_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[FooRequest class]]) {
-    return [self mergeFromFooRequest:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (FooRequest_Builder*) mergeFromFooRequest:(FooRequest*) other {
+- (FooRequest_Builder*) mergeFrom:(FooRequest*) other {
   if (other == [FooRequest defaultInstance]) {
     return self;
   }
@@ -12685,15 +11115,6 @@ static FooResponse* defaultFooResponseInstance = nil;
 - (FooResponse*) defaultInstance {
   return defaultFooResponseInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [FooResponse descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_FooResponse_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_FooResponse_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   return YES;
 }
@@ -12733,7 +11154,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   return [[[FooResponse_Builder alloc] init] autorelease];
 }
 + (FooResponse_Builder*) builderWithPrototype:(FooResponse*) prototype {
-  return [[FooResponse builder] mergeFromFooResponse:prototype];
+  return [[FooResponse builder] mergeFrom:prototype];
 }
 - (FooResponse_Builder*) builder {
   return [FooResponse builder];
@@ -12756,7 +11177,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   }
   return self;
 }
-- (FooResponse*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (FooResponse_Builder*) clear {
@@ -12766,16 +11187,11 @@ static FooResponse* defaultFooResponseInstance = nil;
 - (FooResponse_Builder*) clone {
   return [FooResponse builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [FooResponse descriptor];
-}
 - (FooResponse*) defaultInstance {
   return [FooResponse defaultInstance];
 }
 - (FooResponse*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (FooResponse*) buildPartial {
@@ -12783,16 +11199,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (FooResponse_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[FooResponse class]]) {
-    return [self mergeFromFooResponse:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (FooResponse_Builder*) mergeFromFooResponse:(FooResponse*) other {
+- (FooResponse_Builder*) mergeFrom:(FooResponse*) other {
   if (other == [FooResponse defaultInstance]) {
     return self;
   }
@@ -12847,15 +11254,6 @@ static BarRequest* defaultBarRequestInstance = nil;
 - (BarRequest*) defaultInstance {
   return defaultBarRequestInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [BarRequest descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_BarRequest_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_BarRequest_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   return YES;
 }
@@ -12895,7 +11293,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   return [[[BarRequest_Builder alloc] init] autorelease];
 }
 + (BarRequest_Builder*) builderWithPrototype:(BarRequest*) prototype {
-  return [[BarRequest builder] mergeFromBarRequest:prototype];
+  return [[BarRequest builder] mergeFrom:prototype];
 }
 - (BarRequest_Builder*) builder {
   return [BarRequest builder];
@@ -12918,7 +11316,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   }
   return self;
 }
-- (BarRequest*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (BarRequest_Builder*) clear {
@@ -12928,16 +11326,11 @@ static BarRequest* defaultBarRequestInstance = nil;
 - (BarRequest_Builder*) clone {
   return [BarRequest builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [BarRequest descriptor];
-}
 - (BarRequest*) defaultInstance {
   return [BarRequest defaultInstance];
 }
 - (BarRequest*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (BarRequest*) buildPartial {
@@ -12945,16 +11338,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (BarRequest_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[BarRequest class]]) {
-    return [self mergeFromBarRequest:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (BarRequest_Builder*) mergeFromBarRequest:(BarRequest*) other {
+- (BarRequest_Builder*) mergeFrom:(BarRequest*) other {
   if (other == [BarRequest defaultInstance]) {
     return self;
   }
@@ -13009,15 +11393,6 @@ static BarResponse* defaultBarResponseInstance = nil;
 - (BarResponse*) defaultInstance {
   return defaultBarResponseInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [BarResponse descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestRoot internal_static_protobuf_unittest_BarResponse_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestRoot internal_static_protobuf_unittest_BarResponse_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   return YES;
 }
@@ -13057,7 +11432,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   return [[[BarResponse_Builder alloc] init] autorelease];
 }
 + (BarResponse_Builder*) builderWithPrototype:(BarResponse*) prototype {
-  return [[BarResponse builder] mergeFromBarResponse:prototype];
+  return [[BarResponse builder] mergeFrom:prototype];
 }
 - (BarResponse_Builder*) builder {
   return [BarResponse builder];
@@ -13080,7 +11455,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   }
   return self;
 }
-- (BarResponse*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (BarResponse_Builder*) clear {
@@ -13090,16 +11465,11 @@ static BarResponse* defaultBarResponseInstance = nil;
 - (BarResponse_Builder*) clone {
   return [BarResponse builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [BarResponse descriptor];
-}
 - (BarResponse*) defaultInstance {
   return [BarResponse defaultInstance];
 }
 - (BarResponse*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (BarResponse*) buildPartial {
@@ -13107,16 +11477,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (BarResponse_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[BarResponse class]]) {
-    return [self mergeFromBarResponse:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (BarResponse_Builder*) mergeFromBarResponse:(BarResponse*) other {
+- (BarResponse_Builder*) mergeFrom:(BarResponse*) other {
   if (other == [BarResponse defaultInstance]) {
     return self;
   }
@@ -13146,107 +11507,3 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 @end
 
-@implementation TestService
-- (void) fooWithController:(id<PBRpcController>) controller
-                      request:(FooRequest*) request
-                       target:(id) target
-                     selector:(SEL) selector {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-- (void) barWithController:(id<PBRpcController>) controller
-                      request:(BarRequest*) request
-                       target:(id) target
-                     selector:(SEL) selector {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-+ (PBServiceDescriptor*) descriptor {
-  return [[UnittestRoot descriptor].services objectAtIndex:0];
-}
-- (PBServiceDescriptor*) descriptor {
-  return [TestService descriptor];
-}
-- (void) callMethod:(PBMethodDescriptor*) method
-         controller:(id<PBRpcController>) controller
-            request:(id<PBMessage>) request
-             target:(id) target
-           selector:(SEL) selector {
-  if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
-  }
-  switch(method.index) {
-    case 0:
-      [self fooWithController:controller request:(id)request target:target selector:selector];
-      return;
-    case 1:
-      [self barWithController:controller request:(id)request target:target selector:selector];
-      return;
-    default:
-      @throw [NSException exceptionWithName:@"RuntimeError" reason:@"" userInfo:nil];
-  }
-}
-- (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method {
-  if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
-  }
-  switch(method.index) {
-    case 0:
-      return [FooRequest defaultInstance];
-    case 1:
-      return [BarRequest defaultInstance];
-    default:
-      @throw [NSException exceptionWithName:@"RuntimeError" reason:@"" userInfo:nil];
-  }
-}
-- (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method {
-  if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
-  }
-  switch(method.index) {
-    case 0:
-      return [FooResponse defaultInstance];
-    case 1:
-      return [BarResponse defaultInstance];
-    default:
-      @throw [NSException exceptionWithName:@"RuntimeError" reason:@"" userInfo:nil];
-  }
-}
-@end
-
-@implementation TestService_Stub
-@synthesize channel;
-- (void) dealloc {
-  self.channel = nil;
-  [super dealloc];
-}
-- (id) initWithChannel:(id<PBRpcChannel>) channel_ {
-  if (self = [super init]) {
-    self.channel = channel_;
-  }
-  return self;
-}
-+ (TestService_Stub*) stubWithChannel:(id<PBRpcChannel>) channel {
-  return [[[TestService_Stub alloc] initWithChannel:channel] autorelease];
-}
-- (void) fooWithController:(id<PBRpcController>) controller
-                        request:(FooRequest*) request
-                         target:(id) target
-                       selector:(SEL) selector {
-  [channel callMethod:[[TestService descriptor].methods objectAtIndex:0]
-           controller:controller
-              request:request
-             response:[FooResponse defaultInstance]
-               target:target
-             selector:selector];
-}
-- (void) barWithController:(id<PBRpcController>) controller
-                        request:(BarRequest*) request
-                         target:(id) target
-                       selector:(SEL) selector {
-  [channel callMethod:[[TestService descriptor].methods objectAtIndex:1]
-           controller:controller
-              request:request
-             response:[BarResponse defaultInstance]
-               target:target
-             selector:selector];
-}
-@end

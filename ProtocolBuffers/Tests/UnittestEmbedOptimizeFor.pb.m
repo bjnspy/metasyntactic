@@ -3,55 +3,9 @@
 #import "UnittestEmbedOptimizeFor.pb.h"
 
 @implementation UnittestEmbedOptimizeForRoot
-static PBFileDescriptor* descriptor = nil;
-static PBDescriptor* internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor {
-  return internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable;
-}
 + (void) initialize {
   if (self == [UnittestEmbedOptimizeForRoot class]) {
-    descriptor = [[UnittestEmbedOptimizeForRoot buildDescriptor] retain];
-    internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalMessage", @"RepeatedMessage", nil];
-      internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestEmbedOptimizedForSize class]
-                                      builderClass:[TestEmbedOptimizedForSize_Builder class]] retain];
-    }
   }
-}
-+ (PBFileDescriptor*) descriptor {
-  return descriptor;
-}
-+ (PBFileDescriptor*) buildDescriptor {
-  static uint8_t descriptorData[] = {
-    10,49,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
-    110,105,116,116,101,115,116,95,101,109,98,101,100,95,111,112,116,105,109,
-    105,122,101,95,102,111,114,46,112,114,111,116,111,18,17,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,26,43,103,111,111,103,
-    108,101,47,112,114,111,116,111,98,117,102,47,117,110,105,116,116,101,115,
-    116,95,111,112,116,105,109,105,122,101,95,102,111,114,46,112,114,111,116,
-    111,34,161,1,10,25,84,101,115,116,69,109,98,101,100,79,112,116,105,109,
-    105,122,101,100,70,111,114,83,105,122,101,18,65,10,16,111,112,116,105,111,
-    110,97,108,95,109,101,115,115,97,103,101,24,1,32,1,40,11,50,39,46,112,114,
-    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
-    116,79,112,116,105,109,105,122,101,100,70,111,114,83,105,122,101,18,65,
-    10,16,114,101,112,101,97,116,101,100,95,109,101,115,115,97,103,101,24,2,
-    32,3,40,11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
-    101,115,116,46,84,101,115,116,79,112,116,105,109,105,122,101,100,70,111,
-    114,83,105,122,101,66,2,72,1,
-  };
-  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestOptimizeForRoot descriptor], nil];
-  
-  NSData* data = [NSData dataWithBytes:descriptorData length:283];
-  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
-  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
@@ -63,10 +17,10 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
 @implementation TestEmbedOptimizedForSize
 
 - (BOOL) hasOptionalMessage {
-  return hasOptionalMessage != 0;
+  return hasOptionalMessage;
 }
 - (void) setHasOptionalMessage:(BOOL) hasOptionalMessage_ {
-  hasOptionalMessage = (hasOptionalMessage_ != 0);
+  hasOptionalMessage = hasOptionalMessage_;
 }
 @synthesize optionalMessage;
 @synthesize mutableRepeatedMessageList;
@@ -92,15 +46,6 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 }
 - (TestEmbedOptimizedForSize*) defaultInstance {
   return defaultTestEmbedOptimizedForSizeInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestEmbedOptimizedForSize descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestEmbedOptimizeForRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestEmbedOptimizeForRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable];
 }
 - (NSArray*) repeatedMessageList {
   return mutableRepeatedMessageList;
@@ -170,7 +115,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return [[[TestEmbedOptimizedForSize_Builder alloc] init] autorelease];
 }
 + (TestEmbedOptimizedForSize_Builder*) builderWithPrototype:(TestEmbedOptimizedForSize*) prototype {
-  return [[TestEmbedOptimizedForSize builder] mergeFromTestEmbedOptimizedForSize:prototype];
+  return [[TestEmbedOptimizedForSize builder] mergeFrom:prototype];
 }
 - (TestEmbedOptimizedForSize_Builder*) builder {
   return [TestEmbedOptimizedForSize builder];
@@ -193,7 +138,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   }
   return self;
 }
-- (TestEmbedOptimizedForSize*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestEmbedOptimizedForSize_Builder*) clear {
@@ -203,16 +148,11 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 - (TestEmbedOptimizedForSize_Builder*) clone {
   return [TestEmbedOptimizedForSize builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestEmbedOptimizedForSize descriptor];
-}
 - (TestEmbedOptimizedForSize*) defaultInstance {
   return [TestEmbedOptimizedForSize defaultInstance];
 }
 - (TestEmbedOptimizedForSize*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestEmbedOptimizedForSize*) buildPartial {
@@ -220,16 +160,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   self.result = nil;
   return returnMe;
 }
-- (TestEmbedOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestEmbedOptimizedForSize class]]) {
-    return [self mergeFromTestEmbedOptimizedForSize:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestEmbedOptimizedForSize_Builder*) mergeFromTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) other {
+- (TestEmbedOptimizedForSize_Builder*) mergeFrom:(TestEmbedOptimizedForSize*) other {
   if (other == [TestEmbedOptimizedForSize defaultInstance]) {
     return self;
   }
@@ -266,7 +197,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
       case 10: {
         TestOptimizedForSize_Builder* subBuilder = [TestOptimizedForSize builder];
         if (self.hasOptionalMessage) {
-          [subBuilder mergeFromTestOptimizedForSize:self.optionalMessage];
+          [subBuilder mergeFrom:self.optionalMessage];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptionalMessage:[subBuilder buildPartial]];
@@ -299,7 +230,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestOptimizedForSize defaultInstance]) {
     result.optionalMessage =
-      [[[TestOptimizedForSize builderWithPrototype:result.optionalMessage] mergeFromTestOptimizedForSize:value] buildPartial];
+      [[[TestOptimizedForSize builderWithPrototype:result.optionalMessage] mergeFrom:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }
@@ -341,3 +272,4 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return self;
 }
 @end
+

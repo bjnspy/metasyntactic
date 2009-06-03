@@ -23,4 +23,6 @@
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag;
 
+- (void) checkInitialized;
+
 @end

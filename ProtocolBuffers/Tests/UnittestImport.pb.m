@@ -3,49 +3,9 @@
 #import "UnittestImport.pb.h"
 
 @implementation UnittestImportRoot
-static PBFileDescriptor* descriptor = nil;
-static PBDescriptor* internal_static_protobuf_unittest_import_ImportMessage_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_import_ImportMessage_descriptor {
-  return internal_static_protobuf_unittest_import_ImportMessage_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable {
-  return internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable;
-}
 + (void) initialize {
   if (self == [UnittestImportRoot class]) {
-    descriptor = [[UnittestImportRoot buildDescriptor] retain];
-    internal_static_protobuf_unittest_import_ImportMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"D", nil];
-      internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_import_ImportMessage_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[ImportMessage class]
-                                      builderClass:[ImportMessage_Builder class]] retain];
-    }
   }
-}
-+ (PBFileDescriptor*) descriptor {
-  return descriptor;
-}
-+ (PBFileDescriptor*) buildDescriptor {
-  static uint8_t descriptorData[] = {
-    10,37,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
-    110,105,116,116,101,115,116,95,105,109,112,111,114,116,46,112,114,111,116,
-    111,18,24,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
-    116,95,105,109,112,111,114,116,34,26,10,13,73,109,112,111,114,116,77,101,
-    115,115,97,103,101,18,9,10,1,100,24,1,32,1,40,5,42,60,10,10,73,109,112,
-    111,114,116,69,110,117,109,18,14,10,10,73,77,80,79,82,84,95,70,79,79,16,
-    7,18,14,10,10,73,77,80,79,82,84,95,66,65,82,16,8,18,14,10,10,73,77,80,79,
-    82,84,95,66,65,90,16,9,66,28,10,24,99,111,109,46,103,111,111,103,108,101,
-    46,112,114,111,116,111,98,117,102,46,116,101,115,116,72,1,
-  };
-  NSArray* dependencies = [NSArray arrayWithObjects:nil];
-  
-  NSData* data = [NSData dataWithBytes:descriptorData length:185];
-  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
-  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
@@ -95,26 +55,6 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
     default: return nil;
   }
 }
-- (PBEnumValueDescriptor*) valueDescriptor {
-  return [[ImportEnum descriptor].values objectAtIndex:index];
-}
-- (PBEnumDescriptor*) descriptor {
-  return [ImportEnum descriptor];
-}
-+ (PBEnumDescriptor*) descriptor {
-  return [[UnittestImportRoot descriptor].enumTypes objectAtIndex:0];
-}
-+ (ImportEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [ImportEnum descriptor]) {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-  }
-  ImportEnum* VALUES[] = {
-    [ImportEnum IMPORT_FOO],
-    [ImportEnum IMPORT_BAR],
-    [ImportEnum IMPORT_BAZ],
-  };
-  return VALUES[desc.index];
-}
 @end
 
 @interface ImportMessage ()
@@ -124,10 +64,10 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 @implementation ImportMessage
 
 - (BOOL) hasD {
-  return hasD != 0;
+  return hasD;
 }
 - (void) setHasD:(BOOL) hasD_ {
-  hasD = (hasD_ != 0);
+  hasD = hasD_;
 }
 @synthesize d;
 - (void) dealloc {
@@ -150,15 +90,6 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 - (ImportMessage*) defaultInstance {
   return defaultImportMessageInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [ImportMessage descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestImportRoot internal_static_protobuf_unittest_import_ImportMessage_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestImportRoot internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -205,7 +136,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return [[[ImportMessage_Builder alloc] init] autorelease];
 }
 + (ImportMessage_Builder*) builderWithPrototype:(ImportMessage*) prototype {
-  return [[ImportMessage builder] mergeFromImportMessage:prototype];
+  return [[ImportMessage builder] mergeFrom:prototype];
 }
 - (ImportMessage_Builder*) builder {
   return [ImportMessage builder];
@@ -228,7 +159,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   }
   return self;
 }
-- (ImportMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (ImportMessage_Builder*) clear {
@@ -238,16 +169,11 @@ static ImportMessage* defaultImportMessageInstance = nil;
 - (ImportMessage_Builder*) clone {
   return [ImportMessage builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [ImportMessage descriptor];
-}
 - (ImportMessage*) defaultInstance {
   return [ImportMessage defaultInstance];
 }
 - (ImportMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (ImportMessage*) buildPartial {
@@ -255,16 +181,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (ImportMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[ImportMessage class]]) {
-    return [self mergeFromImportMessage:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other {
+- (ImportMessage_Builder*) mergeFrom:(ImportMessage*) other {
   if (other == [ImportMessage defaultInstance]) {
     return self;
   }
@@ -316,3 +233,4 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return self;
 }
 @end
+

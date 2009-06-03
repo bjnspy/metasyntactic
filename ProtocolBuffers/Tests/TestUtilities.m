@@ -152,32 +152,32 @@
 
     // -----------------------------------------------------------------
 
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedInt64Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedUint32Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedUint64Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedSint32Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedSint64Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedFixed32Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedFixed64Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedSfixed32Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedSfixed64Extension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedFloatExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedDoubleExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedBoolExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedStringExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedBytesExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedInt64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedUint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedUint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSfixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSfixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFloatExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedDoubleExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedBoolExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedStringExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedBytesExtension]] count], @"");
 
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedGroupExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedNestedMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedForeignMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedImportMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedNestedEnumExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedForeignEnumExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedImportEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedGroupExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedNestedEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedForeignEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedImportEnumExtension]] count], @"");
 
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedStringPieceExtension]] count], @"");
-    STAssertTrue(2 == [[message getRepeatedExtension:[UnittestRoot repeatedCordExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedStringPieceExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedCordExtension]] count], @"");
 
     STAssertTrue(201 == [[[message getExtension:[UnittestRoot repeatedInt32Extension]] objectAtIndex:0] intValue], @"");;
     STAssertTrue(202L == [[[message getExtension:[UnittestRoot repeatedInt64Extension]] objectAtIndex:0] intValue], @"");;
@@ -859,7 +859,7 @@
  * Register all of {@code TestAllExtensions}' extensions with the
  * given {@link ExtensionRegistry}.
  */
-+ (void) registerAllExtensions:(PBExtensionRegistry*) registry {
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
     [registry addExtension:[UnittestRoot optionalInt32Extension]];
     [registry addExtension:[UnittestRoot optionalInt64Extension]];
     [registry addExtension:[UnittestRoot optionalUint32Extension]];
@@ -938,7 +938,7 @@
  * extensions of {@code TestAllExtensions}.
  */
 + (PBExtensionRegistry*) extensionRegistry {
-    PBExtensionRegistry* registry = [PBExtensionRegistry registry];
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
     return registry;
 }

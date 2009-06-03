@@ -2,11 +2,7 @@
 
 #import "ProtocolBuffers.h"
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class RawMessageSet;
 @class RawMessageSet_Builder;
@@ -23,16 +19,12 @@
 
 @interface UnittestMsetRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface TestMessageSet : PBExtendableMessage {
-  @private
+ @private
 }
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMessageSet*) defaultInstance;
 - (TestMessageSet*) defaultInstance;
 
@@ -50,12 +42,11 @@
 + (TestMessageSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestMessageSet_Builder : PBExtendableBuilder {
-  @private
+@interface TestMessageSet_Builder : PBExtendableMessage_Builder {
+ @private
   TestMessageSet* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMessageSet*) defaultInstance;
 
 - (TestMessageSet_Builder*) clear;
@@ -64,22 +55,19 @@
 - (TestMessageSet*) build;
 - (TestMessageSet*) buildPartial;
 
-- (TestMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMessageSet_Builder*) mergeFromTestMessageSet:(TestMessageSet*) other;
+- (TestMessageSet_Builder*) mergeFrom:(TestMessageSet*) other;
 - (TestMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface TestMessageSetContainer : PBGeneratedMessage {
-  @private
-  BOOL hasMessageSet:1;
+ @private
+  BOOL hasMessageSet;
   TestMessageSet* messageSet;
 }
 - (BOOL) hasMessageSet;
-@property (retain, readonly) TestMessageSet* messageSet;
+@property (readonly, retain) TestMessageSet* messageSet;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMessageSetContainer*) defaultInstance;
 - (TestMessageSetContainer*) defaultInstance;
 
@@ -98,11 +86,10 @@
 @end
 
 @interface TestMessageSetContainer_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestMessageSetContainer* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMessageSetContainer*) defaultInstance;
 
 - (TestMessageSetContainer_Builder*) clear;
@@ -111,8 +98,7 @@
 - (TestMessageSetContainer*) build;
 - (TestMessageSetContainer*) buildPartial;
 
-- (TestMessageSetContainer_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMessageSetContainer_Builder*) mergeFromTestMessageSetContainer:(TestMessageSetContainer*) other;
+- (TestMessageSetContainer_Builder*) mergeFrom:(TestMessageSetContainer*) other;
 - (TestMessageSetContainer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMessageSetContainer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -125,19 +111,17 @@
 @end
 
 @interface TestMessageSetExtension1 : PBGeneratedMessage {
-  @private
-  BOOL hasI:1;
+ @private
+  BOOL hasI;
   int32_t i;
 }
 - (BOOL) hasI;
 @property (readonly) int32_t i;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMessageSetExtension1*) defaultInstance;
 - (TestMessageSetExtension1*) defaultInstance;
 
-+ (PBGeneratedExtension*) messageSetExtension;
++ (id<PBExtensionField>) messageSetExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (TestMessageSetExtension1_Builder*) builder;
@@ -153,11 +137,10 @@
 @end
 
 @interface TestMessageSetExtension1_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestMessageSetExtension1* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMessageSetExtension1*) defaultInstance;
 
 - (TestMessageSetExtension1_Builder*) clear;
@@ -166,8 +149,7 @@
 - (TestMessageSetExtension1*) build;
 - (TestMessageSetExtension1*) buildPartial;
 
-- (TestMessageSetExtension1_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMessageSetExtension1_Builder*) mergeFromTestMessageSetExtension1:(TestMessageSetExtension1*) other;
+- (TestMessageSetExtension1_Builder*) mergeFrom:(TestMessageSetExtension1*) other;
 - (TestMessageSetExtension1_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMessageSetExtension1_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -178,19 +160,17 @@
 @end
 
 @interface TestMessageSetExtension2 : PBGeneratedMessage {
-  @private
-  BOOL hasStr:1;
+ @private
+  BOOL hasStr;
   NSString* str;
 }
 - (BOOL) hasStr;
-@property (retain, readonly) NSString* str;
+@property (readonly, retain) NSString* str;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TestMessageSetExtension2*) defaultInstance;
 - (TestMessageSetExtension2*) defaultInstance;
 
-+ (PBGeneratedExtension*) messageSetExtension;
++ (id<PBExtensionField>) messageSetExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (TestMessageSetExtension2_Builder*) builder;
@@ -206,11 +186,10 @@
 @end
 
 @interface TestMessageSetExtension2_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   TestMessageSetExtension2* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TestMessageSetExtension2*) defaultInstance;
 
 - (TestMessageSetExtension2_Builder*) clear;
@@ -219,8 +198,7 @@
 - (TestMessageSetExtension2*) build;
 - (TestMessageSetExtension2*) buildPartial;
 
-- (TestMessageSetExtension2_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TestMessageSetExtension2_Builder*) mergeFromTestMessageSetExtension2:(TestMessageSetExtension2*) other;
+- (TestMessageSetExtension2_Builder*) mergeFrom:(TestMessageSetExtension2*) other;
 - (TestMessageSetExtension2_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TestMessageSetExtension2_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -231,14 +209,12 @@
 @end
 
 @interface RawMessageSet : PBGeneratedMessage {
-  @private
+ @private
   NSMutableArray* mutableItemList;
 }
 - (NSArray*) itemList;
 - (RawMessageSet_Item*) itemAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (RawMessageSet*) defaultInstance;
 - (RawMessageSet*) defaultInstance;
 
@@ -257,19 +233,17 @@
 @end
 
 @interface RawMessageSet_Item : PBGeneratedMessage {
-  @private
-  BOOL hasTypeId:1;
-  BOOL hasMessage:1;
+ @private
+  BOOL hasTypeId;
+  BOOL hasMessage;
   int32_t typeId;
   NSData* message;
 }
 - (BOOL) hasTypeId;
 - (BOOL) hasMessage;
 @property (readonly) int32_t typeId;
-@property (retain, readonly) NSData* message;
+@property (readonly, retain) NSData* message;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (RawMessageSet_Item*) defaultInstance;
 - (RawMessageSet_Item*) defaultInstance;
 
@@ -288,11 +262,10 @@
 @end
 
 @interface RawMessageSet_Item_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   RawMessageSet_Item* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (RawMessageSet_Item*) defaultInstance;
 
 - (RawMessageSet_Item_Builder*) clear;
@@ -301,8 +274,7 @@
 - (RawMessageSet_Item*) build;
 - (RawMessageSet_Item*) buildPartial;
 
-- (RawMessageSet_Item_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (RawMessageSet_Item_Builder*) mergeFromRawMessageSet_Item:(RawMessageSet_Item*) other;
+- (RawMessageSet_Item_Builder*) mergeFrom:(RawMessageSet_Item*) other;
 - (RawMessageSet_Item_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (RawMessageSet_Item_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -318,11 +290,10 @@
 @end
 
 @interface RawMessageSet_Builder : PBGeneratedMessage_Builder {
-  @private
+ @private
   RawMessageSet* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (RawMessageSet*) defaultInstance;
 
 - (RawMessageSet_Builder*) clear;
@@ -331,8 +302,7 @@
 - (RawMessageSet*) build;
 - (RawMessageSet*) buildPartial;
 
-- (RawMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (RawMessageSet_Builder*) mergeFromRawMessageSet:(RawMessageSet*) other;
+- (RawMessageSet_Builder*) mergeFrom:(RawMessageSet*) other;
 - (RawMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (RawMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -343,3 +313,4 @@
 - (RawMessageSet_Builder*) addAllItem:(NSArray*) values;
 - (RawMessageSet_Builder*) clearItemList;
 @end
+

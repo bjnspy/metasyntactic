@@ -3,155 +3,9 @@
 #import "UnittestMset.pb.h"
 
 @implementation UnittestMsetRoot
-static PBFileDescriptor* descriptor = nil;
-static PBDescriptor* internal_static_protobuf_unittest_TestMessageSet_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMessageSet_descriptor {
-  return internal_static_protobuf_unittest_TestMessageSet_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestMessageSetContainer_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMessageSetContainer_descriptor {
-  return internal_static_protobuf_unittest_TestMessageSetContainer_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor {
-  return internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor {
-  return internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable {
-  return internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_RawMessageSet_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_RawMessageSet_descriptor {
-  return internal_static_protobuf_unittest_RawMessageSet_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable {
-  return internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_protobuf_unittest_RawMessageSet_Item_descriptor = nil;
-static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_protobuf_unittest_RawMessageSet_Item_descriptor {
-  return internal_static_protobuf_unittest_RawMessageSet_Item_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable {
-  return internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable;
-}
 + (void) initialize {
   if (self == [UnittestMsetRoot class]) {
-    descriptor = [[UnittestMsetRoot buildDescriptor] retain];
-    internal_static_protobuf_unittest_TestMessageSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
-      internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSet_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMessageSet class]
-                                      builderClass:[TestMessageSet_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestMessageSetContainer_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"MessageSet", nil];
-      internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetContainer_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMessageSetContainer class]
-                                      builderClass:[TestMessageSetContainer_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"I", nil];
-      internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMessageSetExtension1 class]
-                                      builderClass:[TestMessageSetExtension1_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Str", nil];
-      internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TestMessageSetExtension2 class]
-                                      builderClass:[TestMessageSetExtension2_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_RawMessageSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Item", nil];
-      internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RawMessageSet_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[RawMessageSet class]
-                                      builderClass:[RawMessageSet_Builder class]] retain];
-    }
-    internal_static_protobuf_unittest_RawMessageSet_Item_descriptor = [[[internal_static_protobuf_unittest_RawMessageSet_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"TypeId", @"Message", nil];
-      internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable = 
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RawMessageSet_Item_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[RawMessageSet_Item class]
-                                      builderClass:[RawMessageSet_Item_Builder class]] retain];
-    }
   }
-}
-+ (PBFileDescriptor*) descriptor {
-  return descriptor;
-}
-+ (PBFileDescriptor*) buildDescriptor {
-  static uint8_t descriptorData[] = {
-    10,35,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
-    110,105,116,116,101,115,116,95,109,115,101,116,46,112,114,111,116,111,18,
-    17,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,34,
-    30,10,14,84,101,115,116,77,101,115,115,97,103,101,83,101,116,42,8,8,4,16,
-    128,128,128,128,2,58,2,8,1,34,81,10,23,84,101,115,116,77,101,115,115,97,
-    103,101,83,101,116,67,111,110,116,97,105,110,101,114,18,54,10,11,109,101,
-    115,115,97,103,101,95,115,101,116,24,1,32,1,40,11,50,33,46,112,114,111,
-    116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,
-    77,101,115,115,97,103,101,83,101,116,34,150,1,10,24,84,101,115,116,77,101,
-    115,115,97,103,101,83,101,116,69,120,116,101,110,115,105,111,110,49,18,
-    9,10,1,105,24,15,32,1,40,5,50,111,10,21,109,101,115,115,97,103,101,95,115,
-    101,116,95,101,120,116,101,110,115,105,111,110,18,33,46,112,114,111,116,
-    111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,77,
-    101,115,115,97,103,101,83,101,116,24,176,166,94,32,1,40,11,50,43,46,112,
-    114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,
-    115,116,77,101,115,115,97,103,101,83,101,116,69,120,116,101,110,115,105,
-    111,110,49,34,152,1,10,24,84,101,115,116,77,101,115,115,97,103,101,83,101,
-    116,69,120,116,101,110,115,105,111,110,50,18,11,10,3,115,116,114,24,25,
-    32,1,40,9,50,111,10,21,109,101,115,115,97,103,101,95,115,101,116,95,101,
-    120,116,101,110,115,105,111,110,18,33,46,112,114,111,116,111,98,117,102,
-    95,117,110,105,116,116,101,115,116,46,84,101,115,116,77,101,115,115,97,
-    103,101,83,101,116,24,249,187,94,32,1,40,11,50,43,46,112,114,111,116,111,
-    98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,77,101,
-    115,115,97,103,101,83,101,116,69,120,116,101,110,115,105,111,110,50,34,
-    110,10,13,82,97,119,77,101,115,115,97,103,101,83,101,116,18,51,10,4,105,
-    116,101,109,24,1,32,3,40,10,50,37,46,112,114,111,116,111,98,117,102,95,
-    117,110,105,116,116,101,115,116,46,82,97,119,77,101,115,115,97,103,101,
-    83,101,116,46,73,116,101,109,26,40,10,4,73,116,101,109,18,15,10,7,116,121,
-    112,101,95,105,100,24,2,32,2,40,5,18,15,10,7,109,101,115,115,97,103,101,
-    24,3,32,2,40,12,66,2,72,1,
-  };
-  NSArray* dependencies = [NSArray arrayWithObjects:nil];
-  
-  NSData* data = [NSData dataWithBytes:descriptorData length:595];
-  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
-  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
@@ -180,15 +34,6 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 - (TestMessageSet*) defaultInstance {
   return defaultTestMessageSetInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TestMessageSet descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSet_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
     return NO;
@@ -196,8 +41,9 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
-  [extensionWriter writeUntil:536870912 output:output];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:4
+                                        to:536870912];
   [self.unknownFields writeAsMessageSetTo:output];
 }
 - (int32_t) serializedSize {
@@ -234,7 +80,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   return [[[TestMessageSet_Builder alloc] init] autorelease];
 }
 + (TestMessageSet_Builder*) builderWithPrototype:(TestMessageSet*) prototype {
-  return [[TestMessageSet builder] mergeFromTestMessageSet:prototype];
+  return [[TestMessageSet builder] mergeFrom:prototype];
 }
 - (TestMessageSet_Builder*) builder {
   return [TestMessageSet builder];
@@ -257,7 +103,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   }
   return self;
 }
-- (TestMessageSet*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (TestMessageSet_Builder*) clear {
@@ -267,16 +113,11 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 - (TestMessageSet_Builder*) clone {
   return [TestMessageSet builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMessageSet descriptor];
-}
 - (TestMessageSet*) defaultInstance {
   return [TestMessageSet defaultInstance];
 }
 - (TestMessageSet*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMessageSet*) buildPartial {
@@ -284,16 +125,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMessageSet class]]) {
-    return [self mergeFromTestMessageSet:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMessageSet_Builder*) mergeFromTestMessageSet:(TestMessageSet*) other {
+- (TestMessageSet_Builder*) mergeFrom:(TestMessageSet*) other {
   if (other == [TestMessageSet defaultInstance]) {
     return self;
   }
@@ -330,10 +162,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 @implementation TestMessageSetContainer
 
 - (BOOL) hasMessageSet {
-  return hasMessageSet != 0;
+  return hasMessageSet;
 }
 - (void) setHasMessageSet:(BOOL) hasMessageSet_ {
-  hasMessageSet = (hasMessageSet_ != 0);
+  hasMessageSet = hasMessageSet_;
 }
 @synthesize messageSet;
 - (void) dealloc {
@@ -357,15 +189,6 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 - (TestMessageSetContainer*) defaultInstance {
   return defaultTestMessageSetContainerInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetContainer descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetContainer_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (hasMessageSet) {
@@ -417,7 +240,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return [[[TestMessageSetContainer_Builder alloc] init] autorelease];
 }
 + (TestMessageSetContainer_Builder*) builderWithPrototype:(TestMessageSetContainer*) prototype {
-  return [[TestMessageSetContainer builder] mergeFromTestMessageSetContainer:prototype];
+  return [[TestMessageSetContainer builder] mergeFrom:prototype];
 }
 - (TestMessageSetContainer_Builder*) builder {
   return [TestMessageSetContainer builder];
@@ -440,7 +263,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   }
   return self;
 }
-- (TestMessageSetContainer*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestMessageSetContainer_Builder*) clear {
@@ -450,16 +273,11 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 - (TestMessageSetContainer_Builder*) clone {
   return [TestMessageSetContainer builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetContainer descriptor];
-}
 - (TestMessageSetContainer*) defaultInstance {
   return [TestMessageSetContainer defaultInstance];
 }
 - (TestMessageSetContainer*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMessageSetContainer*) buildPartial {
@@ -467,16 +285,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMessageSetContainer_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMessageSetContainer class]]) {
-    return [self mergeFromTestMessageSetContainer:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMessageSetContainer_Builder*) mergeFromTestMessageSetContainer:(TestMessageSetContainer*) other {
+- (TestMessageSetContainer_Builder*) mergeFrom:(TestMessageSetContainer*) other {
   if (other == [TestMessageSetContainer defaultInstance]) {
     return self;
   }
@@ -507,7 +316,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
       case 10: {
         TestMessageSet_Builder* subBuilder = [TestMessageSet builder];
         if (self.hasMessageSet) {
-          [subBuilder mergeFromTestMessageSet:self.messageSet];
+          [subBuilder mergeFrom:self.messageSet];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setMessageSet:[subBuilder buildPartial]];
@@ -534,7 +343,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   if (result.hasMessageSet &&
       result.messageSet != [TestMessageSet defaultInstance]) {
     result.messageSet =
-      [[[TestMessageSet builderWithPrototype:result.messageSet] mergeFromTestMessageSet:value] buildPartial];
+      [[[TestMessageSet builderWithPrototype:result.messageSet] mergeFrom:value] buildPartial];
   } else {
     result.messageSet = value;
   }
@@ -555,10 +364,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 @implementation TestMessageSetExtension1
 
 - (BOOL) hasI {
-  return hasI != 0;
+  return hasI;
 }
 - (void) setHasI:(BOOL) hasI_ {
-  hasI = (hasI_ != 0);
+  hasI = hasI_;
 }
 @synthesize i;
 - (void) dealloc {
@@ -570,16 +379,14 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   }
   return self;
 }
-static PBGeneratedExtension* TestMessageSetExtension1_messageSetExtension = nil;
-+ (PBGeneratedExtension*) messageSetExtension {
+static id<PBExtensionField> TestMessageSetExtension1_messageSetExtension = nil;
++ (id<PBExtensionField>) messageSetExtension {
   return TestMessageSetExtension1_messageSetExtension;
 }
 static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension1 class]) {
     defaultTestMessageSetExtension1Instance = [[TestMessageSetExtension1 alloc] init];
-     TestMessageSetExtension1_messageSetExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
-                                                       type:[TestMessageSetExtension1 class]] retain];
   }
 }
 + (TestMessageSetExtension1*) defaultInstance {
@@ -587,15 +394,6 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 }
 - (TestMessageSetExtension1*) defaultInstance {
   return defaultTestMessageSetExtension1Instance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetExtension1 descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -642,7 +440,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return [[[TestMessageSetExtension1_Builder alloc] init] autorelease];
 }
 + (TestMessageSetExtension1_Builder*) builderWithPrototype:(TestMessageSetExtension1*) prototype {
-  return [[TestMessageSetExtension1 builder] mergeFromTestMessageSetExtension1:prototype];
+  return [[TestMessageSetExtension1 builder] mergeFrom:prototype];
 }
 - (TestMessageSetExtension1_Builder*) builder {
   return [TestMessageSetExtension1 builder];
@@ -665,7 +463,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   }
   return self;
 }
-- (TestMessageSetExtension1*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestMessageSetExtension1_Builder*) clear {
@@ -675,16 +473,11 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 - (TestMessageSetExtension1_Builder*) clone {
   return [TestMessageSetExtension1 builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetExtension1 descriptor];
-}
 - (TestMessageSetExtension1*) defaultInstance {
   return [TestMessageSetExtension1 defaultInstance];
 }
 - (TestMessageSetExtension1*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMessageSetExtension1*) buildPartial {
@@ -692,16 +485,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMessageSetExtension1_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMessageSetExtension1 class]]) {
-    return [self mergeFromTestMessageSetExtension1:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMessageSetExtension1_Builder*) mergeFromTestMessageSetExtension1:(TestMessageSetExtension1*) other {
+- (TestMessageSetExtension1_Builder*) mergeFrom:(TestMessageSetExtension1*) other {
   if (other == [TestMessageSetExtension1 defaultInstance]) {
     return self;
   }
@@ -761,10 +545,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 @implementation TestMessageSetExtension2
 
 - (BOOL) hasStr {
-  return hasStr != 0;
+  return hasStr;
 }
 - (void) setHasStr:(BOOL) hasStr_ {
-  hasStr = (hasStr_ != 0);
+  hasStr = hasStr_;
 }
 @synthesize str;
 - (void) dealloc {
@@ -777,16 +561,14 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   }
   return self;
 }
-static PBGeneratedExtension* TestMessageSetExtension2_messageSetExtension = nil;
-+ (PBGeneratedExtension*) messageSetExtension {
+static id<PBExtensionField> TestMessageSetExtension2_messageSetExtension = nil;
++ (id<PBExtensionField>) messageSetExtension {
   return TestMessageSetExtension2_messageSetExtension;
 }
 static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension2 class]) {
     defaultTestMessageSetExtension2Instance = [[TestMessageSetExtension2 alloc] init];
-     TestMessageSetExtension2_messageSetExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
-                                                       type:[TestMessageSetExtension2 class]] retain];
   }
 }
 + (TestMessageSetExtension2*) defaultInstance {
@@ -794,15 +576,6 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 }
 - (TestMessageSetExtension2*) defaultInstance {
   return defaultTestMessageSetExtension2Instance;
-}
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetExtension2 descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -849,7 +622,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   return [[[TestMessageSetExtension2_Builder alloc] init] autorelease];
 }
 + (TestMessageSetExtension2_Builder*) builderWithPrototype:(TestMessageSetExtension2*) prototype {
-  return [[TestMessageSetExtension2 builder] mergeFromTestMessageSetExtension2:prototype];
+  return [[TestMessageSetExtension2 builder] mergeFrom:prototype];
 }
 - (TestMessageSetExtension2_Builder*) builder {
   return [TestMessageSetExtension2 builder];
@@ -872,7 +645,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   }
   return self;
 }
-- (TestMessageSetExtension2*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (TestMessageSetExtension2_Builder*) clear {
@@ -882,16 +655,11 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 - (TestMessageSetExtension2_Builder*) clone {
   return [TestMessageSetExtension2 builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TestMessageSetExtension2 descriptor];
-}
 - (TestMessageSetExtension2*) defaultInstance {
   return [TestMessageSetExtension2 defaultInstance];
 }
 - (TestMessageSetExtension2*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TestMessageSetExtension2*) buildPartial {
@@ -899,16 +667,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TestMessageSetExtension2_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TestMessageSetExtension2 class]]) {
-    return [self mergeFromTestMessageSetExtension2:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TestMessageSetExtension2_Builder*) mergeFromTestMessageSetExtension2:(TestMessageSetExtension2*) other {
+- (TestMessageSetExtension2_Builder*) mergeFrom:(TestMessageSetExtension2*) other {
   if (other == [TestMessageSetExtension2 defaultInstance]) {
     return self;
   }
@@ -989,15 +748,6 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 - (RawMessageSet*) defaultInstance {
   return defaultRawMessageSetInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [RawMessageSet descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable];
-}
 - (NSArray*) itemList {
   return mutableItemList;
 }
@@ -1055,7 +805,7 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
   return [[[RawMessageSet_Builder alloc] init] autorelease];
 }
 + (RawMessageSet_Builder*) builderWithPrototype:(RawMessageSet*) prototype {
-  return [[RawMessageSet builder] mergeFromRawMessageSet:prototype];
+  return [[RawMessageSet builder] mergeFrom:prototype];
 }
 - (RawMessageSet_Builder*) builder {
   return [RawMessageSet builder];
@@ -1070,17 +820,17 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 @implementation RawMessageSet_Item
 
 - (BOOL) hasTypeId {
-  return hasTypeId != 0;
+  return hasTypeId;
 }
 - (void) setHasTypeId:(BOOL) hasTypeId_ {
-  hasTypeId = (hasTypeId_ != 0);
+  hasTypeId = hasTypeId_;
 }
 @synthesize typeId;
 - (BOOL) hasMessage {
-  return hasMessage != 0;
+  return hasMessage;
 }
 - (void) setHasMessage:(BOOL) hasMessage_ {
-  hasMessage = (hasMessage_ != 0);
+  hasMessage = hasMessage_;
 }
 @synthesize message;
 - (void) dealloc {
@@ -1105,15 +855,6 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 }
 - (RawMessageSet_Item*) defaultInstance {
   return defaultRawMessageSet_ItemInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [RawMessageSet_Item descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_Item_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!hasTypeId) {
@@ -1172,7 +913,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [[[RawMessageSet_Item_Builder alloc] init] autorelease];
 }
 + (RawMessageSet_Item_Builder*) builderWithPrototype:(RawMessageSet_Item*) prototype {
-  return [[RawMessageSet_Item builder] mergeFromRawMessageSet_Item:prototype];
+  return [[RawMessageSet_Item builder] mergeFrom:prototype];
 }
 - (RawMessageSet_Item_Builder*) builder {
   return [RawMessageSet_Item builder];
@@ -1195,7 +936,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   }
   return self;
 }
-- (RawMessageSet_Item*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (RawMessageSet_Item_Builder*) clear {
@@ -1205,16 +946,11 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Item_Builder*) clone {
   return [RawMessageSet_Item builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [RawMessageSet_Item descriptor];
-}
 - (RawMessageSet_Item*) defaultInstance {
   return [RawMessageSet_Item defaultInstance];
 }
 - (RawMessageSet_Item*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (RawMessageSet_Item*) buildPartial {
@@ -1222,16 +958,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (RawMessageSet_Item_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[RawMessageSet_Item class]]) {
-    return [self mergeFromRawMessageSet_Item:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (RawMessageSet_Item_Builder*) mergeFromRawMessageSet_Item:(RawMessageSet_Item*) other {
+- (RawMessageSet_Item_Builder*) mergeFrom:(RawMessageSet_Item*) other {
   if (other == [RawMessageSet_Item defaultInstance]) {
     return self;
   }
@@ -1323,7 +1050,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   }
   return self;
 }
-- (RawMessageSet*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (RawMessageSet_Builder*) clear {
@@ -1333,16 +1060,11 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Builder*) clone {
   return [RawMessageSet builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [RawMessageSet descriptor];
-}
 - (RawMessageSet*) defaultInstance {
   return [RawMessageSet defaultInstance];
 }
 - (RawMessageSet*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (RawMessageSet*) buildPartial {
@@ -1350,16 +1072,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (RawMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[RawMessageSet class]]) {
-    return [self mergeFromRawMessageSet:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (RawMessageSet_Builder*) mergeFromRawMessageSet:(RawMessageSet*) other {
+- (RawMessageSet_Builder*) mergeFrom:(RawMessageSet*) other {
   if (other == [RawMessageSet defaultInstance]) {
     return self;
   }
@@ -1429,3 +1142,4 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return self;
 }
 @end
+
