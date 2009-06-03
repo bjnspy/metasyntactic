@@ -128,7 +128,7 @@
   if (!visible) {
     return;
   }
-  
+
 #ifdef IPHONE_OS_VERSION_3
   [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 #else
