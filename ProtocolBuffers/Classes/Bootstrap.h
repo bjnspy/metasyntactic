@@ -16,8 +16,8 @@
 
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
-#import "ExtendableBuilder.h"
 #import "ExtendableMessage.h"
+#import "ExtendableMessage_Builder.h"
 #import "ExtensionRegistry.h"
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"

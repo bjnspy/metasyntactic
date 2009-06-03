@@ -51,7 +51,7 @@
  *
  * <p>See also {@link ExtendableMessage}.
  */
-@interface PBExtendableBuilder : PBGeneratedMessage_Builder {
+@interface PBExtendableMessage_Builder : PBGeneratedMessage_Builder {
 }
 
 #if 0
