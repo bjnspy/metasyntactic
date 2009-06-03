@@ -41,7 +41,7 @@
 }
 
 
-- (int32_t) serializedSize { 
+- (int32_t) serializedSize {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

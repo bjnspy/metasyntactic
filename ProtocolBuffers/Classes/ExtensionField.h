@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol PBExtensionField 
+@protocol PBExtensionField
 - (int32_t) fieldNumber;
 - (int32_t) wireType;
 - (BOOL) isRepeated;
- 
+
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry

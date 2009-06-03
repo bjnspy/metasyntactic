@@ -34,7 +34,7 @@
   if ((self = [super initWithClassMap:mutableClassMap_])) {
     self.mutableClassMap = mutableClassMap_;
   }
-  
+
   return self;
 }
 
@@ -48,16 +48,16 @@
   if (extension == nil) {
     return;
   }
-  
+
   Class extendedClass = [extension extendedClass];
   id key = [self keyForClass:extendedClass];
-  
+
   NSMutableDictionary* extensionMap = [classMap objectForKey:key];
   if (extensionMap == nil) {
     extensionMap = [NSMutableDictionary dictionary];
     [mutableClassMap setObject:extensionMap forKey:key];
   }
-  
+
   [extensionMap setObject:extension
                    forKey:[NSNumber numberWithInteger:[extension fieldNumber]]];
 }

@@ -32,21 +32,21 @@
   int32_t bufferPos;
   NSInputStream* input;
   int32_t lastTag;
-  
+
   /**
    * The total number of bytes read before the current buffer.  The total
    * bytes read up to the current position can be computed as
    * {@code totalBytesRetired + bufferPos}.
    */
   int32_t totalBytesRetired;
-  
+
   /** The absolute position of the end of the current message. */
   int32_t currentLimit;
-  
+
   /** See setRecursionLimit() */
   int32_t recursionDepth;
   int32_t recursionLimit;
-  
+
   /** See setSizeLimit() */
   int32_t sizeLimit;
 }

@@ -38,7 +38,7 @@
   } else if ([object conformsToProtocol:@protocol(PBMessage)]) {
     return [object isInitialized];
   }
-  
+
   return YES;
 }
 
@@ -54,7 +54,7 @@
   if (value != nil) {
     return value;
   }
-  
+
   return [extension defaultValue];
 }
 
@@ -63,7 +63,7 @@
   if ([extension extendedClass] != [self class]) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Trying to use an extension for another type" userInfo:nil];
   }
-  
+
   if (extensionRegistry == nil) {
     self.extensionRegistry = [NSMutableDictionary dictionary];
   }
@@ -90,7 +90,7 @@
     id value = [extensionMap objectForKey:number];
     size += [extension computeSerializedSizeIncludingTag:value];
   }
-  
+
   return size;
 }
 

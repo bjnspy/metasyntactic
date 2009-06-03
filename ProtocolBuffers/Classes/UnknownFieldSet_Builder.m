@@ -38,7 +38,7 @@
   self.fields = nil;
   self.lastFieldNumber = 0;
   self.lastField = nil;
-  
+
   [super dealloc];
 }
 
@@ -120,7 +120,7 @@
   if (number == 0) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
   }
-  
+
   return number == lastFieldNumber || ([fields objectForKey:[NSNumber numberWithInt:number]] != nil);
 }
 
@@ -141,7 +141,7 @@
     // We'd rather reuse the one passed to us, so call addField() instead.
     [self addField:field forNumber:number];
   }
-  
+
   return self;
 }
 
@@ -174,7 +174,7 @@
   if (number == 0) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Zero is not a valid field number." userInfo:nil];
   }
-  
+
   [[self getFieldBuilder:number] addVarint:value];
   return self;
 }
