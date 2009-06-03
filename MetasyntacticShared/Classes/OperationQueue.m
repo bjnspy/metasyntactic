@@ -32,7 +32,7 @@ static OperationQueue* operationQueue = nil;
 
 + (void) initialize {
   if (self == [OperationQueue class]) {
-    operationQueue = [[Operation alloc] init];
+    operationQueue = [[OperationQueue alloc] init];
   }
 }
 
