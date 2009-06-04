@@ -51,7 +51,7 @@
             selectors:(NSArray*) selectors_
                titles:(NSArray*) titles_
             arguments:(NSArray*) arguments_ {
-    if (self = [super initWithFrame:CGRectZero]) {
+    if ((self = [super initWithFrame:CGRectZero])) {
         self.target = target_;
         self.selectors = selectors_;
         self.titles = titles_;

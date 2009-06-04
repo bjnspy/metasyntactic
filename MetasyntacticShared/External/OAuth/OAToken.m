@@ -51,7 +51,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.key = @"";
         self.secret = @"";
     }
@@ -62,7 +62,7 @@
 
 - (id) initWithKey:(NSString*) key_
             secret:(NSString*) secret_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.key = key_;
         self.secret = secret_;
     }
@@ -72,7 +72,7 @@
 
 
 - (id) initWithHTTPResponseBody:(NSString*) body {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         NSArray* pairs = [body componentsSeparatedByString:@"&"];
         NSMutableDictionary* map = [NSMutableDictionary dictionary];
 

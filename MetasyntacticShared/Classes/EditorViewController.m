@@ -35,7 +35,7 @@
 
 - (id) initWithObject:(id) object__
              selector:(SEL) selector__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.object = object__;
         self.selector = selector__;
     }

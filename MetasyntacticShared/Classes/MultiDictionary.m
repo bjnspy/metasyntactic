@@ -29,7 +29,7 @@
 
 
 - (id) initWithDictionary:(NSDictionary*) dictionary__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.dictionary = dictionary__;
     }
 
@@ -43,7 +43,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.dictionary = [NSDictionary dictionary];
     }
 

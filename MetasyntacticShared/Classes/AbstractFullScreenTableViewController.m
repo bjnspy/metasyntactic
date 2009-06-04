@@ -20,7 +20,7 @@
 @implementation AbstractFullScreenTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
-    if (self = [super initWithStyle:style]) {
+    if ((self = [super initWithStyle:style])) {
     }
     return self;
 }

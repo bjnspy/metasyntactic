@@ -39,7 +39,7 @@
              message:(NSString*) message
          placeHolder:(NSString*) placeHolder
                 type:(UIKeyboardType) type {
-    if (self = [super initWithObject:object_ selector:selector_]) {
+    if ((self = [super initWithObject:object_ selector:selector_])) {
         self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
         textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 

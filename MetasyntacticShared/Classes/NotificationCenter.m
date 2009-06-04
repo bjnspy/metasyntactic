@@ -97,7 +97,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.notifications = [NSMutableArray array];
 
         self.notificationLabel = [[[UILabel alloc] init] autorelease];

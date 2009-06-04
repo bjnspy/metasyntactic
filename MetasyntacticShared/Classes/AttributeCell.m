@@ -66,8 +66,8 @@
 
     return self;
 #else
-    if (self = [super initWithStyle:UITableViewCellStyleValue2
-                    reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithStyle:UITableViewCellStyleValue2
+                    reuseIdentifier:reuseIdentifier])) {
     }
     return self;
 #endif

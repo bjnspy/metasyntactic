@@ -40,7 +40,7 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.requestId = requestId_;
     self.value = value_;
     self.lowercaseValue = [[StringUtilities asciiString:value_] lowercaseString];

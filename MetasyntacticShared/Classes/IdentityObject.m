@@ -30,7 +30,7 @@
 
 
 - (id) initWithValue:(id) value__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.value = value__;
     }
 

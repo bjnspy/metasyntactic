@@ -53,7 +53,7 @@
             isBounded:(BOOL) isBounded_
                  gate:(id<NSLocking>) gate_
              priority:(NSOperationQueuePriority) priority_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.target = target_;
         self.selector = selector_;
         self.operationQueue = operationQueue_;

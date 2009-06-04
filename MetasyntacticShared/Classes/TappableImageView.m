@@ -27,7 +27,7 @@
 }
 
 - (id) initWithImage:(UIImage*) image {
-    if (self = [super initWithImage:image]) {
+    if ((self = [super initWithImage:image])) {
         self.userInteractionEnabled = YES;
     }
 

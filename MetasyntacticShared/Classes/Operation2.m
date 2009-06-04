@@ -38,13 +38,13 @@
             isBounded:(BOOL) isBounded_
                  gate:(id<NSLocking>) gate_
              priority:(NSOperationQueuePriority) priority_ {
-    if (self = [super initWithTarget:target_
+    if ((self = [super initWithTarget:target_
                             selector:selector_
                             argument:argument1_
                       operationQueue:operationQueue_
                            isBounded:isBounded_
                                 gate:gate_
-                            priority:priority_]) {
+                            priority:priority_])) {
         self.argument2 = argument2_;
     }
 

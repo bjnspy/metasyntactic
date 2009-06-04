@@ -39,7 +39,7 @@
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
            withObject:(id) argument_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.target = target_;
         self.selector = selector_;
         self.argument = argument_;

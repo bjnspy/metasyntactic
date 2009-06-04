@@ -42,7 +42,7 @@
 - (id) initWithTarget:(id) target__
                action:(SEL) action__
         pulseInterval:(NSTimeInterval) pulseInterval__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.target = target__;
         self.action = action__;
         self.pulseInterval = pulseInterval__;
