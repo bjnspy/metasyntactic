@@ -4,8 +4,6 @@
 
 #import "Unittest.pb.h"
 
-@class PBExtendableMessage_Builder;
-@class PBGeneratedMessage_Builder;
 @class BarRequest;
 @class BarRequest_Builder;
 @class BarResponse;
