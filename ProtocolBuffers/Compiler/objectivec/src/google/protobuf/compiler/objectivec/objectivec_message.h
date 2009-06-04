@@ -45,7 +45,8 @@ class MessageGenerator {
   void GenerateStaticVariablesHeader(io::Printer* printer);
   void GenerateStaticVariablesInitialization(io::Printer* printer);
   void GenerateStaticVariablesSource(io::Printer* printer);
-  void GenerateHeader(io::Printer* printer);
+  void GenerateEnumHeader(io::Printer* printer);
+  void GenerateMessageHeader(io::Printer* printer);
   void GenerateSource(io::Printer* printer);
   void DetermineDependencies(set<string>* dependencies);
 

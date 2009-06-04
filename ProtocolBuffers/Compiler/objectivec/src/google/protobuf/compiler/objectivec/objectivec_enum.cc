@@ -47,17 +47,34 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       }
   }
 
-  EnumGenerator::~EnumGenerator() {}
 
-
-  void EnumGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(ClassName(descriptor_));
+  EnumGenerator::~EnumGenerator() {
   }
+
 
   void EnumGenerator::GenerateHeader(io::Printer* printer) {
     printer->Print(
+      "typedef enum {\n");
+    printer->Indent();
+    
+    for (int i = 0; i < canonical_values_.size(); i++) {
+      printer->Print(
+        "$name$ = $value$,\n",
+        "name", EnumValueName(canonical_values_[i]),
+        "value", SimpleItoa(canonical_values_[i]->number()));
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "} $classname$;\n"
+      "\n"
+      "BOOL $classname$IsValidValue($classname$ value);\n"
+      "\n",
+      "classname", ClassName(descriptor_));
+#if 0
+    printer->Print(
       "@interface $classname$ : NSObject {\n"
-      " @private\n"
+      "@private\n"
       "  int32_t index;\n"
       "  int32_t value;\n"
       "}\n"
@@ -88,10 +105,29 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "classname", ClassName(descriptor_));
 
     printer->Print("@end\n\n");
+#endif
   }
 
 
   void EnumGenerator::GenerateSource(io::Printer* printer) {
+    printer->Print(
+      "BOOL $classname$IsValidValue($classname$ value) {\n"
+      "  switch (value) {\n",
+      "classname", ClassName(descriptor_));
+
+    for (int i = 0; i < canonical_values_.size(); i++) {
+      printer->Print(
+        "    case $name$:\n",
+        "name", EnumValueName(canonical_values_[i]));
+    }
+
+    printer->Print(
+      "      return YES;\n"
+      "    default:\n"
+      "      return NO;\n"
+      "  }\n"
+      "}\n");
+#if 0
     printer->Print(
       "@interface $classname$ ()\n"
       "  @property int32_t index;\n"
@@ -191,6 +227,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  }\n"
       "}\n");
     printer->Print("@end\n\n");
+#endif
   }
 }  // namespace objectivec
 }  // namespace compiler

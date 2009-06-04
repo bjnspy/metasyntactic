@@ -37,6 +37,7 @@ namespace compiler {
 namespace objectivec {
 
 class ServiceGenerator {
+#if 0
  public:
   explicit ServiceGenerator(const ServiceDescriptor* descriptor);
   ~ServiceGenerator();
@@ -57,7 +58,7 @@ class ServiceGenerator {
   void GenerateStubSource(io::Printer* printer);
 
   const ServiceDescriptor* descriptor_;
-
+#endif
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ServiceGenerator);
 };
 

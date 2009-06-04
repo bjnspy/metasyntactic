@@ -33,6 +33,7 @@ namespace objectivec {
 // "fooBarBaz" or "FooBarBaz", respectively.
 string UnderscoresToCamelCase(const FieldDescriptor* field);
 string UnderscoresToCapitalizedCamelCase(const FieldDescriptor* field);
+string UnderscoresToCapitalizedCamelCase(const string& name);
 
 // Similar, but for method names.  (Typically, this merely has the effect
 // of lower-casing the first letter of the name.)
@@ -63,6 +64,8 @@ string FileClassName(const FileDescriptor* file);
 string ClassName(const Descriptor* descriptor);
 string ClassName(const EnumDescriptor* descriptor);
 string ClassName(const ServiceDescriptor* descriptor);
+
+string EnumValueName(const EnumValueDescriptor* descriptor);
 
 string SafeName(const string& name);
 
