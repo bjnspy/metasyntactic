@@ -45,6 +45,7 @@
       [extension mergeFromCodedInputStream:input
                              unknownFields:unknownFields
                          extensionRegistry:extensionRegistry
+                                   builder:self
                                        tag:tag];
       return YES;
     }

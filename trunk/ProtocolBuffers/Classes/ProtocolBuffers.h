@@ -18,6 +18,7 @@
 #import "AbstractMessage_Builder.h"
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
+#import "ConcreteExtensionField.h"
 #import "ExtendableMessage.h"
 #import "ExtendableMessage_Builder.h"
 #import "ExtensionField.h"

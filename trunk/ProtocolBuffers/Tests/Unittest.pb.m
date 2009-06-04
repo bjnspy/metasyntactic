@@ -75,6 +75,636 @@ static id<PBExtensionField> UnittestRoot_myExtensionString = nil;
 static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
 + (void) initialize {
   if (self == [UnittestRoot class]) {
+         UnittestRoot_optionalInt32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:1
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalInt64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:2
+                                      defaultValue:[NSNumber numberWithLongLong:0L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalUint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:3
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalUint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:4
+                                      defaultValue:[NSNumber numberWithLongLong:0L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalSint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:5
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalSint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:6
+                                      defaultValue:[NSNumber numberWithLongLong:0L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalFixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:7
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalFixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:8
+                                      defaultValue:[NSNumber numberWithLongLong:0L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalSfixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:9
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalSfixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:10
+                                      defaultValue:[NSNumber numberWithLongLong:0L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalFloatExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:11
+                                      defaultValue:[NSNumber numberWithFloat:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalDoubleExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:12
+                                      defaultValue:[NSNumber numberWithDouble:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalBoolExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:13
+                                      defaultValue:[NSNumber numberWithBool:NO]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalStringExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:14
+                                      defaultValue:@""
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalBytesExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:15
+                                      defaultValue:[NSData data]
+                         messageOrGroupOrEnumClass:[NSData class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalGroupExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeGroup
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:16
+                                      defaultValue:[OptionalGroup_extension defaultInstance]
+                         messageOrGroupOrEnumClass:[OptionalGroup_extension class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalNestedMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:18
+                                      defaultValue:[TestAllTypes_NestedMessage defaultInstance]
+                         messageOrGroupOrEnumClass:[TestAllTypes_NestedMessage class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalForeignMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:19
+                                      defaultValue:[ForeignMessage defaultInstance]
+                         messageOrGroupOrEnumClass:[ForeignMessage class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalImportMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:20
+                                      defaultValue:[ImportMessage defaultInstance]
+                         messageOrGroupOrEnumClass:[ImportMessage class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalNestedEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:21
+                                      defaultValue:[TestAllTypes_NestedEnum valueOf:1]
+                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalForeignEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:22
+                                      defaultValue:[ForeignEnum valueOf:4]
+                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalImportEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:23
+                                      defaultValue:[ImportEnum valueOf:7]
+                         messageOrGroupOrEnumClass:[ImportEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalStringPieceExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:24
+                                      defaultValue:@""
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_optionalCordExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:25
+                                      defaultValue:@""
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedInt32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:31
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedInt64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:32
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedUint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:33
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedUint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:34
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedSint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:35
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedSint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:36
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedFixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:37
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedFixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:38
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedSfixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:39
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedSfixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:40
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedFloatExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:41
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedDoubleExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:42
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedBoolExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:43
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedStringExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:44
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedBytesExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:45
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSData class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedGroupExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeGroup
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:46
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[RepeatedGroup_extension class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedNestedMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:48
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[TestAllTypes_NestedMessage class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedForeignMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:49
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[ForeignMessage class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedImportMessageExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:50
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[ImportMessage class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedNestedEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:51
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedForeignEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:52
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedImportEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:53
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[ImportEnum class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedStringPieceExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:54
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_repeatedCordExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:55
+                                      defaultValue:[NSArray array]
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultInt32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:61
+                                      defaultValue:[NSNumber numberWithInt:41]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultInt64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:62
+                                      defaultValue:[NSNumber numberWithLongLong:42L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultUint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:63
+                                      defaultValue:[NSNumber numberWithInt:43]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultUint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:64
+                                      defaultValue:[NSNumber numberWithLongLong:44L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultSint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:65
+                                      defaultValue:[NSNumber numberWithInt:-45]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultSint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:66
+                                      defaultValue:[NSNumber numberWithLongLong:46L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultFixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:67
+                                      defaultValue:[NSNumber numberWithInt:47]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultFixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:68
+                                      defaultValue:[NSNumber numberWithLongLong:48L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultSfixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:69
+                                      defaultValue:[NSNumber numberWithInt:49]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultSfixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:70
+                                      defaultValue:[NSNumber numberWithLongLong:-50L]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultFloatExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:71
+                                      defaultValue:[NSNumber numberWithFloat:51.5]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultDoubleExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:72
+                                      defaultValue:[NSNumber numberWithDouble:52000]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultBoolExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:73
+                                      defaultValue:[NSNumber numberWithBool:YES]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultStringExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:74
+                                      defaultValue:@"hello"
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultBytesExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:75
+                                      defaultValue:[NSData dataWithBytes:"world" length:5]
+                         messageOrGroupOrEnumClass:[NSData class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultNestedEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:81
+                                      defaultValue:[TestAllTypes_NestedEnum valueOf:2]
+                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultForeignEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:82
+                                      defaultValue:[ForeignEnum valueOf:5]
+                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultImportEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:83
+                                      defaultValue:[ImportEnum valueOf:8]
+                         messageOrGroupOrEnumClass:[ImportEnum class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultStringPieceExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:84
+                                      defaultValue:@"abc"
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_defaultCordExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:85
+                                      defaultValue:@"123"
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_myExtensionString =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestFieldOrderings class]
+                                       fieldNumber:50
+                                      defaultValue:@""
+                         messageOrGroupOrEnumClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+         UnittestRoot_myExtensionInt =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestFieldOrderings class]
+                                       fieldNumber:5
+                                      defaultValue:[NSNumber numberWithInt:0]
+                         messageOrGroupOrEnumClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
   }
 }
 + (id<PBExtensionField>) optionalInt32Extension {
@@ -5369,6 +5999,24 @@ static TestRequired* defaultTestRequiredInstance = nil;
 + (void) initialize {
   if (self == [TestRequired class]) {
     defaultTestRequiredInstance = [[TestRequired alloc] init];
+     TestRequired_single =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                 extendedClass:[TestAllExtensions class]
+                                   fieldNumber:1000
+                                  defaultValue:[TestRequired defaultInstance]
+                     messageOrGroupOrEnumClass:[TestRequired class]
+                                    isRepeated:false
+                                      isPacked:false
+                        isMessageSetWireFormat:false] retain];
+     TestRequired_multi =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                 extendedClass:[TestAllExtensions class]
+                                   fieldNumber:1001
+                                  defaultValue:[NSArray array]
+                     messageOrGroupOrEnumClass:[TestRequired class]
+                                    isRepeated:true
+                                      isPacked:false
+                        isMessageSetWireFormat:false] retain];
   }
 }
 + (TestRequired*) defaultInstance {

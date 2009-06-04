@@ -22,8 +22,4 @@
 @interface PBAbstractMessage_Builder : NSObject<PBMessage_Builder> {
 }
 
-/* @protected */
-- (PBUnknownFieldSet*) buildUnknownFields:(PBUnknownFieldSet_Builder*) builder;
-- (PBUnknownFieldSet_Builder*) ensureUnknownFields:(PBUnknownFieldSet_Builder*) builder;
-
 @end
