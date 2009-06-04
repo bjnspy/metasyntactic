@@ -3,9 +3,41 @@
 #import "UnittestMset.pb.h"
 
 @implementation UnittestMsetRoot
+static id<PBExtensionField> TestMessageSetExtension1_messageSetExtension = nil;
+static id<PBExtensionField> TestMessageSetExtension2_messageSetExtension = nil;
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [UnittestMsetRoot class]) {
+    TestMessageSetExtension1_messageSetExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestMessageSet class]
+                                       fieldNumber:1545008
+                                      defaultValue:[TestMessageSetExtension1 defaultInstance]
+                               messageOrGroupClass:[TestMessageSetExtension1 class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:true] retain];
+    TestMessageSetExtension2_messageSetExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestMessageSet class]
+                                       fieldNumber:1547769
+                                      defaultValue:[TestMessageSetExtension2 defaultInstance]
+                               messageOrGroupClass:[TestMessageSetExtension2 class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:true] retain];
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
+  [registry addExtension:TestMessageSetExtension1_messageSetExtension];
+  [registry addExtension:TestMessageSetExtension2_messageSetExtension];
 }
 @end
 
@@ -379,7 +411,6 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   }
   return self;
 }
-static id<PBExtensionField> TestMessageSetExtension1_messageSetExtension = nil;
 + (id<PBExtensionField>) messageSetExtension {
   return TestMessageSetExtension1_messageSetExtension;
 }
@@ -387,15 +418,6 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension1 class]) {
     defaultTestMessageSetExtension1Instance = [[TestMessageSetExtension1 alloc] init];
-     TestMessageSetExtension1_messageSetExtension =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
-                                 extendedClass:[TestMessageSet class]
-                                   fieldNumber:1545008
-                                  defaultValue:[TestMessageSetExtension1 defaultInstance]
-                           messageOrGroupClass:[TestMessageSetExtension1 class]
-                                    isRepeated:false
-                                      isPacked:false
-                        isMessageSetWireFormat:true] retain];
   }
 }
 + (TestMessageSetExtension1*) defaultInstance {
@@ -570,7 +592,6 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   }
   return self;
 }
-static id<PBExtensionField> TestMessageSetExtension2_messageSetExtension = nil;
 + (id<PBExtensionField>) messageSetExtension {
   return TestMessageSetExtension2_messageSetExtension;
 }
@@ -578,15 +599,6 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension2 class]) {
     defaultTestMessageSetExtension2Instance = [[TestMessageSetExtension2 alloc] init];
-     TestMessageSetExtension2_messageSetExtension =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
-                                 extendedClass:[TestMessageSet class]
-                                   fieldNumber:1547769
-                                  defaultValue:[TestMessageSetExtension2 defaultInstance]
-                           messageOrGroupClass:[TestMessageSetExtension2 class]
-                                    isRepeated:false
-                                      isPacked:false
-                        isMessageSetWireFormat:true] retain];
   }
 }
 + (TestMessageSetExtension2*) defaultInstance {

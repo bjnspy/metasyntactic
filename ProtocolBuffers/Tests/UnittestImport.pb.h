@@ -17,6 +17,8 @@ BOOL ImportEnumIsValidValue(ImportEnum value);
 
 @interface UnittestImportRoot : NSObject {
 }
++ (PBExtensionRegistry*) extensionRegistry;
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
 @interface ImportMessage : PBGeneratedMessage {

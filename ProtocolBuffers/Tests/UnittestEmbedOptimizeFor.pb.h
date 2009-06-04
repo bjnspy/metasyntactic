@@ -81,6 +81,8 @@
 
 @interface UnittestEmbedOptimizeForRoot : NSObject {
 }
++ (PBExtensionRegistry*) extensionRegistry;
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
 @interface TestEmbedOptimizedForSize : PBGeneratedMessage {
