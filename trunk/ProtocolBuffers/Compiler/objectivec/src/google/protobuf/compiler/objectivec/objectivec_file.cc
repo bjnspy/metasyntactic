@@ -50,7 +50,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     // hacky.  but this is how other generators determine if we're generating
     // the core ProtocolBuffers library
     if (file_->name() != "google/protobuf/descriptor.proto") {
-      printer->Print("#import <ProtocolBuffers/ProtocolBuffers.h>\n\n");
+      printer->Print("#import \"ProtocolBuffers.h\"\n\n");
     }
 
     if (file_->dependency_count() > 0) {
@@ -70,8 +70,16 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     DetermineDependencies(&dependencies);
     for (set<string>::const_iterator i(dependencies.begin()); i != dependencies.end(); ++i) {
       printer->Print(
-        "@class $classname$;\n",
-        "classname", *i);
+        "$value$;\n",
+        "value", *i);
+    }
+
+    // need to write out all enums first
+    for (int i = 0; i < file_->enum_type_count(); i++) {
+      EnumGenerator(file_->enum_type(i)).GenerateHeader(printer);
+    }
+    for (int i = 0; i < file_->message_type_count(); i++) {
+      MessageGenerator(file_->message_type(i)).GenerateEnumHeader(printer);
     }
 
     printer->Print(
@@ -87,14 +95,8 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     printer->Print("@end\n\n");
 
-    for (int i = 0; i < file_->enum_type_count(); i++) {
-      EnumGenerator(file_->enum_type(i)).GenerateHeader(printer);
-    }
-    for (int i = 0; i < file_->service_count(); i++) {
-      ServiceGenerator(file_->service(i)).GenerateHeader(printer);
-    }
     for (int i = 0; i < file_->message_type_count(); i++) {
-      MessageGenerator(file_->message_type(i)).GenerateHeader(printer);
+      MessageGenerator(file_->message_type(i)).GenerateMessageHeader(printer);
     }
   }
 
@@ -109,13 +111,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     for (int i = 0; i < file->dependency_count(); i++) {
       DetermineDependenciesWorker(dependencies, seen_files, file->dependency(i));
-    }
-
-    for (int i = 0; i < file->enum_type_count(); i++) {
-      EnumGenerator(file->enum_type(i)).DetermineDependencies(dependencies);
-    }
-    for (int i = 0; i < file->service_count(); i++) {
-      ServiceGenerator(file->service(i)).DetermineDependencies(dependencies);
     }
     for (int i = 0; i < file->message_type_count(); i++) {
       MessageGenerator(file->message_type(i)).DetermineDependencies(dependencies);
@@ -185,9 +180,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
     for (int i = 0; i < file_->message_type_count(); i++) {
       MessageGenerator(file_->message_type(i)).GenerateSource(printer);
-    }
-    for (int i = 0; i < file_->service_count(); i++) {
-      ServiceGenerator(file_->service(i)).GenerateSource(printer);
     }
   }
 }  // namespace objectivec

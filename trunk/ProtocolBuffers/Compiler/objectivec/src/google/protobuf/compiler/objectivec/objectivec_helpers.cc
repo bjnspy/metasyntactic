@@ -38,53 +38,91 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         return field->name();
       }
     }
-
-
-    string UnderscoresToCamelCaseImpl(const string& input, bool cap_next_letter) {
-      string result;
-      // Note:  I distrust ctype.h due to locales.
-      for (int i = 0; i < input.size(); i++) {
-        if ('a' <= input[i] && input[i] <= 'z') {
-          if (cap_next_letter) {
-            result += input[i] + ('A' - 'a');
-          } else {
-            result += input[i];
-          }
-          cap_next_letter = false;
-        } else if ('A' <= input[i] && input[i] <= 'Z') {
-          if (i == 0 && !cap_next_letter) {
-            // Force first letter to lower-case unless explicitly told to
-            // capitalize it.
-            result += input[i] + ('a' - 'A');
-          } else {
-            // Capital letters after the first are left as-is.
-            result += input[i];
-          }
-          cap_next_letter = false;
-        } else if ('0' <= input[i] && input[i] <= '9') {
-          result += input[i];
-          cap_next_letter = true;
-        } else {
-          cap_next_letter = true;
-        }
-      }
-      return result;
-    }
   }
 
 
+    string UnderscoresToCapitalizedCamelCase(const string& input) {
+      vector<string> values;
+      string current;
+
+      bool last_char_was_number = false;
+      bool last_char_was_lower = false;
+      bool last_char_was_upper = false;
+      for (int i = 0; i < input.size(); i++) {
+        char c = input[i];
+        if (c >= '0' && c <= '9') {
+          if (!last_char_was_number) {
+            values.push_back(current);
+            current = "";
+          }
+          current += c;
+          last_char_was_number = last_char_was_lower = last_char_was_upper = false;
+          last_char_was_number = true;
+        } else if (c >= 'a' && c <= 'z') {
+          // lowercase letter can follow a lowercase or uppercase letter
+          if (!last_char_was_lower && !last_char_was_upper) {
+            values.push_back(current);
+            current = "";
+          }
+          current += c;
+          last_char_was_number = last_char_was_lower = last_char_was_upper = false;
+          last_char_was_lower = true;
+        } else if (c >= 'A' && c <= 'Z') {
+          if (!last_char_was_upper) {
+            values.push_back(current);
+            current = "";
+          }
+          current += c;
+          last_char_was_number = last_char_was_lower = last_char_was_upper = false;
+          last_char_was_upper = true;
+        } else {
+          last_char_was_number = last_char_was_lower = last_char_was_upper = false;
+        }
+      }
+      values.push_back(current);
+
+      for (vector<string>::iterator i = values.begin(); i != values.end(); ++i) {
+        string value = *i;
+        for (int j = 0; j < value.length(); j++) {
+          if (j == 0) {
+            value[j] = toupper(value[j]);
+          } else {
+            value[j] = tolower(value[j]);
+          }
+        }
+        *i = value;
+      }
+      string result;
+      for (vector<string>::iterator i = values.begin(); i != values.end(); ++i) {
+        result += *i;
+      }
+      return result;
+    }
+
+
+    string UnderscoresToCamelCase(const string& input) {
+      string result = UnderscoresToCapitalizedCamelCase(input);
+      if (result.length() == 0) {
+        return result;
+      }
+
+      result[0] = tolower(result[0]);
+      return result;
+    }
+
+
   string UnderscoresToCamelCase(const FieldDescriptor* field) {
-    return UnderscoresToCamelCaseImpl(FieldName(field), false);
+    return UnderscoresToCamelCase(FieldName(field));
   }
 
 
   string UnderscoresToCapitalizedCamelCase(const FieldDescriptor* field) {
-    return UnderscoresToCamelCaseImpl(FieldName(field), true);
+    return UnderscoresToCapitalizedCamelCase(FieldName(field));
   }
 
 
   string UnderscoresToCamelCase(const MethodDescriptor* method) {
-    return UnderscoresToCamelCaseImpl(method->name(), false);
+    return UnderscoresToCamelCase(method->name());
   }
 
 
@@ -112,7 +150,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       basename += file->name().substr(last_slash + 1);
     }
 
-    return UnderscoresToCamelCaseImpl(StripProto(basename), true);
+    return UnderscoresToCapitalizedCamelCase(StripProto(basename));
   }
 
 
@@ -201,6 +239,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  string EnumValueName(const EnumValueDescriptor* descriptor) {
+    return 
+      ClassName(descriptor->type()) + 
+      UnderscoresToCapitalizedCamelCase(SafeName(descriptor->name()));
+  }
+
+
   ObjectiveCType GetObjectiveCType(FieldDescriptor::Type field_type) {
     switch (field_type) {
     case FieldDescriptor::TYPE_INT32:
@@ -254,7 +299,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     case OBJECTIVECTYPE_BOOLEAN: return "NSNumber";
     case OBJECTIVECTYPE_STRING : return "NSString";
     case OBJECTIVECTYPE_DATA   : return "NSData";
-    case OBJECTIVECTYPE_ENUM   : return NULL;
+    case OBJECTIVECTYPE_ENUM   : return "NSNumber";
     case OBJECTIVECTYPE_MESSAGE: return NULL;
     }
 
@@ -334,6 +379,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         return "[NSNumber numberWithDouble:" + value + "]";
       case OBJECTIVECTYPE_BOOLEAN:
         return "[NSNumber numberWithBool:" + value + "]";
+      case OBJECTIVECTYPE_ENUM:
+        return "[NSNumber numberWithInt:" + value + "]";
     }
 
     return value;
@@ -380,48 +427,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
                 "\"]";
             }
           }
-#if 0
-            if (!isBytes && AllPrintableAscii(field->default_value_string())) {
-              // All chars are ASCII and printable.  In this case CEscape() works
-              // fine (it will only escape quotes and backslashes).
-              // Note:  If this "optimization" is removed, DescriptorProtos will
-              //   no longer be able to initialize itself due to bootstrapping
-              //   problems.
-              return "@\"" + CEscape(field->default_value_string()) + "\"";
-            }
-
-            if (isBytes && !field->has_default_value()) {
-              return "[NSData data]";
-            }
-
-            string value = field->default_value_string();
-            string encodedValue;
-
-            // Only write 40 bytes per line.
-            static const int kBytesPerLine = 40;
-            for (int i = 0; i < value.size(); i += kBytesPerLine) {
-              if (i > 0) {
-                encodedValue += "\n";
-              }
-              encodedValue += "\"";
-              encodedValue += CEscape(value.substr(i, kBytesPerLine));
-              encodedValue += "\"";
-            }
-
-            if (isBytes) {
-              string result =
-                "[NSData dataWithBytes:" + encodedValue + " length:";
-              result += SimpleItoa(value.size());
-              result += "]";
-
-              return result;
-            } else {
-              return "[NSString stringWithUTF8String:" + encodedValue + "]";
-            }
-          }
-#endif
         case FieldDescriptor::CPPTYPE_ENUM:
-          return "[" + ClassName(field->enum_type()) + " valueOf:" + SimpleItoa(field->default_value_enum()->number()) + "]";
+          return EnumValueName(field->default_value_enum());
         case FieldDescriptor::CPPTYPE_MESSAGE:
           return "[" + ClassName(field->message_type()) + " defaultInstance]";
     }

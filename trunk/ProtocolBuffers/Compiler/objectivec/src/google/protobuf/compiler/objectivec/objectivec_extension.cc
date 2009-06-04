@@ -84,9 +84,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     case OBJECTIVECTYPE_MESSAGE:
       vars["type"] = ClassName(descriptor_->message_type());
       break;
-    case OBJECTIVECTYPE_ENUM:
-      vars["type"] = ClassName(descriptor_->enum_type());
-      break;
     default:
       vars["type"] = BoxedPrimitiveTypeName(java_type);
       break;
@@ -162,7 +159,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "                                 extendedClass:[$extended_type$ class]\n"
       "                                   fieldNumber:$number$\n"
       "                                  defaultValue:$default$\n"
-      "                     messageOrGroupOrEnumClass:[$type$ class]\n"
+      "                           messageOrGroupClass:[$type$ class]\n"
       "                                    isRepeated:$is_repeated$\n"
       "                                      isPacked:$is_packed$\n"
       "                        isMessageSetWireFormat:$is_wire_format$] retain];\n");

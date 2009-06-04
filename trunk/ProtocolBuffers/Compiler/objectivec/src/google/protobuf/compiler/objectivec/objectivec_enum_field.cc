@@ -44,30 +44,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["mutable_list_name"] = "mutable" + UnderscoresToCapitalizedCamelCase(descriptor) + "List";
         (*variables)["number"] = SimpleItoa(descriptor->number());
         (*variables)["type"] = type;
-        (*variables)["storage_type"] = type + "*";
-        (*variables)["default"] = "[" + type + " " + default_value->name() + "]";
-        (*variables)["boxed_value"] = BoxValue(descriptor, "value");
-
-        string unboxed_value = "value";
-        switch (GetObjectiveCType(descriptor)) {
-          case OBJECTIVECTYPE_INT:
-            unboxed_value = "[value intValue]";
-            break;
-          case OBJECTIVECTYPE_LONG:
-            unboxed_value = "[value longLongValue]";
-            break;
-          case OBJECTIVECTYPE_FLOAT:
-            unboxed_value = "[value floatValue]";
-            break;
-          case OBJECTIVECTYPE_DOUBLE:
-            unboxed_value = "[value doubleValue]";
-            break;
-          case OBJECTIVECTYPE_BOOLEAN:
-            unboxed_value = "[value boolValue]";
-            break;
-        } 
-
-        (*variables)["unboxed_value"] = unboxed_value;
+        (*variables)["default"] = EnumValueName(default_value);
+        (*variables)["boxed_value"] = "[NSNumber numberWithInt:value]";
+        (*variables)["unboxed_value"] = "[value intValue]";
     }
   }  // namespace
 
@@ -87,7 +66,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "$storage_type$ $name$;\n");
+    printer->Print(variables_, "$type$ $name$;\n");
   }
 
 
@@ -98,13 +77,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (readonly, retain) $storage_type$ $name$;\n");
+      "@property (readonly) $type$ $name$;\n");
   }
 
 
   void EnumFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (retain) $storage_type$ $name$;\n");
+      "@property $type$ $name$;\n");
   }
 
 
@@ -129,7 +108,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
-    printer->Print(variables_, "self.$name$ = nil;\n");
+  //  printer->Print(variables_, "self.$name$ = 0;\n");
   }
 
 
@@ -141,8 +120,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$;\n"
-      "- ($storage_type$) $name$;\n"\
-      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value;\n"
+      "- ($type$) $name$;\n"\
+      "- ($classname$_Builder*) set$capitalized_name$:($type$) value;\n"
       "- ($classname$_Builder*) clear$capitalized_name$;\n");
   }
 
@@ -152,10 +131,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- (BOOL) has$capitalized_name$ {\n"
       "  return result.has$capitalized_name$;\n"
       "}\n"
-      "- ($storage_type$) $name$ {\n"
+      "- ($type$) $name$ {\n"
       "  return result.$name$;\n"
       "}\n"
-      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) set$capitalized_name$:($type$) value {\n"
       "  result.has$capitalized_name$ = YES;\n"
       "  result.$name$ = value;\n"
       "  return self;\n"
@@ -193,12 +172,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "int32_t rawValue = [input readEnum];\n"
-      "$type$* value = [$type$ valueOf:rawValue];\n"
-      "if (value == nil) {\n"
-      "  [unknownFields mergeVarintField:$number$ value:rawValue];\n"
-      "} else {\n"
+      "int32_t value = [input readEnum];\n"
+      "if ($type$IsValidValue(value)) {\n"
       "  [self set$capitalized_name$:value];\n"
+      "} else {\n"
+      "  [unknownFields mergeVarintField:$number$ value:value];\n"
       "}\n");
   }
 
@@ -210,7 +188,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "if (has$capitalized_name$) {\n"
-      "  [output writeEnum:$number$ value:self.$name$.number];\n"
+      "  [output writeEnum:$number$ value:self.$name$];\n"
       "}\n");
   }
 
@@ -222,7 +200,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "if (has$capitalized_name$) {\n"
-      "  size += computeEnumSize($number$, self.$name$.number);\n"
+      "  size += computeEnumSize($number$, self.$name$);\n"
       "}\n");
   }
 
@@ -282,15 +260,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedEnumFieldGenerator::GenerateMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
       "- (NSArray*) $list_name$;\n"
-      "- ($storage_type$) $name$AtIndex:(int32_t) index;\n");
+      "- ($type$) $name$AtIndex:(int32_t) index;\n");
   }
 
   void RepeatedEnumFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
       "- (NSArray*) $list_name$;\n"
-      "- ($storage_type$) $name$AtIndex:(int32_t) index;\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value;\n"
-      "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value;\n"
+      "- ($type$) $name$AtIndex:(int32_t) index;\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($type$) value;\n"
+      "- ($classname$_Builder*) add$capitalized_name$:($type$) value;\n"
       "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values;\n"
       "- ($classname$_Builder*) clear$capitalized_name$List;\n");
   }
@@ -321,9 +299,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- (NSArray*) $list_name$ {\n"
       "  return $mutable_list_name$;\n"
       "}\n"
-      "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
-      "  id value = [$mutable_list_name$ objectAtIndex:index];\n"
-      "  return $unboxed_value$;\n"
+      "- ($type$) $name$AtIndex:(int32_t) index {\n"
+      "  NSNumber* value = [$mutable_list_name$ objectAtIndex:index];\n"
+      "  return [value intValue];\n"
       "}\n");
   }
 
@@ -332,18 +310,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- (NSArray*) $list_name$ {\n"
       "  return result.$mutable_list_name$;\n"
       "}\n"
-      "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
+      "- ($type$) $name$AtIndex:(int32_t) index {\n"
       "  return [result $name$AtIndex:index];\n"
       "}\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value {\n"
-      "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:$boxed_value$];\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($type$) value {\n"
+      "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];\n"
       "  return self;\n"
       "}\n"
-      "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) add$capitalized_name$:($type$) value {\n"
       "  if (result.$mutable_list_name$ == nil) {\n"
       "    result.$mutable_list_name$ = [NSMutableArray array];\n"
       "  }\n"
-      "  [result.$mutable_list_name$ addObject:$boxed_value$];\n"
+      "  [result.$mutable_list_name$ addObject:[NSNumber numberWithInt:value]];\n"
       "  return self;\n"
       "}\n"
       "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values {\n"
@@ -374,27 +352,26 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedEnumFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "int32_t rawValue = [input readEnum];\n"
-      "$storage_type$ value = [$type$ valueOf:rawValue];\n"
-      "if (value == nil) {\n"
-      "  [unknownFields mergeVarintField:$number$ value:rawValue];\n"
-      "} else {\n"
+      "int32_t value = [input readEnum];\n"
+      "if ($type$IsValidValue(value)) {\n"
       "  [self add$capitalized_name$:value];\n"
+      "} else {\n"
+      "  [unknownFields mergeVarintField:$number$ value:value];\n"
       "}\n");
   }
 
   void RepeatedEnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "for ($storage_type$ element in self.$list_name$) {\n"
-        "  [output writeEnum:$number$ value:element.number];\n"
+        "for (NSNumber* element in self.$list_name$) {\n"
+        "  [output writeEnum:$number$ value:element.intValue];\n"
         "}\n");
   }
 
 
   void RepeatedEnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "for ($storage_type$ element in self.$list_name$) {\n"
-        "  size += computeEnumSize($number$, element.number);\n"
+        "for (NSNumber* element in self.$list_name$) {\n"
+        "  size += computeEnumSize($number$, element.intValue);\n"
         "}\n");
   }
 

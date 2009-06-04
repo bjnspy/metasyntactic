@@ -25,7 +25,7 @@
 #include <google/protobuf/stubs/strutil.h>
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
-
+#if 0
   ServiceGenerator::ServiceGenerator(const ServiceDescriptor* descriptor)
     : descriptor_(descriptor) {
   }
@@ -36,7 +36,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void ServiceGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(ClassName(descriptor_));
+    //dependencies->insert(ClassName(descriptor_));
   }
 
 
@@ -222,7 +222,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "classname", ClassName(descriptor_));
 
     printer->Print(
-      " @private\n"
+      "@private\n"
       "  id<PBRpcChannel> channel;\n"
       "}\n"
       "@property (retain) id<PBRpcChannel> channel;\n"
@@ -291,6 +291,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print("@end\n\n");
   }
+#endif
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

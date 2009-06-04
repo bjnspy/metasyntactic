@@ -205,29 +205,36 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(ClassName(descriptor_));
-    dependencies->insert(ClassName(descriptor_) + "_Builder");
+    dependencies->insert("@class " + ClassName(descriptor_));
+    dependencies->insert("@class " + ClassName(descriptor_) + "_Builder");
 
-    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-      EnumGenerator(descriptor_->enum_type(i)).DetermineDependencies(dependencies);
-    }
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
       MessageGenerator(descriptor_->nested_type(i)).DetermineDependencies(dependencies);
     }
   }
 
-  void MessageGenerator::GenerateHeader(io::Printer* printer) {
+  void MessageGenerator::GenerateEnumHeader(io::Printer* printer) {
+    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
+      EnumGenerator(descriptor_->enum_type(i)).GenerateHeader(printer);
+    }
+
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      MessageGenerator(descriptor_->nested_type(i)).GenerateEnumHeader(printer);
+    }
+  }
+
+  void MessageGenerator::GenerateMessageHeader(io::Printer* printer) {
     scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByType(descriptor_));
 
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
         "@interface $classname$ : PBExtendableMessage {\n"
-        " @private\n",
+        "@private\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
         "@interface $classname$ : PBGeneratedMessage {\n"
-        " @private\n",
+        "@private\n",
         "classname", ClassName(descriptor_));
     }
 
@@ -280,11 +287,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print("@end\n\n");
 
-    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-      EnumGenerator(descriptor_->enum_type(i)).GenerateHeader(printer);
-    }
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-      MessageGenerator(descriptor_->nested_type(i)).GenerateHeader(printer);
+      MessageGenerator(descriptor_->nested_type(i)).GenerateMessageHeader(printer);
     }
 
     GenerateBuilderHeader(printer);
@@ -446,7 +450,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
 
     printer->Print(
-      " @private\n"
+      "@private\n"
       "  $classname$* result;\n"
       "}\n",
       "classname", ClassName(descriptor_));
