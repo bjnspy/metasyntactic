@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Author: kenton@google.com (Kenton Varda)
+// Author: cyrusn@google.com (Cyrus Najmabadi)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
@@ -71,41 +71,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "BOOL $classname$IsValidValue($classname$ value);\n"
       "\n",
       "classname", ClassName(descriptor_));
-#if 0
-    printer->Print(
-      "@interface $classname$ : NSObject {\n"
-      "@private\n"
-      "  int32_t index;\n"
-      "  int32_t value;\n"
-      "}\n"
-      "@property (readonly) int32_t index;\n"
-      "@property (readonly) int32_t value;\n"
-      "+ ($classname$*) newWithIndex:(int32_t) index value:(int32_t) value;\n",
-      "classname", ClassName(descriptor_));
-
-    for (int i = 0; i < canonical_values_.size(); i++) {
-      printer->Print(
-        "+ ($classname$*) $name$;\n",
-        "classname", ClassName(descriptor_),
-        "name", SafeName(canonical_values_[i]->name()));
-    }
-
-    for (int i = 0; i < aliases_.size(); i++) {
-      map<string, string> vars;
-      vars["classname"] = ClassName(descriptor_);
-      vars["name"] = aliases_[i].value->name();
-      printer->Print(vars,
-        "+ ($classname$*) $name$;\n");
-    }
-
-    printer->Print(
-      "\n"
-      "- (int32_t) number;\n"
-      "+ ($classname$*) valueOf:(int32_t) value;\n",
-      "classname", ClassName(descriptor_));
-
-    printer->Print("@end\n\n");
-#endif
   }
 
 
@@ -127,107 +92,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "      return NO;\n"
       "  }\n"
       "}\n");
-#if 0
-    printer->Print(
-      "@interface $classname$ ()\n"
-      "  @property int32_t index;\n"
-      "  @property int32_t value;\n"
-      "@end\n\n",
-      "classname", ClassName(descriptor_));
-
-    printer->Print(
-      "@implementation $classname$\n"
-      "@synthesize index;\n"
-      "@synthesize value;\n",
-      "classname", ClassName(descriptor_));
-
-    for (int i = 0; i < canonical_values_.size(); i++) {
-      printer->Print(
-        "static $classname$* $classname$_$name$ = nil;\n",
-        "classname", ClassName(descriptor_),
-        "name", SafeName(canonical_values_[i]->name()));
-    }
-
-    printer->Print(
-      "- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {\n"
-      "  if ((self = [super init])) {\n"
-      "    self.index = index_;\n"
-      "    self.value = value_;\n"
-      "  }\n"
-      "  return self;\n"
-      "}\n"
-      "+ ($classname$*) newWithIndex:(int32_t) index value:(int32_t) value {\n"
-      "  return [[[$classname$ alloc] initWithIndex:index value:value] autorelease];\n"
-      "}\n"
-      "+ (void) initialize {\n"
-      "  if (self == [$classname$ class]) {\n",
-      "classname", ClassName(descriptor_));
-    printer->Indent();
-    printer->Indent();
-
-    for (int i = 0; i < canonical_values_.size(); i++) {
-      map<string, string> vars;
-      vars["classname"] = ClassName(descriptor_);
-      vars["name"] = SafeName(canonical_values_[i]->name());
-      vars["index"] = SimpleItoa(canonical_values_[i]->index());
-      vars["number"] = SimpleItoa(canonical_values_[i]->number());
-      printer->Print(vars,
-        "$classname$_$name$ = [[$classname$ newWithIndex:$index$ value:$number$] retain];\n");
-    }
-
-    printer->Outdent();
-    printer->Outdent();
-    printer->Print(
-      "  }\n"
-      "}\n");
-
-    for (int i = 0; i < canonical_values_.size(); i++) {
-      map<string, string> vars;
-      vars["classname"] = ClassName(descriptor_);
-      vars["name"] = SafeName(canonical_values_[i]->name());
-      printer->Print(vars,
-        "+ ($classname$*) $name$ {\n"
-        "  return $classname$_$name$;\n"
-        "}\n");
-    }
-
-    for (int i = 0; i < aliases_.size(); i++) {
-      map<string, string> vars;
-      vars["classname"] = ClassName(descriptor_);
-      vars["name"] = aliases_[i].value->name();
-      vars["canonical_name"] = aliases_[i].canonical_value->name();
-      printer->Print(vars,
-        "+ ($classname$*) $name$ {\n"
-        "  return [$classname$ $canonical_name$];\n"
-        "}\n");
-    }
-
-    printer->Print(
-      "- (int32_t) number { return value; }\n"
-      "+ ($classname$*) valueOf:(int32_t) value {\n"
-      "  switch (value) {\n",
-      "classname", ClassName(descriptor_));
-    printer->Indent();
-    printer->Indent();
-
-    for (int i = 0; i < canonical_values_.size(); i++) {
-      map<string, string> vars;
-      vars["name"] = SafeName(canonical_values_[i]->name());
-      vars["number"] = SimpleItoa(canonical_values_[i]->number());
-      vars["classname"] = ClassName(descriptor_);
-
-      printer->Print(vars,
-        "case $number$: return [$classname$ $name$];\n");
-    }
-
-    printer->Outdent();
-    printer->Outdent();
-    printer->Print(
-      "    default: return nil;\n"
-      "  }\n"
-      "}\n");
-    printer->Print("@end\n\n");
-#endif
   }
 }  // namespace objectivec
 }  // namespace compiler

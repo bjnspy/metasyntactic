@@ -14,13 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Author: kenton@google.com (Kenton Varda)
+// Author: cyrusn@google.com (Cyrus Najmabadi)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
 #include <google/protobuf/compiler/objectivec/objectivec_file.h>
 #include <google/protobuf/compiler/objectivec/objectivec_enum.h>
-#include <google/protobuf/compiler/objectivec/objectivec_service.h>
 #include <google/protobuf/compiler/objectivec/objectivec_extension.h>
 #include <google/protobuf/compiler/objectivec/objectivec_helpers.h>
 #include <google/protobuf/compiler/objectivec/objectivec_message.h>
@@ -62,10 +61,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
       printer->Print("\n");
     }
 
-    printer->Print(
-      "@class PBExtendableMessage_Builder;\n"
-      "@class PBGeneratedMessage_Builder;\n");
-
     set<string> dependencies;
     DetermineDependencies(&dependencies);
     for (set<string>::const_iterator i(dependencies.begin()); i != dependencies.end(); ++i) {
@@ -88,6 +83,10 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     printer->Print(
       "}\n");
+
+    printer->Print(
+      "+ (PBExtensionRegistry*) extensionRegistry;\n"
+      "+ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;\n");
 
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersHeader(printer);
@@ -146,6 +145,11 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
 
     printer->Print(
+      "static PBExtensionRegistry* extensionRegistry = nil;\n"
+      "+ (PBExtensionRegistry*) extensionRegistry {\n"
+      "  return extensionRegistry;\n"
+      "}\n"
+      "\n"
       "+ (void) initialize {\n"
       "  if (self == [$classname$ class]) {\n",
       "classname", classname_);
@@ -161,12 +165,47 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
       MessageGenerator(file_->message_type(i)).GenerateStaticVariablesInitialization(printer);
     }
 
+    printer->Print(
+      "PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];\n"
+      "[self registerAllExtensions:registry];\n");
+
+    for (int i = 0; i < file_->dependency_count(); i++) {
+      printer->Print(
+        "[$dependency$ registerAllExtensions:registry];\n",
+        "dependency", FileClassName(file_->dependency(i)));
+    }
+
+    printer->Print(
+      "extensionRegistry = [registry retain];\n");
+
     printer->Outdent();
     printer->Outdent();
 
     printer->Print(
       "  }\n"
       "}\n");
+
+    // -----------------------------------------------------------------
+
+    printer->Print(
+      "+ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {\n");
+    printer->Indent();
+
+    for (int i = 0; i < file_->extension_count(); i++) {
+      ExtensionGenerator(classname_, file_->extension(i))
+        .GenerateRegistrationSource(printer);
+    }
+
+    for (int i = 0; i < file_->message_type_count(); i++) {
+      MessageGenerator(file_->message_type(i))
+        .GenerateExtensionRegistrationSource(printer);
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "}\n");
+
+    // -----------------------------------------------------------------
 
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersSource(printer);

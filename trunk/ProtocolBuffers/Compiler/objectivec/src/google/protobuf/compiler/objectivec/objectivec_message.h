@@ -48,6 +48,7 @@ class MessageGenerator {
   void GenerateEnumHeader(io::Printer* printer);
   void GenerateMessageHeader(io::Printer* printer);
   void GenerateSource(io::Printer* printer);
+  void GenerateExtensionRegistrationSource(io::Printer* printer);
   void DetermineDependencies(set<string>* dependencies);
 
  private:
