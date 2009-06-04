@@ -95,6 +95,9 @@ bool IsReferenceType(ObjectiveCType type);
 bool ReturnsPrimitiveType(const FieldDescriptor* field);
 bool ReturnsReferenceType(const FieldDescriptor* field);
 
+string DefaultValue(const FieldDescriptor* field);
+string BoxValue(const FieldDescriptor* field, const string& value);
+
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

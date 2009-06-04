@@ -75,61 +75,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       return NULL;
     }
 
-    bool AllPrintableAscii(const string& text) {
-      // Cannot use isprint() because it's locale-specific.  :(
-      for (int i = 0; i < text.size(); i++) {
-        if ((text[i] < 0x20) || text[i] >= 0x7F) {
-          return false;
-        }
-      }
-      return true;
-    }
-
-    string DefaultValue(const FieldDescriptor* field) {
-      // Switch on cpp_type since we need to know which default_value_* method
-      // of FieldDescriptor to call.
-      switch (field->cpp_type()) {
-        case FieldDescriptor::CPPTYPE_INT32:  return SimpleItoa(field->default_value_int32());
-        case FieldDescriptor::CPPTYPE_UINT32: return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
-        case FieldDescriptor::CPPTYPE_INT64:  return SimpleItoa(field->default_value_int64()) + "L";
-        case FieldDescriptor::CPPTYPE_UINT64: return SimpleItoa(static_cast<int64>(field->default_value_uint64())) + "L";
-        case FieldDescriptor::CPPTYPE_DOUBLE: return SimpleDtoa(field->default_value_double());
-        case FieldDescriptor::CPPTYPE_FLOAT:  return SimpleFtoa(field->default_value_float());
-        case FieldDescriptor::CPPTYPE_BOOL:   return field->default_value_bool() ? "YES" : "NO";
-        case FieldDescriptor::CPPTYPE_STRING: {
-          bool isBytes = field->type() == FieldDescriptor::TYPE_BYTES;
-
-          if (!isBytes && AllPrintableAscii(field->default_value_string())) {
-            // All chars are ASCII and printable.  In this case CEscape() works
-            // fine (it will only escape quotes and backslashes).
-            // Note:  If this "optimization" is removed, DescriptorProtos will
-            //   no longer be able to initialize itself due to bootstrapping
-            //   problems.
-            return "@\"" + CEscape(field->default_value_string()) + "\"";
-          }
-
-          if (isBytes && !field->has_default_value()) {
-            return "[NSData data]";
-          }
-
-          // Escaping strings correctly for ObjectiveC and generating efficient
-          // initializers for ByteStrings are both tricky.  We can sidestep the
-          // whole problem by just grabbing the default value from the descriptor.
-          return strings::Substitute(
-            "([((PBFieldDescriptor*)[[$0 descriptor].fields objectAtIndex:$1]) defaultValue])",
-            ClassName(field->containing_type()), field->index());
-                                              }
-
-        case FieldDescriptor::CPPTYPE_ENUM:
-        case FieldDescriptor::CPPTYPE_MESSAGE:
-          GOOGLE_LOG(FATAL) << "Can't get here.";
-          return "";
-      }
-
-      GOOGLE_LOG(FATAL) << "Can't get here.";
-      return "";
-    }
-
     void SetPrimitiveVariables(const FieldDescriptor* descriptor,
       map<string, string>* variables) {
         (*variables)["classname"] = ClassName(descriptor->containing_type());
@@ -149,27 +94,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["boxed_type"] = BoxedPrimitiveTypeName(GetObjectiveCType(descriptor));
         (*variables)["default"] = DefaultValue(descriptor);
         (*variables)["capitalized_type"] = GetCapitalizedType(descriptor);
-
-        string boxed_value = "value";
-        switch (GetObjectiveCType(descriptor)) {
-          case OBJECTIVECTYPE_INT:
-            boxed_value = "[NSNumber numberWithInt:value]";
-            break;
-          case OBJECTIVECTYPE_LONG:
-            boxed_value = "[NSNumber numberWithLongLong:value]";
-            break;
-          case OBJECTIVECTYPE_FLOAT:
-            boxed_value = "[NSNumber numberWithFloat:value]";
-            break;
-          case OBJECTIVECTYPE_DOUBLE:
-            boxed_value = "[NSNumber numberWithDouble:value]";
-            break;
-          case OBJECTIVECTYPE_BOOLEAN:
-            boxed_value = "[NSNumber numberWithBool:value]";
-            break;
-        } 
-
-        (*variables)["boxed_value"] = boxed_value;
+        (*variables)["boxed_value"] = BoxValue(descriptor, "value");
 
         string unboxed_value = "value";
         switch (GetObjectiveCType(descriptor)) {

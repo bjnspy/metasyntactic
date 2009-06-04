@@ -48,26 +48,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
           (descriptor->type() == FieldDescriptor::TYPE_GROUP) ?
           "Group" : "Message";
 
-        string boxed_value = "value";
-        switch (GetObjectiveCType(descriptor)) {
-          case OBJECTIVECTYPE_INT:
-            boxed_value = "[NSNumber numberWithInt:value]";
-            break;
-          case OBJECTIVECTYPE_LONG:
-            boxed_value = "[NSNumber numberWithLongLong:value]";
-            break;
-          case OBJECTIVECTYPE_FLOAT:
-            boxed_value = "[NSNumber numberWithFloat:value]";
-            break;
-          case OBJECTIVECTYPE_DOUBLE:
-            boxed_value = "[NSNumber numberWithDouble:value]";
-            break;
-          case OBJECTIVECTYPE_BOOLEAN:
-            boxed_value = "[NSNumber numberWithBool:value]";
-            break;
-        } 
-
-        (*variables)["boxed_value"] = boxed_value;
+        (*variables)["boxed_value"] = BoxValue(descriptor, "value");
 
         string unboxed_value = "value";
         switch (GetObjectiveCType(descriptor)) {
@@ -185,7 +166,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  if (result.has$capitalized_name$ &&\n"
       "      result.$name$ != [$type$ defaultInstance]) {\n"
       "    result.$name$ =\n"
-      "      [[[$type$ builderWithPrototype:result.$name$] mergeFrom$type$:value] buildPartial];\n"
+      "      [[[$type$ builderWithPrototype:result.$name$] mergeFrom:value] buildPartial];\n"
       "  } else {\n"
       "    result.$name$ = value;\n"
       "  }\n"
@@ -228,7 +209,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(variables_,
       "$type$_Builder* subBuilder = [$type$ builder];\n"
       "if (self.has$capitalized_name$) {\n"
-      "  [subBuilder mergeFrom$type$:self.$name$];\n"
+      "  [subBuilder mergeFrom:self.$name$];\n"
       "}\n");
 
     if (descriptor_->type() == FieldDescriptor::TYPE_GROUP) {
