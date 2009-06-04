@@ -127,6 +127,7 @@
 - (int32_t) pushLimit:(int32_t) byteLimit;
 - (void) recomputeBufferSizeAfterLimit;
 - (void) popLimit:(int32_t) oldLimit;
+- (int32_t) bytesUntilLimit;
 
 /**
  * Decode a ZigZag-encoded 32-bit value.  ZigZag encodes signed integers

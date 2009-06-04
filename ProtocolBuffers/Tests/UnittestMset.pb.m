@@ -387,6 +387,15 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension1 class]) {
     defaultTestMessageSetExtension1Instance = [[TestMessageSetExtension1 alloc] init];
+     TestMessageSetExtension1_messageSetExtension =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                 extendedClass:[TestMessageSet class]
+                                   fieldNumber:1545008
+                                  defaultValue:[TestMessageSetExtension1 defaultInstance]
+                     messageOrGroupOrEnumClass:[TestMessageSetExtension1 class]
+                                    isRepeated:false
+                                      isPacked:false
+                        isMessageSetWireFormat:true] retain];
   }
 }
 + (TestMessageSetExtension1*) defaultInstance {
@@ -569,6 +578,15 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension2 class]) {
     defaultTestMessageSetExtension2Instance = [[TestMessageSetExtension2 alloc] init];
+     TestMessageSetExtension2_messageSetExtension =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                 extendedClass:[TestMessageSet class]
+                                   fieldNumber:1547769
+                                  defaultValue:[TestMessageSetExtension2 defaultInstance]
+                     messageOrGroupOrEnumClass:[TestMessageSetExtension2 class]
+                                    isRepeated:false
+                                      isPacked:false
+                        isMessageSetWireFormat:true] retain];
   }
 }
 + (TestMessageSetExtension2*) defaultInstance {

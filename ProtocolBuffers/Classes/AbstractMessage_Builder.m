@@ -116,22 +116,4 @@
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
-
-- (PBUnknownFieldSet*) buildUnknownFields:(PBUnknownFieldSet_Builder*) builder {
-  if (builder == nil) {
-    return self.unknownFields;
-  }
-
-  return [builder build];
-}
-
-
-- (PBUnknownFieldSet_Builder*) ensureUnknownFields:(PBUnknownFieldSet_Builder*) builder {
-  if (builder == nil) {
-    return [PBUnknownFieldSet_Builder newBuilder:self.unknownFields];
-  }
-
-  return builder;
-}
-
 @end

@@ -46,6 +46,34 @@
 		748F0CB10FD70602000858A9 /* ExtensionField.h in Headers */ = {isa = PBXBuildFile; fileRef = 748F0CAF0FD70602000858A9 /* ExtensionField.h */; };
 		748F0F350FD714A3000858A9 /* ExtendableMessage_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 748F0F330FD714A3000858A9 /* ExtendableMessage_Builder.h */; };
 		748F0F360FD714A3000858A9 /* ExtendableMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F0F340FD714A3000858A9 /* ExtendableMessage_Builder.m */; };
+		748F11BB0FD72AC2000858A9 /* ConcreteExtensionField.h in Headers */ = {isa = PBXBuildFile; fileRef = 748F11B90FD72AC2000858A9 /* ConcreteExtensionField.h */; };
+		748F11BC0FD72AC2000858A9 /* ConcreteExtensionField.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F11BA0FD72AC2000858A9 /* ConcreteExtensionField.m */; };
+		748F14670FD75E6A000858A9 /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F137D0FD74C84000858A9 /* Main.m */; };
+		748F146F0FD75E77000858A9 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B48A0F94F99000A0C422 /* AbstractMessage.m */; };
+		748F14700FD75E77000858A9 /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B48C0F94F99000A0C422 /* AbstractMessage_Builder.m */; };
+		748F14710FD75E77000858A9 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B48F0F94F99000A0C422 /* CodedInputStream.m */; };
+		748F14720FD75E77000858A9 /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4910F94F99000A0C422 /* CodedOutputStream.m */; };
+		748F14730FD75E77000858A9 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4A50F94F99000A0C422 /* ExtendableMessage.m */; };
+		748F14740FD75E77000858A9 /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4A90F94F99000A0C422 /* ExtensionRegistry.m */; };
+		748F14750FD75E77000858A9 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4AF0F94F99000A0C422 /* Field.m */; };
+		748F14760FD75E77000858A9 /* GeneratedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4BF0F94F99000A0C422 /* GeneratedMessage.m */; };
+		748F14770FD75E77000858A9 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4C10F94F99000A0C422 /* GeneratedMessage_Builder.m */; };
+		748F14780FD75E77000858A9 /* MutableField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4C80F94F99000A0C422 /* MutableField.m */; };
+		748F14790FD75E77000858A9 /* TextFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E00F94F99000A0C422 /* TextFormat.m */; };
+		748F147A0FD75E77000858A9 /* UnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E20F94F99000A0C422 /* UnknownFieldSet.m */; };
+		748F147B0FD75E77000858A9 /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E40F94F99000A0C422 /* UnknownFieldSet_Builder.m */; };
+		748F147C0FD75E77000858A9 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E60F94F99000A0C422 /* Utilities.m */; };
+		748F147D0FD75E77000858A9 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B4E80F94F99000A0C422 /* WireFormat.m */; };
+		748F147E0FD75E77000858A9 /* MutableExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F0B9C0FD6F61E000858A9 /* MutableExtensionRegistry.m */; };
+		748F147F0FD75E77000858A9 /* ExtendableMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F0F340FD714A3000858A9 /* ExtendableMessage_Builder.m */; };
+		748F14800FD75E77000858A9 /* ConcreteExtensionField.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F11BA0FD72AC2000858A9 /* ConcreteExtensionField.m */; };
+		748F14960FD75EBB000858A9 /* MessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6A60F94FDF800A0C422 /* MessageTests.m */; };
+		748F14B30FD75EE7000858A9 /* Unittest.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AE0F94FDF800A0C422 /* Unittest.pb.m */; };
+		748F14B50FD75EF7000858A9 /* UnittestImport.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B20F94FDF800A0C422 /* UnittestImport.pb.m */; };
+		748F14E30FD75FB9000858A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		748F15380FD76090000858A9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C1C20F950395006D8281 /* SenTestingKit.framework */; };
+		748F15660FD76280000858A9 /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B80F94FDF900A0C422 /* UnknownFieldSetTest.m */; };
+		748F156A0FD762EC000858A9 /* TestUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AC0F94FDF800A0C422 /* TestUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +166,12 @@
 		748F0CAF0FD70602000858A9 /* ExtensionField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionField.h; sourceTree = "<group>"; };
 		748F0F330FD714A3000858A9 /* ExtendableMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableMessage_Builder.h; sourceTree = "<group>"; };
 		748F0F340FD714A3000858A9 /* ExtendableMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableMessage_Builder.m; sourceTree = "<group>"; };
+		748F11B90FD72AC2000858A9 /* ConcreteExtensionField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteExtensionField.h; sourceTree = "<group>"; };
+		748F11BA0FD72AC2000858A9 /* ConcreteExtensionField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteExtensionField.m; sourceTree = "<group>"; };
+		748F137D0FD74C84000858A9 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
+		748F13F90FD75DBE000858A9 /* CommanLineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CommanLineTests-Info.plist"; sourceTree = "<group>"; };
+		748F14580FD75E3B000858A9 /* CommandLineTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommandLineTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		748F145A0FD75E3B000858A9 /* CommandLineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CommandLineTests-Info.plist"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ProtocolBuffers-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ProtocolBuffers-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +193,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		748F14560FD75E3B000858A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748F15380FD76090000858A9 /* SenTestingKit.framework in Frameworks */,
+				748F14E30FD75FB9000858A9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -172,6 +215,7 @@
 				7461B5150F94FA7300A0C422 /* Messages */,
 				7461B4E50F94F99000A0C422 /* Utilities.h */,
 				7461B4E60F94F99000A0C422 /* Utilities.m */,
+				748F137D0FD74C84000858A9 /* Main.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -181,6 +225,7 @@
 			children = (
 				7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */,
 				7401C1A80F950347006D8281 /* UnitTests.octest */,
+				748F14580FD75E3B000858A9 /* CommandLineTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,6 +239,8 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				748F13F90FD75DBE000858A9 /* CommanLineTests-Info.plist */,
+				748F145A0FD75E3B000858A9 /* CommandLineTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -230,11 +277,13 @@
 		7461B3C50F94F84100A0C422 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				748F11B90FD72AC2000858A9 /* ConcreteExtensionField.h */,
 				7461B4A40F94F99000A0C422 /* ExtendableMessage.h */,
 				748F0F330FD714A3000858A9 /* ExtendableMessage_Builder.h */,
 				748F0CAF0FD70602000858A9 /* ExtensionField.h */,
 				7461B4A80F94F99000A0C422 /* ExtensionRegistry.h */,
 				748F0B9B0FD6F61E000858A9 /* MutableExtensionRegistry.h */,
+				748F11BA0FD72AC2000858A9 /* ConcreteExtensionField.m */,
 				7461B4A50F94F99000A0C422 /* ExtendableMessage.m */,
 				748F0F340FD714A3000858A9 /* ExtendableMessage_Builder.m */,
 				7461B4A90F94F99000A0C422 /* ExtensionRegistry.m */,
@@ -347,6 +396,7 @@
 				748F0B9D0FD6F61E000858A9 /* MutableExtensionRegistry.h in Headers */,
 				748F0CB10FD70602000858A9 /* ExtensionField.h in Headers */,
 				748F0F350FD714A3000858A9 /* ExtendableMessage_Builder.h in Headers */,
+				748F11BB0FD72AC2000858A9 /* ConcreteExtensionField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +439,23 @@
 			productReference = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		748F14570FD75E3B000858A9 /* CommandLineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748F145D0FD75E3D000858A9 /* Build configuration list for PBXNativeTarget "CommandLineTests" */;
+			buildPhases = (
+				748F14540FD75E3B000858A9 /* Resources */,
+				748F14550FD75E3B000858A9 /* Sources */,
+				748F14560FD75E3B000858A9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommandLineTests;
+			productName = CommandLineTests;
+			productReference = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -403,12 +470,20 @@
 			targets = (
 				7461B52D0F94FAF800A0C422 /* ProtocolBuffers */,
 				7401C1A70F950347006D8281 /* UnitTests */,
+				748F14570FD75E3B000858A9 /* CommandLineTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7401C1A30F950347006D8281 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748F14540FD75E3B000858A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -478,6 +553,38 @@
 				7461B5640F94FB4E00A0C422 /* WireFormat.m in Sources */,
 				748F0B9E0FD6F61E000858A9 /* MutableExtensionRegistry.m in Sources */,
 				748F0F360FD714A3000858A9 /* ExtendableMessage_Builder.m in Sources */,
+				748F11BC0FD72AC2000858A9 /* ConcreteExtensionField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748F14550FD75E3B000858A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748F156A0FD762EC000858A9 /* TestUtilities.m in Sources */,
+				748F15660FD76280000858A9 /* UnknownFieldSetTest.m in Sources */,
+				748F14B50FD75EF7000858A9 /* UnittestImport.pb.m in Sources */,
+				748F14B30FD75EE7000858A9 /* Unittest.pb.m in Sources */,
+				748F14960FD75EBB000858A9 /* MessageTests.m in Sources */,
+				748F146F0FD75E77000858A9 /* AbstractMessage.m in Sources */,
+				748F14700FD75E77000858A9 /* AbstractMessage_Builder.m in Sources */,
+				748F14710FD75E77000858A9 /* CodedInputStream.m in Sources */,
+				748F14720FD75E77000858A9 /* CodedOutputStream.m in Sources */,
+				748F14730FD75E77000858A9 /* ExtendableMessage.m in Sources */,
+				748F14740FD75E77000858A9 /* ExtensionRegistry.m in Sources */,
+				748F14750FD75E77000858A9 /* Field.m in Sources */,
+				748F14760FD75E77000858A9 /* GeneratedMessage.m in Sources */,
+				748F14770FD75E77000858A9 /* GeneratedMessage_Builder.m in Sources */,
+				748F14780FD75E77000858A9 /* MutableField.m in Sources */,
+				748F14790FD75E77000858A9 /* TextFormat.m in Sources */,
+				748F147A0FD75E77000858A9 /* UnknownFieldSet.m in Sources */,
+				748F147B0FD75E77000858A9 /* UnknownFieldSet_Builder.m in Sources */,
+				748F147C0FD75E77000858A9 /* Utilities.m in Sources */,
+				748F147D0FD75E77000858A9 /* WireFormat.m in Sources */,
+				748F147E0FD75E77000858A9 /* MutableExtensionRegistry.m in Sources */,
+				748F147F0FD75E77000858A9 /* ExtendableMessage_Builder.m in Sources */,
+				748F14800FD75E77000858A9 /* ConcreteExtensionField.m in Sources */,
+				748F14670FD75E6A000858A9 /* Main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +687,70 @@
 			};
 			name = Release;
 		};
+		748F145B0FD75E3C000858A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
+				INFOPLIST_FILE = "CommandLineTests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-ObjC",
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CommandLineTests;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		748F145C0FD75E3C000858A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
+				INFOPLIST_FILE = "CommandLineTests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-ObjC",
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = CommandLineTests;
+				SDKROOT = macosx10.5;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -590,7 +761,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -603,7 +774,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
@@ -624,6 +795,15 @@
 			buildConfigurations = (
 				7461B52F0F94FAFA00A0C422 /* Debug */,
 				7461B5300F94FAFA00A0C422 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		748F145D0FD75E3D000858A9 /* Build configuration list for PBXNativeTarget "CommandLineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748F145B0FD75E3C000858A9 /* Debug */,
+				748F145C0FD75E3C000858A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

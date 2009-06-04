@@ -542,6 +542,20 @@ int64_t decodeZigZag64(int64_t n) {
 
 
 /**
+ * Returns the number of bytes to be read before the current limit.
+ * If no limit is set, returns -1.
+ */
+- (int32_t) bytesUntilLimit {
+  if (currentLimit == INT_MAX) {
+    return -1;
+  }
+  
+  int32_t currentAbsolutePosition = totalBytesRetired + bufferPos;
+  return currentLimit - currentAbsolutePosition;
+}
+
+
+/**
  * Called with {@code this.buffer} is empty to read more bytes from the
  * input.  If {@code mustSucceed} is YES, refillBuffer() gurantees that
  * either there will be at least one byte in the buffer when it returns

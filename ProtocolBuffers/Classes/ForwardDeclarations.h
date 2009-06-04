@@ -21,7 +21,7 @@ enum PBWireFormat;
 @class PBAbstractMessage;
 @class PBCodedInputStream;
 @class PBCodedOutputStream;
-@class PBEnumOptions;
+@class PBConcreteExtensionField;
 @class PBExtendableMessage_Builder;
 @class PBExtendableMessage;
 @class PBExtensionRegistry;

@@ -12,18 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "WireFormat.h"
+
 @protocol PBExtensionField
 - (int32_t) fieldNumber;
-- (int32_t) wireType;
+- (PBWireFormat) wireType;
 - (BOOL) isRepeated;
+- (Class) extendedClass;
+- (id) defaultValue;
 
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+                           builder:(PBExtendableMessage_Builder*) builder
                                tag:(int32_t) tag;
 - (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream*) output;
 - (int32_t) computeSerializedSizeIncludingTag:(id) value;
-
-- (Class) extendedClass;
-- (id) defaultValue;
 @end

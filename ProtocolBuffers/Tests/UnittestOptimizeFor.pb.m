@@ -53,6 +53,24 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 + (void) initialize {
   if (self == [TestOptimizedForSize class]) {
     defaultTestOptimizedForSizeInstance = [[TestOptimizedForSize alloc] init];
+     TestOptimizedForSize_testExtension =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                 extendedClass:[TestOptimizedForSize class]
+                                   fieldNumber:1234
+                                  defaultValue:[NSNumber numberWithInt:0]
+                     messageOrGroupOrEnumClass:[NSNumber class]
+                                    isRepeated:false
+                                      isPacked:false
+                        isMessageSetWireFormat:false] retain];
+     TestOptimizedForSize_testExtension2 =
+  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                 extendedClass:[TestOptimizedForSize class]
+                                   fieldNumber:1235
+                                  defaultValue:[TestRequiredOptimizedForSize defaultInstance]
+                     messageOrGroupOrEnumClass:[TestRequiredOptimizedForSize class]
+                                    isRepeated:false
+                                      isPacked:false
+                        isMessageSetWireFormat:false] retain];
   }
 }
 + (TestOptimizedForSize*) defaultInstance {

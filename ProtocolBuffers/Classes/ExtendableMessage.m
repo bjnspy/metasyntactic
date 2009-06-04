@@ -29,7 +29,7 @@
 
 
 - (BOOL) isInitialized:(id) object {
-  if ([object isKindOfClass:[NSArray array]]) {
+  if ([object isKindOfClass:[NSArray class]]) {
     for (id child in object) {
       if (![self isInitialized:child]) {
         return NO;
@@ -67,7 +67,8 @@
   if (extensionRegistry == nil) {
     self.extensionRegistry = [NSMutableDictionary dictionary];
   }
-  [extensionRegistry setObject:extension forKey:[NSNumber numberWithInt:[extension fieldNumber]]];
+  [extensionRegistry setObject:extension
+                        forKey:[NSNumber numberWithInt:[extension fieldNumber]]];
 }
 
 
@@ -79,7 +80,16 @@
 - (void) writeExtensionsToCodedOutputStream:(PBCodedOutputStream*) output
                                        from:(int32_t) startInclusive
                                          to:(int32_t) endExclusive {
-  @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+  // man, i really wish Cocoa had a Sorted/TreeMap
+  NSArray* sortedKeys = [extensionMap.allKeys sortedArrayUsingSelector:@selector(compare:)];
+  for (NSNumber* number in sortedKeys) {
+    int32_t fieldNumber = [number intValue];
+    if (fieldNumber >= startInclusive && fieldNumber < endExclusive) {
+      id<PBExtensionField> extension = [extensionRegistry objectForKey:number];
+      id value = [extensionMap objectForKey:number];
+      [extension writeValue:value includingTagToCodedOutputStream:output];
+    }
+  }
 }
 
 

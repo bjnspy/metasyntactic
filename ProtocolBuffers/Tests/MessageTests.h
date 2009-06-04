@@ -14,7 +14,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-
 @interface MessageTests : SenTestCase {
 
 }
