@@ -46,7 +46,7 @@
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
     self.moviesSetData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMoviesSet) saveSelector:@selector(saveMoviesSet:)];
     self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];

@@ -52,7 +52,7 @@
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
     self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
     self.studioKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadStudioKeys) saveSelector:@selector(saveStudioKeys:)];

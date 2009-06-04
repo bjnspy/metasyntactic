@@ -175,7 +175,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.feedsData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFeeds) saveSelector:@selector(saveFeeds:)];
   }
 

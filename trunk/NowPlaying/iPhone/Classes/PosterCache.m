@@ -51,7 +51,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
         self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
         self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];

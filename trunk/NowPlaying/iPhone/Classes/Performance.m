@@ -37,7 +37,7 @@ property_definition(url);
 
 - (id) initWithTime:(NSDate*) time_
                 url:(NSString*) url_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.time = time_;
         self.url = [StringUtilities nonNilString:url_];
     }

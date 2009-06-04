@@ -97,7 +97,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         [self setupTitle];
     }
 
