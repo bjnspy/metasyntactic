@@ -2,8 +2,6 @@
 
 #import "ProtocolBuffers.h"
 
-@class PBExtendableMessage_Builder;
-@class PBGeneratedMessage_Builder;
 @class RawMessageSet;
 @class RawMessageSet_Builder;
 @class RawMessageSet_Item;

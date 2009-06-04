@@ -2,8 +2,6 @@
 
 #import "ProtocolBuffers.h"
 
-@class PBExtendableMessage_Builder;
-@class PBGeneratedMessage_Builder;
 @class ImportMessage;
 @class ImportMessage_Builder;
 typedef enum {
