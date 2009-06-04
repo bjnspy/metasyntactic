@@ -24,6 +24,9 @@
   STAssertEquals(8, (int)sizeof(int64_t), nil);
   STAssertEquals(4, (int)sizeof(Float32), nil);
   STAssertEquals(8, (int)sizeof(Float64), nil);
+  STAssertEquals(0, !!0, nil);
+  STAssertEquals(1, !!1, nil);
+  STAssertEquals(1, !!2, nil);
 }
 
 @end
