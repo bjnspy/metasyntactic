@@ -34,7 +34,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
         self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
     }

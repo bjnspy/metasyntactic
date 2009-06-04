@@ -44,7 +44,7 @@
 
 - (id) initWithKey:(NSString*) key_
             secret:(NSString*) secret_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 	self.key = key_;
 	self.secret = secret_;
     }

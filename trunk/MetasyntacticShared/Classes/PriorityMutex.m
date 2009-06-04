@@ -31,7 +31,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.gate = [[[NSCondition alloc] init] autorelease];
 
         highTaskRunningCount = 0;

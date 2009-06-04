@@ -28,9 +28,9 @@
 }
 
 
-- (id) initWithDictionary:(NSMutableDictionary*) mutableDictionary__ {
-    if (self = [super initWithDictionary:mutableDictionary__]) {
-        self.mutableDictionary = mutableDictionary__;
+- (id) initWithDictionary:(NSMutableDictionary*) mutableDictionary_ {
+    if ((self = [super initWithDictionary:mutableDictionary_])) {
+        self.mutableDictionary = mutableDictionary_;
     }
 
     return self;

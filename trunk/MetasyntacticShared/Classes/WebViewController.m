@@ -65,7 +65,7 @@
 
 - (id) initWithAddress:(NSString*) address__
       showSafariButton:(BOOL) showSafariButton__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.address = address__;
         self.showSafariButton = showSafariButton__;
     }

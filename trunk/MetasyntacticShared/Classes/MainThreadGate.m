@@ -31,7 +31,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.condition = [[[NSCondition alloc] init] autorelease];
     }
 

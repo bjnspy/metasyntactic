@@ -38,7 +38,7 @@
            withObject:(id) argument_
                  gate:(id<NSLocking>) gate_
               visible:(BOOL) visible_ {
-    if (self = [super initWithTarget:target_ selector:selector_ withObject:argument_]) {
+    if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument_])) {
         self.gate = gate_;
         self.visible = visible_;
     }

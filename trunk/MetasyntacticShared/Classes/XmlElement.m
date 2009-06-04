@@ -101,7 +101,7 @@ property_definition(text);
          attributes:(NSDictionary*) attributes_
            children:(NSArray*) children_
                text:(NSString*) text_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.name = name_;
         self.attributes = attributes_;
         self.children = children_;

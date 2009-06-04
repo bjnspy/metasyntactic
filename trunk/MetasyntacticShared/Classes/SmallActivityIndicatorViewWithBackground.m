@@ -34,7 +34,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
         self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
         self.frame = backgroundView.frame;

@@ -47,7 +47,7 @@
            delegate:(id) delegate_
        loadSelector:(SEL) loadSelector_
         saveSelector:(SEL) saveSelector_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.gate = gate_;
     self.delegate = delegate_;
     self.loadSelector = loadSelector_;

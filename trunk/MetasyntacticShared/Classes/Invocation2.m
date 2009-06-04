@@ -26,7 +26,7 @@
              selector:(SEL) selector_
            withObject:(id) argument1_
            withObject:(id) argument2_ {
-    if (self = [super initWithTarget:target_ selector:selector_ withObject:argument1_]) {
+    if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_])) {
         self.argument2 = argument2_;
     }
 

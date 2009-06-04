@@ -31,7 +31,7 @@
 
 
 - (id) initWithSet:(NSSet*) set_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.set = set_;
     }
 

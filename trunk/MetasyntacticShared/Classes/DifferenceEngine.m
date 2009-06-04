@@ -27,7 +27,7 @@
             deleteCost:(NSInteger) delete
             switchCost:(NSInteger) switch_
          transposeCost:(NSInteger) transpose {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         addCost = add;
         deleteCost = delete;
         switchCost = switch_;

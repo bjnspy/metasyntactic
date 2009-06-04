@@ -86,7 +86,7 @@ static OperationQueue* operationQueue = nil;
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.dataGate = [[[NSLock alloc] init] autorelease];
 
         [self restart];

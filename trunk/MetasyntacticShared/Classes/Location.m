@@ -58,7 +58,7 @@ property_definition(country);
                   state:(NSString*) state_
              postalCode:(NSString*) postalCode_
                 country:(NSString*) country_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         latitude        = latitude_;
         longitude       = longitude_;
         self.address    = [StringUtilities nonNilString:address_];

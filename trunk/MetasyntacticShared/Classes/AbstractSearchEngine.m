@@ -46,7 +46,7 @@
 
 
 - (id) initWithDelegate:(id<SearchEngineDelegate>) delegate_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.currentRequestId = 0;
     self.delegate = delegate_;
     self.gate = [[[NSCondition alloc] init] autorelease];

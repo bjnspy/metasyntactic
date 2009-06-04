@@ -46,7 +46,7 @@
 
 - (id) initWithName:(NSString*) name_
               value:(NSString*) value_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.name = name_;
         self.value = value_;
     }
