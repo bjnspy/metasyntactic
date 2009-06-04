@@ -85,7 +85,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "BOOL has$capitalized_name$;\n");
+    printer->Print(variables_, "BOOL has$capitalized_name$_:1;\n");
   }
 
 
@@ -117,10 +117,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void MessageFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
-      "  return has$capitalized_name$;\n"
+      "  return !!has$capitalized_name$_;\n"
       "}\n"
-      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
-      "  has$capitalized_name$ = has$capitalized_name$_;\n"
+      "- (void) setHas$capitalized_name$:(BOOL) value {\n"
+      "  has$capitalized_name$_ = !!value;\n"
       "}\n"
       "@synthesize $name$;\n");
   }
@@ -231,7 +231,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  [output write$group_or_message$:$number$ value:self.$name$];\n"
       "}\n");
   }
@@ -243,7 +243,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  size += compute$group_or_message$Size($number$, self.$name$);\n"
       "}\n");
   }

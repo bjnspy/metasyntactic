@@ -131,13 +131,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void PrimitiveFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "BOOL has$capitalized_name$;\n");
+    printer->Print(variables_, "BOOL has$capitalized_name$_:1;\n");
   }
 
 
   void PrimitiveFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     if (descriptor_->type() ==  FieldDescriptor::TYPE_BOOL) {
-      printer->Print(variables_, "$storage_type$ $name$;\n");
+      printer->Print(variables_, "$storage_type$ $name$_:1;\n");
     } else {
       printer->Print(variables_, "$storage_type$ $name$;\n");
     }
@@ -176,19 +176,19 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void PrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
-      "  return has$capitalized_name$;\n"
+      "  return !!has$capitalized_name$_;\n"
       "}\n"
-      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
-      "  has$capitalized_name$ = has$capitalized_name$_;\n"
+      "- (void) setHas$capitalized_name$:(BOOL) value {\n"
+      "  has$capitalized_name$_ = !!value;\n"
       "}\n");
 
     if (GetObjectiveCType(descriptor_) == OBJECTIVECTYPE_BOOLEAN) {
       printer->Print(variables_,
         "- (BOOL) $name$ {\n"
-        "  return $name$;\n"
+        "  return !!$name$_;\n"
         "}\n"
-        "- (void) set$capitalized_name$:(BOOL) $name$_ {\n"
-        "  $name$ = $name$_;\n"
+        "- (void) set$capitalized_name$:(BOOL) value {\n"
+        "  $name$_ = !!value;\n"
         "}\n");
     } else {
       printer->Print(variables_, "@synthesize $name$;\n");
@@ -285,14 +285,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void PrimitiveFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  [output write$capitalized_type$:$number$ value:self.$name$];\n"
       "}\n");
   }
 
   void PrimitiveFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  size += compute$capitalized_type$Size($number$, self.$name$);\n"
       "}\n");
   }

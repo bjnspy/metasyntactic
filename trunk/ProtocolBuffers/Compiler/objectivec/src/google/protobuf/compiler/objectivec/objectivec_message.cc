@@ -255,7 +255,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GeneratePropertyHeader(printer);
     }
-
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GenerateMembersHeader(printer);
     }
@@ -809,7 +808,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       if (field->is_required()) {
         printer->Print(
-          "if (!has$capitalized_name$) {\n"
+          "if (!self.has$capitalized_name$) {\n"
           "  return NO;\n"
           "}\n",
           "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
@@ -836,7 +835,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
               break;
             case FieldDescriptor::LABEL_OPTIONAL:
               printer->Print(vars,
-                "if (has$capitalized_name$) {\n"
+                "if (self.has$capitalized_name$) {\n"
                 "  if (!self.$name$.isInitialized) {\n"
                 "    return NO;\n"
                 "  }\n"

@@ -61,7 +61,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
-    printer->Print(variables_, "BOOL has$capitalized_name$;\n");
+    printer->Print(variables_, "BOOL has$capitalized_name$_:1;\n");
   }
 
 
@@ -98,10 +98,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
-      "  return has$capitalized_name$;\n"
+      "  return !!has$capitalized_name$_;\n"
       "}\n"
-      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
-      "  has$capitalized_name$ = has$capitalized_name$_;\n"
+      "- (void) setHas$capitalized_name$:(BOOL) value {\n"
+      "  has$capitalized_name$_ = !!value;\n"
       "}\n"
       "@synthesize $name$;\n");
   }
@@ -187,7 +187,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  [output writeEnum:$number$ value:self.$name$];\n"
       "}\n");
   }
@@ -199,7 +199,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (has$capitalized_name$) {\n"
+      "if (self.has$capitalized_name$) {\n"
       "  size += computeEnumSize($number$, self.$name$);\n"
       "}\n");
   }
