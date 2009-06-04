@@ -18,7 +18,7 @@
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -98,7 +98,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMessageSet alloc] init] autorelease];
   }
   return self;
@@ -173,7 +173,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.messageSet = [TestMessageSet defaultInstance];
   }
   return self;
@@ -258,7 +258,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMessageSetContainer alloc] init] autorelease];
   }
   return self;
@@ -374,7 +374,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.i = 0;
   }
   return self;
@@ -467,7 +467,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMessageSetExtension1 alloc] init] autorelease];
   }
   return self;
@@ -565,7 +565,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.str = @"";
   }
   return self;
@@ -658,7 +658,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMessageSetExtension2 alloc] init] autorelease];
   }
   return self;
@@ -750,7 +750,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -856,7 +856,7 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.typeId = 0;
     self.message = [NSData data];
   }
@@ -949,7 +949,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[RawMessageSet_Item alloc] init] autorelease];
   }
   return self;
@@ -1063,7 +1063,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[RawMessageSet alloc] init] autorelease];
   }
   return self;

@@ -114,7 +114,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {\n"
-      "  if (self = [super init]) {\n"
+      "  if ((self = [super init])) {\n"
       "    self.index = index_;\n"
       "    self.value = value_;\n"
       "  }\n"

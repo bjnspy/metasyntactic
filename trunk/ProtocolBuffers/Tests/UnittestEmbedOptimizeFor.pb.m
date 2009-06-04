@@ -30,7 +30,7 @@
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.optionalMessage = [TestOptimizedForSize defaultInstance];
   }
   return self;
@@ -133,7 +133,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestEmbedOptimizedForSize alloc] init] autorelease];
   }
   return self;

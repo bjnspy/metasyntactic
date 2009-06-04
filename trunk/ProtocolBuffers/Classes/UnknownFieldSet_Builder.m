@@ -44,7 +44,7 @@
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.fields = [NSMutableDictionary dictionary];
   }
   return self;

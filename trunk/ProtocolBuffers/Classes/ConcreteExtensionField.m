@@ -57,7 +57,7 @@
              isRepeated:(BOOL) isRepeated_
                isPacked:(BOOL) isPacked_
     isMessageSetWireFormat:(BOOL) isMessageSetWireFormat_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.type = type_;
     self.extendedClass = extendedClass_;
     self.fieldNumber = fieldNumber_;

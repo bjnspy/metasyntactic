@@ -35,7 +35,7 @@
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.i = 0;
     self.msg = [ForeignMessage defaultInstance];
   }
@@ -155,7 +155,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestOptimizedForSize alloc] init] autorelease];
   }
   return self;
@@ -294,7 +294,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.x = 0;
   }
   return self;
@@ -377,7 +377,7 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestRequiredOptimizedForSize alloc] init] autorelease];
   }
   return self;
@@ -475,7 +475,7 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.o = [TestRequiredOptimizedForSize defaultInstance];
   }
   return self;
@@ -560,7 +560,7 @@ static TestOptionalOptimizedForSize* defaultTestOptionalOptimizedForSizeInstance
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestOptionalOptimizedForSize alloc] init] autorelease];
   }
   return self;
