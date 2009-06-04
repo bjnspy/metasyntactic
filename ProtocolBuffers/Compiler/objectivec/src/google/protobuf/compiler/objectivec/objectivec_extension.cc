@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Author: kenton@google.com (Kenton Varda)
+// Author: cyrusn@google.com (Cyrus Najmabadi)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
@@ -151,7 +151,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       : BoxValue(descriptor_, DefaultValue(descriptor_));
 
     printer->Print(vars,
-      "     $containing_type$_$name$ =\n");
+      "$containing_type$_$name$ =\n");
 
     printer->Print(
       vars,
@@ -163,6 +163,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "                                    isRepeated:$is_repeated$\n"
       "                                      isPacked:$is_packed$\n"
       "                        isMessageSetWireFormat:$is_wire_format$] retain];\n");
+  }
+
+  void ExtensionGenerator::GenerateRegistrationSource(io::Printer* printer) {
+    printer->Print(
+      "[registry addExtension:$scope$_$name$];\n",
+      "scope", classname_,
+      "name", UnderscoresToCamelCase(descriptor_));
   }
 }  // namespace objectivec
 }  // namespace compiler

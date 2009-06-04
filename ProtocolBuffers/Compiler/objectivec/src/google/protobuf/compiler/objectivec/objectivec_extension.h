@@ -44,6 +44,7 @@ class ExtensionGenerator {
   void GenerateMembersSource(io::Printer* printer);
   void GenerateFieldsSource(io::Printer* printer);
   void GenerateInitializationSource(io::Printer* printer);
+  void GenerateRegistrationSource(io::Printer* printer);
 
  private:
   string classname_;

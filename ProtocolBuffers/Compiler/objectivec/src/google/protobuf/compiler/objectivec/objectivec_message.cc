@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Author: kenton@google.com (Kenton Varda)
+// Author: cyrusn@google.com (Cyrus Najmabadi)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
@@ -125,7 +125,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         // If the type has extensions, an extension with message type could contain
         // required fields, so we have to be conservative and assume such an
         // extension exists.
-        if (type->extension_range_count() > 0) return true;
+        if (type->extension_range_count() > 0) {
+          return true;
+        }
 
         for (int i = 0; i < type->field_count(); i++) {
           const FieldDescriptor* field = type->field(i);
@@ -183,6 +185,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
     }
 
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateInitializationSource(printer);
+    }
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
       MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesInitialization(printer);
     }
@@ -196,6 +201,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     vars["classname"] = ClassName(descriptor_);
     if (descriptor_->containing_type() != NULL) {
       vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
+    }
+
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i))
+        .GenerateFieldsSource(printer);
     }
 
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
@@ -220,6 +230,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
       MessageGenerator(descriptor_->nested_type(i)).GenerateEnumHeader(printer);
+    }
+  }
+
+  void MessageGenerator::GenerateExtensionRegistrationSource(io::Printer* printer) {
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i))
+        .GenerateRegistrationSource(printer);
+    }
+
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      MessageGenerator(descriptor_->nested_type(i))
+        .GenerateExtensionRegistrationSource(printer);
     }
   }
 
@@ -336,9 +358,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n");
 
     for (int i = 0; i < descriptor_->extension_count(); i++) {
-      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateFieldsSource(printer);
-    }
-    for (int i = 0; i < descriptor_->extension_count(); i++) {
       ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateMembersSource(printer);
     }
 
@@ -348,10 +367,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  if (self == [$classname$ class]) {\n"
       "    default$classname$Instance = [[$classname$ alloc] init];\n",
       "classname", ClassName(descriptor_));
-
-    for (int i = 0; i < descriptor_->extension_count(); i++) {
-      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateInitializationSource(printer);
-    }
 
     printer->Print(
       "  }\n"

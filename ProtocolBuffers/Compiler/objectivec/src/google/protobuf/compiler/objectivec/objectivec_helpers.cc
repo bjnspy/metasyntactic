@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Author: kenton@google.com (Kenton Varda)
+// Author: cyrusn@google.com (Cyrus Najmabadi)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
@@ -315,6 +315,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     case OBJECTIVECTYPE_FLOAT  :
     case OBJECTIVECTYPE_DOUBLE :
     case OBJECTIVECTYPE_BOOLEAN:
+    case OBJECTIVECTYPE_ENUM   :
       return true;
     }
 
