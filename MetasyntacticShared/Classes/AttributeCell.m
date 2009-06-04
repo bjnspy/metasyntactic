@@ -47,8 +47,8 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
 #ifndef IPHONE_OS_VERSION_3
-    if (self = [super initWithFrame:[UIScreen mainScreen].bounds
-                    reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithFrame:[UIScreen mainScreen].bounds
+                    reuseIdentifier:reuseIdentifier])) {
         self.textLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         self.detailTextLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
 

@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class PBDescriptor;
-@class PBEnumDescriptor;
-@class PBEnumValueDescriptor;
-@class PBFieldAccessorTable;
-@class PBFileDescriptor;
+#import "ProtocolBuffers.h"
+
+@class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
 @class AllShowtimesProto;
 @class AllShowtimesProto_Builder;
@@ -39,8 +37,6 @@
 
 @interface NowPlayingRoot : NSObject {
 }
-+ (PBFileDescriptor*) descriptor;
-+ (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface ShowtimeProto : PBGeneratedMessage {
@@ -61,8 +57,6 @@
 - (NSArray*) subtitledList;
 - (NSString*) subtitledAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (ShowtimeProto*) defaultInstance;
 - (ShowtimeProto*) defaultInstance;
 
@@ -85,7 +79,6 @@
   ShowtimeProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (ShowtimeProto*) defaultInstance;
 
 - (ShowtimeProto_Builder*) clear;
@@ -94,8 +87,7 @@
 - (ShowtimeProto*) build;
 - (ShowtimeProto*) buildPartial;
 
-- (ShowtimeProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (ShowtimeProto_Builder*) mergeFromShowtimeProto:(ShowtimeProto*) other;
+- (ShowtimeProto_Builder*) mergeFrom:(ShowtimeProto*) other;
 - (ShowtimeProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ShowtimeProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -139,8 +131,6 @@
 - (NSArray*) showtimesList;
 - (ShowtimeProto*) showtimesAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (AllShowtimesProto*) defaultInstance;
 - (AllShowtimesProto*) defaultInstance;
 
@@ -163,7 +153,6 @@
   AllShowtimesProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (AllShowtimesProto*) defaultInstance;
 
 - (AllShowtimesProto_Builder*) clear;
@@ -172,8 +161,7 @@
 - (AllShowtimesProto*) build;
 - (AllShowtimesProto*) buildPartial;
 
-- (AllShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (AllShowtimesProto_Builder*) mergeFromAllShowtimesProto:(AllShowtimesProto*) other;
+- (AllShowtimesProto_Builder*) mergeFrom:(AllShowtimesProto*) other;
 - (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -251,8 +239,6 @@
 - (NSArray*) subtitledList;
 - (NSString*) subtitledAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (MovieProto*) defaultInstance;
 - (MovieProto*) defaultInstance;
 
@@ -275,7 +261,6 @@
   MovieProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (MovieProto*) defaultInstance;
 
 - (MovieProto_Builder*) clear;
@@ -284,8 +269,7 @@
 - (MovieProto*) build;
 - (MovieProto*) buildPartial;
 
-- (MovieProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (MovieProto_Builder*) mergeFromMovieProto:(MovieProto*) other;
+- (MovieProto_Builder*) mergeFrom:(MovieProto*) other;
 - (MovieProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (MovieProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -412,8 +396,6 @@
 @property (readonly) Float64 latitude;
 @property (readonly) Float64 longitude;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TheaterProto*) defaultInstance;
 - (TheaterProto*) defaultInstance;
 
@@ -436,7 +418,6 @@
   TheaterProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TheaterProto*) defaultInstance;
 
 - (TheaterProto_Builder*) clear;
@@ -445,8 +426,7 @@
 - (TheaterProto*) build;
 - (TheaterProto*) buildPartial;
 
-- (TheaterProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TheaterProto_Builder*) mergeFromTheaterProto:(TheaterProto*) other;
+- (TheaterProto_Builder*) mergeFrom:(TheaterProto*) other;
 - (TheaterProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TheaterProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -511,8 +491,6 @@
 - (NSArray*) theaterAndMovieShowtimesList;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimesAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TheaterListingsProto*) defaultInstance;
 - (TheaterListingsProto*) defaultInstance;
 
@@ -541,8 +519,6 @@
 - (NSArray*) movieAndShowtimesList;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) movieAndShowtimesAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TheaterListingsProto_TheaterAndMovieShowtimesProto*) defaultInstance;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) defaultInstance;
 
@@ -572,8 +548,6 @@
 @property (readonly, retain) NSString* movieIdentifier;
 @property (readonly, retain) AllShowtimesProto* showtimes;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) defaultInstance;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) defaultInstance;
 
@@ -596,7 +570,6 @@
   TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) defaultInstance;
 
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) clear;
@@ -605,8 +578,7 @@
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) build;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) buildPartial;
 
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) other;
+- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFrom:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) other;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -628,7 +600,6 @@
   TheaterListingsProto_TheaterAndMovieShowtimesProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) defaultInstance;
 
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) clear;
@@ -637,8 +608,7 @@
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) build;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) buildPartial;
 
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) other;
+- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFrom:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) other;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -662,7 +632,6 @@
   TheaterListingsProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (TheaterListingsProto*) defaultInstance;
 
 - (TheaterListingsProto_Builder*) clear;
@@ -671,8 +640,7 @@
 - (TheaterListingsProto*) build;
 - (TheaterListingsProto*) buildPartial;
 
-- (TheaterListingsProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (TheaterListingsProto_Builder*) mergeFromTheaterListingsProto:(TheaterListingsProto*) other;
+- (TheaterListingsProto_Builder*) mergeFrom:(TheaterListingsProto*) other;
 - (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -691,7 +659,7 @@
 - (TheaterListingsProto_Builder*) clearTheaterAndMovieShowtimesList;
 @end
 
-@interface ReviewProto : PBGeneratedMessage {
+@interface ReviewProto : PBExtendableMessage {
  @private
   BOOL hasRating;
   BOOL hasTitle;
@@ -727,8 +695,6 @@
 @property (readonly, retain) NSString* author;
 @property (readonly, retain) NSString* date;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (ReviewProto*) defaultInstance;
 - (ReviewProto*) defaultInstance;
 
@@ -746,12 +712,11 @@
 + (ReviewProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ReviewProto_Builder : PBGeneratedMessage_Builder {
+@interface ReviewProto_Builder : PBExtendableMessage_Builder {
  @private
   ReviewProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (ReviewProto*) defaultInstance;
 
 - (ReviewProto_Builder*) clear;
@@ -760,8 +725,7 @@
 - (ReviewProto*) build;
 - (ReviewProto*) buildPartial;
 
-- (ReviewProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (ReviewProto_Builder*) mergeFromReviewProto:(ReviewProto*) other;
+- (ReviewProto_Builder*) mergeFrom:(ReviewProto*) other;
 - (ReviewProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ReviewProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
@@ -813,8 +777,6 @@
 - (NSArray*) reviewsList;
 - (ReviewProto*) reviewsAtIndex:(int32_t) index;
 
-+ (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptor;
 + (ReviewsListProto*) defaultInstance;
 - (ReviewsListProto*) defaultInstance;
 
@@ -837,7 +799,6 @@
   ReviewsListProto* result;
 }
 
-- (PBDescriptor*) descriptor;
 - (ReviewsListProto*) defaultInstance;
 
 - (ReviewsListProto_Builder*) clear;
@@ -846,8 +807,7 @@
 - (ReviewsListProto*) build;
 - (ReviewsListProto*) buildPartial;
 
-- (ReviewsListProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
-- (ReviewsListProto_Builder*) mergeFromReviewsListProto:(ReviewsListProto*) other;
+- (ReviewsListProto_Builder*) mergeFrom:(ReviewsListProto*) other;
 - (ReviewsListProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (ReviewsListProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
