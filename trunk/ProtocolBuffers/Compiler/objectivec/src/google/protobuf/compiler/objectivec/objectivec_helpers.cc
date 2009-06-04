@@ -121,7 +121,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (file->options().HasExtension(objectivec_file_options)) {
       ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
-     
+
       if (options.objectivec_package() != "") {
         path = options.objectivec_package() + "/" + path;
       } 
@@ -136,7 +136,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       return "PB";
     } else if (file->options().HasExtension(objectivec_file_options)) {
       ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
-     
+
       return options.objectivec_class_prefix();
     } else {
       return "";
@@ -175,7 +175,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
     return name + descriptor->name();
   }
-  
+
 
   string ClassName(const Descriptor* descriptor) {
     string name;
@@ -320,6 +320,114 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       result.append("_");
     }
     return result;
+  }
+
+  string BoxValue(const FieldDescriptor* field, const string& value) {
+    switch (GetObjectiveCType(field)) {
+      case OBJECTIVECTYPE_INT:
+        return "[NSNumber numberWithInt:" + value + "]";
+      case OBJECTIVECTYPE_LONG:
+        return "[NSNumber numberWithLongLong:" + value + "]";
+      case OBJECTIVECTYPE_FLOAT:
+        return "[NSNumber numberWithFloat:" + value + "]";
+      case OBJECTIVECTYPE_DOUBLE:
+        return "[NSNumber numberWithDouble:" + value + "]";
+      case OBJECTIVECTYPE_BOOLEAN:
+        return "[NSNumber numberWithBool:" + value + "]";
+    }
+
+    return value;
+  }
+
+  bool AllAscii(const string& text) {
+    for (int i = 0; i < text.size(); i++) {
+      if ((text[i] & 0x80) != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  string DefaultValue(const FieldDescriptor* field) {
+    // Switch on cpp_type since we need to know which default_value_* method
+    // of FieldDescriptor to call.
+    switch (field->cpp_type()) {
+        case FieldDescriptor::CPPTYPE_INT32:  return SimpleItoa(field->default_value_int32());
+        case FieldDescriptor::CPPTYPE_UINT32: return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
+        case FieldDescriptor::CPPTYPE_INT64:  return SimpleItoa(field->default_value_int64()) + "L";
+        case FieldDescriptor::CPPTYPE_UINT64: return SimpleItoa(static_cast<int64>(field->default_value_uint64())) + "L";
+        case FieldDescriptor::CPPTYPE_DOUBLE: return SimpleDtoa(field->default_value_double());
+        case FieldDescriptor::CPPTYPE_FLOAT:  return SimpleFtoa(field->default_value_float());
+        case FieldDescriptor::CPPTYPE_BOOL:   return field->default_value_bool() ? "YES" : "NO";
+        case FieldDescriptor::CPPTYPE_STRING:
+          if (field->type() == FieldDescriptor::TYPE_BYTES) {
+            if (field->has_default_value()) {
+              return
+                "[NSData dataWithBytes:\"" +
+                CEscape(field->default_value_string()) +
+                "\" length:" + SimpleItoa(field->default_value_string().length()) +
+                "]";
+            } else {
+              return "[NSData data]";
+            }
+          } else {
+            if (AllAscii(field->default_value_string())) {
+              return "@\"" + CEscape(field->default_value_string()) + "\"";
+            } else {
+              return 
+                "[NSString stringWithUTF8String:\"" +
+                CEscape(field->default_value_string()) +
+                "\"]";
+            }
+          }
+#if 0
+            if (!isBytes && AllPrintableAscii(field->default_value_string())) {
+              // All chars are ASCII and printable.  In this case CEscape() works
+              // fine (it will only escape quotes and backslashes).
+              // Note:  If this "optimization" is removed, DescriptorProtos will
+              //   no longer be able to initialize itself due to bootstrapping
+              //   problems.
+              return "@\"" + CEscape(field->default_value_string()) + "\"";
+            }
+
+            if (isBytes && !field->has_default_value()) {
+              return "[NSData data]";
+            }
+
+            string value = field->default_value_string();
+            string encodedValue;
+
+            // Only write 40 bytes per line.
+            static const int kBytesPerLine = 40;
+            for (int i = 0; i < value.size(); i += kBytesPerLine) {
+              if (i > 0) {
+                encodedValue += "\n";
+              }
+              encodedValue += "\"";
+              encodedValue += CEscape(value.substr(i, kBytesPerLine));
+              encodedValue += "\"";
+            }
+
+            if (isBytes) {
+              string result =
+                "[NSData dataWithBytes:" + encodedValue + " length:";
+              result += SimpleItoa(value.size());
+              result += "]";
+
+              return result;
+            } else {
+              return "[NSString stringWithUTF8String:" + encodedValue + "]";
+            }
+          }
+#endif
+        case FieldDescriptor::CPPTYPE_ENUM:
+          return "[" + ClassName(field->enum_type()) + " valueOf:" + SimpleItoa(field->default_value_enum()->number()) + "]";
+        case FieldDescriptor::CPPTYPE_MESSAGE:
+          return "[" + ClassName(field->message_type()) + " defaultInstance]";
+    }
+
+    GOOGLE_LOG(FATAL) << "Can't get here.";
+    return "";
   }
 }  // namespace objectivec
 }  // namespace compiler

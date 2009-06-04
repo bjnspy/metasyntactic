@@ -41,6 +41,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void ServiceGenerator::GenerateHeader(io::Printer* printer) {
+    return;
     printer->Print(
       "@interface $classname$ : NSObject<PBService> {\n"
       "}\n",
@@ -75,6 +76,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void ServiceGenerator::GenerateSource(io::Printer* printer) {
+    return;
     printer->Print(
       "@implementation $classname$\n",
       "classname", ClassName(descriptor_));

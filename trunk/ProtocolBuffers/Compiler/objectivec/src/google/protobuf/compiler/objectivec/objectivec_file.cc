@@ -63,11 +63,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
 
     printer->Print(
-      "@class PBDescriptor;\n"
-      "@class PBEnumDescriptor;\n"
-      "@class PBEnumValueDescriptor;\n"
-      "@class PBFieldAccessorTable;\n"
-      "@class PBFileDescriptor;\n"
+      "@class PBExtendableMessage_Builder;\n"
       "@class PBGeneratedMessage_Builder;\n");
 
     set<string> dependencies;
@@ -84,10 +80,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     printer->Print(
       "}\n");
-
-    printer->Print(
-      "+ (PBFileDescriptor*) descriptor;\n"
-      "+ (PBFileDescriptor*) buildDescriptor;\n");
 
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersHeader(printer);
@@ -150,9 +142,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
       "@implementation $classname$\n",
       "classname", classname_);
 
-    printer->Print(
-      "static PBFileDescriptor* descriptor = nil;\n");
-
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(classname_, file_->extension(i)).GenerateFieldsSource(printer);
     }
@@ -163,8 +152,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     printer->Print(
       "+ (void) initialize {\n"
-      "  if (self == [$classname$ class]) {\n"
-      "    descriptor = [[$classname$ buildDescriptor] retain];\n",
+      "  if (self == [$classname$ class]) {\n",
       "classname", classname_);
 
     printer->Indent();
@@ -188,72 +176,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersSource(printer);
     }
-
-    printer->Print(
-      "+ (PBFileDescriptor*) descriptor {\n"
-      "  return descriptor;\n"
-      "}\n");
-
-    printer->Print(
-      "+ (PBFileDescriptor*) buildDescriptor {\n",
-      "classname", classname_);
-
-    printer->Print("  static uint8_t descriptorData[] = {\n");
-
-    printer->Indent();
-    printer->Indent();
-
-    // Embed the descriptor.  We simply serialize the entire FileDescriptorProto
-    // and embed it as an array of bytes, which is parsed and built into real
-    // descriptors at initialization time. 
-    FileDescriptorProto file_proto;
-    file_->CopyTo(&file_proto);
-    string file_data;
-    file_proto.SerializeToString(&file_data);
-
-    string current_line;
-    for (int i = 0; i < file_data.size(); i++) {
-      if (current_line.length() > 70) {
-        printer->Print("$value$\n", "value", current_line);
-        current_line = "";
-      }
-
-      uint8 b = file_data[i];
-
-      stringstream stream;
-      stream << (int)b;
-      stream << ",";
-
-      current_line += stream.str();
-    }
-
-    printer->Print("$value$\n",
-      "value", current_line);
-
-    printer->Outdent();
-    printer->Print("};\n");
-
-    printer->Print(
-      "NSArray* dependencies = [NSArray arrayWithObjects:");
-    for (int i = 0; i < file_->dependency_count(); i++) {
-      printer->Print(
-        "[$dependency$ descriptor], ",
-        "dependency", FileClassName(file_->dependency(i)));
-    }
-
-    stringstream ss;
-    ss << (int) file_data.size();
-    printer->Print(
-      "nil];\n\n"
-      "NSData* data = [NSData dataWithBytes:descriptorData length:$length$];\n"
-      "PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];\n"
-      "return [PBFileDescriptor buildFrom:proto dependencies:dependencies];\n",
-      "length", ss.str());
-
-    printer->Outdent();
-
-    printer->Print(
-      "}\n");
 
     printer->Print(
       "@end\n\n");

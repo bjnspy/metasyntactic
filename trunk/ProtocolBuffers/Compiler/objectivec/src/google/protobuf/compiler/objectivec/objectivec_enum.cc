@@ -87,16 +87,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ ($classname$*) valueOf:(int32_t) value;\n",
       "classname", ClassName(descriptor_));
 
-    printer->Print(
-      "- (PBEnumValueDescriptor*) valueDescriptor;\n"
-      "- (PBEnumDescriptor*) descriptor;\n"
-      "+ (PBEnumDescriptor*) descriptor;\n");
-
-    printer->Print(
-      "\n"
-      "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;\n",
-      "classname", ClassName(descriptor_));
-
     printer->Print("@end\n\n");
   }
 
@@ -200,55 +190,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "    default: return nil;\n"
       "  }\n"
       "}\n");
-
-    printer->Print(
-      "- (PBEnumValueDescriptor*) valueDescriptor {\n"
-      "  return [[$classname$ descriptor].values objectAtIndex:index];\n"
-      "}\n"
-      "- (PBEnumDescriptor*) descriptor {\n"
-      "  return [$classname$ descriptor];\n"
-      "}\n"
-      "+ (PBEnumDescriptor*) descriptor {\n",
-      "classname", ClassName(descriptor_));
-
-    if (descriptor_->containing_type() == NULL) {
-      printer->Print(
-        "  return [[$file$ descriptor].enumTypes objectAtIndex:$index$];\n",
-        "file", FileClassName(descriptor_->file()),
-        "index", SimpleItoa(descriptor_->index()));
-    } else {
-      printer->Print(
-        "  return [[$parent$ descriptor].enumTypes objectAtIndex:$index$];\n",
-        "parent", ClassName(descriptor_->containing_type()),
-        "index", SimpleItoa(descriptor_->index()));
-    }
-
-    printer->Print(
-      "}\n");
-
-    printer->Print(
-      "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
-      "  if (desc.type != [$classname$ descriptor]) {\n"
-      "    @throw [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
-      "  }\n"
-      "  $classname$* VALUES[] = {\n",
-      "classname", ClassName(descriptor_));
-
-    printer->Indent();
-    printer->Indent();
-    for (int i = 0; i < descriptor_->value_count(); i++) {
-      printer->Print("[$classname$ $name$],\n",
-        "name", SafeName(descriptor_->value(i)->name()),
-        "classname", ClassName(descriptor_));
-    }
-    printer->Outdent();
-    printer->Outdent();
-
-    printer->Print(
-      "  };\n"
-      "  return VALUES[desc.index];\n"
-      "}\n");
-
     printer->Print("@end\n\n");
   }
 }  // namespace objectivec

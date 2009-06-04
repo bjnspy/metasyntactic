@@ -46,27 +46,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["type"] = type;
         (*variables)["storage_type"] = type + "*";
         (*variables)["default"] = "[" + type + " " + default_value->name() + "]";
-
-        string boxed_value = "value";
-        switch (GetObjectiveCType(descriptor)) {
-          case OBJECTIVECTYPE_INT:
-            boxed_value = "[NSNumber numberWithInt:value]";
-            break;
-          case OBJECTIVECTYPE_LONG:
-            boxed_value = "[NSNumber numberWithLongLong:value]";
-            break;
-          case OBJECTIVECTYPE_FLOAT:
-            boxed_value = "[NSNumber numberWithFloat:value]";
-            break;
-          case OBJECTIVECTYPE_DOUBLE:
-            boxed_value = "[NSNumber numberWithDouble:value]";
-            break;
-          case OBJECTIVECTYPE_BOOLEAN:
-            boxed_value = "[NSNumber numberWithBool:value]";
-            break;
-        } 
-
-        (*variables)["boxed_value"] = boxed_value;
+        (*variables)["boxed_value"] = BoxValue(descriptor, "value");
 
         string unboxed_value = "value";
         switch (GetObjectiveCType(descriptor)) {
