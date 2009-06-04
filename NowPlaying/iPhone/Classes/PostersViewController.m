@@ -61,7 +61,7 @@ const double LOAD_DELAY = 1;
 
 - (id) initWithMovie:(Movie*) movie_
          posterCount:(NSInteger) posterCount_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.movie = movie_;
         posterCount = posterCount_;
 

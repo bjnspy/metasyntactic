@@ -43,7 +43,7 @@ const int START_YEAR = 1912;
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.yearToMovieNames = [NSMutableDictionary dictionary];
         self.yearToMovieNamesGate = [[[NSRecursiveLock alloc] init] autorelease];
     }

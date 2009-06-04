@@ -39,7 +39,7 @@ property_definition(name);
 - (id) initWithUrl:(NSString*) url_
                key:(NSString*) key_
               name:(NSString*) name_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.url = url_;
         self.key = key_;
         self.name = name_;

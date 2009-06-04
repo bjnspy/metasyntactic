@@ -93,7 +93,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = LocalizedString(@"Upcoming", nil);
     }
 

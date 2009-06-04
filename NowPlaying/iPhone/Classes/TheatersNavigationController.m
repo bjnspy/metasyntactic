@@ -33,7 +33,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = LocalizedString(@"Theaters", nil);
         self.tabBarItem.title = self.title;
         self.tabBarItem.image = [UIImage imageNamed:@"Theaters.png"];

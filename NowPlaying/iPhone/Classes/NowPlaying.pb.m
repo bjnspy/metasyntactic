@@ -42,7 +42,7 @@
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.time = @"";
     self.url = @"";
   }
@@ -158,7 +158,7 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[ShowtimeProto alloc] init] autorelease];
   }
   return self;
@@ -373,7 +373,7 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.vendor = @"";
     self.captioning = @"";
   }
@@ -478,7 +478,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[AllShowtimesProto alloc] init] autorelease];
   }
   return self;
@@ -731,7 +731,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.identifier = @"";
     self.title = @"";
     self.length = 0;
@@ -926,7 +926,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[MovieProto alloc] init] autorelease];
   }
   return self;
@@ -1474,7 +1474,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.identifier = @"";
     self.name = @"";
     self.streetAddress = @"";
@@ -1617,7 +1617,7 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TheaterProto alloc] init] autorelease];
   }
   return self;
@@ -1919,7 +1919,7 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -2033,7 +2033,7 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.theater = [TheaterProto defaultInstance];
   }
   return self;
@@ -2150,7 +2150,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.movieIdentifier = @"";
     self.showtimes = [AllShowtimesProto defaultInstance];
   }
@@ -2246,7 +2246,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto alloc] init] autorelease];
   }
   return self;
@@ -2379,7 +2379,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TheaterListingsProto_TheaterAndMovieShowtimesProto alloc] init] autorelease];
   }
   return self;
@@ -2530,7 +2530,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TheaterListingsProto alloc] init] autorelease];
   }
   return self;
@@ -2749,7 +2749,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.title = @"";
     self.url = @"";
     self.rating = 0;
@@ -2888,7 +2888,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[ReviewProto alloc] init] autorelease];
   }
   return self;
@@ -3141,7 +3141,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -3232,7 +3232,7 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[ReviewsListProto alloc] init] autorelease];
   }
   return self;

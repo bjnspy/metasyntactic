@@ -47,7 +47,7 @@ property_definition(source);
                link:(NSString*) link_
              author:(NSString*) author_
              source:(NSString*) source_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.score = score_;
         self.link = link_ == nil ? @"" : link_;
         self.text = text_ == nil ? @"" : text_;

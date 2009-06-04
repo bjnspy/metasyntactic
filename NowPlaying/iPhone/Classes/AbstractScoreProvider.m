@@ -69,7 +69,7 @@
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
     self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
     self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];

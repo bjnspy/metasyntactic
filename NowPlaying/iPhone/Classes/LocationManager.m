@@ -50,7 +50,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
 
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];

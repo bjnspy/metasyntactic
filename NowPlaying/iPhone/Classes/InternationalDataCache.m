@@ -63,7 +63,7 @@ static NSSet* allowableCountries = nil;
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.indexData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadIndex) saveSelector:@selector(saveIndex:)];
     self.engine = [DifferenceEngine engine];
     self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
