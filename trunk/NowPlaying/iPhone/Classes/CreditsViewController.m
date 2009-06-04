@@ -64,7 +64,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (id) init {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = LocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];

@@ -35,7 +35,7 @@
 
 - (id) initWithObject:(id) object_
              selector:(SEL) selector_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.object = object_;
         self.selector = selector_;
         self.title = LocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");

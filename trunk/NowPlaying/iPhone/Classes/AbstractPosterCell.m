@@ -30,7 +30,7 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+  if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
   }
 
   return self;

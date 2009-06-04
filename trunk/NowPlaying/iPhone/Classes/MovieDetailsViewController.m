@@ -349,7 +349,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (id) initWithMovie:(Movie*) movie_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.movie = movie_;
 
         // Only want to do this once.

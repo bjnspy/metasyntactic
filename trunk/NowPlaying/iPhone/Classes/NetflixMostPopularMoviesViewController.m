@@ -39,7 +39,7 @@
 
 
 - (id) initWithCategory:(NSString*) category_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.category = category_;
         self.title = category_;
     }

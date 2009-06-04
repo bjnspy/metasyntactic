@@ -38,7 +38,7 @@
 
 - (id) initWithFeedKeys:(NSArray*) feedKeys_
                   title:(NSString*) title_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.title = title_;
         self.feedKeys = feedKeys_;
     }

@@ -29,7 +29,7 @@
 
 
 - (id) init {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = LocalizedString(@"Reviews", nil);
     }
 
