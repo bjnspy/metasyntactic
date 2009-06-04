@@ -9,54 +9,16 @@
 }
 @end
 
-@interface ImportEnum ()
-  @property int32_t index;
-  @property int32_t value;
-@end
-
-@implementation ImportEnum
-@synthesize index;
-@synthesize value;
-static ImportEnum* ImportEnum_IMPORT_FOO = nil;
-static ImportEnum* ImportEnum_IMPORT_BAR = nil;
-static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
-- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if ((self = [super init])) {
-    self.index = index_;
-    self.value = value_;
-  }
-  return self;
-}
-+ (ImportEnum*) newWithIndex:(int32_t) index value:(int32_t) value {
-  return [[[ImportEnum alloc] initWithIndex:index value:value] autorelease];
-}
-+ (void) initialize {
-  if (self == [ImportEnum class]) {
-    ImportEnum_IMPORT_FOO = [[ImportEnum newWithIndex:0 value:7] retain];
-    ImportEnum_IMPORT_BAR = [[ImportEnum newWithIndex:1 value:8] retain];
-    ImportEnum_IMPORT_BAZ = [[ImportEnum newWithIndex:2 value:9] retain];
-  }
-}
-+ (ImportEnum*) IMPORT_FOO {
-  return ImportEnum_IMPORT_FOO;
-}
-+ (ImportEnum*) IMPORT_BAR {
-  return ImportEnum_IMPORT_BAR;
-}
-+ (ImportEnum*) IMPORT_BAZ {
-  return ImportEnum_IMPORT_BAZ;
-}
-- (int32_t) number { return value; }
-+ (ImportEnum*) valueOf:(int32_t) value {
+BOOL ImportEnumIsValidValue(ImportEnum value) {
   switch (value) {
-    case 7: return [ImportEnum IMPORT_FOO];
-    case 8: return [ImportEnum IMPORT_BAR];
-    case 9: return [ImportEnum IMPORT_BAZ];
-    default: return nil;
+    case ImportEnumImportFoo:
+    case ImportEnumImportBar:
+    case ImportEnumImportBaz:
+      return YES;
+    default:
+      return NO;
   }
 }
-@end
-
 @interface ImportMessage ()
 @property int32_t d;
 @end

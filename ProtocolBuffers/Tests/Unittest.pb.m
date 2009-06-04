@@ -80,7 +80,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:1
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -89,7 +89,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:2
                                       defaultValue:[NSNumber numberWithLongLong:0L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -98,7 +98,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:3
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -107,7 +107,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:4
                                       defaultValue:[NSNumber numberWithLongLong:0L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -116,7 +116,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:5
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -125,7 +125,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:6
                                       defaultValue:[NSNumber numberWithLongLong:0L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -134,7 +134,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:7
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -143,7 +143,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:8
                                       defaultValue:[NSNumber numberWithLongLong:0L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -152,7 +152,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:9
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -161,7 +161,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:10
                                       defaultValue:[NSNumber numberWithLongLong:0L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -170,7 +170,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:11
                                       defaultValue:[NSNumber numberWithFloat:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -179,7 +179,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:12
                                       defaultValue:[NSNumber numberWithDouble:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -188,7 +188,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:13
                                       defaultValue:[NSNumber numberWithBool:NO]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -197,7 +197,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:14
                                       defaultValue:@""
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -206,7 +206,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:15
                                       defaultValue:[NSData data]
-                         messageOrGroupOrEnumClass:[NSData class]
+                               messageOrGroupClass:[NSData class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -215,7 +215,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:16
                                       defaultValue:[OptionalGroup_extension defaultInstance]
-                         messageOrGroupOrEnumClass:[OptionalGroup_extension class]
+                               messageOrGroupClass:[OptionalGroup_extension class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -224,7 +224,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:18
                                       defaultValue:[TestAllTypes_NestedMessage defaultInstance]
-                         messageOrGroupOrEnumClass:[TestAllTypes_NestedMessage class]
+                               messageOrGroupClass:[TestAllTypes_NestedMessage class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -233,7 +233,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:19
                                       defaultValue:[ForeignMessage defaultInstance]
-                         messageOrGroupOrEnumClass:[ForeignMessage class]
+                               messageOrGroupClass:[ForeignMessage class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -242,7 +242,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:20
                                       defaultValue:[ImportMessage defaultInstance]
-                         messageOrGroupOrEnumClass:[ImportMessage class]
+                               messageOrGroupClass:[ImportMessage class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -250,8 +250,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:21
-                                      defaultValue:[TestAllTypes_NestedEnum valueOf:1]
-                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                                      defaultValue:[NSNumber numberWithInt:TestAllTypes_NestedEnumFoo]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -259,8 +259,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:22
-                                      defaultValue:[ForeignEnum valueOf:4]
-                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                                      defaultValue:[NSNumber numberWithInt:ForeignEnumForeignFoo]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -268,8 +268,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:23
-                                      defaultValue:[ImportEnum valueOf:7]
-                         messageOrGroupOrEnumClass:[ImportEnum class]
+                                      defaultValue:[NSNumber numberWithInt:ImportEnumImportFoo]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -278,7 +278,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:24
                                       defaultValue:@""
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -287,7 +287,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:25
                                       defaultValue:@""
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -296,7 +296,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:31
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -305,7 +305,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:32
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -314,7 +314,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:33
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -323,7 +323,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:34
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -332,7 +332,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:35
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -341,7 +341,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:36
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -350,7 +350,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:37
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -359,7 +359,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:38
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -368,7 +368,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:39
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -377,7 +377,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:40
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -386,7 +386,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:41
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -395,7 +395,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:42
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -404,7 +404,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:43
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -413,7 +413,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:44
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -422,7 +422,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:45
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSData class]
+                               messageOrGroupClass:[NSData class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -431,7 +431,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:46
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[RepeatedGroup_extension class]
+                               messageOrGroupClass:[RepeatedGroup_extension class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -440,7 +440,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:48
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[TestAllTypes_NestedMessage class]
+                               messageOrGroupClass:[TestAllTypes_NestedMessage class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -449,7 +449,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:49
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[ForeignMessage class]
+                               messageOrGroupClass:[ForeignMessage class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -458,7 +458,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:50
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[ImportMessage class]
+                               messageOrGroupClass:[ImportMessage class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -467,7 +467,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:51
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -476,7 +476,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:52
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -485,7 +485,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:53
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[ImportEnum class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -494,7 +494,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:54
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -503,7 +503,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:55
                                       defaultValue:[NSArray array]
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -512,7 +512,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:61
                                       defaultValue:[NSNumber numberWithInt:41]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -521,7 +521,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:62
                                       defaultValue:[NSNumber numberWithLongLong:42L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -530,7 +530,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:63
                                       defaultValue:[NSNumber numberWithInt:43]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -539,7 +539,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:64
                                       defaultValue:[NSNumber numberWithLongLong:44L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -548,7 +548,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:65
                                       defaultValue:[NSNumber numberWithInt:-45]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -557,7 +557,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:66
                                       defaultValue:[NSNumber numberWithLongLong:46L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -566,7 +566,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:67
                                       defaultValue:[NSNumber numberWithInt:47]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -575,7 +575,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:68
                                       defaultValue:[NSNumber numberWithLongLong:48L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -584,7 +584,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:69
                                       defaultValue:[NSNumber numberWithInt:49]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -593,7 +593,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:70
                                       defaultValue:[NSNumber numberWithLongLong:-50L]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -602,7 +602,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:71
                                       defaultValue:[NSNumber numberWithFloat:51.5]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -611,7 +611,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:72
                                       defaultValue:[NSNumber numberWithDouble:52000]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -620,7 +620,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:73
                                       defaultValue:[NSNumber numberWithBool:YES]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -629,7 +629,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:74
                                       defaultValue:@"hello"
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -638,7 +638,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:75
                                       defaultValue:[NSData dataWithBytes:"world" length:5]
-                         messageOrGroupOrEnumClass:[NSData class]
+                               messageOrGroupClass:[NSData class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -646,8 +646,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:81
-                                      defaultValue:[TestAllTypes_NestedEnum valueOf:2]
-                         messageOrGroupOrEnumClass:[TestAllTypes_NestedEnum class]
+                                      defaultValue:[NSNumber numberWithInt:TestAllTypes_NestedEnumBar]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -655,8 +655,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:82
-                                      defaultValue:[ForeignEnum valueOf:5]
-                         messageOrGroupOrEnumClass:[ForeignEnum class]
+                                      defaultValue:[NSNumber numberWithInt:ForeignEnumForeignBar]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -664,8 +664,8 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:83
-                                      defaultValue:[ImportEnum valueOf:8]
-                         messageOrGroupOrEnumClass:[ImportEnum class]
+                                      defaultValue:[NSNumber numberWithInt:ImportEnumImportBar]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -674,7 +674,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:84
                                       defaultValue:@"abc"
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -683,7 +683,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:85
                                       defaultValue:@"123"
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -692,7 +692,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestFieldOrderings class]
                                        fieldNumber:50
                                       defaultValue:@""
-                         messageOrGroupOrEnumClass:[NSString class]
+                               messageOrGroupClass:[NSString class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -701,7 +701,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                      extendedClass:[TestFieldOrderings class]
                                        fieldNumber:5
                                       defaultValue:[NSNumber numberWithInt:0]
-                         messageOrGroupOrEnumClass:[NSNumber class]
+                               messageOrGroupClass:[NSNumber class]
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
@@ -919,180 +919,40 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
 }
 @end
 
-@interface ForeignEnum ()
-  @property int32_t index;
-  @property int32_t value;
-@end
-
-@implementation ForeignEnum
-@synthesize index;
-@synthesize value;
-static ForeignEnum* ForeignEnum_FOREIGN_FOO = nil;
-static ForeignEnum* ForeignEnum_FOREIGN_BAR = nil;
-static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
-- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if ((self = [super init])) {
-    self.index = index_;
-    self.value = value_;
-  }
-  return self;
-}
-+ (ForeignEnum*) newWithIndex:(int32_t) index value:(int32_t) value {
-  return [[[ForeignEnum alloc] initWithIndex:index value:value] autorelease];
-}
-+ (void) initialize {
-  if (self == [ForeignEnum class]) {
-    ForeignEnum_FOREIGN_FOO = [[ForeignEnum newWithIndex:0 value:4] retain];
-    ForeignEnum_FOREIGN_BAR = [[ForeignEnum newWithIndex:1 value:5] retain];
-    ForeignEnum_FOREIGN_BAZ = [[ForeignEnum newWithIndex:2 value:6] retain];
-  }
-}
-+ (ForeignEnum*) FOREIGN_FOO {
-  return ForeignEnum_FOREIGN_FOO;
-}
-+ (ForeignEnum*) FOREIGN_BAR {
-  return ForeignEnum_FOREIGN_BAR;
-}
-+ (ForeignEnum*) FOREIGN_BAZ {
-  return ForeignEnum_FOREIGN_BAZ;
-}
-- (int32_t) number { return value; }
-+ (ForeignEnum*) valueOf:(int32_t) value {
+BOOL ForeignEnumIsValidValue(ForeignEnum value) {
   switch (value) {
-    case 4: return [ForeignEnum FOREIGN_FOO];
-    case 5: return [ForeignEnum FOREIGN_BAR];
-    case 6: return [ForeignEnum FOREIGN_BAZ];
-    default: return nil;
+    case ForeignEnumForeignFoo:
+    case ForeignEnumForeignBar:
+    case ForeignEnumForeignBaz:
+      return YES;
+    default:
+      return NO;
   }
 }
-@end
-
-@interface TestEnumWithDupValue ()
-  @property int32_t index;
-  @property int32_t value;
-@end
-
-@implementation TestEnumWithDupValue
-@synthesize index;
-@synthesize value;
-static TestEnumWithDupValue* TestEnumWithDupValue_FOO1 = nil;
-static TestEnumWithDupValue* TestEnumWithDupValue_BAR1 = nil;
-static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
-- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if ((self = [super init])) {
-    self.index = index_;
-    self.value = value_;
-  }
-  return self;
-}
-+ (TestEnumWithDupValue*) newWithIndex:(int32_t) index value:(int32_t) value {
-  return [[[TestEnumWithDupValue alloc] initWithIndex:index value:value] autorelease];
-}
-+ (void) initialize {
-  if (self == [TestEnumWithDupValue class]) {
-    TestEnumWithDupValue_FOO1 = [[TestEnumWithDupValue newWithIndex:0 value:1] retain];
-    TestEnumWithDupValue_BAR1 = [[TestEnumWithDupValue newWithIndex:1 value:2] retain];
-    TestEnumWithDupValue_BAZ = [[TestEnumWithDupValue newWithIndex:2 value:3] retain];
-  }
-}
-+ (TestEnumWithDupValue*) FOO1 {
-  return TestEnumWithDupValue_FOO1;
-}
-+ (TestEnumWithDupValue*) BAR1 {
-  return TestEnumWithDupValue_BAR1;
-}
-+ (TestEnumWithDupValue*) BAZ {
-  return TestEnumWithDupValue_BAZ;
-}
-+ (TestEnumWithDupValue*) FOO2 {
-  return [TestEnumWithDupValue FOO1];
-}
-+ (TestEnumWithDupValue*) BAR2 {
-  return [TestEnumWithDupValue BAR1];
-}
-- (int32_t) number { return value; }
-+ (TestEnumWithDupValue*) valueOf:(int32_t) value {
+BOOL TestEnumWithDupValueIsValidValue(TestEnumWithDupValue value) {
   switch (value) {
-    case 1: return [TestEnumWithDupValue FOO1];
-    case 2: return [TestEnumWithDupValue BAR1];
-    case 3: return [TestEnumWithDupValue BAZ];
-    default: return nil;
+    case TestEnumWithDupValueFoo1:
+    case TestEnumWithDupValueBar1:
+    case TestEnumWithDupValueBaz:
+      return YES;
+    default:
+      return NO;
   }
 }
-@end
-
-@interface TestSparseEnum ()
-  @property int32_t index;
-  @property int32_t value;
-@end
-
-@implementation TestSparseEnum
-@synthesize index;
-@synthesize value;
-static TestSparseEnum* TestSparseEnum_SPARSE_A = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_B = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_C = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_D = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_E = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_F = nil;
-static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
-- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if ((self = [super init])) {
-    self.index = index_;
-    self.value = value_;
-  }
-  return self;
-}
-+ (TestSparseEnum*) newWithIndex:(int32_t) index value:(int32_t) value {
-  return [[[TestSparseEnum alloc] initWithIndex:index value:value] autorelease];
-}
-+ (void) initialize {
-  if (self == [TestSparseEnum class]) {
-    TestSparseEnum_SPARSE_A = [[TestSparseEnum newWithIndex:0 value:123] retain];
-    TestSparseEnum_SPARSE_B = [[TestSparseEnum newWithIndex:1 value:62374] retain];
-    TestSparseEnum_SPARSE_C = [[TestSparseEnum newWithIndex:2 value:12589234] retain];
-    TestSparseEnum_SPARSE_D = [[TestSparseEnum newWithIndex:3 value:-15] retain];
-    TestSparseEnum_SPARSE_E = [[TestSparseEnum newWithIndex:4 value:-53452] retain];
-    TestSparseEnum_SPARSE_F = [[TestSparseEnum newWithIndex:5 value:0] retain];
-    TestSparseEnum_SPARSE_G = [[TestSparseEnum newWithIndex:6 value:2] retain];
-  }
-}
-+ (TestSparseEnum*) SPARSE_A {
-  return TestSparseEnum_SPARSE_A;
-}
-+ (TestSparseEnum*) SPARSE_B {
-  return TestSparseEnum_SPARSE_B;
-}
-+ (TestSparseEnum*) SPARSE_C {
-  return TestSparseEnum_SPARSE_C;
-}
-+ (TestSparseEnum*) SPARSE_D {
-  return TestSparseEnum_SPARSE_D;
-}
-+ (TestSparseEnum*) SPARSE_E {
-  return TestSparseEnum_SPARSE_E;
-}
-+ (TestSparseEnum*) SPARSE_F {
-  return TestSparseEnum_SPARSE_F;
-}
-+ (TestSparseEnum*) SPARSE_G {
-  return TestSparseEnum_SPARSE_G;
-}
-- (int32_t) number { return value; }
-+ (TestSparseEnum*) valueOf:(int32_t) value {
+BOOL TestSparseEnumIsValidValue(TestSparseEnum value) {
   switch (value) {
-    case 123: return [TestSparseEnum SPARSE_A];
-    case 62374: return [TestSparseEnum SPARSE_B];
-    case 12589234: return [TestSparseEnum SPARSE_C];
-    case -15: return [TestSparseEnum SPARSE_D];
-    case -53452: return [TestSparseEnum SPARSE_E];
-    case 0: return [TestSparseEnum SPARSE_F];
-    case 2: return [TestSparseEnum SPARSE_G];
-    default: return nil;
+    case TestSparseEnumSparseA:
+    case TestSparseEnumSparseB:
+    case TestSparseEnumSparseC:
+    case TestSparseEnumSparseD:
+    case TestSparseEnumSparseE:
+    case TestSparseEnumSparseF:
+    case TestSparseEnumSparseG:
+      return YES;
+    default:
+      return NO;
   }
 }
-@end
-
 @interface TestAllTypes ()
 @property int32_t optionalInt32;
 @property int64_t optionalInt64;
@@ -1113,9 +973,9 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property (retain) TestAllTypes_NestedMessage* optionalNestedMessage;
 @property (retain) ForeignMessage* optionalForeignMessage;
 @property (retain) ImportMessage* optionalImportMessage;
-@property (retain) TestAllTypes_NestedEnum* optionalNestedEnum;
-@property (retain) ForeignEnum* optionalForeignEnum;
-@property (retain) ImportEnum* optionalImportEnum;
+@property TestAllTypes_NestedEnum optionalNestedEnum;
+@property ForeignEnum optionalForeignEnum;
+@property ImportEnum optionalImportEnum;
 @property (retain) NSString* optionalStringPiece;
 @property (retain) NSString* optionalCord;
 @property (retain) NSMutableArray* mutableRepeatedInt32List;
@@ -1157,9 +1017,9 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property BOOL defaultBool;
 @property (retain) NSString* defaultString;
 @property (retain) NSData* defaultBytes;
-@property (retain) TestAllTypes_NestedEnum* defaultNestedEnum;
-@property (retain) ForeignEnum* defaultForeignEnum;
-@property (retain) ImportEnum* defaultImportEnum;
+@property TestAllTypes_NestedEnum defaultNestedEnum;
+@property ForeignEnum defaultForeignEnum;
+@property ImportEnum defaultImportEnum;
 @property (retain) NSString* defaultStringPiece;
 @property (retain) NSString* defaultCord;
 @end
@@ -1515,9 +1375,6 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
   self.optionalNestedMessage = nil;
   self.optionalForeignMessage = nil;
   self.optionalImportMessage = nil;
-  self.optionalNestedEnum = nil;
-  self.optionalForeignEnum = nil;
-  self.optionalImportEnum = nil;
   self.optionalStringPiece = nil;
   self.optionalCord = nil;
   self.mutableRepeatedInt32List = nil;
@@ -1546,9 +1403,6 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
   self.mutableRepeatedCordList = nil;
   self.defaultString = nil;
   self.defaultBytes = nil;
-  self.defaultNestedEnum = nil;
-  self.defaultForeignEnum = nil;
-  self.defaultImportEnum = nil;
   self.defaultStringPiece = nil;
   self.defaultCord = nil;
   [super dealloc];
@@ -1574,9 +1428,9 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     self.optionalNestedMessage = [TestAllTypes_NestedMessage defaultInstance];
     self.optionalForeignMessage = [ForeignMessage defaultInstance];
     self.optionalImportMessage = [ImportMessage defaultInstance];
-    self.optionalNestedEnum = [TestAllTypes_NestedEnum FOO];
-    self.optionalForeignEnum = [ForeignEnum FOREIGN_FOO];
-    self.optionalImportEnum = [ImportEnum IMPORT_FOO];
+    self.optionalNestedEnum = TestAllTypes_NestedEnumFoo;
+    self.optionalForeignEnum = ForeignEnumForeignFoo;
+    self.optionalImportEnum = ImportEnumImportFoo;
     self.optionalStringPiece = @"";
     self.optionalCord = @"";
     self.defaultInt32 = 41;
@@ -1594,9 +1448,9 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     self.defaultBool = YES;
     self.defaultString = @"hello";
     self.defaultBytes = [NSData dataWithBytes:"world" length:5];
-    self.defaultNestedEnum = [TestAllTypes_NestedEnum BAR];
-    self.defaultForeignEnum = [ForeignEnum FOREIGN_BAR];
-    self.defaultImportEnum = [ImportEnum IMPORT_BAR];
+    self.defaultNestedEnum = TestAllTypes_NestedEnumBar;
+    self.defaultForeignEnum = ForeignEnumForeignBar;
+    self.defaultImportEnum = ImportEnumImportBar;
     self.defaultStringPiece = @"abc";
     self.defaultCord = @"123";
   }
@@ -1750,23 +1604,23 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 - (NSArray*) repeatedNestedEnumList {
   return mutableRepeatedNestedEnumList;
 }
-- (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index {
-  id value = [mutableRepeatedNestedEnumList objectAtIndex:index];
-  return value;
+- (TestAllTypes_NestedEnum) repeatedNestedEnumAtIndex:(int32_t) index {
+  NSNumber* value = [mutableRepeatedNestedEnumList objectAtIndex:index];
+  return [value intValue];
 }
 - (NSArray*) repeatedForeignEnumList {
   return mutableRepeatedForeignEnumList;
 }
-- (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index {
-  id value = [mutableRepeatedForeignEnumList objectAtIndex:index];
-  return value;
+- (ForeignEnum) repeatedForeignEnumAtIndex:(int32_t) index {
+  NSNumber* value = [mutableRepeatedForeignEnumList objectAtIndex:index];
+  return [value intValue];
 }
 - (NSArray*) repeatedImportEnumList {
   return mutableRepeatedImportEnumList;
 }
-- (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index {
-  id value = [mutableRepeatedImportEnumList objectAtIndex:index];
-  return value;
+- (ImportEnum) repeatedImportEnumAtIndex:(int32_t) index {
+  NSNumber* value = [mutableRepeatedImportEnumList objectAtIndex:index];
+  return [value intValue];
 }
 - (NSArray*) repeatedStringPieceList {
   return mutableRepeatedStringPieceList;
@@ -1844,13 +1698,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     [output writeMessage:20 value:self.optionalImportMessage];
   }
   if (hasOptionalNestedEnum) {
-    [output writeEnum:21 value:self.optionalNestedEnum.number];
+    [output writeEnum:21 value:self.optionalNestedEnum];
   }
   if (hasOptionalForeignEnum) {
-    [output writeEnum:22 value:self.optionalForeignEnum.number];
+    [output writeEnum:22 value:self.optionalForeignEnum];
   }
   if (hasOptionalImportEnum) {
-    [output writeEnum:23 value:self.optionalImportEnum.number];
+    [output writeEnum:23 value:self.optionalImportEnum];
   }
   if (hasOptionalStringPiece) {
     [output writeString:24 value:self.optionalStringPiece];
@@ -1915,14 +1769,14 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   for (ImportMessage* element in self.repeatedImportMessageList) {
     [output writeMessage:50 value:element];
   }
-  for (TestAllTypes_NestedEnum* element in self.repeatedNestedEnumList) {
-    [output writeEnum:51 value:element.number];
+  for (NSNumber* element in self.repeatedNestedEnumList) {
+    [output writeEnum:51 value:element.intValue];
   }
-  for (ForeignEnum* element in self.repeatedForeignEnumList) {
-    [output writeEnum:52 value:element.number];
+  for (NSNumber* element in self.repeatedForeignEnumList) {
+    [output writeEnum:52 value:element.intValue];
   }
-  for (ImportEnum* element in self.repeatedImportEnumList) {
-    [output writeEnum:53 value:element.number];
+  for (NSNumber* element in self.repeatedImportEnumList) {
+    [output writeEnum:53 value:element.intValue];
   }
   for (NSString* element in self.mutableRepeatedStringPieceList) {
     [output writeString:54 value:element];
@@ -1976,13 +1830,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     [output writeData:75 value:self.defaultBytes];
   }
   if (hasDefaultNestedEnum) {
-    [output writeEnum:81 value:self.defaultNestedEnum.number];
+    [output writeEnum:81 value:self.defaultNestedEnum];
   }
   if (hasDefaultForeignEnum) {
-    [output writeEnum:82 value:self.defaultForeignEnum.number];
+    [output writeEnum:82 value:self.defaultForeignEnum];
   }
   if (hasDefaultImportEnum) {
-    [output writeEnum:83 value:self.defaultImportEnum.number];
+    [output writeEnum:83 value:self.defaultImportEnum];
   }
   if (hasDefaultStringPiece) {
     [output writeString:84 value:self.defaultStringPiece];
@@ -2057,13 +1911,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     size += computeMessageSize(20, self.optionalImportMessage);
   }
   if (hasOptionalNestedEnum) {
-    size += computeEnumSize(21, self.optionalNestedEnum.number);
+    size += computeEnumSize(21, self.optionalNestedEnum);
   }
   if (hasOptionalForeignEnum) {
-    size += computeEnumSize(22, self.optionalForeignEnum.number);
+    size += computeEnumSize(22, self.optionalForeignEnum);
   }
   if (hasOptionalImportEnum) {
-    size += computeEnumSize(23, self.optionalImportEnum.number);
+    size += computeEnumSize(23, self.optionalImportEnum);
   }
   if (hasOptionalStringPiece) {
     size += computeStringSize(24, self.optionalStringPiece);
@@ -2128,14 +1982,14 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   for (ImportMessage* element in self.repeatedImportMessageList) {
     size += computeMessageSize(50, element);
   }
-  for (TestAllTypes_NestedEnum* element in self.repeatedNestedEnumList) {
-    size += computeEnumSize(51, element.number);
+  for (NSNumber* element in self.repeatedNestedEnumList) {
+    size += computeEnumSize(51, element.intValue);
   }
-  for (ForeignEnum* element in self.repeatedForeignEnumList) {
-    size += computeEnumSize(52, element.number);
+  for (NSNumber* element in self.repeatedForeignEnumList) {
+    size += computeEnumSize(52, element.intValue);
   }
-  for (ImportEnum* element in self.repeatedImportEnumList) {
-    size += computeEnumSize(53, element.number);
+  for (NSNumber* element in self.repeatedImportEnumList) {
+    size += computeEnumSize(53, element.intValue);
   }
   for (NSString* element in self.mutableRepeatedStringPieceList) {
     size += computeStringSize(54, element);
@@ -2189,13 +2043,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
     size += computeDataSize(75, self.defaultBytes);
   }
   if (hasDefaultNestedEnum) {
-    size += computeEnumSize(81, self.defaultNestedEnum.number);
+    size += computeEnumSize(81, self.defaultNestedEnum);
   }
   if (hasDefaultForeignEnum) {
-    size += computeEnumSize(82, self.defaultForeignEnum.number);
+    size += computeEnumSize(82, self.defaultForeignEnum);
   }
   if (hasDefaultImportEnum) {
-    size += computeEnumSize(83, self.defaultImportEnum.number);
+    size += computeEnumSize(83, self.defaultImportEnum);
   }
   if (hasDefaultStringPiece) {
     size += computeStringSize(84, self.defaultStringPiece);
@@ -2236,54 +2090,16 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 }
 @end
 
-@interface TestAllTypes_NestedEnum ()
-  @property int32_t index;
-  @property int32_t value;
-@end
-
-@implementation TestAllTypes_NestedEnum
-@synthesize index;
-@synthesize value;
-static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_FOO = nil;
-static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAR = nil;
-static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
-- (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if ((self = [super init])) {
-    self.index = index_;
-    self.value = value_;
-  }
-  return self;
-}
-+ (TestAllTypes_NestedEnum*) newWithIndex:(int32_t) index value:(int32_t) value {
-  return [[[TestAllTypes_NestedEnum alloc] initWithIndex:index value:value] autorelease];
-}
-+ (void) initialize {
-  if (self == [TestAllTypes_NestedEnum class]) {
-    TestAllTypes_NestedEnum_FOO = [[TestAllTypes_NestedEnum newWithIndex:0 value:1] retain];
-    TestAllTypes_NestedEnum_BAR = [[TestAllTypes_NestedEnum newWithIndex:1 value:2] retain];
-    TestAllTypes_NestedEnum_BAZ = [[TestAllTypes_NestedEnum newWithIndex:2 value:3] retain];
-  }
-}
-+ (TestAllTypes_NestedEnum*) FOO {
-  return TestAllTypes_NestedEnum_FOO;
-}
-+ (TestAllTypes_NestedEnum*) BAR {
-  return TestAllTypes_NestedEnum_BAR;
-}
-+ (TestAllTypes_NestedEnum*) BAZ {
-  return TestAllTypes_NestedEnum_BAZ;
-}
-- (int32_t) number { return value; }
-+ (TestAllTypes_NestedEnum*) valueOf:(int32_t) value {
+BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value) {
   switch (value) {
-    case 1: return [TestAllTypes_NestedEnum FOO];
-    case 2: return [TestAllTypes_NestedEnum BAR];
-    case 3: return [TestAllTypes_NestedEnum BAZ];
-    default: return nil;
+    case TestAllTypes_NestedEnumFoo:
+    case TestAllTypes_NestedEnumBar:
+    case TestAllTypes_NestedEnumBaz:
+      return YES;
+    default:
+      return NO;
   }
 }
-@end
-
 @interface TestAllTypes_NestedMessage ()
 @property int32_t bb;
 @end
@@ -3251,32 +3067,29 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 168: {
-        int32_t rawValue = [input readEnum];
-        TestAllTypes_NestedEnum* value = [TestAllTypes_NestedEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:21 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (TestAllTypes_NestedEnumIsValidValue(value)) {
           [self setOptionalNestedEnum:value];
+        } else {
+          [unknownFields mergeVarintField:21 value:value];
         }
         break;
       }
       case 176: {
-        int32_t rawValue = [input readEnum];
-        ForeignEnum* value = [ForeignEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:22 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ForeignEnumIsValidValue(value)) {
           [self setOptionalForeignEnum:value];
+        } else {
+          [unknownFields mergeVarintField:22 value:value];
         }
         break;
       }
       case 184: {
-        int32_t rawValue = [input readEnum];
-        ImportEnum* value = [ImportEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:23 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ImportEnumIsValidValue(value)) {
           [self setOptionalImportEnum:value];
+        } else {
+          [unknownFields mergeVarintField:23 value:value];
         }
         break;
       }
@@ -3373,32 +3186,29 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 408: {
-        int32_t rawValue = [input readEnum];
-        TestAllTypes_NestedEnum* value = [TestAllTypes_NestedEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:51 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (TestAllTypes_NestedEnumIsValidValue(value)) {
           [self addRepeatedNestedEnum:value];
+        } else {
+          [unknownFields mergeVarintField:51 value:value];
         }
         break;
       }
       case 416: {
-        int32_t rawValue = [input readEnum];
-        ForeignEnum* value = [ForeignEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:52 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ForeignEnumIsValidValue(value)) {
           [self addRepeatedForeignEnum:value];
+        } else {
+          [unknownFields mergeVarintField:52 value:value];
         }
         break;
       }
       case 424: {
-        int32_t rawValue = [input readEnum];
-        ImportEnum* value = [ImportEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:53 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ImportEnumIsValidValue(value)) {
           [self addRepeatedImportEnum:value];
+        } else {
+          [unknownFields mergeVarintField:53 value:value];
         }
         break;
       }
@@ -3471,32 +3281,29 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 648: {
-        int32_t rawValue = [input readEnum];
-        TestAllTypes_NestedEnum* value = [TestAllTypes_NestedEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:81 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (TestAllTypes_NestedEnumIsValidValue(value)) {
           [self setDefaultNestedEnum:value];
+        } else {
+          [unknownFields mergeVarintField:81 value:value];
         }
         break;
       }
       case 656: {
-        int32_t rawValue = [input readEnum];
-        ForeignEnum* value = [ForeignEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:82 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ForeignEnumIsValidValue(value)) {
           [self setDefaultForeignEnum:value];
+        } else {
+          [unknownFields mergeVarintField:82 value:value];
         }
         break;
       }
       case 664: {
-        int32_t rawValue = [input readEnum];
-        ImportEnum* value = [ImportEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:83 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ImportEnumIsValidValue(value)) {
           [self setDefaultImportEnum:value];
+        } else {
+          [unknownFields mergeVarintField:83 value:value];
         }
         break;
       }
@@ -3874,49 +3681,49 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (BOOL) hasOptionalNestedEnum {
   return result.hasOptionalNestedEnum;
 }
-- (TestAllTypes_NestedEnum*) optionalNestedEnum {
+- (TestAllTypes_NestedEnum) optionalNestedEnum {
   return result.optionalNestedEnum;
 }
-- (TestAllTypes_Builder*) setOptionalNestedEnum:(TestAllTypes_NestedEnum*) value {
+- (TestAllTypes_Builder*) setOptionalNestedEnum:(TestAllTypes_NestedEnum) value {
   result.hasOptionalNestedEnum = YES;
   result.optionalNestedEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearOptionalNestedEnum {
   result.hasOptionalNestedEnum = NO;
-  result.optionalNestedEnum = [TestAllTypes_NestedEnum FOO];
+  result.optionalNestedEnum = TestAllTypes_NestedEnumFoo;
   return self;
 }
 - (BOOL) hasOptionalForeignEnum {
   return result.hasOptionalForeignEnum;
 }
-- (ForeignEnum*) optionalForeignEnum {
+- (ForeignEnum) optionalForeignEnum {
   return result.optionalForeignEnum;
 }
-- (TestAllTypes_Builder*) setOptionalForeignEnum:(ForeignEnum*) value {
+- (TestAllTypes_Builder*) setOptionalForeignEnum:(ForeignEnum) value {
   result.hasOptionalForeignEnum = YES;
   result.optionalForeignEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearOptionalForeignEnum {
   result.hasOptionalForeignEnum = NO;
-  result.optionalForeignEnum = [ForeignEnum FOREIGN_FOO];
+  result.optionalForeignEnum = ForeignEnumForeignFoo;
   return self;
 }
 - (BOOL) hasOptionalImportEnum {
   return result.hasOptionalImportEnum;
 }
-- (ImportEnum*) optionalImportEnum {
+- (ImportEnum) optionalImportEnum {
   return result.optionalImportEnum;
 }
-- (TestAllTypes_Builder*) setOptionalImportEnum:(ImportEnum*) value {
+- (TestAllTypes_Builder*) setOptionalImportEnum:(ImportEnum) value {
   result.hasOptionalImportEnum = YES;
   result.optionalImportEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearOptionalImportEnum {
   result.hasOptionalImportEnum = NO;
-  result.optionalImportEnum = [ImportEnum IMPORT_FOO];
+  result.optionalImportEnum = ImportEnumImportFoo;
   return self;
 }
 - (BOOL) hasOptionalStringPiece {
@@ -4535,18 +4342,18 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSArray*) repeatedNestedEnumList {
   return result.mutableRepeatedNestedEnumList;
 }
-- (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index {
+- (TestAllTypes_NestedEnum) repeatedNestedEnumAtIndex:(int32_t) index {
   return [result repeatedNestedEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum*) value {
-  [result.mutableRepeatedNestedEnumList replaceObjectAtIndex:index withObject:value];
+- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum) value {
+  [result.mutableRepeatedNestedEnumList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
-- (TestAllTypes_Builder*) addRepeatedNestedEnum:(TestAllTypes_NestedEnum*) value {
+- (TestAllTypes_Builder*) addRepeatedNestedEnum:(TestAllTypes_NestedEnum) value {
   if (result.mutableRepeatedNestedEnumList == nil) {
     result.mutableRepeatedNestedEnumList = [NSMutableArray array];
   }
-  [result.mutableRepeatedNestedEnumList addObject:value];
+  [result.mutableRepeatedNestedEnumList addObject:[NSNumber numberWithInt:value]];
   return self;
 }
 - (TestAllTypes_Builder*) addAllRepeatedNestedEnum:(NSArray*) values {
@@ -4563,18 +4370,18 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSArray*) repeatedForeignEnumList {
   return result.mutableRepeatedForeignEnumList;
 }
-- (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index {
+- (ForeignEnum) repeatedForeignEnumAtIndex:(int32_t) index {
   return [result repeatedForeignEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum*) value {
-  [result.mutableRepeatedForeignEnumList replaceObjectAtIndex:index withObject:value];
+- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum) value {
+  [result.mutableRepeatedForeignEnumList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
-- (TestAllTypes_Builder*) addRepeatedForeignEnum:(ForeignEnum*) value {
+- (TestAllTypes_Builder*) addRepeatedForeignEnum:(ForeignEnum) value {
   if (result.mutableRepeatedForeignEnumList == nil) {
     result.mutableRepeatedForeignEnumList = [NSMutableArray array];
   }
-  [result.mutableRepeatedForeignEnumList addObject:value];
+  [result.mutableRepeatedForeignEnumList addObject:[NSNumber numberWithInt:value]];
   return self;
 }
 - (TestAllTypes_Builder*) addAllRepeatedForeignEnum:(NSArray*) values {
@@ -4591,18 +4398,18 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSArray*) repeatedImportEnumList {
   return result.mutableRepeatedImportEnumList;
 }
-- (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index {
+- (ImportEnum) repeatedImportEnumAtIndex:(int32_t) index {
   return [result repeatedImportEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum*) value {
-  [result.mutableRepeatedImportEnumList replaceObjectAtIndex:index withObject:value];
+- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum) value {
+  [result.mutableRepeatedImportEnumList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
-- (TestAllTypes_Builder*) addRepeatedImportEnum:(ImportEnum*) value {
+- (TestAllTypes_Builder*) addRepeatedImportEnum:(ImportEnum) value {
   if (result.mutableRepeatedImportEnumList == nil) {
     result.mutableRepeatedImportEnumList = [NSMutableArray array];
   }
-  [result.mutableRepeatedImportEnumList addObject:value];
+  [result.mutableRepeatedImportEnumList addObject:[NSNumber numberWithInt:value]];
   return self;
 }
 - (TestAllTypes_Builder*) addAllRepeatedImportEnum:(NSArray*) values {
@@ -4921,49 +4728,49 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (BOOL) hasDefaultNestedEnum {
   return result.hasDefaultNestedEnum;
 }
-- (TestAllTypes_NestedEnum*) defaultNestedEnum {
+- (TestAllTypes_NestedEnum) defaultNestedEnum {
   return result.defaultNestedEnum;
 }
-- (TestAllTypes_Builder*) setDefaultNestedEnum:(TestAllTypes_NestedEnum*) value {
+- (TestAllTypes_Builder*) setDefaultNestedEnum:(TestAllTypes_NestedEnum) value {
   result.hasDefaultNestedEnum = YES;
   result.defaultNestedEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearDefaultNestedEnum {
   result.hasDefaultNestedEnum = NO;
-  result.defaultNestedEnum = [TestAllTypes_NestedEnum BAR];
+  result.defaultNestedEnum = TestAllTypes_NestedEnumBar;
   return self;
 }
 - (BOOL) hasDefaultForeignEnum {
   return result.hasDefaultForeignEnum;
 }
-- (ForeignEnum*) defaultForeignEnum {
+- (ForeignEnum) defaultForeignEnum {
   return result.defaultForeignEnum;
 }
-- (TestAllTypes_Builder*) setDefaultForeignEnum:(ForeignEnum*) value {
+- (TestAllTypes_Builder*) setDefaultForeignEnum:(ForeignEnum) value {
   result.hasDefaultForeignEnum = YES;
   result.defaultForeignEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearDefaultForeignEnum {
   result.hasDefaultForeignEnum = NO;
-  result.defaultForeignEnum = [ForeignEnum FOREIGN_BAR];
+  result.defaultForeignEnum = ForeignEnumForeignBar;
   return self;
 }
 - (BOOL) hasDefaultImportEnum {
   return result.hasDefaultImportEnum;
 }
-- (ImportEnum*) defaultImportEnum {
+- (ImportEnum) defaultImportEnum {
   return result.defaultImportEnum;
 }
-- (TestAllTypes_Builder*) setDefaultImportEnum:(ImportEnum*) value {
+- (TestAllTypes_Builder*) setDefaultImportEnum:(ImportEnum) value {
   result.hasDefaultImportEnum = YES;
   result.defaultImportEnum = value;
   return self;
 }
 - (TestAllTypes_Builder*) clearDefaultImportEnum {
   result.hasDefaultImportEnum = NO;
-  result.defaultImportEnum = [ImportEnum IMPORT_BAR];
+  result.defaultImportEnum = ImportEnumImportBar;
   return self;
 }
 - (BOOL) hasDefaultStringPiece {
@@ -6004,7 +5811,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
                                  extendedClass:[TestAllExtensions class]
                                    fieldNumber:1000
                                   defaultValue:[TestRequired defaultInstance]
-                     messageOrGroupOrEnumClass:[TestRequired class]
+                           messageOrGroupClass:[TestRequired class]
                                     isRepeated:false
                                       isPacked:false
                         isMessageSetWireFormat:false] retain];
@@ -6013,7 +5820,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
                                  extendedClass:[TestAllExtensions class]
                                    fieldNumber:1001
                                   defaultValue:[NSArray array]
-                     messageOrGroupOrEnumClass:[TestRequired class]
+                           messageOrGroupClass:[TestRequired class]
                                     isRepeated:true
                                       isPacked:false
                         isMessageSetWireFormat:false] retain];
@@ -9871,7 +9678,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 @interface TestCamelCaseFieldNames ()
 @property int32_t primitiveField;
 @property (retain) NSString* stringField;
-@property (retain) ForeignEnum* enumField;
+@property ForeignEnum enumField;
 @property (retain) ForeignMessage* messageField;
 @property (retain) NSString* stringPieceField;
 @property (retain) NSString* cordField;
@@ -9935,7 +9742,6 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 @synthesize mutableRepeatedCordFieldList;
 - (void) dealloc {
   self.stringField = nil;
-  self.enumField = nil;
   self.messageField = nil;
   self.stringPieceField = nil;
   self.cordField = nil;
@@ -9951,7 +9757,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   if ((self = [super init])) {
     self.primitiveField = 0;
     self.stringField = @"";
-    self.enumField = [ForeignEnum FOREIGN_FOO];
+    self.enumField = ForeignEnumForeignFoo;
     self.messageField = [ForeignMessage defaultInstance];
     self.stringPieceField = @"";
     self.cordField = @"";
@@ -9987,9 +9793,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (NSArray*) repeatedEnumFieldList {
   return mutableRepeatedEnumFieldList;
 }
-- (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index {
-  id value = [mutableRepeatedEnumFieldList objectAtIndex:index];
-  return value;
+- (ForeignEnum) repeatedEnumFieldAtIndex:(int32_t) index {
+  NSNumber* value = [mutableRepeatedEnumFieldList objectAtIndex:index];
+  return [value intValue];
 }
 - (NSArray*) repeatedMessageFieldList {
   return mutableRepeatedMessageFieldList;
@@ -10023,7 +9829,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
     [output writeString:2 value:self.stringField];
   }
   if (hasEnumField) {
-    [output writeEnum:3 value:self.enumField.number];
+    [output writeEnum:3 value:self.enumField];
   }
   if (hasMessageField) {
     [output writeMessage:4 value:self.messageField];
@@ -10040,8 +9846,8 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   for (NSString* element in self.mutableRepeatedStringFieldList) {
     [output writeString:8 value:element];
   }
-  for (ForeignEnum* element in self.repeatedEnumFieldList) {
-    [output writeEnum:9 value:element.number];
+  for (NSNumber* element in self.repeatedEnumFieldList) {
+    [output writeEnum:9 value:element.intValue];
   }
   for (ForeignMessage* element in self.repeatedMessageFieldList) {
     [output writeMessage:10 value:element];
@@ -10068,7 +9874,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
     size += computeStringSize(2, self.stringField);
   }
   if (hasEnumField) {
-    size += computeEnumSize(3, self.enumField.number);
+    size += computeEnumSize(3, self.enumField);
   }
   if (hasMessageField) {
     size += computeMessageSize(4, self.messageField);
@@ -10085,8 +9891,8 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   for (NSString* element in self.mutableRepeatedStringFieldList) {
     size += computeStringSize(8, element);
   }
-  for (ForeignEnum* element in self.repeatedEnumFieldList) {
-    size += computeEnumSize(9, element.number);
+  for (NSNumber* element in self.repeatedEnumFieldList) {
+    size += computeEnumSize(9, element.intValue);
   }
   for (ForeignMessage* element in self.repeatedMessageFieldList) {
     size += computeMessageSize(10, element);
@@ -10256,12 +10062,11 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
         break;
       }
       case 24: {
-        int32_t rawValue = [input readEnum];
-        ForeignEnum* value = [ForeignEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:3 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ForeignEnumIsValidValue(value)) {
           [self setEnumField:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
         }
         break;
       }
@@ -10291,12 +10096,11 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
         break;
       }
       case 72: {
-        int32_t rawValue = [input readEnum];
-        ForeignEnum* value = [ForeignEnum valueOf:rawValue];
-        if (value == nil) {
-          [unknownFields mergeVarintField:9 value:rawValue];
-        } else {
+        int32_t value = [input readEnum];
+        if (ForeignEnumIsValidValue(value)) {
           [self addRepeatedEnumField:value];
+        } else {
+          [unknownFields mergeVarintField:9 value:value];
         }
         break;
       }
@@ -10352,17 +10156,17 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (BOOL) hasEnumField {
   return result.hasEnumField;
 }
-- (ForeignEnum*) enumField {
+- (ForeignEnum) enumField {
   return result.enumField;
 }
-- (TestCamelCaseFieldNames_Builder*) setEnumField:(ForeignEnum*) value {
+- (TestCamelCaseFieldNames_Builder*) setEnumField:(ForeignEnum) value {
   result.hasEnumField = YES;
   result.enumField = value;
   return self;
 }
 - (TestCamelCaseFieldNames_Builder*) clearEnumField {
   result.hasEnumField = NO;
-  result.enumField = [ForeignEnum FOREIGN_FOO];
+  result.enumField = ForeignEnumForeignFoo;
   return self;
 }
 - (BOOL) hasMessageField {
@@ -10492,18 +10296,18 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (NSArray*) repeatedEnumFieldList {
   return result.mutableRepeatedEnumFieldList;
 }
-- (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index {
+- (ForeignEnum) repeatedEnumFieldAtIndex:(int32_t) index {
   return [result repeatedEnumFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum*) value {
-  [result.mutableRepeatedEnumFieldList replaceObjectAtIndex:index withObject:value];
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum) value {
+  [result.mutableRepeatedEnumFieldList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
-- (TestCamelCaseFieldNames_Builder*) addRepeatedEnumField:(ForeignEnum*) value {
+- (TestCamelCaseFieldNames_Builder*) addRepeatedEnumField:(ForeignEnum) value {
   if (result.mutableRepeatedEnumFieldList == nil) {
     result.mutableRepeatedEnumFieldList = [NSMutableArray array];
   }
-  [result.mutableRepeatedEnumFieldList addObject:value];
+  [result.mutableRepeatedEnumFieldList addObject:[NSNumber numberWithInt:value]];
   return self;
 }
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedEnumField:(NSArray*) values {

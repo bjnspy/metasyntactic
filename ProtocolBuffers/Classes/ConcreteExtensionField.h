@@ -43,7 +43,7 @@ typedef enum {
   int32_t fieldNumber;
   id defaultValue;
 
-  Class messageOrGroupOrEnumClass;
+  Class messageOrGroupClass;
 
   BOOL isRepeated;
   BOOL isPacked;
@@ -54,7 +54,7 @@ typedef enum {
                                 extendedClass:(Class) extendedClass
                                   fieldNumber:(int32_t) fieldNumber
                                  defaultValue:(id) defaultValue
-                    messageOrGroupOrEnumClass:(Class) messageOrGroupOrEnumClass
+                            messageOrGroupClass:(Class) messageOrGroupClass
                                    isRepeated:(BOOL) isRepeated
                                      isPacked:(BOOL) isPacked
                        isMessageSetWireFormat:(BOOL) isMessageSetWireFormat;

@@ -14,10 +14,8 @@
 @class FooRequest_Builder;
 @class FooResponse;
 @class FooResponse_Builder;
-@class ForeignEnum;
 @class ForeignMessage;
 @class ForeignMessage_Builder;
-@class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
 @class OneBytes;
@@ -32,7 +30,6 @@
 @class TestAllExtensions_Builder;
 @class TestAllTypes;
 @class TestAllTypes_Builder;
-@class TestAllTypes_NestedEnum;
 @class TestAllTypes_NestedMessage;
 @class TestAllTypes_NestedMessage_Builder;
 @class TestAllTypes_OptionalGroup;
@@ -51,7 +48,6 @@
 @class TestEmptyMessageWithExtensions;
 @class TestEmptyMessageWithExtensions_Builder;
 @class TestEmptyMessage_Builder;
-@class TestEnumWithDupValue;
 @class TestExtremeDefaultValues;
 @class TestExtremeDefaultValues_Builder;
 @class TestFieldOrderings;
@@ -74,8 +70,42 @@
 @class TestRequiredForeign;
 @class TestRequiredForeign_Builder;
 @class TestRequired_Builder;
-@class TestService;
-@class TestSparseEnum;
+typedef enum {
+  ForeignEnumForeignFoo = 4,
+  ForeignEnumForeignBar = 5,
+  ForeignEnumForeignBaz = 6,
+} ForeignEnum;
+
+BOOL ForeignEnumIsValidValue(ForeignEnum value);
+
+typedef enum {
+  TestEnumWithDupValueFoo1 = 1,
+  TestEnumWithDupValueBar1 = 2,
+  TestEnumWithDupValueBaz = 3,
+} TestEnumWithDupValue;
+
+BOOL TestEnumWithDupValueIsValidValue(TestEnumWithDupValue value);
+
+typedef enum {
+  TestSparseEnumSparseA = 123,
+  TestSparseEnumSparseB = 62374,
+  TestSparseEnumSparseC = 12589234,
+  TestSparseEnumSparseD = -15,
+  TestSparseEnumSparseE = -53452,
+  TestSparseEnumSparseF = 0,
+  TestSparseEnumSparseG = 2,
+} TestSparseEnum;
+
+BOOL TestSparseEnumIsValidValue(TestSparseEnum value);
+
+typedef enum {
+  TestAllTypes_NestedEnumFoo = 1,
+  TestAllTypes_NestedEnumBar = 2,
+  TestAllTypes_NestedEnumBaz = 3,
+} TestAllTypes_NestedEnum;
+
+BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
+
 
 @interface UnittestRoot : NSObject {
 }
@@ -151,62 +181,8 @@
 + (id<PBExtensionField>) myExtensionInt;
 @end
 
-@interface ForeignEnum : NSObject {
- @private
-  int32_t index;
-  int32_t value;
-}
-@property (readonly) int32_t index;
-@property (readonly) int32_t value;
-+ (ForeignEnum*) newWithIndex:(int32_t) index value:(int32_t) value;
-+ (ForeignEnum*) FOREIGN_FOO;
-+ (ForeignEnum*) FOREIGN_BAR;
-+ (ForeignEnum*) FOREIGN_BAZ;
-
-- (int32_t) number;
-+ (ForeignEnum*) valueOf:(int32_t) value;
-@end
-
-@interface TestEnumWithDupValue : NSObject {
- @private
-  int32_t index;
-  int32_t value;
-}
-@property (readonly) int32_t index;
-@property (readonly) int32_t value;
-+ (TestEnumWithDupValue*) newWithIndex:(int32_t) index value:(int32_t) value;
-+ (TestEnumWithDupValue*) FOO1;
-+ (TestEnumWithDupValue*) BAR1;
-+ (TestEnumWithDupValue*) BAZ;
-+ (TestEnumWithDupValue*) FOO2;
-+ (TestEnumWithDupValue*) BAR2;
-
-- (int32_t) number;
-+ (TestEnumWithDupValue*) valueOf:(int32_t) value;
-@end
-
-@interface TestSparseEnum : NSObject {
- @private
-  int32_t index;
-  int32_t value;
-}
-@property (readonly) int32_t index;
-@property (readonly) int32_t value;
-+ (TestSparseEnum*) newWithIndex:(int32_t) index value:(int32_t) value;
-+ (TestSparseEnum*) SPARSE_A;
-+ (TestSparseEnum*) SPARSE_B;
-+ (TestSparseEnum*) SPARSE_C;
-+ (TestSparseEnum*) SPARSE_D;
-+ (TestSparseEnum*) SPARSE_E;
-+ (TestSparseEnum*) SPARSE_F;
-+ (TestSparseEnum*) SPARSE_G;
-
-- (int32_t) number;
-+ (TestSparseEnum*) valueOf:(int32_t) value;
-@end
-
 @interface TestAllTypes : PBGeneratedMessage {
- @private
+@private
   BOOL hasOptionalBool;
   BOOL hasDefaultBool;
   BOOL hasOptionalDouble;
@@ -281,12 +257,12 @@
   NSData* optionalBytes;
   int32_t optionalUint32;
   int32_t defaultUint32;
-  TestAllTypes_NestedEnum* optionalNestedEnum;
-  ForeignEnum* optionalForeignEnum;
-  ImportEnum* optionalImportEnum;
-  ImportEnum* defaultImportEnum;
-  ForeignEnum* defaultForeignEnum;
-  TestAllTypes_NestedEnum* defaultNestedEnum;
+  TestAllTypes_NestedEnum optionalNestedEnum;
+  ForeignEnum optionalForeignEnum;
+  ImportEnum optionalImportEnum;
+  ImportEnum defaultImportEnum;
+  ForeignEnum defaultForeignEnum;
+  TestAllTypes_NestedEnum defaultNestedEnum;
   int32_t defaultSfixed32;
   int32_t optionalSfixed32;
   int64_t optionalSfixed64;
@@ -383,9 +359,9 @@
 @property (readonly, retain) TestAllTypes_NestedMessage* optionalNestedMessage;
 @property (readonly, retain) ForeignMessage* optionalForeignMessage;
 @property (readonly, retain) ImportMessage* optionalImportMessage;
-@property (readonly, retain) TestAllTypes_NestedEnum* optionalNestedEnum;
-@property (readonly, retain) ForeignEnum* optionalForeignEnum;
-@property (readonly, retain) ImportEnum* optionalImportEnum;
+@property (readonly) TestAllTypes_NestedEnum optionalNestedEnum;
+@property (readonly) ForeignEnum optionalForeignEnum;
+@property (readonly) ImportEnum optionalImportEnum;
 @property (readonly, retain) NSString* optionalStringPiece;
 @property (readonly, retain) NSString* optionalCord;
 @property (readonly) int32_t defaultInt32;
@@ -403,9 +379,9 @@
 - (BOOL) defaultBool;
 @property (readonly, retain) NSString* defaultString;
 @property (readonly, retain) NSData* defaultBytes;
-@property (readonly, retain) TestAllTypes_NestedEnum* defaultNestedEnum;
-@property (readonly, retain) ForeignEnum* defaultForeignEnum;
-@property (readonly, retain) ImportEnum* defaultImportEnum;
+@property (readonly) TestAllTypes_NestedEnum defaultNestedEnum;
+@property (readonly) ForeignEnum defaultForeignEnum;
+@property (readonly) ImportEnum defaultImportEnum;
 @property (readonly, retain) NSString* defaultStringPiece;
 @property (readonly, retain) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
@@ -447,11 +423,11 @@
 - (NSArray*) repeatedImportMessageList;
 - (ImportMessage*) repeatedImportMessageAtIndex:(int32_t) index;
 - (NSArray*) repeatedNestedEnumList;
-- (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index;
+- (TestAllTypes_NestedEnum) repeatedNestedEnumAtIndex:(int32_t) index;
 - (NSArray*) repeatedForeignEnumList;
-- (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index;
+- (ForeignEnum) repeatedForeignEnumAtIndex:(int32_t) index;
 - (NSArray*) repeatedImportEnumList;
-- (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index;
+- (ImportEnum) repeatedImportEnumAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringPieceList;
 - (NSString*) repeatedStringPieceAtIndex:(int32_t) index;
 - (NSArray*) repeatedCordList;
@@ -474,24 +450,8 @@
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TestAllTypes_NestedEnum : NSObject {
- @private
-  int32_t index;
-  int32_t value;
-}
-@property (readonly) int32_t index;
-@property (readonly) int32_t value;
-+ (TestAllTypes_NestedEnum*) newWithIndex:(int32_t) index value:(int32_t) value;
-+ (TestAllTypes_NestedEnum*) FOO;
-+ (TestAllTypes_NestedEnum*) BAR;
-+ (TestAllTypes_NestedEnum*) BAZ;
-
-- (int32_t) number;
-+ (TestAllTypes_NestedEnum*) valueOf:(int32_t) value;
-@end
-
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
- @private
+@private
   BOOL hasBb;
   int32_t bb;
 }
@@ -516,7 +476,7 @@
 @end
 
 @interface TestAllTypes_NestedMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestAllTypes_NestedMessage* result;
 }
 
@@ -539,7 +499,7 @@
 @end
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -564,7 +524,7 @@
 @end
 
 @interface TestAllTypes_OptionalGroup_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestAllTypes_OptionalGroup* result;
 }
 
@@ -587,7 +547,7 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -612,7 +572,7 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestAllTypes_RepeatedGroup* result;
 }
 
@@ -635,7 +595,7 @@
 @end
 
 @interface TestAllTypes_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestAllTypes* result;
 }
 
@@ -755,18 +715,18 @@
 - (TestAllTypes_Builder*) clearOptionalImportMessage;
 
 - (BOOL) hasOptionalNestedEnum;
-- (TestAllTypes_NestedEnum*) optionalNestedEnum;
-- (TestAllTypes_Builder*) setOptionalNestedEnum:(TestAllTypes_NestedEnum*) value;
+- (TestAllTypes_NestedEnum) optionalNestedEnum;
+- (TestAllTypes_Builder*) setOptionalNestedEnum:(TestAllTypes_NestedEnum) value;
 - (TestAllTypes_Builder*) clearOptionalNestedEnum;
 
 - (BOOL) hasOptionalForeignEnum;
-- (ForeignEnum*) optionalForeignEnum;
-- (TestAllTypes_Builder*) setOptionalForeignEnum:(ForeignEnum*) value;
+- (ForeignEnum) optionalForeignEnum;
+- (TestAllTypes_Builder*) setOptionalForeignEnum:(ForeignEnum) value;
 - (TestAllTypes_Builder*) clearOptionalForeignEnum;
 
 - (BOOL) hasOptionalImportEnum;
-- (ImportEnum*) optionalImportEnum;
-- (TestAllTypes_Builder*) setOptionalImportEnum:(ImportEnum*) value;
+- (ImportEnum) optionalImportEnum;
+- (TestAllTypes_Builder*) setOptionalImportEnum:(ImportEnum) value;
 - (TestAllTypes_Builder*) clearOptionalImportEnum;
 
 - (BOOL) hasOptionalStringPiece;
@@ -913,23 +873,23 @@
 - (TestAllTypes_Builder*) clearRepeatedImportMessageList;
 
 - (NSArray*) repeatedNestedEnumList;
-- (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum*) value;
-- (TestAllTypes_Builder*) addRepeatedNestedEnum:(TestAllTypes_NestedEnum*) value;
+- (TestAllTypes_NestedEnum) repeatedNestedEnumAtIndex:(int32_t) index;
+- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum) value;
+- (TestAllTypes_Builder*) addRepeatedNestedEnum:(TestAllTypes_NestedEnum) value;
 - (TestAllTypes_Builder*) addAllRepeatedNestedEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedNestedEnumList;
 
 - (NSArray*) repeatedForeignEnumList;
-- (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum*) value;
-- (TestAllTypes_Builder*) addRepeatedForeignEnum:(ForeignEnum*) value;
+- (ForeignEnum) repeatedForeignEnumAtIndex:(int32_t) index;
+- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum) value;
+- (TestAllTypes_Builder*) addRepeatedForeignEnum:(ForeignEnum) value;
 - (TestAllTypes_Builder*) addAllRepeatedForeignEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedForeignEnumList;
 
 - (NSArray*) repeatedImportEnumList;
-- (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum*) value;
-- (TestAllTypes_Builder*) addRepeatedImportEnum:(ImportEnum*) value;
+- (ImportEnum) repeatedImportEnumAtIndex:(int32_t) index;
+- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum) value;
+- (TestAllTypes_Builder*) addRepeatedImportEnum:(ImportEnum) value;
 - (TestAllTypes_Builder*) addAllRepeatedImportEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedImportEnumList;
 
@@ -1023,18 +983,18 @@
 - (TestAllTypes_Builder*) clearDefaultBytes;
 
 - (BOOL) hasDefaultNestedEnum;
-- (TestAllTypes_NestedEnum*) defaultNestedEnum;
-- (TestAllTypes_Builder*) setDefaultNestedEnum:(TestAllTypes_NestedEnum*) value;
+- (TestAllTypes_NestedEnum) defaultNestedEnum;
+- (TestAllTypes_Builder*) setDefaultNestedEnum:(TestAllTypes_NestedEnum) value;
 - (TestAllTypes_Builder*) clearDefaultNestedEnum;
 
 - (BOOL) hasDefaultForeignEnum;
-- (ForeignEnum*) defaultForeignEnum;
-- (TestAllTypes_Builder*) setDefaultForeignEnum:(ForeignEnum*) value;
+- (ForeignEnum) defaultForeignEnum;
+- (TestAllTypes_Builder*) setDefaultForeignEnum:(ForeignEnum) value;
 - (TestAllTypes_Builder*) clearDefaultForeignEnum;
 
 - (BOOL) hasDefaultImportEnum;
-- (ImportEnum*) defaultImportEnum;
-- (TestAllTypes_Builder*) setDefaultImportEnum:(ImportEnum*) value;
+- (ImportEnum) defaultImportEnum;
+- (TestAllTypes_Builder*) setDefaultImportEnum:(ImportEnum) value;
 - (TestAllTypes_Builder*) clearDefaultImportEnum;
 
 - (BOOL) hasDefaultStringPiece;
@@ -1049,7 +1009,7 @@
 @end
 
 @interface ForeignMessage : PBGeneratedMessage {
- @private
+@private
   BOOL hasC;
   int32_t c;
 }
@@ -1074,7 +1034,7 @@
 @end
 
 @interface ForeignMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   ForeignMessage* result;
 }
 
@@ -1097,7 +1057,7 @@
 @end
 
 @interface TestAllExtensions : PBExtendableMessage {
- @private
+@private
 }
 
 + (TestAllExtensions*) defaultInstance;
@@ -1118,7 +1078,7 @@
 @end
 
 @interface TestAllExtensions_Builder : PBExtendableMessage_Builder {
- @private
+@private
   TestAllExtensions* result;
 }
 
@@ -1136,7 +1096,7 @@
 @end
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -1161,7 +1121,7 @@
 @end
 
 @interface OptionalGroup_extension_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   OptionalGroup_extension* result;
 }
 
@@ -1184,7 +1144,7 @@
 @end
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -1209,7 +1169,7 @@
 @end
 
 @interface RepeatedGroup_extension_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   RepeatedGroup_extension* result;
 }
 
@@ -1232,7 +1192,7 @@
 @end
 
 @interface TestRequired : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   BOOL hasDummy2;
   BOOL hasB;
@@ -1387,7 +1347,7 @@
 @end
 
 @interface TestRequired_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestRequired* result;
 }
 
@@ -1570,7 +1530,7 @@
 @end
 
 @interface TestRequiredForeign : PBGeneratedMessage {
- @private
+@private
   BOOL hasDummy;
   BOOL hasOptionalMessage;
   int32_t dummy;
@@ -1602,7 +1562,7 @@
 @end
 
 @interface TestRequiredForeign_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestRequiredForeign* result;
 }
 
@@ -1639,7 +1599,7 @@
 @end
 
 @interface TestForeignNested : PBGeneratedMessage {
- @private
+@private
   BOOL hasForeignNested;
   TestAllTypes_NestedMessage* foreignNested;
 }
@@ -1664,7 +1624,7 @@
 @end
 
 @interface TestForeignNested_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestForeignNested* result;
 }
 
@@ -1689,7 +1649,7 @@
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
- @private
+@private
 }
 
 + (TestEmptyMessage*) defaultInstance;
@@ -1710,7 +1670,7 @@
 @end
 
 @interface TestEmptyMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestEmptyMessage* result;
 }
 
@@ -1728,7 +1688,7 @@
 @end
 
 @interface TestEmptyMessageWithExtensions : PBExtendableMessage {
- @private
+@private
 }
 
 + (TestEmptyMessageWithExtensions*) defaultInstance;
@@ -1749,7 +1709,7 @@
 @end
 
 @interface TestEmptyMessageWithExtensions_Builder : PBExtendableMessage_Builder {
- @private
+@private
   TestEmptyMessageWithExtensions* result;
 }
 
@@ -1767,7 +1727,7 @@
 @end
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   BOOL hasBb;
   int32_t a;
@@ -1796,7 +1756,7 @@
 @end
 
 @interface TestReallyLargeTagNumber_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestReallyLargeTagNumber* result;
 }
 
@@ -1824,7 +1784,7 @@
 @end
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
- @private
+@private
   BOOL hasI;
   BOOL hasA;
   int32_t i;
@@ -1853,7 +1813,7 @@
 @end
 
 @interface TestRecursiveMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestRecursiveMessage* result;
 }
 
@@ -1883,7 +1843,7 @@
 @end
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
- @private
+@private
   BOOL hasBb;
   TestMutualRecursionB* bb;
 }
@@ -1908,7 +1868,7 @@
 @end
 
 @interface TestMutualRecursionA_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestMutualRecursionA* result;
 }
 
@@ -1933,7 +1893,7 @@
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
- @private
+@private
   BOOL hasOptionalInt32;
   BOOL hasA;
   int32_t optionalInt32;
@@ -1962,7 +1922,7 @@
 @end
 
 @interface TestMutualRecursionB_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestMutualRecursionB* result;
 }
 
@@ -1992,7 +1952,7 @@
 @end
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   BOOL hasFoo;
   BOOL hasBar;
@@ -2025,7 +1985,7 @@
 @end
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -2050,7 +2010,7 @@
 @end
 
 @interface TestDupFieldNumber_Foo_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestDupFieldNumber_Foo* result;
 }
 
@@ -2073,7 +2033,7 @@
 @end
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
- @private
+@private
   BOOL hasA;
   int32_t a;
 }
@@ -2098,7 +2058,7 @@
 @end
 
 @interface TestDupFieldNumber_Bar_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestDupFieldNumber_Bar* result;
 }
 
@@ -2121,7 +2081,7 @@
 @end
 
 @interface TestDupFieldNumber_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestDupFieldNumber* result;
 }
 
@@ -2158,7 +2118,7 @@
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
- @private
+@private
   BOOL hasOptionalNestedMessage;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
@@ -2183,7 +2143,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage : PBGeneratedMessage {
- @private
+@private
   NSMutableArray* mutableNestedmessageRepeatedInt32List;
   NSMutableArray* mutableNestedmessageRepeatedForeignmessageList;
 }
@@ -2210,7 +2170,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestNestedMessageHasBits_NestedMessage* result;
 }
 
@@ -2242,7 +2202,7 @@
 @end
 
 @interface TestNestedMessageHasBits_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestNestedMessageHasBits* result;
 }
 
@@ -2267,7 +2227,7 @@
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
- @private
+@private
   BOOL hasPrimitiveField;
   BOOL hasStringField;
   BOOL hasStringPieceField;
@@ -2279,7 +2239,7 @@
   NSString* stringPieceField;
   NSString* cordField;
   ForeignMessage* messageField;
-  ForeignEnum* enumField;
+  ForeignEnum enumField;
   NSMutableArray* mutableRepeatedPrimitiveFieldList;
   NSMutableArray* mutableRepeatedStringFieldList;
   NSMutableArray* mutableRepeatedStringPieceFieldList;
@@ -2295,7 +2255,7 @@
 - (BOOL) hasCordField;
 @property (readonly) int32_t primitiveField;
 @property (readonly, retain) NSString* stringField;
-@property (readonly, retain) ForeignEnum* enumField;
+@property (readonly) ForeignEnum enumField;
 @property (readonly, retain) ForeignMessage* messageField;
 @property (readonly, retain) NSString* stringPieceField;
 @property (readonly, retain) NSString* cordField;
@@ -2304,7 +2264,7 @@
 - (NSArray*) repeatedStringFieldList;
 - (NSString*) repeatedStringFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedEnumFieldList;
-- (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index;
+- (ForeignEnum) repeatedEnumFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedMessageFieldList;
 - (ForeignMessage*) repeatedMessageFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringPieceFieldList;
@@ -2330,7 +2290,7 @@
 @end
 
 @interface TestCamelCaseFieldNames_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestCamelCaseFieldNames* result;
 }
 
@@ -2357,8 +2317,8 @@
 - (TestCamelCaseFieldNames_Builder*) clearStringField;
 
 - (BOOL) hasEnumField;
-- (ForeignEnum*) enumField;
-- (TestCamelCaseFieldNames_Builder*) setEnumField:(ForeignEnum*) value;
+- (ForeignEnum) enumField;
+- (TestCamelCaseFieldNames_Builder*) setEnumField:(ForeignEnum) value;
 - (TestCamelCaseFieldNames_Builder*) clearEnumField;
 
 - (BOOL) hasMessageField;
@@ -2393,9 +2353,9 @@
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedStringFieldList;
 
 - (NSArray*) repeatedEnumFieldList;
-- (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum*) value;
-- (TestCamelCaseFieldNames_Builder*) addRepeatedEnumField:(ForeignEnum*) value;
+- (ForeignEnum) repeatedEnumFieldAtIndex:(int32_t) index;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum) value;
+- (TestCamelCaseFieldNames_Builder*) addRepeatedEnumField:(ForeignEnum) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedEnumField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedEnumFieldList;
 
@@ -2422,7 +2382,7 @@
 @end
 
 @interface TestFieldOrderings : PBExtendableMessage {
- @private
+@private
   BOOL hasMyFloat;
   BOOL hasMyInt;
   BOOL hasMyString;
@@ -2455,7 +2415,7 @@
 @end
 
 @interface TestFieldOrderings_Builder : PBExtendableMessage_Builder {
- @private
+@private
   TestFieldOrderings* result;
 }
 
@@ -2488,7 +2448,7 @@
 @end
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
- @private
+@private
   BOOL hasSmallInt64;
   BOOL hasLargeUint64;
   BOOL hasSmallInt32;
@@ -2533,7 +2493,7 @@
 @end
 
 @interface TestExtremeDefaultValues_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestExtremeDefaultValues* result;
 }
 
@@ -2581,7 +2541,7 @@
 @end
 
 @interface OneString : PBGeneratedMessage {
- @private
+@private
   BOOL hasData;
   NSString* data;
 }
@@ -2606,7 +2566,7 @@
 @end
 
 @interface OneString_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   OneString* result;
 }
 
@@ -2629,7 +2589,7 @@
 @end
 
 @interface OneBytes : PBGeneratedMessage {
- @private
+@private
   BOOL hasData;
   NSData* data;
 }
@@ -2654,7 +2614,7 @@
 @end
 
 @interface OneBytes_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   OneBytes* result;
 }
 
@@ -2677,7 +2637,7 @@
 @end
 
 @interface FooRequest : PBGeneratedMessage {
- @private
+@private
 }
 
 + (FooRequest*) defaultInstance;
@@ -2698,7 +2658,7 @@
 @end
 
 @interface FooRequest_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   FooRequest* result;
 }
 
@@ -2716,7 +2676,7 @@
 @end
 
 @interface FooResponse : PBGeneratedMessage {
- @private
+@private
 }
 
 + (FooResponse*) defaultInstance;
@@ -2737,7 +2697,7 @@
 @end
 
 @interface FooResponse_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   FooResponse* result;
 }
 
@@ -2755,7 +2715,7 @@
 @end
 
 @interface BarRequest : PBGeneratedMessage {
- @private
+@private
 }
 
 + (BarRequest*) defaultInstance;
@@ -2776,7 +2736,7 @@
 @end
 
 @interface BarRequest_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   BarRequest* result;
 }
 
@@ -2794,7 +2754,7 @@
 @end
 
 @interface BarResponse : PBGeneratedMessage {
- @private
+@private
 }
 
 + (BarResponse*) defaultInstance;
@@ -2815,7 +2775,7 @@
 @end
 
 @interface BarResponse_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   BarResponse* result;
 }
 

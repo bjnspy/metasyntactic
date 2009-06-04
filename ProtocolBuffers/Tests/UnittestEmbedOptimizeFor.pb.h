@@ -14,10 +14,8 @@
 @class FooRequest_Builder;
 @class FooResponse;
 @class FooResponse_Builder;
-@class ForeignEnum;
 @class ForeignMessage;
 @class ForeignMessage_Builder;
-@class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
 @class OneBytes;
@@ -32,7 +30,6 @@
 @class TestAllExtensions_Builder;
 @class TestAllTypes;
 @class TestAllTypes_Builder;
-@class TestAllTypes_NestedEnum;
 @class TestAllTypes_NestedMessage;
 @class TestAllTypes_NestedMessage_Builder;
 @class TestAllTypes_OptionalGroup;
@@ -53,7 +50,6 @@
 @class TestEmptyMessageWithExtensions;
 @class TestEmptyMessageWithExtensions_Builder;
 @class TestEmptyMessage_Builder;
-@class TestEnumWithDupValue;
 @class TestExtremeDefaultValues;
 @class TestExtremeDefaultValues_Builder;
 @class TestFieldOrderings;
@@ -82,15 +78,13 @@
 @class TestRequiredOptimizedForSize;
 @class TestRequiredOptimizedForSize_Builder;
 @class TestRequired_Builder;
-@class TestService;
-@class TestSparseEnum;
 
 @interface UnittestEmbedOptimizeForRoot : NSObject {
 }
 @end
 
 @interface TestEmbedOptimizedForSize : PBGeneratedMessage {
- @private
+@private
   BOOL hasOptionalMessage;
   TestOptimizedForSize* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
@@ -118,7 +112,7 @@
 @end
 
 @interface TestEmbedOptimizedForSize_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   TestEmbedOptimizedForSize* result;
 }
 

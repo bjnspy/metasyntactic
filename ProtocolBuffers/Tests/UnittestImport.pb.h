@@ -4,32 +4,23 @@
 
 @class PBExtendableMessage_Builder;
 @class PBGeneratedMessage_Builder;
-@class ImportEnum;
 @class ImportMessage;
 @class ImportMessage_Builder;
+typedef enum {
+  ImportEnumImportFoo = 7,
+  ImportEnumImportBar = 8,
+  ImportEnumImportBaz = 9,
+} ImportEnum;
+
+BOOL ImportEnumIsValidValue(ImportEnum value);
+
 
 @interface UnittestImportRoot : NSObject {
 }
 @end
 
-@interface ImportEnum : NSObject {
- @private
-  int32_t index;
-  int32_t value;
-}
-@property (readonly) int32_t index;
-@property (readonly) int32_t value;
-+ (ImportEnum*) newWithIndex:(int32_t) index value:(int32_t) value;
-+ (ImportEnum*) IMPORT_FOO;
-+ (ImportEnum*) IMPORT_BAR;
-+ (ImportEnum*) IMPORT_BAZ;
-
-- (int32_t) number;
-+ (ImportEnum*) valueOf:(int32_t) value;
-@end
-
 @interface ImportMessage : PBGeneratedMessage {
- @private
+@private
   BOOL hasD;
   int32_t d;
 }
@@ -54,7 +45,7 @@
 @end
 
 @interface ImportMessage_Builder : PBGeneratedMessage_Builder {
- @private
+@private
   ImportMessage* result;
 }
 
