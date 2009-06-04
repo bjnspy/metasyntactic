@@ -93,7 +93,7 @@
 - (id) initWithTheater:(Theater*) theater_
                  movie:(Movie*) movie_
                  title:(NSString*) title_ {
-  if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.theater = theater_;
     self.movie = movie_;
     self.title = title_;

@@ -91,7 +91,7 @@
 
 
 - (id) initWithTheater:(Theater*) theater__ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.theater = theater__;
     }
 

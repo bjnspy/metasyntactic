@@ -49,7 +49,7 @@
 
 
 - (id) init {
-    if (self = [super initWithNibName:nil bundle:nil]) {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
     }
     return self;
 }

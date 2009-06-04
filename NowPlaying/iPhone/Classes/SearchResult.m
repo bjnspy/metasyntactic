@@ -53,7 +53,7 @@
              dvds:(NSArray*) dvds_
            bluray:(NSArray*) bluray_
            people:(NSArray*) people_ {
-  if (self = [super initWithId:requestId_ value:value_]) {
+  if ((self = [super initWithId:requestId_ value:value_])) {
         self.movies = movies_;
         self.theaters = theaters_;
         self.upcomingMovies = upcomingMovies_;

@@ -51,7 +51,7 @@
 
 
 - (id) init {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.searchEngine = [LocalSearchEngine engineWithDelegate:self];
   }
 

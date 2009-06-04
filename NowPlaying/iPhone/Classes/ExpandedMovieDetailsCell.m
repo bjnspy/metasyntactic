@@ -252,7 +252,7 @@
 
 
 - (id) initWithMovie:(Movie*) movie_ {
-    if (self = [super initWithMovie:movie_]) {
+    if ((self = [super initWithMovie:movie_])) {
         self.titles = [NSMutableArray array];
         self.titleToLabel = [NSMutableDictionary dictionary];
 

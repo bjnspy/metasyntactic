@@ -122,7 +122,7 @@ static NSString* articles[] = {
                      cast:(NSArray*) cast_
                    genres:(NSArray*) genres_
          additionalFields:(NSDictionary*) additionalFields_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.identifier = [StringUtilities nonNilString:identifier_];
         self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
         self.displayTitle = [StringUtilities nonNilString:displayTitle_];

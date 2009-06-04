@@ -44,11 +44,11 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
 #ifdef IPHONE_OS_VERSION_3
-    if (self = [super initWithStyle:UITableViewCellStyleSubtitle
-                    reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
+                    reuseIdentifier:reuseIdentifier])) {
 #else
-        if (self = [super initWithFrame:CGRectZero
-                        reuseIdentifier:reuseIdentifier]) {
+        if ((self = [super initWithFrame:CGRectZero
+                        reuseIdentifier:reuseIdentifier])) {
 #endif
 
 #ifndef IPHONE_OS_VERSION_3

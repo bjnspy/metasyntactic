@@ -34,11 +34,11 @@
 
 - (id) init {
 #ifdef IPHONE_OS_VERSION_3
-    if (self = [super initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:nil]) {
+    if ((self = [super initWithStyle:UITableViewCellStyleDefault
+                    reuseIdentifier:nil])) {
 #else
-    if (self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:nil]) {
+    if ((self = [super initWithFrame:CGRectZero
+                    reuseIdentifier:nil])) {
 #endif
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];

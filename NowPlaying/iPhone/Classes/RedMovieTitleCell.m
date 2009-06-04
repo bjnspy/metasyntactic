@@ -24,7 +24,7 @@
 }
 
 - (id) init {
-    if (self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]]) {
+    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
         self.image = [StockImages redRatingImage];
     }
 

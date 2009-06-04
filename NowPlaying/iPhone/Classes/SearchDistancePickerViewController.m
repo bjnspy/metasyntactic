@@ -34,7 +34,7 @@
 
 
 - (id) init {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = LocalizedString(@"Search Distance", nil);
         self.values = [NSArray arrayWithObjects:
                        @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",
