@@ -21,7 +21,7 @@ static ImportEnum* ImportEnum_IMPORT_FOO = nil;
 static ImportEnum* ImportEnum_IMPORT_BAR = nil;
 static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 - (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.index = index_;
     self.value = value_;
   }
@@ -74,7 +74,7 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.d = 0;
   }
   return self;
@@ -154,7 +154,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[ImportMessage alloc] init] autorelease];
   }
   return self;

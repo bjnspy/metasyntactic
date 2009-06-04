@@ -21,7 +21,7 @@
 
 - (id) initWithData:(NSData*) data_
           blockSize:(int32_t) blockSize_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.underlyingStream = [NSInputStream inputStreamWithData:data_];
         blockSize = blockSize_;
     }

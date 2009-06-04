@@ -50,7 +50,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 
 - (id) initWithFields:(NSMutableDictionary*) fields_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.fields = fields_;
     }
 

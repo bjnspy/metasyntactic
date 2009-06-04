@@ -47,7 +47,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 - (id) initWithOutputStream:(NSOutputStream*) output_
                        data:(NSMutableData*) data_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.output = output_;
         self.buffer = data_;
         self.position = 0;

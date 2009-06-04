@@ -931,7 +931,7 @@ static ForeignEnum* ForeignEnum_FOREIGN_FOO = nil;
 static ForeignEnum* ForeignEnum_FOREIGN_BAR = nil;
 static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
 - (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.index = index_;
     self.value = value_;
   }
@@ -979,7 +979,7 @@ static TestEnumWithDupValue* TestEnumWithDupValue_FOO1 = nil;
 static TestEnumWithDupValue* TestEnumWithDupValue_BAR1 = nil;
 static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
 - (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.index = index_;
     self.value = value_;
   }
@@ -1037,7 +1037,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_E = nil;
 static TestSparseEnum* TestSparseEnum_SPARSE_F = nil;
 static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 - (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.index = index_;
     self.value = value_;
   }
@@ -1554,7 +1554,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.optionalInt32 = 0;
     self.optionalInt64 = 0L;
     self.optionalUint32 = 0;
@@ -2248,7 +2248,7 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_FOO = nil;
 static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAR = nil;
 static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
 - (id) initWithIndex:(int32_t) index_ value:(int32_t) value_ {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.index = index_;
     self.value = value_;
   }
@@ -2301,7 +2301,7 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.bb = 0;
   }
   return self;
@@ -2381,7 +2381,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestAllTypes_NestedMessage alloc] init] autorelease];
   }
   return self;
@@ -2478,7 +2478,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -2558,7 +2558,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestAllTypes_OptionalGroup alloc] init] autorelease];
   }
   return self;
@@ -2655,7 +2655,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -2735,7 +2735,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestAllTypes_RepeatedGroup alloc] init] autorelease];
   }
   return self;
@@ -2826,7 +2826,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestAllTypes alloc] init] autorelease];
   }
   return self;
@@ -5017,7 +5017,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.c = 0;
   }
   return self;
@@ -5097,7 +5097,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[ForeignMessage alloc] init] autorelease];
   }
   return self;
@@ -5186,7 +5186,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -5266,7 +5266,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestAllExtensions alloc] init] autorelease];
   }
   return self;
@@ -5340,7 +5340,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -5420,7 +5420,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[OptionalGroup_extension alloc] init] autorelease];
   }
   return self;
@@ -5517,7 +5517,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -5597,7 +5597,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[RepeatedGroup_extension alloc] init] autorelease];
   }
   return self;
@@ -5950,7 +5950,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
     self.dummy2 = 0;
     self.b = 0;
@@ -6289,7 +6289,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestRequired alloc] init] autorelease];
   }
   return self;
@@ -7134,7 +7134,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.optionalMessage = [TestRequired defaultInstance];
     self.dummy = 0;
   }
@@ -7244,7 +7244,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestRequiredForeign alloc] init] autorelease];
   }
   return self;
@@ -7425,7 +7425,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.foreignNested = [TestAllTypes_NestedMessage defaultInstance];
   }
   return self;
@@ -7505,7 +7505,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestForeignNested alloc] init] autorelease];
   }
   return self;
@@ -7613,7 +7613,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -7686,7 +7686,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestEmptyMessage alloc] init] autorelease];
   }
   return self;
@@ -7752,7 +7752,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -7832,7 +7832,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestEmptyMessageWithExtensions alloc] init] autorelease];
   }
   return self;
@@ -7914,7 +7914,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
     self.bb = 0;
   }
@@ -8001,7 +8001,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestReallyLargeTagNumber alloc] init] autorelease];
   }
   return self;
@@ -8130,7 +8130,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = [TestRecursiveMessage defaultInstance];
     self.i = 0;
   }
@@ -8217,7 +8217,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestRecursiveMessage alloc] init] autorelease];
   }
   return self;
@@ -8357,7 +8357,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.bb = [TestMutualRecursionB defaultInstance];
   }
   return self;
@@ -8437,7 +8437,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMutualRecursionA alloc] init] autorelease];
   }
   return self;
@@ -8562,7 +8562,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = [TestMutualRecursionA defaultInstance];
     self.optionalInt32 = 0;
   }
@@ -8649,7 +8649,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestMutualRecursionB alloc] init] autorelease];
   }
   return self;
@@ -8806,7 +8806,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
     self.foo = [TestDupFieldNumber_Foo defaultInstance];
     self.bar = [TestDupFieldNumber_Bar defaultInstance];
@@ -8906,7 +8906,7 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -8986,7 +8986,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestDupFieldNumber_Foo alloc] init] autorelease];
   }
   return self;
@@ -9083,7 +9083,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.a = 0;
   }
   return self;
@@ -9163,7 +9163,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestDupFieldNumber_Bar alloc] init] autorelease];
   }
   return self;
@@ -9254,7 +9254,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestDupFieldNumber alloc] init] autorelease];
   }
   return self;
@@ -9436,7 +9436,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.optionalNestedMessage = [TestNestedMessageHasBits_NestedMessage defaultInstance];
   }
   return self;
@@ -9520,7 +9520,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -9619,7 +9619,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestNestedMessageHasBits_NestedMessage alloc] init] autorelease];
   }
   return self;
@@ -9769,7 +9769,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestNestedMessageHasBits alloc] init] autorelease];
   }
   return self;
@@ -9948,7 +9948,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.primitiveField = 0;
     self.stringField = @"";
     self.enumField = [ForeignEnum FOREIGN_FOO];
@@ -10141,7 +10141,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestCamelCaseFieldNames alloc] init] autorelease];
   }
   return self;
@@ -10644,7 +10644,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.myString = @"";
     self.myInt = 0L;
     self.myFloat = 0;
@@ -10748,7 +10748,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestFieldOrderings alloc] init] autorelease];
   }
   return self;
@@ -10933,7 +10933,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.escapedBytes = [NSData dataWithBytes:"\000\001\007\010\014\n\r\t\013\\\'\"\376" length:13];
     self.largeUint32 = -1;
     self.largeUint64 = -1L;
@@ -11048,7 +11048,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[TestExtremeDefaultValues alloc] init] autorelease];
   }
   return self;
@@ -11261,7 +11261,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.data = @"";
   }
   return self;
@@ -11341,7 +11341,7 @@ static OneString* defaultOneStringInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[OneString alloc] init] autorelease];
   }
   return self;
@@ -11439,7 +11439,7 @@ static OneString* defaultOneStringInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.data = [NSData data];
   }
   return self;
@@ -11519,7 +11519,7 @@ static OneBytes* defaultOneBytesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[OneBytes alloc] init] autorelease];
   }
   return self;
@@ -11608,7 +11608,7 @@ static OneBytes* defaultOneBytesInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -11681,7 +11681,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[FooRequest alloc] init] autorelease];
   }
   return self;
@@ -11747,7 +11747,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -11820,7 +11820,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[FooResponse alloc] init] autorelease];
   }
   return self;
@@ -11886,7 +11886,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -11959,7 +11959,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[BarRequest alloc] init] autorelease];
   }
   return self;
@@ -12025,7 +12025,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }
@@ -12098,7 +12098,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   [super dealloc];
 }
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.result = [[[BarResponse alloc] init] autorelease];
   }
   return self;

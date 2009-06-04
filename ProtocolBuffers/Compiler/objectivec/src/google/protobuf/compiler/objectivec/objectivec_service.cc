@@ -257,7 +257,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  [super dealloc];\n"
       "}\n"
       "- (id) initWithChannel:(id<PBRpcChannel>) channel_ {\n"
-      "  if (self = [super init]) {\n"
+      "  if ((self = [super init])) {\n"
       "    self.channel = channel_;\n"
       "  }\n"
       "  return self;\n"

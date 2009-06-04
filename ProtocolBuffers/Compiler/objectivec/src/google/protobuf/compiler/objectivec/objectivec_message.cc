@@ -319,7 +319,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (id) init {\n"
-      "  if (self = [super init]) {\n");
+      "  if ((self = [super init])) {\n");
     printer->Indent();
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -644,7 +644,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (id) init {\n"
-      "  if (self = [super init]) {\n"
+      "  if ((self = [super init])) {\n"
       "    self.result = [[[$classname$ alloc] init] autorelease];\n"
       "  }\n"
       "  return self;\n"
