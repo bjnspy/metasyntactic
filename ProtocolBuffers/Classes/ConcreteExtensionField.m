@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  ConcreteExtensionField.m
-//  ProtocolBuffers
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 6/3/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "ConcreteExtensionField.h"
 
@@ -61,7 +67,7 @@
     self.isPacked = isPacked_;
     self.isMessageSetWireFormat = isMessageSetWireFormat_;
   }
-  
+
   return self;
 }
 
@@ -106,7 +112,7 @@
     case PBExtensionTypeGroup:    return PBWireFormatStartGroup;
     case PBExtensionTypeEnum:     return PBWireFormatVarint;
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -140,7 +146,7 @@ int32_t typeSize(PBExtensionType type) {
     case PBExtensionTypeDouble:
       return 8;
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -212,7 +218,7 @@ int32_t typeSize(PBExtensionType type) {
       }
       return;
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -264,7 +270,7 @@ int32_t typeSize(PBExtensionType type) {
         return computeMessageSize(fieldNumber, value);
       }
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -278,7 +284,7 @@ int32_t typeSize(PBExtensionType type) {
       size += [self computeSingleSerializedSizeIncludingTag:value];
     }
     return size;
-  } 
+  }
 }
 
 
@@ -294,7 +300,7 @@ int32_t typeSize(PBExtensionType type) {
 - (void) mergeMessageSetExtentionFromCodedInputStream:(PBCodedInputStream*) input
                                         unknownFields:(PBUnknownFieldSet_Builder*) unknownFields {
   @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-  
+
   // The wire format for MessageSet is:
   //   message MessageSet {
   //     repeated group Item = 1 {
@@ -310,16 +316,16 @@ int32_t typeSize(PBExtensionType type) {
   // the message appears before the type ID, or where either field does not
   // appear exactly once.  However, in theory such cases are valid, so we
   // should be prepared to accept them.
-  
+
   //int typeId = 0;
 //  ByteString rawBytes = null;
-//  
+//
 //  while (true) {
 //    final int tag = input.readTag();
 //    if (tag == 0) {
 //      break;
 //    }
-//    
+//
 //    if (tag == WireFormat.MESSAGE_SET_TYPE_ID_TAG) {
 //      typeId = input.readUInt32();
 //      // Zero is not a valid type ID.
@@ -350,7 +356,7 @@ int32_t typeSize(PBExtensionType type) {
 //      }
 //    }
 //  }
-//  
+//
 //  input.checkLastTagWas(WireFormat.MESSAGE_SET_ITEM_END_TAG);
 }
 
@@ -385,7 +391,7 @@ int32_t typeSize(PBExtensionType type) {
       [input readGroup:fieldNumber builder:builder extensionRegistry:extensionRegistry];
       return [builder build];
     }
-      
+
     case PBExtensionTypeMessage:
     {
       id<PBMessage_Builder> builder = [messageOrGroupOrEnumClass builder];
@@ -393,7 +399,7 @@ int32_t typeSize(PBExtensionType type) {
       return [builder build];
     }
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 

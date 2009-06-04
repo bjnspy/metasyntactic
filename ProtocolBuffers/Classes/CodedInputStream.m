@@ -549,7 +549,7 @@ int64_t decodeZigZag64(int64_t n) {
   if (currentLimit == INT_MAX) {
     return -1;
   }
-  
+
   int32_t currentAbsolutePosition = totalBytesRetired + bufferPos;
   return currentLimit - currentAbsolutePosition;
 }
