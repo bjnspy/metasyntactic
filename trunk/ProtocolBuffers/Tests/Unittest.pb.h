@@ -109,6 +109,8 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface UnittestRoot : NSObject {
 }
++ (PBExtensionRegistry*) extensionRegistry;
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 + (id<PBExtensionField>) optionalInt32Extension;
 + (id<PBExtensionField>) optionalInt64Extension;
 + (id<PBExtensionField>) optionalUint32Extension;

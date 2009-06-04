@@ -73,9 +73,16 @@ static id<PBExtensionField> UnittestRoot_defaultStringPieceExtension = nil;
 static id<PBExtensionField> UnittestRoot_defaultCordExtension = nil;
 static id<PBExtensionField> UnittestRoot_myExtensionString = nil;
 static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
+static id<PBExtensionField> TestRequired_single = nil;
+static id<PBExtensionField> TestRequired_multi = nil;
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [UnittestRoot class]) {
-         UnittestRoot_optionalInt32Extension =
+    UnittestRoot_optionalInt32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:1
@@ -84,7 +91,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalInt64Extension =
+    UnittestRoot_optionalInt64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:2
@@ -93,7 +100,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalUint32Extension =
+    UnittestRoot_optionalUint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:3
@@ -102,7 +109,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalUint64Extension =
+    UnittestRoot_optionalUint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:4
@@ -111,7 +118,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalSint32Extension =
+    UnittestRoot_optionalSint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:5
@@ -120,7 +127,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalSint64Extension =
+    UnittestRoot_optionalSint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:6
@@ -129,7 +136,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalFixed32Extension =
+    UnittestRoot_optionalFixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:7
@@ -138,7 +145,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalFixed64Extension =
+    UnittestRoot_optionalFixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:8
@@ -147,7 +154,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalSfixed32Extension =
+    UnittestRoot_optionalSfixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:9
@@ -156,7 +163,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalSfixed64Extension =
+    UnittestRoot_optionalSfixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:10
@@ -165,7 +172,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalFloatExtension =
+    UnittestRoot_optionalFloatExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:11
@@ -174,7 +181,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalDoubleExtension =
+    UnittestRoot_optionalDoubleExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:12
@@ -183,7 +190,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalBoolExtension =
+    UnittestRoot_optionalBoolExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:13
@@ -192,7 +199,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalStringExtension =
+    UnittestRoot_optionalStringExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:14
@@ -201,7 +208,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalBytesExtension =
+    UnittestRoot_optionalBytesExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:15
@@ -210,7 +217,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalGroupExtension =
+    UnittestRoot_optionalGroupExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeGroup
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:16
@@ -219,7 +226,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalNestedMessageExtension =
+    UnittestRoot_optionalNestedMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:18
@@ -228,7 +235,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalForeignMessageExtension =
+    UnittestRoot_optionalForeignMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:19
@@ -237,7 +244,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalImportMessageExtension =
+    UnittestRoot_optionalImportMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:20
@@ -246,7 +253,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalNestedEnumExtension =
+    UnittestRoot_optionalNestedEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:21
@@ -255,7 +262,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalForeignEnumExtension =
+    UnittestRoot_optionalForeignEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:22
@@ -264,7 +271,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalImportEnumExtension =
+    UnittestRoot_optionalImportEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:23
@@ -273,7 +280,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalStringPieceExtension =
+    UnittestRoot_optionalStringPieceExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:24
@@ -282,7 +289,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_optionalCordExtension =
+    UnittestRoot_optionalCordExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:25
@@ -291,7 +298,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedInt32Extension =
+    UnittestRoot_repeatedInt32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:31
@@ -300,7 +307,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedInt64Extension =
+    UnittestRoot_repeatedInt64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:32
@@ -309,7 +316,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedUint32Extension =
+    UnittestRoot_repeatedUint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:33
@@ -318,7 +325,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedUint64Extension =
+    UnittestRoot_repeatedUint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:34
@@ -327,7 +334,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedSint32Extension =
+    UnittestRoot_repeatedSint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:35
@@ -336,7 +343,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedSint64Extension =
+    UnittestRoot_repeatedSint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:36
@@ -345,7 +352,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedFixed32Extension =
+    UnittestRoot_repeatedFixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:37
@@ -354,7 +361,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedFixed64Extension =
+    UnittestRoot_repeatedFixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:38
@@ -363,7 +370,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedSfixed32Extension =
+    UnittestRoot_repeatedSfixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:39
@@ -372,7 +379,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedSfixed64Extension =
+    UnittestRoot_repeatedSfixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:40
@@ -381,7 +388,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedFloatExtension =
+    UnittestRoot_repeatedFloatExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:41
@@ -390,7 +397,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedDoubleExtension =
+    UnittestRoot_repeatedDoubleExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:42
@@ -399,7 +406,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedBoolExtension =
+    UnittestRoot_repeatedBoolExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:43
@@ -408,7 +415,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedStringExtension =
+    UnittestRoot_repeatedStringExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:44
@@ -417,7 +424,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedBytesExtension =
+    UnittestRoot_repeatedBytesExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:45
@@ -426,7 +433,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedGroupExtension =
+    UnittestRoot_repeatedGroupExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeGroup
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:46
@@ -435,7 +442,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedNestedMessageExtension =
+    UnittestRoot_repeatedNestedMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:48
@@ -444,7 +451,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedForeignMessageExtension =
+    UnittestRoot_repeatedForeignMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:49
@@ -453,7 +460,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedImportMessageExtension =
+    UnittestRoot_repeatedImportMessageExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:50
@@ -462,7 +469,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedNestedEnumExtension =
+    UnittestRoot_repeatedNestedEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:51
@@ -471,7 +478,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedForeignEnumExtension =
+    UnittestRoot_repeatedForeignEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:52
@@ -480,7 +487,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedImportEnumExtension =
+    UnittestRoot_repeatedImportEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:53
@@ -489,7 +496,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedStringPieceExtension =
+    UnittestRoot_repeatedStringPieceExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:54
@@ -498,7 +505,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_repeatedCordExtension =
+    UnittestRoot_repeatedCordExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:55
@@ -507,7 +514,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:true
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultInt32Extension =
+    UnittestRoot_defaultInt32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:61
@@ -516,7 +523,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultInt64Extension =
+    UnittestRoot_defaultInt64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:62
@@ -525,7 +532,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultUint32Extension =
+    UnittestRoot_defaultUint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:63
@@ -534,7 +541,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultUint64Extension =
+    UnittestRoot_defaultUint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:64
@@ -543,7 +550,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultSint32Extension =
+    UnittestRoot_defaultSint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:65
@@ -552,7 +559,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultSint64Extension =
+    UnittestRoot_defaultSint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:66
@@ -561,7 +568,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultFixed32Extension =
+    UnittestRoot_defaultFixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:67
@@ -570,7 +577,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultFixed64Extension =
+    UnittestRoot_defaultFixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:68
@@ -579,7 +586,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultSfixed32Extension =
+    UnittestRoot_defaultSfixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:69
@@ -588,7 +595,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultSfixed64Extension =
+    UnittestRoot_defaultSfixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:70
@@ -597,7 +604,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultFloatExtension =
+    UnittestRoot_defaultFloatExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:71
@@ -606,7 +613,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultDoubleExtension =
+    UnittestRoot_defaultDoubleExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:72
@@ -615,7 +622,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultBoolExtension =
+    UnittestRoot_defaultBoolExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:73
@@ -624,7 +631,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultStringExtension =
+    UnittestRoot_defaultStringExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:74
@@ -633,7 +640,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultBytesExtension =
+    UnittestRoot_defaultBytesExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBytes
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:75
@@ -642,7 +649,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultNestedEnumExtension =
+    UnittestRoot_defaultNestedEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:81
@@ -651,7 +658,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultForeignEnumExtension =
+    UnittestRoot_defaultForeignEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:82
@@ -660,7 +667,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultImportEnumExtension =
+    UnittestRoot_defaultImportEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:83
@@ -669,7 +676,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultStringPieceExtension =
+    UnittestRoot_defaultStringPieceExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:84
@@ -678,7 +685,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_defaultCordExtension =
+    UnittestRoot_defaultCordExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestAllExtensions class]
                                        fieldNumber:85
@@ -687,7 +694,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_myExtensionString =
+    UnittestRoot_myExtensionString =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
                                      extendedClass:[TestFieldOrderings class]
                                        fieldNumber:50
@@ -696,7 +703,7 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
-         UnittestRoot_myExtensionInt =
+    UnittestRoot_myExtensionInt =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
                                      extendedClass:[TestFieldOrderings class]
                                        fieldNumber:5
@@ -705,7 +712,103 @@ static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
+    TestRequired_single =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:1000
+                                      defaultValue:[TestRequired defaultInstance]
+                               messageOrGroupClass:[TestRequired class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    TestRequired_multi =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:1001
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[TestRequired class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    [UnittestImportRoot registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
+  [registry addExtension:UnittestRoot_optionalInt32Extension];
+  [registry addExtension:UnittestRoot_optionalInt64Extension];
+  [registry addExtension:UnittestRoot_optionalUint32Extension];
+  [registry addExtension:UnittestRoot_optionalUint64Extension];
+  [registry addExtension:UnittestRoot_optionalSint32Extension];
+  [registry addExtension:UnittestRoot_optionalSint64Extension];
+  [registry addExtension:UnittestRoot_optionalFixed32Extension];
+  [registry addExtension:UnittestRoot_optionalFixed64Extension];
+  [registry addExtension:UnittestRoot_optionalSfixed32Extension];
+  [registry addExtension:UnittestRoot_optionalSfixed64Extension];
+  [registry addExtension:UnittestRoot_optionalFloatExtension];
+  [registry addExtension:UnittestRoot_optionalDoubleExtension];
+  [registry addExtension:UnittestRoot_optionalBoolExtension];
+  [registry addExtension:UnittestRoot_optionalStringExtension];
+  [registry addExtension:UnittestRoot_optionalBytesExtension];
+  [registry addExtension:UnittestRoot_optionalGroupExtension];
+  [registry addExtension:UnittestRoot_optionalNestedMessageExtension];
+  [registry addExtension:UnittestRoot_optionalForeignMessageExtension];
+  [registry addExtension:UnittestRoot_optionalImportMessageExtension];
+  [registry addExtension:UnittestRoot_optionalNestedEnumExtension];
+  [registry addExtension:UnittestRoot_optionalForeignEnumExtension];
+  [registry addExtension:UnittestRoot_optionalImportEnumExtension];
+  [registry addExtension:UnittestRoot_optionalStringPieceExtension];
+  [registry addExtension:UnittestRoot_optionalCordExtension];
+  [registry addExtension:UnittestRoot_repeatedInt32Extension];
+  [registry addExtension:UnittestRoot_repeatedInt64Extension];
+  [registry addExtension:UnittestRoot_repeatedUint32Extension];
+  [registry addExtension:UnittestRoot_repeatedUint64Extension];
+  [registry addExtension:UnittestRoot_repeatedSint32Extension];
+  [registry addExtension:UnittestRoot_repeatedSint64Extension];
+  [registry addExtension:UnittestRoot_repeatedFixed32Extension];
+  [registry addExtension:UnittestRoot_repeatedFixed64Extension];
+  [registry addExtension:UnittestRoot_repeatedSfixed32Extension];
+  [registry addExtension:UnittestRoot_repeatedSfixed64Extension];
+  [registry addExtension:UnittestRoot_repeatedFloatExtension];
+  [registry addExtension:UnittestRoot_repeatedDoubleExtension];
+  [registry addExtension:UnittestRoot_repeatedBoolExtension];
+  [registry addExtension:UnittestRoot_repeatedStringExtension];
+  [registry addExtension:UnittestRoot_repeatedBytesExtension];
+  [registry addExtension:UnittestRoot_repeatedGroupExtension];
+  [registry addExtension:UnittestRoot_repeatedNestedMessageExtension];
+  [registry addExtension:UnittestRoot_repeatedForeignMessageExtension];
+  [registry addExtension:UnittestRoot_repeatedImportMessageExtension];
+  [registry addExtension:UnittestRoot_repeatedNestedEnumExtension];
+  [registry addExtension:UnittestRoot_repeatedForeignEnumExtension];
+  [registry addExtension:UnittestRoot_repeatedImportEnumExtension];
+  [registry addExtension:UnittestRoot_repeatedStringPieceExtension];
+  [registry addExtension:UnittestRoot_repeatedCordExtension];
+  [registry addExtension:UnittestRoot_defaultInt32Extension];
+  [registry addExtension:UnittestRoot_defaultInt64Extension];
+  [registry addExtension:UnittestRoot_defaultUint32Extension];
+  [registry addExtension:UnittestRoot_defaultUint64Extension];
+  [registry addExtension:UnittestRoot_defaultSint32Extension];
+  [registry addExtension:UnittestRoot_defaultSint64Extension];
+  [registry addExtension:UnittestRoot_defaultFixed32Extension];
+  [registry addExtension:UnittestRoot_defaultFixed64Extension];
+  [registry addExtension:UnittestRoot_defaultSfixed32Extension];
+  [registry addExtension:UnittestRoot_defaultSfixed64Extension];
+  [registry addExtension:UnittestRoot_defaultFloatExtension];
+  [registry addExtension:UnittestRoot_defaultDoubleExtension];
+  [registry addExtension:UnittestRoot_defaultBoolExtension];
+  [registry addExtension:UnittestRoot_defaultStringExtension];
+  [registry addExtension:UnittestRoot_defaultBytesExtension];
+  [registry addExtension:UnittestRoot_defaultNestedEnumExtension];
+  [registry addExtension:UnittestRoot_defaultForeignEnumExtension];
+  [registry addExtension:UnittestRoot_defaultImportEnumExtension];
+  [registry addExtension:UnittestRoot_defaultStringPieceExtension];
+  [registry addExtension:UnittestRoot_defaultCordExtension];
+  [registry addExtension:UnittestRoot_myExtensionString];
+  [registry addExtension:UnittestRoot_myExtensionInt];
+  [registry addExtension:TestRequired_single];
+  [registry addExtension:TestRequired_multi];
 }
 + (id<PBExtensionField>) optionalInt32Extension {
   return UnittestRoot_optionalInt32Extension;
@@ -5794,8 +5897,6 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   }
   return self;
 }
-static id<PBExtensionField> TestRequired_single = nil;
-static id<PBExtensionField> TestRequired_multi = nil;
 + (id<PBExtensionField>) single {
   return TestRequired_single;
 }
@@ -5806,24 +5907,6 @@ static TestRequired* defaultTestRequiredInstance = nil;
 + (void) initialize {
   if (self == [TestRequired class]) {
     defaultTestRequiredInstance = [[TestRequired alloc] init];
-     TestRequired_single =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
-                                 extendedClass:[TestAllExtensions class]
-                                   fieldNumber:1000
-                                  defaultValue:[TestRequired defaultInstance]
-                           messageOrGroupClass:[TestRequired class]
-                                    isRepeated:false
-                                      isPacked:false
-                        isMessageSetWireFormat:false] retain];
-     TestRequired_multi =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
-                                 extendedClass:[TestAllExtensions class]
-                                   fieldNumber:1001
-                                  defaultValue:[NSArray array]
-                           messageOrGroupClass:[TestRequired class]
-                                    isRepeated:true
-                                      isPacked:false
-                        isMessageSetWireFormat:false] retain];
   }
 }
 + (TestRequired*) defaultInstance {

@@ -3,9 +3,20 @@
 #import "UnittestEmbedOptimizeFor.pb.h"
 
 @implementation UnittestEmbedOptimizeForRoot
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [UnittestEmbedOptimizeForRoot class]) {
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    [UnittestOptimizeForRoot registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
 }
 @end
 

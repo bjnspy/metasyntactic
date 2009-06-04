@@ -3,9 +3,19 @@
 #import "UnittestImport.pb.h"
 
 @implementation UnittestImportRoot
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [UnittestImportRoot class]) {
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
 }
 @end
 

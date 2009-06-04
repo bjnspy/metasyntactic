@@ -19,6 +19,8 @@
 
 @interface UnittestMsetRoot : NSObject {
 }
++ (PBExtensionRegistry*) extensionRegistry;
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
 @interface TestMessageSet : PBExtendableMessage {

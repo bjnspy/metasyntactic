@@ -3,9 +3,42 @@
 #import "UnittestOptimizeFor.pb.h"
 
 @implementation UnittestOptimizeForRoot
+static id<PBExtensionField> TestOptimizedForSize_testExtension = nil;
+static id<PBExtensionField> TestOptimizedForSize_testExtension2 = nil;
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [UnittestOptimizeForRoot class]) {
+    TestOptimizedForSize_testExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestOptimizedForSize class]
+                                       fieldNumber:1234
+                                      defaultValue:[NSNumber numberWithInt:0]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    TestOptimizedForSize_testExtension2 =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
+                                     extendedClass:[TestOptimizedForSize class]
+                                       fieldNumber:1235
+                                      defaultValue:[TestRequiredOptimizedForSize defaultInstance]
+                               messageOrGroupClass:[TestRequiredOptimizedForSize class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    [UnittestRoot registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
+  [registry addExtension:TestOptimizedForSize_testExtension];
+  [registry addExtension:TestOptimizedForSize_testExtension2];
 }
 @end
 
@@ -41,8 +74,6 @@
   }
   return self;
 }
-static id<PBExtensionField> TestOptimizedForSize_testExtension = nil;
-static id<PBExtensionField> TestOptimizedForSize_testExtension2 = nil;
 + (id<PBExtensionField>) testExtension {
   return TestOptimizedForSize_testExtension;
 }
@@ -53,24 +84,6 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 + (void) initialize {
   if (self == [TestOptimizedForSize class]) {
     defaultTestOptimizedForSizeInstance = [[TestOptimizedForSize alloc] init];
-     TestOptimizedForSize_testExtension =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
-                                 extendedClass:[TestOptimizedForSize class]
-                                   fieldNumber:1234
-                                  defaultValue:[NSNumber numberWithInt:0]
-                           messageOrGroupClass:[NSNumber class]
-                                    isRepeated:false
-                                      isPacked:false
-                        isMessageSetWireFormat:false] retain];
-     TestOptimizedForSize_testExtension2 =
-  [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
-                                 extendedClass:[TestOptimizedForSize class]
-                                   fieldNumber:1235
-                                  defaultValue:[TestRequiredOptimizedForSize defaultInstance]
-                           messageOrGroupClass:[TestRequiredOptimizedForSize class]
-                                    isRepeated:false
-                                      isPacked:false
-                        isMessageSetWireFormat:false] retain];
   }
 }
 + (TestOptimizedForSize*) defaultInstance {
