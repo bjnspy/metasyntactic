@@ -463,6 +463,13 @@
 			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
+		748F17570FD76BA0000858A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
+			remoteInfo = CommandLineTests;
+		};
 		74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
@@ -1534,6 +1541,7 @@
 			children = (
 				74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */,
 				74C3EDB10F950F6C00FFEE5A /* UnitTests.octest */,
+				748F17580FD76BA0000858A9 /* CommandLineTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1736,6 +1744,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		748F17580FD76BA0000858A9 /* CommandLineTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommandLineTests.app;
+			remoteRef = 748F17570FD76BA0000858A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

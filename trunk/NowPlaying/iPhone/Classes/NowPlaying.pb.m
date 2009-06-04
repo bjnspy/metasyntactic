@@ -3,233 +3,9 @@
 #import "NowPlaying.pb.h"
 
 @implementation NowPlayingRoot
-static PBFileDescriptor* descriptor = nil;
-static PBDescriptor* internal_static_ShowtimeProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_ShowtimeProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_ShowtimeProto_descriptor {
-  return internal_static_ShowtimeProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_ShowtimeProto_fieldAccessorTable {
-  return internal_static_ShowtimeProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_AllShowtimesProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_AllShowtimesProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_AllShowtimesProto_descriptor {
-  return internal_static_AllShowtimesProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_AllShowtimesProto_fieldAccessorTable {
-  return internal_static_AllShowtimesProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_MovieProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_MovieProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_MovieProto_descriptor {
-  return internal_static_MovieProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_MovieProto_fieldAccessorTable {
-  return internal_static_MovieProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_TheaterProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_TheaterProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_TheaterProto_descriptor {
-  return internal_static_TheaterProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_TheaterProto_fieldAccessorTable {
-  return internal_static_TheaterProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_TheaterListingsProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_TheaterListingsProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_TheaterListingsProto_descriptor {
-  return internal_static_TheaterListingsProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_fieldAccessorTable {
-  return internal_static_TheaterListingsProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor {
-  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable {
-  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor {
-  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable {
-  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_ReviewProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_ReviewProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_ReviewProto_descriptor {
-  return internal_static_ReviewProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_ReviewProto_fieldAccessorTable {
-  return internal_static_ReviewProto_fieldAccessorTable;
-}
-static PBDescriptor* internal_static_ReviewsListProto_descriptor = nil;
-static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable = nil;
-+ (PBDescriptor*) internal_static_ReviewsListProto_descriptor {
-  return internal_static_ReviewsListProto_descriptor;
-}
-+ (PBFieldAccessorTable*) internal_static_ReviewsListProto_fieldAccessorTable {
-  return internal_static_ReviewsListProto_fieldAccessorTable;
-}
 + (void) initialize {
   if (self == [NowPlayingRoot class]) {
-    descriptor = [[NowPlayingRoot buildDescriptor] retain];
-    internal_static_ShowtimeProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Time", @"Url", @"Dubbed", @"Subtitled", nil];
-      internal_static_ShowtimeProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ShowtimeProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[ShowtimeProto class]
-                                      builderClass:[ShowtimeProto_Builder class]] retain];
-    }
-    internal_static_AllShowtimesProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Showtimes", @"Vendor", @"Captioning", nil];
-      internal_static_AllShowtimesProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_AllShowtimesProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[AllShowtimesProto class]
-                                      builderClass:[AllShowtimesProto_Builder class]] retain];
-    }
-    internal_static_MovieProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Identifier", @"Title", @"Length", @"Language", @"Genre", @"Description", @"RawRating", @"Score", @"IMDbUrl", @"Director", @"Cast", @"Dubbed", @"Subtitled", @"ReleaseDate", nil];
-      internal_static_MovieProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_MovieProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[MovieProto class]
-                                      builderClass:[MovieProto_Builder class]] retain];
-    }
-    internal_static_TheaterProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Identifier", @"Name", @"StreetAddress", @"City", @"State", @"PostalCode", @"Country", @"Phone", @"Latitude", @"Longitude", nil];
-      internal_static_TheaterProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TheaterProto class]
-                                      builderClass:[TheaterProto_Builder class]] retain];
-    }
-    internal_static_TheaterListingsProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Movies", @"TheaterAndMovieShowtimes", nil];
-      internal_static_TheaterListingsProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TheaterListingsProto class]
-                                      builderClass:[TheaterListingsProto_Builder class]] retain];
-    }
-    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Theater", @"MovieAndShowtimes", nil];
-      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto class]
-                                      builderClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder class]] retain];
-    }
-    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor nestedTypes] objectAtIndex:0] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"MovieIdentifier", @"Showtimes", nil];
-      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto class]
-                                      builderClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder class]] retain];
-    }
-    internal_static_ReviewProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Title", @"Url", @"Rating", @"Snippet", @"Content", @"Publisher", @"Author", @"Date", nil];
-      internal_static_ReviewProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[ReviewProto class]
-                                      builderClass:[ReviewProto_Builder class]] retain];
-    }
-    internal_static_ReviewsListProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
-    {
-      NSArray* fieldNames = [NSArray arrayWithObjects:@"Reviews", nil];
-      internal_static_ReviewsListProto_fieldAccessorTable =
-        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewsListProto_descriptor
-                                        fieldNames:fieldNames
-                                      messageClass:[ReviewsListProto class]
-                                      builderClass:[ReviewsListProto_Builder class]] retain];
-    }
   }
-}
-+ (PBFileDescriptor*) descriptor {
-  return descriptor;
-}
-+ (PBFileDescriptor*) buildDescriptor {
-  static uint8_t descriptorData[] = {
-    10,16,78,111,119,80,108,97,121,105,110,103,46,112,114,111,116,111,34,77,
-    10,13,83,104,111,119,116,105,109,101,80,114,111,116,111,18,12,10,4,84,105,
-    109,101,24,1,32,2,40,9,18,11,10,3,85,114,108,24,2,32,1,40,9,18,14,10,6,
-    68,117,98,98,101,100,24,3,32,3,40,9,18,17,10,9,83,117,98,116,105,116,108,
-    101,100,24,4,32,3,40,9,34,90,10,17,65,108,108,83,104,111,119,116,105,109,
-    101,115,80,114,111,116,111,18,33,10,9,83,104,111,119,116,105,109,101,115,
-    24,1,32,3,40,11,50,14,46,83,104,111,119,116,105,109,101,80,114,111,116,
-    111,18,14,10,6,86,101,110,100,111,114,24,2,32,1,40,9,18,18,10,10,67,97,
-    112,116,105,111,110,105,110,103,24,3,32,1,40,9,34,128,2,10,10,77,111,118,
-    105,101,80,114,111,116,111,18,18,10,10,73,100,101,110,116,105,102,105,101,
-    114,24,1,32,1,40,9,18,13,10,5,84,105,116,108,101,24,2,32,1,40,9,18,14,10,
-    6,76,101,110,103,116,104,24,3,32,1,40,5,18,16,10,8,76,97,110,103,117,97,
-    103,101,24,4,32,1,40,9,18,13,10,5,71,101,110,114,101,24,5,32,1,40,9,18,
-    19,10,11,68,101,115,99,114,105,112,116,105,111,110,24,6,32,1,40,9,18,17,
-    10,9,82,97,119,82,97,116,105,110,103,24,8,32,1,40,9,18,13,10,5,83,99,111,
-    114,101,24,9,32,1,40,5,18,15,10,7,73,77,68,98,85,114,108,24,10,32,1,40,
-    9,18,16,10,8,68,105,114,101,99,116,111,114,24,11,32,3,40,9,18,12,10,4,67,
-    97,115,116,24,12,32,3,40,9,18,14,10,6,68,117,98,98,101,100,24,13,32,3,40,
-    9,18,17,10,9,83,117,98,116,105,116,108,101,100,24,14,32,3,40,9,18,19,10,
-    11,82,101,108,101,97,115,101,68,97,116,101,24,15,32,1,40,9,34,189,1,10,
-    12,84,104,101,97,116,101,114,80,114,111,116,111,18,18,10,10,73,100,101,
-    110,116,105,102,105,101,114,24,1,32,1,40,9,18,12,10,4,78,97,109,101,24,
-    2,32,1,40,9,18,21,10,13,83,116,114,101,101,116,65,100,100,114,101,115,115,
-    24,3,32,1,40,9,18,12,10,4,67,105,116,121,24,4,32,1,40,9,18,13,10,5,83,116,
-    97,116,101,24,5,32,1,40,9,18,18,10,10,80,111,115,116,97,108,67,111,100,
-    101,24,6,32,1,40,9,18,15,10,7,67,111,117,110,116,114,121,24,7,32,1,40,9,
-    18,13,10,5,80,104,111,110,101,24,8,32,1,40,9,18,16,10,8,76,97,116,105,116,
-    117,100,101,24,9,32,1,40,1,18,17,10,9,76,111,110,103,105,116,117,100,101,
-    24,10,32,1,40,1,34,141,3,10,20,84,104,101,97,116,101,114,76,105,115,116,
-    105,110,103,115,80,114,111,116,111,18,27,10,6,77,111,118,105,101,115,24,
-    5,32,3,40,11,50,11,46,77,111,118,105,101,80,114,111,116,111,18,85,10,24,
-    84,104,101,97,116,101,114,65,110,100,77,111,118,105,101,83,104,111,119,
-    116,105,109,101,115,24,6,32,3,40,11,50,51,46,84,104,101,97,116,101,114,
-    76,105,115,116,105,110,103,115,80,114,111,116,111,46,84,104,101,97,116,
-    101,114,65,110,100,77,111,118,105,101,83,104,111,119,116,105,109,101,115,
-    80,114,111,116,111,26,128,2,10,29,84,104,101,97,116,101,114,65,110,100,
-    77,111,118,105,101,83,104,111,119,116,105,109,101,115,80,114,111,116,111,
-    18,30,10,7,84,104,101,97,116,101,114,24,3,32,2,40,11,50,13,46,84,104,101,
-    97,116,101,114,80,114,111,116,111,18,101,10,17,77,111,118,105,101,65,110,
-    100,83,104,111,119,116,105,109,101,115,24,4,32,3,40,11,50,74,46,84,104,
-    101,97,116,101,114,76,105,115,116,105,110,103,115,80,114,111,116,111,46,
-    84,104,101,97,116,101,114,65,110,100,77,111,118,105,101,83,104,111,119,
-    116,105,109,101,115,80,114,111,116,111,46,77,111,118,105,101,65,110,100,
-    83,104,111,119,116,105,109,101,115,80,114,111,116,111,26,88,10,22,77,111,
-    118,105,101,65,110,100,83,104,111,119,116,105,109,101,115,80,114,111,116,
-    111,18,23,10,15,77,111,118,105,101,73,100,101,110,116,105,102,105,101,114,
-    24,1,32,2,40,9,18,37,10,9,83,104,111,119,116,105,109,101,115,24,2,32,2,
-    40,11,50,18,46,65,108,108,83,104,111,119,116,105,109,101,115,80,114,111,
-    116,111,34,140,1,10,11,82,101,118,105,101,119,80,114,111,116,111,18,13,
-    10,5,84,105,116,108,101,24,1,32,1,40,9,18,11,10,3,85,114,108,24,2,32,1,
-    40,9,18,14,10,6,82,97,116,105,110,103,24,3,32,1,40,2,18,15,10,7,83,110,
-    105,112,112,101,116,24,4,32,1,40,9,18,15,10,7,67,111,110,116,101,110,116,
-    24,5,32,1,40,9,18,17,10,9,80,117,98,108,105,115,104,101,114,24,6,32,1,40,
-    9,18,14,10,6,65,117,116,104,111,114,24,7,32,1,40,9,18,12,10,4,68,97,116,
-    101,24,8,32,1,40,9,34,49,10,16,82,101,118,105,101,119,115,76,105,115,116,
-    80,114,111,116,111,18,29,10,7,114,101,118,105,101,119,115,24,1,32,3,40,
-    11,50,12,46,82,101,118,105,101,119,80,114,111,116,111,66,2,72,1,
-  };
-  NSArray* dependencies = [NSArray arrayWithObjects:nil];
-
-  NSData* data = [NSData dataWithBytes:descriptorData length:1238];
-  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
-  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
@@ -283,15 +59,6 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 }
 - (ShowtimeProto*) defaultInstance {
   return defaultShowtimeProtoInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [ShowtimeProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ShowtimeProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ShowtimeProto_fieldAccessorTable];
 }
 - (NSArray*) dubbedList {
   return mutableDubbedList;
@@ -373,7 +140,7 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   return [[[ShowtimeProto_Builder alloc] init] autorelease];
 }
 + (ShowtimeProto_Builder*) builderWithPrototype:(ShowtimeProto*) prototype {
-  return [[ShowtimeProto builder] mergeFromShowtimeProto:prototype];
+  return [[ShowtimeProto builder] mergeFrom:prototype];
 }
 - (ShowtimeProto_Builder*) builder {
   return [ShowtimeProto builder];
@@ -406,16 +173,11 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 - (ShowtimeProto_Builder*) clone {
   return [ShowtimeProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [ShowtimeProto descriptor];
-}
 - (ShowtimeProto*) defaultInstance {
   return [ShowtimeProto defaultInstance];
 }
 - (ShowtimeProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (ShowtimeProto*) buildPartial {
@@ -423,16 +185,7 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (ShowtimeProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[ShowtimeProto class]]) {
-    return [self mergeFromShowtimeProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (ShowtimeProto_Builder*) mergeFromShowtimeProto:(ShowtimeProto*) other {
+- (ShowtimeProto_Builder*) mergeFrom:(ShowtimeProto*) other {
   if (other == [ShowtimeProto defaultInstance]) {
     return self;
   }
@@ -638,15 +391,6 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 - (AllShowtimesProto*) defaultInstance {
   return defaultAllShowtimesProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [AllShowtimesProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_AllShowtimesProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_AllShowtimesProto_fieldAccessorTable];
-}
 - (NSArray*) showtimesList {
   return mutableShowtimesList;
 }
@@ -716,7 +460,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   return [[[AllShowtimesProto_Builder alloc] init] autorelease];
 }
 + (AllShowtimesProto_Builder*) builderWithPrototype:(AllShowtimesProto*) prototype {
-  return [[AllShowtimesProto builder] mergeFromAllShowtimesProto:prototype];
+  return [[AllShowtimesProto builder] mergeFrom:prototype];
 }
 - (AllShowtimesProto_Builder*) builder {
   return [AllShowtimesProto builder];
@@ -749,16 +493,11 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 - (AllShowtimesProto_Builder*) clone {
   return [AllShowtimesProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [AllShowtimesProto descriptor];
-}
 - (AllShowtimesProto*) defaultInstance {
   return [AllShowtimesProto defaultInstance];
 }
 - (AllShowtimesProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (AllShowtimesProto*) buildPartial {
@@ -766,16 +505,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (AllShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[AllShowtimesProto class]]) {
-    return [self mergeFromAllShowtimesProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (AllShowtimesProto_Builder*) mergeFromAllShowtimesProto:(AllShowtimesProto*) other {
+- (AllShowtimesProto_Builder*) mergeFrom:(AllShowtimesProto*) other {
   if (other == [AllShowtimesProto defaultInstance]) {
     return self;
   }
@@ -1027,15 +757,6 @@ static MovieProto* defaultMovieProtoInstance = nil;
 - (MovieProto*) defaultInstance {
   return defaultMovieProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [MovieProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_MovieProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_MovieProto_fieldAccessorTable];
-}
 - (NSArray*) directorList {
   return mutableDirectorList;
 }
@@ -1187,7 +908,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   return [[[MovieProto_Builder alloc] init] autorelease];
 }
 + (MovieProto_Builder*) builderWithPrototype:(MovieProto*) prototype {
-  return [[MovieProto builder] mergeFromMovieProto:prototype];
+  return [[MovieProto builder] mergeFrom:prototype];
 }
 - (MovieProto_Builder*) builder {
   return [MovieProto builder];
@@ -1220,16 +941,11 @@ static MovieProto* defaultMovieProtoInstance = nil;
 - (MovieProto_Builder*) clone {
   return [MovieProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [MovieProto descriptor];
-}
 - (MovieProto*) defaultInstance {
   return [MovieProto defaultInstance];
 }
 - (MovieProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (MovieProto*) buildPartial {
@@ -1237,16 +953,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (MovieProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[MovieProto class]]) {
-    return [self mergeFromMovieProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (MovieProto_Builder*) mergeFromMovieProto:(MovieProto*) other {
+- (MovieProto_Builder*) mergeFrom:(MovieProto*) other {
   if (other == [MovieProto defaultInstance]) {
     return self;
   }
@@ -1793,15 +1500,6 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 - (TheaterProto*) defaultInstance {
   return defaultTheaterProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterProto_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
   return YES;
 }
@@ -1901,7 +1599,7 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   return [[[TheaterProto_Builder alloc] init] autorelease];
 }
 + (TheaterProto_Builder*) builderWithPrototype:(TheaterProto*) prototype {
-  return [[TheaterProto builder] mergeFromTheaterProto:prototype];
+  return [[TheaterProto builder] mergeFrom:prototype];
 }
 - (TheaterProto_Builder*) builder {
   return [TheaterProto builder];
@@ -1934,16 +1632,11 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 - (TheaterProto_Builder*) clone {
   return [TheaterProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterProto descriptor];
-}
 - (TheaterProto*) defaultInstance {
   return [TheaterProto defaultInstance];
 }
 - (TheaterProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TheaterProto*) buildPartial {
@@ -1951,16 +1644,7 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (TheaterProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TheaterProto class]]) {
-    return [self mergeFromTheaterProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TheaterProto_Builder*) mergeFromTheaterProto:(TheaterProto*) other {
+- (TheaterProto_Builder*) mergeFrom:(TheaterProto*) other {
   if (other == [TheaterProto defaultInstance]) {
     return self;
   }
@@ -2251,15 +1935,6 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
 - (TheaterListingsProto*) defaultInstance {
   return defaultTheaterListingsProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_fieldAccessorTable];
-}
 - (NSArray*) moviesList {
   return mutableMoviesList;
 }
@@ -2330,7 +2005,7 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
   return [[[TheaterListingsProto_Builder alloc] init] autorelease];
 }
 + (TheaterListingsProto_Builder*) builderWithPrototype:(TheaterListingsProto*) prototype {
-  return [[TheaterListingsProto builder] mergeFromTheaterListingsProto:prototype];
+  return [[TheaterListingsProto builder] mergeFrom:prototype];
 }
 - (TheaterListingsProto_Builder*) builder {
   return [TheaterListingsProto builder];
@@ -2374,15 +2049,6 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) defaultInstance {
   return defaultTheaterListingsProto_TheaterAndMovieShowtimesProtoInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto_TheaterAndMovieShowtimesProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable];
 }
 - (NSArray*) movieAndShowtimesList {
   return mutableMovieAndShowtimesList;
@@ -2450,7 +2116,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   return [[[TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder alloc] init] autorelease];
 }
 + (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) builderWithPrototype:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) prototype {
-  return [[TheaterListingsProto_TheaterAndMovieShowtimesProto builder] mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto:prototype];
+  return [[TheaterListingsProto_TheaterAndMovieShowtimesProto builder] mergeFrom:prototype];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) builder {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto builder];
@@ -2501,15 +2167,6 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) defaultInstance {
   return defaultTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProtoInstance;
-}
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!hasMovieIdentifier) {
@@ -2571,7 +2228,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   return [[[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder alloc] init] autorelease];
 }
 + (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) builderWithPrototype:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) prototype {
-  return [[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto builder] mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto:prototype];
+  return [[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto builder] mergeFrom:prototype];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) builder {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto builder];
@@ -2604,16 +2261,11 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) clone {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto descriptor];
-}
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) defaultInstance {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto defaultInstance];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) buildPartial {
@@ -2621,16 +2273,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   self.result = nil;
   return returnMe;
 }
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto class]]) {
-    return [self mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) other {
+- (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) mergeFrom:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) other {
   if (other == [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto defaultInstance]) {
     return self;
   }
@@ -2668,7 +2311,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
       case 18: {
         AllShowtimesProto_Builder* subBuilder = [AllShowtimesProto builder];
         if (self.hasShowtimes) {
-          [subBuilder mergeFromAllShowtimesProto:self.showtimes];
+          [subBuilder mergeFrom:self.showtimes];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setShowtimes:[subBuilder buildPartial]];
@@ -2711,7 +2354,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   if (result.hasShowtimes &&
       result.showtimes != [AllShowtimesProto defaultInstance]) {
     result.showtimes =
-      [[[AllShowtimesProto builderWithPrototype:result.showtimes] mergeFromAllShowtimesProto:value] buildPartial];
+      [[[AllShowtimesProto builderWithPrototype:result.showtimes] mergeFrom:value] buildPartial];
   } else {
     result.showtimes = value;
   }
@@ -2751,16 +2394,11 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) clone {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto_TheaterAndMovieShowtimesProto descriptor];
-}
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) defaultInstance {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto defaultInstance];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto*) buildPartial {
@@ -2768,16 +2406,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   self.result = nil;
   return returnMe;
 }
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TheaterListingsProto_TheaterAndMovieShowtimesProto class]]) {
-    return [self mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFromTheaterListingsProto_TheaterAndMovieShowtimesProto:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) other {
+- (TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder*) mergeFrom:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) other {
   if (other == [TheaterListingsProto_TheaterAndMovieShowtimesProto defaultInstance]) {
     return self;
   }
@@ -2814,7 +2443,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
       case 26: {
         TheaterProto_Builder* subBuilder = [TheaterProto builder];
         if (self.hasTheater) {
-          [subBuilder mergeFromTheaterProto:self.theater];
+          [subBuilder mergeFrom:self.theater];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setTheater:[subBuilder buildPartial]];
@@ -2847,7 +2476,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   if (result.hasTheater &&
       result.theater != [TheaterProto defaultInstance]) {
     result.theater =
-      [[[TheaterProto builderWithPrototype:result.theater] mergeFromTheaterProto:value] buildPartial];
+      [[[TheaterProto builderWithPrototype:result.theater] mergeFrom:value] buildPartial];
   } else {
     result.theater = value;
   }
@@ -2916,16 +2545,11 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 - (TheaterListingsProto_Builder*) clone {
   return [TheaterListingsProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [TheaterListingsProto descriptor];
-}
 - (TheaterListingsProto*) defaultInstance {
   return [TheaterListingsProto defaultInstance];
 }
 - (TheaterListingsProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (TheaterListingsProto*) buildPartial {
@@ -2933,16 +2557,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   self.result = nil;
   return returnMe;
 }
-- (TheaterListingsProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[TheaterListingsProto class]]) {
-    return [self mergeFromTheaterListingsProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (TheaterListingsProto_Builder*) mergeFromTheaterListingsProto:(TheaterListingsProto*) other {
+- (TheaterListingsProto_Builder*) mergeFrom:(TheaterListingsProto*) other {
   if (other == [TheaterListingsProto defaultInstance]) {
     return self;
   }
@@ -3158,16 +2773,10 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 - (ReviewProto*) defaultInstance {
   return defaultReviewProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [ReviewProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ReviewProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ReviewProto_fieldAccessorTable];
-}
 - (BOOL) isInitialized {
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -3195,6 +2804,12 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   if (hasDate) {
     [output writeString:8 value:self.date];
   }
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:100
+                                        to:201];
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:300
+                                        to:536870912];
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3228,6 +2843,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   if (hasDate) {
     size += computeStringSize(8, self.date);
   }
+  size += [self extensionsSerializedSize];
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -3254,7 +2870,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   return [[[ReviewProto_Builder alloc] init] autorelease];
 }
 + (ReviewProto_Builder*) builderWithPrototype:(ReviewProto*) prototype {
-  return [[ReviewProto builder] mergeFromReviewProto:prototype];
+  return [[ReviewProto builder] mergeFrom:prototype];
 }
 - (ReviewProto_Builder*) builder {
   return [ReviewProto builder];
@@ -3277,7 +2893,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   }
   return self;
 }
-- (PBGeneratedMessage*) internalGetResult {
+- (PBExtendableMessage*) internalGetResult {
   return result;
 }
 - (ReviewProto_Builder*) clear {
@@ -3287,16 +2903,11 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 - (ReviewProto_Builder*) clone {
   return [ReviewProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [ReviewProto descriptor];
-}
 - (ReviewProto*) defaultInstance {
   return [ReviewProto defaultInstance];
 }
 - (ReviewProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (ReviewProto*) buildPartial {
@@ -3304,16 +2915,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (ReviewProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[ReviewProto class]]) {
-    return [self mergeFromReviewProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (ReviewProto_Builder*) mergeFromReviewProto:(ReviewProto*) other {
+- (ReviewProto_Builder*) mergeFrom:(ReviewProto*) other {
   if (other == [ReviewProto defaultInstance]) {
     return self;
   }
@@ -3555,15 +3157,6 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 - (ReviewsListProto*) defaultInstance {
   return defaultReviewsListProtoInstance;
 }
-- (PBDescriptor*) descriptor {
-  return [ReviewsListProto descriptor];
-}
-+ (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ReviewsListProto_descriptor];
-}
-- (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ReviewsListProto_fieldAccessorTable];
-}
 - (NSArray*) reviewsList {
   return mutableReviewsList;
 }
@@ -3572,6 +3165,11 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
+  for (ReviewProto* element in self.reviewsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -3616,7 +3214,7 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   return [[[ReviewsListProto_Builder alloc] init] autorelease];
 }
 + (ReviewsListProto_Builder*) builderWithPrototype:(ReviewsListProto*) prototype {
-  return [[ReviewsListProto builder] mergeFromReviewsListProto:prototype];
+  return [[ReviewsListProto builder] mergeFrom:prototype];
 }
 - (ReviewsListProto_Builder*) builder {
   return [ReviewsListProto builder];
@@ -3649,16 +3247,11 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 - (ReviewsListProto_Builder*) clone {
   return [ReviewsListProto builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptor {
-  return [ReviewsListProto descriptor];
-}
 - (ReviewsListProto*) defaultInstance {
   return [ReviewsListProto defaultInstance];
 }
 - (ReviewsListProto*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
+  [self checkInitialized];
   return [self buildPartial];
 }
 - (ReviewsListProto*) buildPartial {
@@ -3666,16 +3259,7 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   self.result = nil;
   return returnMe;
 }
-- (ReviewsListProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
-  id o = other;
-  if ([o isKindOfClass:[ReviewsListProto class]]) {
-    return [self mergeFromReviewsListProto:o];
-  } else {
-    [super mergeFromMessage:other];
-    return self;
-  }
-}
-- (ReviewsListProto_Builder*) mergeFromReviewsListProto:(ReviewsListProto*) other {
+- (ReviewsListProto_Builder*) mergeFrom:(ReviewsListProto*) other {
   if (other == [ReviewsListProto defaultInstance]) {
     return self;
   }
@@ -3745,3 +3329,4 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   return self;
 }
 @end
+
