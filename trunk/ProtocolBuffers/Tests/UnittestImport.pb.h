@@ -21,7 +21,7 @@ BOOL ImportEnumIsValidValue(ImportEnum value);
 
 @interface ImportMessage : PBGeneratedMessage {
 @private
-  BOOL hasD;
+  BOOL hasD_:1;
   int32_t d;
 }
 - (BOOL) hasD;

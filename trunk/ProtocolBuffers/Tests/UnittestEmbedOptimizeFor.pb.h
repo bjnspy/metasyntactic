@@ -85,7 +85,7 @@
 
 @interface TestEmbedOptimizedForSize : PBGeneratedMessage {
 @private
-  BOOL hasOptionalMessage;
+  BOOL hasOptionalMessage_:1;
   TestOptimizedForSize* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
 }

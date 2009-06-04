@@ -162,10 +162,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 @implementation TestMessageSetContainer
 
 - (BOOL) hasMessageSet {
-  return hasMessageSet;
+  return !!hasMessageSet_;
 }
-- (void) setHasMessageSet:(BOOL) hasMessageSet_ {
-  hasMessageSet = hasMessageSet_;
+- (void) setHasMessageSet:(BOOL) value {
+  hasMessageSet_ = !!value;
 }
 @synthesize messageSet;
 - (void) dealloc {
@@ -191,7 +191,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return defaultTestMessageSetContainerInstance;
 }
 - (BOOL) isInitialized {
-  if (hasMessageSet) {
+  if (self.hasMessageSet) {
     if (!self.messageSet.isInitialized) {
       return NO;
     }
@@ -199,7 +199,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasMessageSet) {
+  if (self.hasMessageSet) {
     [output writeMessage:1 value:self.messageSet];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -211,7 +211,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   }
 
   size = 0;
-  if (hasMessageSet) {
+  if (self.hasMessageSet) {
     size += computeMessageSize(1, self.messageSet);
   }
   size += self.unknownFields.serializedSize;
@@ -364,10 +364,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 @implementation TestMessageSetExtension1
 
 - (BOOL) hasI {
-  return hasI;
+  return !!hasI_;
 }
-- (void) setHasI:(BOOL) hasI_ {
-  hasI = hasI_;
+- (void) setHasI:(BOOL) value {
+  hasI_ = !!value;
 }
 @synthesize i;
 - (void) dealloc {
@@ -408,7 +408,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasI) {
+  if (self.hasI) {
     [output writeInt32:15 value:self.i];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -420,7 +420,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   }
 
   size = 0;
-  if (hasI) {
+  if (self.hasI) {
     size += computeInt32Size(15, self.i);
   }
   size += self.unknownFields.serializedSize;
@@ -554,10 +554,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 @implementation TestMessageSetExtension2
 
 - (BOOL) hasStr {
-  return hasStr;
+  return !!hasStr_;
 }
-- (void) setHasStr:(BOOL) hasStr_ {
-  hasStr = hasStr_;
+- (void) setHasStr:(BOOL) value {
+  hasStr_ = !!value;
 }
 @synthesize str;
 - (void) dealloc {
@@ -599,7 +599,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasStr) {
+  if (self.hasStr) {
     [output writeString:25 value:self.str];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -611,7 +611,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   }
 
   size = 0;
-  if (hasStr) {
+  if (self.hasStr) {
     size += computeStringSize(25, self.str);
   }
   size += self.unknownFields.serializedSize;
@@ -838,17 +838,17 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 @implementation RawMessageSet_Item
 
 - (BOOL) hasTypeId {
-  return hasTypeId;
+  return !!hasTypeId_;
 }
-- (void) setHasTypeId:(BOOL) hasTypeId_ {
-  hasTypeId = hasTypeId_;
+- (void) setHasTypeId:(BOOL) value {
+  hasTypeId_ = !!value;
 }
 @synthesize typeId;
 - (BOOL) hasMessage {
-  return hasMessage;
+  return !!hasMessage_;
 }
-- (void) setHasMessage:(BOOL) hasMessage_ {
-  hasMessage = hasMessage_;
+- (void) setHasMessage:(BOOL) value {
+  hasMessage_ = !!value;
 }
 @synthesize message;
 - (void) dealloc {
@@ -875,19 +875,19 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return defaultRawMessageSet_ItemInstance;
 }
 - (BOOL) isInitialized {
-  if (!hasTypeId) {
+  if (!self.hasTypeId) {
     return NO;
   }
-  if (!hasMessage) {
+  if (!self.hasMessage) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasTypeId) {
+  if (self.hasTypeId) {
     [output writeInt32:2 value:self.typeId];
   }
-  if (hasMessage) {
+  if (self.hasMessage) {
     [output writeData:3 value:self.message];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -899,10 +899,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   }
 
   size = 0;
-  if (hasTypeId) {
+  if (self.hasTypeId) {
     size += computeInt32Size(2, self.typeId);
   }
-  if (hasMessage) {
+  if (self.hasMessage) {
     size += computeDataSize(3, self.message);
   }
   size += self.unknownFields.serializedSize;

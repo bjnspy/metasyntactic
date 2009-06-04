@@ -17,17 +17,17 @@
 @implementation TestOptimizedForSize
 
 - (BOOL) hasI {
-  return hasI;
+  return !!hasI_;
 }
-- (void) setHasI:(BOOL) hasI_ {
-  hasI = hasI_;
+- (void) setHasI:(BOOL) value {
+  hasI_ = !!value;
 }
 @synthesize i;
 - (BOOL) hasMsg {
-  return hasMsg;
+  return !!hasMsg_;
 }
-- (void) setHasMsg:(BOOL) hasMsg_ {
-  hasMsg = hasMsg_;
+- (void) setHasMsg:(BOOL) value {
+  hasMsg_ = !!value;
 }
 @synthesize msg;
 - (void) dealloc {
@@ -86,10 +86,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasI) {
+  if (self.hasI) {
     [output writeInt32:1 value:self.i];
   }
-  if (hasMsg) {
+  if (self.hasMsg) {
     [output writeMessage:19 value:self.msg];
   }
   [self writeExtensionsToCodedOutputStream:output
@@ -104,10 +104,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   }
 
   size = 0;
-  if (hasI) {
+  if (self.hasI) {
     size += computeInt32Size(1, self.i);
   }
-  if (hasMsg) {
+  if (self.hasMsg) {
     size += computeMessageSize(19, self.msg);
   }
   size += [self extensionsSerializedSize];
@@ -284,10 +284,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 @implementation TestRequiredOptimizedForSize
 
 - (BOOL) hasX {
-  return hasX;
+  return !!hasX_;
 }
-- (void) setHasX:(BOOL) hasX_ {
-  hasX = hasX_;
+- (void) setHasX:(BOOL) value {
+  hasX_ = !!value;
 }
 @synthesize x;
 - (void) dealloc {
@@ -312,13 +312,13 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
   return defaultTestRequiredOptimizedForSizeInstance;
 }
 - (BOOL) isInitialized {
-  if (!hasX) {
+  if (!self.hasX) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasX) {
+  if (self.hasX) {
     [output writeInt32:1 value:self.x];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -330,7 +330,7 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
   }
 
   size = 0;
-  if (hasX) {
+  if (self.hasX) {
     size += computeInt32Size(1, self.x);
   }
   size += self.unknownFields.serializedSize;
@@ -464,10 +464,10 @@ static TestRequiredOptimizedForSize* defaultTestRequiredOptimizedForSizeInstance
 @implementation TestOptionalOptimizedForSize
 
 - (BOOL) hasO {
-  return hasO;
+  return !!hasO_;
 }
-- (void) setHasO:(BOOL) hasO_ {
-  hasO = hasO_;
+- (void) setHasO:(BOOL) value {
+  hasO_ = !!value;
 }
 @synthesize o;
 - (void) dealloc {
@@ -493,7 +493,7 @@ static TestOptionalOptimizedForSize* defaultTestOptionalOptimizedForSizeInstance
   return defaultTestOptionalOptimizedForSizeInstance;
 }
 - (BOOL) isInitialized {
-  if (hasO) {
+  if (self.hasO) {
     if (!self.o.isInitialized) {
       return NO;
     }
@@ -501,7 +501,7 @@ static TestOptionalOptimizedForSize* defaultTestOptionalOptimizedForSizeInstance
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasO) {
+  if (self.hasO) {
     [output writeMessage:1 value:self.o];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -513,7 +513,7 @@ static TestOptionalOptimizedForSize* defaultTestOptionalOptimizedForSizeInstance
   }
 
   size = 0;
-  if (hasO) {
+  if (self.hasO) {
     size += computeMessageSize(1, self.o);
   }
   size += self.unknownFields.serializedSize;

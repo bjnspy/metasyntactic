@@ -17,10 +17,10 @@
 @implementation TestEmbedOptimizedForSize
 
 - (BOOL) hasOptionalMessage {
-  return hasOptionalMessage;
+  return !!hasOptionalMessage_;
 }
-- (void) setHasOptionalMessage:(BOOL) hasOptionalMessage_ {
-  hasOptionalMessage = hasOptionalMessage_;
+- (void) setHasOptionalMessage:(BOOL) value {
+  hasOptionalMessage_ = !!value;
 }
 @synthesize optionalMessage;
 @synthesize mutableRepeatedMessageList;
@@ -55,7 +55,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return value;
 }
 - (BOOL) isInitialized {
-  if (hasOptionalMessage) {
+  if (self.hasOptionalMessage) {
     if (!self.optionalMessage.isInitialized) {
       return NO;
     }
@@ -68,7 +68,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasOptionalMessage) {
+  if (self.hasOptionalMessage) {
     [output writeMessage:1 value:self.optionalMessage];
   }
   for (TestOptimizedForSize* element in self.repeatedMessageList) {
@@ -83,7 +83,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   }
 
   size = 0;
-  if (hasOptionalMessage) {
+  if (self.hasOptionalMessage) {
     size += computeMessageSize(1, self.optionalMessage);
   }
   for (TestOptimizedForSize* element in self.repeatedMessageList) {
