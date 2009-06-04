@@ -169,9 +169,7 @@
 		748F11B90FD72AC2000858A9 /* ConcreteExtensionField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteExtensionField.h; sourceTree = "<group>"; };
 		748F11BA0FD72AC2000858A9 /* ConcreteExtensionField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteExtensionField.m; sourceTree = "<group>"; };
 		748F137D0FD74C84000858A9 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
-		748F13F90FD75DBE000858A9 /* CommanLineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CommanLineTests-Info.plist"; sourceTree = "<group>"; };
 		748F14580FD75E3B000858A9 /* CommandLineTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommandLineTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		748F145A0FD75E3B000858A9 /* CommandLineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CommandLineTests-Info.plist"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ProtocolBuffers-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ProtocolBuffers-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,8 +237,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				748F13F90FD75DBE000858A9 /* CommanLineTests-Info.plist */,
-				748F145A0FD75E3B000858A9 /* CommandLineTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
