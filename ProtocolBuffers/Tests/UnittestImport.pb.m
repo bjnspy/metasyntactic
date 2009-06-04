@@ -26,10 +26,10 @@ BOOL ImportEnumIsValidValue(ImportEnum value) {
 @implementation ImportMessage
 
 - (BOOL) hasD {
-  return hasD;
+  return !!hasD_;
 }
-- (void) setHasD:(BOOL) hasD_ {
-  hasD = hasD_;
+- (void) setHasD:(BOOL) value {
+  hasD_ = !!value;
 }
 @synthesize d;
 - (void) dealloc {
@@ -57,7 +57,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasD) {
+  if (self.hasD) {
     [output writeInt32:1 value:self.d];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -69,7 +69,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   }
 
   size = 0;
-  if (hasD) {
+  if (self.hasD) {
     size += computeInt32Size(1, self.d);
   }
   size += self.unknownFields.serializedSize;

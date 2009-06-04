@@ -83,8 +83,8 @@
 
 @interface TestOptimizedForSize : PBExtendableMessage {
 @private
-  BOOL hasI;
-  BOOL hasMsg;
+  BOOL hasI_:1;
+  BOOL hasMsg_:1;
   int32_t i;
   ForeignMessage* msg;
 }
@@ -144,7 +144,7 @@
 
 @interface TestRequiredOptimizedForSize : PBGeneratedMessage {
 @private
-  BOOL hasX;
+  BOOL hasX_:1;
   int32_t x;
 }
 - (BOOL) hasX;
@@ -192,7 +192,7 @@
 
 @interface TestOptionalOptimizedForSize : PBGeneratedMessage {
 @private
-  BOOL hasO;
+  BOOL hasO_:1;
   TestRequiredOptimizedForSize* o;
 }
 - (BOOL) hasO;

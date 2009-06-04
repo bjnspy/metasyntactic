@@ -183,52 +183,52 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestAllTypes : PBGeneratedMessage {
 @private
-  BOOL hasOptionalBool;
-  BOOL hasDefaultBool;
-  BOOL hasOptionalDouble;
-  BOOL hasDefaultDouble;
-  BOOL hasOptionalFloat;
-  BOOL hasDefaultFloat;
-  BOOL hasOptionalInt64;
-  BOOL hasDefaultInt64;
-  BOOL hasOptionalUint64;
-  BOOL hasDefaultUint64;
-  BOOL hasOptionalInt32;
-  BOOL hasDefaultInt32;
-  BOOL hasOptionalFixed64;
-  BOOL hasDefaultFixed64;
-  BOOL hasOptionalFixed32;
-  BOOL hasDefaultFixed32;
-  BOOL hasOptionalCord;
-  BOOL hasDefaultCord;
-  BOOL hasDefaultStringPiece;
-  BOOL hasDefaultString;
-  BOOL hasOptionalString;
-  BOOL hasOptionalStringPiece;
-  BOOL hasOptionalGroup;
-  BOOL hasOptionalForeignMessage;
-  BOOL hasOptionalImportMessage;
-  BOOL hasOptionalNestedMessage;
-  BOOL hasDefaultBytes;
-  BOOL hasOptionalBytes;
-  BOOL hasOptionalUint32;
-  BOOL hasDefaultUint32;
-  BOOL hasOptionalNestedEnum;
-  BOOL hasOptionalForeignEnum;
-  BOOL hasOptionalImportEnum;
-  BOOL hasDefaultImportEnum;
-  BOOL hasDefaultForeignEnum;
-  BOOL hasDefaultNestedEnum;
-  BOOL hasDefaultSfixed32;
-  BOOL hasOptionalSfixed32;
-  BOOL hasOptionalSfixed64;
-  BOOL hasDefaultSfixed64;
-  BOOL hasOptionalSint32;
-  BOOL hasDefaultSint32;
-  BOOL hasOptionalSint64;
-  BOOL hasDefaultSint64;
-  BOOL optionalBool;
-  BOOL defaultBool;
+  BOOL hasOptionalBool_:1;
+  BOOL hasDefaultBool_:1;
+  BOOL hasOptionalDouble_:1;
+  BOOL hasDefaultDouble_:1;
+  BOOL hasOptionalFloat_:1;
+  BOOL hasDefaultFloat_:1;
+  BOOL hasOptionalInt64_:1;
+  BOOL hasDefaultInt64_:1;
+  BOOL hasOptionalUint64_:1;
+  BOOL hasDefaultUint64_:1;
+  BOOL hasOptionalInt32_:1;
+  BOOL hasDefaultInt32_:1;
+  BOOL hasOptionalFixed64_:1;
+  BOOL hasDefaultFixed64_:1;
+  BOOL hasOptionalFixed32_:1;
+  BOOL hasDefaultFixed32_:1;
+  BOOL hasOptionalCord_:1;
+  BOOL hasDefaultCord_:1;
+  BOOL hasDefaultStringPiece_:1;
+  BOOL hasDefaultString_:1;
+  BOOL hasOptionalString_:1;
+  BOOL hasOptionalStringPiece_:1;
+  BOOL hasOptionalGroup_:1;
+  BOOL hasOptionalForeignMessage_:1;
+  BOOL hasOptionalImportMessage_:1;
+  BOOL hasOptionalNestedMessage_:1;
+  BOOL hasDefaultBytes_:1;
+  BOOL hasOptionalBytes_:1;
+  BOOL hasOptionalUint32_:1;
+  BOOL hasDefaultUint32_:1;
+  BOOL hasOptionalNestedEnum_:1;
+  BOOL hasOptionalForeignEnum_:1;
+  BOOL hasOptionalImportEnum_:1;
+  BOOL hasDefaultImportEnum_:1;
+  BOOL hasDefaultForeignEnum_:1;
+  BOOL hasDefaultNestedEnum_:1;
+  BOOL hasDefaultSfixed32_:1;
+  BOOL hasOptionalSfixed32_:1;
+  BOOL hasOptionalSfixed64_:1;
+  BOOL hasDefaultSfixed64_:1;
+  BOOL hasOptionalSint32_:1;
+  BOOL hasDefaultSint32_:1;
+  BOOL hasOptionalSint64_:1;
+  BOOL hasDefaultSint64_:1;
+  BOOL optionalBool_:1;
+  BOOL defaultBool_:1;
   Float64 optionalDouble;
   Float64 defaultDouble;
   Float32 optionalFloat;
@@ -452,7 +452,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
 @private
-  BOOL hasBb;
+  BOOL hasBb_:1;
   int32_t bb;
 }
 - (BOOL) hasBb;
@@ -500,7 +500,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -548,7 +548,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -1010,7 +1010,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface ForeignMessage : PBGeneratedMessage {
 @private
-  BOOL hasC;
+  BOOL hasC_:1;
   int32_t c;
 }
 - (BOOL) hasC;
@@ -1097,7 +1097,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -1145,7 +1145,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -1193,39 +1193,39 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestRequired : PBGeneratedMessage {
 @private
-  BOOL hasA;
-  BOOL hasDummy2;
-  BOOL hasB;
-  BOOL hasDummy4;
-  BOOL hasDummy5;
-  BOOL hasDummy6;
-  BOOL hasDummy7;
-  BOOL hasDummy8;
-  BOOL hasDummy9;
-  BOOL hasDummy10;
-  BOOL hasDummy11;
-  BOOL hasDummy12;
-  BOOL hasDummy13;
-  BOOL hasDummy14;
-  BOOL hasDummy15;
-  BOOL hasDummy16;
-  BOOL hasDummy17;
-  BOOL hasDummy18;
-  BOOL hasDummy19;
-  BOOL hasDummy20;
-  BOOL hasDummy21;
-  BOOL hasDummy22;
-  BOOL hasDummy23;
-  BOOL hasDummy24;
-  BOOL hasDummy25;
-  BOOL hasDummy26;
-  BOOL hasDummy27;
-  BOOL hasDummy28;
-  BOOL hasDummy29;
-  BOOL hasDummy30;
-  BOOL hasDummy31;
-  BOOL hasDummy32;
-  BOOL hasC;
+  BOOL hasA_:1;
+  BOOL hasDummy2_:1;
+  BOOL hasB_:1;
+  BOOL hasDummy4_:1;
+  BOOL hasDummy5_:1;
+  BOOL hasDummy6_:1;
+  BOOL hasDummy7_:1;
+  BOOL hasDummy8_:1;
+  BOOL hasDummy9_:1;
+  BOOL hasDummy10_:1;
+  BOOL hasDummy11_:1;
+  BOOL hasDummy12_:1;
+  BOOL hasDummy13_:1;
+  BOOL hasDummy14_:1;
+  BOOL hasDummy15_:1;
+  BOOL hasDummy16_:1;
+  BOOL hasDummy17_:1;
+  BOOL hasDummy18_:1;
+  BOOL hasDummy19_:1;
+  BOOL hasDummy20_:1;
+  BOOL hasDummy21_:1;
+  BOOL hasDummy22_:1;
+  BOOL hasDummy23_:1;
+  BOOL hasDummy24_:1;
+  BOOL hasDummy25_:1;
+  BOOL hasDummy26_:1;
+  BOOL hasDummy27_:1;
+  BOOL hasDummy28_:1;
+  BOOL hasDummy29_:1;
+  BOOL hasDummy30_:1;
+  BOOL hasDummy31_:1;
+  BOOL hasDummy32_:1;
+  BOOL hasC_:1;
   int32_t a;
   int32_t dummy2;
   int32_t b;
@@ -1531,8 +1531,8 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestRequiredForeign : PBGeneratedMessage {
 @private
-  BOOL hasDummy;
-  BOOL hasOptionalMessage;
+  BOOL hasDummy_:1;
+  BOOL hasOptionalMessage_:1;
   int32_t dummy;
   TestRequired* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
@@ -1600,7 +1600,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestForeignNested : PBGeneratedMessage {
 @private
-  BOOL hasForeignNested;
+  BOOL hasForeignNested_:1;
   TestAllTypes_NestedMessage* foreignNested;
 }
 - (BOOL) hasForeignNested;
@@ -1728,8 +1728,8 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
 @private
-  BOOL hasA;
-  BOOL hasBb;
+  BOOL hasA_:1;
+  BOOL hasBb_:1;
   int32_t a;
   int32_t bb;
 }
@@ -1785,8 +1785,8 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
 @private
-  BOOL hasI;
-  BOOL hasA;
+  BOOL hasI_:1;
+  BOOL hasA_:1;
   int32_t i;
   TestRecursiveMessage* a;
 }
@@ -1844,7 +1844,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
 @private
-  BOOL hasBb;
+  BOOL hasBb_:1;
   TestMutualRecursionB* bb;
 }
 - (BOOL) hasBb;
@@ -1894,8 +1894,8 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
 @private
-  BOOL hasOptionalInt32;
-  BOOL hasA;
+  BOOL hasOptionalInt32_:1;
+  BOOL hasA_:1;
   int32_t optionalInt32;
   TestMutualRecursionA* a;
 }
@@ -1953,9 +1953,9 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
 @private
-  BOOL hasA;
-  BOOL hasFoo;
-  BOOL hasBar;
+  BOOL hasA_:1;
+  BOOL hasFoo_:1;
+  BOOL hasBar_:1;
   int32_t a;
   TestDupFieldNumber_Foo* foo;
   TestDupFieldNumber_Bar* bar;
@@ -1986,7 +1986,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -2034,7 +2034,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
 @private
-  BOOL hasA;
+  BOOL hasA_:1;
   int32_t a;
 }
 - (BOOL) hasA;
@@ -2119,7 +2119,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
 @private
-  BOOL hasOptionalNestedMessage;
+  BOOL hasOptionalNestedMessage_:1;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
 - (BOOL) hasOptionalNestedMessage;
@@ -2228,12 +2228,12 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
 @private
-  BOOL hasPrimitiveField;
-  BOOL hasStringField;
-  BOOL hasStringPieceField;
-  BOOL hasCordField;
-  BOOL hasMessageField;
-  BOOL hasEnumField;
+  BOOL hasPrimitiveField_:1;
+  BOOL hasStringField_:1;
+  BOOL hasStringPieceField_:1;
+  BOOL hasCordField_:1;
+  BOOL hasMessageField_:1;
+  BOOL hasEnumField_:1;
   int32_t primitiveField;
   NSString* stringField;
   NSString* stringPieceField;
@@ -2383,9 +2383,9 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestFieldOrderings : PBExtendableMessage {
 @private
-  BOOL hasMyFloat;
-  BOOL hasMyInt;
-  BOOL hasMyString;
+  BOOL hasMyFloat_:1;
+  BOOL hasMyInt_:1;
+  BOOL hasMyString_:1;
   Float32 myFloat;
   int64_t myInt;
   NSString* myString;
@@ -2449,12 +2449,12 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
 @private
-  BOOL hasSmallInt64;
-  BOOL hasLargeUint64;
-  BOOL hasSmallInt32;
-  BOOL hasUtf8String;
-  BOOL hasEscapedBytes;
-  BOOL hasLargeUint32;
+  BOOL hasSmallInt64_:1;
+  BOOL hasLargeUint64_:1;
+  BOOL hasSmallInt32_:1;
+  BOOL hasUtf8String_:1;
+  BOOL hasEscapedBytes_:1;
+  BOOL hasLargeUint32_:1;
   int64_t smallInt64;
   int64_t largeUint64;
   int32_t smallInt32;
@@ -2542,7 +2542,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface OneString : PBGeneratedMessage {
 @private
-  BOOL hasData;
+  BOOL hasData_:1;
   NSString* data;
 }
 - (BOOL) hasData;
@@ -2590,7 +2590,7 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 
 @interface OneBytes : PBGeneratedMessage {
 @private
-  BOOL hasData;
+  BOOL hasData_:1;
   NSData* data;
 }
 - (BOOL) hasData;

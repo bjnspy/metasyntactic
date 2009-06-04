@@ -62,7 +62,7 @@
 
 @interface TestMessageSetContainer : PBGeneratedMessage {
 @private
-  BOOL hasMessageSet;
+  BOOL hasMessageSet_:1;
   TestMessageSet* messageSet;
 }
 - (BOOL) hasMessageSet;
@@ -112,7 +112,7 @@
 
 @interface TestMessageSetExtension1 : PBGeneratedMessage {
 @private
-  BOOL hasI;
+  BOOL hasI_:1;
   int32_t i;
 }
 - (BOOL) hasI;
@@ -161,7 +161,7 @@
 
 @interface TestMessageSetExtension2 : PBGeneratedMessage {
 @private
-  BOOL hasStr;
+  BOOL hasStr_:1;
   NSString* str;
 }
 - (BOOL) hasStr;
@@ -234,8 +234,8 @@
 
 @interface RawMessageSet_Item : PBGeneratedMessage {
 @private
-  BOOL hasTypeId;
-  BOOL hasMessage;
+  BOOL hasTypeId_:1;
+  BOOL hasMessage_:1;
   int32_t typeId;
   NSData* message;
 }
