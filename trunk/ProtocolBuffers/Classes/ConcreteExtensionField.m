@@ -19,7 +19,7 @@
 @property Class extendedClass;
 @property int32_t fieldNumber;
 @property (retain) id defaultValue;
-@property Class messageOrGroupOrEnumClass;
+@property Class messageOrGroupClass;
 @property BOOL isRepeated;
 @property BOOL isPacked;
 @property BOOL isMessageSetWireFormat;
@@ -31,7 +31,7 @@
 @synthesize extendedClass;
 @synthesize fieldNumber;
 @synthesize defaultValue;
-@synthesize messageOrGroupOrEnumClass;
+@synthesize messageOrGroupClass;
 @synthesize isRepeated;
 @synthesize isPacked;
 @synthesize isMessageSetWireFormat;
@@ -41,7 +41,7 @@
   self.extendedClass = nil;
   self.fieldNumber = 0;
   self.defaultValue = nil;
-  self.messageOrGroupOrEnumClass = nil;
+  self.messageOrGroupClass = nil;
   self.isRepeated = NO;
   self.isPacked = NO;
   self.isMessageSetWireFormat = NO;
@@ -53,7 +53,7 @@
           extendedClass:(Class) extendedClass_
             fieldNumber:(int32_t) fieldNumber_
            defaultValue:(id) defaultValue_
-    messageOrGroupOrEnumClass:(Class) messageOrGroupOrEnumClass_
+    messageOrGroupClass:(Class) messageOrGroupClass_
              isRepeated:(BOOL) isRepeated_
                isPacked:(BOOL) isPacked_
     isMessageSetWireFormat:(BOOL) isMessageSetWireFormat_ {
@@ -62,7 +62,7 @@
     self.extendedClass = extendedClass_;
     self.fieldNumber = fieldNumber_;
     self.defaultValue = defaultValue_;
-    self.messageOrGroupOrEnumClass = messageOrGroupOrEnumClass_;
+    self.messageOrGroupClass = messageOrGroupClass_;
     self.isRepeated = isRepeated_;
     self.isPacked = isPacked_;
     self.isMessageSetWireFormat = isMessageSetWireFormat_;
@@ -76,7 +76,7 @@
                                 extendedClass:(Class) extendedClass
                                   fieldNumber:(int32_t) fieldNumber
                                  defaultValue:(id) defaultValue
-                    messageOrGroupOrEnumClass:(Class) messageOrGroupOrEnumClass
+                    messageOrGroupClass:(Class) messageOrGroupClass
                                    isRepeated:(BOOL) isRepeated
                                      isPacked:(BOOL) isPacked
                        isMessageSetWireFormat:(BOOL) isMessageSetWireFormat {
@@ -84,7 +84,7 @@
                                          extendedClass:extendedClass
                                            fieldNumber:fieldNumber
                                           defaultValue:defaultValue
-                             messageOrGroupOrEnumClass:messageOrGroupOrEnumClass
+                             messageOrGroupClass:messageOrGroupClass
                                             isRepeated:isRepeated
                                               isPacked:isPacked
                                 isMessageSetWireFormat:isMessageSetWireFormat] autorelease];
@@ -151,11 +151,6 @@ int32_t typeSize(PBExtensionType type) {
 }
 
 
-- (int32_t) number {
-  return 0;
-}
-
-
 - (void)           writeSingleValue:(id) value
     includingTagToCodedOutputStream:(PBCodedOutputStream*) output {
   switch (type) {
@@ -208,7 +203,7 @@ int32_t typeSize(PBExtensionType type) {
       [output writeGroup:fieldNumber value:value];
       return;
     case PBExtensionTypeEnum:
-      [output writeEnum:fieldNumber value:[value number]];
+      [output writeEnum:fieldNumber value:[value intValue]];
       return;
     case PBExtensionTypeMessage:
       if (isMessageSetWireFormat) {
@@ -262,7 +257,7 @@ int32_t typeSize(PBExtensionType type) {
     case PBExtensionTypeBytes:    return computeDataSize(fieldNumber, value);
     case PBExtensionTypeString:   return computeStringSize(fieldNumber, value);
     case PBExtensionTypeGroup:    return computeGroupSize(fieldNumber, value);
-    case PBExtensionTypeEnum:     return computeEnumSize(fieldNumber, [value number]);
+    case PBExtensionTypeEnum:     return computeEnumSize(fieldNumber, [value intValue]);
     case PBExtensionTypeMessage:
       if (isMessageSetWireFormat) {
         return computeMessageSetExtensionSize(fieldNumber, value);
@@ -361,11 +356,6 @@ int32_t typeSize(PBExtensionType type) {
 }
 
 
-+ (id) valueOf:(int32_t) value {
-  return nil;
-}
-
-
 - (id) readSingleValueFromCodedInputStream:(PBCodedInputStream*) input
                          extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   switch (type) {
@@ -384,17 +374,17 @@ int32_t typeSize(PBExtensionType type) {
     case PBExtensionTypeUInt64:   return [NSNumber numberWithLongLong:[input readUInt64]];
     case PBExtensionTypeBytes:    return [input readData];
     case PBExtensionTypeString:   return [input readString];
-    case PBExtensionTypeEnum:     return [messageOrGroupOrEnumClass valueOf:[input readEnum]];
+    case PBExtensionTypeEnum:     return [NSNumber numberWithInt:[input readEnum]];
     case PBExtensionTypeGroup:
     {
-      id<PBMessage_Builder> builder = [messageOrGroupOrEnumClass builder];
+      id<PBMessage_Builder> builder = [messageOrGroupClass builder];
       [input readGroup:fieldNumber builder:builder extensionRegistry:extensionRegistry];
       return [builder build];
     }
 
     case PBExtensionTypeMessage:
     {
-      id<PBMessage_Builder> builder = [messageOrGroupOrEnumClass builder];
+      id<PBMessage_Builder> builder = [messageOrGroupClass builder];
       [input readMessage:builder extensionRegistry:extensionRegistry];
       return [builder build];
     }

@@ -58,7 +58,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
                                  extendedClass:[TestOptimizedForSize class]
                                    fieldNumber:1234
                                   defaultValue:[NSNumber numberWithInt:0]
-                     messageOrGroupOrEnumClass:[NSNumber class]
+                           messageOrGroupClass:[NSNumber class]
                                     isRepeated:false
                                       isPacked:false
                         isMessageSetWireFormat:false] retain];
@@ -67,7 +67,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
                                  extendedClass:[TestOptimizedForSize class]
                                    fieldNumber:1235
                                   defaultValue:[TestRequiredOptimizedForSize defaultInstance]
-                     messageOrGroupOrEnumClass:[TestRequiredOptimizedForSize class]
+                           messageOrGroupClass:[TestRequiredOptimizedForSize class]
                                     isRepeated:false
                                       isPacked:false
                         isMessageSetWireFormat:false] retain];

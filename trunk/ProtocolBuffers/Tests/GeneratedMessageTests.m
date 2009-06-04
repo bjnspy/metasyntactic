@@ -56,7 +56,9 @@
      [NSNumber numberWithInt:4], nil];
 
     [builder addAllRepeatedInt32:array];
-    [builder addAllRepeatedForeignEnum:[NSArray arrayWithObject:[ForeignEnum FOREIGN_BAZ]]];
+  [builder addAllRepeatedForeignEnum:
+                             [NSArray arrayWithObject:
+                              [NSNumber numberWithInt:ForeignEnumForeignBaz]]];
 
     ForeignMessage* foreignMessage = [[[ForeignMessage builder] setC:12] build];
     [builder addAllRepeatedForeignMessage:[NSArray arrayWithObject:foreignMessage]];
@@ -64,7 +66,7 @@
     TestAllTypes* message = [builder build];
     STAssertEqualObjects(message.repeatedInt32List, array, @"");
     STAssertEqualObjects(message.repeatedForeignEnumList,
-                         [NSArray arrayWithObject:[ForeignEnum FOREIGN_BAZ]], @"");
+                         [NSArray arrayWithObject:[NSNumber numberWithInt:ForeignEnumForeignBaz]], @"");
     STAssertTrue(1 == message.repeatedForeignMessageList.count, @"");
     STAssertTrue(12 == [[message repeatedForeignMessageAtIndex:0] c], @"");
 }

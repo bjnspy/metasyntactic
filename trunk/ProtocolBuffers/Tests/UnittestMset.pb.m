@@ -392,7 +392,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
                                  extendedClass:[TestMessageSet class]
                                    fieldNumber:1545008
                                   defaultValue:[TestMessageSetExtension1 defaultInstance]
-                     messageOrGroupOrEnumClass:[TestMessageSetExtension1 class]
+                           messageOrGroupClass:[TestMessageSetExtension1 class]
                                     isRepeated:false
                                       isPacked:false
                         isMessageSetWireFormat:true] retain];
@@ -583,7 +583,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
                                  extendedClass:[TestMessageSet class]
                                    fieldNumber:1547769
                                   defaultValue:[TestMessageSetExtension2 defaultInstance]
-                     messageOrGroupOrEnumClass:[TestMessageSetExtension2 class]
+                           messageOrGroupClass:[TestMessageSetExtension2 class]
                                     isRepeated:false
                                       isPacked:false
                         isMessageSetWireFormat:true] retain];
