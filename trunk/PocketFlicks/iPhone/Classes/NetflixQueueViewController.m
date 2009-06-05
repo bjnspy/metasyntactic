@@ -99,7 +99,7 @@
 
 
 - (id) initWithFeedKey:(NSString*) feedKey_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];

@@ -41,7 +41,7 @@
 
 
 - (id) initWithGenre:(NSString*) genre_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.genre = genre_;
         self.title = genre_;
     }

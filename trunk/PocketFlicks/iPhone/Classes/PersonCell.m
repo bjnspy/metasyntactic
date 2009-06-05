@@ -50,7 +50,7 @@
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
         self.bioTitleLabel = [self createTitleLabel:LocalizedString(@"Bio:", nil) yPosition:22];
         self.bioLabel = [self createValueLabel:22 + 1 forTitle:bioTitleLabel];
         bioLabel.numberOfLines = 0;

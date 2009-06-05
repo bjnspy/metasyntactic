@@ -46,7 +46,7 @@
              description:(NSString*) description__
                    saved:(BOOL) saved__
                 position:(NSInteger) position__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.queue = queue__;
         self.movie = movie__;
         self.description = description__;

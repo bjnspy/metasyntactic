@@ -47,7 +47,7 @@ property_definition(saved);
                etag:(NSString*) etag_
              movies:(NSArray*) movies_
               saved:(NSArray*) saved_{
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.feed = feed_;
         self.etag = [StringUtilities nonNilString:etag_];
         self.movies = movies_;

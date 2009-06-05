@@ -57,7 +57,7 @@
             selector:(SEL) selector_
               values:(NSArray*) values__
         defaultValue:(NSString*) defaultValue {
-    if (self = [super initWithObject:object_ selector:selector_]) {
+    if ((self = [super initWithObject:object_ selector:selector_])) {
         self.values = values__;
 
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];

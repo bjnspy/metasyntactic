@@ -43,7 +43,7 @@
              theaters:(NSMutableArray*) theaters_
          performances:(NSMutableDictionary*) performances_
 synchronizationInformation:(NSMutableDictionary*) synchronizationInformation_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.movies = movies_;
         self.theaters = theaters_;
         self.performances = performances_;

@@ -545,7 +545,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     [self checkCountry];
     [self loadData];
     //[self checkDate];

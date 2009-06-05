@@ -50,7 +50,7 @@
                     force:(BOOL) force__
             currentMovies:(NSArray*) currentMovies__
           currentTheaters:(NSArray*) currentTheaters__ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.searchDate = searchDate__;
         self.delegate = delegate__;
         self.context = context__;

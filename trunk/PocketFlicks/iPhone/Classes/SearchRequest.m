@@ -49,7 +49,7 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_ {
-  if (self = [super initWithId:requestId_ value:value_]) {
+  if ((self = [super initWithId:requestId_ value:value_])) {
     Model* model = [Model model];
     self.movies = model.movies;
     self.theaters = model.theaters;

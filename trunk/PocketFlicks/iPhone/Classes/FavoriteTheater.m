@@ -35,7 +35,7 @@ property_definition(originatingLocation);
 
 - (id)       initWithName:(NSString*) name_
       originatingLocation:(Location*) originatingLocation_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.name = name_;
         self.originatingLocation = originatingLocation_;
     }

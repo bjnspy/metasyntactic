@@ -52,7 +52,7 @@ typedef enum {
 
 
 - (id) init {
-  if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = [Application nameAndVersion];
   }
 

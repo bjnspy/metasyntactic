@@ -51,7 +51,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.tabBarItem.image = [UIImage imageNamed:@"DVD.png"];
         [self setupTitle];
     }
