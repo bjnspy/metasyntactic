@@ -996,6 +996,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (void) setSearchDate:(NSDate*) date {
+  [self.dataProvider markOutOfDate];
   self.isSearchDateTodayData = nil;
   [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
 }
@@ -1616,6 +1617,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (void) setUserAddress:(NSString*) userAddress {
+  [self.dataProvider markOutOfDate];
   [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
   [self synchronize];
 }
