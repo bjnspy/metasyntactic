@@ -517,7 +517,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D6058910D05DD3D006BFB54 /* BoxOffice3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixViewController.h; sourceTree = "<group>"; };
@@ -672,7 +672,7 @@
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		746398600F7EC8D600B2F64C /* BoxOffice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		746398600F7EC8D600B2F64C /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		746398740F7EC99800B2F64C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		746398780F7EC99C00B2F64C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7463987C0F7EC99F00B2F64C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -977,8 +977,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				746398600F7EC8D600B2F64C /* BoxOffice2.app */,
-				1D6058910D05DD3D006BFB54 /* BoxOffice3.app */,
+				746398600F7EC8D600B2F64C /* NowPlaying.app */,
+				1D6058910D05DD3D006BFB54 /* NowPlaying.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1667,7 +1667,7 @@
 			);
 			name = BoxOffice3;
 			productName = BoxOffice;
-			productReference = 1D6058910D05DD3D006BFB54 /* BoxOffice3.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7463971A0F7EC8D600B2F64C /* BoxOffice2 */ = {
@@ -1686,7 +1686,7 @@
 			);
 			name = BoxOffice2;
 			productName = BoxOffice;
-			productReference = 746398600F7EC8D600B2F64C /* BoxOffice2.app */;
+			productReference = 746398600F7EC8D600B2F64C /* NowPlaying.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2308,8 +2308,6 @@
 					IPHONE_OS_VERSION_3,
 					DEBUG,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
@@ -2324,8 +2322,6 @@
 					IPHONE_OS_VERSION_3,
 					RELEASE,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
@@ -2342,8 +2338,6 @@
 					IPHONE_OS_VERSION_2,
 					DEBUG,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Debug;
@@ -2358,8 +2352,6 @@
 					IPHONE_OS_VERSION_2,
 					RELEASE,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Release;
@@ -2374,8 +2366,6 @@
 					IPHONE_OS_VERSION_2,
 					ADHOC,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = AdHoc;
@@ -2390,8 +2380,6 @@
 					IPHONE_OS_VERSION_2,
 					DISTRIBUTION,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice2;
 				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Distribution;
@@ -2418,9 +2406,11 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2436,8 +2426,6 @@
 					IPHONE_OS_VERSION_3,
 					ADHOC,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
@@ -2462,8 +2450,10 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2479,8 +2469,6 @@
 					IPHONE_OS_VERSION_3,
 					DISTRIBUTION,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice3;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
@@ -2505,9 +2493,11 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -2535,9 +2525,11 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphonesimulator3.0;
 			};
