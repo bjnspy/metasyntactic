@@ -623,7 +623,6 @@
 		74447C640DC843B200CC146C /* AllTheatersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTheatersViewController.m; sourceTree = "<group>"; };
 		74447C660DC843D900CC146C /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
-		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
 		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
 		744594AF0F8BD8C9002C1B61 /* HelpCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCache.h; sourceTree = "<group>"; };
@@ -643,7 +642,6 @@
 		7445B4690F7D68AF00864071 /* NoScoreMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoScoreMovieTitleCell.h; sourceTree = "<group>"; };
 		7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoScoreMovieTitleCell.m; sourceTree = "<group>"; };
 		7447092D0F7BDA160047061E /* DeleteMovie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteMovie.png; path = Resources/DeleteMovie.png; sourceTree = "<group>"; };
-		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
 		744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
 		744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDVDBlurayCache.h; sourceTree = "<group>"; };
@@ -2270,8 +2268,6 @@
 				745E213D0E5962DE00105751 /* da */,
 				7402245A0E53F353006C58A2 /* de */,
 				7402245B0E53F35A006C58A2 /* en */,
-				744815060E8610A1004AFB83 /* en_AU */,
-				744483150E5B8EB300E4B2CE /* en_GB */,
 				745E213A0E5961F700105751 /* es */,
 				743398430E62615300D285F0 /* fi */,
 				740224590E53F351006C58A2 /* fr */,
