@@ -41,7 +41,7 @@ const NSInteger TOP_BUFFER = 5;
 
 
 - (id) initWithText:(NSString*) text {
-    if (self = [super initWithFrame:CGRectZero]) {
+    if ((self = [super initWithFrame:CGRectZero])) {
         self.autoresizesSubviews = YES;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 

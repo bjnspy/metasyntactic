@@ -24,63 +24,63 @@
 @synthesize updatedMovies;
 
 - (void) dealloc {
-    self.updatedMovies = nil;
+  self.updatedMovies = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) init {
-    if (self = [super init]) {
-        self.updatedMovies = [NSMutableSet set];
-    }
+  if ((self = [super init])) {
+    self.updatedMovies = [NSMutableSet set];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    [self clearUpdatedMovies];
+  [super didReceiveMemoryWarning];
+  [self clearUpdatedMovies];
 }
 
 
 - (void) clearUpdatedMovies {
-    [dataGate lock];
-    {
-        [updatedMovies removeAllObjects];
-    }
-    [dataGate unlock];
+  [dataGate lock];
+  {
+    [updatedMovies removeAllObjects];
+  }
+  [dataGate unlock];
 }
 
 
 - (BOOL) checkMovie:(Movie*) movie {
-    BOOL result;
-    [dataGate lock];
-    {
-        if (![updatedMovies containsObject:movie]) {
-            [updatedMovies addObject:movie];
-            result = NO;
-        } else {
-            result = YES;
-        }
+  BOOL result;
+  [dataGate lock];
+  {
+    if (![updatedMovies containsObject:movie]) {
+      [updatedMovies addObject:movie];
+      result = NO;
+    } else {
+      result = YES;
     }
-    [dataGate unlock];
-    return result;
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (void) processMovie:(Movie*) movie force:(BOOL) force {
-    if ([self checkMovie:movie]) {
-        return;
-    }
+  if ([self checkMovie:movie]) {
+    return;
+  }
 
-    [self updateMovieDetails:movie force:force];
+  [self updateMovieDetails:movie force:force];
 }
 
 @end

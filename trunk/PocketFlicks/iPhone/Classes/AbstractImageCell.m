@@ -49,7 +49,7 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-  if (self =
+  if ((self =
 #ifdef IPHONE_OS_VERSION_3
       [super initWithStyle:UITableViewCellStyleDefault
            reuseIdentifier:reuseIdentifier]
@@ -57,7 +57,7 @@
       [super initWithFrame:CGRectZero
            reuseIdentifier:reuseIdentifier]
 #endif
-      ) {
+      )) {
     self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
 
     titleLabel.font = [UIFont boldSystemFontOfSize:18];

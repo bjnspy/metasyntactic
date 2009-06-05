@@ -14,14 +14,14 @@
 
 @interface AbstractDataProvider : AbstractCache {
 @private
-    // Accessed from multiple threads.  needs lock
-    NSArray* moviesData;
-    NSArray* theatersData;
-    NSDictionary* synchronizationInformationData;
-    NSDictionary* bookmarksData;
-    NSMutableDictionary* performancesData;
+  // Accessed from multiple threads.  needs lock
+  ThreadsafeValue*/*NSArray*/ moviesData;
+  ThreadsafeValue*/*NSArray*/ theatersData;
+  ThreadsafeValue*/*NSDictionary*/ synchronizationInformationData;
+  ThreadsafeValue*/*NSDictionary*/ bookmarksData;
+  NSMutableDictionary* performancesData;
 
-    NSMutableDictionary* cachedIsStale;
+  NSMutableDictionary* cachedIsStale;
 }
 
 - (NSArray*) movies;
