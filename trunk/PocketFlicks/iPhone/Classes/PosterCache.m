@@ -160,25 +160,24 @@
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
-    NSString* smallPosterPath = [self smallPosterFilePath:movie];
+  NSString* smallPosterPath = [self smallPosterFilePath:movie];
 
-  if (loadFromDisk) {
-    NSData* smallPosterData;
-
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-
-        [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
-
-    return [UIImage imageWithData:smallPosterData];
-  } else {
-    return [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
+  if (image != nil || !loadFromDisk) {
+    return image;
   }
+
+  NSData* smallPosterData;
+  if ([FileUtilities size:smallPosterPath] == 0) {
+    NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
+    smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                            toHeight:SMALL_POSTER_HEIGHT];
+
+    [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
+    return [UIImage imageWithData:smallPosterData];
+  }
+
+  return nil;
 }
 
 @end

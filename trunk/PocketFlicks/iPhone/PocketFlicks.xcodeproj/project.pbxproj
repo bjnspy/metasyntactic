@@ -182,7 +182,6 @@
 		74A918A20F80136500832767 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918A10F80136500832767 /* SearchViewController.m */; };
 		74A918AA0F80138100832767 /* LocalSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A918A90F80138100832767 /* LocalSearchEngine.m */; };
 		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
-		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
 		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
@@ -297,7 +296,6 @@
 		74E148760F95949500FB7BDA /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
 		74E148780F95949500FB7BDA /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
-		74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74E148800F95949500FB7BDA /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
@@ -889,8 +887,6 @@
 		74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
 		74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
 		74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicks_Prefix.pch; sourceTree = "<group>"; };
-		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
-		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
@@ -1465,13 +1461,11 @@
 			isa = PBXGroup;
 			children = (
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74A9178D0F80098E00832767 /* ScoreProviderViewController.h */,
 				74A917480F80087B00832767 /* SearchDatePickerViewController.h */,
 				741C74E70F8DC5D4003747AD /* SearchDistancePickerViewController.h */,
 				74A917850F80096400832767 /* SettingsViewController.h */,
 				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
-				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
 				74A9178E0F80098E00832767 /* ScoreProviderViewController.m */,
 				74A917490F80087B00832767 /* SearchDatePickerViewController.m */,
 				741C74E80F8DC5D4003747AD /* SearchDistancePickerViewController.m */,
@@ -2109,7 +2103,6 @@
 				74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
-				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
 				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
 				74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */,
@@ -2248,7 +2241,6 @@
 				74E148760F95949500FB7BDA /* MovieDetailsViewController.m in Sources */,
 				74E148780F95949500FB7BDA /* PosterCache.m in Sources */,
 				74E148790F95949500FB7BDA /* ImdbPosterDownloader.m in Sources */,
-				74E1487C0F95949500FB7BDA /* PickerEditorViewController.m in Sources */,
 				74E1487D0F95949500FB7BDA /* CreditsViewController.m in Sources */,
 				74E1487E0F95949500FB7BDA /* TrailerCache.m in Sources */,
 				74E148800F95949500FB7BDA /* SettingCell.m in Sources */,
