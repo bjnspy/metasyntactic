@@ -49,7 +49,7 @@ property_definition(url);
                        format:(NSString*) format_
                         discs:(NSString*) discs_
                           url:(NSString*) url_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
         self.price = [StringUtilities nonNilString:price_];
         self.format = [StringUtilities nonNilString:format_];

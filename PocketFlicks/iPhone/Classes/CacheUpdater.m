@@ -50,7 +50,7 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.searchOperationsGate = [[[NSLock alloc] init] autorelease];
     }
 
