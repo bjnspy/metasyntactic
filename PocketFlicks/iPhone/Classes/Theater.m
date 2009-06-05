@@ -48,7 +48,7 @@ property_definition(movieTitles);
 }
 
 
-+ (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
++ (Theater*) newWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
                                      name:[dictionary objectForKey:name_key]
                               phoneNumber:[dictionary objectForKey:phoneNumber_key]
@@ -64,7 +64,7 @@ property_definition(movieTitles);
                  location:(Location*) location_
       originatingLocation:(Location*) originatingLocation_
               movieTitles:(NSArray*) movieTitles_ {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         self.identifier = [StringUtilities nonNilString:identifier_];
         self.name = [[StringUtilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];

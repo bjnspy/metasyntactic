@@ -17,7 +17,7 @@
     DifferenceEngine* engine;
     BOOL updated;
 
-    NSDictionary* indexData;
+    ThreadsafeValue*/*NSDictionary*/ indexData;
     NSMutableDictionary* movieMap;
 
     NSMutableDictionary* ratingAndRuntimeCache;

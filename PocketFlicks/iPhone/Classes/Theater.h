@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Theater : NSObject<NSCoding> {
+@interface Theater : AbstractData<NSCoding> {
 @private
     NSString* identifier;
     NSString* name;
@@ -40,7 +40,7 @@
                originatingLocation:(Location*) originatingLocation
                        movieTitles:(NSArray*) movieTitles;
 
-+ (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
++ (Theater*) newWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
 - (NSString*) mapUrl;
