@@ -235,6 +235,7 @@ static Controller* controller = nil;
 
   [self.model setSearchDate:searchDate];
 
+  [self.model.dataProvider markOutOfDate];
   [self spawnDataProviderLookupThread:YES];
 }
 
@@ -246,6 +247,7 @@ static Controller* controller = nil;
 
   [self.model setUserAddress:userAddress];
 
+  [self.model.dataProvider markOutOfDate];
   [self spawnDetermineLocationThread:YES];
 
   // Refresh the UI so we show the found location.
