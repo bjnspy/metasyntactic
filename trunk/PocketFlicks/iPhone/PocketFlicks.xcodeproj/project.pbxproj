@@ -2572,6 +2572,7 @@
 					IPHONE_OS_VERSION_3,
 					DEBUG,
 				);
+				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
@@ -2590,6 +2591,7 @@
 					IPHONE_OS_VERSION_3,
 					RELEASE,
 				);
+				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
@@ -2608,6 +2610,7 @@
 					IPHONE_OS_VERSION_3,
 					ADHOC,
 				);
+				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
