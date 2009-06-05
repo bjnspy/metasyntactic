@@ -122,7 +122,7 @@ static NSString* articles[] = {
                      cast:(NSArray*) cast_
                    genres:(NSArray*) genres_
          additionalFields:(NSDictionary*) additionalFields_ {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         self.identifier = [StringUtilities nonNilString:identifier_];
         self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
         self.displayTitle = [StringUtilities nonNilString:displayTitle_];
@@ -289,7 +289,11 @@ static NSString* articles[] = {
 }
 
 
-+ (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
++ (Movie*) newWithDictionary:(NSDictionary*) dictionary {
+  if (![self canReadDictionary:dictionary]) {
+    return nil;
+  }
+
     return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
                                canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                  displayTitle:[dictionary objectForKey:displayTitle_key]
@@ -389,36 +393,6 @@ static NSString* articles[] = {
     }
 
     return [NSString stringWithFormat:LocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
-}
-
-
-+ (NSArray*) encodeArray:(NSArray*) array {
-    if (array.count == 0) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (Movie* movie in array) {
-        [result addObject:movie.dictionary];
-    }
-
-    return result;
-}
-
-
-+ (NSArray*) decodeArray:(NSArray*) array {
-    if (array.count == 0) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (NSDictionary* dictionary in array) {
-        [result addObject:[Movie movieWithDictionary:dictionary]];
-    }
-
-    return result;
 }
 
 

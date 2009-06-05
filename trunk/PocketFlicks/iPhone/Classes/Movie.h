@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Movie : NSObject<NSCopying, NSCoding> {
+@interface Movie : AbstractData<NSCopying, NSCoding> {
 @private
     NSString* identifier;
     NSString* canonicalTitle;
@@ -49,7 +49,7 @@
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 
-+ (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
++ (Movie*) newWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating
@@ -82,9 +82,6 @@
 
 + (NSString*) makeCanonical:(NSString*) title;
 + (NSString*) makeDisplay:(NSString*) title;
-
-+ (NSArray*) encodeArray:(NSArray*) array;
-+ (NSArray*) decodeArray:(NSArray*) array;
 
 - (BOOL) isNetflix;
 
