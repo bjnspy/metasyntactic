@@ -17,20 +17,20 @@
 
 @interface AbstractScoreProvider : AbstractMovieCache<ScoreProvider> {
 @private
-    // <-- Accessed from multiple threads.  needs gate
+  // <-- Accessed from multiple threads.  needs gate
 
-    // Mapping from score title to score.
-    NSDictionary* scoresData;
-    NSString* hashData;
-    NSArray* moviesData;
+  // Mapping from score title to score.
+  ThreadsafeValue*/*NSDictionary*/ scoresData;
+  ThreadsafeValue*/*NSString*/ hashData;
+  ThreadsafeValue*/*NSArray*/ moviesData;
 
-    // Mapping from google movie title to score provider title
-    NSDictionary* movieMapData;
+  // Mapping from google movie title to score provider title
+  ThreadsafeValue*/*NSDictionary*/ movieMapData;
 
-    // -->
+  // -->
 
-    NSString* providerDirectory;
-    NSString* reviewsDirectory;
+  NSString* providerDirectory;
+  NSString* reviewsDirectory;
 }
 
 @end

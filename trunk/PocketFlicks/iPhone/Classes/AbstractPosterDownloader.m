@@ -36,7 +36,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
 
