@@ -14,22 +14,22 @@
 
 @interface Movie : AbstractData<NSCopying, NSCoding> {
 @private
-    NSString* identifier;
-    NSString* canonicalTitle;
-    NSString* rating;
-    NSInteger length; // minutes;
-    NSDate* releaseDate;
-    NSString* imdbAddress;
-    NSString* poster;
-    NSString* synopsis;
-    NSString* studio;
-    NSArray* directors;
-    NSArray* cast;
-    NSArray* genres;
-
-    NSString* displayTitle;
-
-    NSDictionary* additionalFields;
+  NSString* identifier;
+  NSString* canonicalTitle;
+  NSString* rating;
+  NSInteger length; // minutes;
+  NSDate* releaseDate;
+  NSString* imdbAddress;
+  NSString* poster;
+  NSString* synopsis;
+  NSString* studio;
+  NSArray* directors;
+  NSArray* cast;
+  NSArray* genres;
+  
+  NSString* displayTitle;
+  
+  NSDictionary* additionalFields;
 }
 
 @property (readonly, copy) NSString* identifier;

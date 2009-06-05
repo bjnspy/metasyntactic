@@ -52,22 +52,22 @@ property_definition(genres);
 property_definition(additionalFields);
 
 - (void) dealloc {
-    self.identifier = nil;
-    self.canonicalTitle = nil;
-    self.rating = nil;
-    self.length = 0;
-    self.releaseDate = nil;
-    self.imdbAddress = nil;
-    self.poster = nil;
-    self.synopsis = nil;
-    self.displayTitle = nil;
-    self.studio = nil;
-    self.directors = nil;
-    self.cast = nil;
-    self.genres = nil;
-    self.additionalFields = nil;
-
-    [super dealloc];
+  self.identifier = nil;
+  self.canonicalTitle = nil;
+  self.rating = nil;
+  self.length = 0;
+  self.releaseDate = nil;
+  self.imdbAddress = nil;
+  self.poster = nil;
+  self.synopsis = nil;
+  self.displayTitle = nil;
+  self.studio = nil;
+  self.directors = nil;
+  self.cast = nil;
+  self.genres = nil;
+  self.additionalFields = nil;
+  
+  [super dealloc];
 }
 
 
@@ -81,30 +81,30 @@ static NSString* articles[] = {
 };
 
 + (NSString*) makeCanonical:(NSString*) title {
-    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-    for (int i = 0; i < ArrayLength(articles); i++) {
-        NSString* article = articles[i];
-        if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
-            return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
-        }
+  title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  
+  for (int i = 0; i < ArrayLength(articles); i++) {
+    NSString* article = articles[i];
+    if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
+      return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
     }
-
-    return title;
+  }
+  
+  return title;
 }
 
 
 + (NSString*) makeDisplay:(NSString*) title {
-    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-    for (int i = 0; i < ArrayLength(articles); i++) {
-        NSString* article = articles[i];
-        if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
-            return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
-        }
+  title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  
+  for (int i = 0; i < ArrayLength(articles); i++) {
+    NSString* article = articles[i];
+    if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
+      return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
     }
-
-    return title;
+  }
+  
+  return title;
 }
 
 
@@ -122,104 +122,79 @@ static NSString* articles[] = {
                      cast:(NSArray*) cast_
                    genres:(NSArray*) genres_
          additionalFields:(NSDictionary*) additionalFields_ {
-    if ((self = [super init])) {
-        self.identifier = [StringUtilities nonNilString:identifier_];
-        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
-        self.displayTitle = [StringUtilities nonNilString:displayTitle_];
-        self.rating = [StringUtilities nonNilString:rating_];
-        self.length = length_;
-        self.releaseDate = releaseDate_;
-        self.imdbAddress = [StringUtilities nonNilString:imdbAddress_];
-        self.poster = [StringUtilities nonNilString:poster_];
-        self.synopsis = [StringUtilities nonNilString:synopsis_];
-        self.studio = [StringUtilities nonNilString:studio_];
-        self.directors = [CollectionUtilities nonNilArray:directors_];
-        self.cast = [CollectionUtilities nonNilArray:cast_];
-        self.genres = [CollectionUtilities nonNilArray:genres_];
-        self.additionalFields = [CollectionUtilities nonNilDictionary:additionalFields_];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.identifier = [StringUtilities nonNilString:identifier_];
+    self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+    self.displayTitle = [StringUtilities nonNilString:displayTitle_];
+    self.rating = [StringUtilities nonNilString:rating_];
+    self.length = length_;
+    self.releaseDate = releaseDate_;
+    self.imdbAddress = [StringUtilities nonNilString:imdbAddress_];
+    self.poster = [StringUtilities nonNilString:poster_];
+    self.synopsis = [StringUtilities nonNilString:synopsis_];
+    self.studio = [StringUtilities nonNilString:studio_];
+    self.directors = [CollectionUtilities nonNilArray:directors_];
+    self.cast = [CollectionUtilities nonNilArray:cast_];
+    self.genres = [CollectionUtilities nonNilArray:genres_];
+    self.additionalFields = [CollectionUtilities nonNilDictionary:additionalFields_];
+  }
+  
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
-                     canonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
-                       displayTitle:[coder decodeObjectForKey:displayTitle_key]
-                             rating:[coder decodeObjectForKey:rating_key]
-                             length:[coder decodeIntegerForKey:length_key]
-                        releaseDate:[coder decodeObjectForKey:releaseDate_key]
-                        imdbAddress:[coder decodeObjectForKey:imdbAddress_key]
-                             poster:[coder decodeObjectForKey:poster_key]
-                           synopsis:[coder decodeObjectForKey:synopsis_key]
-                             studio:[coder decodeObjectForKey:studio_key]
-                          directors:[coder decodeObjectForKey:directors_key]
-                               cast:[coder decodeObjectForKey:cast_key]
-                             genres:[coder decodeObjectForKey:genres_key]
-                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
-}
-
-
-+ (BOOL) isStringDictionary:(id) dictionary {
-    if (dictionary == nil) {
-        return YES;
-    }
-
-    if (![dictionary isKindOfClass:[NSDictionary class]]) {
-        return NO;
-    }
-
-    for (id key in dictionary) {
-        if (![key isKindOfClass:[NSString class]]) {
-            return NO;
-        }
-
-        id value = [dictionary objectForKey:key];
-        if (![value isKindOfClass:[NSString class]]) {
-            return NO;
-        }
-    }
-
-    return YES;
+  return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                   canonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                     displayTitle:[coder decodeObjectForKey:displayTitle_key]
+                           rating:[coder decodeObjectForKey:rating_key]
+                           length:[coder decodeIntegerForKey:length_key]
+                      releaseDate:[coder decodeObjectForKey:releaseDate_key]
+                      imdbAddress:[coder decodeObjectForKey:imdbAddress_key]
+                           poster:[coder decodeObjectForKey:poster_key]
+                         synopsis:[coder decodeObjectForKey:synopsis_key]
+                           studio:[coder decodeObjectForKey:studio_key]
+                        directors:[coder decodeObjectForKey:directors_key]
+                             cast:[coder decodeObjectForKey:cast_key]
+                           genres:[coder decodeObjectForKey:genres_key]
+                 additionalFields:[coder decodeObjectForKey:additionalFields_key]];
 }
 
 
 + (BOOL) isStringArray:(id) array {
-    if (array == nil) {
-        return YES;
-    }
-
-    if (![array isKindOfClass:[NSArray class]]) {
-        return NO;
-    }
-
-    for (id value in array) {
-        if (![value isKindOfClass:[NSString class]]) {
-            return NO;
-        }
-    }
-
+  if (array == nil) {
     return YES;
+  }
+  
+  if (![array isKindOfClass:[NSArray class]]) {
+    return NO;
+  }
+  
+  for (id value in array) {
+    if (![value isKindOfClass:[NSString class]]) {
+      return NO;
+    }
+  }
+  
+  return YES;
 }
 
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary {
-    return
-    [[dictionary objectForKey:identifier_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:canonicalTitle_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:displayTitle_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:rating_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:imdbAddress_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:poster_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:synopsis_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:studio_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:releaseDate_key] isKindOfClass:[NSDate class]] &&
-    [[dictionary objectForKey:length_key] isKindOfClass:[NSNumber class]] &&
-          [self isStringArray:[dictionary objectForKey:directors_key]] &&
-          [self isStringArray:[dictionary objectForKey:cast_key]] &&
-          [self isStringArray:[dictionary objectForKey:genres_key]] &&
-     [self isStringDictionary:[dictionary objectForKey:additionalFields_key]];
+  return
+  [[dictionary objectForKey:identifier_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:canonicalTitle_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:displayTitle_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:rating_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:imdbAddress_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:poster_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:synopsis_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:studio_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:releaseDate_key] isKindOfClass:[NSDate class]] &&
+  [[dictionary objectForKey:length_key] isKindOfClass:[NSNumber class]] &&
+  [self isStringArray:[dictionary objectForKey:directors_key]] &&
+  [self isStringArray:[dictionary objectForKey:cast_key]] &&
+  [self isStringArray:[dictionary objectForKey:genres_key]];
 }
 
 
@@ -236,28 +211,28 @@ static NSString* articles[] = {
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres
               additionalFields:(NSDictionary*) additionalFields {
-    rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (rating.length == 0 ||
-        [@"NR" isEqual:rating] ||
-        [@"UR" isEqual:rating] ||
-        [@"Not Rated" isEqual:rating]) {
-        rating = @"";
-    }
-
-    return [[[Movie alloc] initWithIdentifier:identifier
-                               canonicalTitle:[self makeCanonical:title]
-                                 displayTitle:[self makeDisplay:title]
-                                       rating:rating
-                                       length:length
-                                  releaseDate:releaseDate
-                                  imdbAddress:imdbAddress
-                                       poster:poster
-                                     synopsis:[StringUtilities stripHtmlCodes:synopsis]
-                                       studio:studio
-                                    directors:directors
-                                         cast:cast
-                                       genres:genres
-                             additionalFields:additionalFields] autorelease];
+  rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  if (rating.length == 0 ||
+      [@"NR" isEqual:rating] ||
+      [@"UR" isEqual:rating] ||
+      [@"Not Rated" isEqual:rating]) {
+    rating = @"";
+  }
+  
+  return [[[Movie alloc] initWithIdentifier:identifier
+                             canonicalTitle:[self makeCanonical:title]
+                               displayTitle:[self makeDisplay:title]
+                                     rating:rating
+                                     length:length
+                                releaseDate:releaseDate
+                                imdbAddress:imdbAddress
+                                     poster:poster
+                                   synopsis:[StringUtilities stripHtmlCodes:synopsis]
+                                     studio:studio
+                                  directors:directors
+                                       cast:cast
+                                     genres:genres
+                           additionalFields:additionalFields] autorelease];
 }
 
 
@@ -273,19 +248,19 @@ static NSString* articles[] = {
                      directors:(NSArray*) directors
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres {
-    return [Movie movieWithIdentifier:identifier
-                                title:title
-                               rating:rating
-                               length:length
-                          releaseDate:releaseDate
-                          imdbAddress:imdbAddress
-                               poster:poster
-                             synopsis:synopsis
-                               studio:studio
-                            directors:directors
-                                 cast:cast
-                               genres:genres
-                     additionalFields:nil];
+  return [Movie movieWithIdentifier:identifier
+                              title:title
+                             rating:rating
+                             length:length
+                        releaseDate:releaseDate
+                        imdbAddress:imdbAddress
+                             poster:poster
+                           synopsis:synopsis
+                             studio:studio
+                          directors:directors
+                               cast:cast
+                             genres:genres
+                   additionalFields:nil];
 }
 
 
@@ -293,111 +268,111 @@ static NSString* articles[] = {
   if (![self canReadDictionary:dictionary]) {
     return nil;
   }
-
-    return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
-                               canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                 displayTitle:[dictionary objectForKey:displayTitle_key]
-                                       rating:[dictionary objectForKey:rating_key]
-                                       length:[[dictionary objectForKey:length_key] intValue]
-                                  releaseDate:[dictionary objectForKey:releaseDate_key]
-                                  imdbAddress:[dictionary objectForKey:imdbAddress_key]
-                                       poster:[dictionary objectForKey:poster_key]
-                                     synopsis:[dictionary objectForKey:synopsis_key]
-                                       studio:[dictionary objectForKey:studio_key]
-                                    directors:[dictionary objectForKey:directors_key]
-                                         cast:[dictionary objectForKey:cast_key]
-                                       genres:[dictionary objectForKey:genres_key]
-                             additionalFields:[dictionary objectForKey:additionalFields_key]] autorelease];
+  
+  return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
+                             canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                               displayTitle:[dictionary objectForKey:displayTitle_key]
+                                     rating:[dictionary objectForKey:rating_key]
+                                     length:[[dictionary objectForKey:length_key] intValue]
+                                releaseDate:[dictionary objectForKey:releaseDate_key]
+                                imdbAddress:[dictionary objectForKey:imdbAddress_key]
+                                     poster:[dictionary objectForKey:poster_key]
+                                   synopsis:[dictionary objectForKey:synopsis_key]
+                                     studio:[dictionary objectForKey:studio_key]
+                                  directors:[dictionary objectForKey:directors_key]
+                                       cast:[dictionary objectForKey:cast_key]
+                                     genres:[dictionary objectForKey:genres_key]
+                           additionalFields:[dictionary objectForKey:additionalFields_key]] autorelease];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:identifier                         forKey:identifier_key];
-    [dictionary setValue:canonicalTitle                     forKey:canonicalTitle_key];
-    [dictionary setValue:displayTitle                       forKey:displayTitle_key];
-    [dictionary setValue:rating                             forKey:rating_key];
-    [dictionary setValue:[NSNumber numberWithInt:length]    forKey:length_key];
-    [dictionary setValue:releaseDate                        forKey:releaseDate_key];
-    [dictionary setValue:imdbAddress                        forKey:imdbAddress_key];
-    [dictionary setValue:poster                             forKey:poster_key];
-    [dictionary setValue:synopsis                           forKey:synopsis_key];
-    [dictionary setValue:studio                             forKey:studio_key];
-    [dictionary setValue:directors                          forKey:directors_key];
-    [dictionary setValue:cast                               forKey:cast_key];
-    [dictionary setValue:genres                             forKey:genres_key];
-    [dictionary setValue:additionalFields                   forKey:additionalFields_key];
-    return dictionary;
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+  [dictionary setValue:identifier                         forKey:identifier_key];
+  [dictionary setValue:canonicalTitle                     forKey:canonicalTitle_key];
+  [dictionary setValue:displayTitle                       forKey:displayTitle_key];
+  [dictionary setValue:rating                             forKey:rating_key];
+  [dictionary setValue:[NSNumber numberWithInt:length]    forKey:length_key];
+  [dictionary setValue:releaseDate                        forKey:releaseDate_key];
+  [dictionary setValue:imdbAddress                        forKey:imdbAddress_key];
+  [dictionary setValue:poster                             forKey:poster_key];
+  [dictionary setValue:synopsis                           forKey:synopsis_key];
+  [dictionary setValue:studio                             forKey:studio_key];
+  [dictionary setValue:directors                          forKey:directors_key];
+  [dictionary setValue:cast                               forKey:cast_key];
+  [dictionary setValue:genres                             forKey:genres_key];
+  [dictionary setValue:additionalFields                   forKey:additionalFields_key];
+  return dictionary;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:identifier          forKey:identifier_key];
-    [coder encodeObject:canonicalTitle      forKey:canonicalTitle_key];
-    [coder encodeObject:displayTitle        forKey:displayTitle_key];
-    [coder encodeObject:rating              forKey:rating_key];
-    [coder encodeInteger:length             forKey:length_key];
-    [coder encodeObject:releaseDate         forKey:releaseDate_key];
-    [coder encodeObject:imdbAddress         forKey:imdbAddress_key];
-    [coder encodeObject:poster              forKey:poster_key];
-    [coder encodeObject:synopsis            forKey:synopsis_key];
-    [coder encodeObject:studio              forKey:studio_key];
-    [coder encodeObject:directors           forKey:directors_key];
-    [coder encodeObject:cast                forKey:cast_key];
-    [coder encodeObject:genres              forKey:genres_key];
-    [coder encodeObject:additionalFields    forKey:additionalFields_key];
+  [coder encodeObject:identifier          forKey:identifier_key];
+  [coder encodeObject:canonicalTitle      forKey:canonicalTitle_key];
+  [coder encodeObject:displayTitle        forKey:displayTitle_key];
+  [coder encodeObject:rating              forKey:rating_key];
+  [coder encodeInteger:length             forKey:length_key];
+  [coder encodeObject:releaseDate         forKey:releaseDate_key];
+  [coder encodeObject:imdbAddress         forKey:imdbAddress_key];
+  [coder encodeObject:poster              forKey:poster_key];
+  [coder encodeObject:synopsis            forKey:synopsis_key];
+  [coder encodeObject:studio              forKey:studio_key];
+  [coder encodeObject:directors           forKey:directors_key];
+  [coder encodeObject:cast                forKey:cast_key];
+  [coder encodeObject:genres              forKey:genres_key];
+  [coder encodeObject:additionalFields    forKey:additionalFields_key];
 }
 
 
 - (NSString*) description {
-    return self.dictionary.description;
+  return self.dictionary.description;
 }
 
 
 - (BOOL) isEqual:(id) anObject {
-    Movie* other = anObject;
-
-    return [canonicalTitle isEqual:other.canonicalTitle];
+  Movie* other = anObject;
+  
+  return [canonicalTitle isEqual:other.canonicalTitle];
 }
 
 
 - (NSUInteger) hash {
-    return canonicalTitle.hash;
+  return canonicalTitle.hash;
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 + (NSString*) runtimeString:(NSInteger) length {
-    NSString* hoursString = @"";
-    NSString* minutesString = @"";
-
-    if (length > 0) {
-        NSInteger hours = length / 60;
-        NSInteger minutes = length % 60;
-
-        if (hours == 1) {
-            hoursString = LocalizedString(@"1 hour", nil);
-        } else if (hours > 1) {
-            hoursString = [NSString stringWithFormat:LocalizedString(@"%d hours", @"i.e.: 2 hours"), hours];
-        }
-
-        if (minutes == 1) {
-            minutesString = LocalizedString(@"1 minute", nil);
-        } else if (minutes > 1) {
-            minutesString = [NSString stringWithFormat:LocalizedString(@"%d minutes", @"i.e.: 30 minutes"), minutes];
-        }
+  NSString* hoursString = @"";
+  NSString* minutesString = @"";
+  
+  if (length > 0) {
+    NSInteger hours = length / 60;
+    NSInteger minutes = length % 60;
+    
+    if (hours == 1) {
+      hoursString = LocalizedString(@"1 hour", nil);
+    } else if (hours > 1) {
+      hoursString = [NSString stringWithFormat:LocalizedString(@"%d hours", @"i.e.: 2 hours"), hours];
     }
-
-    return [NSString stringWithFormat:LocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
+    
+    if (minutes == 1) {
+      minutesString = LocalizedString(@"1 minute", nil);
+    } else if (minutes > 1) {
+      minutesString = [NSString stringWithFormat:LocalizedString(@"%d minutes", @"i.e.: 30 minutes"), minutes];
+    }
+  }
+  
+  return [NSString stringWithFormat:LocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
 }
 
 
 - (BOOL) isNetflix {
-    return [identifier hasPrefix:@"http://"];
+  return [identifier hasPrefix:@"http://"];
 }
 
 @end
