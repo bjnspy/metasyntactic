@@ -43,7 +43,7 @@ property_definition(additionalFields);
                      name:(NSString*) name_
                 biography:(NSString*) biography_
          additionalFields:(NSDictionary*) additionalFields_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.identifier = [StringUtilities nonNilString:identifier_];
         self.name = [StringUtilities nonNilString:name_];
         self.biography = [StringUtilities nonNilString:biography_];

@@ -63,7 +63,7 @@ static NSSet* allowableCountries = nil;
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.engine = [DifferenceEngine engine];
         self.ratingAndRuntimeCache = [NSMutableDictionary dictionary];
     }

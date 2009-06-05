@@ -41,7 +41,7 @@
 
 
 - (id) initWithMovie:(Movie*) movie__ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.movie = movie__;
     }
 

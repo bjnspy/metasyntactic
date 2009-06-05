@@ -124,7 +124,7 @@
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
         self.directorTitleLabel = [self createTitleLabel:LocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22 forTitle:directorTitleLabel];
 

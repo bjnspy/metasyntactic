@@ -152,7 +152,7 @@
 
 
 - (id) initWithMovie:(Movie*) movie_ {
-    if (self = [super initWithMovie:movie_]) {
+    if ((self = [super initWithMovie:movie_])) {
         self.imageViews = [NSMutableArray array];
         [self setupRating];
     }

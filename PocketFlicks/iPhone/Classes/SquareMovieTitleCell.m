@@ -19,7 +19,7 @@
 @implementation SquareMovieTitleCell
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
 #ifdef IPHONE_OS_VERSION_3
         CGRect frame = CGRectMake(6, 6, 30, 30);
 #else

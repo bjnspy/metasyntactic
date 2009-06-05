@@ -49,7 +49,7 @@ property_definition(identifier);
                         score:(NSString*) score_
                      provider:(NSString*) provider_
                    identifier:(NSString*) identifier_ {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
         self.score = [StringUtilities nonNilString:score_];
         self.synopsis = [StringUtilities nonNilString:synopsis_];

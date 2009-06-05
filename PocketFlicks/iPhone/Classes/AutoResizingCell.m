@@ -33,7 +33,7 @@
 }
 
 - (id) init {
-    if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
+    if ((self = [super initWithFrame:CGRectZero reuseIdentifier:nil])) {
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.font = [UIFont boldSystemFontOfSize:20];

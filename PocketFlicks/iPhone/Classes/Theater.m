@@ -64,7 +64,7 @@ property_definition(movieTitles);
                  location:(Location*) location_
       originatingLocation:(Location*) originatingLocation_
               movieTitles:(NSArray*) movieTitles_ {
-    if (self = [self init]) {
+    if ((self = [self init])) {
         self.identifier = [StringUtilities nonNilString:identifier_];
         self.name = [[StringUtilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];

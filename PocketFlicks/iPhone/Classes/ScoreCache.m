@@ -48,7 +48,7 @@
 
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider provider];
         self.metacriticScoreProvider = [MetacriticScoreProvider provider];
         self.googleScoreProvider = [GoogleScoreProvider provider];
