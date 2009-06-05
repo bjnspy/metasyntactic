@@ -455,7 +455,10 @@ public class Program {
     for (final Map.Entry<String, Pair> entry : localizableEntries.entrySet()) {
       printer.println();
       final String english = entry.getKey();
-      final String translated = entry.getValue().first;
+      String translated = entry.getValue().first;
+      if (translated.length() == 0) {
+        translated = english;
+      }
       final Pair englishPair = englishEntries.get(english);
       String comment = englishPair == null ? null : englishPair.second;
 
