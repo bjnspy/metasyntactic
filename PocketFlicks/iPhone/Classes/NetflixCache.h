@@ -16,10 +16,10 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-    // accessed from multiple threads.  needs lock
-    NSArray* feedsData;
-    NSDictionary* queuesData;
-    NSDate* lastQuotaErrorDate;
+  // accessed from multiple threads.  needs lock
+  ThreadsafeValue*/*NSArray*/ feedsData;
+  NSDictionary* queuesData;
+  NSDate* lastQuotaErrorDate;
 }
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
