@@ -895,7 +895,6 @@
 		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
 		74E033610FB8B97B009D9755 /* ImageLoading-Neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ImageLoading-Neutral.png"; path = "Resources/ImageLoading-Neutral.png"; sourceTree = "<group>"; };
 		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		74E149790F95949500FB7BDA /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74E3EAA30FAD1CDA004D8599 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
 		74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
@@ -1083,7 +1082,6 @@
 			isa = PBXGroup;
 			children = (
 				7471E1FF0EFA0D67000490CA /* Netflix */,
-				74E149790F95949500FB7BDA /* Info copy.plist */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				74EC959C0EE5C610004E044E /* BlackButton.png */,
 				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
@@ -2444,8 +2442,6 @@
 					IPHONE_OS_VERSION_2,
 					DEBUG,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Debug;
 		};
@@ -2463,8 +2459,6 @@
 					IPHONE_OS_VERSION_2,
 					RELEASE,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Release;
 		};
@@ -2474,7 +2468,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
@@ -2490,11 +2483,12 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "342BEBE4-1538-493C-8D0B-98B044EA0491";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "342BEBE4-1538-493C-8D0B-98B044EA0491";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHoc;
@@ -2513,8 +2507,6 @@
 					IPHONE_OS_VERSION_2,
 					ADHOC,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlicks;
 			};
 			name = AdHoc;
 		};
@@ -2537,8 +2529,10 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
 				SDKROOT = iphoneos2.2.1;
 			};
@@ -2558,8 +2552,6 @@
 					IPHONE_OS_VERSION_2,
 					DISTRIBUTION,
 				);
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlicks;
 			};
 			name = Distribution;
 		};
@@ -2579,8 +2571,6 @@
 					IPHONE_OS_VERSION_3,
 					DEBUG,
 				);
-				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
-				PRODUCT_NAME = PocketFlicks;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
@@ -2599,8 +2589,6 @@
 					IPHONE_OS_VERSION_3,
 					RELEASE,
 				);
-				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
-				PRODUCT_NAME = PocketFlicks;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
@@ -2619,8 +2607,6 @@
 					IPHONE_OS_VERSION_3,
 					ADHOC,
 				);
-				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
-				PRODUCT_NAME = PocketFlicks;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
@@ -2639,8 +2625,6 @@
 					IPHONE_OS_VERSION_3,
 					DISTRIBUTION,
 				);
-				INFOPLIST_FILE = "/Projects/metasyntactic/trunk/PocketFlicks/iPhone/Info copy.plist";
-				PRODUCT_NAME = PocketFlicks;
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
@@ -2664,9 +2648,11 @@
 				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos2.2.1;
 			};
@@ -2693,9 +2679,11 @@
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphoneos2.2.1;
 			};
