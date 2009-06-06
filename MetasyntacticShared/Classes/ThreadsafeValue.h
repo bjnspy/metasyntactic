@@ -23,9 +23,9 @@
 }
 
 + (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
-                         delegate:(id) delegate
-                     loadSelector:(SEL) loadSelector
-                     saveSelector:(SEL) saveSelector;
+                          delegate:(id) delegate
+                      loadSelector:(SEL) loadSelector
+                      saveSelector:(SEL) saveSelector;
 
 
 - (id) value;
