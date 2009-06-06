@@ -108,7 +108,12 @@
 
 
 - (NSDate*) lastLookupDate {
-  return [FileUtilities modificationDate:[self lastLookupDateFile]];
+  return [FileUtilities modificationDate:self.lastLookupDateFile];
+}
+
+
+- (void) markOutOfDate {
+  [Application moveItemToTrash:self.lastLookupDateFile];
 }
 
 

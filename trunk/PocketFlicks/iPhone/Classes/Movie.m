@@ -66,7 +66,7 @@ property_definition(additionalFields);
   self.cast = nil;
   self.genres = nil;
   self.additionalFields = nil;
-  
+
   [super dealloc];
 }
 
@@ -82,28 +82,28 @@ static NSString* articles[] = {
 
 + (NSString*) makeCanonical:(NSString*) title {
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  
+
   for (int i = 0; i < ArrayLength(articles); i++) {
     NSString* article = articles[i];
     if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
       return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
     }
   }
-  
+
   return title;
 }
 
 
 + (NSString*) makeDisplay:(NSString*) title {
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  
+
   for (int i = 0; i < ArrayLength(articles); i++) {
     NSString* article = articles[i];
     if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
       return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
     }
   }
-  
+
   return title;
 }
 
@@ -138,7 +138,7 @@ static NSString* articles[] = {
     self.genres = [CollectionUtilities nonNilArray:genres_];
     self.additionalFields = [CollectionUtilities nonNilDictionary:additionalFields_];
   }
-  
+
   return self;
 }
 
@@ -165,17 +165,17 @@ static NSString* articles[] = {
   if (array == nil) {
     return YES;
   }
-  
+
   if (![array isKindOfClass:[NSArray class]]) {
     return NO;
   }
-  
+
   for (id value in array) {
     if (![value isKindOfClass:[NSString class]]) {
       return NO;
     }
   }
-  
+
   return YES;
 }
 
@@ -218,7 +218,7 @@ static NSString* articles[] = {
       [@"Not Rated" isEqual:rating]) {
     rating = @"";
   }
-  
+
   return [[[Movie alloc] initWithIdentifier:identifier
                              canonicalTitle:[self makeCanonical:title]
                                displayTitle:[self makeDisplay:title]
@@ -265,6 +265,10 @@ static NSString* articles[] = {
 
 
 + (Movie*) newWithDictionary:(NSDictionary*) dictionary {
+  if (![self canReadDictionary:dictionary]) {
+    return nil;
+  }
+
   return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
                              canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                displayTitle:[dictionary objectForKey:displayTitle_key]
@@ -327,7 +331,7 @@ static NSString* articles[] = {
 
 - (BOOL) isEqual:(id) anObject {
   Movie* other = anObject;
-  
+
   return [canonicalTitle isEqual:other.canonicalTitle];
 }
 
@@ -345,24 +349,24 @@ static NSString* articles[] = {
 + (NSString*) runtimeString:(NSInteger) length {
   NSString* hoursString = @"";
   NSString* minutesString = @"";
-  
+
   if (length > 0) {
     NSInteger hours = length / 60;
     NSInteger minutes = length % 60;
-    
+
     if (hours == 1) {
       hoursString = LocalizedString(@"1 hour", nil);
     } else if (hours > 1) {
       hoursString = [NSString stringWithFormat:LocalizedString(@"%d hours", @"i.e.: 2 hours"), hours];
     }
-    
+
     if (minutes == 1) {
       minutesString = LocalizedString(@"1 minute", nil);
     } else if (minutes > 1) {
       minutesString = [NSString stringWithFormat:LocalizedString(@"%d minutes", @"i.e.: 30 minutes"), minutes];
     }
   }
-  
+
   return [NSString stringWithFormat:LocalizedString(@"%@ %@", @"i.e.: 2 hours 34 minutes"), hoursString, minutesString];
 }
 

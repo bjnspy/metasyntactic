@@ -29,6 +29,7 @@
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater;
 
+- (void) markOutOfDate;
 - (NSDate*) lastLookupDate;
 
 - (BOOL) isStale:(Theater*) theater;

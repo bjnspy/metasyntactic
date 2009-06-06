@@ -16,6 +16,7 @@
 - (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context force:(BOOL) force;
 - (void) saveResult:(LookupResult*) result;
 
+- (void) markOutOfDate;
 - (NSDate*) lastLookupDate;
 
 - (BOOL) isStale:(Theater*) theater;
