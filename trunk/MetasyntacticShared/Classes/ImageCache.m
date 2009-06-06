@@ -31,7 +31,7 @@
 
 - (id) init {
   if ((self = [super init])) {
-    //self.pathToImageMap = [NSMutableDictionary dictionary];
+    self.pathToImageMap = [NSMutableDictionary dictionary];
   }
 
   return self;
@@ -64,7 +64,8 @@
     result = [pathToImageMap objectForKey:path];
     if (result == nil && loadFromDisk) {
       result = [UIImage imageWithContentsOfFile:path];
-      if (result != nil) {
+      CGSize size = result.size;
+      if (result != nil && size.width < 200 && size.height < 200) {
         [pathToImageMap setObject:result forKey:path];
       }
     }
