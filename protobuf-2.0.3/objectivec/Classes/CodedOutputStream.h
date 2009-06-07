@@ -79,6 +79,26 @@ int32_t computeSInt32Size(int32_t fieldNumber, int32_t value);
 int32_t computeSInt64Size(int32_t fieldNumber, int64_t value);
 int32_t computeTagSize(int32_t fieldNumber);
 
+int32_t computeDoubleSizeNoTag(Float64 value);
+int32_t computeFloatSizeNoTag(Float32 value);
+int32_t computeUInt64SizeNoTag(int64_t value);
+int32_t computeInt64SizeNoTag(int64_t value);
+int32_t computeInt32SizeNoTag(int32_t value);
+int32_t computeFixed64SizeNoTag(int64_t value);
+int32_t computeFixed32SizeNoTag(int32_t value);
+int32_t computeBoolSizeNoTag(BOOL value);
+int32_t computeStringSizeNoTag(NSString* value);
+int32_t computeGroupSizeNoTag(id<PBMessage> value);
+int32_t computeUnknownGroupSizeNoTag(PBUnknownFieldSet* value);
+int32_t computeMessageSizeNoTag(id<PBMessage> value);
+int32_t computeDataSizeNoTag(NSData* value);
+int32_t computeUInt32SizeNoTag(int32_t value);
+int32_t computeEnumSizeNoTag(int32_t value);
+int32_t computeSFixed32SizeNoTag(int32_t value);
+int32_t computeSFixed64SizeNoTag(int64_t value);
+int32_t computeSInt32SizeNoTag(int32_t value);
+int32_t computeSInt64SizeNoTag(int64_t value);
+
 /**
  * Compute the number of bytes that would be needed to encode a varint.
  * {@code value} is treated as unsigned, so it won't be sign-extended if
@@ -153,6 +173,27 @@ int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
 - (void) writeSFixed64:(int32_t) fieldNumber value:(int64_t) value;
 - (void) writeSInt32:(int32_t) fieldNumber value:(int32_t) value;
 - (void) writeSInt64:(int32_t) fieldNumber value:(int64_t) value;
+
+- (void) writeDoubleNoTag:(Float64) value;
+- (void) writeFloatNoTag:(Float32) value;
+- (void) writeUInt64NoTag:(int64_t) value;
+- (void) writeInt64NoTag:(int64_t) value;
+- (void) writeInt32NoTag:(int32_t) value;
+- (void) writeFixed64NoTag:(int64_t) value;
+- (void) writeFixed32NoTag:(int32_t) value;
+- (void) writeBoolNoTag:(BOOL) value;
+- (void) writeStringNoTag:(NSString*) value;
+- (void) writeGroupNoTag:(int32_t) fieldNumber value:(id<PBMessage>) value;
+- (void) writeUnknownGroupNoTag:(int32_t) fieldNumber value:(PBUnknownFieldSet*) value;
+- (void) writeMessageNoTag:(id<PBMessage>) value;
+- (void) writeDataNoTag:(NSData*) value;
+- (void) writeUInt32NoTag:(int32_t) value;
+- (void) writeEnumNoTag:(int32_t) value;
+- (void) writeSFixed32NoTag:(int32_t) value;
+- (void) writeSFixed64NoTag:(int64_t) value;
+- (void) writeSInt32NoTag:(int32_t) value;
+- (void) writeSInt64NoTag:(int64_t) value;
+
 
 /**
  * Write a MessageSet extension field to the stream.  For historical reasons,
