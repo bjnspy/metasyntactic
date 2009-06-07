@@ -296,6 +296,7 @@ nobase_include_HEADERS = \
   google/protobuf/extension_set.h                              \
   google/protobuf/generated_message_reflection.h               \
   google/protobuf/message.h                                    \
+  google/protobuf/objectivec-descriptor.pb.h                   \
   google/protobuf/reflection_ops.h                             \
   google/protobuf/repeated_field.h                             \
   google/protobuf/service.h                                    \
@@ -314,7 +315,8 @@ nobase_include_HEADERS = \
   google/protobuf/compiler/parser.h                            \
   google/protobuf/compiler/cpp/cpp_generator.h                 \
   google/protobuf/compiler/java/java_generator.h               \
-  google/protobuf/compiler/python/python_generator.h
+  google/protobuf/compiler/python/python_generator.h           \
+  google/protobuf/compiler/objectivec/objectivec_generator.h
 
 lib_LTLIBRARIES = libprotobuf.la libprotoc.la
 libprotobuf_la_LIBADD = $(PTHREAD_LIBS)
@@ -339,6 +341,7 @@ libprotobuf_la_SOURCES = \
   google/protobuf/extension_set.cc                             \
   google/protobuf/generated_message_reflection.cc              \
   google/protobuf/message.cc                                   \
+  google/protobuf/objectivec-descriptor.pb.cc                  \
   google/protobuf/reflection_ops.cc                            \
   google/protobuf/repeated_field.cc                            \
   google/protobuf/service.cc                                   \
@@ -402,7 +405,27 @@ libprotoc_la_SOURCES = \
   google/protobuf/compiler/java/java_primitive_field.h         \
   google/protobuf/compiler/java/java_service.cc                \
   google/protobuf/compiler/java/java_service.h                 \
-  google/protobuf/compiler/python/python_generator.cc
+  google/protobuf/compiler/python/python_generator.cc          \
+  google/protobuf/compiler/objectivec/objectivec_enum.cc            \
+  google/protobuf/compiler/objectivec/objectivec_enum.h             \
+  google/protobuf/compiler/objectivec/objectivec_enum_field.cc      \
+  google/protobuf/compiler/objectivec/objectivec_enum_field.h       \
+  google/protobuf/compiler/objectivec/objectivec_extension.cc       \
+  google/protobuf/compiler/objectivec/objectivec_extension.h        \
+  google/protobuf/compiler/objectivec/objectivec_field.cc           \
+  google/protobuf/compiler/objectivec/objectivec_field.h            \
+  google/protobuf/compiler/objectivec/objectivec_file.cc            \
+  google/protobuf/compiler/objectivec/objectivec_file.h             \
+  google/protobuf/compiler/objectivec/objectivec_generator.cc       \
+  google/protobuf/compiler/objectivec/objectivec_generator.h        \
+  google/protobuf/compiler/objectivec/objectivec_helpers.cc         \
+  google/protobuf/compiler/objectivec/objectivec_helpers.h          \
+  google/protobuf/compiler/objectivec/objectivec_message.cc         \
+  google/protobuf/compiler/objectivec/objectivec_message.h          \
+  google/protobuf/compiler/objectivec/objectivec_message_field.cc   \
+  google/protobuf/compiler/objectivec/objectivec_message_field.h    \
+  google/protobuf/compiler/objectivec/objectivec_primitive_field.cc \
+  google/protobuf/compiler/objectivec/objectivec_primitive_field.h
 
 protoc_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la
 protoc_SOURCES = google/protobuf/compiler/main.cc
@@ -789,6 +812,13 @@ descriptor.pb.lo: google/protobuf/descriptor.pb.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/descriptor.pb.cc' object='descriptor.pb.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o descriptor.pb.lo `test -f 'google/protobuf/descriptor.pb.cc' || echo '$(srcdir)/'`google/protobuf/descriptor.pb.cc
+
+objectivec-descriptor.pb.lo: google/protobuf/objectivec-descriptor.pb.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MTobjectivec- descriptor.pb.lo -MD -MP -MF "$(DEPDIR)/objectivec-descriptor.pb.Tpo" -c -o objectivec-descriptor.pb.lo `test -f 'google/protobuf/objectivec-descriptor.pb.cc' || echo '$(srcdir)/'`google/protobuf/objectivec-descriptor.pb.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec-descriptor.pb.Tpo" "$(DEPDIR)/objectivec-descriptor.pb.Plo"; else rm -f "$(DEPDIR)/objectivec-descriptor.pb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/objectivec-descriptor.pb.cc' object='objectivec-descriptor.pb.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec-descriptor.pb.lo `test -f 'google/protobuf/objectivec-descriptor.pb.cc' || echo '$(srcdir)/'`google/protobuf/objectivec-descriptor.pb.cc
 
 descriptor_database.lo: google/protobuf/descriptor_database.cc
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT descriptor_database.lo -MD -MP -MF "$(DEPDIR)/descriptor_database.Tpo" -c -o descriptor_database.lo `test -f 'google/protobuf/descriptor_database.cc' || echo '$(srcdir)/'`google/protobuf/descriptor_database.cc; \

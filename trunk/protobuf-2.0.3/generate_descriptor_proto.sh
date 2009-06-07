@@ -24,4 +24,5 @@ fi
 
 cd src
 make protoc && ./protoc --cpp_out=dllexport_decl=LIBPROTOBUF_EXPORT:. google/protobuf/descriptor.proto
+make protoc && ./protoc --cpp_out=dllexport_decl=LIBPROTOBUF_EXPORT:. google/protobuf/objectivec-descriptor.proto
 cd ..
