@@ -204,6 +204,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\google\protobuf\objectivec-descriptor.pb.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\google\protobuf\stubs\once.h"
 				>
 			</File>
@@ -329,6 +333,10 @@
 			</File>
 			<File
 				RelativePath="..\src\google\protobuf\message.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\src\google\protobuf\objectivec-descriptor.pb.cc"
 				>
 			</File>
 			<File
