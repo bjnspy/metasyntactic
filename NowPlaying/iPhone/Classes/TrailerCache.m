@@ -30,139 +30,134 @@
 @synthesize indexKeys;
 
 - (void) dealloc {
-    self.index = nil;
-    self.indexKeys = nil;
-
-    [super dealloc];
+  self.index = nil;
+  self.indexKeys = nil;
+  
+  [super dealloc];
 }
 
 
 + (TrailerCache*) cache {
-    return [[[TrailerCache alloc] init] autorelease];
+  return [[[TrailerCache alloc] init] autorelease];
 }
 
 
 - (NSString*) trailerFile:(Movie*) movie {
-    NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application trailersDirectory] stringByAppendingPathComponent:name];
-}
-
-
-- (BOOL) tooSoon:(NSDate*) date {
-    return date.timeIntervalSinceNow < THREE_DAYS;
+  NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+  return [[Application trailersDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
-    NSString* file = [self trailerFile:movie];
-
-    NSDate* downloadDate = [FileUtilities modificationDate:file];
-    if (downloadDate != nil) {
-        if ([self tooSoon:downloadDate]) {
-            NSArray* values = [FileUtilities readObject:file];
-            if (values.count > 0) {
-                return;
-            }
-
-            if (!force) {
-                return;
-            }
-        }
-    }
-
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
-                                                 inArray:indexKeys];
-    if (arrayIndex == NSNotFound) {
-        // no trailer for this movie.  record that fact.  we'll try again later
-        [FileUtilities writeObject:[NSArray array]
-                            toFile:[self trailerFile:movie]];
+  NSString* file = [self trailerFile:movie];
+  
+  NSDate* downloadDate = [FileUtilities modificationDate:file];
+  if (downloadDate != nil) {
+    if (ABS(downloadDate.timeIntervalSinceNow) < THREE_DAYS) {
+      NSArray* values = [FileUtilities readObject:file];
+      if (values.count > 0) {
         return;
-    }
-
-    NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
-    NSString* studio = [studioAndLocation objectAtIndex:0];
-    NSString* location = [studioAndLocation objectAtIndex:1];
-
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
-    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
-    if (trailersString == nil) {
-        // didn't get any data.  ignore this for now.
+      }
+      
+      if (!force) {
         return;
+      }
     }
-
-    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-    NSMutableArray* final = [NSMutableArray array];
-    for (NSString* trailer in trailers) {
-        if (trailer.length > 0) {
-            [final addObject:trailer];
-        }
+  }
+  
+  DifferenceEngine* engine = [DifferenceEngine engine];
+  NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
+                                               inArray:indexKeys];
+  if (arrayIndex == NSNotFound) {
+    // no trailer for this movie.  record that fact.  we'll try again later
+    [FileUtilities writeObject:[NSArray array]
+                        toFile:[self trailerFile:movie]];
+    return;
+  }
+  
+  NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
+  NSString* studio = [studioAndLocation objectAtIndex:0];
+  NSString* location = [studioAndLocation objectAtIndex:1];
+  
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
+  NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
+  if (trailersString == nil) {
+    // didn't get any data.  ignore this for now.
+    return;
+  }
+  
+  NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
+  NSMutableArray* final = [NSMutableArray array];
+  for (NSString* trailer in trailers) {
+    if (trailer.length > 0) {
+      [final addObject:trailer];
     }
-
-    [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-
-    if (final.count > 0) {
-        [AppDelegate minorRefresh];
-    }
+  }
+  
+  [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
+  
+  if (final.count > 0) {
+    [AppDelegate minorRefresh];
+  }
 }
 
 
 - (void) generateIndexWorker:(NSString*) indexText {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
-    NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
-    for (NSString* row in rows) {
-        NSArray* values = [row componentsSeparatedByString:@"\t"];
-        if (values.count != 3) {
-            continue;
-        }
-
-        NSString* fullTitle = [values objectAtIndex:0];
-        NSString* studio = [values objectAtIndex:1];
-        NSString* location = [values objectAtIndex:2];
-
-        [result setObject:[NSArray arrayWithObjects:studio, location, nil]
-                   forKey:fullTitle.lowercaseString];
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  
+  NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
+  for (NSString* row in rows) {
+    NSArray* values = [row componentsSeparatedByString:@"\t"];
+    if (values.count != 3) {
+      continue;
     }
-
-    self.index = result;
-    self.indexKeys = index.allKeys;
+    
+    NSString* fullTitle = [values objectAtIndex:0];
+    NSString* studio = [values objectAtIndex:1];
+    NSString* location = [values objectAtIndex:2];
+    
+    [result setObject:[NSArray arrayWithObjects:studio, location, nil]
+               forKey:fullTitle.lowercaseString];
+  }
+  
+  self.index = result;
+  self.indexKeys = index.allKeys;
 }
 
 
 - (BOOL) tryGenerateIndex {
-    BOOL result;
-    [dataGate lock];
-    {
-        if (index == nil) {
-            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-            NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
-            if (indexText != nil) {
-                [self generateIndexWorker:indexText];
-                [self clearUpdatedMovies];
-            }
-        }
-
-        result = index != nil;
+  BOOL result;
+  [dataGate lock];
+  {
+    if (index == nil) {
+      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+      NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url];
+      if (indexText != nil) {
+        [self generateIndexWorker:indexText];
+        [self clearUpdatedMovies];
+      }
     }
-    [dataGate unlock];
-    return result;
+    
+    result = index != nil;
+  }
+  [dataGate unlock];
+  return result;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-    if ([self tryGenerateIndex]) {
-        [self updateMovieDetailsWorker:movie force:force];
-    }
+  if ([self tryGenerateIndex]) {
+    [self updateMovieDetailsWorker:movie force:force];
+  }
 }
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* trailers = [FileUtilities readObject:[self trailerFile:movie]];
-    if (trailers == nil) {
-        return [NSArray array];
-    }
-    return trailers;
+  NSArray* trailers = [FileUtilities readObject:[self trailerFile:movie]];
+  if (trailers == nil) {
+    return [NSArray array];
+  }
+  return trailers;
 }
 
 @end
