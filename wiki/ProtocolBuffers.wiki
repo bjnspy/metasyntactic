@@ -43,10 +43,10 @@ Person* person = [Person parseFromData:raw_data];
 
 In order to compiler and use `protoc` you must first have installed XCode and the rest of Apple's developer tools.
 
-# Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.
-# Navigate to `<install_directory>` and type the following commands
-# `./configure`
-# `make`
+  # Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.
+  # Navigate to `<install_directory>` and type the following commands
+  # `./configure`
+  # `make`
 
 `protoc` will then be built into the `<install_directory>/src` directory. 
 
@@ -67,10 +67,10 @@ The compiler will read the files `src/foo.proto` and `src/bar/baz.proto` and pro
 
 Once you have generated the `.pb.h` and `.pb.m` files for the `.proto` file you care about, you can then add them to your project.  However, in order to build properly several changes must be made to your project.
 
-# Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.  (This should have been done in the 'Creating the Protocol Buffer Compiler' step above).
-# Open your existing project and a reference to the `ProtocolBuffers` project found in `<install_directory>`.
-# Add a reference to `<install_directory>/Classes/ProtocolBuffers.h` in your project and add the following line to your pch file: `#import "ProtocolBuffers.h"`
-# Compile and enjoy!
+  # Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.  (This should have been done in the 'Creating the Protocol Buffer Compiler' step above).
+  # Open your existing project and a reference to the `ProtocolBuffers` project found in `<install_directory>`.
+  # Add a reference to `<install_directory>/Classes/ProtocolBuffers.h` in your project and add the following line to your pch file: `#import "ProtocolBuffers.h"`
+  # Compile and enjoy!
 
 
 = Extensions =
