@@ -71,7 +71,7 @@ am_libprotobuf_la_OBJECTS = common.lo hash.lo map-util.lo \
 	stl_util-inl.lo substitute.lo strutil.lo structurally_valid.lo \
 	descriptor.lo descriptor.pb.lo descriptor_database.lo \
 	dynamic_message.lo extension_set.lo \
-	generated_message_reflection.lo message.lo reflection_ops.lo \
+	generated_message_reflection.lo message.lo objectivec-descriptor.pb.lo reflection_ops.lo \
 	repeated_field.lo service.lo text_format.lo \
 	unknown_field_set.lo wire_format.lo coded_stream.lo printer.lo \
 	tokenizer.lo zero_copy_stream.lo zero_copy_stream_impl.lo \
@@ -85,7 +85,10 @@ am_libprotoc_la_OBJECTS = code_generator.lo command_line_interface.lo \
 	cpp_string_field.lo java_enum.lo java_enum_field.lo \
 	java_extension.lo java_field.lo java_file.lo java_generator.lo \
 	java_helpers.lo java_message.lo java_message_field.lo \
-	java_primitive_field.lo java_service.lo python_generator.lo
+	java_primitive_field.lo java_service.lo objectivec_enum.lo objectivec_enum_field.lo \
+	objectivec_extension.lo objectivec_field.lo objectivec_file.lo objectivec_generator.lo \
+	objectivec_helpers.lo objectivec_message.lo objectivec_message_field.lo \
+	objectivec_primitive_field.lo python_generator.lo
 libprotoc_la_OBJECTS = $(am_libprotoc_la_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
@@ -690,6 +693,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/java_message_field.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/java_primitive_field.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/java_service.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_enum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_enum_field.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_extension.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_field.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_file.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_generator.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_helpers.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_message.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_message_field.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/objectivec_primitive_field.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-util.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/message.Plo@am__quote@
@@ -1120,6 +1133,76 @@ java_service.lo: google/protobuf/compiler/java/java_service.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/java/java_service.cc' object='java_service.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o java_service.lo `test -f 'google/protobuf/compiler/java/java_service.cc' || echo '$(srcdir)/'`google/protobuf/compiler/java/java_service.cc
+
+objectivec_enum.lo: google/protobuf/compiler/objectivec/objectivec_enum.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_enum.lo -MD -MP -MF "$(DEPDIR)/objectivec_enum.Tpo" -c -o objectivec_enum.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_enum.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_enum.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_enum.Tpo" "$(DEPDIR)/objectivec_enum.Plo"; else rm -f "$(DEPDIR)/objectivec_enum.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_enum.cc' object='objectivec_enum.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_enum.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_enum.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_enum.cc
+
+objectivec_enum_field.lo: google/protobuf/compiler/objectivec/objectivec_enum_field.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_enum_field.lo -MD -MP -MF "$(DEPDIR)/objectivec_enum_field.Tpo" -c -o objectivec_enum_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_enum_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_enum_field.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_enum_field.Tpo" "$(DEPDIR)/objectivec_enum_field.Plo"; else rm -f "$(DEPDIR)/objectivec_enum_field.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_enum_field.cc' object='objectivec_enum_field.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_enum_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_enum_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_enum_field.cc
+
+objectivec_extension.lo: google/protobuf/compiler/objectivec/objectivec_extension.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_extension.lo -MD -MP -MF "$(DEPDIR)/objectivec_extension.Tpo" -c -o objectivec_extension.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_extension.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_extension.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_extension.Tpo" "$(DEPDIR)/objectivec_extension.Plo"; else rm -f "$(DEPDIR)/objectivec_extension.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_extension.cc' object='objectivec_extension.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_extension.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_extension.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_extension.cc
+
+objectivec_field.lo: google/protobuf/compiler/objectivec/objectivec_field.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_field.lo -MD -MP -MF "$(DEPDIR)/objectivec_field.Tpo" -c -o objectivec_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_field.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_field.Tpo" "$(DEPDIR)/objectivec_field.Plo"; else rm -f "$(DEPDIR)/objectivec_field.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_field.cc' object='objectivec_field.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_field.cc
+
+objectivec_file.lo: google/protobuf/compiler/objectivec/objectivec_file.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_file.lo -MD -MP -MF "$(DEPDIR)/objectivec_file.Tpo" -c -o objectivec_file.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_file.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_file.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_file.Tpo" "$(DEPDIR)/objectivec_file.Plo"; else rm -f "$(DEPDIR)/objectivec_file.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_file.cc' object='objectivec_file.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_file.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_file.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_file.cc
+
+objectivec_generator.lo: google/protobuf/compiler/objectivec/objectivec_generator.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_generator.lo -MD -MP -MF "$(DEPDIR)/objectivec_generator.Tpo" -c -o objectivec_generator.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_generator.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_generator.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_generator.Tpo" "$(DEPDIR)/objectivec_generator.Plo"; else rm -f "$(DEPDIR)/objectivec_generator.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_generator.cc' object='objectivec_generator.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_generator.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_generator.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_generator.cc
+
+objectivec_helpers.lo: google/protobuf/compiler/objectivec/objectivec_helpers.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_helpers.lo -MD -MP -MF "$(DEPDIR)/objectivec_helpers.Tpo" -c -o objectivec_helpers.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_helpers.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_helpers.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_helpers.Tpo" "$(DEPDIR)/objectivec_helpers.Plo"; else rm -f "$(DEPDIR)/objectivec_helpers.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_helpers.cc' object='objectivec_helpers.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_helpers.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_helpers.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_helpers.cc
+
+objectivec_message.lo: google/protobuf/compiler/objectivec/objectivec_message.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_message.lo -MD -MP -MF "$(DEPDIR)/objectivec_message.Tpo" -c -o objectivec_message.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_message.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_message.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_message.Tpo" "$(DEPDIR)/objectivec_message.Plo"; else rm -f "$(DEPDIR)/objectivec_message.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_message.cc' object='objectivec_message.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_message.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_message.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_message.cc
+
+objectivec_message_field.lo: google/protobuf/compiler/objectivec/objectivec_message_field.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_message_field.lo -MD -MP -MF "$(DEPDIR)/objectivec_message_field.Tpo" -c -o objectivec_message_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_message_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_message_field.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_message_field.Tpo" "$(DEPDIR)/objectivec_message_field.Plo"; else rm -f "$(DEPDIR)/objectivec_message_field.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_message_field.cc' object='objectivec_message_field.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_message_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_message_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_message_field.cc
+
+objectivec_primitive_field.lo: google/protobuf/compiler/objectivec/objectivec_primitive_field.cc
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT objectivec_primitive_field.lo -MD -MP -MF "$(DEPDIR)/objectivec_primitive_field.Tpo" -c -o objectivec_primitive_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_primitive_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_primitive_field.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/objectivec_primitive_field.Tpo" "$(DEPDIR)/objectivec_primitive_field.Plo"; else rm -f "$(DEPDIR)/objectivec_primitive_field.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='google/protobuf/compiler/objectivec/objectivec_primitive_field.cc' object='objectivec_primitive_field.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o objectivec_primitive_field.lo `test -f 'google/protobuf/compiler/objectivec/objectivec_primitive_field.cc' || echo '$(srcdir)/'`google/protobuf/compiler/objectivec/objectivec_primitive_field.cc
 
 python_generator.lo: google/protobuf/compiler/python/python_generator.cc
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT python_generator.lo -MD -MP -MF "$(DEPDIR)/python_generator.Tpo" -c -o python_generator.lo `test -f 'google/protobuf/compiler/python/python_generator.cc' || echo '$(srcdir)/'`google/protobuf/compiler/python/python_generator.cc; \
@@ -1844,7 +1927,7 @@ check-TESTS: $(TESTS)
 	else :; fi
 
 distdir: $(DISTFILES)
-	$(mkdir_p) $(distdir)/google/protobuf $(distdir)/google/protobuf/compiler $(distdir)/google/protobuf/compiler/cpp $(distdir)/google/protobuf/compiler/java $(distdir)/google/protobuf/compiler/python $(distdir)/google/protobuf/io $(distdir)/google/protobuf/stubs $(distdir)/google/protobuf/testdata $(distdir)/gtest $(distdir)/solaris
+	$(mkdir_p) $(distdir)/google/protobuf $(distdir)/google/protobuf/compiler $(distdir)/google/protobuf/compiler/cpp $(distdir)/google/protobuf/compiler/java $(distdir)/google/protobuf/compiler/python $(distdir)/google/protobuf/compiler/objectivec $(distdir)/google/protobuf/io $(distdir)/google/protobuf/stubs $(distdir)/google/protobuf/testdata $(distdir)/gtest $(distdir)/solaris
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
