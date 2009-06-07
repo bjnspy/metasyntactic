@@ -328,6 +328,8 @@
 		749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
+		7498506E0FDB7A6C003D91F0 /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498506D0FDB7A6C003D91F0 /* AbstractWebsiteCache.m */; };
+		7498506F0FDB7A6C003D91F0 /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498506D0FDB7A6C003D91F0 /* AbstractWebsiteCache.m */; };
 		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
 		74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
 		74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E530F034C4100E5450A /* MutableNetflixCache.m */; };
@@ -748,6 +750,8 @@
 		749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieDetailsCell.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		7498506C0FDB7A6C003D91F0 /* AbstractWebsiteCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWebsiteCache.h; sourceTree = "<group>"; };
+		7498506D0FDB7A6C003D91F0 /* AbstractWebsiteCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWebsiteCache.m; sourceTree = "<group>"; };
 		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
 		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
 		74A33E480F034B8100E5450A /* AbstractNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixCache.h; sourceTree = "<group>"; };
@@ -1127,9 +1131,11 @@
 		741172C10F60957000E09FD8 /* Websites */ = {
 			isa = PBXGroup;
 			children = (
+				7498506C0FDB7A6C003D91F0 /* AbstractWebsiteCache.h */,
 				742C07B10F08B0890087F4E0 /* AmazonCache.h */,
 				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
 				749D34B10F075F8F006E7C7D /* WikipediaCache.h */,
+				7498506D0FDB7A6C003D91F0 /* AbstractWebsiteCache.m */,
 				742C07B20F08B0890087F4E0 /* AmazonCache.m */,
 				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
 				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
@@ -2091,6 +2097,7 @@
 				74E605A80FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */,
 				741F4EAE0FD21B9B00244D37 /* StockImages.m in Sources */,
 				74AE6B460FD8D76200E5CAFF /* PersonCell.m in Sources */,
+				7498506F0FDB7A6C003D91F0 /* AbstractWebsiteCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2232,6 +2239,7 @@
 				74E605A90FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */,
 				741F4EAF0FD21B9B00244D37 /* StockImages.m in Sources */,
 				74AE6B470FD8D76200E5CAFF /* PersonCell.m in Sources */,
+				7498506E0FDB7A6C003D91F0 /* AbstractWebsiteCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

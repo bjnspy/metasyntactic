@@ -1305,7 +1305,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
     return result;
   }
 
-  result = [imdbCache imdbAddressForMovie:movie];
+  result = [imdbCache addressForMovie:movie];
   if (result.length > 0) {
     return result;
   }
@@ -1315,12 +1315,12 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
 
 - (NSString*) amazonAddressForMovie:(Movie*) movie {
-  return [amazonCache amazonAddressForMovie:movie];
+  return [amazonCache addressForMovie:movie];
 }
 
 
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie {
-  return [wikipediaCache wikipediaAddressForMovie:movie];
+  return [wikipediaCache addressForMovie:movie];
 }
 
 

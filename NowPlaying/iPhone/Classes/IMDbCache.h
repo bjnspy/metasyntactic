@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
+#import "AbstractWebsiteCache.h"
 
-@interface IMDbCache : AbstractMovieCache {
+@interface IMDbCache : AbstractWebsiteCache {
 @private
 }
 
 + (IMDbCache*) cache;
-
-- (NSString*) imdbAddressForMovie:(Movie*) movie;
 
 @end
