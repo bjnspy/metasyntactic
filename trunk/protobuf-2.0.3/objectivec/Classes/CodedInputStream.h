@@ -124,6 +124,7 @@
  */
 - (void) skipMessage;
 
+- (BOOL) isAtEnd;
 - (int32_t) pushLimit:(int32_t) byteLimit;
 - (void) recomputeBufferSizeAfterLimit;
 - (void) popLimit:(int32_t) oldLimit;
