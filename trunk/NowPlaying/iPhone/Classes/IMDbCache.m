@@ -25,62 +25,62 @@
 @implementation IMDbCache
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (IMDbCache*) cache {
-    return [[[IMDbCache alloc] init] autorelease];
+  return [[[IMDbCache alloc] init] autorelease];
 }
 
 
 - (NSString*) imdbFile:(Movie*) movie {
-    NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application imdbDirectory] stringByAppendingPathComponent:name];
+  NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+  return [[Application imdbDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:force {
-    if (movie.imdbAddress.length > 0) {
-        // don't even bother if the movie has an imdb address in it
+  if (movie.imdbAddress.length > 0) {
+    // don't even bother if the movie has an imdb address in it
+    return;
+  }
+  
+  NSString* path = [self imdbFile:movie];
+  
+  NSDate* lastLookupDate = [FileUtilities modificationDate:path];
+  if (lastLookupDate != nil) {
+    NSString* value = [FileUtilities readObject:path];
+    if (value.length > 0) {
+      // we have a real imdb value for this movie
+      return;
+    }
+    
+    if (!force) {
+      // we have a sentinel.  only update if it's been long enough
+      if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
         return;
+      }
     }
-
-    NSString* path = [self imdbFile:movie];
-
-    NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-    if (lastLookupDate != nil) {
-        NSString* value = [FileUtilities readObject:path];
-        if (value.length > 0) {
-            // we have a real imdb value for this movie
-            return;
-        }
-
-        if (!force) {
-            // we have a sentinel.  only update if it's been long enough
-            if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
-                return;
-            }
-        }
-    }
-
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url];
-    if (imdbAddress == nil) {
-        return;
-    }
-
-    // write down the response (even if it is empty).  An empty value will
-    // ensure that we don't update this entry too often.
-    [FileUtilities writeObject:imdbAddress toFile:path];
-    if (imdbAddress.length > 0) {
-        [AppDelegate minorRefresh];
-    }
+  }
+  
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+  NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url];
+  if (imdbAddress == nil) {
+    return;
+  }
+  
+  // write down the response (even if it is empty).  An empty value will
+  // ensure that we don't update this entry too often.
+  [FileUtilities writeObject:imdbAddress toFile:path];
+  if (imdbAddress.length > 0) {
+    [AppDelegate minorRefresh];
+  }
 }
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [FileUtilities readObject:[self imdbFile:movie]];
+  return [FileUtilities readObject:[self imdbFile:movie]];
 }
 
 @end
