@@ -12,26 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AmazonCache.h"
+#import "AbstractImageCell.h"
 
-#import "AppDelegate.h"
-#import "Application.h"
-#import "Movie.h"
-
-@implementation AmazonCache
-
-+ (AmazonCache*) cache {
-  return [[[AmazonCache alloc] init] autorelease];
+@interface PersonCell : AbstractImageCell {
+@private
+    Person* person;
+    UILabel* bioTitleLabel;
+    UILabel* bioLabel;
 }
 
+@property (retain) Person* person;
 
-- (NSString*) cacheDirectory {
-  return [Application amazonDirectory];
-}
+- (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
+- (void) setPerson:(Person*) movie owner:(id) owner;
 
-- (NSString*) serverUrl:(Movie*) movie {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-}
+// @protected
+- (void) onSetSamePerson:(Person*) movie owner:(id) owner;
 
 @end
