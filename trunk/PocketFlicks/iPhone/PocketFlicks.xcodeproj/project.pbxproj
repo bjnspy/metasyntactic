@@ -67,6 +67,8 @@
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
 		746A1BDE0EF1950B00CF38C9 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */; };
 		746A1BDF0EF1950B00CF38C9 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */; };
+		747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */; };
+		747179AF0FDC5BCD00B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */; };
 		7471E21D0EFA0D7A000490CA /* NetflixBrowse.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2010EFA0D7A000490CA /* NetflixBrowse.png */; };
 		7471E2270EFA0D7A000490CA /* NetflixCellBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */; };
 		7471E2280EFA0D7A000490CA /* NetflixCellBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */; };
@@ -94,8 +96,6 @@
 		7476FEFC0F2A671900D71F36 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */; };
 		747AB7A70EB956B2002438D0 /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = 747AB7A60EB956B2002438D0 /* DVD.png */; };
 		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
-		747C36790FD07C4200411801 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C36670FD07C0200411801 /* libProtocolBuffers.a */; };
-		747C367B0FD07C4900411801 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747C36670FD07C0200411801 /* libProtocolBuffers.a */; };
 		747C39B50FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
 		747C39B60FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
@@ -513,40 +513,40 @@
 			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared3;
 		};
-		747C36660FD07C0200411801 /* PBXContainerItemProxy */ = {
+		747179A00FDC5B6900B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
 			remoteInfo = ProtocolBuffers;
 		};
-		747C36680FD07C0200411801 /* PBXContainerItemProxy */ = {
+		747179A20FDC5B6900B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281;
+			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
 			remoteInfo = UnitTests;
 		};
-		747C36710FD07C1800411801 /* PBXContainerItemProxy */ = {
+		747179A40FDC5B6900B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
-		747C36750FD07C1F00411801 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
-		74AE67530FD77C7000E5CAFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
 			remoteInfo = CommandLineTests;
+		};
+		747179A80FDC5B9600B24ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
+		};
+		747179AA0FDC5B9D00B24ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
 		};
 		74E6FD050FD1B2E50015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -678,6 +678,8 @@
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Back.png"; path = "Resources/Navigate-Back.png"; sourceTree = "<group>"; };
 		746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
+		7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.0.3/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		747179A70FDC5B8A00B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
 		7471E2010EFA0D7A000490CA /* NetflixBrowse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixBrowse.png; path = Resources/NetflixBrowse.png; sourceTree = "<group>"; };
 		7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-0.png"; path = "Resources/NetflixCellBackground-0.png"; sourceTree = "<group>"; };
 		7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-1.png"; path = "Resources/NetflixCellBackground-1.png"; sourceTree = "<group>"; };
@@ -712,8 +714,6 @@
 		747AB7A60EB956B2002438D0 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVD.png; path = Resources/DVD.png; sourceTree = "<group>"; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
-		747C36520FD07BEB00411801 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = ../../ProtocolBuffers/Classes/ProtocolBuffers.h; sourceTree = SOURCE_ROOT; };
-		747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ../../ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		747C39B30FD0814400411801 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		747C39B40FD0814400411801 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -983,8 +983,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				747179AF0FDC5BCD00B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74E6FD0E0FD1B3110015D9F8 /* libMetasyntacticShared2.a in Frameworks */,
-				747C36790FD07C4200411801 /* libProtocolBuffers.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
@@ -1001,8 +1001,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74200CC80FD2562C00DEE16B /* libMetasyntacticShared3.a in Frameworks */,
-				747C367B0FD07C4900411801 /* libProtocolBuffers.a in Frameworks */,
 				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
 				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
 				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
@@ -1056,7 +1056,7 @@
 			isa = PBXGroup;
 			children = (
 				74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */,
-				747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */,
+				7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1286,6 +1286,16 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		7471799B0FDC5B6900B24ECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */,
+				747179A30FDC5B6900B24ECD /* UnitTests.octest */,
+				747179A50FDC5B6900B24ECD /* CommandLineTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
@@ -1398,16 +1408,6 @@
 				74E6FD080FD1B2F90015D9F8 /* MetasyntacticShared.h */,
 			);
 			name = MetasyntacticShared;
-			sourceTree = "<group>";
-		};
-		747C36620FD07C0200411801 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				747C36670FD07C0200411801 /* libProtocolBuffers.a */,
-				747C36690FD07C0200411801 /* UnitTests.octest */,
-				74AE67540FD77C7000E5CAFF /* CommandLineTests.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		747DA1630EF83B0D0066B881 /* Netflix */ = {
@@ -1573,7 +1573,7 @@
 		74A915980F7FFBB000832767 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				747C36520FD07BEB00411801 /* ProtocolBuffers.h */,
+				747179A70FDC5B8A00B24ECD /* ProtocolBuffers.h */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1744,8 +1744,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				747C36720FD07C1800411801 /* PBXTargetDependency */,
 				74E6FD0A0FD1B3000015D9F8 /* PBXTargetDependency */,
+				747179A90FDC5B9600B24ECD /* PBXTargetDependency */,
 			);
 			name = PocketFlicks2;
 			productName = PocketFlicks;
@@ -1763,8 +1763,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				747C36760FD07C1F00411801 /* PBXTargetDependency */,
 				74200CC70FD2561C00DEE16B /* PBXTargetDependency */,
+				747179AB0FDC5B9D00B24ECD /* PBXTargetDependency */,
 			);
 			name = PocketFlicks3;
 			productName = PocketFlicks;
@@ -1819,8 +1819,8 @@
 					ProjectRef = 74E6FD010FD1B2E50015D9F8 /* MetasyntacticShared.xcodeproj */;
 				},
 				{
-					ProductGroup = 747C36620FD07C0200411801 /* Products */;
-					ProjectRef = 747C36610FD07C0200411801 /* ProtocolBuffers.xcodeproj */;
+					ProductGroup = 7471799B0FDC5B6900B24ECD /* Products */;
+					ProjectRef = 7471799A0FDC5B6900B24ECD /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1839,25 +1839,25 @@
 			remoteRef = 74200BAD0FD24CB600DEE16B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		747C36670FD07C0200411801 /* libProtocolBuffers.a */ = {
+		747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libProtocolBuffers.a;
-			remoteRef = 747C36660FD07C0200411801 /* PBXContainerItemProxy */;
+			remoteRef = 747179A00FDC5B6900B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		747C36690FD07C0200411801 /* UnitTests.octest */ = {
+		747179A30FDC5B6900B24ECD /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
-			remoteRef = 747C36680FD07C0200411801 /* PBXContainerItemProxy */;
+			remoteRef = 747179A20FDC5B6900B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74AE67540FD77C7000E5CAFF /* CommandLineTests.app */ = {
+		747179A50FDC5B6900B24ECD /* CommandLineTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CommandLineTests.app;
-			remoteRef = 74AE67530FD77C7000E5CAFF /* PBXContainerItemProxy */;
+			remoteRef = 747179A40FDC5B6900B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		74E6FD060FD1B2E50015D9F8 /* libMetasyntacticShared2.a */ = {
@@ -2375,15 +2375,15 @@
 			name = MetasyntacticShared3;
 			targetProxy = 74200CC60FD2561C00DEE16B /* PBXContainerItemProxy */;
 		};
-		747C36720FD07C1800411801 /* PBXTargetDependency */ = {
+		747179A90FDC5B9600B24ECD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
-			targetProxy = 747C36710FD07C1800411801 /* PBXContainerItemProxy */;
+			targetProxy = 747179A80FDC5B9600B24ECD /* PBXContainerItemProxy */;
 		};
-		747C36760FD07C1F00411801 /* PBXTargetDependency */ = {
+		747179AB0FDC5B9D00B24ECD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
-			targetProxy = 747C36750FD07C1F00411801 /* PBXContainerItemProxy */;
+			targetProxy = 747179AA0FDC5B9D00B24ECD /* PBXContainerItemProxy */;
 		};
 		74E6FD0A0FD1B3000015D9F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
