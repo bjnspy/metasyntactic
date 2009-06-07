@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = 74AE67890FD77F4B00E5CAFF /* CommandLineTests */;
 		activeSDKPreference = macosx10.5;
 		activeTarget = 7401C1A70F950347006D8281 /* UnitTests */;
@@ -224,9 +224,9 @@
 	};
 	7461B6AE0F94FDF800A0C422 /* Unittest.pb.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {828, 227639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {764, 228589}}";
 			sepNavSelRange = "{399860, 0}";
-			sepNavVisRange = "{41553, 2107}";
+			sepNavVisRange = "{37711, 2019}";
 		};
 	};
 	7461B6B30F94FDF800A0C422 /* UnittestMset.pb.h */ = {

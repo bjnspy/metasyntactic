@@ -31,8 +31,6 @@
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		7408FDC80F27C81100BD86B6 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDC70F27C81100BD86B6 /* Status.m */; };
 		7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */; };
-		740993CD0F951026008FBC23 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */; };
-		740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
 		7410D7410EC2C0740079BF1E /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7410D7400EC2C0740079BF1E /* LargePosterCache.m */; };
@@ -303,6 +301,8 @@
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
+		7471794C0FDC5A1A00B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
+		7471794D0FDC5A1F00B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
 		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
@@ -453,40 +453,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		740993C90F951015008FBC23 /* PBXContainerItemProxy */ = {
+		747179420FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
-		740993CB0F95101D008FBC23 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
-		};
-		748F17570FD76BA0000858A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
+			remoteInfo = ProtocolBuffers;
+		};
+		747179440FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		747179460FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
 			remoteInfo = CommandLineTests;
 		};
-		74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
+		747179480FDC5A0600B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
 			remoteInfo = ProtocolBuffers;
 		};
-		74C3EDB00F950F6C00FFEE5A /* PBXContainerItemProxy */ = {
+		7471794A0FDC5A0F00B24ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281;
-			remoteInfo = UnitTests;
+			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
 		};
 		74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -696,6 +696,8 @@
 		746A02040DC819430079D89B /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.0.3/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		747179660FDC5A8700B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
 		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		747413870EC7F2EC00625001 /* AbstractPosterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCell.h; sourceTree = "<group>"; };
@@ -721,7 +723,6 @@
 		747BF48A0F774928008F5B2B /* LocalSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchEngine.m; sourceTree = "<group>"; };
 		747BF4AB0F774A0A008F5B2B /* LocalSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSearchDisplayController.h; sourceTree = "<group>"; };
 		747BF4AC0F774A0A008F5B2B /* LocalSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSearchDisplayController.m; sourceTree = "<group>"; };
-		747C31420FD0669900411801 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = ../../ProtocolBuffers/Classes/ProtocolBuffers.h; sourceTree = SOURCE_ROOT; };
 		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
@@ -794,7 +795,6 @@
 		74BEB8470F7D739800B8DD32 /* SquareMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMovieTitleCell.m; sourceTree = "<group>"; };
 		74BEB86F0F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectGreenMovieTitleCell.h; sourceTree = "<group>"; };
 		74BEB8700F7D74B000B8DD32 /* PerfectGreenMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectGreenMovieTitleCell.m; sourceTree = "<group>"; };
-		74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = ../../ProtocolBuffers/ProtocolBuffers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
 		74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
 		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
@@ -916,8 +916,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7471794D0FDC5A1F00B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74E605D60FD1F62E0015D9F8 /* libMetasyntacticShared3.a in Frameworks */,
-				740993CD0F951026008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
 				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
 				7401C4CA0F95096B006D8281 /* AddressBook.framework in Frameworks */,
@@ -935,8 +935,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7471794C0FDC5A1A00B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74E6FCCE0FD1B1EF0015D9F8 /* libMetasyntacticShared2.a in Frameworks */,
-				740993CE0F951029008FBC23 /* libProtocolBuffers.a in Frameworks */,
 				746398750F7EC99800B2F64C /* SystemConfiguration.framework in Frameworks */,
 				746398790F7EC99C00B2F64C /* MediaPlayer.framework in Frameworks */,
 				7463987D0F7EC99F00B2F64C /* AddressBook.framework in Frameworks */,
@@ -989,7 +989,7 @@
 			isa = PBXGroup;
 			children = (
 				74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */,
-				74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */,
+				7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				7463989A0F7EC9BB00B2F64C /* Frameworks2 */,
 				29B97323FDCFA39411CA2CEA /* Frameworks3 */,
@@ -1323,6 +1323,16 @@
 			name = Frameworks2;
 			sourceTree = "<group>";
 		};
+		7471793D0FDC59FA00B24ECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				747179430FDC59FA00B24ECD /* libProtocolBuffers.a */,
+				747179450FDC59FA00B24ECD /* UnitTests.octest */,
+				747179470FDC59FA00B24ECD /* CommandLineTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
@@ -1422,7 +1432,7 @@
 		747C31400FD0667500411801 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				747C31420FD0669900411801 /* ProtocolBuffers.h */,
+				747179660FDC5A8700B24ECD /* ProtocolBuffers.h */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1546,16 +1556,6 @@
 			name = Location;
 			sourceTree = "<group>";
 		};
-		74C3EDAA0F950F6C00FFEE5A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */,
-				74C3EDB10F950F6C00FFEE5A /* UnitTests.octest */,
-				748F17580FD76BA0000858A9 /* CommandLineTests.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		74E031770EF4C5D000B2D2BA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
@@ -1666,8 +1666,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				740993CA0F951015008FBC23 /* PBXTargetDependency */,
 				74E605D50FD1F6240015D9F8 /* PBXTargetDependency */,
+				747179490FDC5A0600B24ECD /* PBXTargetDependency */,
 			);
 			name = BoxOffice3;
 			productName = BoxOffice;
@@ -1685,8 +1685,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				740993CC0F95101D008FBC23 /* PBXTargetDependency */,
 				74E6FCCD0FD1B1E40015D9F8 /* PBXTargetDependency */,
+				7471794B0FDC5A0F00B24ECD /* PBXTargetDependency */,
 			);
 			name = BoxOffice2;
 			productName = BoxOffice;
@@ -1741,8 +1741,8 @@
 					ProjectRef = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
 				},
 				{
-					ProductGroup = 74C3EDAA0F950F6C00FFEE5A /* Products */;
-					ProjectRef = 74C3EDA90F950F6C00FFEE5A /* ProtocolBuffers.xcodeproj */;
+					ProductGroup = 7471793D0FDC59FA00B24ECD /* Products */;
+					ProjectRef = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1754,25 +1754,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		748F17580FD76BA0000858A9 /* CommandLineTests.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CommandLineTests.app;
-			remoteRef = 748F17570FD76BA0000858A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74C3EDAF0F950F6C00FFEE5A /* libProtocolBuffers.a */ = {
+		747179430FDC59FA00B24ECD /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libProtocolBuffers.a;
-			remoteRef = 74C3EDAE0F950F6C00FFEE5A /* PBXContainerItemProxy */;
+			remoteRef = 747179420FDC59FA00B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74C3EDB10F950F6C00FFEE5A /* UnitTests.octest */ = {
+		747179450FDC59FA00B24ECD /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
-			remoteRef = 74C3EDB00F950F6C00FFEE5A /* PBXContainerItemProxy */;
+			remoteRef = 747179440FDC59FA00B24ECD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		747179470FDC59FA00B24ECD /* CommandLineTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CommandLineTests.app;
+			remoteRef = 747179460FDC59FA00B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */ = {
@@ -2246,15 +2246,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		740993CA0F951015008FBC23 /* PBXTargetDependency */ = {
+		747179490FDC5A0600B24ECD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
-			targetProxy = 740993C90F951015008FBC23 /* PBXContainerItemProxy */;
+			targetProxy = 747179480FDC5A0600B24ECD /* PBXContainerItemProxy */;
 		};
-		740993CC0F95101D008FBC23 /* PBXTargetDependency */ = {
+		7471794B0FDC5A0F00B24ECD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ProtocolBuffers;
-			targetProxy = 740993CB0F95101D008FBC23 /* PBXContainerItemProxy */;
+			targetProxy = 7471794A0FDC5A0F00B24ECD /* PBXContainerItemProxy */;
 		};
 		74E605D50FD1F6240015D9F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
