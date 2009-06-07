@@ -30,6 +30,12 @@
 
 static NotificationCenter* notificationCenter;
 
++ (void) initialize {
+  if (self == [NotificationCenter class]) {
+    notificationCenter = [[NotificationCenter alloc] init];
+  }
+}
+
 @synthesize viewController;
 @synthesize notificationLabel;
 @synthesize blackLabel;
@@ -50,11 +56,7 @@ static NotificationCenter* notificationCenter;
 
 
 + (NotificationCenter*) notificationCenter {
-    if (notificationCenter == nil) {
-        notificationCenter = [[NotificationCenter alloc] init];
-    }
-
-    return notificationCenter;
+  return notificationCenter;
 }
 
 
