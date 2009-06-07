@@ -65,7 +65,7 @@
     if (result == nil && loadFromDisk) {
       result = [UIImage imageWithContentsOfFile:path];
       CGSize size = result.size;
-      if (result != nil && size.width < 200 && size.height < 200) {
+      if (result != nil && size.width < 300 && size.height < 300) {
         [pathToImageMap setObject:result forKey:path];
       }
     }
