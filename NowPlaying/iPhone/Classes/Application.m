@@ -97,293 +97,293 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (void) deleteDirectories {
-    [[self gate] lock];
-    {
-        for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            if (directory != nil) {
-                [self moveItemToTrash:directory];
-            }
-        }
+  [[self gate] lock];
+  {
+    for (int i = 0; i < ArrayLength(directories); i++) {
+      NSString* directory = *directories[i];
+      
+      if (directory != nil) {
+        [self moveItemToTrash:directory];
+      }
     }
-    [[self gate] unlock];
+  }
+  [[self gate] unlock];
 }
 
 
 + (void) createDirectories {
-    [[self gate] lock];
-    {
-        for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            [FileUtilities createDirectory:directory];
-        }
+  [[self gate] lock];
+  {
+    for (int i = 0; i < ArrayLength(directories); i++) {
+      NSString* directory = *directories[i];
+      
+      [FileUtilities createDirectory:directory];
     }
-    [[self gate] unlock];
+  }
+  [[self gate] unlock];
 }
 
 
 + (void) initializeDirectories {
-    {
-        NSString* cacheDirectory = [self cacheDirectory];
-        dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
-        imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
-        amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
-        wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
-        userLocationsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"UserLocations"] retain];
-        scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
-        reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
-        trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-        localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
-
-        postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
-        moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
-        largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
-        largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
-        peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
-        largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
-
-        dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
-        dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
-
-        blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
-        blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
-
-        netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
-        netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
-        netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
-        netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
-        netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
-        netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
-        netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
-        netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
-
-        upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
-        upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
-        upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
-        upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-
-        internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
-
-        helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
-
-        [self createDirectories];
-    }
+  {
+    NSString* cacheDirectory = [self cacheDirectory];
+    dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
+    imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
+    amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
+    wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
+    userLocationsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"UserLocations"] retain];
+    scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
+    reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
+    trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
+    localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
+    
+    postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
+    moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
+    largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+    largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
+    peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
+    largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+    
+    dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
+    dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
+    
+    blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
+    blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
+    
+    netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
+    netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
+    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
+    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
+    netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
+    netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
+    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
+    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
+    
+    upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
+    upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
+    upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
+    upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
+    
+    internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
+    
+    helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
+    
+    [self createDirectories];
+  }
 }
 
 
 + (void) initialize {
-    if (self == [Application class]) {
-        differenceEngine = [[DifferenceEngine engine] retain];
-
-        [self initializeDirectories];
-    }
+  if (self == [Application class]) {
+    differenceEngine = [[DifferenceEngine engine] retain];
+    
+    [self initializeDirectories];
+  }
 }
 
 
 + (NSArray*) directoriesToKeep {
-    return [NSArray arrayWithObject:userLocationsDirectory];
+  return [NSArray arrayWithObject:userLocationsDirectory];
 }
 
 
 + (NSString*) dataDirectory {
-    return dataDirectory;
+  return dataDirectory;
 }
 
 
 + (NSString*) imdbDirectory {
-    return imdbDirectory;
+  return imdbDirectory;
 }
 
 
 + (NSString*) amazonDirectory {
-    return amazonDirectory;
+  return amazonDirectory;
 }
 
 
 + (NSString*) wikipediaDirectory {
-    return wikipediaDirectory;
+  return wikipediaDirectory;
 }
 
 
 + (NSString*) userLocationsDirectory {
-    return userLocationsDirectory;
+  return userLocationsDirectory;
 }
 
 
 + (NSString*) moviesPostersDirectory {
-    return moviesPostersDirectory;
+  return moviesPostersDirectory;
 }
 
 
 + (NSString*) largeMoviesPostersDirectory {
-    return largeMoviesPostersDirectory;
+  return largeMoviesPostersDirectory;
 }
 
 
 + (NSString*) largeMoviesPostersIndexDirectory {
-    return largeMoviesPostersIndexDirectory;
+  return largeMoviesPostersIndexDirectory;
 }
 
 
 + (NSString*) peoplePostersDirectory {
-    return peoplePostersDirectory;
+  return peoplePostersDirectory;
 }
 
 
 + (NSString*) largePeoplePostersDirectory {
-    return largePeoplePostersDirectory;
+  return largePeoplePostersDirectory;
 }
 
 
 + (NSString*) scoresDirectory {
-    return scoresDirectory;
+  return scoresDirectory;
 }
 
 
 + (NSString*) reviewsDirectory {
-    return reviewsDirectory;
+  return reviewsDirectory;
 }
 
 
 + (NSString*) localizableStringsDirectory {
-    return localizableStringsDirectory;
+  return localizableStringsDirectory;
 }
 
 
 + (NSString*) trailersDirectory {
-    return trailersDirectory;
+  return trailersDirectory;
 }
 
 
 + (NSString*) dvdDirectory {
-    return dvdDirectory;
+  return dvdDirectory;
 }
 
 
 + (NSString*) dvdDetailsDirectory {
-    return dvdDetailsDirectory;
+  return dvdDetailsDirectory;
 }
 
 
 + (NSString*) blurayDirectory {
-    return blurayDirectory;
+  return blurayDirectory;
 }
 
 
 + (NSString*) blurayDetailsDirectory {
-    return blurayDetailsDirectory;
+  return blurayDetailsDirectory;
 }
 
 
 + (NSString*) netflixDirectory {
-    return netflixDirectory;
+  return netflixDirectory;
 }
 
 
 + (NSString*) netflixDetailsDirectory {
-    return netflixDetailsDirectory;
+  return netflixDetailsDirectory;
 }
 
 
 + (NSString*) netflixQueuesDirectory {
-    return netflixQueuesDirectory;
+  return netflixQueuesDirectory;
 }
 
 
 + (NSString*) netflixSeriesDirectory {
-    return netflixSeriesDirectory;
+  return netflixSeriesDirectory;
 }
 
 
 + (NSString*) netflixUserRatingsDirectory {
-    return netflixUserRatingsDirectory;
+  return netflixUserRatingsDirectory;
 }
 
 
 + (NSString*) netflixPredictedRatingsDirectory {
-    return netflixPredictedRatingsDirectory;
+  return netflixPredictedRatingsDirectory;
 }
 
 
 + (NSString*) netflixSearchDirectory {
-    return netflixSearchDirectory;
+  return netflixSearchDirectory;
 }
 
 
 + (NSString*) netflixRSSDirectory {
-    return netflixRSSDirectory;
+  return netflixRSSDirectory;
 }
 
 
 + (NSString*) upcomingDirectory {
-    return upcomingDirectory;
+  return upcomingDirectory;
 }
 
 
 + (NSString*) upcomingCastDirectory {
-    return upcomingCastDirectory;
+  return upcomingCastDirectory;
 }
 
 
 + (NSString*) upcomingSynopsesDirectory {
-    return upcomingSynopsesDirectory;
+  return upcomingSynopsesDirectory;
 }
 
 
 + (NSString*) upcomingTrailersDirectory {
-    return upcomingTrailersDirectory;
+  return upcomingTrailersDirectory;
 }
 
 
 + (NSString*) internationalDirectory {
-    return internationalDirectory;
+  return internationalDirectory;
 }
 
 
 + (NSString*) helpDirectory {
-    return helpDirectory;
+  return helpDirectory;
 }
 
 
 + (void) resetDirectories {
-    [[self gate] lock];
-    {
-        [self deleteDirectories];
-        [self createDirectories];
-    }
-    [[self gate] unlock];
+  [[self gate] lock];
+  {
+    [self deleteDirectories];
+    [self createDirectories];
+  }
+  [[self gate] unlock];
 }
 
 
 + (void) resetNetflixDirectories {
-    [[self gate] lock];
-    {
-        [self moveItemToTrash:netflixUserRatingsDirectory];
-        [self moveItemToTrash:netflixPredictedRatingsDirectory];
-        [self moveItemToTrash:netflixQueuesDirectory];
-        [self createDirectories];
-    }
-    [[self gate] unlock];
+  [[self gate] lock];
+  {
+    [self moveItemToTrash:netflixUserRatingsDirectory];
+    [self moveItemToTrash:netflixPredictedRatingsDirectory];
+    [self moveItemToTrash:netflixQueuesDirectory];
+    [self createDirectories];
+  }
+  [[self gate] unlock];
 }
 
 
 + (DifferenceEngine*) differenceEngine {
-    NSAssert([NSThread isMainThread], @"Cannot access difference engine from background thread.");
-    return differenceEngine;
+  NSAssert([NSThread isMainThread], @"Cannot access difference engine from background thread.");
+  return differenceEngine;
 }
 
 
 + (NSString*) host {
 #if !TARGET_IPHONE_SIMULATOR
-    return @"metaboxoffice2";
+  return @"metaboxoffice2";
 #else
-    //*
-    return @"metaboxoffice6";
-    /*/
-     return @"metaboxoffice2";
-     //*/
+  /*
+   return @"metaboxoffice6";
+   /*/
+  return @"metaboxoffice2";
+  //*/
 #endif
 }
 

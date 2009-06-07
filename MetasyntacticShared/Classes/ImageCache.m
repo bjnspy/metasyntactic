@@ -52,6 +52,26 @@
 }
 
 
+- (UIImage*) imageForPathWorker:(NSString*) path
+                   loadFromDisk:(BOOL) loadFromDisk {
+  UIImage* result = [pathToImageMap objectForKey:path];
+  if (result == nil && loadFromDisk) {
+    result = [UIImage imageWithContentsOfFile:path];
+    if (result != nil) {
+      CGSize size = result.size;
+      if (size.width < 300 && size.height < 300) {
+        if (pathToImageMap.count > 100) {
+          [pathToImageMap removeAllObjects];
+        }
+        [pathToImageMap setObject:result forKey:path];
+      }
+    }
+  }
+  
+  return result;
+}
+
+
 - (UIImage*) imageForPath:(NSString*) path
              loadFromDisk:(BOOL) loadFromDisk {
   if (path.length == 0) {
@@ -61,14 +81,8 @@
   UIImage* result;
   [dataGate lock];
   {
-    result = [pathToImageMap objectForKey:path];
-    if (result == nil && loadFromDisk) {
-      result = [UIImage imageWithContentsOfFile:path];
-      CGSize size = result.size;
-      if (result != nil && size.width < 300 && size.height < 300) {
-        [pathToImageMap setObject:result forKey:path];
-      }
-    }
+    result = [self imageForPathWorker:path
+                         loadFromDisk:loadFromDisk];
   }
   [dataGate unlock];
   return result;
