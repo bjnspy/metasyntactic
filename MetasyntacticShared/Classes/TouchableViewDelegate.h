@@ -17,5 +17,5 @@
 - (void) viewReceviedLeftToRightSwipe:(UIView*) view;
 - (void) viewReceviedTopToBottomSwipe:(UIView*) view;
 - (void) viewReceviedBottomToTopSwipe:(UIView*) view;
-- (void) view:(UIView*) receviedTouchFrom:(CGPoint) from to:(CGPoint) to;
+- (void) view:(UIView*) view receviedTouchFrom:(CGPoint) from to:(CGPoint) to;
 @end

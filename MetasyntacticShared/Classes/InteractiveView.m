@@ -66,7 +66,8 @@
     previousPinchLowerRightPosition = CGPointMake(MAX(point1.x, point2.x), MAX(point1.y, point2.y));
 
     if (pinchDelegate != nil) {
-        [pinchDelegate view:self pinchStarted:previousPinchUpperLeftPosition fromLowerRight:previousPinchLowerRightPosition];
+        [pinchDelegate view:self pinchStarted:previousPinchUpperLeftPosition
+             fromLowerRight:previousPinchLowerRightPosition];
     }
 }
 
@@ -113,7 +114,7 @@
 
     CGPoint previous = previousTouchPosition;
     previousTouchPosition = currentTouchPosition;
-    [touchDelegate view:self :previous to:currentTouchPosition];
+    [touchDelegate view:self receviedTouchFrom:previous to:currentTouchPosition];
 }
 
 
@@ -134,7 +135,11 @@
     previousPinchUpperLeftPosition = endUpperLeft;
     previousPinchLowerRightPosition = endLowerRight;
 
-    [pinchDelegate view:self wasPinched:startUpperLeft fromLowerRight:startLowerRight to:endUpperLeft to:endLowerRight];
+    [pinchDelegate view:self
+             wasPinched:startUpperLeft
+         fromLowerRight:startLowerRight 
+                     to:endUpperLeft
+                     to:endLowerRight];
 }
 
 
