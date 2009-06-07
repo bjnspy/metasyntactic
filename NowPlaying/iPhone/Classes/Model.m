@@ -73,8 +73,6 @@
 
 @implementation Model
 
-static Model* model = nil;
-
 static NSString* persistenceVersion = @"104";
 
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";
@@ -279,12 +277,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   [super dealloc];
 }
 
+static Model* model = nil;
 
-+ (Model*) model {
-  if (model == nil) {
++ (void) initialize {
+  if (self == [Model class]) {
     model = [[Model alloc] init];
   }
+}
 
+
++ (Model*) model {
   return model;
 }
 

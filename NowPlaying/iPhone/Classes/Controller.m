@@ -35,6 +35,12 @@
 
 static Controller* controller = nil;
 
++ (void) initialize {
+  if (self == [Controller class]) {
+    controller = [[Controller alloc] init];
+  }
+}
+
 @synthesize determineLocationGate;
 @synthesize locationManager;
 
@@ -47,10 +53,6 @@ static Controller* controller = nil;
 
 
 + (Controller*) controller {
-  if (controller == nil) {
-    controller = [[Controller alloc] init];
-  }
-
   return controller;
 }
 
