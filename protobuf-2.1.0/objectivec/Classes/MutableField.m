@@ -40,7 +40,7 @@
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -62,35 +62,35 @@
     }
     [mutableVarintList addObjectsFromArray:other.varintList];
   }
-  
+
   if (other.fixed32List.count > 0) {
     if (mutableFixed32List == nil) {
       self.mutableFixed32List = [NSMutableArray array];
     }
     [mutableFixed32List addObjectsFromArray:other.fixed32List];
   }
-  
+
   if (other.fixed64List.count > 0) {
     if (mutableFixed64List == nil) {
       self.mutableFixed64List = [NSMutableArray array];
     }
     [mutableFixed64List addObjectsFromArray:other.fixed64List];
   }
-  
+
   if (other.lengthDelimitedList.count > 0) {
     if (mutableLengthDelimitedList == nil) {
       self.mutableLengthDelimitedList = [NSMutableArray array];
     }
     [mutableLengthDelimitedList addObjectsFromArray:other.lengthDelimitedList];
   }
-  
+
   if (other.groupList.count > 0) {
     if (mutableGroupList == nil) {
       self.mutableGroupList = [NSMutableArray array];
     }
     [mutableGroupList addObjectsFromArray:other.groupList];
   }
-  
+
   return self;
 }
 

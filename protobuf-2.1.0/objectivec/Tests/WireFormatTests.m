@@ -22,23 +22,23 @@
 
 - (void) testSerialization {
   TestAllTypes* message = [TestUtilities allSet];
-  
+
   NSData* rawBytes = message.data;
   STAssertTrue(rawBytes.length == message.serializedSize, @"");
-  
+
   TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
-  
+
   [TestUtilities assertAllFieldsSet:message2];
 }
 
 - (void) testSerializationPacked {
   TestPackedTypes* message = [TestUtilities packedSet];
-  
+
   NSData* rawBytes = message.data;
   STAssertTrue(rawBytes.length == message.serializedSize, @"");
-  
+
   TestPackedTypes* message2 = [TestPackedTypes parseFromData:rawBytes];
-  
+
   [TestUtilities assertPackedFieldsSet:message2];
 }
 
@@ -47,13 +47,13 @@
   // TestAllTypes and TestAllExtensions should have compatible wire formats,
   // so if we serealize a TestAllExtensions then parse it as TestAllTypes
   // it should work.
-  
+
   TestAllExtensions* message = [TestUtilities allExtensionsSet];
   NSData* rawBytes = message.data;
   STAssertTrue(rawBytes.length == message.serializedSize, @"");
-  
+
   TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
-  
+
   [TestUtilities assertAllFieldsSet:message2];
 }
 
@@ -63,10 +63,10 @@
   // formats; check that they serialize to the same string.
   TestPackedExtensions* message = [TestUtilities packedExtensionsSet];
   NSData* rawBytes = message.data;
-  
+
   TestPackedTypes* message2 = [TestUtilities packedSet];
   NSData* rawBytes2 = message2.data;
-  
+
   STAssertEqualObjects(rawBytes, rawBytes2, @"");
 }
 
@@ -75,16 +75,16 @@
   // TestAllTypes and TestAllExtensions should have compatible wire formats,
   // so if we serealize a TestAllTypes then parse it as TestAllExtensions
   // it should work.
-  
+
   TestAllTypes* message = [TestUtilities allSet];
   NSData* rawBytes = message.data;
-  
+
   PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
   [TestUtilities registerAllExtensions:registry];
-  
+
   TestAllExtensions* message2 =
   [TestAllExtensions parseFromData:rawBytes extensionRegistry:registry];
-  
+
   [TestUtilities assertAllExtensionsSet:message2];
 }
 
@@ -98,12 +98,12 @@
   // Ensure that packed extensions can be properly parsed.
   TestPackedExtensions* message = [TestUtilities packedExtensionsSet];
   NSData* rawBytes = message.data;
-  
+
   PBExtensionRegistry* registry = [TestUtilities extensionRegistry];
 
   TestPackedExtensions* message2 =
   [TestPackedExtensions parseFromData:rawBytes extensionRegistry:registry];
-  
+
   [TestUtilities assertPackedExtensionsSet:message2];
 }
 
@@ -111,13 +111,13 @@
 - (void) assertFieldsInOrder:(NSData*) data {
   PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
   int32_t previousTag = 0;
-  
+
   while (YES) {
     int32_t tag = [input readTag];
     if (tag == 0) {
       break;
     }
-    
+
     STAssertTrue(tag > previousTag, @"");
     [input skipField:tag];
   }

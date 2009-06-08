@@ -40,7 +40,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
   self.output = nil;
   self.buffer = nil;
   self.position = 0;
-  
+
   [super dealloc];
 }
 
@@ -51,10 +51,10 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
     self.output = output_;
     self.buffer = data_;
     self.position = 0;
-    
+
     [output open];
   }
-  
+
   return self;
 }
 
@@ -756,8 +756,8 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
     // We're writing to a single buffer.
     @throw [NSException exceptionWithName:@"OutOfSpace" reason:@"" userInfo:nil];
   }
-  
-  
+
+
   [output write:buffer.bytes maxLength:position];
   position = 0;
 }
@@ -808,7 +808,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
   if (position == buffer.length) {
     [self refreshBuffer];
   }
-  
+
   ((uint8_t*)buffer.mutableBytes)[position++] = value;
 }
 
@@ -832,7 +832,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
     length -= bytesWritten;
     position = buffer.length;
     [self refreshBuffer];
-    
+
     // Now deal with the rest.
     // Since we have an output stream, this is our buffer
     // and buffer offset == 0
