@@ -29,99 +29,99 @@
 static PBUnknownFieldSet* defaultInstance = nil;
 
 + (void) initialize {
-    if (self == [PBUnknownFieldSet class]) {
-        defaultInstance = [[PBUnknownFieldSet setWithFields:[NSMutableDictionary dictionary]] retain];
-    }
+  if (self == [PBUnknownFieldSet class]) {
+    defaultInstance = [[PBUnknownFieldSet setWithFields:[NSMutableDictionary dictionary]] retain];
+  }
 }
 
 
 @synthesize fields;
 
 - (void) dealloc {
-    self.fields = nil;
-
-    [super dealloc];
+  self.fields = nil;
+  
+  [super dealloc];
 }
 
 
 + (PBUnknownFieldSet*) defaultInstance {
-    return defaultInstance;
+  return defaultInstance;
 }
 
 
 - (id) initWithFields:(NSMutableDictionary*) fields_ {
-    if ((self = [super init])) {
-        self.fields = fields_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.fields = fields_;
+  }
+  
+  return self;
 }
 
 
 + (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields {
-    return [[[PBUnknownFieldSet alloc] initWithFields:fields] autorelease];
+  return [[[PBUnknownFieldSet alloc] initWithFields:fields] autorelease];
 }
 
 
 - (BOOL) hasField:(int32_t) number {
-    return [fields objectForKey:[NSNumber numberWithInt:number]] != nil;
+  return [fields objectForKey:[NSNumber numberWithInt:number]] != nil;
 }
 
 
 - (PBField*) getField:(int32_t) number {
-    PBField* result = [fields objectForKey:[NSNumber numberWithInt:number]];
-    return (result == nil) ? [PBField defaultInstance] : result;
+  PBField* result = [fields objectForKey:[NSNumber numberWithInt:number]];
+  return (result == nil) ? [PBField defaultInstance] : result;
 }
 
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-    NSArray* sortedKeys = [fields.allKeys sortedArrayUsingSelector:@selector(compare:)];
-    for (NSNumber* number in sortedKeys) {
-        PBField* value = [fields objectForKey:number];
-        [value writeTo:number.intValue output:output];
-    }
+  NSArray* sortedKeys = [fields.allKeys sortedArrayUsingSelector:@selector(compare:)];
+  for (NSNumber* number in sortedKeys) {
+    PBField* value = [fields objectForKey:number];
+    [value writeTo:number.intValue output:output];
+  }
 }
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
-    [self writeToCodedOutputStream:codedOutput];
-    [codedOutput flush];
+  PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
+  [self writeToCodedOutputStream:codedOutput];
+  [codedOutput flush];
 }
 
 
 + (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-    return [[[PBUnknownFieldSet builder] mergeFromCodedInputStream:input] build];
+  return [[[PBUnknownFieldSet builder] mergeFromCodedInputStream:input] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromData:(NSData*) data {
-    return [[[PBUnknownFieldSet builder] mergeFromData:data] build];
+  return [[[PBUnknownFieldSet builder] mergeFromData:data] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromInputStream:(NSInputStream*) input {
-    return [[[PBUnknownFieldSet builder] mergeFromInputStream:input] build];
+  return [[[PBUnknownFieldSet builder] mergeFromInputStream:input] build];
 }
 
 
 + (PBUnknownFieldSet_Builder*) builder {
-    return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
+  return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
 }
 
 
 + (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) copyFrom {
-    return [[PBUnknownFieldSet builder] mergeUnknownFields:copyFrom];
+  return [[PBUnknownFieldSet builder] mergeUnknownFields:copyFrom];
 }
 
 
 /** Get the number of bytes required to encode this set. */
 - (int32_t) serializedSize {
-    int32_t result = 0;
-    for (NSNumber* number in fields) {
-        result += [[fields objectForKey:number] getSerializedSize:number.intValue];
-    }
-    return result;
+  int32_t result = 0;
+  for (NSNumber* number in fields) {
+    result += [[fields objectForKey:number] getSerializedSize:number.intValue];
+  }
+  return result;
 }
 
 /**
@@ -129,9 +129,9 @@ static PBUnknownFieldSet* defaultInstance = nil;
  * {@code MessageSet} wire format.
  */
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output {
-    for (NSNumber* number in fields) {
-        [[fields objectForKey:number] writeAsMessageSetExtensionTo:number.intValue output:output];
-    }
+  for (NSNumber* number in fields) {
+    [[fields objectForKey:number] writeAsMessageSetExtensionTo:number.intValue output:output];
+  }
 }
 
 
@@ -140,11 +140,11 @@ static PBUnknownFieldSet* defaultInstance = nil;
  * {@code MessageSet} wire format.
  */
 - (int32_t) serializedSizeAsMessageSet {
-    int32_t result = 0;
-    for (NSNumber* number in fields) {
-        result += [[fields objectForKey:number] getSerializedSizeAsMessageSetExtension:number.intValue];
-    }
-    return result;
+  int32_t result = 0;
+  for (NSNumber* number in fields) {
+    result += [[fields objectForKey:number] getSerializedSizeAsMessageSetExtension:number.intValue];
+  }
+  return result;
 }
 
 
@@ -153,11 +153,11 @@ static PBUnknownFieldSet* defaultInstance = nil;
  * just a trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
  */
 - (NSData*) data {
-    NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
-    PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
-
-    [self writeToCodedOutputStream:output];
-    return data;
+  NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
+  PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
+  
+  [self writeToCodedOutputStream:output];
+  return data;
 }
 
 @end

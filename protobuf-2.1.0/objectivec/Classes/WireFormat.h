@@ -13,19 +13,19 @@
 // limitations under the License.
 
 typedef enum {
-    PBWireFormatVarint = 0,
-    PBWireFormatFixed64 = 1,
-    PBWireFormatLengthDelimited = 2,
-    PBWireFormatStartGroup = 3,
-    PBWireFormatEndGroup = 4,
-    PBWireFormatFixed32 = 5,
-
-    PBWireFormatTagTypeBits = 3,
-    PBWireFormatTagTypeMask = 7 /* = (1 << PBWireFormatTagTypeBits) - 1*/,
-
-    PBWireFormatMessageSetItem = 1,
-    PBWireFormatMessageSetTypeId = 2,
-    PBWireFormatMessageSetMessage = 3
+  PBWireFormatVarint = 0,
+  PBWireFormatFixed64 = 1,
+  PBWireFormatLengthDelimited = 2,
+  PBWireFormatStartGroup = 3,
+  PBWireFormatEndGroup = 4,
+  PBWireFormatFixed32 = 5,
+  
+  PBWireFormatTagTypeBits = 3,
+  PBWireFormatTagTypeMask = 7 /* = (1 << PBWireFormatTagTypeBits) - 1*/,
+  
+  PBWireFormatMessageSetItem = 1,
+  PBWireFormatMessageSetTypeId = 2,
+  PBWireFormatMessageSetMessage = 3
 } PBWireFormat;
 
 int32_t PBWireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
