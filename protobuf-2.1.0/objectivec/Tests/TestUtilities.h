@@ -18,6 +18,10 @@
 @class TestAllExtensions_Builder;
 @class TestAllTypes;
 @class TestAllTypes_Builder;
+@class TestPackedTypes;
+@class TestPackedTypes_Builder;
+@class TestPackedExtensions;
+@class TestPackedExtensions_Builder;
 @class PBExtensionRegistry;
 @class PBMutableExtensionRegistry;
 
@@ -26,16 +30,22 @@
 
 + (void) setAllFields:(TestAllTypes_Builder*) message;
 + (void) setAllExtensions:(TestAllExtensions_Builder*) message;
++ (void) setPackedFields:(TestPackedTypes_Builder*) message;
++ (void) setPackedExtensions:(TestPackedExtensions_Builder*) message;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 
 + (TestAllTypes*) allSet;
 + (TestAllExtensions*) allExtensionsSet;
++ (TestPackedTypes*) packedSet;
++ (TestPackedExtensions*) packedExtensionsSet;
 
 + (void) assertAllFieldsSet:(TestAllTypes*) message;
 + (void) assertAllExtensionsSet:(TestAllExtensions*) message;
 + (void) assertRepeatedFieldsModified:(TestAllTypes*) message;
 + (void) assertRepeatedExtensionsModified:(TestAllExtensions*) message;
 + (void) assertExtensionsClear:(TestAllExtensions*) message;
++ (void) assertPackedFieldsSet:(TestPackedTypes*) message;
++ (void) assertPackedExtensionsSet:(TestPackedExtensions*) message;
 
 + (void) modifyRepeatedFields:(TestAllTypes_Builder*) message;
 + (void) modifyRepeatedExtensions:(TestAllExtensions_Builder*) message;

@@ -13,14 +13,15 @@
 // limitations under the License.
 
 #import "UnknownFieldSetTest.h"
+#import "WireFormatTests.h"
 
 int main (int argc, const char * argv[]) {
   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
   // insert code here...
   NSLog(@"Hello, World!");
 
-  UnknownFieldSetTest* tests = [[[UnknownFieldSetTest alloc] init] autorelease];
-  [tests testClear];
+  WireFormatTests* tests = [[[WireFormatTests alloc] init] autorelease];
+  [tests testParsePackedExtensions];
 
   [pool drain];
   return 0;
