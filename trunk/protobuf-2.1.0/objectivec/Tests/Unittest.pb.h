@@ -56,10 +56,16 @@
 @class TestMutualRecursionA_Builder;
 @class TestMutualRecursionB;
 @class TestMutualRecursionB_Builder;
+@class TestNestedExtension;
+@class TestNestedExtension_Builder;
 @class TestNestedMessageHasBits;
 @class TestNestedMessageHasBits_Builder;
 @class TestNestedMessageHasBits_NestedMessage;
 @class TestNestedMessageHasBits_NestedMessage_Builder;
+@class TestPackedExtensions;
+@class TestPackedExtensions_Builder;
+@class TestPackedTypes;
+@class TestPackedTypes_Builder;
 @class TestReallyLargeTagNumber;
 @class TestReallyLargeTagNumber_Builder;
 @class TestRecursiveMessage;
@@ -179,6 +185,20 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 + (id<PBExtensionField>) defaultCordExtension;
 + (id<PBExtensionField>) myExtensionString;
 + (id<PBExtensionField>) myExtensionInt;
++ (id<PBExtensionField>) packedInt32Extension;
++ (id<PBExtensionField>) packedInt64Extension;
++ (id<PBExtensionField>) packedUint32Extension;
++ (id<PBExtensionField>) packedUint64Extension;
++ (id<PBExtensionField>) packedSint32Extension;
++ (id<PBExtensionField>) packedSint64Extension;
++ (id<PBExtensionField>) packedFixed32Extension;
++ (id<PBExtensionField>) packedFixed64Extension;
++ (id<PBExtensionField>) packedSfixed32Extension;
++ (id<PBExtensionField>) packedSfixed64Extension;
++ (id<PBExtensionField>) packedFloatExtension;
++ (id<PBExtensionField>) packedDoubleExtension;
++ (id<PBExtensionField>) packedBoolExtension;
++ (id<PBExtensionField>) packedEnumExtension;
 @end
 
 @interface TestAllTypes : PBGeneratedMessage {
@@ -1189,6 +1209,46 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 - (int32_t) a;
 - (RepeatedGroup_extension_Builder*) setA:(int32_t) value;
 - (RepeatedGroup_extension_Builder*) clearA;
+@end
+
+@interface TestNestedExtension : PBGeneratedMessage {
+@private
+}
+
++ (TestNestedExtension*) defaultInstance;
+- (TestNestedExtension*) defaultInstance;
+
++ (id<PBExtensionField>) test;
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TestNestedExtension_Builder*) builder;
++ (TestNestedExtension_Builder*) builder;
++ (TestNestedExtension_Builder*) builderWithPrototype:(TestNestedExtension*) prototype;
+
++ (TestNestedExtension*) parseFromData:(NSData*) data;
++ (TestNestedExtension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestNestedExtension*) parseFromInputStream:(NSInputStream*) input;
++ (TestNestedExtension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestNestedExtension*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TestNestedExtension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TestNestedExtension_Builder : PBGeneratedMessage_Builder {
+@private
+  TestNestedExtension* result;
+}
+
+- (TestNestedExtension*) defaultInstance;
+
+- (TestNestedExtension_Builder*) clear;
+- (TestNestedExtension_Builder*) clone;
+
+- (TestNestedExtension*) build;
+- (TestNestedExtension*) buildPartial;
+
+- (TestNestedExtension_Builder*) mergeFrom:(TestNestedExtension*) other;
+- (TestNestedExtension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TestNestedExtension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface TestRequired : PBGeneratedMessage {
@@ -2634,6 +2694,238 @@ BOOL TestAllTypes_NestedEnumIsValidValue(TestAllTypes_NestedEnum value);
 - (NSData*) data;
 - (OneBytes_Builder*) setData:(NSData*) value;
 - (OneBytes_Builder*) clearData;
+@end
+
+@interface TestPackedTypes : PBGeneratedMessage {
+@private
+  NSMutableArray* mutablePackedBoolList;
+  int32_t packedBoolMemoizedSerializedSize;
+  NSMutableArray* mutablePackedDoubleList;
+  int32_t packedDoubleMemoizedSerializedSize;
+  NSMutableArray* mutablePackedFloatList;
+  int32_t packedFloatMemoizedSerializedSize;
+  NSMutableArray* mutablePackedInt64List;
+  int32_t packedInt64MemoizedSerializedSize;
+  NSMutableArray* mutablePackedUint64List;
+  int32_t packedUint64MemoizedSerializedSize;
+  NSMutableArray* mutablePackedInt32List;
+  int32_t packedInt32MemoizedSerializedSize;
+  NSMutableArray* mutablePackedFixed64List;
+  int32_t packedFixed64MemoizedSerializedSize;
+  NSMutableArray* mutablePackedFixed32List;
+  int32_t packedFixed32MemoizedSerializedSize;
+  NSMutableArray* mutablePackedUint32List;
+  int32_t packedUint32MemoizedSerializedSize;
+  NSMutableArray* mutablePackedEnumList;
+  int32_t packedEnumMemoizedSerializedSize;
+  NSMutableArray* mutablePackedSfixed32List;
+  int32_t packedSfixed32MemoizedSerializedSize;
+  NSMutableArray* mutablePackedSfixed64List;
+  int32_t packedSfixed64MemoizedSerializedSize;
+  NSMutableArray* mutablePackedSint32List;
+  int32_t packedSint32MemoizedSerializedSize;
+  NSMutableArray* mutablePackedSint64List;
+  int32_t packedSint64MemoizedSerializedSize;
+}
+- (NSArray*) packedInt32List;
+- (int32_t) packedInt32AtIndex:(int32_t) index;
+- (NSArray*) packedInt64List;
+- (int64_t) packedInt64AtIndex:(int32_t) index;
+- (NSArray*) packedUint32List;
+- (int32_t) packedUint32AtIndex:(int32_t) index;
+- (NSArray*) packedUint64List;
+- (int64_t) packedUint64AtIndex:(int32_t) index;
+- (NSArray*) packedSint32List;
+- (int32_t) packedSint32AtIndex:(int32_t) index;
+- (NSArray*) packedSint64List;
+- (int64_t) packedSint64AtIndex:(int32_t) index;
+- (NSArray*) packedFixed32List;
+- (int32_t) packedFixed32AtIndex:(int32_t) index;
+- (NSArray*) packedFixed64List;
+- (int64_t) packedFixed64AtIndex:(int32_t) index;
+- (NSArray*) packedSfixed32List;
+- (int32_t) packedSfixed32AtIndex:(int32_t) index;
+- (NSArray*) packedSfixed64List;
+- (int64_t) packedSfixed64AtIndex:(int32_t) index;
+- (NSArray*) packedFloatList;
+- (Float32) packedFloatAtIndex:(int32_t) index;
+- (NSArray*) packedDoubleList;
+- (Float64) packedDoubleAtIndex:(int32_t) index;
+- (NSArray*) packedBoolList;
+- (BOOL) packedBoolAtIndex:(int32_t) index;
+- (NSArray*) packedEnumList;
+- (ForeignEnum) packedEnumAtIndex:(int32_t) index;
+
++ (TestPackedTypes*) defaultInstance;
+- (TestPackedTypes*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TestPackedTypes_Builder*) builder;
++ (TestPackedTypes_Builder*) builder;
++ (TestPackedTypes_Builder*) builderWithPrototype:(TestPackedTypes*) prototype;
+
++ (TestPackedTypes*) parseFromData:(NSData*) data;
++ (TestPackedTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestPackedTypes*) parseFromInputStream:(NSInputStream*) input;
++ (TestPackedTypes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestPackedTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TestPackedTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TestPackedTypes_Builder : PBGeneratedMessage_Builder {
+@private
+  TestPackedTypes* result;
+}
+
+- (TestPackedTypes*) defaultInstance;
+
+- (TestPackedTypes_Builder*) clear;
+- (TestPackedTypes_Builder*) clone;
+
+- (TestPackedTypes*) build;
+- (TestPackedTypes*) buildPartial;
+
+- (TestPackedTypes_Builder*) mergeFrom:(TestPackedTypes*) other;
+- (TestPackedTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TestPackedTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) packedInt32List;
+- (int32_t) packedInt32AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedInt32AtIndex:(int32_t) index with:(int32_t) value;
+- (TestPackedTypes_Builder*) addPackedInt32:(int32_t) value;
+- (TestPackedTypes_Builder*) addAllPackedInt32:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedInt32List;
+
+- (NSArray*) packedInt64List;
+- (int64_t) packedInt64AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedInt64AtIndex:(int32_t) index with:(int64_t) value;
+- (TestPackedTypes_Builder*) addPackedInt64:(int64_t) value;
+- (TestPackedTypes_Builder*) addAllPackedInt64:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedInt64List;
+
+- (NSArray*) packedUint32List;
+- (int32_t) packedUint32AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedUint32AtIndex:(int32_t) index with:(int32_t) value;
+- (TestPackedTypes_Builder*) addPackedUint32:(int32_t) value;
+- (TestPackedTypes_Builder*) addAllPackedUint32:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedUint32List;
+
+- (NSArray*) packedUint64List;
+- (int64_t) packedUint64AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedUint64AtIndex:(int32_t) index with:(int64_t) value;
+- (TestPackedTypes_Builder*) addPackedUint64:(int64_t) value;
+- (TestPackedTypes_Builder*) addAllPackedUint64:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedUint64List;
+
+- (NSArray*) packedSint32List;
+- (int32_t) packedSint32AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedSint32AtIndex:(int32_t) index with:(int32_t) value;
+- (TestPackedTypes_Builder*) addPackedSint32:(int32_t) value;
+- (TestPackedTypes_Builder*) addAllPackedSint32:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedSint32List;
+
+- (NSArray*) packedSint64List;
+- (int64_t) packedSint64AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedSint64AtIndex:(int32_t) index with:(int64_t) value;
+- (TestPackedTypes_Builder*) addPackedSint64:(int64_t) value;
+- (TestPackedTypes_Builder*) addAllPackedSint64:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedSint64List;
+
+- (NSArray*) packedFixed32List;
+- (int32_t) packedFixed32AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedFixed32AtIndex:(int32_t) index with:(int32_t) value;
+- (TestPackedTypes_Builder*) addPackedFixed32:(int32_t) value;
+- (TestPackedTypes_Builder*) addAllPackedFixed32:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedFixed32List;
+
+- (NSArray*) packedFixed64List;
+- (int64_t) packedFixed64AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedFixed64AtIndex:(int32_t) index with:(int64_t) value;
+- (TestPackedTypes_Builder*) addPackedFixed64:(int64_t) value;
+- (TestPackedTypes_Builder*) addAllPackedFixed64:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedFixed64List;
+
+- (NSArray*) packedSfixed32List;
+- (int32_t) packedSfixed32AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedSfixed32AtIndex:(int32_t) index with:(int32_t) value;
+- (TestPackedTypes_Builder*) addPackedSfixed32:(int32_t) value;
+- (TestPackedTypes_Builder*) addAllPackedSfixed32:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedSfixed32List;
+
+- (NSArray*) packedSfixed64List;
+- (int64_t) packedSfixed64AtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedSfixed64AtIndex:(int32_t) index with:(int64_t) value;
+- (TestPackedTypes_Builder*) addPackedSfixed64:(int64_t) value;
+- (TestPackedTypes_Builder*) addAllPackedSfixed64:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedSfixed64List;
+
+- (NSArray*) packedFloatList;
+- (Float32) packedFloatAtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedFloatAtIndex:(int32_t) index with:(Float32) value;
+- (TestPackedTypes_Builder*) addPackedFloat:(Float32) value;
+- (TestPackedTypes_Builder*) addAllPackedFloat:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedFloatList;
+
+- (NSArray*) packedDoubleList;
+- (Float64) packedDoubleAtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedDoubleAtIndex:(int32_t) index with:(Float64) value;
+- (TestPackedTypes_Builder*) addPackedDouble:(Float64) value;
+- (TestPackedTypes_Builder*) addAllPackedDouble:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedDoubleList;
+
+- (NSArray*) packedBoolList;
+- (BOOL) packedBoolAtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedBoolAtIndex:(int32_t) index with:(BOOL) value;
+- (TestPackedTypes_Builder*) addPackedBool:(BOOL) value;
+- (TestPackedTypes_Builder*) addAllPackedBool:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedBoolList;
+
+- (NSArray*) packedEnumList;
+- (ForeignEnum) packedEnumAtIndex:(int32_t) index;
+- (TestPackedTypes_Builder*) replacePackedEnumAtIndex:(int32_t) index with:(ForeignEnum) value;
+- (TestPackedTypes_Builder*) addPackedEnum:(ForeignEnum) value;
+- (TestPackedTypes_Builder*) addAllPackedEnum:(NSArray*) values;
+- (TestPackedTypes_Builder*) clearPackedEnumList;
+@end
+
+@interface TestPackedExtensions : PBExtendableMessage {
+@private
+}
+
++ (TestPackedExtensions*) defaultInstance;
+- (TestPackedExtensions*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TestPackedExtensions_Builder*) builder;
++ (TestPackedExtensions_Builder*) builder;
++ (TestPackedExtensions_Builder*) builderWithPrototype:(TestPackedExtensions*) prototype;
+
++ (TestPackedExtensions*) parseFromData:(NSData*) data;
++ (TestPackedExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestPackedExtensions*) parseFromInputStream:(NSInputStream*) input;
++ (TestPackedExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TestPackedExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TestPackedExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TestPackedExtensions_Builder : PBExtendableMessage_Builder {
+@private
+  TestPackedExtensions* result;
+}
+
+- (TestPackedExtensions*) defaultInstance;
+
+- (TestPackedExtensions_Builder*) clear;
+- (TestPackedExtensions_Builder*) clone;
+
+- (TestPackedExtensions*) build;
+- (TestPackedExtensions*) buildPartial;
+
+- (TestPackedExtensions_Builder*) mergeFrom:(TestPackedExtensions*) other;
+- (TestPackedExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TestPackedExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface FooRequest : PBGeneratedMessage {

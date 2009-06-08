@@ -388,7 +388,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       printer->Print(variables_,
         "if (self.$list_name$.count > 0) {\n"
         "  [output writeRawVarint32:$tag$];\n"
-        "  [output writeRawVarint32:$name$MemoizedSerializedSize);\n"
+        "  [output writeRawVarint32:$name$MemoizedSerializedSize];\n"
         "}\n"
         "for (NSNumber* element in self.$list_name$) {\n"
         "  [output writeEnumNoTag:element.intValue];\n"

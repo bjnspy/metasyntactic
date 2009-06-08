@@ -554,12 +554,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       if (ReturnsPrimitiveType(descriptor_)) {
         printer->Print(variables_,
           "for (NSNumber* value in self.$mutable_list_name$) {\n"
-          "  dataSize += compute$capitalized_type$Size($number$, $unboxed_value$);\n"
+          "  dataSize += compute$capitalized_type$SizeNoTag($unboxed_value$);\n"
           "}\n");
       } else {
         printer->Print(variables_,
           "for ($storage_type$ element in self.$mutable_list_name$) {\n"
-          "  dataSize += compute$capitalized_type$Size($number$, element);\n"
+          "  dataSize += compute$capitalized_type$SizeNoTag(element);\n"
           "}\n");
       }
     } else {
