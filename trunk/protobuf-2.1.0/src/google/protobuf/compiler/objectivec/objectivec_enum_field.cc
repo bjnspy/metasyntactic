@@ -25,6 +25,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/compiler/objectivec/objectivec_helpers.h>
 #include <google/protobuf/io/printer.h>
+#include <google/protobuf/wire_format_inl.h>
 #include <google/protobuf/stubs/strutil.h>
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
@@ -47,6 +48,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["default"] = EnumValueName(default_value);
         (*variables)["boxed_value"] = "[NSNumber numberWithInt:value]";
         (*variables)["unboxed_value"] = "[value intValue]";
+        (*variables)["tag"] = SimpleItoa(internal::WireFormat::MakeTag(descriptor));
+        (*variables)["tag_size"] = SimpleItoa(
+          internal::WireFormat::TagSize(descriptor->number(), descriptor->type()));
     }
   }  // namespace
 
@@ -225,6 +229,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedEnumFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "int32_t $name$MemoizedSerializedSize;\n");
+    }
   }
 
 
@@ -337,19 +345,28 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void RepeatedEnumFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "if (other.$mutable_list_name$.count > 0) {\n"
-        "  if (result.$mutable_list_name$ == nil) {\n"
-        "    result.$mutable_list_name$ = [NSMutableArray array];\n"
-        "  }\n"
-        "  [result.$mutable_list_name$ addObjectsFromArray:other.$mutable_list_name$];\n"
-        "}\n");
+    printer->Print(variables_,
+      "if (other.$mutable_list_name$.count > 0) {\n"
+      "  if (result.$mutable_list_name$ == nil) {\n"
+      "    result.$mutable_list_name$ = [NSMutableArray array];\n"
+      "  }\n"
+      "  [result.$mutable_list_name$ addObjectsFromArray:other.$mutable_list_name$];\n"
+      "}\n");
   }
 
   void RepeatedEnumFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
   }
 
   void RepeatedEnumFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
+    // If packed, set up the while loop
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "int32_t length = [input readRawVarint32];\n"
+        "int32_t oldLimit = [input pushLimit:length];\n"
+        "while (input.bytesUntilLimit > 0) {\n");
+      printer->Indent();
+    }
+
     printer->Print(variables_,
       "int32_t value = [input readEnum];\n"
       "if ($type$IsValidValue(value)) {\n"
@@ -357,21 +374,66 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "} else {\n"
       "  [unknownFields mergeVarintField:$number$ value:value];\n"
       "}\n");
+
+    if (descriptor_->options().packed()) {
+      printer->Outdent();
+      printer->Print(variables_,
+        "}\n"
+        "[input popLimit:oldLimit];\n");
+    }
   }
 
   void RepeatedEnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "if (self.$list_name$.count > 0) {\n"
+        "  [output writeRawVarint32:$tag$];\n"
+        "  [output writeRawVarint32:$name$MemoizedSerializedSize);\n"
+        "}\n"
+        "for (NSNumber* element in self.$list_name$) {\n"
+        "  [output writeEnumNoTag:element.intValue];\n"
+        "}\n");
+    } else {
       printer->Print(variables_,
         "for (NSNumber* element in self.$list_name$) {\n"
         "  [output writeEnum:$number$ value:element.intValue];\n"
         "}\n");
+    }
   }
 
 
   void RepeatedEnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
+    printer->Print(variables_,
+      "{\n"
+      "  int32_t dataSize = 0;\n");
+    printer->Indent();
+
+    printer->Print(variables_,
+      "for (NSNumber* element in self.$list_name$) {\n"
+      "  dataSize += computeEnumSizeNoTag(element.intValue);\n"
+      "}\n");
+
+    printer->Print(
+      "size += dataSize;\n");
+
+    if (descriptor_->options().packed()) {
       printer->Print(variables_,
-        "for (NSNumber* element in self.$list_name$) {\n"
-        "  size += computeEnumSize($number$, element.intValue);\n"
+        "if (self.$list_name$.count > 0) {\n"
+        "  size += $tag_size$;\n"
+        "  size += computeRawVarint32Size(dataSize);\n"
         "}\n");
+    } else {
+      printer->Print(variables_,
+        "size += $tag_size$ * self.$list_name$.count;\n");
+    }
+
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "$name$MemoizedSerializedSize = dataSize;\n");
+    }
+
+    printer->Outdent();
+    printer->Print("}\n");
   }
 
 

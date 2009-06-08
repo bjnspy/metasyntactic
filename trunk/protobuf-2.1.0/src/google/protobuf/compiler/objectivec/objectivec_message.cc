@@ -742,6 +742,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
 
     printer->Outdent();
+
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "  [self mergeExtensionFields:other];\n");
+    }
+
     printer->Print(
       "  [self mergeUnknownFields:other.unknownFields];\n"
       "  return self;\n"
@@ -785,7 +791,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* field = sorted_fields[i];
-      uint32 tag = WireFormat::MakeTag(field->number(), WireFormat::WireTypeForFieldType(field->type()));
+      uint32 tag = WireFormat::MakeTag(field->number(),
+        WireFormat::WireTypeForField(field));
 
       printer->Print(
         "case $tag$: {\n",

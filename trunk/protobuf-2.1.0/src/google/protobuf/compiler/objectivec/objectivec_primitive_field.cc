@@ -25,10 +25,13 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/compiler/objectivec/objectivec_helpers.h>
 #include <google/protobuf/io/printer.h>
+#include <google/protobuf/wire_format_inl.h>
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/stubs/substitute.h>
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
+
+  using internal::WireFormat;
 
   namespace {
 
@@ -41,7 +44,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         case OBJECTIVECTYPE_BOOLEAN: return "BOOL";
         case OBJECTIVECTYPE_STRING : return "NSString";
         case OBJECTIVECTYPE_DATA   : return "NSData";
-        case OBJECTIVECTYPE_ENUM   : return NULL;
+        case OBJECTIVECTYPE_ENUM   : return "int32_t";
         case OBJECTIVECTYPE_MESSAGE: return NULL;
       }
 
@@ -73,6 +76,38 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       GOOGLE_LOG(FATAL) << "Can't get here.";
       return NULL;
+    }
+
+    // For encodings with fixed sizes, returns that size in bytes.  Otherwise
+    // returns -1.
+    int FixedSize(FieldDescriptor::Type type) {
+      switch (type) {
+        case FieldDescriptor::TYPE_INT32   : return -1;
+        case FieldDescriptor::TYPE_INT64   : return -1;
+        case FieldDescriptor::TYPE_UINT32  : return -1;
+        case FieldDescriptor::TYPE_UINT64  : return -1;
+        case FieldDescriptor::TYPE_SINT32  : return -1;
+        case FieldDescriptor::TYPE_SINT64  : return -1;
+        case FieldDescriptor::TYPE_FIXED32 : return WireFormat::kFixed32Size;
+        case FieldDescriptor::TYPE_FIXED64 : return WireFormat::kFixed64Size;
+        case FieldDescriptor::TYPE_SFIXED32: return WireFormat::kSFixed32Size;
+        case FieldDescriptor::TYPE_SFIXED64: return WireFormat::kSFixed64Size;
+        case FieldDescriptor::TYPE_FLOAT   : return WireFormat::kFloatSize;
+        case FieldDescriptor::TYPE_DOUBLE  : return WireFormat::kDoubleSize;
+
+        case FieldDescriptor::TYPE_BOOL    : return WireFormat::kBoolSize;
+        case FieldDescriptor::TYPE_ENUM    : return -1;
+
+        case FieldDescriptor::TYPE_STRING  : return -1;
+        case FieldDescriptor::TYPE_BYTES   : return -1;
+        case FieldDescriptor::TYPE_GROUP   : return -1;
+        case FieldDescriptor::TYPE_MESSAGE : return -1;
+
+      // No default because we want the compiler to complain if any new
+      // types are added.
+      }
+      GOOGLE_LOG(FATAL) << "Can't get here.";
+      return -1;
     }
 
     void SetPrimitiveVariables(const FieldDescriptor* descriptor,
@@ -116,6 +151,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         } 
 
         (*variables)["unboxed_value"] = unboxed_value;
+
+        (*variables)["tag"] = SimpleItoa(WireFormat::MakeTag(descriptor));
+        (*variables)["tag_size"] = SimpleItoa(
+          WireFormat::TagSize(descriptor->number(), descriptor->type()));
+
+        int fixed_size = FixedSize(descriptor->type());
+        if (fixed_size != -1) {
+          (*variables)["fixed_size"] = SimpleItoa(fixed_size);
+        }
     }
   }  // namespace
 
@@ -318,6 +362,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedPrimitiveFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "int32_t $name$MemoizedSerializedSize;\n");
+    }
   }
 
 
@@ -448,37 +496,95 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "[self add$capitalized_name$:[input read$capitalized_type$]];\n");
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "int32_t length = [input readRawVarint32];\n"
+        "int32_t limit = [input pushLimit:length];\n"
+        "while (input.bytesUntilLimit > 0) {\n"
+        "  [self add$capitalized_name$:[input read$capitalized_type$]];\n"
+        "}\n"
+        "[input popLimit:limit];\n");
+    } else {
+      printer->Print(variables_,
+        "[self add$capitalized_name$:[input read$capitalized_type$]];\n");
+    }
   }
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
-    if (ReturnsPrimitiveType(descriptor_)) {
+    if (descriptor_->options().packed()) {
       printer->Print(variables_,
-        "for (NSNumber* value in self.$mutable_list_name$) {\n"
-        "  [output write$capitalized_type$:$number$ value:$unboxed_value$];\n"
+        "if (self.$mutable_list_name$.count > 0) {\n"
+        "  [output writeRawVarint32:$tag$];\n"
+        "  [output writeRawVarint32:$name$MemoizedSerializedSize];\n"
         "}\n");
+
+      if (ReturnsPrimitiveType(descriptor_)) {
+        printer->Print(variables_,
+          "for (NSNumber* value in self.$mutable_list_name$) {\n"
+          "  [output write$capitalized_type$NoTag:$unboxed_value$];\n"
+          "}\n");
+      } else {
+        printer->Print(variables_,
+          "for ($storage_type$ element in self.$mutable_list_name$) {\n"
+          "  [output write$capitalized_type$NoTag:element];\n"
+          "}\n");
+      }
     } else {
-      printer->Print(variables_,
-        "for ($storage_type$ element in self.$mutable_list_name$) {\n"
-        "  [output write$capitalized_type$:$number$ value:element];\n"
-        "}\n");
+      if (ReturnsPrimitiveType(descriptor_)) {
+        printer->Print(variables_,
+          "for (NSNumber* value in self.$mutable_list_name$) {\n"
+          "  [output write$capitalized_type$:$number$ value:$unboxed_value$];\n"
+          "}\n");
+      } else {
+        printer->Print(variables_,
+          "for ($storage_type$ element in self.$mutable_list_name$) {\n"
+          "  [output write$capitalized_type$:$number$ value:element];\n"
+          "}\n");
+      }
     }
   }
 
   void RepeatedPrimitiveFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
-    if (ReturnsPrimitiveType(descriptor_)) {
-      printer->Print(variables_,
-        "for (NSNumber* value in self.$mutable_list_name$) {\n"
-        "  size += compute$capitalized_type$Size($number$, $unboxed_value$);\n"
-        "}\n");
+    printer->Print(variables_,
+      "{\n"
+      "  int32_t dataSize = 0;\n");
+    printer->Indent();
+    if (FixedSize(descriptor_->type()) == -1) {
+      if (ReturnsPrimitiveType(descriptor_)) {
+        printer->Print(variables_,
+          "for (NSNumber* value in self.$mutable_list_name$) {\n"
+          "  dataSize += compute$capitalized_type$Size($number$, $unboxed_value$);\n"
+          "}\n");
+      } else {
+        printer->Print(variables_,
+          "for ($storage_type$ element in self.$mutable_list_name$) {\n"
+          "  dataSize += compute$capitalized_type$Size($number$, element);\n"
+          "}\n");
+      }
     } else {
       printer->Print(variables_,
-        "for ($storage_type$ element in self.$mutable_list_name$) {\n"
-        "  size += compute$capitalized_type$Size($number$, element);\n"
-        "}\n");
+        "dataSize = $fixed_size$ * self.$mutable_list_name$.count;\n");
     }
+
+    printer->Print(
+      "size += dataSize;\n");
+
+    if (descriptor_->options().packed()) {
+      printer->Print(variables_,
+        "if (self.$mutable_list_name$.count > 0) {\n"
+        "  size += $tag_size$;\n"
+        "  size += computeInt32SizeNoTag(dataSize);\n"
+        "}\n"
+        "$name$MemoizedSerializedSize = dataSize;\n");
+    } else {
+      printer->Print(variables_,
+        "size += $tag_size$ * self.$mutable_list_name$.count;\n");
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "}\n");
   }
 
 

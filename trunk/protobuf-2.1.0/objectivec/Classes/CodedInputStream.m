@@ -376,42 +376,6 @@ const int32_t BUFFER_SIZE = 4096;
 }
 
 
-/**
- * Reads a varint from the input one byte at a time, so that it does not
- * read any bytes after the end of the varint.  If you simply wrapped the
- * stream in a CodedInputStream and used {@link #readRawVarint32(InputStream)}
- * then you would probably end up reading past the end of the varint since
- * CodedInputStream buffers its input.
- */
-+ (int32_t) readRawVarint32:(NSInputStream*) input {
-  int32_t result = 0;
-  int32_t offset = 0;
-  for (; offset < 32; offset += 7) {
-    uint8_t b;
-    NSInteger read = [input read:&b maxLength:1];
-    if (read <= 0) {
-      @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
-    }
-    result |= ((int32_t)b & 0x7f) << offset;
-    if (((int32_t)b & 0x80) == 0) {
-      return result;
-    }
-  }
-  // Keep reading up to 64 bits.
-  for (; offset < 64; offset += 7) {
-    uint8_t b;
-    NSInteger read = [input read:&b maxLength:1];
-    if (read <= 0) {
-      @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
-    }
-    if (((int32_t)b & 0x80) == 0) {
-      return result;
-    }
-  }
-  @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"malformedVarint" userInfo:nil];
-}
-
-
 /** Read a raw Varint from the stream. */
 - (int64_t) readRawVarint64 {
   int32_t shift = 0;
