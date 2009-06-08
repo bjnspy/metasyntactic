@@ -34,6 +34,16 @@
 }
 
 
++ (NSData*) goldenPackedFieldsData {
+  NSString* path = [[NSBundle mainBundle] pathForResource:@"golden_packed_fields_message" ofType:nil];
+  if (path == nil) {
+    path = @"golden_packed_fields_message";
+  }
+  NSData* goldenData = [NSData dataWithContentsOfFile:path];
+  return goldenData;
+}
+
+
 - (void) failWithException:(NSException *) anException {
   @throw anException;
 }
@@ -860,6 +870,8 @@
  * given {@link ExtensionRegistry}.
  */
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
+  [UnittestRoot registerAllExtensions:registry];
+  /*
   [registry addExtension:[UnittestRoot optionalInt32Extension]];
   [registry addExtension:[UnittestRoot optionalInt64Extension]];
   [registry addExtension:[UnittestRoot optionalUint32Extension]];
@@ -930,6 +942,7 @@
   [registry addExtension:[UnittestRoot defaultImportEnumExtension]];
   [registry addExtension:[UnittestRoot defaultStringPieceExtension]];
   [registry addExtension:[UnittestRoot defaultCordExtension]];
+   */
 }
 
 
@@ -957,6 +970,19 @@
   return [builder build];
 }
 
+
++ (TestPackedTypes*) packedSet {
+  TestPackedTypes_Builder* builder = [TestPackedTypes builder];
+  [self setPackedFields:builder];
+  return [builder build];
+}
+
+
++ (TestPackedExtensions*) packedExtensionsSet {
+  TestPackedExtensions_Builder* builder = [TestPackedExtensions builder];
+  [self setPackedExtensions:builder];
+  return [builder build];
+}
 
 // -------------------------------------------------------------------
 
@@ -1407,5 +1433,175 @@
 + (void) assertRepeatedFieldsModified:(TestAllTypes*) message {
   [[[[TestUtilities alloc] init] autorelease] assertRepeatedFieldsModified:message];
 }
+
+
++ (void) setPackedFields:(TestPackedTypes_Builder*) message {
+  [message addPackedInt32   :601];
+  [message addPackedInt64   :602];
+  [message addPackedUint32  :603];
+  [message addPackedUint64  :604];
+  [message addPackedSint32  :605];
+  [message addPackedSint64  :606];
+  [message addPackedFixed32 :607];
+  [message addPackedFixed64 :608];
+  [message addPackedSfixed32:609];
+  [message addPackedSfixed64:610];
+  [message addPackedFloat   :611];
+  [message addPackedDouble  :612];
+  [message addPackedBool    :YES];
+  [message addPackedEnum    :ForeignEnumForeignBar];
+  // Add a second one of each field.
+  [message addPackedInt32   :701];
+  [message addPackedInt64   :702];
+  [message addPackedUint32  :703];
+  [message addPackedUint64  :704];
+  [message addPackedSint32  :705];
+  [message addPackedSint64  :706];
+  [message addPackedFixed32 :707];
+  [message addPackedFixed64 :708];
+  [message addPackedSfixed32:709];
+  [message addPackedSfixed64:710];
+  [message addPackedFloat   :711];
+  [message addPackedDouble  :712];
+  [message addPackedBool    :NO];
+  [message addPackedEnum    :ForeignEnumForeignBaz];
+}
+
+
+- (void) assertPackedFieldsSet:(TestPackedTypes*) message {
+  STAssertTrue(2 ==  message.packedInt32List.count, @"");
+  STAssertTrue(2 ==  message.packedInt64List.count, @"");
+  STAssertTrue(2 ==  message.packedUint32List.count, @"");
+  STAssertTrue(2 ==  message.packedUint64List.count, @"");
+  STAssertTrue(2 ==  message.packedSint32List.count, @"");
+  STAssertTrue(2 ==  message.packedSint64List.count, @"");
+  STAssertTrue(2 ==  message.packedFixed32List.count, @"");
+  STAssertTrue(2 ==  message.packedFixed64List.count, @"");
+  STAssertTrue(2 ==  message.packedSfixed32List.count, @"");
+  STAssertTrue(2 ==  message.packedSfixed64List.count, @"");
+  STAssertTrue(2 ==  message.packedFloatList.count, @"");
+  STAssertTrue(2 ==  message.packedDoubleList.count, @"");
+  STAssertTrue(2 ==  message.packedBoolList.count, @"");
+  STAssertTrue(2 ==  message.packedEnumList.count, @"");
+  STAssertTrue(601   ==  [message packedInt32AtIndex:0], @"");
+  STAssertTrue(602   ==  [message packedInt64AtIndex:0], @"");
+  STAssertTrue(603   ==  [message packedUint32AtIndex:0], @"");
+  STAssertTrue(604   ==  [message packedUint64AtIndex:0], @"");
+  STAssertTrue(605   ==  [message packedSint32AtIndex:0], @"");
+  STAssertTrue(606   ==  [message packedSint64AtIndex:0], @"");
+  STAssertTrue(607   ==  [message packedFixed32AtIndex:0], @"");
+  STAssertTrue(608   ==  [message packedFixed64AtIndex:0], @"");
+  STAssertTrue(609   ==  [message packedSfixed32AtIndex:0], @"");
+  STAssertTrue(610   ==  [message packedSfixed64AtIndex:0], @"");
+  STAssertTrue(611   ==  [message packedFloatAtIndex:0], @"");
+  STAssertTrue(612   ==  [message packedDoubleAtIndex:0], @"");
+  STAssertTrue(YES  ==  [message packedBoolAtIndex:0], @"");
+  STAssertTrue(ForeignEnumForeignBar ==  [message packedEnumAtIndex:0], @"");
+  STAssertTrue(701   ==  [message packedInt32AtIndex:1], @"");
+  STAssertTrue(702   ==  [message packedInt64AtIndex:1], @"");
+  STAssertTrue(703   ==  [message packedUint32AtIndex:1], @"");
+  STAssertTrue(704   ==  [message packedUint64AtIndex:1], @"");
+  STAssertTrue(705   ==  [message packedSint32AtIndex:1], @"");
+  STAssertTrue(706   ==  [message packedSint64AtIndex:1], @"");
+  STAssertTrue(707   ==  [message packedFixed32AtIndex:1], @"");
+  STAssertTrue(708   ==  [message packedFixed64AtIndex:1], @"");
+  STAssertTrue(709   ==  [message packedSfixed32AtIndex:1], @"");
+  STAssertTrue(710   ==  [message packedSfixed64AtIndex:1], @"");
+  STAssertTrue(711   ==  [message packedFloatAtIndex:1], @"");
+  STAssertTrue(712   ==  [message packedDoubleAtIndex:1], @"");
+  STAssertTrue(NO ==  [message packedBoolAtIndex:1], @"");
+  STAssertTrue(ForeignEnumForeignBaz ==  [message packedEnumAtIndex:1], @"");
+}
+
+
++ (void) assertPackedFieldsSet:(TestPackedTypes*) message {
+  [[[[TestUtilities alloc] init] autorelease] assertPackedFieldsSet:message];
+}
+
+
+
++ (void) setPackedExtensions:(TestPackedExtensions_Builder*) message {
+  [message addExtension:[UnittestRoot packedInt32Extension   ] value:[NSNumber numberWithInt: 601]];
+  [message addExtension:[UnittestRoot packedInt64Extension   ] value:[NSNumber numberWithLongLong: 602L]];
+  [message addExtension:[UnittestRoot packedUint32Extension  ] value:[NSNumber numberWithInt: 603]];
+  [message addExtension:[UnittestRoot packedUint64Extension  ] value:[NSNumber numberWithLongLong: 604L]];
+  [message addExtension:[UnittestRoot packedSint32Extension  ] value:[NSNumber numberWithInt: 605]];
+  [message addExtension:[UnittestRoot packedSint64Extension  ] value:[NSNumber numberWithLongLong: 606L]];
+  [message addExtension:[UnittestRoot packedFixed32Extension ] value:[NSNumber numberWithInt: 607]];
+  [message addExtension:[UnittestRoot packedFixed64Extension ] value:[NSNumber numberWithLongLong: 608L]];
+  [message addExtension:[UnittestRoot packedSfixed32Extension] value:[NSNumber numberWithInt: 609]];
+  [message addExtension:[UnittestRoot packedSfixed64Extension] value:[NSNumber numberWithLongLong: 610L]];
+  [message addExtension:[UnittestRoot packedFloatExtension   ] value:[NSNumber numberWithFloat: 611.0F]];
+  [message addExtension:[UnittestRoot packedDoubleExtension  ] value:[NSNumber numberWithDouble: 612.0]];
+  [message addExtension:[UnittestRoot packedBoolExtension    ] value:[NSNumber numberWithBool: YES]];
+  [message addExtension:[UnittestRoot packedEnumExtension] value:[NSNumber numberWithInt: ForeignEnumForeignBar]];
+  // Add a second one of each field.
+  [message addExtension:[UnittestRoot packedInt32Extension   ] value:[NSNumber numberWithInt: 701]];
+  [message addExtension:[UnittestRoot packedInt64Extension   ] value:[NSNumber numberWithLongLong: 702L]];
+  [message addExtension:[UnittestRoot packedUint32Extension  ] value:[NSNumber numberWithInt: 703]];
+  [message addExtension:[UnittestRoot packedUint64Extension  ] value:[NSNumber numberWithLongLong: 704L]];
+  [message addExtension:[UnittestRoot packedSint32Extension  ] value:[NSNumber numberWithInt: 705]];
+  [message addExtension:[UnittestRoot packedSint64Extension  ] value:[NSNumber numberWithLongLong: 706L]];
+  [message addExtension:[UnittestRoot packedFixed32Extension ] value:[NSNumber numberWithInt: 707]];
+  [message addExtension:[UnittestRoot packedFixed64Extension ] value:[NSNumber numberWithLongLong: 708L]];
+  [message addExtension:[UnittestRoot packedSfixed32Extension] value:[NSNumber numberWithInt: 709]];
+  [message addExtension:[UnittestRoot packedSfixed64Extension] value:[NSNumber numberWithLongLong: 710L]];
+  [message addExtension:[UnittestRoot packedFloatExtension   ] value:[NSNumber numberWithFloat: 711.0F]];
+  [message addExtension:[UnittestRoot packedDoubleExtension  ] value:[NSNumber numberWithDouble: 712.0]];
+  [message addExtension:[UnittestRoot packedBoolExtension    ] value:[NSNumber numberWithBool: NO]];
+  [message addExtension:[UnittestRoot packedEnumExtension] value:[NSNumber numberWithInt:ForeignEnumForeignBaz]];
+}
+
+
+- (void) assertPackedExtensionsSet:(TestPackedExtensions*) message {
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedInt32Extension   ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedInt64Extension   ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedUint32Extension  ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedUint64Extension  ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedSint32Extension  ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedSint64Extension  ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedFixed32Extension ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedFixed64Extension ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedSfixed32Extension]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedSfixed64Extension]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedFloatExtension   ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedDoubleExtension  ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedBoolExtension    ]] count], @"");
+  STAssertTrue(2 ==  [[message getExtension:[UnittestRoot packedEnumExtension]] count], @"");
+  STAssertTrue(601   ==  [[[message getExtension:[UnittestRoot packedInt32Extension   ]] objectAtIndex: 0] intValue], @"");
+  STAssertTrue(602L  ==  [[[message getExtension:[UnittestRoot packedInt64Extension   ]] objectAtIndex: 0] longLongValue], @"");
+  STAssertTrue(603   ==  [[[message getExtension:[UnittestRoot packedUint32Extension  ]] objectAtIndex: 0] intValue], @"");
+  STAssertTrue(604L  ==  [[[message getExtension:[UnittestRoot packedUint64Extension  ]] objectAtIndex: 0] longLongValue], @"");
+  STAssertTrue(605   ==  [[[message getExtension:[UnittestRoot packedSint32Extension  ]] objectAtIndex: 0] intValue], @"");
+  STAssertTrue(606L  ==  [[[message getExtension:[UnittestRoot packedSint64Extension  ]] objectAtIndex: 0] longLongValue], @"");
+  STAssertTrue(607   ==  [[[message getExtension:[UnittestRoot packedFixed32Extension ]] objectAtIndex: 0] intValue], @"");
+  STAssertTrue(608L  ==  [[[message getExtension:[UnittestRoot packedFixed64Extension ]] objectAtIndex: 0] longLongValue], @"");
+  STAssertTrue(609   ==  [[[message getExtension:[UnittestRoot packedSfixed32Extension]] objectAtIndex: 0] intValue], @"");
+  STAssertTrue(610L  ==  [[[message getExtension:[UnittestRoot packedSfixed64Extension]] objectAtIndex: 0] longLongValue], @"");
+  STAssertTrue(611.0F  ==  [[[message getExtension:[UnittestRoot packedFloatExtension   ]] objectAtIndex: 0] floatValue], @"");
+  STAssertTrue(612.0  ==  [[[message getExtension:[UnittestRoot packedDoubleExtension  ]] objectAtIndex: 0] doubleValue], @"");
+  STAssertTrue(YES  ==  [[[message getExtension:[UnittestRoot packedBoolExtension    ]] objectAtIndex: 0] boolValue], @"");
+  STAssertTrue(ForeignEnumForeignBar == [[[message getExtension:[UnittestRoot packedEnumExtension]] objectAtIndex:0] intValue], @"");
+  STAssertTrue(701   ==  [[[message getExtension:[UnittestRoot packedInt32Extension   ]] objectAtIndex: 1] intValue], @"");
+  STAssertTrue(702L  ==  [[[message getExtension:[UnittestRoot packedInt64Extension   ]] objectAtIndex: 1] longLongValue], @"");
+  STAssertTrue(703   ==  [[[message getExtension:[UnittestRoot packedUint32Extension  ]] objectAtIndex: 1] intValue], @"");
+  STAssertTrue(704L  ==  [[[message getExtension:[UnittestRoot packedUint64Extension  ]] objectAtIndex: 1] longLongValue], @"");
+  STAssertTrue(705   ==  [[[message getExtension:[UnittestRoot packedSint32Extension  ]] objectAtIndex: 1] intValue], @"");
+  STAssertTrue(706L  ==  [[[message getExtension:[UnittestRoot packedSint64Extension  ]] objectAtIndex: 1] longLongValue], @"");
+  STAssertTrue(707   ==  [[[message getExtension:[UnittestRoot packedFixed32Extension ]] objectAtIndex: 1] intValue], @"");
+  STAssertTrue(708L  ==  [[[message getExtension:[UnittestRoot packedFixed64Extension ]] objectAtIndex: 1] longLongValue], @"");
+  STAssertTrue(709   ==  [[[message getExtension:[UnittestRoot packedSfixed32Extension]] objectAtIndex: 1] intValue], @"");
+  STAssertTrue(710L  ==  [[[message getExtension:[UnittestRoot packedSfixed64Extension]] objectAtIndex: 1] longLongValue], @"");
+  STAssertTrue(711.0F  ==  [[[message getExtension:[UnittestRoot packedFloatExtension   ]] objectAtIndex: 1] floatValue], @"");
+  STAssertTrue(712.0  ==  [[[message getExtension:[UnittestRoot packedDoubleExtension  ]] objectAtIndex: 1] doubleValue], @"");
+  STAssertTrue(NO ==  [[[message getExtension:[UnittestRoot packedBoolExtension    ]] objectAtIndex: 1] boolValue], @"");
+  STAssertTrue(ForeignEnumForeignBaz == [[[message getExtension:[UnittestRoot packedEnumExtension]] objectAtIndex:1] intValue], @"");
+}
+
+
++ (void) assertPackedExtensionsSet:(TestPackedExtensions*) message {
+  [[[[TestUtilities alloc] init] autorelease] assertPackedExtensionsSet:message];
+}
+
 
 @end

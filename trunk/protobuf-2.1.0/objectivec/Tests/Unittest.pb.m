@@ -734,7 +734,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedInt64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
@@ -743,7 +743,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedUint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
@@ -752,7 +752,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedUint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
@@ -761,7 +761,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedSint32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
@@ -770,7 +770,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedSint64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
@@ -779,7 +779,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedFixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
@@ -788,7 +788,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedFixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
@@ -797,7 +797,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedSfixed32Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
@@ -806,7 +806,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedSfixed64Extension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
@@ -815,7 +815,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedFloatExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
@@ -824,7 +824,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedDoubleExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
@@ -833,7 +833,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedBoolExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
@@ -842,7 +842,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     UnittestRoot_packedEnumExtension =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
@@ -851,7 +851,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                       defaultValue:[NSArray array]
                                messageOrGroupClass:[NSNumber class]
                                         isRepeated:true
-                                          isPacked:false
+                                          isPacked:true
                             isMessageSetWireFormat:false] retain];
     TestNestedExtension_test =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString

@@ -74,6 +74,7 @@
 		748F15380FD76090000858A9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7401C1C20F950395006D8281 /* SenTestingKit.framework */; };
 		748F15660FD76280000858A9 /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6B80F94FDF900A0C422 /* UnknownFieldSetTest.m */; };
 		748F156A0FD762EC000858A9 /* TestUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6AC0F94FDF800A0C422 /* TestUtilities.m */; };
+		74DA693C0FDCB12000492CA9 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461B6BC0F94FDF900A0C422 /* WireFormatTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -557,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74DA693C0FDCB12000492CA9 /* WireFormatTests.m in Sources */,
 				748F156A0FD762EC000858A9 /* TestUtilities.m in Sources */,
 				748F15660FD76280000858A9 /* UnknownFieldSetTest.m in Sources */,
 				748F14B50FD75EF7000858A9 /* UnittestImport.pb.m in Sources */,

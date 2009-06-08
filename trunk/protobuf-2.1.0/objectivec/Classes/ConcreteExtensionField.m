@@ -92,6 +92,10 @@
 
 
 - (PBWireFormat) wireType {
+  if (isPacked) {
+    return PBWireFormatLengthDelimited;
+  }
+
   switch (type) {
     case PBExtensionTypeBool:     return PBWireFormatVarint;
     case PBExtensionTypeFixed32:  return PBWireFormatFixed32;
@@ -218,24 +222,92 @@ int32_t typeSize(PBExtensionType type) {
 }
 
 
-- (void)         writeRepeatedValues:(NSArray*) values
-    includingTagsToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (isPacked) {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-  } else {
-    for (id value in values) {
-      [self writeSingleValue:value includingTagToCodedOutputStream:output];
-    }
+- (void)           writeSingleValue:(id) value
+    noTagToCodedOutputStream:(PBCodedOutputStream*) output {
+  switch (type) {
+    case PBExtensionTypeBool:
+      [output writeBoolNoTag:[value boolValue]];
+      return;
+    case PBExtensionTypeFixed32:
+      [output writeFixed32NoTag:[value intValue]];
+      return;
+    case PBExtensionTypeSFixed32:
+      [output writeSFixed32NoTag:[value intValue]];
+      return;
+    case PBExtensionTypeFloat:
+      [output writeFloatNoTag:[value floatValue]];
+      return;
+    case PBExtensionTypeFixed64:
+      [output writeFixed64NoTag:[value longLongValue]];
+      return;
+    case PBExtensionTypeSFixed64:
+      [output writeSFixed64NoTag:[value longLongValue]];
+      return;
+    case PBExtensionTypeDouble:
+      [output writeDoubleNoTag:[value doubleValue]];
+      return;
+    case PBExtensionTypeInt32:
+      [output writeInt32NoTag:[value intValue]];
+      return;
+    case PBExtensionTypeInt64:
+      [output writeInt64NoTag:[value longLongValue]];
+      return;
+    case PBExtensionTypeSInt32:
+      [output writeSInt32NoTag:[value intValue]];
+      return;
+    case PBExtensionTypeSInt64:
+      [output writeSInt64NoTag:[value longLongValue]];
+      return;
+    case PBExtensionTypeUInt32:
+      [output writeUInt32NoTag:[value intValue]];
+      return;
+    case PBExtensionTypeUInt64:
+      [output writeUInt64NoTag:[value longLongValue]];
+      return;
+    case PBExtensionTypeBytes:
+      [output writeDataNoTag:value];
+      return;
+    case PBExtensionTypeString:
+      [output writeStringNoTag:value];
+      return;
+    case PBExtensionTypeGroup:
+      [output writeGroupNoTag:fieldNumber value:value];
+      return;
+    case PBExtensionTypeEnum:
+      [output writeEnumNoTag:[value intValue]];
+      return;
+    case PBExtensionTypeMessage:
+      [output writeMessageNoTag:value];
+      return;
   }
+  
+  @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
 
-- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (isRepeated) {
-    [self writeRepeatedValues:value includingTagsToCodedOutputStream:output];
-  } else {
-    [self writeSingleValue:value includingTagToCodedOutputStream:output];
+- (int32_t) computeSingleSerializedSizeNoTag:(id) value {
+  switch (type) {
+    case PBExtensionTypeBool:     return computeBoolSizeNoTag([value boolValue]);
+    case PBExtensionTypeFixed32:  return computeFixed32SizeNoTag([value intValue]);
+    case PBExtensionTypeSFixed32: return computeSFixed32SizeNoTag([value intValue]);
+    case PBExtensionTypeFloat:    return computeFloatSizeNoTag([value floatValue]);
+    case PBExtensionTypeFixed64:  return computeFixed64SizeNoTag([value longLongValue]);
+    case PBExtensionTypeSFixed64: return computeSFixed64SizeNoTag([value longLongValue]);
+    case PBExtensionTypeDouble:   return computeDoubleSizeNoTag([value doubleValue]);
+    case PBExtensionTypeInt32:    return computeInt32SizeNoTag([value intValue]);
+    case PBExtensionTypeInt64:    return computeInt64SizeNoTag([value longLongValue]);
+    case PBExtensionTypeSInt32:   return computeSInt32SizeNoTag([value intValue]);
+    case PBExtensionTypeSInt64:   return computeSInt64SizeNoTag([value longLongValue]);
+    case PBExtensionTypeUInt32:   return computeUInt32SizeNoTag([value intValue]);
+    case PBExtensionTypeUInt64:   return computeUInt64SizeNoTag([value longLongValue]);
+    case PBExtensionTypeBytes:    return computeDataSizeNoTag(value);
+    case PBExtensionTypeString:   return computeStringSizeNoTag(value);
+    case PBExtensionTypeGroup:    return computeGroupSizeNoTag(value);
+    case PBExtensionTypeEnum:     return computeEnumSizeNoTag([value intValue]);
+    case PBExtensionTypeMessage:  return computeMessageSizeNoTag(value);
   }
+  
+  @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
 
@@ -265,14 +337,55 @@ int32_t typeSize(PBExtensionType type) {
         return computeMessageSize(fieldNumber, value);
       }
   }
-
+  
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
+}
+
+
+- (void)         writeRepeatedValues:(NSArray*) values
+    includingTagsToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (isPacked) {
+    [output writeTag:fieldNumber format:PBWireFormatLengthDelimited];
+    int32_t dataSize = 0;
+    if (typeIsFixedSize(type)) {
+      dataSize = values.count * typeSize(type);
+    } else {
+      for (id value in values) {
+        dataSize += [self computeSingleSerializedSizeNoTag:value];
+      }
+    }
+    [output writeRawVarint32:dataSize];
+    for (id value in values) {
+      [self writeSingleValue:value noTagToCodedOutputStream:output];
+    }
+  } else {
+    for (id value in values) {
+      [self writeSingleValue:value includingTagToCodedOutputStream:output];
+    }
+  }
+}
+
+
+- (void) writeValue:(id) value includingTagToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (isRepeated) {
+    [self writeRepeatedValues:value includingTagsToCodedOutputStream:output];
+  } else {
+    [self writeSingleValue:value includingTagToCodedOutputStream:output];
+  }
 }
 
 
 - (int32_t) computeRepeatedSerializedSizeIncludingTags:(NSArray*) values {
   if (isPacked) {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    int32_t size = 0;
+    if (typeIsFixedSize(type)) {
+      size = values.count * typeSize(type);
+    } else {
+      for (id value in values) {
+        size += [self computeSingleSerializedSizeNoTag:value];
+      }
+    }
+    return size + computeTagSize(fieldNumber) + computeRawVarint32Size(size);
   } else {
     int32_t size = 0;
     for (id value in values) {
