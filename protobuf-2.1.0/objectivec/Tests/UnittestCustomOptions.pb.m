@@ -2087,6 +2087,7 @@ static ComplexOptionType1* defaultComplexOptionType1Instance = nil;
   if (other.hasFoo) {
     [self setFoo:other.foo];
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2494,6 +2495,7 @@ static ComplexOptionType2_ComplexOptionType4* defaultComplexOptionType2_ComplexO
   if (other.hasFred) {
     [self mergeFred:other.fred];
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }

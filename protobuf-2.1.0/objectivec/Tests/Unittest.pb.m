@@ -73,6 +73,21 @@ static id<PBExtensionField> UnittestRoot_defaultStringPieceExtension = nil;
 static id<PBExtensionField> UnittestRoot_defaultCordExtension = nil;
 static id<PBExtensionField> UnittestRoot_myExtensionString = nil;
 static id<PBExtensionField> UnittestRoot_myExtensionInt = nil;
+static id<PBExtensionField> UnittestRoot_packedInt32Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedInt64Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedUint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedUint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedSint32Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedSint64Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedFixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedFixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedSfixed32Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedSfixed64Extension = nil;
+static id<PBExtensionField> UnittestRoot_packedFloatExtension = nil;
+static id<PBExtensionField> UnittestRoot_packedDoubleExtension = nil;
+static id<PBExtensionField> UnittestRoot_packedBoolExtension = nil;
+static id<PBExtensionField> UnittestRoot_packedEnumExtension = nil;
+static id<PBExtensionField> TestNestedExtension_test = nil;
 static id<PBExtensionField> TestRequired_single = nil;
 static id<PBExtensionField> TestRequired_multi = nil;
 static PBExtensionRegistry* extensionRegistry = nil;
@@ -712,6 +727,141 @@ static PBExtensionRegistry* extensionRegistry = nil;
                                         isRepeated:false
                                           isPacked:false
                             isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedInt32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt32
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:90
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedInt64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeInt64
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:91
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedUint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt32
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:92
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedUint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeUInt64
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:93
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedSint32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt32
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:94
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedSint64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSInt64
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:95
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedFixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed32
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:96
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedFixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFixed64
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:97
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedSfixed32Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed32
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:98
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedSfixed64Extension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeSFixed64
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:99
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedFloatExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeFloat
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:100
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedDoubleExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeDouble
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:101
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedBoolExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeBool
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:102
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    UnittestRoot_packedEnumExtension =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeEnum
+                                     extendedClass:[TestPackedExtensions class]
+                                       fieldNumber:103
+                                      defaultValue:[NSArray array]
+                               messageOrGroupClass:[NSNumber class]
+                                        isRepeated:true
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
+    TestNestedExtension_test =
+      [[PBConcreteExtensionField extensionWithType:PBExtensionTypeString
+                                     extendedClass:[TestAllExtensions class]
+                                       fieldNumber:1002
+                                      defaultValue:@"test"
+                               messageOrGroupClass:[NSString class]
+                                        isRepeated:false
+                                          isPacked:false
+                            isMessageSetWireFormat:false] retain];
     TestRequired_single =
       [[PBConcreteExtensionField extensionWithType:PBExtensionTypeMessage
                                      extendedClass:[TestAllExtensions class]
@@ -807,6 +957,21 @@ static PBExtensionRegistry* extensionRegistry = nil;
   [registry addExtension:UnittestRoot_defaultCordExtension];
   [registry addExtension:UnittestRoot_myExtensionString];
   [registry addExtension:UnittestRoot_myExtensionInt];
+  [registry addExtension:UnittestRoot_packedInt32Extension];
+  [registry addExtension:UnittestRoot_packedInt64Extension];
+  [registry addExtension:UnittestRoot_packedUint32Extension];
+  [registry addExtension:UnittestRoot_packedUint64Extension];
+  [registry addExtension:UnittestRoot_packedSint32Extension];
+  [registry addExtension:UnittestRoot_packedSint64Extension];
+  [registry addExtension:UnittestRoot_packedFixed32Extension];
+  [registry addExtension:UnittestRoot_packedFixed64Extension];
+  [registry addExtension:UnittestRoot_packedSfixed32Extension];
+  [registry addExtension:UnittestRoot_packedSfixed64Extension];
+  [registry addExtension:UnittestRoot_packedFloatExtension];
+  [registry addExtension:UnittestRoot_packedDoubleExtension];
+  [registry addExtension:UnittestRoot_packedBoolExtension];
+  [registry addExtension:UnittestRoot_packedEnumExtension];
+  [registry addExtension:TestNestedExtension_test];
   [registry addExtension:TestRequired_single];
   [registry addExtension:TestRequired_multi];
 }
@@ -1019,6 +1184,48 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 + (id<PBExtensionField>) myExtensionInt {
   return UnittestRoot_myExtensionInt;
+}
++ (id<PBExtensionField>) packedInt32Extension {
+  return UnittestRoot_packedInt32Extension;
+}
++ (id<PBExtensionField>) packedInt64Extension {
+  return UnittestRoot_packedInt64Extension;
+}
++ (id<PBExtensionField>) packedUint32Extension {
+  return UnittestRoot_packedUint32Extension;
+}
++ (id<PBExtensionField>) packedUint64Extension {
+  return UnittestRoot_packedUint64Extension;
+}
++ (id<PBExtensionField>) packedSint32Extension {
+  return UnittestRoot_packedSint32Extension;
+}
++ (id<PBExtensionField>) packedSint64Extension {
+  return UnittestRoot_packedSint64Extension;
+}
++ (id<PBExtensionField>) packedFixed32Extension {
+  return UnittestRoot_packedFixed32Extension;
+}
++ (id<PBExtensionField>) packedFixed64Extension {
+  return UnittestRoot_packedFixed64Extension;
+}
++ (id<PBExtensionField>) packedSfixed32Extension {
+  return UnittestRoot_packedSfixed32Extension;
+}
++ (id<PBExtensionField>) packedSfixed64Extension {
+  return UnittestRoot_packedSfixed64Extension;
+}
++ (id<PBExtensionField>) packedFloatExtension {
+  return UnittestRoot_packedFloatExtension;
+}
++ (id<PBExtensionField>) packedDoubleExtension {
+  return UnittestRoot_packedDoubleExtension;
+}
++ (id<PBExtensionField>) packedBoolExtension {
+  return UnittestRoot_packedBoolExtension;
+}
++ (id<PBExtensionField>) packedEnumExtension {
+  return UnittestRoot_packedEnumExtension;
 }
 @end
 
@@ -2028,50 +2235,111 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   if (self.hasOptionalCord) {
     size += computeStringSize(25, self.optionalCord);
   }
-  for (NSNumber* value in self.mutableRepeatedInt32List) {
-    size += computeInt32Size(31, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedInt32List) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedInt32List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedInt64List) {
-    size += computeInt64Size(32, [value longLongValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedInt64List) {
+      dataSize += computeInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedInt64List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedUint32List) {
-    size += computeUInt32Size(33, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedUint32List) {
+      dataSize += computeUInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedUint32List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedUint64List) {
-    size += computeUInt64Size(34, [value longLongValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedUint64List) {
+      dataSize += computeUInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedUint64List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedSint32List) {
-    size += computeSInt32Size(35, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedSint32List) {
+      dataSize += computeSInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedSint32List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedSint64List) {
-    size += computeSInt64Size(36, [value longLongValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedSint64List) {
+      dataSize += computeSInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedSint64List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedFixed32List) {
-    size += computeFixed32Size(37, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableRepeatedFixed32List.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedFixed32List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedFixed64List) {
-    size += computeFixed64Size(38, [value longLongValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutableRepeatedFixed64List.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedFixed64List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedSfixed32List) {
-    size += computeSFixed32Size(39, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableRepeatedSfixed32List.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedSfixed32List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedSfixed64List) {
-    size += computeSFixed64Size(40, [value longLongValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutableRepeatedSfixed64List.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedSfixed64List.count;
   }
-  for (NSNumber* value in self.mutableRepeatedFloatList) {
-    size += computeFloatSize(41, [value floatValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableRepeatedFloatList.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedFloatList.count;
   }
-  for (NSNumber* value in self.mutableRepeatedDoubleList) {
-    size += computeDoubleSize(42, [value doubleValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutableRepeatedDoubleList.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedDoubleList.count;
   }
-  for (NSNumber* value in self.mutableRepeatedBoolList) {
-    size += computeBoolSize(43, [value boolValue]);
+  {
+    int32_t dataSize = 0;
+    dataSize = 1 * self.mutableRepeatedBoolList.count;
+    size += dataSize;
+    size += 2 * self.mutableRepeatedBoolList.count;
   }
-  for (NSString* element in self.mutableRepeatedStringList) {
-    size += computeStringSize(44, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedStringList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedStringList.count;
   }
-  for (NSData* element in self.mutableRepeatedBytesList) {
-    size += computeDataSize(45, element);
+  {
+    int32_t dataSize = 0;
+    for (NSData* element in self.mutableRepeatedBytesList) {
+      dataSize += computeDataSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedBytesList.count;
   }
   for (TestAllTypes_RepeatedGroup* element in self.repeatedGroupList) {
     size += computeGroupSize(46, element);
@@ -2085,20 +2353,45 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   for (ImportMessage* element in self.repeatedImportMessageList) {
     size += computeMessageSize(50, element);
   }
-  for (NSNumber* element in self.repeatedNestedEnumList) {
-    size += computeEnumSize(51, element.intValue);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* element in self.repeatedNestedEnumList) {
+      dataSize += computeEnumSizeNoTag(element.intValue);
+    }
+    size += dataSize;
+    size += 2 * self.repeatedNestedEnumList.count;
   }
-  for (NSNumber* element in self.repeatedForeignEnumList) {
-    size += computeEnumSize(52, element.intValue);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* element in self.repeatedForeignEnumList) {
+      dataSize += computeEnumSizeNoTag(element.intValue);
+    }
+    size += dataSize;
+    size += 2 * self.repeatedForeignEnumList.count;
   }
-  for (NSNumber* element in self.repeatedImportEnumList) {
-    size += computeEnumSize(53, element.intValue);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* element in self.repeatedImportEnumList) {
+      dataSize += computeEnumSizeNoTag(element.intValue);
+    }
+    size += dataSize;
+    size += 2 * self.repeatedImportEnumList.count;
   }
-  for (NSString* element in self.mutableRepeatedStringPieceList) {
-    size += computeStringSize(54, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedStringPieceList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedStringPieceList.count;
   }
-  for (NSString* element in self.mutableRepeatedCordList) {
-    size += computeStringSize(55, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedCordList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableRepeatedCordList.count;
   }
   if (self.hasDefaultInt32) {
     size += computeInt32Size(61, self.defaultInt32);
@@ -5207,6 +5500,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   if (other == [TestAllExtensions defaultInstance]) {
     return self;
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5584,6 +5878,148 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   result.hasA = NO;
   result.a = 0;
   return self;
+}
+@end
+
+@interface TestNestedExtension ()
+@end
+
+@implementation TestNestedExtension
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
++ (id<PBExtensionField>) test {
+  return TestNestedExtension_test;
+}
+static TestNestedExtension* defaultTestNestedExtensionInstance = nil;
++ (void) initialize {
+  if (self == [TestNestedExtension class]) {
+    defaultTestNestedExtensionInstance = [[TestNestedExtension alloc] init];
+  }
+}
++ (TestNestedExtension*) defaultInstance {
+  return defaultTestNestedExtensionInstance;
+}
+- (TestNestedExtension*) defaultInstance {
+  return defaultTestNestedExtensionInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (TestNestedExtension*) parseFromData:(NSData*) data {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromData:data] build];
+}
++ (TestNestedExtension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (TestNestedExtension*) parseFromInputStream:(NSInputStream*) input {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromInputStream:input] build];
+}
++ (TestNestedExtension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestNestedExtension*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromCodedInputStream:input] build];
+}
++ (TestNestedExtension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestNestedExtension*)[[[TestNestedExtension builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestNestedExtension_Builder*) builder {
+  return [[[TestNestedExtension_Builder alloc] init] autorelease];
+}
++ (TestNestedExtension_Builder*) builderWithPrototype:(TestNestedExtension*) prototype {
+  return [[TestNestedExtension builder] mergeFrom:prototype];
+}
+- (TestNestedExtension_Builder*) builder {
+  return [TestNestedExtension builder];
+}
+@end
+
+@interface TestNestedExtension_Builder()
+@property (retain) TestNestedExtension* result;
+@end
+
+@implementation TestNestedExtension_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[TestNestedExtension alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (TestNestedExtension_Builder*) clear {
+  self.result = [[[TestNestedExtension alloc] init] autorelease];
+  return self;
+}
+- (TestNestedExtension_Builder*) clone {
+  return [TestNestedExtension builderWithPrototype:result];
+}
+- (TestNestedExtension*) defaultInstance {
+  return [TestNestedExtension defaultInstance];
+}
+- (TestNestedExtension*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (TestNestedExtension*) buildPartial {
+  TestNestedExtension* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (TestNestedExtension_Builder*) mergeFrom:(TestNestedExtension*) other {
+  if (other == [TestNestedExtension defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (TestNestedExtension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (TestNestedExtension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
 }
 @end
 
@@ -7753,6 +8189,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   if (other == [TestEmptyMessageWithExtensions defaultInstance]) {
     return self;
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -9459,8 +9896,13 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
 
   size = 0;
-  for (NSNumber* value in self.mutableNestedmessageRepeatedInt32List) {
-    size += computeInt32Size(1, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableNestedmessageRepeatedInt32List) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableNestedmessageRepeatedInt32List.count;
   }
   for (ForeignMessage* element in self.nestedmessageRepeatedForeignmessageList) {
     size += computeMessageSize(2, element);
@@ -9968,23 +10410,48 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (self.hasCordField) {
     size += computeStringSize(6, self.cordField);
   }
-  for (NSNumber* value in self.mutableRepeatedPrimitiveFieldList) {
-    size += computeInt32Size(7, [value intValue]);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableRepeatedPrimitiveFieldList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableRepeatedPrimitiveFieldList.count;
   }
-  for (NSString* element in self.mutableRepeatedStringFieldList) {
-    size += computeStringSize(8, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedStringFieldList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableRepeatedStringFieldList.count;
   }
-  for (NSNumber* element in self.repeatedEnumFieldList) {
-    size += computeEnumSize(9, element.intValue);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* element in self.repeatedEnumFieldList) {
+      dataSize += computeEnumSizeNoTag(element.intValue);
+    }
+    size += dataSize;
+    size += 1 * self.repeatedEnumFieldList.count;
   }
   for (ForeignMessage* element in self.repeatedMessageFieldList) {
     size += computeMessageSize(10, element);
   }
-  for (NSString* element in self.mutableRepeatedStringPieceFieldList) {
-    size += computeStringSize(11, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedStringPieceFieldList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableRepeatedStringPieceFieldList.count;
   }
-  for (NSString* element in self.mutableRepeatedCordFieldList) {
-    size += computeStringSize(12, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRepeatedCordFieldList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableRepeatedCordFieldList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -10675,6 +11142,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   if (other.hasMyFloat) {
     [self setMyFloat:other.myFloat];
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -11483,6 +11951,1330 @@ static OneBytes* defaultOneBytesInstance = nil;
   result.hasData = NO;
   result.data = [NSData data];
   return self;
+}
+@end
+
+@interface TestPackedTypes ()
+@property (retain) NSMutableArray* mutablePackedInt32List;
+@property (retain) NSMutableArray* mutablePackedInt64List;
+@property (retain) NSMutableArray* mutablePackedUint32List;
+@property (retain) NSMutableArray* mutablePackedUint64List;
+@property (retain) NSMutableArray* mutablePackedSint32List;
+@property (retain) NSMutableArray* mutablePackedSint64List;
+@property (retain) NSMutableArray* mutablePackedFixed32List;
+@property (retain) NSMutableArray* mutablePackedFixed64List;
+@property (retain) NSMutableArray* mutablePackedSfixed32List;
+@property (retain) NSMutableArray* mutablePackedSfixed64List;
+@property (retain) NSMutableArray* mutablePackedFloatList;
+@property (retain) NSMutableArray* mutablePackedDoubleList;
+@property (retain) NSMutableArray* mutablePackedBoolList;
+@property (retain) NSMutableArray* mutablePackedEnumList;
+@end
+
+@implementation TestPackedTypes
+
+@synthesize mutablePackedInt32List;
+@synthesize mutablePackedInt64List;
+@synthesize mutablePackedUint32List;
+@synthesize mutablePackedUint64List;
+@synthesize mutablePackedSint32List;
+@synthesize mutablePackedSint64List;
+@synthesize mutablePackedFixed32List;
+@synthesize mutablePackedFixed64List;
+@synthesize mutablePackedSfixed32List;
+@synthesize mutablePackedSfixed64List;
+@synthesize mutablePackedFloatList;
+@synthesize mutablePackedDoubleList;
+@synthesize mutablePackedBoolList;
+@synthesize mutablePackedEnumList;
+- (void) dealloc {
+  self.mutablePackedInt32List = nil;
+  self.mutablePackedInt64List = nil;
+  self.mutablePackedUint32List = nil;
+  self.mutablePackedUint64List = nil;
+  self.mutablePackedSint32List = nil;
+  self.mutablePackedSint64List = nil;
+  self.mutablePackedFixed32List = nil;
+  self.mutablePackedFixed64List = nil;
+  self.mutablePackedSfixed32List = nil;
+  self.mutablePackedSfixed64List = nil;
+  self.mutablePackedFloatList = nil;
+  self.mutablePackedDoubleList = nil;
+  self.mutablePackedBoolList = nil;
+  self.mutablePackedEnumList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static TestPackedTypes* defaultTestPackedTypesInstance = nil;
++ (void) initialize {
+  if (self == [TestPackedTypes class]) {
+    defaultTestPackedTypesInstance = [[TestPackedTypes alloc] init];
+  }
+}
++ (TestPackedTypes*) defaultInstance {
+  return defaultTestPackedTypesInstance;
+}
+- (TestPackedTypes*) defaultInstance {
+  return defaultTestPackedTypesInstance;
+}
+- (NSArray*) packedInt32List {
+  return mutablePackedInt32List;
+}
+- (int32_t) packedInt32AtIndex:(int32_t) index {
+  id value = [mutablePackedInt32List objectAtIndex:index];
+  return [value intValue];
+}
+- (NSArray*) packedInt64List {
+  return mutablePackedInt64List;
+}
+- (int64_t) packedInt64AtIndex:(int32_t) index {
+  id value = [mutablePackedInt64List objectAtIndex:index];
+  return [value longLongValue];
+}
+- (NSArray*) packedUint32List {
+  return mutablePackedUint32List;
+}
+- (int32_t) packedUint32AtIndex:(int32_t) index {
+  id value = [mutablePackedUint32List objectAtIndex:index];
+  return [value intValue];
+}
+- (NSArray*) packedUint64List {
+  return mutablePackedUint64List;
+}
+- (int64_t) packedUint64AtIndex:(int32_t) index {
+  id value = [mutablePackedUint64List objectAtIndex:index];
+  return [value longLongValue];
+}
+- (NSArray*) packedSint32List {
+  return mutablePackedSint32List;
+}
+- (int32_t) packedSint32AtIndex:(int32_t) index {
+  id value = [mutablePackedSint32List objectAtIndex:index];
+  return [value intValue];
+}
+- (NSArray*) packedSint64List {
+  return mutablePackedSint64List;
+}
+- (int64_t) packedSint64AtIndex:(int32_t) index {
+  id value = [mutablePackedSint64List objectAtIndex:index];
+  return [value longLongValue];
+}
+- (NSArray*) packedFixed32List {
+  return mutablePackedFixed32List;
+}
+- (int32_t) packedFixed32AtIndex:(int32_t) index {
+  id value = [mutablePackedFixed32List objectAtIndex:index];
+  return [value intValue];
+}
+- (NSArray*) packedFixed64List {
+  return mutablePackedFixed64List;
+}
+- (int64_t) packedFixed64AtIndex:(int32_t) index {
+  id value = [mutablePackedFixed64List objectAtIndex:index];
+  return [value longLongValue];
+}
+- (NSArray*) packedSfixed32List {
+  return mutablePackedSfixed32List;
+}
+- (int32_t) packedSfixed32AtIndex:(int32_t) index {
+  id value = [mutablePackedSfixed32List objectAtIndex:index];
+  return [value intValue];
+}
+- (NSArray*) packedSfixed64List {
+  return mutablePackedSfixed64List;
+}
+- (int64_t) packedSfixed64AtIndex:(int32_t) index {
+  id value = [mutablePackedSfixed64List objectAtIndex:index];
+  return [value longLongValue];
+}
+- (NSArray*) packedFloatList {
+  return mutablePackedFloatList;
+}
+- (Float32) packedFloatAtIndex:(int32_t) index {
+  id value = [mutablePackedFloatList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) packedDoubleList {
+  return mutablePackedDoubleList;
+}
+- (Float64) packedDoubleAtIndex:(int32_t) index {
+  id value = [mutablePackedDoubleList objectAtIndex:index];
+  return [value doubleValue];
+}
+- (NSArray*) packedBoolList {
+  return mutablePackedBoolList;
+}
+- (BOOL) packedBoolAtIndex:(int32_t) index {
+  id value = [mutablePackedBoolList objectAtIndex:index];
+  return [value boolValue];
+}
+- (NSArray*) packedEnumList {
+  return mutablePackedEnumList;
+}
+- (ForeignEnum) packedEnumAtIndex:(int32_t) index {
+  NSNumber* value = [mutablePackedEnumList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.mutablePackedInt32List.count > 0) {
+    [output writeRawVarint32:722];
+    [output writeRawVarint32:packedInt32MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedInt32List) {
+    [output writeInt32NoTag:[value intValue]];
+  }
+  if (self.mutablePackedInt64List.count > 0) {
+    [output writeRawVarint32:730];
+    [output writeRawVarint32:packedInt64MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedInt64List) {
+    [output writeInt64NoTag:[value longLongValue]];
+  }
+  if (self.mutablePackedUint32List.count > 0) {
+    [output writeRawVarint32:738];
+    [output writeRawVarint32:packedUint32MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedUint32List) {
+    [output writeUInt32NoTag:[value intValue]];
+  }
+  if (self.mutablePackedUint64List.count > 0) {
+    [output writeRawVarint32:746];
+    [output writeRawVarint32:packedUint64MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedUint64List) {
+    [output writeUInt64NoTag:[value longLongValue]];
+  }
+  if (self.mutablePackedSint32List.count > 0) {
+    [output writeRawVarint32:754];
+    [output writeRawVarint32:packedSint32MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedSint32List) {
+    [output writeSInt32NoTag:[value intValue]];
+  }
+  if (self.mutablePackedSint64List.count > 0) {
+    [output writeRawVarint32:762];
+    [output writeRawVarint32:packedSint64MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedSint64List) {
+    [output writeSInt64NoTag:[value longLongValue]];
+  }
+  if (self.mutablePackedFixed32List.count > 0) {
+    [output writeRawVarint32:770];
+    [output writeRawVarint32:packedFixed32MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedFixed32List) {
+    [output writeFixed32NoTag:[value intValue]];
+  }
+  if (self.mutablePackedFixed64List.count > 0) {
+    [output writeRawVarint32:778];
+    [output writeRawVarint32:packedFixed64MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedFixed64List) {
+    [output writeFixed64NoTag:[value longLongValue]];
+  }
+  if (self.mutablePackedSfixed32List.count > 0) {
+    [output writeRawVarint32:786];
+    [output writeRawVarint32:packedSfixed32MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedSfixed32List) {
+    [output writeSFixed32NoTag:[value intValue]];
+  }
+  if (self.mutablePackedSfixed64List.count > 0) {
+    [output writeRawVarint32:794];
+    [output writeRawVarint32:packedSfixed64MemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedSfixed64List) {
+    [output writeSFixed64NoTag:[value longLongValue]];
+  }
+  if (self.mutablePackedFloatList.count > 0) {
+    [output writeRawVarint32:802];
+    [output writeRawVarint32:packedFloatMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedFloatList) {
+    [output writeFloatNoTag:[value floatValue]];
+  }
+  if (self.mutablePackedDoubleList.count > 0) {
+    [output writeRawVarint32:810];
+    [output writeRawVarint32:packedDoubleMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedDoubleList) {
+    [output writeDoubleNoTag:[value doubleValue]];
+  }
+  if (self.mutablePackedBoolList.count > 0) {
+    [output writeRawVarint32:818];
+    [output writeRawVarint32:packedBoolMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutablePackedBoolList) {
+    [output writeBoolNoTag:[value boolValue]];
+  }
+  if (self.packedEnumList.count > 0) {
+    [output writeRawVarint32:826];
+    [output writeRawVarint32:packedEnumMemoizedSerializedSize];
+  }
+  for (NSNumber* element in self.packedEnumList) {
+    [output writeEnumNoTag:element.intValue];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedInt32List) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedInt32List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedInt32MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedInt64List) {
+      dataSize += computeInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedInt64List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedInt64MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedUint32List) {
+      dataSize += computeUInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedUint32List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedUint32MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedUint64List) {
+      dataSize += computeUInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedUint64List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedUint64MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedSint32List) {
+      dataSize += computeSInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedSint32List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedSint32MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutablePackedSint64List) {
+      dataSize += computeSInt64SizeNoTag([value longLongValue]);
+    }
+    size += dataSize;
+    if (self.mutablePackedSint64List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedSint64MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePackedFixed32List.count;
+    size += dataSize;
+    if (self.mutablePackedFixed32List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedFixed32MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutablePackedFixed64List.count;
+    size += dataSize;
+    if (self.mutablePackedFixed64List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedFixed64MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePackedSfixed32List.count;
+    size += dataSize;
+    if (self.mutablePackedSfixed32List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedSfixed32MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutablePackedSfixed64List.count;
+    size += dataSize;
+    if (self.mutablePackedSfixed64List.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedSfixed64MemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePackedFloatList.count;
+    size += dataSize;
+    if (self.mutablePackedFloatList.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedFloatMemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 8 * self.mutablePackedDoubleList.count;
+    size += dataSize;
+    if (self.mutablePackedDoubleList.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedDoubleMemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 1 * self.mutablePackedBoolList.count;
+    size += dataSize;
+    if (self.mutablePackedBoolList.count > 0) {
+      size += 2;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    packedBoolMemoizedSerializedSize = dataSize;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* element in self.packedEnumList) {
+      dataSize += computeEnumSizeNoTag(element.intValue);
+    }
+    size += dataSize;
+    if (self.packedEnumList.count > 0) {
+      size += 2;
+      size += computeRawVarint32Size(dataSize);
+    }
+    packedEnumMemoizedSerializedSize = dataSize;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (TestPackedTypes*) parseFromData:(NSData*) data {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromData:data] build];
+}
++ (TestPackedTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedTypes*) parseFromInputStream:(NSInputStream*) input {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromInputStream:input] build];
+}
++ (TestPackedTypes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromCodedInputStream:input] build];
+}
++ (TestPackedTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedTypes*)[[[TestPackedTypes builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedTypes_Builder*) builder {
+  return [[[TestPackedTypes_Builder alloc] init] autorelease];
+}
++ (TestPackedTypes_Builder*) builderWithPrototype:(TestPackedTypes*) prototype {
+  return [[TestPackedTypes builder] mergeFrom:prototype];
+}
+- (TestPackedTypes_Builder*) builder {
+  return [TestPackedTypes builder];
+}
+@end
+
+@interface TestPackedTypes_Builder()
+@property (retain) TestPackedTypes* result;
+@end
+
+@implementation TestPackedTypes_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[TestPackedTypes alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (TestPackedTypes_Builder*) clear {
+  self.result = [[[TestPackedTypes alloc] init] autorelease];
+  return self;
+}
+- (TestPackedTypes_Builder*) clone {
+  return [TestPackedTypes builderWithPrototype:result];
+}
+- (TestPackedTypes*) defaultInstance {
+  return [TestPackedTypes defaultInstance];
+}
+- (TestPackedTypes*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (TestPackedTypes*) buildPartial {
+  TestPackedTypes* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (TestPackedTypes_Builder*) mergeFrom:(TestPackedTypes*) other {
+  if (other == [TestPackedTypes defaultInstance]) {
+    return self;
+  }
+  if (other.mutablePackedInt32List.count > 0) {
+    if (result.mutablePackedInt32List == nil) {
+      result.mutablePackedInt32List = [NSMutableArray array];
+    }
+    [result.mutablePackedInt32List addObjectsFromArray:other.mutablePackedInt32List];
+  }
+  if (other.mutablePackedInt64List.count > 0) {
+    if (result.mutablePackedInt64List == nil) {
+      result.mutablePackedInt64List = [NSMutableArray array];
+    }
+    [result.mutablePackedInt64List addObjectsFromArray:other.mutablePackedInt64List];
+  }
+  if (other.mutablePackedUint32List.count > 0) {
+    if (result.mutablePackedUint32List == nil) {
+      result.mutablePackedUint32List = [NSMutableArray array];
+    }
+    [result.mutablePackedUint32List addObjectsFromArray:other.mutablePackedUint32List];
+  }
+  if (other.mutablePackedUint64List.count > 0) {
+    if (result.mutablePackedUint64List == nil) {
+      result.mutablePackedUint64List = [NSMutableArray array];
+    }
+    [result.mutablePackedUint64List addObjectsFromArray:other.mutablePackedUint64List];
+  }
+  if (other.mutablePackedSint32List.count > 0) {
+    if (result.mutablePackedSint32List == nil) {
+      result.mutablePackedSint32List = [NSMutableArray array];
+    }
+    [result.mutablePackedSint32List addObjectsFromArray:other.mutablePackedSint32List];
+  }
+  if (other.mutablePackedSint64List.count > 0) {
+    if (result.mutablePackedSint64List == nil) {
+      result.mutablePackedSint64List = [NSMutableArray array];
+    }
+    [result.mutablePackedSint64List addObjectsFromArray:other.mutablePackedSint64List];
+  }
+  if (other.mutablePackedFixed32List.count > 0) {
+    if (result.mutablePackedFixed32List == nil) {
+      result.mutablePackedFixed32List = [NSMutableArray array];
+    }
+    [result.mutablePackedFixed32List addObjectsFromArray:other.mutablePackedFixed32List];
+  }
+  if (other.mutablePackedFixed64List.count > 0) {
+    if (result.mutablePackedFixed64List == nil) {
+      result.mutablePackedFixed64List = [NSMutableArray array];
+    }
+    [result.mutablePackedFixed64List addObjectsFromArray:other.mutablePackedFixed64List];
+  }
+  if (other.mutablePackedSfixed32List.count > 0) {
+    if (result.mutablePackedSfixed32List == nil) {
+      result.mutablePackedSfixed32List = [NSMutableArray array];
+    }
+    [result.mutablePackedSfixed32List addObjectsFromArray:other.mutablePackedSfixed32List];
+  }
+  if (other.mutablePackedSfixed64List.count > 0) {
+    if (result.mutablePackedSfixed64List == nil) {
+      result.mutablePackedSfixed64List = [NSMutableArray array];
+    }
+    [result.mutablePackedSfixed64List addObjectsFromArray:other.mutablePackedSfixed64List];
+  }
+  if (other.mutablePackedFloatList.count > 0) {
+    if (result.mutablePackedFloatList == nil) {
+      result.mutablePackedFloatList = [NSMutableArray array];
+    }
+    [result.mutablePackedFloatList addObjectsFromArray:other.mutablePackedFloatList];
+  }
+  if (other.mutablePackedDoubleList.count > 0) {
+    if (result.mutablePackedDoubleList == nil) {
+      result.mutablePackedDoubleList = [NSMutableArray array];
+    }
+    [result.mutablePackedDoubleList addObjectsFromArray:other.mutablePackedDoubleList];
+  }
+  if (other.mutablePackedBoolList.count > 0) {
+    if (result.mutablePackedBoolList == nil) {
+      result.mutablePackedBoolList = [NSMutableArray array];
+    }
+    [result.mutablePackedBoolList addObjectsFromArray:other.mutablePackedBoolList];
+  }
+  if (other.mutablePackedEnumList.count > 0) {
+    if (result.mutablePackedEnumList == nil) {
+      result.mutablePackedEnumList = [NSMutableArray array];
+    }
+    [result.mutablePackedEnumList addObjectsFromArray:other.mutablePackedEnumList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (TestPackedTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (TestPackedTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 722: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedInt32:[input readInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 730: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedInt64:[input readInt64]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 738: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedUint32:[input readUInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 746: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedUint64:[input readUInt64]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 754: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedSint32:[input readSInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 762: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedSint64:[input readSInt64]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 770: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedFixed32:[input readFixed32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 778: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedFixed64:[input readFixed64]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 786: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedSfixed32:[input readSFixed32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 794: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedSfixed64:[input readSFixed64]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 802: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedFloat:[input readFloat]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 810: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedDouble:[input readDouble]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 818: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addPackedBool:[input readBool]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+      case 826: {
+        int32_t length = [input readRawVarint32];
+        int32_t oldLimit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          int32_t value = [input readEnum];
+          if (ForeignEnumIsValidValue(value)) {
+            [self addPackedEnum:value];
+          } else {
+            [unknownFields mergeVarintField:103 value:value];
+          }
+        }
+        [input popLimit:oldLimit];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) packedInt32List {
+  if (result.mutablePackedInt32List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedInt32List;
+}
+- (int32_t) packedInt32AtIndex:(int32_t) index {
+  return [result packedInt32AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedInt32AtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePackedInt32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedInt32:(int32_t) value {
+  if (result.mutablePackedInt32List == nil) {
+    result.mutablePackedInt32List = [NSMutableArray array];
+  }
+  [result.mutablePackedInt32List addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedInt32:(NSArray*) values {
+  if (result.mutablePackedInt32List == nil) {
+    result.mutablePackedInt32List = [NSMutableArray array];
+  }
+  [result.mutablePackedInt32List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedInt32List {
+  result.mutablePackedInt32List = nil;
+  return self;
+}
+- (NSArray*) packedInt64List {
+  if (result.mutablePackedInt64List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedInt64List;
+}
+- (int64_t) packedInt64AtIndex:(int32_t) index {
+  return [result packedInt64AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedInt64AtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutablePackedInt64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedInt64:(int64_t) value {
+  if (result.mutablePackedInt64List == nil) {
+    result.mutablePackedInt64List = [NSMutableArray array];
+  }
+  [result.mutablePackedInt64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedInt64:(NSArray*) values {
+  if (result.mutablePackedInt64List == nil) {
+    result.mutablePackedInt64List = [NSMutableArray array];
+  }
+  [result.mutablePackedInt64List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedInt64List {
+  result.mutablePackedInt64List = nil;
+  return self;
+}
+- (NSArray*) packedUint32List {
+  if (result.mutablePackedUint32List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedUint32List;
+}
+- (int32_t) packedUint32AtIndex:(int32_t) index {
+  return [result packedUint32AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedUint32AtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePackedUint32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedUint32:(int32_t) value {
+  if (result.mutablePackedUint32List == nil) {
+    result.mutablePackedUint32List = [NSMutableArray array];
+  }
+  [result.mutablePackedUint32List addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedUint32:(NSArray*) values {
+  if (result.mutablePackedUint32List == nil) {
+    result.mutablePackedUint32List = [NSMutableArray array];
+  }
+  [result.mutablePackedUint32List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedUint32List {
+  result.mutablePackedUint32List = nil;
+  return self;
+}
+- (NSArray*) packedUint64List {
+  if (result.mutablePackedUint64List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedUint64List;
+}
+- (int64_t) packedUint64AtIndex:(int32_t) index {
+  return [result packedUint64AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedUint64AtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutablePackedUint64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedUint64:(int64_t) value {
+  if (result.mutablePackedUint64List == nil) {
+    result.mutablePackedUint64List = [NSMutableArray array];
+  }
+  [result.mutablePackedUint64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedUint64:(NSArray*) values {
+  if (result.mutablePackedUint64List == nil) {
+    result.mutablePackedUint64List = [NSMutableArray array];
+  }
+  [result.mutablePackedUint64List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedUint64List {
+  result.mutablePackedUint64List = nil;
+  return self;
+}
+- (NSArray*) packedSint32List {
+  if (result.mutablePackedSint32List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedSint32List;
+}
+- (int32_t) packedSint32AtIndex:(int32_t) index {
+  return [result packedSint32AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedSint32AtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePackedSint32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedSint32:(int32_t) value {
+  if (result.mutablePackedSint32List == nil) {
+    result.mutablePackedSint32List = [NSMutableArray array];
+  }
+  [result.mutablePackedSint32List addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedSint32:(NSArray*) values {
+  if (result.mutablePackedSint32List == nil) {
+    result.mutablePackedSint32List = [NSMutableArray array];
+  }
+  [result.mutablePackedSint32List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedSint32List {
+  result.mutablePackedSint32List = nil;
+  return self;
+}
+- (NSArray*) packedSint64List {
+  if (result.mutablePackedSint64List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedSint64List;
+}
+- (int64_t) packedSint64AtIndex:(int32_t) index {
+  return [result packedSint64AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedSint64AtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutablePackedSint64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedSint64:(int64_t) value {
+  if (result.mutablePackedSint64List == nil) {
+    result.mutablePackedSint64List = [NSMutableArray array];
+  }
+  [result.mutablePackedSint64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedSint64:(NSArray*) values {
+  if (result.mutablePackedSint64List == nil) {
+    result.mutablePackedSint64List = [NSMutableArray array];
+  }
+  [result.mutablePackedSint64List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedSint64List {
+  result.mutablePackedSint64List = nil;
+  return self;
+}
+- (NSArray*) packedFixed32List {
+  if (result.mutablePackedFixed32List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedFixed32List;
+}
+- (int32_t) packedFixed32AtIndex:(int32_t) index {
+  return [result packedFixed32AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedFixed32AtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePackedFixed32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedFixed32:(int32_t) value {
+  if (result.mutablePackedFixed32List == nil) {
+    result.mutablePackedFixed32List = [NSMutableArray array];
+  }
+  [result.mutablePackedFixed32List addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedFixed32:(NSArray*) values {
+  if (result.mutablePackedFixed32List == nil) {
+    result.mutablePackedFixed32List = [NSMutableArray array];
+  }
+  [result.mutablePackedFixed32List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedFixed32List {
+  result.mutablePackedFixed32List = nil;
+  return self;
+}
+- (NSArray*) packedFixed64List {
+  if (result.mutablePackedFixed64List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedFixed64List;
+}
+- (int64_t) packedFixed64AtIndex:(int32_t) index {
+  return [result packedFixed64AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedFixed64AtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutablePackedFixed64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedFixed64:(int64_t) value {
+  if (result.mutablePackedFixed64List == nil) {
+    result.mutablePackedFixed64List = [NSMutableArray array];
+  }
+  [result.mutablePackedFixed64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedFixed64:(NSArray*) values {
+  if (result.mutablePackedFixed64List == nil) {
+    result.mutablePackedFixed64List = [NSMutableArray array];
+  }
+  [result.mutablePackedFixed64List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedFixed64List {
+  result.mutablePackedFixed64List = nil;
+  return self;
+}
+- (NSArray*) packedSfixed32List {
+  if (result.mutablePackedSfixed32List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedSfixed32List;
+}
+- (int32_t) packedSfixed32AtIndex:(int32_t) index {
+  return [result packedSfixed32AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedSfixed32AtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutablePackedSfixed32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedSfixed32:(int32_t) value {
+  if (result.mutablePackedSfixed32List == nil) {
+    result.mutablePackedSfixed32List = [NSMutableArray array];
+  }
+  [result.mutablePackedSfixed32List addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedSfixed32:(NSArray*) values {
+  if (result.mutablePackedSfixed32List == nil) {
+    result.mutablePackedSfixed32List = [NSMutableArray array];
+  }
+  [result.mutablePackedSfixed32List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedSfixed32List {
+  result.mutablePackedSfixed32List = nil;
+  return self;
+}
+- (NSArray*) packedSfixed64List {
+  if (result.mutablePackedSfixed64List == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedSfixed64List;
+}
+- (int64_t) packedSfixed64AtIndex:(int32_t) index {
+  return [result packedSfixed64AtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedSfixed64AtIndex:(int32_t) index with:(int64_t) value {
+  [result.mutablePackedSfixed64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedSfixed64:(int64_t) value {
+  if (result.mutablePackedSfixed64List == nil) {
+    result.mutablePackedSfixed64List = [NSMutableArray array];
+  }
+  [result.mutablePackedSfixed64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedSfixed64:(NSArray*) values {
+  if (result.mutablePackedSfixed64List == nil) {
+    result.mutablePackedSfixed64List = [NSMutableArray array];
+  }
+  [result.mutablePackedSfixed64List addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedSfixed64List {
+  result.mutablePackedSfixed64List = nil;
+  return self;
+}
+- (NSArray*) packedFloatList {
+  if (result.mutablePackedFloatList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedFloatList;
+}
+- (Float32) packedFloatAtIndex:(int32_t) index {
+  return [result packedFloatAtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedFloatAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePackedFloatList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedFloat:(Float32) value {
+  if (result.mutablePackedFloatList == nil) {
+    result.mutablePackedFloatList = [NSMutableArray array];
+  }
+  [result.mutablePackedFloatList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedFloat:(NSArray*) values {
+  if (result.mutablePackedFloatList == nil) {
+    result.mutablePackedFloatList = [NSMutableArray array];
+  }
+  [result.mutablePackedFloatList addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedFloatList {
+  result.mutablePackedFloatList = nil;
+  return self;
+}
+- (NSArray*) packedDoubleList {
+  if (result.mutablePackedDoubleList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedDoubleList;
+}
+- (Float64) packedDoubleAtIndex:(int32_t) index {
+  return [result packedDoubleAtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedDoubleAtIndex:(int32_t) index with:(Float64) value {
+  [result.mutablePackedDoubleList replaceObjectAtIndex:index withObject:[NSNumber numberWithDouble:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedDouble:(Float64) value {
+  if (result.mutablePackedDoubleList == nil) {
+    result.mutablePackedDoubleList = [NSMutableArray array];
+  }
+  [result.mutablePackedDoubleList addObject:[NSNumber numberWithDouble:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedDouble:(NSArray*) values {
+  if (result.mutablePackedDoubleList == nil) {
+    result.mutablePackedDoubleList = [NSMutableArray array];
+  }
+  [result.mutablePackedDoubleList addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedDoubleList {
+  result.mutablePackedDoubleList = nil;
+  return self;
+}
+- (NSArray*) packedBoolList {
+  if (result.mutablePackedBoolList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePackedBoolList;
+}
+- (BOOL) packedBoolAtIndex:(int32_t) index {
+  return [result packedBoolAtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedBoolAtIndex:(int32_t) index with:(BOOL) value {
+  [result.mutablePackedBoolList replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedBool:(BOOL) value {
+  if (result.mutablePackedBoolList == nil) {
+    result.mutablePackedBoolList = [NSMutableArray array];
+  }
+  [result.mutablePackedBoolList addObject:[NSNumber numberWithBool:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedBool:(NSArray*) values {
+  if (result.mutablePackedBoolList == nil) {
+    result.mutablePackedBoolList = [NSMutableArray array];
+  }
+  [result.mutablePackedBoolList addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedBoolList {
+  result.mutablePackedBoolList = nil;
+  return self;
+}
+- (NSArray*) packedEnumList {
+  return result.mutablePackedEnumList;
+}
+- (ForeignEnum) packedEnumAtIndex:(int32_t) index {
+  return [result packedEnumAtIndex:index];
+}
+- (TestPackedTypes_Builder*) replacePackedEnumAtIndex:(int32_t) index with:(ForeignEnum) value {
+  [result.mutablePackedEnumList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addPackedEnum:(ForeignEnum) value {
+  if (result.mutablePackedEnumList == nil) {
+    result.mutablePackedEnumList = [NSMutableArray array];
+  }
+  [result.mutablePackedEnumList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (TestPackedTypes_Builder*) addAllPackedEnum:(NSArray*) values {
+  if (result.mutablePackedEnumList == nil) {
+    result.mutablePackedEnumList = [NSMutableArray array];
+  }
+  [result.mutablePackedEnumList addObjectsFromArray:values];
+  return self;
+}
+- (TestPackedTypes_Builder*) clearPackedEnumList {
+  result.mutablePackedEnumList = nil;
+  return self;
+}
+@end
+
+@interface TestPackedExtensions ()
+@end
+
+@implementation TestPackedExtensions
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static TestPackedExtensions* defaultTestPackedExtensionsInstance = nil;
++ (void) initialize {
+  if (self == [TestPackedExtensions class]) {
+    defaultTestPackedExtensionsInstance = [[TestPackedExtensions alloc] init];
+  }
+}
++ (TestPackedExtensions*) defaultInstance {
+  return defaultTestPackedExtensionsInstance;
+}
+- (TestPackedExtensions*) defaultInstance {
+  return defaultTestPackedExtensionsInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self writeExtensionsToCodedOutputStream:output
+                                      from:1
+                                        to:536870912];
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += [self extensionsSerializedSize];
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (TestPackedExtensions*) parseFromData:(NSData*) data {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromData:data] build];
+}
++ (TestPackedExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedExtensions*) parseFromInputStream:(NSInputStream*) input {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromInputStream:input] build];
+}
++ (TestPackedExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromCodedInputStream:input] build];
+}
++ (TestPackedExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TestPackedExtensions*)[[[TestPackedExtensions builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TestPackedExtensions_Builder*) builder {
+  return [[[TestPackedExtensions_Builder alloc] init] autorelease];
+}
++ (TestPackedExtensions_Builder*) builderWithPrototype:(TestPackedExtensions*) prototype {
+  return [[TestPackedExtensions builder] mergeFrom:prototype];
+}
+- (TestPackedExtensions_Builder*) builder {
+  return [TestPackedExtensions builder];
+}
+@end
+
+@interface TestPackedExtensions_Builder()
+@property (retain) TestPackedExtensions* result;
+@end
+
+@implementation TestPackedExtensions_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[TestPackedExtensions alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBExtendableMessage*) internalGetResult {
+  return result;
+}
+- (TestPackedExtensions_Builder*) clear {
+  self.result = [[[TestPackedExtensions alloc] init] autorelease];
+  return self;
+}
+- (TestPackedExtensions_Builder*) clone {
+  return [TestPackedExtensions builderWithPrototype:result];
+}
+- (TestPackedExtensions*) defaultInstance {
+  return [TestPackedExtensions defaultInstance];
+}
+- (TestPackedExtensions*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (TestPackedExtensions*) buildPartial {
+  TestPackedExtensions* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (TestPackedExtensions_Builder*) mergeFrom:(TestPackedExtensions*) other {
+  if (other == [TestPackedExtensions defaultInstance]) {
+    return self;
+  }
+  [self mergeExtensionFields:other];
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (TestPackedExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (TestPackedExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
 }
 @end
 

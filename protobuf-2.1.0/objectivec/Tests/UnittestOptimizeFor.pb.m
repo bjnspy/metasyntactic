@@ -205,6 +205,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   if (other.hasMsg) {
     [self mergeMsg:other.msg];
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }

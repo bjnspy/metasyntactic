@@ -161,6 +161,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   if (other == [TestMessageSet defaultInstance]) {
     return self;
   }
+  [self mergeExtensionFields:other];
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }

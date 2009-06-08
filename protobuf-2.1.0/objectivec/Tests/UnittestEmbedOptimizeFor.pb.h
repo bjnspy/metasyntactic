@@ -58,6 +58,8 @@
 @class TestMutualRecursionA_Builder;
 @class TestMutualRecursionB;
 @class TestMutualRecursionB_Builder;
+@class TestNestedExtension;
+@class TestNestedExtension_Builder;
 @class TestNestedMessageHasBits;
 @class TestNestedMessageHasBits_Builder;
 @class TestNestedMessageHasBits_NestedMessage;
@@ -66,6 +68,10 @@
 @class TestOptimizedForSize_Builder;
 @class TestOptionalOptimizedForSize;
 @class TestOptionalOptimizedForSize_Builder;
+@class TestPackedExtensions;
+@class TestPackedExtensions_Builder;
+@class TestPackedTypes;
+@class TestPackedTypes_Builder;
 @class TestReallyLargeTagNumber;
 @class TestReallyLargeTagNumber_Builder;
 @class TestRecursiveMessage;

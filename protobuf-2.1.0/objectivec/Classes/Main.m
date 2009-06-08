@@ -20,7 +20,7 @@ int main (int argc, const char * argv[]) {
   NSLog(@"Hello, World!");
 
   UnknownFieldSetTest* tests = [[[UnknownFieldSetTest alloc] init] autorelease];
-  [tests testUnknownExtensions];
+  [tests testClear];
 
   [pool drain];
   return 0;
