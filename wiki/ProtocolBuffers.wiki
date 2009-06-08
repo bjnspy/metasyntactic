@@ -70,6 +70,9 @@ Once you have generated the `.pb.h` and `.pb.m` files for the `.proto` file you 
   # Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.  (This should have been done in the 'Creating the Protocol Buffer Compiler' step above).
   # Open your existing project and a reference to the `ProtocolBuffers` project found in `<install_directory>`.
   # Add a reference to `<install_directory>/Classes/ProtocolBuffers.h` in your project and add the following line to your pch file: `#import "ProtocolBuffers.h"`
+  # `Get Info` on your build target
+  # Add `ProtocolBuffers` as a `Direct Dependency` of your build target.
+  # Add `libProtocolBuffers.a` as a `Linked Library` of your build target.  You may have to do this by dragging and dropping the library from the referenced `ProtocolBuffers` project to your target's `Link Binary With Libraries` section.
   # Compile and enjoy!
 
 
