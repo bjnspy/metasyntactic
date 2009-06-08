@@ -14,7 +14,6 @@
 
 #import "TestUtilities.h"
 
-#import "Macros.h"
 #import "Unittest.pb.h"
 
 @implementation TestUtilities
