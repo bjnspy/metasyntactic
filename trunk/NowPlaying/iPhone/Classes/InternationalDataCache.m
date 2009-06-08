@@ -33,11 +33,20 @@
 
 static NSString* trailers_key = @"trailers";
 
-static NSSet* allowableCountries = nil;
+static NSDictionary* countryToCode = nil;
 
 + (void) initialize {
   if (self == [InternationalDataCache class]) {
-    allowableCountries = [[NSSet setWithObjects:@"FR", @"DK", @"NL", @"SE", @"DE", @"IT", @"ES", @"CH", @"FI", nil] retain];
+    countryToCode = [[NSDictionary dictionaryWithObjectsAndKeys:
+                      @"331100091-1" , @"FR",
+                      @"4501100140-1", @"DK",
+                      @"391100099-1" , @"NL",
+                      @"4601100171-1", @"SE",
+                      @"491100208-1" , @"DE",
+                      @"391100099-1" , @"IT",
+                      @"341100082-1" , @"ES",
+                      @"391100099-1" , @"CH",
+                      @"3581100147-1", @"FI", nil] retain];
   }
 }
 
@@ -58,7 +67,7 @@ static NSSet* allowableCountries = nil;
 
 
 + (BOOL) isAllowableCountry {
-  return [allowableCountries containsObject:[LocaleUtilities isoCountry]];
+  return [countryToCode objectForKey:[LocaleUtilities isoCountry]] != nil;
 }
 
 
@@ -388,7 +397,8 @@ static NSSet* allowableCountries = nil;
 
 
 - (void) downloadIndex {
-  NSString* address = [NSString stringWithFormat:@"http://%@.iphone.filmtrailer.com/v2.0/cinema/AllCinemaMovies/?channel_user_id=391100099-1&format=mov&size=xlarge", [[LocaleUtilities isoCountry] lowercaseString]];
+  NSString* code = [countryToCode objectForKey:[LocaleUtilities isoCountry]];
+  NSString* address = [NSString stringWithFormat:@"http://%@.iphone.filmtrailer.com/v2.0/cinema/AllCinemaMovies/?channel_user_id=%@&format=mov&size=xlarge", [[LocaleUtilities isoCountry] lowercaseString], code];
   NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
                            [Application host],
                            [StringUtilities stringByAddingPercentEscapes:address]];
