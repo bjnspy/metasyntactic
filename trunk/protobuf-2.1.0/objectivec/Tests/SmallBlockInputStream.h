@@ -7,8 +7,8 @@
 //
 
 @interface SmallBlockInputStream : NSInputStream {
-    NSInputStream* underlyingStream;
-    int32_t blockSize;
+  NSInputStream* underlyingStream;
+  int32_t blockSize;
 }
 
 @property (retain) NSInputStream* underlyingStream;

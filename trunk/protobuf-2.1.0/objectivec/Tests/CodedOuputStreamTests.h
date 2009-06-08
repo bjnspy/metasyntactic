@@ -9,7 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @interface CodedOutputStreamTests : SenTestCase {
-
+  
 }
 
 @end
