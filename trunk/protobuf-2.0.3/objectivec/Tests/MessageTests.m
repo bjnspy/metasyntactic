@@ -54,7 +54,7 @@
   TestAllTypes* result =
   [[[TestAllTypes builderWithPrototype:self.mergeDestination]
     mergeFrom:self.mergeSource] build];
-  
+
   STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
 
@@ -73,7 +73,7 @@
 
 - (void) testRequired {
   TestRequired_Builder* builder = [TestRequired builder];
-  
+
   STAssertFalse(builder.isInitialized, @"");
   [builder setA:1];
   STAssertFalse(builder.isInitialized, @"");
@@ -86,18 +86,18 @@
 
 - (void) testRequiredForeign {
   TestRequiredForeign_Builder* builder = [TestRequiredForeign builder];
-  
+
   STAssertTrue(builder.isInitialized, @"");
-  
+
   [builder setOptionalMessage:self.testRequiredUninitialized];
   STAssertFalse(builder.isInitialized, @"");
-  
+
   [builder setOptionalMessage:self.testRequiredInitialized];
   STAssertTrue(builder.isInitialized, @"");
-  
+
   [builder addRepeatedMessage:self.testRequiredUninitialized];
   STAssertFalse(builder.isInitialized, @"");
-  
+
   [builder replaceRepeatedMessageAtIndex:0 with:self.testRequiredInitialized];
   STAssertTrue(builder.isInitialized, @"");
 }
@@ -105,18 +105,18 @@
 
 - (void) testRequiredExtension {
   TestAllExtensions_Builder* builder = [TestAllExtensions builder];
-  
+
   STAssertTrue(builder.isInitialized, @"");
-  
+
   [builder setExtension:[TestRequired single] value:self.testRequiredUninitialized];
   STAssertFalse(builder.isInitialized, @"");
-  
+
   [builder setExtension:[TestRequired single] value:self.testRequiredInitialized];
   STAssertTrue(builder.isInitialized, @"");
-  
+
   [builder addExtension:[TestRequired multi] value:self.testRequiredUninitialized];
   STAssertFalse(builder.isInitialized, @"");
-  
+
   [builder setExtension:[TestRequired multi] index:0 value:self.testRequiredInitialized];
   STAssertTrue(builder.isInitialized, @"");
 }
@@ -145,14 +145,14 @@
 
 - (void) testBuildNestedPartial {
   // We're mostly testing that no exception is thrown.
-  
+
   TestRequiredForeign* message =
   [[[[[TestRequiredForeign builder]
       setOptionalMessage:self.testRequiredUninitialized]
      addRepeatedMessage:self.testRequiredUninitialized]
     addRepeatedMessage:self.testRequiredUninitialized]
    buildPartial];
-  
+
   STAssertFalse(message.isInitialized, @"");
 }
 
@@ -169,9 +169,9 @@
      addRepeatedMessage:self.testRequiredUninitialized]
     addRepeatedMessage:self.testRequiredUninitialized]
    buildPartial];
-  
+
   NSData* data = message.data;
-  
+
   STAssertThrows([TestRequiredForeign parseFromData:data], @"");
 }
 

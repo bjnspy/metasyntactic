@@ -1,33 +1,39 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  CodedOuputStreamTests.m
-//  ProtocolBuffers
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 10/11/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "CodedOuputStreamTests.h"
 
-#import "Unittest.pb.h"
 #import "TestUtilities.h"
+#import "Unittest.pb.h"
 
 @implementation CodedOutputStreamTests
 
 - (NSData*) bytes_with_sentinel:(int32_t) unused, ... {
   va_list list;
   va_start(list, unused);
-  
+
   NSMutableData* values = [NSMutableData dataWithCapacity:0];
   int32_t i;
-  
+
   while ((i = va_arg(list, int32_t)) != 256) {
     NSAssert(i >= 0 && i < 256, @"");
     uint8_t u = (uint8_t)i;
     [values appendBytes:&u length:1];
   }
-  
+
   va_end(list);
-  
+
   return values;
 }
 
@@ -48,17 +54,17 @@
   PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
   [output writeRawLittleEndian32:(int32_t)value];
   [output flush];
-  
+
   NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
   STAssertEqualObjects(data, actual, @"");
-  
+
   // Try different block sizes.
   for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
     NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
     [output writeRawLittleEndian32:(int32_t)value];
     [output flush];
-    
+
     NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     STAssertEqualObjects(data, actual, @"");
   }
@@ -74,17 +80,17 @@
   PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
   [output writeRawLittleEndian64:value];
   [output flush];
-  
+
   NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
   STAssertEqualObjects(data, actual, @"");
-  
+
   // Try different block sizes.
   for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
     NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
     [output writeRawLittleEndian64:value];
     [output flush];
-    
+
     NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     STAssertEqualObjects(data, actual, @"");
   }
@@ -103,49 +109,49 @@
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
     [output writeRawVarint32:(int32_t)value];
     [output flush];
-    
+
     NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     STAssertEqualObjects(data, actual, @"");
-    
+
     // Also try computing size.
     STAssertTrue(data.length == computeRawVarint32Size((int32_t)value), @"");
   }
-  
+
   {
     NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
     [output writeRawVarint64:value];
     [output flush];
-    
+
     NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     STAssertEqualObjects(data, actual, @"");
-    
-    
+
+
     // Also try computing size.
     STAssertTrue(data.length == computeRawVarint64Size(value), @"");
   }
-  
+
   // Try different block sizes.
   for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
     // Only do 32-bit write if the value fits in 32 bits.
     if (logicalRightShift64(value, 32) == 0) {
       NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
       PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
-      
+
       [output writeRawVarint32:(int32_t)value];
       [output flush];
-      
+
       NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
       STAssertEqualObjects(data, actual, @"");
     }
-    
+
     {
       NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
       PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
-      
+
       [output writeRawVarint64:value];
       [output flush];
-      
+
       NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
       STAssertEqualObjects(data, actual, @"");
     }
@@ -208,7 +214,7 @@
 - (void) testWriteLittleEndian {
   [self assertWriteLittleEndian32:bytes(0x78, 0x56, 0x34, 0x12) value:0x12345678];
   [self assertWriteLittleEndian32:bytes(0xf0, 0xde, 0xbc, 0x9a) value:0x9abcdef0];
-  
+
   [self assertWriteLittleEndian64:
    bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
    0x123456789abcdef0LL];
@@ -228,7 +234,7 @@
   STAssertTrue(0x7FFFFFFF == encodeZigZag32(0xC0000000), @"");
   STAssertTrue(0xFFFFFFFE == encodeZigZag32(0x7FFFFFFF), @"");
   STAssertTrue(0xFFFFFFFF == encodeZigZag32(0x80000000), @"");
-  
+
   STAssertTrue(0 == encodeZigZag64( 0), @"");
   STAssertTrue(1 == encodeZigZag64(-1), @"");
   STAssertTrue(2 == encodeZigZag64( 1), @"");
@@ -239,7 +245,7 @@
   STAssertTrue(0x00000000FFFFFFFFLL == encodeZigZag64(0xFFFFFFFF80000000LL), @"");
   STAssertTrue(0xFFFFFFFFFFFFFFFELL == encodeZigZag64(0x7FFFFFFFFFFFFFFFLL), @"");
   STAssertTrue(0xFFFFFFFFFFFFFFFFLL == encodeZigZag64(0x8000000000000000LL), @"");
-  
+
   // Some easier-to-verify round-trip tests.  The inputs (other than 0, 1, -1)
   // were chosen semi-randomly via keyboard bashing.
   STAssertTrue(0 == encodeZigZag32(decodeZigZag32(0)), @"");
@@ -247,13 +253,13 @@
   STAssertTrue(-1 == encodeZigZag32(decodeZigZag32(-1)), @"");
   STAssertTrue(14927 == encodeZigZag32(decodeZigZag32(14927)), @"");
   STAssertTrue(-3612 == encodeZigZag32(decodeZigZag32(-3612)), @"");
-  
+
   STAssertTrue(0 == encodeZigZag64(decodeZigZag64(0)), @"");
   STAssertTrue(1 == encodeZigZag64(decodeZigZag64(1)), @"");
   STAssertTrue(-1 == encodeZigZag64(decodeZigZag64(-1)), @"");
   STAssertTrue(14927 == encodeZigZag64(decodeZigZag64(14927)), @"");
   STAssertTrue(-3612 == encodeZigZag64(decodeZigZag64(-3612)), @"");
-  
+
   STAssertTrue(856912304801416LL == encodeZigZag64(decodeZigZag64(856912304801416LL)), @"");
   STAssertTrue(-75123905439571256LL == encodeZigZag64(decodeZigZag64(-75123905439571256LL)), @"");
 }
@@ -262,18 +268,18 @@
 /** Tests writing a whole message with every field type. */
 - (void) testWriteWholeMessage {
   TestAllTypes* message = [TestUtilities allSet];
-  
+
   NSData* rawBytes = message.data;
   NSData* goldenData = [TestUtilities goldenData];
   STAssertEqualObjects(rawBytes, goldenData, @"");
-  
+
   // Try different block sizes.
   for (int blockSize = 1; blockSize < 256; blockSize *= 2) {
     NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
     [message writeToCodedOutputStream:output];
     [output flush];
-    
+
     NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     STAssertEqualObjects(rawBytes, actual, @"");
   }

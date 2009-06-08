@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="448" column="19" selection-start="15211" selection-end="15211" vertical-scroll-proportion="0.27317074">
+            <state line="85" column="4" selection-start="2587" selection-end="2587" vertical-scroll-proportion="1.2292683">
               <folding />
             </state>
           </provider>
@@ -233,7 +233,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NowPlaying">
+  <component name="RunManager" selected="Application.ProtocolBuffers">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -323,8 +323,8 @@
     <configuration default="false" name="ProtocolBuffers" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/ProtocolBuffers/Classes" />
-      <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/ProtocolBuffers/Classes" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/protobuf-2.1.0/objectivec/Classes /Projects/metasyntactic/trunk/protobuf-2.1.0/objectivec/Tests /Projects/metasyntactic/trunk/protobuf-2.0.3/objectivec/Classes /Projects/metasyntactic/trunk/protobuf-2.0.3/objectivec/Tests" />
+      <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -525,7 +525,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33377483" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39072847" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39072847" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -617,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="19" selection-start="15211" selection-end="15211" vertical-scroll-proportion="0.27317074">
+        <state line="85" column="4" selection-start="2587" selection-end="2587" vertical-scroll-proportion="1.2292683">
           <folding />
         </state>
       </provider>

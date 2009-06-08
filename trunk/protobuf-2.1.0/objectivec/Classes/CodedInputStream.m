@@ -38,7 +38,7 @@ const int32_t BUFFER_SIZE = 4096;
   [input close];
   self.buffer = nil;
   self.input = nil;
-  
+
   [super dealloc];
 }
 
@@ -57,7 +57,7 @@ const int32_t BUFFER_SIZE = 4096;
     self.input = nil;
     [self commonInit];
   }
-  
+
   return self;
 }
 
@@ -70,7 +70,7 @@ const int32_t BUFFER_SIZE = 4096;
     [input open];
     [self commonInit];
   }
-  
+
   return self;
 }
 
@@ -95,7 +95,7 @@ const int32_t BUFFER_SIZE = 4096;
     lastTag = 0;
     return 0;
   }
-  
+
   lastTag = [self readRawVarint32];
   if (lastTag == 0) {
     // If we actually read zero, that's not a valid tag.
@@ -518,9 +518,9 @@ int64_t decodeZigZag64(int64_t n) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
   }
   currentLimit = byteLimit;
-  
+
   [self recomputeBufferSizeAfterLimit];
-  
+
   return oldLimit;
 }
 
@@ -557,7 +557,7 @@ int64_t decodeZigZag64(int64_t n) {
   if (currentLimit == INT_MAX) {
     return -1;
   }
-  
+
   int32_t currentAbsolutePosition = totalBytesRetired + bufferPos;
   return currentLimit - currentAbsolutePosition;
 }
@@ -583,7 +583,7 @@ int64_t decodeZigZag64(int64_t n) {
   if (bufferPos < bufferSize) {
     @throw [NSException exceptionWithName:@"IllegalState" reason:@"refillBuffer called when buffer wasn't empty." userInfo:nil];
   }
-  
+
   if (totalBytesRetired + bufferSize == currentLimit) {
     // Oops, we hit a limit.
     if (mustSucceed) {
@@ -592,9 +592,9 @@ int64_t decodeZigZag64(int64_t n) {
       return NO;
     }
   }
-  
+
   totalBytesRetired += bufferSize;
-  
+
   // TODO(cyrusn): does NSInputStream behave the same as java.io.InputStream
   // when there is no more data?
   bufferPos = 0;
@@ -602,7 +602,7 @@ int64_t decodeZigZag64(int64_t n) {
   if (input != nil) {
     bufferSize = [input read:buffer.mutableBytes maxLength:buffer.length];
   }
-  
+
   if (bufferSize <= 0) {
     bufferSize = 0;
     if (mustSucceed) {
@@ -646,14 +646,14 @@ int64_t decodeZigZag64(int64_t n) {
   if (size < 0) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
   }
-  
+
   if (totalBytesRetired + bufferPos + size > currentLimit) {
     // Read to the end of the stream anyway.
     [self skipRawData:currentLimit - totalBytesRetired - bufferPos];
     // Then fail.
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
   }
-  
+
   if (size <= bufferSize - bufferPos) {
     // We have all the bytes we need already.
     NSData* data = [NSData dataWithBytes:(((int8_t*) buffer.bytes) + bufferPos) length:size];
@@ -662,28 +662,28 @@ int64_t decodeZigZag64(int64_t n) {
   } else if (size < BUFFER_SIZE) {
     // Reading more bytes than are in the buffer, but not an excessive number
     // of bytes.  We can safely allocate the resulting array ahead of time.
-    
+
     // First copy what we have.
     NSMutableData* bytes = [NSMutableData dataWithLength:size];
     int32_t pos = bufferSize - bufferPos;
     memcpy(bytes.mutableBytes, ((int8_t*)buffer.bytes) + bufferPos, pos);
     bufferPos = bufferSize;
-    
+
     // We want to use refillBuffer() and then copy from the buffer into our
     // byte array rather than reading directly into our byte array because
     // the input may be unbuffered.
     [self refillBuffer:YES];
-    
+
     while (size - pos > bufferSize) {
       memcpy(((int8_t*)bytes.mutableBytes) + pos, buffer.bytes, bufferSize);
       pos += bufferSize;
       bufferPos = bufferSize;
       [self refillBuffer:YES];
     }
-    
+
     memcpy(((int8_t*)bytes.mutableBytes) + pos, buffer.bytes, size - pos);
     bufferPos = size - pos;
-    
+
     return bytes;
   } else {
     // The size is very large.  For security reasons, we can't allocate the
@@ -693,24 +693,24 @@ int64_t decodeZigZag64(int64_t n) {
     // by allocating and reading only a small chunk at a time, so that the
     // malicious message must actuall* e* extremely large to cause
     // problems.  Meanwhile, we limit the allowed size of a message elsewhere.
-    
+
     // Remember the buffer markers since we'll have to copy the bytes out of
     // it later.
     int32_t originalBufferPos = bufferPos;
     int32_t originalBufferSize = bufferSize;
-    
+
     // Mark the current buffer consumed.
     totalBytesRetired += bufferSize;
     bufferPos = 0;
     bufferSize = 0;
-    
+
     // Read all the rest of the bytes we need.
     int32_t sizeLeft = size - (originalBufferSize - originalBufferPos);
     NSMutableArray* chunks = [NSMutableArray array];
-    
+
     while (sizeLeft > 0) {
       NSMutableData* chunk = [NSMutableData dataWithLength:MIN(sizeLeft, BUFFER_SIZE)];
-      
+
       int32_t pos = 0;
       while (pos < chunk.length) {
         int32_t n = 0;
@@ -726,20 +726,20 @@ int64_t decodeZigZag64(int64_t n) {
       sizeLeft -= chunk.length;
       [chunks addObject:chunk];
     }
-    
+
     // OK, got everything.  Now concatenate it all into one buffer.
     NSMutableData* bytes = [NSMutableData dataWithLength:size];
-    
+
     // Start by copying the leftover bytes from this.buffer.
     int32_t pos = originalBufferSize - originalBufferPos;
     memcpy(bytes.mutableBytes, ((int8_t*)buffer.bytes) + originalBufferPos, pos);
-    
+
     // And now all the chunks.
     for (NSData* chunk in chunks) {
       memcpy(((int8_t*)bytes.mutableBytes) + pos, chunk.bytes, chunk.length);
       pos += chunk.length;
     }
-    
+
     // Done.
     return bytes;
   }
@@ -756,14 +756,14 @@ int64_t decodeZigZag64(int64_t n) {
   if (size < 0) {
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
   }
-  
+
   if (totalBytesRetired + bufferPos + size > currentLimit) {
     // Read to the end of the stream anyway.
     [self skipRawData:currentLimit - totalBytesRetired - bufferPos];
     // Then fail.
     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
   }
-  
+
   if (size <= (bufferSize - bufferPos)) {
     // We have all the bytes we need already.
     bufferPos += size;
@@ -773,7 +773,7 @@ int64_t decodeZigZag64(int64_t n) {
     totalBytesRetired += pos;
     bufferPos = 0;
     bufferSize = 0;
-    
+
     // Then skip directly from the InputStream for the rest.
     while (pos < size) {
       NSMutableData* data = [NSMutableData dataWithLength:(size - pos)];

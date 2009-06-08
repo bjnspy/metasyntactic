@@ -280,7 +280,7 @@ int32_t typeSize(PBExtensionType type) {
       [output writeMessageNoTag:value];
       return;
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -306,7 +306,7 @@ int32_t typeSize(PBExtensionType type) {
     case PBExtensionTypeEnum:     return computeEnumSizeNoTag([value intValue]);
     case PBExtensionTypeMessage:  return computeMessageSizeNoTag(value);
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 
@@ -337,7 +337,7 @@ int32_t typeSize(PBExtensionType type) {
         return computeMessageSize(fieldNumber, value);
       }
   }
-  
+
   @throw [NSException exceptionWithName:@"InternalError" reason:@"" userInfo:nil];
 }
 

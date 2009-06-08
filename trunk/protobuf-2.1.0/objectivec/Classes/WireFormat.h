@@ -19,10 +19,10 @@ typedef enum {
   PBWireFormatStartGroup = 3,
   PBWireFormatEndGroup = 4,
   PBWireFormatFixed32 = 5,
-  
+
   PBWireFormatTagTypeBits = 3,
   PBWireFormatTagTypeMask = 7 /* = (1 << PBWireFormatTagTypeBits) - 1*/,
-  
+
   PBWireFormatMessageSetItem = 1,
   PBWireFormatMessageSetTypeId = 2,
   PBWireFormatMessageSetMessage = 3
