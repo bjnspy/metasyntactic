@@ -51,7 +51,7 @@ static BOOL updated = NO;
     return;
   }
   updated = YES;
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                           onTarget:self
                                               gate:nil
@@ -65,18 +65,18 @@ static BOOL updated = NO;
                        [[NSBundle mainBundle] bundleIdentifier],
                        [LocaleUtilities preferredLanguage]];
   NSString* hashAddress = [address stringByAppendingString:@"&hash=true"];
-  
+
   NSString* localHash = [FileUtilities readObject:[self hashFile]];
   NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:hashAddress];
   if (serverHash.length > 0 && [serverHash isEqual:localHash]) {
     return;
   }
-  
+
   NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:address]];
   if (dict.count <= 0) {
     return;
   }
-  
+
   [FileUtilities writeObject:dict toFile:[self indexFile]];
   [FileUtilities writeObject:serverHash toFile:[self hashFile]];
 }
@@ -89,7 +89,7 @@ static BOOL updated = NO;
       return;
     }
   }
-  
+
   NSString* notification = [LocalizedString(@"Translations", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {
@@ -104,7 +104,7 @@ static BOOL updated = NO;
   if (result.length > 0) {
     return result;
   }
-  
+
   return [[NSBundle mainBundle] localizedStringForKey:key value:key table:nil];
 }
 

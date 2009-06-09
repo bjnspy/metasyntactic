@@ -28,7 +28,7 @@
 - (void) dealloc {
   self.backgroundView = nil;
   self.activityIndicator = nil;
-  
+
   [super dealloc];
 }
 
@@ -38,20 +38,20 @@
     UIImage* image = [UIImage imageNamed:@"GrayCircle.png"];
     self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
     self.frame = backgroundView.frame;
-    
+
     self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
     activityIndicator.hidesWhenStopped = YES;
-    
+
     CGRect frame = activityIndicator.frame;
     frame.origin.x = frame.origin.y = 4;
     activityIndicator.frame = frame;
-    
+
     [self addSubview:backgroundView];
     [self addSubview:activityIndicator];
-    
+
     [self sendSubviewToBack:backgroundView];
   }
-  
+
   return self;
 }
 
@@ -61,7 +61,7 @@
   {
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
-    
+
     activityIndicator.alpha = 0;
     backgroundView.alpha = 0;
   }
@@ -79,9 +79,9 @@
 - (void) startAnimating {
   backgroundView.alpha = 0;
   activityIndicator.alpha = 0;
-  
+
   [activityIndicator startAnimating];
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     backgroundView.alpha = 0.75;

@@ -50,7 +50,7 @@ static CacheUpdater* cacheUpdater = nil;
 - (void) dealloc {
   self.searchOperationsGate = nil;
   self.searchOperations = nil;
-  
+
   [super dealloc];
 }
 
@@ -59,7 +59,7 @@ static CacheUpdater* cacheUpdater = nil;
   if ((self = [super init])) {
     self.searchOperationsGate = [[[NSLock alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
@@ -91,12 +91,12 @@ static CacheUpdater* cacheUpdater = nil;
 - (void) processMovie:(Movie*) movie
                 force:(NSNumber*) forceNumber {
   NSLog(@"CacheUpdater:processMovie - %@", movie.canonicalTitle);
-  
+
   BOOL force = forceNumber.boolValue;
   if (force) {
     [NotificationCenter addNotification:movie.canonicalTitle];
   }
-  
+
   Model* model = [Model model];
   [model.posterCache       processMovie:movie force:force];
   [model.netflixCache      processMovie:movie force:force];
@@ -110,7 +110,7 @@ static CacheUpdater* cacheUpdater = nil;
   [model.wikipediaCache    processMovie:movie force:force];
   [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
   [AppDelegate minorRefresh];
-  
+
   if (force) {
     [NotificationCenter removeNotification:movie.canonicalTitle];
   }
@@ -131,7 +131,7 @@ static CacheUpdater* cacheUpdater = nil;
   if (movie == nil) {
     return;
   }
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(processMovie:force:)
                                           onTarget:self
                                         withObject:movie
@@ -147,12 +147,12 @@ static CacheUpdater* cacheUpdater = nil;
     for (Operation* operation in searchOperations) {
       [operation cancel];
     }
-    
+
     NSMutableArray* operations = [NSMutableArray array];
     for (Movie* movie in movies) {
       [operations addObject:[self addSearchMovie:movie]];
     }
-    
+
     self.searchOperations = operations;
   }
   [searchOperationsGate unlock];

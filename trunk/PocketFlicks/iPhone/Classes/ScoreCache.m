@@ -42,7 +42,7 @@
   self.googleScoreProvider = nil;
   self.noneScoreProvider = nil;
   self.updated = NO;
-  
+
   [super dealloc];
 }
 
@@ -54,7 +54,7 @@
     self.googleScoreProvider = [GoogleScoreProvider provider];
     self.noneScoreProvider = [NoneScoreProvider provider];
   }
-  
+
   return self;
 }
 
@@ -114,7 +114,7 @@
   if (currentScoreProvider == rottenTomatoesScoreProvider) {
     currentScoreProvider = metacriticScoreProvider;
   }
-  
+
   return [currentScoreProvider reviewsForMovie:movie];
 }
 
@@ -124,7 +124,7 @@
   if (currentScoreProvider == rottenTomatoesScoreProvider) {
     currentScoreProvider = metacriticScoreProvider;
   }
-  
+
   [currentScoreProvider processMovie:movie force:force];
 }
 
@@ -133,12 +133,12 @@
   if (!self.model.scoreCacheEnabled) {
     return;
   }
-  
+
   if (updated) {
     return;
   }
   self.updated = YES;
-  
+
   id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
   if (currentScoreProvider != noneScoreProvider) {
     [[OperationQueue operationQueue] performSelector:@selector(updateWithNotifications)
@@ -146,7 +146,7 @@
                                                 gate:nil
                                             priority:Priority];
   }
-  
+
   for (id<ScoreProvider> provider in self.scoreProviders) {
     if (provider != currentScoreProvider && provider != noneScoreProvider) {
       [[OperationQueue operationQueue] performSelector:@selector(updateWithoutNotifications)
