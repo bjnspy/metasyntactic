@@ -1400,9 +1400,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* BoxOffice3 */ = {
+		1D6058900D05DD3D006BFB54 /* NowPlaying */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BoxOffice3" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NowPlaying" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1414,7 +1414,7 @@
 				74E605D50FD1F6240015D9F8 /* PBXTargetDependency */,
 				747179490FDC5A0600B24ECD /* PBXTargetDependency */,
 			);
-			name = BoxOffice3;
+			name = NowPlaying;
 			productName = BoxOffice;
 			productReference = 1D6058910D05DD3D006BFB54 /* NowPlaying3.app */;
 			productType = "com.apple.product-type.application";
@@ -1473,7 +1473,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* BoxOffice3 */,
+				1D6058900D05DD3D006BFB54 /* NowPlaying */,
 			);
 		};
 /* End PBXProject section */
@@ -1979,7 +1979,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "BoxOffice3" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NowPlaying" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
