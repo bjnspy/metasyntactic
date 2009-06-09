@@ -232,11 +232,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
-#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
     }
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
@@ -295,9 +291,7 @@
         activityIndicator.contentMode = UIViewContentModeCenter;
         CGRect frame = activityIndicator.frame;
         frame.size.height += 80;
-#ifdef IPHONE_OS_VERSION_3
         frame.size.width += 20;
-#endif
         activityIndicator.frame = frame;
     }
     cell.accessoryView = activityIndicator;

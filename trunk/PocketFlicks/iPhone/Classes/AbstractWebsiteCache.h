@@ -12,26 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AmazonCache.h"
+#import "AbstractMovieCache.h"
 
-#import "AppDelegate.h"
-#import "Application.h"
-#import "Movie.h"
-
-@implementation AmazonCache
-
-+ (AmazonCache*) cache {
-  return [[[AmazonCache alloc] init] autorelease];
+@interface AbstractWebsiteCache : AbstractMovieCache {
+@private
 }
 
+- (NSString*) addressForMovie:(Movie*) movie;
 
-- (NSString*) cacheDirectory {
-  return [Application amazonDirectory];
-}
-
-
-- (NSString*) serverUrl:(Movie*) movie {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-}
+/* @protected */
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force;
 
 @end

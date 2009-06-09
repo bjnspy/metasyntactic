@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifdef IPHONE_OS_VERSION_3
 #import "AbstractSearchDisplayController.h"
 
 @interface NetflixSearchDisplayController : AbstractSearchDisplayController {
@@ -23,4 +22,3 @@
 }
 
 @end
-#endif

@@ -30,16 +30,9 @@
 #import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
 
-#ifndef IPHONE_OS_VERSION_3
-#endif
-
 @interface NetflixViewController()
-#ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) NetflixSearchDisplayController* searchDisplayController;
-#else
-@property (retain) NetflixSearchViewController* searchViewController;
-#endif
 @end
 
 
@@ -48,9 +41,6 @@
 const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
-#ifndef IPHONE_OS_VERSION_3
-    SearchSection,
-#endif
     MostPopularSection,
     DVDSection,
     InstantSection,
@@ -62,21 +52,14 @@ typedef enum {
     LastSection = LogOutSection
 } Sections;
 
-#ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
-#else
-@synthesize searchViewController;
-#endif
 
 - (void) dealloc {
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
-#else
-    self.searchViewController = nil;
-#endif
-    [super dealloc];
+
+  [super dealloc];
 }
 
 
@@ -108,14 +91,12 @@ typedef enum {
 
 
 - (void) initializeSearchDisplay {
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     searchBar.tintColor = [ColorCache netflixYellow];
     [searchBar sizeToFit];
 
     self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                            contentsController:self] autorelease];
-#endif
 }
 
 
@@ -171,13 +152,11 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
-#ifdef IPHONE_OS_VERSION_3
     if (self.hasAccount) {
         self.tableView.tableHeaderView = searchBar;
     } else {
         self.tableView.tableHeaderView = nil;
     }
-#endif
 
     //[self initializeInfoButton];
     [self setupTableStyle];
@@ -185,16 +164,12 @@ typedef enum {
     [self determinePopularMovieCount];
     [self reloadTableViewData];
 
-#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController majorRefresh];
-#endif
 }
 
 
 - (void) minorRefreshWorker {
-#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController minorRefresh];
-#endif
 }
 
 
@@ -223,12 +198,6 @@ typedef enum {
 
     if (self.hasAccount) {
         switch (row) {
-#ifndef IPHONE_OS_VERSION_3
-            case SearchSection:
-                cell.text = LocalizedString(@"Search", nil);
-                cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
-                break;
-#endif
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
                     cell.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
@@ -369,22 +338,8 @@ typedef enum {
 }
 
 
-#ifndef IPHONE_OS_VERSION_3
-- (void) didSelectSearchSection {
-    if (searchViewController == nil) {
-        self.searchViewController = [[[NetflixSearchViewController alloc] init] autorelease];
-    }
-
-    [self.navigationController pushViewController:searchViewController animated:YES];
-}
-#endif
-
-
 - (void) didSelectLoggedInRow:(NSInteger) row {
     switch (row) {
-#ifndef IPHONE_OS_VERSION_3
-        case SearchSection:             return [self didSelectSearchSection];
-#endif
         case MostPopularSection:        return [self didSelectMostPopularSection];
         case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
         case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
@@ -425,10 +380,8 @@ typedef enum {
 }
 
 
-#ifdef IPHONE_OS_VERSION_3
 - (void) onTabBarItemSelected {
     [searchDisplayController setActive:NO animated:YES];
 }
-#endif
 
 @end

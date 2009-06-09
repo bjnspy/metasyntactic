@@ -12,14 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface CommonNavigationController : AbstractNavigationController
-{
+@interface CommonNavigationController : AbstractNavigationController {
 @protected
     PostersViewController* postersViewController;
-
-#ifndef IPHONE_OS_VERSION_3
-    SearchViewController* searchViewController;
-#endif
 }
 
 - (void) pushTicketsView:(Movie*) movie
@@ -39,10 +34,6 @@
 - (void) hidePostersView;
 
 - (void) onTabBarItemSelected;
-
-#ifndef IPHONE_OS_VERSION_3
-- (void) showSearchView;
-#endif
 
 // @protected
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;

@@ -15,10 +15,6 @@
 @interface MovieTitleCell : UITableViewCell {
 @protected
     UILabel* scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-    UILabel* textLabel;
-    UILabel* detailTextLabel;
-#endif
 }
 
 + (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView;

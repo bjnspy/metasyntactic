@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
+#import "AbstractWebsiteCache.h"
 
-@interface AmazonCache : AbstractMovieCache {
+@interface AmazonCache : AbstractWebsiteCache {
 @private
 }
 
 + (AmazonCache*) cache;
-
-- (NSString*) amazonAddressForMovie:(Movie*) movie;
 
 @end

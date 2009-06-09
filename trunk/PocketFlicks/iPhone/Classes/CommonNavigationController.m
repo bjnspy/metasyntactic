@@ -27,30 +27,17 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 
-#ifndef IPHONE_OS_VERSION_3
-#endif
-
 @interface CommonNavigationController()
 @property (retain) PostersViewController* postersViewController;
-#ifndef IPHONE_OS_VERSION_3
-@property (retain) SearchViewController* searchViewController;
-#endif
 @end
 
 
 @implementation CommonNavigationController
 
 @synthesize postersViewController;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize searchViewController;
-#endif
 
 - (void) dealloc {
     self.postersViewController = nil;
-
-#ifndef IPHONE_OS_VERSION_3
-    self.searchViewController = nil;
-#endif
 
     [super dealloc];
 }
@@ -201,26 +188,12 @@
 - (void) pushInfoControllerAnimated:(BOOL) animated {
     UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
 
-#if IPHONE_OS_VERSION_3
     UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
     if (![Application isIPhone]) {
         navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     }
     [self presentModalViewController:navigationController animated:YES];
-#else
-    [self pushViewController:controller animated:YES];
-#endif
 }
-
-#ifndef IPHONE_OS_VERSION_3
-- (void) showSearchView {
-    if (searchViewController == nil) {
-        self.searchViewController = [[[SearchViewController alloc] init] autorelease];
-    }
-
-    [self pushViewController:searchViewController animated:YES];
-}
-#endif
 
 
 - (void) onTabBarItemSelected {

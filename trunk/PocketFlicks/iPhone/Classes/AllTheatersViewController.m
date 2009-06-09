@@ -24,10 +24,8 @@
 
 @interface AllTheatersViewController()
 @property (retain) UISegmentedControl* segmentedControl;
-#ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) LocalSearchDisplayController* searchDisplayController;
-#endif
 @property (retain) NSArray* sortedTheaters;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -38,10 +36,8 @@
 @implementation AllTheatersViewController
 
 @synthesize segmentedControl;
-#ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
-#endif
 @synthesize sortedTheaters;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
@@ -49,10 +45,8 @@
 
 - (void) dealloc {
     self.segmentedControl = nil;
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
-#endif
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
@@ -271,9 +265,7 @@
     } else {
         self.indexTitles =
         [NSArray arrayWithObjects:
-#ifdef IPHONE_OS_VERSION_3
          UITableViewIndexSearch,
-#endif
          [StringUtilities starString],
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
@@ -295,30 +287,12 @@
 
 
 - (void) initializeSearchDisplay {
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                          contentsController:self] autorelease];
-#else
-    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.showsTouchWhenHighlighted = YES;
-    UIImage* image = [StockImages searchImage];
-    [searchButton setImage:image forState:UIControlStateNormal];
-    [searchButton addTarget:self.navigationController action:@selector(showSearchView) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = searchButton.frame;
-    frame.origin.x += 0.5;
-    frame.size = image.size;
-    frame.size.width += 7;
-    frame.size.height += 7;
-    searchButton.frame = frame;
-
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
-    self.navigationItem.rightBarButtonItem = item;
-#endif
 }
 
 
@@ -441,13 +415,10 @@
 
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
-#ifdef IPHONE_OS_VERSION_3
     if ([UITableViewIndexSearch isEqual:title]) {
         [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
         return -1;
-    } else
-#endif
-    if (firstChar == '#') {
+    } else if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [StringUtilities starCharacter]) {
         return [sectionTitles indexOfObject:[StringUtilities starString]];
@@ -498,10 +469,8 @@
 }
 
 
-#ifdef IPHONE_OS_VERSION_3
 - (void) onTabBarItemSelected {
     [searchDisplayController setActive:NO animated:YES];
 }
-#endif
 
 @end
