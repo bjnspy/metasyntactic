@@ -192,20 +192,20 @@
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:reuseIdentifier] autorelease];
-    cell.textAlignment = UITextAlignmentCenter;
-    cell.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
   }
 
   Performance* performance = [performances objectAtIndex:row];
 
   if (performance.url.length == 0) {
-    cell.textColor = [UIColor blackColor];
-    cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (No Online Ticketing)", @"%@ will be replaced with a movie showtime.  i.e. '3:15pm'"),
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (No Online Ticketing)", @"%@ will be replaced with a movie showtime.  i.e. '3:15pm'"),
                  performance.timeString];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
   } else {
-    cell.textColor = [ColorCache commandColor];
-    cell.text = [NSString stringWithFormat:LocalizedString(@"Order tickets for %@", @"%@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm"),
+    cell.textLabel.textColor = [ColorCache commandColor];
+    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"Order tickets for %@", @"%@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm"),
                  performance.timeString];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
   }
@@ -232,14 +232,14 @@
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
-  cell.textAlignment = UITextAlignmentCenter;
-  cell.font = [UIFont boldSystemFontOfSize:14];
-  cell.textColor = [ColorCache commandColor];
+  cell.textLabel.textAlignment = UITextAlignmentCenter;
+  cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+  cell.textLabel.textColor = [ColorCache commandColor];
 
   if (row == 0) {
-    cell.text = LocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
+    cell.textLabel.text = LocalizedString(@"E-mail listings", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'email the theater listings to a friend'");
   } else {
-    cell.text = LocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
+    cell.textLabel.text = LocalizedString(@"Change date", @"Title for a button. Needs to be very short. 2-3 words *max*. It means 'i want to change the date so i can see information from a different date'");
   }
 
   return cell;

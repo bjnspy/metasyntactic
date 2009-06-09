@@ -111,9 +111,9 @@
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
-            cell.text = @"Metacritic.com";
+            cell.textLabel.text = @"Metacritic.com";
         } else if (self.model.googleScores) {
-            cell.text = @"Google.com";
+            cell.textLabel.text = @"Google.com";
         }
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         return cell;

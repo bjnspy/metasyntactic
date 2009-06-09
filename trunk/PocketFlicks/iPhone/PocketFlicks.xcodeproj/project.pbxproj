@@ -10,6 +10,7 @@
 		74200C150FD251EF00DEE16B /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C130FD251EF00DEE16B /* CommonNavigationController.m */; };
 		74200C2C0FD2527B00DEE16B /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C2A0FD2527B00DEE16B /* StockImages.m */; };
 		744A60B30FDDFEC60007C60B /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744A60B20FDDFEC60007C60B /* AbstractWebsiteCache.m */; };
+		744A64E10FDEE9610007C60B /* libMetasyntacticShared2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FD060FD1B2E50015D9F8 /* libMetasyntacticShared2.a */; };
 		747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */; };
 		747C39B60FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
 		74E033630FB8B97B009D9755 /* ImageLoading-Neutral.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E033610FB8B97B009D9755 /* ImageLoading-Neutral.png */; };
@@ -630,7 +631,7 @@
 		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
 		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
 		74E033610FB8B97B009D9755 /* ImageLoading-Neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ImageLoading-Neutral.png"; path = "Resources/ImageLoading-Neutral.png"; sourceTree = "<group>"; };
-		74E149770F95949500FB7BDA /* PocketFlicks3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74E3EAA30FAD1CDA004D8599 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
 		74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
@@ -719,6 +720,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				744A64E10FDEE9610007C60B /* libMetasyntacticShared2.a in Frameworks */,
 				747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
 				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
@@ -763,7 +765,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74E149770F95949500FB7BDA /* PocketFlicks3.app */,
+				74E149770F95949500FB7BDA /* PocketFlicks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1450,9 +1452,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		74E1480B0F95949500FB7BDA /* PocketFlicks3 */ = {
+		74E1480B0F95949500FB7BDA /* PocketFlicks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks3" */;
+			buildConfigurationList = 74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks" */;
 			buildPhases = (
 				74E1480C0F95949500FB7BDA /* Resources */,
 				74E148720F95949500FB7BDA /* Sources */,
@@ -1464,9 +1466,9 @@
 				74200CC70FD2561C00DEE16B /* PBXTargetDependency */,
 				747179AB0FDC5B9D00B24ECD /* PBXTargetDependency */,
 			);
-			name = PocketFlicks3;
+			name = PocketFlicks;
 			productName = PocketFlicks;
-			productReference = 74E149770F95949500FB7BDA /* PocketFlicks3.app */;
+			productReference = 74E149770F95949500FB7BDA /* PocketFlicks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1523,7 +1525,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				74E1480B0F95949500FB7BDA /* PocketFlicks3 */,
+				74E1480B0F95949500FB7BDA /* PocketFlicks */,
 			);
 		};
 /* End PBXProject section */
@@ -1931,11 +1933,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					DEBUG,
-				);
-				PRODUCT_NAME = "$(PROJECT_NAME)3";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
@@ -1950,11 +1949,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					RELEASE,
-				);
-				PRODUCT_NAME = "$(PROJECT_NAME)3";
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
@@ -1969,11 +1965,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					ADHOC,
-				);
-				PRODUCT_NAME = "$(PROJECT_NAME)3";
+				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
@@ -1988,11 +1981,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					DISTRIBUTION,
-				);
-				PRODUCT_NAME = "$(PROJECT_NAME)3";
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
@@ -2060,7 +2050,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks3" */ = {
+		74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74E149730F95949500FB7BDA /* Debug */,

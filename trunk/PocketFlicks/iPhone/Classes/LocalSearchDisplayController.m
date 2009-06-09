@@ -198,7 +198,7 @@
 
 - (UITableViewCell*) noResultsCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
+    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", @"Message shown when the user searches for something and we find no results"), searchResult.value];
     return cell;
 }
 
