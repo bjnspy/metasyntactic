@@ -58,15 +58,9 @@
     CGRect labelFrame = label.frame;
     CGRect contentFrame = self.contentView.frame;
 
-#ifdef IPHONE_OS_VERSION_3
     if (self.imageView.image != nil) {
         labelFrame.origin.x = 15 + self.imageView.image.size.width;
     }
-#else
-    if (self.image != nil) {
-        labelFrame.origin.x = 15 + self.image.size.width;
-    }
-#endif
 
     labelFrame.size.width = contentFrame.size.width - labelFrame.origin.x - 15;
     //labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);

@@ -15,10 +15,6 @@
 @interface ReviewTitleCell : UITableViewCell {
 @private
     UILabel* scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-    UILabel* textLabel;
-    UILabel* detailTextLabel;
-#endif
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

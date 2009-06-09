@@ -37,124 +37,124 @@
 @synthesize updated;
 
 - (void) dealloc {
-    self.rottenTomatoesScoreProvider = nil;
-    self.metacriticScoreProvider = nil;
-    self.googleScoreProvider = nil;
-    self.noneScoreProvider = nil;
-    self.updated = NO;
-
-    [super dealloc];
+  self.rottenTomatoesScoreProvider = nil;
+  self.metacriticScoreProvider = nil;
+  self.googleScoreProvider = nil;
+  self.noneScoreProvider = nil;
+  self.updated = NO;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider provider];
-        self.metacriticScoreProvider = [MetacriticScoreProvider provider];
-        self.googleScoreProvider = [GoogleScoreProvider provider];
-        self.noneScoreProvider = [NoneScoreProvider provider];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider provider];
+    self.metacriticScoreProvider = [MetacriticScoreProvider provider];
+    self.googleScoreProvider = [GoogleScoreProvider provider];
+    self.noneScoreProvider = [NoneScoreProvider provider];
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 + (ScoreCache*) cache {
-    return [[[ScoreCache alloc] init] autorelease];
+  return [[[ScoreCache alloc] init] autorelease];
 }
 
 
 - (NSArray*) scoreProviders {
-    return [NSArray arrayWithObjects:
-            rottenTomatoesScoreProvider,
-            metacriticScoreProvider,
-            googleScoreProvider,
-            noneScoreProvider,
-            nil];
+  return [NSArray arrayWithObjects:
+          rottenTomatoesScoreProvider,
+          metacriticScoreProvider,
+          googleScoreProvider,
+          noneScoreProvider,
+          nil];
 }
 
 
 - (id<ScoreProvider>) currentScoreProvider {
-    if (self.model.rottenTomatoesScores) {
-        return rottenTomatoesScoreProvider;
-    } else if (self.model.metacriticScores) {
-        return metacriticScoreProvider;
-    } else if (self.model.googleScores) {
-        return googleScoreProvider;
-    } else if (self.model.noScores) {
-        return noneScoreProvider;
-    } else {
-        return nil;
-    }
+  if (self.model.rottenTomatoesScores) {
+    return rottenTomatoesScoreProvider;
+  } else if (self.model.metacriticScores) {
+    return metacriticScoreProvider;
+  } else if (self.model.googleScores) {
+    return googleScoreProvider;
+  } else if (self.model.noScores) {
+    return noneScoreProvider;
+  } else {
+    return nil;
+  }
 }
 
 
 - (Score*) scoreForMovie:(Movie*) movie {
-    return [self.currentScoreProvider scoreForMovie:movie];
+  return [self.currentScoreProvider scoreForMovie:movie];
 }
 
 
 - (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-    return [rottenTomatoesScoreProvider scoreForMovie:movie];
+  return [rottenTomatoesScoreProvider scoreForMovie:movie];
 }
 
 
 - (Score*) metacriticScoreForMovie:(Movie*) movie {
-    return [metacriticScoreProvider scoreForMovie:movie];
+  return [metacriticScoreProvider scoreForMovie:movie];
 }
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider == rottenTomatoesScoreProvider) {
-        currentScoreProvider = metacriticScoreProvider;
-    }
-
-    return [currentScoreProvider reviewsForMovie:movie];
+  id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+  if (currentScoreProvider == rottenTomatoesScoreProvider) {
+    currentScoreProvider = metacriticScoreProvider;
+  }
+  
+  return [currentScoreProvider reviewsForMovie:movie];
 }
 
 
 - (void) processMovie:(Movie*) movie force:(BOOL) force{
-    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider == rottenTomatoesScoreProvider) {
-        currentScoreProvider = metacriticScoreProvider;
-    }
-
-    [currentScoreProvider processMovie:movie force:force];
+  id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+  if (currentScoreProvider == rottenTomatoesScoreProvider) {
+    currentScoreProvider = metacriticScoreProvider;
+  }
+  
+  [currentScoreProvider processMovie:movie force:force];
 }
 
 
 - (void) update {
-    if (!self.model.scoreCacheEnabled) {
-        return;
+  if (!self.model.scoreCacheEnabled) {
+    return;
+  }
+  
+  if (updated) {
+    return;
+  }
+  self.updated = YES;
+  
+  id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+  if (currentScoreProvider != noneScoreProvider) {
+    [[OperationQueue operationQueue] performSelector:@selector(updateWithNotifications)
+                                            onTarget:currentScoreProvider
+                                                gate:nil
+                                            priority:Priority];
+  }
+  
+  for (id<ScoreProvider> provider in self.scoreProviders) {
+    if (provider != currentScoreProvider && provider != noneScoreProvider) {
+      [[OperationQueue operationQueue] performSelector:@selector(updateWithoutNotifications)
+                                              onTarget:provider
+                                                  gate:nil
+                                              priority:Priority];
     }
-
-    if (updated) {
-        return;
-    }
-    self.updated = YES;
-
-    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
-    if (currentScoreProvider != noneScoreProvider) {
-        [[OperationQueue operationQueue] performSelector:@selector(updateWithNotifications)
-                                                onTarget:currentScoreProvider
-                                                    gate:nil
-                                                priority:Priority];
-    }
-
-    for (id<ScoreProvider> provider in self.scoreProviders) {
-        if (provider != currentScoreProvider && provider != noneScoreProvider) {
-            [[OperationQueue operationQueue] performSelector:@selector(updateWithoutNotifications)
-                                                    onTarget:provider
-                                                        gate:nil
-                                                    priority:Priority];
-        }
-    }
+  }
 }
 
 @end

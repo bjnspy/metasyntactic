@@ -11,16 +11,3 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-#ifndef IPHONE_OS_VERSION_3
-
-@interface SearchViewController : AbstractTableViewController<SearchEngineDelegate,UISearchBarDelegate> {
-@private
-    AbstractSearchEngine* searchEngine;
-    SearchResult* searchResult;
-
-    UISearchBar* searchBar;
-}
-
-@end
-#endif

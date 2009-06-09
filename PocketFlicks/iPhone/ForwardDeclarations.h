@@ -105,11 +105,5 @@
 @class UpcomingMoviesViewController;
 @class UserLocationCache;
 @class WikipediaCache;
-
-#ifndef IPHONE_OS_VERSION_3
-@class NetflixSearchViewController;
-@class SearchViewController;
-#else
 @class LocalSearchDisplayController;
 @class NetflixSearchDisplayController;
-#endif

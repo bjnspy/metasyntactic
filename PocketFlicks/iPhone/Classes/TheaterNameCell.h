@@ -14,10 +14,6 @@
 
 @interface TheaterNameCell : UITableViewCell {
 @private
-#ifndef IPHONE_OS_VERSION_3
-    UILabel* textLabel;
-    UILabel* detailTextLabel;
-#endif
 }
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
