@@ -47,7 +47,7 @@
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
   NSString* path = [self addressFile:movie];
-  
+
   NSDate* lastLookupDate = [FileUtilities modificationDate:path];
   if (lastLookupDate != nil) {
     NSString* value = [FileUtilities readObject:path];
@@ -55,7 +55,7 @@
       // we have a real imdb value for this movie
       return;
     }
-    
+
     if (!force) {
       // we have a sentinel.  only update if it's been long enough
       if (ABS(lastLookupDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -64,13 +64,13 @@
     }
   }
 
-  
+
   NSString* url = [self serverUrl:movie];
   NSString* addressValue = [NetworkUtilities stringWithContentsOfAddress:url];
   if (addressValue == nil) {
     return;
   }
-  
+
   // write down the response (even if it is empty).  An empty value will
   // ensure that we don't update this entry too often.
   [FileUtilities writeObject:addressValue toFile:path];

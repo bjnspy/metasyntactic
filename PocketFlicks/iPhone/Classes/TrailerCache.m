@@ -32,7 +32,7 @@
 - (void) dealloc {
   self.index = nil;
   self.indexKeys = nil;
-  
+
   [super dealloc];
 }
 
@@ -50,7 +50,7 @@
 
 - (void) updateMovieDetailsWorker:(Movie*) movie force:(BOOL) force {
   NSString* file = [self trailerFile:movie];
-  
+
   NSDate* downloadDate = [FileUtilities modificationDate:file];
   if (downloadDate != nil) {
     if (ABS(downloadDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -58,13 +58,13 @@
       if (values.count > 0) {
         return;
       }
-      
+
       if (!force) {
         return;
       }
     }
   }
-  
+
   DifferenceEngine* engine = [DifferenceEngine engine];
   NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString
                                                inArray:indexKeys];
@@ -74,18 +74,18 @@
                         toFile:[self trailerFile:movie]];
     return;
   }
-  
+
   NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
   NSString* studio = [studioAndLocation objectAtIndex:0];
   NSString* location = [studioAndLocation objectAtIndex:1];
-  
+
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
   NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
   if (trailersString == nil) {
     // didn't get any data.  ignore this for now.
     return;
   }
-  
+
   NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
   NSMutableArray* final = [NSMutableArray array];
   for (NSString* trailer in trailers) {
@@ -93,9 +93,9 @@
       [final addObject:trailer];
     }
   }
-  
+
   [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-  
+
   if (final.count > 0) {
     [AppDelegate minorRefresh];
   }
@@ -104,22 +104,22 @@
 
 - (void) generateIndexWorker:(NSString*) indexText {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
-  
+
   NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
   for (NSString* row in rows) {
     NSArray* values = [row componentsSeparatedByString:@"\t"];
     if (values.count != 3) {
       continue;
     }
-    
+
     NSString* fullTitle = [values objectAtIndex:0];
     NSString* studio = [values objectAtIndex:1];
     NSString* location = [values objectAtIndex:2];
-    
+
     [result setObject:[NSArray arrayWithObjects:studio, location, nil]
                forKey:fullTitle.lowercaseString];
   }
-  
+
   self.index = result;
   self.indexKeys = index.allKeys;
 }
@@ -137,7 +137,7 @@
         [self clearUpdatedMovies];
       }
     }
-    
+
     result = index != nil;
   }
   [dataGate unlock];

@@ -80,7 +80,7 @@
     result = [UIImage imageWithContentsOfFile:path];
     [self setImage:result forPath:path];
   }
-  
+
   return result;
 }
 

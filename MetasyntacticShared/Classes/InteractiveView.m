@@ -137,7 +137,7 @@
 
     [pinchDelegate view:self
              wasPinched:startUpperLeft
-         fromLowerRight:startLowerRight 
+         fromLowerRight:startLowerRight
                      to:endUpperLeft
                      to:endLowerRight];
 }

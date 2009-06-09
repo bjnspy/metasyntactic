@@ -101,7 +101,7 @@ static DifferenceEngine* differenceEngine = nil;
   {
     for (int i = 0; i < ArrayLength(directories); i++) {
       NSString* directory = *directories[i];
-      
+
       if (directory != nil) {
         [self moveItemToTrash:directory];
       }
@@ -116,7 +116,7 @@ static DifferenceEngine* differenceEngine = nil;
   {
     for (int i = 0; i < ArrayLength(directories); i++) {
       NSString* directory = *directories[i];
-      
+
       [FileUtilities createDirectory:directory];
     }
   }
@@ -136,20 +136,20 @@ static DifferenceEngine* differenceEngine = nil;
     reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
     trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
     localizableStringsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LocalizableStrings"] retain];
-    
+
     postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
     moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
     largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
     largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
     peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
     largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
-    
+
     dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
     dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
-    
+
     blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
     blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
-    
+
     netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
     netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
     netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
@@ -158,16 +158,16 @@ static DifferenceEngine* differenceEngine = nil;
     netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
     netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
     netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
-    
+
     upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
     upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
     upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
     upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
-    
+
     internationalDirectory = [[cacheDirectory stringByAppendingPathComponent:@"International"] retain];
-    
+
     helpDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Help"] retain];
-    
+
     [self createDirectories];
   }
 }
@@ -176,7 +176,7 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) initialize {
   if (self == [Application class]) {
     differenceEngine = [[DifferenceEngine engine] retain];
-    
+
     [self initializeDirectories];
   }
 }
