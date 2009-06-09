@@ -21,6 +21,8 @@
 
 + (ImageCache*) cache;
 
+- (void) setImage:(UIImage*) image forPath:(NSString*) path;
+
 - (UIImage*) imageForPath:(NSString*) path;
 - (UIImage*) imageForPath:(NSString*) path loadFromDisk:(BOOL) loadFromDisk;
 

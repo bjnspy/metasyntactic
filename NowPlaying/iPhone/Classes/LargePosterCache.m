@@ -102,7 +102,10 @@ const int START_YEAR = 1912;
                                             toHeight:SMALL_POSTER_HEIGHT];
     [FileUtilities writeData:smallPosterData
                       toFile:smallPosterPath];
-    return [UIImage imageWithData:smallPosterData];
+    
+    UIImage* image = [UIImage imageWithData:smallPosterData];
+    [self.model.imageCache setImage:image forPath:smallPosterPath];
+    return image;
   }
 
   return nil;
