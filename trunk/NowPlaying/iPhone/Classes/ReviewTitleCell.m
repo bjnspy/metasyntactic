@@ -60,9 +60,9 @@
 }
 
 
-- (void) setImage:(UIImage*) image {
-    if (self.image != image) {
-        [super setImage:image];
+- (void) setImageWorker:(UIImage*) image {
+    if (self.imageView.image != image) {
+      self.imageView.image = image;
     }
 }
 
@@ -81,14 +81,14 @@
 
 - (void) setBasicSquareImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
-        self.image = [StockImages redRatingImage];
+      [self setImageWorker:[StockImages redRatingImage]];
     } else if (score > 40 && score <= 60) {
-        self.image = [StockImages yellowRatingImage];
+      [self setImageWorker:[StockImages yellowRatingImage]];
     } else if (score > 60 && score <= 100) {
-        self.image = [StockImages greenRatingImage];
+      [self setImageWorker:[StockImages greenRatingImage]];
     } else {
         [self clearScoreLabel];
-        self.image = [StockImages unknownRatingImage];
+      [self setImageWorker:[StockImages unknownRatingImage]];
     }
 
     if (score >= 0 && score <= 100) {

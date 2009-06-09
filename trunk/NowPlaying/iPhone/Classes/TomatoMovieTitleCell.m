@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.image = [StockImages freshImage];
+        self.imageView.image = [StockImages freshImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.textColor = [UIColor whiteColor];

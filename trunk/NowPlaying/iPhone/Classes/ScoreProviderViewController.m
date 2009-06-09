@@ -71,7 +71,7 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
     return cell;
 }
 

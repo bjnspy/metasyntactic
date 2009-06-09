@@ -42,7 +42,7 @@
 
 
 - (void) initialize {
-    self.text = status.description;
+    self.textLabel.text = status.description;
 
     [deleteImageView removeFromSuperview];
     [moveImageView removeFromSuperview];
@@ -73,8 +73,8 @@
                     reuseIdentifier:nil])) {
         self.status = status_;
 
-        self.font = [UIFont boldSystemFontOfSize:16];
-        self.textAlignment = UITextAlignmentCenter;
+        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+        self.textLabel.textAlignment = UITextAlignmentCenter;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.deleteImageView = [[[TappableImageView alloc] initWithImage:[UIImage imageNamed:@"DeleteMovie.png"]] autorelease];

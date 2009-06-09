@@ -58,16 +58,10 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-#ifdef IPHONE_OS_VERSION_3
     [super viewWillAppear:animated];
-#endif
 
-    self.visible = YES;
+  self.visible = YES;
     [self majorRefreshWorker];
-
-#ifndef IPHONE_OS_VERSION_3
-    [super viewWillAppear:animated];
-#endif
 }
 
 
@@ -129,15 +123,7 @@
     return;
   }
 
-#ifdef IPHONE_OS_VERSION_3
   [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
-#else
-  for (UITableViewCell* cell in self.tableView.visibleCells) {
-    if ([cell respondsToSelector:@selector(reload:)]) {
-      [(id)cell reload:self];
-    }
-  }
-#endif
 }
 
 

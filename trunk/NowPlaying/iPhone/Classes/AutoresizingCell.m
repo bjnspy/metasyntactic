@@ -37,7 +37,7 @@
                     reuseIdentifier:nil])) {
         self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        label.font = self.font;
+        label.font = self.textLabel.font;
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 12;
         label.lineBreakMode = UILineBreakModeMiddleTruncation;
@@ -59,8 +59,8 @@
     CGRect labelFrame = label.frame;
     CGRect contentFrame = self.contentView.frame;
 
-    if (self.image != nil) {
-        labelFrame.origin.x = 15 + self.image.size.width;
+    if (self.imageView.image != nil) {
+        labelFrame.origin.x = 15 + self.imageView.image.size.width;
     }
 
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);

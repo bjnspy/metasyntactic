@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.image = [StockImages greenRatingImage];
+        self.imageView.image = [StockImages greenRatingImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.text = @"100";

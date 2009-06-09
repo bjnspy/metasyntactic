@@ -54,7 +54,7 @@
 
         [self.contentView addSubview:ratingAndRuntimeLabel];
 
-        self.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
+        self.imageView.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
     }
 
     return self;

@@ -239,33 +239,33 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [cell.contentView addSubview:imageView];
     } else if (section == HelpSendFeedbackSection) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Help", nil), LocalizedString(@"Send Feedback", nil), nil];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Help", nil), LocalizedString(@"Send Feedback", nil), nil];
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = LocalizedString(@"Project website", @"Takes the user to the website for this application");
+            cell.textLabel.text = LocalizedString(@"Project website", @"Takes the user to the website for this application");
         } else {
-            cell.text = LocalizedString(@"Write Review", nil);
+            cell.textLabel.text = LocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"ComiXology ($3.99)";
+            cell.textLabel.text = @"ComiXology ($3.99)";
         } else if (row == 1) {
-            cell.text = @"PocketFlix ($1.99)";
+            cell.textLabel.text = @"PocketFlix ($1.99)";
         } else {
-            cell.text = @"Your Rights (Free)";
+            cell.textLabel.text = @"Your Rights (Free)";
         }
     } else if (section == GraphicsBySection) {
-        cell.text = LocalizedString(@"Website", nil);
+        cell.textLabel.text = LocalizedString(@"Website", nil);
     } else if (section == GeolocationServicesBySection) {
         if (row == 1) {
-            cell.text = @"GeoNames";
+            cell.textLabel.text = @"GeoNames";
         } else if (row == 2) {
-            cell.text = @"GeoCoder.ca";
+            cell.textLabel.text = @"GeoCoder.ca";
         }
     } else if (section == FilmTrailersBySection) {
-        cell.text = @"Filmtrailers.com";
+        cell.textLabel.text = @"Filmtrailers.com";
     } else if (section == LicenseSection) {
-        cell.text = LocalizedString(@"License", nil);
+        cell.textLabel.text = LocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 

@@ -117,7 +117,7 @@
 
     NSString* genre = [genres objectAtIndex:indexPath.row];
     NSInteger count = [[genreToMovies objectsForKey:genre] count];
-    cell.text =
+    cell.textLabel.text =
     [NSString stringWithFormat:
      LocalizedString(@"%@ (%@)", nil),
      genre, [NSNumber numberWithInteger:count]];

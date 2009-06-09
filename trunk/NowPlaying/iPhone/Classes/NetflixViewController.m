@@ -201,50 +201,50 @@ typedef enum {
         switch (row) {
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
-                    cell.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
+                    cell.textLabel.text = LocalizedString(@"Most Popular", @"The most popular movies currently");
                 } else {
-                    cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
+                    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
-                cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
+                cell.imageView.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
-                cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.imageView.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
-                cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.imageView.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
-                cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.imageView.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
-                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
-                cell.image = [UIImage imageNamed:@"NetflixHome.png"];
+                cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.imageView.image = [UIImage imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
-                cell.text = LocalizedString(@"Rental History", nil);
-                cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
+                cell.textLabel.text = LocalizedString(@"Rental History", nil);
+                cell.imageView.image = [UIImage imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
-                cell.text = LocalizedString(@"Log Out of Netflix", nil);
-                cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+                cell.textLabel.text = LocalizedString(@"Log Out of Netflix", nil);
+                cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryView = nil;
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
         }
     } else {
         if (indexPath.row == 0) {
-            cell.text = LocalizedString(@"Sign Up for New Account", nil);
-            cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
+            cell.textLabel.text = LocalizedString(@"Sign Up for New Account", nil);
+            cell.imageView.image = [UIImage imageNamed:@"NetflixSettings.png"];
         } else if (indexPath.row == 1) {
-            cell.text = LocalizedString(@"Log In to Existing Account", nil);
-            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+            cell.textLabel.text = LocalizedString(@"Log In to Existing Account", nil);
+            cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
 
-    if (cell.text.length == 0) {
+    if (cell.textLabel.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
