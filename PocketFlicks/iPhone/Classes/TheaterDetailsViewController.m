@@ -215,14 +215,14 @@
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
-    cell.textColor = [ColorCache commandColor];
-    cell.font = [UIFont boldSystemFontOfSize:14];
-    cell.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.textColor = [ColorCache commandColor];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
 
     if (row == 0) {
-        cell.text = LocalizedString(@"E-mail listings", nil);
+        cell.textLabel.text = LocalizedString(@"E-mail listings", nil);
     } else {
-        cell.text = LocalizedString(@"Change date", nil);
+        cell.textLabel.text = LocalizedString(@"Change date", nil);
     }
 
     return cell;

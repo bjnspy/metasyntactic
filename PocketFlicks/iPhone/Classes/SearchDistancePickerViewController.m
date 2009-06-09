@@ -82,9 +82,9 @@
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
     if (indexPath.row == 0) {
-        cell.text = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
+        cell.textLabel.text = ([Application useKilometers] ? LocalizedString(@"1 kilometer", nil) : LocalizedString(@"1 mile", nil));
     } else {
-        cell.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", nil),
+        cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", nil),
                      value,
                      ([Application useKilometers] ? LocalizedString(@"kilometers", nil) : LocalizedString(@"miles", nil))];
     }

@@ -202,24 +202,24 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [cell.contentView addSubview:imageView];
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = LocalizedString(@"Send Feedback", nil);
+            cell.textLabel.text = LocalizedString(@"Send Feedback", nil);
         } else if (row == 1) {
-            cell.text = LocalizedString(@"Project Website", nil);
+            cell.textLabel.text = LocalizedString(@"Project Website", nil);
         } else {
-            cell.text = LocalizedString(@"Write Review", nil);
+            cell.textLabel.text = LocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"Now Playing (Free)";
+            cell.textLabel.text = @"Now Playing (Free)";
         } else if (row == 1) {
-            cell.text = @"ComiXology ($3.99)";
+            cell.textLabel.text = @"ComiXology ($3.99)";
         } else {
-            cell.text = @"Your Rights (Free)";
+            cell.textLabel.text = @"Your Rights (Free)";
         }
     } else if (section == GraphicsBySection) {
-        cell.text = LocalizedString(@"Website", nil);
+        cell.textLabel.text = LocalizedString(@"Website", nil);
     } else if (section == LicenseSection) {
-        cell.text = LocalizedString(@"License", nil);
+        cell.textLabel.text = LocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
