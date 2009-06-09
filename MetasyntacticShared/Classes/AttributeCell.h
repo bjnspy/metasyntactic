@@ -14,17 +14,7 @@
 
 @interface AttributeCell : UITableViewCell {
 @private
-#ifndef IPHONE_OS_VERSION_3
-    UILabel* textLabel;
-    UILabel* detailTextLabel;
-#endif
 }
-
-#ifndef IPHONE_OS_VERSION_3
-@property (readonly, retain) UILabel* textLabel;
-@property (readonly, retain) UILabel* detailTextLabel;
-#endif
-
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 

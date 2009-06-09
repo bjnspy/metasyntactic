@@ -80,6 +80,7 @@
 		7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4560F7D652400864071 /* GreenMovieTitleCell.m */; };
 		7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */; };
 		7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447092D0F7BDA160047061E /* DeleteMovie.png */; };
+		744A63E60FDEE55D0007C60B /* lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* lib.a */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */; };
@@ -208,7 +209,6 @@
 		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
 		74E14A690F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */; };
 		74E605A80FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E605A70FD1F4E10015D9F8 /* CommonNavigationController.m */; };
-		74E605D60FD1F62E0015D9F8 /* libMetasyntacticShared3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */; };
 		74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
 		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
 		74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
@@ -259,13 +259,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
-		};
-		74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
-			remoteInfo = "MetasyntacticShared2 copy";
 		};
 		74E605D40FD1F6240015D9F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -680,8 +673,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				744A63E60FDEE55D0007C60B /* lib.a in Frameworks */,
 				7471794D0FDC5A1F00B24ECD /* libProtocolBuffers.a in Frameworks */,
-				74E605D60FD1F62E0015D9F8 /* libMetasyntacticShared3.a in Frameworks */,
 				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
 				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
 				7401C4CA0F95096B006D8281 /* AddressBook.framework in Frameworks */,
@@ -1333,8 +1326,7 @@
 		74E6FCC50FD1B1CE0015D9F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared2.a */,
-				74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */,
+				74E6FCC90FD1B1CE0015D9F8 /* lib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1500,17 +1492,10 @@
 			remoteRef = 747179460FDC59FA00B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74E6023A0FD1C7990015D9F8 /* libMetasyntacticShared3.a */ = {
+		74E6FCC90FD1B1CE0015D9F8 /* lib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libMetasyntacticShared3.a;
-			remoteRef = 74E602390FD1C7990015D9F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMetasyntacticShared2.a;
+			path = lib.a;
 			remoteRef = 74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1799,10 +1784,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					DEBUG,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -1814,10 +1796,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					RELEASE,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -1861,10 +1840,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					ADHOC,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
 				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};
@@ -1905,10 +1881,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					IPHONE_OS_VERSION_3,
-					DISTRIBUTION,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
 				PRODUCT_NAME = "$(PROJECT_NAME)3";
 				SDKROOT = iphonesimulator3.0;
 			};

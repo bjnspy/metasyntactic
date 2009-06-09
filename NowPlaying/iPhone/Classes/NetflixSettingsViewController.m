@@ -79,13 +79,13 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if (indexPath.section == 0) {
-        cell.text = LocalizedString(@"Instant Watch", nil);
+        cell.textLabel.text = LocalizedString(@"Instant Watch", nil);
         UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
         switch_.enabled = NO;
         switch_.on = self.model.netflixCanInstantWatch;
         cell.accessoryView = switch_;
     } else {
-        cell.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
+        cell.textLabel.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
     }
 
     return cell;

@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.image = [StockImages rottenFadedImage];
+        self.imageView.image = [StockImages rottenFadedImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:17];
         scoreLabel.textColor = [UIColor blackColor];

@@ -107,7 +107,7 @@
             cell = [[[QuestionCell alloc] initWithQuestion:YES reuseIdentifier:reuseIdentifier] autorelease];
         }
         NSString* text = [questions objectAtIndex:indexPath.section / 2];
-        cell.text = text;
+        cell.textLabel.text = text;
 
         return cell;
     } else {
@@ -118,7 +118,7 @@
         }
 
         NSString* text = [answers objectAtIndex:indexPath.section / 2];
-        cell.text = text;
+        cell.textLabel.text = text;
 
         return cell;
     }

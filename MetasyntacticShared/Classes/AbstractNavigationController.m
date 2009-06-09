@@ -18,25 +18,15 @@
 
 @interface AbstractNavigationController()
 @property BOOL visible;
-#ifndef IPHONE_OS_VERSION_3
-@property BOOL isViewLoaded;
-#endif
 @end
 
 
 @implementation AbstractNavigationController
 
 @synthesize visible;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize isViewLoaded;
-#endif
 
 - (void) dealloc {
   self.visible = NO;
-
-#ifndef IPHONE_OS_VERSION_3
-  self.isViewLoaded = NO;
-#endif
 
   [super dealloc];
 }
@@ -44,10 +34,6 @@
 
 - (void) loadView {
   [super loadView];
-
-#ifndef IPHONE_OS_VERSION_3
-  self.isViewLoaded = YES;
-#endif
 
   self.view.autoresizesSubviews = YES;
 }

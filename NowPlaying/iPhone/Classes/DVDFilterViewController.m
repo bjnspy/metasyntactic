@@ -83,9 +83,9 @@
     }
 
     if (indexPath.row == 0) {
-        cell.text = LocalizedString(@"DVD", nil);
+        cell.textLabel.text = LocalizedString(@"DVD", nil);
     } else if (indexPath.row == 1) {
-        cell.text = LocalizedString(@"Blu-ray", nil);
+        cell.textLabel.text = LocalizedString(@"Blu-ray", nil);
     }
 
     [self setCheckmarkForCell:cell atRow:indexPath.row];

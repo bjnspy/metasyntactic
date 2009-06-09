@@ -30,9 +30,6 @@
 @property (copy) NSString* address;
 @property BOOL showSafariButton;
 @property BOOL errorReported;
-#ifndef IPHONE_OS_VERSION_3
-@property (retain) UIToolbar* toolbar;
-#endif
 @end
 
 
@@ -44,9 +41,6 @@
 @synthesize address;
 @synthesize showSafariButton;
 @synthesize errorReported;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize toolbar;
-#endif
 
 - (void) dealloc {
     self.webView = nil;
@@ -55,9 +49,6 @@
     self.address = nil;
     self.showSafariButton = NO;
     self.errorReported = NO;
-#ifndef IPHONE_OS_VERSION_3
-    self.toolbar = nil;
-#endif
 
     [super dealloc];
 }
@@ -132,30 +123,7 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-#ifdef IPHONE_OS_VERSION_3
     [self setToolbarItems:items animated:NO];
-#else
-    [toolbar setItems:items animated:NO];
-#endif
-}
-
-
-- (void) setupToolbar {
-#ifndef IPHONE_OS_VERSION_3
-    CGRect webframe = self.view.frame;
-    webframe.origin.x = 0;
-    webframe.origin.y = 0;
-
-    CGRect toolbarFrame;
-    CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
-
-    self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    toolbar.barStyle = UIBarStyleBlackTranslucent;
-
-    [self.view addSubview:toolbar];
-    [self.view bringSubviewToFront:toolbar];
-#endif
 }
 
 
@@ -163,7 +131,6 @@
     [super loadView];
 
     [self setupWebView];
-    [self setupToolbar];
 
     if (showSafariButton) {
         self.navigationItem.rightBarButtonItem =
@@ -201,13 +168,8 @@
 
 
 - (void) updateToolBarItems {
-#ifdef IPHONE_OS_VERSION_3
     UIBarButtonItem* navigateBackItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
     UIBarButtonItem* navigateForwardItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
-#else
-    UIBarButtonItem* navigateBackItem = [toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
-    UIBarButtonItem* navigateForwardItem = [toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
-#endif
 
     navigateBackItem.enabled = webView.canGoBack;
     navigateForwardItem.enabled = webView.canGoForward;
@@ -272,20 +234,16 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-#ifdef IPHONE_OS_VERSION_3
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.translucent = YES;
     [self.abstractNavigationController setToolbarHidden:NO animated:NO];
-#endif
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
     [super viewWillDisappear:animated];
     webView.delegate = nil;
-#ifdef IPHONE_OS_VERSION_3
     [self.abstractNavigationController setToolbarHidden:YES animated:NO];
-#endif
 }
 
 

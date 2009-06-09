@@ -320,12 +320,7 @@ static NSString* trashDirectory = nil;
 
 
 + (BOOL) canSendMail {
-#ifdef IPHONE_OS_VERSION_3
   return [MFMailComposeViewController canSendMail];
-#else
-  return YES;
-#endif
 }
-//
 
 @end

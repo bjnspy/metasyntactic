@@ -860,17 +860,17 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) showHiddenTheatersCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 
-    cell.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {
-        cell.text = LocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
+        cell.textLabel.text = LocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
     } else {
-        cell.text = [NSString stringWithFormat:LocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
+        cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
                      self.hiddenTheaterCount];
     }
 
-    cell.textColor = [ColorCache commandColor];
-    cell.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.textColor = [ColorCache commandColor];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
 
     return cell;
 }

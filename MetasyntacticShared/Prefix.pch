@@ -9,9 +9,7 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
-#ifdef IPHONE_OS_VERSION_3
 #import <MessageUI/MessageUI.h>
-#endif
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "expat.h"

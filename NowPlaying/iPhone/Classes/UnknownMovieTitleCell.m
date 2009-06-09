@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.image = [StockImages unknownRatingImage];
+        self.imageView.image = [StockImages unknownRatingImage];
         [scoreLabel removeFromSuperview];
     }
 
