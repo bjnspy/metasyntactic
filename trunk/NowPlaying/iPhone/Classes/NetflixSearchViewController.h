@@ -11,17 +11,3 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-#ifndef IPHONE_OS_VERSION_3
-
-@interface NetflixSearchViewController : AbstractTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
-@private
-    UISearchBar* searchBar;
-    NetflixSearchEngine* searchEngine;
-
-    NSArray* movies;
-    NSArray* people;
-}
-
-@end
-#endif

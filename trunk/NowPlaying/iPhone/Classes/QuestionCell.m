@@ -36,11 +36,7 @@
 
 - (id) initWithQuestion:(BOOL) question
         reuseIdentifier:(NSString*) reuseIdentifier {
-#ifdef IPHONE_OS_VERSION_3
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
-#else
-    if ((self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier])) {
-#endif
         self.backgroundColor = [ColorCache helpBlue];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 

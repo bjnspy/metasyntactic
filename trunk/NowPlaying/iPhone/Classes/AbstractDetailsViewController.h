@@ -14,13 +14,7 @@
 
 #import "DataProviderUpdateDelegate.h"
 
-@interface AbstractDetailsViewController :
-    AbstractTableViewController<
-        DataProviderUpdateDelegate
-#ifdef IPHONE_OS_VERSION_3
-        , MFMailComposeViewControllerDelegate
-#endif
-    > {
+@interface AbstractDetailsViewController : AbstractTableViewController<DataProviderUpdateDelegate, MFMailComposeViewControllerDelegate> {
 @protected
     NSInteger updateId;
 }

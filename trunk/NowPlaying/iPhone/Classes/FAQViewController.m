@@ -204,7 +204,6 @@
         subject = @"Now Playing Feedback";
     }
 
-#ifdef IPHONE_OS_VERSION_3
     if ([Application canSendMail]) {
         MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
         controller.mailComposeDelegate = self;
@@ -214,25 +213,15 @@
         [controller setMessageBody:body isHTML:NO];
 
         [self presentModalViewController:controller animated:YES];
-    } else {
-#endif
-        NSString* encodedSubject = [StringUtilities stringByAddingPercentEscapes:subject];
-        NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
-        NSString* url = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", encodedSubject, encodedBody];
-        [Application openBrowser:url];
-#ifdef IPHONE_OS_VERSION_3
     }
-#endif
 }
 
 
-#ifdef IPHONE_OS_VERSION_3
 - (void) mailComposeController:(MFMailComposeViewController*)controller
            didFinishWithResult:(MFMailComposeResult)result
                          error:(NSError*)error {
     [self dismissModalViewControllerAnimated:YES];
 }
-#endif
 
 
 - (void) sendFeedback {

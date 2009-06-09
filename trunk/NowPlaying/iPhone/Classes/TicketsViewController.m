@@ -190,14 +190,8 @@
 
   UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
-#ifdef IPHONE_OS_VERSION_3
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:reuseIdentifier] autorelease];
-#else
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
-                                   reuseIdentifier:reuseIdentifier] autorelease];
-#endif
-
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];
   }
@@ -236,11 +230,7 @@
 
 
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-  UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-#endif
 
   cell.textAlignment = UITextAlignmentCenter;
   cell.font = [UIFont boldSystemFontOfSize:14];

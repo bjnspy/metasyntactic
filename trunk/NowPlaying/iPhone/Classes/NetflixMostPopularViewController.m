@@ -94,28 +94,18 @@
 
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-#ifdef IPHONE_OS_VERSION_3
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-#else
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-#endif
 
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-#ifdef IPHONE_OS_VERSION_3
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.textLabel.minimumFontSize = 12;
-#endif
     }
 
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
     NSNumber* count = [titleToCount objectForKey:title];
 
-#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
-#else
-    cell.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
-#endif
 
     return cell;
 }

@@ -21,39 +21,22 @@
 
 @interface ReviewTitleCell()
 @property (retain) UILabel* scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-@property (retain) UILabel* textLabel;
-@property (retain) UILabel* detailTextLabel;
-#endif
 @end
 
 @implementation ReviewTitleCell
 
 @synthesize scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize textLabel;
-@synthesize detailTextLabel;
-#endif
 
 - (void) dealloc {
     self.scoreLabel = nil;
-#ifndef IPHONE_OS_VERSION_3
-    self.textLabel = nil;
-    self.detailTextLabel = nil;
-#endif
 
     [super dealloc];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-#ifdef IPHONE_OS_VERSION_3
     if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier])) {
-#else
-    if ((self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:reuseIdentifier])) {
-#endif
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.scoreLabel  = [[[UILabel alloc] init] autorelease];
@@ -63,20 +46,9 @@
 
         [self.contentView addSubview:scoreLabel];
 
-#ifndef IPHONE_OS_VERSION_3
-        self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-
-        textLabel.font = [UIFont boldSystemFontOfSize:14];
-        detailTextLabel.font = [UIFont systemFontOfSize:12];
-
-        [self.contentView addSubview:textLabel];
-        [self.contentView addSubview:detailTextLabel];
-#else
         // Hack.  For some reason, we can see the edge of this label peeking
         // beyond the edge of the cell.  So make it clear.
         self.textLabel.backgroundColor = [UIColor clearColor];
-#endif
     }
 
     return self;
@@ -120,11 +92,7 @@
     }
 
     if (score >= 0 && score <= 100) {
-#ifdef IPHONE_OS_VERSION_3
         CGRect frame = CGRectMake(6, 6, 30, 30);
-#else
-        CGRect frame = CGRectMake(10, 7, 30, 30);
-#endif
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         } else {
@@ -161,23 +129,6 @@
 
     self.textLabel.text = review.author;
     self.detailTextLabel.text = review.source;
-
-#ifndef IPHONE_OS_VERSION_3
-    [textLabel sizeToFit];
-    [detailTextLabel sizeToFit];
-
-    CGRect frame;
-
-    frame = textLabel.frame;
-    frame.origin.y = 5;
-    frame.origin.x = 50;
-    textLabel.frame = frame;
-
-    frame = detailTextLabel.frame;
-    frame.origin.y = 23;
-    frame.origin.x = 50;
-    detailTextLabel.frame = frame;
-#endif
 }
 
 @end

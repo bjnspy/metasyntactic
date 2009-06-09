@@ -30,56 +30,23 @@
 
 @interface MovieTitleCell()
 @property (retain) UILabel* scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-@property (retain) UILabel* textLabel;
-@property (retain) UILabel* detailTextLabel;
-#endif
 @end
 
 
 @implementation MovieTitleCell
 
 @synthesize scoreLabel;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize textLabel;
-@synthesize detailTextLabel;
-#endif
 
 - (void) dealloc {
     self.scoreLabel = nil;
-#ifndef IPHONE_OS_VERSION_3
-    self.textLabel = nil;
-    self.detailTextLabel = nil;
-#endif
 
     [super dealloc];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-#ifdef IPHONE_OS_VERSION_3
     if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
                     reuseIdentifier:reuseIdentifier])) {
-#else
-    if ((self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:reuseIdentifier])) {
-#endif
-
-#ifndef IPHONE_OS_VERSION_3
-        self.textLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        textLabel.font = [UIFont boldSystemFontOfSize:18];
-        textLabel.adjustsFontSizeToFitWidth = YES;
-        textLabel.minimumFontSize = 14;
-        textLabel.textColor = [UIColor blackColor];
-
-        self.detailTextLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        detailTextLabel.font = [UIFont systemFontOfSize:12];
-        detailTextLabel.textColor = [UIColor grayColor];
-
-        [self.contentView addSubview:textLabel];
-        [self.contentView addSubview:detailTextLabel];
-#endif
-
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         self.textLabel.minimumFontSize = 12;
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -149,23 +116,6 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.contentView bringSubviewToFront:scoreLabel];
-
-#ifndef IPHONE_OS_VERSION_3
-    CGRect frame;
-    if (self.model.noScores) {
-        frame = CGRectMake(10, 25, 0, 14);
-    } else {
-        frame = CGRectMake(50, 25, 0, 14);
-    }
-
-    frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-
-    detailTextLabel.frame = frame;
-
-    frame.origin.y = 5;
-    frame.size.height = 20;
-    textLabel.frame = frame;
-#endif
 }
 
 
@@ -193,21 +143,5 @@
     [cell setMovie:movie];
     return cell;
 }
-
-
-#ifndef IPHONE_OS_VERSION_3
-- (void) setSelected:(BOOL) selected
-            animated:(BOOL) animated {
-    [super setSelected:selected animated:animated];
-
-    if (selected) {
-        textLabel.textColor = [UIColor whiteColor];
-        detailTextLabel.textColor = [UIColor whiteColor];
-    } else {
-        textLabel.textColor = [UIColor blackColor];
-        detailTextLabel.textColor = [UIColor grayColor];
-    }
-}
-#endif
 
 @end

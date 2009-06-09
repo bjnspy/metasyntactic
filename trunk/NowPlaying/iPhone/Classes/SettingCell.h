@@ -18,16 +18,8 @@
 
     NSString* value;
     NSString* placeholder;
-
-#ifndef IPHONE_OS_VERSION_3
-    UILabel* textLabel;
-    UILabel* detailTextLabel;
-#endif
 }
 
-#ifndef IPHONE_OS_VERSION_3
-@property (readonly, retain) UILabel* textLabel;
-#endif
 @property (copy) NSString* placeholder;
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;

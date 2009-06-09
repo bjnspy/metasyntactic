@@ -103,13 +103,8 @@
 
 
 - (id)  initWithReuseIdentifier:(NSString*) reuseIdentifier {
-#ifdef IPHONE_OS_VERSION_3
     if ((self = [super initWithStyle:UITableViewCellStyleDefault
                     reuseIdentifier:reuseIdentifier])) {
-#else
-    if ((self = [super initWithFrame:CGRectZero
-                    reuseIdentifier:reuseIdentifier])) {
-#endif
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
