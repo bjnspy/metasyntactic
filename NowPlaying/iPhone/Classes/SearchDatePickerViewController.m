@@ -78,27 +78,15 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
 
     NSDate* date = [self dateForRow:indexPath.row];
 
-#ifdef IPHONE_OS_VERSION_3
     if ([DateUtilities isToday:date]) {
         cell.textLabel.text = LocalizedString(@"Today", nil);
     } else {
         cell.textLabel.text = [DateUtilities formatFullDate:date];
     }
-#else
-    if ([DateUtilities isToday:date]) {
-        cell.text = LocalizedString(@"Today", nil);
-    } else {
-        cell.text = [DateUtilities formatFullDate:date];
-    }
-#endif
 
     if ([DateUtilities isSameDay:date date:self.model.searchDate]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

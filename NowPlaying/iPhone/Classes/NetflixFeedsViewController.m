@@ -101,23 +101,15 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
 
     NSArray* feeds = self.feeds;
 
     Feed* feed = [feeds objectAtIndex:indexPath.row];
 
-#ifdef IPHONE_OS_VERSION_3
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.minimumFontSize = 12;
     cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key];
-#else
-    cell.text = [self.model.netflixCache titleForKey:feed.key];
-#endif
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

@@ -76,11 +76,7 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-#ifdef IPHONE_OS_VERSION_#
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
 
     NSString* value = [values objectAtIndex:indexPath.row];
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];

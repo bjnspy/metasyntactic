@@ -20,11 +20,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
     if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
-#ifdef IPHONE_OS_VERSION_3
         CGRect frame = CGRectMake(6, 6, 30, 30);
-#else
-        CGRect frame = CGRectMake(10, 7, 30, 30);
-#endif
         scoreLabel.font = [FontCache boldSystem19];
         scoreLabel.textColor = [ColorCache darkDarkGray];
         scoreLabel.frame = frame;

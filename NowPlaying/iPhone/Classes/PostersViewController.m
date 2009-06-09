@@ -24,9 +24,6 @@
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
 @property (retain) UILabel* savingLabel;
-#ifndef IPHONE_OS_VERSION_3
-@property (retain) UIToolbar* toolbar;
-#endif
 @end
 
 
@@ -42,18 +39,12 @@ const double LOAD_DELAY = 1;
 @synthesize movie;
 @synthesize scrollView;
 @synthesize savingLabel;
-#ifndef IPHONE_OS_VERSION_3
-@synthesize toolbar;
-#endif
 
 - (void) dealloc {
     self.pageNumberToView = nil;
     self.movie = nil;
     self.scrollView = nil;
     self.savingLabel = nil;
-#ifndef IPHONE_OS_VERSION_3
-    self.toolbar = nil;
-#endif
 
     [super dealloc];
 }
@@ -65,9 +56,7 @@ const double LOAD_DELAY = 1;
         self.movie = movie_;
         posterCount = posterCount_;
 
-#ifdef IPHONE_OS_VERSION_3
         self.wantsFullScreenLayout = YES;
-#endif
 
         self.pageNumberToView = [NSMutableDictionary dictionary];
     }
@@ -86,14 +75,10 @@ const double LOAD_DELAY = 1;
 
     [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
 
-#ifdef IPHONE_OS_VERSION_3
     [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     [self.abstractNavigationController setToolbarHidden:NO animated:YES];
     self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
     self.abstractNavigationController.toolbar.translucent = YES;
-#else
-    [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlackTranslucent animated:YES];
-#endif
 }
 
 
@@ -103,11 +88,7 @@ const double LOAD_DELAY = 1;
     [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
     [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
 
-#ifdef IPHONE_OS_VERSION_3
     [self.abstractNavigationController setToolbarHidden:YES animated:YES];
-#else
-    [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleDefault animated:YES];
-#endif
 }
 
 
@@ -337,13 +318,6 @@ const double LOAD_DELAY = 1;
 }
 
 
-#ifndef IPHONE_OS_VERSION_3
-- (void) setToolbarItems:(NSArray*) items animated:(BOOL) animated {
-    [toolbar setItems:items animated:YES];
-}
-#endif
-
-
 - (void) setupSavingToolbar {
     self.savingLabel = [[[UILabel alloc] init] autorelease];
     savingLabel.font = [UIFont boldSystemFontOfSize:20];
@@ -473,28 +447,12 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-#ifdef IPHONE_OS_VERSION_3
     [self.abstractNavigationController setToolbarHidden:YES animated:YES];
-#else
-    [UIView beginAnimations:nil context:NULL];
-    {
-        toolbar.alpha = 0;
-    }
-    [UIView commitAnimations];
-#endif
 }
 
 
 - (void) showToolBar {
-#ifdef IPHONE_OS_VERSION_3
     [self.abstractNavigationController setToolbarHidden:NO animated:YES];
-#else
-    [UIView beginAnimations:nil context:NULL];
-    {
-        toolbar.alpha = 1;
-    }
-    [UIView commitAnimations];
-#endif
 }
 
 
@@ -616,27 +574,10 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) createToolbar {
-#ifndef IPHONE_OS_VERSION_3
-    CGRect webframe = self.view.frame;
-    webframe.origin.x = 0;
-    webframe.origin.y = 0;
-
-    CGRect toolbarFrame;
-    CGRectDivide(webframe, &toolbarFrame, &webframe, 42, CGRectMaxYEdge);
-
-    self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    toolbar.barStyle = UIBarStyleBlackTranslucent;
-#endif
-}
-
-
 - (void) loadView {
     [super loadView];
 
     [self createScrollView];
-    [self createToolbar];
 
     [self setupToolbar];
     [self showToolBar];
@@ -646,11 +587,6 @@ const double LOAD_DELAY = 1;
     [self loadPage:1 delay:LOAD_DELAY];
 
     [self.view addSubview:scrollView];
-
-#ifndef IPHONE_OS_VERSION_3
-    [self.view addSubview:toolbar];
-    [self.view bringSubviewToFront:toolbar];
-#endif
 }
 
 
@@ -681,13 +617,7 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        if (
-#ifdef IPHONE_OS_VERSION_3
-            self.abstractNavigationController.toolbarHidden
-#else
-            toolbar.alpha == 0
-#endif
-            ) {
+        if (self.abstractNavigationController.toolbarHidden) {
             [self showToolBar];
         } else {
             [self hideToolBar];

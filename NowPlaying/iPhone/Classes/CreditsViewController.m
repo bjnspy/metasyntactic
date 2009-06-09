@@ -224,11 +224,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return [self localizationCellForRow:row];
     }
 
-#ifdef IPHONE_OS_VERSION_3
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-#endif
 
     UIImage* image = [self getImage:indexPath];
 

@@ -22,10 +22,8 @@
 
 
 @interface AbstractMovieListViewController()
-#ifdef IPHONE_OS_VERSION_3
 @property (retain) UISearchBar* searchBar;
 @property (retain) LocalSearchDisplayController* searchDisplayController;
-#endif
 @property (retain) NSArray* sortedMovies;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -35,20 +33,16 @@
 
 @implementation AbstractMovieListViewController
 
-#ifdef IPHONE_OS_VERSION_3
 @synthesize searchBar;
 @synthesize searchDisplayController;
-#endif
 @synthesize sortedMovies;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
 
 - (void) dealloc {
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = nil;
     self.searchDisplayController = nil;
-#endif
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
@@ -257,9 +251,7 @@
     } else {
         NSMutableArray* array = [NSMutableArray array];
 
-#ifdef IPHONE_OS_VERSION_3
         [array addObject:UITableViewIndexSearch];
-#endif
         if (self.model.prioritizeBookmarks) {
             [array addObject:[StringUtilities starString]];
         }
@@ -315,30 +307,12 @@
 
 
 - (void) initializeSearchDisplay {
-#ifdef IPHONE_OS_VERSION_3
     self.searchBar = [[[UISearchBar alloc] init] autorelease];
     [searchBar sizeToFit];
     self.tableView.tableHeaderView = searchBar;
 
     self.searchDisplayController = [[[LocalSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                          contentsController:self] autorelease];
-#else
-    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.showsTouchWhenHighlighted = YES;
-    UIImage* image = [StockImages searchImage];
-    [searchButton setImage:image forState:UIControlStateNormal];
-    [searchButton addTarget:self.navigationController action:@selector(showSearchView) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = searchButton.frame;
-    frame.origin.x += 0.5;
-    frame.size = image.size;
-    frame.size.width += 7;
-    frame.size.height += 7;
-    searchButton.frame = frame;
-
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
-    self.navigationItem.rightBarButtonItem = item;
-#endif
 }
 
 
@@ -398,9 +372,7 @@
 
 
 - (void) minorRefreshWorker {
-#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController minorRefresh];
-#endif
 }
 
 
@@ -410,10 +382,7 @@
 
     [self tryScrollToCurrentDate];
 
-
-#ifdef IPHONE_OS_VERSION_3
     [searchDisplayController majorRefresh];
-#endif
 }
 
 
@@ -434,11 +403,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
-#ifdef IPHONE_OS_VERSION_3
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
     }
 
     Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
@@ -517,13 +482,10 @@
                           atIndex:(NSInteger) index {
     unichar firstChar = [title characterAtIndex:0];
 
-#ifdef IPHONE_OS_VERSION_3
     if ([UITableViewIndexSearch isEqual:title]) {
         [self.tableView scrollRectToVisible:searchBar.frame animated:NO];
         return -1;
-    } else
-#endif
-    if (firstChar == '#') {
+    } else if (firstChar == '#') {
         return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [StringUtilities starCharacter]) {
         return [sectionTitles indexOfObject:[StringUtilities starString]];
@@ -547,10 +509,8 @@
 }
 
 
-#ifdef IPHONE_OS_VERSION_3
 - (void) onTabBarItemSelected {
     [searchDisplayController setActive:NO animated:YES];
 }
-#endif
 
 @end

@@ -88,9 +88,7 @@ typedef enum {
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
   [self.controller.locationManager addLocationSpinner:self.navigationItem];
-#if IPHONE_OS_VERSION_3
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
-#endif
 }
 
 
@@ -138,11 +136,7 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-#else
-  UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-#endif
 
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -166,11 +160,7 @@ typedef enum {
   [cell.switchControl removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
   [cell.switchControl addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
   cell.switchControl.on = on;
-#ifdef IPHONE_OS_VERSION_3
   cell.textLabel.text = text;
-#else
-  cell.text = text;
-#endif
 
   return cell;
 }
@@ -314,7 +304,6 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
-#ifdef IPHONE_OS_VERSION_3
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.textLabel.textAlignment = UITextAlignmentCenter;
   cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
@@ -326,19 +315,6 @@ typedef enum {
   }
 
   return cell;
-#else
-  UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-  cell.textAlignment = UITextAlignmentCenter;
-  cell.text = NSLocalizedString(@"Force Refresh", nil);
-  if (refreshed) {
-    cell.textColor = [UIColor grayColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  } else {
-    cell.textColor = [ColorCache commandColor];
-  }
-
-  return cell;
-#endif
 }
 
 

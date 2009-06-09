@@ -14,10 +14,8 @@
 
 @interface AbstractMovieListViewController : AbstractTableViewController {
 @protected
-#ifdef IPHONE_OS_VERSION_3
     UISearchBar* searchBar;
     LocalSearchDisplayController* searchDisplayController;
-#endif
 
     NSArray* sortedMovies;
     NSArray* sectionTitles;
