@@ -19,7 +19,7 @@
 		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
 		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
-		7423723C0FD2488600E19B63 /* libMetasyntacticShared3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */; };
+		7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */; };
 		742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742372A70FD249D200E19B63 /* MessageUI.framework */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
 		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
@@ -63,13 +63,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		742371D50FD2476D00E19B63 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
-			remoteInfo = MetasyntacticShared2;
-		};
 		742371D70FD2476D00E19B63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
@@ -195,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7423723C0FD2488600E19B63 /* libMetasyntacticShared3.a in Frameworks */,
+				7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -289,8 +282,7 @@
 		742371D10FD2476D00E19B63 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				742371D60FD2476D00E19B63 /* libMetasyntacticShared2.a */,
-				742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */,
+				742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -505,17 +497,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		742371D60FD2476D00E19B63 /* libMetasyntacticShared2.a */ = {
+		742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libMetasyntacticShared2.a;
-			remoteRef = 742371D50FD2476D00E19B63 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		742371D80FD2476D00E19B63 /* libMetasyntacticShared3.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMetasyntacticShared3.a;
+			path = libMetasyntacticShared.a;
 			remoteRef = 742371D70FD2476D00E19B63 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -645,7 +630,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -677,7 +661,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -709,7 +692,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -728,7 +710,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = IPHONE_OS_VERSION_3;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
