@@ -18,4 +18,7 @@
 + (NSArray*) encodeArray:(NSArray*) values;
 + (NSArray*) decodeArray:(NSArray*) values;
 
++ (NSArray*) encodeSet:(NSSet*) values;
++ (NSSet*) decodeSet:(NSArray*) values;
+
 @end

@@ -31,6 +31,11 @@
 }
 
 
++ (NSArray*) encodeSet:(NSSet*) values {
+  return [self encodeArray:values.allObjects];
+}
+
+
 + (id) newWithDictionary:(NSDictionary*) dictionary {
   return nil;
 }
@@ -50,6 +55,11 @@
   }
 
   return result;
+}
+
+
++ (NSSet*) decodeSet:(NSArray*) values {
+  return [NSSet setWithArray:[self decodeArray:values]];
 }
 
 @end
