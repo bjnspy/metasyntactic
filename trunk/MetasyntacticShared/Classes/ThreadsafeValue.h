@@ -26,6 +26,7 @@
                           delegate:(id) delegate
                       loadSelector:(SEL) loadSelector
                       saveSelector:(SEL) saveSelector;
++ (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate;
 
 
 - (id) value;
