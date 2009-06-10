@@ -69,9 +69,16 @@
 }
 
 
++ (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate {
+  return [ThreadsafeValue valueWithGate:gate delegate:nil loadSelector:nil saveSelector:nil];
+}
+
+
 - (id) valueNoLock {
   if (valueData == nil) {
-    self.valueData = [delegate performSelector:loadSelector];
+    if (delegate != nil) {
+      self.valueData = [delegate performSelector:loadSelector];
+    }
   }
 
   // Access through property to ensure valid value.
@@ -96,7 +103,9 @@
     self.valueData = value;
   }
   [gate unlock];
-  [delegate performSelector:saveSelector withObject:value];
+  if (delegate != nil) {
+    [delegate performSelector:saveSelector withObject:value];
+  }
 }
 
 @end

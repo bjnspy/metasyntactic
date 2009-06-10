@@ -16,6 +16,72 @@
 
 @implementation StringUtilities
 
+static NSString* articles[] = {
+@"Der", @"Das", @"Ein", @"Eine", @"The",
+@"A", @"An", @"La", @"Las", @"Le",
+@"Les", @"Los", @"El", @"Un", @"Une",
+@"Una", @"Il", @"O", @"Het", @"De",
+@"Os", @"Az", @"Den", @"Al", @"En",
+@"L'"
+};
+
+
+static NSString* suffixes[] = {
+@", Der", @", Das", @", Ein", @", Eine", @", The",
+@", A", @", An", @", La", @", Las", @", Le",
+@", Les", @", Los", @", El", @", Un", @", Une",
+@", Una", @", Il", @", O", @", Het", @", De",
+@", Os", @", Az", @", Den", @", Al", @", En",
+@", L'"
+};
+
+
+static NSString* prefixes[] = {
+@"Der ", @"Das ", @"Ein ", @"Eine ", @"The ",
+@"A ", @"An ", @"La ", @"Las ", @"Le ",
+@"Les ", @"Los ", @"El ", @"Un ", @"Une ",
+@"Una ", @"Il ", @"O ", @"Het ", @"De ",
+@"Os ", @"Az ", @"Den ", @"Al ", @"En ",
+@"L'"
+};
+
+
++ (NSString*) makeCanonical:(NSString*) title {
+  if (title.length == 0) {
+    return @"";
+  }
+  
+  title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  
+  for (int i = 0; i < ArrayLength(articles); i++) {
+    NSString* suffix = suffixes[i];
+    if ([title hasSuffix:suffix]) {
+      return [NSString stringWithFormat:@"%@%@", prefixes[i], [title substringToIndex:(title.length - suffix.length)]];
+    }
+  }
+  
+  return title;
+}
+
+
++ (NSString*) makeDisplay:(NSString*) title {
+  if (title.length == 0) {
+    return @"";
+  }
+  
+  title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  
+  for (int i = 0; i < ArrayLength(articles); i++) {
+    NSString* prefix = prefixes[i];
+    if ([title hasPrefix:prefix]) {
+      return [NSString stringWithFormat:@"%@%@", [title substringFromIndex:prefix.length], suffixes[i]];
+    }
+  }
+  
+  return title;
+}
+
+
 + (NSString*) nonNilString:(NSString*) string {
     if (string == nil) {
         return @"";

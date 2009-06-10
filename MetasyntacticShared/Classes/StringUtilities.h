@@ -16,6 +16,9 @@
 
 }
 
++ (NSString*) makeCanonical:(NSString*) title;
++ (NSString*) makeDisplay:(NSString*) title;
+
 + (NSString*) nonNilString:(NSString*) string;
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
