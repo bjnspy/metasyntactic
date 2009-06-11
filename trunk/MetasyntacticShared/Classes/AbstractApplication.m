@@ -52,7 +52,7 @@ static NSString* trashDirectory = nil;
   [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
                                 onTarget:self
                                     gate:nil
-                                 visible:NO];
+                                  daemon:YES];
 }
 
 
@@ -214,7 +214,7 @@ static NSString* trashDirectory = nil;
   [ThreadingUtilities backgroundSelector:@selector(clearStaleDataBackgroundEntryPoint)
                                 onTarget:self
                                     gate:nil
-                                 visible:NO];
+                                  daemon:YES];
 }
 
 

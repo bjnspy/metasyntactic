@@ -21,18 +21,18 @@
                  withObject:(id) argument1
                  withObject:(id) argument2
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    daemon:(BOOL) daemon;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                  withObject:(id) argument
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    daemon:(BOOL) daemon;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    daemon:(BOOL) daemon;
 
 + (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
@@ -42,5 +42,7 @@
                    onTarget:(id) target
                  withObject:(id) argument1
                  withObject:(id) argument2;
+
++ (BOOL) hasNonDaemonBackgroundTasks;
 
 @end
