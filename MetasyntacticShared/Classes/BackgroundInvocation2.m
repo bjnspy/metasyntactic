@@ -25,8 +25,8 @@
 @synthesize argument2;
 
 - (void) dealloc {
-    self.argument2 = nil;
-    [super dealloc];
+  self.argument2 = nil;
+  [super dealloc];
 }
 
 
@@ -35,16 +35,16 @@
            withObject:(id) argument1_
            withObject:(id) argument2_
                  gate:(id<NSLocking>) gate_
-              visible:(BOOL) visible_ {
-    if ((self = [super initWithTarget:target_
-                            selector:selector_
-                          withObject:argument1_
-                                gate:gate_
-                             visible:visible_])) {
-        self.argument2 = argument2_;
-    }
-
-    return self;
+               daemon:(BOOL) daemon_ {
+  if ((self = [super initWithTarget:target_
+                           selector:selector_
+                         withObject:argument1_
+                               gate:gate_
+                             daemon:daemon_])) {
+    self.argument2 = argument2_;
+  }
+  
+  return self;
 }
 
 
@@ -53,18 +53,18 @@
                                      withObject:(id) argument1
                                      withObject:(id) argument2
                                            gate:(id<NSLocking>) gate
-                                        visible:(BOOL) visible {
-    return [[[BackgroundInvocation2 alloc] initWithTarget:target
-                                                 selector:selector
-                                               withObject:argument1
-                                               withObject:argument2
-                                                     gate:gate
-                                                  visible:visible] autorelease];
+                                         daemon:(BOOL) daemon {
+  return [[[BackgroundInvocation2 alloc] initWithTarget:target
+                                               selector:selector
+                                             withObject:argument1
+                                             withObject:argument2
+                                                   gate:gate
+                                                 daemon:daemon] autorelease];
 }
 
 
 - (void) invokeSelector {
-    [target performSelector:selector withObject:argument withObject:argument2];
+  [target performSelector:selector withObject:argument withObject:argument2];
 }
 
 @end

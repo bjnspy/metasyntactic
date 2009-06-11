@@ -24,6 +24,6 @@
                                      withObject:(id) argument1
                                      withObject:(id) argument2
                                            gate:(id<NSLocking>) gate
-                                        visible:(BOOL) visible;
+                                         daemon:(BOOL) daemon;
 
 @end

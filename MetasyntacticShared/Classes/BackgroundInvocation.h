@@ -17,19 +17,21 @@
 @interface BackgroundInvocation : Invocation {
 @protected
     id<NSLocking> gate;
-    BOOL visible;
+    BOOL daemon;
 }
 
 - (id) initWithTarget:(id) target
              selector:(SEL) selector
            withObject:(id) argument
                  gate:(id<NSLocking>) gate
-              visible:(BOOL) visible;
+              daemon:(BOOL) daemon;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                     withObject:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       visible:(BOOL) visible;
+                                       daemon:(BOOL) daemon;
+
++ (BOOL) hasNonDaemonBackgroundTasks;
 
 @end

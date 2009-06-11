@@ -16,20 +16,29 @@
 
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
-@property BOOL visible;
+@property BOOL daemon;
 @end
 
 
 @implementation BackgroundInvocation
 
+static NSLock* dataGate = nil;
+static NSInteger nonDaemonBackgroundTaskCount = 0;
+
++ (void) initialize {
+  if (self == [BackgroundInvocation class]) {
+    dataGate = [[NSLock alloc] init];
+  }
+}
+
 @synthesize gate;
-@synthesize visible;
+@synthesize daemon;
 
 - (void) dealloc {
-    self.gate = nil;
-    self.visible = NO;
-
-    [super dealloc];
+  self.gate = nil;
+  self.daemon = NO;
+  
+  [super dealloc];
 }
 
 
@@ -37,13 +46,13 @@
              selector:(SEL) selector_
            withObject:(id) argument_
                  gate:(id<NSLocking>) gate_
-              visible:(BOOL) visible_ {
-    if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument_])) {
-        self.gate = gate_;
-        self.visible = visible_;
-    }
-
-    return self;
+               daemon:(BOOL) daemon_ {
+  if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument_])) {
+    self.gate = gate_;
+    self.daemon = daemon_;
+  }
+  
+  return self;
 }
 
 
@@ -51,46 +60,73 @@
                                       selector:(SEL) selector
                                     withObject:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       visible:(BOOL) visible {
-    return [[[BackgroundInvocation alloc] initWithTarget:target
-                                                selector:selector
-                                              withObject:argument
-                                                    gate:gate
-                                                 visible:visible] autorelease];
+                                        daemon:(BOOL) daemon {
+  return [[[BackgroundInvocation alloc] initWithTarget:target
+                                              selector:selector
+                                            withObject:argument
+                                                  gate:gate
+                                                daemon:daemon] autorelease];
 }
 
 
 - (void) invokeSelector {
-    [target performSelector:selector withObject:argument];
+  [target performSelector:selector withObject:argument];
 }
 
 
 - (void) runWorker {
-    NSString* className = NSStringFromClass([target class]);
-    NSString* selectorName = NSStringFromSelector(selector);
-    NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
-    [[NSThread currentThread] setName:name];
-
-    if (visible) {
-        [NSThread setThreadPriority:0.25];
-    } else {
-        [NSThread setThreadPriority:0.0];
-    }
-
-    [gate lock];
+  NSString* className = NSStringFromClass([target class]);
+  NSString* selectorName = NSStringFromSelector(selector);
+  NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
+  [[NSThread currentThread] setName:name];
+  
+  if (daemon) {
+    [NSThread setThreadPriority:0.0];
+  } else {
+    [NSThread setThreadPriority:0.25];
+  }
+  
+  if (!daemon) {
+    [dataGate lock];
     {
-        [self invokeSelector];
+      nonDaemonBackgroundTaskCount++;
     }
-    [gate unlock];
+    [dataGate unlock];
+  }
+  
+  [gate lock];
+  {
+    [self invokeSelector];
+  }
+  [gate unlock];
+  
+  if (!daemon) {
+    [dataGate lock];
+    {
+      nonDaemonBackgroundTaskCount--;
+    }
+    [dataGate unlock];
+  }
 }
 
 
 - (void) run {
-    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-    {
-        [self runWorker];
-    }
-    [autoreleasePool release];
+  NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
+  {
+    [self runWorker];
+  }
+  [autoreleasePool release];
+}
+
+
++ (BOOL) hasNonDaemonBackgroundTasks {
+  BOOL result;
+  [dataGate lock];
+  {
+    result = nonDaemonBackgroundTaskCount != 0;
+  }
+  [dataGate unlock];
+  return result;
 }
 
 @end
