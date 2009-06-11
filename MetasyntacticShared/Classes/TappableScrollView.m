@@ -38,7 +38,7 @@
 
         [self performSelector:@selector(reportTap:)
                    withObject:[NSArray arrayWithObjects:pointValue, tapCount, nil]
-                   afterDelay:0.25];
+                   afterDelay:0.4];
         return;
     }
 
