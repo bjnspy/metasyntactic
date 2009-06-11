@@ -107,9 +107,12 @@
                                image.size.width,
                                image.size.height);
   
+  CGContextSetRGBFillColor(currentContext, 0.75, 0.75, 0.75, 1);
+  CGContextFillRect(currentContext, clippedRect);
+  
   CGContextTranslateCTM(currentContext, 0.0, drawRect.size.height);
   CGContextScaleCTM(currentContext, 1.0, -1.0);
-  
+    
   //draw the image to our clipped context using our offset rect
   CGContextDrawImage(currentContext, drawRect, image.CGImage);
   
