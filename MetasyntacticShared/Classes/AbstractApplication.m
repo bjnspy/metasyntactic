@@ -28,6 +28,7 @@ static NSString* cacheDirectory = nil;
 static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
+static NSCondition* emptyTrashCondition = nil;
 
 
 + (NSString*) name {
@@ -86,6 +87,7 @@ static NSString* trashDirectory = nil;
 + (void) initialize {
   if (self == [AbstractApplication class]) {
     gate = [[NSRecursiveLock alloc] init];
+    emptyTrashCondition = [[NSCondition alloc] init];
 
     [self initializeDirectories];
     [self emptyTrash];
@@ -118,7 +120,7 @@ static NSString* trashDirectory = nil;
 }
 
 
-+ (void) emptyTrashBackgroundEntryPoint {
++ (void) emptyTrashBackgroundEntryPointWorker {
   NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
   NSFileManager* manager = [NSFileManager defaultManager];
   NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
@@ -158,6 +160,25 @@ static NSString* trashDirectory = nil;
   }
 
   NSLog(@"Application:emptyTrashBackgroundEntryPoint - stop");
+}
+
+
++ (void) emptyTrashBackgroundEntryPoint {
+  while (YES) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      [emptyTrashCondition lock];
+      {
+        while ([FileUtilities directoryContentsNames:[self trashDirectory]].count == 0) {
+          [emptyTrashCondition wait]; 
+        }
+      }
+      [emptyTrashCondition unlock];
+      
+      [self emptyTrashBackgroundEntryPointWorker];
+    }
+    [pool release];
+  }
 }
 
 
@@ -228,6 +249,12 @@ static NSString* trashDirectory = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
   }
   [gate unlock];
+  
+  [emptyTrashCondition lock];
+  {
+    [emptyTrashCondition broadcast];
+  }
+  [emptyTrashCondition unlock];
 }
 
 
