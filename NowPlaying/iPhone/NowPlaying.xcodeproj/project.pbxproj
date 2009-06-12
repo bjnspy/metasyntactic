@@ -80,7 +80,7 @@
 		7445B4570F7D652400864071 /* GreenMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4560F7D652400864071 /* GreenMovieTitleCell.m */; };
 		7445B46B0F7D68AF00864071 /* NoScoreMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B46A0F7D68AF00864071 /* NoScoreMovieTitleCell.m */; };
 		7447092E0F7BDA160047061E /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447092D0F7BDA160047061E /* DeleteMovie.png */; };
-		744A63E60FDEE55D0007C60B /* lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* lib.a */; };
+		744A63E60FDEE55D0007C60B /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */; };
@@ -673,7 +673,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				744A63E60FDEE55D0007C60B /* lib.a in Frameworks */,
+				744A63E60FDEE55D0007C60B /* libMetasyntacticShared.a in Frameworks */,
 				7471794D0FDC5A1F00B24ECD /* libProtocolBuffers.a in Frameworks */,
 				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
 				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
@@ -1326,7 +1326,7 @@
 		74E6FCC50FD1B1CE0015D9F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74E6FCC90FD1B1CE0015D9F8 /* lib.a */,
+				74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1492,10 +1492,10 @@
 			remoteRef = 747179460FDC59FA00B24ECD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		74E6FCC90FD1B1CE0015D9F8 /* lib.a */ = {
+		74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = lib.a;
+			path = libMetasyntacticShared.a;
 			remoteRef = 74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
