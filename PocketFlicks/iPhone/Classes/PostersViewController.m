@@ -525,7 +525,7 @@ const double LOAD_DELAY = 1;
                                   onTarget:self
                                 withObject:[NSNumber numberWithInteger:nextIndex]
                                       gate:nil
-                                   visible:YES];
+                                    daemon:NO];
 }
 
 
@@ -563,13 +563,13 @@ const double LOAD_DELAY = 1;
                                       onTarget:self
                                     withObject:[NSNumber numberWithInteger:currentPage]
                                           gate:nil
-                                       visible:YES];
+                                        daemon:NO];
     } else {
         [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
                                       onTarget:self
                                     withObject:[NSNumber numberWithInteger:0]
                                           gate:nil
-                                       visible:YES];
+                                        daemon:NO];
     }
 }
 

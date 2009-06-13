@@ -76,7 +76,7 @@ static CacheUpdater* cacheUpdater = nil;
                                 withObject:movie
                                 withObject:[NSNumber numberWithBool:YES]
                                       gate:nil
-                                   visible:YES];
+                                    daemon:NO];
   } else {
     [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:force:)
                                                    onTarget:self

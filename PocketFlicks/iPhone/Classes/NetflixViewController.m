@@ -27,7 +27,6 @@
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
-#import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
 
 @interface NetflixViewController()
