@@ -28,8 +28,13 @@
                       saveSelector:(SEL) saveSelector;
 + (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate;
 
-
 - (id) value;
 - (void) setValue:(id) value;
+
+/* @protected */
+- (id) initWithGate:(id<NSLocking>) gate_
+           delegate:(id) delegate_
+       loadSelector:(SEL) loadSelector_
+       saveSelector:(SEL) saveSelector_;
 
 @end

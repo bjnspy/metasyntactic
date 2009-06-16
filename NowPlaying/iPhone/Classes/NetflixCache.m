@@ -1143,8 +1143,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) rssFeedDirectory:(NSString*) address {
-  return [[Application netflixRSSDirectory]
-          stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
+  return [[Application netflixRSSDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
 }
 
 
