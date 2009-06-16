@@ -52,7 +52,8 @@
 
 
 - (void) initializeData {
-  NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
+  NSArray* allPerformances =  [self.model moviePerformances:movie
+                               forTheater:theater];
   NSMutableArray* result = [NSMutableArray array];
 
   NSDate* now = [DateUtilities currentTime];
