@@ -48,7 +48,7 @@
 - (id) init {
   if ((self = [super init])) {
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
-    self.moviesSetData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMoviesSet) saveSelector:@selector(saveMoviesSet:)];
+    self.moviesSetData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMoviesSet) saveSelector:nil];
     self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
   }
 
@@ -105,11 +105,6 @@
 
 - (PointerSet*) loadMoviesSet {
   return [PointerSet setWithArray:self.movies];
-}
-
-
-- (void) saveMoviesSet:(PointerSet*) value {
-  // nothing to do.
 }
 
 

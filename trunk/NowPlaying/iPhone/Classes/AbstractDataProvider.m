@@ -57,11 +57,16 @@
 }
 
 
+- (NSString*) synchronizationInformationFile {
+  return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
+}
+
+
 - (id) init {
   if ((self = [super init])) {
     self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
     self.theatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadTheaters) saveSelector:@selector(saveTheaters:)];
-    self.synchronizationInformationData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadSynchronizationInformation) saveSelector:@selector(saveSynchronizationInformation:)];
+    self.synchronizationInformationData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.synchronizationInformationFile];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
 
     self.performancesData = [NSMutableDictionary dictionary];
@@ -94,11 +99,6 @@
 
 - (NSString*) theatersFile {
   return [[Application dataDirectory] stringByAppendingPathComponent:@"Theaters.plist"];
-}
-
-
-- (NSString*) synchronizationInformationFile {
-  return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
 
@@ -154,20 +154,6 @@
 
 - (NSDictionary*) bookmarks {
   return bookmarksData.value;
-}
-
-
-- (NSDictionary*) loadSynchronizationInformation {
-  NSDictionary* result = [FileUtilities readObject:self.synchronizationInformationFile];
-  if (result.count == 0) {
-    return [NSDictionary dictionary];
-  }
-  return result;
-}
-
-
-- (void) saveSynchronizationInformation:(NSDictionary*) value {
-  [FileUtilities writeObject:value toFile:self.synchronizationInformationFile];
 }
 
 
