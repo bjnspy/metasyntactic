@@ -174,8 +174,6 @@
 		74E602540FD1C82D0015D9F8 /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E602500FD1C82D0015D9F8 /* ColorCache.m */; };
 		74E604D60FD1F1330015D9F8 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E604D20FD1F1330015D9F8 /* AbstractNavigationController.h */; };
 		74E604D70FD1F1330015D9F8 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E604D30FD1F1330015D9F8 /* AbstractNavigationController.m */; };
-		74F10D130FE764ED002ADB4B /* PersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D110FE764ED002ADB4B /* PersistentThreadsafeValue.h */; };
-		74F10D140FE764ED002ADB4B /* PersistentThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D120FE764ED002ADB4B /* PersistentThreadsafeValue.m */; };
 		74F10D370FE7686A002ADB4B /* PersistentSetThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D350FE7686A002ADB4B /* PersistentSetThreadsafeValue.h */; };
 		74F10D380FE7686A002ADB4B /* PersistentSetThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D360FE7686A002ADB4B /* PersistentSetThreadsafeValue.m */; };
 		74F10D500FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D4E0FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.h */; };
@@ -184,6 +182,8 @@
 		74F10D550FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D530FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m */; };
 		74F10D6C0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D6A0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h */; };
 		74F10D6D0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */; };
+		74F10D770FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */; };
+		74F10D780FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -370,8 +370,6 @@
 		74E6FC870FD1B17B0015D9F8 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
-		74F10D110FE764ED002ADB4B /* PersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentThreadsafeValue.h; sourceTree = "<group>"; };
-		74F10D120FE764ED002ADB4B /* PersistentThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentThreadsafeValue.m; sourceTree = "<group>"; };
 		74F10D350FE7686A002ADB4B /* PersistentSetThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentSetThreadsafeValue.h; sourceTree = "<group>"; };
 		74F10D360FE7686A002ADB4B /* PersistentSetThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentSetThreadsafeValue.m; sourceTree = "<group>"; };
 		74F10D4E0FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
@@ -380,6 +378,8 @@
 		74F10D530FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionaryThreadsafeValue.m; sourceTree = "<group>"; };
 		74F10D6A0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStringThreadsafeValue.h; sourceTree = "<group>"; };
 		74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStringThreadsafeValue.m; sourceTree = "<group>"; };
+		74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentArrayThreadsafeValue.h; sourceTree = "<group>"; };
+		74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentArrayThreadsafeValue.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -639,8 +639,10 @@
 				74616D830F15D8A10004B610 /* Invocation.h */,
 				74616D850F15D8A10004B610 /* Invocation2.h */,
 				74616D870F15D8A10004B610 /* MainThreadGate.h */,
+				74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */,
+				74F10D520FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.h */,
 				74F10D350FE7686A002ADB4B /* PersistentSetThreadsafeValue.h */,
-				74F10D110FE764ED002ADB4B /* PersistentThreadsafeValue.h */,
+				74F10D6A0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h */,
 				74616D890F15D8A10004B610 /* PriorityMutex.h */,
 				747C32F60FD0705700411801 /* ThreadingUtilities.h */,
 				7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */,
@@ -650,15 +652,13 @@
 				74616D840F15D8A10004B610 /* Invocation.m */,
 				74616D860F15D8A10004B610 /* Invocation2.m */,
 				74616D880F15D8A10004B610 /* MainThreadGate.m */,
+				74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */,
+				74F10D530FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m */,
 				74F10D360FE7686A002ADB4B /* PersistentSetThreadsafeValue.m */,
-				74F10D120FE764ED002ADB4B /* PersistentThreadsafeValue.m */,
+				74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */,
 				74616D8A0F15D8A10004B610 /* PriorityMutex.m */,
 				747C32F70FD0705700411801 /* ThreadingUtilities.m */,
 				7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */,
-				74F10D520FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.h */,
-				74F10D530FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m */,
-				74F10D6A0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h */,
-				74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
@@ -867,11 +867,11 @@
 				74200DA90FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */,
 				7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */,
 				7415775F0FD5A5C00060E73E /* AbstractData.h in Headers */,
-				74F10D130FE764ED002ADB4B /* PersistentThreadsafeValue.h in Headers */,
 				74F10D370FE7686A002ADB4B /* PersistentSetThreadsafeValue.h in Headers */,
 				74F10D500FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.h in Headers */,
 				74F10D540FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.h in Headers */,
 				74F10D6C0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h in Headers */,
+				74F10D770FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,11 +995,11 @@
 				74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */,
 				7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */,
 				741577600FD5A5C00060E73E /* AbstractData.m in Sources */,
-				74F10D140FE764ED002ADB4B /* PersistentThreadsafeValue.m in Sources */,
 				74F10D380FE7686A002ADB4B /* PersistentSetThreadsafeValue.m in Sources */,
 				74F10D510FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.m in Sources */,
 				74F10D550FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m in Sources */,
 				74F10D6D0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m in Sources */,
+				74F10D780FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
