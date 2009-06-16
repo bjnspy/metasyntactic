@@ -55,6 +55,8 @@
 #import "Operation1.h"
 #import "Operation2.h"
 #import "OperationQueue.h"
+#import "PersistentSetThreadsafeValue.h"
+#import "PersistentThreadsafeValue.h"
 #import "PinchableViewDelegate.h"
 #import "PointerSet.h"
 #import "Pulser.h"

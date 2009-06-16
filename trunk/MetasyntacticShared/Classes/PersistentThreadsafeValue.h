@@ -6,14 +6,12 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "ThreadsafeValue.h"
+#import "AbstractPersistentThreadsafeValue.h"
 
-@interface PersistentThreadsafeValue : ThreadsafeValue {
-@private
-  NSString* file;
+@interface PersistentArrayThreadsafeValue : AbstractPersistentThreadsafeValue {
 }
 
-+ (PersistentThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
++ (PersistentArrayThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
                                         file:(NSString*) file;
 
 @end
