@@ -6,7 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "PersistentThreadsafeValue.h"
+#import "PersistentArrayThreadsafeValue.h"
 
 #import "FileUtilities.h"
 
