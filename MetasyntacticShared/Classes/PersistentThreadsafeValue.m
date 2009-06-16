@@ -10,44 +10,29 @@
 
 #import "FileUtilities.h"
 
-@interface PersistentThreadsafeValue()
-@property (retain) NSString* file;
+@interface PersistentArrayThreadsafeValue()
 @end
 
 
-@implementation PersistentThreadsafeValue
+@implementation PersistentArrayThreadsafeValue
 
-@synthesize file;
-
-- (void) dealloc {
-  self.file = nil;
-  [super dealloc];
-}
-
-
-- (id) initWithGate:(id<NSLocking>) gate file:(NSString*) file_ {
-  if ((self = [super initWithGate:gate
-                         delegate:self
-                     loadSelector:@selector(loadFromFile)
-                     saveSelector:@selector(saveToFile:)])) {
-    self.file = file_;
-  }
-  return self;
-}
-
-
-+ (PersistentThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
++ (PersistentArrayThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
                                         file:(NSString*) file {
-  return [[[PersistentThreadsafeValue alloc] initWithGate:gate file:file] autorelease];
+  return [[[PersistentArrayThreadsafeValue alloc] initWithGate:gate
+                                                          file:file] autorelease];
 }
 
 
-- (id) loadFromFile {
-  return [FileUtilities readObject:file];
+- (NSArray*) loadFromFile {
+  NSArray* result = [FileUtilities readObject:file];
+  if (result.count == 0) {
+    return [NSArray array];
+  }
+  return result;
 }
 
 
-- (void) saveToFile:(id) object {
+- (void) saveToFile:(NSArray*) object {
   [FileUtilities writeObject:object toFile:file];
 }
 
