@@ -76,7 +76,7 @@
 
 - (id) valueNoLock {
   if (valueData == nil) {
-    if (delegate != nil) {
+    if (delegate != nil && loadSelector != nil) {
       self.valueData = [delegate performSelector:loadSelector];
     }
   }
@@ -103,7 +103,7 @@
     self.valueData = value;
   }
   [gate unlock];
-  if (delegate != nil) {
+  if (delegate != nil && saveSelector != nil) {
     [delegate performSelector:saveSelector withObject:value];
   }
 }
