@@ -15,7 +15,6 @@
 #import "ReviewsViewController.h"
 
 #import "Model.h"
-#import "MoviesNavigationController.h"
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"

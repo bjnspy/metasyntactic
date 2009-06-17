@@ -14,8 +14,6 @@
 
 #import "Movie.h"
 
-#import "Model.h"
-
 @interface Movie()
 @property (copy) NSString* identifier;
 @property (copy) NSString* canonicalTitle;

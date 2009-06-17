@@ -15,7 +15,6 @@
 #import "NetflixViewController.h"
 
 #import "Application.h"
-#import "AutoResizingCell.h"
 #import "Controller.h"
 #import "CreditsViewController.h"
 #import "Model.h"
