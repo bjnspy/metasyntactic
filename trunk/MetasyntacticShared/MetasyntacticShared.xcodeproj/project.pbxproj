@@ -684,12 +684,12 @@
 			isa = PBXGroup;
 			children = (
 				74616DF30F15DAC00004B610 /* XmlDocument.h */,
-				74616DF40F15DAC00004B610 /* XmlDocument.m */,
 				74616DF50F15DAC00004B610 /* XmlElement.h */,
-				74616DF60F15DAC00004B610 /* XmlElement.m */,
 				74616DF70F15DAC00004B610 /* XmlParser.h */,
-				74616DF80F15DAC00004B610 /* XmlParser.m */,
 				74616DF90F15DAC00004B610 /* XmlSerializer.h */,
+				74616DF40F15DAC00004B610 /* XmlDocument.m */,
+				74616DF60F15DAC00004B610 /* XmlElement.m */,
+				74616DF80F15DAC00004B610 /* XmlParser.m */,
 				74616DFA0F15DAC00004B610 /* XmlSerializer.m */,
 			);
 			name = Xml;
