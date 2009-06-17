@@ -38,13 +38,13 @@ static Pulser* pulser = nil;
   if (url == nil) {
     return nil;
   }
-  
+
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
   request.timeoutInterval = 120;
   request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
   [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
   [request setValue:@"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" forHTTPHeaderField:@"User-Agent"];
-  
+
   return request;
 }
 
@@ -66,7 +66,7 @@ static Pulser* pulser = nil;
   if (address.length == 0) {
     return nil;
   }
-  
+
   return [self stringWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
@@ -80,17 +80,17 @@ static Pulser* pulser = nil;
   if (request == nil) {
     return nil;
   }
-  
+
   NSData* data = [self dataWithContentsOfUrlRequest:request];
   if (data == nil) {
     return nil;
   }
-  
+
   NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
   if (result != nil) {
     return result;
   }
-  
+
   return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
@@ -106,11 +106,11 @@ static Pulser* pulser = nil;
   if (response != NULL) {
     *response = nil;
   }
-  
+
   if (address.length == 0) {
     return nil;
   }
-  
+
   return [self xmlWithContentsOfUrl:[NSURL URLWithString:address]
                            response:response];
 }
@@ -140,11 +140,11 @@ static Pulser* pulser = nil;
   if (response != NULL) {
     *response = nil;
   }
-  
+
   if (request == nil) {
     return nil;
   }
-  
+
   NSData* data = [self dataWithContentsOfUrlRequest:request
                                            response:response];
   return [XmlParser parse:data];
@@ -163,7 +163,7 @@ static Pulser* pulser = nil;
   if (address.length == 0) {
     return nil;
   }
-  
+
   return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
                             response:response
                                pause:pause];
@@ -180,49 +180,49 @@ static Pulser* pulser = nil;
                                       response:(NSHTTPURLResponse**) response
                                          pause:(BOOL) pause {
   NSAssert(![NSThread isMainThread], @"");
-  
+
   if (response != NULL) {
     *response = nil;
   }
-  
+
   if (request == nil) {
     return nil;
   }
-  
+
   [gate lock];
   {
     inflightOperations++;
     [pulser tryPulse];
   }
   [gate unlock];
-  
+
   NSURLResponse* urlResponse = nil;
   NSError* error = nil;
   NSData* data = [NSURLConnection sendSynchronousRequest:request
                                        returningResponse:&urlResponse
                                                    error:&error];
-  
-  
+
+
   [gate lock];
   {
     inflightOperations--;
     [pulser tryPulse];
   }
   [gate unlock];
-  
+
   if (pause) {
     // pause a bit so we don't saturate the network.
     [NSThread sleepForTimeInterval:0.25];
   }
-  
+
   if (error != nil) {
     return nil;
   }
-  
+
   if (response != NULL && [urlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
     *response = (NSHTTPURLResponse*)urlResponse;
   }
-  
+
   return data;
 }
 
@@ -267,11 +267,11 @@ static Pulser* pulser = nil;
   if (response != NULL) {
     *response = nil;
   }
-  
+
   if (request == nil) {
     return nil;
   }
-  
+
   return [self dataWithContentsOfUrlRequestWorker:request
                                          response:response
                                             pause:pause];
@@ -288,7 +288,7 @@ static Pulser* pulser = nil;
   // kSCNetworkReachabilityFlagsReachable indicates that the specified nodename or address can
   // be reached using the current network configuration.
   BOOL isReachable = flags & kSCNetworkReachabilityFlagsReachable;
-  
+
   // This flag indicates that the specified nodename or address can
   // be reached using the current network configuration, but a
   // connection must first be established.
@@ -300,7 +300,7 @@ static Pulser* pulser = nil;
   if ((flags & kSCNetworkReachabilityFlagsIsWWAN)) {
     noConnectionRequired = YES;
   }
-  
+
   return (isReachable && noConnectionRequired) ? YES : NO;
 }
 
@@ -311,7 +311,7 @@ static Pulser* pulser = nil;
   if (!gotFlags) {
     return NO;
   }
-  
+
   return [self isReachableWithoutRequiringConnection:flags];
 }
 
@@ -319,16 +319,16 @@ static Pulser* pulser = nil;
 + (BOOL) isNetworkAvailable {
   struct sockaddr_in zeroAddress;
   bzero(&zeroAddress, sizeof(zeroAddress));
-  
+
   zeroAddress.sin_len = sizeof(zeroAddress);
   zeroAddress.sin_family = AF_INET;
-  
+
   SCNetworkReachabilityRef networkReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
-  
+
   BOOL result = [self isNetworkAvailableWorker:networkReachability];
-  
+
   CFRelease(networkReachability);
-  
+
   return result;
 }
 

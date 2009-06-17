@@ -28,7 +28,7 @@
 
 - (void) dealloc {
   self.imageViews = nil;
-  
+
   [super dealloc];
 }
 
@@ -50,11 +50,11 @@
 
 - (void) setupNetflixRating {
   CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie] floatValue];
-  
+
   NSMutableArray* array = [NSMutableArray array];
   for (NSInteger i = 0; i < 5; i++) {
     UIImage* image;
-    
+
     CGFloat value = rating - i;
     if (value < 0.2) {
       image = [StockImages redStar_0_5_Image];
@@ -69,32 +69,32 @@
     } else {
       image = [StockImages redStar_5_5_Image];
     }
-    
+
     TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
     imageView.delegate = self;
     imageView.tag = i + 1;
     imageView.contentMode = UIViewContentModeCenter;
-    
+
     CGRect rect = imageView.frame;
     rect.origin.y = 5;
     rect.size.width += 10;
     rect.size.height += 10;
     NSInteger halfWayPoint = [self halfWayPoint];
-    
+
     rect.origin.x = (halfWayPoint - 135) + (40 * (i + 1));
     imageView.frame = rect;
-    
+
     [self.contentView addSubview:imageView];
     [array addObject:imageView];
   }
-  
+
   self.imageViews = array;
 }
 
 
 - (void) setupUserRating:(NSString*) userRating {
   CGFloat rating = [userRating floatValue];
-  
+
   NSMutableArray* array = [NSMutableArray array];
   for (NSInteger i = -1; i < 5; i++) {
     UIImage* image;
@@ -113,16 +113,16 @@
     imageView.delegate = self;
     imageView.tag = i + 1;
     imageView.contentMode = UIViewContentModeCenter;
-    
+
     CGRect rect = imageView.frame;
     rect.origin.y = 5;
     rect.size.width += 10;
     rect.size.height += 10;
     NSInteger halfWayPoint = [self halfWayPoint];
-    
+
     rect.origin.x = (halfWayPoint - 115) + (40 * (i + 1));
     imageView.frame = rect;
-    
+
     [self.contentView addSubview:imageView];
     [array addObject:imageView];
   }
@@ -134,14 +134,14 @@
   for (UIView* view in self.contentView.subviews) {
     [view removeFromSuperview];
   }
-  
+
   self.imageViews = [NSArray array];
 }
 
 
 - (void) setupRating {
   [self clearRating];
-  
+
   NSString* userRating = [self.model.netflixCache userRatingForMovie:movie];
   if (userRating.length > 0) {
     [self setupUserRating:userRating];
@@ -156,7 +156,7 @@
     self.imageViews = [NSMutableArray array];
     [self setupRating];
   }
-  
+
   return self;
 }
 
@@ -166,11 +166,11 @@
           tapCount:(NSInteger) tapCount {
   NSInteger value = imageView.tag;
   NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
-  
+
   if (value == currentUserRating) {
     return;
   }
-  
+
   // change the UI:
   [self clearRating];
   if (value == 0) {
@@ -178,7 +178,7 @@
   } else {
     [self setupUserRating:[NSString stringWithFormat:@"%d", value]];
   }
-  
+
   // now, update in the background.
   NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
   [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
@@ -186,14 +186,14 @@
 
 
 - (void) changeSucceeded {
-  
+
 }
 
 
 - (void) changeFailedWithError:(NSString*) error {
   NSString* message = [NSString stringWithFormat:LocalizedString(@"Could not change rating:\n\n%@", @"%@ is the underlying error.  i.e. 'Could not connect to server'"), error];
   [AlertUtilities showOkAlert:message];
-  
+
   [self setupRating];
 }
 

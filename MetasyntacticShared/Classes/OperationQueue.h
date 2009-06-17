@@ -16,17 +16,17 @@ typedef enum {
   // A 'Now' request must happen immediately.  i.e. when the user is actually
   // looking at a movie, or when we need to get up to date data.
   Now      = NSOperationQueuePriorityVeryHigh,
-  
+
   // Prioritized requests are for things the user can see, but hasn't drilled
   // into yet.  Each priority request is dependent on the the next one.  That
   // way as we add new priority requests they'll be more likely to process
   // than any previous ones.
   Priority = NSOperationQueuePriorityHigh,
-  
+
   // Search results are in the middle.  Top priority requests will supercede
   // them, but standard cache operations will happen afterwards.
   Search   = NSOperationQueuePriorityNormal,
-  
+
   // Two levels of priorities for updating cache values.
   Normal   = NSOperationQueuePriorityLow,
   Low      = NSOperationQueuePriorityVeryLow,
@@ -36,7 +36,7 @@ typedef enum {
 @private
   NSOperationQueue* queue;
   NSLock* dataGate;
-  
+
   NSMutableArray* boundedOperations;
   NSInteger priorityOperationsCount;
 }

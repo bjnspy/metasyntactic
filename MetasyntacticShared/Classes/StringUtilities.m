@@ -50,16 +50,16 @@ static NSString* prefixes[] = {
   if (title.length == 0) {
     return @"";
   }
-  
+
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  
+
   for (int i = 0; i < ArrayLength(articles); i++) {
     NSString* suffix = suffixes[i];
     if ([title hasSuffix:suffix]) {
       return [NSString stringWithFormat:@"%@%@", prefixes[i], [title substringToIndex:(title.length - suffix.length)]];
     }
   }
-  
+
   return title;
 }
 
@@ -68,16 +68,16 @@ static NSString* prefixes[] = {
   if (title.length == 0) {
     return @"";
   }
-  
+
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  
+
   for (int i = 0; i < ArrayLength(articles); i++) {
     NSString* prefix = prefixes[i];
     if ([title hasPrefix:prefix]) {
       return [NSString stringWithFormat:@"%@%@", [title substringFromIndex:prefix.length], suffixes[i]];
     }
   }
-  
+
   return title;
 }
 

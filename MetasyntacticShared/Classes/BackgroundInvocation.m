@@ -37,7 +37,7 @@ static NSInteger nonDaemonBackgroundTaskCount = 0;
 - (void) dealloc {
   self.gate = nil;
   self.daemon = NO;
-  
+
   [super dealloc];
 }
 
@@ -51,7 +51,7 @@ static NSInteger nonDaemonBackgroundTaskCount = 0;
     self.gate = gate_;
     self.daemon = daemon_;
   }
-  
+
   return self;
 }
 
@@ -79,13 +79,13 @@ static NSInteger nonDaemonBackgroundTaskCount = 0;
   NSString* selectorName = NSStringFromSelector(selector);
   NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
   [[NSThread currentThread] setName:name];
-  
+
   if (daemon) {
     [NSThread setThreadPriority:0.0];
   } else {
     [NSThread setThreadPriority:0.25];
   }
-  
+
   if (!daemon) {
     [dataGate lock];
     {
@@ -93,13 +93,13 @@ static NSInteger nonDaemonBackgroundTaskCount = 0;
     }
     [dataGate unlock];
   }
-  
+
   [gate lock];
   {
     [self invokeSelector];
   }
   [gate unlock];
-  
+
   if (!daemon) {
     [dataGate lock];
     {

@@ -16,8 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="" />
-    <ignored path="ObjectiveCAnalyzer.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="ObjectiveCAnalyzer.iws" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="Commander">
@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="6" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.52554744">
+            <state line="82" column="26" selection-start="2456" selection-end="2456" vertical-scroll-proportion="1.1386862">
               <folding />
             </state>
           </provider>
@@ -130,7 +130,7 @@
       <file leaf-file-name="FileInputStream.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/FileInputStream.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="15" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0">
+            <state line="3" column="15" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -234,7 +234,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PocketFlicks">
+  <component name="RunManager" selected="Application.iPhoneShared">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -521,7 +521,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33377483" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38940397" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38940397" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -612,14 +612,14 @@
   <component name="editorHistoryManager">
     <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/FileInputStream.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="15" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0">
+        <state line="3" column="15" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="6" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.52554744">
+        <state line="82" column="26" selection-start="2456" selection-end="2456" vertical-scroll-proportion="1.1386862">
           <folding />
         </state>
       </provider>

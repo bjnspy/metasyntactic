@@ -44,7 +44,7 @@ static OperationQueue* operationQueue = nil;
   self.queue = nil;
   self.boundedOperations = nil;
   self.dataGate = nil;
-  
+
   [super dealloc];
 }
 
@@ -54,11 +54,11 @@ static OperationQueue* operationQueue = nil;
     [self performSelectorOnMainThread:@selector(addOperation:) withObject:operation waitUntilDone:NO];
     return;
   }
-  
+
   [dataGate lock];
   {
     [queue addOperation:operation];
-    
+
     if (operation.queuePriority >= Priority) {
       priorityOperationsCount++;
     }
@@ -72,7 +72,7 @@ static OperationQueue* operationQueue = nil;
   {
     self.queue = [[[NSOperationQueue alloc] init] autorelease];
     queue.maxConcurrentOperationCount = 1;
-    
+
     self.boundedOperations = [NSMutableArray array];
     priorityOperationsCount = 0;
   }
@@ -88,10 +88,10 @@ static OperationQueue* operationQueue = nil;
 - (id) init {
   if ((self = [super init])) {
     self.dataGate = [[[NSLock alloc] init] autorelease];
-    
+
     [self restart];
   }
-  
+
   return self;
 }
 
@@ -160,14 +160,14 @@ const NSInteger MAX_BOUNDED_OPERATIONS = 4;
       // too many operations.  cancel the oldest one.
       Operation* staleOperation = [boundedOperations objectAtIndex:0];
       [staleOperation cancel];
-      
+
       [boundedOperations removeObjectAtIndex:0];
     }
-    
+
     [boundedOperations addObject:operation];
   }
   [dataGate unlock];
-  
+
   [self addOperation:operation];
 }
 
