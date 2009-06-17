@@ -14,7 +14,6 @@
 
 #import "WikipediaCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "Movie.h"
 

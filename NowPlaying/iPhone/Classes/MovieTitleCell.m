@@ -15,7 +15,6 @@
 #import "MovieTitleCell.h"
 
 #import "GreenMovieTitleCell.h"
-#import "InternationalDataCache.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NoScoreMovieTitleCell.h"

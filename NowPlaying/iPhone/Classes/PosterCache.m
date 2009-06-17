@@ -19,7 +19,6 @@
 #import "Application.h"
 #import "FandangoPosterDownloader.h"
 #import "ImdbPosterDownloader.h"
-#import "InternationalDataCache.h"
 #import "LargePosterCache.h"
 #import "Model.h"
 #import "Movie.h"
@@ -41,113 +40,113 @@
 @synthesize previewNetworksPosterDownloader;
 
 - (void) dealloc {
-    self.imdbPosterDownloader = nil;
-    self.applePosterDownloader = nil;
-    self.fandangoPosterDownloader = nil;
-    self.previewNetworksPosterDownloader = nil;
-
-    [super dealloc];
+  self.imdbPosterDownloader = nil;
+  self.applePosterDownloader = nil;
+  self.fandangoPosterDownloader = nil;
+  self.previewNetworksPosterDownloader = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
-        self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
-        self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
-        self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.imdbPosterDownloader = [[[ImdbPosterDownloader alloc] init] autorelease];
+    self.applePosterDownloader = [[[ApplePosterDownloader alloc] init] autorelease];
+    self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
+    self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
+  }
+  
+  return self;
 }
 
 
 + (PosterCache*) cache {
-    return [[[PosterCache alloc] init] autorelease];
+  return [[[PosterCache alloc] init] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (NSString*) posterFilePath:(Movie*) movie {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (NSString*) smallPosterFilePath:(Movie*) movie {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
+  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
 }
 
 
 - (NSData*) downloadPosterWorker:(Movie*) movie {
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
-    if (data != nil) {
-        return data;
-    }
-
-    data = [previewNetworksPosterDownloader download:movie];
-    if (data != nil) {
-        return data;
-    }
-
-    data = [applePosterDownloader download:movie];
-    if (data != nil) {
-        return data;
-    }
-
-    data = [fandangoPosterDownloader download:movie];
-    if (data != nil) {
-        return data;
-    }
-
-    data = [imdbPosterDownloader download:movie];
-    if (data != nil) {
-        return data;
-    }
-
-    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-
-    // if we had a network connection, then it means we don't know of any
-    // posters for this movie.  record that fact and try again another time
-    if ([NetworkUtilities isNetworkAvailable]) {
-        return [NSData data];
-    }
-
-    return nil;
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
+  if (data != nil) {
+    return data;
+  }
+  
+  data = [previewNetworksPosterDownloader download:movie];
+  if (data != nil) {
+    return data;
+  }
+  
+  data = [applePosterDownloader download:movie];
+  if (data != nil) {
+    return data;
+  }
+  
+  data = [fandangoPosterDownloader download:movie];
+  if (data != nil) {
+    return data;
+  }
+  
+  data = [imdbPosterDownloader download:movie];
+  if (data != nil) {
+    return data;
+  }
+  
+  [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+  
+  // if we had a network connection, then it means we don't know of any
+  // posters for this movie.  record that fact and try again another time
+  if ([NetworkUtilities isNetworkAvailable]) {
+    return [NSData data];
+  }
+  
+  return nil;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:force {
-    NSString* path = [self posterFilePath:movie];
-
-    NSDate* modificationDate = [FileUtilities modificationDate:path];
-    if (modificationDate != nil) {
-        if ([FileUtilities size:path] > 0) {
-            // already have a real poster.
-            return;
-        }
-
-        if (!force) {
-            // sentinel value.  only update if it's been long enough.
-            if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
-                return;
-            }
-        }
+  NSString* path = [self posterFilePath:movie];
+  
+  NSDate* modificationDate = [FileUtilities modificationDate:path];
+  if (modificationDate != nil) {
+    if ([FileUtilities size:path] > 0) {
+      // already have a real poster.
+      return;
     }
-
-    NSData* data = [self downloadPosterWorker:movie];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:path];
-
-        if (data.length > 0) {
-            [AppDelegate minorRefresh];
-        }
+    
+    if (!force) {
+      // sentinel value.  only update if it's been long enough.
+      if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
+        return;
+      }
     }
+  }
+  
+  NSData* data = [self downloadPosterWorker:movie];
+  if (data != nil) {
+    [FileUtilities writeData:data toFile:path];
+    
+    if (data.length > 0) {
+      [AppDelegate minorRefresh];
+    }
+  }
 }
 
 
@@ -161,24 +160,24 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
-
+  
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
-
+  
   NSData* smallPosterData;
   if ([FileUtilities size:smallPosterPath] == 0) {
     NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
     smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                             toHeight:SMALL_POSTER_HEIGHT];
-
+    
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     UIImage* image = [UIImage imageWithData:smallPosterData];
     [self.model.imageCache setImage:image forPath:smallPosterPath];
     return image;
   }
-
+  
   return nil;
 }
 

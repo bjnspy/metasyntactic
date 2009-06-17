@@ -14,7 +14,6 @@
 
 #import "PersonCell.h"
 
-#import "Model.h"
 #import "Person.h"
 
 @interface PersonCell()

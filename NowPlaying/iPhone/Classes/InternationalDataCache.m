@@ -14,9 +14,7 @@
 
 #import "InternationalDataCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
-#import "CacheUpdater.h"
 #import "Model.h"
 #import "Movie.h"
 

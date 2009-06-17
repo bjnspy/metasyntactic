@@ -15,7 +15,6 @@
 #import "CollapsedMovieDetailsCell.h"
 
 #import "Model.h"
-#import "Movie.h"
 
 @interface CollapsedMovieDetailsCell()
 @property (retain) UILabel* ratingAndRuntimeLabel;
