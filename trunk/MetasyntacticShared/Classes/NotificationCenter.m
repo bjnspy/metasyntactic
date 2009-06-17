@@ -207,7 +207,12 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     return;
   }
   
-  [notifications removeObjectsInArray:array];
+  for (NSString* string in array) {
+    NSInteger index = [notifications indexOfObject:string];
+    if (index != NSNotFound) {
+      [notifications removeObjectAtIndex:index];
+    }
+  }
   [pulser tryPulse];
 }
 

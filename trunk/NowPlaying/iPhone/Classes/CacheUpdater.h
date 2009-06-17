@@ -14,8 +14,10 @@
 
 @interface CacheUpdater : NSObject {
 @private
-    NSLock* searchOperationsGate;
-    NSArray* searchOperations;
+  NSCondition* gate;
+
+  NSArray* searchOperations;
+  NSMutableArray* imageOperations;  
 }
 
 + (CacheUpdater*) cacheUpdater;

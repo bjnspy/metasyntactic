@@ -30,22 +30,22 @@
 @synthesize titlesWithArticles;
 
 - (void) dealloc {
-    self.titlesWithArticles = nil;
-    [super dealloc];
+  self.titlesWithArticles = nil;
+  [super dealloc];
 }
 
 
 - (id) init {
-    if (self = [super init]) {
-        self.title = NSLocalizedString(@"News", nil);
-    }
-
-    return self;
+  if (self = [super init]) {
+    self.title = NSLocalizedString(@"News", nil);
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
@@ -54,85 +54,91 @@
 
 
 - (void) initializeData {
-    self.titlesWithArticles = [NSMutableArray array];
-
-    for (NSString* title in [RSSCache titles]) {
-        NSArray* items = [self.model.rssCache itemsForTitle:title];
-        if (items.count > 0) {
-            [titlesWithArticles addObject:title];
-        }
+  self.titlesWithArticles = [NSMutableArray array];
+  
+  for (NSString* title in [RSSCache titles]) {
+    NSArray* items = [self.model.rssCache itemsForTitle:title];
+    if (items.count > 0) {
+      [titlesWithArticles addObject:title];
     }
+  }
 }
 
 
 - (void) majorRefreshWorker {
-    [self initializeData];
-    [self reloadTableViewData];
+  [self initializeData];
+  [self reloadTableViewData];
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return MAX(titlesWithArticles.count, 1);
+  return MAX(titlesWithArticles.count, 1);
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (titlesWithArticles.count == 0) {
-        return 0;
-    }
-
-    return 1;
+  if (titlesWithArticles.count == 0) {
+    return 0;
+  }
+  
+  return 1;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 0 && titlesWithArticles.count == 0) {
-        if ([[OperationQueue operationQueue] hasPriorityOperations]) {
-            return NSLocalizedString(@"Downloading data", nil);
-        } else if (![NetworkUtilities isNetworkAvailable]) {
-            return NSLocalizedString(@"Network unavailable", nil);
-        } else {
-            return NSLocalizedString(@"No information found", nil);
-        }
+  if (section == 0 && titlesWithArticles.count == 0) {
+    if ([[OperationQueue operationQueue] hasPriorityOperations]) {
+      return NSLocalizedString(@"Downloading data", nil);
+    } else if (![NetworkUtilities isNetworkAvailable]) {
+      return NSLocalizedString(@"Network unavailable", nil);
+    } else {
+      return NSLocalizedString(@"No information found", nil);
     }
-
-    return nil;
+  }
+  
+  return nil;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-
-    AutoResizingCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
-
-    NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
-    NSArray* items = [self.model.rssCache itemsForTitle:title];
-
-    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), title, items.count];
-
-    return cell;
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  
+  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+  }
+  
+  NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
+  NSArray* items = [self.model.rssCache itemsForTitle:title];
+  
+  cell.textLabel.text = title;
+  if (items.count == 1) {
+    cell.detailTextLabel.text = NSLocalizedString(@"1 Article", nil);
+  } else {
+    cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d Articles", nil), items.count];
+  }
+  return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
-    ACLUArticlesViewController* controller = [[[ACLUArticlesViewController alloc] initWithTitle:title] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+  NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
+  ACLUArticlesViewController* controller = [[[ACLUArticlesViewController alloc] initWithTitle:title] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+  return YES;
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
+  [self majorRefresh];
 }
 
 @end

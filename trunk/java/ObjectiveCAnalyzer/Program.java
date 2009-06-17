@@ -87,7 +87,7 @@ public class Program {
     //generateForwardDeclarations(child);
     //checkDealloc(child);
     //removeUnusedImports(child);
-    //insertCopyright(child);
+    insertCopyright(child);
     trimRight(child);
     //organizeStringsFile(child);
     //formatCode(child);
