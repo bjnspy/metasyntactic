@@ -16,13 +16,10 @@
 
 #import "AppDelegate.h"
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "CacheUpdater.h"
 #import "DataProvider.h"
-#import "LocalizableStringsCache.h"
 #import "LocationManager.h"
 #import "Model.h"
-#import "MutableNetflixCache.h"
 #import "UserLocationCache.h"
 
 @interface Controller()

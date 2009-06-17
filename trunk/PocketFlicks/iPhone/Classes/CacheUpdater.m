@@ -29,8 +29,9 @@
 #import "WikipediaCache.h"
 
 @interface CacheUpdater()
-@property (retain) NSLock* searchOperationsGate;
+@property (retain) NSCondition* gate;
 @property (retain) NSArray* searchOperations;
+@property (retain) NSMutableArray* imageOperations;
 @end
 
 
@@ -44,12 +45,14 @@ static CacheUpdater* cacheUpdater = nil;
   }
 }
 
-@synthesize searchOperationsGate;
+@synthesize gate;
 @synthesize searchOperations;
+@synthesize imageOperations;
 
 - (void) dealloc {
-  self.searchOperationsGate = nil;
+  self.gate = nil;
   self.searchOperations = nil;
+  self.imageOperations = nil;
 
   [super dealloc];
 }
@@ -57,7 +60,12 @@ static CacheUpdater* cacheUpdater = nil;
 
 - (id) init {
   if ((self = [super init])) {
-    self.searchOperationsGate = [[[NSLock alloc] init] autorelease];
+    self.gate = [[[NSCondition alloc] init] autorelease];
+    self.imageOperations = [NSMutableArray array];
+    [ThreadingUtilities backgroundSelector:@selector(updateImagesBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:nil
+                                    daemon:YES];
   }
 
   return self;
@@ -78,6 +86,15 @@ static CacheUpdater* cacheUpdater = nil;
                                       gate:nil
                                     daemon:NO];
   } else {
+    [gate lock];
+    {
+      [imageOperations addObject:movie];
+      if (imageOperations.count > 5) {
+        [imageOperations removeObjectAtIndex:0];
+      }
+      [gate broadcast];
+    }
+    [gate unlock];
     [[OperationQueue operationQueue] performBoundedSelector:@selector(processMovie:force:)
                                                    onTarget:self
                                                  withObject:movie
@@ -85,6 +102,11 @@ static CacheUpdater* cacheUpdater = nil;
                                                        gate:nil
                                                    priority:Priority];
   }
+}
+
+
+- (Model*) model {
+  return [Model model];
 }
 
 
@@ -97,7 +119,7 @@ static CacheUpdater* cacheUpdater = nil;
     [NotificationCenter addNotification:movie.canonicalTitle];
   }
 
-  Model* model = [Model model];
+  Model* model = self.model;
   [model.posterCache       processMovie:movie force:force];
   [model.netflixCache      processMovie:movie force:force];
   [model.upcomingCache     processMovie:movie force:force];
@@ -142,7 +164,7 @@ static CacheUpdater* cacheUpdater = nil;
 
 
 - (void) addSearchMovies:(NSArray*) movies {
-  [searchOperationsGate lock];
+  [gate lock];
   {
     for (Operation* operation in searchOperations) {
       [operation cancel];
@@ -155,13 +177,35 @@ static CacheUpdater* cacheUpdater = nil;
 
     self.searchOperations = operations;
   }
-  [searchOperationsGate unlock];
+  [gate unlock];
 }
 
 
 - (void) addMovies:(NSArray*) movies {
   for (Movie* movie in [NSArrayAdditions shuffle:movies]) {
     [self addMovie:movie];
+  }
+}
+
+
+- (void) updateImagesBackgroundEntryPoint {
+  while (YES) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      Movie* movie = nil;
+      [gate lock];
+      {
+        while (imageOperations.count == 0) {
+          [gate wait];
+        }
+        movie = [[[imageOperations lastObject] retain] autorelease];
+        [imageOperations removeLastObject];
+      }
+      [gate unlock];
+
+      [self.model.posterCache processMovie:movie force:NO];
+    }
+    [pool release];
   }
 }
 

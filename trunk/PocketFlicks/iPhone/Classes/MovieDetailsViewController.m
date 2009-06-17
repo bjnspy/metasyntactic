@@ -401,7 +401,7 @@ const NSInteger POSTER_TAG = -1;
     return;
     self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [bookmarkButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
-    [bookmarkButton setImage:[StockImages filledStarImage] forState:UIControlStateSelected];
+    [bookmarkButton setImage:[StockImages filledYellowStarImage] forState:UIControlStateSelected];
 
     [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
 

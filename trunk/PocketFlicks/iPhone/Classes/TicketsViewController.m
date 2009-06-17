@@ -15,7 +15,6 @@
 #import "TicketsViewController.h"
 
 #import "Application.h"
-#import "CommonNavigationController.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
@@ -52,7 +51,8 @@
 
 
 - (void) initializeData {
-  NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
+  NSArray* allPerformances =  [self.model moviePerformances:movie
+                               forTheater:theater];
   NSMutableArray* result = [NSMutableArray array];
 
   NSDate* now = [DateUtilities currentTime];

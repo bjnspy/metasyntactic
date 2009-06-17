@@ -18,8 +18,6 @@
 #import "Model.h"
 #import "Movie.h"
 #import "MoviesNavigationController.h"
-#import "StockImages.h"
-
 
 @interface AbstractMovieListViewController()
 @property (retain) UISearchBar* searchBar;
