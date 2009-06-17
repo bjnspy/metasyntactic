@@ -150,9 +150,15 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSData*) dataWithContentsOfAddress:(NSString*) address {
++ (NSData*) dataWithContentsOfAddress:(NSString*) address pause:(BOOL) pause {
   return [self dataWithContentsOfAddress:address
-                                response:NULL];
+                                response:NULL
+                                   pause:pause];
+}
+
+
++ (NSData*) dataWithContentsOfAddress:(NSString*) address {
+  return [self dataWithContentsOfAddress:address pause:YES];
 }
 
 

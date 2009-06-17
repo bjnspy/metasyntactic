@@ -383,11 +383,11 @@ const int START_YEAR = 1912;
 
   // Try first from the cache.
   NSHTTPURLResponse* response = nil;
-  NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl response:&response];
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:noFetchCacheUrl response:&response pause:NO];
   if (data.length == 0) {
 
     // Wasn't in the cache.  Get directly from the source.
-    data = [NetworkUtilities dataWithContentsOfAddress:url];
+    data = [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
 
     NSString* insertionKey = [[response allHeaderFields] objectForKey:@"Insertion-Key"];
     if (data.length > 0 && insertionKey.length > 0) {
