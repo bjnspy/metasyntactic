@@ -121,7 +121,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
         self.pulser = [Pulser pulserWithTarget:self
                                         action:@selector(update)
-                                 pulseInterval:1];
+                                 pulseInterval:2];
     }
 
     return self;
