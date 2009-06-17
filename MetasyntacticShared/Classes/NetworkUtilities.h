@@ -26,10 +26,14 @@
 + (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response;
++ (NSData*) dataWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response;
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response;
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url pause:(BOOL) pause;
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 
 + (BOOL) isNetworkAvailable;
 
