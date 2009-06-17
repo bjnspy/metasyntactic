@@ -76,7 +76,7 @@
 - (void) initializeFavoriteButton {
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [favoriteButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
-    [favoriteButton setImage:[StockImages filledStarImage] forState:UIControlStateSelected];
+    [favoriteButton setImage:[StockImages filledYellowStarImage] forState:UIControlStateSelected];
     [favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
 
     CGRect frame = favoriteButton.frame;

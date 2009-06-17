@@ -51,12 +51,27 @@
 }
 
 
+- (NSString*) hashFile {
+  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Hash.plist"];
+}
+
+
+- (NSString*) studiosFile {
+  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Studios.plist"];
+}
+
+
+- (NSString*) titlesFile {
+  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Titles.plist"];
+}
+
+
 - (id) init {
   if ((self = [super init])) {
-    self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
+    self.hashData = [PersistentStringThreadsafeValue valueWithGate:dataGate file:self.hashFile];
     self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
-    self.studioKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadStudioKeys) saveSelector:@selector(saveStudioKeys:)];
-    self.titleKeysData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadTitleKeys) saveSelector:@selector(saveTitleKeys:)];
+    self.studioKeysData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.studiosFile];
+    self.titleKeysData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.titlesFile];
     self.bookmarksData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarks) saveSelector:@selector(saveBookmarks:)];
   }
 
@@ -71,21 +86,6 @@
 
 - (Model*) model {
   return [Model model];
-}
-
-
-- (NSString*) hashFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Hash.plist"];
-}
-
-
-- (NSString*) studiosFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Studios.plist"];
-}
-
-
-- (NSString*) titlesFile {
-  return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Titles.plist"];
 }
 
 
@@ -201,38 +201,8 @@
 }
 
 
-- (NSString*) loadHash {
-  NSString* value = [FileUtilities readObject:self.hashFile];
-  if (value == nil) {
-    return @"";
-  }
-
-  return value;
-}
-
-
-- (void) saveHash:(NSString*) hash {
-  [FileUtilities writeObject:hash toFile:self.hashFile];
-}
-
-
 - (NSString*) hashValue {
   return hashData.value;
-}
-
-
-- (NSDictionary*) loadStudioKeys {
-  NSDictionary* dictionary = [FileUtilities readObject:self.studiosFile];
-  if (dictionary == nil) {
-    return [NSDictionary dictionary];
-  }
-
-  return dictionary;
-}
-
-
-- (void) saveStudioKeys:(NSDictionary*) studioKeys {
-  [FileUtilities writeObject:studioKeys toFile:self.studiosFile];
 }
 
 
@@ -241,23 +211,13 @@
 }
 
 
-- (NSDictionary*) loadTitleKeys {
-  NSDictionary* dictionary = [FileUtilities readObject:self.titlesFile];
-  if (dictionary == nil) {
-    return [NSDictionary dictionary];
-  }
-
-  return dictionary;
-}
-
-
-- (void) saveTitleKeys:(NSDictionary*) titleKeys {
-  [FileUtilities writeObject:titleKeys toFile:self.titlesFile];
-}
-
-
 - (NSDictionary*) titleKeys {
   return titleKeysData.value;
+}
+
+
+- (NSDictionary*) bookmarks {
+  return bookmarksData.value;
 }
 
 
@@ -273,11 +233,6 @@
   }
 
   return result;
-}
-
-
-- (NSDictionary*) bookmarks {
-  return bookmarksData.value;
 }
 
 

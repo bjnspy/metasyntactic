@@ -15,7 +15,6 @@
 #import "AbstractSearchDisplayController.h"
 
 #import "Controller.h"
-#import "LocalSearchEngine.h"
 #import "Model.h"
 #import "SearchResult.h"
 #import "UpcomingMovieCell.h"

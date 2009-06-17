@@ -836,7 +836,7 @@ public class Program {
     final boolean canRemove = compile();
 
     if (canRemove) {
-      System.out.println("Can remove import: " + child.getPath());
+      System.out.println("\nCan remove import: " + child.getPath());
     } else {
       writeFile(child, contents);
     }
@@ -857,7 +857,6 @@ public class Program {
       if (line.trim().startsWith("#import")) {
         if (index == i) {
           printer.print("//");
-          System.out.println("Commenting out: " + line);
         }
 
         index++;

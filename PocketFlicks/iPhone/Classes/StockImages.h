@@ -20,7 +20,14 @@
 + (UIImage*) rottenFullImage;
 
 + (UIImage*) emptyStarImage;
-+ (UIImage*) filledStarImage;
++ (UIImage*) filledYellowStarImage;
++ (UIImage*) redStar_0_5_Image;
++ (UIImage*) redStar_1_5_Image;
++ (UIImage*) redStar_2_5_Image;
++ (UIImage*) redStar_3_5_Image;
++ (UIImage*) redStar_4_5_Image;
++ (UIImage*) redStar_5_5_Image;
+
 + (UIImage*) searchImage;
 
 + (UIImage*) redRatingImage;

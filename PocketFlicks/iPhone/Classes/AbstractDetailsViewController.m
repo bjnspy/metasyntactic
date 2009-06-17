@@ -14,7 +14,6 @@
 
 #import "AbstractDetailsViewController.h"
 
-#import "Application.h"
 #import "DataProvider.h"
 #import "Model.h"
 #import "SearchDatePickerViewController.h"

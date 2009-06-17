@@ -68,11 +68,21 @@
 }
 
 
+- (NSString*) hashFile {
+  return [providerDirectory stringByAppendingPathComponent:@"Hash.plist"];
+}
+
+
+- (NSString*) movieMapFile {
+  return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
+}
+
+
 - (id) init {
   if ((self = [super init])) {
     self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
-    self.hashData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadHash) saveSelector:@selector(saveHash:)];
-    self.movieMapData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovieMap) saveSelector:@selector(saveMovieMap:)];
+    self.hashData = [PersistentStringThreadsafeValue valueWithGate:dataGate file:self.hashFile];
+    self.movieMapData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.movieMapFile];
     self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
 
     self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
@@ -93,16 +103,6 @@
 
 - (NSString*) scoresFile {
   return [providerDirectory stringByAppendingPathComponent:@"Scores.plist"];
-}
-
-
-- (NSString*) hashFile {
-  return [providerDirectory stringByAppendingPathComponent:@"Hash.plist"];
-}
-
-
-- (NSString*) movieMapFile {
-  return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
 }
 
 
@@ -164,20 +164,6 @@
 }
 
 
-- (NSString*) loadHash {
-  NSString* result = [FileUtilities readObject:self.hashFile];
-  if (result == nil) {
-    return @"";
-  }
-  return result;
-}
-
-
-- (void) saveHash:(NSString*) hash {
-  [FileUtilities writeObject:hash toFile:self.hashFile];
-}
-
-
 - (NSString*) hashValue {
   return hashData.value;
 }
@@ -194,20 +180,6 @@
                                                 gate:runGate
                                             priority:Now];
   }
-}
-
-
-- (NSDictionary*) loadMovieMap {
-  NSDictionary* result = [FileUtilities readObject:self.movieMapFile];
-  if (result.count == 0) {
-    return [NSDictionary dictionary];
-  }
-  return result;
-}
-
-
-- (void) saveMovieMap:(NSDictionary*) map {
-  [FileUtilities writeObject:map toFile:self.movieMapFile];
 }
 
 
