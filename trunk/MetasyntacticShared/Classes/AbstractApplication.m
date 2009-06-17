@@ -170,11 +170,11 @@ static NSCondition* emptyTrashCondition = nil;
       [emptyTrashCondition lock];
       {
         while ([FileUtilities directoryContentsNames:[self trashDirectory]].count == 0) {
-          [emptyTrashCondition wait]; 
+          [emptyTrashCondition wait];
         }
       }
       [emptyTrashCondition unlock];
-      
+
       [self emptyTrashBackgroundEntryPointWorker];
     }
     [pool release];
@@ -249,7 +249,7 @@ static NSCondition* emptyTrashCondition = nil;
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
   }
   [gate unlock];
-  
+
   [emptyTrashCondition lock];
   {
     [emptyTrashCondition broadcast];

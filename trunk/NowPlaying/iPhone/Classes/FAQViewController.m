@@ -50,11 +50,11 @@
     NSArray* qAndA = [self.model.helpCache questionsAndAnswers];
     self.questions = [qAndA objectAtIndex:0];
     self.answers = [qAndA objectAtIndex:1];
-    
+
     self.title = [NSString stringWithFormat:LocalizedString(@"%d Questions & Answers", @"i.e.: 20 Questions & Answers"), questions.count];
     self.tableView.backgroundColor = [ColorCache helpBlue];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
     NSArray* selectors = [NSArray arrayWithObjects:
                           [NSValue valueWithPointer:@selector(sendFeedback)],
                           [NSValue valueWithPointer:@selector(addTheater)],nil];
@@ -68,7 +68,7 @@
                                          arguments:arguments];
     actionsView.backgroundColor = self.tableView.backgroundColor;
   }
-  
+
   return self;
 }
 
@@ -102,13 +102,13 @@
   if (indexPath.section % 2 == 0) {
     static NSString* reuseIdentifier = @"questionCell";
     QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    
+
     if (cell == nil) {
       cell = [[[QuestionCell alloc] initWithQuestion:YES reuseIdentifier:reuseIdentifier] autorelease];
     }
     NSString* text = [questions objectAtIndex:indexPath.section / 2];
     [cell setQuestionText:text];
-    
+
     return cell;
   } else {
     static NSString* reuseIdentifier = @"answerCell";
@@ -116,10 +116,10 @@
     if (cell == nil) {
       cell = [[[QuestionCell alloc] initWithQuestion:NO reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     NSString* text = [answers objectAtIndex:indexPath.section / 2];
     [cell setQuestionText:text];
-    
+
     return cell;
   }
 }
@@ -129,11 +129,11 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section % 2 == 0) {
     NSString* text = [questions objectAtIndex:indexPath.section / 2];
-    
+
     return [QuestionCell height:text];
   } else {
     NSString* text = [answers objectAtIndex:indexPath.section / 2];
-    
+
     return [QuestionCell height:text];
   }
 }
@@ -153,7 +153,7 @@
     [label sizeToFit];
     return label;
   }
-  
+
   return nil;
 }
 
@@ -161,23 +161,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
   if (section == 0) {
     CGFloat height = [actionsView height];
-    
+
     return height + 8;
   } else if (section % 2 == 0) {
     return [self tableView:tableView viewForHeaderInSection:section].frame.size.height;
   }
-  
+
   return -4;
 }
 
 
 - (void) sendFeedback:(BOOL) addTheater {
   NSString* body = @"";
-  
+
   if (addTheater) {
     body = [body stringByAppendingFormat:@"\n\nPlease provide the following:\nTheater Name: \nPhone Number: "];
   }
-  
+
   body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
           [Application version],
           [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
@@ -189,29 +189,29 @@
           (self.model.prioritizeBookmarks ? @"yes" : @"no"),
           [LocaleUtilities englishCountry],
           [LocaleUtilities englishLanguage]];
-  
+
   if (self.model.netflixCacheEnabled && self.model.netflixUserId.length > 0) {
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
             [StringUtilities nonNilString:self.model.netflixUserId],
             [StringUtilities nonNilString:self.model.netflixKey],
             [StringUtilities nonNilString:self.model.netflixSecret]];
   }
-  
+
   NSString* subject;
   if ([LocaleUtilities isJapanese]) {
     subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
   } else {
     subject = @"Now Playing Feedback";
   }
-  
+
   if ([Application canSendMail]) {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
     controller.mailComposeDelegate = self;
-    
+
     [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
     [controller setSubject:subject];
     [controller setMessageBody:body isHTML:NO];
-    
+
     [self presentModalViewController:controller animated:YES];
   }
 }

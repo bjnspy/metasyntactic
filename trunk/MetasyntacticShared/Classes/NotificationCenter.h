@@ -17,10 +17,10 @@
   UIViewController* viewController;
   UILabel* notificationLabel;
   UILabel* blackLabel;
-  
+
   NSMutableArray* notifications;
   Pulser* pulser;
-  
+
   NSInteger disabledCount;
   NSInteger keepVisibleCount;
 }

@@ -53,7 +53,7 @@ static NotificationCenter* notificationCenter;
   self.pulser = nil;
   self.disabledCount = 0;
   self.keepVisibleCount = 0;
-  
+
   [super dealloc];
 }
 
@@ -73,9 +73,9 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 - (void) attachToViewController:(UIViewController*) viewController_ {
   self.viewController = viewController_;
-  
+
   CGRect viewFrame = self.view.frame;
-  
+
   NSInteger labelHeight = LABEL_HEIGHT;
   NSInteger top = viewFrame.size.height;
   if ([viewController isKindOfClass:[UITabBarController class]]) {
@@ -84,13 +84,13 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     labelHeight += 2;
   }
   top -= labelHeight;
-  
+
   CGRect frame = CGRectMake(0, top, viewFrame.size.width, labelHeight);
-  
+
   notificationLabel.frame = frame;
   frame.size.height = 1;
   blackLabel.frame = frame;
-  
+
   [self.view addSubview:notificationLabel];
   [self.view addSubview:blackLabel];
 }
@@ -104,10 +104,10 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 - (id) init {
   if ((self = [super init])) {
     self.notifications = [NSMutableArray array];
-    
+
     self.notificationLabel = [[[UILabel alloc] init] autorelease];
     self.blackLabel = [[[UILabel alloc] init] autorelease];
-    
+
     notificationLabel.font = [UIFont boldSystemFontOfSize:12];
     notificationLabel.textAlignment = UITextAlignmentCenter;
     notificationLabel.textColor = [UIColor whiteColor];
@@ -117,16 +117,16 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     notificationLabel.text = LocalizedString(@"Updating", nil);
     notificationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
-    
+
     blackLabel.backgroundColor = [UIColor blackColor];
     blackLabel.alpha = 0;
     blackLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    
+
     self.pulser = [Pulser pulserWithTarget:self
                                     action:@selector(update)
                              pulseInterval:1];
   }
-  
+
   return self;
 }
 
@@ -135,7 +135,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
   if (disabledCount == 0 && [MetasyntacticSharedApplication notificationsEnabled]) {
     [self.view bringSubviewToFront:notificationLabel];
     [self.view bringSubviewToFront:blackLabel];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
       notificationLabel.alpha = blackLabel.alpha = 1;
@@ -161,11 +161,11 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
       [array addObject:notification];
     }
   }
-  
+
   if (array.count == 0) {
     return nil;
   }
-  
+
   return [NSString stringWithFormat:LocalizedString(@"Updating: %@", nil), [array componentsJoinedByString:@", "]];
 }
 
@@ -195,7 +195,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(addNotifications:) withObject:array waitUntilDone:NO];
     return;
   }
-  
+
   [notifications addObjectsFromArray:array];
   [pulser tryPulse];
 }
@@ -206,7 +206,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(removeNotifications:) withObject:array waitUntilDone:NO];
     return;
   }
-  
+
   for (NSString* string in array) {
     NSInteger index = [notifications indexOfObject:string];
     if (index != NSNotFound) {
@@ -232,7 +232,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(disableNotifications) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   disabledCount++;
   [self hideNotifications];
   [pulser tryPulse];
@@ -244,7 +244,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(enableNotifications) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   disabledCount--;
   [pulser tryPulse];
 }
@@ -255,7 +255,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(pushKeepVisible) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   keepVisibleCount++;
   [self showNotifications];
   [pulser tryPulse];
@@ -267,7 +267,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     [self performSelectorOnMainThread:@selector(popKeepVisible) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   keepVisibleCount--;
   [pulser tryPulse];
 }

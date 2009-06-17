@@ -17,7 +17,7 @@
   NSCondition* gate;
 
   NSArray* searchOperations;
-  NSMutableArray* imageOperations;  
+  NSMutableArray* imageOperations;
 }
 
 + (CacheUpdater*) cacheUpdater;
