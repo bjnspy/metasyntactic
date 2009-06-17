@@ -18,7 +18,6 @@
 #import "AbstractSearchResult.h"
 #import "MetasyntacticSharedApplication.h"
 #import "NotificationCenter.h"
-#import "SearchEngineDelegate.h"
 
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate;

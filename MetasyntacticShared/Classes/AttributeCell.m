@@ -14,8 +14,6 @@
 
 #import "AttributeCell.h"
 
-#import "ColorCache.h"
-
 @interface AttributeCell()
 @end
 
