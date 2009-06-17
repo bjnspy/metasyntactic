@@ -44,7 +44,7 @@
   self.applePosterDownloader = nil;
   self.fandangoPosterDownloader = nil;
   self.previewNetworksPosterDownloader = nil;
-  
+
   [super dealloc];
 }
 
@@ -56,7 +56,7 @@
     self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
     self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
@@ -88,49 +88,49 @@
   if (data != nil) {
     return data;
   }
-  
+
   data = [previewNetworksPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-  
+
   data = [applePosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-  
+
   data = [fandangoPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-  
+
   data = [imdbPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-  
+
   [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-  
+
   // if we had a network connection, then it means we don't know of any
   // posters for this movie.  record that fact and try again another time
   if ([NetworkUtilities isNetworkAvailable]) {
     return [NSData data];
   }
-  
+
   return nil;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:force {
   NSString* path = [self posterFilePath:movie];
-  
+
   NSDate* modificationDate = [FileUtilities modificationDate:path];
   if (modificationDate != nil) {
     if ([FileUtilities size:path] > 0) {
       // already have a real poster.
       return;
     }
-    
+
     if (!force) {
       // sentinel value.  only update if it's been long enough.
       if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -138,11 +138,11 @@
       }
     }
   }
-  
+
   NSData* data = [self downloadPosterWorker:movie];
   if (data != nil) {
     [FileUtilities writeData:data toFile:path];
-    
+
     if (data.length > 0) {
       [AppDelegate minorRefresh];
     }
@@ -160,24 +160,24 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
-  
+
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
-  
+
   NSData* smallPosterData;
   if ([FileUtilities size:smallPosterPath] == 0) {
     NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
     smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                             toHeight:SMALL_POSTER_HEIGHT];
-    
+
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     UIImage* image = [UIImage imageWithData:smallPosterData];
     [self.model.imageCache setImage:image forPath:smallPosterPath];
     return image;
   }
-  
+
   return nil;
 }
 
