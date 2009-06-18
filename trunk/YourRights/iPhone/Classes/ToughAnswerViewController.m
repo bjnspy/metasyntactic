@@ -28,7 +28,7 @@
 @synthesize question;
 @synthesize answer;
 
-- (void)dealloc {
+- (void) dealloc {
     self.question = nil;
     self.answer = nil;
     [super dealloc];

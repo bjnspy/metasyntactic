@@ -31,7 +31,7 @@
 
 @synthesize constitution;
 
-- (void)dealloc {
+- (void) dealloc {
     self.constitution = nil;
     [super dealloc];
 }

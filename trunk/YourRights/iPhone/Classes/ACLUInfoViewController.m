@@ -26,7 +26,7 @@
 @synthesize isArray;
 @synthesize isNotArray;
 
-- (void)dealloc {
+- (void) dealloc {
     self.isArray = nil;
     self.isNotArray = nil;
 
