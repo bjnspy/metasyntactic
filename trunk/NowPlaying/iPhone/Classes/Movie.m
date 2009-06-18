@@ -52,13 +52,13 @@ property_definition(additionalFields);
 - (void) dealloc {
   self.identifier = nil;
   self.canonicalTitle = nil;
+  self.displayTitle = nil;
   self.rating = nil;
   self.length = 0;
   self.releaseDate = nil;
   self.imdbAddress = nil;
   self.poster = nil;
   self.synopsis = nil;
-  self.displayTitle = nil;
   self.studio = nil;
   self.directors = nil;
   self.cast = nil;

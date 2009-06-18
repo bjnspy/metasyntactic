@@ -22,6 +22,12 @@
 
 @synthesize argument2;
 
+- (void) dealloc {
+  self.argument2 = nil;
+  [super dealloc];
+}
+
+
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
            withObject:(id) argument1_

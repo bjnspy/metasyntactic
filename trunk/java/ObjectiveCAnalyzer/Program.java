@@ -60,16 +60,16 @@ public class Program {
         if (isRestricted(child)) {
             return;
         }
-        checkImports(child);
+        //checkImports(child);
         //generateForwardDeclarations(child);
-        //checkDealloc(child);
+        checkDealloc(child);
         //removeUnusedImports(child);
-        insertCopyright(child);
-        trimRight(child);
+        //insertCopyright(child);
+        //trimRight(child);
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        trim(child);
+        //trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
@@ -1083,8 +1083,11 @@ public class Program {
             }
 
             line = line.trim();
-            if (line.startsWith("self.") && (line.endsWith(
-                    " = nil;") || line.endsWith(" = 0;") || line.endsWith(" = NO;"))) {
+            if (line.startsWith("self.") &&
+                    (line.endsWith(" = nil;") ||
+                            line.endsWith(" = 0;") ||
+                            line.endsWith(" = NO;") ||
+                            line.endsWith(" = CGRectZero;"))) {
                 if (variables.isEmpty()) {
                     System.out.println(
                             "Dealloc has too many variables: " + child.getPath());
@@ -1133,9 +1136,10 @@ public class Program {
             }
 
             line = line.trim();
-            if (line.equals("self." + variable + " = nil;") || line.equals(
-                    "self." + variable + " = 0;") || line.equals(
-                    "self." + variable + " = NO;")) {
+            if (line.equals("self." + variable + " = nil;") ||
+                    line.equals("self." + variable + " = 0;") ||
+                    line.equals("self." + variable + " = NO;") ||
+                    line.equals("self." + variable + " = CGRectZero;")) {
                 return true;
             }
         }
@@ -1191,6 +1195,8 @@ public class Program {
             if (line.startsWith("@synthesize ")) {
                 variables.add(
                         line.substring("@synthesize ".length(), line.length() - 1));
+            } else if (line.startsWith("property_definition(")) {
+                variables.add(line.substring("property_definition(".length(), line.indexOf(")")));
             }
         }
 

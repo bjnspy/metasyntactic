@@ -28,6 +28,7 @@
 @synthesize updateId;
 
 - (void) dealloc {
+  self.updateId = 0;
   [super dealloc];
 }
 
