@@ -35,7 +35,7 @@
 - (void) dealloc {
   self.genre = nil;
   self.movies = nil;
-  
+
   [super dealloc];
 }
 
@@ -45,7 +45,7 @@
     self.genre = genre_;
     self.title = genre_;
   }
-  
+
   return self;
 }
 
@@ -59,7 +59,7 @@
   [super onBeforeReloadTableViewData];
   self.tableView.rowHeight = 100;
   NSMutableArray* array = [NSMutableArray array];
-  
+
   Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
   for (Movie* movie in queue.movies) {
     NSArray* genres = movie.genres;
@@ -67,7 +67,7 @@
       [array addObject:movie];
     }
   }
-  
+
   self.movies = array;
 }
 
@@ -98,10 +98,10 @@
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   Movie* movie = [movies objectAtIndex:indexPath.row];
   [cell setMovie:movie owner:self];
-  
+
   return cell;
 }
 
@@ -123,7 +123,7 @@
   if (movies.count == 0) {
     return self.model.netflixCache.noInformationFound;
   }
-  
+
   return nil;
 }
 

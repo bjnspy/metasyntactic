@@ -33,7 +33,7 @@
   self.searchDisplayController = nil;
   self.visibleIndexPaths = nil;
   self.visible = NO;
-  
+
   [super dealloc];
 }
 
@@ -51,13 +51,13 @@
   if (visible) {
     return;
   }
-  
+
   // Store the currently visible cells so we can scroll back to them when
   // we're reloaded.
   self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-  
+
   [self didReceiveMemoryWarningWorker];
-  
+
   [super didReceiveMemoryWarning];
 }
 
@@ -70,29 +70,29 @@
   if (!visible) {
     return;
   }
-  
+
   if (self.tableView.editing) {
     return;
   }
-  
+
   if (readonlyMode) {
     return;
   }
-  
+
   [self onBeforeReloadTableViewData];
   {
     [self.tableView reloadData];
-    
+
     if (visibleIndexPaths.count > 0) {
       NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
       if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
           path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
         [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
       }
-      
+
       self.visibleIndexPaths = nil;
     }
-    
+
     if (searchDisplayController.active) {
       if ([searchDisplayController respondsToSelector:@selector(reloadTableViewData)]) {
         [(id)searchDisplayController reloadTableViewData];
@@ -111,15 +111,15 @@
   if (!visible) {
     return;
   }
-  
+
   if (self.tableView.editing) {
     return;
   }
-  
+
   if (readonlyMode) {
     return;
   }
-  
+
   [self onBeforeReloadVisibleCells];
   {
     [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
@@ -141,7 +141,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
-  
+
   self.visible = YES;
   [self reloadTableViewData];
 }
@@ -165,16 +165,16 @@
   [NSObject cancelPreviousPerformRequestsWithTarget:self
                                            selector:selector
                                              object:nil];
-  
+
   if (!visible) {
     return;
   }
-  
+
   if (self.tableView.dragging || self.tableView.decelerating || self.tableView.tracking) {
     [self performSelector:selector withObject:nil afterDelay:1];
     return;
   }
-  
+
   [self performSelector:subclassSelector];
 }
 

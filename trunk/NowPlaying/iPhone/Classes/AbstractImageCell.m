@@ -124,10 +124,10 @@
   if (animated) {
     [UIView beginAnimations:nil context:NULL];
   }
-  
+
   imageLoadingView.alpha = 0;
   imageView.alpha = 1;
-  
+
   if (animated) {
     [UIView commitAnimations];
   }

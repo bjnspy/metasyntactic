@@ -30,7 +30,7 @@
 
 - (void) dealloc {
   self.segmentedControl = nil;
-  
+
   [super dealloc];
 }
 
@@ -47,15 +47,15 @@
 
 - (NSArray*) movies {
   NSMutableArray* result = [NSMutableArray array];
-  
+
   if (self.model.dvdMoviesShowDVDs) {
     [result addObjectsFromArray:self.model.dvdCache.movies];
   }
-  
+
   if (self.model.dvdMoviesShowBluray) {
     [result addObjectsFromArray:self.model.blurayCache.movies];
   }
-  
+
   return result;
 }
 
@@ -100,7 +100,7 @@
   if ((self = [super init])) {
     [self setupTitle];
   }
-  
+
   return self;
 }
 
@@ -116,29 +116,29 @@
                                    LocalizedString(@"Release", nil),
                                    LocalizedString(@"Title", nil),
                                    nil]] autorelease];
-  
+
   control.segmentedControlStyle = UISegmentedControlStyleBar;
   control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
-  
+
   [control addTarget:self
               action:@selector(onSortOrderChanged:)
     forControlEvents:UIControlEventValueChanged];
-  
+
   CGRect rect = control.frame;
   rect.size.width = 310;
   control.frame = rect;
-  
+
   return control;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   scrollToCurrentDateOnRefresh = YES;
   self.segmentedControl = [self createSegmentedControl];
   self.navigationItem.titleView = segmentedControl;
-  
+
   self.tableView.rowHeight = 100;
 }
 
@@ -155,7 +155,7 @@
   if (cell == nil) {
     cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:self];
   return cell;
 }
@@ -164,7 +164,7 @@
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   [self setupTitle];
-  
+
   self.tableView.rowHeight = 100;
 }
 

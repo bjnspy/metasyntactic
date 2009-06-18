@@ -69,18 +69,18 @@
                                    LocalizedString(@"Release", nil),
                                    LocalizedString(@"Title", nil),
                                    nil]] autorelease];
-  
+
   control.segmentedControlStyle = UISegmentedControlStyleBar;
   control.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
-  
+
   [control addTarget:self
               action:@selector(onSortOrderChanged:)
     forControlEvents:UIControlEventValueChanged];
-  
+
   CGRect rect = control.frame;
   rect.size.width = 310;
   control.frame = rect;
-  
+
   return control;
 }
 
@@ -96,18 +96,18 @@
   if ((self = [super init])) {
     self.title = LocalizedString(@"Upcoming", nil);
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   scrollToCurrentDateOnRefresh = YES;
   self.segmentedControl = [self setupSegmentedControl];
   self.navigationItem.titleView = segmentedControl;
-  
+
   self.title = LocalizedString(@"Upcoming", nil);
   self.tableView.rowHeight = 100;
 }
@@ -130,7 +130,7 @@
   if (cell == nil) {
     cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:self];
   return cell;
 }

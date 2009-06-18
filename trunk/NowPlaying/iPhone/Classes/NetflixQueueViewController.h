@@ -20,9 +20,9 @@
   NSString* feedKey;
   Feed* feed;
   Queue* queue;
-  
+
   UIBarButtonItem* backButton;
-  
+
   NSMutableArray* mutableMovies;
   NSMutableArray* mutableSaved;
   IdentitySet* deletedMovies;

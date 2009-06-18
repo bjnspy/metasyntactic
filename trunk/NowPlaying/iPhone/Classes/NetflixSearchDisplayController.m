@@ -38,7 +38,7 @@
   self.movies = nil;
   self.discMovies = nil;
   self.instantMovies = nil;
-  
+
   [super dealloc];
 }
 
@@ -60,7 +60,7 @@
     self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
     self.searchBar.placeholder = LocalizedString(@"Search Netflix", nil);
   }
-  
+
   return self;
 }
 
@@ -110,11 +110,11 @@
   if (searchResult == nil) {
     return 0;
   }
-  
+
   if ([self noResults]) {
     return 0;
   }
-  
+
   if ([self shouldShowAll]) {
     return movies.count;
   } else if ([self shouldShowDisc]) {
@@ -129,12 +129,12 @@
 
 - (UITableViewCell*) netflixCellForMovie:(Movie*) movie {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  
+
   NetflixCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell setMovie:movie owner:nil];
   return cell;
 }
@@ -152,7 +152,7 @@
   if ([self noResults]) {
     return [self noResultsCell];
   }
-  
+
   Movie* movie = nil;
   if ([self shouldShowAll]) {
     movie = [movies objectAtIndex:indexPath.row];
@@ -163,7 +163,7 @@
   } else {
     [[[UITableViewCell alloc] init] autorelease];
   }
-  
+
   return [self netflixCellForMovie:movie];
 }
 
@@ -180,7 +180,7 @@
   } else {
     return;
   }
-  
+
   [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -190,7 +190,7 @@
   if (searchResult != nil) {
     return 100;
   }
-  
+
   return self.searchResultsTableView.rowHeight;
 }
 
@@ -200,7 +200,7 @@
   if ([self noResults]) {
     return LocalizedString(@"No information found", nil);
   }
-  
+
   return nil;
 }
 
@@ -208,7 +208,7 @@
 - (void) initializeData:(SearchResult*) result {
   NSMutableArray* discs = [NSMutableArray array];
   NSMutableArray* instant = [NSMutableArray array];
-  
+
   for (Movie* movie in result.movies) {
     NSArray* formats = [self.model.netflixCache formatsForMovie:movie];
     if ([formats containsObject:@"instant"]) {
@@ -217,11 +217,11 @@
       [discs addObject:movie];
     }
   }
-  
+
   self.movies = result.movies;
   self.discMovies = discs;
   self.instantMovies = instant;
-  
+
   self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
                                       [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
                                       [NSString stringWithFormat:LocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],

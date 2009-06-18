@@ -33,7 +33,7 @@
 - (void) dealloc {
   self.category = nil;
   self.movies = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@
     self.category = category_;
     self.title = category_;
   }
-  
+
   return self;
 }
 
@@ -86,10 +86,10 @@
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   Movie* movie = [movies objectAtIndex:indexPath.row];
   [cell setMovie:movie owner:self];
-  
+
   return cell;
 }
 
@@ -111,7 +111,7 @@
   if (movies.count == 0) {
     return self.model.netflixCache.noInformationFound;
   }
-  
+
   return nil;
 }
 

@@ -57,16 +57,19 @@ public class Program {
 
     private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-        //checkImports(child);
+        if (isRestricted(child)) {
+            return;
+        }
+        checkImports(child);
         //generateForwardDeclarations(child);
         //checkDealloc(child);
-        removeUnusedImports(child);
-        //insertCopyright(child);
-        //trimRight(child);
+        //removeUnusedImports(child);
+        insertCopyright(child);
+        trimRight(child);
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        //trim(child);
+        trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
