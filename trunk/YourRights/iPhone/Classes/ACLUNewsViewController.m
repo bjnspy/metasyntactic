@@ -21,7 +21,7 @@
 #import "YourRightsNavigationController.h"
 
 @interface ACLUNewsViewController()
-@property (retain) NSMutableArray* titlesWithArticles;
+@property (retain) NSArray* titlesWithArticles;
 @end
 
 
@@ -36,7 +36,7 @@
 
 
 - (id) init {
-  if (self = [super init]) {
+  if (self = [super initWithStyle:UITableViewStyleGrouped]) {
     self.title = NSLocalizedString(@"News", nil);
   }
   
@@ -49,45 +49,33 @@
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) initializeData {
-  self.titlesWithArticles = [NSMutableArray array];
+- (void) onBeforeReloadTableViewData {
+  NSMutableArray* array = [NSMutableArray array];
   
   for (NSString* title in [RSSCache titles]) {
     NSArray* items = [self.model.rssCache itemsForTitle:title];
     if (items.count > 0) {
-      [titlesWithArticles addObject:title];
+      [array addObject:title];
     }
   }
-}
-
-
-- (void) majorRefreshWorker {
-  [self initializeData];
-  [self reloadTableViewData];
+  
+  self.titlesWithArticles = array;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return MAX(titlesWithArticles.count, 1);
+  return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (titlesWithArticles.count == 0) {
-    return 0;
-  }
-  
-  return 1;
+  return titlesWithArticles.count;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-  if (section == 0 && titlesWithArticles.count == 0) {
+  if (titlesWithArticles.count == 0) {
     if ([[OperationQueue operationQueue] hasPriorityOperations]) {
       return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
@@ -112,7 +100,7 @@
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
   }
   
-  NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
+  NSString* title = [titlesWithArticles objectAtIndex:indexPath.row];
   NSArray* items = [self.model.rssCache itemsForTitle:title];
   
   cell.textLabel.text = title;
@@ -134,11 +122,6 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-  [self majorRefresh];
 }
 
 @end

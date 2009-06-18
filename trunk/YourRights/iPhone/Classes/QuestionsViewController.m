@@ -77,20 +77,6 @@
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-    [self reloadTableViewData];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }

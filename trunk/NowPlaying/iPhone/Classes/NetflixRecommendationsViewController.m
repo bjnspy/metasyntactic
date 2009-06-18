@@ -32,108 +32,99 @@
 @synthesize genreToMovies;
 
 - (void)dealloc {
-    self.genres = nil;
-    self.genreToMovies = nil;
-
-    [super dealloc];
+  self.genres = nil;
+  self.genreToMovies = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super initWithStyle:UITableViewStylePlain])) {
-        self.title = LocalizedString(@"Recommendations", nil);
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.title = LocalizedString(@"Recommendations", nil);
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
-- (void) initializeData {
-    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-
-    NSMutableSet* set = [NSMutableSet set];
-    Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
-    for (Movie* movie in queue.movies) {
-        if (movie.genres.count > 0) {
-            NSString* genre = [movie.genres objectAtIndex:0];
-
-            [dictionary addObject:movie forKey:genre];
-            [set addObject:genre];
-        }
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+  MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+  
+  NSMutableSet* set = [NSMutableSet set];
+  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
+  for (Movie* movie in queue.movies) {
+    if (movie.genres.count > 0) {
+      NSString* genre = [movie.genres objectAtIndex:0];
+      
+      [dictionary addObject:movie forKey:genre];
+      [set addObject:genre];
     }
-
-    self.genreToMovies = dictionary;
-    self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
-}
-
-
-- (void) majorRefreshWorker {
-    [self initializeData];
-    [self reloadTableViewData];
-}
-
-
-- (void) minorRefreshWorker {
+  }
+  
+  self.genreToMovies = dictionary;
+  self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
-    [super didReceiveMemoryWarningWorker];
-    self.genreToMovies = [MultiDictionary dictionary];
-    self.genres = [NSArray array];
+  [super didReceiveMemoryWarningWorker];
+  self.genreToMovies = [MultiDictionary dictionary];
+  self.genres = [NSArray array];
 }
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* genre = [genres objectAtIndex:indexPath.row];
-
-    NetflixGenreRecommendationsViewController* controller =
-    [[[NetflixGenreRecommendationsViewController alloc] initWithGenre:genre] autorelease];
-
-    [self.navigationController pushViewController:controller animated:YES];
+  NSString* genre = [genres objectAtIndex:indexPath.row];
+  
+  NetflixGenreRecommendationsViewController* controller =
+  [[[NetflixGenreRecommendationsViewController alloc] initWithGenre:genre] autorelease];
+  
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    return genres.count;
+  return genres.count;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-
-    NSString* genre = [genres objectAtIndex:indexPath.row];
-    NSInteger count = [[genreToMovies objectsForKey:genre] count];
-    cell.textLabel.text =
-    [NSString stringWithFormat:
-     LocalizedString(@"%@ (%@)", nil),
-     genre, [NSNumber numberWithInteger:count]];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    return cell;
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  
+  NSString* genre = [genres objectAtIndex:indexPath.row];
+  NSInteger count = [[genreToMovies objectsForKey:genre] count];
+  cell.textLabel.text =
+  [NSString stringWithFormat:
+   LocalizedString(@"%@ (%@)", nil),
+   genre, [NSNumber numberWithInteger:count]];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+  return cell;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (genres.count == 0) {
-        return self.model.netflixCache.noInformationFound;
-    }
-
-    return nil;
+  if (genres.count == 0) {
+    return self.model.netflixCache.noInformationFound;
+  }
+  
+  return nil;
 }
 
 

@@ -14,7 +14,7 @@
 
 @interface ACLUNewsViewController : AbstractTableViewController {
 @private
-    NSMutableArray* titlesWithArticles;
+    NSArray* titlesWithArticles;
 }
 
 

@@ -50,7 +50,8 @@
 }
 
 
-- (void) initializeData {
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
   NSArray* allPerformances =  [self.model moviePerformances:movie
                                forTheater:theater];
   NSMutableArray* result = [NSMutableArray array];
@@ -77,16 +78,6 @@
   }
 
   self.performances = result;
-}
-
-
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-  [self initializeData];
-  [self reloadTableViewData];
 }
 
 

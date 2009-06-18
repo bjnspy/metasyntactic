@@ -30,52 +30,52 @@
 @synthesize searchResult;
 
 - (void) dealloc {
-    self.searchEngineData = nil;
-    self.searchResult = nil;
-
-    [super dealloc];
+  self.searchEngineData = nil;
+  self.searchResult = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (Controller*) controller {
-    return [Controller controller];
+  return [Controller controller];
 }
 
 
 - (void) setupDefaultScopeButtonTitles {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (id)initWithSearchBar:(UISearchBar*) searchBar__
      contentsController:(UIViewController*) viewController__ {
-    if ((self = [super initWithSearchBar:searchBar__ contentsController:viewController__])) {
-        self.delegate = self;
-        self.searchResultsDataSource = self;
-        self.searchResultsDelegate = self;
-
-        self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-        self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.searchBar.showsScopeBar = YES;
-    }
-
-    return self;
+  if ((self = [super initWithSearchBar:searchBar__ contentsController:viewController__])) {
+    self.delegate = self;
+    self.searchResultsDataSource = self;
+    self.searchResultsDelegate = self;
+    
+    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.searchBar.showsScopeBar = YES;
+  }
+  
+  return self;
 }
 
 
 - (CommonNavigationController*) commonNavigationController {
-    return [(id)self.searchContentsController commonNavigationController];
+  return [(id)self.searchContentsController commonNavigationController];
 }
 
 
 - (BOOL) sortingByTitle {
-    return YES;
+  return YES;
 }
 
 
@@ -85,88 +85,79 @@
 
 
 - (AbstractSearchEngine*) createSearchEngine {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (AbstractSearchEngine*) searchEngine {
-    if (searchEngineData == nil) {
-        self.searchEngineData = [self createSearchEngine];
-    }
-
-    return searchEngineData;
+  if (searchEngineData == nil) {
+    self.searchEngineData = [self createSearchEngine];
+  }
+  
+  return searchEngineData;
 }
 
 
 - (BOOL) searching {
-    NSString* searchText = self.searchBar.text;
-    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    return searchText.length > 0 && ![searchText isEqual:searchResult.value];
+  NSString* searchText = self.searchBar.text;
+  searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  
+  return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
 
 - (void) reportResult:(SearchResult*) result {
-    NSAssert([NSThread isMainThread], nil);
-    self.searchResult = result;
-    [self.searchResultsTableView reloadData];
+  NSAssert([NSThread isMainThread], nil);
+  self.searchResult = result;
+  [self.searchResultsTableView reloadData];
 }
 
 
 - (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
-    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    if (searchText.length == 0) {
-        [self setupDefaultScopeButtonTitles];
-        [self.searchEngine invalidateExistingRequests];
-        self.searchResult = nil;
-        [self.searchResultsTableView reloadData];
-        return YES;
-    } else {
-        [self.searchEngine submitRequest:searchText];
-        return NO;
-    }
+  searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  
+  if (searchText.length == 0) {
+    [self setupDefaultScopeButtonTitles];
+    [self.searchEngine invalidateExistingRequests];
+    self.searchResult = nil;
+    [self.searchResultsTableView reloadData];
+    return YES;
+  } else {
+    [self.searchEngine submitRequest:searchText];
+    return NO;
+  }
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    return 0;
+  return 0;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    return [[[UITableViewCell alloc] init] autorelease];
+  return [[[UITableViewCell alloc] init] autorelease];
 }
 
 
-- (void) reload {
-    for (id cell in self.searchResultsTableView.visibleCells) {
-        if ([cell respondsToSelector:@selector(loadImage)]) {
-            [cell loadImage];
-        }
-    }
+- (void) reloadTableViewData {
+  [self.searchResultsTableView reloadData];
 }
 
 
-- (void) majorRefresh {
-    [self reload];
-}
-
-
-- (void) minorRefresh {
-    [self reload];
+- (void) reloadVisibleCells {
+  [self.searchResultsTableView reloadRowsAtIndexPaths:self.searchResultsTableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    [self setupDefaultScopeButtonTitles];
+  [self setupDefaultScopeButtonTitles];
 }
 
 @end

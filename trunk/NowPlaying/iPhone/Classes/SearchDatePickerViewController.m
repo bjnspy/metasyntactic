@@ -117,14 +117,4 @@
     return LocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil);
 }
 
-
-- (void) majorRefreshWorker {
-
-}
-
-
-- (void) minorRefreshWorker {
-
-}
-
 @end

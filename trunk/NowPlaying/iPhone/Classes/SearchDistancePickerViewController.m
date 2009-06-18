@@ -120,14 +120,4 @@
     return LocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.", nil);
 }
 
-
-- (void) majorRefreshWorker {
-
-}
-
-
-- (void) minorRefreshWorker {
-
-}
-
 @end
