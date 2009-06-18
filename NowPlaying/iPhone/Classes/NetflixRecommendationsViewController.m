@@ -34,7 +34,7 @@
 - (void)dealloc {
   self.genres = nil;
   self.genreToMovies = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.title = LocalizedString(@"Recommendations", nil);
   }
-  
+
   return self;
 }
 
@@ -56,18 +56,18 @@
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-  
+
   NSMutableSet* set = [NSMutableSet set];
   Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
   for (Movie* movie in queue.movies) {
     if (movie.genres.count > 0) {
       NSString* genre = [movie.genres objectAtIndex:0];
-      
+
       [dictionary addObject:movie forKey:genre];
       [set addObject:genre];
     }
   }
-  
+
   self.genreToMovies = dictionary;
   self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
@@ -83,10 +83,10 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* genre = [genres objectAtIndex:indexPath.row];
-  
+
   NetflixGenreRecommendationsViewController* controller =
   [[[NetflixGenreRecommendationsViewController alloc] initWithGenre:genre] autorelease];
-  
+
   [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -105,7 +105,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  
+
   NSString* genre = [genres objectAtIndex:indexPath.row];
   NSInteger count = [[genreToMovies objectsForKey:genre] count];
   cell.textLabel.text =
@@ -113,7 +113,7 @@
    LocalizedString(@"%@ (%@)", nil),
    genre, [NSNumber numberWithInteger:count]];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   return cell;
 }
 
@@ -123,7 +123,7 @@
   if (genres.count == 0) {
     return self.model.netflixCache.noInformationFound;
   }
-  
+
   return nil;
 }
 

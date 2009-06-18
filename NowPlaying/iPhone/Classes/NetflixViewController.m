@@ -52,7 +52,7 @@ typedef enum {
 
 - (void) dealloc {
   self.searchBar = nil;
-  
+
   [super dealloc];
 }
 
@@ -67,7 +67,7 @@ typedef enum {
     self.title = LocalizedString(@"Netflix", nil);
     [self setupTableStyle];
   }
-  
+
   return self;
 }
 
@@ -85,7 +85,7 @@ typedef enum {
 - (void) initializeSearchDisplay {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
   [searchBar sizeToFit];
-  
+
   self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                          contentsController:self] autorelease];
 }
@@ -93,7 +93,7 @@ typedef enum {
 
 - (void) loadView {
   [super loadView];
-  
+
   [self initializeSearchDisplay];
 }
 
@@ -125,7 +125,7 @@ typedef enum {
     }
     [pool release];
   }
-  
+
   mostPopularTitleCount = result;
 }
 
@@ -133,7 +133,7 @@ typedef enum {
 - (void) initializeInfoButton {
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-  
+
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;
   frame.size.width += 4;
@@ -149,7 +149,7 @@ typedef enum {
   } else {
     self.tableView.tableHeaderView = nil;
   }
-  
+
   [self initializeInfoButton];
   [self setupTableStyle];
   [self setupTitle];
@@ -179,11 +179,11 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-  
+
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   cell.textLabel.adjustsFontSizeToFitWidth = YES;
-  
+
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
@@ -231,12 +231,12 @@ typedef enum {
       cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
     }
   }
-  
+
   if (cell.textLabel.text.length == 0) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView = nil;
   }
-  
+
 #if 0
   NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
   NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
@@ -247,7 +247,7 @@ typedef enum {
   cell.backgroundView = backgroundView;
   cell.selectedBackgroundView = selectedBackgroundView;
 #endif
-  
+
   return cell;
 }
 
@@ -258,7 +258,7 @@ typedef enum {
                                                   delegate:nil
                                          cancelButtonTitle:LocalizedString(@"No", nil)
                                          otherButtonTitles:LocalizedString(@"Yes", nil), nil] autorelease];
-  
+
   alert.delegate = self;
   [alert show];
 }
@@ -270,7 +270,7 @@ typedef enum {
   if (index != alertView.cancelButtonIndex) {
     [self.controller setNetflixKey:nil secret:nil userId:nil];
     [Application resetNetflixDirectories];
-    
+
     [self majorRefresh];
   }
 }
@@ -290,7 +290,7 @@ typedef enum {
    [NetflixCache rentalHistoryWatchedKey],
    [NetflixCache rentalHistoryReturnedKey],
    nil];
-  
+
   NetflixFeedsViewController* controller =
   [[[NetflixFeedsViewController alloc] initWithFeedKeys:keys
                                                   title:LocalizedString(@"Rental History", nil)] autorelease];

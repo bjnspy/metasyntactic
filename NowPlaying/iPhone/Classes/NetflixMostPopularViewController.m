@@ -29,7 +29,7 @@
 
 - (void) dealloc {
   self.titleToCount = nil;
-  
+
   [super dealloc];
 }
 
@@ -38,7 +38,7 @@
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.title = LocalizedString(@"Most Popular", nil);
   }
-  
+
   return self;
 }
 
@@ -74,7 +74,7 @@
       numberOfRowsInSection:(NSInteger) section {
   NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:section];
   NSNumber* count = [titleToCount objectForKey:title];
-  
+
   return count == nil ? 0 : 1;
 }
 
@@ -82,22 +82,22 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  
+
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-    
+
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.minimumFontSize = 12;
   }
-  
+
   NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
   NSNumber* count = [titleToCount objectForKey:title];
-  
+
   cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), title, count];
-  
+
   return cell;
 }
 
@@ -105,7 +105,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
-  
+
   NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithCategory:title] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
@@ -117,10 +117,10 @@
     if ([[OperationQueue operationQueue] hasPriorityOperations]) {
       return LocalizedString(@"Downloading data", nil);
     }
-    
+
     return self.model.netflixCache.noInformationFound;
   }
-  
+
   return nil;
 }
 

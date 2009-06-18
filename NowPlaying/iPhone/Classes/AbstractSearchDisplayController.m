@@ -32,7 +32,7 @@
 - (void) dealloc {
   self.searchEngineData = nil;
   self.searchResult = nil;
-  
+
   [super dealloc];
 }
 
@@ -58,13 +58,13 @@
     self.delegate = self;
     self.searchResultsDataSource = self;
     self.searchResultsDelegate = self;
-    
+
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.showsScopeBar = YES;
   }
-  
+
   return self;
 }
 
@@ -93,7 +93,7 @@
   if (searchEngineData == nil) {
     self.searchEngineData = [self createSearchEngine];
   }
-  
+
   return searchEngineData;
 }
 
@@ -101,7 +101,7 @@
 - (BOOL) searching {
   NSString* searchText = self.searchBar.text;
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   return searchText.length > 0 && ![searchText isEqual:searchResult.value];
 }
 
@@ -115,7 +115,7 @@
 
 - (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   if (searchText.length == 0) {
     [self setupDefaultScopeButtonTitles];
     [self.searchEngine invalidateExistingRequests];
