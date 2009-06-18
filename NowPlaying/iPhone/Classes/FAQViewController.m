@@ -73,21 +73,6 @@
 }
 
 
-- (void) reload {
-  [self reloadTableViewData];
-}
-
-
-- (void) majorRefreshWorker {
-  [self reload];
-}
-
-
-- (void) minorRefreshWorker {
-  [self reload];
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return questions.count * 2;
 }

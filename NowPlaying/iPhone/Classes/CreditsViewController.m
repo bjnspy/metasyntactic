@@ -101,14 +101,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return LastSection + 1;
 }

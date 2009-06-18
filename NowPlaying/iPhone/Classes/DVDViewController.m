@@ -29,151 +29,143 @@
 @synthesize segmentedControl;
 
 - (void) dealloc {
-    self.segmentedControl = nil;
-
-    [super dealloc];
+  self.segmentedControl = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
 }
 
 
 - (NSArray*) movies {
-    NSMutableArray* result = [NSMutableArray array];
-
-    if (self.model.dvdMoviesShowDVDs) {
-        [result addObjectsFromArray:self.model.dvdCache.movies];
-    }
-
-    if (self.model.dvdMoviesShowBluray) {
-        [result addObjectsFromArray:self.model.blurayCache.movies];
-    }
-
-    return result;
+  NSMutableArray* result = [NSMutableArray array];
+  
+  if (self.model.dvdMoviesShowDVDs) {
+    [result addObjectsFromArray:self.model.dvdCache.movies];
+  }
+  
+  if (self.model.dvdMoviesShowBluray) {
+    [result addObjectsFromArray:self.model.blurayCache.movies];
+  }
+  
+  return result;
 }
 
 
 - (BOOL) sortingByTitle {
-    return self.model.dvdMoviesSortingByTitle;
+  return self.model.dvdMoviesSortingByTitle;
 }
 
 
 - (BOOL) sortingByReleaseDate {
-    return self.model.dvdMoviesSortingByReleaseDate;
+  return self.model.dvdMoviesSortingByReleaseDate;
 }
 
 
 - (BOOL) sortingByScore {
-    return NO;
+  return NO;
 }
 
 
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
-    return compareMoviesByReleaseDateAscending;
+  return compareMoviesByReleaseDateAscending;
 }
 
 
 - (void) onSortOrderChanged:(id) sender {
-    scrollToCurrentDateOnRefresh = YES;
-    self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self majorRefresh];
+  scrollToCurrentDateOnRefresh = YES;
+  self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [self majorRefresh];
 }
 
 
 - (void) setupTitle {
-    if (self.model.dvdMoviesShowOnlyBluray) {
-        self.title = LocalizedString(@"Blu-ray", nil);
-    } else {
-        self.title = LocalizedString(@"DVD", nil);
-    }
+  if (self.model.dvdMoviesShowOnlyBluray) {
+    self.title = LocalizedString(@"Blu-ray", nil);
+  } else {
+    self.title = LocalizedString(@"DVD", nil);
+  }
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        [self setupTitle];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    [self setupTitle];
+  }
+  
+  return self;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 
 
 - (UISegmentedControl*) createSegmentedControl {
-    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                                                   [NSArray arrayWithObjects:
-                                     LocalizedString(@"Release", nil),
-                                     LocalizedString(@"Title", nil),
-                                     nil]] autorelease];
-
-    control.segmentedControlStyle = UISegmentedControlStyleBar;
-    control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
-
-    [control addTarget:self
-                action:@selector(onSortOrderChanged:)
-      forControlEvents:UIControlEventValueChanged];
-
-    CGRect rect = control.frame;
-    rect.size.width = 310;
-    control.frame = rect;
-
-    return control;
+  UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
+                                  [NSArray arrayWithObjects:
+                                   LocalizedString(@"Release", nil),
+                                   LocalizedString(@"Title", nil),
+                                   nil]] autorelease];
+  
+  control.segmentedControlStyle = UISegmentedControlStyleBar;
+  control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
+  
+  [control addTarget:self
+              action:@selector(onSortOrderChanged:)
+    forControlEvents:UIControlEventValueChanged];
+  
+  CGRect rect = control.frame;
+  rect.size.width = 310;
+  control.frame = rect;
+  
+  return control;
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    scrollToCurrentDateOnRefresh = YES;
-    self.segmentedControl = [self createSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
-
-    self.tableView.rowHeight = 100;
+  [super loadView];
+  
+  scrollToCurrentDateOnRefresh = YES;
+  self.segmentedControl = [self createSegmentedControl];
+  self.navigationItem.titleView = segmentedControl;
+  
+  self.tableView.rowHeight = 100;
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
-    [super didReceiveMemoryWarningWorker];
-    self.segmentedControl = nil;
+  [super didReceiveMemoryWarningWorker];
+  self.segmentedControl = nil;
 }
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
-
-    [cell setMovie:movie owner:self];
-    return cell;
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[DVDCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+  }
+  
+  [cell setMovie:movie owner:self];
+  return cell;
 }
 
 
-- (void) majorRefreshWorker {
-    [super majorRefreshWorker];
-    [self setupTitle];
-
-    self.tableView.rowHeight = 100;
-}
-
-
-- (void) minorRefreshWorker {
-    [super minorRefreshWorker];
-    for (id cell in self.tableView.visibleCells) {
-        [cell loadImage];
-    }
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+  [self setupTitle];
+  
+  self.tableView.rowHeight = 100;
 }
 
 @end

@@ -25,10 +25,12 @@
 
 @implementation AbstractTableViewController
 
+@synthesize searchDisplayController;
 @synthesize visibleIndexPaths;
 @synthesize visible;
 
 - (void) dealloc {
+  self.searchDisplayController = nil;
   self.visibleIndexPaths = nil;
   self.visible = NO;
   
@@ -38,41 +40,6 @@
 
 - (AbstractNavigationController*) abstractNavigationController {
   return (id)self.navigationController;
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-  [super viewDidAppear:animated];
-  [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
-}
-
-
-- (void) majorRefreshWorker {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (void) minorRefreshWorker {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-  
-  self.visible = YES;
-  [self majorRefreshWorker];
-}
-
-
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
-  self.visible = NO;
-}
-
-
-- (void) viewDidDisappear:(BOOL) animated {
-  [super viewDidDisappear:animated];
 }
 
 
@@ -94,23 +61,45 @@
   [super didReceiveMemoryWarning];
 }
 
+- (void) onBeforeReloadTableViewData {}
+- (void) onAfterReloadTableViewData {}
+- (void) onBeforeReloadVisibleCells {}
+- (void) onAfterReloadVisibleCells {}
 
 - (void) reloadTableViewData {
   if (!visible) {
     return;
   }
   
-  [self.tableView reloadData];
+  if (self.tableView.editing) {
+    return;
+  }
   
-  if (visibleIndexPaths.count > 0) {
-    NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-    if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-        path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-      [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+  if (readonlyMode) {
+    return;
+  }
+  
+  [self onBeforeReloadTableViewData];
+  {
+    [self.tableView reloadData];
+    
+    if (visibleIndexPaths.count > 0) {
+      NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+      if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+          path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+        [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+      }
+      
+      self.visibleIndexPaths = nil;
     }
     
-    self.visibleIndexPaths = nil;
+    if (searchDisplayController.active) {
+      if ([searchDisplayController respondsToSelector:@selector(reloadTableViewData)]) {
+        [(id)searchDisplayController reloadTableViewData];
+      }
+    }
   }
+  [self onAfterReloadTableViewData];
 }
 
 
@@ -123,7 +112,44 @@
     return;
   }
   
-  [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+  if (self.tableView.editing) {
+    return;
+  }
+  
+  if (readonlyMode) {
+    return;
+  }
+  
+  [self onBeforeReloadVisibleCells];
+  {
+    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    if (searchDisplayController.active) {
+      if ([searchDisplayController respondsToSelector:@selector(reloadVisibleCells)]) {
+        [(id)searchDisplayController reloadVisibleCells];
+      }
+    }
+  }
+  [self onAfterReloadVisibleCells];
+}
+
+
+- (void) viewDidAppear:(BOOL) animated {
+  [super viewDidAppear:animated];
+  [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+  [super viewWillAppear:animated];
+  
+  self.visible = YES;
+  [self reloadTableViewData];
+}
+
+
+- (void) viewWillDisappear:(BOOL) animated {
+  [super viewWillDisappear:animated];
+  self.visible = NO;
 }
 
 
@@ -144,7 +170,7 @@
     return;
   }
   
-  if (self.tableView.dragging || self.tableView.decelerating) {
+  if (self.tableView.dragging || self.tableView.decelerating || self.tableView.tracking) {
     [self performSelector:selector withObject:nil afterDelay:1];
     return;
   }
@@ -154,12 +180,19 @@
 
 
 - (void) majorRefresh {
-  [self refreshWithSelector:@selector(majorRefresh) subclassSelector:@selector(majorRefreshWorker)];
+  [self refreshWithSelector:@selector(majorRefresh)
+           subclassSelector:@selector(reloadTableViewData)];
 }
 
 
 - (void) minorRefresh {
-  [self refreshWithSelector:@selector(minorRefresh) subclassSelector:@selector(minorRefreshWorker)];
+  [self refreshWithSelector:@selector(minorRefresh)
+           subclassSelector:@selector(reloadVisibleCells)];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+  [self majorRefresh];
 }
 
 @end

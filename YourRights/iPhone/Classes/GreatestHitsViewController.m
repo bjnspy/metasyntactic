@@ -35,185 +35,175 @@
 @synthesize indexTitles;
 
 - (void) dealloc {
-    self.sectionTitles = nil;
-    self.sectionTitleToDecisions = nil;
-    self.segmentedControl = nil;
-    self.indexTitles = nil;
-
-    [super dealloc];
+  self.sectionTitles = nil;
+  self.sectionTitleToDecisions = nil;
+  self.segmentedControl = nil;
+  self.indexTitles = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (UISegmentedControl*) setupSegmentedControl {
-    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                                                   [NSArray arrayWithObjects:
-                                     NSLocalizedString(@"Year", nil),
-                                     NSLocalizedString(@"Category", nil),
-                                     NSLocalizedString(@"Pursuer", nil),
-                                     NSLocalizedString(@"Defender", nil), nil]] autorelease];
-
-    control.segmentedControlStyle = UISegmentedControlStyleBar;
-    control.selectedSegmentIndex = [self.model greatestHitsSortIndex];
-
-    [control addTarget:self
-                action:@selector(onSortOrderChanged:)
-      forControlEvents:UIControlEventValueChanged];
-
-    CGRect rect = control.frame;
-    rect.size.width = 250;
-    control.frame = rect;
-
-    return control;
+  UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
+                                  [NSArray arrayWithObjects:
+                                   NSLocalizedString(@"Year", nil),
+                                   NSLocalizedString(@"Category", nil),
+                                   NSLocalizedString(@"Pursuer", nil),
+                                   NSLocalizedString(@"Defender", nil), nil]] autorelease];
+  
+  control.segmentedControlStyle = UISegmentedControlStyleBar;
+  control.selectedSegmentIndex = [self.model greatestHitsSortIndex];
+  
+  [control addTarget:self
+              action:@selector(onSortOrderChanged:)
+    forControlEvents:UIControlEventValueChanged];
+  
+  CGRect rect = control.frame;
+  rect.size.width = 250;
+  control.frame = rect;
+  
+  return control;
 }
 
 
 - (id) init {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.segmentedControl = [self setupSegmentedControl];
-
-        self.indexTitles =
-        [NSArray arrayWithObjects:
-         @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-    }
-
-    return self;
+  if (self = [super initWithStyle:UITableViewStylePlain]) {
+    self.segmentedControl = [self setupSegmentedControl];
+    
+    self.indexTitles =
+    [NSArray arrayWithObjects:
+     @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+     @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+     @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+  }
+  
+  return self;
 }
 
 
 - (void) sortByYear {
-    NSMutableArray* titles = [NSMutableArray array];
-    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-
-    for (Decision* decision in [Decision greatestHits]) {
-        NSString* year = [NSString stringWithFormat:@"%d", decision.year];
-
-        if (![titles containsObject:year]) {
-            [titles addObject:year];
-        }
-
-        [dictionary addObject:decision forKey:year];
+  NSMutableArray* titles = [NSMutableArray array];
+  MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+  
+  for (Decision* decision in [Decision greatestHits]) {
+    NSString* year = [NSString stringWithFormat:@"%d", decision.year];
+    
+    if (![titles containsObject:year]) {
+      [titles addObject:year];
     }
-
-    self.sectionTitles = titles;
-    self.sectionTitleToDecisions = dictionary;
+    
+    [dictionary addObject:decision forKey:year];
+  }
+  
+  self.sectionTitles = titles;
+  self.sectionTitleToDecisions = dictionary;
 }
 
 
 - (void) sortByCategory {
-    NSMutableArray* titles = [NSMutableArray array];
-    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-
-    for (Decision* decision in [Decision greatestHits]) {
-        NSString* category = [Decision categoryString:decision.category];
-
-        if (![titles containsObject:category]) {
-            [titles addObject:category];
-        }
-
-        [dictionary addObject:decision forKey:category];
+  NSMutableArray* titles = [NSMutableArray array];
+  MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+  
+  for (Decision* decision in [Decision greatestHits]) {
+    NSString* category = [Decision categoryString:decision.category];
+    
+    if (![titles containsObject:category]) {
+      [titles addObject:category];
     }
-
-    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
-    self.sectionTitleToDecisions = dictionary;
+    
+    [dictionary addObject:decision forKey:category];
+  }
+  
+  self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+  self.sectionTitleToDecisions = dictionary;
 }
 
 
 - (void) sortByPursuer {
-    NSMutableArray* titles = [NSMutableArray array];
-    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-
-    for (Decision* decision in [Decision greatestHits]) {
-        NSString* title = [decision.title substringToIndex:1];
-
-        if (![titles containsObject:title]) {
-            [titles addObject:title];
-        }
-
-        [dictionary addObject:decision forKey:title];
+  NSMutableArray* titles = [NSMutableArray array];
+  MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+  
+  for (Decision* decision in [Decision greatestHits]) {
+    NSString* title = [decision.title substringToIndex:1];
+    
+    if (![titles containsObject:title]) {
+      [titles addObject:title];
     }
-
-    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
-    self.sectionTitleToDecisions = dictionary;
+    
+    [dictionary addObject:decision forKey:title];
+  }
+  
+  self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+  self.sectionTitleToDecisions = dictionary;
 }
 
 
 - (void) sortByDefender {
-    NSMutableArray* titles = [NSMutableArray array];
-    MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-
-    for (Decision* decision in [Decision greatestHits]) {
-        NSRange range = [decision.title rangeOfString:@"v. "];
-        NSString* title;
-
-        if (range.length > 0) {
-            title = [decision.title substringWithRange:NSMakeRange(range.location + range.length, 1)];
-        } else {
-            title = [decision.title substringToIndex:1];
-        }
-
-        if (![titles containsObject:title]) {
-            [titles addObject:title];
-        }
-
-        [dictionary addObject:decision forKey:title];
+  NSMutableArray* titles = [NSMutableArray array];
+  MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
+  
+  for (Decision* decision in [Decision greatestHits]) {
+    NSRange range = [decision.title rangeOfString:@"v. "];
+    NSString* title;
+    
+    if (range.length > 0) {
+      title = [decision.title substringWithRange:NSMakeRange(range.location + range.length, 1)];
+    } else {
+      title = [decision.title substringToIndex:1];
     }
-
-    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
-    self.sectionTitleToDecisions = dictionary;
+    
+    if (![titles containsObject:title]) {
+      [titles addObject:title];
+    }
+    
+    [dictionary addObject:decision forKey:title];
+  }
+  
+  self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+  self.sectionTitleToDecisions = dictionary;
 }
 
 
 - (BOOL) sortingByYear {
-    return segmentedControl.selectedSegmentIndex == 0;
+  return segmentedControl.selectedSegmentIndex == 0;
 }
 
 
 - (BOOL) sortingByCategory {
-    return segmentedControl.selectedSegmentIndex == 1;
+  return segmentedControl.selectedSegmentIndex == 1;
 }
 
 
 - (BOOL) sortingByPersuer {
-    return segmentedControl.selectedSegmentIndex == 2;
+  return segmentedControl.selectedSegmentIndex == 2;
 }
 
 
 - (BOOL) sortingByDefender {
-    return segmentedControl.selectedSegmentIndex == 3;
+  return segmentedControl.selectedSegmentIndex == 3;
 }
 
 
-- (void) initializeData {
-    switch (segmentedControl.selectedSegmentIndex) {
-        case 0: [self sortByYear]; break;
-        case 1: [self sortByCategory]; break;
-        case 2: [self sortByPursuer]; break;
-        case 3: [self sortByDefender]; break;
-    }
-}
-
-
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-    [self initializeData];
-    [self reloadTableViewData];
+- (void) onBeforeReloadTableViewData {
+  switch (segmentedControl.selectedSegmentIndex) {
+    case 0: [self sortByYear]; break;
+    case 1: [self sortByCategory]; break;
+    case 2: [self sortByPursuer]; break;
+    case 3: [self sortByDefender]; break;
+  }
 }
 
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-    self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
+  self.segmentedControl = [self setupSegmentedControl];
+  self.navigationItem.titleView = segmentedControl;
 }
 
 
@@ -229,123 +219,118 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
+  return YES;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return MAX(sectionTitles.count, 1);
+  return MAX(sectionTitles.count, 1);
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (sectionTitles.count == 0) {
-        return 0;
-    }
-
-    return [[sectionTitleToDecisions objectsForKey:[sectionTitles objectAtIndex:section]] count];
+  if (sectionTitles.count == 0) {
+    return 0;
+  }
+  
+  return [[sectionTitleToDecisions objectsForKey:[sectionTitles objectAtIndex:section]] count];
 }
 
 
 - (Decision*) decisionForIndexPath:(NSIndexPath*) indexPath {
-    NSString* section = [sectionTitles objectAtIndex:indexPath.section];
-    Decision* decision = [[sectionTitleToDecisions objectsForKey:section] objectAtIndex:indexPath.row];
-
-    return decision;
+  NSString* section = [sectionTitles objectAtIndex:indexPath.section];
+  Decision* decision = [[sectionTitleToDecisions objectsForKey:section] objectAtIndex:indexPath.row];
+  
+  return decision;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Decision* decision = [self decisionForIndexPath:indexPath];
-
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    DecisionCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[DecisionCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
-
-    if (decision.link.length > 0 &&
-        ([self sortingByYear] || [self sortingByCategory])) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-
-    if (decision.link.length > 0) {
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    } else {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-
-    [cell setDecision:decision owner:self];
-
-    return cell;
+  Decision* decision = [self decisionForIndexPath:indexPath];
+  
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  DecisionCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[DecisionCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+  }
+  
+  if (decision.link.length > 0 &&
+      ([self sortingByYear] || [self sortingByCategory])) {
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  } else {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  }
+  
+  if (decision.link.length > 0) {
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+  } else {
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+  
+  [cell setDecision:decision owner:self];
+  
+  return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Decision* decision = [self decisionForIndexPath:indexPath];
-
-    if (decision.link.length == 0) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    } else {
-        [(id)self.navigationController pushBrowser:decision.link animated:YES];
-    }
+  Decision* decision = [self decisionForIndexPath:indexPath];
+  
+  if (decision.link.length == 0) {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  } else {
+    [(id)self.navigationController pushBrowser:decision.link animated:YES];
+  }
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    return [sectionTitles objectAtIndex:section];
+  return [sectionTitles objectAtIndex:section];
 }
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setGreatestHitsSortIndex:segmentedControl.selectedSegmentIndex];
-    [self majorRefresh];
+  [self.model setGreatestHitsSortIndex:segmentedControl.selectedSegmentIndex];
+  [self majorRefresh];
 }
 
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self sortingByPersuer] || [self sortingByDefender]) {
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-            return indexTitles;
-        }
+  if ([self sortingByPersuer] || [self sortingByDefender]) {
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+      return indexTitles;
     }
-
-    return nil;
+  }
+  
+  return nil;
 }
 
 
 - (NSInteger)           tableView:(UITableView*) tableView
       sectionForSectionIndexTitle:(NSString*) title
                           atIndex:(NSInteger) index {
-    unichar firstChar = [title characterAtIndex:0];
-
-    for (unichar c = firstChar; c >= 'A'; c--) {
-        NSString* s = [NSString stringWithFormat:@"%c", c];
-
-        NSInteger result = [sectionTitles indexOfObject:s];
-        if (result != NSNotFound) {
-            return result;
-        }
+  unichar firstChar = [title characterAtIndex:0];
+  
+  for (unichar c = firstChar; c >= 'A'; c--) {
+    NSString* s = [NSString stringWithFormat:@"%c", c];
+    
+    NSInteger result = [sectionTitles indexOfObject:s];
+    if (result != NSNotFound) {
+      return result;
     }
-
-    return 0;
+  }
+  
+  return 0;
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Decision* decision = [self decisionForIndexPath:indexPath];
-    return [DecisionCell height:decision owner:self];
+  Decision* decision = [self decisionForIndexPath:indexPath];
+  return [DecisionCell height:decision owner:self];
 }
 
 @end

@@ -50,23 +50,9 @@
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-    [self reloadTableViewData];
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return YES;
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 

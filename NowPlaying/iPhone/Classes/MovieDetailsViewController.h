@@ -19,32 +19,31 @@
 
 @interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
-    Movie* movie;
-    DVD* dvd;
-
-    Movie* netflixMovie;
-    NetflixRatingsCell* netflixRatingsCell;
-    NSArray* netflixStatusCells;
-
-    NSMutableArray* theatersArray;
-    NSMutableArray* showtimesArray;
-    NSString* trailer;
-    NSArray* reviewsArray;
-    NSDictionary* websites;
-
-    NSInteger hiddenTheaterCount;
-
-    ActionsView* actionsView;
-    UIButton* bookmarkButton;
-
-    BOOL filterTheatersByDistance;
-    BOOL expandedDetails;
-    BOOL readonlyMode;
-
-    UIImage* posterImage;
-    TappableImageView* posterImageView;
-    SmallActivityIndicatorViewWithBackground* posterActivityView;
-    NSInteger posterCount;
+  Movie* movie;
+  DVD* dvd;
+  
+  Movie* netflixMovie;
+  NetflixRatingsCell* netflixRatingsCell;
+  NSArray* netflixStatusCells;
+  
+  NSMutableArray* theatersArray;
+  NSMutableArray* showtimesArray;
+  NSString* trailer;
+  NSArray* reviewsArray;
+  NSDictionary* websites;
+  
+  NSInteger hiddenTheaterCount;
+  
+  ActionsView* actionsView;
+  UIButton* bookmarkButton;
+  
+  BOOL filterTheatersByDistance;
+  BOOL expandedDetails;
+  
+  UIImage* posterImage;
+  TappableImageView* posterImageView;
+  SmallActivityIndicatorViewWithBackground* posterActivityView;
+  NSInteger posterCount;
 }
 
 - (id) initWithMovie:(Movie*) movie;

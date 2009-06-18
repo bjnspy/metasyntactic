@@ -112,12 +112,4 @@
     }
 }
 
-
-- (void) majorRefreshWorker{
-}
-
-
-- (void) minorRefreshWorker {
-}
-
 @end

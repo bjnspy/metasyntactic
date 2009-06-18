@@ -182,14 +182,4 @@
     return tableView.rowHeight;
 }
 
-
-- (void) minorRefreshWorker {
-    //[self majorRefresh];
-}
-
-
-- (void) majorRefreshWorker {
-    //[self reloadTableViewData];
-}
-
 @end

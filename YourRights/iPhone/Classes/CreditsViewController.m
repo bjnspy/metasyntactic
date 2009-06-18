@@ -52,15 +52,6 @@ typedef enum {
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-    [self reloadTableViewData];
-}
-
-
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
@@ -225,11 +216,6 @@ typedef enum {
 
     NSURL* url = [NSURL URLWithString:address];
     [[UIApplication sharedApplication] openURL:url];
-}
-
-
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self majorRefresh];
 }
 
 @end

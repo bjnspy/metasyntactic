@@ -70,18 +70,8 @@ typedef enum {
 }
 
 
-- (void) reload {
-  [self reloadTableViewData];
-}
-
-
-- (void) majorRefreshWorker {
-  [self reload];
-}
-
-
-- (void) minorRefreshWorker {
-  [self reload];
+- (void) minorRefresh {
+  [self majorRefresh];
 }
 
 
@@ -348,7 +338,7 @@ typedef enum {
 
 - (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
   [self.controller setDvdBlurayEnabled:sender.on];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -393,7 +383,7 @@ typedef enum {
 
 - (void) onSearchDateChanged:(NSDate*) date {
   [self.controller setSearchDate:date];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -517,7 +507,7 @@ typedef enum {
   userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   [self.controller setUserAddress:userAddress];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 

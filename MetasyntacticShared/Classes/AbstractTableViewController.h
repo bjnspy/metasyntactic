@@ -14,17 +14,25 @@
 
 @interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate> {
 @protected
-    BOOL visible;
-    NSArray* visibleIndexPaths;
+  BOOL visible;
+  BOOL readonlyMode;
+  NSArray* visibleIndexPaths;
+  UISearchDisplayController* searchDisplayController;
 }
 
 - (void) majorRefresh;
 - (void) minorRefresh;
 
 /* @protected */
+@property (retain) UISearchDisplayController* searchDisplayController;
+
 - (AbstractNavigationController*) abstractNavigationController;
-- (void) reloadTableViewData;
-- (void) reloadVisibleCells;
+
 - (void) didReceiveMemoryWarningWorker;
+
+- (void) onBeforeReloadTableViewData;
+- (void) onAfterReloadTableViewData;
+- (void) onBeforeReloadVisibleCells;
+- (void) onAfterReloadVisibleCells;
 
 @end
