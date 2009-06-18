@@ -60,16 +60,16 @@ public class Program {
         if (isRestricted(child)) {
             return;
         }
-        //checkImports(child);
+        checkImports(child);
         //generateForwardDeclarations(child);
-        checkDealloc(child);
+        //checkDealloc(child);
         //removeUnusedImports(child);
-        //insertCopyright(child);
-        //trimRight(child);
+        insertCopyright(child);
+        trimRight(child);
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        //trim(child);
+        trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
@@ -874,11 +874,13 @@ public class Program {
 
         out.flush();
         out.close();
+        /*
         try {
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        */
     }
 
     private static String readFile(final File child) throws IOException {

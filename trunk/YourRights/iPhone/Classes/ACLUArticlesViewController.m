@@ -35,7 +35,7 @@
 - (void) dealloc {
   self.title = nil;
   self.items = nil;
-  
+
   [super dealloc];
 }
 
@@ -44,7 +44,7 @@
   if (self = [super initWithStyle:UITableViewStyleGrouped]) {
     self.title = title_;
   }
-  
+
   return self;
 }
 
@@ -69,7 +69,7 @@
       }
     }
   }
-  
+
   return UITableViewCellAccessoryNone;
 }
 
@@ -110,25 +110,25 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   Item* item = [items objectAtIndex:indexPath.section];
-  
+
   if (indexPath.row == 0) {
     static NSString* reuseIdentifier = @"titleReuseIdentifier";
-    
+
     ArticleTitleCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
       cell = [[[ArticleTitleCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     [cell setItem:item];
     return cell;
   } else {
     static NSString* reuseIdentifier = @"bodyReuseIdentifier";
-    
+
     ArticleBodyCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
       cell = [[[ArticleBodyCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     [cell setItem:item];
     return cell;
   }
@@ -140,11 +140,11 @@
   if (indexPath.section < items.count) {
     if (indexPath.row == 1) {
       Item* review = [items objectAtIndex:indexPath.section];
-      
+
       return MAX([ArticleBodyCell height:review], self.tableView.rowHeight);
     }
   }
-  
+
   return tableView.rowHeight;
 }
 
