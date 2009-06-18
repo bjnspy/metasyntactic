@@ -34,7 +34,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1020" class="Program" package="">
+      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1022" class="Program" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -47,7 +47,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1067" class="Program" package="">
+      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1069" class="Program" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1116" column="38" selection-start="40869" selection-end="40869" vertical-scroll-proportion="1.0194175">
+            <state line="882" column="10" selection-start="33686" selection-end="33686" vertical-scroll-proportion="0.74029124">
               <folding />
             </state>
           </provider>
@@ -243,7 +243,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.YourRights">
+  <component name="RunManager" selected="Application.NowPlaying">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -635,7 +635,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1116" column="38" selection-start="40869" selection-end="40869" vertical-scroll-proportion="1.0194175">
+        <state line="882" column="10" selection-start="33686" selection-end="33686" vertical-scroll-proportion="0.74029124">
           <folding />
         </state>
       </provider>
