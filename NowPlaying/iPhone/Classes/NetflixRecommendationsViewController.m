@@ -31,7 +31,7 @@
 @synthesize genres;
 @synthesize genreToMovies;
 
-- (void)dealloc {
+- (void) dealloc {
   self.genres = nil;
   self.genreToMovies = nil;
 
