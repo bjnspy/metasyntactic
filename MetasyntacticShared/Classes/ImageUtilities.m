@@ -80,7 +80,7 @@
     return nil;
   }
 
-  return UIImageJPEGRepresentation(result, 0.5);
+  return UIImageJPEGRepresentation(result, 0.75);
 }
 
 

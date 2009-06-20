@@ -35,8 +35,14 @@
 		74200D840FD25B7800DEE16B /* AbstractSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */; };
 		74200DA90FD25D7C00DEE16B /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */; };
 		74200DAA0FD25D7C00DEE16B /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */; };
+		742F32750FEC674300B5E516 /* AbstractFullScreenImageListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */; };
+		742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */; };
 		7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */; };
 		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
+		74D3A6170FEC03130083298A /* AbstractFlippableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */; };
+		74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */; };
+		74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */; };
+		74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */; };
 		74E601A80FD1C7990015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
 		74E601A90FD1C7990015D9F8 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAD0F15D9590004B610 /* IdentitySet.h */; };
 		74E601AA0FD1C7990015D9F8 /* MultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB30F15D9590004B610 /* MultiDictionary.h */; };
@@ -221,6 +227,8 @@
 		74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
 		74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
 		74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
+		742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenImageListViewController.h; sourceTree = "<group>"; };
+		742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
 		7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
 		7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
@@ -354,6 +362,14 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFlippableTableViewController.h; sourceTree = "<group>"; };
+		74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
+		74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticStockImages.h; sourceTree = "<group>"; };
+		74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticStockImages.m; sourceTree = "<group>"; };
+		74D3A61F0FEC04950083298A /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Back.png"; path = "Resources/Navigate-Back.png"; sourceTree = "<group>"; };
+		74D3A6200FEC04950083298A /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
+		74D3A6480FEC05BA0083298A /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftArrow.png; path = Resources/LeftArrow.png; sourceTree = "<group>"; };
+		74D3A6490FEC05BA0083298A /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
 		74E601350FD1C5FC0015D9F8 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		74E601360FD1C5FC0015D9F8 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		74E601A20FD1C7700015D9F8 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
@@ -455,6 +471,10 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
+				74D3A6480FEC05BA0083298A /* LeftArrow.png */,
+				74D3A61F0FEC04950083298A /* Navigate-Back.png */,
+				74D3A6200FEC04950083298A /* Navigate-Forward.png */,
+				74D3A6490FEC05BA0083298A /* RightArrow.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -473,12 +493,16 @@
 		741C759E0F8DCAF0003747AD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */,
+				742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */,
 				747C31A50FD0695E00411801 /* AbstractFullScreenTableViewController.h */,
 				747C31A70FD0695E00411801 /* AbstractFullScreenViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
 				747C34FC0FD0772D00411801 /* EditorViewController.h */,
 				74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */,
 				747C333F0FD071A400411801 /* WebViewController.h */,
+				74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */,
+				742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */,
 				747C31A60FD0695E00411801 /* AbstractFullScreenTableViewController.m */,
 				747C31A80FD0695E00411801 /* AbstractFullScreenViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
@@ -762,6 +786,8 @@
 			children = (
 				74E6024F0FD1C82D0015D9F8 /* ColorCache.h */,
 				74E602500FD1C82D0015D9F8 /* ColorCache.m */,
+				74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */,
+				74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -872,6 +898,9 @@
 				74F10D540FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.h in Headers */,
 				74F10D6C0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.h in Headers */,
 				74F10D770FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h in Headers */,
+				74D3A6170FEC03130083298A /* AbstractFlippableTableViewController.h in Headers */,
+				74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */,
+				742F32750FEC674300B5E516 /* AbstractFullScreenImageListViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1029,9 @@
 				74F10D550FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m in Sources */,
 				74F10D6D0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m in Sources */,
 				74F10D780FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m in Sources */,
+				74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */,
+				74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */,
+				742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
