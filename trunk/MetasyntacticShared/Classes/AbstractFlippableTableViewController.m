@@ -13,11 +13,16 @@
 #import "NotificationCenter.h"
 
 @interface AbstractFlippableTableViewController()
+@property (retain) NSMutableDictionary* pageToTableView;
 @end
 
 @implementation AbstractFlippableTableViewController
 
+@synthesize pageToTableView;
+
 - (void) dealloc {
+  self.pageToTableView = nil;
+  
   [super dealloc];
 }
 
@@ -25,6 +30,7 @@
   if ((self = [super initWithStyle:style])) {
     pageCount = 1;
     currentPageIndex = 0;
+    self.pageToTableView = [NSMutableDictionary dictionary];
   }
   return self;
 }
@@ -136,6 +142,7 @@
   
   if (pageCount > 1) {
     self.tableView.tableHeaderView = [self createToolbar];
+    [pageToTableView setObject:self.tableView forKey:[NSNumber numberWithInt:currentPageIndex]];
   }
 }
 
@@ -148,20 +155,53 @@
 - (void) onButtonTapped:(UIViewAnimationTransition) transition {
   [self initializeData];
   
-  UITableView* newTableView = [[[UITableView alloc] initWithFrame:self.tableView.frame style:self.tableView.style] autorelease];
-  newTableView.delegate = self;
-  newTableView.dataSource = self;
-  newTableView.tableHeaderView = [self createToolbar];
-  [newTableView reloadData];
-  
+  NSNumber* pageNumber = [NSNumber numberWithInt:currentPageIndex];
+  UITableView* newTableView = [pageToTableView objectForKey:pageNumber];
+  if (newTableView == nil) {
+    newTableView = [[[UITableView alloc] initWithFrame:self.tableView.frame style:self.tableView.style] autorelease];
+    newTableView.delegate = self;
+    newTableView.dataSource = self;
+    newTableView.tableHeaderView = [self createToolbar];
+    [pageToTableView setObject:newTableView forKey:pageNumber];
+    [newTableView reloadData];
+  }
+
   [UIView beginAnimations:nil context:NULL];
   {
-    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:transition forView:self.tableView.superview cache:YES];
-    
+
     self.tableView = newTableView;
   }
   [UIView commitAnimations];
+
+  [self performSelector:@selector(removeTableViews) withObject:nil afterDelay:5];
+}
+
+
+- (void) removeTableViews {
+  if (pageToTableView.count <= 5) {
+    return;
+  }
+
+  NSInteger distance = 0;
+  NSInteger pageToRemove = -1;
+
+  for (NSNumber* number in pageToTableView) {
+    NSInteger page = number.intValue;
+    if (page == currentPageIndex) {
+      continue;
+    }
+    
+    if (ABS(currentPageIndex - page) > distance) {
+      distance = ABS(currentPageIndex - page);
+      pageToRemove = page;
+    }
+  }
+  
+  if (pageToRemove != -1) {
+    [pageToTableView removeObjectForKey:[NSNumber numberWithInt:pageToRemove]];
+  }
 }
 
 

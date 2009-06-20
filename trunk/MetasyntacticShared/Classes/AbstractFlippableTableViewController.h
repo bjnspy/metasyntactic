@@ -12,6 +12,8 @@
 @protected
   NSInteger pageCount;
   NSInteger currentPageIndex;
+  
+  NSMutableDictionary* pageToTableView;
 }
 
 @end
