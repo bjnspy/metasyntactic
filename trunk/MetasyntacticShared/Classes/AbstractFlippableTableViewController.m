@@ -157,7 +157,7 @@
   [UIView beginAnimations:nil context:NULL];
   {
     [UIView setAnimationDuration:0.75];
-    [UIView setAnimationTransition:transition forView:self.tableView.superview cache:NO];
+    [UIView setAnimationTransition:transition forView:self.tableView.superview cache:YES];
     
     self.tableView = newTableView;
   }

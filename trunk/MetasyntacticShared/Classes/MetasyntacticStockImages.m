@@ -16,7 +16,7 @@ static UIImage* rightArrow;
 static UIImage* navigateBack;
 static UIImage* navigateForward;
 
-+ (void) MetasyntacticStockImages {
++ (void) initialize {
   if (self == [MetasyntacticStockImages class]) {
     leftArrow = [[UIImage imageNamed:@"LeftArrow.png"] retain];
     rightArrow = [[UIImage imageNamed:@"RightArrow.png"] retain];

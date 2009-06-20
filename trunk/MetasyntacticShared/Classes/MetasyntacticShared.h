@@ -38,6 +38,7 @@
 #import "DifferenceEngine.h"
 #import "EditorViewController.h"
 #import "FileUtilities.h"
+#import "FontCache.h"
 #import "IdentitySet.h"
 #import "ImageCache.h"
 #import "ImageUtilities.h"

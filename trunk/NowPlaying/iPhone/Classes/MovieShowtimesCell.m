@@ -14,7 +14,6 @@
 
 #import "MovieShowtimesCell.h"
 
-#import "FontCache.h"
 #import "Model.h"
 #import "Performance.h"
 #import "StockImages.h"

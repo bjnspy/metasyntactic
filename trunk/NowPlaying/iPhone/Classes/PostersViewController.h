@@ -12,20 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PostersViewController : AbstractFullScreenViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
+@interface PostersViewController : AbstractFullScreenImageListViewController {
 @private
     Movie* movie;
-
-    TappableScrollView* scrollView;
-
-    NSInteger currentPage;
-    NSInteger posterCount;
-    NSMutableDictionary* pageNumberToView;
-
-    BOOL shutdown;
-
-    BOOL saving;
-    UILabel* savingLabel;
 }
 
 - (id) initWithMovie:(Movie*) movie
