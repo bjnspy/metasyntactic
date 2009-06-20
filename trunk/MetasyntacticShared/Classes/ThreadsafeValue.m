@@ -69,6 +69,16 @@
 }
 
 
++ (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate
+                          delegate:(id) delegate
+                      loadSelector:(SEL) loadSelector {
+  return [ThreadsafeValue valueWithGate:gate
+                               delegate:delegate
+                           loadSelector:loadSelector
+                           saveSelector:nil];
+}
+
+
 + (ThreadsafeValue*) valueWithGate:(id<NSLocking>) gate {
   return [ThreadsafeValue valueWithGate:gate delegate:nil loadSelector:nil saveSelector:nil];
 }

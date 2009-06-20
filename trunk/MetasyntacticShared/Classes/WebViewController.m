@@ -17,6 +17,7 @@
 #import "AbstractApplication.h"
 #import "AlertUtilities.h"
 #import "MetasyntacticSharedApplication.h"
+#import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 #import "ViewControllerUtilities.h"
 
@@ -107,7 +108,7 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    UIBarButtonItem* navigateBackItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Navigate-Back.png"]
+    UIBarButtonItem* navigateBackItem = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages navigateBack]
                                                                           style:UIBarButtonItemStylePlain
                                                                          target:self
                                                                          action:@selector(onNavigateBackTapped:)] autorelease];
@@ -115,7 +116,7 @@
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    UIBarButtonItem* navigateForwardItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Navigate-Forward.png"]
+  UIBarButtonItem* navigateForwardItem = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages navigateForward]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(onNavigateForwardTapped:)] autorelease];

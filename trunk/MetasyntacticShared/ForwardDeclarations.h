@@ -20,6 +20,7 @@
 @class OAToken;
 
 @class AbstractData;
+@class AbstractFullScreenImageListViewController;
 @class AbstractNavigationController;
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;

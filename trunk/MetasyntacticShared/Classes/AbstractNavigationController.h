@@ -15,6 +15,7 @@
 @interface AbstractNavigationController : UINavigationController {
 @protected
   BOOL visible;
+  AbstractFullScreenImageListViewController* fullScreenImageListController;
 }
 
 - (void) majorRefresh;
@@ -22,5 +23,8 @@
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
+
+- (void) pushFullScreenImageList:(AbstractFullScreenImageListViewController*) controller;
+- (void) popFullScreenImageList;
 
 @end

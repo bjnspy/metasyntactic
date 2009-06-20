@@ -19,6 +19,8 @@
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractData.h"
+#import "AbstractFlippableTableViewController.h"
+#import "AbstractFullScreenImageListViewController.h"
 #import "AbstractFullScreenTableViewController.h"
 #import "AbstractFullScreenViewController.h"
 #import "AbstractNavigationController.h"

@@ -14,19 +14,23 @@
 
 #import "AbstractNavigationController.h"
 
+#import "AbstractFullScreenImageListViewController.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property BOOL visible;
+@property BOOL visible; 
+@property (retain) AbstractFullScreenImageListViewController* fullScreenImageListController;
 @end
 
 
 @implementation AbstractNavigationController
 
 @synthesize visible;
+@synthesize fullScreenImageListController;
 
 - (void) dealloc {
   self.visible = NO;
+  self.fullScreenImageListController = nil;
 
   [super dealloc];
 }
@@ -88,6 +92,10 @@
   if (visible) {
     return;
   }
+  
+  if (fullScreenImageListController != nil) {
+    return;
+  }
 
   [self popToRootViewControllerAnimated:NO];
   [super didReceiveMemoryWarning];
@@ -103,6 +111,22 @@
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
   [self pushBrowser:address showSafariButton:YES animated:animated];
+}
+
+
+- (void) pushFullScreenImageList:(AbstractFullScreenImageListViewController*) controller {
+  if (fullScreenImageListController != nil) {
+    [self popFullScreenImageList];
+  }
+
+  self.fullScreenImageListController = controller;
+  [self pushViewController:controller animated:YES];
+}
+
+
+- (void) popFullScreenImageList {
+  [self popViewControllerAnimated:YES];
+  self.fullScreenImageListController = nil;;
 }
 
 @end
