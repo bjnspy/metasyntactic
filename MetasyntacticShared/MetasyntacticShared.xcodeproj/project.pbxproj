@@ -39,6 +39,8 @@
 		742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */; };
 		7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */; };
 		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
+		74C54A9D0FECA02300178CA3 /* FontCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C54A9B0FECA02300178CA3 /* FontCache.h */; };
+		74C54A9E0FECA02300178CA3 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C54A9C0FECA02300178CA3 /* FontCache.m */; };
 		74D3A6170FEC03130083298A /* AbstractFlippableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */; };
 		74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */; };
 		74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */; };
@@ -362,6 +364,8 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		74C54A9B0FECA02300178CA3 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
+		74C54A9C0FECA02300178CA3 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFlippableTableViewController.h; sourceTree = "<group>"; };
 		74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
 		74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticStockImages.h; sourceTree = "<group>"; };
@@ -785,8 +789,10 @@
 			isa = PBXGroup;
 			children = (
 				74E6024F0FD1C82D0015D9F8 /* ColorCache.h */,
-				74E602500FD1C82D0015D9F8 /* ColorCache.m */,
+				74C54A9B0FECA02300178CA3 /* FontCache.h */,
 				74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */,
+				74E602500FD1C82D0015D9F8 /* ColorCache.m */,
+				74C54A9C0FECA02300178CA3 /* FontCache.m */,
 				74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */,
 			);
 			name = UI;
@@ -901,6 +907,7 @@
 				74D3A6170FEC03130083298A /* AbstractFlippableTableViewController.h in Headers */,
 				74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */,
 				742F32750FEC674300B5E516 /* AbstractFullScreenImageListViewController.h in Headers */,
+				74C54A9D0FECA02300178CA3 /* FontCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1039,7 @@
 				74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */,
 				74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */,
 				742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */,
+				74C54A9E0FECA02300178CA3 /* FontCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

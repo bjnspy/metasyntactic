@@ -25,38 +25,38 @@ static UIFont* footerFont = nil;
 
 
 + (void) initialize {
-    if (self == [FontCache class]) {
-        helvetica14 = [[UIFont fontWithName:@"helvetica" size:14] retain];
-        boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
-        boldSystem18 = [[UIFont boldSystemFontOfSize:18] retain];
-        boldSystem19 = [[UIFont boldSystemFontOfSize:20] retain];
-        footerFont   = [[UIFont systemFontOfSize:15] retain];
-    }
+  if (self == [FontCache class]) {
+    helvetica14 = [[UIFont fontWithName:@"helvetica" size:14] retain];
+    boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
+    boldSystem18 = [[UIFont boldSystemFontOfSize:18] retain];
+    boldSystem19 = [[UIFont boldSystemFontOfSize:20] retain];
+    footerFont   = [[UIFont systemFontOfSize:15] retain];
+  }
 }
 
 
 + (UIFont*) helvetica14 {
-    return helvetica14;
+  return helvetica14;
 }
 
 
 + (UIFont*) boldSystem11 {
-    return boldSystem11;
+  return boldSystem11;
 }
 
 
 + (UIFont*) boldSystem18 {
-    return boldSystem18;
+  return boldSystem18;
 }
 
 
 + (UIFont*) boldSystem19 {
-    return boldSystem19;
+  return boldSystem19;
 }
 
 
 + (UIFont*) footerFont {
-    return footerFont;
+  return footerFont;
 }
 
 @end

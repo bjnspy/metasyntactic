@@ -14,8 +14,6 @@
 
 #import "SquareMovieTitleCell.h"
 
-#import "FontCache.h"
-
 @implementation SquareMovieTitleCell
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
