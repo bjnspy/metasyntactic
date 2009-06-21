@@ -49,14 +49,6 @@ static NSCondition* emptyTrashCondition = nil;
 }
 
 
-+ (void) emptyTrash {
-  [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
-                                onTarget:self
-                                    gate:nil
-                                  daemon:YES];
-}
-
-
 + (void) initializeDirectories {
   tempDirectory = [NSTemporaryDirectory() retain];
 
@@ -90,8 +82,16 @@ static NSCondition* emptyTrashCondition = nil;
     emptyTrashCondition = [[NSCondition alloc] init];
 
     [self initializeDirectories];
-    [self emptyTrash];
+    [self performSelector:@selector(emptyTrash) withObject:nil afterDelay:10];
   }
+}
+
+
++ (void) emptyTrash {
+  [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
+                                onTarget:self
+                                    gate:nil
+                                  daemon:YES];
 }
 
 
