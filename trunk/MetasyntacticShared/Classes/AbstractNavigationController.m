@@ -18,7 +18,7 @@
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property BOOL visible; 
+@property BOOL visible;
 @property (retain) AbstractFullScreenImageListViewController* fullScreenImageListController;
 @end
 
@@ -92,7 +92,7 @@
   if (visible) {
     return;
   }
-  
+
   if (fullScreenImageListController != nil) {
     return;
   }

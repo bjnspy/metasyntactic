@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  AbstractFullScreenImageListViewController.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 6/19/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "AbstractFullScreenImageListViewController.h"
 
@@ -37,7 +43,7 @@ const double LOAD_DELAY = 1;
   self.pageNumberToView = nil;
   self.scrollView = nil;
   self.savingLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -45,12 +51,12 @@ const double LOAD_DELAY = 1;
 - (id) initWithImageCount:(NSInteger) imageCount_ {
   if ((self = [super init])) {
     imageCount = imageCount_;
-    
+
     self.wantsFullScreenLayout = YES;
-    
+
     self.pageNumberToView = [NSMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 
@@ -77,9 +83,9 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
-  
+
   [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
-  
+
   [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
   [self.abstractNavigationController setToolbarHidden:NO animated:YES];
   self.abstractNavigationController.toolbar.barStyle = UIBarStyleBlack;
@@ -89,10 +95,10 @@ const double LOAD_DELAY = 1;
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
-  
+
   [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
   [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];
-  
+
   [self.abstractNavigationController setToolbarHidden:YES animated:YES];
 }
 
@@ -106,13 +112,13 @@ const double LOAD_DELAY = 1;
   downloadingLabel.font = [UIFont boldSystemFontOfSize:24];
   downloadingLabel.textColor = [UIColor whiteColor];
   [downloadingLabel sizeToFit];
-  
+
   CGRect frame = [UIScreen mainScreen].bounds;
   CGRect labelFrame = downloadingLabel.frame;
   labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
   labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
   downloadingLabel.frame = labelFrame;
-  
+
   return downloadingLabel;
 }
 
@@ -122,16 +128,16 @@ const double LOAD_DELAY = 1;
   activityIndicator.tag = ACTIVITY_INDICATOR_TAG;
   activityIndicator.hidesWhenStopped = YES;
   [activityIndicator sizeToFit];
-  
+
   CGRect labelFrame = label.frame;
   CGRect activityFrame = activityIndicator.frame;
-  
+
   activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
   activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
   activityIndicator.frame = activityFrame;
-  
+
   [activityIndicator startAnimating];
-  
+
   return activityIndicator;
 }
 
@@ -145,16 +151,16 @@ const double LOAD_DELAY = 1;
   }
   UILabel* downloadingLabel = [self createDownloadingLabel:text];
   UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
-  
+
   CGRect frame = activityIndicator.frame;
   double width = frame.size.width;
   frame.origin.x = (int)(frame.origin.x + width / 2);
   activityIndicator.frame = frame;
-  
+
   frame = downloadingLabel.frame;
   frame.origin.x = (int)(frame.origin.x + width / 2);
   downloadingLabel.frame = frame;
-  
+
   [pageView addSubview:activityIndicator];
   [pageView addSubview:downloadingLabel];
 }
@@ -164,13 +170,13 @@ const double LOAD_DELAY = 1;
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
   imageView.tag = IMAGE_TAG;
   imageView.contentMode = UIViewContentModeScaleAspectFill;
-  
+
   CGRect frame = [UIScreen mainScreen].bounds;
-  
+
   if (image.size.width > image.size.height) {
     int offset = (int)((frame.size.height - frame.size.width) / 2.0);
     CGRect imageFrame = CGRectMake(-offset, offset + 5, frame.size.height, frame.size.width - 10);
-    
+
     imageView.frame = imageFrame;
     imageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
   } else {
@@ -178,14 +184,14 @@ const double LOAD_DELAY = 1;
     imageView.frame = imageFrame;
     imageView.clipsToBounds = YES;
   }
-  
+
   return imageView;
 }
 
 
 - (TappableScrollView*) createScrollView {
   CGRect frame = [UIScreen mainScreen].bounds;
-  
+
   self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
   scrollView.delegate = self;
   scrollView.tapDelegate = self;
@@ -197,10 +203,10 @@ const double LOAD_DELAY = 1;
   scrollView.directionalLockEnabled = YES;
   scrollView.autoresizingMask = 0;
   scrollView.backgroundColor = [UIColor blackColor];
-  
+
   frame.size.width *= imageCount;
   scrollView.contentSize = frame.size;
-  
+
   return scrollView;
 }
 
@@ -209,7 +215,7 @@ const double LOAD_DELAY = 1;
   id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
   [view stopAnimating];
   [view removeFromSuperview];
-  
+
   view = [pageView viewWithTag:LABEL_TAG];
   [view removeFromSuperview];
 }
@@ -217,11 +223,11 @@ const double LOAD_DELAY = 1;
 
 - (void) addImage:(UIImage*) image toView:(UIView*) pageView {
   [self disableActivityIndicator:pageView];
-  
+
   UIImageView* imageView = [self createImageView:image];
   [pageView addSubview:imageView];
   imageView.alpha = 0;
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     imageView.alpha = 1;
@@ -236,7 +242,7 @@ const double LOAD_DELAY = 1;
       index.intValue > (currentPage + 1)) {
     return;
   }
-  
+
   if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
     // should this be 'afterDelay:0'?  That way we do it on the next run
     // loop cycle (which should happen after dragging/decelerating is done).
@@ -248,7 +254,7 @@ const double LOAD_DELAY = 1;
                afterDelay:LOAD_DELAY];
     return;
   }
-  
+
   [self addImage:[arguments objectAtIndex:1]
           toView:[arguments objectAtIndex:2]];
 }
@@ -259,20 +265,20 @@ const double LOAD_DELAY = 1;
   if (page < 0 || page >= imageCount) {
     return;
   }
-  
+
   NSNumber* pageNumber = [NSNumber numberWithInt:page];
   if ([pageNumberToView objectForKey:pageNumber] != nil) {
     return;
   }
-  
+
   CGRect frame = [UIScreen mainScreen].bounds;
   frame.origin.x = page * frame.size.width;
-  
+
   UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
   pageView.backgroundColor = [UIColor blackColor];
   pageView.tag = page;
   pageView.clipsToBounds = YES;
-  
+
   UIImage* image = nil;
   if (delay == 0) {
     image = [self imageForPage:page];
@@ -287,7 +293,7 @@ const double LOAD_DELAY = 1;
                withObject:indexAndPageView
                afterDelay:delay];
   }
-  
+
   [scrollView addSubview:pageView];
   [pageNumberToView setObject:pageView forKey:pageNumber];
 }
@@ -297,19 +303,19 @@ const double LOAD_DELAY = 1;
   if (shutdown) {
     return;
   }
-  
+
   NSNumber* index = [indexAndPageView objectAtIndex:0];
-  
+
   if (index.intValue < (currentPage - 1) ||
       index.intValue > (currentPage + 1)) {
     return;
   }
-  
+
   if (scrollView.dragging || scrollView.decelerating || scrollView.tracking) {
     [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
     return;
   }
-  
+
   UIImage* image = [self imageForPage:index.intValue];
   if (image == nil) {
     [self performSelector:@selector(loadPoster:)
@@ -332,18 +338,18 @@ const double LOAD_DELAY = 1;
   savingLabel.shadowColor = [UIColor darkGrayColor];
   savingLabel.text = LocalizedString(@"Saving", nil);
   [savingLabel sizeToFit];
-  
+
   NSMutableArray* items = [NSMutableArray array];
-  
+
   [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
   [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingLabel] autorelease]];
-  
+
   UIActivityIndicatorView* savingActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
   [savingActivityIndicator startAnimating];
-  
+
   [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingActivityIndicator] autorelease]];
   [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-  
+
   [self setToolbarItems:items animated:YES];
 }
 
@@ -363,7 +369,7 @@ const double LOAD_DELAY = 1;
   NSString* title =
   [NSString stringWithFormat:
    LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPage + 1), imageCount];
-  
+
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
   label.font = [UIFont boldSystemFontOfSize:20];
@@ -372,48 +378,48 @@ const double LOAD_DELAY = 1;
   label.opaque = NO;
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
-  
+
   NSMutableArray* items = [NSMutableArray array];
-  
+
   if (self.allowsSaving) {
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onActionTapped:)] autorelease]];
   } else {
     [items addObject:self.createFlexibleSpace];
   }
-  
+
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
-  
+
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(onLeftTapped:)] autorelease];
   [items addObject:leftArrow];
-  
+
   [items addObject:self.createFlexibleSpace];
-  
+
   UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
   [items addObject:titleItem];
-  
-  [items addObject:self.createFlexibleSpace]; 
-  
+
+  [items addObject:self.createFlexibleSpace];
+
   UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onRightTapped:)] autorelease];
   [items addObject:rightArrow];
-  
-  [items addObject:self.createFlexibleSpace];  
-  
+
+  [items addObject:self.createFlexibleSpace];
+
   UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
   [items addObject:doneItem];
-  
+
   [self setToolbarItems:items animated:YES];
-  
+
   if (currentPage <= 0) {
     leftArrow.enabled = NO;
   }
-  
+
   if (currentPage >= (imageCount - 1)) {
     rightArrow.enabled = NO;
   }
@@ -433,12 +439,12 @@ const double LOAD_DELAY = 1;
     if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
       UIView* pageView = [pageNumberToView objectForKey:pageNumber];
       [self disableActivityIndicator:pageView];
-      
+
       [pageView removeFromSuperview];
       [pageNumberToView removeObjectForKey:pageNumber];
     }
   }
-  
+
   [self loadPage:currentPage - 1 delay:LOAD_DELAY];
   [self loadPage:currentPage     delay:LOAD_DELAY];
   [self loadPage:currentPage + 1 delay:LOAD_DELAY];
@@ -448,7 +454,7 @@ const double LOAD_DELAY = 1;
 - (void) setPage:(NSInteger) page {
   if (page != currentPage) {
     currentPage = page;
-    
+
     [self setupToolbar];
     [self clearAndLoadPages];
   }
@@ -459,7 +465,7 @@ const double LOAD_DELAY = 1;
   if (saving) {
     return;
   }
-  
+
   [self.abstractNavigationController setToolbarHidden:YES animated:YES];
 }
 
@@ -505,7 +511,7 @@ const double LOAD_DELAY = 1;
                    destructiveButtonTitle:nil
                         otherButtonTitles:LocalizedString(@"Save to Photo Library", nil), nil] autorelease];
   }
-  
+
   [actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
@@ -563,14 +569,14 @@ const double LOAD_DELAY = 1;
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
-  
+
   if (saving) {
     return;
   }
   saving = YES;
-  
+
   [self setupSavingToolbar];
-  
+
   if (buttonIndex == 0) {
     [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
                                   onTarget:self
@@ -589,16 +595,16 @@ const double LOAD_DELAY = 1;
 
 - (void) loadView {
   [super loadView];
-  
+
   [self createScrollView];
-  
+
   [self setupToolbar];
   [self showToolBar];
-  
+
   // load the first two pages.  Try to load the first one immediately.
   [self loadPage:0 delay:0];
   [self loadPage:1 delay:LOAD_DELAY];
-  
+
   [self.view addSubview:scrollView];
 }
 
@@ -625,7 +631,7 @@ const double LOAD_DELAY = 1;
   if (saving) {
     return;
   }
-  
+
   if (imageCount == 1) {
     // just dismiss us
     [self dismiss];
@@ -647,7 +653,7 @@ const double LOAD_DELAY = 1;
 - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
   CGFloat pageWidth = scrollView.frame.size.width;
   NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
-  
+
   [self setPage:page];
 }
 

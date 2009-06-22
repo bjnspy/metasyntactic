@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  AbstractFlippableTableViewController.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 6/19/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "AbstractFlippableTableViewController.h"
 
@@ -22,7 +28,7 @@
 
 - (void) dealloc {
   self.pageToTableView = nil;
-  
+
   [super dealloc];
 }
 
@@ -45,7 +51,7 @@
   NSString* title =
   [NSString stringWithFormat:
    LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPageIndex + 1), pageCount];
-  
+
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
   label.font = [UIFont boldSystemFontOfSize:18];
@@ -54,39 +60,39 @@
   label.opaque = NO;
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
-  
+
   NSMutableArray* items = [NSMutableArray array];
-    
+
   [items addObject:self.createFlexibleSpace];
-  
+
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(onLeftTapped:)] autorelease];
   [items addObject:leftArrow];
-  
+
   [items addObject:self.createFlexibleSpace];
-  
+
   UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
   [items addObject:titleItem];
-  
+
   [items addObject:self.createFlexibleSpace];
-  
+
   UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onRightTapped:)] autorelease];
   [items addObject:rightArrow];
-  
+
   [items addObject:self.createFlexibleSpace];
-    
+
   [toolbar setItems:items animated:YES];
   //[self setToolbarItems:items animated:YES];
-  
+
   if (currentPageIndex <= 0) {
     leftArrow.enabled = NO;
   }
-  
+
   if (currentPageIndex >= (pageCount - 1)) {
     rightArrow.enabled = NO;
   }
@@ -127,7 +133,7 @@
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
-  
+
   //self.navigationController.toolbar.barStyle = UIBarStyleDefault;
   //self.navigationController.toolbar.translucent = NO;
   //[self.navigationController setToolbarHidden:YES animated:animated];
@@ -139,7 +145,7 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   if (pageCount > 1) {
     self.tableView.tableHeaderView = [self createToolbar];
     [pageToTableView setObject:self.tableView forKey:[NSNumber numberWithInt:currentPageIndex]];
@@ -154,7 +160,7 @@
 
 - (void) onButtonTapped:(UIViewAnimationTransition) transition {
   [self initializeData];
-  
+
   NSNumber* pageNumber = [NSNumber numberWithInt:currentPageIndex];
   UITableView* newTableView = [pageToTableView objectForKey:pageNumber];
   if (newTableView == nil) {
@@ -192,13 +198,13 @@
     if (page == currentPageIndex) {
       continue;
     }
-    
+
     if (ABS(currentPageIndex - page) > distance) {
       distance = ABS(currentPageIndex - page);
       pageToRemove = page;
     }
   }
-  
+
   if (pageToRemove != -1) {
     [pageToTableView removeObjectForKey:[NSNumber numberWithInt:pageToRemove]];
   }

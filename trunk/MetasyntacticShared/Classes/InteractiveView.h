@@ -19,13 +19,13 @@
 @interface InteractiveView : UIView {
 @private
   BOOL pinching;
-  
+
   CGPoint startSwipePosition;
   CGPoint previousTouchPosition;
-  
+
   CGPoint previousPinchUpperLeftPosition;
   CGPoint previousPinchLowerRightPosition;
-  
+
   id<TappableViewDelegate> tapDelegate;
   id<TouchableViewDelegate> touchDelegate;
   id<PinchableViewDelegate> pinchDelegate;
