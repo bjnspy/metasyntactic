@@ -17,25 +17,26 @@
 @implementation ViewControllerUtilities
 
 + (UILabel*) viewControllerTitleLabel:(NSString*) text {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
-
-    label.adjustsFontSizeToFitWidth = YES;
-    label.opaque = NO;
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor darkGrayColor];
-    label.font = [UIFont boldSystemFontOfSize:20];
-    label.textAlignment = UITextAlignmentCenter;
-    label.minimumFontSize = 14;
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.text = text;
-
-    return label;
+  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
+  
+  label.adjustsFontSizeToFitWidth = YES;
+  label.opaque = NO;
+  label.backgroundColor = [UIColor clearColor];
+  label.textColor = [UIColor whiteColor];
+  label.shadowColor = [UIColor darkGrayColor];
+  label.font = [UIFont boldSystemFontOfSize:20];
+  label.textAlignment = UITextAlignmentCenter;
+  label.minimumFontSize = 12;
+  label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  label.lineBreakMode = UILineBreakModeMiddleTruncation;
+  label.text = text;
+  
+  return label;
 }
 
 
 + (UILabel*) viewControllerTitleLabel {
-    return [self viewControllerTitleLabel:@""];
+  return [self viewControllerTitleLabel:@""];
 }
 
 @end
