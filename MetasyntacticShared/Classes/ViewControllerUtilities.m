@@ -18,7 +18,7 @@
 
 + (UILabel*) viewControllerTitleLabel:(NSString*) text {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
-  
+
   label.adjustsFontSizeToFitWidth = YES;
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
@@ -30,7 +30,7 @@
   label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   label.lineBreakMode = UILineBreakModeMiddleTruncation;
   label.text = text;
-  
+
   return label;
 }
 

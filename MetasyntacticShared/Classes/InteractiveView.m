@@ -33,7 +33,7 @@
   if ((self = [super initWithFrame:frame])) {
     self.multipleTouchEnabled = YES;
   }
-  
+
   return self;
 }
 
@@ -54,13 +54,13 @@
   NSArray* touchesArray = event.allTouches.allObjects;
   UITouch* touch1 = [touchesArray objectAtIndex:0];
   UITouch* touch2 = [touchesArray objectAtIndex:1];
-  
+
   CGPoint point1 = [touch1 locationInView:self];
   CGPoint point2 = [touch2 locationInView:self];
-  
+
   previousPinchUpperLeftPosition = CGPointMake(MIN(point1.x, point2.x), MIN(point1.y, point2.y));
   previousPinchLowerRightPosition = CGPointMake(MAX(point1.x, point2.x), MAX(point1.y, point2.y));
-  
+
   if (pinchDelegate != nil) {
     [pinchDelegate view:self pinchStarted:previousPinchUpperLeftPosition
          fromLowerRight:previousPinchLowerRightPosition];
@@ -72,13 +72,13 @@
             withEvent:(UIEvent*) event {
   [super touchesBegan:touches withEvent:event];
   NSLog(@"Touches began");
-  
+
   if (pinching) {
     return;
   }
-  
+
   NSSet* allTouches = event.allTouches;
-  
+
   if (allTouches.count == 1) {
     [self initializeSwipe:touches];
   } else if (allTouches.count == 2) {
@@ -90,7 +90,7 @@
 - (void) handleTouch:(NSSet*) touches {
   UITouch* touch = [touches anyObject];
   CGPoint currentTouchPosition = [touch locationInView:self];
-  
+
   NSInteger xDelta = ABS(startSwipePosition.x - currentTouchPosition.x);
   NSInteger yDelta = ABS(startSwipePosition.y - currentTouchPosition.y);
   if (xDelta > SWIPE_DRAG_MIN || yDelta > SWIPE_DRAG_MIN) {
@@ -125,18 +125,18 @@
   NSArray* touchesArray = event.allTouches.allObjects;
   UITouch* touch1 = [touchesArray objectAtIndex:0];
   UITouch* touch2 = [touchesArray objectAtIndex:1];
-  
+
   CGPoint endPoint1 = [touch1 locationInView:self];
   CGPoint endPoint2 = [touch2 locationInView:self];
-  
+
   CGPoint startUpperLeft = previousPinchUpperLeftPosition;
   CGPoint startLowerRight = previousPinchLowerRightPosition;
   CGPoint endUpperLeft = CGPointMake(MIN(endPoint1.x, endPoint2.x), MIN(endPoint1.y, endPoint2.y));
   CGPoint endLowerRight = CGPointMake(MAX(endPoint1.x, endPoint2.x), MAX(endPoint1.y, endPoint2.y));
-  
+
   previousPinchUpperLeftPosition = endUpperLeft;
   previousPinchLowerRightPosition = endLowerRight;
-  
+
   [pinchDelegate view:self
            wasPinched:startUpperLeft
        fromLowerRight:startLowerRight
@@ -148,7 +148,7 @@
 - (void) touchesMoved:(NSSet*) touches
             withEvent:(UIEvent*) event {
   [super touchesMoved:touches withEvent:event];
-  
+
   NSSet* allTouches = event.allTouches;
   if (!pinching && allTouches.count == 1) {
     [self handleTouch:touches];
@@ -166,9 +166,9 @@
             withEvent:(UIEvent*) event {
   [super touchesEnded:touches withEvent:event];
   NSLog(@"Touches ended");
-  
+
   pinching = NO;
-  
+
   UITouch* touch = touches.anyObject;
   if (touch.tapCount > 0) {
     [tapDelegate view:self wasTouched:touch tapCount:touch.tapCount];
