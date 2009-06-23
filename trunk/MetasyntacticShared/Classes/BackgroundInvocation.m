@@ -80,11 +80,7 @@ static NSInteger nonDaemonBackgroundTaskCount = 0;
   NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
   [[NSThread currentThread] setName:name];
 
-  if (daemon) {
-    [NSThread setThreadPriority:0.0];
-  } else {
-    [NSThread setThreadPriority:0.25];
-  }
+  [NSThread setThreadPriority:0.0];
 
   if (!daemon) {
     [dataGate lock];
