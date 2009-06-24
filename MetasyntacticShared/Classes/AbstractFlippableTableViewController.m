@@ -25,22 +25,14 @@
 }
 
 - (void) moveTo:(UITableView*) newTableView withTransition:(UIViewAnimationTransition) transition {
-  [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
   [UIView beginAnimations:nil context:NULL];
   {
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:transition forView:self.tableView.superview cache:YES];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
     self.tableView = newTableView;
   }
   [UIView commitAnimations];
-}
-
-
-- (void) animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-  [[UIApplication sharedApplication] endIgnoringInteractionEvents];
 }
 
 
