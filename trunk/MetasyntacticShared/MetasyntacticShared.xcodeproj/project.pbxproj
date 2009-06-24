@@ -39,6 +39,10 @@
 		742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */; };
 		7432BACF0FD5766300AA0D73 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */; };
 		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
+		74BD09970FF1D95400DB9692 /* AbstractMultiPageTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */; };
+		74BD09980FF1D95400DB9692 /* AbstractMultiPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */; };
+		74BD099B0FF1D96C00DB9692 /* AbstractSlidableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */; };
+		74BD099C0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD099A0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m */; };
 		74C54A9D0FECA02300178CA3 /* FontCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C54A9B0FECA02300178CA3 /* FontCache.h */; };
 		74C54A9E0FECA02300178CA3 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C54A9C0FECA02300178CA3 /* FontCache.m */; };
 		74D3A6170FEC03130083298A /* AbstractFlippableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */; };
@@ -364,6 +368,10 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMultiPageTableViewController.h; sourceTree = "<group>"; };
+		74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMultiPageTableViewController.m; sourceTree = "<group>"; };
+		74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
+		74BD099A0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidableTableViewController.m; sourceTree = "<group>"; };
 		74C54A9B0FECA02300178CA3 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
 		74C54A9C0FECA02300178CA3 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFlippableTableViewController.h; sourceTree = "<group>"; };
@@ -501,6 +509,8 @@
 				742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */,
 				747C31A50FD0695E00411801 /* AbstractFullScreenTableViewController.h */,
 				747C31A70FD0695E00411801 /* AbstractFullScreenViewController.h */,
+				74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */,
+				74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
 				747C34FC0FD0772D00411801 /* EditorViewController.h */,
 				74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */,
@@ -509,6 +519,8 @@
 				742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */,
 				747C31A60FD0695E00411801 /* AbstractFullScreenTableViewController.m */,
 				747C31A80FD0695E00411801 /* AbstractFullScreenViewController.m */,
+				74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */,
+				74BD099A0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
 				747C34FD0FD0772D00411801 /* EditorViewController.m */,
 				74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */,
@@ -908,6 +920,8 @@
 				74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */,
 				742F32750FEC674300B5E516 /* AbstractFullScreenImageListViewController.h in Headers */,
 				74C54A9D0FECA02300178CA3 /* FontCache.h in Headers */,
+				74BD09970FF1D95400DB9692 /* AbstractMultiPageTableViewController.h in Headers */,
+				74BD099B0FF1D96C00DB9692 /* AbstractSlidableTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,6 +1054,8 @@
 				74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */,
 				742F32760FEC674300B5E516 /* AbstractFullScreenImageListViewController.m in Sources */,
 				74C54A9E0FECA02300178CA3 /* FontCache.m in Sources */,
+				74BD09980FF1D95400DB9692 /* AbstractMultiPageTableViewController.m in Sources */,
+				74BD099C0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

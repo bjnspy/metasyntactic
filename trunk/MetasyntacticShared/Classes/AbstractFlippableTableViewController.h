@@ -12,14 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractTableViewController.h"
+#import "AbstractMultiPageTableViewController.h"
 
-@interface AbstractFlippableTableViewController : AbstractTableViewController {
-@protected
-  NSInteger pageCount;
-  NSInteger currentPageIndex;
-
-  NSMutableDictionary* pageToTableView;
+@interface AbstractFlippableTableViewController : AbstractMultiPageTableViewController {
 }
 
 @end
