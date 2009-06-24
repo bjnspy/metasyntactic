@@ -145,9 +145,9 @@ const double LOAD_DELAY = 1;
 - (void) createDownloadViews:(UIView*) pageView page:(NSInteger) page {
   NSString* text;
   if ([self imageExistsForPage:page]) {
-    text = LocalizedString(@"Loading poster", nil);
+    text = LocalizedString(@"Loading image", nil);
   } else {
-    text = LocalizedString(@"Downloading poster", nil);
+    text = LocalizedString(@"Downloading image", nil);
   }
   UILabel* downloadingLabel = [self createDownloadingLabel:text];
   UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
