@@ -27,6 +27,7 @@
 #import "AbstractSearchEngine.h"
 #import "AbstractSearchRequest.h"
 #import "AbstractSearchResult.h"
+#import "AbstractSlidableTableViewController.h"
 #import "AbstractTableViewController.h"
 #import "ActionsView.h"
 #import "AlertUtilities.h"
