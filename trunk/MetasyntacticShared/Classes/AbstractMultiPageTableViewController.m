@@ -83,41 +83,30 @@
   
   NSMutableArray* items = [NSMutableArray array];
   
-  [items addObject:self.createFlexibleSpace];
-  [items addObject:self.createFlexibleSpace];
-  
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(onLeftTapped:)] autorelease];
-  [items addObject:leftArrow];
-  
-  [items addObject:self.createFlexibleSpace];
-  
-  UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
-  [items addObject:titleItem];
-  
-  [items addObject:self.createFlexibleSpace];
-  
+                                                     style:UIBarButtonItemStylePlain
+                                                    target:self
+                                                    action:@selector(onLeftTapped:)] autorelease];
   UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(onRightTapped:)] autorelease];
-  [items addObject:rightArrow];
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:self
+                                                     action:@selector(onRightTapped:)] autorelease];
   
+  [items addObject:self.createFlexibleSpace];
+  [items addObject:self.createFlexibleSpace];
+  [items addObject:leftArrow];
+  [items addObject:self.createFlexibleSpace];
+  [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:label] autorelease]];
+  [items addObject:self.createFlexibleSpace];
+  [items addObject:rightArrow];
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
   
   [toolbar setItems:items animated:YES];
   //[self setToolbarItems:items animated:YES];
   
-  if (currentPageIndex <= 0) {
-    leftArrow.enabled = NO;
-  }
-  
-  if (currentPageIndex >= (pageCount - 1)) {
-    rightArrow.enabled = NO;
-  }
+  leftArrow.enabled = (currentPageIndex > 0);
+  rightArrow.enabled = (currentPageIndex < (pageCount - 1));
 }
 
 

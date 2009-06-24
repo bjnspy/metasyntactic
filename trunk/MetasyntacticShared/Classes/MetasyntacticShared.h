@@ -18,6 +18,7 @@
 
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
+#import "AbstractCurlableTableViewController.h"
 #import "AbstractData.h"
 #import "AbstractFlippableTableViewController.h"
 #import "AbstractFullScreenImageListViewController.h"
@@ -28,6 +29,7 @@
 #import "AbstractSearchRequest.h"
 #import "AbstractSearchResult.h"
 #import "AbstractSlidableTableViewController.h"
+#import "AbstractStackableTableViewController.h"
 #import "AbstractTableViewController.h"
 #import "ActionsView.h"
 #import "AlertUtilities.h"
