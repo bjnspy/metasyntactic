@@ -53,7 +53,7 @@
       return movie;
     }
   }
-  
+
   return nil;
 }
 
@@ -64,7 +64,7 @@
       return theater;
     }
   }
-  
+
   return nil;
 }
 
@@ -72,11 +72,11 @@
 - (void) navigateToLastViewedPage {
   NSArray* types = self.model.navigationStackTypes;
   NSArray* values = self.model.navigationStackValues;
-  
+
   for (int i = 0; i < types.count; i++) {
     NSInteger type = [[types objectAtIndex:i] intValue];
     id value = [values objectAtIndex:i];
-    
+
     if (type == MovieDetails) {
       Movie* movie = [self movieForTitle:value];
       [self pushMovieDetails:movie animated:NO];
@@ -90,7 +90,7 @@
       Movie* movie = [self movieForTitle:[value objectAtIndex:0]];
       Theater* theater = [self theaterForName:[value objectAtIndex:1]];
       NSString* title = [value objectAtIndex:2];
-      
+
       [self pushTicketsView:movie theater:theater title:title animated:NO];
     }
   }
@@ -99,7 +99,7 @@
 
 - (void) pushReviews:(Movie*) movie animated:(BOOL) animated {
   ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithMovie:movie] autorelease];
-  
+
   [self pushViewController:controller animated:animated];
 }
 
@@ -109,7 +109,7 @@
   if (movie == nil) {
     return;
   }
-  
+
   UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithMovie:movie] autorelease];
   [self pushViewController:viewController animated:animated];
 }
@@ -119,7 +119,7 @@
   if (theater == nil) {
     return;
   }
-  
+
   UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithTheater:theater] autorelease];
   [self pushViewController:viewController animated:animated];
 }
@@ -132,11 +132,11 @@
   if (movie == nil || theater == nil) {
     return;
   }
-  
+
   UIViewController* viewController = [[[TicketsViewController alloc] initWithTheater:theater
                                                                                movie:movie
                                                                                title:title] autorelease];
-  
+
   [self pushViewController:viewController animated:animated];
 }
 
@@ -146,24 +146,24 @@
   if (interfaceOrientation == UIInterfaceOrientationPortrait) {
     return YES;
   }
-  
+
   return self.model.screenRotationEnabled && fullScreenImageListController == nil;
 }
 
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
-  
+
   PostersViewController* controller =
   [[[PostersViewController alloc] initWithMovie:movie
                                     posterCount:posterCount] autorelease];
-  
+
   [super pushFullScreenImageList:controller];
 }
 
 
 - (void) pushInfoControllerAnimated:(BOOL) animated {
   UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
-  
+
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
   if (![Application isIPhone]) {
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

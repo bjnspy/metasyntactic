@@ -184,7 +184,7 @@
 
   NSString* subject;
   if ([LocaleUtilities isJapanese]) {
-    subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+    subject = @"Now Playingのフィードバック";
   } else {
     subject = @"Now Playing Feedback";
   }
