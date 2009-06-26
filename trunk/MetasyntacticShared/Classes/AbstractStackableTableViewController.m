@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  AbstractStackableTableViewController.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 6/24/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "AbstractStackableTableViewController.h"
 
@@ -47,21 +53,24 @@
 }
 
 
+const CGFloat SCALE_FACTOR = 2;
+
+
 - (void) moveBackward:(UITableView*) previousTableView {
   UITableView* currentTableView = self.tableView;
   //CGRect currentTableFrame = currentTableView.frame;
-  
+
   previousTableView.frame = currentTableView.frame;
   [self.tableView.superview insertSubview:previousTableView belowSubview:currentTableView];
-  
+
   [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
   [UIView beginAnimations:nil context:previousTableView];
   {
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:0.2];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-    
-    currentTableView.transform = CGAffineTransformMakeScale(2, 2);
+
+    currentTableView.transform = CGAffineTransformMakeScale(SCALE_FACTOR, SCALE_FACTOR);
     currentTableView.alpha = 0;
   }
   [UIView commitAnimations];
@@ -70,13 +79,13 @@
 
 - (void) moveForward:(UITableView*) nextTableView {
   nextTableView.alpha = 0;
-  nextTableView.transform = CGAffineTransformMakeScale(2, 2);
+  nextTableView.transform = CGAffineTransformMakeScale(SCALE_FACTOR, SCALE_FACTOR);
   [self.tableView.superview addSubview:nextTableView];
-  
+
   [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
   [UIView beginAnimations:nil context:nextTableView];
   {
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:0.2];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 

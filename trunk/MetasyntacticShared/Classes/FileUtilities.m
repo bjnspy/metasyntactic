@@ -131,7 +131,7 @@ static MainThreadGate* gate;
     NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
                                                                    format:NSPropertyListBinaryFormat_v1_0
                                                          errorDescription:NULL];
-    
+
     if (plistData != nil) {
       [plistData writeToFile:file atomically:YES];
     } if (object == nil) {
@@ -146,9 +146,9 @@ static MainThreadGate* gate;
   if (file == nil) {
     return nil;
   }
-  
+
   //NSLog(@"FileUtilities:readObject - %@", file.lastPathComponent);
-  
+
   id result = nil;
   [gate lock];
   {
@@ -180,7 +180,7 @@ static MainThreadGate* gate;
   if (file == nil) {
     return nil;
   }
-  
+
   NSData* result = nil;
   [gate lock];
   {
@@ -193,13 +193,13 @@ static MainThreadGate* gate;
 
 + (BOOL) isDirectory:(NSString*) path {
   BOOL result;
-  
+
   [gate lock];
   {
     [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&result];
   }
   [gate unlock];
-  
+
   return result;
 }
 

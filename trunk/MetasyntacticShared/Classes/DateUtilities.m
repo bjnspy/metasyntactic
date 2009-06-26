@@ -43,7 +43,7 @@ static BOOL use24HourTime;
 + (void) initialize {
   if (self == [DateUtilities class]) {
     gate = [[NSRecursiveLock alloc] init];
-    
+
     timeDifferenceMap = [[NSMutableDictionary alloc] init];
     iso8601Map = [[NSMutableDictionary alloc] init];
     calendar = [[NSCalendar currentCalendar] retain];
@@ -53,46 +53,46 @@ static BOOL use24HourTime;
       todayComponents.hour = 12;
       today = [[calendar dateFromComponents:todayComponents] retain];
     }
-    
+
     yearsAgoMap = [[NSMutableDictionary alloc] init];
     monthsAgoMap = [[NSMutableDictionary alloc] init];
     weeksAgoMap = [[NSMutableDictionary alloc] init];
-    
+
     {
       shortDateFormatter = [[NSDateFormatter alloc] init];
       [shortDateFormatter setDateStyle:NSDateFormatterShortStyle];
       [shortDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
-    
+
     {
       mediumDateFormatter = [[NSDateFormatter alloc] init];
       [mediumDateFormatter setDateStyle:NSDateFormatterMediumStyle];
       [mediumDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
-    
+
     {
       longDateFormatter = [[NSDateFormatter alloc] init];
       [longDateFormatter setDateStyle:NSDateFormatterLongStyle];
       [longDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
-    
+
     {
       fullDateFormatter = [[NSDateFormatter alloc] init];
       [fullDateFormatter setDateStyle:NSDateFormatterFullStyle];
       [fullDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
-    
+
     {
       shortTimeFormatter = [[NSDateFormatter alloc] init];
       [shortTimeFormatter setDateStyle:NSDateFormatterNoStyle];
       [shortTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
     }
-    
+
     {
       yearFormatter = [[NSDateFormatter alloc] init];
       [yearFormatter setDateFormat:@"YYYY"];
     }
-    
+
     {
       NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
       [formatter setTimeStyle:NSDateFormatterLongStyle];
@@ -153,20 +153,20 @@ static BOOL use24HourTime;
   } else if (interval > ONE_WEEK) {
     return [self weeksAgoString:(int)(interval / ONE_WEEK)];
   }
-  
+
   NSCalendar* calendar = [NSCalendar currentCalendar];
   NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit)
                                              fromDate:date
                                                toDate:today
                                               options:0];
-  
+
   if (components.day == 0) {
     return LocalizedString(@"Today", nil);
   } else if (components.day == 1) {
     return LocalizedString(@"Yesterday", nil);
   } else {
     NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
-    
+
     NSInteger weekday = components2.weekday;
     switch (weekday) {
       case 1: return LocalizedString(@"Last Sunday", nil);
@@ -199,7 +199,7 @@ static BOOL use24HourTime;
 + (NSDate*) tomorrow {
   NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
   components.day = 1;
-  
+
   return [[NSCalendar currentCalendar] dateByAddingComponents:components
                                                        toDate:today
                                                       options:0];
@@ -213,7 +213,7 @@ static BOOL use24HourTime;
                                               fromDate:d1];
   NSDateComponents* components2 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                               fromDate:d2];
-  
+
   return
   [components1 year] == [components2 year] &&
   [components1 month] == [components2 month] &&
@@ -240,7 +240,7 @@ static BOOL use24HourTime;
 + (NSString*) formatShortTimeWorker:(NSDate*) date {
   NSDateComponents* components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                              fromDate:date];
-  
+
   if ([self use24HourTime]) {
     return [NSString stringWithFormat:@"%02d:%02d", components.hour, components.minute];
   } else {
@@ -305,10 +305,10 @@ static BOOL use24HourTime;
     components.year = [[string substringWithRange:NSMakeRange(0, 4)] intValue];
     components.month = [[string substringWithRange:NSMakeRange(5, 2)] intValue];
     components.day = [[string substringWithRange:NSMakeRange(8, 2)] intValue];
-    
+
     return [[NSCalendar currentCalendar] dateFromComponents:components];
   }
-  
+
   return nil;
 }
 
