@@ -29,7 +29,7 @@
   {
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:transition forView:self.tableView.superview cache:YES];
-    
+
     self.tableView = newTableView;
   }
   [UIView commitAnimations];

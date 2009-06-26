@@ -28,7 +28,7 @@
 
 - (void) dealloc {
   self.pageToTableView = nil;
-  
+
   [super dealloc];
 }
 
@@ -71,7 +71,7 @@
   NSString* title =
   [NSString stringWithFormat:
    LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPageIndex + 1), pageCount];
-  
+
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
   label.font = [UIFont boldSystemFontOfSize:18];
@@ -80,9 +80,9 @@
   label.opaque = NO;
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
-  
+
   NSMutableArray* items = [NSMutableArray array];
-  
+
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
                                                      style:UIBarButtonItemStylePlain
                                                     target:self
@@ -91,7 +91,7 @@
                                                       style:UIBarButtonItemStylePlain
                                                      target:self
                                                      action:@selector(onRightTapped:)] autorelease];
-  
+
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
   [items addObject:leftArrow];
@@ -101,10 +101,10 @@
   [items addObject:rightArrow];
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
-  
+
   [toolbar setItems:items animated:YES];
   //[self setToolbarItems:items animated:YES];
-  
+
   leftArrow.enabled = (currentPageIndex > 0);
   rightArrow.enabled = (currentPageIndex < (pageCount - 1));
 }
@@ -119,12 +119,12 @@
   frame.origin.y = -1;
   frame.size.height -= 8;
   toolbar.frame = frame;
-  
+
   [self setupToolbarItems:toolbar];
-  
+
   UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 1)] autorelease];
   [view addSubview:toolbar];
-  
+
   return view;
 }
 
@@ -148,7 +148,7 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   if (pageCount > 1) {
     self.tableView.tableHeaderView = [self createToolbar];
     if (self.cacheTableViews) {
@@ -162,22 +162,22 @@
   if (pageToTableView.count <= 5) {
     return;
   }
-  
+
   NSInteger distance = 0;
   NSInteger pageToRemove = -1;
-  
+
   for (NSNumber* number in pageToTableView) {
     NSInteger page = number.intValue;
     if (page == currentPageIndex) {
       continue;
     }
-    
+
     if (ABS(currentPageIndex - page) > distance) {
       distance = ABS(currentPageIndex - page);
       pageToRemove = page;
     }
   }
-  
+
   if (pageToRemove != -1) {
     [pageToTableView removeObjectForKey:[NSNumber numberWithInt:pageToRemove]];
   }
