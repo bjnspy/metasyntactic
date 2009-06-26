@@ -14,8 +14,8 @@
 
 @interface CreditsViewController : AbstractFullScreenTableViewController {
 @private
-    NSArray* languages;
-    NSDictionary* localizers;
+  NSArray* languages;
+  NSDictionary* localizers;
 }
 
 @end
