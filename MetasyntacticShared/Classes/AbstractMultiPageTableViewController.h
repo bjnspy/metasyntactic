@@ -22,4 +22,8 @@
   NSMutableDictionary* pageToTableView;
 }
 
+/* protected */
+- (void) onLeftTapped:(id) sender;
+- (void) onRightTapped:(id) sender;
+
 @end
