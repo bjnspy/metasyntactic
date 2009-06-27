@@ -50,7 +50,7 @@ typedef enum {
 - (void) dealloc {
   self.languages = nil;
   self.localizers = nil;
-  
+
   [super dealloc];
 }
 
@@ -58,7 +58,7 @@ typedef enum {
 NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   NSString* language1 = [LocaleUtilities displayLanguage:code1];
   NSString* language2 = [LocaleUtilities displayLanguage:code2];
-  
+
   return [language1 compare:language2];
 }
 
@@ -66,7 +66,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"About", nil);
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:@"Michal Štoppl"      forKey:@"cs"];
     [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
@@ -88,10 +88,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     [dictionary setObject:@"Ján Senko"          forKey:@"sk"];
     [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
     self.localizers = dictionary;
-    
+
     self.languages = [localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
   }
-  
+
   return self;
 }
 
@@ -133,7 +133,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   } else if (section == LicenseSection) {
     return 1;
   }
-  
+
   return 0;
 }
 
@@ -141,7 +141,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   if (section == ReviewsBySection) {
     if (row == 0) {
       return [UIImage imageNamed:@"RottenTomatoesLogo.png"];
@@ -163,7 +163,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
       return [UIImage imageNamed:@"DeliveredByNetflix.png"];
     }
   }
-  
+
   return nil;
 }
 
@@ -180,29 +180,29 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   } else if (indexPath.section == LocalizedBySection) {
     return tableView.rowHeight - 14;
   }
-  
+
   return height;
 }
 
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  
+
   SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }
-  
+
   NSString* code = [languages objectAtIndex:row];
   NSString* person = [localizers objectForKey:code];
   NSString* language = [LocaleUtilities displayLanguage:code];
-  
+
   cell.textLabel.text = language;
-  
+
   [cell setCellValue:person];
   [cell setHidesSeparator:row > 0];
-  
+
   return cell;
 }
 
@@ -211,23 +211,23 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   if (section == LocalizedBySection) {
     return [self localizationCellForRow:row];
   }
-  
+
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  
+
   UIImage* image = [self getImage:indexPath];
-  
+
   if (image != nil) {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-    
+
     NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
     NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-    
+
     imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-    
+
     [cell.contentView addSubview:imageView];
   } else if (section == HelpSendFeedbackSection) {
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -260,7 +260,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     cell.textLabel.text = LocalizedString(@"License", nil);
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
   }
-  
+
   if (indexPath.section == HelpSendFeedbackSection) {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   } else if (indexPath.section >= WrittenBySection && indexPath.section <= FilmTrailersBySection) {
@@ -270,7 +270,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   } else {
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   return cell;
 }
 
@@ -298,7 +298,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   } else if (section == LocalizedBySection) {
     return LocalizedString(@"Localized by:", nil);
   }
-  
+
   return nil;
 }
 
@@ -310,7 +310,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   }  else if (section == LastSection) {
     return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
   }
-  
+
   return nil;
 }
 
@@ -318,16 +318,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (void) licenseCellTapped {
   UIViewController* controller = [[[UIViewController alloc] init] autorelease];
   controller.title = LocalizedString(@"License", nil);
-  
+
   UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
   textView.editable = NO;
   textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
+
   NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
   textView.text = [NSString stringWithContentsOfFile:licensePath];
   textView.font = [UIFont boldSystemFontOfSize:12];
   textView.textColor = [UIColor grayColor];
-  
+
   [controller.view addSubview:textView];
   [self.navigationController pushViewController:controller animated:YES];
 }
@@ -337,7 +337,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   if (section == HelpSendFeedbackSection) {
     UIViewController* controller = [[[FAQViewController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
@@ -386,7 +386,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == FilmTrailersBySection) {
       url = @"http://filmtrailer.com";
     }
-    
+
     [Application openBrowser:url];
   } else if (indexPath.section == LocalizedBySection) {
     //[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
