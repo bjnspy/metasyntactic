@@ -296,7 +296,7 @@ typedef enum {
 - (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.textLabel.textAlignment = UITextAlignmentCenter;
-  cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
+  cell.textLabel.text = LocalizedString(@"Force Refresh", nil);
   if (refreshed) {
     cell.textLabel.textColor = [UIColor grayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
