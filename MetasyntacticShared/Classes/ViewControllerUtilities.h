@@ -17,5 +17,7 @@
 
 + (UILabel*) viewControllerTitleLabel;
 + (UILabel*) viewControllerTitleLabel:(NSString*) text;
++ (UILabel*) footerLabel;
++ (UILabel*) footerLabel:(NSString*) text;
 
 @end

@@ -39,4 +39,22 @@
   return [self viewControllerTitleLabel:@""];
 }
 
+
++ (UILabel*) footerLabel:(NSString*) text {
+  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 25)] autorelease];
+  label.backgroundColor = [UIColor clearColor];
+  label.font = [UIFont systemFontOfSize:15];
+  label.textColor = [UIColor colorWithRed:76.0 / 255.0 green:86.0 / 255.0 blue:107.0 / 255.0 alpha:1];
+  label.shadowColor = [UIColor whiteColor];
+  label.shadowOffset = CGSizeMake(0, 1);
+  label.textAlignment = UITextAlignmentCenter;
+  label.text = text;
+  return label;
+}
+
+
++ (UILabel*) footerLabel {
+  return [self footerLabel:@""];
+}
+
 @end
