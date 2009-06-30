@@ -16,14 +16,21 @@
 }
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address;
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address pause:(BOOL) pause;
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url;
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url;
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response;
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url response:(NSHTTPURLResponse**) response pause:(BOOL) pause;
 + (NSString*) stringWithContentsOfAddress:(NSString*) address;
++ (NSString*) stringWithContentsOfAddress:(NSString*) address pause:(BOOL) pause;
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url;
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url pause:(BOOL) pause;
 + (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url;
++ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url pause:(BOOL) pause;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address pause:(BOOL) pause;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address response:(NSHTTPURLResponse**) response;
