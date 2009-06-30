@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @protocol DatePickerDelegate;
+@protocol ListPickerDelegate;
 @protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
