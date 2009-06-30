@@ -61,26 +61,38 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSString*) stringWithContentsOfAddress:(NSString*) address {
++ (NSString*) stringWithContentsOfAddress:(NSString*) address pause:(BOOL) pause {
   if (address.length == 0) {
     return nil;
   }
 
-  return [self stringWithContentsOfUrl:[NSURL URLWithString:address]];
+  return [self stringWithContentsOfUrl:[NSURL URLWithString:address] pause:pause];
+}
+
+
++ (NSString*) stringWithContentsOfAddress:(NSString*) address {
+  return [self stringWithContentsOfAddress:address pause:YES];
+}
+
+
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url
+                                pause:(BOOL) pause {
+  return [self stringWithContentsOfUrlRequest:[self createRequest:url]
+                                        pause:pause];
 }
 
 
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url {
-  return [self stringWithContentsOfUrlRequest:[self createRequest:url]];
+  return [self stringWithContentsOfUrl:url pause:YES];
 }
 
 
-+ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) request {
++ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) request pause:(BOOL) pause {
   if (request == nil) {
     return nil;
   }
 
-  NSData* data = [self dataWithContentsOfUrlRequest:request];
+  NSData* data = [self dataWithContentsOfUrlRequest:request pause:pause];
   if (data == nil) {
     return nil;
   }
@@ -94,14 +106,26 @@ static Pulser* pulser = nil;
 }
 
 
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address {
++ (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) request {
+  return [self stringWithContentsOfUrlRequest:request pause:YES];
+}
+
+
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address pause:(BOOL) pause {
   return [self xmlWithContentsOfAddress:address
-                               response:NULL];
+                               response:NULL
+                                  pause:pause];
+}
+
+
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address {
+  return [self xmlWithContentsOfAddress:address pause:YES];
 }
 
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
-                                response:(NSHTTPURLResponse**) response {
+                                response:(NSHTTPURLResponse**) response
+                                   pause:(BOOL) pause {
   if (response != NULL) {
     *response = nil;
   }
@@ -111,7 +135,14 @@ static Pulser* pulser = nil;
   }
 
   return [self xmlWithContentsOfUrl:[NSURL URLWithString:address]
-                           response:response];
+                           response:response
+                              pause:pause];
+}
+
+
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
+                                response:(NSHTTPURLResponse**) response {
+  return [self xmlWithContentsOfAddress:address response:response pause:YES];
 }
 
 
@@ -122,9 +153,17 @@ static Pulser* pulser = nil;
 
 
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
-                            response:(NSHTTPURLResponse**) response {
+                            response:(NSHTTPURLResponse**) response
+                               pause:(BOOL) pause {
   return [self xmlWithContentsOfUrlRequest:[self createRequest:url]
-                                  response:response];
+                                  response:response
+                                     pause:pause];
+}
+
+
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
+                            response:(NSHTTPURLResponse**) response {
+  return [self xmlWithContentsOfUrl:url response:response pause:YES];
 }
 
 
@@ -135,7 +174,8 @@ static Pulser* pulser = nil;
 
 
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
-                                   response:(NSHTTPURLResponse**) response {
+                                   response:(NSHTTPURLResponse**) response 
+                                      pause:(BOOL) pause {
   if (response != NULL) {
     *response = nil;
   }
@@ -145,8 +185,15 @@ static Pulser* pulser = nil;
   }
 
   NSData* data = [self dataWithContentsOfUrlRequest:request
-                                           response:response];
+                                           response:response
+                                              pause:pause];
   return [XmlParser parse:data];
+}
+
+
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
+                                   response:(NSHTTPURLResponse**) response {
+  return [self xmlWithContentsOfUrlRequest:request response:response pause:YES];
 }
 
 
