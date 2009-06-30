@@ -96,7 +96,6 @@
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
 		7471794D0FDC5A1F00B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
-		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
 		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
 		74798D010F74B7C80057E111 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74798D000F74B7C80057E111 /* SwitchCell.m */; };
@@ -444,8 +443,6 @@
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.0.3/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		747179660FDC5A8700B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
-		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
-		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		747413870EC7F2EC00625001 /* AbstractPosterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCell.h; sourceTree = "<group>"; };
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
@@ -1015,9 +1012,7 @@
 			isa = PBXGroup;
 			children = (
 				745380610F89D87400D457CB /* QuestionCell.h */,
-				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
 				745380620F89D87400D457CB /* QuestionCell.m */,
-				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
 			);
 			name = SettingCells;
 			sourceTree = "<group>";
@@ -1581,7 +1576,6 @@
 				7457FE920E21A41A00929D3E /* Performance.m in Sources */,
 				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
 				7495695B0E2D6248007BFF21 /* Review.m in Sources */,
-				74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */,
 				74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */,
 				740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */,
 				740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */,

@@ -23,7 +23,6 @@
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
-#import "SettingCell.h"
 #import "SwitchCell.h"
 #import "UserLocationCache.h"
 
