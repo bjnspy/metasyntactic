@@ -48,6 +48,8 @@
 #import "ImageCache.h"
 #import "ImageUtilities.h"
 #import "InteractiveView.h"
+#import "ListPickerDelegate.h"
+#import "ListPickerViewController.h"
 #import "LargeActivityIndicatorViewWithBackground.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
