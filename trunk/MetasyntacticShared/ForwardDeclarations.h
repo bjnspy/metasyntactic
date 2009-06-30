@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@protocol DatePickerDelegate;
 @protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
@@ -42,6 +43,7 @@
 @class PointerSet;
 @class PriorityMutex;
 @class Pulser;
+@class SettingCell;
 @class TappableImageView;
 @class TappableScrollView;
 @class TextFieldEditorViewController;

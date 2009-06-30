@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "FAQViewController.h"
 #import "Model.h"
-#import "SettingCell.h"
 
 
 @interface CreditsViewController()

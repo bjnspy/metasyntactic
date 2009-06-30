@@ -200,6 +200,11 @@
 		74F10D6D0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */; };
 		74F10D770FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */; };
 		74F10D780FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */; };
+		74FEEAD60FF9CF0E0021F472 /* SettingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FEEAD40FF9CF0E0021F472 /* SettingCell.h */; };
+		74FEEAD70FF9CF0E0021F472 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FEEAD50FF9CF0E0021F472 /* SettingCell.m */; };
+		74FEEB3D0FF9D6CD0021F472 /* DatePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FEEB3B0FF9D6CD0021F472 /* DatePickerViewController.h */; };
+		74FEEB3E0FF9D6CD0021F472 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FEEB3C0FF9D6CD0021F472 /* DatePickerViewController.m */; };
+		74FEEB4F0FF9D9510021F472 /* DatePickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FEEB4D0FF9D9510021F472 /* DatePickerDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -416,6 +421,11 @@
 		74F10D6B0FE76C5B002ADB4B /* PersistentStringThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStringThreadsafeValue.m; sourceTree = "<group>"; };
 		74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentArrayThreadsafeValue.h; sourceTree = "<group>"; };
 		74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentArrayThreadsafeValue.m; sourceTree = "<group>"; };
+		74FEEAD40FF9CF0E0021F472 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		74FEEAD50FF9CF0E0021F472 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		74FEEB3B0FF9D6CD0021F472 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		74FEEB3C0FF9D6CD0021F472 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		74FEEB4D0FF9D9510021F472 /* DatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDelegate.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -513,30 +523,33 @@
 		741C759E0F8DCAF0003747AD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */,
 				74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */,
 				742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */,
 				747C31A50FD0695E00411801 /* AbstractFullScreenTableViewController.h */,
 				747C31A70FD0695E00411801 /* AbstractFullScreenViewController.h */,
 				74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */,
 				74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */,
+				74BD0AF30FF1EED800DB9692 /* AbstractStackableTableViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
+				74FEEB4D0FF9D9510021F472 /* DatePickerDelegate.h */,
+				74FEEB3B0FF9D6CD0021F472 /* DatePickerViewController.h */,
 				747C34FC0FD0772D00411801 /* EditorViewController.h */,
 				74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */,
 				747C333F0FD071A400411801 /* WebViewController.h */,
+				7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */,
 				74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */,
 				742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */,
 				747C31A60FD0695E00411801 /* AbstractFullScreenTableViewController.m */,
 				747C31A80FD0695E00411801 /* AbstractFullScreenViewController.m */,
 				74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */,
 				74BD099A0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m */,
+				74BD0AF40FF1EED800DB9692 /* AbstractStackableTableViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
+				74FEEB3C0FF9D6CD0021F472 /* DatePickerViewController.m */,
 				747C34FD0FD0772D00411801 /* EditorViewController.m */,
 				74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */,
 				747C33400FD071A400411801 /* WebViewController.m */,
-				74BD0AF30FF1EED800DB9692 /* AbstractStackableTableViewController.h */,
-				74BD0AF40FF1EED800DB9692 /* AbstractStackableTableViewController.m */,
-				7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */,
-				7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -804,7 +817,9 @@
 			isa = PBXGroup;
 			children = (
 				74E601A20FD1C7700015D9F8 /* AttributeCell.h */,
+				74FEEAD40FF9CF0E0021F472 /* SettingCell.h */,
 				74E601A30FD1C7700015D9F8 /* AttributeCell.m */,
+				74FEEAD50FF9CF0E0021F472 /* SettingCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -936,6 +951,9 @@
 				74BD099B0FF1D96C00DB9692 /* AbstractSlidableTableViewController.h in Headers */,
 				74BD0AF50FF1EED800DB9692 /* AbstractStackableTableViewController.h in Headers */,
 				7458A1FB0FF204A3000CD194 /* AbstractCurlableTableViewController.h in Headers */,
+				74FEEAD60FF9CF0E0021F472 /* SettingCell.h in Headers */,
+				74FEEB3D0FF9D6CD0021F472 /* DatePickerViewController.h in Headers */,
+				74FEEB4F0FF9D9510021F472 /* DatePickerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,6 +1090,8 @@
 				74BD099C0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m in Sources */,
 				74BD0AF60FF1EED800DB9692 /* AbstractStackableTableViewController.m in Sources */,
 				7458A1FC0FF204A3000CD194 /* AbstractCurlableTableViewController.m in Sources */,
+				74FEEAD70FF9CF0E0021F472 /* SettingCell.m in Sources */,
+				74FEEB3E0FF9D6CD0021F472 /* DatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
