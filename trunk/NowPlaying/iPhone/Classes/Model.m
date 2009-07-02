@@ -70,7 +70,7 @@
 
 @implementation Model
 
-static NSString* persistenceVersion = @"104";
+static NSString* persistenceVersion = @"105";
 
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX        = @"allTheatersSelectedSegmentIndex";

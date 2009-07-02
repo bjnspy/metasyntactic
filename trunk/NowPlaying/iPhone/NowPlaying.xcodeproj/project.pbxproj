@@ -113,6 +113,10 @@
 		747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
+		7489BAFA0FFD67B00044C293 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF60FFD67B00044C293 /* LeftArrow.png */; };
+		7489BAFB0FFD67B00044C293 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF70FFD67B00044C293 /* Navigate-Back.png */; };
+		7489BAFC0FFD67B00044C293 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF80FFD67B00044C293 /* Navigate-Forward.png */; };
+		7489BAFD0FFD67B00044C293 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF90FFD67B00044C293 /* RightArrow.png */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
@@ -480,6 +484,10 @@
 		747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
 		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
+		7489BAF60FFD67B00044C293 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
+		7489BAF70FFD67B00044C293 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Back.png"; sourceTree = "<group>"; };
+		7489BAF80FFD67B00044C293 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Forward.png"; sourceTree = "<group>"; };
+		7489BAF90FFD67B00044C293 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -733,6 +741,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7489BAF50FFD67B00044C293 /* MetasynctacticShared */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				741A280D0F8ADF59003CDB4E /* AnswerBalloon.png */,
@@ -1174,6 +1183,18 @@
 			name = Netflix;
 			sourceTree = "<group>";
 		};
+		7489BAF50FFD67B00044C293 /* MetasynctacticShared */ = {
+			isa = PBXGroup;
+			children = (
+				7489BAF60FFD67B00044C293 /* LeftArrow.png */,
+				7489BAF70FFD67B00044C293 /* Navigate-Back.png */,
+				7489BAF80FFD67B00044C293 /* Navigate-Forward.png */,
+				7489BAF90FFD67B00044C293 /* RightArrow.png */,
+			);
+			name = MetasynctacticShared;
+			path = ../../MetasyntacticShared/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
 		748BA6110F816CD500D79388 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1566,10 @@
 				741A28100F8ADF59003CDB4E /* QuestionBalloon.png in Resources */,
 				744004E10F8B09A000E9F879 /* BalloonInputField.png in Resources */,
 				74FFE2C00FB6BF8F00B2BF86 /* ImageLoading-Neutral.png in Resources */,
+				7489BAFA0FFD67B00044C293 /* LeftArrow.png in Resources */,
+				7489BAFB0FFD67B00044C293 /* Navigate-Back.png in Resources */,
+				7489BAFC0FFD67B00044C293 /* Navigate-Forward.png in Resources */,
+				7489BAFD0FFD67B00044C293 /* RightArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
