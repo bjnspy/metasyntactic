@@ -34,6 +34,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 const int LABEL_TAG = -2;
 const int IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
+const NSInteger PAGE_RANGE = 2;
 
 @synthesize pageNumberToView;
 @synthesize scrollView;
@@ -238,8 +239,8 @@ const double LOAD_DELAY = 1;
 
 - (void) addImageToView:(NSArray*) arguments {
   NSNumber* index = [arguments objectAtIndex:0];
-  if (index.intValue < (currentPage - 1) ||
-      index.intValue > (currentPage + 1)) {
+  if (index.intValue < (currentPage - PAGE_RANGE) ||
+      index.intValue > (currentPage + PAGE_RANGE)) {
     return;
   }
 
@@ -306,8 +307,8 @@ const double LOAD_DELAY = 1;
 
   NSNumber* index = [indexAndPageView objectAtIndex:0];
 
-  if (index.intValue < (currentPage - 1) ||
-      index.intValue > (currentPage + 1)) {
+  if (index.intValue < (currentPage - PAGE_RANGE) ||
+      index.intValue > (currentPage + PAGE_RANGE)) {
     return;
   }
 
@@ -436,7 +437,7 @@ const double LOAD_DELAY = 1;
 
 - (void) clearAndLoadPages {
   for (NSNumber* pageNumber in pageNumberToView.allKeys) {
-    if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
+    if (pageNumber.intValue < (currentPage - PAGE_RANGE) || pageNumber.intValue > (currentPage + PAGE_RANGE)) {
       UIView* pageView = [pageNumberToView objectForKey:pageNumber];
       [self disableActivityIndicator:pageView];
 
@@ -444,10 +445,10 @@ const double LOAD_DELAY = 1;
       [pageNumberToView removeObjectForKey:pageNumber];
     }
   }
-
-  [self loadPage:currentPage - 1 delay:LOAD_DELAY];
-  [self loadPage:currentPage     delay:LOAD_DELAY];
-  [self loadPage:currentPage + 1 delay:LOAD_DELAY];
+  
+  for (NSInteger i = currentPage - PAGE_RANGE; i <= currentPage + PAGE_RANGE; i++) {
+    [self loadPage:i delay:LOAD_DELAY];
+  }
 }
 
 
@@ -604,6 +605,7 @@ const double LOAD_DELAY = 1;
   // load the first two pages.  Try to load the first one immediately.
   [self loadPage:0 delay:0];
   [self loadPage:1 delay:LOAD_DELAY];
+  [self loadPage:2 delay:LOAD_DELAY];
 
   [self.view addSubview:scrollView];
 }
