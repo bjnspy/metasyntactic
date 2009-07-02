@@ -147,19 +147,15 @@ static MainThreadGate* gate;
     return nil;
   }
 
-  //NSLog(@"FileUtilities:readObject - %@", file.lastPathComponent);
-
   id result = nil;
   [gate lock];
   {
     NSData* data = [NSData dataWithContentsOfFile:file];
     if (data != nil) {
-      //NSLog(@"FileUtilities:readObject - deserializing start", file.lastPathComponent);
       result = [NSPropertyListSerialization propertyListFromData:data
                                                 mutabilityOption:NSPropertyListImmutable
                                                           format:NULL
                                                 errorDescription:NULL];
-      //NSLog(@"FileUtilities:readObject - deserializing stop", file.lastPathComponent);
     }
   }
   [gate unlock];

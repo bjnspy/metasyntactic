@@ -23,37 +23,37 @@
 @implementation AbstractFullScreenViewController
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super initWithNibName:nil bundle:nil])) {
-    }
-
-    return self;
+  if ((self = [super initWithNibName:nil bundle:nil])) {
+  }
+  
+  return self;
 }
 
 
 - (AbstractNavigationController*) abstractNavigationController {
-    return (id)self.navigationController;
+  return (id)self.navigationController;
 }
 
 
 - (BOOL) hidesBottomBarWhenPushed {
-    return YES;
+  return YES;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    [NotificationCenter disableNotifications];
+  [super viewWillAppear:animated];
+  [NotificationCenter disableNotifications];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
-    [super viewWillDisappear:animated];
-    [NotificationCenter enableNotifications];
+  [super viewWillDisappear:animated];
+  [NotificationCenter enableNotifications];
 }
 
 @end
