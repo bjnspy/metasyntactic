@@ -124,6 +124,7 @@ static NSString* preferredLanguage = nil;
                                  @"HU", // Hungary
                                  @"JP", // Japan
                                  @"GB", // Great Britain
+                                 @"IE", // Ireland
                                  @"IT", // Italy
                                  @"MY", // Malaysia
                                  @"NL", // The Netherlands
