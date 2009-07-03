@@ -23,7 +23,6 @@
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
-#import "SettingCell.h"
 #import "SwitchCell.h"
 #import "UserLocationCache.h"
 
@@ -70,18 +69,8 @@ typedef enum {
 }
 
 
-- (void) reload {
-  [self reloadTableViewData];
-}
-
-
-- (void) majorRefreshWorker {
-  [self reload];
-}
-
-
-- (void) minorRefreshWorker {
-  [self reload];
+- (void) minorRefresh {
+  [self majorRefresh];
 }
 
 
@@ -306,7 +295,7 @@ typedef enum {
 - (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.textLabel.textAlignment = UITextAlignmentCenter;
-  cell.textLabel.text = NSLocalizedString(@"Force Refresh", nil);
+  cell.textLabel.text = LocalizedString(@"Force Refresh", nil);
   if (refreshed) {
     cell.textLabel.textColor = [UIColor grayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -348,7 +337,7 @@ typedef enum {
 
 - (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
   [self.controller setDvdBlurayEnabled:sender.on];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -393,7 +382,7 @@ typedef enum {
 
 - (void) onSearchDateChanged:(NSDate*) date {
   [self.controller setSearchDate:date];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -517,7 +506,7 @@ typedef enum {
   userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   [self.controller setUserAddress:userAddress];
-  [self reloadTableViewData];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
