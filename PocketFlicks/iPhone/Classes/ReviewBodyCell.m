@@ -14,7 +14,6 @@
 
 #import "ReviewBodyCell.h"
 
-#import "FontCache.h"
 #import "Review.h"
 
 @interface ReviewBodyCell()

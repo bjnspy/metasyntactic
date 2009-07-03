@@ -84,7 +84,7 @@
 
 
 - (NSData*) downloadPosterWorker:(Movie*) movie {
-  NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster];
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster pause:NO];
   if (data != nil) {
     return data;
   }

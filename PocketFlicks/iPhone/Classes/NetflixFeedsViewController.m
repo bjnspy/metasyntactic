@@ -52,15 +52,6 @@
 }
 
 
-- (void) majorRefreshWorker {
-    [self reloadTableViewData];
-}
-
-
-- (void) minorRefreshWorker {
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }

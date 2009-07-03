@@ -14,19 +14,19 @@
 
 @interface AbstractSearchDisplayController : UISearchDisplayController<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,SearchEngineDelegate> {
 @protected
-    AbstractSearchEngine* searchEngineData;
-    SearchResult* searchResult;
+  AbstractSearchEngine* searchEngineData;
+  SearchResult* searchResult;
 }
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar
       contentsController:(UIViewController*) viewController;
 
-- (void) majorRefresh;
-- (void) minorRefresh;
-
 - (UITableView*) tableView;
 
 /* @protected */
 - (CommonNavigationController*) commonNavigationController;
+
+- (void) reloadTableViewData;
+- (void) reloadVisibleCells;
 
 @end

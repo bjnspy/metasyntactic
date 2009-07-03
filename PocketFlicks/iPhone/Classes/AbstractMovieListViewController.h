@@ -14,20 +14,15 @@
 
 @interface AbstractMovieListViewController : AbstractTableViewController {
 @protected
-    UISearchBar* searchBar;
-    LocalSearchDisplayController* searchDisplayController;
+  UISearchBar* searchBar;
 
-    NSArray* sortedMovies;
-    NSArray* sectionTitles;
-    MultiDictionary* sectionTitleToContentsMap;
+  NSArray* sortedMovies;
+  NSArray* sectionTitles;
+  MultiDictionary* sectionTitleToContentsMap;
 
-    NSArray* indexTitles;
+  NSArray* indexTitles;
 
-    BOOL scrollToCurrentDateOnRefresh;
+  BOOL scrollToCurrentDateOnRefresh;
 }
-
-/* protected */
-- (void) majorRefreshWorker;
-- (void) minorRefreshWorker;
 
 @end

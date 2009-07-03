@@ -33,71 +33,71 @@
 @synthesize status;
 
 - (void) dealloc {
-    self.deleteImageView = nil;
-    self.moveImageView = nil;
-    self.status = nil;
+  self.deleteImageView = nil;
+  self.moveImageView = nil;
+  self.status = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (void) initialize {
-    self.textLabel.text = status.description;
+  self.textLabel.text = status.description;
 
-    [deleteImageView removeFromSuperview];
-    [moveImageView removeFromSuperview];
+  [deleteImageView removeFromSuperview];
+  [moveImageView removeFromSuperview];
 
-    if (!status.queue.isAtHomeQueue && status.description.length > 0) {
-        CGRect deleteFrame = deleteImageView.frame;
-        CGRect moveFrame = moveImageView.frame;
+  if (!status.queue.isAtHomeQueue && status.description.length > 0) {
+    CGRect deleteFrame = deleteImageView.frame;
+    CGRect moveFrame = moveImageView.frame;
 
-        deleteFrame.origin.x = moveFrame.size.width;
-        deleteImageView.frame = deleteFrame;
+    deleteFrame.origin.x = moveFrame.size.width;
+    deleteImageView.frame = deleteFrame;
 
-        CGRect frame = CGRectMake(0, 0, deleteFrame.origin.x + deleteFrame.size.width, MAX(deleteFrame.size.height, moveFrame.size.height));
-        UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
+    CGRect frame = CGRectMake(0, 0, deleteFrame.origin.x + deleteFrame.size.width, MAX(deleteFrame.size.height, moveFrame.size.height));
+    UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
 
-        [view addSubview:deleteImageView];
+    [view addSubview:deleteImageView];
 
-        if (!status.saved && status.position != 0) {
-            [view addSubview:moveImageView];
-        }
-
-        self.accessoryView = view;
+    if (!status.saved && status.position != 0) {
+      [view addSubview:moveImageView];
     }
+
+    self.accessoryView = view;
+  }
 }
 
 
 - (id) initWithStatus:(Status*) status_ {
-    if ((self = [super initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:nil])) {
-        self.status = status_;
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
+                   reuseIdentifier:nil])) {
+    self.status = status_;
 
-        self.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        self.textLabel.textAlignment = UITextAlignmentCenter;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.textLabel.font = [UIFont boldSystemFontOfSize:16];
+    self.textLabel.textAlignment = UITextAlignmentCenter;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.deleteImageView = [[[TappableImageView alloc] initWithImage:[UIImage imageNamed:@"DeleteMovie.png"]] autorelease];
-        self.moveImageView = [[[TappableImageView alloc] initWithImage:[StockImages upArrow]] autorelease];
-        deleteImageView.contentMode = moveImageView.contentMode = UIViewContentModeCenter;
+    self.deleteImageView = [[[TappableImageView alloc] initWithImage:[UIImage imageNamed:@"DeleteMovie.png"]] autorelease];
+    self.moveImageView = [[[TappableImageView alloc] initWithImage:[StockImages upArrow]] autorelease];
+    deleteImageView.contentMode = moveImageView.contentMode = UIViewContentModeCenter;
 
-        CGRect frame = deleteImageView.frame;
-        frame.size.height += 20;
-        frame.size.width += 20;
-        deleteImageView.frame = frame;
-        moveImageView.frame = frame;
+    CGRect frame = deleteImageView.frame;
+    frame.size.height += 20;
+    frame.size.width += 20;
+    deleteImageView.frame = frame;
+    moveImageView.frame = frame;
 
-        [self initialize];
-    }
+    [self initialize];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (void) enterReadonlyMode {
-    UIActivityIndicatorView* view = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    self.accessoryView = view;
-    [view startAnimating];
+  UIActivityIndicatorView* view = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+  self.accessoryView = view;
+  [view startAnimating];
 }
 
 @end

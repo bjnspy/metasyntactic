@@ -17,7 +17,6 @@
     UISegmentedControl* segmentedControl;
 
     UISearchBar* searchBar;
-    LocalSearchDisplayController* searchDisplayController;
 
     NSArray* sortedTheaters;
     NSArray* sectionTitles;
