@@ -14,7 +14,6 @@
 
 #import "MovieOverviewCell.h"
 
-#import "FontCache.h"
 #import "Model.h"
 #import "MovieDetailsViewController.h"
 
@@ -130,7 +129,7 @@
 
     NSCharacterSet* charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 
-    while (true) {
+    while (YES) {
         NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:charSet
                                                             options:NSBackwardsSearch
                                                               range:NSMakeRange(0, guess)];

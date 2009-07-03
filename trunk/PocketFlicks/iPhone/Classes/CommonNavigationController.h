@@ -14,7 +14,6 @@
 
 @interface CommonNavigationController : AbstractNavigationController {
 @protected
-    PostersViewController* postersViewController;
 }
 
 - (void) pushTicketsView:(Movie*) movie
@@ -31,7 +30,6 @@
 - (void) navigateToLastViewedPage;
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
-- (void) hidePostersView;
 
 - (void) onTabBarItemSelected;
 

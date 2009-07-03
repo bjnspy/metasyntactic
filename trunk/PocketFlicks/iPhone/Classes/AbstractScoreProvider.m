@@ -184,8 +184,9 @@
 
 
 - (NSDictionary*) movieMap {
+  NSDictionary* result = movieMapData.value;
   [self ensureMovieMap];
-  return movieMapData.value;
+  return result;
 }
 
 

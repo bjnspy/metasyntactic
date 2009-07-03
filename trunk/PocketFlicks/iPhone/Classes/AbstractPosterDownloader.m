@@ -103,7 +103,7 @@
     }
 
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [NetworkUtilities dataWithContentsOfAddress:posterUrl];
+  return [NetworkUtilities dataWithContentsOfAddress:posterUrl pause:NO];
 }
 
 

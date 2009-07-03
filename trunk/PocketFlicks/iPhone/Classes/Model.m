@@ -270,6 +270,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   self.netflixCache = nil;
   self.internationalDataCache = nil;
   self.helpCache = nil;
+  self.cachedScoreProviderIndex = 0;
+  self.searchRadiusData = 0;
 
   [super dealloc];
 }

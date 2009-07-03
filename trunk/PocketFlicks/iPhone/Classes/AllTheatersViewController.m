@@ -24,7 +24,6 @@
 @interface AllTheatersViewController()
 @property (retain) UISegmentedControl* segmentedControl;
 @property (retain) UISearchBar* searchBar;
-@property (retain) LocalSearchDisplayController* searchDisplayController;
 @property (retain) NSArray* sortedTheaters;
 @property (retain) NSArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
@@ -36,7 +35,6 @@
 
 @synthesize segmentedControl;
 @synthesize searchBar;
-@synthesize searchDisplayController;
 @synthesize sortedTheaters;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
@@ -45,7 +43,6 @@
 - (void) dealloc {
     self.segmentedControl = nil;
     self.searchBar = nil;
-    self.searchDisplayController = nil;
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
@@ -453,13 +450,9 @@
 }
 
 
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-    [self sortTheaters];
-    [self reloadTableViewData];
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+  [self sortTheaters];
 }
 
 

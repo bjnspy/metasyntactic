@@ -97,12 +97,4 @@
     return LocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
 }
 
-
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
-}
-
 @end

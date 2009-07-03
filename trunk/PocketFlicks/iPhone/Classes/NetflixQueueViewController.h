@@ -17,18 +17,16 @@
 
 @interface NetflixQueueViewController : AbstractTableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
-    NSString* feedKey;
-    Feed* feed;
-    Queue* queue;
+  NSString* feedKey;
+  Feed* feed;
+  Queue* queue;
 
-    UIBarButtonItem* backButton;
+  UIBarButtonItem* backButton;
 
-    NSMutableArray* mutableMovies;
-    NSMutableArray* mutableSaved;
-    IdentitySet* deletedMovies;
-    IdentitySet* reorderedMovies;
-
-    BOOL readonlyMode;
+  NSMutableArray* mutableMovies;
+  NSMutableArray* mutableSaved;
+  IdentitySet* deletedMovies;
+  IdentitySet* reorderedMovies;
 }
 
 - (id) initWithFeedKey:(NSString*) feedKey;

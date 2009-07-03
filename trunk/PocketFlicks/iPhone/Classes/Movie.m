@@ -52,13 +52,13 @@ property_definition(additionalFields);
 - (void) dealloc {
   self.identifier = nil;
   self.canonicalTitle = nil;
+  self.displayTitle = nil;
   self.rating = nil;
   self.length = 0;
   self.releaseDate = nil;
   self.imdbAddress = nil;
   self.poster = nil;
   self.synopsis = nil;
-  self.displayTitle = nil;
   self.studio = nil;
   self.directors = nil;
   self.cast = nil;
@@ -263,10 +263,6 @@ static NSString* articles[] = {
 
 
 + (Movie*) newWithDictionary:(NSDictionary*) dictionary {
-  if (![self canReadDictionary:dictionary]) {
-    return nil;
-  }
-
   return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
                              canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                displayTitle:[dictionary objectForKey:displayTitle_key]

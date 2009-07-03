@@ -27,15 +27,14 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
+// @protected
 - (void) loadImage;
 - (void) clearImage;
-
-// @protected
 - (NSArray*) allLabels;
 
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition;
 - (UILabel*) createValueLabel:(NSInteger) yPosition forTitle:(UILabel*) titleLabel;
 
-- (void) setCellImage:(UIImage*) image;
+- (void) setCellImage:(UIImage*) image animated:(BOOL) animated;
 
 @end

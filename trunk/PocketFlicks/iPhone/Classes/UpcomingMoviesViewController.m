@@ -28,125 +28,117 @@
 @synthesize segmentedControl;
 
 - (void) dealloc {
-    self.segmentedControl = nil;
-    [super dealloc];
+  self.segmentedControl = nil;
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (NSArray*) movies {
-    return self.model.upcomingCache.movies;
+  return self.model.upcomingCache.movies;
 }
 
 
 - (BOOL) sortingByTitle {
-    return self.model.upcomingMoviesSortingByTitle;
+  return self.model.upcomingMoviesSortingByTitle;
 }
 
 
 - (BOOL) sortingByReleaseDate {
-    return self.model.upcomingMoviesSortingByReleaseDate;
+  return self.model.upcomingMoviesSortingByReleaseDate;
 }
 
 
 - (BOOL) sortingByScore {
-    return NO;
+  return NO;
 }
 
 
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
-    return compareMoviesByReleaseDateAscending;
+  return compareMoviesByReleaseDateAscending;
 }
 
 
 - (UISegmentedControl*) setupSegmentedControl {
-    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                                                   [NSArray arrayWithObjects:
-                               LocalizedString(@"Release", nil),
-                               LocalizedString(@"Title", nil),
-                               nil]] autorelease];
+  UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
+                                  [NSArray arrayWithObjects:
+                                   LocalizedString(@"Release", nil),
+                                   LocalizedString(@"Title", nil),
+                                   nil]] autorelease];
 
-    control.segmentedControlStyle = UISegmentedControlStyleBar;
-    control.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
+  control.segmentedControlStyle = UISegmentedControlStyleBar;
+  control.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
 
-    [control addTarget:self
-                action:@selector(onSortOrderChanged:)
-      forControlEvents:UIControlEventValueChanged];
+  [control addTarget:self
+              action:@selector(onSortOrderChanged:)
+    forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = control.frame;
-    rect.size.width = 310;
-    control.frame = rect;
+  CGRect rect = control.frame;
+  rect.size.width = 310;
+  control.frame = rect;
 
-    return control;
+  return control;
 }
 
 
 - (void) onSortOrderChanged:(id) sender {
-    scrollToCurrentDateOnRefresh = YES;
-    self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self majorRefresh];
+  scrollToCurrentDateOnRefresh = YES;
+  self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+  [self majorRefresh];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.title = LocalizedString(@"Upcoming", nil);
-    }
+  if ((self = [super init])) {
+    self.title = LocalizedString(@"Upcoming", nil);
+  }
 
-    return self;
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
+  [super loadView];
 
-    scrollToCurrentDateOnRefresh = YES;
-    self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
+  scrollToCurrentDateOnRefresh = YES;
+  self.segmentedControl = [self setupSegmentedControl];
+  self.navigationItem.titleView = segmentedControl;
 
-    self.title = LocalizedString(@"Upcoming", nil);
-    self.tableView.rowHeight = 100;
+  self.title = LocalizedString(@"Upcoming", nil);
+  self.tableView.rowHeight = 100;
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
-    [super didReceiveMemoryWarningWorker];
-    self.segmentedControl = nil;
+  [super didReceiveMemoryWarningWorker];
+  self.segmentedControl = nil;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[UpcomingMovieCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+  }
 
-    [cell setMovie:movie owner:self];
-    return cell;
+  [cell setMovie:movie owner:self];
+  return cell;
 }
 
 
-- (void) majorRefreshWorker {
-    [super majorRefreshWorker];
-    self.tableView.rowHeight = 100;
-}
-
-
-- (void) minorRefreshWorker {
-    [super minorRefreshWorker];
-    for (id cell in self.tableView.visibleCells) {
-        [cell loadImage];
-    }
+- (void) onBeforeReloadTableViewData {
+  self.tableView.rowHeight = 100;
+  [super onBeforeReloadTableViewData];
 }
 
 @end

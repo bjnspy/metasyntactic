@@ -58,6 +58,7 @@ static NSDictionary* countryToCode = nil;
   self.engine = nil;
   self.indexData = nil;
   self.movieMap = nil;
+  self.updated = NO;
   self.ratingAndRuntimeCache = nil;
 
   [super dealloc];

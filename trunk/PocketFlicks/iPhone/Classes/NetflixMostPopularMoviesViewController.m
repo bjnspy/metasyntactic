@@ -31,93 +31,66 @@
 @synthesize movies;
 
 - (void) dealloc {
-    self.category = nil;
-    self.movies = nil;
+  self.category = nil;
+  self.movies = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) initWithCategory:(NSString*) category_ {
-    if ((self = [super initWithStyle:UITableViewStylePlain])) {
-        self.category = category_;
-        self.title = category_;
-    }
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.category = category_;
+    self.title = category_;
+  }
 
-    return self;
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
-- (void) initializeData {
-    self.movies = [self.model.netflixCache moviesForRSSTitle:category];
-}
-
-
-- (void) internalRefresh {
-    [self initializeData];
-    [self reloadTableViewData];
-}
-
-
-- (void) majorRefreshWorker {
-    // do nothing.  we don't want to refresh the view (because it causes an
-    // ugly flash).  Instead, just refresh things when teh view becomes visible
-    if (movies.count == 0) {
-        [self internalRefresh];
-    }
-}
-
-
-- (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
-        [cell refresh];
-    }
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    self.tableView.rowHeight = 100;
-    [self internalRefresh];
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+  self.tableView.rowHeight = 100;
+  self.movies = [self.model.netflixCache moviesForRSSTitle:category];
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
-    [super didReceiveMemoryWarningWorker];
-    self.movies = [NSArray array];
+  [super didReceiveMemoryWarningWorker];
+  self.movies = [NSArray array];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    return movies.count;
+  return movies.count;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
 
-    Movie* movie = [movies objectAtIndex:indexPath.row];
-    [cell setMovie:movie owner:self];
+  Movie* movie = [movies objectAtIndex:indexPath.row];
+  [cell setMovie:movie owner:self];
 
-    return cell;
+  return cell;
 }
 
 
@@ -128,18 +101,18 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    Movie* movie = [movies objectAtIndex:indexPath.row];
-    [self.commonNavigationController pushMovieDetails:movie animated:YES];
+  Movie* movie = [movies objectAtIndex:indexPath.row];
+  [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (movies.count == 0) {
-        return self.model.netflixCache.noInformationFound;
-    }
+  if (movies.count == 0) {
+    return self.model.netflixCache.noInformationFound;
+  }
 
-    return nil;
+  return nil;
 }
 
 @end
