@@ -59,11 +59,18 @@
 
 - (void) onSetSameMovie:(Movie*) movie_
                   owner:(id) owner  {
+  /*
   // refreshing with the same movie.
   // update our image if necessary.
   [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
 
-  [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
+  UIImage* image = [self retrieveImageFromCache];
+  if (image == nil) {
+    [self clearImage];
+  } else {
+    [self setCellImage:image];
+  }
+   */
 }
 
 
@@ -82,7 +89,7 @@
   if (image == nil) {
     [self clearImage];
   } else {
-    [self setCellImage:image];
+    [self setCellImage:image animated:NO];
   }
 
   [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
@@ -116,11 +123,11 @@
     titleLabel.text = movie_.displayTitle;
   }
 
-  if (movie == movie_) {
-    [self onSetSameMovie:movie_ owner:owner];
-  } else {
+  //if (movie == movie_) {
+  //  [self onSetSameMovie:movie_ owner:owner];
+  //} else {
     [self onSetDifferentMovie:movie_ owner:owner];
-  }
+  //}
 }
 
 @end

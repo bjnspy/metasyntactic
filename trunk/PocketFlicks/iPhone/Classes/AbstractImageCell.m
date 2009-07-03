@@ -66,7 +66,7 @@
 
     self.imageView = [[[UIImageView alloc] init] autorelease];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.alpha = 0;
+    //imageView.alpha = 0;
 
     CGRect imageFrame = imageLoadingView.frame;
     imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
@@ -117,21 +117,25 @@
 }
 
 
-- (void) setCellImage:(UIImage*) image {
+- (void) setCellImage:(UIImage*) image animated:(BOOL) animated {
   [activityView stopAnimating];
   imageView.image = image;
 
-  [UIView beginAnimations:nil context:NULL];
-  {
-    imageLoadingView.alpha = 0;
-    imageView.alpha = 1;
+  if (animated) {
+    [UIView beginAnimations:nil context:NULL];
   }
-  [UIView commitAnimations];
+
+  imageLoadingView.alpha = 0;
+  imageView.alpha = 1;
+
+  if (animated) {
+    [UIView commitAnimations];
+  }
 }
 
 
 - (void) setNotFoundImage {
-  [self setCellImage:[StockImages imageNotAvailable]];
+  [self setCellImage:[StockImages imageNotAvailable] animated:YES];
 }
 
 
@@ -147,7 +151,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
   }
 
-  [self setCellImage:image];
+  [self setCellImage:image animated:YES];
 }
 
 

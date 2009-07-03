@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "Model.h"
-#import "SettingCell.h"
 
 @interface CreditsViewController()
 @property (retain) NSArray* languages;
@@ -68,7 +67,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
         [dictionary setObject:@"Dani Valevski"      forKey:@"he"];
         [dictionary setObject:@"Megha Joshi"        forKey:@"hi"];
-        [dictionary setObject:@"Horvath István"     forKey:@"hu"];
+    [dictionary setObject:@"Horányi Gergő"      forKey:@"hu"];
         [dictionary setObject:@"Santiago Navonne"   forKey:@"it"];
         [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
@@ -90,14 +89,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (Model*) model {
     return [Model model];
-}
-
-
-- (void) minorRefreshWorker {
-}
-
-
-- (void) majorRefreshWorker {
 }
 
 

@@ -35,204 +35,204 @@
 @synthesize instantMovies;
 
 - (void) dealloc {
-    self.movies = nil;
-    self.discMovies = nil;
-    self.instantMovies = nil;
+  self.movies = nil;
+  self.discMovies = nil;
+  self.instantMovies = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) setupDefaultScopeButtonTitles {
-    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), LocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), LocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
+  self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:LocalizedString(@"All", @"Option to show 'All' (i.e. non-filtered) results from a search"), LocalizedString(@"Disc", @"i.e. DVD or Bluray movie that comes on a 'Disc'"), LocalizedString(@"Instant", @"i.e. a streamable movie that can be watched 'Instant'ly"), nil];
 }
 
 
 - (id)initWithSearchBar:(UISearchBar*) searchBar_
      contentsController:(UIViewController*) viewController_ {
-    if ((self = [super initWithSearchBar:searchBar_
-                     contentsController:viewController_])) {
-        self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
-        self.searchBar.placeholder = LocalizedString(@"Search Netflix", nil);
-    }
+  if ((self = [super initWithSearchBar:searchBar_
+                    contentsController:viewController_])) {
+    self.searchBar.selectedScopeButtonIndex = self.model.netflixSearchSelectedScopeButtonIndex;
+    self.searchBar.placeholder = LocalizedString(@"Search Netflix", nil);
+  }
 
-    return self;
+  return self;
 }
 
 
 - (AbstractSearchEngine*) createSearchEngine {
-    return [NetflixSearchEngine engineWithDelegate:self];
+  return [NetflixSearchEngine engineWithDelegate:self];
 }
 
 
 - (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
-    self.model.netflixSearchSelectedScopeButtonIndex = selectedScope;
-    [self.searchResultsTableView reloadData];
+  self.model.netflixSearchSelectedScopeButtonIndex = selectedScope;
+  [self reloadTableViewData];
 }
 
 
 - (BOOL) shouldShowAll {
-    return self.searchBar.selectedScopeButtonIndex == 0;
+  return self.searchBar.selectedScopeButtonIndex == 0;
 }
 
 
 - (BOOL) shouldShowDisc {
-    return self.searchBar.selectedScopeButtonIndex == 1;
+  return self.searchBar.selectedScopeButtonIndex == 1;
 }
 
 
 - (BOOL) shouldShowInstant {
-    return self.searchBar.selectedScopeButtonIndex == 2;
+  return self.searchBar.selectedScopeButtonIndex == 2;
 }
 
 
 - (BOOL) noResults {
-    return
-    searchResult != nil &&
-    (movies.count == 0 || ![self shouldShowAll]) &&
-    (discMovies.count == 0 || ![self shouldShowDisc]) &&
-    (instantMovies.count == 0 || ![self shouldShowInstant]);
+  return
+  searchResult != nil &&
+  (movies.count == 0 || ![self shouldShowAll]) &&
+  (discMovies.count == 0 || ![self shouldShowDisc]) &&
+  (instantMovies.count == 0 || ![self shouldShowInstant]);
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (searchResult == nil) {
-        return 0;
-    }
+  if (searchResult == nil) {
+    return 0;
+  }
 
-    if ([self noResults]) {
-        return 0;
-    }
+  if ([self noResults]) {
+    return 0;
+  }
 
-    if ([self shouldShowAll]) {
-        return movies.count;
-    } else if ([self shouldShowDisc]) {
-        return discMovies.count;
-    } else if ([self shouldShowInstant]) {
-        return instantMovies.count;
-    } else {
-        return 0;
-    }
+  if ([self shouldShowAll]) {
+    return movies.count;
+  } else if ([self shouldShowDisc]) {
+    return discMovies.count;
+  } else if ([self shouldShowInstant]) {
+    return instantMovies.count;
+  } else {
+    return 0;
+  }
 }
 
 
 - (UITableViewCell*) netflixCellForMovie:(Movie*) movie {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
+  static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    NetflixCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
+  NetflixCell* cell = (id)[self.searchResultsTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+  }
 
-    [cell setMovie:movie owner:nil];
-    return cell;
+  [cell setMovie:movie owner:nil];
+  return cell;
 }
 
 
 - (UITableViewCell*) noResultsCell {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", nil), searchResult.value];
-    return cell;
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"No results found for '%@'", nil), searchResult.value];
+  return cell;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if ([self noResults]) {
-        return [self noResultsCell];
-    }
+  if ([self noResults]) {
+    return [self noResultsCell];
+  }
 
-    Movie* movie = nil;
-    if ([self shouldShowAll]) {
-        movie = [movies objectAtIndex:indexPath.row];
-    } else if ([self shouldShowDisc]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
-    } else if ([self shouldShowInstant]) {
-        movie = [instantMovies objectAtIndex:indexPath.row];
-    } else {
-        [[[UITableViewCell alloc] init] autorelease];
-    }
+  Movie* movie = nil;
+  if ([self shouldShowAll]) {
+    movie = [movies objectAtIndex:indexPath.row];
+  } else if ([self shouldShowDisc]) {
+    movie = [discMovies objectAtIndex:indexPath.row];
+  } else if ([self shouldShowInstant]) {
+    movie = [instantMovies objectAtIndex:indexPath.row];
+  } else {
+    [[[UITableViewCell alloc] init] autorelease];
+  }
 
-    return [self netflixCellForMovie:movie];
+  return [self netflixCellForMovie:movie];
 }
 
 
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    Movie* movie = nil;
-    if ([self shouldShowAll]) {
-        movie = [movies objectAtIndex:indexPath.row];
-    } else if ([self shouldShowDisc]) {
-        movie = [discMovies objectAtIndex:indexPath.row];
-    } else if ([self shouldShowInstant]) {
-        movie = [instantMovies objectAtIndex:indexPath.row];
-    } else {
-        return;
-    }
+  Movie* movie = nil;
+  if ([self shouldShowAll]) {
+    movie = [movies objectAtIndex:indexPath.row];
+  } else if ([self shouldShowDisc]) {
+    movie = [discMovies objectAtIndex:indexPath.row];
+  } else if ([self shouldShowInstant]) {
+    movie = [instantMovies objectAtIndex:indexPath.row];
+  } else {
+    return;
+  }
 
-    [self.commonNavigationController pushMovieDetails:movie animated:YES];
+  [self.commonNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (searchResult != nil) {
-        return 100;
-    }
+  if (searchResult != nil) {
+    return 100;
+  }
 
-    return self.searchResultsTableView.rowHeight;
+  return self.searchResultsTableView.rowHeight;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if ([self noResults]) {
-        return LocalizedString(@"No information found", nil);
-    }
+  if ([self noResults]) {
+    return LocalizedString(@"No information found", nil);
+  }
 
-    return nil;
+  return nil;
 }
 
 
 - (void) initializeData:(SearchResult*) result {
-    NSMutableArray* discs = [NSMutableArray array];
-    NSMutableArray* instant = [NSMutableArray array];
+  NSMutableArray* discs = [NSMutableArray array];
+  NSMutableArray* instant = [NSMutableArray array];
 
-    for (Movie* movie in result.movies) {
-        NSArray* formats = [self.model.netflixCache formatsForMovie:movie];
-        if ([formats containsObject:@"instant"]) {
-            [instant addObject:movie];
-        } else {
-            [discs addObject:movie];
-        }
+  for (Movie* movie in result.movies) {
+    NSArray* formats = [self.model.netflixCache formatsForMovie:movie];
+    if ([formats containsObject:@"instant"]) {
+      [instant addObject:movie];
+    } else {
+      [discs addObject:movie];
     }
+  }
 
-    self.movies = result.movies;
-    self.discMovies = discs;
-    self.instantMovies = instant;
+  self.movies = result.movies;
+  self.discMovies = discs;
+  self.instantMovies = instant;
 
-    self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
+  self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
                                       [NSString stringWithFormat:LocalizedString(@"All (%d)", @"Used to display the count of all search results.  i.e.: All (15)"), movies.count],
                                       [NSString stringWithFormat:LocalizedString(@"Disc (%d)", @"Used to display the count of all dvd search results.  i.e.: Disc (15)"), discs.count],
                                       [NSString stringWithFormat:LocalizedString(@"Instant (%d)", @"Used to display the count of all instant watch search results.  i.e.: Instant (15)"), instant.count],
-                                        nil];
+                                      nil];
 }
 
 
 - (void) reportResult:(SearchResult*) result {
-    [self initializeData:result];
-    [super reportResult:result];
+  [self initializeData:result];
+  [super reportResult:result];
 }
 
 @end
