@@ -51,7 +51,6 @@ typedef enum {
 } Sections;
 
 @synthesize searchBar;
-@synthesize searchDisplayController;
 
 - (void) dealloc {
   self.searchBar = nil;
