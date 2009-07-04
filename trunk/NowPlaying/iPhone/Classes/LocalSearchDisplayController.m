@@ -324,7 +324,7 @@
 }
 
 
-- (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+- (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger) selectedScope {
   self.model.localSearchSelectedScopeButtonIndex = selectedScope;
   [self reloadTableViewData];
 }

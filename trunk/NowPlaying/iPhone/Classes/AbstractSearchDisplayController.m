@@ -52,7 +52,7 @@
 }
 
 
-- (id)initWithSearchBar:(UISearchBar*) searchBar__
+- (id) initWithSearchBar:(UISearchBar*) searchBar__
      contentsController:(UIViewController*) viewController__ {
   if ((self = [super initWithSearchBar:searchBar__ contentsController:viewController__])) {
     self.delegate = self;
@@ -70,7 +70,7 @@
 
 
 - (CommonNavigationController*) commonNavigationController {
-  return [(id)self.searchContentsController commonNavigationController];
+  return [(id) self.searchContentsController commonNavigationController];
 }
 
 

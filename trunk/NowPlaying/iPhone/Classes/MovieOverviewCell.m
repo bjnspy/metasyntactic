@@ -60,7 +60,7 @@
         actualSize.width = 140;
     }
 
-    CGFloat adjustedHeight = 18 * (MIN(145, (int)actualSize.height) / 18);
+    CGFloat adjustedHeight = 18 * (MIN(145, (int) actualSize.height) / 18);
     CGFloat ratio = adjustedHeight / actualSize.height;
 
     return CGSizeMake(actualSize.width * ratio, adjustedHeight);

@@ -47,7 +47,7 @@
 
 
 - (CommonNavigationController*) commonNavigationController {
-  return (id)self.navigationController;
+  return (id) self.navigationController;
 }
 
 
@@ -241,9 +241,9 @@
 }
 
 
-- (void) mailComposeController:(MFMailComposeViewController*)controller
-           didFinishWithResult:(MFMailComposeResult)result
-                         error:(NSError*)error {
+- (void) mailComposeController:(MFMailComposeViewController*) controller
+           didFinishWithResult:(MFMailComposeResult) result
+                         error:(NSError*) error {
   [self dismissModalViewControllerAnimated:YES];
 }
 
