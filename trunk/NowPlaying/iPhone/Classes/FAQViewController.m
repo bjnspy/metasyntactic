@@ -73,17 +73,17 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView {
   return questions.count * 2;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section {
   return 1;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section % 2 == 0) {
     static NSString* reuseIdentifier = @"questionCell";
     QuestionCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -124,7 +124,7 @@
 }
 
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView*) tableView:(UITableView*) tableView viewForHeaderInSection:(NSInteger)section {
   if (section == 0) {
     return actionsView;
   } else if (section % 2 == 0) {
@@ -143,7 +143,7 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView*) tableView heightForHeaderInSection:(NSInteger)section {
   if (section == 0) {
     CGFloat height = [actionsView height];
 
