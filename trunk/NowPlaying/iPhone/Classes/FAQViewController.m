@@ -61,11 +61,9 @@
     NSArray* titles = [NSArray arrayWithObjects:
                        LocalizedString(@"Send Feedback", nil),
                        LocalizedString(@"Add Theater", @"Title for a button that the user can use to request that a theater be added to the program"), nil];
-    NSArray* arguments = [NSArray arrayWithObjects:[NSNull null], [NSNull null], nil];
     self.actionsView = [ActionsView viewWithTarget:self
                                          selectors:selectors
-                                            titles:titles
-                                         arguments:arguments];
+                                            titles:titles];
     actionsView.backgroundColor = self.tableView.backgroundColor;
   }
 
