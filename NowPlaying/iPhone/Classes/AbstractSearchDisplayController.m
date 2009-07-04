@@ -113,7 +113,7 @@
 }
 
 
-- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
+- (BOOL) searchDisplayController:(UISearchDisplayController*) controller shouldReloadTableForSearchString:(NSString*) searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   if (searchText.length == 0) {
@@ -156,7 +156,7 @@
 }
 
 
-- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController*) controller {
   [self setupDefaultScopeButtonTitles];
 }
 
