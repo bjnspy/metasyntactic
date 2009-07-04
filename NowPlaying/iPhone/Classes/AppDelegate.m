@@ -134,7 +134,7 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) resetTabs {
-    [(ApplicationTabBarController*)viewController resetTabs];
+    [(ApplicationTabBarController*) viewController resetTabs];
 }
 
 

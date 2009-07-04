@@ -336,7 +336,7 @@ typedef enum {
 
 
 - (CommonNavigationController*) commonNavigationController {
-  return (id)self.navigationController;
+  return (id) self.navigationController;
 }
 
 
