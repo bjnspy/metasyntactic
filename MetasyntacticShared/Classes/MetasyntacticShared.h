@@ -76,6 +76,7 @@
 #import "SettingCell.h"
 #import "SmallActivityIndicatorViewWithBackground.h"
 #import "StringUtilities.h"
+#import "SynopsisCell.h"
 #import "TappableImageView.h"
 #import "TappableImageViewDelegate.h"
 #import "TappableScrollView.h"
