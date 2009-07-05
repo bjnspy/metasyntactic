@@ -41,7 +41,7 @@ static AppDelegate* appDelegate = nil;
   self.viewController = nil;
   self.majorRefreshPulser = nil;
   self.minorRefreshPulser = nil;
-  
+
   [super dealloc];
 }
 
@@ -55,25 +55,25 @@ static AppDelegate* appDelegate = nil;
   if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
-  
+
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
-  
+
   appDelegate = self;
-  
+
   [Model model];
   [Controller controller];
   [CacheUpdater cacheUpdater];
   [OperationQueue operationQueue];
   self.viewController = [ApplicationTabBarController controller];
-  
+
   self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
   self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:5];
-  
+
   [window addSubview:viewController.view];
   [window makeKeyAndVisible];
-  
+
   [NotificationCenter attachToViewController:viewController];
-  
+
   // Ok.  We've set up all our global state.  Now get the ball rolling.
   [[Controller controller] start];
 }
@@ -89,7 +89,7 @@ static AppDelegate* appDelegate = nil;
     [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
     return;
   }
-  
+
   if (force.boolValue) {
     [majorRefreshPulser forcePulse];
   } else {
@@ -113,7 +113,7 @@ static AppDelegate* appDelegate = nil;
     [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   [minorRefreshPulser tryPulse];
 }
 
