@@ -29,8 +29,7 @@
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(Model*) model
                          posterImage:(UIImage*) posterImage
-                     posterImageView:(TappableImageView*) posterImageView
-                        activityView:(SmallActivityIndicatorViewWithBackground*) activityView;
+                     posterImageView:(TappableImageView*) posterImageView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(Model*) model;
 
 @end

@@ -78,7 +78,7 @@
     UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
 
     double width;
-    if ([[Model model] screenRotationEnabled] &&
+    if ([MetasyntacticSharedApplication screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
