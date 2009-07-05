@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  */
 public class Program {
     private static final Collection<String> classes = new TreeSet<String>();
-    private static final List<File> stringsFiles = new ArrayList<File>();
+    private static List<File> stringsFiles = new ArrayList<File>();
 
     private Program() {
     }
@@ -30,6 +30,7 @@ public class Program {
     public static void main(final String... args)
             throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
         for (String arg : args) {
+            stringsFiles = new ArrayList<File>();
             findStringsFiles(new File(arg));
             processDirectory(new File(arg));
         }
@@ -66,7 +67,7 @@ public class Program {
         //removeUnusedImports(child);
         insertCopyright(child);
         trimRight(child);
-        //organizeStringsFile(child);
+        organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
         trim(child);
@@ -655,7 +656,7 @@ public class Program {
     }
 
     private static boolean isRestricted(final File child) {
-        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
+        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h") && !child.getName().endsWith(".strings")) {
             return true;
         }
 
