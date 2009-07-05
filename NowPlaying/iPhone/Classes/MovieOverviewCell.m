@@ -69,8 +69,7 @@
 
 - (id) initWithMovie:(Movie*) movie_
          posterImage:(UIImage*) posterImage_
-     posterImageView:(TappableImageView*) posterImageView
-        activityView:(SmallActivityIndicatorViewWithBackground*) activityView {
+     posterImageView:(TappableImageView*) posterImageView {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.movie = movie_;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -87,18 +86,9 @@
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
 
-    {
-      posterImageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
-
-      CGRect imageFrame = posterImageView.frame;
-      CGRect activityFrame = activityView.frame;
-      activityFrame.origin.x = imageFrame.origin.x + 2;
-      activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 1;
-      activityView.frame = activityFrame;
-    }
+    posterImageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
 
     [self.contentView addSubview:posterImageView];
-    [self.contentView addSubview:activityView];
     [self.contentView addSubview:synopsisChunk1Label];
     [self.contentView addSubview:synopsisChunk2Label];
   }
@@ -228,18 +218,16 @@
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(Model*) model
                          posterImage:(UIImage*) posterImage
-                     posterImageView:(TappableImageView*) posterImageView
-                        activityView:(SmallActivityIndicatorViewWithBackground*) activityView {
+                     posterImageView:(TappableImageView*) posterImageView {
   return [[[MovieOverviewCell alloc] initWithMovie:movie
                                        posterImage:posterImage
-                                   posterImageView:posterImageView
-                                      activityView:activityView] autorelease];
+                                   posterImageView:posterImageView] autorelease];
 }
 
 
 - (CGFloat) height {
   double width;
-  if ([self.model screenRotationEnabled] &&
+  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
@@ -273,8 +261,7 @@
   MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie
                                                        model:model
                                                  posterImage:posterImage
-                                             posterImageView:posterImageView
-                                                activityView:nil];
+                                             posterImageView:posterImageView];
   return cell.height;
 }
 

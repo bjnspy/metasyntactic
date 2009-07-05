@@ -98,7 +98,7 @@ const NSInteger TOP_BUFFER = 5;
     double imageHeight = [StockImages warning32x32].size.height;
 
     double width;
-    if ([self.model screenRotationEnabled] &&
+    if ([MetasyntacticSharedApplication screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {

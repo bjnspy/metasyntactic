@@ -52,7 +52,6 @@
 @property NSInteger hiddenTheaterCount;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
-@property (retain) SmallActivityIndicatorViewWithBackground* posterActivityView;
 @property (retain) UIButton* bookmarkButton;
 @end
 
@@ -78,7 +77,6 @@ const NSInteger POSTER_TAG = -1;
 @synthesize websites;
 @synthesize actionsView;
 @synthesize hiddenTheaterCount;
-@synthesize posterActivityView;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
@@ -96,7 +94,6 @@ const NSInteger POSTER_TAG = -1;
   self.websites = nil;
   self.actionsView = nil;
   self.hiddenTheaterCount = 0;
-  self.posterActivityView = nil;
   self.posterImage = nil;
   self.posterImageView = nil;
   self.bookmarkButton = nil;
@@ -352,13 +349,6 @@ const NSInteger POSTER_TAG = -1;
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.movie = movie_;
 
-    // Only want to do this once.
-    if (self.model.loadingIndicatorsEnabled) {
-      self.posterActivityView = [[[SmallActivityIndicatorViewWithBackground alloc] init] autorelease];
-      [posterActivityView startAnimating];
-      [posterActivityView sizeToFit];
-    }
-
     posterCount = -1;
   }
 
@@ -488,7 +478,6 @@ const NSInteger POSTER_TAG = -1;
   self.actionsView = nil;
   self.posterImage = nil;
   self.posterImageView = nil;
-  self.posterActivityView = nil;
 }
 
 
@@ -506,7 +495,6 @@ const NSInteger POSTER_TAG = -1;
   NSAssert([NSThread isMainThread], nil);
   if (!visible) { return; }
   posterCount = [posterNumber intValue];
-  [posterActivityView stopAnimating];
   [self minorRefresh];
 }
 
@@ -540,7 +528,6 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
-  [posterActivityView stopAnimating];
 
   [self removeNotifications];
 }
@@ -701,8 +688,7 @@ const NSInteger POSTER_TAG = -1;
     return [MovieOverviewCell cellWithMovie:movie
                                       model:self.model
                                 posterImage:posterImage
-                            posterImageView:posterImageView
-                               activityView:posterActivityView];
+                            posterImageView:posterImageView];
   }
 
   if (row == 1) {
