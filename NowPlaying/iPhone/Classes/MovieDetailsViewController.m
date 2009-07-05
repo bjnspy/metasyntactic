@@ -23,7 +23,6 @@
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
-#import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
@@ -685,10 +684,9 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
   if (row == 0) {
-    return [MovieOverviewCell cellWithMovie:movie
-                                      model:self.model
-                                posterImage:posterImage
-                            posterImageView:posterImageView];
+    return [SynopsisCell cellWithSynopsis:[self.model synopsisForMovie:movie]
+                                imageView:posterImageView
+                              limitLength:YES];
   }
 
   if (row == 1) {
@@ -705,7 +703,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
   if (row == 0) {
-    return [MovieOverviewCell heightForMovie:movie model:self.model];
+    return [(id)[self cellForHeaderRow:row] height];
   }
 
   if (row == 1) {

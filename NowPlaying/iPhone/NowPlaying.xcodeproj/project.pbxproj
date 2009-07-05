@@ -54,7 +54,6 @@
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
-		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
 		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
@@ -348,7 +347,6 @@
 		742C07B20F08B0890087F4E0 /* AmazonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonCache.m; sourceTree = "<group>"; };
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
-		743394100E61E52000D285F0 /* MovieOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieOverviewCell.m; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
@@ -649,7 +647,6 @@
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = NowPlaying_Prefix.pch; sourceTree = "<group>"; };
-		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
 		74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
 		74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
 		74FFE2BF0FB6BF8F00B2BF86 /* ImageLoading-Neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ImageLoading-Neutral.png"; path = "Resources/ImageLoading-Neutral.png"; sourceTree = "<group>"; };
@@ -993,7 +990,6 @@
 				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
-				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
 				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
 				7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */,
@@ -1005,7 +1001,6 @@
 				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
-				743394100E61E52000D285F0 /* MovieOverviewCell.m */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */,
@@ -1608,7 +1603,6 @@
 				74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */,
 				74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */,
 				74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */,
-				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
 				7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */,
 				741377B10E64765000404519 /* TheaterNameCell.m in Sources */,
 				74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */,
