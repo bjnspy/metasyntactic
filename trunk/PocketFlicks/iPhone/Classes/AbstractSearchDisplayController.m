@@ -52,7 +52,7 @@
 }
 
 
-- (id)initWithSearchBar:(UISearchBar*) searchBar__
+- (id) initWithSearchBar:(UISearchBar*) searchBar__
      contentsController:(UIViewController*) viewController__ {
   if ((self = [super initWithSearchBar:searchBar__ contentsController:viewController__])) {
     self.delegate = self;
@@ -70,7 +70,7 @@
 
 
 - (CommonNavigationController*) commonNavigationController {
-  return [(id)self.searchContentsController commonNavigationController];
+  return [(id) self.searchContentsController commonNavigationController];
 }
 
 
@@ -113,7 +113,7 @@
 }
 
 
-- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchText {
+- (BOOL) searchDisplayController:(UISearchDisplayController*) controller shouldReloadTableForSearchString:(NSString*) searchText {
   searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
   if (searchText.length == 0) {
@@ -156,7 +156,7 @@
 }
 
 
-- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController*) controller {
   [self setupDefaultScopeButtonTitles];
 }
 

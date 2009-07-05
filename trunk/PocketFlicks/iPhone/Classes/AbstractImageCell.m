@@ -70,7 +70,7 @@
 
     CGRect imageFrame = imageLoadingView.frame;
     imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
-    imageFrame.size.height = (int)SMALL_POSTER_HEIGHT;
+    imageFrame.size.height = (int) SMALL_POSTER_HEIGHT;
     imageView.frame = imageLoadingView.frame = imageFrame;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
