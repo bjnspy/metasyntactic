@@ -45,6 +45,7 @@
 @class PriorityMutex;
 @class Pulser;
 @class SettingCell;
+@class SynopsisCell;
 @class TappableImageView;
 @class TappableScrollView;
 @class TextFieldEditorViewController;

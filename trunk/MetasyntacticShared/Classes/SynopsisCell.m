@@ -65,6 +65,8 @@
             limitLength:(BOOL) limitLength_ {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.synopsis = synopsis_;
+    self.limitLength = limitLength_;
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.imageSize = [self calculatePreferredImageSize:imageView.image];
     
