@@ -41,6 +41,8 @@
 		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
 		7458A1FB0FF204A3000CD194 /* AbstractCurlableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */; };
 		7458A1FC0FF204A3000CD194 /* AbstractCurlableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */; };
+		74AD39F1100139E200D6BDAA /* SynopsisCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD39EF100139E200D6BDAA /* SynopsisCell.h */; };
+		74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD39F0100139E200D6BDAA /* SynopsisCell.m */; };
 		74BD09970FF1D95400DB9692 /* AbstractMultiPageTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */; };
 		74BD09980FF1D95400DB9692 /* AbstractMultiPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */; };
 		74BD099B0FF1D96C00DB9692 /* AbstractSlidableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */; };
@@ -382,6 +384,8 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		74AD39EF100139E200D6BDAA /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
+		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
 		74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMultiPageTableViewController.h; sourceTree = "<group>"; };
 		74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMultiPageTableViewController.m; sourceTree = "<group>"; };
 		74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
@@ -827,8 +831,10 @@
 			children = (
 				74E601A20FD1C7700015D9F8 /* AttributeCell.h */,
 				74FEEAD40FF9CF0E0021F472 /* SettingCell.h */,
+				74AD39EF100139E200D6BDAA /* SynopsisCell.h */,
 				74E601A30FD1C7700015D9F8 /* AttributeCell.m */,
 				74FEEAD50FF9CF0E0021F472 /* SettingCell.m */,
+				74AD39F0100139E200D6BDAA /* SynopsisCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -965,6 +971,7 @@
 				74FEEB4F0FF9D9510021F472 /* DatePickerDelegate.h in Headers */,
 				74FEEC010FFA868D0021F472 /* ListPickerViewController.h in Headers */,
 				74FEEC050FFA87060021F472 /* ListPickerDelegate.h in Headers */,
+				74AD39F1100139E200D6BDAA /* SynopsisCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1111,7 @@
 				74FEEAD70FF9CF0E0021F472 /* SettingCell.m in Sources */,
 				74FEEB3E0FF9D6CD0021F472 /* DatePickerViewController.m in Sources */,
 				74FEEC020FFA868D0021F472 /* ListPickerViewController.m in Sources */,
+				74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
