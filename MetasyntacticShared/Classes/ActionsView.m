@@ -36,14 +36,14 @@
 @synthesize height;
 
 - (void) dealloc {
-    self.target = nil;
-    self.selectors = nil;
-    self.titles = nil;
-    self.buttons = nil;
-    self.arguments = nil;
-    self.height = 0;
-
-    [super dealloc];
+  self.target = nil;
+  self.selectors = nil;
+  self.titles = nil;
+  self.buttons = nil;
+  self.arguments = nil;
+  self.height = 0;
+  
+  [super dealloc];
 }
 
 
@@ -51,37 +51,39 @@
             selectors:(NSArray*) selectors_
                titles:(NSArray*) titles_
             arguments:(NSArray*) arguments_ {
-    if ((self = [super initWithFrame:CGRectZero])) {
-        self.target = target_;
-        self.selectors = selectors_;
-        self.titles = titles_;
-        self.arguments = arguments_;
-        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
-        NSMutableArray* array = [NSMutableArray array];
-        for (NSString* title in titles) {
-            UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button setTitle:title forState:UIControlStateNormal];
-            [button sizeToFit];
-
-            [button addTarget:self action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
-            [array addObject:button];
-            [self addSubview:button];
-        }
-
-        self.buttons = array;
-
-        {
-            int lastRow = (buttons.count - 1) / 2;
-
-            UIButton* button = [buttons lastObject];
-            CGRect frame = button.frame;
-            self.height = (8 + frame.size.height) * (lastRow + 1);
-        }
+  if ((self = [super initWithFrame:CGRectZero])) {
+    self.target = target_;
+    self.selectors = selectors_;
+    self.titles = titles_;
+    self.arguments = arguments_;
+    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    NSMutableArray* array = [NSMutableArray array];
+    for (NSString* title in titles) {
+      UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      [button setTitle:title forState:UIControlStateNormal];
+      [button sizeToFit];
+      
+      [button addTarget:self action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+      
+      [array addObject:button];
+      [self addSubview:button];
     }
+    
+    self.buttons = array;
 
-    return self;
+    if (buttons.count == 0) {
+      self.height = 0;
+    } else {
+      int lastRow = (buttons.count - 1) / 2;
+      
+      UIButton* button = [buttons lastObject];
+      CGRect frame = button.frame;
+      self.height = (8 + frame.size.height) * (lastRow + 1);
+    }
+  }
+  
+  return self;
 }
 
 
@@ -89,10 +91,10 @@
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles
                       arguments:(NSArray*) arguments {
-    return [[[ActionsView alloc] initWithTarget:(id) target
-                                      selectors:selectors
-                                         titles:titles
-                                      arguments:arguments] autorelease];
+  return [[[ActionsView alloc] initWithTarget:(id) target
+                                    selectors:selectors
+                                       titles:titles
+                                    arguments:arguments] autorelease];
 }
 
 
@@ -100,11 +102,11 @@
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles {
   NSMutableArray* arguments = [NSMutableArray array];
-
+  
   for (NSInteger i = 0; i < selectors.count; i++) {
     [arguments addObject:[NSNull null]];
   }
-
+  
   return [self viewWithTarget:target
                     selectors:selectors
                        titles:titles
@@ -113,68 +115,68 @@
 
 
 - (void) onButtonTapped:(UIButton*) button {
-    NSInteger index = [buttons indexOfObject:button];
-
-    SEL selector = [[selectors objectAtIndex:index] pointerValue];
-    if ([target respondsToSelector:selector]) {
-        id argument = [arguments objectAtIndex:index];
-
-        if (argument == [NSNull null]) {
-            [target performSelector:selector];
-        } else {
-            [target performSelector:selector withObject:argument];
-        }
+  NSInteger index = [buttons indexOfObject:button];
+  
+  SEL selector = [[selectors objectAtIndex:index] pointerValue];
+  if ([target respondsToSelector:selector]) {
+    id argument = [arguments objectAtIndex:index];
+    
+    if (argument == [NSNull null]) {
+      [target performSelector:selector];
+    } else {
+      [target performSelector:selector withObject:argument];
     }
+  }
 }
 
 
 - (CGSize) sizeThatFits:(CGSize) size {
-    if (buttons.count == 0) {
-        return CGSizeZero;
-    }
-
-    double width;
-    if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        width = [UIScreen mainScreen].bounds.size.height;
-    } else {
-        width = [UIScreen mainScreen].bounds.size.width;
-    }
-
-    return CGSizeMake(width, height);
+  if (buttons.count == 0) {
+    return CGSizeZero;
+  }
+  
+  double width;
+  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
+      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    width = [UIScreen mainScreen].bounds.size.height;
+  } else {
+    width = [UIScreen mainScreen].bounds.size.width;
+  }
+  
+  return CGSizeMake(width, height);
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-
-    BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
-
-    for (int i = 0; i < buttons.count; i++) {
-        UIButton* button = [buttons objectAtIndex:i];
-
-        NSInteger column;
-        NSInteger row;
-        if (oddNumberOfButtons && i != 0) {
-            column = (i + 1) % 2;
-            row = (i + 1) / 2;
-        } else {
-            column = i % 2;
-            row = i / 2;
-        }
-
-        CGRect frame = button.frame;
-        frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
-        frame.origin.y = (8 + frame.size.height) * row + 8;
-
-        if (i == 0 && oddNumberOfButtons) {
-            frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
-        } else {
-            frame.size.width = (self.frame.size.width / 2) - 14;
-        }
-
-        button.frame = frame;
+  [super layoutSubviews];
+  
+  BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
+  
+  for (int i = 0; i < buttons.count; i++) {
+    UIButton* button = [buttons objectAtIndex:i];
+    
+    NSInteger column;
+    NSInteger row;
+    if (oddNumberOfButtons && i != 0) {
+      column = (i + 1) % 2;
+      row = (i + 1) / 2;
+    } else {
+      column = i % 2;
+      row = i / 2;
     }
+    
+    CGRect frame = button.frame;
+    frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
+    frame.origin.y = (8 + frame.size.height) * row + 8;
+    
+    if (i == 0 && oddNumberOfButtons) {
+      frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
+    } else {
+      frame.size.width = (self.frame.size.width / 2) - 14;
+    }
+    
+    button.frame = frame;
+  }
 }
 
 
