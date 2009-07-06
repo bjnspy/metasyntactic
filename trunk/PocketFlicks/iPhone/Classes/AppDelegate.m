@@ -135,6 +135,9 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) resetTabs {
+  if ([viewController isKindOfClass:[ApplicationTabBarController class]]) {
+    [(id) viewController resetTabs];
+  }
 }
 
 
