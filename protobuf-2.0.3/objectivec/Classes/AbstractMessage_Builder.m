@@ -47,7 +47,7 @@
   PBUnknownFieldSet* merged =
   [[[PBUnknownFieldSet builderWithUnknownFields:self.unknownFields]
     mergeUnknownFields:unknownFields] build];
-  
+
   [self setUnknownFields:merged];
   return self;
 }
