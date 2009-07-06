@@ -15,7 +15,7 @@
 @interface MovieShowtimesCell : UITableViewCell {
 @private
   UILabel* showtimesLabel;
-  
+
   NSArray* showtimesData;
   UIImageView* warningImageView;
   BOOL stale;

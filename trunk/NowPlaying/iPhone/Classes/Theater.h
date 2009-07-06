@@ -17,12 +17,12 @@
   NSString* identifier;
   NSString* name;
   NSString* phoneNumber;
-  
+
   Location* location;
   Location* originatingLocation;
-  
+
   NSArray* movieTitles;
-  
+
   NSString* simpleAddress;
 }
 

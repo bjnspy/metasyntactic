@@ -37,7 +37,7 @@ property_definition(source);
   self.text = nil;
   self.author = nil;
   self.source = nil;
-  
+
   [super dealloc];
 }
 
@@ -54,7 +54,7 @@ property_definition(source);
     self.author = [StringUtilities nonNilString:author_];
     self.source = [StringUtilities nonNilString:source_];
   }
-  
+
   return self;
 }
 
