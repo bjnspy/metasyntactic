@@ -58,7 +58,6 @@
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
 		744004E10F8B09A000E9F879 /* BalloonInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 744004E00F8B09A000E9F879 /* BalloonInputField.png */; };
-		744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744105510F72057F00FF3954 /* AutoresizingCell.m */; };
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
 		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
 		74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */; };
@@ -354,8 +353,6 @@
 		743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
 		743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
 		744004E00F8B09A000E9F879 /* BalloonInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BalloonInputField.png; path = Resources/BalloonInputField.png; sourceTree = "<group>"; };
-		744105500F72057F00FF3954 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
-		744105510F72057F00FF3954 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
 		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
 		744247030E89F7B500ACDBCF /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
 		744247050E89F7C300ACDBCF /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
@@ -978,7 +975,6 @@
 				7445B4450F7D64CA00864071 /* MovieTitleCells */,
 				745380600F89D85800D457CB /* SettingCells */,
 				749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */,
-				744105500F72057F00FF3954 /* AutoresizingCell.h */,
 				749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
@@ -989,7 +985,6 @@
 				74798CFF0F74B7C80057E111 /* SwitchCell.h */,
 				741377AF0E64765000404519 /* TheaterNameCell.h */,
 				749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */,
-				744105510F72057F00FF3954 /* AutoresizingCell.m */,
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
@@ -1661,7 +1656,6 @@
 				745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */,
 				747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */,
 				741172B20F60927C00E09FD8 /* AbstractMovieCache.m in Sources */,
-				744105520F72057F00FF3954 /* AutoresizingCell.m in Sources */,
 				74798D010F74B7C80057E111 /* SwitchCell.m in Sources */,
 				747BF3FA0F7743F0008F5B2B /* NetflixSearchDisplayController.m in Sources */,
 				747BF4780F77486F008F5B2B /* AbstractSearchDisplayController.m in Sources */,
