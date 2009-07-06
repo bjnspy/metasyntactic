@@ -38,7 +38,7 @@ property_definition(saved);
   self.etag = nil;
   self.movies = nil;
   self.saved = nil;
-  
+
   [super dealloc];
 }
 
@@ -53,7 +53,7 @@ property_definition(saved);
     self.movies = movies_;
     self.saved = saved_;
   }
-  
+
   return self;
 }
 

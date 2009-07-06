@@ -30,7 +30,7 @@ property_definition(url);
   self.time = nil;
   self.url = nil;
   self.timeString = nil;
-  
+
   [super dealloc];
 }
 
@@ -41,7 +41,7 @@ property_definition(url);
     self.time = time_;
     self.url = [StringUtilities nonNilString:url_];
   }
-  
+
   return self;
 }
 
@@ -67,10 +67,10 @@ property_definition(url);
 
 - (NSDictionary*) dictionary {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-  
+
   [dictionary setObject:time forKey:time_key];
   [dictionary setObject:url forKey:url_key];
-  
+
   return dictionary;
 }
 
@@ -90,7 +90,7 @@ property_definition(url);
   if (timeString == nil) {
     self.timeString = [DateUtilities formatShortTime:time];
   }
-  
+
   return timeString;
 }
 

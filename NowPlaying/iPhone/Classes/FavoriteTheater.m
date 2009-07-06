@@ -28,7 +28,7 @@ property_definition(originatingLocation);
 - (void) dealloc {
   self.name = nil;
   self.originatingLocation = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,7 +39,7 @@ property_definition(originatingLocation);
     self.name = name_;
     self.originatingLocation = originatingLocation_;
   }
-  
+
   return self;
 }
 

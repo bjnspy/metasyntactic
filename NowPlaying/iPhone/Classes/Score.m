@@ -39,7 +39,7 @@ property_definition(identifier);
   self.score = nil;
   self.provider = nil;
   self.identifier = nil;
-  
+
   [super dealloc];
 }
 
@@ -57,7 +57,7 @@ property_definition(identifier);
     self.identifier = [StringUtilities nonNilString:identifier_];
     scoreValue = -2;
   }
-  
+
   return self;
 }
 
@@ -127,7 +127,7 @@ property_definition(identifier);
       scoreValue = -1;
     }
   }
-  
+
   return scoreValue;
 }
 

@@ -39,7 +39,7 @@ property_definition(url);
   self.format = nil;
   self.discs = nil;
   self.url = nil;
-  
+
   [super dealloc];
 }
 
@@ -56,7 +56,7 @@ property_definition(url);
     self.discs = [StringUtilities nonNilString:discs_];
     self.url = [StringUtilities nonNilString:url_];
   }
-  
+
   return self;
 }
 

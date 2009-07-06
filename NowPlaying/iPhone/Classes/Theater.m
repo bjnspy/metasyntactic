@@ -43,7 +43,7 @@ property_definition(movieTitles);
   self.originatingLocation = nil;
   self.movieTitles = nil;
   self.simpleAddress = nil;
-  
+
   [super dealloc];
 }
 
@@ -72,7 +72,7 @@ property_definition(movieTitles);
     self.originatingLocation = originatingLocation_;
     self.movieTitles = [CollectionUtilities nonNilArray:movieTitles_];
   }
-  
+
   return self;
 }
 
@@ -158,7 +158,7 @@ property_definition(movieTitles);
   if (simpleAddress == nil) {
     self.simpleAddress = [self simpleAddressWorker];
   }
-  
+
   return simpleAddress;
 }
 
