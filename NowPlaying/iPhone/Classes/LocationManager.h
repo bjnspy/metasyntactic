@@ -16,10 +16,10 @@
 @private
   NSLock* gate;
   CLLocationManager* locationManager;
-  
+
   UINavigationItem* navigationItem;
   UIBarButtonItem* buttonItem;
-  
+
   BOOL running;
   BOOL userInvoked;
 }

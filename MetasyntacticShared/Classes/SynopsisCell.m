@@ -40,22 +40,22 @@
   self.synopsisChunk1Label = nil;
   self.synopsisChunk2Label = nil;
   self.imageSize = CGSizeZero;
-  
+
   [super dealloc];
 }
 
 
 - (CGSize) calculatePreferredImageSize:(UIImage*) synopsisImage {
   CGSize actualSize = synopsisImage.size;
-  
+
   if (actualSize.width > 140) {
     actualSize.height *= 140.0 / actualSize.width;
     actualSize.width = 140;
   }
-  
+
   NSInteger adjustedHeight = 18 * (MIN(145, (int) actualSize.height) / 18);
   CGFloat ratio = (double)adjustedHeight / actualSize.height;
-  
+
   return CGSizeMake((int)(actualSize.width * ratio), adjustedHeight);
 }
 
@@ -69,25 +69,25 @@
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.imageSize = [self calculatePreferredImageSize:imageView.image];
-    
+
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    
+
     synopsisChunk1Label.font = [FontCache helvetica14];
     synopsisChunk1Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk1Label.numberOfLines = 0;
-    
+
     synopsisChunk2Label.font = [FontCache helvetica14];
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
-    
+
     imageView.frame = CGRectMake(5, 5, self.imageSize.width, self.imageSize.height);
-    
+
     [self.contentView addSubview:imageView];
     [self.contentView addSubview:synopsisChunk1Label];
     [self.contentView addSubview:synopsisChunk2Label];
   }
-  
+
   return self;
 }
 
@@ -116,14 +116,14 @@
     if (whitespaceIndex == 0 || whitespaceRange.length == 0) {
       return currentSplit;
     }
-    
+
     NSString* synopsisChunk = [synopsis substringToIndex:whitespaceIndex];
-    
+
     CGFloat height = [self computeTextHeight:synopsisChunk forWidth:chunk1Size.width];
     if (height <= chunk1Size.height) {
       return whitespaceIndex;
     }
-    
+
     currentSplit = whitespaceIndex;
   }
 }
@@ -139,14 +139,14 @@
     if (whitespaceIndex == 0 || whitespaceRange.length == 0) {
       return currentSplit;
     }
-    
+
     NSString* synopsisChunk = [synopsis substringToIndex:whitespaceIndex];
-    
+
     CGFloat height = [self computeTextHeight:synopsisChunk forWidth:chunk1Size.width];
     if (height > chunk1Size.height) {
       return currentSplit;
     }
-    
+
     currentSplit = whitespaceIndex;
   }
 }
@@ -161,15 +161,15 @@
   int chunk1X = 5 + self.imageSize.width + 5;
   int chunk1Width = cellWidth - 5 - chunk1X;
   CGSize chunk1Size = CGSizeMake(chunk1Width, chunk1Height);
-  
+
   CGFloat entireSynopsisHeight = [self computeTextHeight:synopsis forWidth:chunk1Width];
   if (entireSynopsisHeight <= chunk1Height) {
     return synopsis.length;
   }
-  
+
   NSInteger guess = (int)((double)synopsis.length * chunk1Height / entireSynopsisHeight);
   guess = MIN(guess, synopsis.length);
-  
+
   NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
                                                       options:NSBackwardsSearch
                                                         range:NSMakeRange(0, guess)];
@@ -177,7 +177,7 @@
   if (currentSplit == 0 || whitespaceRange.length == 0) {
     return synopsis.length;
   }
-  
+
   NSString* synopsisChunk = [synopsis substringToIndex:currentSplit];
   CGFloat chunkHeight = [self computeTextHeight:synopsisChunk forWidth:chunk1Width];
 
@@ -202,20 +202,20 @@
     // trim.
     return synopsis.length;
   }
-  
+
   NSInteger guess = synopsisSplit * 3;
   if (guess >= synopsis.length) {
     // we have enough room to fit the full synopsis in.
     return synopsis.length;
   }
-  
+
   // This is a long synopsis. make a reasonable guess as to where we can
   // trim it in order to keep it short.
   NSRange dot = [synopsis rangeOfString:@"." options:0 range:NSMakeRange(guess, synopsis.length - guess)];
   if (dot.length == 0) {
     return synopsis.length;
   }
-  
+
   return dot.location + 1;
 }
 
@@ -234,34 +234,34 @@
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:self.contentView.frame.size.width];
-  
+
   int chunk1X = 5 + self.imageSize.width + 5;
   int chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
-  
+
   CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, self.imageSize.height);
   synopsisChunk1Label.frame = chunk1Frame;
   synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
   [synopsisChunk1Label sizeToFit];
-  
+
   synopsisChunk2Label.text = @"";
   if (synopsisSplit < synopsis.length) {
     NSInteger start = synopsisSplit + 1;
     NSInteger end = synopsisMax;
-    
+
     NSString* synopsisChunk2 = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-    
+
     CGFloat chunk2Width = self.contentView.frame.size.width - 10;
     CGFloat chunk2Height = [synopsisChunk2 sizeWithFont:[FontCache helvetica14]
                                       constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                           lineBreakMode:UILineBreakModeWordWrap].height;
-    
+
     CGRect chunk2Frame =  CGRectMake(5, self.imageSize.height + 5, chunk2Width, chunk2Height);
     synopsisChunk2Label.text = synopsisChunk2;
     synopsisChunk2Label.frame = chunk2Frame;
-    
+
     // shift the first chunk down to align with the second
     chunk1Frame = synopsisChunk1Label.frame;
     chunk1Frame.origin.y = self.imageSize.height + 5 - chunk1Frame.size.height;
@@ -281,20 +281,20 @@
 
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:width - 20];
-  
+
   double h1 = self.imageSize.height;
-  
+
   if (synopsisSplit == synopsis.length) {
     return h1 + 10;
   }
-  
+
   NSInteger start = synopsisSplit + 1;
   NSInteger end = synopsisMax;
-  
+
   NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-  
+
   double h2 = [self computeTextHeight:remainder forWidth:width - 30];
-  
+
   return h1 + h2 + 10;
 }
 

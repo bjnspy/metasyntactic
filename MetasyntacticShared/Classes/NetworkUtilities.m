@@ -174,7 +174,7 @@ static Pulser* pulser = nil;
 
 
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
-                                   response:(NSHTTPURLResponse**) response 
+                                   response:(NSHTTPURLResponse**) response
                                       pause:(BOOL) pause {
   if (response != NULL) {
     *response = nil;

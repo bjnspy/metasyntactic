@@ -18,9 +18,9 @@
   NSArray* selectors;
   NSArray* titles;
   NSArray* arguments;
-  
+
   NSArray* buttons;
-  
+
   CGFloat height;
 }
 

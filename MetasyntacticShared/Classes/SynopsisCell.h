@@ -16,10 +16,10 @@
 @private
   NSString* synopsis;
   BOOL limitLength;
-  
+
   UILabel* synopsisChunk1Label;
   UILabel* synopsisChunk2Label;
-  
+
   CGSize imageSize;
 }
 
