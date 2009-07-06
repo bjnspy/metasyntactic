@@ -63,8 +63,8 @@
             NSDate* releaseDate = [DateUtilities parseISO8601Date:releaseDateString];
 
             NSString* imdbAddress = @"";
-            if (movieProto.iMDbUrl.length > 0) {
-                imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
+            if (movieProto.imdbUrl.length > 0) {
+                imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.imdbUrl];
             }
 
             Movie* movie = [Movie movieWithIdentifier:identifier
