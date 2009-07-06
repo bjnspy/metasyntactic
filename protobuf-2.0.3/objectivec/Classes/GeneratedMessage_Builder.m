@@ -33,7 +33,7 @@
  * constructor because it becomes null when build() is called.
  */
 - (PBGeneratedMessage*) internalGetResult {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -46,27 +46,27 @@
 
 
 - (PBUnknownFieldSet*) unknownFields {
-    return self.internalGetResult.unknownFields;
+  return self.internalGetResult.unknownFields;
 }
 
 
 - (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields {
-    self.internalGetResult.unknownFields = unknownFields;
-    return self;
+  self.internalGetResult.unknownFields = unknownFields;
+  return self;
 }
 
 
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
-    PBGeneratedMessage* result = self.internalGetResult;
-    result.unknownFields =
-    [[[PBUnknownFieldSet builderWithUnknownFields:result.unknownFields]
-                               mergeUnknownFields:unknownFields] build];
-    return self;
+  PBGeneratedMessage* result = self.internalGetResult;
+  result.unknownFields =
+  [[[PBUnknownFieldSet builderWithUnknownFields:result.unknownFields]
+    mergeUnknownFields:unknownFields] build];
+  return self;
 }
 
 
 - (BOOL) isInitialized {
-    return self.internalGetResult.isInitialized;
+  return self.internalGetResult.isInitialized;
 }
 
 
@@ -78,7 +78,7 @@
              unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag {
-    return [unknownFields mergeFieldFrom:tag input:input];
+  return [unknownFields mergeFieldFrom:tag input:input];
 }
 
 

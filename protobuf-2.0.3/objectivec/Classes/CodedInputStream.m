@@ -221,7 +221,7 @@ const int32_t BUFFER_SIZE = 4096;
     // Fast path:  We already have the bytes in a contiguous buffer, so
     //   just copy directly from it.
     //  new String(buffer, bufferPos, size, "UTF-8");
-    NSString* result = [[[NSString alloc] initWithBytes:(((uint8_t*) buffer.bytes) + bufferPos)
+    NSString* result = [[[NSString alloc] initWithBytes:(((const uint8_t*) buffer.bytes) + bufferPos)
                                                  length:size
                                                encoding:NSUTF8StringEncoding] autorelease];
     bufferPos += size;

@@ -28,115 +28,115 @@
 @implementation PBMutableField
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (PBMutableField*) field {
-    return [[[PBMutableField alloc] init] autorelease];
+  return [[[PBMutableField alloc] init] autorelease];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-    }
-
-    return self;
+  if ((self = [super init])) {
+  }
+  
+  return self;
 }
 
 
 - (PBMutableField*) clear {
-    self.mutableVarintList = nil;
-    self.mutableFixed32List = nil;
-    self.mutableFixed64List = nil;
-    self.mutableLengthDelimitedList = nil;
-    self.mutableGroupList = nil;
-    return self;
+  self.mutableVarintList = nil;
+  self.mutableFixed32List = nil;
+  self.mutableFixed64List = nil;
+  self.mutableLengthDelimitedList = nil;
+  self.mutableGroupList = nil;
+  return self;
 }
 
 
 - (PBMutableField*) mergeFromField:(PBField*) other {
-    if (other.varintList.count > 0) {
-        if (mutableVarintList == nil) {
-            self.mutableVarintList = [NSMutableArray array];
-        }
-        [mutableVarintList addObjectsFromArray:other.varintList];
+  if (other.varintList.count > 0) {
+    if (mutableVarintList == nil) {
+      self.mutableVarintList = [NSMutableArray array];
     }
-
-    if (other.fixed32List.count > 0) {
-        if (mutableFixed32List == nil) {
-            self.mutableFixed32List = [NSMutableArray array];
-        }
-        [mutableFixed32List addObjectsFromArray:other.fixed32List];
+    [mutableVarintList addObjectsFromArray:other.varintList];
+  }
+  
+  if (other.fixed32List.count > 0) {
+    if (mutableFixed32List == nil) {
+      self.mutableFixed32List = [NSMutableArray array];
     }
-
-    if (other.fixed64List.count > 0) {
-        if (mutableFixed64List == nil) {
-            self.mutableFixed64List = [NSMutableArray array];
-        }
-        [mutableFixed64List addObjectsFromArray:other.fixed64List];
+    [mutableFixed32List addObjectsFromArray:other.fixed32List];
+  }
+  
+  if (other.fixed64List.count > 0) {
+    if (mutableFixed64List == nil) {
+      self.mutableFixed64List = [NSMutableArray array];
     }
-
-    if (other.lengthDelimitedList.count > 0) {
-        if (mutableLengthDelimitedList == nil) {
-            self.mutableLengthDelimitedList = [NSMutableArray array];
-        }
-        [mutableLengthDelimitedList addObjectsFromArray:other.lengthDelimitedList];
+    [mutableFixed64List addObjectsFromArray:other.fixed64List];
+  }
+  
+  if (other.lengthDelimitedList.count > 0) {
+    if (mutableLengthDelimitedList == nil) {
+      self.mutableLengthDelimitedList = [NSMutableArray array];
     }
-
-    if (other.groupList.count > 0) {
-        if (mutableGroupList == nil) {
-            self.mutableGroupList = [NSMutableArray array];
-        }
-        [mutableGroupList addObjectsFromArray:other.groupList];
+    [mutableLengthDelimitedList addObjectsFromArray:other.lengthDelimitedList];
+  }
+  
+  if (other.groupList.count > 0) {
+    if (mutableGroupList == nil) {
+      self.mutableGroupList = [NSMutableArray array];
     }
-
-    return self;
+    [mutableGroupList addObjectsFromArray:other.groupList];
+  }
+  
+  return self;
 }
 
 
 - (PBMutableField*) addVarint:(int64_t) value {
-    if (mutableVarintList == nil) {
-        self.mutableVarintList = [NSMutableArray array];
-    }
-    [mutableVarintList addObject:[NSNumber numberWithLongLong:value]];
-    return self;
+  if (mutableVarintList == nil) {
+    self.mutableVarintList = [NSMutableArray array];
+  }
+  [mutableVarintList addObject:[NSNumber numberWithLongLong:value]];
+  return self;
 }
 
 
 - (PBMutableField*) addFixed32:(int32_t) value {
-    if (mutableFixed32List == nil) {
-        self.mutableFixed32List = [NSMutableArray array];
-    }
-    [mutableFixed32List addObject:[NSNumber numberWithInt:value]];
-    return self;
+  if (mutableFixed32List == nil) {
+    self.mutableFixed32List = [NSMutableArray array];
+  }
+  [mutableFixed32List addObject:[NSNumber numberWithInt:value]];
+  return self;
 }
 
 
 - (PBMutableField*) addFixed64:(int64_t) value {
-    if (mutableFixed64List == nil) {
-        self.mutableFixed64List = [NSMutableArray array];
-    }
-    [mutableFixed64List addObject:[NSNumber numberWithLongLong:value]];
-    return self;
+  if (mutableFixed64List == nil) {
+    self.mutableFixed64List = [NSMutableArray array];
+  }
+  [mutableFixed64List addObject:[NSNumber numberWithLongLong:value]];
+  return self;
 }
 
 
 - (PBMutableField*) addLengthDelimited:(NSData*) value {
-    if (mutableLengthDelimitedList == nil) {
-        self.mutableLengthDelimitedList = [NSMutableArray array];
-    }
-    [mutableLengthDelimitedList addObject:value];
-    return self;
+  if (mutableLengthDelimitedList == nil) {
+    self.mutableLengthDelimitedList = [NSMutableArray array];
+  }
+  [mutableLengthDelimitedList addObject:value];
+  return self;
 }
 
 
 - (PBMutableField*) addGroup:(PBUnknownFieldSet*) value {
-    if (mutableGroupList == nil) {
-        self.mutableGroupList = [NSMutableArray array];
-    }
-    [mutableGroupList addObject:value];
-    return self;
+  if (mutableGroupList == nil) {
+    self.mutableGroupList = [NSMutableArray array];
+  }
+  [mutableGroupList addObject:value];
+  return self;
 }
 
 @end

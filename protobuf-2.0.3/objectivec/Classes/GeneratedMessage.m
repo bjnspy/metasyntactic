@@ -26,18 +26,18 @@
 @synthesize unknownFields;
 
 - (void) dealloc {
-    self.unknownFields = nil;
-    [super dealloc];
+  self.unknownFields = nil;
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.unknownFields = [PBUnknownFieldSet defaultInstance];
-        memoizedSerializedSize = -1;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.unknownFields = [PBUnknownFieldSet defaultInstance];
+    memoizedSerializedSize = -1;
+  }
+  
+  return self;
 }
 
 @end

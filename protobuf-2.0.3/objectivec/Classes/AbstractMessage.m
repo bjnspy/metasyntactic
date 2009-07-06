@@ -19,10 +19,10 @@
 @implementation PBAbstractMessage
 
 - (id) init {
-    if ((self = [super init])) {
-    }
+  if ((self = [super init])) {
+  }
 
-    return self;
+  return self;
 }
 
 
@@ -50,24 +50,24 @@
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
-    [self writeToCodedOutputStream:codedOutput];
-    [codedOutput flush];
+  PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
+  [self writeToCodedOutputStream:codedOutput];
+  [codedOutput flush];
 }
 
 
 - (id<PBMessage>) defaultInstance {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (PBUnknownFieldSet*) unknownFields {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (id<PBMessage_Builder>) builder {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
