@@ -15,7 +15,6 @@
 #import "../ForwardDeclarations.h"
 
 #import "../External/OAuth/OAuthConsumer.h"
-
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractCurlableTableViewController.h"
@@ -49,9 +48,9 @@
 #import "ImageCache.h"
 #import "ImageUtilities.h"
 #import "InteractiveView.h"
+#import "LargeActivityIndicatorViewWithBackground.h"
 #import "ListPickerDelegate.h"
 #import "ListPickerViewController.h"
-#import "LargeActivityIndicatorViewWithBackground.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "LocationUtilities.h"

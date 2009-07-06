@@ -44,7 +44,7 @@
   self.buttonItem = nil;
   self.running = NO;
   self.userInvoked = NO;
-  
+
   [super dealloc];
 }
 
@@ -52,20 +52,20 @@
 - (id) init {
   if ((self = [super init])) {
     self.gate = [[[NSRecursiveLock alloc] init] autorelease];
-    
+
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    
+
     self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                         style:UIBarButtonItemStylePlain
                                                        target:self
                                                        action:@selector(onButtonTapped:)] autorelease];
-    
+
     [self autoUpdateLocation];
   }
-  
+
   return self;
 }
 
@@ -90,11 +90,11 @@
   if (running == NO) {
     return;
   }
-  
+
   NSInteger i = number.intValue;
   buttonItem.image =
   [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
-  
+
   [self performSelector:@selector(updateSpinnerImage:)
              withObject:[NSNumber numberWithInt:((i + 1) % 10)]
              afterDelay:0.1];
@@ -125,7 +125,7 @@
   }
   self.running = YES;
   [self startUpdatingSpinner:wasUserInvoked];
-  
+
   [locationManager startUpdatingLocation];
 }
 
@@ -161,12 +161,12 @@
       [AlertUtilities showOkAlert:LocalizedString(@"Could not find location.", nil)];
     }
   }
-  
+
   [self stopAll];
-  
+
   // intermittent failures are not uncommon. retry in a minute.
   [self enqueueUpdateRequest:ONE_MINUTE];
-  
+
   if (userDenied && self.model.autoUpdateLocation) {
     [self.controller setAutoUpdateLocation:NO];
   }
@@ -192,14 +192,14 @@
 
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
   Location* userLocation;
-  
+
   NSString* notification = [LocalizedString(@"Location", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {
     userLocation = [LocationUtilities findLocation:location];
   }
   [NotificationCenter removeNotification:notification];
-  
+
   [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
 }
 
@@ -207,20 +207,20 @@
 - (void) reportFoundUserLocation:(Location*) userLocation {
   NSAssert([NSThread isMainThread], nil);
   [self stopAll];
-  
+
   if (userLocation == nil) {
     [self enqueueUpdateRequest:ONE_MINUTE];
   } else {
     [self enqueueUpdateRequest:5 * ONE_MINUTE];
   }
-  
+
   if (userLocation == nil) {
     return;
   }
-  
+
   NSString* displayString = userLocation.fullDisplayString;
   displayString = [displayString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
+
   [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString];
   [self.controller setUserAddress:displayString];
 }

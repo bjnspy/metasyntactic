@@ -34,7 +34,7 @@ const NSInteger TOP_BUFFER = 5;
 - (void) dealloc {
   self.imageView = nil;
   self.label = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@ const NSInteger TOP_BUFFER = 5;
   if ((self = [super initWithFrame:CGRectZero])) {
     self.autoresizesSubviews = YES;
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
+
     self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.text = text;
     label.numberOfLines = 0;
@@ -53,13 +53,13 @@ const NSInteger TOP_BUFFER = 5;
     label.shadowColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(0, 1);
     label.textAlignment = UITextAlignmentCenter;
-    
+
     self.imageView = [[[UIImageView alloc] initWithImage:[StockImages warning32x32]] autorelease];
-    
+
     [self addSubview:imageView];
     [self addSubview:label];
   }
-  
+
   return self;
 }
 
@@ -85,7 +85,7 @@ const NSInteger TOP_BUFFER = 5;
                              lineBreakMode:UILineBreakModeWordWrap].height;
     label.frame = frame;
   }
-  
+
   {
     CGRect frame = imageView.frame;
     frame.origin.x = 20;
@@ -96,7 +96,7 @@ const NSInteger TOP_BUFFER = 5;
 
 - (CGFloat) height {
   double imageHeight = [StockImages warning32x32].size.height;
-  
+
   double width;
   if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
@@ -104,14 +104,14 @@ const NSInteger TOP_BUFFER = 5;
   } else {
     width = [UIScreen mainScreen].bounds.size.width;
   }
-  
+
   NSInteger labelX = LABEL_X;
   NSInteger labelWidth = width - 10 - labelX;
   NSString* text = label.text;
   double labelHeight = [text sizeWithFont:[FontCache footerFont]
                         constrainedToSize:CGSizeMake(labelWidth, 2000)
                             lineBreakMode:UILineBreakModeWordWrap].height;
-  
+
   return TOP_BUFFER + MAX(imageHeight, labelHeight);
 }
 

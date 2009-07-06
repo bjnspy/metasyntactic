@@ -42,7 +42,7 @@
   self.buttons = nil;
   self.arguments = nil;
   self.height = 0;
-  
+
   [super dealloc];
 }
 
@@ -57,32 +57,32 @@
     self.titles = titles_;
     self.arguments = arguments_;
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
+
     NSMutableArray* array = [NSMutableArray array];
     for (NSString* title in titles) {
       UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       [button setTitle:title forState:UIControlStateNormal];
       [button sizeToFit];
-      
+
       [button addTarget:self action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-      
+
       [array addObject:button];
       [self addSubview:button];
     }
-    
+
     self.buttons = array;
 
     if (buttons.count == 0) {
       self.height = 0;
     } else {
       int lastRow = (buttons.count - 1) / 2;
-      
+
       UIButton* button = [buttons lastObject];
       CGRect frame = button.frame;
       self.height = (8 + frame.size.height) * (lastRow + 1);
     }
   }
-  
+
   return self;
 }
 
@@ -102,11 +102,11 @@
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles {
   NSMutableArray* arguments = [NSMutableArray array];
-  
+
   for (NSInteger i = 0; i < selectors.count; i++) {
     [arguments addObject:[NSNull null]];
   }
-  
+
   return [self viewWithTarget:target
                     selectors:selectors
                        titles:titles
@@ -116,11 +116,11 @@
 
 - (void) onButtonTapped:(UIButton*) button {
   NSInteger index = [buttons indexOfObject:button];
-  
+
   SEL selector = [[selectors objectAtIndex:index] pointerValue];
   if ([target respondsToSelector:selector]) {
     id argument = [arguments objectAtIndex:index];
-    
+
     if (argument == [NSNull null]) {
       [target performSelector:selector];
     } else {
@@ -134,7 +134,7 @@
   if (buttons.count == 0) {
     return CGSizeZero;
   }
-  
+
   double width;
   if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
@@ -142,19 +142,19 @@
   } else {
     width = [UIScreen mainScreen].bounds.size.width;
   }
-  
+
   return CGSizeMake(width, height);
 }
 
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
-  
+
   for (int i = 0; i < buttons.count; i++) {
     UIButton* button = [buttons objectAtIndex:i];
-    
+
     NSInteger column;
     NSInteger row;
     if (oddNumberOfButtons && i != 0) {
@@ -164,17 +164,17 @@
       column = i % 2;
       row = i / 2;
     }
-    
+
     CGRect frame = button.frame;
     frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
     frame.origin.y = (8 + frame.size.height) * row + 8;
-    
+
     if (i == 0 && oddNumberOfButtons) {
       frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
     } else {
       frame.size.width = (self.frame.size.width / 2) - 14;
     }
-    
+
     button.frame = frame;
   }
 }

@@ -30,14 +30,14 @@
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.minimumFontSize = self.textLabel.font.pointSize - 4;
   }
-  
+
   return self;
 }
 
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   self.textLabel.backgroundColor = [UIColor clearColor];
 }
 
