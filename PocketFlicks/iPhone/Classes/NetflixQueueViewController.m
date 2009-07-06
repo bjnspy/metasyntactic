@@ -456,7 +456,7 @@
   UITableViewCell* cell = nil;
   for (UIView* superview = imageView.superview; superview != nil; superview = superview.superview) {
     if ([superview isKindOfClass:[UITableViewCell class]]) {
-      cell = (id)superview;
+      cell = (id) superview;
       break;
     }
   }

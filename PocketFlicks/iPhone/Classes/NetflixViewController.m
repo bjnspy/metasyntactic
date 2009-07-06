@@ -135,6 +135,7 @@ typedef enum {
 
 
 - (void) initializeInfoButton {
+  return;
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
 
@@ -154,7 +155,7 @@ typedef enum {
     self.tableView.tableHeaderView = nil;
   }
 
-  //[self initializeInfoButton];
+  [self initializeInfoButton];
   [self setupTableStyle];
   [self setupTitle];
   [self determinePopularMovieCount];

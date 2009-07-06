@@ -58,9 +58,6 @@ public class Program {
 
     private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-        if (isRestricted(child)) {
-            return;
-        }
         checkImports(child);
         //generateForwardDeclarations(child);
         //checkDealloc(child);
@@ -400,7 +397,7 @@ public class Program {
     }
 
     private static void trim(final File child) throws IOException {
-        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
+        if (isRestricted(child)) {
             return;
         }
 
@@ -656,7 +653,7 @@ public class Program {
     }
 
     private static boolean isRestricted(final File child) {
-        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h") && !child.getName().endsWith(".strings")) {
+        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
             return true;
         }
 
@@ -746,7 +743,7 @@ public class Program {
     }
 
     private static void trimRight(final File child) throws IOException {
-        if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
+        if (isRestricted(child)) {
             return;
         }
 
