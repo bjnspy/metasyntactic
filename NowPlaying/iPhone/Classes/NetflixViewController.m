@@ -178,11 +178,9 @@ typedef enum {
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+  AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
 
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-  cell.textLabel.adjustsFontSizeToFitWidth = YES;
 
   NSInteger row = indexPath.row;
   if (self.hasAccount) {

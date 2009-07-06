@@ -12,12 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AutoResizingCell : UITableViewCell {
-@private
-  UILabel* label;
-  UIColor* textColorData;
+#import "AutoResizingCell.h"
+
+@interface AutoResizingCell()
+@end
+
+
+@implementation AutoResizingCell
+
+- (void) dealloc {
+  [super dealloc];
 }
 
-@property (readonly, retain) UILabel* label;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    self.textLabel.minimumFontSize = self.textLabel.font.pointSize - 4;
+  }
+  
+  return self;
+}
+
+
+- (void) layoutSubviews {
+  [super layoutSubviews];
+  
+  self.textLabel.backgroundColor = [UIColor clearColor];
+}
 
 @end

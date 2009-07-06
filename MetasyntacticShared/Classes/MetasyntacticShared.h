@@ -34,6 +34,7 @@
 #import "ActionsView.h"
 #import "AlertUtilities.h"
 #import "AttributeCell.h"
+#import "AutoResizingCell.h"
 #import "Base64.h"
 #import "CollectionUtilities.h"
 #import "ColorCache.h"
