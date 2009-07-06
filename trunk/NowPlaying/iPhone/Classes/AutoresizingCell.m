@@ -26,77 +26,77 @@
 @synthesize textColorData;
 
 - (void) dealloc {
-    self.label = nil;
-    self.textColorData = nil;
-
-    [super dealloc];
+  self.label = nil;
+  self.textColorData = nil;
+  
+  [super dealloc];
 }
 
 - (id) init {
-    if ((self = [super initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:nil])) {
-        self.textColorData = [UIColor blackColor];
-        self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        label.font = self.textLabel.font;
-        label.adjustsFontSizeToFitWidth = YES;
-        label.minimumFontSize = 12;
-        label.lineBreakMode = UILineBreakModeMiddleTruncation;
-
-        CGRect frame = label.frame;
-        frame.origin.x = 10;
-        label.frame = frame;
-
-        [self.contentView addSubview:label];
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault
+                   reuseIdentifier:nil])) {
+    self.textColorData = [UIColor blackColor];
+    self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    label.font = self.textLabel.font;
+    label.adjustsFontSizeToFitWidth = YES;
+    label.minimumFontSize = 12;
+    label.lineBreakMode = UILineBreakModeMiddleTruncation;
+    
+    CGRect frame = label.frame;
+    frame.origin.x = 10;
+    label.frame = frame;
+    
+    [self.contentView addSubview:label];
+  }
+  
+  return self;
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-
-    CGRect labelFrame = label.frame;
-    CGRect contentFrame = self.contentView.frame;
-
-    if (self.imageView.image != nil) {
-        labelFrame.origin.x = 15 + self.imageView.image.size.width;
-    }
-
-    labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
-    labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
-
-    label.frame = labelFrame;
-    //[contentView bringSubviewToFront:label];
+  [super layoutSubviews];
+  
+  CGRect labelFrame = label.frame;
+  CGRect contentFrame = self.contentView.frame;
+  
+  if (self.imageView.image != nil) {
+    labelFrame.origin.x = 15 + self.imageView.image.size.width;
+  }
+  
+  labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
+  labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
+  
+  label.frame = labelFrame;
+  //[contentView bringSubviewToFront:label];
 }
 
 
 - (void) setText:(NSString*) text {
-    //[super setText:text];
-    label.text = text;
-    [label sizeToFit];
+  //[super setText:text];
+  label.text = text;
+  [label sizeToFit];
 }
 
 
 - (NSString*) text {
-    return label.text;
+  return label.text;
 }
 
 
 - (void) setTextColor:(UIColor*) color {
-    label.textColor = color;
-    self.textColorData = color;
+  label.textColor = color;
+  self.textColorData = color;
 }
 
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
-    [super setSelected:selected animated:animated];
-    if (selected) {
-        label.textColor = [UIColor whiteColor];
-    } else {
-        label.textColor = textColorData;
-    }
+  [super setSelected:selected animated:animated];
+  if (selected) {
+    label.textColor = [UIColor whiteColor];
+  } else {
+    label.textColor = textColorData;
+  }
 }
 
 @end

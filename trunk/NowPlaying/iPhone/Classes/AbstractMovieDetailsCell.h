@@ -14,7 +14,7 @@
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
 @protected
-    Movie* movie;
+  Movie* movie;
 }
 
 - (id) initWithMovie:(Movie*) movie;
