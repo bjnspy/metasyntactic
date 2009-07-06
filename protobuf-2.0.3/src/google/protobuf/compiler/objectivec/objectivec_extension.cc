@@ -73,10 +73,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     vars["extended_type"] = ClassName(descriptor_->containing_type());
     vars["number"] = SimpleItoa(descriptor_->number());
 
-    const bool isPacked = false;//descriptor_->options().packed();
-    vars["is_repeated"] = descriptor_->is_repeated() ? "true" : "false";
-    vars["is_packed"] = isPacked ? "true" : "false";
-    vars["is_wire_format"] = descriptor_->containing_type()->options().message_set_wire_format() ? "true" : "false";
+    const bool isPacked = NO;//descriptor_->options().packed();
+    vars["is_repeated"] = descriptor_->is_repeated() ? "YES" : "NO";
+    vars["is_packed"] = isPacked ? "YES" : "NO";
+    vars["is_wire_format"] = descriptor_->containing_type()->options().message_set_wire_format() ? "YES" : "NO";
 
     ObjectiveCType java_type = GetObjectiveCType(descriptor_);
     string singular_type;
