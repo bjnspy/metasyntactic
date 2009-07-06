@@ -27,71 +27,71 @@ property_definition(url);
 @synthesize timeString;
 
 - (void) dealloc {
-    self.time = nil;
-    self.url = nil;
-    self.timeString = nil;
+  self.time = nil;
+  self.url = nil;
+  self.timeString = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) initWithTime:(NSDate*) time_
                 url:(NSString*) url_ {
-    if ((self = [super init])) {
-        self.time = time_;
-        self.url = [StringUtilities nonNilString:url_];
-    }
+  if ((self = [super init])) {
+    self.time = time_;
+    self.url = [StringUtilities nonNilString:url_];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithTime:[coder decodeObjectForKey:time_key]
-                          url:[coder decodeObjectForKey:url_key]];
+  return [self initWithTime:[coder decodeObjectForKey:time_key]
+                        url:[coder decodeObjectForKey:url_key]];
 }
 
 
 + (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url {
-    return [[[Performance alloc] initWithTime:time
-                                          url:url] autorelease];
+  return [[[Performance alloc] initWithTime:time
+                                        url:url] autorelease];
 }
 
 
 + (Performance*) newWithDictionary:(NSDictionary*) dictionary {
-    return [Performance performanceWithTime:[dictionary valueForKey:time_key]
-                                        url:[dictionary valueForKey:url_key]];
+  return [Performance performanceWithTime:[dictionary valueForKey:time_key]
+                                      url:[dictionary valueForKey:url_key]];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    [dictionary setObject:time forKey:time_key];
-    [dictionary setObject:url forKey:url_key];
+  [dictionary setObject:time forKey:time_key];
+  [dictionary setObject:url forKey:url_key];
 
-    return dictionary;
+  return dictionary;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:time forKey:time_key];
-    [coder encodeObject:url forKey:url_key];
+  [coder encodeObject:time forKey:time_key];
+  [coder encodeObject:url forKey:url_key];
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 - (NSString*) timeString {
-    if (timeString == nil) {
-        self.timeString = [DateUtilities formatShortTime:time];
-    }
+  if (timeString == nil) {
+    self.timeString = [DateUtilities formatShortTime:time];
+  }
 
-    return timeString;
+  return timeString;
 }
 
 @end

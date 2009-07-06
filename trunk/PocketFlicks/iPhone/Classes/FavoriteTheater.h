@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FavoriteTheater : NSObject<NSCopying, NSCoding> {
+@interface FavoriteTheater : AbstractData<NSCopying, NSCoding> {
 @private
-    NSString* name;
-    Location* originatingLocation;
+  NSString* name;
+  Location* originatingLocation;
 }
 
 @property (readonly, copy) NSString* name;
 @property (readonly, retain) Location* originatingLocation;
 
-+ (FavoriteTheater*) theaterWithDictionary:(NSDictionary*) dictionary;
++ (FavoriteTheater*) newWithDictionary:(NSDictionary*) dictionary;
 + (FavoriteTheater*) theaterWithName:(NSString*) name
                  originatingLocation:(Location*) originatingLocation;
 

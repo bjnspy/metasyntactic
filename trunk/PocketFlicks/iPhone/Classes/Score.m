@@ -34,13 +34,13 @@ property_definition(provider);
 property_definition(identifier);
 
 - (void) dealloc {
-    self.canonicalTitle = nil;
-    self.synopsis = nil;
-    self.score = nil;
-    self.provider = nil;
-    self.identifier = nil;
+  self.canonicalTitle = nil;
+  self.synopsis = nil;
+  self.score = nil;
+  self.provider = nil;
+  self.identifier = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
@@ -49,25 +49,25 @@ property_definition(identifier);
                         score:(NSString*) score_
                      provider:(NSString*) provider_
                    identifier:(NSString*) identifier_ {
-    if ((self = [super init])) {
-        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
-        self.score = [StringUtilities nonNilString:score_];
-        self.synopsis = [StringUtilities nonNilString:synopsis_];
-        self.provider = provider_;
-        self.identifier = [StringUtilities nonNilString:identifier_];
-        scoreValue = -2;
-    }
+  if ((self = [super init])) {
+    self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+    self.score = [StringUtilities nonNilString:score_];
+    self.synopsis = [StringUtilities nonNilString:synopsis_];
+    self.provider = provider_;
+    self.identifier = [StringUtilities nonNilString:identifier_];
+    scoreValue = -2;
+  }
 
-    return self;
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
-                               synopsis:[coder decodeObjectForKey:synopsis_key]
-                                  score:[coder decodeObjectForKey:score_key]
-                               provider:[coder decodeObjectForKey:provider_key]
-                             identifier:[coder decodeObjectForKey:identifier_key]];
+  return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                             synopsis:[coder decodeObjectForKey:synopsis_key]
+                                score:[coder decodeObjectForKey:score_key]
+                             provider:[coder decodeObjectForKey:provider_key]
+                           identifier:[coder decodeObjectForKey:identifier_key]];
 }
 
 
@@ -76,59 +76,59 @@ property_definition(identifier);
                     score:(NSString*) score
                  provider:(NSString*) provider
                identifier:(NSString*) identifier {
-    return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                         synopsis:[StringUtilities stripHtmlCodes:synopsis]
-                                            score:score
-                                         provider:provider
-                                       identifier:identifier] autorelease];
+  return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
+                                       synopsis:[StringUtilities stripHtmlCodes:synopsis]
+                                          score:score
+                                       provider:provider
+                                     identifier:identifier] autorelease];
 }
 
 
-+ (Score*) scoreWithDictionary:(NSDictionary*) dictionary {
-    return [[[Score alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                         synopsis:[dictionary objectForKey:synopsis_key]
-                                            score:[dictionary objectForKey:score_key]
-                                         provider:[dictionary objectForKey:provider_key]
-                                       identifier:[dictionary objectForKey:identifier_key]] autorelease];
++ (Score*) newWithDictionary:(NSDictionary*) dictionary {
+  return [[[Score alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                                       synopsis:[dictionary objectForKey:synopsis_key]
+                                          score:[dictionary objectForKey:score_key]
+                                       provider:[dictionary objectForKey:provider_key]
+                                     identifier:[dictionary objectForKey:identifier_key]] autorelease];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:canonicalTitle    forKey:canonicalTitle_key];
-    [dictionary setObject:synopsis          forKey:synopsis_key];
-    [dictionary setObject:score             forKey:score_key];
-    [dictionary setObject:provider          forKey:provider_key];
-    [dictionary setObject:identifier        forKey:identifier_key];
-    return dictionary;
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+  [dictionary setObject:canonicalTitle    forKey:canonicalTitle_key];
+  [dictionary setObject:synopsis          forKey:synopsis_key];
+  [dictionary setObject:score             forKey:score_key];
+  [dictionary setObject:provider          forKey:provider_key];
+  [dictionary setObject:identifier        forKey:identifier_key];
+  return dictionary;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
-    [coder encodeObject:synopsis          forKey:synopsis_key];
-    [coder encodeObject:score             forKey:score_key];
-    [coder encodeObject:provider          forKey:provider_key];
-    [coder encodeObject:identifier        forKey:identifier_key];
+  [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
+  [coder encodeObject:synopsis          forKey:synopsis_key];
+  [coder encodeObject:score             forKey:score_key];
+  [coder encodeObject:provider          forKey:provider_key];
+  [coder encodeObject:identifier        forKey:identifier_key];
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 - (NSInteger) scoreValue {
-    if (scoreValue == -2) {
-        int value = score.intValue;
-        if (value >= 0 && value <= 100) {
-            return scoreValue = value;
-        } else {
-            scoreValue = -1;
-        }
+  if (scoreValue == -2) {
+    int value = score.intValue;
+    if (value >= 0 && value <= 100) {
+      return scoreValue = value;
+    } else {
+      scoreValue = -1;
     }
+  }
 
-    return scoreValue;
+  return scoreValue;
 }
 
 @end

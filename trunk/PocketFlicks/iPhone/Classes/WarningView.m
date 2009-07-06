@@ -32,87 +32,87 @@ const NSInteger TOP_BUFFER = 5;
 @synthesize label;
 
 - (void) dealloc {
-    self.imageView = nil;
-    self.label = nil;
+  self.imageView = nil;
+  self.label = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) initWithText:(NSString*) text {
-    if ((self = [super initWithFrame:CGRectZero])) {
-        self.autoresizesSubviews = YES;
-        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+  if ((self = [super initWithFrame:CGRectZero])) {
+    self.autoresizesSubviews = YES;
+    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
-        self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        label.text = text;
-        label.numberOfLines = 0;
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [FontCache footerFont];
-        label.textColor = [ColorCache footerColor];
-        label.shadowColor = [UIColor whiteColor];
-        label.shadowOffset = CGSizeMake(0, 1);
-        label.textAlignment = UITextAlignmentCenter;
+    self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.text = text;
+    label.numberOfLines = 0;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [FontCache footerFont];
+    label.textColor = [ColorCache footerColor];
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0, 1);
+    label.textAlignment = UITextAlignmentCenter;
 
-        self.imageView = [[[UIImageView alloc] initWithImage:[StockImages warning32x32]] autorelease];
+    self.imageView = [[[UIImageView alloc] initWithImage:[StockImages warning32x32]] autorelease];
 
-        [self addSubview:imageView];
-        [self addSubview:label];
-    }
+    [self addSubview:imageView];
+    [self addSubview:label];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 + (WarningView*) viewWithText:(NSString*) text {
-    return [[[WarningView alloc] initWithText:text] autorelease];
+  return [[[WarningView alloc] initWithText:text] autorelease];
 }
 
 - (void) layoutSubviews {
-    {
-        NSString* text = label.text;
-        CGRect frame = label.frame;
-        frame.origin.x = LABEL_X;
-        frame.origin.y = TOP_BUFFER;
-        frame.size.width = self.frame.size.width - 10 - frame.origin.x;
-        frame.size.height = [text sizeWithFont:[FontCache footerFont]
-                             constrainedToSize:CGSizeMake(frame.size.width, 2000)
-                                 lineBreakMode:UILineBreakModeWordWrap].height;
-        label.frame = frame;
-    }
+  {
+    NSString* text = label.text;
+    CGRect frame = label.frame;
+    frame.origin.x = LABEL_X;
+    frame.origin.y = TOP_BUFFER;
+    frame.size.width = self.frame.size.width - 10 - frame.origin.x;
+    frame.size.height = [text sizeWithFont:[FontCache footerFont]
+                         constrainedToSize:CGSizeMake(frame.size.width, 2000)
+                             lineBreakMode:UILineBreakModeWordWrap].height;
+    label.frame = frame;
+  }
 
-    {
-        CGRect frame = imageView.frame;
-        frame.origin.x = 20;
-        frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [StockImages warning32x32].size.height) / 2.0));
-        imageView.frame = frame;
-    }
+  {
+    CGRect frame = imageView.frame;
+    frame.origin.x = 20;
+    frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [StockImages warning32x32].size.height) / 2.0));
+    imageView.frame = frame;
+  }
 }
 
 - (CGFloat) height {
-    double imageHeight = [StockImages warning32x32].size.height;
+  double imageHeight = [StockImages warning32x32].size.height;
 
-    double width;
-    if ([self.model screenRotationEnabled] &&
-        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        width = [UIScreen mainScreen].bounds.size.height;
-    } else {
-        width = [UIScreen mainScreen].bounds.size.width;
-    }
+  double width;
+  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
+      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    width = [UIScreen mainScreen].bounds.size.height;
+  } else {
+    width = [UIScreen mainScreen].bounds.size.width;
+  }
 
-    NSInteger labelX = LABEL_X;
-    NSInteger labelWidth = width - 10 - labelX;
-    NSString* text = label.text;
-    double labelHeight = [text sizeWithFont:[FontCache footerFont]
-                          constrainedToSize:CGSizeMake(labelWidth, 2000)
-                              lineBreakMode:UILineBreakModeWordWrap].height;
+  NSInteger labelX = LABEL_X;
+  NSInteger labelWidth = width - 10 - labelX;
+  NSString* text = label.text;
+  double labelHeight = [text sizeWithFont:[FontCache footerFont]
+                        constrainedToSize:CGSizeMake(labelWidth, 2000)
+                            lineBreakMode:UILineBreakModeWordWrap].height;
 
-    return TOP_BUFFER + MAX(imageHeight, labelHeight);
+  return TOP_BUFFER + MAX(imageHeight, labelHeight);
 }
 
 @end

@@ -39,7 +39,7 @@
 
 
 - (NSInteger) halfWayPoint {
-  if ([self.model screenRotationEnabled] &&
+  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
     return 230;
   } else {

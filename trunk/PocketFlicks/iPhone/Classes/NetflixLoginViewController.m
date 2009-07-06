@@ -240,7 +240,7 @@
      [NetflixAuthentication key],
      [NetflixAuthentication applicationName]];
 
-    [(id)self.navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
+    [(id) self.navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
     didShowBrowser = YES;
 }
 

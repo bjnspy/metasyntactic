@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVD : NSObject<NSCopying, NSCoding> {
+@interface DVD : AbstractData<NSCopying, NSCoding> {
 @private
-    NSString* canonicalTitle;
-    NSString* price;
-    NSString* format;
-    NSString* discs;
-    NSString* url;
+  NSString* canonicalTitle;
+  NSString* price;
+  NSString* format;
+  NSString* discs;
+  NSString* url;
 }
 
 @property (readonly, copy) NSString* canonicalTitle;
@@ -27,7 +27,7 @@
 @property (readonly, copy) NSString* discs;
 @property (readonly, copy) NSString* url;
 
-+ (DVD*) dvdWithDictionary:(NSDictionary*) dictionary;
++ (DVD*) newWithDictionary:(NSDictionary*) dictionary;
 + (DVD*) dvdWithTitle:(NSString*) title
                 price:(NSString*) price
                format:(NSString*) format

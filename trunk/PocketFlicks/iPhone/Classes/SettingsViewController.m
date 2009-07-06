@@ -231,7 +231,7 @@ typedef enum {
       selector = @selector(onPrioritizeBookmarksChanged:);
     } else if (row == 6) {
       text = LocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
-      on = self.model.screenRotationEnabled;
+      on = [MetasyntacticSharedApplication screenRotationEnabled];
       selector = @selector(onScreenRotationEnabledChanged:);
     } else if (row == 7) {
       text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
