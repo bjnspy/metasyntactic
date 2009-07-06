@@ -69,11 +69,6 @@
 }
 
 
-//- (NSString*) text {
-//  return contentLabel.text;
-//}
-
-
 - (void) setQuestionText:(NSString*) text {
   contentLabel.text = text;
 }

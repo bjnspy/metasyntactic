@@ -40,7 +40,7 @@
   self.dvds = nil;
   self.bluray = nil;
   self.people = nil;
-  
+
   [super dealloc];
 }
 
@@ -61,7 +61,7 @@
     self.bluray = bluray_;
     self.people = people_;
   }
-  
+
   return self;
 }
 

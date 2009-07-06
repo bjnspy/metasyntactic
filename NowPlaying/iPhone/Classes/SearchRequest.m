@@ -42,7 +42,7 @@
   self.upcomingMovies = nil;
   self.dvds = nil;
   self.bluray = nil;
-  
+
   [super dealloc];
 }
 
@@ -57,7 +57,7 @@
     self.dvds = model.dvdCache.movies;
     self.bluray = model.blurayCache.movies;
   }
-  
+
   return self;
 }
 
