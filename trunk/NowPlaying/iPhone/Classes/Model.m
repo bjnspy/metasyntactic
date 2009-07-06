@@ -1132,7 +1132,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSDictionary* dictionary in array) {
-    FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
+    FavoriteTheater* theater = [FavoriteTheater newWithDictionary:dictionary];
     [result setObject:theater forKey:theater.name];
   }
 

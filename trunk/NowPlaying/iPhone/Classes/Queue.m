@@ -34,12 +34,12 @@ property_definition(movies);
 property_definition(saved);
 
 - (void) dealloc {
-    self.feed = nil;
-    self.etag = nil;
-    self.movies = nil;
-    self.saved = nil;
-
-    [super dealloc];
+  self.feed = nil;
+  self.etag = nil;
+  self.movies = nil;
+  self.saved = nil;
+  
+  [super dealloc];
 }
 
 
@@ -47,22 +47,22 @@ property_definition(saved);
                etag:(NSString*) etag_
              movies:(NSArray*) movies_
               saved:(NSArray*) saved_{
-    if ((self = [super init])) {
-        self.feed = feed_;
-        self.etag = [StringUtilities nonNilString:etag_];
-        self.movies = movies_;
-        self.saved = saved_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.feed = feed_;
+    self.etag = [StringUtilities nonNilString:etag_];
+    self.movies = movies_;
+    self.saved = saved_;
+  }
+  
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithFeed:[coder decodeObjectForKey:feed_key]
-                         etag:[coder decodeObjectForKey:etag_key]
-                       movies:[coder decodeObjectForKey:movies_key]
-                        saved:[coder decodeObjectForKey:saved_key]];
+  return [self initWithFeed:[coder decodeObjectForKey:feed_key]
+                       etag:[coder decodeObjectForKey:etag_key]
+                     movies:[coder decodeObjectForKey:movies_key]
+                      saved:[coder decodeObjectForKey:saved_key]];
 }
 
 
@@ -70,51 +70,51 @@ property_definition(saved);
                     etag:(NSString*) etag
                   movies:(NSArray*) movies
                    saved:(NSArray*) saved {
-    return [[[Queue alloc] initWithFeed:feed
-                                   etag:etag
-                                 movies:movies
-                                  saved:saved] autorelease];
+  return [[[Queue alloc] initWithFeed:feed
+                                 etag:etag
+                               movies:movies
+                                saved:saved] autorelease];
 }
 
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary {
-    return [Queue queueWithFeed:[Feed newWithDictionary:[dictionary objectForKey:feed_key]]
-                           etag:[dictionary objectForKey:etag_key]
-                         movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
-                          saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];
+  return [Queue queueWithFeed:[Feed newWithDictionary:[dictionary objectForKey:feed_key]]
+                         etag:[dictionary objectForKey:etag_key]
+                       movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
+                        saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:feed.dictionary               forKey:feed_key];
-    [result setObject:etag                          forKey:etag_key];
-    [result setObject:[Movie encodeArray:movies]    forKey:movies_key];
-    [result setObject:[Movie encodeArray:saved]     forKey:saved_key];
-    return result;
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  [result setObject:feed.dictionary               forKey:feed_key];
+  [result setObject:etag                          forKey:etag_key];
+  [result setObject:[Movie encodeArray:movies]    forKey:movies_key];
+  [result setObject:[Movie encodeArray:saved]     forKey:saved_key];
+  return result;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:feed    forKey:feed_key];
-    [coder encodeObject:etag    forKey:etag_key];
-    [coder encodeObject:movies  forKey:movies_key];
-    [coder encodeObject:saved   forKey:saved_key];
+  [coder encodeObject:feed    forKey:feed_key];
+  [coder encodeObject:etag    forKey:etag_key];
+  [coder encodeObject:movies  forKey:movies_key];
+  [coder encodeObject:saved   forKey:saved_key];
 }
 
 
 - (BOOL) isDVDQueue {
-    return [[NetflixCache dvdQueueKey] isEqual:feed.key];
+  return [[NetflixCache dvdQueueKey] isEqual:feed.key];
 }
 
 
 - (BOOL) isInstantQueue {
-    return [[NetflixCache instantQueueKey] isEqual:feed.key];
+  return [[NetflixCache instantQueueKey] isEqual:feed.key];
 }
 
 
 - (BOOL) isAtHomeQueue {
-    return [[NetflixCache atHomeKey] isEqual:feed.key];
+  return [[NetflixCache atHomeKey] isEqual:feed.key];
 }
 
 

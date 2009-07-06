@@ -14,16 +14,16 @@
 
 @interface Theater : AbstractData<NSCoding> {
 @private
-    NSString* identifier;
-    NSString* name;
-    NSString* phoneNumber;
-
-    Location* location;
-    Location* originatingLocation;
-
-    NSArray* movieTitles;
-
-    NSString* simpleAddress;
+  NSString* identifier;
+  NSString* name;
+  NSString* phoneNumber;
+  
+  Location* location;
+  Location* originatingLocation;
+  
+  NSArray* movieTitles;
+  
+  NSString* simpleAddress;
 }
 
 @property (readonly, copy) NSString* identifier;

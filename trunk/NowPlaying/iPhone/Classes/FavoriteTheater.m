@@ -26,83 +26,83 @@ property_definition(name);
 property_definition(originatingLocation);
 
 - (void) dealloc {
-    self.name = nil;
-    self.originatingLocation = nil;
-
-    [super dealloc];
+  self.name = nil;
+  self.originatingLocation = nil;
+  
+  [super dealloc];
 }
 
 
 - (id)       initWithName:(NSString*) name_
       originatingLocation:(Location*) originatingLocation_ {
-    if ((self = [super init])) {
-        self.name = name_;
-        self.originatingLocation = originatingLocation_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.name = name_;
+    self.originatingLocation = originatingLocation_;
+  }
+  
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithName:[coder decodeObjectForKey:name_key]
-          originatingLocation:[coder decodeObjectForKey:originatingLocation_key]];
+  return [self initWithName:[coder decodeObjectForKey:name_key]
+        originatingLocation:[coder decodeObjectForKey:originatingLocation_key]];
 }
 
 
 + (FavoriteTheater*) theaterWithName:(NSString*) name
                  originatingLocation:(Location*) originatingLocation {
-    return [[[FavoriteTheater alloc] initWithName:name
-                              originatingLocation:originatingLocation] autorelease];
+  return [[[FavoriteTheater alloc] initWithName:name
+                            originatingLocation:originatingLocation] autorelease];
 }
 
 
-+ (FavoriteTheater*) theaterWithDictionary:(NSDictionary*) dictionary {
-    return [FavoriteTheater theaterWithName:[dictionary objectForKey:name_key]
-                        originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]];
++ (FavoriteTheater*) newWithDictionary:(NSDictionary*) dictionary {
+  return [FavoriteTheater theaterWithName:[dictionary objectForKey:name_key]
+                      originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]];
 }
 
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary {
-    return
-    [[dictionary objectForKey:name_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:originatingLocation_key] isKindOfClass:[NSDictionary class]] &&
+  return
+  [[dictionary objectForKey:name_key] isKindOfClass:[NSString class]] &&
+  [[dictionary objectForKey:originatingLocation_key] isKindOfClass:[NSDictionary class]] &&
   [Location canReadDictionary:[dictionary objectForKey:originatingLocation_key]];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:name                              forKey:name_key];
-    [result setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
-    return result;
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  [result setObject:name                              forKey:name_key];
+  [result setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
+  return result;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:name                forKey:name_key];
-    [coder encodeObject:originatingLocation forKey:originatingLocation_key];
+  [coder encodeObject:name                forKey:name_key];
+  [coder encodeObject:originatingLocation forKey:originatingLocation_key];
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 - (NSString*) description {
-    return self.dictionary.description;
+  return self.dictionary.description;
 }
 
 
 - (BOOL) isEqual:(id) anObject {
-    FavoriteTheater* other = anObject;
-    return [name isEqual:other.name];
+  FavoriteTheater* other = anObject;
+  return [name isEqual:other.name];
 }
 
 
 - (NSUInteger) hash {
-    return name.hash;
+  return name.hash;
 }
 
 @end

@@ -14,10 +14,10 @@
 
 @interface Queue : NSObject<NSCoding> {
 @private
-    Feed* feed;
-    NSString* etag;
-    NSArray* movies;
-    NSArray* saved;
+  Feed* feed;
+  NSString* etag;
+  NSArray* movies;
+  NSArray* saved;
 }
 
 @property (readonly, retain) Feed* feed;
