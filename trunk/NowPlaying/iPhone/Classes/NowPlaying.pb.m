@@ -3,9 +3,19 @@
 #import "NowPlaying.pb.h"
 
 @implementation NowPlayingRoot
+static PBExtensionRegistry* extensionRegistry = nil;
++ (PBExtensionRegistry*) extensionRegistry {
+  return extensionRegistry;
+}
+
 + (void) initialize {
   if (self == [NowPlayingRoot class]) {
+    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+    [self registerAllExtensions:registry];
+    extensionRegistry = [registry retain];
   }
+}
++ (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
 }
 @end
 
@@ -19,17 +29,17 @@
 @implementation ShowtimeProto
 
 - (BOOL) hasTime {
-  return hasTime;
+  return !!hasTime_;
 }
-- (void) setHasTime:(BOOL) hasTime_ {
-  hasTime = hasTime_;
+- (void) setHasTime:(BOOL) value {
+  hasTime_ = !!value;
 }
 @synthesize time;
 - (BOOL) hasUrl {
-  return hasUrl;
+  return !!hasUrl_;
 }
-- (void) setHasUrl:(BOOL) hasUrl_ {
-  hasUrl = hasUrl_;
+- (void) setHasUrl:(BOOL) value {
+  hasUrl_ = !!value;
 }
 @synthesize url;
 @synthesize mutableDubbedList;
@@ -75,16 +85,16 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  if (!hasTime) {
+  if (!self.hasTime) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasTime) {
+  if (self.hasTime) {
     [output writeString:1 value:self.time];
   }
-  if (hasUrl) {
+  if (self.hasUrl) {
     [output writeString:2 value:self.url];
   }
   for (NSString* element in self.mutableDubbedList) {
@@ -102,10 +112,10 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   }
 
   size = 0;
-  if (hasTime) {
+  if (self.hasTime) {
     size += computeStringSize(1, self.time);
   }
-  if (hasUrl) {
+  if (self.hasUrl) {
     size += computeStringSize(2, self.url);
   }
   for (NSString* element in self.mutableDubbedList) {
@@ -353,17 +363,17 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 
 @synthesize mutableShowtimesList;
 - (BOOL) hasVendor {
-  return hasVendor;
+  return !!hasVendor_;
 }
-- (void) setHasVendor:(BOOL) hasVendor_ {
-  hasVendor = hasVendor_;
+- (void) setHasVendor:(BOOL) value {
+  hasVendor_ = !!value;
 }
 @synthesize vendor;
 - (BOOL) hasCaptioning {
-  return hasCaptioning;
+  return !!hasCaptioning_;
 }
-- (void) setHasCaptioning:(BOOL) hasCaptioning_ {
-  hasCaptioning = hasCaptioning_;
+- (void) setHasCaptioning:(BOOL) value {
+  hasCaptioning_ = !!value;
 }
 @synthesize captioning;
 - (void) dealloc {
@@ -410,10 +420,10 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   for (ShowtimeProto* element in self.showtimesList) {
     [output writeMessage:1 value:element];
   }
-  if (hasVendor) {
+  if (self.hasVendor) {
     [output writeString:2 value:self.vendor];
   }
-  if (hasCaptioning) {
+  if (self.hasCaptioning) {
     [output writeString:3 value:self.captioning];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -428,10 +438,10 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   for (ShowtimeProto* element in self.showtimesList) {
     size += computeMessageSize(1, element);
   }
-  if (hasVendor) {
+  if (self.hasVendor) {
     size += computeStringSize(2, self.vendor);
   }
-  if (hasCaptioning) {
+  if (self.hasCaptioning) {
     size += computeStringSize(3, self.captioning);
   }
   size += self.unknownFields.serializedSize;
@@ -631,7 +641,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 @property (retain) NSString* description;
 @property (retain) NSString* rawRating;
 @property int32_t score;
-@property (retain) NSString* iMDbUrl;
+@property (retain) NSString* imdbUrl;
 @property (retain) NSMutableArray* mutableDirectorList;
 @property (retain) NSMutableArray* mutableCastList;
 @property (retain) NSMutableArray* mutableDubbedList;
@@ -642,77 +652,77 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 @implementation MovieProto
 
 - (BOOL) hasIdentifier {
-  return hasIdentifier;
+  return !!hasIdentifier_;
 }
-- (void) setHasIdentifier:(BOOL) hasIdentifier_ {
-  hasIdentifier = hasIdentifier_;
+- (void) setHasIdentifier:(BOOL) value {
+  hasIdentifier_ = !!value;
 }
 @synthesize identifier;
 - (BOOL) hasTitle {
-  return hasTitle;
+  return !!hasTitle_;
 }
-- (void) setHasTitle:(BOOL) hasTitle_ {
-  hasTitle = hasTitle_;
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
 }
 @synthesize title;
 - (BOOL) hasLength {
-  return hasLength;
+  return !!hasLength_;
 }
-- (void) setHasLength:(BOOL) hasLength_ {
-  hasLength = hasLength_;
+- (void) setHasLength:(BOOL) value {
+  hasLength_ = !!value;
 }
 @synthesize length;
 - (BOOL) hasLanguage {
-  return hasLanguage;
+  return !!hasLanguage_;
 }
-- (void) setHasLanguage:(BOOL) hasLanguage_ {
-  hasLanguage = hasLanguage_;
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
 }
 @synthesize language;
 - (BOOL) hasGenre {
-  return hasGenre;
+  return !!hasGenre_;
 }
-- (void) setHasGenre:(BOOL) hasGenre_ {
-  hasGenre = hasGenre_;
+- (void) setHasGenre:(BOOL) value {
+  hasGenre_ = !!value;
 }
 @synthesize genre;
 - (BOOL) hasDescription {
-  return hasDescription;
+  return !!hasDescription_;
 }
-- (void) setHasDescription:(BOOL) hasDescription_ {
-  hasDescription = hasDescription_;
+- (void) setHasDescription:(BOOL) value {
+  hasDescription_ = !!value;
 }
 @synthesize description;
 - (BOOL) hasRawRating {
-  return hasRawRating;
+  return !!hasRawRating_;
 }
-- (void) setHasRawRating:(BOOL) hasRawRating_ {
-  hasRawRating = hasRawRating_;
+- (void) setHasRawRating:(BOOL) value {
+  hasRawRating_ = !!value;
 }
 @synthesize rawRating;
 - (BOOL) hasScore {
-  return hasScore;
+  return !!hasScore_;
 }
-- (void) setHasScore:(BOOL) hasScore_ {
-  hasScore = hasScore_;
+- (void) setHasScore:(BOOL) value {
+  hasScore_ = !!value;
 }
 @synthesize score;
-- (BOOL) hasIMDbUrl {
-  return hasIMDbUrl;
+- (BOOL) hasImdbUrl {
+  return !!hasImdbUrl_;
 }
-- (void) setHasIMDbUrl:(BOOL) hasIMDbUrl_ {
-  hasIMDbUrl = hasIMDbUrl_;
+- (void) setHasImdbUrl:(BOOL) value {
+  hasImdbUrl_ = !!value;
 }
-@synthesize iMDbUrl;
+@synthesize imdbUrl;
 @synthesize mutableDirectorList;
 @synthesize mutableCastList;
 @synthesize mutableDubbedList;
 @synthesize mutableSubtitledList;
 - (BOOL) hasReleaseDate {
-  return hasReleaseDate;
+  return !!hasReleaseDate_;
 }
-- (void) setHasReleaseDate:(BOOL) hasReleaseDate_ {
-  hasReleaseDate = hasReleaseDate_;
+- (void) setHasReleaseDate:(BOOL) value {
+  hasReleaseDate_ = !!value;
 }
 @synthesize releaseDate;
 - (void) dealloc {
@@ -722,7 +732,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   self.genre = nil;
   self.description = nil;
   self.rawRating = nil;
-  self.iMDbUrl = nil;
+  self.imdbUrl = nil;
   self.mutableDirectorList = nil;
   self.mutableCastList = nil;
   self.mutableDubbedList = nil;
@@ -740,7 +750,7 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
     self.description = @"";
     self.rawRating = @"";
     self.score = 0;
-    self.iMDbUrl = @"";
+    self.imdbUrl = @"";
     self.releaseDate = @"";
   }
   return self;
@@ -789,32 +799,32 @@ static MovieProto* defaultMovieProtoInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasIdentifier) {
+  if (self.hasIdentifier) {
     [output writeString:1 value:self.identifier];
   }
-  if (hasTitle) {
+  if (self.hasTitle) {
     [output writeString:2 value:self.title];
   }
-  if (hasLength) {
+  if (self.hasLength) {
     [output writeInt32:3 value:self.length];
   }
-  if (hasLanguage) {
+  if (self.hasLanguage) {
     [output writeString:4 value:self.language];
   }
-  if (hasGenre) {
+  if (self.hasGenre) {
     [output writeString:5 value:self.genre];
   }
-  if (hasDescription) {
+  if (self.hasDescription) {
     [output writeString:6 value:self.description];
   }
-  if (hasRawRating) {
+  if (self.hasRawRating) {
     [output writeString:8 value:self.rawRating];
   }
-  if (hasScore) {
+  if (self.hasScore) {
     [output writeInt32:9 value:self.score];
   }
-  if (hasIMDbUrl) {
-    [output writeString:10 value:self.iMDbUrl];
+  if (self.hasImdbUrl) {
+    [output writeString:10 value:self.imdbUrl];
   }
   for (NSString* element in self.mutableDirectorList) {
     [output writeString:11 value:element];
@@ -828,7 +838,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   for (NSString* element in self.mutableSubtitledList) {
     [output writeString:14 value:element];
   }
-  if (hasReleaseDate) {
+  if (self.hasReleaseDate) {
     [output writeString:15 value:self.releaseDate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -840,32 +850,32 @@ static MovieProto* defaultMovieProtoInstance = nil;
   }
 
   size = 0;
-  if (hasIdentifier) {
+  if (self.hasIdentifier) {
     size += computeStringSize(1, self.identifier);
   }
-  if (hasTitle) {
+  if (self.hasTitle) {
     size += computeStringSize(2, self.title);
   }
-  if (hasLength) {
+  if (self.hasLength) {
     size += computeInt32Size(3, self.length);
   }
-  if (hasLanguage) {
+  if (self.hasLanguage) {
     size += computeStringSize(4, self.language);
   }
-  if (hasGenre) {
+  if (self.hasGenre) {
     size += computeStringSize(5, self.genre);
   }
-  if (hasDescription) {
+  if (self.hasDescription) {
     size += computeStringSize(6, self.description);
   }
-  if (hasRawRating) {
+  if (self.hasRawRating) {
     size += computeStringSize(8, self.rawRating);
   }
-  if (hasScore) {
+  if (self.hasScore) {
     size += computeInt32Size(9, self.score);
   }
-  if (hasIMDbUrl) {
-    size += computeStringSize(10, self.iMDbUrl);
+  if (self.hasImdbUrl) {
+    size += computeStringSize(10, self.imdbUrl);
   }
   for (NSString* element in self.mutableDirectorList) {
     size += computeStringSize(11, element);
@@ -879,7 +889,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
   for (NSString* element in self.mutableSubtitledList) {
     size += computeStringSize(14, element);
   }
-  if (hasReleaseDate) {
+  if (self.hasReleaseDate) {
     size += computeStringSize(15, self.releaseDate);
   }
   size += self.unknownFields.serializedSize;
@@ -981,8 +991,8 @@ static MovieProto* defaultMovieProtoInstance = nil;
   if (other.hasScore) {
     [self setScore:other.score];
   }
-  if (other.hasIMDbUrl) {
-    [self setIMDbUrl:other.iMDbUrl];
+  if (other.hasImdbUrl) {
+    [self setImdbUrl:other.imdbUrl];
   }
   if (other.mutableDirectorList.count > 0) {
     if (result.mutableDirectorList == nil) {
@@ -1065,7 +1075,7 @@ static MovieProto* defaultMovieProtoInstance = nil;
         break;
       }
       case 82: {
-        [self setIMDbUrl:[input readString]];
+        [self setImdbUrl:[input readString]];
         break;
       }
       case 90: {
@@ -1219,20 +1229,20 @@ static MovieProto* defaultMovieProtoInstance = nil;
   result.score = 0;
   return self;
 }
-- (BOOL) hasIMDbUrl {
-  return result.hasIMDbUrl;
+- (BOOL) hasImdbUrl {
+  return result.hasImdbUrl;
 }
-- (NSString*) iMDbUrl {
-  return result.iMDbUrl;
+- (NSString*) imdbUrl {
+  return result.imdbUrl;
 }
-- (MovieProto_Builder*) setIMDbUrl:(NSString*) value {
-  result.hasIMDbUrl = YES;
-  result.iMDbUrl = value;
+- (MovieProto_Builder*) setImdbUrl:(NSString*) value {
+  result.hasImdbUrl = YES;
+  result.imdbUrl = value;
   return self;
 }
-- (MovieProto_Builder*) clearIMDbUrl {
-  result.hasIMDbUrl = NO;
-  result.iMDbUrl = @"";
+- (MovieProto_Builder*) clearImdbUrl {
+  result.hasImdbUrl = NO;
+  result.imdbUrl = @"";
   return self;
 }
 - (NSArray*) directorList {
@@ -1393,73 +1403,73 @@ static MovieProto* defaultMovieProtoInstance = nil;
 @implementation TheaterProto
 
 - (BOOL) hasIdentifier {
-  return hasIdentifier;
+  return !!hasIdentifier_;
 }
-- (void) setHasIdentifier:(BOOL) hasIdentifier_ {
-  hasIdentifier = hasIdentifier_;
+- (void) setHasIdentifier:(BOOL) value {
+  hasIdentifier_ = !!value;
 }
 @synthesize identifier;
 - (BOOL) hasName {
-  return hasName;
+  return !!hasName_;
 }
-- (void) setHasName:(BOOL) hasName_ {
-  hasName = hasName_;
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
 }
 @synthesize name;
 - (BOOL) hasStreetAddress {
-  return hasStreetAddress;
+  return !!hasStreetAddress_;
 }
-- (void) setHasStreetAddress:(BOOL) hasStreetAddress_ {
-  hasStreetAddress = hasStreetAddress_;
+- (void) setHasStreetAddress:(BOOL) value {
+  hasStreetAddress_ = !!value;
 }
 @synthesize streetAddress;
 - (BOOL) hasCity {
-  return hasCity;
+  return !!hasCity_;
 }
-- (void) setHasCity:(BOOL) hasCity_ {
-  hasCity = hasCity_;
+- (void) setHasCity:(BOOL) value {
+  hasCity_ = !!value;
 }
 @synthesize city;
 - (BOOL) hasState {
-  return hasState;
+  return !!hasState_;
 }
-- (void) setHasState:(BOOL) hasState_ {
-  hasState = hasState_;
+- (void) setHasState:(BOOL) value {
+  hasState_ = !!value;
 }
 @synthesize state;
 - (BOOL) hasPostalCode {
-  return hasPostalCode;
+  return !!hasPostalCode_;
 }
-- (void) setHasPostalCode:(BOOL) hasPostalCode_ {
-  hasPostalCode = hasPostalCode_;
+- (void) setHasPostalCode:(BOOL) value {
+  hasPostalCode_ = !!value;
 }
 @synthesize postalCode;
 - (BOOL) hasCountry {
-  return hasCountry;
+  return !!hasCountry_;
 }
-- (void) setHasCountry:(BOOL) hasCountry_ {
-  hasCountry = hasCountry_;
+- (void) setHasCountry:(BOOL) value {
+  hasCountry_ = !!value;
 }
 @synthesize country;
 - (BOOL) hasPhone {
-  return hasPhone;
+  return !!hasPhone_;
 }
-- (void) setHasPhone:(BOOL) hasPhone_ {
-  hasPhone = hasPhone_;
+- (void) setHasPhone:(BOOL) value {
+  hasPhone_ = !!value;
 }
 @synthesize phone;
 - (BOOL) hasLatitude {
-  return hasLatitude;
+  return !!hasLatitude_;
 }
-- (void) setHasLatitude:(BOOL) hasLatitude_ {
-  hasLatitude = hasLatitude_;
+- (void) setHasLatitude:(BOOL) value {
+  hasLatitude_ = !!value;
 }
 @synthesize latitude;
 - (BOOL) hasLongitude {
-  return hasLongitude;
+  return !!hasLongitude_;
 }
-- (void) setHasLongitude:(BOOL) hasLongitude_ {
-  hasLongitude = hasLongitude_;
+- (void) setHasLongitude:(BOOL) value {
+  hasLongitude_ = !!value;
 }
 @synthesize longitude;
 - (void) dealloc {
@@ -1504,34 +1514,34 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasIdentifier) {
+  if (self.hasIdentifier) {
     [output writeString:1 value:self.identifier];
   }
-  if (hasName) {
+  if (self.hasName) {
     [output writeString:2 value:self.name];
   }
-  if (hasStreetAddress) {
+  if (self.hasStreetAddress) {
     [output writeString:3 value:self.streetAddress];
   }
-  if (hasCity) {
+  if (self.hasCity) {
     [output writeString:4 value:self.city];
   }
-  if (hasState) {
+  if (self.hasState) {
     [output writeString:5 value:self.state];
   }
-  if (hasPostalCode) {
+  if (self.hasPostalCode) {
     [output writeString:6 value:self.postalCode];
   }
-  if (hasCountry) {
+  if (self.hasCountry) {
     [output writeString:7 value:self.country];
   }
-  if (hasPhone) {
+  if (self.hasPhone) {
     [output writeString:8 value:self.phone];
   }
-  if (hasLatitude) {
+  if (self.hasLatitude) {
     [output writeDouble:9 value:self.latitude];
   }
-  if (hasLongitude) {
+  if (self.hasLongitude) {
     [output writeDouble:10 value:self.longitude];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -1543,34 +1553,34 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   }
 
   size = 0;
-  if (hasIdentifier) {
+  if (self.hasIdentifier) {
     size += computeStringSize(1, self.identifier);
   }
-  if (hasName) {
+  if (self.hasName) {
     size += computeStringSize(2, self.name);
   }
-  if (hasStreetAddress) {
+  if (self.hasStreetAddress) {
     size += computeStringSize(3, self.streetAddress);
   }
-  if (hasCity) {
+  if (self.hasCity) {
     size += computeStringSize(4, self.city);
   }
-  if (hasState) {
+  if (self.hasState) {
     size += computeStringSize(5, self.state);
   }
-  if (hasPostalCode) {
+  if (self.hasPostalCode) {
     size += computeStringSize(6, self.postalCode);
   }
-  if (hasCountry) {
+  if (self.hasCountry) {
     size += computeStringSize(7, self.country);
   }
-  if (hasPhone) {
+  if (self.hasPhone) {
     size += computeStringSize(8, self.phone);
   }
-  if (hasLatitude) {
+  if (self.hasLatitude) {
     size += computeDoubleSize(9, self.latitude);
   }
-  if (hasLongitude) {
+  if (self.hasLongitude) {
     size += computeDoubleSize(10, self.longitude);
   }
   size += self.unknownFields.serializedSize;
@@ -2020,10 +2030,10 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
 @implementation TheaterListingsProto_TheaterAndMovieShowtimesProto
 
 - (BOOL) hasTheater {
-  return hasTheater;
+  return !!hasTheater_;
 }
-- (void) setHasTheater:(BOOL) hasTheater_ {
-  hasTheater = hasTheater_;
+- (void) setHasTheater:(BOOL) value {
+  hasTheater_ = !!value;
 }
 @synthesize theater;
 @synthesize mutableMovieAndShowtimesList;
@@ -2058,7 +2068,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   return value;
 }
 - (BOOL) isInitialized {
-  if (!hasTheater) {
+  if (!self.hasTheater) {
     return NO;
   }
   for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
@@ -2069,7 +2079,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasTheater) {
+  if (self.hasTheater) {
     [output writeMessage:3 value:self.theater];
   }
   for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
@@ -2084,7 +2094,7 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   }
 
   size = 0;
-  if (hasTheater) {
+  if (self.hasTheater) {
     size += computeMessageSize(3, self.theater);
   }
   for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
@@ -2131,17 +2141,17 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
 @implementation TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 
 - (BOOL) hasMovieIdentifier {
-  return hasMovieIdentifier;
+  return !!hasMovieIdentifier_;
 }
-- (void) setHasMovieIdentifier:(BOOL) hasMovieIdentifier_ {
-  hasMovieIdentifier = hasMovieIdentifier_;
+- (void) setHasMovieIdentifier:(BOOL) value {
+  hasMovieIdentifier_ = !!value;
 }
 @synthesize movieIdentifier;
 - (BOOL) hasShowtimes {
-  return hasShowtimes;
+  return !!hasShowtimes_;
 }
-- (void) setHasShowtimes:(BOOL) hasShowtimes_ {
-  hasShowtimes = hasShowtimes_;
+- (void) setHasShowtimes:(BOOL) value {
+  hasShowtimes_ = !!value;
 }
 @synthesize showtimes;
 - (void) dealloc {
@@ -2169,10 +2179,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   return defaultTheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProtoInstance;
 }
 - (BOOL) isInitialized {
-  if (!hasMovieIdentifier) {
+  if (!self.hasMovieIdentifier) {
     return NO;
   }
-  if (!hasShowtimes) {
+  if (!self.hasShowtimes) {
     return NO;
   }
   if (!self.showtimes.isInitialized) {
@@ -2181,10 +2191,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasMovieIdentifier) {
+  if (self.hasMovieIdentifier) {
     [output writeString:1 value:self.movieIdentifier];
   }
-  if (hasShowtimes) {
+  if (self.hasShowtimes) {
     [output writeMessage:2 value:self.showtimes];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -2196,10 +2206,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   }
 
   size = 0;
-  if (hasMovieIdentifier) {
+  if (self.hasMovieIdentifier) {
     size += computeStringSize(1, self.movieIdentifier);
   }
-  if (hasShowtimes) {
+  if (self.hasShowtimes) {
     size += computeMessageSize(2, self.showtimes);
   }
   size += self.unknownFields.serializedSize;
@@ -2683,59 +2693,59 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 @implementation ReviewProto
 
 - (BOOL) hasTitle {
-  return hasTitle;
+  return !!hasTitle_;
 }
-- (void) setHasTitle:(BOOL) hasTitle_ {
-  hasTitle = hasTitle_;
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
 }
 @synthesize title;
 - (BOOL) hasUrl {
-  return hasUrl;
+  return !!hasUrl_;
 }
-- (void) setHasUrl:(BOOL) hasUrl_ {
-  hasUrl = hasUrl_;
+- (void) setHasUrl:(BOOL) value {
+  hasUrl_ = !!value;
 }
 @synthesize url;
 - (BOOL) hasRating {
-  return hasRating;
+  return !!hasRating_;
 }
-- (void) setHasRating:(BOOL) hasRating_ {
-  hasRating = hasRating_;
+- (void) setHasRating:(BOOL) value {
+  hasRating_ = !!value;
 }
 @synthesize rating;
 - (BOOL) hasSnippet {
-  return hasSnippet;
+  return !!hasSnippet_;
 }
-- (void) setHasSnippet:(BOOL) hasSnippet_ {
-  hasSnippet = hasSnippet_;
+- (void) setHasSnippet:(BOOL) value {
+  hasSnippet_ = !!value;
 }
 @synthesize snippet;
 - (BOOL) hasContent {
-  return hasContent;
+  return !!hasContent_;
 }
-- (void) setHasContent:(BOOL) hasContent_ {
-  hasContent = hasContent_;
+- (void) setHasContent:(BOOL) value {
+  hasContent_ = !!value;
 }
 @synthesize content;
 - (BOOL) hasPublisher {
-  return hasPublisher;
+  return !!hasPublisher_;
 }
-- (void) setHasPublisher:(BOOL) hasPublisher_ {
-  hasPublisher = hasPublisher_;
+- (void) setHasPublisher:(BOOL) value {
+  hasPublisher_ = !!value;
 }
 @synthesize publisher;
 - (BOOL) hasAuthor {
-  return hasAuthor;
+  return !!hasAuthor_;
 }
-- (void) setHasAuthor:(BOOL) hasAuthor_ {
-  hasAuthor = hasAuthor_;
+- (void) setHasAuthor:(BOOL) value {
+  hasAuthor_ = !!value;
 }
 @synthesize author;
 - (BOOL) hasDate {
-  return hasDate;
+  return !!hasDate_;
 }
-- (void) setHasDate:(BOOL) hasDate_ {
-  hasDate = hasDate_;
+- (void) setHasDate:(BOOL) value {
+  hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
@@ -2774,42 +2784,33 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   return defaultReviewProtoInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) {
-    return NO;
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (hasTitle) {
+  if (self.hasTitle) {
     [output writeString:1 value:self.title];
   }
-  if (hasUrl) {
+  if (self.hasUrl) {
     [output writeString:2 value:self.url];
   }
-  if (hasRating) {
+  if (self.hasRating) {
     [output writeFloat:3 value:self.rating];
   }
-  if (hasSnippet) {
+  if (self.hasSnippet) {
     [output writeString:4 value:self.snippet];
   }
-  if (hasContent) {
+  if (self.hasContent) {
     [output writeString:5 value:self.content];
   }
-  if (hasPublisher) {
+  if (self.hasPublisher) {
     [output writeString:6 value:self.publisher];
   }
-  if (hasAuthor) {
+  if (self.hasAuthor) {
     [output writeString:7 value:self.author];
   }
-  if (hasDate) {
+  if (self.hasDate) {
     [output writeString:8 value:self.date];
   }
-  [self writeExtensionsToCodedOutputStream:output
-                                      from:100
-                                        to:201];
-  [self writeExtensionsToCodedOutputStream:output
-                                      from:300
-                                        to:536870912];
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2819,31 +2820,30 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   }
 
   size = 0;
-  if (hasTitle) {
+  if (self.hasTitle) {
     size += computeStringSize(1, self.title);
   }
-  if (hasUrl) {
+  if (self.hasUrl) {
     size += computeStringSize(2, self.url);
   }
-  if (hasRating) {
+  if (self.hasRating) {
     size += computeFloatSize(3, self.rating);
   }
-  if (hasSnippet) {
+  if (self.hasSnippet) {
     size += computeStringSize(4, self.snippet);
   }
-  if (hasContent) {
+  if (self.hasContent) {
     size += computeStringSize(5, self.content);
   }
-  if (hasPublisher) {
+  if (self.hasPublisher) {
     size += computeStringSize(6, self.publisher);
   }
-  if (hasAuthor) {
+  if (self.hasAuthor) {
     size += computeStringSize(7, self.author);
   }
-  if (hasDate) {
+  if (self.hasDate) {
     size += computeStringSize(8, self.date);
   }
-  size += [self extensionsSerializedSize];
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -2893,7 +2893,7 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   }
   return self;
 }
-- (PBExtendableMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
   return result;
 }
 - (ReviewProto_Builder*) clear {
@@ -3165,11 +3165,6 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  for (ReviewProto* element in self.reviewsList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {

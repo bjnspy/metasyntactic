@@ -18,6 +18,7 @@
 #import "CacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
+#import "NetflixNavigationController.h"
 
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
@@ -134,7 +135,9 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) resetTabs {
-  [(ApplicationTabBarController*) viewController resetTabs];
+  if ([viewController isKindOfClass:[ApplicationTabBarController class]]) {
+    [(id) viewController resetTabs];
+  }
 }
 
 
