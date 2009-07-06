@@ -36,7 +36,7 @@
     self.unknownFields = [PBUnknownFieldSet defaultInstance];
     memoizedSerializedSize = -1;
   }
-  
+
   return self;
 }
 

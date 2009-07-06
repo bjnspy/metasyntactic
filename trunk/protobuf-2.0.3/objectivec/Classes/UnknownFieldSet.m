@@ -39,7 +39,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 - (void) dealloc {
   self.fields = nil;
-  
+
   [super dealloc];
 }
 
@@ -53,7 +53,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
   if ((self = [super init])) {
     self.fields = fields_;
   }
-  
+
   return self;
 }
 
@@ -155,7 +155,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 - (NSData*) data {
   NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
   PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
-  
+
   [self writeToCodedOutputStream:output];
   return data;
 }
