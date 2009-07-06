@@ -14,14 +14,14 @@
 
 @interface LookupResult : NSObject {
 @private
-    NSMutableArray* movies;
-    NSMutableArray* theaters;
+  NSMutableArray* movies;
+  NSMutableArray* theaters;
 
-    // theater name -> movie name -> [ { showtime, showid } ]
-    NSMutableDictionary* performances;
+  // theater name -> movie name -> [ { showtime, showid } ]
+  NSMutableDictionary* performances;
 
-    // theater name -> date
-    NSMutableDictionary* synchronizationInformation;
+  // theater name -> date
+  NSMutableDictionary* synchronizationInformation;
 }
 
 @property (readonly, retain) NSMutableArray* movies;

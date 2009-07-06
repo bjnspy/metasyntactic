@@ -33,14 +33,14 @@
 @synthesize currentTheaters;
 
 - (void) dealloc {
-    self.searchDate = nil;
-    self.delegate = nil;
-    self.context = nil;
-    self.force = NO;
-    self.currentMovies = nil;
-    self.currentTheaters = nil;
+  self.searchDate = nil;
+  self.delegate = nil;
+  self.context = nil;
+  self.force = NO;
+  self.currentMovies = nil;
+  self.currentTheaters = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
@@ -50,16 +50,16 @@
                     force:(BOOL) force__
             currentMovies:(NSArray*) currentMovies__
           currentTheaters:(NSArray*) currentTheaters__ {
-    if ((self = [super init])) {
-        self.searchDate = searchDate__;
-        self.delegate = delegate__;
-        self.context = context__;
-        self.force = force__;
-        self.currentMovies = currentMovies__;
-        self.currentTheaters = currentTheaters__;
-    }
+  if ((self = [super init])) {
+    self.searchDate = searchDate__;
+    self.delegate = delegate__;
+    self.context = context__;
+    self.force = force__;
+    self.currentMovies = currentMovies__;
+    self.currentTheaters = currentTheaters__;
+  }
 
-    return self;
+  return self;
 }
 
 
@@ -69,12 +69,12 @@
                                    force:(BOOL) force
                            currentMovies:(NSArray*) currentMovies
                          currentTheaters:(NSArray*) currentTheaters {
-    return [[[LookupRequest alloc] initWithSearchDate:searchDate
-                                             delegate:delegate
-                                              context:context
-                                                force:force
-                                        currentMovies:currentMovies
-                                      currentTheaters:currentTheaters] autorelease];
+  return [[[LookupRequest alloc] initWithSearchDate:searchDate
+                                           delegate:delegate
+                                            context:context
+                                              force:force
+                                      currentMovies:currentMovies
+                                    currentTheaters:currentTheaters] autorelease];
 }
 
 @end

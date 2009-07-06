@@ -14,11 +14,11 @@
 
 @interface SearchRequest : AbstractSearchRequest {
 @private
-    NSArray* movies;
-    NSArray* theaters;
-    NSArray* upcomingMovies;
-    NSArray* dvds;
-    NSArray* bluray;
+  NSArray* movies;
+  NSArray* theaters;
+  NSArray* upcomingMovies;
+  NSArray* dvds;
+  NSArray* bluray;
 }
 
 @property (readonly, retain) NSArray* movies;
