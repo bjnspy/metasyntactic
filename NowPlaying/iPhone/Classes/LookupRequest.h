@@ -14,12 +14,12 @@
 
 @interface LookupRequest : NSObject {
 @private
-    NSDate* searchDate;
-    id<DataProviderUpdateDelegate> delegate;
-    id context;
-    BOOL force;
-    NSArray* currentMovies;
-    NSArray* currentTheaters;
+  NSDate* searchDate;
+  id<DataProviderUpdateDelegate> delegate;
+  id context;
+  BOOL force;
+  NSArray* currentMovies;
+  NSArray* currentTheaters;
 }
 
 @property (readonly, retain) NSDate* searchDate;
