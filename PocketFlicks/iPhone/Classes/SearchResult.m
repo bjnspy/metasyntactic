@@ -34,14 +34,14 @@
 @synthesize people;
 
 - (void) dealloc {
-    self.movies = nil;
-    self.theaters = nil;
-    self.upcomingMovies = nil;
-    self.dvds = nil;
-    self.bluray = nil;
-    self.people = nil;
+  self.movies = nil;
+  self.theaters = nil;
+  self.upcomingMovies = nil;
+  self.dvds = nil;
+  self.bluray = nil;
+  self.people = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
@@ -54,15 +54,15 @@
            bluray:(NSArray*) bluray_
            people:(NSArray*) people_ {
   if ((self = [super initWithId:requestId_ value:value_])) {
-        self.movies = movies_;
-        self.theaters = theaters_;
-        self.upcomingMovies = upcomingMovies_;
-        self.dvds = dvds_;
-        self.bluray = bluray_;
-        self.people = people_;
-    }
+    self.movies = movies_;
+    self.theaters = theaters_;
+    self.upcomingMovies = upcomingMovies_;
+    self.dvds = dvds_;
+    self.bluray = bluray_;
+    self.people = people_;
+  }
 
-    return self;
+  return self;
 }
 
 
@@ -74,14 +74,14 @@
                           dvds:(NSArray*) dvds
                         bluray:(NSArray*) bluray
                         people:(NSArray*) people {
-    return [[[SearchResult alloc] initWithId:requestId
-                                       value:value
-                                      movies:movies
-                                    theaters:theaters
-                              upcomingMovies:upcomingMovies
-                                        dvds:dvds
-                                      bluray:bluray
-                                      people:people] autorelease];
+  return [[[SearchResult alloc] initWithId:requestId
+                                     value:value
+                                    movies:movies
+                                  theaters:theaters
+                            upcomingMovies:upcomingMovies
+                                      dvds:dvds
+                                    bluray:bluray
+                                    people:people] autorelease];
 }
 
 @end

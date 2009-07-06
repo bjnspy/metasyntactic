@@ -34,13 +34,13 @@ property_definition(discs);
 property_definition(url);
 
 - (void) dealloc {
-    self.canonicalTitle = nil;
-    self.price = nil;
-    self.format = nil;
-    self.discs = nil;
-    self.url = nil;
+  self.canonicalTitle = nil;
+  self.price = nil;
+  self.format = nil;
+  self.discs = nil;
+  self.url = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
@@ -49,24 +49,24 @@ property_definition(url);
                        format:(NSString*) format_
                         discs:(NSString*) discs_
                           url:(NSString*) url_ {
-    if ((self = [super init])) {
-        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
-        self.price = [StringUtilities nonNilString:price_];
-        self.format = [StringUtilities nonNilString:format_];
-        self.discs = [StringUtilities nonNilString:discs_];
-        self.url = [StringUtilities nonNilString:url_];
-    }
+  if ((self = [super init])) {
+    self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+    self.price = [StringUtilities nonNilString:price_];
+    self.format = [StringUtilities nonNilString:format_];
+    self.discs = [StringUtilities nonNilString:discs_];
+    self.url = [StringUtilities nonNilString:url_];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
-                                  price:[coder decodeObjectForKey:price_key]
-                                 format:[coder decodeObjectForKey:format_key]
-                                  discs:[coder decodeObjectForKey:discs_key]
-                                    url:[coder decodeObjectForKey:url_key]];
+  return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                                price:[coder decodeObjectForKey:price_key]
+                               format:[coder decodeObjectForKey:format_key]
+                                discs:[coder decodeObjectForKey:discs_key]
+                                  url:[coder decodeObjectForKey:url_key]];
 }
 
 
@@ -75,11 +75,11 @@ property_definition(url);
                         format:(NSString*) format
                          discs:(NSString*) discs
                            url:(NSString*) url {
-    return [[[DVD alloc] initWithCanonicalTitle:canonicalTitle
-                                          price:price
-                                         format:format
-                                          discs:discs
-                                            url:url] autorelease];
+  return [[[DVD alloc] initWithCanonicalTitle:canonicalTitle
+                                        price:price
+                                       format:format
+                                        discs:discs
+                                          url:url] autorelease];
 }
 
 
@@ -88,45 +88,45 @@ property_definition(url);
                format:(NSString*) format
                 discs:(NSString*) discs
                   url:(NSString*) url {
-    return [DVD dvdWithCanonicalTitle:[Movie makeCanonical:title]
-                                price:price
-                               format:format
-                                discs:discs
-                                  url:url];
+  return [DVD dvdWithCanonicalTitle:[Movie makeCanonical:title]
+                              price:price
+                             format:format
+                              discs:discs
+                                url:url];
 }
 
 
-+ (DVD*) dvdWithDictionary:(NSDictionary*) dictionary {
-    return [DVD dvdWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                price:[dictionary objectForKey:price_key]
-                               format:[dictionary objectForKey:format_key]
-                                discs:[dictionary objectForKey:discs_key]
-                                  url:[dictionary objectForKey:url_key]];
++ (DVD*) newWithDictionary:(NSDictionary*) dictionary {
+  return [DVD dvdWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                              price:[dictionary objectForKey:price_key]
+                             format:[dictionary objectForKey:format_key]
+                              discs:[dictionary objectForKey:discs_key]
+                                url:[dictionary objectForKey:url_key]];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:canonicalTitle    forKey:canonicalTitle_key];
-    [result setObject:price             forKey:price_key];
-    [result setObject:format            forKey:format_key];
-    [result setObject:discs             forKey:discs_key];
-    [result setObject:url               forKey:url_key];
-    return result;
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  [result setObject:canonicalTitle    forKey:canonicalTitle_key];
+  [result setObject:price             forKey:price_key];
+  [result setObject:format            forKey:format_key];
+  [result setObject:discs             forKey:discs_key];
+  [result setObject:url               forKey:url_key];
+  return result;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
-    [coder encodeObject:price             forKey:price_key];
-    [coder encodeObject:format            forKey:format_key];
-    [coder encodeObject:discs             forKey:discs_key];
-    [coder encodeObject:url               forKey:url_key];
+  [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
+  [coder encodeObject:price             forKey:price_key];
+  [coder encodeObject:format            forKey:format_key];
+  [coder encodeObject:discs             forKey:discs_key];
+  [coder encodeObject:url               forKey:url_key];
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 @end

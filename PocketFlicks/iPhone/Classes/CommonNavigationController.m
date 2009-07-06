@@ -147,7 +147,7 @@
     return YES;
   }
 
-  return self.model.screenRotationEnabled && fullScreenImageListController == nil;
+  return [MetasyntacticSharedApplication screenRotationEnabled] && fullScreenImageListController == nil;
 }
 
 

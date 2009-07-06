@@ -140,7 +140,7 @@
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSString* title in encodedScores) {
-    Score* score = [Score scoreWithDictionary:[encodedScores objectForKey:title]];
+    Score* score = [Score newWithDictionary:[encodedScores objectForKey:title]];
     [result setObject:score forKey:title];
   }
 

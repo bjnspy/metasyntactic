@@ -53,7 +53,7 @@
 }
 
 
-- (id)initWithSearchBar:(UISearchBar*) searchBar_
+- (id) initWithSearchBar:(UISearchBar*) searchBar_
      contentsController:(UIViewController*) viewController_ {
   if ((self = [super initWithSearchBar:searchBar_
                     contentsController:viewController_])) {
@@ -70,7 +70,7 @@
 }
 
 
-- (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+- (void) searchBar:(UISearchBar*) searchBar selectedScopeButtonIndexDidChange:(NSInteger) selectedScope {
   self.model.netflixSearchSelectedScopeButtonIndex = selectedScope;
   [self reloadTableViewData];
 }

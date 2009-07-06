@@ -15,13 +15,13 @@
 #import "Theater.h"
 
 @interface Theater()
-    @property (copy) NSString* identifier;
-    @property (copy) NSString* name;
-    @property (copy) NSString* phoneNumber;
-    @property (retain) Location* location;
-    @property (retain) Location* originatingLocation;
-    @property (retain) NSArray* movieTitles;
-    @property (copy) NSString* simpleAddress;
+@property (copy) NSString* identifier;
+@property (copy) NSString* name;
+@property (copy) NSString* phoneNumber;
+@property (retain) Location* location;
+@property (retain) Location* originatingLocation;
+@property (retain) NSArray* movieTitles;
+@property (copy) NSString* simpleAddress;
 @end
 
 
@@ -36,25 +36,25 @@ property_definition(movieTitles);
 @synthesize simpleAddress;
 
 - (void) dealloc {
-    self.identifier = nil;
-    self.name = nil;
-    self.phoneNumber = nil;
-    self.location = nil;
-    self.originatingLocation = nil;
-    self.movieTitles = nil;
-    self.simpleAddress = nil;
+  self.identifier = nil;
+  self.name = nil;
+  self.phoneNumber = nil;
+  self.location = nil;
+  self.originatingLocation = nil;
+  self.movieTitles = nil;
+  self.simpleAddress = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (Theater*) newWithDictionary:(NSDictionary*) dictionary {
-    return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
-                                     name:[dictionary objectForKey:name_key]
-                              phoneNumber:[dictionary objectForKey:phoneNumber_key]
-                                 location:[Location locationWithDictionary:[dictionary objectForKey:location_key]]
-                      originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]
-                              movieTitles:[dictionary objectForKey:movieTitles_key]];
+  return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
+                                   name:[dictionary objectForKey:name_key]
+                            phoneNumber:[dictionary objectForKey:phoneNumber_key]
+                               location:[Location locationWithDictionary:[dictionary objectForKey:location_key]]
+                    originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]
+                            movieTitles:[dictionary objectForKey:movieTitles_key]];
 }
 
 
@@ -64,26 +64,26 @@ property_definition(movieTitles);
                  location:(Location*) location_
       originatingLocation:(Location*) originatingLocation_
               movieTitles:(NSArray*) movieTitles_ {
-    if ((self = [super init])) {
-        self.identifier = [StringUtilities nonNilString:identifier_];
-        self.name = [[StringUtilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];
-        self.location = location_;
-        self.originatingLocation = originatingLocation_;
-        self.movieTitles = [CollectionUtilities nonNilArray:movieTitles_];
-    }
+  if ((self = [super init])) {
+    self.identifier = [StringUtilities nonNilString:identifier_];
+    self.name = [[StringUtilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];
+    self.location = location_;
+    self.originatingLocation = originatingLocation_;
+    self.movieTitles = [CollectionUtilities nonNilArray:movieTitles_];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
-                               name:[coder decodeObjectForKey:name_key]
-                        phoneNumber:[coder decodeObjectForKey:phoneNumber_key]
-                           location:[coder decodeObjectForKey:location_key]
-                originatingLocation:[coder decodeObjectForKey:originatingLocation_key]
-                        movieTitles:[coder decodeObjectForKey:movieTitles_key]];
+  return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                             name:[coder decodeObjectForKey:name_key]
+                      phoneNumber:[coder decodeObjectForKey:phoneNumber_key]
+                         location:[coder decodeObjectForKey:location_key]
+              originatingLocation:[coder decodeObjectForKey:originatingLocation_key]
+                      movieTitles:[coder decodeObjectForKey:movieTitles_key]];
 }
 
 
@@ -93,73 +93,73 @@ property_definition(movieTitles);
                           location:(Location*) location
                originatingLocation:(Location*) originatingLocation
                        movieTitles:(NSArray*) movieTitles {
-    return [[[Theater alloc] initWithIdentifier:identifier
-                                           name:name
-                                    phoneNumber:phoneNumber
-                                       location:location
-                            originatingLocation:originatingLocation
-                                    movieTitles:movieTitles] autorelease];
+  return [[[Theater alloc] initWithIdentifier:identifier
+                                         name:name
+                                  phoneNumber:phoneNumber
+                                     location:location
+                          originatingLocation:originatingLocation
+                                  movieTitles:movieTitles] autorelease];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier                        forKey:identifier_key];
-    [dictionary setObject:name                              forKey:name_key];
-    [dictionary setObject:phoneNumber                       forKey:phoneNumber_key];
-    [dictionary setObject:location.dictionary               forKey:location_key];
-    [dictionary setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
-    [dictionary setObject:movieTitles                       forKey:movieTitles_key];
-    return dictionary;
+  NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+  [dictionary setObject:identifier                        forKey:identifier_key];
+  [dictionary setObject:name                              forKey:name_key];
+  [dictionary setObject:phoneNumber                       forKey:phoneNumber_key];
+  [dictionary setObject:location.dictionary               forKey:location_key];
+  [dictionary setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
+  [dictionary setObject:movieTitles                       forKey:movieTitles_key];
+  return dictionary;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:identifier          forKey:identifier_key];
-    [coder encodeObject:name                forKey:name_key];
-    [coder encodeObject:phoneNumber         forKey:phoneNumber_key];
-    [coder encodeObject:location            forKey:location_key];
-    [coder encodeObject:originatingLocation forKey:originatingLocation_key];
-    [coder encodeObject:movieTitles         forKey:movieTitles_key];
+  [coder encodeObject:identifier          forKey:identifier_key];
+  [coder encodeObject:name                forKey:name_key];
+  [coder encodeObject:phoneNumber         forKey:phoneNumber_key];
+  [coder encodeObject:location            forKey:location_key];
+  [coder encodeObject:originatingLocation forKey:originatingLocation_key];
+  [coder encodeObject:movieTitles         forKey:movieTitles_key];
 }
 
 
 - (NSString*) description {
-    return self.dictionary.description;
+  return self.dictionary.description;
 }
 
 
 - (BOOL) isEqual:(id) anObject {
-    Theater* other = anObject;
-    return [name isEqual:other.name];
+  Theater* other = anObject;
+  return [name isEqual:other.name];
 }
 
 
 - (NSUInteger) hash {
-    return name.hash;
+  return name.hash;
 }
 
 
 - (NSString*) mapUrl {
-    return location.mapUrl;
+  return location.mapUrl;
 }
 
 
 - (NSString*) simpleAddressWorker {
-    if (location.address.length != 0 && location.city.length != 0) {
-        return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
-    } else {
-        return location.address;
-    }
+  if (location.address.length != 0 && location.city.length != 0) {
+    return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
+  } else {
+    return location.address;
+  }
 }
 
 
 - (NSString*) simpleAddress {
-    if (simpleAddress == nil) {
-        self.simpleAddress = [self simpleAddressWorker];
-    }
+  if (simpleAddress == nil) {
+    self.simpleAddress = [self simpleAddressWorker];
+  }
 
-    return simpleAddress;
+  return simpleAddress;
 }
 
 @end

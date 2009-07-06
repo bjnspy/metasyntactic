@@ -38,89 +38,89 @@ static AppDelegate* appDelegate = nil;
 @synthesize minorRefreshPulser;
 
 - (void) dealloc {
-    self.window = nil;
-    self.viewController = nil;
-    self.majorRefreshPulser = nil;
-    self.minorRefreshPulser = nil;
+  self.window = nil;
+  self.viewController = nil;
+  self.majorRefreshPulser = nil;
+  self.minorRefreshPulser = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (AppDelegate*) appDelegate {
-    return appDelegate;
+  return appDelegate;
 }
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
-    if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
-        [AlertUtilities showOkAlert:@"Zombies enabled!"];
-    }
+  if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
+    [AlertUtilities showOkAlert:@"Zombies enabled!"];
+  }
 
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
 
-    appDelegate = self;
+  appDelegate = self;
 
-    [Model model];
-    [Controller controller];
-    [CacheUpdater cacheUpdater];
-    [OperationQueue operationQueue];
-    self.viewController = [[[NetflixNavigationController alloc] init] autorelease];
+  [Model model];
+  [Controller controller];
+  [CacheUpdater cacheUpdater];
+  [OperationQueue operationQueue];
+  self.viewController = [[[NetflixNavigationController alloc] init] autorelease];
 
-    self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:5];
+  self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
+  self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:5];
 
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
+  [window addSubview:viewController.view];
+  [window makeKeyAndVisible];
 
-    [NotificationCenter attachToViewController:viewController];
+  [NotificationCenter attachToViewController:viewController];
 
-    // Ok.  We've set up all our global state.  Now get the ball rolling.
-    [[Controller controller] start];
+  // Ok.  We've set up all our global state.  Now get the ball rolling.
+  [[Controller controller] start];
 }
 
 
 - (void) applicationWillTerminate:(UIApplication*) application {
-    [[NSUserDefaults standardUserDefaults] synchronize];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
 - (void) majorRefreshWorker:(NSNumber*) force {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
-        return;
-    }
+  if (![NSThread isMainThread]) {
+    [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
+    return;
+  }
 
-    if (force.boolValue) {
-        [majorRefreshPulser forcePulse];
-    } else {
-        [majorRefreshPulser tryPulse];
-    }
+  if (force.boolValue) {
+    [majorRefreshPulser forcePulse];
+  } else {
+    [majorRefreshPulser tryPulse];
+  }
 }
 
 
 - (void) majorRefresh:(BOOL) force {
-    [self majorRefreshWorker:[NSNumber numberWithBool:force]];
+  [self majorRefreshWorker:[NSNumber numberWithBool:force]];
 }
 
 
 - (void) majorRefresh {
-    [self majorRefresh:NO];
+  [self majorRefresh:NO];
 }
 
 
 - (void) minorRefresh {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
-        return;
-    }
+  if (![NSThread isMainThread]) {
+    [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
+    return;
+  }
 
-    [minorRefreshPulser tryPulse];
+  [minorRefreshPulser tryPulse];
 }
 
 
 + (void) minorRefresh {
-    [appDelegate minorRefresh];
+  [appDelegate minorRefresh];
 }
 
 
@@ -139,17 +139,17 @@ static AppDelegate* appDelegate = nil;
 
 
 + (void) resetTabs {
-    [appDelegate resetTabs];
+  [appDelegate resetTabs];
 }
 
 
 + (UIWindow*) window {
-    return appDelegate.window;
+  return appDelegate.window;
 }
 
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
-    [[Model model] didReceiveMemoryWarning];
+  [[Model model] didReceiveMemoryWarning];
 }
 
 

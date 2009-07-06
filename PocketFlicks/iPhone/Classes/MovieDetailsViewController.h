@@ -42,7 +42,6 @@
 
   UIImage* posterImage;
   TappableImageView* posterImageView;
-  SmallActivityIndicatorViewWithBackground* posterActivityView;
   NSInteger posterCount;
 }
 

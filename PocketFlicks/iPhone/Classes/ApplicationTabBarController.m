@@ -168,7 +168,7 @@
   self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
 
   if ([viewController isKindOfClass:[UINavigationController class]]) {
-    [self.model saveNavigationStack:(UINavigationController*)viewController];
+    [self.model saveNavigationStack:(UINavigationController*) viewController];
   }
 
   for (id viewController in self.viewControllers) {
@@ -196,7 +196,7 @@
 
 
 - (CommonNavigationController*) selectedNavigationController {
-  return (id)self.selectedViewController;
+  return (id) self.selectedViewController;
 }
 
 

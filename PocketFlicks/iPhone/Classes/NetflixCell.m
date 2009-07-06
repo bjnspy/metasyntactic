@@ -285,7 +285,7 @@
 }
 
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+- (void) setEditing:(BOOL) editing animated:(BOOL) animated {
     [super setEditing:editing animated:animated];
 
     [UIView beginAnimations:nil context:NULL];

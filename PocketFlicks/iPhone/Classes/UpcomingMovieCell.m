@@ -170,7 +170,7 @@
         rating = LocalizedString(@"Not yet rated", nil);		
     }
 
-    if ([(id)owner sortingByTitle] || [self.model isBookmarked:movie]) {
+    if ([(id) owner sortingByTitle] || [self.model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (rating.length > 0) {
