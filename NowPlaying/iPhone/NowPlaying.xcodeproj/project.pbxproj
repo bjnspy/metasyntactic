@@ -714,8 +714,7 @@
 				74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */,
 				7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				7463989A0F7EC9BB00B2F64C /* Frameworks2 */,
-				29B97323FDCFA39411CA2CEA /* Frameworks3 */,
+				7463989A0F7EC9BB00B2F64C /* Frameworks */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -805,14 +804,6 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		29B97323FDCFA39411CA2CEA /* Frameworks3 */ = {
-			isa = PBXGroup;
-			children = (
-				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
-			);
-			name = Frameworks3;
 			sourceTree = "<group>";
 		};
 		740245660E78488D00ECE1B4 /* Views */ = {
@@ -1021,9 +1012,10 @@
 			name = SettingCells;
 			sourceTree = "<group>";
 		};
-		7463989A0F7EC9BB00B2F64C /* Frameworks2 */ = {
+		7463989A0F7EC9BB00B2F64C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
 				7463987C0F7EC99F00B2F64C /* AddressBook.framework */,
 				746398880F7EC9A800B2F64C /* CFNetwork.framework */,
 				746398840F7EC9A500B2F64C /* CoreFoundation.framework */,
@@ -1034,7 +1026,7 @@
 				746398740F7EC99800B2F64C /* SystemConfiguration.framework */,
 				746398900F7EC9AE00B2F64C /* UIKit.framework */,
 			);
-			name = Frameworks2;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7471793D0FDC59FA00B24ECD /* Products */ = {

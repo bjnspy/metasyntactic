@@ -14,9 +14,9 @@
 
 @interface Feed : AbstractData<NSCopying, NSCoding> {
 @private
-    NSString* url;
-    NSString* key;
-    NSString* name;
+  NSString* url;
+  NSString* key;
+  NSString* name;
 }
 
 @property (readonly, copy) NSString* url;

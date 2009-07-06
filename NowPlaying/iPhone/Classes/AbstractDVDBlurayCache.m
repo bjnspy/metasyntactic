@@ -377,7 +377,7 @@
     return nil;
   }
 
-  return [DVD dvdWithDictionary:dictionary];
+  return [DVD newWithDictionary:dictionary];
 }
 
 

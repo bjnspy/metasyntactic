@@ -14,9 +14,9 @@
 
 @interface Performance : AbstractData<NSCopying, NSCoding> {
 @private
-    NSDate* time;
-    NSString* url;
-    NSString* timeString;
+  NSDate* time;
+  NSString* url;
+  NSString* timeString;
 }
 
 @property (readonly, copy) NSDate* time;

@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Score : NSObject<NSCopying, NSCoding> {
+@interface Score : AbstractData<NSCopying, NSCoding> {
 @private
-    NSString* canonicalTitle;
-    NSString* synopsis;
-    NSString* score;
-    NSString* provider;
-    NSString* identifier;
-    NSInteger scoreValue;
+  NSString* canonicalTitle;
+  NSString* synopsis;
+  NSString* score;
+  NSString* provider;
+  NSString* identifier;
+  NSInteger scoreValue;
 }
 
 @property (readonly, copy) NSString* canonicalTitle;
@@ -28,7 +28,7 @@
 @property (readonly, copy) NSString* provider;
 @property (readonly, copy) NSString* identifier;
 
-+ (Score*) scoreWithDictionary:(NSDictionary*) dictionary;
++ (Score*) newWithDictionary:(NSDictionary*) dictionary;
 + (Score*) scoreWithTitle:(NSString*) title
                  synopsis:(NSString*) synopsis
                     score:(NSString*) score
