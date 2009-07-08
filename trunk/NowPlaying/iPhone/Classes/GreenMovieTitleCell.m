@@ -19,16 +19,16 @@
 @implementation GreenMovieTitleCell
 
 + (NSString*) reuseIdentifier {
-    return @"GreenMovieTitleCell";
+  return @"GreenMovieTitleCell";
 }
 
 
 - (id) init {
-    if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [StockImages greenRatingImage];
-    }
-
-    return self;
+  if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
+    self.imageView.image = [StockImages greenRatingImage];
+  }
+  
+  return self;
 }
 
 @end

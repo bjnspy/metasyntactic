@@ -14,8 +14,8 @@
 
 @interface NetflixGenreRecommendationsViewController : AbstractTableViewController {
 @private
-    NSString* genre;
-    NSArray* movies;
+  NSString* genre;
+  NSArray* movies;
 }
 
 - (id) initWithGenre:(NSString*) genre;
