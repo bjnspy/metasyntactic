@@ -25,8 +25,8 @@
 
 @interface OARequestParameter : NSObject {
 @protected
-    NSString* name;
-    NSString* value;
+  NSString* name;
+  NSString* value;
 }
 
 @property (readonly, copy) NSString* name;

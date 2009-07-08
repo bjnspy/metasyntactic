@@ -25,9 +25,9 @@
 
 @interface OAToken : NSObject {
 @protected
-    NSString* key;
-    NSString* secret;
-    NSDictionary* fields;
+  NSString* key;
+  NSString* secret;
+  NSDictionary* fields;
 }
 
 @property (readonly, copy) NSString* key;

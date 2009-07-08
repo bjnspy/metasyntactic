@@ -27,9 +27,9 @@
 
 @interface OAServiceTicket : NSObject {
 @private
-    OAMutableURLRequest* request;
-    NSURLResponse* response;
-    BOOL succeeded;
+  OAMutableURLRequest* request;
+  NSURLResponse* response;
+  BOOL succeeded;
 }
 
 @property (readonly, retain) OAMutableURLRequest* request;
