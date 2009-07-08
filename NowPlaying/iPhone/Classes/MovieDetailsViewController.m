@@ -481,19 +481,30 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) downloadPosterBackgroundEntryPoint {
-  [self.model.largePosterCache downloadFirstPosterForMovie:movie];
   NSInteger count = [self.model.largePosterCache posterCountForMovie:movie];
 
-  [self performSelectorOnMainThread:@selector(reportPoster:)
+  [self performSelectorOnMainThread:@selector(reportPosterCount:)
                          withObject:[NSNumber numberWithInt:count]
+                      waitUntilDone:NO];
+
+  [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+  
+  [self performSelectorOnMainThread:@selector(reportPoster)
+                         withObject:nil
                       waitUntilDone:NO];
 }
 
 
-- (void) reportPoster:(NSNumber*) posterNumber {
+- (void) reportPosterCount:(NSNumber*) posterNumber {
   NSAssert([NSThread isMainThread], nil);
   if (!visible) { return; }
   posterCount = [posterNumber intValue];
+}
+
+
+- (void) reportPoster {
+  NSAssert([NSThread isMainThread], nil);
+  if (!visible) { return; }
   [self minorRefresh];
 }
 
@@ -504,10 +515,10 @@ const NSInteger POSTER_TAG = -1;
   }
   posterCount = 0;
 
-  [[OperationQueue operationQueue] performSelector:@selector(downloadPosterBackgroundEntryPoint)
-                                          onTarget:self
-                                              gate:nil
-                                          priority:Now];
+  [ThreadingUtilities backgroundSelector:@selector(downloadPosterBackgroundEntryPoint)
+                                onTarget:self
+                                    gate:nil
+                                  daemon:NO];
 }
 
 

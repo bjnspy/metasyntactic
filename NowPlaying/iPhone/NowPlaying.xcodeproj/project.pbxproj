@@ -1210,10 +1210,10 @@
 			isa = PBXGroup;
 			children = (
 				74447C550DC8405200CC146C /* AllMoviesViewController.h */,
-				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
 				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
-				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
 				74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */,
+				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
+				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
 				74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */,
 			);
 			name = Movies;
@@ -1873,7 +1873,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
