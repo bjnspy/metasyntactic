@@ -35,15 +35,15 @@
 @synthesize gate;
 
 - (void) dealloc {
-    [operationQueue notifyOperationDestroyed:self withPriority:priority];
-
-    self.operationQueue = nil;
-    self.target = nil;
-    self.selector = nil;
-    self.isBounded = NO;
-    self.gate = nil;
-
-    [super dealloc];
+  [operationQueue notifyOperationDestroyed:self withPriority:priority];
+  
+  self.operationQueue = nil;
+  self.target = nil;
+  self.selector = nil;
+  self.isBounded = NO;
+  self.gate = nil;
+  
+  [super dealloc];
 }
 
 
@@ -53,17 +53,17 @@
             isBounded:(BOOL) isBounded_
                  gate:(id<NSLocking>) gate_
              priority:(NSOperationQueuePriority) priority_ {
-    if ((self = [super init])) {
-        self.target = target_;
-        self.selector = selector_;
-        self.operationQueue = operationQueue_;
-        self.isBounded = isBounded_;
-        self.gate = gate_;
-        priority = priority_;
-        self.queuePriority = priority_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.target = target_;
+    self.selector = selector_;
+    self.operationQueue = operationQueue_;
+    self.isBounded = isBounded_;
+    self.gate = gate_;
+    priority = priority_;
+    self.queuePriority = priority_;
+  }
+  
+  return self;
 }
 
 
@@ -73,66 +73,66 @@
                          isBounded:(BOOL) isBounded
                               gate:(id<NSLocking>) gate
                           priority:(NSOperationQueuePriority) priority {
-    return [[[Operation alloc] initWithTarget:target
-                                     selector:selector
-                               operationQueue:operationQueue
-                                    isBounded:isBounded
-                                         gate:gate
-                                     priority:priority] autorelease];
+  return [[[Operation alloc] initWithTarget:target
+                                   selector:selector
+                             operationQueue:operationQueue
+                                  isBounded:isBounded
+                                       gate:gate
+                                   priority:priority] autorelease];
 }
 
 
 - (void) mainWorker {
-    if (self.isCancelled) {
-        return;
-    }
-
-    [target performSelector:selector];
+  if (self.isCancelled) {
+    return;
+  }
+  
+  [target performSelector:selector];
 }
 
 
 - (void) main {
-    [NSThread setThreadPriority:0];
-
-    NSString* className = NSStringFromClass([target class]);
-    NSString* selectorName = NSStringFromSelector(selector);
-    NSString* name = [NSString stringWithFormat:@"%@:%@", className, selectorName];
-    [[NSThread currentThread] setName:name];
-
-    NSLog(@"Starting: %@", name);
-
-    [gate lock];
-    {
-        [self mainWorker];
-    }
-    [gate unlock];
-
-    NSLog(@"Stopping: %@", name);
-
-    if (isBounded) {
-        [operationQueue onAfterBoundedOperationCompleted:self];
-    }
+  [NSThread setThreadPriority:0];
+  
+  NSString* className = NSStringFromClass([target class]);
+  NSString* selectorName = NSStringFromSelector(selector);
+  NSString* name = [NSString stringWithFormat:@"%@:%@", className, selectorName];
+  [[NSThread currentThread] setName:name];
+  
+  NSLog(@"Starting: %@", name);
+  
+  [gate lock];
+  {
+    [self mainWorker];
+  }
+  [gate unlock];
+  
+  NSLog(@"Stopping: %@", name);
+  
+  if (isBounded) {
+    [operationQueue onAfterBoundedOperationCompleted:self];
+  }
 }
 
 
 - (void) start {
-    @try {
-        [super start];
-    } @catch (NSException* exception) {
-        NSLog(@"******** Received exception ******** : %@", exception);
-        [operationQueue restart:self];
-    } @catch (id exception) {
-        NSLog(@"******** Received unknown exception ********");
-        [operationQueue restart:self];
-    }
+  @try {
+    [super start];
+  } @catch (NSException* exception) {
+    NSLog(@"******** Received exception ******** : %@", exception);
+    [operationQueue restart:self];
+  } @catch (id exception) {
+    NSLog(@"******** Received unknown exception ********");
+    [operationQueue restart:self];
+  }
 }
 
 
 - (NSString*) description {
-    NSString* className = NSStringFromClass([target class]);
-    NSString* selectorName = NSStringFromSelector(selector);
-    NSString* name = [NSString stringWithFormat:@"%d-%@-%@", self.queuePriority, className, selectorName];
-    return name;
+  NSString* className = NSStringFromClass([target class]);
+  NSString* selectorName = NSStringFromSelector(selector);
+  NSString* name = [NSString stringWithFormat:@"%d-%@-%@", self.queuePriority, className, selectorName];
+  return name;
 }
 
 @end

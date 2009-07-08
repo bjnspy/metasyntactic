@@ -16,12 +16,12 @@
 
 @interface Operation : NSOperation {
 @protected
-    OperationQueue* operationQueue;
-    BOOL isBounded;
-    id target;
-    SEL selector;
-    id<NSLocking> gate;
-    QueuePriority priority;
+  OperationQueue* operationQueue;
+  BOOL isBounded;
+  id target;
+  SEL selector;
+  id<NSLocking> gate;
+  QueuePriority priority;
 }
 
 + (Operation*) operationWithTarget:(id) target selector:(SEL) selector operationQueue:(OperationQueue*) operationQueue isBounded:(BOOL) isBounded gate:(id<NSLocking>) gate priority:(NSOperationQueuePriority) priority;

@@ -35,28 +35,28 @@
 @synthesize key, secret;
 
 - (void) dealloc {
-    self.key = nil;
-    self.secret = nil;
-
-    [super dealloc];
+  self.key = nil;
+  self.secret = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithKey:(NSString*) key_
             secret:(NSString*) secret_ {
-    if ((self = [super init])) {
-	self.key = key_;
-	self.secret = secret_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.key = key_;
+    self.secret = secret_;
+  }
+  
+  return self;
 }
 
 
 + (OAConsumer*) consumerWithKey:(NSString*) key
                          secret:(NSString*) secret {
-    return [[[OAConsumer alloc] initWithKey:key
-                                     secret:secret] autorelease];
+  return [[[OAConsumer alloc] initWithKey:key
+                                   secret:secret] autorelease];
 }
 
 @end

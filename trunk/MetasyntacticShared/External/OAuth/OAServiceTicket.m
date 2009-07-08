@@ -38,30 +38,30 @@
 @synthesize request, response, succeeded;
 
 - (void) dealloc {
-    self.request = nil;
-    self.response = nil;
-
-    [super dealloc];
+  self.request = nil;
+  self.response = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithRequest:(OAMutableURLRequest*) request_
               response:(NSURLResponse*) response_
              succeeded:(BOOL) succeeded_ {
-    if ((self = [super init])) {
-        self.request = request_;
-        self.response = response_;
-        self.succeeded = succeeded_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.request = request_;
+    self.response = response_;
+    self.succeeded = succeeded_;
+  }
+  
+  return self;
 }
 
 
 + (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request
                               response:(NSURLResponse*) response
                              succeeded:(BOOL) succeeded {
-    return [[[OAServiceTicket alloc] initWithRequest:request response:response succeeded:succeeded] autorelease];
+  return [[[OAServiceTicket alloc] initWithRequest:request response:response succeeded:succeeded] autorelease];
 }
 
 @end

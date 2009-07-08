@@ -42,71 +42,71 @@
 @synthesize fields;
 
 - (void) dealloc {
-    self.key = nil;
-    self.secret = nil;
-    self.fields = nil;
-
-    [super dealloc];
+  self.key = nil;
+  self.secret = nil;
+  self.fields = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.key = @"";
-        self.secret = @"";
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.key = @"";
+    self.secret = @"";
+  }
+  
+  return self;
 }
 
 
 - (id) initWithKey:(NSString*) key_
             secret:(NSString*) secret_ {
-    if ((self = [super init])) {
-        self.key = key_;
-        self.secret = secret_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.key = key_;
+    self.secret = secret_;
+  }
+  
+  return self;
 }
 
 
 - (id) initWithHTTPResponseBody:(NSString*) body {
-    if ((self = [super init])) {
-        NSArray* pairs = [body componentsSeparatedByString:@"&"];
-        NSMutableDictionary* map = [NSMutableDictionary dictionary];
-
-        for (NSString* pair in pairs) {
-            NSArray* elements = [pair componentsSeparatedByString:@"="];
-
-            if (elements.count >= 2) {
-                NSString* urlKey = [elements objectAtIndex:0];
-                NSString* value = [elements objectAtIndex:1];
-
-                if ([urlKey isEqual:@"oauth_token"]) {
-                    [self setKey:value];
-                } else if ([urlKey isEqual:@"oauth_token_secret"]) {
-                    [self setSecret:value];
-                }
-
-                [map setObject:value forKey:urlKey];
-            }
+  if ((self = [super init])) {
+    NSArray* pairs = [body componentsSeparatedByString:@"&"];
+    NSMutableDictionary* map = [NSMutableDictionary dictionary];
+    
+    for (NSString* pair in pairs) {
+      NSArray* elements = [pair componentsSeparatedByString:@"="];
+      
+      if (elements.count >= 2) {
+        NSString* urlKey = [elements objectAtIndex:0];
+        NSString* value = [elements objectAtIndex:1];
+        
+        if ([urlKey isEqual:@"oauth_token"]) {
+          [self setKey:value];
+        } else if ([urlKey isEqual:@"oauth_token_secret"]) {
+          [self setSecret:value];
         }
-
-        self.fields = map;
+        
+        [map setObject:value forKey:urlKey];
+      }
     }
-
-    return self;
+    
+    self.fields = map;
+  }
+  
+  return self;
 }
 
 
 + (OAToken*) tokenWithKey:(NSString*) key secret:(NSString*) secret {
-    return [[[OAToken alloc] initWithKey:key secret:secret] autorelease];
+  return [[[OAToken alloc] initWithKey:key secret:secret] autorelease];
 }
 
 
 + (OAToken*) tokenWithHTTPResponseBody:(NSString*) body {
-    return [[[OAToken alloc] initWithHTTPResponseBody:body] autorelease];
+  return [[[OAToken alloc] initWithHTTPResponseBody:body] autorelease];
 }
 
 @end

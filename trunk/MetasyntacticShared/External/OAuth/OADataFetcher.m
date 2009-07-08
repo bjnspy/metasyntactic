@@ -35,31 +35,31 @@
                      delegate:(id) delegate
             didFinishSelector:(SEL) didFinishSelector
               didFailSelector:(SEL) didFailSelector {
-    [request prepare];
-
-    NSURLResponse* response = nil;
-    NSError* error = nil;
-    NSData* responseData = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&response
-                                                             error:&error];
-
-    if (response == nil || responseData == nil || error != nil) {
-        OAServiceTicket* ticket =
-        [OAServiceTicket ticketWithRequest:request
-                                  response:response
-                                 succeeded:NO];
-        [delegate performSelector:didFailSelector
-                       withObject:ticket
-                       withObject:error];
-    } else {
-        OAServiceTicket* ticket =
-        [OAServiceTicket ticketWithRequest:request
-                                  response:response
-                                 succeeded:[(NSHTTPURLResponse*)response statusCode] < 400];
-        [delegate performSelector:didFinishSelector
-                       withObject:ticket
-                       withObject:responseData];
-    }
+  [request prepare];
+  
+  NSURLResponse* response = nil;
+  NSError* error = nil;
+  NSData* responseData = [NSURLConnection sendSynchronousRequest:request
+                                               returningResponse:&response
+                                                           error:&error];
+  
+  if (response == nil || responseData == nil || error != nil) {
+    OAServiceTicket* ticket =
+    [OAServiceTicket ticketWithRequest:request
+                              response:response
+                             succeeded:NO];
+    [delegate performSelector:didFailSelector
+                   withObject:ticket
+                   withObject:error];
+  } else {
+    OAServiceTicket* ticket =
+    [OAServiceTicket ticketWithRequest:request
+                              response:response
+                             succeeded:[(NSHTTPURLResponse*)response statusCode] < 400];
+    [delegate performSelector:didFinishSelector
+                   withObject:ticket
+                   withObject:responseData];
+  }
 }
 
 @end

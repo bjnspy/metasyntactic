@@ -37,26 +37,26 @@
 @synthesize name, value;
 
 - (void) dealloc {
-    self.name = nil;
-    self.value = nil;
-
-    [super dealloc];
+  self.name = nil;
+  self.value = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithName:(NSString*) name_
               value:(NSString*) value_ {
-    if ((self = [super init])) {
-        self.name = name_;
-        self.value = value_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.name = name_;
+    self.value = value_;
+  }
+  
+  return self;
 }
 
 
 + (OARequestParameter*) parameterWithName:(NSString*) name value:(NSString*) value {
-    return [[[OARequestParameter alloc] initWithName:name value:value] autorelease];
+  return [[[OARequestParameter alloc] initWithName:name value:value] autorelease];
 }
 
 
@@ -71,7 +71,7 @@
 
 
 - (NSString*) URLEncodedNameValuePair {
-    return [NSString stringWithFormat:@"%@=%@", self.URLEncodedName, self.URLEncodedValue];
+  return [NSString stringWithFormat:@"%@=%@", self.URLEncodedName, self.URLEncodedValue];
 }
 
 @end
