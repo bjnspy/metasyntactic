@@ -77,13 +77,13 @@ static BOOL updated = NO;
     return;
   }
 
-  [FileUtilities writeObject:dict toFile:[self indexFile]];
-  [FileUtilities writeObject:serverHash toFile:[self hashFile]];
+  [FileUtilities writeObject:dict toFile:self.indexFile];
+  [FileUtilities writeObject:serverHash toFile:self.hashFile];
 }
 
 
 + (void) updateBackgroundEntryPoint {
-  NSDate* modificationDate = [FileUtilities modificationDate:[self hashFile]];
+  NSDate* modificationDate = [FileUtilities modificationDate:self.hashFile];
   if (modificationDate != nil) {
     if (ABS(modificationDate.timeIntervalSinceNow) < ONE_WEEK) {
       return;
