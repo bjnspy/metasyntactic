@@ -445,15 +445,6 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) didReceiveMemoryWarning {
-  if (readonlyMode) {
-    return;
-  }
-
-  [super didReceiveMemoryWarning];
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
   self.dvd = nil;

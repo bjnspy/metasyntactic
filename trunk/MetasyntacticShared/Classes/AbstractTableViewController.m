@@ -51,6 +51,10 @@
   if (visible) {
     return;
   }
+  
+  if (readonlyMode) {
+    return;
+  }
 
   // Store the currently visible cells so we can scroll back to them when
   // we're reloaded.
@@ -171,6 +175,7 @@
   }
 
   if (self.tableView.dragging || self.tableView.decelerating || self.tableView.tracking) {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
     [self performSelector:selector withObject:nil afterDelay:1];
     return;
   }
