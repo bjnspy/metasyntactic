@@ -80,13 +80,13 @@
 
 - (id) init {
   if ((self = [super init])) {
+    self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
+    self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
+
     self.scoresData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadScores) saveSelector:@selector(saveScores:)];
     self.hashData = [PersistentStringThreadsafeValue valueWithGate:dataGate file:self.hashFile];
     self.movieMapData = [PersistentDictionaryThreadsafeValue valueWithGate:dataGate file:self.movieMapFile];
-    self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:@selector(saveMovies:)];
-
-    self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
-    self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
+    self.moviesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadMovies) saveSelector:nil];
 
     [FileUtilities createDirectory:providerDirectory];
     [FileUtilities createDirectory:reviewsDirectory];
@@ -119,11 +119,6 @@
 
 - (NSArray*) loadMovies {
   return [NSArray array];
-}
-
-
-- (void) saveMovies:(NSArray*) movies {
-  // nothing to do here
 }
 
 
@@ -172,7 +167,7 @@
 - (void) ensureMovieMap {
   NSArray* moviesArray = self.model.movies;
   if (moviesArray != self.movies) {
-    NSLog(@"AbstractScoreProvider:ensureMovieMapNoLock - regenerating map");
+    NSLog(@"AbstractScoreProvider:ensureMovieMap - regenerating map");
     moviesData.value = moviesArray;
 
     [[OperationQueue operationQueue] performSelector:@selector(regenerateMap)

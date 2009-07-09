@@ -68,7 +68,7 @@ static AppDelegate* appDelegate = nil;
   self.viewController = [ApplicationTabBarController controller];
 
   self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
-  self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:5];
+  self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:3];
 
   [window addSubview:viewController.view];
   [window makeKeyAndVisible];
