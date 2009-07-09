@@ -20,46 +20,46 @@
 @implementation BlurayCache
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (BlurayCache*) cache {
-    return [[[BlurayCache alloc] init] autorelease];
+  return [[[BlurayCache alloc] init] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) update {
-    if (!self.model.dvdMoviesShowBluray) {
-        return;
-    }
+  if (!self.model.dvdMoviesShowBluray) {
+    return;
+  }
 
-    [super update];
+  [super update];
 }
 
 
 - (NSArray*) loadBookmarksArray {
-    return [self.model bookmarkedBluray];
+  return [self.model bookmarkedBluray];
 }
 
 
 - (NSString*) serverAddress {
-    return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=bluray", [Application host]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=bluray", [Application host]];
 }
 
 
 - (NSString*) directory {
-    return [Application blurayDirectory];
+  return [Application blurayDirectory];
 }
 
 
 - (NSString*) notificationString {
-    return @"bluray";
+  return @"bluray";
 }
 
 @end

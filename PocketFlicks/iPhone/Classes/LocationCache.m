@@ -25,139 +25,139 @@
 @synthesize addressToLocation;
 
 - (void) dealloc {
-    self.addressToLocation = nil;
-    [super dealloc];
+  self.addressToLocation = nil;
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.addressToLocation = [NSMutableDictionary dictionary];
-    }
+  if ((self = [super init])) {
+    self.addressToLocation = [NSMutableDictionary dictionary];
+  }
 
-    return self;
+  return self;
 }
 
 
 - (Location*) processResult:(XmlElement*) resultElement {
-    if (resultElement != nil) {
-        NSString* latitude =    [resultElement attributeValue:@"latitude"];
-        NSString* longitude =   [resultElement attributeValue:@"longitude"];
-        NSString* address =     [resultElement attributeValue:@"address"];
-        NSString* city =        [resultElement attributeValue:@"city"];
-        NSString* state =       [resultElement attributeValue:@"state"];
-        NSString* country =     [resultElement attributeValue:@"country"];
-        NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
+  if (resultElement != nil) {
+    NSString* latitude =    [resultElement attributeValue:@"latitude"];
+    NSString* longitude =   [resultElement attributeValue:@"longitude"];
+    NSString* address =     [resultElement attributeValue:@"address"];
+    NSString* city =        [resultElement attributeValue:@"city"];
+    NSString* state =       [resultElement attributeValue:@"state"];
+    NSString* country =     [resultElement attributeValue:@"country"];
+    NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
 
-        if (latitude.length != 0 &&
-            longitude.length != 0) {
-            return [Location locationWithLatitude:latitude.doubleValue
-                                        longitude:longitude.doubleValue
-                                          address:address
-                                             city:city
-                                            state:state
-                                       postalCode:postalCode
-                                          country:country];
-        }
+    if (latitude.length != 0 &&
+        longitude.length != 0) {
+      return [Location locationWithLatitude:latitude.doubleValue
+                                  longitude:longitude.doubleValue
+                                    address:address
+                                       city:city
+                                      state:state
+                                 postalCode:postalCode
+                                    country:country];
     }
+  }
 
-    return nil;
+  return nil;
 }
 
 
 - (Location*) downloadAddressLocationFromWebServiceWorker:(NSString*) address {
-    NSString* escapedAddress = [StringUtilities stringByAddingPercentEscapes:address];
-    if (escapedAddress != nil) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
+  NSString* escapedAddress = [StringUtilities stringByAddingPercentEscapes:address];
+  if (escapedAddress != nil) {
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
 
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
-        return [self processResult:element];
-    }
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
+    return [self processResult:element];
+  }
 
-    return nil;
+  return nil;
 }
 
 
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address {
-    if (address.length == 0) {
-        return nil;
+  if (address.length == 0) {
+    return nil;
+  }
+
+  Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
+  if (result != nil && result.latitude != 0 && result.longitude != 0) {
+    if (result.postalCode.length == 0) {
+
+      CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
+      Location* resultLocation = [LocationUtilities findLocation:location];
+      if (resultLocation.postalCode.length != 0) {
+        return [Location locationWithLatitude:result.latitude
+                                    longitude:result.longitude
+                                      address:result.address
+                                         city:result.city
+                                        state:result.state
+                                   postalCode:resultLocation.postalCode
+                                      country:result.country];
+      }
     }
+  }
 
-    Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
-    if (result != nil && result.latitude != 0 && result.longitude != 0) {
-        if (result.postalCode.length == 0) {
-
-            CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
-            Location* resultLocation = [LocationUtilities findLocation:location];
-            if (resultLocation.postalCode.length != 0) {
-                return [Location locationWithLatitude:result.latitude
-                                            longitude:result.longitude
-                                              address:result.address
-                                                 city:result.city
-                                                state:result.state
-                                           postalCode:resultLocation.postalCode
-                                              country:result.country];
-            }
-        }
-    }
-
-    return result;
+  return result;
 }
 
 
 - (NSString*) locationDirectory {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (NSString*) locationFile:(NSString*) address {
-    return [[[self locationDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
-                                      stringByAppendingPathExtension:@"plist"];
+  return [[[self locationDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
+          stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (Location*) loadLocationWorker:(NSString*) address {
-    if (address.length != 0) {
-        NSDictionary* dict = [FileUtilities readObject:[self locationFile:address]];
-        if (dict != nil) {
-            return [Location locationWithDictionary:dict];
-        }
+  if (address.length != 0) {
+    NSDictionary* dict = [FileUtilities readObject:[self locationFile:address]];
+    if (dict != nil) {
+      return [Location locationWithDictionary:dict];
     }
+  }
 
-    return nil;
+  return nil;
 }
 
 
 - (Location*) loadLocation:(NSString*) address {
-    Location* result = nil;
-    [dataGate lock];
-    {
-        result = [addressToLocation objectForKey:address];
-        if (result == nil) {
-            result =[self loadLocationWorker:address];
-            if (result != nil) {
-                [addressToLocation setObject:result forKey:address];
-            }
-        }
+  Location* result = nil;
+  [dataGate lock];
+  {
+    result = [addressToLocation objectForKey:address];
+    if (result == nil) {
+      result =[self loadLocationWorker:address];
+      if (result != nil) {
+        [addressToLocation setObject:result forKey:address];
+      }
     }
-    [dataGate unlock];
+  }
+  [dataGate unlock];
 
-    return result;
+  return result;
 }
 
 
 - (void) saveLocation:(Location*) location
            forAddress:(NSString*) address {
-    if (location == nil || address.length == 0) {
-        return;
-    }
+  if (location == nil || address.length == 0) {
+    return;
+  }
 
-    [dataGate lock];
-    {
-        [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
-        [addressToLocation setObject:location forKey:address];
-    }
-    [dataGate unlock];
+  [dataGate lock];
+  {
+    [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
+    [addressToLocation setObject:location forKey:address];
+  }
+  [dataGate unlock];
 }
 
 @end

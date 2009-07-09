@@ -16,8 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="" />
-    <ignored path=".idea/workspace.xml" />
     <ignored path="ObjectiveCAnalyzer.iws" />
+    <ignored path=".idea/workspace.xml" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="Commander">
@@ -121,7 +121,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="407" column="138" selection-start="15658" selection-end="15658" vertical-scroll-proportion="0.59322035">
+            <state line="37" column="33" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.02905569">
               <folding />
             </state>
           </provider>
@@ -516,7 +516,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="23" width="1392" height="878" extended-state="6" />
+    <frame x="48" y="22" width="1392" height="878" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
@@ -635,7 +635,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="407" column="138" selection-start="15658" selection-end="15658" vertical-scroll-proportion="0.59322035">
+        <state line="37" column="33" selection-start="1322" selection-end="1322" vertical-scroll-proportion="0.02905569">
           <folding />
         </state>
       </provider>

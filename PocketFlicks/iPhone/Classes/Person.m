@@ -30,12 +30,12 @@ property_definition(biography);
 property_definition(additionalFields);
 
 - (void) dealloc {
-    self.identifier = nil;
-    self.name = nil;
-    self.biography = nil;
-    self.additionalFields = nil;
+  self.identifier = nil;
+  self.name = nil;
+  self.biography = nil;
+  self.additionalFields = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
@@ -43,22 +43,22 @@ property_definition(additionalFields);
                      name:(NSString*) name_
                 biography:(NSString*) biography_
          additionalFields:(NSDictionary*) additionalFields_ {
-    if ((self = [super init])) {
-        self.identifier = [StringUtilities nonNilString:identifier_];
-        self.name = [StringUtilities nonNilString:name_];
-        self.biography = [StringUtilities nonNilString:biography_];
-        self.additionalFields = additionalFields_;
-    }
+  if ((self = [super init])) {
+    self.identifier = [StringUtilities nonNilString:identifier_];
+    self.name = [StringUtilities nonNilString:name_];
+    self.biography = [StringUtilities nonNilString:biography_];
+    self.additionalFields = additionalFields_;
+  }
 
-    return self;
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
-                               name:[coder decodeObjectForKey:name_key]
-                          biography:[coder decodeObjectForKey:biography_key]
-                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
+  return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                             name:[coder decodeObjectForKey:name_key]
+                        biography:[coder decodeObjectForKey:biography_key]
+                 additionalFields:[coder decodeObjectForKey:additionalFields_key]];
 }
 
 
@@ -66,58 +66,58 @@ property_definition(additionalFields);
                             name:(NSString*) name
                        biography:(NSString*) biography
                 additionalFields:(NSDictionary*) additionalFields {
-    return [[[Person alloc] initWithIdentifier:identifier
-                                          name:name
-                                     biography:biography
-                              additionalFields:additionalFields] autorelease];
+  return [[[Person alloc] initWithIdentifier:identifier
+                                        name:name
+                                   biography:biography
+                            additionalFields:additionalFields] autorelease];
 }
 
 
 + (Person*) personWithDictionary:(NSDictionary*) dictionary {
-    return [Person personWithIdentifier:[dictionary objectForKey:identifier_key]
-                                   name:[dictionary objectForKey:name_key]
-                              biography:[dictionary objectForKey:biography_key]
-                       additionalFields:[dictionary objectForKey:additionalFields_key]];
+  return [Person personWithIdentifier:[dictionary objectForKey:identifier_key]
+                                 name:[dictionary objectForKey:name_key]
+                            biography:[dictionary objectForKey:biography_key]
+                     additionalFields:[dictionary objectForKey:additionalFields_key]];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:identifier        forKey:identifier_key];
-    [result setObject:name              forKey:name_key];
-    [result setObject:biography         forKey:biography_key];
-    [result setObject:additionalFields  forKey:additionalFields_key];
-    return result;
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  [result setObject:identifier        forKey:identifier_key];
+  [result setObject:name              forKey:name_key];
+  [result setObject:biography         forKey:biography_key];
+  [result setObject:additionalFields  forKey:additionalFields_key];
+  return result;
 }
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeObject:identifier        forKey:identifier_key];
-    [coder encodeObject:name              forKey:name_key];
-    [coder encodeObject:biography         forKey:biography_key];
-    [coder encodeObject:additionalFields  forKey:additionalFields_key];
+  [coder encodeObject:identifier        forKey:identifier_key];
+  [coder encodeObject:name              forKey:name_key];
+  [coder encodeObject:biography         forKey:biography_key];
+  [coder encodeObject:additionalFields  forKey:additionalFields_key];
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 - (NSString*) description {
-    return name;
+  return name;
 }
 
 
 - (BOOL) isEqual:(id) anObject {
-    Person* other = anObject;
+  Person* other = anObject;
 
-    return [identifier isEqual:other.identifier];
+  return [identifier isEqual:other.identifier];
 }
 
 
 - (NSUInteger) hash {
-    return identifier.hash;
+  return identifier.hash;
 }
 
 @end

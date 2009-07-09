@@ -20,46 +20,46 @@
 @implementation DVDCache
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (DVDCache*) cache {
-    return [[[DVDCache alloc] init] autorelease];
+  return [[[DVDCache alloc] init] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) update {
-    if (!self.model.dvdMoviesShowDVDs) {
-        return;
-    }
+  if (!self.model.dvdMoviesShowDVDs) {
+    return;
+  }
 
-    [super update];
+  [super update];
 }
 
 
 - (NSArray*) loadBookmarksArray {
-    return [self.model bookmarkedDVD];
+  return [self.model bookmarkedDVD];
 }
 
 
 - (NSString*) serverAddress {
-    return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=dvd", [Application host]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=dvd", [Application host]];
 }
 
 
 - (NSString*) directory {
-    return [Application dvdDirectory];
+  return [Application dvdDirectory];
 }
 
 
 - (NSString*) notificationString {
-    return @"dvd";
+  return @"dvd";
 }
 
 @end

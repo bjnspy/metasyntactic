@@ -21,21 +21,22 @@
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieNames;
-@property (retain) NSLock* yearToMovieNamesGate;
+@property (retain) NSMutableDictionary* yearToTitleToPosterUrls;
 @property BOOL updated;
 @end
 
 @implementation LargePosterCache
 
 @synthesize yearToMovieNames;
-@synthesize yearToMovieNamesGate;
+@synthesize yearToTitleToPosterUrls;
 @synthesize updated;
 
+const int UNKNOWN_YEAR = 0;
 const int START_YEAR = 1912;
 
 - (void) dealloc {
   self.yearToMovieNames = nil;
-  self.yearToMovieNamesGate = nil;
+  self.yearToTitleToPosterUrls = nil;
   self.updated = NO;
 
   [super dealloc];
@@ -45,7 +46,7 @@ const int START_YEAR = 1912;
 - (id) init {
   if ((self = [super init])) {
     self.yearToMovieNames = [NSMutableDictionary dictionary];
-    self.yearToMovieNamesGate = [[[NSRecursiveLock alloc] init] autorelease];
+    self.yearToTitleToPosterUrls = [NSMutableDictionary dictionary];
   }
 
   return self;
@@ -191,11 +192,11 @@ const int START_YEAR = 1912;
   NSArray* array = [FileUtilities readObject:[self indexFile:year]];
 
   if (array.count > 0) {
-    [yearToMovieNamesGate lock];
+    [dataGate lock];
     {
       [yearToMovieNames setObject:array forKey:[NSNumber numberWithInt:year]];
     }
-    [yearToMovieNamesGate unlock];
+    [dataGate unlock];
     [self clearUpdatedMovies];
   }
 }
@@ -203,9 +204,7 @@ const int START_YEAR = 1912;
 
 - (NSInteger) yearForDate:(NSDate*) date {
   NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:date];
-  NSInteger year = components.year;
-
-  return year;
+  return components.year;
 }
 
 
@@ -247,11 +246,11 @@ const int START_YEAR = 1912;
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
   NSArray* movieNames;
-  [yearToMovieNamesGate lock];
+  [dataGate lock];
   {
-    movieNames = [yearToMovieNames objectForKey:[NSNumber numberWithInt:year]];
+    movieNames = [[[yearToMovieNames objectForKey:[NSNumber numberWithInt:year]] retain] autorelease];
   }
-  [yearToMovieNamesGate unlock];
+  [dataGate unlock];
 
   NSString* lowercaseTitle = movie.displayTitle.lowercaseString;
   if ([movieNames containsObject:lowercaseTitle]) {
@@ -270,7 +269,7 @@ const int START_YEAR = 1912;
 }
 
 
-- (NSArray*) posterUrlsNoLock:(Movie*) movie year:(NSInteger) year {
+- (NSArray*) posterUrls:(Movie*) movie year:(NSInteger) year {
   NSArray* result = [self posterNames:movie year:year];
   if (result.count == 0) {
     return result;
@@ -285,26 +284,24 @@ const int START_YEAR = 1912;
 }
 
 
-- (NSArray*) posterUrlsNoLock:(Movie*) movie {
-  NSDate* date = movie.releaseDate;
-  if (date != nil) {
-    NSInteger releaseYear = [self yearForDate:date];
-
-    NSArray* result;
-    if ((result = [self posterUrlsNoLock:movie year:releaseYear]).count > 0 ||
-        (result = [self posterUrlsNoLock:movie year:releaseYear - 1]).count > 0 ||
-        (result = [self posterUrlsNoLock:movie year:releaseYear - 2]).count > 0 ||
-        (result = [self posterUrlsNoLock:movie year:releaseYear + 1]).count > 0 ||
-        (result = [self posterUrlsNoLock:movie year:releaseYear + 2]).count > 0) {
-      return result;
-    }
-  } else {
+- (NSArray*) posterUrlsWorker:(Movie*) movie
+                         year:(NSInteger) releaseYear {
+  if (releaseYear == UNKNOWN_YEAR) {
     NSInteger currentYear = self.currentYear;
     for (NSInteger i = currentYear + 1; i >= START_YEAR; i--) {
-      NSArray* result = [self posterUrlsNoLock:movie year:i];
+      NSArray* result = [self posterUrls:movie year:i];
       if (result.count > 0) {
         return result;
       }
+    }
+  } else {
+    NSArray* result;
+    if ((result = [self posterUrls:movie year:releaseYear]).count > 0 ||
+        (result = [self posterUrls:movie year:releaseYear - 1]).count > 0 ||
+        (result = [self posterUrls:movie year:releaseYear - 2]).count > 0 ||
+        (result = [self posterUrls:movie year:releaseYear + 1]).count > 0 ||
+        (result = [self posterUrls:movie year:releaseYear + 2]).count > 0) {
+      return result;
     }
   }
 
@@ -312,16 +309,46 @@ const int START_YEAR = 1912;
 }
 
 
-- (NSArray*) posterUrls:(Movie*) movie {
-  NSAssert(![NSThread isMainThread], @"");
+- (NSArray*) posterUrlsFromCache:(Movie*) movie year:(NSInteger) year {
+  NSArray* result;
 
-  NSArray* array;
+  NSMutableDictionary* titleToPosterUrls;
   [dataGate lock];
   {
-    array = [self posterUrlsNoLock:movie];
+    NSNumber* yearNumber = [NSNumber numberWithInt:year];
+    titleToPosterUrls = [yearToTitleToPosterUrls objectForKey:yearNumber];
+    if (titleToPosterUrls == nil) {
+      titleToPosterUrls = [NSMutableDictionary dictionary];
+      [yearToTitleToPosterUrls setObject:titleToPosterUrls forKey:yearNumber];
+    }
+    result = [[[titleToPosterUrls objectForKey:movie.canonicalTitle] retain] autorelease];
   }
   [dataGate unlock];
-  return array;
+
+  if (result == nil) {
+    result = [self posterUrlsWorker:movie year:year];
+    if (result.count > 0) {
+      [dataGate lock];
+      {
+        [titleToPosterUrls setObject:result forKey:movie.canonicalTitle];
+      }
+      [dataGate unlock];
+    }
+  }
+  return result;
+}
+
+
+- (NSArray*) posterUrls:(Movie*) movie {
+  NSDate* date = movie.releaseDate;
+
+  NSInteger year;
+  if (date == nil) {
+    year = UNKNOWN_YEAR;
+  } else {
+    year = [self yearForDate:date];
+  }
+  return [self posterUrlsFromCache:movie year:year];
 }
 
 
@@ -449,14 +476,7 @@ const int START_YEAR = 1912;
 
 
 - (NSInteger) posterCountForMovie:(Movie*) movie {
-  NSInteger count;
-  [dataGate lock];
-  {
-    NSArray* urls = [self posterUrlsNoLock:movie];
-    count = urls.count;
-  }
-  [dataGate unlock];
-  return count;
+  return [[self posterUrls:movie] count];
 }
 
 

@@ -29,24 +29,24 @@
 @synthesize movie;
 
 - (void) dealloc {
-    self.movie = nil;
+  self.movie = nil;
 
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) initWithMovie:(Movie*) movie_
          posterCount:(NSInteger) posterCount_ {
-    if ((self = [super initWithImageCount:posterCount_])) {
-        self.movie = movie_;
-    }
+  if ((self = [super initWithImageCount:posterCount_])) {
+    self.movie = movie_;
+  }
 
-    return self;
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 

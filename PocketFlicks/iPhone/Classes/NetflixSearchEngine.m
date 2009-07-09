@@ -22,26 +22,26 @@
 @implementation NetflixSearchEngine
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (NetflixSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
-    return [[[NetflixSearchEngine alloc] initWithDelegate:delegate] autorelease];
+  return [[[NetflixSearchEngine alloc] initWithDelegate:delegate] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
-    NSString* error;
-    NSArray* movies = [self.model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
-    NSArray* people = [self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSString* error;
+  NSArray* movies = [self.model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSArray* people = [self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
   SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                               value:currentlyExecutingRequest.value

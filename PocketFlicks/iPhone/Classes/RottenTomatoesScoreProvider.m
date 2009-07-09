@@ -20,52 +20,52 @@
 @implementation RottenTomatoesScoreProvider
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (RottenTomatoesScoreProvider*) provider {
-    return [[[RottenTomatoesScoreProvider alloc] init] autorelease];
+  return [[[RottenTomatoesScoreProvider alloc] init] autorelease];
 }
 
 
 - (NSString*) providerName {
-    return @"RottenTomatoes";
+  return @"RottenTomatoes";
 }
 
 
 - (NSString*) lookupServerHash {
-    NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true", [Application host]]];
-    return value;
+  NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true", [Application host]]];
+  return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
-    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomates&format=xml", [Application host]]];
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomates&format=xml", [Application host]]];
 
-    if (resultElement != nil) {
-        NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
+  if (resultElement != nil) {
+    NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
-        for (XmlElement* movieElement in resultElement.children) {
-            NSString* title =    [movieElement attributeValue:@"title"];
-            NSString* link =     [movieElement attributeValue:@"link"];
-            NSString* synopsis = [movieElement attributeValue:@"synopsis"];
-            NSString* score =    [movieElement attributeValue:@"score"];
+    for (XmlElement* movieElement in resultElement.children) {
+      NSString* title =    [movieElement attributeValue:@"title"];
+      NSString* link =     [movieElement attributeValue:@"link"];
+      NSString* synopsis = [movieElement attributeValue:@"synopsis"];
+      NSString* score =    [movieElement attributeValue:@"score"];
 
-            Score* extraInfo = [Score scoreWithTitle:title
-                                            synopsis:synopsis
-                                               score:score
-                                            provider:@"rottentomatoes"
-                                          identifier:link];
+      Score* extraInfo = [Score scoreWithTitle:title
+                                      synopsis:synopsis
+                                         score:score
+                                      provider:@"rottentomatoes"
+                                    identifier:link];
 
 
-            [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
-        }
-
-        return ratings;
+      [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
     }
 
-    return nil;
+    return ratings;
+  }
+
+  return nil;
 }
 
 @end

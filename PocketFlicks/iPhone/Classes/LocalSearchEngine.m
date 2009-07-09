@@ -23,143 +23,143 @@
 @implementation LocalSearchEngine
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (LocalSearchEngine*) engineWithDelegate:(id<SearchEngineDelegate>) delegate {
-    return [[[LocalSearchEngine alloc] initWithDelegate:delegate] autorelease];
+  return [[[LocalSearchEngine alloc] initWithDelegate:delegate] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (BOOL) arrayMatches:(NSArray*) array
               request:(SearchRequest*) currentlyExecutingRequest {
-    for (NSString* text in array) {
-        if ([self abortEarly:currentlyExecutingRequest]) {
-            return NO;
-        }
-
-        NSString* lowercaseText = [[StringUtilities asciiString:text] lowercaseString];
-
-        NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
-        if (range.length > 0) {
-            if (range.location > 0) {
-                // make sure it's matching the start of a word
-                unichar c = [lowercaseText characterAtIndex:range.location - 1];
-                if (isalnum(c)) {
-                    continue;
-                }
-            }
-
-            return YES;
-        }
+  for (NSString* text in array) {
+    if ([self abortEarly:currentlyExecutingRequest]) {
+      return NO;
     }
 
-    return NO;
+    NSString* lowercaseText = [[StringUtilities asciiString:text] lowercaseString];
+
+    NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
+    if (range.length > 0) {
+      if (range.location > 0) {
+        // make sure it's matching the start of a word
+        unichar c = [lowercaseText characterAtIndex:range.location - 1];
+        if (isalnum(c)) {
+          continue;
+        }
+      }
+
+      return YES;
+    }
+  }
+
+  return NO;
 }
 
 
 - (BOOL) movieMatches:(Movie*) movie
               request:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* array = [NSMutableArray array];
-    [array addObject:movie.canonicalTitle];
-    [array addObjectsFromArray:movie.directors];
-    [array addObjectsFromArray:[self.model castForMovie:movie]];
-    [array addObjectsFromArray:movie.genres];
-    return [self arrayMatches:array request:currentlyExecutingRequest];
+  NSMutableArray* array = [NSMutableArray array];
+  [array addObject:movie.canonicalTitle];
+  [array addObjectsFromArray:movie.directors];
+  [array addObjectsFromArray:[self.model castForMovie:movie]];
+  [array addObjectsFromArray:movie.genres];
+  return [self arrayMatches:array request:currentlyExecutingRequest];
 }
 
 
 - (BOOL) theaterMatches:(Theater*) theater
                 request:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* array = [NSMutableArray array];
-    [array addObject:theater.name];
-    [array addObject:theater.location.address];
-    return [self arrayMatches:array request:currentlyExecutingRequest];
+  NSMutableArray* array = [NSMutableArray array];
+  [array addObject:theater.name];
+  [array addObject:theater.location.address];
+  return [self arrayMatches:array request:currentlyExecutingRequest];
 }
 
 
 - (NSArray*) findMovies:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.movies) {
-        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
-            [result addObject:movie];
-        }
+  NSMutableArray* result = [NSMutableArray array];
+  for (Movie* movie in currentlyExecutingRequest.movies) {
+    if ([self movieMatches:movie request:currentlyExecutingRequest]) {
+      [result addObject:movie];
     }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
+  }
+  [result sortUsingFunction:compareMoviesByTitle context:nil];
+  return result;
 }
 
 
 - (NSArray*) findTheaters:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Theater* theater in currentlyExecutingRequest.theaters) {
-        if ([self theaterMatches:theater request:currentlyExecutingRequest]) {
-            [result addObject:theater];
-        }
+  NSMutableArray* result = [NSMutableArray array];
+  for (Theater* theater in currentlyExecutingRequest.theaters) {
+    if ([self theaterMatches:theater request:currentlyExecutingRequest]) {
+      [result addObject:theater];
     }
-    [result sortUsingFunction:compareTheatersByName context:nil];
-    return result;
+  }
+  [result sortUsingFunction:compareTheatersByName context:nil];
+  return result;
 }
 
 
 - (NSArray*) findUpcomingMovies:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.upcomingMovies) {
-        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
-            [result addObject:movie];
-        }
+  NSMutableArray* result = [NSMutableArray array];
+  for (Movie* movie in currentlyExecutingRequest.upcomingMovies) {
+    if ([self movieMatches:movie request:currentlyExecutingRequest]) {
+      [result addObject:movie];
     }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
+  }
+  [result sortUsingFunction:compareMoviesByTitle context:nil];
+  return result;
 }
 
 
 - (NSArray*) findDVDs:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.dvds) {
-        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
-            [result addObject:movie];
-        }
+  NSMutableArray* result = [NSMutableArray array];
+  for (Movie* movie in currentlyExecutingRequest.dvds) {
+    if ([self movieMatches:movie request:currentlyExecutingRequest]) {
+      [result addObject:movie];
     }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
+  }
+  [result sortUsingFunction:compareMoviesByTitle context:nil];
+  return result;
 }
 
 
 - (NSArray*) findBluray:(SearchRequest*) currentlyExecutingRequest {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.bluray) {
-        if ([self movieMatches:movie request:currentlyExecutingRequest]) {
-            [result addObject:movie];
-        }
+  NSMutableArray* result = [NSMutableArray array];
+  for (Movie* movie in currentlyExecutingRequest.bluray) {
+    if ([self movieMatches:movie request:currentlyExecutingRequest]) {
+      [result addObject:movie];
     }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
+  }
+  [result sortUsingFunction:compareMoviesByTitle context:nil];
+  return result;
 }
 
 
 - (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
-    NSArray* movies = [self findMovies:currentlyExecutingRequest];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSArray* movies = [self findMovies:currentlyExecutingRequest];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* theaters = [self findTheaters:currentlyExecutingRequest];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSArray* theaters = [self findTheaters:currentlyExecutingRequest];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* upcomingMovies = [self findUpcomingMovies:currentlyExecutingRequest];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSArray* upcomingMovies = [self findUpcomingMovies:currentlyExecutingRequest];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* dvds = [self findDVDs:currentlyExecutingRequest];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  NSArray* dvds = [self findDVDs:currentlyExecutingRequest];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
 
-    NSArray* bluray = [self findBluray:currentlyExecutingRequest];
-    if ([self abortEarly:currentlyExecutingRequest]) { return; }
-    //...
+  NSArray* bluray = [self findBluray:currentlyExecutingRequest];
+  if ([self abortEarly:currentlyExecutingRequest]) { return; }
+  //...
 
   SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                               value:currentlyExecutingRequest.value
