@@ -30,7 +30,7 @@
 - (id) init {
   if ((self = [super init])) {
   }
-  
+
   return self;
 }
 
@@ -47,7 +47,7 @@
       return YES;
     }
   }
-  
+
   return NO;
 }
 
@@ -57,13 +57,13 @@
   if (userAddress.length <= 8 &&
       [self containsNumber:userAddress]) {
     // possibly a postal code.  append the country to help make it unique
-    
+
     NSString* country = [LocaleUtilities englishCountry];
     if (country != nil) {
       return [NSString stringWithFormat:@"%@. %@", userAddress, country];
     }
   }
-  
+
   return nil;
 }
 
@@ -77,7 +77,7 @@
   if (userAddress.length == 0) {
     return nil;
   }
-  
+
   //NSLog(@"UserLocationCache:locationForUserAddress - Loading massaged address");
   Location* location = [self loadLocation:[self massageAddress:userAddress]];
   if (location != nil) {
@@ -85,7 +85,7 @@
     return location;
   }
   //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address not found.  Loading normal address");
-  
+
   return [self loadLocation:userAddress];
 }
 
@@ -100,18 +100,18 @@
   if (userAddress.length == 0) {
     return nil;
   }
-  
+
   NSAssert(![NSThread isMainThread], @"Only call this from the background");
   Location* location = [self locationForUserAddress:userAddress];
-  
+
   if (location == nil) {
     NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
-    
+
     NSString* notification = [LocalizedString(@"Location", nil) lowercaseString];
     [NotificationCenter addNotification:notification];
     {
       NSLog(@"UserLocationCache:downloadWorker - Downloading address address");
-      
+
       location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
       if ([location.country isEqual:[LocaleUtilities isoCountry]]) {
         NSLog(@"UserLocationCache:downloadWorker - Massaged address found");
@@ -121,10 +121,10 @@
       }
     }
     [NotificationCenter removeNotification:notification];
-    
+
     [self setLocation:location forUserAddress:userAddress];
   }
-  
+
   return location;
 }
 

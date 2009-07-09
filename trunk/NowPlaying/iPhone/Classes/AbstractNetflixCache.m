@@ -67,16 +67,16 @@
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address {
   OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
                                               secret:[NetflixAuthentication secret]];
-  
+
   OAToken* token = [OAToken tokenWithKey:self.model.netflixKey
                                   secret:self.model.netflixSecret];
-  
+
   OAMutableURLRequest* request =
   [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
                              consumer:consumer
                                 token:token
                                 realm:nil];
-  
+
   return request;
 }
 

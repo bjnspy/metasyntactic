@@ -34,7 +34,7 @@
   if ((self = [super init])) {
     self.addressToLocation = [NSMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 
@@ -48,7 +48,7 @@
     NSString* state =       [resultElement attributeValue:@"state"];
     NSString* country =     [resultElement attributeValue:@"country"];
     NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
-    
+
     if (latitude.length != 0 &&
         longitude.length != 0) {
       return [Location locationWithLatitude:latitude.doubleValue
@@ -60,7 +60,7 @@
                                     country:country];
     }
   }
-  
+
   return nil;
 }
 
@@ -69,11 +69,11 @@
   NSString* escapedAddress = [StringUtilities stringByAddingPercentEscapes:address];
   if (escapedAddress != nil) {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
     return [self processResult:element];
   }
-  
+
   return nil;
 }
 
@@ -82,11 +82,11 @@
   if (address.length == 0) {
     return nil;
   }
-  
+
   Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
   if (result != nil && result.latitude != 0 && result.longitude != 0) {
     if (result.postalCode.length == 0) {
-      
+
       CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
       Location* resultLocation = [LocationUtilities findLocation:location];
       if (resultLocation.postalCode.length != 0) {
@@ -100,7 +100,7 @@
       }
     }
   }
-  
+
   return result;
 }
 
@@ -123,7 +123,7 @@
       return [Location locationWithDictionary:dict];
     }
   }
-  
+
   return nil;
 }
 
@@ -141,7 +141,7 @@
     }
   }
   [dataGate unlock];
-  
+
   return result;
 }
 
@@ -151,7 +151,7 @@
   if (location == nil || address.length == 0) {
     return;
   }
-  
+
   [dataGate lock];
   {
     [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
