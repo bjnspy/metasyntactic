@@ -21,23 +21,23 @@
 
 - (NSDictionary*) processFandangoElement:(XmlElement*) element {
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
-  
+
   XmlElement* dataElement = [element element:@"data"];
   XmlElement* moviesElement = [dataElement element:@"movies"];
-  
+
   for (XmlElement* movieElement in moviesElement.children) {
     NSString* poster = [movieElement attributeValue:@"posterhref"];
     NSString* title = [movieElement element:@"title"].text;
-    
+
     if (poster.length == 0 || title.length == 0) {
       continue;
     }
-    
+
     title = [[Movie makeCanonical:title] lowercaseString];
-    
+
     [map setObject:poster forKey:title];
   }
-  
+
   return map;
 }
 
@@ -46,19 +46,19 @@
   NSString* postalCode = @"10009";
   NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                  fromDate:[DateUtilities today]];
-  
+
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                    [Application host],
                    postalCode,
                    components.year,
                    components.month,
                    components.day];
-  
+
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
   if (element == nil) {
     return nil;
   }
-  
+
   return [self processFandangoElement:element];
 }
 

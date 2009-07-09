@@ -30,7 +30,7 @@
 - (void) dealloc {
   self.movieNameToPosterMap = nil;
   self.gate = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,7 +39,7 @@
   if ((self = [super init])) {
     self.gate = [[[NSLock alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
@@ -60,7 +60,7 @@
   if (modificationDate == nil) {
     return NO;
   }
-  
+
   return ABS([modificationDate timeIntervalSinceNow]) < THREE_DAYS;
 }
 
@@ -71,22 +71,22 @@
     // we had a usable existing map.  use that for now.
     return existingMap;
   }
-  
+
   // We either didn't have a map, or too much time has passed.
   // try to get an up to date map.
-  
+
   NSDictionary* currentMap = [self createMapWorker];
   if (currentMap.count > 0) {
     // we got a good map.  store it for the future.
     [FileUtilities writeObject:currentMap toFile:[self indexFile]];
     return currentMap;
   }
-  
+
   // we didn't get a new map.  use the old one if it has usable data.
   if (existingMap.count > 0) {
     return existingMap;
   }
-  
+
   // no good date.  just return an empty map.
   return [NSDictionary dictionary];
 }
@@ -96,12 +96,12 @@
   if (movieNameToPosterMap == nil) {
     self.movieNameToPosterMap = [self createMap];
   }
-  
+
   NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle.lowercaseString inArray:movieNameToPosterMap.allKeys];
   if (key == nil) {
     return nil;
   }
-  
+
   NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
   return [NetworkUtilities dataWithContentsOfAddress:posterUrl pause:NO];
 }

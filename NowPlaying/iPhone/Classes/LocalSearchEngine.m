@@ -43,9 +43,9 @@
     if ([self abortEarly:currentlyExecutingRequest]) {
       return NO;
     }
-    
+
     NSString* lowercaseText = [[StringUtilities asciiString:text] lowercaseString];
-    
+
     NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
     if (range.length > 0) {
       if (range.location > 0) {
@@ -55,11 +55,11 @@
           continue;
         }
       }
-      
+
       return YES;
     }
   }
-  
+
   return NO;
 }
 
@@ -147,20 +147,20 @@
 - (void) searchWorker:(SearchRequest*) currentlyExecutingRequest {
   NSArray* movies = [self findMovies:currentlyExecutingRequest];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  
+
   NSArray* theaters = [self findTheaters:currentlyExecutingRequest];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  
+
   NSArray* upcomingMovies = [self findUpcomingMovies:currentlyExecutingRequest];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  
+
   NSArray* dvds = [self findDVDs:currentlyExecutingRequest];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  
+
   NSArray* bluray = [self findBluray:currentlyExecutingRequest];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
   //...
-  
+
   SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                               value:currentlyExecutingRequest.value
                                              movies:movies

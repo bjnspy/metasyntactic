@@ -38,7 +38,7 @@
   if (!self.model.dvdMoviesShowDVDs) {
     return;
   }
-  
+
   [super update];
 }
 

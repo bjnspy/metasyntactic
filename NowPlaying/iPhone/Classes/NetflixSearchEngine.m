@@ -42,7 +42,7 @@
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
   NSArray* people = [self.model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
   if ([self abortEarly:currentlyExecutingRequest]) { return; }
-  
+
   SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                               value:currentlyExecutingRequest.value
                                              movies:movies
@@ -51,7 +51,7 @@
                                                dvds:[NSArray array]
                                              bluray:[NSArray array]
                                              people:people];
-  
+
   [self reportResult:result];
 }
 
