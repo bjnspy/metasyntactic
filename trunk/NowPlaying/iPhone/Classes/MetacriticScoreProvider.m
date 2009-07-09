@@ -20,57 +20,57 @@
 @implementation MetacriticScoreProvider
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (MetacriticScoreProvider*) provider {
-    return [[[MetacriticScoreProvider alloc] init] autorelease];
+  return [[[MetacriticScoreProvider alloc] init] autorelease];
 }
 
 
 - (NSString*) providerName {
-    return @"Metacritic";
+  return @"Metacritic";
 }
 
 
 - (NSString*) lookupServerHash {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true", [Application host]];
-    NSString* value = [NetworkUtilities stringWithContentsOfAddress:address];
-    return value;
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true", [Application host]];
+  NSString* value = [NetworkUtilities stringWithContentsOfAddress:address];
+  return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
-    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address];
-
-    if (resultElement != nil) {
-        NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-
-        for (XmlElement* movieElement in resultElement.children) {
-            NSString* title =    [[movieElement attributeValue:@"title"] stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-            NSString* link =     [movieElement attributeValue:@"link"];
-            NSString* synopsis = [movieElement attributeValue:@"synopsis"];
-            NSString* score =    [movieElement attributeValue:@"score"];
-
-            if ([score isEqual:@"xx"]) {
-                score = @"-1";
-            }
-
-            Score* extraInfo = [Score scoreWithTitle:title
-                                            synopsis:synopsis
-                                               score:score
-                                            provider:@"metacritic"
-                                          identifier:link];
-
-            [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
-        }
-
-        return ratings;
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address];
+  
+  if (resultElement != nil) {
+    NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
+    
+    for (XmlElement* movieElement in resultElement.children) {
+      NSString* title =    [[movieElement attributeValue:@"title"] stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+      NSString* link =     [movieElement attributeValue:@"link"];
+      NSString* synopsis = [movieElement attributeValue:@"synopsis"];
+      NSString* score =    [movieElement attributeValue:@"score"];
+      
+      if ([score isEqual:@"xx"]) {
+        score = @"-1";
+      }
+      
+      Score* extraInfo = [Score scoreWithTitle:title
+                                      synopsis:synopsis
+                                         score:score
+                                      provider:@"metacritic"
+                                    identifier:link];
+      
+      [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
     }
-
-    return nil;
+    
+    return ratings;
+  }
+  
+  return nil;
 }
 
 @end

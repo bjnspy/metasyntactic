@@ -18,7 +18,7 @@
 @private
   NSMutableDictionary* yearToMovieNames;
   NSMutableDictionary* yearToTitleToPosterUrls;
-  
+
   BOOL updated;
 }
 

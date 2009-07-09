@@ -20,26 +20,26 @@
 @implementation AbstractFullScreenTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
-    if ((self = [super initWithStyle:style])) {
-    }
-    return self;
+  if ((self = [super initWithStyle:style])) {
+  }
+  return self;
 }
 
 
 - (BOOL) hidesBottomBarWhenPushed {
-    return YES;
+  return YES;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    [NotificationCenter disableNotifications];
+  [super viewWillAppear:animated];
+  [NotificationCenter disableNotifications];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
-    [super viewWillDisappear:animated];
-    [NotificationCenter enableNotifications];
+  [super viewWillDisappear:animated];
+  [NotificationCenter enableNotifications];
 }
 
 @end

@@ -265,13 +265,10 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) updateImage {
   UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
-  if (posterImage != nil) {
-    // we currently have a poster.  only replace it if we have something better
-    if (image != nil && image != [StockImages imageNotAvailable]) {
-      self.posterImage = image;
-    }
+  // we currently have a poster.  only replace it if we have something better
+  if (image != nil && image != [StockImages imageNotAvailable]) {
+    self.posterImage = image;
   }
-  self.posterImageView.image = posterImage;
 }
 
 
@@ -333,14 +330,6 @@ const NSInteger POSTER_TAG = -1;
   [self initializeWebsites];
   [self updateImage];
   [self setupActionsView];
-}
-
-
-- (void) setupPosterView {
-  self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
-  self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
-  posterImageView.tag = POSTER_TAG;
-  posterImageView.delegate = self;
 }
 
 
@@ -448,7 +437,7 @@ const NSInteger POSTER_TAG = -1;
   filterTheatersByDistance = YES;
 
   [self setupTitle];
-  [self setupPosterView];
+  self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
   [self setupButtons];
 
   // Load the movie details as the absolutely highest thing we can do.
@@ -488,7 +477,7 @@ const NSInteger POSTER_TAG = -1;
                       waitUntilDone:NO];
 
   [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-  
+
   [self performSelectorOnMainThread:@selector(reportPoster)
                          withObject:nil
                       waitUntilDone:NO];
@@ -695,6 +684,9 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
   if (row == 0) {
+    self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
+    posterImageView.tag = POSTER_TAG;
+    posterImageView.delegate = self;
     return [SynopsisCell cellWithSynopsis:[self.model synopsisForMovie:movie]
                                 imageView:posterImageView
                               limitLength:YES];

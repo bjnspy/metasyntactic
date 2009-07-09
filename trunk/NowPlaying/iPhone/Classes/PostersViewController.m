@@ -30,7 +30,7 @@
 
 - (void) dealloc {
   self.movie = nil;
-  
+
   [super dealloc];
 }
 
@@ -40,7 +40,7 @@
   if ((self = [super initWithImageCount:posterCount_])) {
     self.movie = movie_;
   }
-  
+
   return self;
 }
 

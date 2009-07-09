@@ -31,13 +31,13 @@
 @synthesize position;
 
 - (void) dealloc {
-    self.queue = nil;
-    self.movie = nil;
-    self.description = nil;
-    self.saved = NO;
-    self.position = 0;
-
-    [super dealloc];
+  self.queue = nil;
+  self.movie = nil;
+  self.description = nil;
+  self.saved = NO;
+  self.position = 0;
+  
+  [super dealloc];
 }
 
 
@@ -46,15 +46,15 @@
              description:(NSString*) description__
                    saved:(BOOL) saved__
                 position:(NSInteger) position__ {
-    if ((self = [super init])) {
-        self.queue = queue__;
-        self.movie = movie__;
-        self.description = description__;
-        self.saved = saved__;
-        self.position = position__;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.queue = queue__;
+    self.movie = movie__;
+    self.description = description__;
+    self.saved = saved__;
+    self.position = position__;
+  }
+  
+  return self;
 }
 
 
@@ -63,11 +63,11 @@
                 description:(NSString*) description
                       saved:(BOOL) saved
                    position:(NSInteger) position {
-    return [[[Status alloc] initWithWithQueue:queue
-                                        movie:movie
-                                  description:description
-                                        saved:saved
-                                     position:position] autorelease];
+  return [[[Status alloc] initWithWithQueue:queue
+                                      movie:movie
+                                description:description
+                                      saved:saved
+                                   position:position] autorelease];
 }
 
 @end

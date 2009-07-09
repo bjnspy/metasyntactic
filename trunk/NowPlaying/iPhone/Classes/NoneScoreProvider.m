@@ -17,27 +17,27 @@
 @implementation NoneScoreProvider
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (NoneScoreProvider*) provider {
-    return [[[NoneScoreProvider alloc] init] autorelease];
+  return [[[NoneScoreProvider alloc] init] autorelease];
 }
 
 
 - (NSString*) providerName {
-    return @"None";
+  return @"None";
 }
 
 
 - (NSString*) lookupServerHash {
-    return @"0";
+  return @"0";
 }
 
 
 - (NSDictionary*) lookupServerScores {
-    return [NSDictionary dictionary];
+  return [NSDictionary dictionary];
 }
 
 @end
