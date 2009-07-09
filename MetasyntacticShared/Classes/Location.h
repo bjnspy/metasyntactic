@@ -16,13 +16,13 @@
 
 @interface Location : NSObject<NSCopying, NSCoding> {
 @private
-    double latitude;
-    double longitude;
-    NSString* address;
-    NSString* city;
-    NSString* state;
-    NSString* postalCode;
-    NSString* country;
+  double latitude;
+  double longitude;
+  NSString* address;
+  NSString* city;
+  NSString* state;
+  NSString* postalCode;
+  NSString* country;
 }
 
 @property (readonly) double latitude;

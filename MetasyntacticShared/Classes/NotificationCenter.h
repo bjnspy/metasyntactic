@@ -22,7 +22,6 @@
   Pulser* pulser;
 
   NSInteger disabledCount;
-  NSInteger keepVisibleCount;
 }
 
 + (NotificationCenter*) notificationCenter;
@@ -31,9 +30,6 @@
 
 + (void) disableNotifications;
 + (void) enableNotifications;
-
-+ (void) pushKeepVisible;
-+ (void) popKeepVisible;
 
 + (void) addNotification:(NSString*) notification;
 + (void) addNotifications:(NSArray*) notifications;

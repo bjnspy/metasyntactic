@@ -38,7 +38,7 @@
 
 - (void) dealloc {
   self.scoreLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -49,14 +49,14 @@
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.minimumFontSize = 12;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     scoreLabel.backgroundColor = [UIColor clearColor];
     scoreLabel.textAlignment = UITextAlignmentCenter;
-    
+
     [self.contentView addSubview:scoreLabel];
   }
-  
+
   return self;
 }
 
@@ -76,7 +76,7 @@
   if (cell == nil) {
     cell = [[[class alloc] init] autorelease];
   }
-  
+
   return cell;
 }
 
@@ -86,12 +86,12 @@
   if ([Model model].noScores) {
     return [self movieTitleCellForClass:[NoScoreMovieTitleCell class] inTableView:tableView];
   }
-  
+
   NSInteger scoreValue = score.scoreValue;
   if (score == nil || scoreValue == -1) {
     return [self movieTitleCellForClass:[UnknownMovieTitleCell class] inTableView:tableView];
   }
-  
+
   if ([Model model].rottenTomatoesScores) {
     if (scoreValue >= 60) {
       return [self movieTitleCellForClass:[TomatoMovieTitleCell class] inTableView:tableView];
@@ -125,7 +125,7 @@
 
 - (void) setMovie:(Movie*) movie {
   self.detailTextLabel.text = [self.model ratingAndRuntimeForMovie:movie];
-  
+
   if ([self.model isBookmarked:movie]) {
     self.textLabel.text = [NSString stringWithFormat:@"%@ %@", [StringUtilities starString], movie.displayTitle];
   } else {
@@ -136,7 +136,7 @@
 
 + (MovieTitleCell*) movieTitleCellForMovie:(Movie*) movie inTableView:(UITableView*) tableView {
   Score* score = [[Model model] scoreForMovie:movie];
-  
+
   MovieTitleCell* cell = [self movieTitleCellForScore:score inTableView:tableView];
   [cell setScore:score];
   [cell setMovie:movie];

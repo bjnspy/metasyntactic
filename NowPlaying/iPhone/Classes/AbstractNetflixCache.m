@@ -20,64 +20,64 @@
 @implementation AbstractNetflixCache
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 + (NSString*) recommendationKey {
-    return @"http://schemas.netflix.com/feed.recommendations";
+  return @"http://schemas.netflix.com/feed.recommendations";
 }
 
 
 + (NSString*) dvdQueueKey {
-    return @"http://schemas.netflix.com/feed.queues.disc";
+  return @"http://schemas.netflix.com/feed.queues.disc";
 }
 
 
 + (NSString*) instantQueueKey {
-    return @"http://schemas.netflix.com/feed.queues.instant";
+  return @"http://schemas.netflix.com/feed.queues.instant";
 }
 
 
 + (NSString*) atHomeKey {
-    return @"http://schemas.netflix.com/feed.at_home";
+  return @"http://schemas.netflix.com/feed.at_home";
 }
 
 
 + (NSString*) rentalHistoryKey {
-    return @"http://schemas.netflix.com/feed.rental_history";
+  return @"http://schemas.netflix.com/feed.rental_history";
 }
 
 
 + (NSString*) rentalHistoryWatchedKey {
-    return @"http://schemas.netflix.com/feed.rental_history.watched";
+  return @"http://schemas.netflix.com/feed.rental_history.watched";
 }
 
 
 + (NSString*) rentalHistoryReturnedKey {
-    return @"http://schemas.netflix.com/feed.rental_history.returned";
+  return @"http://schemas.netflix.com/feed.rental_history.returned";
 }
 
 
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address {
-    OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
-                                                secret:[NetflixAuthentication secret]];
-
-    OAToken* token = [OAToken tokenWithKey:self.model.netflixKey
-                                    secret:self.model.netflixSecret];
-
-    OAMutableURLRequest* request =
-    [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
-                               consumer:consumer
-                                  token:token
-                                  realm:nil];
-
-    return request;
+  OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
+                                              secret:[NetflixAuthentication secret]];
+  
+  OAToken* token = [OAToken tokenWithKey:self.model.netflixKey
+                                  secret:self.model.netflixSecret];
+  
+  OAMutableURLRequest* request =
+  [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
+                             consumer:consumer
+                                token:token
+                                realm:nil];
+  
+  return request;
 }
 
 @end

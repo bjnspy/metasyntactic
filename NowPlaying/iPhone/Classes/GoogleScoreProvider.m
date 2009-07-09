@@ -23,98 +23,98 @@
 @implementation GoogleScoreProvider
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 + (GoogleScoreProvider*) provider {
-    return [[[GoogleScoreProvider alloc] init] autorelease];
+  return [[[GoogleScoreProvider alloc] init] autorelease];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (NSString*) providerName {
-    return @"Google";
+  return @"Google";
 }
 
 
 - (NSString*) serverUrl {
-    Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
-
-    if (location.postalCode == nil) {
-        return nil;
-    }
-
-    NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
-    : location.country;
-
-
-    NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
-                                                                   fromDate:[DateUtilities today]
-                                                                     toDate:self.model.searchDate
-                                                                    options:0];
-    NSInteger day = components.day;
-    day = MIN(MAX(day, 0), 7);
-
-    NSString* address = [NSString stringWithFormat:
-                                            @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
-                         [Application host],
-                         country,
-                         [LocaleUtilities preferredLanguage],
-                         [StringUtilities stringByAddingPercentEscapes:location.postalCode],
-                         day,
-                         (int)(location.latitude * 1000000),
-                         (int)(location.longitude * 1000000)];
-
-    return address;
+  Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+  
+  if (location.postalCode == nil) {
+    return nil;
+  }
+  
+  NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
+  : location.country;
+  
+  
+  NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
+                                                                 fromDate:[DateUtilities today]
+                                                                   toDate:self.model.searchDate
+                                                                  options:0];
+  NSInteger day = components.day;
+  day = MIN(MAX(day, 0), 7);
+  
+  NSString* address = [NSString stringWithFormat:
+                       @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
+                       [Application host],
+                       country,
+                       [LocaleUtilities preferredLanguage],
+                       [StringUtilities stringByAddingPercentEscapes:location.postalCode],
+                       day,
+                       (int)(location.latitude * 1000000),
+                       (int)(location.longitude * 1000000)];
+  
+  return address;
 }
 
 
 - (NSString*) lookupServerHash {
-    NSString* baseAddress = [self serverUrl];
-    NSString* address = [baseAddress stringByAppendingString:@"&hash=true"];
-    NSString* value = [NetworkUtilities stringWithContentsOfAddress:address];
-    return value;
+  NSString* baseAddress = [self serverUrl];
+  NSString* address = [baseAddress stringByAppendingString:@"&hash=true"];
+  NSString* value = [NetworkUtilities stringWithContentsOfAddress:address];
+  return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
-    NSString* address = [self serverUrl];
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
-    if (data != nil) {
-        @try {
-            TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];
-            NSArray* movieProtos = theaterListings.moviesList;
-
-            NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-
-            for (MovieProto* movieProto in movieProtos) {
-                NSString* identifier = movieProto.identifier;
-                NSString* title = movieProto.title;
-                NSInteger score = -1;
-                if (movieProto.hasScore) {
-                    score = movieProto.score;
-                }
-
-                Score* info = [Score scoreWithTitle:title
-                                           synopsis:@""
-                                              score:[NSString stringWithFormat:@"%d", score]
-                                           provider:@"google"
-                                         identifier:identifier];
-
-                [ratings setObject:info forKey:info.canonicalTitle];
-            }
-
-            return ratings;
-        } @catch (NSException* e) {
+  NSString* address = [self serverUrl];
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
+  if (data != nil) {
+    @try {
+      TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];
+      NSArray* movieProtos = theaterListings.moviesList;
+      
+      NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
+      
+      for (MovieProto* movieProto in movieProtos) {
+        NSString* identifier = movieProto.identifier;
+        NSString* title = movieProto.title;
+        NSInteger score = -1;
+        if (movieProto.hasScore) {
+          score = movieProto.score;
         }
+        
+        Score* info = [Score scoreWithTitle:title
+                                   synopsis:@""
+                                      score:[NSString stringWithFormat:@"%d", score]
+                                   provider:@"google"
+                                 identifier:identifier];
+        
+        [ratings setObject:info forKey:info.canonicalTitle];
+      }
+      
+      return ratings;
+    } @catch (NSException* e) {
     }
-
-    return nil;
+  }
+  
+  return nil;
 }
 
 @end

@@ -24,7 +24,6 @@
 @property (retain) NSMutableArray* notifications;
 @property (retain) Pulser* pulser;
 @property NSInteger disabledCount;
-@property NSInteger keepVisibleCount;
 @end
 
 @implementation NotificationCenter
@@ -43,7 +42,6 @@ static NotificationCenter* notificationCenter;
 @synthesize notifications;
 @synthesize pulser;
 @synthesize disabledCount;
-@synthesize keepVisibleCount;
 
 - (void) dealloc {
   self.viewController = nil;
@@ -52,7 +50,6 @@ static NotificationCenter* notificationCenter;
   self.notifications = nil;
   self.pulser = nil;
   self.disabledCount = 0;
-  self.keepVisibleCount = 0;
 
   [super dealloc];
 }
@@ -172,7 +169,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 - (void) update {
   notificationLabel.text = [self computeText];
-  if (notifications.count > 0 || keepVisibleCount > 0) {
+  if (notifications.count > 0) {
     [self showNotifications];
   } else {
     [self hideNotifications];
@@ -250,29 +247,6 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 }
 
 
-- (void) pushKeepVisible {
-  if (![NSThread isMainThread]) {
-    [self performSelectorOnMainThread:@selector(pushKeepVisible) withObject:nil waitUntilDone:NO];
-    return;
-  }
-
-  keepVisibleCount++;
-  [self showNotifications];
-  [pulser tryPulse];
-}
-
-
-- (void) popKeepVisible {
-  if (![NSThread isMainThread]) {
-    [self performSelectorOnMainThread:@selector(popKeepVisible) withObject:nil waitUntilDone:NO];
-    return;
-  }
-
-  keepVisibleCount--;
-  [pulser tryPulse];
-}
-
-
 + (void) addNotification:(NSString*) notification {
   [[self notificationCenter] addNotification:notification];
 }
@@ -300,16 +274,6 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 + (void) enableNotifications {
   [[self notificationCenter] enableNotifications];
-}
-
-
-+ (void) pushKeepVisible {
-  [[self notificationCenter] pushKeepVisible];
-}
-
-
-+ (void) popKeepVisible {
-  [[self notificationCenter] popKeepVisible];
 }
 
 

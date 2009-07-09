@@ -23,120 +23,120 @@
 @implementation UserLocationCache
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-    }
-
-    return self;
+  if ((self = [super init])) {
+  }
+  
+  return self;
 }
 
 
 + (UserLocationCache*) cache {
-    return [[[UserLocationCache alloc] init] autorelease];
+  return [[[UserLocationCache alloc] init] autorelease];
 }
 
 
 - (BOOL) containsNumber:(NSString*) string {
-    for (int i = 0; i < string.length; i++) {
-        unichar c = [string characterAtIndex:i];
-        if (c >= '0' && c <= '9') {
-            return YES;
-        }
+  for (int i = 0; i < string.length; i++) {
+    unichar c = [string characterAtIndex:i];
+    if (c >= '0' && c <= '9') {
+      return YES;
     }
-
-    return NO;
+  }
+  
+  return NO;
 }
 
 
 - (NSString*) massageAddress:(NSString*) userAddress {
-    userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (userAddress.length <= 8 &&
-        [self containsNumber:userAddress]) {
-        // possibly a postal code.  append the country to help make it unique
-
-        NSString* country = [LocaleUtilities englishCountry];
-        if (country != nil) {
-            return [NSString stringWithFormat:@"%@. %@", userAddress, country];
-        }
+  userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  if (userAddress.length <= 8 &&
+      [self containsNumber:userAddress]) {
+    // possibly a postal code.  append the country to help make it unique
+    
+    NSString* country = [LocaleUtilities englishCountry];
+    if (country != nil) {
+      return [NSString stringWithFormat:@"%@. %@", userAddress, country];
     }
-
-    return nil;
+  }
+  
+  return nil;
 }
 
 
 - (NSString*) locationDirectory {
-    return [Application userLocationsDirectory];
+  return [Application userLocationsDirectory];
 }
 
 
 - (Location*) locationForUserAddress:(NSString*) userAddress {
-    if (userAddress.length == 0) {
-        return nil;
-    }
-
-    //NSLog(@"UserLocationCache:locationForUserAddress - Loading massaged address");
-    Location* location = [self loadLocation:[self massageAddress:userAddress]];
-    if (location != nil) {
-        //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address found");
-        return location;
-    }
-    //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address not found.  Loading normal address");
-
-    return [self loadLocation:userAddress];
+  if (userAddress.length == 0) {
+    return nil;
+  }
+  
+  //NSLog(@"UserLocationCache:locationForUserAddress - Loading massaged address");
+  Location* location = [self loadLocation:[self massageAddress:userAddress]];
+  if (location != nil) {
+    //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address found");
+    return location;
+  }
+  //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address not found.  Loading normal address");
+  
+  return [self loadLocation:userAddress];
 }
 
 
 - (void) setLocation:(Location*) location
       forUserAddress:(NSString*) userAddress {
-    [self saveLocation:location forAddress:userAddress];
+  [self saveLocation:location forAddress:userAddress];
 }
 
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPointWorker:(NSString*) userAddress {
-    if (userAddress.length == 0) {
-        return nil;
+  if (userAddress.length == 0) {
+    return nil;
+  }
+  
+  NSAssert(![NSThread isMainThread], @"Only call this from the background");
+  Location* location = [self locationForUserAddress:userAddress];
+  
+  if (location == nil) {
+    NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
+    
+    NSString* notification = [LocalizedString(@"Location", nil) lowercaseString];
+    [NotificationCenter addNotification:notification];
+    {
+      NSLog(@"UserLocationCache:downloadWorker - Downloading address address");
+      
+      location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
+      if ([location.country isEqual:[LocaleUtilities isoCountry]]) {
+        NSLog(@"UserLocationCache:downloadWorker - Massaged address found");
+      } else {
+        NSLog(@"UserLocationCache:downloadWorker - Downloading non-massaged address");
+        location = [self downloadAddressLocationFromWebService:userAddress];
+      }
     }
-
-    NSAssert(![NSThread isMainThread], @"Only call this from the background");
-    Location* location = [self locationForUserAddress:userAddress];
-
-    if (location == nil) {
-        NSLog(@"UserLocationCache:downloadWorker - Didn't find address in cache");
-
-        NSString* notification = [LocalizedString(@"Location", nil) lowercaseString];
-        [NotificationCenter addNotification:notification];
-        {
-            NSLog(@"UserLocationCache:downloadWorker - Downloading address address");
-
-            location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
-            if ([location.country isEqual:[LocaleUtilities isoCountry]]) {
-                NSLog(@"UserLocationCache:downloadWorker - Massaged address found");
-            } else {
-                NSLog(@"UserLocationCache:downloadWorker - Downloading non-massaged address");
-                location = [self downloadAddressLocationFromWebService:userAddress];
-            }
-        }
-        [NotificationCenter removeNotification:notification];
-
-        [self setLocation:location forUserAddress:userAddress];
-    }
-
-    return location;
+    [NotificationCenter removeNotification:notification];
+    
+    [self setLocation:location forUserAddress:userAddress];
+  }
+  
+  return location;
 }
 
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
-    Location* result;
-    [runGate lock];
-    {
-        result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
-    }
-    [runGate unlock];
-    return result;
+  Location* result;
+  [runGate lock];
+  {
+    result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
+  }
+  [runGate unlock];
+  return result;
 }
 
 @end

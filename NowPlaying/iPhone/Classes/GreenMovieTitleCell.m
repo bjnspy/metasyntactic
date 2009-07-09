@@ -27,7 +27,7 @@
   if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
     self.imageView.image = [StockImages greenRatingImage];
   }
-  
+
   return self;
 }
 

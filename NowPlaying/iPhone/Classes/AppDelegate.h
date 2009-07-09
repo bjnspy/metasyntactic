@@ -16,7 +16,7 @@
 @private
   IBOutlet UIWindow* window;
   UIViewController* viewController;
-  
+
   Pulser* minorRefreshPulser;
   Pulser* majorRefreshPulser;
 }
