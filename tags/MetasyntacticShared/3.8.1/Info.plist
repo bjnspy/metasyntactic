@@ -3,27 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>PocketFlicks</string>
-	<key>UIPrerenderedIcon</key>
-	<true/>
+	<string>iPhoneShared</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>Icon.png</string>
+	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>org.metasyntactic.PocketFlix</string>
+	<string>org.metasyntactic.iPhoneShared</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>PocketFlix</string>
+	<string>iPhoneShared</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.8</string>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 </dict>
