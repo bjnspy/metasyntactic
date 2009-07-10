@@ -27,11 +27,17 @@ static MainThreadGate* gate;
 }
 
 
++ (NSFileManager*) localFileManager {
+  return [[[NSFileManager alloc] init] autorelease];
+}
+
+
 + (void) createDirectory:(NSString*) directory {
   [gate lock];
   {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:directory]) {
-      [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:NULL];
+    NSFileManager* fileManager = [self localFileManager];
+    if (![fileManager fileExistsAtPath:directory]) {
+      [fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:NULL];
     }
   }
   [gate unlock];
@@ -42,8 +48,8 @@ static MainThreadGate* gate;
   NSDate* result;
   [gate lock];
   {
-    result = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
-                                                               error:NULL] objectForKey:NSFileModificationDate];
+    result = [[[self localFileManager] attributesOfItemAtPath:file
+                                                        error:NULL] objectForKey:NSFileModificationDate];
   }
   [gate unlock];
   return result;
@@ -54,8 +60,8 @@ static MainThreadGate* gate;
   unsigned long long result;
   [gate lock];
   {
-    NSNumber* number = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
-                                                                         error:NULL] objectForKey:NSFileSize];
+    NSNumber* number = [[[self localFileManager] attributesOfItemAtPath:file
+                                                                  error:NULL] objectForKey:NSFileSize];
     result = [number unsignedLongLongValue];
   }
   [gate unlock];
@@ -67,7 +73,7 @@ static MainThreadGate* gate;
   NSDictionary* result;
   [gate lock];
   {
-    result = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:NULL];
+    result = [[self localFileManager] attributesOfItemAtPath:path error:NULL];
   }
   [gate unlock];
   return result;
@@ -78,7 +84,7 @@ static MainThreadGate* gate;
   NSArray* result;
   [gate lock];
   {
-    result = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+    result = [[self localFileManager] directoryContentsAtPath:directory];
   }
   [gate unlock];
   return result;
@@ -89,7 +95,7 @@ static MainThreadGate* gate;
   NSMutableArray* result = [NSMutableArray array];
   [gate lock];
   {
-    NSArray* names = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+    NSArray* names = [[self localFileManager] directoryContentsAtPath:directory];
     for (NSString* name in names) {
       [result addObject:[directory stringByAppendingPathComponent:name]];
     }
@@ -103,7 +109,7 @@ static MainThreadGate* gate;
   BOOL result;
   [gate lock];
   {
-    result = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    result = [[self localFileManager] fileExistsAtPath:path];
   }
   [gate unlock];
   return result;
@@ -113,7 +119,7 @@ static MainThreadGate* gate;
 + (void) moveItem:(NSString*) from to:(NSString*) to {
   [gate lock];
   {
-    [[NSFileManager defaultManager] moveItemAtPath:from toPath:to error:NULL];
+    [[self localFileManager] moveItemAtPath:from toPath:to error:NULL];
   }
   [gate unlock];
 }
@@ -135,7 +141,7 @@ static MainThreadGate* gate;
     if (plistData != nil) {
       [plistData writeToFile:file atomically:YES];
     } if (object == nil) {
-      [[NSFileManager defaultManager] removeItemAtPath:file error:NULL];
+      [[self localFileManager] removeItemAtPath:file error:NULL];
     }
   }
   [gate unlock];
@@ -192,7 +198,7 @@ static MainThreadGate* gate;
 
   [gate lock];
   {
-    [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&result];
+    [[self localFileManager] fileExistsAtPath:path isDirectory:&result];
   }
   [gate unlock];
 

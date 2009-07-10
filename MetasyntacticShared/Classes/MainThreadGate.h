@@ -14,9 +14,9 @@
 
 @interface MainThreadGate : NSObject<NSLocking> {
 @private
-    NSCondition* condition;
-    BOOL mainThreadRunning;
-    BOOL backgroundThreadRunning;
+  NSCondition* condition;
+  BOOL mainThreadRunning;
+  BOOL backgroundThreadRunning;
 }
 
 + (MainThreadGate*) gate;

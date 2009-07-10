@@ -24,57 +24,57 @@
 @synthesize condition;
 
 - (void) dealloc {
-    self.condition = nil;
-
-    [super dealloc];
+  self.condition = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.condition = [[[NSCondition alloc] init] autorelease];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.condition = [[[NSCondition alloc] init] autorelease];
+  }
+  
+  return self;
 }
 
 
 + (MainThreadGate*) gate {
-    return [[[MainThreadGate alloc] init] autorelease];
+  return [[[MainThreadGate alloc] init] autorelease];
 }
 
 
 - (void) lock {
-    [condition lock];
-    {
-        if ([NSThread isMainThread]) {
-            NSAssert(!mainThreadRunning, @"");
-            mainThreadRunning = YES;
-        } else {
-            while (mainThreadRunning || backgroundThreadRunning) {
-                [condition wait];
-            }
-            backgroundThreadRunning = YES;
-        }
+  [condition lock];
+  {
+    if ([NSThread isMainThread]) {
+      NSAssert(!mainThreadRunning, @"");
+      mainThreadRunning = YES;
+    } else {
+      while (mainThreadRunning || backgroundThreadRunning) {
+        [condition wait];
+      }
+      backgroundThreadRunning = YES;
     }
-    [condition unlock];
+  }
+  [condition unlock];
 }
 
 
 - (void) unlock {
-    [condition lock];
-    {
-        if ([NSThread isMainThread]) {
-            NSAssert(mainThreadRunning, @"");
-            mainThreadRunning = NO;
-        } else {
-            NSAssert(backgroundThreadRunning, @"");
-            backgroundThreadRunning = NO;
-        }
-
-        [condition signal];
+  [condition lock];
+  {
+    if ([NSThread isMainThread]) {
+      NSAssert(mainThreadRunning, @"");
+      mainThreadRunning = NO;
+    } else {
+      NSAssert(backgroundThreadRunning, @"");
+      backgroundThreadRunning = NO;
     }
-    [condition unlock];
+    
+    [condition signal];
+  }
+  [condition unlock];
 }
 
 @end

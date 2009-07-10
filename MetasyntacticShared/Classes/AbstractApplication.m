@@ -122,7 +122,7 @@ static NSCondition* emptyTrashCondition = nil;
 
 + (void) emptyTrashBackgroundEntryPointWorker {
   NSLog(@"Application:emptyTrashBackgroundEntryPoint - start");
-  NSFileManager* manager = [NSFileManager defaultManager];
+  NSFileManager* manager = [[[NSFileManager alloc] init] autorelease];
   NSDirectoryEnumerator* enumerator = [manager enumeratorAtPath:trashDirectory];
 
   {
@@ -242,11 +242,12 @@ static NSCondition* emptyTrashCondition = nil;
 + (void) moveItemToTrash:(NSString*) path {
   [gate lock];
   {
+    NSFileManager* fileManager = [[[NSFileManager alloc] init] autorelease];
     NSString* trashPath = [self uniqueTrashDirectory];
-    [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
+    [fileManager moveItemAtPath:path toPath:trashPath error:NULL];
 
     // safeguard, just in case.
-    [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    [fileManager removeItemAtPath:path error:NULL];
   }
   [gate unlock];
 
@@ -270,13 +271,13 @@ static NSCondition* emptyTrashCondition = nil;
 + (NSString*) uniqueDirectory:(NSString*) parentDirectory
                        create:(BOOL) create {
   NSString* finalDir;
-
+  NSFileManager* fileManager = [[[NSFileManager alloc] init] autorelease];
   [gate lock];
   {
     do {
       NSString* random = [self randomString];
       finalDir = [parentDirectory stringByAppendingPathComponent:random];
-    } while ([[NSFileManager defaultManager] fileExistsAtPath:finalDir]);
+    } while ([fileManager fileExistsAtPath:finalDir]);
 
     if (create) {
       [FileUtilities createDirectory:finalDir];
