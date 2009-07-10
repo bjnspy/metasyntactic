@@ -23,55 +23,50 @@
 @synthesize dictionary;
 
 - (void) dealloc {
-    self.dictionary = nil;
-    [super dealloc];
+  self.dictionary = nil;
+  [super dealloc];
 }
 
 
-- (id) initWithDictionary:(NSDictionary*) dictionary__ {
-    if ((self = [super init])) {
-        self.dictionary = dictionary__;
-    }
-
-    return self;
+- (id) initWithDictionary:(NSDictionary*) dictionary_ {
+  if ((self = [super init])) {
+    self.dictionary = dictionary_;
+  }
+  
+  return self;
 }
 
 
 + (MultiDictionary*) dictionary {
-    return [[[MultiDictionary alloc] initWithDictionary:[NSDictionary dictionary]] autorelease];
+  return [[[MultiDictionary alloc] initWithDictionary:[NSDictionary dictionary]] autorelease];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.dictionary = [NSDictionary dictionary];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.dictionary = [NSDictionary dictionary];
+  }
+  
+  return self;
 }
 
 
 - (NSArray*) objectsForKey:(id) key {
-    NSArray* array = [dictionary objectForKey:key];
-    if (array == nil) {
-        array = [NSArray array];
-    }
-    return array;
-}
-
-
-- (NSMutableArray*) mutableObjectsForKey:(id) key {
-    return [dictionary objectForKey:key];
+  NSArray* array = [dictionary objectForKey:key];
+  if (array == nil) {
+    array = [NSArray array];
+  }
+  return array;
 }
 
 
 - (NSArray*) allKeys {
-    return dictionary.allKeys;
+  return dictionary.allKeys;
 }
 
 
 - (NSArray*) allValues {
-    return dictionary.allValues;
+  return dictionary.allValues;
 }
 
 @end

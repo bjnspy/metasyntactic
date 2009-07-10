@@ -23,54 +23,54 @@
 @synthesize mutableDictionary;
 
 - (void) dealloc {
-    self.mutableDictionary = nil;
-    [super dealloc];
+  self.mutableDictionary = nil;
+  [super dealloc];
 }
 
 
 - (id) initWithDictionary:(NSMutableDictionary*) mutableDictionary_ {
-    if ((self = [super initWithDictionary:mutableDictionary_])) {
-        self.mutableDictionary = mutableDictionary_;
-    }
-
-    return self;
+  if ((self = [super initWithDictionary:mutableDictionary_])) {
+    self.mutableDictionary = mutableDictionary_;
+  }
+  
+  return self;
 }
 
 
 + (MutableMultiDictionary*) dictionary {
-    return [[[MutableMultiDictionary alloc] initWithDictionary:[NSMutableDictionary dictionary]] autorelease];
+  return [[[MutableMultiDictionary alloc] initWithDictionary:[NSMutableDictionary dictionary]] autorelease];
 }
 
 
 - (void) addObject:(id) object
             forKey:(id) key {
-    NSMutableArray* array = [mutableDictionary objectForKey:key];
-    if (array == nil) {
-        array = [NSMutableArray array];
-        [mutableDictionary setObject:array forKey:key];
-    }
-    [array addObject:object];
+  NSMutableArray* array = [mutableDictionary objectForKey:key];
+  if (array == nil) {
+    array = [NSMutableArray array];
+    [mutableDictionary setObject:array forKey:key];
+  }
+  [array addObject:object];
 }
 
 
 - (void) addObjects:(NSArray*) objects
              forKey:(id) key {
-    NSMutableArray* array = [mutableDictionary objectForKey:key];
-    if (array == nil) {
-        array = [NSMutableArray array];
-        [mutableDictionary setObject:array forKey:key];
-    }
-    [array addObjectsFromArray:objects];
+  NSMutableArray* array = [mutableDictionary objectForKey:key];
+  if (array == nil) {
+    array = [NSMutableArray array];
+    [mutableDictionary setObject:array forKey:key];
+  }
+  [array addObjectsFromArray:objects];
 }
 
 
 - (NSMutableArray*) mutableObjectsForKey:(id) key {
-    return [mutableDictionary objectForKey:key];
+  return [mutableDictionary objectForKey:key];
 }
 
 
 - (void) removeObjectsForKey:(id) key {
-    [mutableDictionary removeObjectForKey:key];
+  [mutableDictionary removeObjectForKey:key];
 }
 
 @end

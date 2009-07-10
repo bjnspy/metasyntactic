@@ -16,7 +16,7 @@
 
 @interface MutableMultiDictionary : MultiDictionary {
 @private
-    NSMutableDictionary* mutableDictionary;
+  NSMutableDictionary* mutableDictionary;
 }
 
 + (MutableMultiDictionary*) dictionary;
