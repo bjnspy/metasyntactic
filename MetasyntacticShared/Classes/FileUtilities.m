@@ -27,7 +27,11 @@ static MainThreadGate* gate;
 }
 
 
+// NSFileManager instances are not threadsafe.  So anyone who wants one should
+// create a new instance that they can use.
 + (NSFileManager*) localFileManager {
+  // Todo: Consider returning the 'defaultManager' if this is the main thread
+  // and profiling data indicates a problem.
   return [[[NSFileManager alloc] init] autorelease];
 }
 
