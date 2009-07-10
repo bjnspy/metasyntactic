@@ -15,6 +15,7 @@
 #import "../ForwardDeclarations.h"
 
 #import "../External/OAuth/OAuthConsumer.h"
+#import "../External/PinchMedia/Beacon.h"
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractCurlableTableViewController.h"

@@ -57,6 +57,10 @@
 		74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */; };
 		74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */; };
 		74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */; };
+		74E164301006D22D003D852F /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642D1006D22D003D852F /* Beacon+FBConnect.h */; };
+		74E164311006D22D003D852F /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642E1006D22D003D852F /* Beacon.h */; };
+		74E164321006D22D003D852F /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */; };
+		74E164891006D46A003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164881006D46A003D852F /* libsqlite3.dylib */; };
 		74E601A80FD1C7990015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
 		74E601A90FD1C7990015D9F8 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAD0F15D9590004B610 /* IdentitySet.h */; };
 		74E601AA0FD1C7990015D9F8 /* MultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB30F15D9590004B610 /* MultiDictionary.h */; };
@@ -406,6 +410,10 @@
 		74D3A6200FEC04950083298A /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
 		74D3A6480FEC05BA0083298A /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftArrow.png; path = Resources/LeftArrow.png; sourceTree = "<group>"; };
 		74D3A6490FEC05BA0083298A /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
+		74E1642D1006D22D003D852F /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
+		74E1642E1006D22D003D852F /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
+		74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
+		74E164881006D46A003D852F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		74E601350FD1C5FC0015D9F8 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		74E601360FD1C5FC0015D9F8 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		74E601A20FD1C7700015D9F8 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
@@ -452,6 +460,8 @@
 				74E6022E0FD1C7990015D9F8 /* UIKit.framework in Frameworks */,
 				74E6022F0FD1C7990015D9F8 /* CoreGraphics.framework in Frameworks */,
 				74E602300FD1C7990015D9F8 /* SystemConfiguration.framework in Frameworks */,
+				74E164321006D22D003D852F /* libPMAnalytics-r64.a in Frameworks */,
+				74E164891006D46A003D852F /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +506,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				74E164881006D46A003D852F /* libsqlite3.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -614,6 +625,7 @@
 			children = (
 				74616C360F15D1D70004B610 /* Expat */,
 				74616C350F15D1D20004B610 /* OAuth */,
+				74E1642C1006D22D003D852F /* PinchMedia */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -818,6 +830,17 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		74E1642C1006D22D003D852F /* PinchMedia */ = {
+			isa = PBXGroup;
+			children = (
+				74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */,
+				74E1642D1006D22D003D852F /* Beacon+FBConnect.h */,
+				74E1642E1006D22D003D852F /* Beacon.h */,
+			);
+			name = PinchMedia;
+			path = External/PinchMedia;
+			sourceTree = SOURCE_ROOT;
+		};
 		74E601340FD1C5EE0015D9F8 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +1002,8 @@
 				74FEEC050FFA87060021F472 /* ListPickerDelegate.h in Headers */,
 				74AD39F1100139E200D6BDAA /* SynopsisCell.h in Headers */,
 				74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */,
+				74E164301006D22D003D852F /* Beacon+FBConnect.h in Headers */,
+				74E164311006D22D003D852F /* Beacon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1158,10 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External/PinchMedia\"",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 			};
@@ -1145,6 +1174,10 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External/PinchMedia\"",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				ZERO_LINK = NO;
