@@ -203,6 +203,7 @@
 		74DD8A2F0F0ECF10009DC326 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89F60F0ECF10009DC326 /* YahooLogo.png */; };
 		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
 		74E14A690F96510F00FB7BDA /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */; };
+		74E164961006D4C2003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164951006D4C2003D852F /* libsqlite3.dylib */; };
 		74E605A80FD1F4E10015D9F8 /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E605A70FD1F4E10015D9F8 /* CommonNavigationController.m */; };
 		74E6E1240F84301C00FFE59C /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E6E1230F84301C00FFE59C /* Upcoming.png */; };
 		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
@@ -609,6 +610,7 @@
 		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
 		74E14A660F96510F00FB7BDA /* NetflixSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSettingsViewController.h; sourceTree = "<group>"; };
 		74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSettingsViewController.m; sourceTree = "<group>"; };
+		74E164951006D4C2003D852F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		74E605A60FD1F4E10015D9F8 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
 		74E605A70FD1F4E10015D9F8 /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNavigationController.m; sourceTree = "<group>"; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */,
 				7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */,
 				7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */,
+				74E164961006D4C2003D852F /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +719,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				748B23570E843AFE00322E25 /* Entitlements.plist */,
+				74E164951006D4C2003D852F /* libsqlite3.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

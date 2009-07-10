@@ -57,6 +57,10 @@ static AppDelegate* appDelegate = nil;
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
 
+  [Beacon initAndStartBeaconWithApplicationCode:@"989c6bce5327bb013357eff94148592a"
+                                useCoreLocation:NO
+                                    useOnlyWiFi:NO];
+  
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
 
   appDelegate = self;
@@ -82,6 +86,7 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationWillTerminate:(UIApplication*) application {
   [[NSUserDefaults standardUserDefaults] synchronize];
+  [[Beacon shared] endBeacon];
 }
 
 
