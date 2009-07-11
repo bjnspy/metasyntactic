@@ -16,7 +16,7 @@
 
 @interface Invocation2 : Invocation {
 @private
-    id argument2;
+  id argument2;
 }
 
 + (Invocation2*) invocationWithTarget:(id) target

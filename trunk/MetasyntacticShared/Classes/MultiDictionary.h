@@ -26,7 +26,4 @@
 // returns an array of arrays;
 - (NSArray*) allValues;
 
-/* @protected */
-- (id) initWithDictionary:(NSDictionary*) dictionary;
-
 @end

@@ -32,11 +32,11 @@
              selector:(SEL) selector_
            withObject:(id) argument1_
            withObject:(id) argument2_ {
-    if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_])) {
-        self.argument2 = argument2_;
-    }
-
-    return self;
+  if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_])) {
+    self.argument2 = argument2_;
+  }
+  
+  return self;
 }
 
 
@@ -44,15 +44,15 @@
                              selector:(SEL) selector
                            withObject:(id) argument1
                            withObject:(id) argument2 {
-    return [[[Invocation2 alloc] initWithTarget:target
-                                       selector:selector
-                                     withObject:argument1
-                                     withObject:argument2] autorelease];
+  return [[[Invocation2 alloc] initWithTarget:target
+                                     selector:selector
+                                   withObject:argument1
+                                   withObject:argument2] autorelease];
 }
 
 
 - (void) run {
-    [target performSelector:selector withObject:argument withObject:argument2];
+  [target performSelector:selector withObject:argument withObject:argument2];
 }
 
 @end

@@ -14,6 +14,10 @@
 
 #import "MutableMultiDictionary.h"
 
+@interface MultiDictionary()
+- (id) initWithDictionary:(NSDictionary*) dictionary;
+@end
+
 @interface MutableMultiDictionary()
 @property (retain) NSMutableDictionary* mutableDictionary;
 @end
