@@ -41,6 +41,12 @@
 		7432BAD00FD5766300AA0D73 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */; };
 		7458A1FB0FF204A3000CD194 /* AbstractCurlableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */; };
 		7458A1FC0FF204A3000CD194 /* AbstractCurlableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */; };
+		749374051008F11800749299 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374031008F11800749299 /* Operation3.h */; };
+		749374061008F11800749299 /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 749374041008F11800749299 /* Operation3.m */; };
+		749374381008F32500749299 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374361008F32500749299 /* Invocation3.h */; };
+		749374391008F32500749299 /* Invocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 749374371008F32500749299 /* Invocation3.m */; };
+		7493743D1008F3BE00749299 /* BackgroundInvocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 7493743B1008F3BE00749299 /* BackgroundInvocation3.h */; };
+		7493743E1008F3BE00749299 /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7493743C1008F3BE00749299 /* BackgroundInvocation3.m */; };
 		74AD39F1100139E200D6BDAA /* SynopsisCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD39EF100139E200D6BDAA /* SynopsisCell.h */; };
 		74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD39F0100139E200D6BDAA /* SynopsisCell.m */; };
 		74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */; };
@@ -390,6 +396,12 @@
 		747C336A0FD0720300411801 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		747C34FC0FD0772D00411801 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		747C34FD0FD0772D00411801 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		749374031008F11800749299 /* Operation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation3.h; sourceTree = "<group>"; };
+		749374041008F11800749299 /* Operation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation3.m; sourceTree = "<group>"; };
+		749374361008F32500749299 /* Invocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation3.h; sourceTree = "<group>"; };
+		749374371008F32500749299 /* Invocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation3.m; sourceTree = "<group>"; };
+		7493743B1008F3BE00749299 /* BackgroundInvocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation3.h; sourceTree = "<group>"; };
+		7493743C1008F3BE00749299 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
 		74AD39EF100139E200D6BDAA /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
 		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
 		74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
@@ -730,8 +742,10 @@
 				74F10D4E0FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.h */,
 				747C33670FD0720300411801 /* BackgroundInvocation.h */,
 				747C33690FD0720300411801 /* BackgroundInvocation2.h */,
+				7493743B1008F3BE00749299 /* BackgroundInvocation3.h */,
 				74616D830F15D8A10004B610 /* Invocation.h */,
 				74616D850F15D8A10004B610 /* Invocation2.h */,
+				749374361008F32500749299 /* Invocation3.h */,
 				74616D870F15D8A10004B610 /* MainThreadGate.h */,
 				74F10D750FE76D59002ADB4B /* PersistentArrayThreadsafeValue.h */,
 				74F10D520FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.h */,
@@ -743,8 +757,10 @@
 				74F10D4F0FE76B34002ADB4B /* AbstractPersistentThreadsafeValue.m */,
 				747C33680FD0720300411801 /* BackgroundInvocation.m */,
 				747C336A0FD0720300411801 /* BackgroundInvocation2.m */,
+				7493743C1008F3BE00749299 /* BackgroundInvocation3.m */,
 				74616D840F15D8A10004B610 /* Invocation.m */,
 				74616D860F15D8A10004B610 /* Invocation2.m */,
+				749374371008F32500749299 /* Invocation3.m */,
 				74616D880F15D8A10004B610 /* MainThreadGate.m */,
 				74F10D760FE76D59002ADB4B /* PersistentArrayThreadsafeValue.m */,
 				74F10D530FE76BEF002ADB4B /* PersistentDictionaryThreadsafeValue.m */,
@@ -808,12 +824,14 @@
 			isa = PBXGroup;
 			children = (
 				747C31580FD0683600411801 /* Operation.h */,
-				747C31590FD0683600411801 /* Operation.m */,
 				747C315A0FD0683600411801 /* Operation1.h */,
-				747C315B0FD0683600411801 /* Operation1.m */,
 				747C315C0FD0683600411801 /* Operation2.h */,
-				747C315D0FD0683600411801 /* Operation2.m */,
+				749374031008F11800749299 /* Operation3.h */,
 				747C315E0FD0683600411801 /* OperationQueue.h */,
+				747C31590FD0683600411801 /* Operation.m */,
+				747C315B0FD0683600411801 /* Operation1.m */,
+				747C315D0FD0683600411801 /* Operation2.m */,
+				749374041008F11800749299 /* Operation3.m */,
 				747C315F0FD0683600411801 /* OperationQueue.m */,
 			);
 			name = OperationQueue;
@@ -1004,6 +1022,9 @@
 				74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */,
 				74E164301006D22D003D852F /* Beacon+FBConnect.h in Headers */,
 				74E164311006D22D003D852F /* Beacon.h in Headers */,
+				749374051008F11800749299 /* Operation3.h in Headers */,
+				749374381008F32500749299 /* Invocation3.h in Headers */,
+				7493743D1008F3BE00749299 /* BackgroundInvocation3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,6 +1166,9 @@
 				74FEEC020FFA868D0021F472 /* ListPickerViewController.m in Sources */,
 				74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */,
 				74AD3D09100191CE00D6BDAA /* AutoResizingCell.m in Sources */,
+				749374061008F11800749299 /* Operation3.m in Sources */,
+				749374391008F32500749299 /* Invocation3.m in Sources */,
+				7493743E1008F3BE00749299 /* BackgroundInvocation3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

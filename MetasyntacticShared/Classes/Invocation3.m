@@ -12,24 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "Invocation2.h"
-
-@interface Invocation()
-- (id) initWithTarget:(id) target
-             selector:(SEL) selector
-           withObject:(id) argument;
-@end
+#import "Invocation3.h"
 
 @interface Invocation2()
-@property (retain) id argument2;
+- (id) initWithTarget:(id) target_
+             selector:(SEL) selector_
+           withObject:(id) argument1_
+           withObject:(id) argument2_;
 @end
 
-@implementation Invocation2
+@interface Invocation3()
+@property (retain) id argument3;
+@end
 
-@synthesize argument2;
+@implementation Invocation3
+
+@synthesize argument3;
 
 - (void) dealloc {
-  self.argument2 = nil;
+  self.argument3 = nil;
   [super dealloc];
 }
 
@@ -37,28 +38,32 @@
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
            withObject:(id) argument1_
-           withObject:(id) argument2_ {
-  if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_])) {
-    self.argument2 = argument2_;
+           withObject:(id) argument2_
+           withObject:(id) argument3_ {
+  if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_ withObject:argument2_])) {
+    self.argument3 = argument3_;
   }
   
   return self;
 }
 
 
-+ (Invocation2*) invocationWithTarget:(id) target
++ (Invocation3*) invocationWithTarget:(id) target
                              selector:(SEL) selector
                            withObject:(id) argument1
-                           withObject:(id) argument2 {
-  return [[[Invocation2 alloc] initWithTarget:target
+                           withObject:(id) argument2
+                           withObject:(id) argument3 {
+  return [[[Invocation3 alloc] initWithTarget:target
                                      selector:selector
                                    withObject:argument1
-                                   withObject:argument2] autorelease];
+                                   withObject:argument2
+                                   withObject:argument3] autorelease];
 }
 
 
 - (void) run {
-  [target performSelector:selector withObject:argument withObject:argument2];
+  IMP imp = [target methodForSelector:selector];
+  imp(target, selector, argument, argument2, argument3);
 }
 
 @end

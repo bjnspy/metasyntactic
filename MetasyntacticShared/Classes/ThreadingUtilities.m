@@ -16,24 +16,22 @@
 
 #import "BackgroundInvocation.h"
 #import "BackgroundInvocation2.h"
+#import "BackgroundInvocation3.h"
 #import "Invocation2.h"
+#import "Invocation3.h"
 #import "PriorityMutex.h"
 
 @implementation ThreadingUtilities
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
-                 withObject:(id) argument1
-                 withObject:(id) argument2
                        gate:(id<NSLocking>) gate
                      daemon:(BOOL) daemon {
-  BackgroundInvocation2* invocation = [BackgroundInvocation2 invocationWithTarget:target
-                                                                         selector:selector
-                                                                       withObject:argument1
-                                                                       withObject:argument2
-                                                                             gate:gate
-                                                                           daemon:daemon];
-  [invocation performSelectorInBackground:@selector(run) withObject:nil];
+  [self backgroundSelector:selector
+                  onTarget:target
+                withObject:nil
+                      gate:gate
+                    daemon:daemon];
 }
 
 
@@ -53,13 +51,35 @@
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
+                 withObject:(id) argument1
+                 withObject:(id) argument2
                        gate:(id<NSLocking>) gate
                      daemon:(BOOL) daemon {
-  [self backgroundSelector:selector
-                  onTarget:target
-                withObject:nil
-                      gate:gate
-                    daemon:daemon];
+  BackgroundInvocation* invocation = [BackgroundInvocation2 invocationWithTarget:target
+                                                                        selector:selector
+                                                                      withObject:argument1
+                                                                      withObject:argument2
+                                                                            gate:gate
+                                                                          daemon:daemon];
+  [invocation performSelectorInBackground:@selector(run) withObject:nil];
+}
+
+
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                 withObject:(id) argument1
+                 withObject:(id) argument2
+                 withObject:(id) argument3
+                       gate:(id<NSLocking>) gate
+                     daemon:(BOOL) daemon {
+  BackgroundInvocation* invocation = [BackgroundInvocation3 invocationWithTarget:target
+                                                                        selector:selector
+                                                                      withObject:argument1
+                                                                      withObject:argument2
+                                                                      withObject:argument3
+                                                                            gate:gate
+                                                                          daemon:daemon];
+  [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 
 
@@ -74,10 +94,24 @@
                    onTarget:(id) target
                  withObject:(id) argument1
                  withObject:(id) argument2 {
-  Invocation2* invocation = [Invocation2 invocationWithTarget:target
-                                                     selector:selector
-                                                   withObject:argument1
-                                                   withObject:argument2];
+  Invocation* invocation = [Invocation2 invocationWithTarget:target
+                                                    selector:selector
+                                                  withObject:argument1
+                                                  withObject:argument2];
+  [invocation performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
+}
+
+
++ (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target
+                 withObject:(id) argument1
+                 withObject:(id) argument2
+                 withObject:(id) argument3 {
+  Invocation* invocation = [Invocation3 invocationWithTarget:target
+                                                    selector:selector
+                                                  withObject:argument1
+                                                  withObject:argument2
+                                                  withObject:argument3];
   [invocation performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 }
 

@@ -12,20 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "Invocation.h"
+#import "BackgroundInvocation2.h"
 
-@interface BackgroundInvocation : Invocation {
-@protected
-    id<NSLocking> gate;
-    BOOL daemon;
+@interface BackgroundInvocation3 : BackgroundInvocation2 {
+@private
+  id argument3;
 }
 
-+ (BackgroundInvocation*) invocationWithTarget:(id) target
-                                      selector:(SEL) selector
-                                    withObject:(id) argument
-                                          gate:(id<NSLocking>) gate
-                                       daemon:(BOOL) daemon;
-
-+ (BOOL) hasNonDaemonBackgroundTasks;
++ (BackgroundInvocation3*) invocationWithTarget:(id) target
+                                       selector:(SEL) selector
+                                     withObject:(id) argument1
+                                     withObject:(id) argument2
+                                     withObject:(id) argument3
+                                           gate:(id<NSLocking>) gate
+                                         daemon:(BOOL) daemon;
 
 @end
