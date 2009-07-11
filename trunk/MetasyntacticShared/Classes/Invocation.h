@@ -14,9 +14,9 @@
 
 @interface Invocation : NSObject {
 @protected
-    id target;
-    SEL selector;
-    id argument;
+  id target;
+  SEL selector;
+  id argument;
 }
 
 @property (readonly, retain) id target;
@@ -26,10 +26,6 @@
 + (Invocation*) invocationWithTarget:(id) target
                             selector:(SEL) selector
                           withObject:(id) argument;
-
-- (id) initWithTarget:(id) target
-             selector:(SEL) selector
-           withObject:(id) argument;
 
 - (void) run;
 

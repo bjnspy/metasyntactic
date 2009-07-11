@@ -15,8 +15,8 @@
 #import "BackgroundInvocation.h"
 
 @interface BackgroundInvocation2 : BackgroundInvocation {
-@private
-    id argument2;
+@protected
+  id argument2;
 }
 
 + (BackgroundInvocation2*) invocationWithTarget:(id) target

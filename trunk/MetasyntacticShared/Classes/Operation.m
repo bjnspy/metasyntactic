@@ -83,10 +83,6 @@
 
 
 - (void) mainWorker {
-  if (self.isCancelled) {
-    return;
-  }
-
   [target performSelector:selector];
 }
 
@@ -103,7 +99,9 @@
 
   [gate lock];
   {
-    [self mainWorker];
+    if (!self.isCancelled) {
+      [self mainWorker];
+    }
   }
   [gate unlock];
 

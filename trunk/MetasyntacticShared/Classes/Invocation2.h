@@ -15,7 +15,7 @@
 #import "Invocation.h";
 
 @interface Invocation2 : Invocation {
-@private
+@protected
   id argument2;
 }
 

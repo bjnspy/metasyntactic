@@ -12,28 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "BackgroundInvocation2.h"
-
-@interface BackgroundInvocation()
-- (id) initWithTarget:(id) target
-             selector:(SEL) selector
-           withObject:(id) argument
-                 gate:(id<NSLocking>) gate
-               daemon:(BOOL) daemon;
-@end
-
+#import "BackgroundInvocation3.h"
 
 @interface BackgroundInvocation2()
-@property (retain) id argument2;
+- (id) initWithTarget:(id) target_
+             selector:(SEL) selector_
+           withObject:(id) argument1_
+           withObject:(id) argument2_
+                 gate:(id<NSLocking>) gate_
+               daemon:(BOOL) daemon_;
+@end
+
+@interface BackgroundInvocation3()
+@property (retain) id argument3;
 @end
 
 
-@implementation BackgroundInvocation2
+@implementation BackgroundInvocation3
 
-@synthesize argument2;
+@synthesize argument3;
 
 - (void) dealloc {
-  self.argument2 = nil;
+  self.argument3 = nil;
   [super dealloc];
 }
 
@@ -42,37 +42,42 @@
              selector:(SEL) selector_
            withObject:(id) argument1_
            withObject:(id) argument2_
+           withObject:(id) argument3_
                  gate:(id<NSLocking>) gate_
                daemon:(BOOL) daemon_ {
   if ((self = [super initWithTarget:target_
                            selector:selector_
                          withObject:argument1_
+                         withObject:argument2_
                                gate:gate_
                              daemon:daemon_])) {
-    self.argument2 = argument2_;
+    self.argument3 = argument3_;
   }
-
+  
   return self;
 }
 
 
-+ (BackgroundInvocation2*) invocationWithTarget:(id) target
++ (BackgroundInvocation3*) invocationWithTarget:(id) target
                                        selector:(SEL) selector
                                      withObject:(id) argument1
                                      withObject:(id) argument2
+                                     withObject:(id) argument3
                                            gate:(id<NSLocking>) gate
                                          daemon:(BOOL) daemon {
-  return [[[BackgroundInvocation2 alloc] initWithTarget:target
+  return [[[BackgroundInvocation3 alloc] initWithTarget:target
                                                selector:selector
                                              withObject:argument1
                                              withObject:argument2
+                                             withObject:argument3
                                                    gate:gate
                                                  daemon:daemon] autorelease];
 }
 
 
 - (void) invokeSelector {
-  [target performSelector:selector withObject:argument withObject:argument2];
+  IMP imp = [target methodForSelector:selector];
+  imp(target, selector, argument, argument2, argument3);
 }
 
 @end

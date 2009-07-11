@@ -18,7 +18,7 @@
 
 @implementation FileUtilities
 
-static MainThreadGate* gate;
+static MainThreadGate* gate = nil;
 
 + (void) initialize {
   if (self == [FileUtilities class]) {

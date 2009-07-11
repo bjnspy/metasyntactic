@@ -14,6 +14,12 @@
 
 #import "BackgroundInvocation.h"
 
+@interface Invocation()
+- (id) initWithTarget:(id) target
+             selector:(SEL) selector
+           withObject:(id) argument;
+@end
+
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
 @property BOOL daemon;

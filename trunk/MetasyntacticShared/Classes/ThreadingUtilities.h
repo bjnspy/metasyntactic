@@ -15,24 +15,31 @@
 @interface ThreadingUtilities : NSObject {
 }
 
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                       gate:(id<NSLocking>) gate
+                     daemon:(BOOL) daemon;
+
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                 withObject:(id) argument
+                       gate:(id<NSLocking>) gate
+                     daemon:(BOOL) daemon;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                  withObject:(id) argument1
                  withObject:(id) argument2
                        gate:(id<NSLocking>) gate
-                    daemon:(BOOL) daemon;
+                     daemon:(BOOL) daemon;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
-                 withObject:(id) argument
+                 withObject:(id) argument1
+                 withObject:(id) argument2
+                 withObject:(id) argument3
                        gate:(id<NSLocking>) gate
-                    daemon:(BOOL) daemon;
-
-+ (void) backgroundSelector:(SEL) selector
-                   onTarget:(id) target
-                       gate:(id<NSLocking>) gate
-                    daemon:(BOOL) daemon;
+                     daemon:(BOOL) daemon;
 
 + (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
@@ -42,6 +49,12 @@
                    onTarget:(id) target
                  withObject:(id) argument1
                  withObject:(id) argument2;
+
++ (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target
+                 withObject:(id) argument1
+                 withObject:(id) argument2
+                 withObject:(id) argument3;
 
 + (BOOL) hasNonDaemonBackgroundTasks;
 

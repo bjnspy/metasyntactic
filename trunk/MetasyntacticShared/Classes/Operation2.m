@@ -25,8 +25,8 @@
 @synthesize argument2;
 
 - (void) dealloc {
-    self.argument2 = nil;
-    [super dealloc];
+  self.argument2 = nil;
+  [super dealloc];
 }
 
 
@@ -38,17 +38,17 @@
             isBounded:(BOOL) isBounded_
                  gate:(id<NSLocking>) gate_
              priority:(NSOperationQueuePriority) priority_ {
-    if ((self = [super initWithTarget:target_
-                            selector:selector_
-                            argument:argument1_
-                      operationQueue:operationQueue_
-                           isBounded:isBounded_
-                                gate:gate_
-                            priority:priority_])) {
-        self.argument2 = argument2_;
-    }
-
-    return self;
+  if ((self = [super initWithTarget:target_
+                           selector:selector_
+                           argument:argument1_
+                     operationQueue:operationQueue_
+                          isBounded:isBounded_
+                               gate:gate_
+                           priority:priority_])) {
+    self.argument2 = argument2_;
+  }
+  
+  return self;
 }
 
 
@@ -60,23 +60,19 @@
                           isBounded:(BOOL) isBounded
                                gate:(id<NSLocking>) gate
                            priority:(NSOperationQueuePriority) priority {
-    return [[[Operation2 alloc] initWithTarget:target
-                                      selector:selector
-                                      argument:argument1
-                                      argument:argument2
-                                operationQueue:operationQueue
-                                     isBounded:isBounded
-                                          gate:gate
-                                      priority:priority] autorelease];
+  return [[[Operation2 alloc] initWithTarget:target
+                                    selector:selector
+                                    argument:argument1
+                                    argument:argument2
+                              operationQueue:operationQueue
+                                   isBounded:isBounded
+                                        gate:gate
+                                    priority:priority] autorelease];
 }
 
 
 - (void) mainWorker {
-    if (self.isCancelled) {
-        return;
-    }
-
-    [target performSelector:selector withObject:argument1 withObject:argument2];
+  [target performSelector:selector withObject:argument1 withObject:argument2];
 }
 
 @end
