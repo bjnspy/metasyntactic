@@ -74,8 +74,8 @@ typedef enum {
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
   [self.controller.locationManager addLocationSpinner:self.navigationItem];
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
 }
@@ -83,11 +83,6 @@ typedef enum {
 
 - (void) onDone {
   [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
-}
-
-
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
 }
 
 

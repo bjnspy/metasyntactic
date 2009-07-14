@@ -120,11 +120,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-}
-
-
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
