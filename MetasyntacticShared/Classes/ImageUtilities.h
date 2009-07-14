@@ -15,6 +15,8 @@
 @interface ImageUtilities : NSObject {
 }
 
++ (UIImage*) faultImage:(UIImage*) image;
+
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size;
 + (UIImage*) scaleImage:(UIImage*) image toHeight:(CGFloat) height;
 + (UIImage*) cropImage:(UIImage*) image toRect:(CGRect) rect;
