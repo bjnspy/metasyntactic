@@ -129,23 +129,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-  if (pageCount > 1) {
-    [NotificationCenter disableNotifications];
-  }
-}
-
-
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
-
-  if (pageCount > 1) {
-    [NotificationCenter enableNotifications];
-  }
-}
-
-
 - (void) loadView {
   [super loadView];
 
