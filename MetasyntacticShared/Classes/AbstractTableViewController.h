@@ -12,12 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AbstractViewController.h"
+
 @interface AbstractTableViewController : UITableViewController<UIScrollViewDelegate> {
 @protected
   BOOL visible;
   BOOL readonlyMode;
   NSArray* visibleIndexPaths;
   UISearchDisplayController* searchDisplayController;
+  
+@private
+  BOOL pushed;
 }
 
 - (void) majorRefresh;
@@ -34,5 +39,9 @@
 - (void) onAfterReloadTableViewData;
 - (void) onBeforeReloadVisibleCells;
 - (void) onAfterReloadVisibleCells;
+- (void) onBeforeViewControllerPushed;
+- (void) onAfterViewControllerPushed;
+- (void) onBeforeViewControllerPopped;
+- (void) onAfterViewControllerPopped;
 
 @end

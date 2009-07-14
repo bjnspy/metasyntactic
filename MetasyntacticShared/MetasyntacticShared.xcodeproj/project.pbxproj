@@ -51,6 +51,8 @@
 		74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD39F0100139E200D6BDAA /* SynopsisCell.m */; };
 		74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */; };
 		74AD3D09100191CE00D6BDAA /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */; };
+		74B64788100C5B8600345092 /* AbstractViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B64786100C5B8600345092 /* AbstractViewController.h */; };
+		74B64789100C5B8600345092 /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B64787100C5B8600345092 /* AbstractViewController.m */; };
 		74BD09970FF1D95400DB9692 /* AbstractMultiPageTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */; };
 		74BD09980FF1D95400DB9692 /* AbstractMultiPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */; };
 		74BD099B0FF1D96C00DB9692 /* AbstractSlidableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */; };
@@ -406,6 +408,8 @@
 		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
 		74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
 		74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
+		74B64786100C5B8600345092 /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
+		74B64787100C5B8600345092 /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMultiPageTableViewController.h; sourceTree = "<group>"; };
 		74BD09960FF1D95400DB9692 /* AbstractMultiPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMultiPageTableViewController.m; sourceTree = "<group>"; };
 		74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
@@ -569,9 +573,12 @@
 				74BD09990FF1D96C00DB9692 /* AbstractSlidableTableViewController.h */,
 				74BD0AF30FF1EED800DB9692 /* AbstractStackableTableViewController.h */,
 				747C314D0FD067D900411801 /* AbstractTableViewController.h */,
+				74B64786100C5B8600345092 /* AbstractViewController.h */,
 				74FEEB4D0FF9D9510021F472 /* DatePickerDelegate.h */,
 				74FEEB3B0FF9D6CD0021F472 /* DatePickerViewController.h */,
 				747C34FC0FD0772D00411801 /* EditorViewController.h */,
+				74FEEC030FFA87060021F472 /* ListPickerDelegate.h */,
+				74FEEBFF0FFA868D0021F472 /* ListPickerViewController.h */,
 				74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */,
 				747C333F0FD071A400411801 /* WebViewController.h */,
 				7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */,
@@ -583,13 +590,12 @@
 				74BD099A0FF1D96C00DB9692 /* AbstractSlidableTableViewController.m */,
 				74BD0AF40FF1EED800DB9692 /* AbstractStackableTableViewController.m */,
 				747C314E0FD067D900411801 /* AbstractTableViewController.m */,
+				74B64787100C5B8600345092 /* AbstractViewController.m */,
 				74FEEB3C0FF9D6CD0021F472 /* DatePickerViewController.m */,
 				747C34FD0FD0772D00411801 /* EditorViewController.m */,
+				74FEEC000FFA868D0021F472 /* ListPickerViewController.m */,
 				74E6FCDA0FD1B2390015D9F8 /* TextFieldEditorViewController.m */,
 				747C33400FD071A400411801 /* WebViewController.m */,
-				74FEEBFF0FFA868D0021F472 /* ListPickerViewController.h */,
-				74FEEC000FFA868D0021F472 /* ListPickerViewController.m */,
-				74FEEC030FFA87060021F472 /* ListPickerDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1025,6 +1031,7 @@
 				749374051008F11800749299 /* Operation3.h in Headers */,
 				749374381008F32500749299 /* Invocation3.h in Headers */,
 				7493743D1008F3BE00749299 /* BackgroundInvocation3.h in Headers */,
+				74B64788100C5B8600345092 /* AbstractViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,6 +1176,7 @@
 				749374061008F11800749299 /* Operation3.m in Sources */,
 				749374391008F32500749299 /* Invocation3.m in Sources */,
 				7493743E1008F3BE00749299 /* BackgroundInvocation3.m in Sources */,
+				74B64789100C5B8600345092 /* AbstractViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
