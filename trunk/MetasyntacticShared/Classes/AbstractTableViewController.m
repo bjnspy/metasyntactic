@@ -65,10 +65,16 @@
   [super didReceiveMemoryWarning];
 }
 
-- (void) onBeforeReloadTableViewData {}
-- (void) onAfterReloadTableViewData {}
-- (void) onBeforeReloadVisibleCells {}
-- (void) onAfterReloadVisibleCells {}
+
+- (void) onBeforeReloadTableViewData { }
+- (void) onAfterReloadTableViewData { }
+- (void) onBeforeReloadVisibleCells { }
+- (void) onAfterReloadVisibleCells { }
+- (void) onBeforeViewControllerPushed { }
+- (void) onAfterViewControllerPushed { }
+- (void) onBeforeViewControllerPopped { }
+- (void) onAfterViewControllerPopped { }
+
 
 - (void) reloadTableViewData {
   if (!visible) {
@@ -137,23 +143,44 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-  [super viewDidAppear:animated];
-  [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
-}
-
-
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
 
+  if (!pushed) {
+    [self onBeforeViewControllerPushed];
+  }
+  
   self.visible = YES;
   [self reloadTableViewData];
+}
+
+
+- (void) viewDidAppear:(BOOL) animated {
+  [super viewDidAppear:animated];
+  
+  if (!pushed) {
+    pushed = YES;
+    [self onAfterViewControllerPushed];
+  }
+  
+  [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
 }
 
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
   self.visible = NO;
+  if (![self.navigationController.viewControllers containsObject:self]) {
+    [self onBeforeViewControllerPopped];
+  }
+}
+
+
+- (void) viewDidDisappear:(BOOL) animated {
+  [super viewDidDisappear:animated];
+  if (self.navigationController == nil) {
+    [self onAfterViewControllerPopped];
+  }
 }
 
 
