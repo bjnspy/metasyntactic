@@ -22,7 +22,8 @@
   UISearchDisplayController* searchDisplayController;
   
 @private
-  BOOL pushed;
+  BOOL onBeforeViewControllerPushedCalled;
+  BOOL onAfterViewControllerPushedCalled;
 }
 
 - (void) majorRefresh;

@@ -19,21 +19,19 @@
 
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
-  if (pushed) {
-    return;
+  if (!onBeforeViewControllerPushedCalled) {
+    onBeforeViewControllerPushedCalled = YES;
+    [self onBeforeViewControllerPushed];
   }
-  
-  [self onBeforeViewControllerPushed];
 }
 
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-  if (pushed) {
-    return;
+  if (!onAfterViewControllerPushedCalled) {
+    onAfterViewControllerPushedCalled = YES;
+    [self onAfterViewControllerPushed];
   }
-  pushed = YES;
-  [self onAfterViewControllerPushed];
 }
 
 

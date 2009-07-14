@@ -8,7 +8,8 @@
 
 @interface AbstractViewController : UIViewController {
 @private
-  BOOL pushed;
+  BOOL onBeforeViewControllerPushedCalled;
+  BOOL onAfterViewControllerPushedCalled;
 }
 
 /* @protected */
