@@ -146,7 +146,8 @@
 - (void) viewWillAppear:(BOOL) animated {
   [super viewWillAppear:animated];
 
-  if (!pushed) {
+  if (!onBeforeViewControllerPushedCalled) {
+    onBeforeViewControllerPushedCalled = YES;
     [self onBeforeViewControllerPushed];
   }
   
@@ -158,8 +159,8 @@
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
   
-  if (!pushed) {
-    pushed = YES;
+  if (!onAfterViewControllerPushedCalled) {
+    onAfterViewControllerPushedCalled = YES;
     [self onAfterViewControllerPushed];
   }
   
