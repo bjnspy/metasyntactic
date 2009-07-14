@@ -40,11 +40,6 @@
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
-  [super viewDidAppear:animated];
-}
-
-
 - (NSArray*) movies {
   NSMutableArray* result = [NSMutableArray array];
 
@@ -102,11 +97,6 @@
   }
 
   return self;
-}
-
-
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
 }
 
 

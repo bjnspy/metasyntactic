@@ -82,8 +82,8 @@ const NSInteger PAGE_RANGE = 2;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
 
   [self.abstractNavigationController setNavigationBarHidden:YES animated:YES];
 
@@ -94,8 +94,8 @@ const NSInteger PAGE_RANGE = 2;
 }
 
 
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
+- (void) onBeforeViewControllerPopped {
+  [super onBeforeViewControllerPopped];
 
   [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
   [self.abstractNavigationController setNavigationBarHidden:NO animated:YES];

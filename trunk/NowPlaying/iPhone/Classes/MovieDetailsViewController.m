@@ -336,8 +336,6 @@ const NSInteger POSTER_TAG = -1;
 - (id) initWithMovie:(Movie*) movie_ {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.movie = movie_;
-
-    posterCount = -1;
   }
 
   return self;
@@ -490,11 +488,6 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) downloadPoster {
-  if (posterCount >= 0) {
-    return;
-  }
-  posterCount = 0;
-
   [ThreadingUtilities backgroundSelector:@selector(downloadPosterBackgroundEntryPoint)
                                 onTarget:self
                                     gate:nil
@@ -502,9 +495,8 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
   [self downloadPoster];
 }
 
@@ -516,9 +508,8 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
-
+- (void) onBeforeViewControllerPopped {
+  [super onBeforeViewControllerPopped];
   [self removeNotifications];
 }
 

@@ -119,11 +119,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-}
-
-
 - (UITableViewCell*) createCell:(Movie*) movie {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];

@@ -64,8 +64,8 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
 
   [UIView beginAnimations:nil context:NULL];
   {
