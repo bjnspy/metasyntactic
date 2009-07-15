@@ -547,6 +547,10 @@
 
 
 - (BOOL) isStale:(Theater*) theater {
+  if (theater.name.length == 0) {
+    return NO;
+  }
+
   BOOL result;
   [dataGate lock];
   {

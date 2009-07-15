@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Theater : AbstractData<NSCoding> {
+@interface Theater : AbstractData<NSCoding,MapPoint> {
 @private
-    NSString* identifier;
-    NSString* name;
-    NSString* phoneNumber;
+  NSString* identifier;
+  NSString* name;
+  NSString* phoneNumber;
 
-    Location* location;
-    Location* originatingLocation;
+  Location* location;
+  Location* originatingLocation;
 
-    NSArray* movieTitles;
+  NSArray* movieTitles;
 
-    NSString* simpleAddress;
+  NSString* simpleAddress;
 }
 
 @property (readonly, copy) NSString* identifier;
@@ -43,7 +43,6 @@
 + (Theater*) newWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
-- (NSString*) mapUrl;
 - (NSString*) simpleAddress;
 
 @end

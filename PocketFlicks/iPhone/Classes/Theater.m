@@ -162,4 +162,19 @@ property_definition(movieTitles);
   return simpleAddress;
 }
 
+
+- (CLLocationCoordinate2D) coordinate {
+  return location.coordinate;
+}
+
+
+- (NSString*) title {
+  return name;
+}
+
+
+- (NSString*) subtitle {
+  return location.address;
+}
+
 @end

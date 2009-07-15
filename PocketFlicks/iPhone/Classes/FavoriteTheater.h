@@ -25,8 +25,6 @@
 + (FavoriteTheater*) theaterWithName:(NSString*) name
                  originatingLocation:(Location*) originatingLocation;
 
-+ (BOOL) canReadDictionary:(NSDictionary*) dictionary;
-
 - (NSDictionary*) dictionary;
 
 @end
