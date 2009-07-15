@@ -17,38 +17,28 @@
 
 @implementation MetasyntacticStockImages
 
-static UIImage* leftArrow;
-static UIImage* rightArrow;
-static UIImage* navigateBack;
-static UIImage* navigateForward;
-
-+ (void) initialize {
-  if (self == [MetasyntacticStockImages class]) {
-    leftArrow = [[UIImage imageNamed:@"LeftArrow.png"] retain];
-    rightArrow = [[UIImage imageNamed:@"RightArrow.png"] retain];
-    navigateBack = [[UIImage imageNamed:@"Navigate-Back.png"] retain];
-    navigateForward = [[UIImage imageNamed:@"Navigate-Forward.png"] retain];
-  }
-}
-
-
 + (UIImage*) leftArrow {
-  return leftArrow;
+  return [UIImage imageNamed:@"LeftArrow.png"];
 }
 
 
 + (UIImage*) rightArrow {
-  return rightArrow;
+  return [UIImage imageNamed:@"RightArrow.png"];
 }
 
 
 + (UIImage*) navigateBack {
-  return navigateBack;
+  return [UIImage imageNamed:@"Navigate-Back.png"];
 }
 
 
 + (UIImage*) navigateForward {
-  return navigateForward;
+  return [UIImage imageNamed:@"Navigate-Forward.png"];
+}
+
+
++ (UIImage*) directions {
+  return [UIImage imageNamed:@"Directions.png"];
 }
 
 @end

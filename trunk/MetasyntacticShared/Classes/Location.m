@@ -20,6 +20,7 @@
 @interface Location()
 @property double latitude;
 @property double longitude;
+@property (copy) NSString* name;
 @property (copy) NSString* address;
 @property (copy) NSString* city;
 @property (copy) NSString* state;
@@ -32,6 +33,7 @@
 
 property_definition(latitude);
 property_definition(longitude);
+property_definition(name);
 property_definition(address);
 property_definition(city);
 property_definition(state);
@@ -39,62 +41,68 @@ property_definition(postalCode);
 property_definition(country);
 
 - (void) dealloc {
-    self.latitude = 0;
-    self.longitude = 0;
-    self.address = nil;
-    self.city = nil;
-    self.state = nil;
-    self.postalCode = nil;
-    self.country = nil;
-
-    [super dealloc];
+  self.latitude = 0;
+  self.longitude = 0;
+  self.name = nil;
+  self.address = nil;
+  self.city = nil;
+  self.state = nil;
+  self.postalCode = nil;
+  self.country = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithLatitude:(double) latitude_
               longitude:(double) longitude_
+                name:(NSString*) name_
                 address:(NSString*) address_
                    city:(NSString*) city_
                   state:(NSString*) state_
              postalCode:(NSString*) postalCode_
                 country:(NSString*) country_ {
-    if ((self = [super init])) {
-        latitude        = latitude_;
-        longitude       = longitude_;
-        self.address    = [StringUtilities nonNilString:address_];
-        self.city       = [StringUtilities nonNilString:city_];
-        self.state      = [StringUtilities nonNilString:state_];
-        self.postalCode = [StringUtilities nonNilString:postalCode_];
-        self.country    = [StringUtilities nonNilString:country_];
-
-        if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
-            NSRange range = [postalCode rangeOfString:@"-"];
-            self.postalCode = [postalCode substringToIndex:range.location];
-        }
+  if ((self = [super init])) {
+    latitude        = latitude_;
+    longitude       = longitude_;
+    self.name       = [StringUtilities nonNilString:name_];
+    self.address    = [StringUtilities nonNilString:address_];
+    self.city       = [StringUtilities nonNilString:city_];
+    self.state      = [StringUtilities nonNilString:state_];
+    self.postalCode = [StringUtilities nonNilString:postalCode_];
+    self.country    = [StringUtilities nonNilString:country_];
+    
+    if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
+      NSRange range = [postalCode rangeOfString:@"-"];
+      self.postalCode = [postalCode substringToIndex:range.location];
     }
-
-    return self;
+  }
+  
+  return self;
 }
 
 
 - (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithLatitude:[coder decodeDoubleForKey:latitude_key]
-                        longitude:[coder decodeDoubleForKey:longitude_key] address:[coder decodeObjectForKey:address_key]
-                             city:[coder decodeObjectForKey:city_key]
-                            state:[coder decodeObjectForKey:state_key]
-                       postalCode:[coder decodeObjectForKey:postalCode_key]
-                          country:[coder decodeObjectForKey:country_key]];
+  return [self initWithLatitude:[coder decodeDoubleForKey:latitude_key]
+                      longitude:[coder decodeDoubleForKey:longitude_key]
+                           name:[coder decodeObjectForKey:name_key]
+                        address:[coder decodeObjectForKey:address_key]
+                           city:[coder decodeObjectForKey:city_key]
+                          state:[coder decodeObjectForKey:state_key]
+                     postalCode:[coder decodeObjectForKey:postalCode_key]
+                        country:[coder decodeObjectForKey:country_key]];
 }
 
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
-    return [self locationWithLatitude:[[dictionary objectForKey:latitude_key] doubleValue]
-                            longitude:[[dictionary objectForKey:longitude_key] doubleValue]
-                              address:[dictionary objectForKey:address_key]
-                                 city:[dictionary objectForKey:city_key]
-                                state:[dictionary objectForKey:state_key]
-                           postalCode:[dictionary objectForKey:postalCode_key]
-                              country:[dictionary objectForKey:country_key]];
+  return [[[self alloc] initWithLatitude:[[dictionary objectForKey:latitude_key] doubleValue]
+                          longitude:[[dictionary objectForKey:longitude_key] doubleValue]
+                               name:[dictionary objectForKey:name_key]
+                            address:[dictionary objectForKey:address_key]
+                               city:[dictionary objectForKey:city_key]
+                              state:[dictionary objectForKey:state_key]
+                         postalCode:[dictionary objectForKey:postalCode_key]
+                            country:[dictionary objectForKey:country_key]] autorelease];
 }
 
 
@@ -105,179 +113,217 @@ property_definition(country);
                              state:(NSString*) state
                         postalCode:(NSString*) postalCode
                            country:(NSString*) country{
-    return [[[Location alloc] initWithLatitude:latitude
-                                     longitude:longitude
-                                       address:address
-                                          city:city
-                                         state:state
-                                    postalCode:postalCode
-                                       country:country] autorelease];
+  return [[[Location alloc] initWithLatitude:latitude
+                                   longitude:longitude
+                                        name:nil
+                                     address:address
+                                        city:city
+                                       state:state
+                                  postalCode:postalCode
+                                     country:country] autorelease];
 }
 
 
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude {
-    return [Location locationWithLatitude:latitude longitude:longitude address:nil city:nil state:nil postalCode:nil country:nil];
+  return [Location locationWithLatitude:latitude
+                              longitude:longitude
+                                address:nil
+                                   city:nil
+                                  state:nil
+                             postalCode:nil
+                                country:nil];
 }
 
 
++ (Location*) locationWithName:(NSString*) name location:(Location*) location {
+  return [[[Location alloc] initWithLatitude:location.latitude
+                                   longitude:location.longitude
+                                        name:name
+                                     address:location.address
+                                        city:location.city
+                                       state:location.state
+                                  postalCode:location.postalCode
+                                     country:location.country] autorelease];
+}
+  
+
+
 - (void) encodeWithCoder:(NSCoder*) coder {
-    [coder encodeDouble:latitude    forKey:latitude_key];
-    [coder encodeDouble:longitude   forKey:longitude_key];
-    [coder encodeObject:address     forKey:address_key];
-    [coder encodeObject:city        forKey:city_key];
-    [coder encodeObject:state       forKey:state_key];
-    [coder encodeObject:postalCode  forKey:postalCode_key];
-    [coder encodeObject:country     forKey:country_key];
+  [coder encodeDouble:latitude    forKey:latitude_key];
+  [coder encodeDouble:longitude   forKey:longitude_key];
+  [coder encodeObject:name        forKey:name_key];
+  [coder encodeObject:address     forKey:address_key];
+  [coder encodeObject:city        forKey:city_key];
+  [coder encodeObject:state       forKey:state_key];
+  [coder encodeObject:postalCode  forKey:postalCode_key];
+  [coder encodeObject:country     forKey:country_key];
 }
 
 
 - (NSDictionary*) dictionary {
-    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:latitude_key];
-    [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:longitude_key];
-    [dict setObject:address                                 forKey:address_key];
-    [dict setObject:city                                    forKey:city_key];
-    [dict setObject:state                                   forKey:state_key];
-    [dict setObject:postalCode                              forKey:postalCode_key];
-    [dict setObject:country                                 forKey:country_key];
-    return dict;
-}
-
-
-+ (BOOL) canReadDictionary:(NSDictionary*) dictionary {
-    return
-    [[dictionary objectForKey:latitude_key] isKindOfClass:[NSNumber class]] &&
-    [[dictionary objectForKey:longitude_key] isKindOfClass:[NSNumber class]] &&
-    [[dictionary objectForKey:address_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:city_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:state_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:postalCode_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:country_key] isKindOfClass:[NSString class]];
+  NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+  [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:latitude_key];
+  [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:longitude_key];
+  [dict setObject:name                                    forKey:name_key];
+  [dict setObject:address                                 forKey:address_key];
+  [dict setObject:city                                    forKey:city_key];
+  [dict setObject:state                                   forKey:state_key];
+  [dict setObject:postalCode                              forKey:postalCode_key];
+  [dict setObject:country                                 forKey:country_key];
+  return dict;
 }
 
 
 - (double) distanceTo:(Location*) to
         useKilometers:(BOOL) useKilometers {
-    const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
-    const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
-
-    if (to == nil) {
-        return UNKNOWN_DISTANCE;
-    }
-
-    double lat1 = (self.latitude / 180) * M_PI;
-    double lng1 = (self.longitude / 180) * M_PI;
-    double lat2 = (to.latitude / 180) * M_PI;
-    double lng2 = (to.longitude / 180) * M_PI;
-
-    double diff = lng1 - lng2;
-
-    if (diff < 0) { diff = -diff; }
-    if (diff > M_PI) { diff = 2 * M_PI; }
-
-    double distance =
-    acos(sin(lat2) * sin(lat1) +
-         cos(lat2) * cos(lat1) * cos(diff));
-
-    if (useKilometers) {
-        distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
-    } else {
-        distance *= GREAT_CIRCLE_RADIUS_MILES;
-    }
-
-    return distance;
+  if (self == to) {
+    return 0;
+  }
+  
+  const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
+  const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
+  
+  if (to == nil) {
+    return UNKNOWN_DISTANCE;
+  }
+  
+  double lat1 = (self.latitude / 180) * M_PI;
+  double lng1 = (self.longitude / 180) * M_PI;
+  double lat2 = (to.latitude / 180) * M_PI;
+  double lng2 = (to.longitude / 180) * M_PI;
+  
+  double diff = lng1 - lng2;
+  
+  if (diff < 0) { diff = -diff; }
+  if (diff > M_PI) { diff = 2 * M_PI; }
+  
+  double distance =
+  acos(sin(lat2) * sin(lat1) +
+       cos(lat2) * cos(lat1) * cos(diff));
+  
+  if (useKilometers) {
+    distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
+  } else {
+    distance *= GREAT_CIRCLE_RADIUS_MILES;
+  }
+  
+  return distance;
 }
 
 
 - (double) distanceTo:(Location*) to {
-    return [self distanceTo:to useKilometers:[AbstractApplication useKilometers]];
+  return [self distanceTo:to useKilometers:[AbstractApplication useKilometers]];
 }
 
 
 - (double) distanceToMiles:(Location*) to {
-    return [self distanceTo:to useKilometers:NO];
+  return [self distanceTo:to useKilometers:NO];
 }
 
 
 - (double) distanceToKilometers:(Location*) to {
-    return [self distanceTo:to useKilometers:YES];
+  return [self distanceTo:to useKilometers:YES];
 }
 
 
 - (BOOL) isEqual:(id) anObject {
-    Location* other = anObject;
+  if (self == anObject) {
+    return YES;
+  }
+  
+  if (![anObject isKindOfClass:[Location class]]) {
+    return NO;
+  }
 
-    return latitude == other.latitude &&
-           longitude == other.longitude;
+  Location* other = anObject;
+  
+  return latitude == other.latitude &&
+  longitude == other.longitude;
 }
 
 
 - (NSUInteger) hash {
-    double hash = latitude + longitude;
-
-    return *(NSUInteger*)&hash;
+  double hash = latitude + longitude;
+  
+  return *(NSUInteger*)&hash;
 }
 
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(%d,%d)", latitude, longitude];
+  return [NSString stringWithFormat:@"(%d,%d)", latitude, longitude];
 }
 
 
 - (NSString*) fullDisplayString {
-    //TODO: switch on Locale here
-
-    if (city.length || state.length || postalCode.length) {
-        if (city.length) {
-            if (state.length || postalCode.length) {
-                return [NSString stringWithFormat:@"%@, %@ %@", city, state, postalCode];
-            } else {
-                return city;
-            }
-        } else {
-            return [NSString stringWithFormat:@"%@ %@", state, postalCode];
-        }
+  //TODO: switch on Locale here
+  
+  if (city.length || state.length || postalCode.length) {
+    if (city.length) {
+      if (state.length || postalCode.length) {
+        return [NSString stringWithFormat:@"%@, %@ %@", city, state, postalCode];
+      } else {
+        return city;
+      }
+    } else {
+      return [NSString stringWithFormat:@"%@ %@", state, postalCode];
     }
-
-    return @"";
+  }
+  
+  return @"";
 }
 
 
 - (id) copyWithZone:(NSZone*) zone {
-    return [self retain];
+  return [self retain];
 }
 
 
 - (NSString*) japaneseMapArguments {
-    return [NSString stringWithFormat:@"%@%@%@", state, city, address];
+  return [NSString stringWithFormat:@"%@%@%@", state, city, address];
 }
 
 
 - (NSString*) defaultMapArguments {
-    return [NSString stringWithFormat:@"%@, %@, %@ %@",
-            address,
-            city,
-            state,
-            postalCode];
+  return [NSString stringWithFormat:@"%@, %@, %@ %@",
+          address,
+          city,
+          state,
+          postalCode];
 }
 
 
 - (NSString*) mapUrl {
-    NSString* arguments;
-    if ([@"JP" isEqual:country]) {
-        arguments = [self japaneseMapArguments];
-    } else {
-        arguments = [self defaultMapArguments];
+  NSString* arguments;
+  if ([@"JP" isEqual:country]) {
+    arguments = [self japaneseMapArguments];
+  } else {
+    arguments = [self defaultMapArguments];
+    if (name.length > 0) {
+      arguments = [NSString stringWithFormat:@"%@ (%@)", arguments, name];
     }
+  }
+
+  NSString* encoded = [StringUtilities stringByAddingPercentEscapes:arguments];
+  if (encoded.length > 0) {
+    return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", encoded];
+  } else {
+    return [NSString stringWithFormat:@"http://maps.google.com/maps?sll=%f,%f", latitude, longitude];
+  }
+}
+
+- (CLLocationCoordinate2D) coordinate {
+  CLLocationCoordinate2D result = { latitude, longitude };
+  return result;
+}
+
+- (NSString*) title {
+  return name;
+}
 
 
-    NSString* encoded = [StringUtilities stringByAddingPercentEscapes:arguments];
-    if (encoded != nil) {
-        return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", encoded];
-    } else {
-        return [NSString stringWithFormat:@"http://maps.google.com/maps?sll=%f,%f", latitude, longitude];
-    }
+- (NSString*) subtitle {
+  return address;
 }
 
 @end
