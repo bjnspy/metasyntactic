@@ -105,7 +105,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 - (void) viewWillDisappear:(BOOL) animated {
   [super viewWillDisappear:animated];
-  [NotificationCenter disableNotifications];
+  [NotificationCenter enableNotifications];
   mapView.delegate = nil;
 }
 
