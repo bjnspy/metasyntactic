@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MapViewController : UIViewController<MKMapViewDelegate> {
+#import "AbstractViewController.h"
+
+@interface MapViewController : AbstractViewController<MKMapViewDelegate> {
 @private
   id<MapViewControllerDelegate> mapDelegate;
   id<MapPoint> center;

@@ -97,14 +97,14 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
   [NotificationCenter disableNotifications];
 }
 
 
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
+- (void) onBeforeViewControllerPopped {
+  [super onBeforeViewControllerPopped];
   [NotificationCenter enableNotifications];
   mapView.delegate = nil;
 }
