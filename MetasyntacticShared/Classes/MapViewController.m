@@ -203,7 +203,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     result = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier] autorelease];
     result.animatesDrop = YES;
     result.canShowCallout = YES;
-    
+
     if (mapDelegate != nil) {
       if ([mapDelegate hasDetailsForAnnotation:annotation]) {
         UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -240,9 +240,9 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 - (void) onDirectionsTappedForView:(MKAnnotationView*) view {
   id<MKAnnotation> location = view.annotation;
-  
+
   MKUserLocation* userLocation = mapView.userLocation;
-  
+
   NSString* address = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
                        userLocation.coordinate.latitude,
                        userLocation.coordinate.longitude,
@@ -260,7 +260,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 - (void)mapView:(MKMapView *)mapView_ annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIButton *)button {
   if (button.tag == DIRECTIONS_TAG) {
     [self onDirectionsTappedForView:view];
-  } else {  
+  } else {
     [self onDetailsTappedForView:view];
   }
 }

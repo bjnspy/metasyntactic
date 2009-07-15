@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AllTheatersViewController : AbstractTableViewController {
+@interface AllTheatersViewController : AbstractTableViewController<MapViewControllerDelegate> {
 @private
-    UISegmentedControl* segmentedControl;
+  UISegmentedControl* segmentedControl;
 
-    UISearchBar* searchBar;
+  UISearchBar* searchBar;
 
-    NSArray* sortedTheaters;
-    NSArray* sectionTitles;
-    MultiDictionary* sectionTitleToContentsMap;
+  NSArray* sortedTheaters;
+  NSArray* sectionTitles;
+  MultiDictionary* sectionTitleToContentsMap;
 
-    NSArray* indexTitles;
+  NSArray* indexTitles;
 }
 
 @end
