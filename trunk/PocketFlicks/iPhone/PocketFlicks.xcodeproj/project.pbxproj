@@ -11,6 +11,7 @@
 		74200C2C0FD2527B00DEE16B /* StockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74200C2A0FD2527B00DEE16B /* StockImages.m */; };
 		744A60B30FDDFEC60007C60B /* AbstractWebsiteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744A60B20FDDFEC60007C60B /* AbstractWebsiteCache.m */; };
 		744A64E10FDEE9610007C60B /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FD060FD1B2E50015D9F8 /* libMetasyntacticShared.a */; };
+		7454A05F100DD886006CC816 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164B21006D88D003D852F /* MessageUI.framework */; };
 		747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179A10FDC5B6900B24ECD /* libProtocolBuffers.a */; };
 		747C39B60FD0814400411801 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C39B40FD0814400411801 /* LocationManager.m */; };
 		7489BB640FFE840E0044C293 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BB600FFE840E0044C293 /* LeftArrow.png */; };
@@ -708,6 +709,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7454A05F100DD886006CC816 /* MessageUI.framework in Frameworks */,
 				744A64E10FDEE9610007C60B /* libMetasyntacticShared.a in Frameworks */,
 				747179AE0FDC5BC700B24ECD /* libProtocolBuffers.a in Frameworks */,
 				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
