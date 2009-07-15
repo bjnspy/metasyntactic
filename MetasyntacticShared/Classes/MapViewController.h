@@ -14,6 +14,7 @@
 
 @interface MapViewController : UIViewController<MKMapViewDelegate> {
 @private
+  id<MapViewControllerDelegate> mapDelegate;
   id<MapPoint> center;
   NSArray* locations;
 
@@ -21,6 +22,8 @@
   BOOL locationFound;
 }
 
-+ (MapViewController*) controllerWithCenter:(id<MKAnnotation>) center locations:(NSArray*) locations;
+@property (assign) id<MapViewControllerDelegate> mapDelegate;
+
++ (MapViewController*) controllerWithCenter:(id<MapPoint>) center locations:(NSArray*) locations;
 
 @end

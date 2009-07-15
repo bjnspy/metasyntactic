@@ -1252,7 +1252,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) didSelectMapTheatersRow {
   Theater* theater = [theatersArray objectAtIndex:0];
-  [self.abstractNavigationController pushMapWithCenter:theater locations:theatersArray animated:YES];
+  [self.abstractNavigationController pushMapWithCenter:theater locations:theatersArray delegate:self animated:YES];
 }
 
 
@@ -1333,6 +1333,16 @@ const NSInteger POSTER_TAG = -1;
   } else {
     [self deleteMovieWasTappedForRow:imageView.tag / 2];
   }
+}
+
+
+- (BOOL) hasDetailsForAnnotation:(id<MKAnnotation>) annotation {
+  return YES;
+}
+
+
+- (void) detailsButtonTappedForAnnotation:(Theater*) theater {
+  [self.commonNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 @end

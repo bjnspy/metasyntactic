@@ -56,6 +56,7 @@
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "MapPoint.h"
+#import "MapViewControllerDelegate.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticSharedApplicationDelegate.h"
 #import "MutableMultiDictionary.h"

@@ -13,5 +13,6 @@
 // limitations under the License.
 
 @protocol MapPoint<MKAnnotation>
+- (Location*) location;
 - (NSString*) mapUrl;
 @end
