@@ -43,7 +43,6 @@
 + (Theater*) newWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
-- (NSString*) mapUrl;
 - (NSString*) simpleAddress;
 
 @end
