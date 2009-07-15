@@ -126,6 +126,8 @@
 		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
 		74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
 		74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E530F034C4100E5450A /* MutableNetflixCache.m */; };
+		74A60CB1100D3F9600806BBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A60CB0100D3F9600806BBC /* MapKit.framework */; };
+		74A61312100DAD4000806BBC /* Directions.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A61311100DAD4000806BBC /* Directions.png */; };
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
@@ -507,6 +509,8 @@
 		74A33E520F034C4100E5450A /* MutableNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableNetflixCache.h; sourceTree = "<group>"; };
 		74A33E530F034C4100E5450A /* MutableNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableNetflixCache.m; sourceTree = "<group>"; };
 		74A3F11D0E687D26007ED6DC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74A60CB0100D3F9600806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74A61311100DAD4000806BBC /* Directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Directions.png; sourceTree = "<group>"; };
 		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
 		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
 		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
@@ -670,6 +674,7 @@
 				7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */,
 				7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */,
 				74E164961006D4C2003D852F /* libsqlite3.dylib in Frameworks */,
+				74A60CB1100D3F9600806BBC /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +724,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				748B23570E843AFE00322E25 /* Entitlements.plist */,
-				74E164951006D4C2003D852F /* libsqlite3.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1014,6 +1018,8 @@
 		7463989A0F7EC9BB00B2F64C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74E164951006D4C2003D852F /* libsqlite3.dylib */,
+				74A60CB0100D3F9600806BBC /* MapKit.framework */,
 				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
 				7463987C0F7EC99F00B2F64C /* AddressBook.framework */,
 				746398880F7EC9A800B2F64C /* CFNetwork.framework */,
@@ -1172,6 +1178,7 @@
 		7489BAF50FFD67B00044C293 /* MetasynctacticShared */ = {
 			isa = PBXGroup;
 			children = (
+				74A61311100DAD4000806BBC /* Directions.png */,
 				7489BAF60FFD67B00044C293 /* LeftArrow.png */,
 				7489BAF70FFD67B00044C293 /* Navigate-Back.png */,
 				7489BAF80FFD67B00044C293 /* Navigate-Forward.png */,
@@ -1556,6 +1563,7 @@
 				7489BAFB0FFD67B00044C293 /* Navigate-Back.png in Resources */,
 				7489BAFC0FFD67B00044C293 /* Navigate-Forward.png in Resources */,
 				7489BAFD0FFD67B00044C293 /* RightArrow.png in Resources */,
+				74A61312100DAD4000806BBC /* Directions.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

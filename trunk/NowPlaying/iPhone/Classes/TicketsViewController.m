@@ -253,7 +253,7 @@
 
 - (void) didSelectCommandAtRow:(NSInteger) row {
   if (row == 0) {
-    [Application openMap:theater.mapUrl];
+    [self.abstractNavigationController pushMapWithCenter:theater.location animated:YES];
   } else if (row == 1) {
     [Application makeCall:theater.phoneNumber];
   }
