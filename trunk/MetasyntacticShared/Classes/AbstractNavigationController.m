@@ -131,13 +131,13 @@
 }
 
 
-- (void) pushMapWithCenter:(Location*) center animated:(BOOL) animated {
-  [self pushMapWithCenter:center total:[NSArray array] animated:YES];
+- (void) pushMapWithCenter:(id<MKAnnotation>) center animated:(BOOL) animated {
+  [self pushMapWithCenter:center locations:[NSArray array] animated:YES];
 }
 
 
-- (void) pushMapWithCenter:(Location*) center total:(NSArray*) total animated:(BOOL) animated {
-  UIViewController* controller = [MapViewController controllerWithCenter:center total:total];
+- (void) pushMapWithCenter:(id<MKAnnotation>) center locations:(NSArray*) locations animated:(BOOL) animated {
+  UIViewController* controller = [MapViewController controllerWithCenter:center locations:locations];
   [self pushViewController:controller animated:YES];
 
 }

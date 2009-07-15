@@ -535,6 +535,11 @@ const NSInteger POSTER_TAG = -1;
   sections += 1;
 
   // theaters
+  if (theatersArray.count > 0) {
+    // Map button
+    sections += 1;
+  }
+  
   sections += theatersArray.count;
 
   // show hidden theaters
@@ -578,7 +583,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-  return section - 2;
+  return section - 3;
 }
 
 
@@ -605,6 +610,10 @@ const NSInteger POSTER_TAG = -1;
 
   if (section == 1) {
     return [self numberOfRowsInNetflixSection];
+  }
+  
+  if (section == 2 && theatersArray.count > 0) {
+    return 1;
   }
 
   if ([self isTheaterSection:section]) {
@@ -745,7 +754,7 @@ const NSInteger POSTER_TAG = -1;
     }
   }
 
-  // show hidden theaters
+  // show hidden theaters / map theaters
   return tableView.rowHeight;
 }
 
@@ -837,6 +846,15 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (UITableViewCell*) mapTheatersCell {
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  cell.textLabel.textAlignment = UITextAlignmentCenter;
+  cell.textLabel.text = NSLocalizedString(@"Map Theaters", nil);
+  cell.textLabel.textColor = [ColorCache commandColor];
+  return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
@@ -845,6 +863,10 @@ const NSInteger POSTER_TAG = -1;
 
   if (indexPath.section == 1) {
     return [self cellForNetflixRow:indexPath.row];
+  }
+  
+  if (indexPath.section == 2 && theatersArray.count > 0) {
+    return [self mapTheatersCell];
   }
 
   if ([self isTheaterSection:indexPath.section]) {
@@ -1228,15 +1250,24 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) didSelectMapTheatersRow {
+  Theater* theater = [theatersArray objectAtIndex:0];
+  [self.abstractNavigationController pushMapWithCenter:theater locations:theatersArray animated:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section == 0) {
-    [self tableView:tableView didSelectHeaderRow:indexPath.row];
-    return;
+    return [self tableView:tableView didSelectHeaderRow:indexPath.row];
   }
 
   if (indexPath.section == 1) {
     return;
+  }
+  
+  if (indexPath.section == 2 && theatersArray.count > 0) {
+    return [self didSelectMapTheatersRow];
   }
 
   if ([self isTheaterSection:indexPath.section]) {
