@@ -27,7 +27,8 @@
 - (void) pushFullScreenImageList:(AbstractFullScreenImageListViewController*) controller;
 - (void) popFullScreenImageList;
 
-- (void) pushMapWithCenter:(id<MKAnnotation>) center animated:(BOOL) animated;
-- (void) pushMapWithCenter:(id<MKAnnotation>) center locations:(NSArray*) locations animated:(BOOL) animated;
+- (void) pushMapWithCenter:(id<MapPoint>) center animated:(BOOL) animated;
+- (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations animated:(BOOL) animated;
+- (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations delegate:(id<MapViewControllerDelegate>) delegate animated:(BOOL) animated;
 
 @end

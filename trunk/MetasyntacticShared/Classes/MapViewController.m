@@ -17,6 +17,7 @@
 #import "AbstractApplication.h"
 #import "Location.h"
 #import "MapPoint.h"
+#import "MapViewControllerDelegate.h"
 #import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 
@@ -28,11 +29,16 @@
 
 @implementation MapViewController
 
+static const NSInteger DIRECTIONS_TAG = 1;
+static const NSInteger DETAILS_TAG = 2;
+
+@synthesize mapDelegate;
 @synthesize center;
 @synthesize locations;
 @synthesize mapView;
 
 - (void) dealloc {
+  self.mapDelegate = nil;
   self.center = nil;
   self.locations = nil;
   self.mapView = nil;
@@ -64,7 +70,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   }
 
   NSArray* sorted = [locations sortedArrayUsingFunction:comapreByDistance context:center];
-  sorted = [sorted subarrayWithRange:NSMakeRange(0, MIN(5, locations.count))];
+  sorted = [sorted subarrayWithRange:NSMakeRange(0, MIN(9, locations.count))];
 
   NSMutableArray* array = [NSMutableArray arrayWithArray:sorted];
   [array removeObject:center];
@@ -73,18 +79,19 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (id) initWithCenter:(id<MKAnnotation>) center_
+- (id) initWithCenter:(id<MapPoint>) center_
             locations:(NSArray*) locations_ {
   if ((self = [super init])) {
     self.center = center_;
     self.locations = locations_;
     self.hidesBottomBarWhenPushed = YES;
+    self.title = center.location.city;
   }
   return self;
 }
 
 
-+ (MapViewController*) controllerWithCenter:(id<MKAnnotation>) center
++ (MapViewController*) controllerWithCenter:(id<MapPoint>) center
                                   locations:(NSArray*) locations {
   return [[[MapViewController alloc] initWithCenter:center locations:locations] autorelease];
 }
@@ -110,6 +117,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:image forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    button.tag = DIRECTIONS_TAG;
 
     view.leftCalloutAccessoryView = button;
   }
@@ -121,12 +129,13 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 - (void) findLocation {
   CLLocation* userLocation = mapView.userLocation.location;
   if (userLocation == nil || userLocation.horizontalAccuracy < 0) {
+    [self performSelector:@selector(findLocation) withObject:nil afterDelay:2];
     return;
   }
 
   locationFound = YES;
   for (id annotation in mapView.annotations) {
-    if ([annotation isKindOfClass:[Location class]]) {
+    if ([annotation conformsToProtocol:@protocol(MapPoint)]) {
       MKAnnotationView* view = [mapView viewForAnnotation:annotation];
       [self updateAccessory:view];
     }
@@ -194,6 +203,14 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     result = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier] autorelease];
     result.animatesDrop = YES;
     result.canShowCallout = YES;
+    
+    if (mapDelegate != nil) {
+      if ([mapDelegate hasDetailsForAnnotation:annotation]) {
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        button.tag = DETAILS_TAG;
+        result.rightCalloutAccessoryView = button;
+      }
+    }
   }
 
   result.annotation = annotation;
@@ -221,16 +238,31 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (void)mapView:(MKMapView *)mapView_ annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIButton *)button {
+- (void) onDirectionsTappedForView:(MKAnnotationView*) view {
   id<MKAnnotation> location = view.annotation;
+  
   MKUserLocation* userLocation = mapView.userLocation;
-
+  
   NSString* address = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
                        userLocation.coordinate.latitude,
                        userLocation.coordinate.longitude,
                        location.coordinate.latitude,
                        location.coordinate.longitude];
   [AbstractApplication openMap:address];
+}
+
+
+- (void) onDetailsTappedForView:(MKAnnotationView*) view {
+  [mapDelegate detailsButtonTappedForAnnotation:view.annotation];
+}
+
+
+- (void)mapView:(MKMapView *)mapView_ annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIButton *)button {
+  if (button.tag == DIRECTIONS_TAG) {
+    [self onDirectionsTappedForView:view];
+  } else {  
+    [self onDetailsTappedForView:view];
+  }
 }
 
 @end

@@ -131,15 +131,20 @@
 }
 
 
-- (void) pushMapWithCenter:(id<MKAnnotation>) center animated:(BOOL) animated {
+- (void) pushMapWithCenter:(id<MapPoint>) center animated:(BOOL) animated {
   [self pushMapWithCenter:center locations:[NSArray array] animated:YES];
 }
 
 
-- (void) pushMapWithCenter:(id<MKAnnotation>) center locations:(NSArray*) locations animated:(BOOL) animated {
-  UIViewController* controller = [MapViewController controllerWithCenter:center locations:locations];
-  [self pushViewController:controller animated:YES];
+- (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations animated:(BOOL) animated {
+  [self pushMapWithCenter:center locations:locations delegate:nil animated:YES];
+}
 
+
+- (void) pushMapWithCenter:(id<MapPoint>) center locations:(NSArray*) locations delegate:(id<MapViewControllerDelegate>) delegate animated:(BOOL) animated {
+  MapViewController* controller = [MapViewController controllerWithCenter:center locations:locations];
+  controller.mapDelegate = delegate;
+  [self pushViewController:controller animated:YES];
 }
 
 @end
