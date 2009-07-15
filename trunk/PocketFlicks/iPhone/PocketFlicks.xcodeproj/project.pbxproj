@@ -247,6 +247,7 @@
 		74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1497A0F9594B700FB7BDA /* MessageUI.framework */; };
+		74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164B41006D88D003D852F /* libsqlite3.dylib */; };
 		74E3EAA60FAD1CDA004D8599 /* LocalizableStringsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */; };
 /* End PBXBuildFile section */
 
@@ -620,6 +621,8 @@
 		74E033610FB8B97B009D9755 /* ImageLoading-Neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ImageLoading-Neutral.png"; path = "Resources/ImageLoading-Neutral.png"; sourceTree = "<group>"; };
 		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1497A0F9594B700FB7BDA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74E164B21006D88D003D852F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74E164B41006D88D003D852F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		74E3EAA30FAD1CDA004D8599 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
 		74E3EAA40FAD1CDA004D8599 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
@@ -717,6 +720,7 @@
 				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
 				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
 				74E1497B0F9594B700FB7BDA /* MessageUI.framework in Frameworks */,
+				74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +770,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				748B23570E843AFE00322E25 /* Entitlements.plist */,
+				74E164B21006D88D003D852F /* MessageUI.framework */,
+				74E164B41006D88D003D852F /* libsqlite3.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

@@ -179,7 +179,7 @@
   NSLog(@"Location found! Timestamp: %@. Accuracy: %f", newLocation.timestamp, newLocation.horizontalAccuracy);
   if (newLocation != nil) {
     [[Beacon shared] setBeaconLocation:newLocation];
-    
+
     if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
       [locationManager stopUpdatingLocation];
       [[OperationQueue operationQueue] performSelector:@selector(findLocationBackgroundEntryPoint:)
