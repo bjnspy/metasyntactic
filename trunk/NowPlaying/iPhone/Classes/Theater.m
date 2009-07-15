@@ -130,6 +130,14 @@ property_definition(movieTitles);
 
 
 - (BOOL) isEqual:(id) anObject {
+  if (self == anObject) {
+    return YES;
+  }
+  
+  if (![anObject isKindOfClass:[Theater class]]) {
+    return NO;
+  }
+  
   Theater* other = anObject;
   return [name isEqual:other.name];
 }
