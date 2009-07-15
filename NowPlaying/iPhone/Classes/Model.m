@@ -369,17 +369,8 @@ static Model* model = nil;
 
   {
     id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
-    if ([previousValue isKindOfClass:[NSArray class]]) {
-      NSMutableArray* elements = [NSMutableArray array];
-
-      for (id element in previousValue) {
-        if ([element isKindOfClass:[NSDictionary class]] &&
-            [FavoriteTheater canReadDictionary:element]) {
-          [elements addObject:element];
-        }
-      }
-
-      [result setObject:elements forKey:FAVORITE_THEATERS];
+    if (previousValue != nil) {
+      [result setObject:previousValue forKey:FAVORITE_THEATERS];
     }
   }
 

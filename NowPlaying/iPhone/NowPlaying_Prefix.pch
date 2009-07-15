@@ -17,6 +17,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import <MessageUI/MessageUI.h>
 #import <Security/Security.h>

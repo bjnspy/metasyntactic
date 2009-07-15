@@ -346,7 +346,7 @@
 
   if (section == 0) {
     if (row == 0) {
-      [Application openMap:theater.mapUrl];
+      return [self.abstractNavigationController pushMapWithCenter:theater.location animated:YES];
     } else {
       [Application makeCall:theater.phoneNumber];
       // no call will be made if this is an iPod touch.

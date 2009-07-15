@@ -320,6 +320,7 @@
                                                 state:state
                                            postalCode:postalCode
                                               country:country];
+  location = [Location locationWithName:name location:location];
 
   [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                 name:name
