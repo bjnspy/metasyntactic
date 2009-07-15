@@ -35,7 +35,9 @@
 
 @implementation OAServiceTicket
 
-@synthesize request, response, succeeded;
+@synthesize request;
+@synthesize response;
+@synthesize succeeded;
 
 - (void) dealloc {
   self.request = nil;

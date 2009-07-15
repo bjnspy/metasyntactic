@@ -36,7 +36,7 @@
   if ((self = [super initWithDictionary:mutableDictionary_])) {
     self.mutableDictionary = mutableDictionary_;
   }
-  
+
   return self;
 }
 

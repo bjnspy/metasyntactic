@@ -539,7 +539,7 @@ const NSInteger POSTER_TAG = -1;
     // Map button
     sections += 1;
   }
-  
+
   sections += theatersArray.count;
 
   // show hidden theaters
@@ -611,7 +611,7 @@ const NSInteger POSTER_TAG = -1;
   if (section == 1) {
     return [self numberOfRowsInNetflixSection];
   }
-  
+
   if (section == 2 && theatersArray.count > 0) {
     return 1;
   }
@@ -864,7 +864,7 @@ const NSInteger POSTER_TAG = -1;
   if (indexPath.section == 1) {
     return [self cellForNetflixRow:indexPath.row];
   }
-  
+
   if (indexPath.section == 2 && theatersArray.count > 0) {
     return [self mapTheatersCell];
   }
@@ -1265,7 +1265,7 @@ const NSInteger POSTER_TAG = -1;
   if (indexPath.section == 1) {
     return;
   }
-  
+
   if (indexPath.section == 2 && theatersArray.count > 0) {
     return [self didSelectMapTheatersRow];
   }

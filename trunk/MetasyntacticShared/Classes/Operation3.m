@@ -49,7 +49,7 @@
                            priority:priority_])) {
     self.argument3 = argument3_;
   }
-  
+
   return self;
 }
 

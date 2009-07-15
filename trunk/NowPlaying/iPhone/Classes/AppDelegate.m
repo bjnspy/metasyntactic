@@ -60,7 +60,7 @@ static AppDelegate* appDelegate = nil;
   [Beacon initAndStartBeaconWithApplicationCode:@"989c6bce5327bb013357eff94148592a"
                                 useCoreLocation:NO
                                     useOnlyWiFi:NO];
-  
+
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
 
   appDelegate = self;

@@ -20,7 +20,7 @@
   BOOL readonlyMode;
   NSArray* visibleIndexPaths;
   UISearchDisplayController* searchDisplayController;
-  
+
 @private
   BOOL onBeforeViewControllerPushedCalled;
   BOOL onAfterViewControllerPushedCalled;

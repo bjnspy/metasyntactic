@@ -32,7 +32,7 @@
   if ((self = [super init])) {
     self.dictionary = dictionary_;
   }
-  
+
   return self;
 }
 
@@ -46,7 +46,7 @@
   if ((self = [super init])) {
     self.dictionary = [NSDictionary dictionary];
   }
-  
+
   return self;
 }
 

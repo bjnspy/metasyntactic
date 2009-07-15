@@ -41,7 +41,7 @@
   if ((self = [super initWithTarget:target_ selector:selector_ withObject:argument1_])) {
     self.argument2 = argument2_;
   }
-  
+
   return self;
 }
 

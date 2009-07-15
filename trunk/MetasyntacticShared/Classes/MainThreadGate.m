@@ -25,7 +25,7 @@
 
 - (void) dealloc {
   self.condition = nil;
-  
+
   [super dealloc];
 }
 
@@ -34,7 +34,7 @@
   if ((self = [super init])) {
     self.condition = [[[NSCondition alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
@@ -71,7 +71,7 @@
       NSAssert(backgroundThreadRunning, @"");
       backgroundThreadRunning = NO;
     }
-    
+
     [condition signal];
   }
   [condition unlock];

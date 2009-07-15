@@ -22,7 +22,6 @@
 @property BOOL limitLength;
 @property (retain) UILabel* synopsisChunk1Label;
 @property (retain) UILabel* synopsisChunk2Label;
-@property CGSize imageSize;
 @end
 
 
@@ -32,14 +31,12 @@
 @synthesize limitLength;
 @synthesize synopsisChunk1Label;
 @synthesize synopsisChunk2Label;
-@synthesize imageSize;
 
 - (void) dealloc {
   self.synopsis = nil;
   self.limitLength = NO;
   self.synopsisChunk1Label = nil;
   self.synopsisChunk2Label = nil;
-  self.imageSize = CGSizeZero;
 
   [super dealloc];
 }
@@ -68,7 +65,7 @@
     self.limitLength = limitLength_;
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.imageSize = [self calculatePreferredImageSize:imageView.image];
+    imageSize = [self calculatePreferredImageSize:imageView.image];
 
     self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -81,7 +78,7 @@
     synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
     synopsisChunk2Label.numberOfLines = 0;
 
-    imageView.frame = CGRectMake(5, 5, self.imageSize.width, self.imageSize.height);
+    imageView.frame = CGRectMake(5, 5, imageSize.width, imageSize.height);
 
     [self.contentView addSubview:imageView];
     [self.contentView addSubview:synopsisChunk1Label];
@@ -157,8 +154,8 @@
     return 0;
   }
 
-  CGFloat chunk1Height = self.imageSize.height;
-  int chunk1X = 5 + self.imageSize.width + 5;
+  CGFloat chunk1Height = imageSize.height;
+  int chunk1X = 5 + imageSize.width + 5;
   int chunk1Width = cellWidth - 5 - chunk1X;
   CGSize chunk1Size = CGSizeMake(chunk1Width, chunk1Height);
 
@@ -238,10 +235,10 @@
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:self.contentView.frame.size.width];
 
-  int chunk1X = 5 + self.imageSize.width + 5;
+  int chunk1X = 5 + imageSize.width + 5;
   int chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
 
-  CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, self.imageSize.height);
+  CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, imageSize.height);
   synopsisChunk1Label.frame = chunk1Frame;
   synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
   [synopsisChunk1Label sizeToFit];
@@ -258,13 +255,13 @@
                                       constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                           lineBreakMode:UILineBreakModeWordWrap].height;
 
-    CGRect chunk2Frame =  CGRectMake(5, self.imageSize.height + 5, chunk2Width, chunk2Height);
+    CGRect chunk2Frame =  CGRectMake(5, imageSize.height + 5, chunk2Width, chunk2Height);
     synopsisChunk2Label.text = synopsisChunk2;
     synopsisChunk2Label.frame = chunk2Frame;
 
     // shift the first chunk down to align with the second
     chunk1Frame = synopsisChunk1Label.frame;
-    chunk1Frame.origin.y = self.imageSize.height + 5 - chunk1Frame.size.height;
+    chunk1Frame.origin.y = imageSize.height + 5 - chunk1Frame.size.height;
     synopsisChunk1Label.frame = chunk1Frame;
   }
 }
@@ -282,7 +279,7 @@
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:width - 20];
 
-  double h1 = self.imageSize.height;
+  double h1 = imageSize.height;
 
   if (synopsisSplit == synopsis.length) {
     return h1 + 10;

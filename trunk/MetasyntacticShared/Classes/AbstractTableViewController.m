@@ -51,7 +51,7 @@
   if (visible) {
     return;
   }
-  
+
   if (readonlyMode) {
     return;
   }
@@ -150,7 +150,7 @@
     onBeforeViewControllerPushedCalled = YES;
     [self onBeforeViewControllerPushed];
   }
-  
+
   self.visible = YES;
   [self reloadTableViewData];
 }
@@ -158,12 +158,12 @@
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-  
+
   if (!onAfterViewControllerPushedCalled) {
     onAfterViewControllerPushedCalled = YES;
     [self onAfterViewControllerPushed];
   }
-  
+
   [MetasyntacticSharedApplication saveNavigationStack:self.navigationController];
 }
 
