@@ -114,11 +114,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-}
-
-
 - (void) majorRefresh {
     if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
         segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;

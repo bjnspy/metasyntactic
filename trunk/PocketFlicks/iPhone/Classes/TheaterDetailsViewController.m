@@ -120,11 +120,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-}
-
-
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
@@ -351,7 +346,7 @@
 
   if (section == 0) {
     if (row == 0) {
-      [Application openMap:theater.mapUrl];
+      return [self.abstractNavigationController pushMapWithCenter:theater animated:YES];
     } else {
       [Application makeCall:theater.phoneNumber];
       // no call will be made if this is an iPod touch.

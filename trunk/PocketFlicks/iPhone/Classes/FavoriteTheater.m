@@ -63,14 +63,6 @@ property_definition(originatingLocation);
 }
 
 
-+ (BOOL) canReadDictionary:(NSDictionary*) dictionary {
-  return
-  [[dictionary objectForKey:name_key] isKindOfClass:[NSString class]] &&
-  [[dictionary objectForKey:originatingLocation_key] isKindOfClass:[NSDictionary class]] &&
-  [Location canReadDictionary:[dictionary objectForKey:originatingLocation_key]];
-}
-
-
 - (NSDictionary*) dictionary {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   [result setObject:name                              forKey:name_key];
