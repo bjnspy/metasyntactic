@@ -32,7 +32,8 @@
 
 @implementation OAConsumer
 
-@synthesize key, secret;
+@synthesize key;
+@synthesize secret;
 
 - (void) dealloc {
   self.key = nil;

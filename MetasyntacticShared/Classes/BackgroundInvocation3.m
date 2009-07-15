@@ -53,7 +53,7 @@
                              daemon:daemon_])) {
     self.argument3 = argument3_;
   }
-  
+
   return self;
 }
 

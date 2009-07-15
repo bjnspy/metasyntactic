@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  MapViewController.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 7/14/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "MapViewController.h"
 
@@ -41,7 +47,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
   double distance1 = [Location distanceFrom:center.coordinate to:location1.coordinate useKilometers:YES];
   double distance2 = [Location distanceFrom:center.coordinate to:location2.coordinate useKilometers:YES];
-  
+
   if (distance1 == distance2) {
     return NSOrderedSame;
   } else if (distance1 < distance2) {
@@ -62,7 +68,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
   NSMutableArray* array = [NSMutableArray arrayWithArray:sorted];
   [array removeObject:center];
-  
+
   return array;
 }
 
@@ -104,7 +110,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:image forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    
+
     view.leftCalloutAccessoryView = button;
   }
 
@@ -130,18 +136,18 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 - (void) loadView {
   [super loadView];
-  
+
   NSArray* nearby = [self determineNearby];
-  
+
   NSMutableArray* remainder = [NSMutableArray arrayWithArray:locations];
   [remainder removeObject:center];
   [remainder removeObjectsInArray:nearby];
-  
+
   self.mapView = [[[MKMapView alloc] initWithFrame:self.view.bounds] autorelease];
   mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   mapView.delegate = self;
   mapView.showsUserLocation = YES;
-  
+
   if (nearby.count == 0) {
     mapView.region = MKCoordinateRegionMake(center.coordinate, MKCoordinateSpanMake(0.015, 0.015));
   } else {
@@ -149,7 +155,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     double maxLat = center.coordinate.latitude;
     double minLng = center.coordinate.longitude;
     double maxLng = center.coordinate.longitude;
-    
+
     for (id<MKAnnotation> annotation in nearby) {
       minLat = MIN(minLat, annotation.coordinate.latitude);
       maxLat = MAX(maxLat, annotation.coordinate.latitude);
@@ -162,9 +168,9 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     mapView.region = MKCoordinateRegionMake(centerCoord, span);
   }
   [self.view addSubview:mapView];
-  
+
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Google Maps", nil) style:UIBarButtonItemStyleDone target:self action:@selector(openGoogleMaps)] autorelease];
-  
+
   [mapView addAnnotation:center];
   for (id<MKAnnotation> location in nearby) {
     [mapView addAnnotation:location];
@@ -172,7 +178,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   for (id<MKAnnotation> location in remainder) {
     [mapView addAnnotation:location];
   }
-  
+
   [self findLocation];
 }
 
@@ -181,7 +187,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   if (annotation == mapView.userLocation) {
     return nil;
   }
-  
+
   static NSString* reuseIdentifier = @"reuseIdentifier";
   MKPinAnnotationView* result = (id)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
   if (result == nil) {
@@ -189,10 +195,10 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
     result.animatesDrop = YES;
     result.canShowCallout = YES;
   }
-  
+
   result.annotation = annotation;
   [self updateAccessory:result];
-  
+
   return result;
 }
 
@@ -205,7 +211,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
       break;
     }
   }
-  
+
   [AbstractApplication openMap:[location mapUrl]];
 }
 
@@ -218,7 +224,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 - (void)mapView:(MKMapView *)mapView_ annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIButton *)button {
   id<MKAnnotation> location = view.annotation;
   MKUserLocation* userLocation = mapView.userLocation;
-  
+
   NSString* address = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
                        userLocation.coordinate.latitude,
                        userLocation.coordinate.longitude,

@@ -46,7 +46,7 @@ property_definition(country);
   self.state = nil;
   self.postalCode = nil;
   self.country = nil;
-  
+
   [super dealloc];
 }
 
@@ -66,13 +66,13 @@ property_definition(country);
     self.state      = [StringUtilities nonNilString:state_];
     self.postalCode = [StringUtilities nonNilString:postalCode_];
     self.country    = [StringUtilities nonNilString:country_];
-    
+
     if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
       NSRange range = [postalCode rangeOfString:@"-"];
       self.postalCode = [postalCode substringToIndex:range.location];
     }
   }
-  
+
   return self;
 }
 
@@ -126,7 +126,7 @@ property_definition(country);
                              postalCode:nil
                                 country:nil];
 }
-  
+
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
@@ -164,27 +164,27 @@ property_definition(country);
            useKilometers:(BOOL) useKilometers {
   const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
   const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
-  
+
   double lat1 = (from.latitude / 180) * M_PI;
   double lng1 = (from.longitude / 180) * M_PI;
   double lat2 = (to.latitude / 180) * M_PI;
   double lng2 = (to.longitude / 180) * M_PI;
-  
+
   double diff = lng1 - lng2;
-  
+
   if (diff < 0) { diff = -diff; }
   if (diff > M_PI) { diff = 2 * M_PI; }
-  
+
   double distance =
   acos(sin(lat2) * sin(lat1) +
        cos(lat2) * cos(lat1) * cos(diff));
-  
+
   if (useKilometers) {
     distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
   } else {
     distance *= GREAT_CIRCLE_RADIUS_MILES;
   }
-  
+
   return distance;
 }
 
@@ -198,7 +198,7 @@ property_definition(country);
   if (to == nil) {
     return UNKNOWN_DISTANCE;
   }
-  
+
   return [Location distanceFrom:self.coordinate to:to.coordinate useKilometers:useKilometers];
 }
 
@@ -222,13 +222,13 @@ property_definition(country);
   if (self == anObject) {
     return YES;
   }
-  
+
   if (![anObject isKindOfClass:[Location class]]) {
     return NO;
   }
 
   Location* other = anObject;
-  
+
   return latitude == other.latitude &&
   longitude == other.longitude;
 }
@@ -236,7 +236,7 @@ property_definition(country);
 
 - (NSUInteger) hash {
   double hash = latitude + longitude;
-  
+
   return *(NSUInteger*)&hash;
 }
 
@@ -248,7 +248,7 @@ property_definition(country);
 
 - (NSString*) fullDisplayString {
   //TODO: switch on Locale here
-  
+
   if (city.length || state.length || postalCode.length) {
     if (city.length) {
       if (state.length || postalCode.length) {
@@ -260,7 +260,7 @@ property_definition(country);
       return [NSString stringWithFormat:@"%@ %@", state, postalCode];
     }
   }
-  
+
   return @"";
 }
 

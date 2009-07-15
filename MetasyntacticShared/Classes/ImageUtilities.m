@@ -209,16 +209,16 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
   if (image == nil) {
     return nil;
   }
-  
+
   UIImage* result = image;
-  
+
   CGSize size = image.size;
   CGFloat height = round(size.height);
   CGFloat width = round(size.width);
-  
+
   size_t length = 4 * height * width;
   void* rawData = malloc(length);
-  
+
   if (rawData != nil) {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(rawData,
@@ -228,12 +228,12 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
                                                  4 * width,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedFirst);
-    
+
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
-    
+
     CFDataRef data = CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc);
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(data);
-    
+
     CGImageRef imageRef = CGImageCreate(width,
                                         height,
                                         8,
@@ -245,16 +245,16 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
                                         NULL,
                                         YES,
                                         kCGRenderingIntentDefault);
-    
+
     result = [UIImage imageWithCGImage:imageRef];
-    
+
     CGImageRelease(imageRef);
     CFRelease(dataProvider);
     CFRelease(data);
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
   }
-  
+
   return result;
 }
 

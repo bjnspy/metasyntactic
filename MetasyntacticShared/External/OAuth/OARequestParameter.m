@@ -34,7 +34,8 @@
 
 @implementation OARequestParameter
 
-@synthesize name, value;
+@synthesize name;
+@synthesize value;
 
 - (void) dealloc {
   self.name = nil;
