@@ -15,6 +15,7 @@
 #import "AbstractNavigationController.h"
 
 #import "AbstractFullScreenImageListViewController.h"
+#import "MapViewController.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
@@ -127,6 +128,18 @@
 - (void) popFullScreenImageList {
   [self popViewControllerAnimated:YES];
   self.fullScreenImageListController = nil;;
+}
+
+
+- (void) pushMapWithCenter:(Location*) center animated:(BOOL) animated {
+  [self pushMapWithCenter:center total:[NSArray array] animated:YES];
+}
+
+
+- (void) pushMapWithCenter:(Location*) center total:(NSArray*) total animated:(BOOL) animated {
+  UIViewController* controller = [MapViewController controllerWithCenter:center total:total];
+  [self pushViewController:controller animated:YES];
+
 }
 
 @end

@@ -20,5 +20,6 @@
 + (UIImage*) rightArrow;
 + (UIImage*) navigateBack;
 + (UIImage*) navigateForward;
++ (UIImage*) directions;
 
 @end
