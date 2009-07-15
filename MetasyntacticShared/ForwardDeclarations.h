@@ -14,6 +14,7 @@
 
 @protocol DatePickerDelegate;
 @protocol ListPickerDelegate;
+@protocol MapPoint;
 @protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;

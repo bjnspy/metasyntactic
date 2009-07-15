@@ -50,6 +50,7 @@
 		74A60D10100D424300806BBC /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A60D0E100D424300806BBC /* MapViewController.h */; };
 		74A60D11100D424300806BBC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A60D0F100D424300806BBC /* MapViewController.m */; };
 		74A60D1C100D426200806BBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A60D1B100D426200806BBC /* MapKit.framework */; };
+		74A6137D100DBA6100806BBC /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A6137B100DBA6100806BBC /* MapPoint.h */; };
 		74AD39F1100139E200D6BDAA /* SynopsisCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD39EF100139E200D6BDAA /* SynopsisCell.h */; };
 		74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD39F0100139E200D6BDAA /* SynopsisCell.m */; };
 		74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */; };
@@ -411,6 +412,7 @@
 		74A60D0F100D424300806BBC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		74A60D1B100D426200806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		74A611B8100D983700806BBC /* Directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Directions.png; path = Resources/Directions.png; sourceTree = "<group>"; };
+		74A6137B100DBA6100806BBC /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		74AD39EF100139E200D6BDAA /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
 		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
 		74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				74616DAA0F15D9420004B610 /* Collections */,
 				747C33040FD070A100411801 /* Data */,
 				74616C340F15D1CB0004B610 /* External */,
+				74A6137A100DBA4E00806BBC /* Mapping */,
 				74200D740FD25A4F00DEE16B /* Search */,
 				74616D820F15D8910004B610 /* Threading */,
 				74616E620F15DCA60004B610 /* UI */,
@@ -866,6 +869,14 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		74A6137A100DBA4E00806BBC /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				74A6137B100DBA6100806BBC /* MapPoint.h */,
+			);
+			name = Mapping;
+			sourceTree = "<group>";
+		};
 		74E1642C1006D22D003D852F /* PinchMedia */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1056,7 @@
 				7493743D1008F3BE00749299 /* BackgroundInvocation3.h in Headers */,
 				74B64788100C5B8600345092 /* AbstractViewController.h in Headers */,
 				74A60D10100D424300806BBC /* MapViewController.h in Headers */,
+				74A6137D100DBA6100806BBC /* MapPoint.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

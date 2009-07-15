@@ -14,11 +14,10 @@
 
 #define UNKNOWN_DISTANCE FLT_MAX
 
-@interface Location : NSObject<NSCopying, NSCoding, MKAnnotation> {
+@interface Location : NSObject<NSCopying, NSCoding> {
 @private
   double latitude;
   double longitude;
-  NSString* name;
   NSString* address;
   NSString* city;
   NSString* state;
@@ -28,7 +27,6 @@
 
 @property (readonly) double latitude;
 @property (readonly) double longitude;
-@property (readonly, copy) NSString* name;
 @property (readonly, copy) NSString* address;
 @property (readonly, copy) NSString* city;
 @property (readonly, copy) NSString* state;
@@ -45,7 +43,6 @@
                              state:(NSString*) state
                         postalCode:(NSString*) postalCode
                            country:(NSString*) country;
-+ (Location*) locationWithName:(NSString*) name location:(Location*) location;
 
 - (NSDictionary*) dictionary;
 
@@ -56,5 +53,9 @@
 - (double) distanceToKilometers:(Location*) to;
 
 - (NSString*) fullDisplayString;
+
+- (CLLocationCoordinate2D) coordinate;
+
++ (double) distanceFrom:(CLLocationCoordinate2D) from to:(CLLocationCoordinate2D) to useKilometers:(BOOL) useKilometers;
 
 @end

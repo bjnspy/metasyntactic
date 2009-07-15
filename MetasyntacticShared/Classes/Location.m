@@ -20,7 +20,6 @@
 @interface Location()
 @property double latitude;
 @property double longitude;
-@property (copy) NSString* name;
 @property (copy) NSString* address;
 @property (copy) NSString* city;
 @property (copy) NSString* state;
@@ -33,7 +32,6 @@
 
 property_definition(latitude);
 property_definition(longitude);
-property_definition(name);
 property_definition(address);
 property_definition(city);
 property_definition(state);
@@ -43,7 +41,6 @@ property_definition(country);
 - (void) dealloc {
   self.latitude = 0;
   self.longitude = 0;
-  self.name = nil;
   self.address = nil;
   self.city = nil;
   self.state = nil;
@@ -56,7 +53,6 @@ property_definition(country);
 
 - (id) initWithLatitude:(double) latitude_
               longitude:(double) longitude_
-                name:(NSString*) name_
                 address:(NSString*) address_
                    city:(NSString*) city_
                   state:(NSString*) state_
@@ -65,7 +61,6 @@ property_definition(country);
   if ((self = [super init])) {
     latitude        = latitude_;
     longitude       = longitude_;
-    self.name       = [StringUtilities nonNilString:name_];
     self.address    = [StringUtilities nonNilString:address_];
     self.city       = [StringUtilities nonNilString:city_];
     self.state      = [StringUtilities nonNilString:state_];
@@ -85,7 +80,6 @@ property_definition(country);
 - (id) initWithCoder:(NSCoder*) coder {
   return [self initWithLatitude:[coder decodeDoubleForKey:latitude_key]
                       longitude:[coder decodeDoubleForKey:longitude_key]
-                           name:[coder decodeObjectForKey:name_key]
                         address:[coder decodeObjectForKey:address_key]
                            city:[coder decodeObjectForKey:city_key]
                           state:[coder decodeObjectForKey:state_key]
@@ -97,7 +91,6 @@ property_definition(country);
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
   return [[[self alloc] initWithLatitude:[[dictionary objectForKey:latitude_key] doubleValue]
                           longitude:[[dictionary objectForKey:longitude_key] doubleValue]
-                               name:[dictionary objectForKey:name_key]
                             address:[dictionary objectForKey:address_key]
                                city:[dictionary objectForKey:city_key]
                               state:[dictionary objectForKey:state_key]
@@ -115,7 +108,6 @@ property_definition(country);
                            country:(NSString*) country{
   return [[[Location alloc] initWithLatitude:latitude
                                    longitude:longitude
-                                        name:nil
                                      address:address
                                         city:city
                                        state:state
@@ -134,25 +126,12 @@ property_definition(country);
                              postalCode:nil
                                 country:nil];
 }
-
-
-+ (Location*) locationWithName:(NSString*) name location:(Location*) location {
-  return [[[Location alloc] initWithLatitude:location.latitude
-                                   longitude:location.longitude
-                                        name:name
-                                     address:location.address
-                                        city:location.city
-                                       state:location.state
-                                  postalCode:location.postalCode
-                                     country:location.country] autorelease];
-}
   
 
 
 - (void) encodeWithCoder:(NSCoder*) coder {
   [coder encodeDouble:latitude    forKey:latitude_key];
   [coder encodeDouble:longitude   forKey:longitude_key];
-  [coder encodeObject:name        forKey:name_key];
   [coder encodeObject:address     forKey:address_key];
   [coder encodeObject:city        forKey:city_key];
   [coder encodeObject:state       forKey:state_key];
@@ -165,7 +144,6 @@ property_definition(country);
   NSMutableDictionary* dict = [NSMutableDictionary dictionary];
   [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:latitude_key];
   [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:longitude_key];
-  [dict setObject:name                                    forKey:name_key];
   [dict setObject:address                                 forKey:address_key];
   [dict setObject:city                                    forKey:city_key];
   [dict setObject:state                                   forKey:state_key];
@@ -175,21 +153,20 @@ property_definition(country);
 }
 
 
-- (double) distanceTo:(Location*) to
-        useKilometers:(BOOL) useKilometers {
-  if (self == to) {
-    return 0;
-  }
-  
+- (CLLocationCoordinate2D) coordinate {
+  CLLocationCoordinate2D result = { latitude, longitude };
+  return result;
+}
+
+
++ (double) distanceFrom:(CLLocationCoordinate2D) from
+                     to:(CLLocationCoordinate2D) to
+           useKilometers:(BOOL) useKilometers {
   const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
   const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
   
-  if (to == nil) {
-    return UNKNOWN_DISTANCE;
-  }
-  
-  double lat1 = (self.latitude / 180) * M_PI;
-  double lng1 = (self.longitude / 180) * M_PI;
+  double lat1 = (from.latitude / 180) * M_PI;
+  double lng1 = (from.longitude / 180) * M_PI;
   double lat2 = (to.latitude / 180) * M_PI;
   double lng2 = (to.longitude / 180) * M_PI;
   
@@ -209,6 +186,20 @@ property_definition(country);
   }
   
   return distance;
+}
+
+
+- (double) distanceTo:(Location*) to
+        useKilometers:(BOOL) useKilometers {
+  if (self == to) {
+    return 0;
+  }
+
+  if (to == nil) {
+    return UNKNOWN_DISTANCE;
+  }
+  
+  return [Location distanceFrom:self.coordinate to:to.coordinate useKilometers:useKilometers];
 }
 
 
@@ -299,9 +290,6 @@ property_definition(country);
     arguments = [self japaneseMapArguments];
   } else {
     arguments = [self defaultMapArguments];
-    if (name.length > 0) {
-      arguments = [NSString stringWithFormat:@"%@ (%@)", arguments, name];
-    }
   }
 
   NSString* encoded = [StringUtilities stringByAddingPercentEscapes:arguments];
@@ -310,20 +298,6 @@ property_definition(country);
   } else {
     return [NSString stringWithFormat:@"http://maps.google.com/maps?sll=%f,%f", latitude, longitude];
   }
-}
-
-- (CLLocationCoordinate2D) coordinate {
-  CLLocationCoordinate2D result = { latitude, longitude };
-  return result;
-}
-
-- (NSString*) title {
-  return name;
-}
-
-
-- (NSString*) subtitle {
-  return address;
 }
 
 @end

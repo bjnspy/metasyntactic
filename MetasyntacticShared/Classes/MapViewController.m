@@ -10,36 +10,37 @@
 
 #import "AbstractApplication.h"
 #import "Location.h"
+#import "MapPoint.h"
 #import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 
 @interface MapViewController()
-@property (retain) Location* center;
-@property (retain) NSArray* total;
+@property (retain) id<MKAnnotation> center;
+@property (retain) NSArray* locations;
 @property (retain) MKMapView* mapView;
 @end
 
 @implementation MapViewController
 
 @synthesize center;
-@synthesize total;
+@synthesize locations;
 @synthesize mapView;
 
-- (void)dealloc {
+- (void) dealloc {
   self.center = nil;
-  self.total = nil;
+  self.locations = nil;
   self.mapView = nil;
   [super dealloc];
 }
 
 
 NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
-  Location* center = context;
-  Location* location1 = l1;
-  Location* location2 = l2;
- 
-  double distance1 = [center distanceTo:location1];
-  double distance2 = [center distanceTo:location2];
+  id<MKAnnotation> center = context;
+  id<MKAnnotation> location1 = l1;
+  id<MKAnnotation> location2 = l2;
+
+  double distance1 = [Location distanceFrom:center.coordinate to:location1.coordinate useKilometers:YES];
+  double distance2 = [Location distanceFrom:center.coordinate to:location2.coordinate useKilometers:YES];
   
   if (distance1 == distance2) {
     return NSOrderedSame;
@@ -52,12 +53,12 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 
 - (NSArray*) determineNearby {
-  if (total.count == 0) {
-    return total;
+  if (locations.count == 0) {
+    return locations;
   }
 
-  NSArray* sorted = [total sortedArrayUsingFunction:comapreByDistance context:center];
-  sorted = [sorted subarrayWithRange:NSMakeRange(0, MIN(5, total.count))];
+  NSArray* sorted = [locations sortedArrayUsingFunction:comapreByDistance context:center];
+  sorted = [sorted subarrayWithRange:NSMakeRange(0, MIN(5, locations.count))];
 
   NSMutableArray* array = [NSMutableArray arrayWithArray:sorted];
   [array removeObject:center];
@@ -66,20 +67,20 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (id) initWithCenter:(Location*) center_
-            total:(NSArray*) total_ {
+- (id) initWithCenter:(id<MKAnnotation>) center_
+            locations:(NSArray*) locations_ {
   if ((self = [super init])) {
     self.center = center_;
-    self.total = total_;
+    self.locations = locations_;
     self.hidesBottomBarWhenPushed = YES;
   }
   return self;
 }
 
 
-+ (MapViewController*) controllerWithCenter:(Location*) center
-                                  total:(NSArray*) total {
-  return [[[MapViewController alloc] initWithCenter:center total:total] autorelease];
++ (MapViewController*) controllerWithCenter:(id<MKAnnotation>) center
+                                  locations:(NSArray*) locations {
+  return [[[MapViewController alloc] initWithCenter:center locations:locations] autorelease];
 }
 
 
@@ -113,16 +114,14 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 - (void) findLocation {
   CLLocation* userLocation = mapView.userLocation.location;
-  if (userLocation == nil ||
-      userLocation.horizontalAccuracy < 0 ||
-      userLocation.horizontalAccuracy > kCLLocationAccuracyKilometer) {
-    [self performSelector:@selector(findLocation) withObject:nil afterDelay:2];
+  if (userLocation == nil || userLocation.horizontalAccuracy < 0) {
     return;
   }
 
   locationFound = YES;
-  for (MKAnnotationView* view in mapView.selectedAnnotations) {
-    if ([view.annotation isKindOfClass:[Location class]]) {
+  for (id annotation in mapView.annotations) {
+    if ([annotation isKindOfClass:[Location class]]) {
+      MKAnnotationView* view = [mapView viewForAnnotation:annotation];
       [self updateAccessory:view];
     }
   }
@@ -134,7 +133,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   
   NSArray* nearby = [self determineNearby];
   
-  NSMutableArray* remainder = [NSMutableArray arrayWithArray:total];
+  NSMutableArray* remainder = [NSMutableArray arrayWithArray:locations];
   [remainder removeObject:center];
   [remainder removeObjectsInArray:nearby];
   
@@ -146,16 +145,16 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   if (nearby.count == 0) {
     mapView.region = MKCoordinateRegionMake(center.coordinate, MKCoordinateSpanMake(0.015, 0.015));
   } else {
-    double minLat = center.latitude;
-    double maxLat = center.latitude;
-    double minLng = center.longitude;
-    double maxLng = center.longitude;
+    double minLat = center.coordinate.latitude;
+    double maxLat = center.coordinate.latitude;
+    double minLng = center.coordinate.longitude;
+    double maxLng = center.coordinate.longitude;
     
-    for (Location* location in nearby) {
-      minLat = MIN(minLat, location.latitude);
-      maxLat = MAX(maxLat, location.latitude);
-      minLng = MIN(minLng, location.longitude);
-      maxLng = MAX(maxLng, location.longitude);
+    for (id<MKAnnotation> annotation in nearby) {
+      minLat = MIN(minLat, annotation.coordinate.latitude);
+      maxLat = MAX(maxLat, annotation.coordinate.latitude);
+      minLng = MIN(minLng, annotation.coordinate.longitude);
+      maxLng = MAX(maxLng, annotation.coordinate.longitude);
     }
 
     CLLocationCoordinate2D centerCoord = { (minLat + maxLat) / 2., (minLng + maxLng) / 2. };
@@ -167,10 +166,10 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Google Maps", nil) style:UIBarButtonItemStyleDone target:self action:@selector(openGoogleMaps)] autorelease];
   
   [mapView addAnnotation:center];
-  for (Location* location in nearby) {
+  for (id<MKAnnotation> location in nearby) {
     [mapView addAnnotation:location];
   }
-  for (Location* location in remainder) {
+  for (id<MKAnnotation> location in remainder) {
     [mapView addAnnotation:location];
   }
   
@@ -199,15 +198,15 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 
 - (void) openGoogleMaps {
-  Location* location = center;
+  id<MapPoint> location = center;
   for (id annotation in mapView.selectedAnnotations) {
-    if ([annotation isKindOfClass:[Location class]]) {
+    if ([annotation conformsToProtocol:@protocol(MapPoint)]) {
       location = annotation;
       break;
     }
   }
   
-  [AbstractApplication openMap:location.mapUrl];
+  [AbstractApplication openMap:[location mapUrl]];
 }
 
 
@@ -217,14 +216,14 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 
 
 - (void)mapView:(MKMapView *)mapView_ annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIButton *)button {
-  Location* location = (id)view.annotation;
+  id<MKAnnotation> location = view.annotation;
   MKUserLocation* userLocation = mapView.userLocation;
   
   NSString* address = [NSString stringWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
                        userLocation.coordinate.latitude,
                        userLocation.coordinate.longitude,
-                       location.latitude,
-                       location.longitude];
+                       location.coordinate.latitude,
+                       location.coordinate.longitude];
   [AbstractApplication openMap:address];
 }
 

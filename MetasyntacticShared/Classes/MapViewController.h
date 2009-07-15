@@ -8,13 +8,13 @@
 
 @interface MapViewController : UIViewController<MKMapViewDelegate> {
 @private
-  Location* center;
-  NSArray* total;
+  id<MapPoint> center;
+  NSArray* locations;
 
   MKMapView* mapView;
   BOOL locationFound;
 }
 
-+ (MapViewController*) controllerWithCenter:(Location*) center total:(NSArray*) total;
++ (MapViewController*) controllerWithCenter:(id<MKAnnotation>) center locations:(NSArray*) locations;
 
 @end
