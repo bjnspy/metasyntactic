@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
+#import <MapKit/MapKit.h>
+
 #import "../ForwardDeclarations.h"
 
 #import "../External/OAuth/OAuthConsumer.h"
