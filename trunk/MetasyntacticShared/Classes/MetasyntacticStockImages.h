@@ -22,4 +22,7 @@
 + (UIImage*) navigateForward;
 + (UIImage*) directions;
 
++ (UIImage*) actionButtonStandard;
++ (UIImage*) actionButtonRoundLowerRight;
+
 @end

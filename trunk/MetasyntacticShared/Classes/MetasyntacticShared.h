@@ -59,6 +59,7 @@
 #import "MapViewControllerDelegate.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticSharedApplicationDelegate.h"
+#import "MetasyntacticStockImages.h"
 #import "MutableMultiDictionary.h"
 #import "NetworkUtilities.h"
 #import "NotificationCenter.h"
