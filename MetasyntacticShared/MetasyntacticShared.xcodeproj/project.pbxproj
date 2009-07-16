@@ -266,6 +266,8 @@
 		74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
 		74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
 		74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
+		74209FF3100FC12700F63F33 /* ActionButton-RoundLowerRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ActionButton-RoundLowerRight.png"; path = "Resources/ActionButton-RoundLowerRight.png"; sourceTree = "<group>"; };
+		74209FF4100FC12700F63F33 /* ActionButton-Standard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ActionButton-Standard.png"; path = "Resources/ActionButton-Standard.png"; sourceTree = "<group>"; };
 		742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenImageListViewController.h; sourceTree = "<group>"; };
 		742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
 		7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
@@ -554,6 +556,8 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
+				74209FF3100FC12700F63F33 /* ActionButton-RoundLowerRight.png */,
+				74209FF4100FC12700F63F33 /* ActionButton-Standard.png */,
 				74A611B8100D983700806BBC /* Directions.png */,
 				74D3A6480FEC05BA0083298A /* LeftArrow.png */,
 				74D3A61F0FEC04950083298A /* Navigate-Back.png */,

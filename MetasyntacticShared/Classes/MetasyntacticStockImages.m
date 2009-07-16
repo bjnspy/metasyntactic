@@ -41,4 +41,15 @@
   return [UIImage imageNamed:@"Directions.png"];
 }
 
+
++ (UIImage*) actionButtonStandard {
+  return [UIImage imageNamed:@"ActionButton-Standard.png"];
+}
+
+
++ (UIImage*) actionButtonRoundLowerRight {
+  return [UIImage imageNamed:@"ActionButton-RoundLowerRight.png"];
+  
+}
+
 @end
