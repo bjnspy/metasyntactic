@@ -42,6 +42,7 @@
 - (void) dealloc {
   self.request = nil;
   self.response = nil;
+  self.succeeded = NO;
   
   [super dealloc];
 }

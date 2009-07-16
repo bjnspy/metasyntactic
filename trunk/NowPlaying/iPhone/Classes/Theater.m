@@ -133,11 +133,11 @@ property_definition(movieTitles);
   if (self == anObject) {
     return YES;
   }
-  
+
   if (![anObject isKindOfClass:[Theater class]]) {
     return NO;
   }
-  
+
   Theater* other = anObject;
   return [name isEqual:other.name];
 }
