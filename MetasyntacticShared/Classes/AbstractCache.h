@@ -14,8 +14,8 @@
 
 @interface AbstractCache : NSObject {
 @protected
-    NSRecursiveLock* dataGate;
-    NSRecursiveLock* runGate;
+  NSRecursiveLock* dataGate;
+  NSRecursiveLock* runGate;
 }
 
 - (void) didReceiveMemoryWarning;

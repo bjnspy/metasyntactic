@@ -17,6 +17,10 @@
 @interface ImageCache : AbstractCache {
 @private
   NSMutableDictionary* pathToImageMap;
+  NSInteger imageCount;
+  
+  NSCondition* condition;
+  NSMutableArray* pathsToFault;
 }
 
 + (ImageCache*) cache;
@@ -25,5 +29,6 @@
 
 - (UIImage*) imageForPath:(NSString*) path;
 - (UIImage*) imageForPath:(NSString*) path loadFromDisk:(BOOL) loadFromDisk;
+- (UIImage*) imageForPath:(NSString*) path fault:(BOOL) fault;
 
 @end
