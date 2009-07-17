@@ -14,24 +14,41 @@
 
 #import "ImageCache.h"
 
+#import "ImageUtilities.h"
+#import "MetasyntacticSharedApplication.h"
+#import "ThreadingUtilities.h"
+
 @interface ImageCache()
 @property (retain) NSMutableDictionary* pathToImageMap;
+@property (retain) NSCondition* condition;
+@property (retain) NSMutableArray* pathsToFault;
 @end
 
 
 @implementation ImageCache
 
 @synthesize pathToImageMap;
+@synthesize condition;
+@synthesize pathsToFault;
 
 - (void) dealloc {
   self.pathToImageMap = nil;
+  self.condition = nil;
+  self.pathsToFault = nil;
   [super dealloc];
 }
 
 
 - (id) init {
   if ((self = [super init])) {
+    self.condition = [[[NSCondition alloc] init] autorelease];
     self.pathToImageMap = [NSMutableDictionary dictionary];
+    self.pathsToFault = [NSMutableArray array];
+    
+    [ThreadingUtilities backgroundSelector:@selector(faultBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:nil
+                                    daemon:YES];
   }
 
   return self;
@@ -43,42 +60,105 @@
 }
 
 
+- (void) clearNoLock {
+  [pathToImageMap removeAllObjects];
+  imageCount = 0;
+  
+  [condition lock];
+  {
+    [pathsToFault removeAllObjects];
+  }
+  [condition unlock];
+}
+
+
 - (void) didReceiveMemoryWarning {
   [dataGate lock];
   {
-    [pathToImageMap removeAllObjects];
+    [self clearNoLock];
+  }
+  [dataGate unlock];
+}
+
+
+- (BOOL) objectIsImage:(id) object {
+  return object != nil && object != [NSNull null];
+}
+
+
+- (void) setObject:(id) object forPath:(NSString*) path {
+  [dataGate lock];
+  {
+    if ([self objectIsImage:object]) {
+      if ([pathToImageMap objectForKey:path] != nil) {
+        imageCount++;
+
+        if (imageCount > 200) {
+          [self clearNoLock];
+        }
+      }
+    }
+
+    if (object == nil) {
+      [pathToImageMap removeObjectForKey:path];
+    } else {
+      [pathToImageMap setObject:object forKey:path];
+    }
   }
   [dataGate unlock];
 }
 
 
 - (void) setImage:(UIImage*) image forPath:(NSString*) path {
-  if (image == nil) {
-    return;
-  }
-
-  CGSize size = image.size;
-  if (size.width >= 300 || size.height >= 300) {
-    return;
-  }
-
-  [dataGate lock];
-  {
-    if (pathToImageMap.count > 200) {
-      [pathToImageMap removeAllObjects];
+  if (image != nil) {
+    // don't store images past a certain size.
+    CGSize size = image.size;
+    if (size.width >= 300 || size.height >= 300) {
+      return;
     }
-    [pathToImageMap setObject:image forKey:path];
   }
-  [dataGate unlock];
+
+  [self setObject:image forPath:path];
 }
 
 
 - (UIImage*) imageForPathWorker:(NSString*) path
                    loadFromDisk:(BOOL) loadFromDisk {
-  UIImage* result = [pathToImageMap objectForKey:path];
-  if (result == nil && loadFromDisk) {
+  id result = [[[pathToImageMap objectForKey:path] retain] autorelease];
+  if ([self objectIsImage:result]) {
+    return result;
+  }
+
+  if (loadFromDisk) {
     result = [UIImage imageWithContentsOfFile:path];
     [self setImage:result forPath:path];
+    return result;
+  }
+  
+  return nil;
+}
+
+
+- (UIImage*) imageForPathWorker:(NSString*) path
+                          fault:(BOOL) fault {
+  id result = [[[pathToImageMap objectForKey:path] retain] autorelease];
+  if ([self objectIsImage:result]) {
+    return result;
+  }
+
+  if (result == [NSNull null]) {
+    // we're already faulting it in.
+    return nil;
+  }
+
+  if (fault) {
+    [self setObject:[NSNull null] forPath:path];
+    [condition lock];
+    {
+      [pathsToFault addObject:path];
+      [condition signal];
+    }
+    [condition unlock];
   }
 
   return result;
@@ -104,6 +184,55 @@
 
 - (UIImage*) imageForPath:(NSString*) path {
   return [self imageForPath:path loadFromDisk:YES];
+}
+
+
+- (UIImage*) imageForPath:(NSString*) path
+                    fault:(BOOL) fault {
+  if (path.length == 0) {
+    return nil;
+  }
+  
+  UIImage* result;
+  [dataGate lock];
+  {
+    result = [self imageForPathWorker:path
+                                fault:fault];
+  }
+  [dataGate unlock];
+  return result;
+}
+
+
+- (void) faultBackgroundEntryPointWorker {
+  NSString* path = nil;
+  [condition lock];
+  {
+    while (pathsToFault.count == 0) {
+      [condition wait];
+    }
+    
+    path = [[pathsToFault.lastObject retain] autorelease];
+    [pathsToFault removeLastObject];
+  }
+  [condition unlock];
+  
+  UIImage* image = [self imageForPath:path loadFromDisk:YES];
+  image = [ImageUtilities faultImage:image];
+  [self setImage:image forPath:path];
+  
+  [MetasyntacticSharedApplication minorRefresh];
+}
+
+
+- (void) faultBackgroundEntryPoint {
+  while (YES) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      [self faultBackgroundEntryPointWorker];
+    }
+    [pool release];
+  }
 }
 
 @end
