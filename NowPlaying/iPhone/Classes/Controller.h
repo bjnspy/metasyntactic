@@ -16,15 +16,13 @@
 
 @interface Controller : NSObject<DataProviderUpdateDelegate> {
 @private
-    LocationManager* locationManager;
-    NSLock* determineLocationGate;
+  LocationManager* locationManager;
+  NSLock* determineLocationGate;
 }
 
 @property (readonly, retain) LocationManager* locationManager;
 
 + (Controller*) controller;
-
-- (void) didReceiveMemoryWarning;
 
 - (void) start;
 - (void) start:(BOOL) force;

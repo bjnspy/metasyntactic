@@ -75,7 +75,7 @@ static BOOL shutdownCleanly = NO;
     [FileUtilities createDirectory:directory];
     trashDirectory = [directory retain];
   }
-  
+
   {
     NSString* file = [supportDirectory stringByAppendingPathComponent:@"Dirty.plist"];
     dirtyFile = [file retain];
@@ -84,7 +84,7 @@ static BOOL shutdownCleanly = NO;
 
 
 + (void) initialize {
-  if (self == [AbstractApplication class]) {    
+  if (self == [AbstractApplication class]) {
     gate = [[NSRecursiveLock alloc] init];
     emptyTrashCondition = [[NSCondition alloc] init];
 
@@ -92,7 +92,7 @@ static BOOL shutdownCleanly = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
     shutdownCleanly = ![FileUtilities fileExists:dirtyFile];
     [FileUtilities writeObject:@"" toFile:dirtyFile];
-    
+
     [self performSelector:@selector(emptyTrash) withObject:nil afterDelay:10];
   }
 }

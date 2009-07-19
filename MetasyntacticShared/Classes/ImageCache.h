@@ -18,7 +18,7 @@
 @private
   NSMutableDictionary* pathToImageMap;
   NSInteger imageCount;
-  
+
   NSCondition* condition;
   NSMutableArray* pathsToFault;
 }
