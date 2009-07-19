@@ -160,6 +160,7 @@ enum ViewControllerType {
 - (void) saveNavigationStack:(UINavigationController*) controller;
 - (NSArray*) navigationStackTypes;
 - (NSArray*) navigationStackValues;
+- (void) clearNavigationStack;
 
 - (BOOL) prioritizeBookmarks;
 - (void) setPrioritizeBookmarks:(BOOL) value;
