@@ -1790,4 +1790,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   return result;
 }
 
+
+- (void) clearNavigationStack {
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_TYPES];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_VALUES];
+  [self synchronize];
+}
+
 @end
