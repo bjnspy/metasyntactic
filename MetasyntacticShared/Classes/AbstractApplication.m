@@ -29,6 +29,8 @@ static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
 static NSCondition* emptyTrashCondition = nil;
+static NSString* dirtyFile = nil;
+static BOOL shutdownCleanly = NO;
 
 
 + (NSString*) name {
@@ -73,17 +75,36 @@ static NSCondition* emptyTrashCondition = nil;
     [FileUtilities createDirectory:directory];
     trashDirectory = [directory retain];
   }
+  
+  {
+    NSString* file = [supportDirectory stringByAppendingPathComponent:@"Dirty.plist"];
+    dirtyFile = [file retain];
+  }
 }
 
 
 + (void) initialize {
-  if (self == [AbstractApplication class]) {
+  if (self == [AbstractApplication class]) {    
     gate = [[NSRecursiveLock alloc] init];
     emptyTrashCondition = [[NSCondition alloc] init];
 
     [self initializeDirectories];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
+    shutdownCleanly = ![FileUtilities fileExists:dirtyFile];
+    [FileUtilities writeObject:@"" toFile:dirtyFile];
+    
     [self performSelector:@selector(emptyTrash) withObject:nil afterDelay:10];
   }
+}
+
+
++ (void) onApplicationWillTerminate:(id) argument {
+  [self moveItemToTrash:dirtyFile];
+}
+
+
++ (BOOL) shutdownCleanly {
+  return shutdownCleanly;
 }
 
 

@@ -25,6 +25,7 @@ static UIColor* netflixRed = nil;
 static UIColor* starYellow = nil;
 static UIColor* tintColor = nil;
 static UIColor* helpBlue = nil;
+static UIColor* lightPurple = nil;
 
 + (void) initialize {
   if (self == [ColorCache class]) {
@@ -36,6 +37,7 @@ static UIColor* helpBlue = nil;
     netflixYellow   = [[UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1] retain];
     starYellow      = [[UIColor colorWithRed:255.0/255.0 green:220.0/255.0 blue:40.0/255.0 alpha:1] retain];
     helpBlue        = [[UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1] retain];
+    lightPurple     = [[UIColor colorWithRed:154.0/255.0 green:125.0/255.0 blue:125.0/255.0 alpha:1.0] retain];
   }
 }
 
@@ -77,6 +79,11 @@ static UIColor* helpBlue = nil;
 
 + (UIColor*) helpBlue {
   return helpBlue;
+}
+
+
++ (UIColor*) lightPurple {
+  return lightPurple;
 }
 
 
