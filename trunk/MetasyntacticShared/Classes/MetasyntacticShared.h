@@ -15,11 +15,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MapKit/MapKit.h>
-
-#import "../ForwardDeclarations.h"
-
 #import "../External/OAuth/OAuthConsumer.h"
 #import "../External/PinchMedia/Beacon.h"
+#import "../ForwardDeclarations.h"
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractCurlableTableViewController.h"

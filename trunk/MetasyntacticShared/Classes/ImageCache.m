@@ -44,7 +44,7 @@
     self.condition = [[[NSCondition alloc] init] autorelease];
     self.pathToImageMap = [NSMutableDictionary dictionary];
     self.pathsToFault = [NSMutableArray array];
-    
+
     [ThreadingUtilities backgroundSelector:@selector(faultBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
@@ -63,7 +63,7 @@
 - (void) clearNoLock {
   [pathToImageMap removeAllObjects];
   imageCount = 0;
-  
+
   [condition lock];
   {
     [pathsToFault removeAllObjects];
@@ -134,7 +134,7 @@
     [self setImage:result forPath:path];
     return result;
   }
-  
+
   return nil;
 }
 
@@ -192,7 +192,7 @@
   if (path.length == 0) {
     return nil;
   }
-  
+
   UIImage* result;
   [dataGate lock];
   {
@@ -211,16 +211,16 @@
     while (pathsToFault.count == 0) {
       [condition wait];
     }
-    
+
     path = [[pathsToFault.lastObject retain] autorelease];
     [pathsToFault removeLastObject];
   }
   [condition unlock];
-  
+
   UIImage* image = [self imageForPath:path loadFromDisk:YES];
   image = [ImageUtilities faultImage:image];
   [self setImage:image forPath:path];
-  
+
   [MetasyntacticSharedApplication minorRefresh];
 }
 

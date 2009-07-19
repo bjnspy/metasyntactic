@@ -72,7 +72,7 @@
 - (void) navigateToLastViewedPage {
   NSArray* types = self.model.navigationStackTypes;
   NSArray* values = self.model.navigationStackValues;
-  
+
   [self.model clearNavigationStack];
   if (![AbstractApplication shutdownCleanly]) {
     return;
