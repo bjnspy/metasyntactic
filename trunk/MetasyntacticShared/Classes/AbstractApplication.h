@@ -18,6 +18,7 @@
 }
 
 + (NSLock*) gate;
++ (BOOL) shutdownCleanly;
 
 + (NSString*) name;
 + (NSString*) version;

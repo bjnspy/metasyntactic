@@ -24,6 +24,7 @@
 + (UIColor*) darkDarkGray;
 + (UIColor*) netflixYellow;
 + (UIColor*) starYellow;
++ (UIColor*) lightPurple;
 
 + (UIColor*) fromString:(NSString*) string;
 

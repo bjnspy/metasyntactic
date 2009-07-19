@@ -20,6 +20,7 @@
 
 static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
 
+
 + (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate_ {
   delegate = delegate_;
 }
