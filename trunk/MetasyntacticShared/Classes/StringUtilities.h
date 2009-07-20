@@ -39,4 +39,6 @@
 + (NSString*) halfStarString;
 + (NSString*) starString;
 
++ (NSString*) randomString:(NSInteger) length;
+
 @end
