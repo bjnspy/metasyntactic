@@ -27,7 +27,7 @@
 #include <google/protobuf/stubs/strutil.h>
 #include <google/protobuf/io/printer.h>
 #include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/wire_format.h>
+#include <google/protobuf/wire_format_inl.h>
 #include <google/protobuf/descriptor.pb.h>
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
