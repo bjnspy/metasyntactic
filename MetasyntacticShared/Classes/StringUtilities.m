@@ -257,4 +257,13 @@ static NSString* prefixes[] = {
     return [StringUtilities stringFromUnichar:[self starCharacter]];
 }
 
+
++ (NSString*) randomString:(NSInteger) length {
+  NSMutableString* string = [NSMutableString string];
+  for (int i = 0; i < length; i++) {
+    [string appendFormat:@"%c", ((rand() % 26) + 'a')];
+  }
+  return string;
+}
+
 @end

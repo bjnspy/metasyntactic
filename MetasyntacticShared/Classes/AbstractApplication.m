@@ -280,15 +280,6 @@ static BOOL shutdownCleanly = NO;
 }
 
 
-+ (NSString*) randomString {
-  NSMutableString* string = [NSMutableString string];
-  for (int i = 0; i < 8; i++) {
-    [string appendFormat:@"%c", ((rand() % 26) + 'a')];
-  }
-  return string;
-}
-
-
 + (NSString*) uniqueDirectory:(NSString*) parentDirectory
                        create:(BOOL) create {
   NSString* finalDir;
@@ -296,7 +287,7 @@ static BOOL shutdownCleanly = NO;
   [gate lock];
   {
     do {
-      NSString* random = [self randomString];
+      NSString* random = [StringUtilities randomString:8];
       finalDir = [parentDirectory stringByAppendingPathComponent:random];
     } while ([fileManager fileExistsAtPath:finalDir]);
 
