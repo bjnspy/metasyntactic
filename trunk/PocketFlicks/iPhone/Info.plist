@@ -36,5 +36,7 @@
 	<string>52EWSSQFrJ</string>
 	<key>NetflixApplicationName</key>
 	<string>PocketFlicks</string>
+	<key>iTunesApplicationUrl</key>
+	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
 </dict>
 </plist>
