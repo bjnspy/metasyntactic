@@ -258,7 +258,8 @@
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]];
+  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
+                                                                 pause:NO];
   if (serverHash.length == 0) {
     serverHash = @"0";
   }
@@ -269,7 +270,8 @@
     return;
   }
 
-  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
+                                                                   pause:NO];
 
   NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
   NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
@@ -384,7 +386,7 @@
   }
 
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@&format=2", [Application host], studio, title];
-  NSString* result = [NetworkUtilities stringWithContentsOfAddress:url];
+  NSString* result = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
 
   if (result == nil) {
     return;
@@ -436,7 +438,7 @@
   }
 
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
-  NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url];
+  NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
   if (trailersString == nil) {
     return;
   }

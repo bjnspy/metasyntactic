@@ -21,7 +21,7 @@
 
 - (NSDictionary*) createMapWorker {
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
-  NSString* index = [NetworkUtilities stringWithContentsOfAddress:url];
+  NSString* index = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
   if (index == nil) {
     return nil;
   }

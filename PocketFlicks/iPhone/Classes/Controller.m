@@ -58,6 +58,8 @@ static Controller* controller = nil;
   if ((self = [super init])) {
     self.locationManager = [LocationManager manager];
     self.determineLocationGate = [[[NSRecursiveLock alloc] init] autorelease];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onApplicationDidReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
   }
 
   return self;
@@ -112,7 +114,7 @@ static Controller* controller = nil;
 }
 
 
-- (void) didReceiveMemoryWarning {
+- (void) onApplicationDidReceiveMemoryWarning:(id) argument {
   [self.model.largePosterCache didReceiveMemoryWarning];
   [self.model.imageCache didReceiveMemoryWarning];
   [self.model.imdbCache didReceiveMemoryWarning];

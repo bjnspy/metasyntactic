@@ -155,7 +155,7 @@ const int START_YEAR = 1912;
   }
 
   NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp&year=%d", [Application host], year];
-  NSString* result = [NetworkUtilities stringWithContentsOfAddress:address];
+  NSString* result = [NetworkUtilities stringWithContentsOfAddress:address pause:NO];
   if (result.length == 0) {
     return;
   }

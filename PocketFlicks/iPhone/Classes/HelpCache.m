@@ -133,7 +133,7 @@
                        [LocaleUtilities preferredLanguage],
                        [StringUtilities stringByAddingPercentEscapes:[Application name]]];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
   NSMutableArray* questions = [NSMutableArray array];
   NSMutableArray* answers = [NSMutableArray array];

@@ -355,7 +355,7 @@
                                   location:(Location*) location {
   NSString* address = [self serverReviewsAddress:location
                                            score:score];
-  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
   if (data == nil) {
     // We couldn't even connect.  Just abort what we're doing.
     return nil;
@@ -416,7 +416,7 @@
 
   NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
   NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address];
+  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address pause:NO];
 
   if (serverHash.length == 0 ||
       [serverHash isEqual:@"0"]) {

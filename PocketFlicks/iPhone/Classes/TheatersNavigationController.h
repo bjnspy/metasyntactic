@@ -16,7 +16,7 @@
 
 @interface TheatersNavigationController : CommonNavigationController {
 @private
-    AllTheatersViewController* allTheatersViewController;
+  AllTheatersViewController* allTheatersViewController;
 }
 
 @end

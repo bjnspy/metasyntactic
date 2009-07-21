@@ -65,10 +65,6 @@ static AppDelegate* appDelegate = nil;
 
   appDelegate = self;
 
-  [Model model];
-  [Controller controller];
-  [CacheUpdater cacheUpdater];
-  [OperationQueue operationQueue];
   self.viewController = [[[NetflixNavigationController alloc] init] autorelease];
 
   self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
@@ -153,11 +149,6 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
   return appDelegate.window;
-}
-
-
-- (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
-  [[Model model] didReceiveMemoryWarning];
 }
 
 

@@ -73,6 +73,11 @@
   NSArray* types = self.model.navigationStackTypes;
   NSArray* values = self.model.navigationStackValues;
 
+  [self.model clearNavigationStack];
+  if (![AbstractApplication shutdownCleanly]) {
+    return;
+  }
+
   for (int i = 0; i < types.count; i++) {
     NSInteger type = [[types objectAtIndex:i] intValue];
     id value = [values objectAtIndex:i];
