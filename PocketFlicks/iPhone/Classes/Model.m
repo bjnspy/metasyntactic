@@ -448,19 +448,6 @@ static Model* model = nil;
 }
 
 
-- (void) updateNetflixKeys {
-  BOOL updatedNetflixApplicationKeys = [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_UPDATED_APPLICATION_KEYS];
-  if (updatedNetflixApplicationKeys) {
-    return;
-  }
-
-  [self setNetflixKey:nil secret:nil userId:nil];
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NETFLIX_UPDATED_APPLICATION_KEYS];
-  [self synchronize];
-}
-
-const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
-
 - (void) checkDate {
   NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
   if (firstLaunchDate == nil) {
@@ -473,46 +460,34 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
   if (interval < ONE_MONTH) {
     return;
   }
+  
+  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
+  if (runCount < 100) {
+    return;
+  }
 
   BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   if (hasShown) {
     return;
   }
 
-  // only 5% chance of showing it to them.
-  if ((rand() % 1000) > 50) {
-    return;
-  }
-
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   [self synchronize];
 
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"A message from Cyrus", nil)
-                                                   message:LocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
+  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
+                                                   message:LocalizedString(@"Please rate it in the App Store!", nil)
                                                   delegate:self
                                          cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
-                                         otherButtonTitles:LocalizedString(@"Write Review", @"Must be short. 1-2 words max. Label for a button a user can tap to write a review"), nil] autorelease];
-  alert.tag = CHECK_DATE_ALERT_VIEW_TAG;
+                                         otherButtonTitles:LocalizedString(@"Rate It!", @"Must be short. 1-2 words max. Label for a button a user can tap to rate this app"), nil] autorelease];
   [alert show];
 }
 
 
-- (void)              alertView:(UIAlertView*) alertView
-      didDismissWithButtonIndex:(NSInteger) buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex != alertView.cancelButtonIndex) {
-    [Application openBrowser:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8"];
+    NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
+    [Application openBrowser:url];
   }
-}
-
-
-- (BOOL) votedForIcon {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:VOTED_FOR_ICON];
-}
-
-
-- (void) setVotedForIcon {
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VOTED_FOR_ICON];
-  [self synchronize];
 }
 
 
@@ -523,8 +498,7 @@ const NSInteger CHECK_DATE_ALERT_VIEW_TAG = 1;
 
     [self checkCountry];
     [self loadData];
-    //[self checkDate];
-    [self updateNetflixKeys];
+    [self checkDate];
 
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];

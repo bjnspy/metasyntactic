@@ -71,9 +71,6 @@ enum ViewControllerType {
 
 + (Model*) model;
 
-- (BOOL) votedForIcon;
-- (void) setVotedForIcon;
-
 - (BOOL) loadingIndicatorsEnabled;
 - (void) setLoadingIndicatorsEnabled:(BOOL) value;
 
