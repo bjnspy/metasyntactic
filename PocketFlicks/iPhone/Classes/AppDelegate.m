@@ -57,7 +57,7 @@ static AppDelegate* appDelegate = nil;
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
 
-  [Beacon initAndStartBeaconWithApplicationCode:@"f529b846faa3f9498254e10e5b0f49d8"
+  [Beacon initAndStartBeaconWithApplicationCode:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"]
                                 useCoreLocation:NO
                                     useOnlyWiFi:NO];
 

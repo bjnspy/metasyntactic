@@ -26,5 +26,7 @@
 	<string>1.8</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>PinchMediaApplicationCode</key>
+	<string>f529b846faa3f9498254e10e5b0f49d8</string>
 </dict>
 </plist>

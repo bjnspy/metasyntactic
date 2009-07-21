@@ -57,7 +57,7 @@ static AppDelegate* appDelegate = nil;
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
 
-  [Beacon initAndStartBeaconWithApplicationCode:@"989c6bce5327bb013357eff94148592a"
+  [Beacon initAndStartBeaconWithApplicationCode:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"]
                                 useCoreLocation:NO
                                     useOnlyWiFi:NO];
 
@@ -65,7 +65,7 @@ static AppDelegate* appDelegate = nil;
 
   appDelegate = self;
 
-  self.viewController = [ApplicationTabBarController controller];
+  self.viewController = [[[ApplicationTabBarController alloc] init] autorelease];
 
   self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
   self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:3];
