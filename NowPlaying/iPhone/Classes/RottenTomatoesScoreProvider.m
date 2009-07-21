@@ -35,13 +35,15 @@
 
 
 - (NSString*) lookupServerHash {
-  NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true", [Application host]]];
+  NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true", [Application host]]
+                                                            pause:NO];
   return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
-  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomates&format=xml", [Application host]]];
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomates&format=xml", [Application host]]
+                                                                   pause:NO];
 
   if (resultElement != nil) {
     NSMutableDictionary* ratings = [NSMutableDictionary dictionary];

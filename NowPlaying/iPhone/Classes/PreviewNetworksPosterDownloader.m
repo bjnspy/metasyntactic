@@ -49,8 +49,8 @@
                            [StringUtilities stringByAddingPercentEscapes:address]];
 
   XmlElement* element;
-  if ((element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress]) == nil &&
-      (element = [NetworkUtilities xmlWithContentsOfAddress:address]) == nil) {
+  if ((element = [NetworkUtilities xmlWithContentsOfAddress:fullAddress pause:NO]) == nil &&
+      (element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO]) == nil) {
     return nil;
   }
 

@@ -54,7 +54,7 @@
                    components.month,
                    components.day];
 
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
   if (element == nil) {
     return nil;
   }

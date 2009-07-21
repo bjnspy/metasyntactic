@@ -412,7 +412,7 @@
                        (int)(location.latitude * 1000000),
                        (int)(location.longitude * 1000000)];
 
-  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address];
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
   if (data == nil) {
     return nil;
   }
