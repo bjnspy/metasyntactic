@@ -21,8 +21,6 @@
   NetflixNavigationController* netflixNavigationControllerData;
 }
 
-+ (ApplicationTabBarController*) controller;
-
 - (CommonNavigationController*) selectedNavigationController;
 - (NetflixNavigationController*) netflixNavigationController;
 
