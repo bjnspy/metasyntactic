@@ -30,5 +30,11 @@
 	<string>ApplicationTabBarController</string>
 	<key>PinchMediaApplicationCode</key>
 	<string>989c6bce5327bb013357eff94148592a</string>
+	<key>NetflixKey</key>
+	<string>83k9wpqt34hcka5bfb2kkf8s</string>
+	<key>NetflixSecret</key>
+	<string>GGR5uHEucN</string>
+	<key>NetflixApplicationName</key>
+	<string>NowPlaying</string>
 </dict>
 </plist>

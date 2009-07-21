@@ -18,17 +18,17 @@
 @implementation NetflixAuthentication
 
 + (NSString*) key {
-    return @"szqxavgvm6s3ywed2cnwmt69";
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NetflixKey"];
 }
 
 
 + (NSString*) secret {
-    return @"52EWSSQFrJ";
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NetflixSecret"];
 }
 
 
 + (NSString*) applicationName {
-    return @"PocketFlicks";
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"NetflixApplicationName"];
 }
 
 @end

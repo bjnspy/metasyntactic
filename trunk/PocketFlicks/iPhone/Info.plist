@@ -30,5 +30,11 @@
 	<string>NetflixNavigationController</string>
 	<key>PinchMediaApplicationCode</key>
 	<string>f529b846faa3f9498254e10e5b0f49d8</string>
+	<key>NetflixKey</key>
+	<string>szqxavgvm6s3ywed2cnwmt69</string>
+	<key>NetflixSecret</key>
+	<string>52EWSSQFrJ</string>
+	<key>NetflixApplicationName</key>
+	<string>PocketFlicks</string>
 </dict>
 </plist>
