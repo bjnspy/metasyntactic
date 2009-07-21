@@ -158,11 +158,6 @@
 }
 
 
-+ (ApplicationTabBarController*) controller {
-  return [[[ApplicationTabBarController alloc] init] autorelease];
-}
-
-
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
   self.model.selectedTabBarViewControllerIndex = self.selectedIndex;
