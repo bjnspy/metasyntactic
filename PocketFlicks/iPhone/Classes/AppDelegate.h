@@ -14,11 +14,11 @@
 
 @interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate> {
 @private
-    IBOutlet UIWindow* window;
-    UIViewController* viewController;
-
-    Pulser* minorRefreshPulser;
-    Pulser* majorRefreshPulser;
+  IBOutlet UIWindow* window;
+  UIViewController* viewController;
+  
+  Pulser* minorRefreshPulser;
+  Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
