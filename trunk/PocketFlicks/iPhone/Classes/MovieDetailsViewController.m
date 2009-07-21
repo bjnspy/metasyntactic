@@ -194,7 +194,7 @@ const NSInteger POSTER_TAG = -1;
     // show individual buttons
     for (NSString* name in [websites.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
       [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite:)]];
-      NSString* title = [NSString stringWithFormat:LocalizedString(@"Visit %@", nil), name];
+      NSString* title = name;
       [titles addObject:title];
       [arguments addObject:[websites objectForKey:name]];
     }
@@ -374,7 +374,6 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeBookmarkButton {
-  return;
   self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [bookmarkButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
   [bookmarkButton setImage:[StockImages filledYellowStarImage] forState:UIControlStateSelected];
