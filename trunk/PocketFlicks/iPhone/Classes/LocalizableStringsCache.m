@@ -67,7 +67,7 @@ static BOOL updated = NO;
   NSString* hashAddress = [address stringByAppendingString:@"&hash=true"];
 
   NSString* localHash = [FileUtilities readObject:[self hashFile]];
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:hashAddress];
+  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:hashAddress pause:NO];
   if (serverHash.length > 0 && [serverHash isEqual:localHash]) {
     return;
   }

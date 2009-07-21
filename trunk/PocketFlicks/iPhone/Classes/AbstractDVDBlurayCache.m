@@ -298,7 +298,7 @@
 
 
 - (void) updateMoviesBackgroundEntryPointWorker {
-  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:self.serverAddress pause:NO];
 
   if (element == nil) {
     return;
