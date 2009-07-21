@@ -26,6 +26,8 @@
 	<string>3.8</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>RootViewControllerClass</key>
+	<string>ApplicationTabBarController</string>
 	<key>PinchMediaApplicationCode</key>
 	<string>989c6bce5327bb013357eff94148592a</string>
 </dict>

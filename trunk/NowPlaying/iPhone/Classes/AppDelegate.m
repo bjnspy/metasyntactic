@@ -65,7 +65,8 @@ static AppDelegate* appDelegate = nil;
 
   appDelegate = self;
 
-  self.viewController = [[[ApplicationTabBarController alloc] init] autorelease];
+  Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
+  self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
 
   self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
   self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:3];
