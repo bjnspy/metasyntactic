@@ -65,7 +65,7 @@
 
 
   NSString* url = [self serverUrl:movie];
-  NSString* addressValue = [NetworkUtilities stringWithContentsOfAddress:url];
+  NSString* addressValue = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
   if (addressValue == nil) {
     return;
   }
