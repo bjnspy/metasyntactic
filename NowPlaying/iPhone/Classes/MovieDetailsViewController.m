@@ -849,7 +849,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) mapTheatersCell {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.textLabel.textAlignment = UITextAlignmentCenter;
-  cell.textLabel.text = NSLocalizedString(@"Map Theaters", nil);
+  cell.textLabel.text = LocalizedString(@"Map Theaters", nil);
   cell.textLabel.textColor = [ColorCache commandColor];
   return cell;
 }
