@@ -41,11 +41,6 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-+ (AppDelegate*) appDelegate {
-  return appDelegate;
-}
-
-
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
   if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
@@ -62,11 +57,11 @@ static AppDelegate* appDelegate = nil;
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
   self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
 
-  [OpeningCreditsViewController presentOpeningCredits:self];
+  [SplashScreen presentSplashScreen:self];
 }
 
 
-- (void) onCreditsFinished {
+- (void) onSplashScreenFinished {
   [NotificationCenter attachToViewController:viewController];
 
   // Ok.  We've set up all our global state.  Now get the ball rolling.

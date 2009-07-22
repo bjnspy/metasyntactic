@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate,OpeningCreditsViewControllerDelegate> {
+@interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate,SplashScreenDelegate> {
 @private
   IBOutlet UIWindow* window;
   UIViewController* viewController;
