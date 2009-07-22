@@ -460,7 +460,7 @@ static Model* model = nil;
   if (interval < ONE_MONTH) {
     return;
   }
-  
+
   NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
   if (runCount < 50) {
     return;

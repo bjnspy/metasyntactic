@@ -94,16 +94,6 @@
 }
 
 
-- (void) loadView {
-  [super loadView];
-
-  UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-  label.text = self.title;
-
-  self.navigationItem.titleView = label;
-}
-
-
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
   self.performances = nil;

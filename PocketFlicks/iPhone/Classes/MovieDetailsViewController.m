@@ -393,16 +393,9 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) setupTitle {
   if (readonlyMode) {
-    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = LocalizedString(@"Please Wait", nil);
-
-    self.navigationItem.titleView = label;
+    self.title = LocalizedString(@"Please Wait", nil);
   } else {
-    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = movie.canonicalTitle;
-
     self.title = movie.canonicalTitle;
-    self.navigationItem.titleView = label;
   }
 }
 
@@ -434,9 +427,9 @@ const NSInteger POSTER_TAG = -1;
 
   filterTheatersByDistance = YES;
 
-  [self setupTitle];
   self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
   [self setupButtons];
+  [self setupTitle];
 
   // Load the movie details as the absolutely highest thing we can do.
   [[CacheUpdater cacheUpdater] prioritizeMovie:movie now:YES];
@@ -849,7 +842,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) mapTheatersCell {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.textLabel.textAlignment = UITextAlignmentCenter;
-  cell.textLabel.text = NSLocalizedString(@"Map Theaters", nil);
+  cell.textLabel.text = LocalizedString(@"Map Theaters", nil);
   cell.textLabel.textColor = [ColorCache commandColor];
   return cell;
 }
