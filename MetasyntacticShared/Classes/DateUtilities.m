@@ -184,7 +184,7 @@ static BOOL use24HourTime;
 + (NSString*) timeSinceNow:(NSDate*) date {
   NSString* result = [timeDifferenceMap objectForKey:date];
   if (result == nil) {
-    result = [DateUtilities timeSinceNowWorker:date];
+    result = [self timeSinceNowWorker:date];
     [timeDifferenceMap setObject:result forKey:date];
   }
   return result;
