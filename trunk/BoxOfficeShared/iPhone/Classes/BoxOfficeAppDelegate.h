@@ -1,13 +1,15 @@
 //
-//  BoxOfficeShared.h
+//  BoxOfficeAppDelegate.h
 //  BoxOfficeShared
 //
 //  Created by Cyrus Najmabadi on 7/22/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "../ForwardDeclarations.h"
-
-#import "BoxOfficeAppDelegate.h"
-#import "BoxOfficeSharedApplication.h"
 #import "BoxOfficeSharedApplicationDelegate.h"
+
+@interface AbstractBoxOfficeAppDelegate : NSObject<BoxOfficeSharedApplicationDelegate,SplashScreenDelegate> {
+
+}
+
+@end

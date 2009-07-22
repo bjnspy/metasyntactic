@@ -139,6 +139,10 @@
 		74FB7DB51017A43F001B5CB9 /* BoxOfficeSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7DB31017A43F001B5CB9 /* BoxOfficeSharedApplication.m */; };
 		74FB7DB81017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7DB61017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h */; };
 		74FB7DBC1017A457001B5CB9 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */; };
+		74FB7E0D1017A7A3001B5CB9 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
+		74FB7E0E1017A7A8001B5CB9 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */; };
+		74FB7E1E1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */; };
+		74FB7E1F1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -564,6 +568,8 @@
 		74FB7DB31017A43F001B5CB9 /* BoxOfficeSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeSharedApplication.m; sourceTree = "<group>"; };
 		74FB7DB61017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplicationDelegate.h; sourceTree = "<group>"; };
 		74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeShared.h; sourceTree = "<group>"; };
+		74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeAppDelegate.h; sourceTree = "<group>"; };
+		74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeAppDelegate.m; sourceTree = "<group>"; };
 		74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
 		74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
 		74FFE2BF0FB6BF8F00B2BF86 /* ImageLoading-Neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ImageLoading-Neutral.png"; path = "Resources/ImageLoading-Neutral.png"; sourceTree = "<group>"; };
@@ -574,6 +580,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74FB7E0E1017A7A8001B5CB9 /* libMetasyntacticShared.a in Frameworks */,
+				74FB7E0D1017A7A3001B5CB9 /* libProtocolBuffers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +610,8 @@
 				7406A7880F104D1D00795555 /* Controller.m */,
 				7406A78A0F104D1D00795555 /* Model.m */,
 				74A917C40F800C8F00832767 /* NetflixAuthentication.m */,
+				74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */,
+				74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1280,6 +1290,7 @@
 				74FB7DB41017A43F001B5CB9 /* BoxOfficeSharedApplication.h in Headers */,
 				74FB7DB81017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h in Headers */,
 				74FB7DBC1017A457001B5CB9 /* BoxOfficeShared.h in Headers */,
+				74FB7E1E1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,6 +1540,7 @@
 				74FB7DA41017A2DE001B5CB9 /* NetflixAuthentication.m in Sources */,
 				74FB7DA51017A2DE001B5CB9 /* main.m in Sources */,
 				74FB7DB51017A43F001B5CB9 /* BoxOfficeSharedApplication.m in Sources */,
+				74FB7E1F1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
