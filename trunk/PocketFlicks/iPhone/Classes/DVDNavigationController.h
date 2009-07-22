@@ -16,7 +16,7 @@
 
 @interface DVDNavigationController : CommonNavigationController {
 @private
-    DVDViewController* dvdViewController;
+  DVDViewController* dvdViewController;
 }
 
 @end
