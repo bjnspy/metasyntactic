@@ -26,7 +26,7 @@ static Pulser* majorRefreshPulser = nil;
 
 + (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate_ {
   delegate = delegate_;
-  
+
   [majorRefreshPulser release];
   [minorRefreshPulser release];
   majorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(majorRefresh) pulseInterval:5] retain];

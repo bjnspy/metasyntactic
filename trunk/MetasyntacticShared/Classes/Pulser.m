@@ -34,7 +34,7 @@
   self.action = nil;
   self.pulseInterval = 0;
   self.lastPulseTime = nil;
-  
+
   [super dealloc];
 }
 
@@ -48,7 +48,7 @@
     self.pulseInterval = pulseInterval__;
     self.lastPulseTime = [NSDate dateWithTimeIntervalSince1970:1];
   }
-  
+
   return self;
 }
 
@@ -67,13 +67,13 @@
     [self performSelectorOnMainThread:@selector(tryPulse:) withObject:date waitUntilDone:NO];
     return;
   }
-  
+
   if ([date compare:lastPulseTime] == NSOrderedAscending) {
     // we sent out a pulse after this one.  just disregard this pulse
     //NSLog(@"Pulse at '%@' < last pulse at '%@'.  Disregarding.", date, lastPulseTime);
     return;
   }
-  
+
   NSDate* now = [NSDate date];
   NSDate* nextViablePulseTime = [lastPulseTime addTimeInterval:pulseInterval];
   if ([now compare:nextViablePulseTime] == NSOrderedAscending) {
@@ -84,7 +84,7 @@
     [self performSelector:@selector(tryPulse:) withObject:date afterDelay:waitTime];
     return;
   }
-  
+
   // ok, actually pulse.
   self.lastPulseTime = now;
   //NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
@@ -97,7 +97,7 @@
     [self performSelectorOnMainThread:@selector(forcePulse) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   self.lastPulseTime = [NSDate date];
   //NSLog(@"Forced pulse at '%@'.", lastPulseTime);
   [target performSelector:action];
@@ -109,7 +109,7 @@
     [self performSelectorOnMainThread:@selector(tryPulse) withObject:nil waitUntilDone:NO];
     return;
   }
-  
+
   [self tryPulse:[NSDate date]];
 }
 
