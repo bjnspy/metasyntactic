@@ -105,7 +105,8 @@ static BOOL updated = NO;
     return result;
   }
 
-  return [[NSBundle mainBundle] localizedStringForKey:key value:key table:nil];
+  return NSLocalizedString(key, nil);
+//  return [[NSBundle mainBundle] localizedStringForKey:key value:key table:nil];
 }
 
 @end

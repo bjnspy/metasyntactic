@@ -99,4 +99,14 @@
   return [[Model model] screenRotationEnabled];
 }
 
+
+- (BOOL) largePosterCacheAlwaysEnabled {
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) netflixCacheAlwaysEnabled {
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
 @end
