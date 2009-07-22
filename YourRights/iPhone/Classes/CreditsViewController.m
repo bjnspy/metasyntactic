@@ -78,7 +78,7 @@ typedef enum {
   } else if (section == LicenseSection) {
     return 1;
   }
-  
+
   return 0;
 }
 
@@ -87,10 +87,10 @@ typedef enum {
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  
+
   if (section == WrittenBySection) {
     if (row == 0) {
       cell.textLabel.text = NSLocalizedString(@"Send Feedback", nil);
@@ -112,7 +112,7 @@ typedef enum {
   } else if (section == LicenseSection) {
     cell.textLabel.text = NSLocalizedString(@"License", nil);
   }
-  
+
   return cell;
 }
 
@@ -126,7 +126,7 @@ typedef enum {
   } else if (section == InformationProvidedBySection) {
     return NSLocalizedString(@"Information obtained from the", nil);
   }
-  
+
   return nil;
 }
 
@@ -144,7 +144,7 @@ typedef enum {
                              @"for legal advice. You should contact an attorney if you have been "
                              @"arrested or believe that your rights have been violated.", nil);
   }
-  
+
   return nil;
 }
 
@@ -162,16 +162,16 @@ typedef enum {
 - (void) licenseCellTapped {
   UIViewController* controller = [[[UIViewController alloc] init] autorelease];
   controller.title = NSLocalizedString(@"License", nil);
-  
+
   UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
   textView.editable = NO;
   textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
+
   NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
   textView.text = [NSString stringWithContentsOfFile:licensePath];
   textView.font = [UIFont boldSystemFontOfSize:12];
   textView.textColor = [UIColor grayColor];
-  
+
   [controller.view addSubview:textView];
   [self.navigationController pushViewController:controller animated:YES];
 }
@@ -189,7 +189,7 @@ typedef enum {
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   NSString* address = nil;
   if (section == WrittenBySection) {
     if (row == 0) {
@@ -212,7 +212,7 @@ typedef enum {
   } else if (section == LicenseSection) {
     return;
   }
-  
+
   NSURL* url = [NSURL URLWithString:address];
   [[UIApplication sharedApplication] openURL:url];
 }

@@ -31,7 +31,7 @@
 - (void) dealloc {
   self.declaration = nil;
   self.chunks = nil;
-  
+
   [super dealloc];
 }
 
@@ -41,10 +41,10 @@
     self.declaration = declaration_;
     self.title = NSLocalizedString(@"Declaration of Independence", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
     self.chunks = [StringUtilities splitIntoChunks:declaration.text];
   }
-  
+
   return self;
 }
 

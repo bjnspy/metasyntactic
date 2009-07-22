@@ -34,7 +34,7 @@
 - (void) dealloc {
   self.signers = nil;
   self.keys = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,10 +43,10 @@
   if (self = [super initWithStyle:UITableViewStylePlain]) {
     self.signers = signers_;
     self.title = NSLocalizedString(@"Signers", nil);
-    
+
     self.keys = [signers.allKeys sortedArrayUsingSelector:@selector(compare:)];
   }
-  
+
   return self;
 }
 
@@ -75,17 +75,17 @@
     cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
   cell.textLabel.text = signer.name;
-  
+
   return cell;
 }
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-  
+
   [(id)self.navigationController pushBrowser:signer.link animated:YES];
 }
 
@@ -99,7 +99,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   Person* signer = [[signers objectsForKey:[keys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-  
+
   return [WrappableCell height:signer.name accessoryType:UITableViewCellAccessoryNone];
 }
 
