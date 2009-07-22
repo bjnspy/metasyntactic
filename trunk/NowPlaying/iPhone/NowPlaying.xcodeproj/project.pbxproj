@@ -149,7 +149,6 @@
 		7463988C0F7EC9AB00B2F64C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		746398900F7EC9AE00B2F64C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		746398940F7EC9B200B2F64C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		747179660FDC5A8700B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = ../../BoxOfficeShared/iPhone/Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = ../../BoxOfficeShared/iPhone/Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -244,18 +243,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				74FB7E011017A5C5001B5CB9 /* libBoxOfficeShared.a in Frameworks */,
-				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
-				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
-				7401C4CA0F95096B006D8281 /* AddressBook.framework in Frameworks */,
-				7401C4CB0F95096B006D8281 /* CoreLocation.framework in Frameworks */,
-				7401C4CC0F95096B006D8281 /* CoreFoundation.framework in Frameworks */,
-				7401C4CD0F95096B006D8281 /* CFNetwork.framework in Frameworks */,
-				7401C4CE0F95096B006D8281 /* CoreGraphics.framework in Frameworks */,
-				7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */,
-				7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */,
-				7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */,
 				74E164961006D4C2003D852F /* libsqlite3.dylib in Frameworks */,
+				7401C4CA0F95096B006D8281 /* AddressBook.framework in Frameworks */,
+				7401C4CD0F95096B006D8281 /* CFNetwork.framework in Frameworks */,
+				7401C4CC0F95096B006D8281 /* CoreFoundation.framework in Frameworks */,
+				7401C4CE0F95096B006D8281 /* CoreGraphics.framework in Frameworks */,
+				7401C4CB0F95096B006D8281 /* CoreLocation.framework in Frameworks */,
+				7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */,
 				74A60CB1100D3F9600806BBC /* MapKit.framework in Frameworks */,
+				7401C4C90F95096B006D8281 /* MediaPlayer.framework in Frameworks */,
+				7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */,
+				7401C4C80F95096B006D8281 /* SystemConfiguration.framework in Frameworks */,
+				7401C4CF0F95096B006D8281 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,15 +321,15 @@
 			isa = PBXGroup;
 			children = (
 				74E164951006D4C2003D852F /* libsqlite3.dylib */,
-				74A60CB0100D3F9600806BBC /* MapKit.framework */,
-				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
 				7463987C0F7EC99F00B2F64C /* AddressBook.framework */,
 				746398880F7EC9A800B2F64C /* CFNetwork.framework */,
 				746398840F7EC9A500B2F64C /* CoreFoundation.framework */,
 				7463988C0F7EC9AB00B2F64C /* CoreGraphics.framework */,
 				746398800F7EC9A200B2F64C /* CoreLocation.framework */,
 				746398940F7EC9B200B2F64C /* Foundation.framework */,
+				74A60CB0100D3F9600806BBC /* MapKit.framework */,
 				746398780F7EC99C00B2F64C /* MediaPlayer.framework */,
+				74F265BB0F7DE28E00EECA23 /* MessageUI.framework */,
 				746398740F7EC99800B2F64C /* SystemConfiguration.framework */,
 				746398900F7EC9AE00B2F64C /* UIKit.framework */,
 			);
@@ -355,7 +354,6 @@
 			children = (
 				74FB7E031017A5E6001B5CB9 /* BoxOfficeShared.h */,
 				74E6FCEB0FD1B2950015D9F8 /* MetasyntacticShared.h */,
-				747179660FDC5A8700B24ECD /* ProtocolBuffers.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";

@@ -13,19 +13,7 @@
 //limitations under the License.
 
 #ifdef __OBJC__
-#import <CoreFoundation/CoreFoundation.h>
-#import <CommonCrypto/CommonHMAC.h>
-#import <CoreLocation/CoreLocation.h>
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import <MediaPlayer/MPMoviePlayerController.h>
-#import <MessageUI/MessageUI.h>
-#import <Security/Security.h>
-#import <SystemConfiguration/SCNetworkReachability.h>
-#import <UIKit/UIKit.h>
-#import <netinet/in.h>
 #import "TargetConditionals.h"
-#import "ProtocolBuffers.h"
 #import "MetasyntacticShared.h"
 #import "BoxOfficeShared.h"
 #endif

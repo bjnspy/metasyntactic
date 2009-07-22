@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7454A05F100DD886006CC816 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164B21006D88D003D852F /* MessageUI.framework */; };
-		74B7CB61100DC5F700C27ED6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7CB60100DC5F700C27ED6 /* MapKit.framework */; };
+		74AE67261017C682003935FB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74AE67251017C682003935FB /* MapKit.framework */; };
+		74AE67281017C682003935FB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74AE67271017C682003935FB /* MessageUI.framework */; };
 		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		74E148110F95949500FB7BDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
@@ -183,7 +183,6 @@
 		745E21440E59638200105751 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		747179A70FDC5B8A00B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
 		7471E2010EFA0D7A000490CA /* NetflixBrowse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixBrowse.png; path = Resources/NetflixBrowse.png; sourceTree = "<group>"; };
 		7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-0.png"; path = "Resources/NetflixCellBackground-0.png"; sourceTree = "<group>"; };
 		7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-1.png"; path = "Resources/NetflixCellBackground-1.png"; sourceTree = "<group>"; };
@@ -209,14 +208,14 @@
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		74B7CB60100DC5F700C27ED6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74AE67251017C682003935FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74AE67271017C682003935FB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicks_Prefix.pch; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
 		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		74E164B21006D88D003D852F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74E164B41006D88D003D852F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		74E6FD080FD1B2F90015D9F8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
@@ -318,18 +317,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				74FB7F421017B25E001B5CB9 /* libBoxOfficeShared.a in Frameworks */,
-				7454A05F100DD886006CC816 /* MessageUI.framework in Frameworks */,
-				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
-				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
-				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
+				74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */,
+				74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */,
 				74E1496C0F95949500FB7BDA /* CFNetwork.framework in Frameworks */,
 				74E1496D0F95949500FB7BDA /* CoreFoundation.framework in Frameworks */,
 				74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */,
-				74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */,
+				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
+				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
+				74AE67261017C682003935FB /* MapKit.framework in Frameworks */,
 				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
+				74AE67281017C682003935FB /* MessageUI.framework in Frameworks */,
+				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
 				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
-				74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */,
-				74B7CB61100DC5F700C27ED6 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,9 +401,9 @@
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
 				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				74B7CB60100DC5F700C27ED6 /* MapKit.framework */,
+				74AE67251017C682003935FB /* MapKit.framework */,
 				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
-				74E164B21006D88D003D852F /* MessageUI.framework */,
+				74AE67271017C682003935FB /* MessageUI.framework */,
 				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
@@ -455,7 +454,6 @@
 			children = (
 				74FB7FF31017B401001B5CB9 /* BoxOfficeShared.h */,
 				74E6FD080FD1B2F90015D9F8 /* MetasyntacticShared.h */,
-				747179A70FDC5B8A00B24ECD /* ProtocolBuffers.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";

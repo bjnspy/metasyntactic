@@ -29,15 +29,15 @@ static NSString* preferredLanguage = nil;
         preferredLanguage = canonicalLanguage;
       }
     }
-    
+
     if (preferredLanguage.length == 0) {
       preferredLanguage = [self isoLanguage];
     }
-    
+
     if (preferredLanguage.length == 0) {
       preferredLanguage = @"en";
     }
-    
+
     [preferredLanguage retain];
   }
 }
@@ -135,7 +135,7 @@ static NSString* preferredLanguage = nil;
                                @"SK", // Slovakia
                                @"TR", // Turkey
                                nil];
-  
+
   NSString* userCountry = [LocaleUtilities isoCountry];
   return [supportedCountries containsObject:userCountry];
 }
