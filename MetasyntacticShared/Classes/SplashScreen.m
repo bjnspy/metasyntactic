@@ -43,15 +43,15 @@
 - (void) dismiss {
   UIViewController* rootViewController = [delegate viewController];
   rootViewController.view.alpha = 0;
-  
+
   UIWindow* window = [[UIApplication sharedApplication] keyWindow];
   [window addSubview:rootViewController.view];
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(onFadeComplete:finished:context:)];
-    
+
     rootViewController.view.alpha = 1;
   }
   [UIView commitAnimations];
@@ -73,15 +73,15 @@
     [self dismiss];
     return;
   }
-  
+
   NSString* path = [imagePaths objectAtIndex:index];
-  
+
   UIImage* image = [UIImage imageWithContentsOfFile:path];
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-  
+
   imageView.alpha = 0;
   [self.view addSubview:imageView];
-  
+
   NSInteger pause;
   if (index == 0) {
     pause = 0;
@@ -94,7 +94,7 @@
     }
     [UIView commitAnimations];
   }
-  
+
   [self performSelector:@selector(loadImage:)
              withObject:[NSNumber numberWithInt:index + 1]
              afterDelay:pause];
@@ -108,7 +108,7 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   NSMutableArray* paths = [NSMutableArray array];
   NSString* defaultPath = [self bundlePath:@"Default.png"];
   if ([FileUtilities fileExists:defaultPath]) {
@@ -135,7 +135,7 @@
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
   // Will autorelease this in onFadeComplete
   SplashScreen* controller = [[SplashScreen alloc] initWithDelegate:delegate];
-  
+
   UIWindow* window = [[UIApplication sharedApplication] keyWindow];
   [window addSubview:controller.view];
   [window makeKeyAndVisible];
