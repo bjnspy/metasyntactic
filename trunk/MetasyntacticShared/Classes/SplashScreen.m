@@ -19,23 +19,21 @@
 
 @interface SplashScreen()
 @property (retain) NSArray* imagePaths;
-@property (assign) id<SplashScreenDelegate> delegate;
 @end
 
 @implementation SplashScreen
 
 @synthesize imagePaths;
-@synthesize delegate;
 
 - (void) dealloc {
   self.imagePaths = nil;
-  self.delegate = nil;
   [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithDelegate:(id<SplashScreenDelegate>) delegate_ {
   if ((self = [super init])) {
+    delegate = delegate_;
     self.wantsFullScreenLayout = YES;
   }
   return self;
@@ -64,7 +62,7 @@
                finished:(NSNumber *)finished
                 context:(UIView*) previousView {
   [self.view removeFromSuperview];
-  [delegate onCreditsFinished];
+  [delegate onSplashScreenFinished];
   [self autorelease];
 }
 
@@ -103,16 +101,6 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
-}
-
-
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
-}
-
-
 - (NSString*) bundlePath:(NSString*) file {
   return [[NSBundle mainBundle] pathForResource:file ofType:nil];
 }
@@ -127,7 +115,7 @@
     [paths addObject:defaultPath];
   }
   for (NSInteger i = 0; ; i++) {
-    NSString* name = [NSString stringWithFormat:@"OpeningCredits-%d.png", i];
+    NSString* name = [NSString stringWithFormat:@"SplashScreen-%d.png", i];
     NSString* path = [self bundlePath:name];
     if (![FileUtilities fileExists:path]) {
       break;
@@ -145,8 +133,8 @@
 
 
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
-  SplashScreen* controller = [[SplashScreen alloc] init];
-  controller.delegate = delegate;
+  // Will autorelease this in onFadeComplete
+  SplashScreen* controller = [[SplashScreen alloc] initWithDelegate:delegate];
   
   UIWindow* window = [[UIApplication sharedApplication] keyWindow];
   [window addSubview:controller.view];
