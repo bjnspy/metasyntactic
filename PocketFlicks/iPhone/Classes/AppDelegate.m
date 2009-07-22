@@ -23,8 +23,6 @@
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) UIViewController* viewController;
-@property (retain) Pulser* majorRefreshPulser;
-@property (retain) Pulser* minorRefreshPulser;
 @end
 
 
@@ -34,14 +32,10 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize viewController;
-@synthesize majorRefreshPulser;
-@synthesize minorRefreshPulser;
 
 - (void) dealloc {
   self.window = nil;
   self.viewController = nil;
-  self.majorRefreshPulser = nil;
-  self.minorRefreshPulser = nil;
 
   [super dealloc];
 }
@@ -68,9 +62,6 @@ static AppDelegate* appDelegate = nil;
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
   self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
 
-  self.majorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(majorRefresh) pulseInterval:5];
-  self.minorRefreshPulser = [Pulser pulserWithTarget:viewController action:@selector(minorRefresh) pulseInterval:3];
-
   [window addSubview:viewController.view];
   [window makeKeyAndVisible];
 
@@ -87,52 +78,17 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) majorRefreshWorker:(NSNumber*) force {
-  if (![NSThread isMainThread]) {
-    [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
-    return;
-  }
-
-  if (force.boolValue) {
-    [majorRefreshPulser forcePulse];
-  } else {
-    [majorRefreshPulser tryPulse];
-  }
-}
-
-
-- (void) majorRefresh:(BOOL) force {
-  [self majorRefreshWorker:[NSNumber numberWithBool:force]];
-}
-
-
 - (void) majorRefresh {
-  [self majorRefresh:NO];
+  if ([viewController respondsToSelector:@selector(majorRefresh)]) {
+    [(id)viewController majorRefresh];
+  }
 }
 
 
 - (void) minorRefresh {
-  if (![NSThread isMainThread]) {
-    [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
-    return;
+  if ([viewController respondsToSelector:@selector(minorRefresh)]) {
+    [(id)viewController minorRefresh];
   }
-
-  [minorRefreshPulser tryPulse];
-}
-
-
-+ (void) minorRefresh {
-  [appDelegate minorRefresh];
-}
-
-
-+ (void) majorRefresh {
-  [appDelegate majorRefresh];
-}
-
-
-+ (void) majorRefresh:(BOOL) force {
-  [appDelegate majorRefresh:force];
 }
 
 

@@ -16,18 +16,11 @@
 @private
   IBOutlet UIWindow* window;
   UIViewController* viewController;
-  
-  Pulser* minorRefreshPulser;
-  Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 
 + (AppDelegate*) appDelegate;
-
-+ (void) minorRefresh;
-+ (void) majorRefresh;
-+ (void) majorRefresh:(BOOL) force;
 
 + (void) resetTabs;
 

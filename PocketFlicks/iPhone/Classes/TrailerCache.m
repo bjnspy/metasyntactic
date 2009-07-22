@@ -97,7 +97,7 @@
   [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
 
   if (final.count > 0) {
-    [AppDelegate minorRefresh];
+    [MetasyntacticSharedApplication minorRefresh];
   }
 }
 

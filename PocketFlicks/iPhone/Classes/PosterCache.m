@@ -144,7 +144,7 @@
     [FileUtilities writeData:data toFile:path];
 
     if (data.length > 0) {
-      [AppDelegate minorRefresh];
+      [MetasyntacticSharedApplication minorRefresh];
     }
   }
 }

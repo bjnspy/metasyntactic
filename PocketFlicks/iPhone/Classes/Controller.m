@@ -252,7 +252,7 @@ static Controller* controller = nil;
   [self spawnDetermineLocationThread:YES];
 
   // Refresh the UI so we show the found location.
-  [AppDelegate majorRefresh:YES];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -275,7 +275,7 @@ static Controller* controller = nil;
   [locationManager autoUpdateLocation];
 
   // Refresh the UI so we show the new state.
-  [AppDelegate majorRefresh:YES];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
