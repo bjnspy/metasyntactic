@@ -482,7 +482,6 @@
 		74DD89C00F0ECF10009DC326 /* Bookmark-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Active.png"; path = "Resources/Bookmark-Active.png"; sourceTree = "<group>"; };
 		74DD89C10F0ECF10009DC326 /* Bookmark-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Inactive.png"; path = "Resources/Bookmark-Inactive.png"; sourceTree = "<group>"; };
 		74DD89C20F0ECF10009DC326 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CurrentPosition.png; path = Resources/CurrentPosition.png; sourceTree = "<group>"; };
-		74DD89C30F0ECF10009DC326 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		74DD89C40F0ECF10009DC326 /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownArrow.png; path = Resources/DownArrow.png; sourceTree = "<group>"; };
 		74DD89C50F0ECF10009DC326 /* DownDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownDisclosureTriangle.png; path = Resources/DownDisclosureTriangle.png; sourceTree = "<group>"; };
 		74DD89C60F0ECF10009DC326 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVD.png; path = Resources/DVD.png; sourceTree = "<group>"; };
@@ -493,8 +492,6 @@
 		74DD89CB0F0ECF10009DC326 /* FlipUp-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FlipUp-Normal.png"; path = "Resources/FlipUp-Normal.png"; sourceTree = "<group>"; };
 		74DD89CC0F0ECF10009DC326 /* FlipUp-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FlipUp-Selected.png"; path = "Resources/FlipUp-Selected.png"; sourceTree = "<group>"; };
 		74DD89CD0F0ECF10009DC326 /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fresh.png; path = Resources/Fresh.png; sourceTree = "<group>"; };
-		74DD89CE0F0ECF10009DC326 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
-		74DD89CF0F0ECF10009DC326 /* Icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon2.png; path = Resources/Icon2.png; sourceTree = "<group>"; };
 		74DD89D00F0ECF10009DC326 /* ImageLoading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageLoading.png; path = Resources/ImageLoading.png; sourceTree = "<group>"; };
 		74DD89D10F0ECF10009DC326 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageNotAvailable.png; path = Resources/ImageNotAvailable.png; sourceTree = "<group>"; };
 		74DD89D30F0ECF10009DC326 /* MetacriticLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetacriticLogo.png; path = Resources/MetacriticLogo.png; sourceTree = "<group>"; };
@@ -674,7 +671,6 @@
 				74DD89C00F0ECF10009DC326 /* Bookmark-Active.png */,
 				74DD89C10F0ECF10009DC326 /* Bookmark-Inactive.png */,
 				74DD89C20F0ECF10009DC326 /* CurrentPosition.png */,
-				74DD89C30F0ECF10009DC326 /* Default.png */,
 				744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */,
 				74DD89C40F0ECF10009DC326 /* DownArrow.png */,
 				74DD89C50F0ECF10009DC326 /* DownDisclosureTriangle.png */,
@@ -686,8 +682,6 @@
 				74DD89CB0F0ECF10009DC326 /* FlipUp-Normal.png */,
 				74DD89CC0F0ECF10009DC326 /* FlipUp-Selected.png */,
 				74DD89CD0F0ECF10009DC326 /* Fresh.png */,
-				74DD89CE0F0ECF10009DC326 /* Icon.png */,
-				74DD89CF0F0ECF10009DC326 /* Icon2.png */,
 				74FFE2BF0FB6BF8F00B2BF86 /* ImageLoading-Neutral.png */,
 				74DD89D00F0ECF10009DC326 /* ImageLoading.png */,
 				74DD89D10F0ECF10009DC326 /* ImageNotAvailable.png */,

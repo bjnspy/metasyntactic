@@ -610,7 +610,7 @@ static Model* model = nil;
   if ([BoxOfficeSharedApplication netflixCacheAlwaysEnabled]) {
     return YES;
   }
-  
+
   NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_DISABLED];
   if (value == nil) {
     return [LocaleUtilities isUnitedStates];
