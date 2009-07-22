@@ -10,7 +10,6 @@
 		7454A05F100DD886006CC816 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164B21006D88D003D852F /* MessageUI.framework */; };
 		74B7CB61100DC5F700C27ED6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7CB60100DC5F700C27ED6 /* MapKit.framework */; };
 		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		74E1480E0F95949500FB7BDA /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		74E148110F95949500FB7BDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
 		74E148170F95949500FB7BDA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAB0E6BC98800075068 /* Icon.png */; };
@@ -135,6 +134,7 @@
 		74FB82A21017BB16001B5CB9 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB82991017BB16001B5CB9 /* RightArrow.png */; };
 		74FB82C21017BBBE001B5CB9 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB82C01017BBBE001B5CB9 /* LeftArrow.png */; };
 		74FB82C31017BBBE001B5CB9 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB82C11017BBBE001B5CB9 /* Navigate-Forward.png */; };
+		74FB83E21017C467001B5CB9 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74FB83E11017C467001B5CB9 /* License.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +171,6 @@
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		741EFEEB0F0F214C002FD93B /* NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixCredits.png; path = Resources/NetflixCredits.png; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -310,6 +309,7 @@
 		74FB82991017BB16001B5CB9 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
 		74FB82C01017BBBE001B5CB9 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
 		74FB82C11017BBBE001B5CB9 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Forward.png"; sourceTree = "<group>"; };
+		74FB83E11017C467001B5CB9 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = License.txt; path = ../../BoxOfficeShared/iPhone/License.txt; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -389,7 +389,6 @@
 				74F94FA50E6BC98800075068 /* Default.png */,
 				74F94FAB0E6BC98800075068 /* Icon.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
-				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 			);
 			name = Resources;
@@ -538,6 +537,7 @@
 				74FB824D1017BAEF001B5CB9 /* Warning-16x16.png */,
 				74FB824E1017BAEF001B5CB9 /* Warning-32x32.png */,
 				74FB824F1017BAEF001B5CB9 /* YahooLogo.png */,
+				74FB83E11017C467001B5CB9 /* License.txt */,
 			);
 			name = BoxOfficeShared;
 			sourceTree = "<group>";
@@ -653,7 +653,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */,
-				74E1480E0F95949500FB7BDA /* License.txt in Resources */,
 				74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */,
 				74E148110F95949500FB7BDA /* Default.png in Resources */,
 				74E148170F95949500FB7BDA /* Icon.png in Resources */,
@@ -765,6 +764,7 @@
 				74FB82A21017BB16001B5CB9 /* RightArrow.png in Resources */,
 				74FB82C21017BBBE001B5CB9 /* LeftArrow.png in Resources */,
 				74FB82C31017BBBE001B5CB9 /* Navigate-Forward.png in Resources */,
+				74FB83E21017C467001B5CB9 /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
