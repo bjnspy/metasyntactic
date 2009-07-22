@@ -112,11 +112,11 @@
     [paths addObject:path];
   }
   self.imagePaths = paths;
-  
+
   NSString* defaultPath = [self bundlePath:@"Default.png"];
   UIImage* image = [UIImage imageWithContentsOfFile:defaultPath];
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-  
+
   [self.view addSubview:imageView];
 }
 
