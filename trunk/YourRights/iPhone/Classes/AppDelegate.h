@@ -15,10 +15,7 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate,MetasyntacticSharedApplicationDelegate> {
 @private
   UIWindow *window;
-  YourRightsNavigationController* navigationController;
-  
-  Pulser* minorRefreshPulser;
-  Pulser* majorRefreshPulser;
+  UIViewController* viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

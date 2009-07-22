@@ -43,8 +43,6 @@
 
 - (DeclarationOfIndependence*) declarationOfIndependence;
 
-- (void) saveNavigationStack:(UINavigationController*) controller;
-
 - (BOOL) screenRotationEnabled;
 
 @end
