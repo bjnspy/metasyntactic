@@ -22,18 +22,13 @@
 
 @implementation YourRightsNavigationController
 
-- (void) dealloc {
-    [super dealloc];
-}
-
-
 - (id) init {
-    if (self = [super init]) {
-        SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
-        [self pushViewController:controller animated:NO];
-    }
-
-    return self;
+  if (self = [super init]) {
+    SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
+    [self pushViewController:controller animated:NO];
+  }
+  
+  return self;
 }
 
 @end

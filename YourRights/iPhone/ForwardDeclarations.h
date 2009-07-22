@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class AbstractNavigationController;
 @class Amendment;
 @class Article;
 @class Constitution;
@@ -22,16 +21,7 @@
 @class GreatestHitsViewController;
 @class Item;
 @class Model;
-@class MultiDictionary;
-@class Operation;
-@class Operation1;
-@class Operation2;
-@class OperationQueue;
-@class Pulser;
 @class RSSCache;
 @class Section;
 @class SectionViewController;
-@class XmlDocument;
-@class XmlElement;
-@class YourRightsAppDelegate;
 @class YourRightsNavigationController;

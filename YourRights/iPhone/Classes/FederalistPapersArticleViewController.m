@@ -46,12 +46,6 @@
 }
 
 
-- (void) loadView {
-    [super loadView];
-    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }

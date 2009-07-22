@@ -16,7 +16,6 @@
 
 #import "Amendment.h"
 #import "Article.h"
-#import "AutoResizingCell.h"
 #import "Constitution.h"
 #import "ConstitutionAmendmentViewController.h"
 #import "ConstitutionArticleViewController.h"
@@ -33,62 +32,56 @@
 @synthesize constitution;
 
 - (void) dealloc {
-    self.constitution = nil;
-    [super dealloc];
+  self.constitution = nil;
+  [super dealloc];
 }
 
 
 - (id) initWithConstitution:(Constitution*) constitution_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.constitution = constitution_;
-        self.title = NSLocalizedString(@"Federalist Papers", nil);
-    }
-
-    return self;
-}
-
-
-- (void) loadView {
-    [super loadView];
-    self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:self.title];
+  if (self = [super initWithStyle:UITableViewStylePlain]) {
+    self.constitution = constitution_;
+    self.title = NSLocalizedString(@"Federalist Papers", nil);
+  }
+  
+  return self;
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+  return YES;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return constitution.articles.count;
+  return constitution.articles.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *reuseIdentifier = @"reuseIdentifier";
-
-    AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    }
-
-    Article* article = [constitution.articles objectAtIndex:indexPath.row];
-    cell.textLabel.text = article.title;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    return cell;
+  static NSString *reuseIdentifier = @"reuseIdentifier";
+  
+  AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+  }
+  
+  Article* article = [constitution.articles objectAtIndex:indexPath.row];
+  cell.textLabel.text = article.title;
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+  return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Article* article = [constitution.articles objectAtIndex:indexPath.row];
-    FederalistPapersArticleViewController* controller = [[[FederalistPapersArticleViewController alloc] initWithArticle:article] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+  Article* article = [constitution.articles objectAtIndex:indexPath.row];
+  FederalistPapersArticleViewController* controller = [[[FederalistPapersArticleViewController alloc] initWithArticle:article] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

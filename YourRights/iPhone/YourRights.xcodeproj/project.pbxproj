@@ -14,9 +14,22 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740101C00F26EB8300258353 /* CFNetwork.framework */; };
 		7401029E0F276D2700258353 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401029D0F276D2700258353 /* Application.m */; };
+		7406D33F1016D753004374C2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D33E1016D753004374C2 /* libsqlite3.dylib */; };
+		7406D3421016D763004374C2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D3411016D763004374C2 /* CoreLocation.framework */; };
+		7406D3441016D763004374C2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D3431016D763004374C2 /* MapKit.framework */; };
+		7406D42A1016DA49004374C2 /* ActionButton-RoundLowerRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D41F1016DA49004374C2 /* ActionButton-RoundLowerRight.png */; };
+		7406D42B1016DA49004374C2 /* ActionButton-RoundLowerRight1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4201016DA49004374C2 /* ActionButton-RoundLowerRight1.png */; };
+		7406D42C1016DA49004374C2 /* ActionButton-RoundLowerRight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4211016DA49004374C2 /* ActionButton-RoundLowerRight2.png */; };
+		7406D42D1016DA49004374C2 /* ActionButton-Standard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4221016DA49004374C2 /* ActionButton-Standard.png */; };
+		7406D42E1016DA49004374C2 /* ActionButton-Standard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4231016DA49004374C2 /* ActionButton-Standard1.png */; };
+		7406D42F1016DA49004374C2 /* ActionButton-Standard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4241016DA49004374C2 /* ActionButton-Standard2.png */; };
+		7406D4301016DA49004374C2 /* Directions.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4251016DA49004374C2 /* Directions.png */; };
+		7406D4311016DA49004374C2 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4261016DA49004374C2 /* LeftArrow.png */; };
+		7406D4321016DA49004374C2 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4271016DA49004374C2 /* Navigate-Back.png */; };
+		7406D4331016DA49004374C2 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4281016DA49004374C2 /* Navigate-Forward.png */; };
+		7406D4341016DA49004374C2 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4291016DA49004374C2 /* RightArrow.png */; };
 		740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */; };
 		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
-		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
 		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
 		7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */; };
@@ -48,7 +61,6 @@
 		74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */; };
 		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
 		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
-		74954FE30F38EAA900E79E24 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FE20F38EAA900E79E24 /* FontCache.m */; };
 		74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */; };
 		74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */; };
 		74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */; };
@@ -90,12 +102,24 @@
 		740101C00F26EB8300258353 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7401029C0F276D2700258353 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		7401029D0F276D2700258353 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		7406D33E1016D753004374C2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7406D3411016D763004374C2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7406D3431016D763004374C2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7406D41F1016DA49004374C2 /* ActionButton-RoundLowerRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-RoundLowerRight.png"; sourceTree = "<group>"; };
+		7406D4201016DA49004374C2 /* ActionButton-RoundLowerRight1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-RoundLowerRight1.png"; sourceTree = "<group>"; };
+		7406D4211016DA49004374C2 /* ActionButton-RoundLowerRight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-RoundLowerRight2.png"; sourceTree = "<group>"; };
+		7406D4221016DA49004374C2 /* ActionButton-Standard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-Standard.png"; sourceTree = "<group>"; };
+		7406D4231016DA49004374C2 /* ActionButton-Standard1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-Standard1.png"; sourceTree = "<group>"; };
+		7406D4241016DA49004374C2 /* ActionButton-Standard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionButton-Standard2.png"; sourceTree = "<group>"; };
+		7406D4251016DA49004374C2 /* Directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Directions.png; sourceTree = "<group>"; };
+		7406D4261016DA49004374C2 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
+		7406D4271016DA49004374C2 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Back.png"; sourceTree = "<group>"; };
+		7406D4281016DA49004374C2 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Forward.png"; sourceTree = "<group>"; };
+		7406D4291016DA49004374C2 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
 		740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
 		740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
 		740E8D690F3FE93A00798E0C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
 		740E8D6A0F3FE93A00798E0C /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
-		740E8DB30F3FEEA100798E0C /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
-		740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
 		740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
 		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
 		740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
@@ -157,8 +181,6 @@
 		74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
 		74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
 		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
-		74954FE10F38EAA900E79E24 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
-		74954FE20F38EAA900E79E24 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
 		74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
 		74CF63F60F5890CC00417ED5 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
@@ -195,6 +217,9 @@
 				740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */,
 				74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */,
 				742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */,
+				7406D33F1016D753004374C2 /* libsqlite3.dylib in Frameworks */,
+				7406D3421016D763004374C2 /* CoreLocation.framework in Frameworks */,
+				7406D3441016D763004374C2 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +264,9 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				743C01DF0F44CEAC001BBBBA /* Entitlements.plist */,
+				7406D33E1016D753004374C2 /* libsqlite3.dylib */,
+				7406D3411016D763004374C2 /* CoreLocation.framework */,
+				7406D3431016D763004374C2 /* MapKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -256,12 +284,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7406D41E1016DA49004374C2 /* MetasyntacticShared */,
+				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				742DB84C0F129F070079E6B0 /* Icon.png */,
 				74CF65580F58A0EA00417ED5 /* Localizable.strings */,
 				746295390F135CF90073F830 /* License.txt */,
-				742DB84C0F129F070079E6B0 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -278,6 +307,25 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		7406D41E1016DA49004374C2 /* MetasyntacticShared */ = {
+			isa = PBXGroup;
+			children = (
+				7406D41F1016DA49004374C2 /* ActionButton-RoundLowerRight.png */,
+				7406D4201016DA49004374C2 /* ActionButton-RoundLowerRight1.png */,
+				7406D4211016DA49004374C2 /* ActionButton-RoundLowerRight2.png */,
+				7406D4221016DA49004374C2 /* ActionButton-Standard.png */,
+				7406D4231016DA49004374C2 /* ActionButton-Standard1.png */,
+				7406D4241016DA49004374C2 /* ActionButton-Standard2.png */,
+				7406D4251016DA49004374C2 /* Directions.png */,
+				7406D4261016DA49004374C2 /* LeftArrow.png */,
+				7406D4271016DA49004374C2 /* Navigate-Back.png */,
+				7406D4281016DA49004374C2 /* Navigate-Forward.png */,
+				7406D4291016DA49004374C2 /* RightArrow.png */,
+			);
+			name = MetasyntacticShared;
+			path = ../../MetasyntacticShared/Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 		742371D10FD2476D00E19B63 /* Products */ = {
 			isa = PBXGroup;
@@ -300,7 +348,6 @@
 		745A09390F2ED8ED002F64C6 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				74954FE00F38EA8800E79E24 /* UI */,
 				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
 				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
 			);
@@ -360,12 +407,10 @@
 			children = (
 				74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */,
 				74954F320F38E5F400E79E24 /* ArticleTitleCell.h */,
-				740E8DB30F3FEEA100798E0C /* AutoResizingCell.h */,
 				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
 				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
 				74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */,
 				74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */,
-				740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */,
 				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
 				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
 			);
@@ -393,15 +438,6 @@
 				743D96FE0F3FADB800BA0784 /* Section.m */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		74954FE00F38EA8800E79E24 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				74954FE10F38EAA900E79E24 /* FontCache.h */,
-				74954FE20F38EAA900E79E24 /* FontCache.m */,
-			);
-			name = UI;
 			sourceTree = "<group>";
 		};
 		74CF647B0F58939100417ED5 /* Constitution */ = {
@@ -515,6 +551,17 @@
 				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
 				7462953A0F135CF90073F830 /* License.txt in Resources */,
 				74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */,
+				7406D42A1016DA49004374C2 /* ActionButton-RoundLowerRight.png in Resources */,
+				7406D42B1016DA49004374C2 /* ActionButton-RoundLowerRight1.png in Resources */,
+				7406D42C1016DA49004374C2 /* ActionButton-RoundLowerRight2.png in Resources */,
+				7406D42D1016DA49004374C2 /* ActionButton-Standard.png in Resources */,
+				7406D42E1016DA49004374C2 /* ActionButton-Standard1.png in Resources */,
+				7406D42F1016DA49004374C2 /* ActionButton-Standard2.png in Resources */,
+				7406D4301016DA49004374C2 /* Directions.png in Resources */,
+				7406D4311016DA49004374C2 /* LeftArrow.png in Resources */,
+				7406D4321016DA49004374C2 /* Navigate-Back.png in Resources */,
+				7406D4331016DA49004374C2 /* Navigate-Forward.png in Resources */,
+				7406D4341016DA49004374C2 /* RightArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,13 +594,11 @@
 				74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */,
 				74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */,
 				74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */,
-				74954FE30F38EAA900E79E24 /* FontCache.m in Sources */,
 				743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */,
 				743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */,
 				743D96FF0F3FADB800BA0784 /* Section.m in Sources */,
 				740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */,
 				740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */,
-				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
 				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
 				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
 				74D3892B0F58608A00B7A51C /* Person.m in Sources */,
