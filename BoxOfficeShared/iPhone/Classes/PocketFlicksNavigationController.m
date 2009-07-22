@@ -36,19 +36,19 @@
   if ((self = [super init])) {
     self.title = [Application name];
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   if (pocketFlicksViewController == nil) {
     self.pocketFlicksViewController = [[[PocketFlicksViewController alloc] init] autorelease];
     [self pushViewController:pocketFlicksViewController animated:NO];
   }
-  
+
   self.navigationBar.tintColor = [ColorCache netflixYellow];
 }
 

@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "Controller.h"
-#import "PocketFlicksCreditsViewController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -27,6 +26,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
+#import "PocketFlicksCreditsViewController.h"
 
 @interface PocketFlicksViewController()
 @property (retain) UISearchBar* searchBar;
@@ -53,7 +53,7 @@ typedef enum {
 
 - (void) dealloc {
   self.searchBar = nil;
-  
+
   [super dealloc];
 }
 
@@ -70,7 +70,7 @@ typedef enum {
     self.title = [Application name];
     [self setupTableStyle];
   }
-  
+
   return self;
 }
 
@@ -89,7 +89,7 @@ typedef enum {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
   searchBar.tintColor = [ColorCache netflixYellow];
   [searchBar sizeToFit];
-  
+
   self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                          contentsController:self] autorelease];
 }
@@ -97,7 +97,7 @@ typedef enum {
 
 - (void) loadView {
   [super loadView];
-  
+
   [self initializeSearchDisplay];
 }
 
@@ -127,7 +127,7 @@ typedef enum {
     }
     [pool release];
   }
-  
+
   mostPopularTitleCount = result;
 }
 
@@ -136,7 +136,7 @@ typedef enum {
   return;
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-  
+
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;
   frame.size.width += 4;
@@ -152,7 +152,7 @@ typedef enum {
   } else {
     self.tableView.tableHeaderView = nil;
   }
-  
+
   [self initializeInfoButton];
   [self setupTableStyle];
   [self setupTitle];
@@ -178,10 +178,10 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-  
+
   cell.textLabel.textColor = [UIColor whiteColor];
   cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
-  
+
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
@@ -236,12 +236,12 @@ typedef enum {
       cell.imageView.image = [UIImage imageNamed:@"NetflixCredits.png"];
     }
   }
-  
+
   if (cell.textLabel.text.length == 0) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView = nil;
   }
-  
+
   NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
   NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
   UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
@@ -250,7 +250,7 @@ typedef enum {
   selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   cell.backgroundView = backgroundView;
   cell.selectedBackgroundView = selectedBackgroundView;
-  
+
   return cell;
 }
 
@@ -261,7 +261,7 @@ typedef enum {
                                                   delegate:nil
                                          cancelButtonTitle:LocalizedString(@"No", nil)
                                          otherButtonTitles:LocalizedString(@"Yes", nil), nil] autorelease];
-  
+
   alert.delegate = self;
   [alert show];
 }
@@ -273,7 +273,7 @@ typedef enum {
   if (index != alertView.cancelButtonIndex) {
     [self.controller setNetflixKey:nil secret:nil userId:nil];
     [Application resetNetflixDirectories];
-    
+
     [self majorRefresh];
   }
 }
@@ -292,7 +292,7 @@ typedef enum {
    [NetflixCache rentalHistoryWatchedKey],
    [NetflixCache rentalHistoryReturnedKey],
    nil];
-  
+
   UIViewController* controller =
   [[[NetflixFeedsViewController alloc] initWithFeedKeys:keys
                                                   title:LocalizedString(@"Rental History", nil)] autorelease];

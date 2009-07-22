@@ -41,7 +41,7 @@ typedef enum {
 - (void) dealloc {
   self.languages = nil;
   self.localizers = nil;
-  
+
   [super dealloc];
 }
 
@@ -49,7 +49,7 @@ typedef enum {
 static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
   NSString* language1 = [LocaleUtilities displayLanguage:code1];
   NSString* language2 = [LocaleUtilities displayLanguage:code2];
-  
+
   return [language1 compare:language2];
 }
 
@@ -57,7 +57,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = [Application nameAndVersion];
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:@"Michal Štoppl"      forKey:@"cs"];
     [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
@@ -79,10 +79,10 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     [dictionary setObject:@"Ján Senko"          forKey:@"sk"];
     [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
     self.localizers = dictionary;
-    
+
     self.languages = [localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
   }
-  
+
   return self;
 }
 
@@ -112,18 +112,18 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == LicenseSection) {
     return 1;
   }
-  
+
   return 0;
 }
 
 
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
-  
+
   if (section == DVDDetailsSection) {
     return [UIImage imageNamed:@"DeliveredByNetflix.png"];
   }
-  
+
   return nil;
 }
 
@@ -140,29 +140,29 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (indexPath.section == LocalizedBySection) {
     return tableView.rowHeight - 14;
   }
-  
+
   return height;
 }
 
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
   static NSString* reuseIdentifier = @"reuseIdentifier";
-  
+
   SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[SettingCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
   }
-  
+
   NSString* code = [languages objectAtIndex:row];
   NSString* person = [localizers objectForKey:code];
   NSString* language = [LocaleUtilities displayLanguage:code];
-  
+
   cell.textLabel.text = language;
-  
+
   [cell setCellValue:person];
   [cell setHidesSeparator:row > 0];
-  
+
   return cell;
 }
 
@@ -171,25 +171,25 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   if (section == LocalizedBySection) {
     return [self localizationCellForRow:row];
   }
-  
+
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  
+
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  
+
   UIImage* image = [self getImage:indexPath];
-  
+
   if (image != nil) {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-    
+
     NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
     NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-    
+
     imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-    
+
     [cell.contentView addSubview:imageView];
   } else if (section == WrittenBySection) {
     if (row == 0) {
@@ -213,7 +213,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     cell.textLabel.text = LocalizedString(@"License", nil);
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
   }
-  
+
   if (indexPath.section < LocalizedBySection) {
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   } else if (indexPath.section == LocalizedBySection) {
@@ -238,7 +238,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == LocalizedBySection) {
     return LocalizedString(@"Localized by:", nil);
   }
-  
+
   return nil;
 }
 
@@ -251,7 +251,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == GraphicsBySection) {
   } else if (section == LocalizedBySection) {
   }
-  
+
   return nil;
 }
 
@@ -259,16 +259,16 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 - (void) licenseCellTapped {
   UIViewController* controller = [[[UIViewController alloc] init] autorelease];
   controller.title = LocalizedString(@"License", nil);
-  
+
   UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
   textView.editable = NO;
   textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
+
   NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
   textView.text = [NSString stringWithContentsOfFile:licensePath];
   textView.font = [UIFont boldSystemFontOfSize:12];
   textView.textColor = [UIColor grayColor];
-  
+
   [controller.view addSubview:textView];
   [self.navigationController pushViewController:controller animated:YES];
 }
@@ -280,27 +280,27 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
                     [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
                     [LocaleUtilities englishCountry],
                     [LocaleUtilities englishLanguage]];
-  
+
   body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
           [StringUtilities nonNilString:self.model.netflixUserId],
           [StringUtilities nonNilString:self.model.netflixKey],
           [StringUtilities nonNilString:self.model.netflixSecret]];
-  
+
   NSString* subject;
   if ([LocaleUtilities isJapanese]) {
     subject = [StringUtilities stringByAddingPercentEscapes:@"PocketFlicksのフィードバック"];
   } else {
     subject = @"PocketFlicks Feedback";
   }
-  
+
   if ([Application canSendMail]) {
     MFMailComposeViewController* controller = [[[MFMailComposeViewController alloc] init] autorelease];
     controller.mailComposeDelegate = self;
-    
+
     [controller setToRecipients:[NSArray arrayWithObject:@"cyrus.najmabadi@gmail.com"]];
     [controller setSubject:subject];
     [controller setMessageBody:body isHTML:NO];
-    
+
     [self presentModalViewController:controller animated:YES];
   }
 }
@@ -317,7 +317,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-  
+
   NSString* url = nil;
   if (section == WrittenBySection) {
     if (row == 0) {
@@ -342,7 +342,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == LicenseSection) {
     [self licenseCellTapped];
   }
-  
+
   [Application openBrowser:url];
 }
 

@@ -15,7 +15,7 @@
 @interface PocketFlicksViewController : AbstractTableViewController<UIAlertViewDelegate> {
 @private
   UISearchBar* searchBar;
-  
+
   NSInteger mostPopularTitleCount;
 }
 
