@@ -14,7 +14,6 @@
 
 #import "MovieDetailsViewController.h"
 
-#import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
@@ -971,7 +970,8 @@ const NSInteger POSTER_TAG = -1;
   [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   actionSheet.cancelButtonIndex = keys.count;
 
-  [actionSheet showInView:[AppDelegate window]];
+  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+  [actionSheet showInView:window];
 }
 
 
@@ -1082,7 +1082,8 @@ const NSInteger POSTER_TAG = -1;
   [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
 
-  [actionSheet showInView:[AppDelegate window]];
+  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+  [actionSheet showInView:window];
 }
 
 

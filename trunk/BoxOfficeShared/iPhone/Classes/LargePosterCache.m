@@ -14,7 +14,6 @@
 
 #import "LargePosterCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "Model.h"
 #import "Movie.h"

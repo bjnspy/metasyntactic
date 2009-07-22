@@ -14,7 +14,6 @@
 
 #import "NetflixCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "CacheUpdater.h"
 #import "Feed.h"

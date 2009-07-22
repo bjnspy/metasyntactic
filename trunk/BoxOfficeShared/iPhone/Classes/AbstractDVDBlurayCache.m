@@ -14,7 +14,6 @@
 
 #import "AbstractDVDBlurayCache.h"
 
-#import "AppDelegate.h"
 #import "CacheUpdater.h"
 #import "DVD.h"
 #import "Model.h"

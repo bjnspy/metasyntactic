@@ -14,7 +14,6 @@
 
 #import "UpcomingCache.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "CacheUpdater.h"
 #import "Model.h"
