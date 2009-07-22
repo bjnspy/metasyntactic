@@ -29,5 +29,5 @@
 #import "ProtocolBuffers.h"
 #import "MetasyntacticShared.h"
 #import "TargetConditionals.h"
-#import "LocalizableStringsCache.h"
+#import "BoxOfficeShared.h"
 #endif

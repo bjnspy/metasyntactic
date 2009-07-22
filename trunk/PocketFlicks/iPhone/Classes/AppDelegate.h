@@ -12,16 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate,SplashScreenDelegate> {
+@interface AppDelegate : AbstractBoxOfficeAppDelegate<UIApplicationDelegate> {
 @private
   IBOutlet UIWindow* window;
-  UIViewController* viewController;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
-
-+ (void) resetTabs;
-
-+ (UIWindow*) window;
 
 @end
