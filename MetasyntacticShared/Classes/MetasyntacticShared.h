@@ -67,6 +67,8 @@
 #import "NotificationCenter.h"
 #import "NSArray+Utilities.h"
 #import "NSMutableArray+Utilities.h"
+#import "OpeningCreditsViewController.h"
+#import "OpeningCreditsViewControllerDelegate.h"
 #import "Operation.h"
 #import "Operation1.h"
 #import "Operation2.h"

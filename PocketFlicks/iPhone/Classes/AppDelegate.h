@@ -12,15 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate> {
+@interface AppDelegate : NSObject<UIApplicationDelegate,MetasyntacticSharedApplicationDelegate,OpeningCreditsViewControllerDelegate> {
 @private
   IBOutlet UIWindow* window;
   UIViewController* viewController;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
-
-+ (AppDelegate*) appDelegate;
 
 + (void) resetTabs;
 
