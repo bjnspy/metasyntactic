@@ -235,7 +235,7 @@
 
 - (void) onContinueTapped:(id) sender {
   NSString* accessUrl =
-  [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=%@&application_name=%@&oauth_callback=nowplaying://popviewcontroller",
+  [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=%@&application_name=%@&oauth_callback=iphone://popviewcontroller",
    authorizationToken.key,
    [NetflixAuthentication key],
    [NetflixAuthentication applicationName]];

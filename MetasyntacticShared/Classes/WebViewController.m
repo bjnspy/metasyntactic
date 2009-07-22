@@ -259,7 +259,7 @@
     [(id)[NSURLRequest class] setAllowsAnyHTTPSCertificate:YES forHost:request.URL.host];
   }
 
-  if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {
+  if ([request.URL.absoluteString hasPrefix:@"iphone://popviewcontroller"]) {
     [self.abstractNavigationController popViewControllerAnimated:YES];
     return NO;
   }
