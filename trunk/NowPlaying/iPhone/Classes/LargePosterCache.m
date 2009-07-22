@@ -444,7 +444,7 @@ const int START_YEAR = 1912;
 
     if (data.length > 0) {
       [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
-      [AppDelegate minorRefresh];
+      [MetasyntacticSharedApplication minorRefresh];
     }
   }
   [pool release];

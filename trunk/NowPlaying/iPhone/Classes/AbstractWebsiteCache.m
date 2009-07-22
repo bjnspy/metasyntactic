@@ -74,7 +74,7 @@
   // ensure that we don't update this entry too often.
   [FileUtilities writeObject:addressValue toFile:path];
   if (addressValue.length > 0) {
-    [AppDelegate minorRefresh];
+    [MetasyntacticSharedApplication minorRefresh];
   }
 }
 

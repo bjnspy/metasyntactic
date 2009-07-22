@@ -313,7 +313,7 @@
   }
   [dataGate unlock];
 
-  [AppDelegate majorRefresh];
+  [MetasyntacticSharedApplication majorRefresh];
 }
 
 
@@ -409,7 +409,7 @@
   [FileUtilities writeObject:cast toFile:[self castFile:movie]];
   [FileUtilities writeObject:synopsis toFile:synopsisFile];
 
-  [AppDelegate minorRefresh];
+  [MetasyntacticSharedApplication minorRefresh];
 }
 
 
@@ -452,7 +452,7 @@
   }
 
   [FileUtilities writeObject:final toFile:trailersFile];
-  [AppDelegate minorRefresh];
+  [MetasyntacticSharedApplication minorRefresh];
 }
 
 

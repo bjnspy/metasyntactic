@@ -237,7 +237,7 @@
   }
   [dataGate unlock];
 
-  [AppDelegate majorRefresh];
+  [MetasyntacticSharedApplication majorRefresh];
 }
 
 - (void) updateScoresWorker {
@@ -274,7 +274,7 @@
   }
   [dataGate unlock];
 
-  [AppDelegate majorRefresh:YES];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -452,7 +452,7 @@
   [reviews sortUsingSelector:@selector(compare:)];
   [self saveReviews:reviews hash:serverHash title:title];
 
-  [AppDelegate minorRefresh];
+  [MetasyntacticSharedApplication minorRefresh];
 }
 
 
