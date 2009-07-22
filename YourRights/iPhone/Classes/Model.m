@@ -1085,10 +1085,6 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 }
 
 
-- (void) saveNavigationStack:(UINavigationController*) controller {
-}
-
-
 - (BOOL) screenRotationEnabled {
   return YES;
 }

@@ -20,9 +20,7 @@
 #import "YourRightsNavigationController.h"
 
 @interface AppDelegate()
-@property (retain) YourRightsNavigationController* navigationController;
-@property (retain) Pulser* majorRefreshPulser;
-@property (retain) Pulser* minorRefreshPulser;
+@property (retain) UIViewController* viewController;
 @end
 
 @implementation AppDelegate
@@ -30,86 +28,41 @@
 static AppDelegate* appDelegate = nil;
 
 @synthesize window;
-@synthesize navigationController;
-@synthesize majorRefreshPulser;
-@synthesize minorRefreshPulser;
+@synthesize viewController;
 
 - (void) dealloc {
-    self.window = nil;
-    self.navigationController = nil;
-    self.majorRefreshPulser = nil;
-    self.minorRefreshPulser = nil;
-    [super dealloc];
+  self.window = nil;
+  self.viewController = nil;
+  [super dealloc];
 }
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
-    appDelegate = self;
-
-    [Model model];
-    [Controller controller];
-    [OperationQueue operationQueue];
-    self.navigationController = [[[YourRightsNavigationController alloc] init] autorelease];
-
-    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
-
-    [window addSubview:navigationController.view];
-    [window makeKeyAndVisible];
-
-    [NotificationCenter attachToViewController:navigationController];
-
-    [[Controller controller] start];
-}
-
-
-- (void) majorRefreshWorker:(NSNumber*) force {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(majorRefreshWorker:) withObject:force waitUntilDone:NO];
-        return;
-    }
-
-    if (force.boolValue) {
-        [majorRefreshPulser forcePulse];
-    } else {
-        [majorRefreshPulser tryPulse];
-    }
-}
-
-
-- (void) majorRefresh:(BOOL) force {
-    [self majorRefreshWorker:[NSNumber numberWithBool:force]];
+  appDelegate = self;
+  
+  self.viewController = [[[YourRightsNavigationController alloc] init] autorelease];
+    
+  [window addSubview:viewController.view];
+  [window makeKeyAndVisible];
+  
+  [NotificationCenter attachToViewController:viewController];
+  
+  [[Controller controller] start];
 }
 
 
 - (void) majorRefresh {
-  [self majorRefresh:NO];
+  if ([viewController respondsToSelector:@selector(majorRefresh)]) {
+    [(id)viewController majorRefresh];
+  }
 }
 
 
 - (void) minorRefresh {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
-        return;
-    }
-
-    [minorRefreshPulser tryPulse];
-}
-
-
-+ (void) minorRefresh {
-  [appDelegate minorRefresh];
-}
-
-
-+ (void) majorRefresh {
-  [appDelegate majorRefresh];
-}
-
-
-+ (void) majorRefresh:(BOOL) force {
-  [appDelegate majorRefresh:force];
+  if ([viewController respondsToSelector:@selector(minorRefresh)]) {
+    [(id)viewController minorRefresh];
+  }
 }
 
 
@@ -119,7 +72,6 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) saveNavigationStack:(UINavigationController*) controller {
-  [[Model model] saveNavigationStack:controller];
 }
 
 
