@@ -33,23 +33,23 @@ static UIFont* minimumTitleFont = nil;
         controller.navigationItem.backBarButtonItem != nil) {
       return YES;
     }
-  
+
   UINavigationController* navController = controller.navigationController;
   if (navController == nil) {
     return NO;
   }
-  
+
   if (navController.viewControllers.count == 0) {
     return NO;
   }
-  
-  return controller != [navController.viewControllers objectAtIndex:0];    
+
+  return controller != [navController.viewControllers objectAtIndex:0];
 }
 
 
 + (UILabel*) createTitleLabel:(NSString*) title maxWidth:(NSInteger) maxWidth {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
-  
+
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
   label.textColor = [UIColor whiteColor];
@@ -58,7 +58,7 @@ static UIFont* minimumTitleFont = nil;
   label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   label.lineBreakMode = UILineBreakModeMiddleTruncation;
   label.text = title;
-  
+
   CGSize size = [title sizeWithFont:minimumTitleFont];
   if (size.width > maxWidth) {
     label.numberOfLines = 0;
@@ -68,7 +68,7 @@ static UIFont* minimumTitleFont = nil;
     label.font = regularTitleFont;
     label.minimumFontSize = 12;
   }
-  
+
   return label;
 }
 
@@ -83,18 +83,18 @@ static UIFont* minimumTitleFont = nil;
   if (currentView != nil && ![currentView isKindOfClass:[UILabel class]]) {
     return;
   }
-  
+
   NSString* title = controller.title;
   if (title.length == 0) {
     controller.navigationItem.titleView = nil;
     return;
   }
-  
+
   if (UIInterfaceOrientationIsLandscape(controller.interfaceOrientation)) {
     controller.navigationItem.titleView = nil;
     return;
-  } 
-  
+  }
+
   NSInteger maxWidth = 320;
   const BOOL hasLeftBarItem = [self hasLeftBarItem:controller];
   if (hasLeftBarItem) {
@@ -103,13 +103,13 @@ static UIFont* minimumTitleFont = nil;
   if (controller.navigationItem.rightBarButtonItem != nil) {
     maxWidth -= 80;
   }
-  
+
   CGSize size = [title sizeWithFont:regularTitleFont];
   if (size.width <= maxWidth) {
     controller.navigationItem.titleView = nil;
     return;
   }
-  
+
   UILabel* label = [self createTitleLabel:title maxWidth:maxWidth];
 
   controller.navigationItem.titleView = label;
