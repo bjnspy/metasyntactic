@@ -16,9 +16,6 @@
 @private
   IBOutlet UIWindow* window;
   UIViewController* viewController;
-
-  Pulser* minorRefreshPulser;
-  Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;

@@ -17,7 +17,6 @@
 
 - (void) minorRefresh;
 - (void) majorRefresh;
-- (void) majorRefresh:(BOOL) force;
 
 - (void) saveNavigationStack:(UINavigationController*) controller;
 

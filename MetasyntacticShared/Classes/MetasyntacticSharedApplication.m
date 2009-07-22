@@ -15,14 +15,22 @@
 #import "MetasyntacticSharedApplication.h"
 
 #import "MetasyntacticSharedApplicationDelegate.h"
+#import "Pulser.h"
 
 @implementation MetasyntacticSharedApplication
 
 static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
 
+static Pulser* minorRefreshPulser = nil;
+static Pulser* majorRefreshPulser = nil;
 
 + (void) setSharedApplicationDelegate:(id<MetasyntacticSharedApplicationDelegate>) delegate_ {
   delegate = delegate_;
+  
+  [majorRefreshPulser release];
+  [minorRefreshPulser release];
+  majorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(majorRefresh) pulseInterval:5] retain];
+  minorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(minorRefresh) pulseInterval:3] retain];
 }
 
 
@@ -47,17 +55,21 @@ static id<MetasyntacticSharedApplicationDelegate> delegate = nil;
 
 
 + (void) minorRefresh {
-  [delegate minorRefresh];
-}
-
-
-+ (void) majorRefresh {
-  [delegate majorRefresh];
+  [minorRefreshPulser tryPulse];
 }
 
 
 + (void) majorRefresh:(BOOL) force {
-  [delegate majorRefresh:force];
+  if (force) {
+    [majorRefreshPulser forcePulse];
+  } else {
+    [majorRefreshPulser tryPulse];
+  }
+}
+
+
++ (void) majorRefresh {
+  [self majorRefresh:NO];
 }
 
 @end
