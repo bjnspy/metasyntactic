@@ -326,7 +326,7 @@ static NSDictionary* availabilityMap = nil;
     self.queuesData = nil;
   }
   [dataGate unlock];
-  [AppDelegate majorRefresh:YES];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -995,7 +995,7 @@ static NSDictionary* availabilityMap = nil;
 
   [FileUtilities writeObject:userRating toFile:userRatingsFile];
   [FileUtilities writeObject:predictedRating toFile:predictedRatingsFile];
-  [AppDelegate minorRefresh];
+  [MetasyntacticSharedApplication minorRefresh];
 }
 
 
@@ -1228,7 +1228,7 @@ static NSDictionary* availabilityMap = nil;
   NSDictionary* dictionary = [NetflixCache extractMovieDetails:element];
   if (dictionary.count > 0) {
     [FileUtilities writeObject:dictionary toFile:path];
-    [AppDelegate minorRefresh];
+    [MetasyntacticSharedApplication minorRefresh];
   }
 }
 
@@ -1349,7 +1349,7 @@ static NSDictionary* availabilityMap = nil;
     }
     [dataGate unlock];
 
-    [AppDelegate majorRefresh];
+    [MetasyntacticSharedApplication majorRefresh];
   }
 
   for (Feed* feed in feeds) {
@@ -1689,7 +1689,7 @@ static NSDictionary* availabilityMap = nil;
     if (netflixMovie != nil) {
       [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
       [[CacheUpdater cacheUpdater] addMovie:movie];
-      [AppDelegate minorRefresh];
+      [MetasyntacticSharedApplication minorRefresh];
     }
   }
 }
@@ -1714,7 +1714,7 @@ static NSDictionary* availabilityMap = nil;
   NSString* message = [[element element:@"message"] text];
   if ([@"Over queries per day limit" isEqual:message]) {
     self.lastQuotaErrorDate = [NSDate date];
-    [AppDelegate minorRefresh];
+    [MetasyntacticSharedApplication minorRefresh];
   }
 }
 

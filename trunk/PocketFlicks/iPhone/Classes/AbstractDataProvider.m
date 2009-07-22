@@ -220,7 +220,7 @@
   [self setLastLookupDate];
 
   // Let the rest of the app know about the results.
-  [AppDelegate majorRefresh:YES];
+  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
