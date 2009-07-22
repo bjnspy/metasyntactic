@@ -20,124 +20,124 @@
 static NSString* preferredLanguage = nil;
 
 + (void) initialize {
-    if (self == [LocaleUtilities class]) {
-        NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
-        if (preferredLocalizations.count > 0) {
-            NSString* language = [preferredLocalizations objectAtIndex:0];
-            NSString* canonicalLanguage = [(NSString*)CFLocaleCreateCanonicalLanguageIdentifierFromString(NULL, (CFStringRef)language) autorelease];
-            if ([[NSLocale ISOLanguageCodes] containsObject:canonicalLanguage]) {
-                preferredLanguage = canonicalLanguage;
-            }
-        }
-
-        if (preferredLanguage.length == 0) {
-            preferredLanguage = [self isoLanguage];
-        }
-
-        if (preferredLanguage.length == 0) {
-            preferredLanguage = @"en";
-        }
-
-        [preferredLanguage retain];
+  if (self == [LocaleUtilities class]) {
+    NSArray* preferredLocalizations = [[NSBundle mainBundle] preferredLocalizations];
+    if (preferredLocalizations.count > 0) {
+      NSString* language = [preferredLocalizations objectAtIndex:0];
+      NSString* canonicalLanguage = [(NSString*)CFLocaleCreateCanonicalLanguageIdentifierFromString(NULL, (CFStringRef)language) autorelease];
+      if ([[NSLocale ISOLanguageCodes] containsObject:canonicalLanguage]) {
+        preferredLanguage = canonicalLanguage;
+      }
     }
+    
+    if (preferredLanguage.length == 0) {
+      preferredLanguage = [self isoLanguage];
+    }
+    
+    if (preferredLanguage.length == 0) {
+      preferredLanguage = @"en";
+    }
+    
+    [preferredLanguage retain];
+  }
 }
 
 
 + (NSString*) preferredLanguage {
-    return preferredLanguage;
+  return preferredLanguage;
 }
 
 
 + (NSString*) isoCountry {
-    return [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+  return [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
 }
 
 
 + (NSString*) isoLanguage {
-    return [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+  return [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
 }
 
 
 + (NSString*) displayCountry {
-    NSString* isoCountry = [self isoCountry];
-    return [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCountry];
+  NSString* isoCountry = [self isoCountry];
+  return [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCountry];
 }
 
 
 + (NSString*) displayLanguage:(NSString*) isoLanguage {
-    return [[NSLocale currentLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
+  return [[NSLocale currentLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
 }
 
 
 + (NSString*) displayLanguage {
-    NSString* isoLanguage = [self preferredLanguage];
-    return [self displayLanguage:isoLanguage];
+  NSString* isoLanguage = [self preferredLanguage];
+  return [self displayLanguage:isoLanguage];
 }
 
 
 + (NSLocale*) englishLocale {
-    return [[[NSLocale alloc] initWithLocaleIdentifier:@"en"] autorelease];
+  return [[[NSLocale alloc] initWithLocaleIdentifier:@"en"] autorelease];
 }
 
 
 + (NSString*) englishCountry {
-    NSString* isoCountry = [self isoCountry];
-    return [[self englishLocale] displayNameForKey:NSLocaleCountryCode value:isoCountry];
+  NSString* isoCountry = [self isoCountry];
+  return [[self englishLocale] displayNameForKey:NSLocaleCountryCode value:isoCountry];
 }
 
 
 + (NSString*) englishLanguage {
-    NSString* isoLanguage = [self preferredLanguage];
-    return [[self englishLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
+  NSString* isoLanguage = [self preferredLanguage];
+  return [[self englishLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
 }
 
 
 + (BOOL) isEnglish {
-    return [@"en" isEqual:[self preferredLanguage]];
+  return [@"en" isEqual:[self preferredLanguage]];
 }
 
 
 + (BOOL) isUnitedStates {
-    return [@"US" isEqual:[self isoCountry]];
+  return [@"US" isEqual:[self isoCountry]];
 }
 
 
 + (BOOL) isJapanese {
-    return [@"ja" isEqual:[self preferredLanguage]];
+  return [@"ja" isEqual:[self preferredLanguage]];
 }
 
 
 + (BOOL) isSupportedCountry {
-    NSSet* supportedCountries = [NSSet setWithObjects:
-                                 @"AU", // Australia
-                                 @"AR", // Argentina
-                                 @"AT", // Austria
-                                 @"BE", // Belgium
-                                 @"BR", // Brazil
-                                 @"CA", // Canada
-                                 @"CH", // Switzerland
-                                 @"CZ", // Czech Republic
-                                 @"DE", // Germany
-                                 @"DK", // Denmark
-                                 @"ES", // Spain
-                                 @"FR", // France
-                                 @"HU", // Hungary
-                                 @"JP", // Japan
-                                 @"GB", // Great Britain
-                                 @"IE", // Ireland
-                                 @"IT", // Italy
-                                 @"MY", // Malaysia
-                                 @"NL", // The Netherlands
-                                 @"PL", // Poland
-                                 @"PT", // Portugal
-                                 @"US", // United States
-                                 @"SG", // Singapore
-                                 @"SK", // Slovakia
-                                 @"TR", // Turkey
-                                 nil];
-
-    NSString* userCountry = [LocaleUtilities isoCountry];
-    return [supportedCountries containsObject:userCountry];
+  NSSet* supportedCountries = [NSSet setWithObjects:
+                               @"AU", // Australia
+                               @"AR", // Argentina
+                               @"AT", // Austria
+                               @"BE", // Belgium
+                               @"BR", // Brazil
+                               @"CA", // Canada
+                               @"CH", // Switzerland
+                               @"CZ", // Czech Republic
+                               @"DE", // Germany
+                               @"DK", // Denmark
+                               @"ES", // Spain
+                               @"FR", // France
+                               @"HU", // Hungary
+                               @"JP", // Japan
+                               @"GB", // Great Britain
+                               @"IE", // Ireland
+                               @"IT", // Italy
+                               @"MY", // Malaysia
+                               @"NL", // The Netherlands
+                               @"PL", // Poland
+                               @"PT", // Portugal
+                               @"US", // United States
+                               @"SG", // Singapore
+                               @"SK", // Slovakia
+                               @"TR", // Turkey
+                               nil];
+  
+  NSString* userCountry = [LocaleUtilities isoCountry];
+  return [supportedCountries containsObject:userCountry];
 }
 
 @end
