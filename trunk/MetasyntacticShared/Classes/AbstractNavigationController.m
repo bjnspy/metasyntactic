@@ -147,4 +147,18 @@
   [self pushViewController:controller animated:YES];
 }
 
+
+- (void) onRotate {
+  for (id controller in self.viewControllers) {
+    if ([controller respondsToSelector:@selector(onRotate)]) {
+      [controller onRotate];
+    }
+  }
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+  [self onRotate];
+}
+
 @end

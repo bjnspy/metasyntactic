@@ -74,7 +74,7 @@
   frame.origin.y += 2;
   activityView.frame = frame;
 
-  self.label = [ViewControllerUtilities viewControllerTitleLabel];
+  self.label = [ViewControllerUtilities createTitleLabel];
   label.text = LocalizedString(@"Loading", nil);
   [label sizeToFit];
 
