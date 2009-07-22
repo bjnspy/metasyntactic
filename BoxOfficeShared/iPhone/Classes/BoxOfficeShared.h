@@ -9,5 +9,3 @@
 #import "../ForwardDeclarations.h"
 
 #import "BoxOfficeAppDelegate.h"
-#import "BoxOfficeSharedApplication.h"
-#import "BoxOfficeSharedApplicationDelegate.h"

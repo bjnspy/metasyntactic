@@ -15,7 +15,6 @@
 @interface AppDelegate : AbstractBoxOfficeAppDelegate<UIApplicationDelegate> {
 @private
   IBOutlet UIWindow* window;
-  UIViewController* viewController;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;

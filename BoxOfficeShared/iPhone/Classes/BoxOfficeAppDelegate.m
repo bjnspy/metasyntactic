@@ -8,13 +8,46 @@
 
 #import "BoxOfficeAppDelegate.h"
 
+#import "BoxOfficeSharedApplication.h"
 #import "Controller.h"
 #import "Model.h"
 
+@interface AbstractBoxOfficeAppDelegate()
+@property (retain) UIViewController* viewController;
+@end
+
 @implementation AbstractBoxOfficeAppDelegate
 
-- (UIViewController*) viewController {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+@synthesize viewController;
+
+- (void) dealloc {
+  self.viewController = nil;
+  
+  [super dealloc];
+}
+
+
+- (void) applicationDidFinishLaunching:(UIApplication*) app {
+  if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
+    [AlertUtilities showOkAlert:@"Zombies enabled!"];
+  }
+  
+  [Beacon initAndStartBeaconWithApplicationCode:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"]
+                                useCoreLocation:NO
+                                    useOnlyWiFi:NO];
+  
+  [BoxOfficeSharedApplication setSharedApplicationDelegate:self];
+  
+  Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
+  self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
+  
+  [SplashScreen presentSplashScreen:self];
+}
+
+
+- (void) applicationWillTerminate:(UIApplication*) application {
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [[Beacon shared] endBeacon];
 }
 
 
