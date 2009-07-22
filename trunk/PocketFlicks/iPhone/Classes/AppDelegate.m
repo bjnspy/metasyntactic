@@ -62,9 +62,11 @@ static AppDelegate* appDelegate = nil;
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
   self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
 
-  [window addSubview:viewController.view];
-  [window makeKeyAndVisible];
+  [OpeningCreditsViewController presentOpeningCredits:self];
+}
 
+
+- (void) onCreditsFinished {
   [NotificationCenter attachToViewController:viewController];
 
   // Ok.  We've set up all our global state.  Now get the ball rolling.

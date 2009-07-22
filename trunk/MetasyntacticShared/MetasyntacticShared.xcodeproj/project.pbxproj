@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7406D8101016F983004374C2 /* OpeningCreditsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7406D80E1016F983004374C2 /* OpeningCreditsViewController.h */; };
+		7406D8111016F983004374C2 /* OpeningCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406D80F1016F983004374C2 /* OpeningCreditsViewController.m */; };
+		7406D8141016F99D004374C2 /* OpeningCreditsViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7406D8121016F99D004374C2 /* OpeningCreditsViewControllerDelegate.h */; };
 		7415775F0FD5A5C00060E73E /* AbstractData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415775B0FD5A5C00060E73E /* AbstractData.h */; };
 		741577600FD5A5C00060E73E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7415775C0FD5A5C00060E73E /* AbstractData.m */; };
 		741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
@@ -238,6 +241,9 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
 		740102280F26EF7800258353 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utilities.m"; sourceTree = "<group>"; };
+		7406D80E1016F983004374C2 /* OpeningCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeningCreditsViewController.h; sourceTree = "<group>"; };
+		7406D80F1016F983004374C2 /* OpeningCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpeningCreditsViewController.m; sourceTree = "<group>"; };
+		7406D8121016F99D004374C2 /* OpeningCreditsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeningCreditsViewControllerDelegate.h; sourceTree = "<group>"; };
 		7415775B0FD5A5C00060E73E /* AbstractData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractData.h; sourceTree = "<group>"; };
 		7415775C0FD5A5C00060E73E /* AbstractData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
 		741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -580,9 +586,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7406D80D1016F974004374C2 /* Credits */ = {
+			isa = PBXGroup;
+			children = (
+				7406D80E1016F983004374C2 /* OpeningCreditsViewController.h */,
+				7406D8121016F99D004374C2 /* OpeningCreditsViewControllerDelegate.h */,
+				7406D80F1016F983004374C2 /* OpeningCreditsViewController.m */,
+			);
+			name = Credits;
+			sourceTree = "<group>";
+		};
 		741C759E0F8DCAF0003747AD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7406D80D1016F974004374C2 /* Credits */,
 				7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */,
 				74D3A6150FEC03130083298A /* AbstractFlippableTableViewController.h */,
 				742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */,
@@ -1065,6 +1082,8 @@
 				74A60D10100D424300806BBC /* MapViewController.h in Headers */,
 				74A6137D100DBA6100806BBC /* MapPoint.h in Headers */,
 				74549ED3100DCA72006CC816 /* MapViewControllerDelegate.h in Headers */,
+				7406D8101016F983004374C2 /* OpeningCreditsViewController.h in Headers */,
+				7406D8141016F99D004374C2 /* OpeningCreditsViewControllerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,6 +1230,7 @@
 				7493743E1008F3BE00749299 /* BackgroundInvocation3.m in Sources */,
 				74B64789100C5B8600345092 /* AbstractViewController.m in Sources */,
 				74A60D11100D424300806BBC /* MapViewController.m in Sources */,
+				7406D8111016F983004374C2 /* OpeningCreditsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

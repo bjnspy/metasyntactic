@@ -16,6 +16,7 @@
 @protocol ListPickerDelegate;
 @protocol MapPoint;
 @protocol MapViewControllerDelegate;
+@protocol OpeningCreditsViewControllerDelegate;
 @protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;

@@ -12,19 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
-
-@interface PosterCache : AbstractMovieCache {
-@private
-  ImdbPosterDownloader* imdbPosterDownloader;
-  ApplePosterDownloader* applePosterDownloader;
-  FandangoPosterDownloader* fandangoPosterDownloader;
-  PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
-}
-
-+ (PosterCache*) cache;
-
-- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
-- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
-
+@protocol OpeningCreditsViewControllerDelegate
+- (void) onCreditsFinished;
+- (UIViewController*) viewController;
 @end

@@ -12,19 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieCache.h"
+#import "AbstractFullScreenViewController.h"
 
-@interface PosterCache : AbstractMovieCache {
+@interface OpeningCreditsViewController : AbstractFullScreenViewController {
 @private
-  ImdbPosterDownloader* imdbPosterDownloader;
-  ApplePosterDownloader* applePosterDownloader;
-  FandangoPosterDownloader* fandangoPosterDownloader;
-  PreviewNetworksPosterDownloader* previewNetworksPosterDownloader;
+  id<OpeningCreditsViewControllerDelegate> delegate;
+  NSArray* imagePaths;
 }
 
-+ (PosterCache*) cache;
-
-- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
-- (UIImage*) smallPosterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;
++ (void) presentOpeningCredits:(id<OpeningCreditsViewControllerDelegate>) delegate;
 
 @end
