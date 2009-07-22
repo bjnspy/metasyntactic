@@ -14,8 +14,8 @@
 
 #import "Controller.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
+#import "BoxOfficeSharedApplication.h"
 #import "CacheUpdater.h"
 #import "DataProvider.h"
 #import "LocationManager.h"
@@ -281,7 +281,7 @@ static Controller* controller = nil;
 
 - (void) setDvdBlurayEnabled:(BOOL) value {
   [self.model setDvdBlurayCacheEnabled:value];
-  [AppDelegate resetTabs];
+  [BoxOfficeSharedApplication resetTabs];
   [self updateDVDCache];
 }
 
@@ -300,14 +300,14 @@ static Controller* controller = nil;
 
 - (void) setUpcomingEnabled:(BOOL) value {
   [self.model setUpcomingCacheEnabled:value];
-  [AppDelegate resetTabs];
+  [BoxOfficeSharedApplication resetTabs];
   [self updateUpcomingCache];
 }
 
 
 - (void) setNetflixEnabled:(BOOL) value {
   [self.model setNetflixCacheEnabled:value];
-  [AppDelegate resetTabs];
+  [BoxOfficeSharedApplication resetTabs];
   [Application resetNetflixDirectories];
   [self updateNetflixCache];
 }

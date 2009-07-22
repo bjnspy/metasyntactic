@@ -14,7 +14,6 @@
 
 #import "PosterCache.h"
 
-#import "AppDelegate.h"
 #import "ApplePosterDownloader.h"
 #import "Application.h"
 #import "FandangoPosterDownloader.h"

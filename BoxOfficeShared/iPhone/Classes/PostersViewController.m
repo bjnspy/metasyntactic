@@ -14,7 +14,6 @@
 
 #import "PostersViewController.h"
 
-#import "AppDelegate.h"
 #import "CommonNavigationController.h"
 #import "LargePosterCache.h"
 #import "Model.h"

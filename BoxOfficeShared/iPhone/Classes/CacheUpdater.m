@@ -15,7 +15,6 @@
 #import "CacheUpdater.h"
 
 #import "AmazonCache.h"
-#import "AppDelegate.h"
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "IMDbCache.h"

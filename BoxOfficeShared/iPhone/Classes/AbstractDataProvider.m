@@ -14,7 +14,6 @@
 
 #import "AbstractDataProvider.h"
 
-#import "AppDelegate.h"
 #import "Application.h"
 #import "DataProviderUpdateDelegate.h"
 #import "FavoriteTheater.h"
