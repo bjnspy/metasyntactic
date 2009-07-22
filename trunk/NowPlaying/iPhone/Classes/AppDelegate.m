@@ -29,4 +29,14 @@
   [super dealloc];
 }
 
+
+- (BOOL) largePosterCacheAlwaysEnabled {
+  return NO;
+}
+
+
+- (BOOL) netflixCacheAlwaysEnabled {
+  return NO;
+}
+
 @end
