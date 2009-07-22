@@ -245,7 +245,7 @@
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
   [NotificationCenter didChangeInterfaceOrientation];
   [self majorRefresh];
-  
+
   [self onRotate];
 }
 

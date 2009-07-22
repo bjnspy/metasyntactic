@@ -448,7 +448,7 @@
 - (void) initializeMapButton {
   UIBarButtonItem* item = nil;
   if (sortedTheaters.count > 0) {
-    item = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Map", nil) style:UIBarButtonItemStylePlain target:self action:@selector(onMapTapped)] autorelease];
+    item = [[[UIBarButtonItem alloc] initWithTitle:LocalizedString(@"Map", nil) style:UIBarButtonItemStylePlain target:self action:@selector(onMapTapped)] autorelease];
   }
   if ((self.navigationItem.rightBarButtonItem == nil && item != nil) ||
       (self.navigationItem.rightBarButtonItem != nil && item == nil)) {
