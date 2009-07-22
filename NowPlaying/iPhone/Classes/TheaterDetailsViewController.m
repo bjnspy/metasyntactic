@@ -102,13 +102,8 @@
 - (void) loadView {
   [super loadView];
 
-  UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-  label.text = theater.name;
-
-  self.title = theater.name;
-  self.navigationItem.titleView = label;
-
   [self initializeFavoriteButton];
+  self.title = theater.name;
 }
 
 

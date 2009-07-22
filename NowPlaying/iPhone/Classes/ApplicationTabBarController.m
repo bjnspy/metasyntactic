@@ -233,9 +233,20 @@
 }
 
 
+- (void) onRotate {
+  for (id controller in self.viewControllers) {
+    if ([controller respondsToSelector:@selector(onRotate)]) {
+      [controller onRotate];
+    }
+  }
+}
+
+
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
   [NotificationCenter didChangeInterfaceOrientation];
   [self majorRefresh];
+  
+  [self onRotate];
 }
 
 @end

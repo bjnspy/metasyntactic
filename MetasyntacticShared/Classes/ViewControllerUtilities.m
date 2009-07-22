@@ -17,18 +17,39 @@
 
 @implementation ViewControllerUtilities
 
-static UIFont* minimumFont = nil;
+static UIFont* regularTitleFont = nil;
+static UIFont* minimumTitleFont = nil;
 
 + (void) initialize {
   if (self == [ViewControllerUtilities class]) {
-    minimumFont = [[UIFont boldSystemFontOfSize:12] retain];
+    regularTitleFont = [[UIFont boldSystemFontOfSize:20] retain];
+    minimumTitleFont = [[UIFont boldSystemFontOfSize:12] retain];
   }
 }
 
 
-+ (UILabel*) viewControllerTitleLabel:(NSString*) text {
-  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
++ (BOOL) hasLeftBarItem:(UIViewController*) controller {
+    if (controller.navigationItem.leftBarButtonItem != nil ||
+        controller.navigationItem.backBarButtonItem != nil) {
+      return YES;
+    }
+  
+  UINavigationController* navController = controller.navigationController;
+  if (navController == nil) {
+    return NO;
+  }
+  
+  if (navController.viewControllers.count == 0) {
+    return NO;
+  }
+  
+  return controller != [navController.viewControllers objectAtIndex:0];    
+}
 
+
++ (UILabel*) createTitleLabel:(NSString*) title maxWidth:(NSInteger) maxWidth {
+  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
+  
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
   label.textColor = [UIColor whiteColor];
@@ -36,24 +57,62 @@ static UIFont* minimumFont = nil;
   label.textAlignment = UITextAlignmentCenter;
   label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   label.lineBreakMode = UILineBreakModeMiddleTruncation;
-  label.text = text;
+  label.text = title;
   
-  CGSize size = [text sizeWithFont:minimumFont];
-  if (size.width > 160 && ![MetasyntacticSharedApplication screenRotationEnabled]) {
+  CGSize size = [title sizeWithFont:minimumTitleFont];
+  if (size.width > maxWidth) {
     label.numberOfLines = 0;
     label.font = [UIFont boldSystemFontOfSize:14];
   } else {
     label.adjustsFontSizeToFitWidth = YES;
-    label.font = [UIFont boldSystemFontOfSize:20];
+    label.font = regularTitleFont;
     label.minimumFontSize = 12;
   }
-
+  
   return label;
 }
 
 
-+ (UILabel*) viewControllerTitleLabel {
-  return [self viewControllerTitleLabel:@""];
++ (UILabel*) createTitleLabel {
+  return [self createTitleLabel:@"" maxWidth:320];
+}
+
+
++ (void) setupTitleLabel:(UIViewController*) controller {
+  UIView* currentView = controller.navigationItem.titleView;
+  if (currentView != nil && ![currentView isKindOfClass:[UILabel class]]) {
+    return;
+  }
+  
+  NSString* title = controller.title;
+  if (title.length == 0) {
+    controller.navigationItem.titleView = nil;
+    return;
+  }
+  
+  if (UIInterfaceOrientationIsLandscape(controller.interfaceOrientation)) {
+    controller.navigationItem.titleView = nil;
+    return;
+  } 
+  
+  NSInteger maxWidth = 320;
+  const BOOL hasLeftBarItem = [self hasLeftBarItem:controller];
+  if (hasLeftBarItem) {
+    maxWidth -= 80;
+  }
+  if (controller.navigationItem.rightBarButtonItem != nil) {
+    maxWidth -= 80;
+  }
+  
+  CGSize size = [title sizeWithFont:regularTitleFont];
+  if (size.width <= maxWidth) {
+    controller.navigationItem.titleView = nil;
+    return;
+  }
+  
+  UILabel* label = [self createTitleLabel:title maxWidth:maxWidth];
+
+  controller.navigationItem.titleView = label;
 }
 
 

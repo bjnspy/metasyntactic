@@ -45,4 +45,6 @@
 - (void) onBeforeViewControllerPopped;
 - (void) onAfterViewControllerPopped;
 
+- (void) setupTitleLabel;
+
 @end

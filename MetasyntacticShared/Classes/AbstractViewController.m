@@ -14,6 +14,7 @@
 
 #import "AbstractViewController.h"
 
+#import "ViewControllerUtilities.h"
 
 @implementation AbstractViewController
 
@@ -54,6 +55,32 @@
   if (self.navigationController == nil) {
     [self onAfterViewControllerPopped];
   }
+}
+
+
+- (void) setupTitleLabel {
+  [ViewControllerUtilities setupTitleLabel:self];
+}
+
+
+- (void) loadView {
+  [super loadView];
+  [self setupTitleLabel];
+}
+
+
+- (void) setTitle:(NSString*) text {
+  BOOL changed = text.length == 0 || ![text isEqual:self.title];
+  [super setTitle:text];
+  
+  if (changed) {
+    [self setupTitleLabel];
+  }
+}
+
+
+- (void) onRotate {
+  [self setupTitleLabel];
 }
 
 @end

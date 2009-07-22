@@ -15,8 +15,9 @@
 @interface ViewControllerUtilities : NSObject {
 }
 
-+ (UILabel*) viewControllerTitleLabel;
-+ (UILabel*) viewControllerTitleLabel:(NSString*) text;
++ (void) setupTitleLabel:(UIViewController*) viewController;
++ (UILabel*) createTitleLabel;
+
 + (UILabel*) footerLabel;
 + (UILabel*) footerLabel:(NSString*) text;
 

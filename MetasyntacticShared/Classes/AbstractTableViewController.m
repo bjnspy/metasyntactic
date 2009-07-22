@@ -16,6 +16,7 @@
 
 #import "MetasyntacticSharedApplication.h"
 #import "OperationQueue.h"
+#import "ViewControllerUtilities.h"
 
 @interface AbstractTableViewController()
 @property (retain) NSArray* visibleIndexPaths;
@@ -224,8 +225,29 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-  [self majorRefresh];
+- (void) setupTitleLabel {
+  [ViewControllerUtilities setupTitleLabel:self];
+}
+
+
+- (void) loadView {
+  [super loadView];
+  [self setupTitleLabel];
+}
+
+
+- (void) setTitle:(NSString*) text {
+  BOOL changed = text.length == 0 || ![text isEqual:self.title];
+  [super setTitle:text];
+  
+  if (changed) {
+    [self setupTitleLabel];
+  }
+}
+
+
+- (void) onRotate {
+  [self setupTitleLabel];
 }
 
 
