@@ -72,7 +72,7 @@
 - (void) setTitle:(NSString*) text {
   BOOL changed = text.length == 0 || ![text isEqual:self.title];
   [super setTitle:text];
-  
+
   if (changed) {
     [self setupTitleLabel];
   }
