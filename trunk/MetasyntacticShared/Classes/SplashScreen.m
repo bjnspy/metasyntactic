@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "OpeningCreditsViewController.h"
+#import "SplashScreen.h"
 
 #import "FileUtilities.h"
-#import "OpeningCreditsViewControllerDelegate.h"
+#import "SplashScreenDelegate.h"
 
-@interface OpeningCreditsViewController()
+@interface SplashScreen()
 @property (retain) NSArray* imagePaths;
-@property (assign) id<OpeningCreditsViewControllerDelegate> delegate;
+@property (assign) id<SplashScreenDelegate> delegate;
 @end
 
-@implementation OpeningCreditsViewController
+@implementation SplashScreen
 
 @synthesize imagePaths;
 @synthesize delegate;
@@ -51,7 +51,6 @@
   
   [UIView beginAnimations:nil context:NULL];
   {
-    //[UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(onFadeComplete:finished:context:)];
     
@@ -145,8 +144,8 @@
 }
 
 
-+ (void) presentOpeningCredits:(id<OpeningCreditsViewControllerDelegate>) delegate {
-  OpeningCreditsViewController* controller = [[OpeningCreditsViewController alloc] init];
++ (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
+  SplashScreen* controller = [[SplashScreen alloc] init];
   controller.delegate = delegate;
   
   UIWindow* window = [[UIApplication sharedApplication] keyWindow];

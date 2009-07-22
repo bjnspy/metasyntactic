@@ -14,12 +14,12 @@
 
 #import "AbstractFullScreenViewController.h"
 
-@interface OpeningCreditsViewController : AbstractFullScreenViewController {
+@interface SplashScreen : AbstractFullScreenViewController {
 @private
-  id<OpeningCreditsViewControllerDelegate> delegate;
+  id<SplashScreenDelegate> delegate;
   NSArray* imagePaths;
 }
 
-+ (void) presentOpeningCredits:(id<OpeningCreditsViewControllerDelegate>) delegate;
++ (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate;
 
 @end
