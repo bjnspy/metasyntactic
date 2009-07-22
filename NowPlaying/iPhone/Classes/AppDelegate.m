@@ -14,12 +14,6 @@
 
 #import "AppDelegate.h"
 
-#import "ApplicationTabBarController.h"
-#import "CacheUpdater.h"
-#import "Controller.h"
-#import "Model.h"
-#import "NetflixNavigationController.h"
-
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) UIViewController* viewController;
@@ -27,8 +21,6 @@
 
 
 @implementation AppDelegate
-
-static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize viewController;
@@ -50,9 +42,7 @@ static AppDelegate* appDelegate = nil;
                                 useCoreLocation:NO
                                     useOnlyWiFi:NO];
 
-  [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
-
-  appDelegate = self;
+  [BoxOfficeSharedApplication setSharedApplicationDelegate:self];
 
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
   self.viewController = [[[rootViewControllerClass alloc] init] autorelease];
@@ -61,68 +51,9 @@ static AppDelegate* appDelegate = nil;
 }
 
 
-- (void) onSplashScreenFinished {
-  [NotificationCenter attachToViewController:viewController];
-
-  // Ok.  We've set up all our global state.  Now get the ball rolling.
-  [[Controller controller] start];
-}
-
-
 - (void) applicationWillTerminate:(UIApplication*) application {
   [[NSUserDefaults standardUserDefaults] synchronize];
   [[Beacon shared] endBeacon];
-}
-
-
-- (void) majorRefresh {
-  if ([viewController respondsToSelector:@selector(majorRefresh)]) {
-    [(id)viewController majorRefresh];
-  }
-}
-
-
-- (void) minorRefresh {
-  if ([viewController respondsToSelector:@selector(minorRefresh)]) {
-    [(id)viewController minorRefresh];
-  }
-}
-
-
-- (void) resetTabs {
-  if ([viewController isKindOfClass:[ApplicationTabBarController class]]) {
-    [(id) viewController resetTabs];
-  }
-}
-
-
-+ (void) resetTabs {
-  [appDelegate resetTabs];
-}
-
-
-+ (UIWindow*) window {
-  return appDelegate.window;
-}
-
-
-- (NSString*) localizedString:(NSString*) key {
-  return [LocalizableStringsCache localizedString:key];
-}
-
-
-- (void) saveNavigationStack:(UINavigationController*) controller {
-  [[Model model] saveNavigationStack:controller];
-}
-
-
-- (BOOL) notificationsEnabled {
-  return [[Model model] notificationsEnabled];
-}
-
-
-- (BOOL) screenRotationEnabled {
-  return [[Model model] screenRotationEnabled];
 }
 
 @end

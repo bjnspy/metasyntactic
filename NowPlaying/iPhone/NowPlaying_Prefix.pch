@@ -25,9 +25,9 @@
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
 #import "ForwardDeclarations.h"
-#import "LocalizableStringsCache.h"
 #import "Macros.h"
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "MetasyntacticShared.h"
+#import "BoxOfficeShared.h"
 #endif
