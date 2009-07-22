@@ -16,6 +16,7 @@
 
 #import "AbstractFullScreenImageListViewController.h"
 #import "MapViewController.h"
+#import "NotificationCenter.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
@@ -148,6 +149,12 @@
 }
 
 
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) toInterfaceOrientation
+                                 duration:(NSTimeInterval) duration {
+  [NotificationCenter willChangeInterfaceOrientation];
+}
+
+
 - (void) onRotate {
   for (id controller in self.viewControllers) {
     if ([controller respondsToSelector:@selector(onRotate)]) {
@@ -158,6 +165,9 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+  [NotificationCenter didChangeInterfaceOrientation];
+  [self majorRefresh];
+  
   [self onRotate];
 }
 
