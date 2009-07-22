@@ -20,7 +20,6 @@
 		7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398940F7EC9B200B2F64C /* Foundation.framework */; };
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
-		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
 		7489BAFA0FFD67B00044C293 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF60FFD67B00044C293 /* LeftArrow.png */; };
 		7489BAFB0FFD67B00044C293 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7489BAF70FFD67B00044C293 /* Navigate-Back.png */; };
@@ -98,6 +97,7 @@
 		74FB7FE11017B2C8001B5CB9 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB7F9A1017B2C8001B5CB9 /* Warning-16x16.png */; };
 		74FB7FE21017B2C8001B5CB9 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB7F9B1017B2C8001B5CB9 /* Warning-32x32.png */; };
 		74FB7FE31017B2C8001B5CB9 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FB7F9C1017B2C8001B5CB9 /* YahooLogo.png */; };
+		74FB84011017C496001B5CB9 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74FB84001017C496001B5CB9 /* License.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +129,6 @@
 		7406A7850F104D1D00795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -236,6 +235,7 @@
 		74FB7F9A1017B2C8001B5CB9 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "../../BoxOfficeShared/iPhone/Resources/Warning-16x16.png"; sourceTree = SOURCE_ROOT; };
 		74FB7F9B1017B2C8001B5CB9 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "../../BoxOfficeShared/iPhone/Resources/Warning-32x32.png"; sourceTree = SOURCE_ROOT; };
 		74FB7F9C1017B2C8001B5CB9 /* YahooLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YahooLogo.png; path = ../../BoxOfficeShared/iPhone/Resources/YahooLogo.png; sourceTree = SOURCE_ROOT; };
+		74FB84001017C496001B5CB9 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = License.txt; path = ../../BoxOfficeShared/iPhone/License.txt; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,7 +315,6 @@
 				74DD89CE0F0ECF10009DC326 /* Icon.png */,
 				74DD89CF0F0ECF10009DC326 /* Icon2.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
-				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 			);
 			name = Resources;
@@ -438,6 +437,7 @@
 				74FB7F9A1017B2C8001B5CB9 /* Warning-16x16.png */,
 				74FB7F9B1017B2C8001B5CB9 /* Warning-32x32.png */,
 				74FB7F9C1017B2C8001B5CB9 /* YahooLogo.png */,
+				74FB84001017C496001B5CB9 /* License.txt */,
 			);
 			name = BoxOfficeShared;
 			sourceTree = "<group>";
@@ -534,7 +534,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */,
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
 				748B23580E843AFE00322E25 /* Entitlements.plist in Resources */,
 				74DD89FC0F0ECF10009DC326 /* Default.png in Resources */,
@@ -609,6 +608,7 @@
 				74FB7FE11017B2C8001B5CB9 /* Warning-16x16.png in Resources */,
 				74FB7FE21017B2C8001B5CB9 /* Warning-32x32.png in Resources */,
 				74FB7FE31017B2C8001B5CB9 /* YahooLogo.png in Resources */,
+				74FB84011017C496001B5CB9 /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
