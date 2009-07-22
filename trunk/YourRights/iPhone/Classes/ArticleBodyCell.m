@@ -14,7 +14,6 @@
 
 #import "ArticleBodyCell.h"
 
-#import "FontCache.h"
 #import "Item.h"
 
 @interface ArticleBodyCell()

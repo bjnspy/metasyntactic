@@ -15,7 +15,6 @@
 #import "ACLUNewsViewController.h"
 
 #import "ACLUArticlesViewController.h"
-#import "AutoResizingCell.h"
 #import "Model.h"
 #import "RSSCache.h"
 #import "YourRightsNavigationController.h"
