@@ -970,8 +970,7 @@ const NSInteger POSTER_TAG = -1;
   [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   actionSheet.cancelButtonIndex = keys.count;
 
-  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-  [actionSheet showInView:window];
+  [actionSheet showInView:self.view];
 }
 
 
@@ -1082,8 +1081,7 @@ const NSInteger POSTER_TAG = -1;
   [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
 
-  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-  [actionSheet showInView:window];
+  [actionSheet showInView:self.view];
 }
 
 
