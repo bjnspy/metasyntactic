@@ -44,7 +44,7 @@
   UIViewController* rootViewController = [delegate viewController];
   rootViewController.view.alpha = 0;
 
-  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+  UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
   [window addSubview:rootViewController.view];
 
   [UIView beginAnimations:nil context:NULL];
@@ -82,22 +82,15 @@
   imageView.alpha = 0;
   [self.view addSubview:imageView];
 
-  NSInteger pause;
-  if (index == 0) {
-    pause = 0;
+  [UIView beginAnimations:nil context:NULL];
+  {
     imageView.alpha = 1;
-  } else {
-    pause = 1;
-    [UIView beginAnimations:nil context:NULL];
-    {
-      imageView.alpha = 1;
-    }
-    [UIView commitAnimations];
   }
+  [UIView commitAnimations];
 
   [self performSelector:@selector(loadImage:)
              withObject:[NSNumber numberWithInt:index + 1]
-             afterDelay:pause];
+             afterDelay:1];
 }
 
 
@@ -110,10 +103,6 @@
   [super loadView];
 
   NSMutableArray* paths = [NSMutableArray array];
-  NSString* defaultPath = [self bundlePath:@"Default.png"];
-  if ([FileUtilities fileExists:defaultPath]) {
-    [paths addObject:defaultPath];
-  }
   for (NSInteger i = 0; ; i++) {
     NSString* name = [NSString stringWithFormat:@"SplashScreen-%d.png", i];
     NSString* path = [self bundlePath:name];
@@ -123,6 +112,12 @@
     [paths addObject:path];
   }
   self.imagePaths = paths;
+  
+  NSString* defaultPath = [self bundlePath:@"Default.png"];
+  UIImage* image = [UIImage imageWithContentsOfFile:defaultPath];
+  UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+  
+  [self.view addSubview:imageView];
 }
 
 
@@ -136,7 +131,7 @@
   // Will autorelease this in onFadeComplete
   SplashScreen* controller = [[SplashScreen alloc] initWithDelegate:delegate];
 
-  UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+  UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
   [window addSubview:controller.view];
   [window makeKeyAndVisible];
 }

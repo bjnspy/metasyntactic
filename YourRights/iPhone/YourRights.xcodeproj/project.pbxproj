@@ -28,6 +28,7 @@
 		7406D4321016DA49004374C2 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4271016DA49004374C2 /* Navigate-Back.png */; };
 		7406D4331016DA49004374C2 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4281016DA49004374C2 /* Navigate-Forward.png */; };
 		7406D4341016DA49004374C2 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406D4291016DA49004374C2 /* RightArrow.png */; };
+		7406DA5910170988004374C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406DA5810170988004374C2 /* Default.png */; };
 		740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */; };
 		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
@@ -116,6 +117,7 @@
 		7406D4271016DA49004374C2 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Back.png"; sourceTree = "<group>"; };
 		7406D4281016DA49004374C2 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Navigate-Forward.png"; sourceTree = "<group>"; };
 		7406D4291016DA49004374C2 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		7406DA5810170988004374C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
 		740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
 		740E8D690F3FE93A00798E0C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				7406D41E1016DA49004374C2 /* MetasyntacticShared */,
 				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				7406DA5810170988004374C2 /* Default.png */,
 				742DB84C0F129F070079E6B0 /* Icon.png */,
 				74CF65580F58A0EA00417ED5 /* Localizable.strings */,
 				746295390F135CF90073F830 /* License.txt */,
@@ -562,6 +565,7 @@
 				7406D4321016DA49004374C2 /* Navigate-Back.png in Resources */,
 				7406D4331016DA49004374C2 /* Navigate-Forward.png in Resources */,
 				7406D4341016DA49004374C2 /* RightArrow.png in Resources */,
+				7406DA5910170988004374C2 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,15 +739,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "A30ED4E2-BC06-4B01-9DDA-8786D4B8CA10";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A30ED4E2-BC06-4B01-9DDA-8786D4B8CA10";
 				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;

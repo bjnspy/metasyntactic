@@ -25,8 +25,6 @@
 
 @implementation AppDelegate
 
-static AppDelegate* appDelegate = nil;
-
 @synthesize window;
 @synthesize viewController;
 
@@ -39,13 +37,14 @@ static AppDelegate* appDelegate = nil;
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
-  appDelegate = self;
 
   self.viewController = [[[YourRightsNavigationController alloc] init] autorelease];
 
-  [window addSubview:viewController.view];
-  [window makeKeyAndVisible];
+  [SplashScreen presentSplashScreen:self];
+}
 
+
+- (void) onSplashScreenFinished {
   [NotificationCenter attachToViewController:viewController];
 
   [[Controller controller] start];
@@ -82,10 +81,6 @@ static AppDelegate* appDelegate = nil;
 
 - (BOOL) screenRotationEnabled {
   return YES;
-}
-
-
-- (void) applicationDidReceiveMemoryWarning:(UIApplication*) application {
 }
 
 @end
