@@ -19,6 +19,7 @@
 #import "AmazonCache.h"
 #import "Application.h"
 #import "BlurayCache.h"
+#import "BoxOfficeSharedApplication.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "FavoriteTheater.h"
@@ -558,6 +559,9 @@ static Model* model = nil;
 
 
 - (BOOL) largePosterCacheEnabled {
+  if ([BoxOfficeSharedApplication largePosterCacheAlwaysEnabled]) {
+    return YES;
+  }
   return self.userAddress.length > 0;
 }
 
@@ -603,6 +607,10 @@ static Model* model = nil;
 
 
 - (BOOL) netflixCacheEnabled {
+  if ([BoxOfficeSharedApplication netflixCacheAlwaysEnabled]) {
+    return YES;
+  }
+  
   NSNumber* value = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_DISABLED];
   if (value == nil) {
     return [LocaleUtilities isUnitedStates];

@@ -30,7 +30,6 @@
 @class ApplePosterDownloader;
 @class Application;
 @class ApplicationTabBarController;
-@class AutoResizingCell;
 @class BlurayCache;
 @class CacheUpdater;
 @class CollapsedMovieDetailsCell;
@@ -44,7 +43,6 @@
 @class FandangoPosterDownloader;
 @class FavoriteTheater;
 @class Feed;
-@class FontCache;
 @class HelpCache;
 @class IMDbCache;
 @class ImdbPosterDownloader;
@@ -55,7 +53,6 @@
 @class MetacriticScoreProvider;
 @class Movie;
 @class MovieDetailsViewController;
-@class MovieOverviewCell;
 @class MutableNetflixCache;
 @class Score;
 @class MovieShowtimesCell;
@@ -67,12 +64,12 @@
 @class NetflixSearchEngine;
 @class NetflixViewController;
 @class NoneScoreProvider;
-@class AppDelegate;
 @class Controller;
 @class Model;
 @class Person;
 @class PersonPosterCache;
 @class Performance;
+@class PocketFlicksViewController;
 @class PosterCache;
 @class PostersViewController;
 @class PreviewNetworksPosterDownloader;
@@ -89,7 +86,6 @@
 @class LocalSearchEngine;
 @class SearchRequest;
 @class SearchResult;
-@class SettingCell;
 @class SettingsViewController;
 @class Status;
 @class Theater;

@@ -8,4 +8,6 @@
 
 @protocol BoxOfficeSharedApplicationDelegate<MetasyntacticSharedApplicationDelegate>
 - (void) resetTabs;
+- (BOOL) largePosterCacheAlwaysEnabled;
+- (BOOL) netflixCacheAlwaysEnabled;
 @end

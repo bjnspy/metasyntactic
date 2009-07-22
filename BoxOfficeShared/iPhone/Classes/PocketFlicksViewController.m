@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NetflixViewController.h"
+#import "PocketFlicksViewController.h"
 
 #import "Application.h"
 #import "Controller.h"
-#import "CreditsViewController.h"
+#import "PocketFlicksCreditsViewController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -28,12 +28,12 @@
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
 
-@interface NetflixViewController()
+@interface PocketFlicksViewController()
 @property (retain) UISearchBar* searchBar;
 @end
 
 
-@implementation NetflixViewController
+@implementation PocketFlicksViewController
 
 static const NSInteger ROW_HEIGHT = 46;
 
@@ -44,6 +44,7 @@ typedef enum {
   RecommendationsSection,
   AtHomeSection,
   RentalHistorySection,
+  AboutSendFeedbackSection,
   LogOutSection,
   LastSection = LogOutSection
 } Sections;
@@ -52,22 +53,24 @@ typedef enum {
 
 - (void) dealloc {
   self.searchBar = nil;
-
+  
   [super dealloc];
 }
 
 
 - (void) setupTableStyle {
   self.tableView.rowHeight = ROW_HEIGHT;
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.backgroundColor = [ColorCache netflixRed];
 }
 
 
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
-    self.title = LocalizedString(@"Netflix", nil);
+    self.title = [Application name];
     [self setupTableStyle];
   }
-
+  
   return self;
 }
 
@@ -84,8 +87,9 @@ typedef enum {
 
 - (void) initializeSearchDisplay {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
+  searchBar.tintColor = [ColorCache netflixYellow];
   [searchBar sizeToFit];
-
+  
   self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
                                                                          contentsController:self] autorelease];
 }
@@ -93,7 +97,7 @@ typedef enum {
 
 - (void) loadView {
   [super loadView];
-
+  
   [self initializeSearchDisplay];
 }
 
@@ -108,7 +112,7 @@ typedef enum {
       self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
     self.title = LocalizedString(@"Over Quota - Try Again Later", nil);
   } else {
-    self.title = LocalizedString(@"Netflix", nil);
+    self.title = [Application name];
   }
 }
 
@@ -123,15 +127,16 @@ typedef enum {
     }
     [pool release];
   }
-
+  
   mostPopularTitleCount = result;
 }
 
 
 - (void) initializeInfoButton {
+  return;
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-
+  
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;
   frame.size.width += 4;
@@ -147,7 +152,7 @@ typedef enum {
   } else {
     self.tableView.tableHeaderView = nil;
   }
-
+  
   [self initializeInfoButton];
   [self setupTableStyle];
   [self setupTitle];
@@ -161,11 +166,7 @@ typedef enum {
 
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-  if (self.hasAccount) {
-    return LastSection + 1;
-  } else {
-    return 2;
-  }
+  return 9;
 }
 
 
@@ -177,9 +178,10 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   static NSString* reuseIdentifier = @"reuseIdentifier";
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-
-  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+  
+  cell.textLabel.textColor = [UIColor whiteColor];
+  cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
+  
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
     switch (row) {
@@ -211,6 +213,10 @@ typedef enum {
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
         cell.imageView.image = [UIImage imageNamed:@"NetflixHistory.png"];
         break;
+      case AboutSendFeedbackSection:
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Send Feedback", nil), LocalizedString(@"Write Review", nil)];
+        cell.imageView.image = [UIImage imageNamed:@"NetflixCredits.png"];
+        break;
       case LogOutSection:
         cell.textLabel.text = LocalizedString(@"Log Out of Netflix", nil);
         cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
@@ -219,21 +225,23 @@ typedef enum {
         break;
     }
   } else {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 2) {
       cell.textLabel.text = LocalizedString(@"Sign Up for New Account", nil);
       cell.imageView.image = [UIImage imageNamed:@"NetflixSettings.png"];
-    } else if (indexPath.row == 1) {
+    } else if (indexPath.row == 0) {
       cell.textLabel.text = LocalizedString(@"Log In to Existing Account", nil);
       cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+    } else if (indexPath.row == 1) {
+      cell.textLabel.text = LocalizedString(@"Send Feedback", nil);
+      cell.imageView.image = [UIImage imageNamed:@"NetflixCredits.png"];
     }
   }
-
+  
   if (cell.textLabel.text.length == 0) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView = nil;
   }
-
-#if 0
+  
   NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
   NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
   UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
@@ -242,8 +250,7 @@ typedef enum {
   selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   cell.backgroundView = backgroundView;
   cell.selectedBackgroundView = selectedBackgroundView;
-#endif
-
+  
   return cell;
 }
 
@@ -254,7 +261,7 @@ typedef enum {
                                                   delegate:nil
                                          cancelButtonTitle:LocalizedString(@"No", nil)
                                          otherButtonTitles:LocalizedString(@"Yes", nil), nil] autorelease];
-
+  
   alert.delegate = self;
   [alert show];
 }
@@ -266,15 +273,14 @@ typedef enum {
   if (index != alertView.cancelButtonIndex) {
     [self.controller setNetflixKey:nil secret:nil userId:nil];
     [Application resetNetflixDirectories];
-
+    
     [self majorRefresh];
   }
 }
 
 
 - (void) didSelectQueueRow:(NSString*) key {
-  NetflixQueueViewController* controller =
-  [[[NetflixQueueViewController alloc] initWithFeedKey:key] autorelease];
+  UIViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:key] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -286,8 +292,8 @@ typedef enum {
    [NetflixCache rentalHistoryWatchedKey],
    [NetflixCache rentalHistoryReturnedKey],
    nil];
-
-  NetflixFeedsViewController* controller =
+  
+  UIViewController* controller =
   [[[NetflixFeedsViewController alloc] initWithFeedKeys:keys
                                                   title:LocalizedString(@"Rental History", nil)] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
@@ -295,25 +301,25 @@ typedef enum {
 
 
 - (void) didSelectRecomendationsRow {
-  NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixRecommendationsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectAboutSendFeedbackRow {
-  CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[PocketFlicksCreditsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectSettingsRow {
-  NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixSettingsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectMostPopularSection {
-  NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixMostPopularViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -326,13 +332,14 @@ typedef enum {
     case RecommendationsSection:    return [self didSelectRecomendationsRow];
     case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];
     case RentalHistorySection:      return [self didSelectRentalHistoryRow];
+    case AboutSendFeedbackSection:  return [self didSelectAboutSendFeedbackRow];
     case LogOutSection:             return [self didSelectLogoutRow];
   }
 }
 
 
 - (CommonNavigationController*) commonNavigationController {
-  return (id) self.navigationController;
+  return (id)self.navigationController;
 }
 
 
@@ -341,12 +348,14 @@ typedef enum {
   if (self.hasAccount) {
     [self didSelectLoggedInRow:indexPath.row];
   } else {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 2) {
       NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
       [self.commonNavigationController pushBrowser:address animated:YES];
-    } else if (indexPath.row == 1) {
+    } else if (indexPath.row == 0) {
       NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
       [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.row == 1) {
+      [self didSelectAboutSendFeedbackRow];
     }
   }
 }
