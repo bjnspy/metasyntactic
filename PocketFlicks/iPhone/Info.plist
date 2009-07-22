@@ -27,7 +27,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>RootViewControllerClass</key>
-	<string>NetflixNavigationController</string>
+	<string>PocketFlicksNavigationController</string>
 	<key>PinchMediaApplicationCode</key>
 	<string>f529b846faa3f9498254e10e5b0f49d8</string>
 	<key>NetflixKey</key>
