@@ -12,24 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "MetasyntacticSharedApplication.h"
 #import "ViewControllerUtilities.h"
 
 @implementation ViewControllerUtilities
 
+static UIFont* minimumFont = nil;
+
++ (void) initialize {
+  if (self == [ViewControllerUtilities class]) {
+    minimumFont = [[UIFont boldSystemFontOfSize:12] retain];
+  }
+}
+
+
 + (UILabel*) viewControllerTitleLabel:(NSString*) text {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
 
-  label.adjustsFontSizeToFitWidth = YES;
   label.opaque = NO;
   label.backgroundColor = [UIColor clearColor];
   label.textColor = [UIColor whiteColor];
   label.shadowColor = [UIColor darkGrayColor];
-  label.font = [UIFont boldSystemFontOfSize:20];
   label.textAlignment = UITextAlignmentCenter;
-  label.minimumFontSize = 12;
   label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   label.lineBreakMode = UILineBreakModeMiddleTruncation;
   label.text = text;
+  
+  CGSize size = [text sizeWithFont:minimumFont];
+  if (size.width > 160 && ![MetasyntacticSharedApplication screenRotationEnabled]) {
+    label.numberOfLines = 0;
+    label.font = [UIFont boldSystemFontOfSize:14];
+  } else {
+    label.adjustsFontSizeToFitWidth = YES;
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.minimumFontSize = 12;
+  }
 
   return label;
 }
