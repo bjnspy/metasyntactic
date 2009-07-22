@@ -14,17 +14,13 @@
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,MetasyntacticSharedApplicationDelegate> {
 @private
-    UIWindow *window;
-    YourRightsNavigationController* navigationController;
-
-    Pulser* minorRefreshPulser;
-    Pulser* majorRefreshPulser;
+  UIWindow *window;
+  YourRightsNavigationController* navigationController;
+  
+  Pulser* minorRefreshPulser;
+  Pulser* majorRefreshPulser;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
-+ (void) minorRefresh;
-+ (void) majorRefresh;
-+ (void) majorRefresh:(BOOL) force;
 
 @end
