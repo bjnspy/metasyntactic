@@ -336,7 +336,7 @@
   }
   [dataGate unlock];
 
-  [AppDelegate majorRefresh];
+  [MetasyntacticSharedApplication majorRefresh];
 }
 
 

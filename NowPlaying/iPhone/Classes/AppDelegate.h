@@ -25,10 +25,6 @@
 
 + (AppDelegate*) appDelegate;
 
-+ (void) minorRefresh;
-+ (void) majorRefresh;
-+ (void) majorRefresh:(BOOL) force;
-
 + (void) resetTabs;
 
 + (UIWindow*) window;

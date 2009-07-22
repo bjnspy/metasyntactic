@@ -131,7 +131,7 @@ static CacheUpdater* cacheUpdater = nil;
   [model.amazonCache       processMovie:movie force:force];
   [model.wikipediaCache    processMovie:movie force:force];
   [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
-  [AppDelegate minorRefresh];
+  [MetasyntacticSharedApplication minorRefresh];
 
   if (force) {
     [NotificationCenter removeNotification:movie.canonicalTitle];
