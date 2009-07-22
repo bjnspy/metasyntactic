@@ -210,7 +210,7 @@
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		74AE67251017C682003935FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		74AE67271017C682003935FB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicks_Prefix.pch; sourceTree = "<group>"; };
+		74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */,
+				74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -888,7 +888,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
@@ -904,7 +904,7 @@
 					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
@@ -920,7 +920,7 @@
 					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
@@ -936,7 +936,7 @@
 					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlicks_Prefix.pch;
+				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphonesimulator3.0;
