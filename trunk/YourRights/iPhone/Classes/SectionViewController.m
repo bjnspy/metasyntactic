@@ -52,24 +52,24 @@
 - (id) init {
   if (self = [super initWithStyle:UITableViewStylePlain]) {
     self.title = [Application name];
-    
+
     UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     CGRect frame = button.frame;
     frame.size.width += 10;
     button.frame = frame;
-    
+
     [button addTarget:self action:@selector(onInfoTapped:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
   }
-  
+
   return self;
 }
 
 
 - (void) onInfoTapped:(id) sender {
   CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-  
+
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
   navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   [self presentModalViewController:navigationController animated:YES];
@@ -127,24 +127,24 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* text = [self titleForIndexPath:indexPath];
-  
+
   if (indexPath.section == 0) {
     UITableViewCell *cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.textLabel.text = text;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
   } else if (indexPath.section == 1) {
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
   } else {
     text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-    
+
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
   }
 }
@@ -153,7 +153,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* text = [self titleForIndexPath:indexPath];
-  
+
   if (indexPath.section == 0) {
     return tableView.rowHeight;
   } else if (indexPath.section == 1) {
@@ -218,7 +218,7 @@
   } else {
     return NSLocalizedString(@"Encountering Law Enforcement", nil);
   }
-  
+
   return nil;
 }
 

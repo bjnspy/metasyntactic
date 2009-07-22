@@ -33,7 +33,7 @@
 - (void) dealloc {
   self.article = nil;
   self.sectionChunks = nil;
-  
+
   [super dealloc];
 }
 
@@ -41,14 +41,14 @@
 - (id) initWithArticle:(Article*) article_ {
   if (self = [super initWithStyle:UITableViewStylePlain]) {
     self.article = article_;
-    
+
     NSMutableArray* array = [NSMutableArray array];
     for (Section* section in article_.sections) {
       [array addObject:[StringUtilities splitIntoChunks:section.text]];
     }
     self.sectionChunks = array;
   }
-  
+
   return self;
 }
 
@@ -80,7 +80,7 @@
       return 1;
     }
   }
-  
+
   return 0;
 }
 
@@ -90,7 +90,7 @@
   NSString* chunk = [chunks objectAtIndex:indexPath.row];
   WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:chunk] autorelease];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  
+
   return cell;
 }
 
@@ -133,7 +133,7 @@
       return NSLocalizedString(@"Links", nil);
     }
   }
-  
+
   return nil;
 }
 
@@ -143,7 +143,7 @@
   if (indexPath.section < article.sections.count) {
     NSArray* chunks = [sectionChunks objectAtIndex:indexPath.section];
     NSString* chunk = [chunks objectAtIndex:indexPath.row];
-    
+
     return [WrappableCell height:chunk accessoryType:UITableViewCellAccessoryNone];
   } else {
     return tableView.rowHeight;

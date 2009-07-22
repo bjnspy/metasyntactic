@@ -42,7 +42,7 @@
     self.constitution = constitution_;
     self.title = NSLocalizedString(@"Federalist Papers", nil);
   }
-  
+
   return self;
 }
 
@@ -64,16 +64,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *reuseIdentifier = @"reuseIdentifier";
-  
+
   AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   Article* article = [constitution.articles objectAtIndex:indexPath.row];
   cell.textLabel.text = article.title;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   return cell;
 }
 

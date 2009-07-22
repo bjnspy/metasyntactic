@@ -53,7 +53,7 @@ static NSDictionary* titleToIdentifier;
                NSLocalizedString(@"Safe and Free News", nil),
                NSLocalizedString(@"Voting Rights News", nil),
                NSLocalizedString(@"Women's Rights News", nil), nil] retain];
-    
+
     titleToIdentifier = [[NSDictionary dictionaryWithObjects:
                           [NSArray arrayWithObjects:
                            @"http://action.aclu.org/feed/rss2_0/alerts.rss",
@@ -100,7 +100,7 @@ static NSDictionary* titleToIdentifier;
   if (self = [super init ]) {
     self.titleToItems = [NSMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 
@@ -130,11 +130,11 @@ static NSDictionary* titleToIdentifier;
   NSString* description = [[itemElement element:@"description"] text];
   NSString* date = [[itemElement element:@"pubDate"] text];
   NSString* author = [[itemElement element:@"author"] text];
-  
+
   if (title.length == 0) {
     return nil;
   }
-  
+
   return [Item itemWithTitle:title link:link description:description date:date author:author];
 }
 
@@ -142,9 +142,9 @@ static NSDictionary* titleToIdentifier;
 - (NSArray*) downloadFeed:(NSString*) identifier {
   XmlElement* rssElement = [NetworkUtilities xmlWithContentsOfAddress:identifier];
   XmlElement* channelElement = [rssElement element:@"channel"];
-  
+
   NSMutableArray* items = [NSMutableArray array];
-  
+
   for (XmlElement* itemElement in [channelElement elements:@"item"]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
@@ -154,23 +154,23 @@ static NSDictionary* titleToIdentifier;
       }
     }
     [pool release];
-    
+
     if (items.count >= 75) {
       break;
     }
   }
-  
+
   return items;
 }
 
 
 - (void) saveItems:(NSArray*) items toFile:(NSString*) file {
   NSMutableArray* result = [NSMutableArray array];
-  
+
   for (Item* item in items) {
     [result addObject:item.dictionary];
   }
-  
+
   [FileUtilities writeObject:result toFile:file];
 }
 
@@ -178,19 +178,19 @@ static NSDictionary* titleToIdentifier;
 - (void) updateTitle:(NSString*) title {
   NSString* identifier = [titleToIdentifier objectForKey:title];
   NSString* file = [self feedFile:identifier];
-  
+
   if ([FileUtilities fileExists:file]) {
     NSDate* modificationDate = [FileUtilities modificationDate:file];
-    
+
     if (ABS(modificationDate.timeIntervalSinceNow) < ONE_DAY) {
       return;
     }
   }
-  
+
   [NotificationCenter addNotification:title];
   {
     NSArray* items = [self downloadFeed:identifier];
-    
+
     if (items.count > 0) {
       [self saveItems:items toFile:file];
       NSArray* arguments = [NSArray arrayWithObjects:title, items, nil];
@@ -204,7 +204,7 @@ static NSDictionary* titleToIdentifier;
 - (void) reportFeed:(NSArray*) arguments {
   NSString* title = [arguments objectAtIndex:0];
   NSArray* items = [arguments objectAtIndex:1];
-  
+
   [titleToItems setObject:items forKey:title];
   [MetasyntacticSharedApplication majorRefresh];
 }
@@ -228,12 +228,12 @@ static NSDictionary* titleToIdentifier;
   if (encoded.count == 0) {
     return [NSArray array];
   }
-  
+
   NSMutableArray* items = [NSMutableArray array];
   for (NSDictionary* dictionary in encoded) {
     [items addObject:[Item itemWithDictionary:dictionary]];
   }
-  
+
   return items;
 }
 
@@ -244,7 +244,7 @@ static NSDictionary* titleToIdentifier;
     result = [self loadItemsForTitle:title];
     [titleToItems setObject:result forKey:title];
   }
-  
+
   return result;
 }
 

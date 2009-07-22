@@ -30,7 +30,7 @@
 
 - (void) dealloc {
   self.amendment = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,7 +39,7 @@
   if (self = [super initWithStyle:UITableViewStylePlain]) {
     self.amendment = amendment_;
   }
-  
+
   return self;
 }
 
@@ -74,7 +74,7 @@
     Section* section = [amendment.sections objectAtIndex:indexPath.section];
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
   } else {
     UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
@@ -116,9 +116,9 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   if (indexPath.section < amendment.sections.count) {
     Section* section = [amendment.sections objectAtIndex:indexPath.section];
-    
+
     NSString* text = section.text;
-    
+
     return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
   } else {
     return tableView.rowHeight;

@@ -39,7 +39,7 @@
 - (id) init {
   if (self = [super initWithStyle:UITableViewStylePlain]) {
   }
-  
+
   return self;
 }
 
@@ -69,10 +69,10 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* text = [[self.model toughQuestions] objectAtIndex:indexPath.row];
-  
+
   UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   return cell;
 }
 

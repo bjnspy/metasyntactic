@@ -40,14 +40,14 @@ static AppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) application {
   [MetasyntacticSharedApplication setSharedApplicationDelegate:self];
   appDelegate = self;
-  
+
   self.viewController = [[[YourRightsNavigationController alloc] init] autorelease];
-    
+
   [window addSubview:viewController.view];
   [window makeKeyAndVisible];
-  
+
   [NotificationCenter attachToViewController:viewController];
-  
+
   [[Controller controller] start];
 }
 
