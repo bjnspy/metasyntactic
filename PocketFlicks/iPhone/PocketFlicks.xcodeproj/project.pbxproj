@@ -172,7 +172,6 @@
 		741EFEEB0F0F214C002FD93B /* NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixCredits.png; path = Resources/NetflixCredits.png; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
-		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213C0E5962D100105751 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213D0E5962DE00105751 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -374,7 +373,6 @@
 			children = (
 				74C2AEE40F0DF3B700EFAF74 /* PocketFlicks_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
