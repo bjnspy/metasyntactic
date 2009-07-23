@@ -17,7 +17,7 @@
 
 @implementation IdentitySet
 
-static const void *	IdentitySetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+static const void * IdentitySetRetainCallBack(CFAllocatorRef allocator, const void *value) {
   id v = (id)value;
   [v retain];
   return value;
