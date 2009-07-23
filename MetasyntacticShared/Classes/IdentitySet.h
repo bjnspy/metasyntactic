@@ -13,21 +13,14 @@
 // limitations under the License.
 
 @interface IdentitySet : NSObject {
-@private
-    NSMutableSet* set;
 }
 
-+ (IdentitySet*) set;
-+ (IdentitySet*) setWithObject:(id) object;
-+ (IdentitySet*) setWithArray:(NSArray*) values;
++ (NSSet*) set;
++ (NSSet*) setWithObject:(id) object;
++ (NSSet*) setWithArray:(NSArray*) values;
 
-- (void) addObject:(id) value;
-- (void) addObjectsFromArray:(NSArray*) values;
-- (BOOL) containsObject:(id) value;
-- (void) removeObject:(id) value;
-
-- (NSInteger) count;
-
-- (NSArray*) allObjects;
++ (NSMutableSet*) mutableSet;
++ (NSMutableSet*) mutableSetWithObject:(id) object;
++ (NSMutableSet*) mutableSetWithArray:(NSArray*) values;
 
 @end

@@ -16,7 +16,7 @@
 
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
-#import "NotificationCenter.h"
+//#import "NotificationCenter.h"
 
 @interface AbstractMultiPageTableViewController()
 @property (retain) NSMutableDictionary* pageToTableView;

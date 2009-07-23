@@ -14,92 +14,78 @@
 
 #import "IdentitySet.h"
 
-#import "IdentityObject.h"
-
-@interface IdentitySet()
-@property (retain) NSMutableSet* set;
-@end
-
 
 @implementation IdentitySet
 
-@synthesize set;
-
-- (void) dealloc {
-    self.set = nil;
-
-    [super dealloc];
+static const void *	IdentitySetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+  id v = (id)value;
+  [v retain];
+  return value;
 }
 
 
-- (id) init {
-    if ((self = [super init])) {
-        self.set = [NSMutableSet set];
-    }
-
-    return self;
+static void IdentitySetReleaseCallBack(CFAllocatorRef allocator, const void *value) {
+  id v = (id)value;
+  [v release];
 }
 
 
-+ (IdentitySet*) set {
-    return [[[IdentitySet alloc] init] autorelease];
+static CFStringRef IdentitySetCopyDescriptionCallBack(const void *value) {
+  id v = (id)value;
+  return (CFStringRef)[v description];
 }
 
 
-+ (IdentitySet*) setWithArray:(NSArray*) array {
-    IdentitySet* set = [[[IdentitySet alloc] init] autorelease];
-    [set addObjectsFromArray:array];
-    return set;
+static Boolean IdentitySetEqualCallBack(const void *value1, const void *value2) {
+  return value1 == value2;
 }
 
 
-+ (IdentitySet*) setWithObject:(id) object {
-    IdentitySet* set = [[[IdentitySet alloc] init] autorelease];
-    [set addObject:object];
-    return set;
+static CFHashCode IdentitySetHashCallBack(const void *value) {
+  return (CFHashCode)value;
 }
 
 
-- (void) addObject:(id) value {
-    [set addObject:[IdentityObject objectWithValue:value]];
++ (NSMutableSet*) mutableSet {
+  CFSetCallBacks callBacks = {
+    0,
+    IdentitySetRetainCallBack,
+    IdentitySetReleaseCallBack,
+    IdentitySetCopyDescriptionCallBack,
+    IdentitySetEqualCallBack,
+    IdentitySetHashCallBack
+  };
+  NSMutableSet* set = (NSMutableSet*)CFSetCreateMutable(NULL, 0, &callBacks);
+  return [set autorelease];
 }
 
 
-- (void) removeObject:(id) value {
-    [set removeObject:[IdentityObject objectWithValue:value]];
++ (NSMutableSet*) mutableSetWithArray:(NSArray*) array {
+  NSMutableSet* set = [self mutableSet];
+  [set addObjectsFromArray:array];
+  return set;
 }
 
 
-- (void) addObjectsFromArray:(NSArray*) values {
-    for (id value in values) {
-        [self addObject:value];
-    }
++ (NSMutableSet*) mutableSetWithObject:(id) object {
+  NSMutableSet* set = [self mutableSet];
+  [set addObject:object];
+  return set;
 }
 
 
-- (BOOL) containsObject:(id) value {
-    return [set containsObject:[IdentityObject objectWithValue:value]];
++ (NSSet*) set {
+  return [self mutableSet];
 }
 
 
-- (NSInteger) count {
-    return set.count;
++ (NSSet*) setWithObject:(id) object {
+  return [self mutableSetWithObject:object];
 }
 
 
-- (NSArray*) allObjects {
-    NSMutableArray* array = [NSMutableArray array];
-
-    for (IdentityObject* object in set) {
-        [array addObject:object.value];
-    }
-
-    return array;
-}
-
-
-- (NSString*) description {
-    return set.description;
++ (NSSet*) setWithArray:(NSArray*) values {
+  return [self mutableSetWithArray:values];
 }
 
 @end

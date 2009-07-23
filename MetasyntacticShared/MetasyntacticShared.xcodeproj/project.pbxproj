@@ -77,7 +77,6 @@
 		74E164311006D22D003D852F /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642E1006D22D003D852F /* Beacon.h */; };
 		74E164321006D22D003D852F /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */; };
 		74E164891006D46A003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164881006D46A003D852F /* libsqlite3.dylib */; };
-		74E601A80FD1C7990015D9F8 /* IdentityObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAB0F15D9590004B610 /* IdentityObject.h */; };
 		74E601A90FD1C7990015D9F8 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DAD0F15D9590004B610 /* IdentitySet.h */; };
 		74E601AA0FD1C7990015D9F8 /* MultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74616DB30F15D9590004B610 /* MultiDictionary.h */; };
 		74E601AB0FD1C7990015D9F8 /* MutableMultiDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 747C333B0FD0719600411801 /* MutableMultiDictionary.h */; };
@@ -166,7 +165,6 @@
 		74E602000FD1C7990015D9F8 /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D860F15D8A10004B610 /* Invocation2.m */; };
 		74E602010FD1C7990015D9F8 /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D880F15D8A10004B610 /* MainThreadGate.m */; };
 		74E602020FD1C7990015D9F8 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D8A0F15D8A10004B610 /* PriorityMutex.m */; };
-		74E602030FD1C7990015D9F8 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAC0F15D9590004B610 /* IdentityObject.m */; };
 		74E602040FD1C7990015D9F8 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAE0F15D9590004B610 /* IdentitySet.m */; };
 		74E602050FD1C7990015D9F8 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB40F15D9590004B610 /* MultiDictionary.m */; };
 		74E602060FD1C7990015D9F8 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB60F15D9590004B610 /* PointerSet.m */; };
@@ -343,8 +341,6 @@
 		74616D880F15D8A10004B610 /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
 		74616D890F15D8A10004B610 /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
 		74616D8A0F15D8A10004B610 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
-		74616DAB0F15D9590004B610 /* IdentityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityObject.h; sourceTree = "<group>"; };
-		74616DAC0F15D9590004B610 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityObject.m; sourceTree = "<group>"; };
 		74616DAD0F15D9590004B610 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
 		74616DAE0F15D9590004B610 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
 		74616DB30F15D9590004B610 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
@@ -817,12 +813,10 @@
 		74616DAA0F15D9420004B610 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				74616DAB0F15D9590004B610 /* IdentityObject.h */,
 				74616DAD0F15D9590004B610 /* IdentitySet.h */,
 				74616DB30F15D9590004B610 /* MultiDictionary.h */,
 				747C333B0FD0719600411801 /* MutableMultiDictionary.h */,
 				74616DB50F15D9590004B610 /* PointerSet.h */,
-				74616DAC0F15D9590004B610 /* IdentityObject.m */,
 				74616DAE0F15D9590004B610 /* IdentitySet.m */,
 				74616DB40F15D9590004B610 /* MultiDictionary.m */,
 				747C333C0FD0719600411801 /* MutableMultiDictionary.m */,
@@ -968,7 +962,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E601A80FD1C7990015D9F8 /* IdentityObject.h in Headers */,
 				74E601A90FD1C7990015D9F8 /* IdentitySet.h in Headers */,
 				74E601AA0FD1C7990015D9F8 /* MultiDictionary.h in Headers */,
 				74E601AB0FD1C7990015D9F8 /* MutableMultiDictionary.h in Headers */,
@@ -1153,7 +1146,6 @@
 				74E602000FD1C7990015D9F8 /* Invocation2.m in Sources */,
 				74E602010FD1C7990015D9F8 /* MainThreadGate.m in Sources */,
 				74E602020FD1C7990015D9F8 /* PriorityMutex.m in Sources */,
-				74E602030FD1C7990015D9F8 /* IdentityObject.m in Sources */,
 				74E602040FD1C7990015D9F8 /* IdentitySet.m in Sources */,
 				74E602050FD1C7990015D9F8 /* MultiDictionary.m in Sources */,
 				74E602060FD1C7990015D9F8 /* PointerSet.m in Sources */,
