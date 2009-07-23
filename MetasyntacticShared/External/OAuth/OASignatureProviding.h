@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-@protocol OASignatureProviding
+@protocol OASignatureProviding<NSObject>
 - (NSString*) name;
 - (NSString*) signClearText:(NSString*) text withSecret:(NSString*) secret;
 @end

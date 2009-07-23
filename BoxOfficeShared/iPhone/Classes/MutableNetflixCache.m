@@ -546,7 +546,7 @@ andReorderingMovies:[IdentitySet set]
                                             error:&error];
   if (finalQueue == nil) {
     NSLog(@"Adding '%@' failed: %@", movie.canonicalTitle, error);
-    [(id) delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
+    [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
     return;
   }
 

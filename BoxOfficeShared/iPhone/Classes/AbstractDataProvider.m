@@ -515,7 +515,7 @@
     }
   }
 
-  [(id) request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
+  [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }
 
 

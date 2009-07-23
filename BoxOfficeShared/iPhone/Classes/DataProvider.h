@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol DataProvider
+@protocol DataProvider<NSObject>
 - (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context force:(BOOL) force;
 - (void) saveResult:(LookupResult*) result;
 

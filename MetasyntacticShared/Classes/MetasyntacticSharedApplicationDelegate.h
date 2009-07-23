@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol MetasyntacticSharedApplicationDelegate
+@protocol MetasyntacticSharedApplicationDelegate<NSObject>
 - (NSString*) localizedString:(NSString*) key;
 
 - (void) minorRefresh;

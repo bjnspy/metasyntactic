@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol TappableImageViewDelegate
+@protocol TappableImageViewDelegate<NSObject>
 - (void) imageView:(TappableImageView*) imageView
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount;

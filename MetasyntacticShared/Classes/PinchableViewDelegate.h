@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol PinchableViewDelegate
+@protocol PinchableViewDelegate<NSObject>
 - (void) view:(UIView*) view
  pinchStarted:(CGPoint) fromUpperLeft fromLowerRight:(CGPoint) fromLowerRight;
 - (void) view:(UIView*) view

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol DataProviderUpdateDelegate
+@protocol DataProviderUpdateDelegate<NSObject>
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context;
 - (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context;
 - (void) onDataProviderUpdateComplete;
