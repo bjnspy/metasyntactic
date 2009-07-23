@@ -264,8 +264,8 @@
 
 
 - (void) updateQueue:(Queue*) queue
-    byDeletingMovies:(IdentitySet*) deletedMovies
- andReorderingMovies:(IdentitySet*) reorderedMovies
+    byDeletingMovies:(NSSet*) deletedMovies
+ andReorderingMovies:(NSSet*) reorderedMovies
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
   NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
@@ -620,8 +620,8 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
 - (void) modifyQueueBackgroundEntryPointWorker:(NSArray*) arguments {
   Queue* queue = [arguments objectAtIndex:0];
-  IdentitySet* deletedMovies = [arguments objectAtIndex:1];
-  IdentitySet* reorderedMovies = [arguments objectAtIndex:2];
+  NSSet* deletedMovies = [arguments objectAtIndex:1];
+  NSSet* reorderedMovies = [arguments objectAtIndex:2];
   NSArray* moviesInOrder = [arguments objectAtIndex:3];
   id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:4];
 

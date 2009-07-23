@@ -43,7 +43,6 @@
 @class Operation1;
 @class Operation2;
 @class OperationQueue;
-@class PointerSet;
 @class PriorityMutex;
 @class Pulser;
 @class SettingCell;

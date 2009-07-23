@@ -184,14 +184,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 74E601A60FD1C7990015D9F8 /* MetasyntacticShared */;
+			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared;
 		};
 		74FB7DA91017A348001B5CB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */

@@ -25,8 +25,8 @@
 
   NSMutableArray* mutableMovies;
   NSMutableArray* mutableSaved;
-  IdentitySet* deletedMovies;
-  IdentitySet* reorderedMovies;
+  NSMutableSet* deletedMovies;
+  NSMutableSet* reorderedMovies;
 }
 
 - (id) initWithFeedKey:(NSString*) feedKey;

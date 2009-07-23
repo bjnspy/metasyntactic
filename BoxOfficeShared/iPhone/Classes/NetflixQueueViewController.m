@@ -26,8 +26,8 @@
 @property (retain) Queue* queue;
 @property (retain) NSMutableArray* mutableMovies;
 @property (retain) NSMutableArray* mutableSaved;
-@property (retain) IdentitySet* deletedMovies;
-@property (retain) IdentitySet* reorderedMovies;
+@property (retain) NSMutableSet* deletedMovies;
+@property (retain) NSMutableSet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
 @end
 
@@ -398,8 +398,8 @@
 
 
 - (void) onEdit:(id) sender {
-  self.reorderedMovies = [IdentitySet set];
-  self.deletedMovies = [IdentitySet set];
+  self.reorderedMovies = [IdentitySet mutableSet];
+  self.deletedMovies = [IdentitySet mutableSet];
   [self.tableView setEditing:YES animated:YES];
   [self setupButtons];
 }
