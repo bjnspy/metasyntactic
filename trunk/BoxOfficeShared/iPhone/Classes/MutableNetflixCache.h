@@ -27,8 +27,8 @@
             delegate:(id<NetflixMoveMovieDelegate>) delegate;
 
 - (void) updateQueue:(Queue*) queue
-    byDeletingMovies:(IdentitySet*) deletedMovies
- andReorderingMovies:(IdentitySet*) reorderedMovies
+    byDeletingMovies:(NSSet*) deletedMovies
+ andReorderingMovies:(NSSet*) reorderedMovies
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate;
 

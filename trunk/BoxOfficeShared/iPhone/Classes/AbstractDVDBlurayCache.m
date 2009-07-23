@@ -102,12 +102,12 @@
 }
 
 
-- (PointerSet*) loadMoviesSet {
+- (NSSet*) loadMoviesSet {
   return [PointerSet setWithArray:self.movies];
 }
 
 
-- (PointerSet*) moviesSet {
+- (NSSet*) moviesSet {
   return moviesSetData.value;
 }
 
@@ -271,7 +271,7 @@
 }
 
 
-- (NSString*) detailsFile:(Movie*) movie set:(PointerSet*) movies {
+- (NSString*) detailsFile:(Movie*) movie set:(NSSet*) movies {
   if (movies == nil || [movies containsObject:movie]) {
     return [[[self detailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
             stringByAppendingString:@".plist"];
