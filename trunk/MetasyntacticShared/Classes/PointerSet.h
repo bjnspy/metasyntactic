@@ -13,17 +13,14 @@
 // limitations under the License.
 
 @interface PointerSet : NSObject {
-@private
-    NSSet* set;
 }
 
-+ (PointerSet*) setWithArray:(NSArray*) values;
++ (NSSet*) set;
++ (NSSet*) setWithObject:(id) object;
++ (NSSet*) setWithArray:(NSArray*) values;
 
-- (BOOL) containsObject:(id) value;
-
-- (NSInteger) count;
-
-/* @protected */
-- (id) initWithSet:(NSSet*) set;
++ (NSMutableSet*) mutableSet;
++ (NSMutableSet*) mutableSetWithObject:(id) object;
++ (NSMutableSet*) mutableSetWithArray:(NSArray*) values;
 
 @end

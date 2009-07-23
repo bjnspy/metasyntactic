@@ -34,7 +34,6 @@
 @class DateUtilities;
 @class DifferenceEngine;
 @class EditorViewController;
-@class IdentitySet;
 @class ImageCache;
 @class Invocation;
 @class MultiDictionary;

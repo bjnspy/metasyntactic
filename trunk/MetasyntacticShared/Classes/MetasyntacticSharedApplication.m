@@ -14,7 +14,7 @@
 
 #import "MetasyntacticSharedApplication.h"
 
-#import "MetasyntacticSharedApplicationDelegate.h"
+//#import "MetasyntacticSharedApplicationDelegate.h"
 #import "Pulser.h"
 
 @implementation MetasyntacticSharedApplication

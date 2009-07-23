@@ -14,47 +14,73 @@
 
 #import "PointerSet.h"
 
-@interface PointerSet()
-@property (retain) NSSet* set;
-@end
-
-
 @implementation PointerSet
 
-@synthesize set;
-
-- (void) dealloc {
-    self.set = nil;
-
-    [super dealloc];
+static const void *	PointerSetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+  return value;
 }
 
 
-- (id) initWithSet:(NSSet*) set_ {
-    if ((self = [super init])) {
-        self.set = set_;
-    }
-
-    return self;
+static void PointerSetReleaseCallBack(CFAllocatorRef allocator, const void *value) {
 }
 
 
-+ (PointerSet*) setWithArray:(NSArray*) array {
-    NSMutableSet* set = [NSMutableSet set];
-    for (id value in array) {
-        [set addObject:[NSValue valueWithPointer:value]];
-    }
-    return [[[PointerSet alloc] initWithSet:set] autorelease];
+static CFStringRef PointerSetCopyDescriptionCallBack(const void *value) {
+  id v = (id)value;
+  return (CFStringRef)[v description];
 }
 
 
-- (BOOL) containsObject:(id) value {
-    return [set containsObject:[NSValue valueWithPointer:value]];
+static Boolean PointerSetEqualCallBack(const void *value1, const void *value2) {
+  return value1 == value2;
 }
 
 
-- (NSInteger) count {
-    return set.count;
+static CFHashCode PointerSetHashCallBack(const void *value) {
+  return (CFHashCode)value;
+}
+
+
++ (NSMutableSet*) mutableSet {
+  CFSetCallBacks callBacks = {
+    0,
+    PointerSetRetainCallBack,
+    PointerSetReleaseCallBack,
+    PointerSetCopyDescriptionCallBack,
+    PointerSetEqualCallBack,
+    PointerSetHashCallBack
+  };
+  NSMutableSet* set = (NSMutableSet*)CFSetCreateMutable(NULL, 0, &callBacks);
+  return [set autorelease];
+}
+
+
++ (NSMutableSet*) mutableSetWithArray:(NSArray*) array {
+  NSMutableSet* set = [self mutableSet];
+  [set addObjectsFromArray:array];
+  return set;
+}
+
+
++ (NSMutableSet*) mutableSetWithObject:(id) object {
+  NSMutableSet* set = [self mutableSet];
+  [set addObject:object];
+  return set;
+}
+
+
++ (NSSet*) set {
+  return [self mutableSet];
+}
+
+
++ (NSSet*) setWithObject:(id) object {
+  return [self mutableSetWithObject:object];
+}
+
+
++ (NSSet*) setWithArray:(NSArray*) values {
+  return [self mutableSetWithArray:values];
 }
 
 @end
