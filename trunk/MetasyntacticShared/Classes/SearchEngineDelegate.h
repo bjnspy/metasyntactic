@@ -12,6 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol SearchEngineDelegate
+@protocol SearchEngineDelegate<NSObject>
 - (void) reportResult:(AbstractSearchResult*) result;
 @end

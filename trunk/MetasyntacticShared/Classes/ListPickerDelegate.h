@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol ListPickerDelegate
+@protocol ListPickerDelegate<NSObject>
 - (void) onListPickerCancel;
 - (void) onListPickerSave:(id) value;
 @end

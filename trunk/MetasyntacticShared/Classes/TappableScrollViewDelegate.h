@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol TappableScrollViewDelegate
+@protocol TappableScrollViewDelegate<NSObject>
 - (void) scrollView:(TappableScrollView*) scrollView
           wasTapped:(NSInteger) tapCount
             atPoint:(CGPoint) point;

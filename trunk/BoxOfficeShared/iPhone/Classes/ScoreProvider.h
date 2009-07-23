@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol ScoreProvider
+@protocol ScoreProvider<NSObject>
 - (NSString*) providerName;
 - (NSDictionary*) scores;
 - (Score*) scoreForMovie:(Movie*) movie;

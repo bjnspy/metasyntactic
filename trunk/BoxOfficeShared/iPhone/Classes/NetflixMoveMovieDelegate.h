@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol NetflixMoveMovieDelegate
-
+@protocol NetflixMoveMovieDelegate<NSObject>
 - (void) moveSucceededForMovie:(Movie*) movie;
 - (void) moveFailedWithError:(NSString*) error;
-
 @end

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol TappableViewDelegate
+@protocol TappableViewDelegate<NSObject>
 - (void) view:(UIView*) view
    wasTouched:(UITouch*) touch
      tapCount:(NSInteger) tapCount;

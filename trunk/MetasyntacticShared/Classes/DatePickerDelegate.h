@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol DatePickerDelegate
+@protocol DatePickerDelegate<NSObject>
 - (void) onDatePickerCancel:(UIDatePicker*) datePicker;
 - (void) onDatePickerSave:(UIDatePicker*) datePicker;
 @end

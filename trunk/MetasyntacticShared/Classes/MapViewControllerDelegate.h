@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol MapViewControllerDelegate
+@protocol MapViewControllerDelegate<NSObject>
 - (BOOL) hasDetailsForAnnotation:(id<MKAnnotation>) annotation;
 - (void) detailsButtonTappedForAnnotation:(id<MKAnnotation>) annotation;
 @end
