@@ -14,10 +14,6 @@
 
 #import "AbstractFlippableTableViewController.h"
 
-//#import "MetasyntacticSharedApplication.h"
-//#import "MetasyntacticStockImages.h"
-//#import "NotificationCenter.h"
-
 @implementation AbstractFlippableTableViewController
 
 - (BOOL) cacheTableViews {

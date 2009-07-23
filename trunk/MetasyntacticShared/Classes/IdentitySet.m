@@ -32,7 +32,7 @@ static void IdentitySetReleaseCallBack(CFAllocatorRef allocator, const void *val
 
 static CFStringRef IdentitySetCopyDescriptionCallBack(const void *value) {
   id v = (id)value;
-  return (CFStringRef)[v description];
+  return (CFStringRef)[[v description] retain];
 }
 
 

@@ -18,7 +18,6 @@
 #import "AlertUtilities.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
-//#import "NotificationCenter.h"
 #import "ViewControllerUtilities.h"
 
 #define NAVIGATE_BACK_ITEM 1
