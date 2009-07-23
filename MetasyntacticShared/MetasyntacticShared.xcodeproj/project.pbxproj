@@ -59,6 +59,8 @@
 		74AD39F2100139E200D6BDAA /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD39F0100139E200D6BDAA /* SynopsisCell.m */; };
 		74AD3D08100191CE00D6BDAA /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */; };
 		74AD3D09100191CE00D6BDAA /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */; };
+		74B47E141019065A00F17131 /* MemoryUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B47E121019065A00F17131 /* MemoryUtilities.h */; };
+		74B47E151019065A00F17131 /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B47E131019065A00F17131 /* MemoryUtilities.m */; };
 		74B64788100C5B8600345092 /* AbstractViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B64786100C5B8600345092 /* AbstractViewController.h */; };
 		74B64789100C5B8600345092 /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B64787100C5B8600345092 /* AbstractViewController.m */; };
 		74BD09970FF1D95400DB9692 /* AbstractMultiPageTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */; };
@@ -423,6 +425,8 @@
 		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
 		74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
 		74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
+		74B47E121019065A00F17131 /* MemoryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryUtilities.h; sourceTree = "<group>"; };
+		74B47E131019065A00F17131 /* MemoryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryUtilities.m; sourceTree = "<group>"; };
 		74B64786100C5B8600345092 /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		74B64787100C5B8600345092 /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		74BD09950FF1D95400DB9692 /* AbstractMultiPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMultiPageTableViewController.h; sourceTree = "<group>"; };
@@ -768,6 +772,8 @@
 				740102280F26EF7800258353 /* NSMutableArray+Utilities.m */,
 				74616E7F0F15DD0F0004B610 /* Pulser.m */,
 				74616D6B0F15D42A0004B610 /* StringUtilities.m */,
+				74B47E121019065A00F17131 /* MemoryUtilities.h */,
+				74B47E131019065A00F17131 /* MemoryUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1077,6 +1083,7 @@
 				74549ED3100DCA72006CC816 /* MapViewControllerDelegate.h in Headers */,
 				7406D88E1016FE96004374C2 /* SplashScreen.h in Headers */,
 				7406D8901016FE96004374C2 /* SplashScreenDelegate.h in Headers */,
+				74B47E141019065A00F17131 /* MemoryUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,6 +1230,7 @@
 				74B64789100C5B8600345092 /* AbstractViewController.m in Sources */,
 				74A60D11100D424300806BBC /* MapViewController.m in Sources */,
 				7406D88F1016FE96004374C2 /* SplashScreen.m in Sources */,
+				74B47E151019065A00F17131 /* MemoryUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
