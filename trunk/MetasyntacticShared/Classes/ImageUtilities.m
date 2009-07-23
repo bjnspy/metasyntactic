@@ -16,16 +16,15 @@
 
 @implementation ImageUtilities
 
-+ (CGContextRef) createBitmapContext:(CGSize) size {
-  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-  CGContextRef context = CGBitmapContextCreate(NULL,
++ (CGContextRef) getBitmapContext:(CGSize) size {
+  CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
+  CGContextRef context = CFAutoRelease(CGBitmapContextCreate(NULL,
                                                round(size.width),
                                                round(size.height),
                                                8,
                                                4 * round(size.width),
                                                colorSpace,
-                                               kCGImageAlphaPremultipliedFirst);
-  CGColorSpaceRelease(colorSpace);
+                                               kCGImageAlphaPremultipliedFirst));
   return context;
 }
 
@@ -36,18 +35,15 @@
 
 
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size {
-  //return image;
   if (image == nil) {
     return nil;
   }
 
-  CGContextRef context = [self createBitmapContext:size];
+  CGContextRef context = [self getBitmapContext:size];
   CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
-  CGImageRef imageRef = CGBitmapContextCreateImage(context);
-  CGContextRelease(context);
+  CGImageRef imageRef = CFAutoRelease(CGBitmapContextCreateImage(context));
 
   UIImage* scaledImage = [UIImage imageWithCGImage:imageRef];
-  CGImageRelease(imageRef);
 
   return scaledImage;
 }
@@ -173,7 +169,7 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
   }
 
   CGSize size = image.size;
-  CGContextRef context = [self createBitmapContext:size];
+  CGContextRef context = [self getBitmapContext:size];
 
   CGContextBeginPath(context);
   CGRect rect = CGRectMake(0, 0, size.width, size.height);
@@ -183,11 +179,9 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
 
   CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
 
-  CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-  CGContextRelease(context);
+  CGImageRef imageMasked = CFAutoRelease(CGBitmapContextCreateImage(context));
 
   UIImage* result = [UIImage imageWithCGImage:imageMasked];
-  CGImageRelease(imageMasked);
 
   return result;
 }
@@ -220,21 +214,21 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
   void* rawData = malloc(length);
 
   if (rawData != nil) {
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(rawData,
+    CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
+    CGContextRef context = CFAutoRelease(CGBitmapContextCreate(rawData,
                                                  width,
                                                  height,
                                                  8,
                                                  4 * width,
                                                  colorSpace,
-                                                 kCGImageAlphaPremultipliedFirst);
+                                                 kCGImageAlphaPremultipliedFirst));
 
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
 
-    CFDataRef data = CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc);
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(data);
+    CFDataRef data = CFAutoRelease(CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc));
+    CGDataProviderRef dataProvider = CFAutoRelease(CGDataProviderCreateWithCFData(data));
 
-    CGImageRef imageRef = CGImageCreate(width,
+    CGImageRef imageRef = CFAutoRelease(CGImageCreate(width,
                                         height,
                                         8,
                                         8 * 4,
@@ -244,15 +238,9 @@ void lowerLeftRoundingFunction(CGContextRef context, CGRect rect) {
                                         dataProvider,
                                         NULL,
                                         YES,
-                                        kCGRenderingIntentDefault);
+                                        kCGRenderingIntentDefault));
 
     result = [UIImage imageWithCGImage:imageRef];
-
-    CGImageRelease(imageRef);
-    CFRelease(dataProvider);
-    CFRelease(data);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
   }
 
   return result;

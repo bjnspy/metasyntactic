@@ -59,6 +59,7 @@
 #import "LocationUtilities.h"
 #import "MapPoint.h"
 #import "MapViewControllerDelegate.h"
+#import "MemoryUtilities.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticSharedApplicationDelegate.h"
 #import "MetasyntacticStockImages.h"
