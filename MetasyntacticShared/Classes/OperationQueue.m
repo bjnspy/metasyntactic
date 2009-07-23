@@ -14,13 +14,10 @@
 
 #import "OperationQueue.h"
 
-//#import "Operation.h"
-//#import "Operation1.h"
 #import "Operation2.h"
 
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
-//@property (retain) MutablePointerSet* operations;
 @property (retain) NSMutableArray* boundedOperations;
 @property (retain) NSLock* dataGate;
 @end

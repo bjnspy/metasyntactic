@@ -14,8 +14,6 @@
 
 #import "ThreadsafeValue.h"
 
-//#import "ThreadingUtilities.h"
-
 @interface ThreadsafeValue()
 @property (retain) id<NSLocking> gate;
 @property (assign) id delegate;

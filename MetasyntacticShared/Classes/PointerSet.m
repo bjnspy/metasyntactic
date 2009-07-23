@@ -16,7 +16,7 @@
 
 @implementation PointerSet
 
-static const void *	PointerSetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+static const void * PointerSetRetainCallBack(CFAllocatorRef allocator, const void *value) {
   return value;
 }
 
@@ -27,7 +27,7 @@ static void PointerSetReleaseCallBack(CFAllocatorRef allocator, const void *valu
 
 static CFStringRef PointerSetCopyDescriptionCallBack(const void *value) {
   id v = (id)value;
-  return (CFStringRef)[v description];
+  return (CFStringRef)[[v description] retain];
 }
 
 
