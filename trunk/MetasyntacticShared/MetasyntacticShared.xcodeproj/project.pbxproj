@@ -143,7 +143,6 @@
 		74E601E70FD1C7990015D9F8 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E6FCD90FD1B2390015D9F8 /* TextFieldEditorViewController.h */; };
 		74E601E80FD1C7990015D9F8 /* AbstractCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E601350FD1C5FC0015D9F8 /* AbstractCache.h */; };
 		74E601E90FD1C7990015D9F8 /* AttributeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E601A20FD1C7700015D9F8 /* AttributeCell.h */; };
-		74E601EB0FD1C7990015D9F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		74E601EC0FD1C7990015D9F8 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C430F15D1EE0004B610 /* xmlparse.c */; };
 		74E601ED0FD1C7990015D9F8 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C440F15D1EE0004B610 /* xmlrole.c */; };
 		74E601EE0FD1C7990015D9F8 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616C460F15D1EE0004B610 /* xmltok.c */; };
@@ -238,7 +237,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		740102270F26EF7800258353 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utilities.h"; sourceTree = "<group>"; };
 		740102280F26EF7800258353 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utilities.m"; sourceTree = "<group>"; };
 		7406D88B1016FE96004374C2 /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
@@ -552,7 +550,6 @@
 			children = (
 				74616DC80F15D9870004B610 /* ForwardDeclarations.h */,
 				74616E0C0F15DAF80004B610 /* Macros.h */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 				74E6FC870FD1B17B0015D9F8 /* Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -1129,7 +1126,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E601EB0FD1C7990015D9F8 /* main.m in Sources */,
 				74E601EC0FD1C7990015D9F8 /* xmlparse.c in Sources */,
 				74E601ED0FD1C7990015D9F8 /* xmlrole.c in Sources */,
 				74E601EE0FD1C7990015D9F8 /* xmltok.c in Sources */,
@@ -1285,6 +1281,10 @@
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphonesimulator3.0;
@@ -1305,6 +1305,10 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
 				SDKROOT = iphonesimulator3.0;
