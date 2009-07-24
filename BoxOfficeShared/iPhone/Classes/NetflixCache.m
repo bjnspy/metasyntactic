@@ -1118,7 +1118,7 @@ static NSDictionary* availabilityMap = nil;
                                           priority:Normal];
 
 
-  for (NSString* identifier in [NSArrayAdditions shuffle:identifiers]) {
+  for (NSString* identifier in [identifiers shuffledArray]) {
     [[OperationQueue operationQueue] performSelector:@selector(downloadRSSMovie:address:)
                                             onTarget:self
                                           withObject:identifier
@@ -1300,7 +1300,7 @@ static NSDictionary* availabilityMap = nil;
 - (void) downloadRSS {
   NSLog(@"NetflixCache:downloadRSS");
 
-  for (NSString* key in [NSArrayAdditions shuffle:mostPopularTitles]) {
+  for (NSString* key in [mostPopularTitles shuffledArray]) {
     NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
     [FileUtilities createDirectory:[self rssFeedDirectory:address]];
 

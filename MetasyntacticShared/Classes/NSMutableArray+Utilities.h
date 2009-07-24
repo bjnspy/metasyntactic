@@ -12,18 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if 0
 @interface NSMutableArray(NSMutableArrayUtilities)
 - (void) insertObjects:(NSArray*) array atIndex:(NSInteger) index;
 - (id) removeRandomElement;
+- (void) shuffle;
 @end
-#else
-@interface NSMutableArrayAdditions : NSObject {
-
-}
-
-+ (void) insertObjects:(NSArray*) array intoArray:(NSMutableArray*) value atIndex:(NSInteger) index;
-+ (id) removeRandomElement:(NSMutableArray*) array;
-+ (void) shuffle:(NSMutableArray*) array;
-@end
-#endif

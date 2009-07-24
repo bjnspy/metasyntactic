@@ -493,7 +493,7 @@ andReorderingMovies:[IdentitySet set]
   NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
 
   if (position >= 0) {
-    [NSMutableArrayAdditions insertObjects:addedMovies intoArray:newMovies atIndex:position];
+    [newMovies insertObjects:addedMovies atIndex:position];
   } else {
     [newMovies addObjectsFromArray:addedMovies];
   }
