@@ -14,6 +14,7 @@
 
 #import "NetflixNavigationController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "NetflixViewController.h"
 
 @interface NetflixNavigationController()
@@ -33,7 +34,7 @@
 
 - (id) init {
     if ((self = [super init])) {
-        self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
+        self.tabBarItem.image = BoxOfficeStockImage(@"Netflix.png");
         self.title = LocalizedString(@"Netflix", nil);
     }
 

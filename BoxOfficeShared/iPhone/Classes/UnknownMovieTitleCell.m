@@ -14,7 +14,7 @@
 
 #import "UnknownMovieTitleCell.h"
 
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @implementation UnknownMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [StockImages unknownRatingImage];
+        self.imageView.image = [BoxOfficeStockImages unknownRatingImage];
         [scoreLabel removeFromSuperview];
     }
 

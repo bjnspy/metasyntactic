@@ -16,7 +16,7 @@
 
 #import "Model.h"
 #import "Performance.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 
 @interface MovieShowtimesCell()
@@ -110,7 +110,7 @@
         showtimesLabel.numberOfLines = 0;
         showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
-        self.warningImageView = [[[UIImageView alloc] initWithImage:[StockImages warning16x16]] autorelease];
+        self.warningImageView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages warning16x16]] autorelease];
         warningImageView.contentMode = UIViewContentModeCenter;
 
         [self.contentView addSubview:showtimesLabel];

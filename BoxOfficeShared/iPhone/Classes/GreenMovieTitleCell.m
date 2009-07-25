@@ -14,7 +14,7 @@
 
 #import "GreenMovieTitleCell.h"
 
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @implementation GreenMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
   if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-    self.imageView.image = [StockImages greenRatingImage];
+    self.imageView.image = [BoxOfficeStockImages greenRatingImage];
   }
 
   return self;

@@ -93,9 +93,6 @@ static NSString** directories[] = {
 &upcomingTrailersDirectory,
 };
 
-static DifferenceEngine* differenceEngine = nil;
-
-
 + (void) deleteDirectories {
   [[self gate] lock];
   {
@@ -175,8 +172,6 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (void) initialize {
   if (self == [Application class]) {
-    differenceEngine = [[DifferenceEngine engine] retain];
-
     [self initializeDirectories];
   }
 }
@@ -366,12 +361,6 @@ static DifferenceEngine* differenceEngine = nil;
     [self createDirectories];
   }
   [[self gate] unlock];
-}
-
-
-+ (DifferenceEngine*) differenceEngine {
-  NSAssert([NSThread isMainThread], @"Cannot access difference engine from background thread.");
-  return differenceEngine;
 }
 
 

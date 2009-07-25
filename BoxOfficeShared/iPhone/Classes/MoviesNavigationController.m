@@ -15,6 +15,7 @@
 #import "MoviesNavigationController.h"
 
 #import "AllMoviesViewController.h"
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Movie.h"
 
@@ -37,7 +38,7 @@
 - (id) init {
     if ((self = [super init])) {
         self.title = LocalizedString(@"Movies", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"Movies.png"];
+        self.tabBarItem.image = BoxOfficeStockImage(@"Movies.png");
     }
 
     return self;

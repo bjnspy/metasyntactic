@@ -15,7 +15,7 @@
 #import "AbstractImageCell.h"
 
 #import "Model.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 
 @interface AbstractImageCell()
@@ -58,9 +58,9 @@
     titleLabel.minimumFontSize = 14;
 
     if (self.model.loadingIndicatorsEnabled) {
-      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[StockImages imageLoading]] autorelease];
+      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages imageLoading]] autorelease];
     } else {
-      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[StockImages imageLoadingNeutral]] autorelease];
+      self.imageLoadingView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages imageLoadingNeutral]] autorelease];
     }
     imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -135,7 +135,7 @@
 
 
 - (void) setNotFoundImage {
-  [self setCellImage:[StockImages imageNotAvailable] animated:YES];
+  [self setCellImage:[BoxOfficeStockImages imageNotAvailable] animated:YES];
 }
 
 

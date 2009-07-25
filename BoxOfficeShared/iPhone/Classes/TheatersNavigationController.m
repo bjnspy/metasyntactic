@@ -15,6 +15,7 @@
 #import "TheatersNavigationController.h"
 
 #import "AllTheatersViewController.h"
+#import "BoxOfficeStockImages.h"
 
 @interface TheatersNavigationController()
 @property (retain) AllTheatersViewController* allTheatersViewController;
@@ -36,7 +37,7 @@
     if ((self = [super init])) {
         self.title = LocalizedString(@"Theaters", nil);
         self.tabBarItem.title = self.title;
-        self.tabBarItem.image = [UIImage imageNamed:@"Theaters.png"];
+        self.tabBarItem.image = BoxOfficeStockImage(@"Theaters.png");
     }
 
     return self;

@@ -14,6 +14,7 @@
 
 #import "DVDNavigationController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "Model.h"
@@ -51,7 +52,7 @@
 
 - (id) init {
     if ((self = [super init])) {
-        self.tabBarItem.image = [UIImage imageNamed:@"DVD.png"];
+        self.tabBarItem.image = BoxOfficeStockImage(@"DVD.png");
         [self setupTitle];
     }
 

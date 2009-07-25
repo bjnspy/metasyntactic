@@ -14,6 +14,8 @@
 
 #import "QuestionCell.h"
 
+#import "BoxOfficeStockImages.h"
+
 @interface QuestionCell()
 @property (retain) UILabel* contentLabel;
 @end
@@ -55,11 +57,11 @@
     [self.contentView addSubview:contentLabel];
 
     if (question) {
-      UIImage* image = [UIImage imageNamed:@"QuestionBalloon.png"];
+      UIImage* image = BoxOfficeStockImage(@"QuestionBalloon.png");
       UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:85 topCapHeight:18];
       self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
     } else {
-      UIImage* image = [UIImage imageNamed:@"AnswerBalloon.png"];
+      UIImage* image = BoxOfficeStockImage(@"AnswerBalloon.png");
       UIImage* stretchedImage = [image stretchableImageWithLeftCapWidth:85 topCapHeight:18];
       self.backgroundView = [[[UIImageView alloc] initWithImage:stretchedImage] autorelease];
     }

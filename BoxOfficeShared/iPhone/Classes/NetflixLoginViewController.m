@@ -15,6 +15,7 @@
 #import "NetflixLoginViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeStockImages.h"
 #import "Controller.h"
 #import "Model.h"
 #import "NetflixAuthentication.h"
@@ -120,7 +121,7 @@
 
   [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
-  UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+  UIImage* image = [BoxOfficeStockImage(@"BlackButton.png") stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [button setBackgroundImage:image forState:UIControlStateNormal];
   [button setBackgroundImage:image forState:UIControlStateDisabled];
 
