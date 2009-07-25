@@ -25,4 +25,10 @@
 + (UIImage*) actionButtonStandard;
 + (UIImage*) actionButtonRoundLowerRight;
 
++ (UIImage*) smallActivityBackground;
++ (UIImage*) largeActivityBackground;
+
+/* @protected */
++ (UIImage*) imageForPath:(NSString*) path;
+
 @end

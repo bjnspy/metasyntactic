@@ -270,12 +270,11 @@
 		74200D820FD25B7800DEE16B /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
 		74200DA70FD25D7C00DEE16B /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
 		74200DA80FD25D7C00DEE16B /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
-		74209FF3100FC12700F63F33 /* ActionButton-RoundLowerRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ActionButton-RoundLowerRight.png"; path = "Resources/ActionButton-RoundLowerRight.png"; sourceTree = "<group>"; };
-		74209FF4100FC12700F63F33 /* ActionButton-Standard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ActionButton-Standard.png"; path = "Resources/ActionButton-Standard.png"; sourceTree = "<group>"; };
 		742F32730FEC674300B5E516 /* AbstractFullScreenImageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenImageListViewController.h; sourceTree = "<group>"; };
 		742F32740FEC674300B5E516 /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
 		7432BACD0FD5766300AA0D73 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
 		7432BACE0FD5766300AA0D73 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
+		743EA614101BAE2C002D7D86 /* MetasyntacticStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MetasyntacticStockImages.bundle; sourceTree = "<group>"; };
 		74537D490F86AA6C00D457CB /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		74537D4A0F86AA6C00D457CB /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
@@ -417,7 +416,6 @@
 		74A60D0E100D424300806BBC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		74A60D0F100D424300806BBC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		74A60D1B100D426200806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		74A611B8100D983700806BBC /* Directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Directions.png; path = Resources/Directions.png; sourceTree = "<group>"; };
 		74A6137B100DBA6100806BBC /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		74AD39EF100139E200D6BDAA /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
 		74AD39F0100139E200D6BDAA /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
@@ -439,10 +437,6 @@
 		74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
 		74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticStockImages.h; sourceTree = "<group>"; };
 		74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticStockImages.m; sourceTree = "<group>"; };
-		74D3A61F0FEC04950083298A /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Back.png"; path = "Resources/Navigate-Back.png"; sourceTree = "<group>"; };
-		74D3A6200FEC04950083298A /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
-		74D3A6480FEC05BA0083298A /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftArrow.png; path = Resources/LeftArrow.png; sourceTree = "<group>"; };
-		74D3A6490FEC05BA0083298A /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
 		74E1642D1006D22D003D852F /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		74E1642E1006D22D003D852F /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
@@ -481,7 +475,6 @@
 		74FEEBFF0FFA868D0021F472 /* ListPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerViewController.h; sourceTree = "<group>"; };
 		74FEEC000FFA868D0021F472 /* ListPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPickerViewController.m; sourceTree = "<group>"; };
 		74FEEC030FFA87060021F472 /* ListPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerDelegate.h; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -558,14 +551,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107310486CEB800E47090 /* Info.plist */,
-				74209FF3100FC12700F63F33 /* ActionButton-RoundLowerRight.png */,
-				74209FF4100FC12700F63F33 /* ActionButton-Standard.png */,
-				74A611B8100D983700806BBC /* Directions.png */,
-				74D3A6480FEC05BA0083298A /* LeftArrow.png */,
-				74D3A61F0FEC04950083298A /* Navigate-Back.png */,
-				74D3A6200FEC04950083298A /* Navigate-Forward.png */,
-				74D3A6490FEC05BA0083298A /* RightArrow.png */,
+				743EA614101BAE2C002D7D86 /* MetasyntacticStockImages.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
