@@ -14,6 +14,8 @@
 
 #import "MetasyntacticStockImages.h"
 
+#import "FileUtilities.h"
+
 NSString* MetasyntacticStockImagePath(NSString* name) {
   static NSString* bundleName = @"MetasyntacticStockImages.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
@@ -31,6 +33,10 @@ UIImage* MetasyntacticStockImage(NSString* name) {
 @implementation MetasyntacticStockImages
 
 + (UIImage*) imageForPath:(NSString*) path {
+  if (path.length == 0) {
+    return nil;
+  }
+
   static NSString* key = @"StockImages";
   
   NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
@@ -40,9 +46,17 @@ UIImage* MetasyntacticStockImage(NSString* name) {
     [threadDictionary setObject:dictionary forKey:key];
   }
 
-  UIImage* result = [dictionary objectForKey:path];
+  id result = [dictionary objectForKey:path];
+  if (result == [NSNull null]) {
+    return nil;
+  }
+
   if (result == nil) {
-    result = [UIImage imageWithContentsOfFile:path];
+    if ([FileUtilities fileExists:path]) {
+      result = [UIImage imageWithContentsOfFile:path];
+    } else {
+      result = [NSNull null];
+    }
     [dictionary setObject:result forKey:path];
   }
   return result;
