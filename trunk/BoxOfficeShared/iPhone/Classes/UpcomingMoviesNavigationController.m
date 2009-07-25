@@ -14,6 +14,7 @@
 
 #import "UpcomingMoviesNavigationController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Movie.h"
 #import "UpcomingCache.h"
@@ -38,7 +39,7 @@
 - (id) init {
     if ((self = [super init])) {
         self.title = LocalizedString(@"Upcoming", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
+        self.tabBarItem.image = BoxOfficeStockImage(@"Upcoming.png");
     }
 
     return self;

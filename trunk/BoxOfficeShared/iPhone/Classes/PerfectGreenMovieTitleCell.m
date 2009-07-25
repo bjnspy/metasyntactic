@@ -14,7 +14,7 @@
 
 #import "PerfectGreenMovieTitleCell.h"
 
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @implementation PerfectGreenMovieTitleCell
 
@@ -25,7 +25,7 @@
 
 - (id) init {
     if ((self = [super initWithReuseIdentifier:[[self class] reuseIdentifier]])) {
-        self.imageView.image = [StockImages greenRatingImage];
+        self.imageView.image = [BoxOfficeStockImages greenRatingImage];
 
         scoreLabel.font = [UIFont boldSystemFontOfSize:15];
         scoreLabel.text = @"100";

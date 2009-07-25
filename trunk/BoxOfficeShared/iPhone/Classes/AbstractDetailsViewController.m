@@ -14,6 +14,7 @@
 
 #import "AbstractDetailsViewController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "DataProvider.h"
 #import "Model.h"
 #import "SearchDatePickerViewController.h"
@@ -107,7 +108,7 @@
   [button setTitle:LocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
   [button addTarget:self action:@selector(onCancelTapped:) forControlEvents:UIControlEventTouchUpInside];
 
-  UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+  UIImage* image = [BoxOfficeStockImage(@"BlackButton.png") stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [button setBackgroundImage:image forState:UIControlStateNormal];
   [button sizeToFit];
 

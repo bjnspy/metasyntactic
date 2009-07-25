@@ -16,7 +16,7 @@
 
 #import "Model.h"
 #import "MutableNetflixCache.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @interface NetflixRatingsCell()
 @property (retain) NSArray* imageViews;
@@ -57,17 +57,17 @@
 
     CGFloat value = rating - i;
     if (value < 0.2) {
-      image = [StockImages redStar_0_5_Image];
+      image = [BoxOfficeStockImages redStar_0_5_Image];
     } else if (value < 0.4) {
-      image = [StockImages redStar_1_5_Image];
+      image = [BoxOfficeStockImages redStar_1_5_Image];
     } else if (value < 0.6) {
-      image = [StockImages redStar_2_5_Image];
+      image = [BoxOfficeStockImages redStar_2_5_Image];
     } else if (value < 0.8) {
-      image = [StockImages redStar_3_5_Image];
+      image = [BoxOfficeStockImages redStar_3_5_Image];
     } else if (value < 1) {
-      image = [StockImages redStar_4_5_Image];
+      image = [BoxOfficeStockImages redStar_4_5_Image];
     } else {
-      image = [StockImages redStar_5_5_Image];
+      image = [BoxOfficeStockImages redStar_5_5_Image];
     }
 
     TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
@@ -99,13 +99,13 @@
   for (NSInteger i = -1; i < 5; i++) {
     UIImage* image;
     if (i == -1) {
-      image = [UIImage imageNamed:@"ClearRating.png"];
+      image = BoxOfficeStockImage(@"ClearRating.png");
     } else {
       CGFloat value = rating - i;
       if (value < 1) {
-        image = [StockImages emptyStarImage];
+        image = [BoxOfficeStockImages emptyStarImage];
       } else {
-        image = [StockImages filledYellowStarImage];
+        image = [BoxOfficeStockImages filledYellowStarImage];
       }
     }
 

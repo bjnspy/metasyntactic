@@ -14,6 +14,7 @@
 
 #import "CollapsedMovieDetailsCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 
 @interface CollapsedMovieDetailsCell()
@@ -53,7 +54,7 @@
 
         [self.contentView addSubview:ratingAndRuntimeLabel];
 
-        self.imageView.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
+        self.imageView.image = BoxOfficeStockImage(@"RightDisclosureTriangle.png");
     }
 
     return self;

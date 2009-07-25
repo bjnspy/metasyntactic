@@ -14,6 +14,7 @@
 
 #import "LocationManager.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Controller.h"
 #import "Model.h"
 #import "UserLocationCache.h"
@@ -58,7 +59,7 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     locationManager.distanceFilter = kCLDistanceFilterNone;
 
-    self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+    self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:BoxOfficeStockImage(@"CurrentPosition.png")
                                                         style:UIBarButtonItemStylePlain
                                                        target:self
                                                        action:@selector(onButtonTapped:)] autorelease];
@@ -93,7 +94,7 @@
 
   NSInteger i = number.intValue;
   buttonItem.image =
-  [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
+  BoxOfficeStockImage([NSString stringWithFormat:@"Spinner%d.png", i]);
 
   [self performSelector:@selector(updateSpinnerImage:)
              withObject:[NSNumber numberWithInt:((i + 1) % 10)]
@@ -112,7 +113,7 @@
   self.userInvoked = NO;
   [NSObject cancelPreviousPerformRequestsWithTarget:self];
   buttonItem.style = UIBarButtonItemStylePlain;
-  buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
+  buttonItem.image = BoxOfficeStockImage(@"CurrentPosition.png");
 }
 
 

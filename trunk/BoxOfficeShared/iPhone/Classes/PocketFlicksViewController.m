@@ -15,6 +15,7 @@
 #import "PocketFlicksViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeStockImages.h"
 #import "Controller.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
@@ -180,7 +181,7 @@ typedef enum {
   AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
 
   cell.textLabel.textColor = [UIColor whiteColor];
-  cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
+  cell.accessoryView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(@"NetflixChevron.png")] autorelease];
 
   NSInteger row = indexPath.row;
   if (self.hasAccount) {
@@ -191,35 +192,35 @@ typedef enum {
         } else {
           cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"%@ (%@)", nil), LocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
         }
-        cell.imageView.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
         cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
-        cell.imageView.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
         cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
-        cell.imageView.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
         break;
       case RecommendationsSection:
         cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
-        cell.imageView.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixRecommendations.png");
         break;
       case AtHomeSection:
         cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
-        cell.imageView.image = [UIImage imageNamed:@"NetflixHome.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixHome.png");
         break;
       case RentalHistorySection:
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
-        cell.imageView.image = [UIImage imageNamed:@"NetflixHistory.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixHistory.png");
         break;
       case AboutSendFeedbackSection:
         cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Send Feedback", nil), LocalizedString(@"Write Review", nil)];
-        cell.imageView.image = [UIImage imageNamed:@"NetflixCredits.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
         break;
       case LogOutSection:
         cell.textLabel.text = LocalizedString(@"Log Out of Netflix", nil);
-        cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+        cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
         break;
@@ -227,13 +228,13 @@ typedef enum {
   } else {
     if (indexPath.row == 2) {
       cell.textLabel.text = LocalizedString(@"Sign Up for New Account", nil);
-      cell.imageView.image = [UIImage imageNamed:@"NetflixSettings.png"];
+      cell.imageView.image = BoxOfficeStockImage(@"NetflixSettings.png");
     } else if (indexPath.row == 0) {
       cell.textLabel.text = LocalizedString(@"Log In to Existing Account", nil);
-      cell.imageView.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+      cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
     } else if (indexPath.row == 1) {
       cell.textLabel.text = LocalizedString(@"Send Feedback", nil);
-      cell.imageView.image = [UIImage imageNamed:@"NetflixCredits.png"];
+      cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
     }
   }
 
@@ -244,8 +245,8 @@ typedef enum {
 
   NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
   NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
-  UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
-  UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:selectedBackgroundName]] autorelease];
+  UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(backgroundName)] autorelease];
+  UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(selectedBackgroundName)] autorelease];
   backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   cell.backgroundView = backgroundView;

@@ -16,7 +16,7 @@
 
 #import "Queue.h"
 #import "Status.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @interface NetflixStatusCell()
 @property (retain) TappableImageView* deleteImageView;
@@ -77,8 +77,8 @@
     self.textLabel.textAlignment = UITextAlignmentCenter;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    self.deleteImageView = [[[TappableImageView alloc] initWithImage:[UIImage imageNamed:@"DeleteMovie.png"]] autorelease];
-    self.moveImageView = [[[TappableImageView alloc] initWithImage:[StockImages upArrow]] autorelease];
+    self.deleteImageView = [[[TappableImageView alloc] initWithImage:BoxOfficeStockImage(@"DeleteMovie.png")] autorelease];
+    self.moveImageView = [[[TappableImageView alloc] initWithImage:[BoxOfficeStockImages upArrow]] autorelease];
     deleteImageView.contentMode = moveImageView.contentMode = UIViewContentModeCenter;
 
     CGRect frame = deleteImageView.frame;

@@ -20,7 +20,7 @@
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"
@@ -75,12 +75,12 @@
 
 - (void) initializeFavoriteButton {
   self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [favoriteButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
-  [favoriteButton setImage:[StockImages filledYellowStarImage] forState:UIControlStateSelected];
+  [favoriteButton setImage:[BoxOfficeStockImages emptyStarImage] forState:UIControlStateNormal];
+  [favoriteButton setImage:[BoxOfficeStockImages filledYellowStarImage] forState:UIControlStateSelected];
   [favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
 
   CGRect frame = favoriteButton.frame;
-  frame.size = [StockImages emptyStarImage].size;
+  frame.size = [BoxOfficeStockImages emptyStarImage].size;
   frame.size.width += 10;
   frame.size.height += 10;
   favoriteButton.frame = frame;

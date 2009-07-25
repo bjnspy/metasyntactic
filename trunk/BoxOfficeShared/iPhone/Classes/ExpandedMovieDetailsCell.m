@@ -14,6 +14,7 @@
 
 #import "ExpandedMovieDetailsCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Movie.h"
 
@@ -67,7 +68,7 @@
 
 
 - (void) addDisclosureTriangle {
-    UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownDisclosureTriangle.png"]] autorelease];
+    UIImageView* imageView = [[[UIImageView alloc] initWithImage:BoxOfficeStockImage(@"DownDisclosureTriangle.png")] autorelease];
     CGRect frame = imageView.frame;
     frame.origin.x = 10;
     frame.origin.y = 3;

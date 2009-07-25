@@ -16,7 +16,7 @@
 
 #import "Model.h"
 #import "Review.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @interface ReviewTitleCell()
 @property (retain) UILabel* scoreLabel;
@@ -80,14 +80,14 @@
 
 - (void) setBasicSquareImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
-      [self setImageWorker:[StockImages redRatingImage]];
+      [self setImageWorker:[BoxOfficeStockImages redRatingImage]];
     } else if (score > 40 && score <= 60) {
-      [self setImageWorker:[StockImages yellowRatingImage]];
+      [self setImageWorker:[BoxOfficeStockImages yellowRatingImage]];
     } else if (score > 60 && score <= 100) {
-      [self setImageWorker:[StockImages greenRatingImage]];
+      [self setImageWorker:[BoxOfficeStockImages greenRatingImage]];
     } else {
         [self clearScoreLabel];
-      [self setImageWorker:[StockImages unknownRatingImage]];
+      [self setImageWorker:[BoxOfficeStockImages unknownRatingImage]];
     }
 
     if (score >= 0 && score <= 100) {

@@ -56,8 +56,6 @@
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;
 
-+ (DifferenceEngine*) differenceEngine;
-
 + (NSString*) host;
 
 @end

@@ -15,6 +15,7 @@
 #import "CreditsViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeStockImages.h"
 #import "FAQViewController.h"
 #import "Model.h"
 
@@ -143,23 +144,23 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 
   if (section == ReviewsBySection) {
     if (row == 0) {
-      return [UIImage imageNamed:@"RottenTomatoesLogo.png"];
+      return BoxOfficeStockImage(@"RottenTomatoesLogo.png");
     } else if (row == 1) {
-      return [UIImage imageNamed:@"MetacriticLogo.png"];
+      return BoxOfficeStockImage(@"MetacriticLogo.png");
     }
   } else if (section == TicketSalesBySection) {
-    return [UIImage imageNamed:@"FandangoLogo.png"];
+    return BoxOfficeStockImage(@"FandangoLogo.png");
   } else if (section == MovieDetailsBySection) {
-    return [UIImage imageNamed:@"TryntLogo.png"];
+    return BoxOfficeStockImage(@"TryntLogo.png");
   } else if (section == GeolocationServicesBySection) {
     if (row == 0) {
-      return [UIImage imageNamed:@"YahooLogo.png"];
+      return BoxOfficeStockImage(@"YahooLogo.png");
     }
   } else if (section == DVDDetailsSection) {
     if (row == 0) {
-      return [UIImage imageNamed:@"VideoETALogo.png"];
+      return BoxOfficeStockImage(@"VideoETALogo.png");
     } else {
-      return [UIImage imageNamed:@"DeliveredByNetflix.png"];
+      return BoxOfficeStockImage(@"DeliveredByNetflix.png");
     }
   }
 

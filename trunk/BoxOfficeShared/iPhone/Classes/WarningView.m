@@ -15,7 +15,7 @@
 #import "WarningView.h"
 
 #import "Model.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 
 @interface WarningView()
 @property (retain) UIImageView* imageView;
@@ -54,7 +54,7 @@ const NSInteger TOP_BUFFER = 5;
     label.shadowOffset = CGSizeMake(0, 1);
     label.textAlignment = UITextAlignmentCenter;
 
-    self.imageView = [[[UIImageView alloc] initWithImage:[StockImages warning32x32]] autorelease];
+    self.imageView = [[[UIImageView alloc] initWithImage:[BoxOfficeStockImages warning32x32]] autorelease];
 
     [self addSubview:imageView];
     [self addSubview:label];
@@ -89,13 +89,13 @@ const NSInteger TOP_BUFFER = 5;
   {
     CGRect frame = imageView.frame;
     frame.origin.x = 20;
-    frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [StockImages warning32x32].size.height) / 2.0));
+    frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [BoxOfficeStockImages warning32x32].size.height) / 2.0));
     imageView.frame = frame;
   }
 }
 
 - (CGFloat) height {
-  double imageHeight = [StockImages warning32x32].size.height;
+  double imageHeight = [BoxOfficeStockImages warning32x32].size.height;
 
   double width;
   if ([MetasyntacticSharedApplication screenRotationEnabled] &&

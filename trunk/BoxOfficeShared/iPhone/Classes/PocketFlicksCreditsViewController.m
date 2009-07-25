@@ -15,6 +15,7 @@
 #import "PocketFlicksCreditsViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 
 @interface PocketFlicksCreditsViewController()
@@ -121,7 +122,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   NSInteger section = indexPath.section;
 
   if (section == DVDDetailsSection) {
-    return [UIImage imageNamed:@"DeliveredByNetflix.png"];
+    return BoxOfficeStockImage(@"DeliveredByNetflix.png");
   }
 
   return nil;

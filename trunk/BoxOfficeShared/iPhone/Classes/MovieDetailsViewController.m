@@ -28,7 +28,7 @@
 #import "NetflixStatusCell.h"
 #import "Score.h"
 #import "Status.h"
-#import "StockImages.h"
+#import "BoxOfficeStockImages.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -219,7 +219,7 @@ const NSInteger POSTER_TAG = -1;
     return image;
   }
 
-  return [StockImages imageNotAvailable];
+  return [BoxOfficeStockImages imageNotAvailable];
 }
 
 
@@ -265,7 +265,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) updateImage {
   UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
   // we currently have a poster.  only replace it if we have something better
-  if (image != nil && image != [StockImages imageNotAvailable]) {
+  if (image != nil && image != [BoxOfficeStockImages imageNotAvailable]) {
     self.posterImage = image;
   }
 }
@@ -374,13 +374,13 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeBookmarkButton {
   self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [bookmarkButton setImage:[StockImages emptyStarImage] forState:UIControlStateNormal];
-  [bookmarkButton setImage:[StockImages filledYellowStarImage] forState:UIControlStateSelected];
+  [bookmarkButton setImage:[BoxOfficeStockImages emptyStarImage] forState:UIControlStateNormal];
+  [bookmarkButton setImage:[BoxOfficeStockImages filledYellowStarImage] forState:UIControlStateSelected];
 
   [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
 
   CGRect frame = bookmarkButton.frame;
-  frame.size = [StockImages emptyStarImage].size;
+  frame.size = [BoxOfficeStockImages emptyStarImage].size;
   frame.size.width += 10;
   frame.size.height += 10;
   bookmarkButton.frame = frame;

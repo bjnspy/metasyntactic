@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface StockImages : NSObject {
+UIImage* BoxOfficeStockImage(NSString* name);
+
+@interface BoxOfficeStockImages : MetasyntacticStockImages {
 }
 
 + (UIImage*) freshImage;
