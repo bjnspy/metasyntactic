@@ -19,7 +19,15 @@
 @implementation DifferenceEngine
 
 + (DifferenceEngine*) engine {
-  return [[[DifferenceEngine alloc] init] autorelease];
+  static NSString* key = @"DifferenceEngine";
+  
+  NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
+  DifferenceEngine* result = [threadDictionary objectForKey:key];
+  if (result == nil) {
+    result = [[[DifferenceEngine alloc] init] autorelease];
+    [threadDictionary setObject:result forKey:key];
+  }
+  return result;
 }
 
 

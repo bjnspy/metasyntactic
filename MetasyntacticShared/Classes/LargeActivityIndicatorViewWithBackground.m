@@ -14,6 +14,8 @@
 
 #import "LargeActivityIndicatorViewWithBackground.h"
 
+#import "MetasyntacticStockImages.h"
+
 @interface LargeActivityIndicatorViewWithBackground()
 @property (retain) UIImageView* backgroundView;
 @property (retain) UIActivityIndicatorView* activityIndicator;
@@ -35,7 +37,7 @@
 
 - (id) init {
   if ((self = [super init])) {
-    UIImage* image = [UIImage imageNamed:@"GrayCircle.png"];
+    UIImage* image = [MetasyntacticStockImages largeActivityBackground];
     self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
     self.frame = backgroundView.frame;
 

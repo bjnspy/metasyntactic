@@ -14,6 +14,8 @@
 
 #import "SmallActivityIndicatorViewWithBackground.h"
 
+#import "MetasyntacticStockImages.h"
+
 @interface SmallActivityIndicatorViewWithBackground()
 @property (retain) UIImageView* backgroundView;
 @property (retain) UIActivityIndicatorView* activityIndicator;
@@ -26,68 +28,68 @@
 @synthesize activityIndicator;
 
 - (void) dealloc {
-    self.backgroundView = nil;
-    self.activityIndicator = nil;
-
-    [super dealloc];
+  self.backgroundView = nil;
+  self.activityIndicator = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
-        self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        self.frame = backgroundView.frame;
-
-        self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        activityIndicator.hidesWhenStopped = YES;
-
-        CGRect frame = activityIndicator.frame;
-        frame.origin.x = frame.origin.y = 4;
-        activityIndicator.frame = frame;
-
-        [self addSubview:backgroundView];
-        [self addSubview:activityIndicator];
-
-        [self sendSubviewToBack:backgroundView];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    UIImage* image = [MetasyntacticStockImages smallActivityBackground];
+    self.backgroundView = [[[UIImageView alloc] initWithImage:image] autorelease];
+    self.frame = backgroundView.frame;
+    
+    self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    activityIndicator.hidesWhenStopped = YES;
+    
+    CGRect frame = activityIndicator.frame;
+    frame.origin.x = frame.origin.y = 4;
+    activityIndicator.frame = frame;
+    
+    [self addSubview:backgroundView];
+    [self addSubview:activityIndicator];
+    
+    [self sendSubviewToBack:backgroundView];
+  }
+  
+  return self;
 }
 
 
 - (void) stopAnimating {
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
-
-        activityIndicator.alpha = 0;
-        backgroundView.alpha = 0;
-    }
-    [UIView commitAnimations];
+  [UIView beginAnimations:nil context:NULL];
+  {
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
+    
+    activityIndicator.alpha = 0;
+    backgroundView.alpha = 0;
+  }
+  [UIView commitAnimations];
 }
 
 
 - (void) onStopAnimatingCompleted:(NSString*) animationId
                          finished:(BOOL) finished
                           context:(void*) context {
-    [activityIndicator stopAnimating];
+  [activityIndicator stopAnimating];
 }
 
 
 - (void) startAnimating {
-    backgroundView.alpha = 0;
-    activityIndicator.alpha = 0;
-
-    [activityIndicator startAnimating];
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        backgroundView.alpha = 0.75;
-        activityIndicator.alpha = 1;
-    }
-    [UIView commitAnimations];
+  backgroundView.alpha = 0;
+  activityIndicator.alpha = 0;
+  
+  [activityIndicator startAnimating];
+  
+  [UIView beginAnimations:nil context:NULL];
+  {
+    backgroundView.alpha = 0.75;
+    activityIndicator.alpha = 1;
+  }
+  [UIView commitAnimations];
 }
 
 @end
