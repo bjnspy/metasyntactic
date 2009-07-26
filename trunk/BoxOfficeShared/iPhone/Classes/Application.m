@@ -384,7 +384,7 @@ static NSString** directories[] = {
   }
   
   double shipTime = [shipTimeNumber intValue];
-  double reviewPeriod = 10 * ONE_DAY;
+  double reviewPeriod = TWO_WEEKS;
   
   NSDate* reviewPeriodEnd = [NSDate dateWithTimeIntervalSince1970:shipTime + reviewPeriod];
   NSDate* now = [NSDate date];
