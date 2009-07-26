@@ -14,16 +14,16 @@
 
 #import "PocketFlicksSettingsViewController.h"
 
-#import "Application.h"
+//#import "Application.h"
 #import "Controller.h"
-#import "DVDFilterViewController.h"
-#import "LocationManager.h"
+//#import "DVDFilterViewController.h"
+//#import "LocationManager.h"
 #import "Model.h"
-#import "ScoreProviderViewController.h"
-#import "SearchDatePickerViewController.h"
-#import "SearchDistancePickerViewController.h"
+//#import "ScoreProviderViewController.h"
+//#import "SearchDatePickerViewController.h"
+//#import "SearchDistancePickerViewController.h"
 #import "SwitchCell.h"
-#import "UserLocationCache.h"
+//#import "UserLocationCache.h"
 
 @interface PocketFlicksSettingsViewController()
 @end

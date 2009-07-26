@@ -22,7 +22,7 @@
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
-#import "NetflixNavigationController.h"
+//#import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
