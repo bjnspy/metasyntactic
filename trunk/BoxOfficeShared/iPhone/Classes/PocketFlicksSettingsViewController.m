@@ -40,7 +40,7 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"Settings", nil);
   }
-  
+
   return self;
 }
 
@@ -87,17 +87,17 @@
                                            on:(BOOL) on
                                      selector:(SEL) selector {
   static NSString* reuseIdentifier = @"switchCellReuseIdentifier";
-  
+
   SwitchCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[SwitchCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
   }
-  
+
   [cell.switchControl removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
   [cell.switchControl addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
   cell.switchControl.on = on;
   cell.textLabel.text = text;
-  
+
   return cell;
 }
 
@@ -119,7 +119,7 @@
       on = self.model.loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
     }
-    
+
     return [self createSwitchCellWithText:text on:on selector:selector];
 }
 

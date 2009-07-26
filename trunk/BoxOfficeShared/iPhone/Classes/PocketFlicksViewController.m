@@ -106,7 +106,7 @@ typedef enum {
 
 - (void) showInfo {
   UIViewController* controller = [[[PocketFlicksSettingsViewController alloc] init] autorelease];
-  
+
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
   if (![Application isIPhone]) {
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

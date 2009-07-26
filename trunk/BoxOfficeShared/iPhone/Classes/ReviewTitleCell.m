@@ -14,9 +14,9 @@
 
 #import "ReviewTitleCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Review.h"
-#import "BoxOfficeStockImages.h"
 
 @interface ReviewTitleCell()
 @property (retain) UILabel* scoreLabel;

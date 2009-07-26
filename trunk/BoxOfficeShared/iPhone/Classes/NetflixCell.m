@@ -14,10 +14,10 @@
 
 #import "NetflixCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "BoxOfficeStockImages.h"
 
 @interface NetflixCell()
 @property (retain) UILabel* directorTitleLabel;
@@ -60,18 +60,18 @@
   self.ratedTitleLabel = nil;
   self.genreTitleLabel = nil;
   self.netflixTitleLabel = nil;
-  
+
   self.directorLabel = nil;
   self.castLabel = nil;
   self.ratedLabel = nil;
   self.genreLabel = nil;
   self.netflixLabel = nil;
-  
+
   self.availabilityLabel = nil;
   self.formatsLabel = nil;
-  
+
   self.tappableArrow = nil;
-  
+
   [super dealloc];
 }
 
@@ -111,7 +111,7 @@
 
   self.tappableArrow = [UIButton buttonWithType:UIButtonTypeCustom];
   [tappableArrow setImage:image forState:UIControlStateNormal];
-  
+
   CGRect frame = tappableArrow.frame;
   frame.size = image.size;
   frame.size.width += 20;
@@ -124,38 +124,38 @@
   if ((self = [super initWithReuseIdentifier:reuseIdentifier])) {
     self.directorTitleLabel = [self createTitleLabel:LocalizedString(@"Directors:", nil) yPosition:22];
     self.directorLabel = [self createValueLabel:22 forTitle:directorTitleLabel];
-    
+
     self.castTitleLabel = [self createTitleLabel:LocalizedString(@"Cast:", nil) yPosition:37];
     self.castLabel = [self createValueLabel:37 forTitle:castTitleLabel];
-    
+
     self.genreTitleLabel = [self createTitleLabel:LocalizedString(@"Genre:", nil) yPosition:52];
     self.genreLabel = [self createValueLabel:52 forTitle:genreTitleLabel];
-    
+
     self.ratedTitleLabel = [self createTitleLabel:LocalizedString(@"Rated:", nil) yPosition:67];
     self.ratedLabel = [self createValueLabel:67 forTitle:ratedTitleLabel];
-    
+
     self.netflixTitleLabel = [self createTitleLabel:@"Netflix:" yPosition:82];
     self.netflixLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
     netflixLabel.font = [UIFont systemFontOfSize:17];
-    
+
     self.availabilityLabel = [self createValueLabel:67 forTitle:ratedTitleLabel];
     self.formatsLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
-    
+
     titleWidth = 0;
     for (UILabel* label in self.titleLabels) {
       titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
     }
-    
+
     for (UILabel* label in self.titleLabels) {
       CGRect frame = label.frame;
       frame.origin.x = (int)(imageView.frame.size.width + 2);
       frame.size.width = titleWidth;
       label.frame = frame;
     }
-    
+
     [self setupTappableArrow];
   }
-  
+
   return self;
 }
 
@@ -174,14 +174,14 @@
     userRating = NO;
     rating = [self.model.netflixCache netflixRatingForMovie:movie];
   }
-  
+
   if (rating.length == 0) {
     netflixLabel.text = @"";
     return;
   }
-  
+
   CGFloat score = [rating floatValue];
-  
+
   for (int i = 0; i < 5; i++) {
     CGFloat value = score - i;
     if (value <= 0) {
@@ -192,7 +192,7 @@
       [result appendString:[StringUtilities halfStarString]];
     }
   }
-  
+
   netflixLabel.text = result;
 }
 
@@ -212,27 +212,27 @@
   genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
   formatsLabel.text   = [[[[self.model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
   availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
-  
+
   NSString* rating = [self.model ratingForMovie:movie];
   if (rating.length == 0) {		
     rating = LocalizedString(@"Unrated", nil);		
   }
-  
+
   ratedLabel.text = rating;
-  
+
   if (movie.directors.count <= 1) {
     directorTitleLabel.text = LocalizedString(@"Director:", nil);
   } else {
     directorTitleLabel.text = LocalizedString(@"Directors:", nil);
   }
-  
+
   [self setNetflixLabel];
   [self setNetflixLabelColor];
-  
+
   for (UILabel* label in self.allLabels) {
     [self.contentView addSubview:label];
   }
-  
+
   [self setNeedsLayout];
 }
 
@@ -245,7 +245,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
   [super setSelected:selected animated:animated];
-  
+
   if (selected) {
   } else {
     [self setNetflixLabelColor];
@@ -256,7 +256,7 @@
 - (void) onSetSameMovie:(Movie*) movie_
                   owner:(id) owner  {
   [super onSetSameMovie:movie_ owner:owner];
-  
+
   [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
   [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
@@ -264,18 +264,18 @@
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   [availabilityLabel sizeToFit];
   [formatsLabel sizeToFit];
-  
+
   CGRect frame = self.frame;
-  
+
   {
     CGRect formatFrame = formatsLabel.frame;
     formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
     formatsLabel.frame = formatFrame;
   }
-  
+
   {
     CGRect availabilityFrame = availabilityLabel.frame;
     availabilityFrame.origin.x = frame.size.width - availabilityFrame.size.width - 5;
@@ -286,7 +286,7 @@
 
 - (void) setEditing:(BOOL) editing animated:(BOOL) animated {
   [super setEditing:editing animated:animated];
-  
+
   [UIView beginAnimations:nil context:NULL];
   {
     if (editing) {

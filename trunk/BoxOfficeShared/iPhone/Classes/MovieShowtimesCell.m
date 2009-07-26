@@ -14,9 +14,9 @@
 
 #import "MovieShowtimesCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "Performance.h"
-#import "BoxOfficeStockImages.h"
 
 
 @interface MovieShowtimesCell()

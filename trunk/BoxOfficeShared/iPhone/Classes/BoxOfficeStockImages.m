@@ -17,7 +17,7 @@
 NSString* BoxOfficeStockImagePath(NSString* name) {
   static NSString* bundleName = @"BoxOfficeStockImages.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
-  
+
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
 }
 

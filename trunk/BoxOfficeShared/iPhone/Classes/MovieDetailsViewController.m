@@ -14,6 +14,7 @@
 
 #import "MovieDetailsViewController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "DVD.h"
@@ -28,7 +29,6 @@
 #import "NetflixStatusCell.h"
 #import "Score.h"
 #import "Status.h"
-#import "BoxOfficeStockImages.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"

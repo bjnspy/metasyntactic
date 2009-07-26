@@ -14,9 +14,9 @@
 
 #import "NetflixRatingsCell.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
-#import "BoxOfficeStockImages.h"
 
 @interface NetflixRatingsCell()
 @property (retain) NSArray* imageViews;

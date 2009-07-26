@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
 #import "Controller.h"
-#import "NowPlayingCreditsViewController.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -28,6 +27,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
+#import "NowPlayingCreditsViewController.h"
 
 @interface NetflixViewController()
 @property (retain) UISearchBar* searchBar;

@@ -16,10 +16,10 @@
 
 #import "Application.h"
 #import "Controller.h"
-#import "NowPlayingCreditsViewController.h"
 #import "DVDFilterViewController.h"
 #import "LocationManager.h"
 #import "Model.h"
+#import "NowPlayingCreditsViewController.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
