@@ -58,16 +58,16 @@ public class Program {
 
     private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-        checkImports(child);
+        //checkImports(child);
         //generateForwardDeclarations(child);
         //checkDealloc(child);
-        //removeUnusedImports(child);
-        insertCopyright(child);
-        trimRight(child);
-        organizeStringsFile(child);
+        removeUnusedImports(child);
+        //insertCopyright(child);
+        //trimRight(child);
+        //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        trim(child);
+        //trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
@@ -673,6 +673,10 @@ public class Program {
             return true;
         }
 
+        if (child.getParentFile().getPath().contains("PinchMedia")) {
+            return true;
+        }
+
         return false;
     }
 
@@ -763,7 +767,6 @@ public class Program {
         final String newFile = stringWriter.toString().trim();
 
         if (!newFile.equals(originalFile)) {
-            System.out.println("Organizing code: " + child.getPath());
             writeFile(child, newFile);
         }
     }
@@ -789,6 +792,8 @@ public class Program {
         }
 
         if (child.getName().equals("ComiXologyShared.h") ||
+                child.getName().equals("MetasyntacticShared.h") ||
+                child.getName().equals("BoxOfficeShared.h") ||
                 isRestricted(child)) {
             return;
         }
@@ -966,6 +971,7 @@ public class Program {
 
         in.close();
 
+
         final Set<String> sortedImports = new TreeSet<String>(
                 new Comparator<String>() {
                     @Override
@@ -976,6 +982,10 @@ public class Program {
                             return 1;
                         }
 
+                        int result = s1.compareToIgnoreCase(s2);
+                        if (result != 0) {
+                            return result;
+                        }
                         return s1.compareTo(s2);
                     }
                 });
