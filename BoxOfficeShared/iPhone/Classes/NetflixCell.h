@@ -16,29 +16,27 @@
 
 @interface NetflixCell : AbstractPosterCell {
 @private
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* ratedTitleLabel;
-    UILabel* netflixTitleLabel;
-
-    UILabel* directorLabel;
-    UILabel* castLabel;
-    UILabel* genreLabel;
-    UILabel* ratedLabel;
-    UILabel* netflixLabel;
-
-    UILabel* availabilityLabel;
-    UILabel* formatsLabel;
-
-    TappableImageView* tappableArrow;
-
-    BOOL userRating;
+  UILabel* directorTitleLabel;
+  UILabel* castTitleLabel;
+  UILabel* genreTitleLabel;
+  UILabel* ratedTitleLabel;
+  UILabel* netflixTitleLabel;
+  
+  UILabel* directorLabel;
+  UILabel* castLabel;
+  UILabel* genreLabel;
+  UILabel* ratedLabel;
+  UILabel* netflixLabel;
+  
+  UILabel* availabilityLabel;
+  UILabel* formatsLabel;
+  
+  UIButton* tappableArrow;
+  
+  BOOL userRating;
 }
 
-
-@property (readonly, retain) TappableImageView* tappableArrow;
-
+@property (readonly, retain) UIButton* tappableArrow;
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
