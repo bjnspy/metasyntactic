@@ -15,7 +15,7 @@
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 
-@interface NetflixQueueViewController : AbstractTableViewController</*TappableImageViewDelegate, */NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
+@interface NetflixQueueViewController : AbstractTableViewController<NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
   NSString* feedKey;
   Feed* feed;

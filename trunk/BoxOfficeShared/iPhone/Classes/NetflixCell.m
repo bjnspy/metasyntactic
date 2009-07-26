@@ -108,21 +108,9 @@
 
 - (void) setupTappableArrow {
   UIImage* image = [BoxOfficeStockImages upArrow];
-  /*
-  TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
-  view.contentMode = UIViewContentModeCenter;
-  
-  CGRect frame = view.frame;
-  frame.size.height += 80;
-  frame.size.width += 20;
-  view.frame = frame;
-  
-  self.tappableArrow = view;
-   */
+
   self.tappableArrow = [UIButton buttonWithType:UIButtonTypeCustom];
   [tappableArrow setImage:image forState:UIControlStateNormal];
-  
-  //[bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
   
   CGRect frame = tappableArrow.frame;
   frame.size = image.size;
