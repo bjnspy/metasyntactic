@@ -272,7 +272,7 @@
 
 - (void) initializeInfoButton {
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-  [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+  [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
 
   infoButton.contentMode = UIViewContentModeCenter;
   CGRect frame = infoButton.frame;

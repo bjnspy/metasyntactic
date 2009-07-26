@@ -14,6 +14,7 @@
 
 #import "MovieDetailsViewController.h"
 
+#import "Application.h"
 #import "BoxOfficeStockImages.h"
 #import "CacheUpdater.h"
 #import "CollapsedMovieDetailsCell.h"
