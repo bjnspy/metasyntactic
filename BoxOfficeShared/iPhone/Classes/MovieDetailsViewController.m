@@ -224,6 +224,10 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeWebsites {
+  if ([Application isInReviewPeriod]) {
+    return;
+  }
+  
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
   NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
   if (imdbAddress.length > 0) {
@@ -967,8 +971,8 @@ const NSInteger POSTER_TAG = -1;
     [actionSheet addButtonWithTitle:key];
   }
 
-  [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
-  actionSheet.cancelButtonIndex = keys.count;
+  actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
+  //actionSheet.cancelButtonIndex = keys.count;
 
   [actionSheet showInView:self.view];
 }
@@ -1131,7 +1135,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void)            actionSheet:(UIActionSheet*) actionSheet
-      didDismissWithButtonIndex:(NSInteger) buttonIndex {
+           clickedButtonAtIndex:(NSInteger) buttonIndex {
   if (buttonIndex == actionSheet.cancelButtonIndex) {
     return;
   }
