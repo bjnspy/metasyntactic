@@ -57,5 +57,6 @@
 + (void) resetNetflixDirectories;
 
 + (NSString*) host;
++ (BOOL) isInReviewPeriod;
 
 @end

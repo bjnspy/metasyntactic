@@ -376,4 +376,19 @@ static NSString** directories[] = {
 #endif
 }
 
+
++ (BOOL) isInReviewPeriod {
+  NSNumber* shipTimeNumber = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ShipTime"];
+  if (shipTimeNumber == nil) {
+    return NO;
+  }
+  
+  double shipTime = [shipTimeNumber intValue];
+  double reviewPeriod = 10 * ONE_DAY;
+  
+  NSDate* reviewPeriodEnd = [NSDate dateWithTimeIntervalSince1970:shipTime + reviewPeriod];
+  NSDate* now = [NSDate date];
+  return [now compare:reviewPeriodEnd] == NSOrderedAscending;
+}
+
 @end

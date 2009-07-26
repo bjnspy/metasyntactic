@@ -113,7 +113,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == WrittenBySection) {
     return 2;
   } else if (section == MyOtherApplicationsSection) {
-    return 3;
+    return 4;
   } else if (section == GraphicsBySection) {
     return 1;
   } else if (section == ReviewsBySection) {
@@ -239,12 +239,26 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
     }
   } else if (section == MyOtherApplicationsSection) {
-    if (row == 0) {
-      cell.textLabel.text = @"ComiXology ($3.99)";
-    } else if (row == 1) {
-      cell.textLabel.text = @"PocketFlix ($1.99)";
+    if ([Application isInReviewPeriod]) {
+      if (row == 0) {
+        cell.textLabel.text = @"Comics";
+      } else if (row == 1) {
+        cell.textLabel.text = @"ComiXology";
+      } else if (row == 2) {
+        cell.textLabel.text = @"PocketFlix";
+      } else {
+        cell.textLabel.text = @"Your Rights";
+      }
     } else {
-      cell.textLabel.text = @"Your Rights (Free)";
+      if (row == 0) {
+        cell.textLabel.text = @"Comics ($0.99)";
+      } else if (row == 1) {
+        cell.textLabel.text = @"ComiXology ($1.99)";
+      } else if (row == 2) {
+        cell.textLabel.text = @"PocketFlix ($1.99)";
+      } else {
+        cell.textLabel.text = @"Your Rights (Free)";
+      }
     }
   } else if (section == GraphicsBySection) {
     cell.textLabel.text = LocalizedString(@"Website", nil);
@@ -351,8 +365,10 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       }
     } else if (section == MyOtherApplicationsSection) {
       if (row == 0) {
-        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=303491945&mt=8";
       } else if (row == 1) {
+        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+      } else if (row == 2) {
         url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
       } else {
         url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
