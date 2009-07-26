@@ -23,18 +23,18 @@
   if (self.count == 0) {
     return nil;
   }
-  
+
   id value = [self objectAtIndex:0];
-  
+
   for (NSInteger i = 1; i < self.count; i++) {
     id current = [self objectAtIndex:i];
-    
+
     NSComparisonResult result = comparator(value, current, context);
     if (result == NSOrderedDescending) {
       value = current;
     }
   }
-  
+
   return value;
 }
 
@@ -45,18 +45,18 @@
   if (self.count == 0) {
     return nil;
   }
-  
+
   id value = [self objectAtIndex:0];
-  
+
   for (NSInteger i = 1; i < self.count; i++) {
     id current = [self objectAtIndex:i];
-    
+
     NSComparisonResult result = comparator(value, current, context1, context2);
     if (result == NSOrderedDescending) {
       value = current;
     }
   }
-  
+
   return value;
 }
 

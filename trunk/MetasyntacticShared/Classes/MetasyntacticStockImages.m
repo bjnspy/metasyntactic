@@ -19,7 +19,7 @@
 NSString* MetasyntacticStockImagePath(NSString* name) {
   static NSString* bundleName = @"MetasyntacticStockImages.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
-  
+
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
 }
 
@@ -38,7 +38,7 @@ UIImage* MetasyntacticStockImage(NSString* name) {
   }
 
   static NSString* key = @"StockImages";
-  
+
   NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
   NSMutableDictionary* dictionary = [threadDictionary objectForKey:key];
   if (dictionary == nil) {

@@ -20,7 +20,7 @@
 
 + (DifferenceEngine*) engine {
   static NSString* key = @"DifferenceEngine";
-  
+
   NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
   DifferenceEngine* result = [threadDictionary objectForKey:key];
   if (result == nil) {
@@ -40,13 +40,13 @@
     deleteCost = delete;
     switchCost = switch_;
     transposeCost = transpose;
-    
+
     for (NSInteger i = 0; i < MaxLength; i++) {
       costTable[i][0] = (i * deleteCost);
       costTable[0][i] = (i * addCost);
     }
   }
-  
+
   return self;
 }
 
@@ -65,34 +65,34 @@
   if (S == nil || T == nil) {
     return NO;
   }
-  
+
   cached_S_length = S.length;
   cached_T_length = T.length;
-  
+
   if (cached_T_length > MaxLength || cached_S_length > MaxLength) {
     return NO;
   }
-  
+
   costThreshold = threshold;
-  
+
   if (costThreshold >= 0) {
     if (deleteCost > 0) {
       NSInteger minimumTLength = cached_S_length - (costThreshold * deleteCost);
-      
+
       if (cached_T_length < minimumTLength) {
         return NO;
       }
     }
-    
+
     if (addCost > 0) {
       NSInteger minimumSLength = cached_T_length - (costThreshold * addCost);
-      
+
       if (cached_S_length < minimumSLength) {
         return NO;
       }
     }
   }
-  
+
   return YES;
 }
 
@@ -109,55 +109,55 @@
   if ([self initializeFrom:from to:to withThreshold:threshold] == NO) {
     return NSIntegerMax;
   }
-  
+
   unichar S[MaxLength];
   unichar T[MaxLength];
-  
+
   [from getCharacters:S];
   [to getCharacters:T];
-  
+
   for (NSInteger i = 1; i < cached_S_length; i++) {
     BOOL rowIsUnderThreshold = (costThreshold < 0);
-    
+
     for (NSInteger j = 1; j < cached_T_length; j++) {
       const NSInteger adds = 1;
       const NSInteger deletes = 1;
       NSInteger switches = (S[(i - 1)] == T[(j - 1)]) ? 0 : 1;
-      
+
       NSInteger totalDeleteCost = costTable[i - 1][j] + (deletes * deleteCost);
       NSInteger totalAddCost = costTable[i][j - 1] + (adds * addCost);
       NSInteger totalSwitchCost = costTable[i - 1][j - 1] + (switches * switchCost);
       NSInteger cost = MIN(totalDeleteCost, MIN(totalAddCost, totalSwitchCost));
-      
+
       if (i >= 2 && j >= 2) {
         NSInteger transposes = 1 + ((S[(i - 1)] == T[j]) ? 0 : 1) +
         ((S[i] == T[(j - 1)]) ? 0 : 1);
         NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
-        
+
         costTable[i][j] = MIN(cost, tCost);
       } else {
         costTable[i][j] = cost;
       }
-      
+
       if (costThreshold >= 0) {
         rowIsUnderThreshold |= (cost <= costThreshold);
       }
     }
-    
+
     if (!rowIsUnderThreshold) {
       return NSIntegerMax;
     }
   }
-  
+
   NSInteger cost = costTable[cached_S_length - 1][cached_T_length - 1];
-  
+
   if (cost > 1) {
     if ([from rangeOfString:to options:NSCaseInsensitiveSearch].location != NSNotFound ||
         [to rangeOfString:from options:NSCaseInsensitiveSearch].location != NSNotFound) {
       return 1;
     }
   }
-  
+
   return cost;
 }
 
@@ -184,7 +184,7 @@
       return YES;
     }
   }
-  
+
   return NO;
 }
 
@@ -194,11 +194,11 @@
   if (s1 == nil || s2 == nil) {
     return NO;
   }
-  
+
   if ([DifferenceEngine substringSimilar:s1 other:s2]) {
     return YES;
   }
-  
+
   NSInteger threshold = [self threshold:s1];
   NSInteger diff = [self editDistanceFrom:s1 to:s2 withThreshold:threshold];
   return (diff <= threshold);
@@ -210,14 +210,14 @@
   if (array == nil || string == nil) {
     return NSNotFound;
   }
-  
+
   {
     NSInteger index = [array indexOfObject:string];
     if (index != NSNotFound) {
       return index;
     }
   }
-  
+
   {
     if (string.length > 4) {
       for (int i = 0; i < array.count; i++) {
@@ -231,29 +231,29 @@
       }
     }
   }
-  
-  
+
+
   NSInteger bestDistance = INT_MAX;
   NSInteger bestIndex = -1;
-  
+
   for (int i = 0; i < array.count; i++) {
     NSString* value = [array objectAtIndex:i];
-    
+
     int distance = [self editDistanceFrom:string
                                        to:value
                             withThreshold:[self threshold:string]];
-    
+
     if (distance < bestDistance) {
       bestIndex = i;
       bestDistance = distance;
     }
   }
-  
+
   if (bestIndex != -1 &&
       [self similar:[array objectAtIndex:bestIndex] other:string]) {
     return bestIndex;
   }
-  
+
   return NSNotFound;
 }
 
@@ -264,7 +264,7 @@
   if (index == NSNotFound) {
     return nil;
   }
-  
+
   return [array objectAtIndex:index];
 }
 
