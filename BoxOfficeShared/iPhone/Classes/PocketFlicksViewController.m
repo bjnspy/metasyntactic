@@ -28,6 +28,7 @@
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
 #import "PocketFlicksCreditsViewController.h"
+#import "PocketFlicksSettingsViewController.h"
 
 @interface PocketFlicksViewController()
 @property (retain) UISearchBar* searchBar;
@@ -103,6 +104,17 @@ typedef enum {
 }
 
 
+- (void) showInfo {
+  UIViewController* controller = [[[PocketFlicksSettingsViewController alloc] init] autorelease];
+  
+  UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
+  if (![Application isIPhone]) {
+    navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+  }
+  [self presentModalViewController:navigationController animated:YES];
+}
+
+
 - (BOOL) hasAccount {
   return self.model.netflixUserId.length > 0;
 }
@@ -134,7 +146,6 @@ typedef enum {
 
 
 - (void) initializeInfoButton {
-  return;
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
 
@@ -359,11 +370,6 @@ typedef enum {
       [self didSelectAboutSendFeedbackRow];
     }
   }
-}
-
-
-- (void) showInfo {
-  [self.commonNavigationController pushInfoControllerAnimated:YES];
 }
 
 

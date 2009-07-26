@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */; };
+		7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */; };
 		74FB7D251017A2DE001B5CB9 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		74FB7D261017A2DE001B5CB9 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		74FB7D271017A2DE001B5CB9 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
@@ -114,12 +116,12 @@
 		74FB7D8D1017A2DE001B5CB9 /* AbstractSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4770F77486F008F5B2B /* AbstractSearchDisplayController.m */; };
 		74FB7D8E1017A2DE001B5CB9 /* LocalSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF4AC0F774A0A008F5B2B /* LocalSearchDisplayController.m */; };
 		74FB7D8F1017A2DE001B5CB9 /* NetflixSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747BF3F90F7743F0008F5B2B /* NetflixSearchDisplayController.m */; };
-		74FB7D901017A2DE001B5CB9 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
+		74FB7D901017A2DE001B5CB9 /* NowPlayingCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* NowPlayingCreditsViewController.m */; };
 		74FB7D911017A2DE001B5CB9 /* FAQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380400F89D58F00D457CB /* FAQViewController.m */; };
 		74FB7D921017A2DE001B5CB9 /* ScoreProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */; };
 		74FB7D931017A2DE001B5CB9 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		74FB7D941017A2DE001B5CB9 /* SearchDistancePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */; };
-		74FB7D951017A2DE001B5CB9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */; };
+		74FB7D951017A2DE001B5CB9 /* NowPlayingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C3D0DC83E8800CC146C /* NowPlayingSettingsViewController.m */; };
 		74FB7D961017A2DE001B5CB9 /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74FB7D971017A2DE001B5CB9 /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		74FB7D981017A2DE001B5CB9 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
@@ -229,8 +231,8 @@
 		740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewBodyCell.m; sourceTree = "<group>"; };
 		7410D73F0EC2C0740079BF1E /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
 		7410D7400EC2C0740079BF1E /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
-		741111520DFCF61900B94FB5 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
-		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		741111520DFCF61900B94FB5 /* NowPlayingCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingCreditsViewController.h; sourceTree = "<group>"; };
+		741111530DFCF61900B94FB5 /* NowPlayingCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingCreditsViewController.m; sourceTree = "<group>"; };
 		741172B00F60927C00E09FD8 /* AbstractMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieCache.h; sourceTree = "<group>"; };
 		741172B10F60927C00E09FD8 /* AbstractMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieCache.m; sourceTree = "<group>"; };
 		741371880E88E79C00CF4900 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
@@ -247,6 +249,8 @@
 		7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixGenreRecommendationsViewController.m; sourceTree = "<group>"; };
 		74166B0C0EC94A5700FFD29A /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		74166B0D0EC94A5700FFD29A /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksSettingsViewController.h; sourceTree = "<group>"; };
+		7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksSettingsViewController.m; sourceTree = "<group>"; };
 		7417219C0FA8F58900C10C98 /* LocalizableStringsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableStringsCache.h; sourceTree = "<group>"; };
 		7417219D0FA8F58900C10C98 /* LocalizableStringsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableStringsCache.m; sourceTree = "<group>"; };
 		741A273C0F8AA84E003CDB4E /* InternationalDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternationalDataCache.h; sourceTree = "<group>"; };
@@ -281,8 +285,8 @@
 		74447C360DC83D0900CC146C /* ApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTabBarController.m; sourceTree = "<group>"; };
 		74447C390DC83E7400CC146C /* TheatersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatersNavigationController.h; sourceTree = "<group>"; };
 		74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatersNavigationController.m; sourceTree = "<group>"; };
-		74447C3C0DC83E8800CC146C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		74447C3D0DC83E8800CC146C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		74447C3C0DC83E8800CC146C /* NowPlayingSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingSettingsViewController.h; sourceTree = "<group>"; };
+		74447C3D0DC83E8800CC146C /* NowPlayingSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingSettingsViewController.m; sourceTree = "<group>"; };
 		74447C550DC8405200CC146C /* AllMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMoviesViewController.h; sourceTree = "<group>"; };
 		74447C560DC8405200CC146C /* AllMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMoviesViewController.m; sourceTree = "<group>"; };
 		74447C580DC840D100CC146C /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
@@ -1016,15 +1020,17 @@
 			children = (
 				74FB7FFF1017B63B001B5CB9 /* Credits */,
 				7453803F0F89D58F00D457CB /* FAQViewController.h */,
+				74447C3C0DC83E8800CC146C /* NowPlayingSettingsViewController.h */,
+				7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */,
 				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
 				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
 				74F321D90F8C6310009B94E7 /* SearchDistancePickerViewController.h */,
-				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
 				745380400F89D58F00D457CB /* FAQViewController.m */,
+				74447C3D0DC83E8800CC146C /* NowPlayingSettingsViewController.m */,
+				7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */,
 				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74F321DA0F8C6310009B94E7 /* SearchDistancePickerViewController.m */,
-				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1136,8 +1142,8 @@
 		74FB7FFF1017B63B001B5CB9 /* Credits */ = {
 			isa = PBXGroup;
 			children = (
-				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
+				741111520DFCF61900B94FB5 /* NowPlayingCreditsViewController.h */,
+				741111530DFCF61900B94FB5 /* NowPlayingCreditsViewController.m */,
 				74FB80001017B64A001B5CB9 /* PocketFlicksCreditsViewController.h */,
 				74FB80011017B64A001B5CB9 /* PocketFlicksCreditsViewController.m */,
 			);
@@ -1158,6 +1164,7 @@
 				74FB7FF91017B52D001B5CB9 /* PocketFlicksNavigationController.h in Headers */,
 				74FB7FFD1017B5AB001B5CB9 /* PocketFlicksViewController.h in Headers */,
 				74FB80021017B64A001B5CB9 /* PocketFlicksCreditsViewController.h in Headers */,
+				7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,12 +1392,12 @@
 				74FB7D8D1017A2DE001B5CB9 /* AbstractSearchDisplayController.m in Sources */,
 				74FB7D8E1017A2DE001B5CB9 /* LocalSearchDisplayController.m in Sources */,
 				74FB7D8F1017A2DE001B5CB9 /* NetflixSearchDisplayController.m in Sources */,
-				74FB7D901017A2DE001B5CB9 /* CreditsViewController.m in Sources */,
+				74FB7D901017A2DE001B5CB9 /* NowPlayingCreditsViewController.m in Sources */,
 				74FB7D911017A2DE001B5CB9 /* FAQViewController.m in Sources */,
 				74FB7D921017A2DE001B5CB9 /* ScoreProviderViewController.m in Sources */,
 				74FB7D931017A2DE001B5CB9 /* SearchDatePickerViewController.m in Sources */,
 				74FB7D941017A2DE001B5CB9 /* SearchDistancePickerViewController.m in Sources */,
-				74FB7D951017A2DE001B5CB9 /* SettingsViewController.m in Sources */,
+				74FB7D951017A2DE001B5CB9 /* NowPlayingSettingsViewController.m in Sources */,
 				74FB7D961017A2DE001B5CB9 /* AllTheatersViewController.m in Sources */,
 				74FB7D971017A2DE001B5CB9 /* TheaterDetailsViewController.m in Sources */,
 				74FB7D981017A2DE001B5CB9 /* UpcomingMoviesViewController.m in Sources */,
@@ -1410,6 +1417,7 @@
 				74FB7FFA1017B52D001B5CB9 /* PocketFlicksNavigationController.m in Sources */,
 				74FB7FFE1017B5AB001B5CB9 /* PocketFlicksViewController.m in Sources */,
 				74FB80031017B64A001B5CB9 /* PocketFlicksCreditsViewController.m in Sources */,
+				7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
