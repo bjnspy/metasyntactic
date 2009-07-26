@@ -17,11 +17,12 @@
 #define ONE_MINUTE (60.0)
 #define ONE_HOUR   (60.0 * ONE_MINUTE)
 #define ONE_DAY    (24.0 * ONE_HOUR)
-#define TWO_DAYS   (2 * ONE_DAY)
-#define THREE_DAYS (3 * ONE_DAY)
+#define TWO_DAYS   (2.0 * ONE_DAY)
+#define THREE_DAYS (3.0 * ONE_DAY)
 #define ONE_WEEK   (7.0 * ONE_DAY)
-#define ONE_MONTH  (30.5 * ONE_DAY)
+#define TWO_WEEKS  (2.0 * ONE_WEEK)
 #define ONE_YEAR   (365.0 * ONE_DAY)
+#define ONE_MONTH  (ONE_YEAR / 12.0)
 
 #define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
 

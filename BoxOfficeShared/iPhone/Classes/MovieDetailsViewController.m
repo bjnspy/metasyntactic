@@ -225,29 +225,27 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeWebsites {
-  if ([Application isInReviewPeriod]) {
-    return;
-  }
-  
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
   NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
   if (imdbAddress.length > 0) {
     [map setObject:imdbAddress forKey:@"IMDb"];
   }
-
-  NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
-  if (amazonAddress.length > 0) {
-    [map setObject:amazonAddress forKey:@"Amazon"];
-  }
-
-  NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
-  if (wikipediaAddress.length > 0) {
-    [map setObject:wikipediaAddress forKey:@"Wikipedia"];
-  }
-
-  NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
-  if (netflixAddress.length > 0) {
-    [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
+  
+  if (![Application isInReviewPeriod]) {
+    NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
+    if (amazonAddress.length > 0) {
+      [map setObject:amazonAddress forKey:@"Amazon"];
+    }
+    
+    NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
+    if (wikipediaAddress.length > 0) {
+      [map setObject:wikipediaAddress forKey:@"Wikipedia"];
+    }
+    
+    NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
+    if (netflixAddress.length > 0) {
+      [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
+    }
   }
 
   Score* score = [self.model rottenTomatoesScoreForMovie:movie];

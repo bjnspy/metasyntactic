@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74305B4C102F45580086AA7D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74305B4B102F45580086AA7D /* MapKit.framework */; };
+		74305B4E102F45580086AA7D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74305B4D102F45580086AA7D /* MessageUI.framework */; };
 		743EA950101BBA4D002D7D86 /* MetasyntacticStockImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 743EA94F101BBA4D002D7D86 /* MetasyntacticStockImages.bundle */; };
 		743EA952101BBA6B002D7D86 /* BoxOfficeStockImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 743EA951101BBA6B002D7D86 /* BoxOfficeStockImages.bundle */; };
-		74AE67261017C682003935FB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74AE67251017C682003935FB /* MapKit.framework */; };
-		74AE67281017C682003935FB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74AE67271017C682003935FB /* MessageUI.framework */; };
 		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		74E148110F95949500FB7BDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
@@ -62,6 +62,8 @@
 		7406A7620F104C2200795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7630F104C2200795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		74305B4B102F45580086AA7D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74305B4D102F45580086AA7D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		743EA94F101BBA4D002D7D86 /* MetasyntacticStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticStockImages.bundle; path = ../../MetasyntacticShared/MetasyntacticStockImages.bundle; sourceTree = SOURCE_ROOT; };
 		743EA951101BBA6B002D7D86 /* BoxOfficeStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeStockImages.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeStockImages.bundle; sourceTree = SOURCE_ROOT; };
@@ -84,8 +86,6 @@
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		74AE67251017C682003935FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		74AE67271017C682003935FB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,11 +112,11 @@
 				74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */,
 				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
 				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
-				74AE67261017C682003935FB /* MapKit.framework in Frameworks */,
 				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
-				74AE67281017C682003935FB /* MessageUI.framework in Frameworks */,
 				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
 				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
+				74305B4C102F45580086AA7D /* MapKit.framework in Frameworks */,
+				74305B4E102F45580086AA7D /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,9 +188,9 @@
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
 				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				74AE67251017C682003935FB /* MapKit.framework */,
+				74305B4B102F45580086AA7D /* MapKit.framework */,
 				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
-				74AE67271017C682003935FB /* MessageUI.framework */,
+				74305B4D102F45580086AA7D /* MessageUI.framework */,
 				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
