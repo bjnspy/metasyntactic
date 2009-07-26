@@ -113,7 +113,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
+  NSString* title = [titlesWithArticles objectAtIndex:indexPath.row];
   ACLUArticlesViewController* controller = [[[ACLUArticlesViewController alloc] initWithTitle:title] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
