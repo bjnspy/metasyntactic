@@ -19,8 +19,6 @@
 		7401C4D00F95096B006D8281 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746398940F7EC9B200B2F64C /* Foundation.framework */; };
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
-		743EA894101BB44E002D7D86 /* BoxOfficeStockImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 743EA6F8101BB040002D7D86 /* BoxOfficeStockImages.bundle */; };
-		743EA896101BB44E002D7D86 /* MetasyntacticStockImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 743EA6F6101BB021002D7D86 /* MetasyntacticStockImages.bundle */; };
 		743EA898101BB44E002D7D86 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		743EA89A101BB44E002D7D86 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89C30F0ECF10009DC326 /* Default.png */; };
 		743EA89C101BB44E002D7D86 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89CE0F0ECF10009DC326 /* Icon.png */; };
@@ -28,6 +26,8 @@
 		743EA8A0101BB44E002D7D86 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74FB84001017C496001B5CB9 /* License.txt */; };
 		743EA8A2101BB44E002D7D86 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
+		74A5306F101D1322004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */; };
+		74A530D9101D138F004F9C9B /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */; };
 		74A60CB1100D3F9600806BBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A60CB0100D3F9600806BBC /* MapKit.framework */; };
 		74E164961006D4C2003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164951006D4C2003D852F /* libsqlite3.dylib */; };
 		74FB7E011017A5C5001B5CB9 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FB7DFE1017A5B0001B5CB9 /* libBoxOfficeShared.a */; };
@@ -70,8 +70,6 @@
 		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		742A64F9101B91C700E72C98 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		743EA6F6101BB021002D7D86 /* MetasyntacticStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticStockImages.bundle; path = ../../MetasyntacticShared/MetasyntacticStockImages.bundle; sourceTree = SOURCE_ROOT; };
-		743EA6F8101BB040002D7D86 /* BoxOfficeStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeStockImages.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeStockImages.bundle; sourceTree = SOURCE_ROOT; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213C0E5962D100105751 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -97,6 +95,8 @@
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
+		74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A60CB0100D3F9600806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		74DD89C30F0ECF10009DC326 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		74DD89CE0F0ECF10009DC326 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				743EA6F8101BB040002D7D86 /* BoxOfficeStockImages.bundle */,
-				743EA6F6101BB021002D7D86 /* MetasyntacticStockImages.bundle */,
+				74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */,
+				74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				74DD89C30F0ECF10009DC326 /* Default.png */,
 				74DD89CE0F0ECF10009DC326 /* Icon.png */,
@@ -339,8 +339,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				743EA894101BB44E002D7D86 /* BoxOfficeStockImages.bundle in Resources */,
-				743EA896101BB44E002D7D86 /* MetasyntacticStockImages.bundle in Resources */,
 				743EA898101BB44E002D7D86 /* Entitlements.plist in Resources */,
 				743EA89A101BB44E002D7D86 /* Default.png in Resources */,
 				743EA89C101BB44E002D7D86 /* Icon.png in Resources */,
@@ -348,6 +346,8 @@
 				743EA8A0101BB44E002D7D86 /* License.txt in Resources */,
 				743EA8A2101BB44E002D7D86 /* MainWindow.xib in Resources */,
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
+				74A5306F101D1322004F9C9B /* MetasyntacticResources.bundle in Resources */,
+				74A530D9101D138F004F9C9B /* BoxOfficeResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

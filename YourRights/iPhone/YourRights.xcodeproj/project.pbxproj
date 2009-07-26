@@ -22,7 +22,6 @@
 		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
 		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
-		7415C96A101D10BF00934F70 /* MetasyntacticStockImages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7415C969101D10BF00934F70 /* MetasyntacticStockImages.bundle */; };
 		7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */; };
 		742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742372A70FD249D200E19B63 /* MessageUI.framework */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
@@ -52,6 +51,7 @@
 		74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */; };
 		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
 		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
+		74A53144101D13E4004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */; };
 		74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */; };
 		74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */; };
 		74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */; };
@@ -105,7 +105,6 @@
 		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
 		740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
 		740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
-		7415C969101D10BF00934F70 /* MetasyntacticStockImages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticStockImages.bundle; path = ../../MetasyntacticShared/MetasyntacticStockImages.bundle; sourceTree = SOURCE_ROOT; };
 		742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		742371ED0FD247CE00E19B63 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
 		742372A70FD249D200E19B63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -163,6 +162,7 @@
 		74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
 		74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
 		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
+		74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
 		74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
 		74CF63F60F5890CC00417ED5 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7415C969101D10BF00934F70 /* MetasyntacticStockImages.bundle */,
+				74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */,
 				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				7406DA5810170988004374C2 /* Default.png */,
@@ -516,7 +516,7 @@
 				7462953A0F135CF90073F830 /* License.txt in Resources */,
 				74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */,
 				7406DA5910170988004374C2 /* Default.png in Resources */,
-				7415C96A101D10BF00934F70 /* MetasyntacticStockImages.bundle in Resources */,
+				74A53144101D13E4004F9C9B /* MetasyntacticResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

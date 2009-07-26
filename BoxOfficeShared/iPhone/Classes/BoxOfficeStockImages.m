@@ -14,8 +14,8 @@
 
 #import "BoxOfficeStockImages.h"
 
-NSString* BoxOfficeStockImagePath(NSString* name) {
-  static NSString* bundleName = @"BoxOfficeStockImages.bundle";
+NSString* BoxOfficeResourcePath(NSString* name) {
+  static NSString* bundleName = @"BoxOfficeResources.bundle.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
@@ -23,7 +23,7 @@ NSString* BoxOfficeStockImagePath(NSString* name) {
 
 
 UIImage* BoxOfficeStockImage(NSString* name) {
-  NSString* path = BoxOfficeStockImagePath(name);
+  NSString* path = BoxOfficeResourcePath(name);
   return [MetasyntacticStockImages imageForPath:path];
 }
 
