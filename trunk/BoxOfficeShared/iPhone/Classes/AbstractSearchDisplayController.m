@@ -17,7 +17,7 @@
 #import "Controller.h"
 #import "Model.h"
 #import "SearchResult.h"
-#import "UpcomingMovieCell.h"
+//#import "UpcomingMovieCell.h"
 
 @interface AbstractSearchDisplayController()
 @property (retain) AbstractSearchEngine* searchEngineData;
