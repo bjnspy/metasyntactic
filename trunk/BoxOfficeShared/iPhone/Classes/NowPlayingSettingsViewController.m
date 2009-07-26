@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SettingsViewController.h"
+#import "NowPlayingSettingsViewController.h"
 
 #import "Application.h"
 #import "Controller.h"
-#import "CreditsViewController.h"
+#import "NowPlayingCreditsViewController.h"
 #import "DVDFilterViewController.h"
 #import "LocationManager.h"
 #import "Model.h"
@@ -26,11 +26,11 @@
 #import "SwitchCell.h"
 #import "UserLocationCache.h"
 
-@interface SettingsViewController()
+@interface NowPlayingSettingsViewController()
 @end
 
 
-@implementation SettingsViewController
+@implementation NowPlayingSettingsViewController
 
 static BOOL refreshed = NO;
 

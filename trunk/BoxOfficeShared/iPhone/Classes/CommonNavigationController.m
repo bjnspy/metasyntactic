@@ -21,7 +21,7 @@
 #import "MovieDetailsViewController.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
-#import "SettingsViewController.h"
+#import "NowPlayingSettingsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -167,7 +167,7 @@
 
 
 - (void) pushInfoControllerAnimated:(BOOL) animated {
-  UIViewController* controller = [[[SettingsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NowPlayingSettingsViewController alloc] init] autorelease];
 
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
   if (![Application isIPhone]) {

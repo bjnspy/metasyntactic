@@ -86,7 +86,8 @@
 @class LocalSearchEngine;
 @class SearchRequest;
 @class SearchResult;
-@class SettingsViewController;
+@class NowPlayingSettingsViewController;
+@class PocketFlicksSettingsViewController;
 @class Status;
 @class Theater;
 @class TheaterDetailsViewController;
