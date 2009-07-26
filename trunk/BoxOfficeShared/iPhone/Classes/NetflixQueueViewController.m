@@ -218,7 +218,9 @@
   NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    cell.tappableArrow.delegate = self;
+    
+    [cell.tappableArrow addTarget:self action:@selector(onUpArrowTapped:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    //cell.tappableArrow.delegate = self;
   }
 
   [self setAccessoryForCell:cell atIndexPath:indexPath];
@@ -446,15 +448,13 @@
 }
 
 
-- (void) imageView:(TappableImageView*) imageView
-        wasTouched:(UITouch*) touch
-          tapCount:(NSInteger) tapCount {
+- (void) onUpArrowTapped:(UIButton*) button {
   if (readonlyMode) {
     return;
   }
 
   UITableViewCell* cell = nil;
-  for (UIView* superview = imageView.superview; superview != nil; superview = superview.superview) {
+  for (UIView* superview = button; superview != nil; superview = superview.superview) {
     if ([superview isKindOfClass:[UITableViewCell class]]) {
       cell = (id) superview;
       break;
