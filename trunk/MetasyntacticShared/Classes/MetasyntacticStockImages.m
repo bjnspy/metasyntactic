@@ -16,8 +16,8 @@
 
 #import "FileUtilities.h"
 
-NSString* MetasyntacticStockImagePath(NSString* name) {
-  static NSString* bundleName = @"MetasyntacticStockImages.bundle";
+NSString* MetasyntacticResourcePath(NSString* name) {
+  static NSString* bundleName = @"MetasyntacticResources.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
@@ -25,7 +25,7 @@ NSString* MetasyntacticStockImagePath(NSString* name) {
 
 
 UIImage* MetasyntacticStockImage(NSString* name) {
-  NSString* path = MetasyntacticStockImagePath(name);
+  NSString* path = MetasyntacticResourcePath(name);
   return [MetasyntacticStockImages imageForPath:path];
 }
 
