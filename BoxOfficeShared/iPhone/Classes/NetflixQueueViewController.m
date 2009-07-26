@@ -218,7 +218,7 @@
   NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
   if (cell == nil) {
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    
+
     [cell.tappableArrow addTarget:self action:@selector(onUpArrowTapped:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     //cell.tappableArrow.delegate = self;
   }

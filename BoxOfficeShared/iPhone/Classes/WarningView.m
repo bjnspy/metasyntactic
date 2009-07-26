@@ -14,8 +14,8 @@
 
 #import "WarningView.h"
 
-#import "Model.h"
 #import "BoxOfficeStockImages.h"
+#import "Model.h"
 
 @interface WarningView()
 @property (retain) UIImageView* imageView;

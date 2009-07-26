@@ -14,8 +14,8 @@
 
 #import "AbstractImageCell.h"
 
-#import "Model.h"
 #import "BoxOfficeStockImages.h"
+#import "Model.h"
 
 
 @interface AbstractImageCell()

@@ -15,12 +15,12 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
+#import "BoxOfficeStockImages.h"
 #import "LookupResult.h"
 #import "Model.h"
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
-#import "BoxOfficeStockImages.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"

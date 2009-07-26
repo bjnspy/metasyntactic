@@ -14,10 +14,10 @@
 
 @interface NetflixStatusCell : UITableViewCell {
 @private
-    TappableImageView* deleteImageView;
-    TappableImageView* moveImageView;
+  TappableImageView* deleteImageView;
+  TappableImageView* moveImageView;
 
-    Status* status;
+  Status* status;
 }
 
 @property (readonly, retain) TappableImageView* deleteImageView;
