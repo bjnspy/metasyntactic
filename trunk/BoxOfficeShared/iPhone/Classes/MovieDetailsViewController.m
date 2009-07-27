@@ -230,18 +230,18 @@ const NSInteger POSTER_TAG = -1;
   if (imdbAddress.length > 0) {
     [map setObject:imdbAddress forKey:@"IMDb"];
   }
-  
+
   if (![Application isInReviewPeriod]) {
     NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
     if (amazonAddress.length > 0) {
       [map setObject:amazonAddress forKey:@"Amazon"];
     }
-    
+
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
       [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
-    
+
     NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
     if (netflixAddress.length > 0) {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
