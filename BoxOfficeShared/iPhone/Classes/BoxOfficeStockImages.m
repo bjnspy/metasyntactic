@@ -15,7 +15,7 @@
 #import "BoxOfficeStockImages.h"
 
 NSString* BoxOfficeResourcePath(NSString* name) {
-  static NSString* bundleName = @"BoxOfficeResources.bundle.bundle";
+  static NSString* bundleName = @"BoxOfficeResources.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
