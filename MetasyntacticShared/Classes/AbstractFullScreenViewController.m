@@ -45,14 +45,14 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-  [super viewWillAppear:animated];
+- (void) onBeforeViewControllerPushed {
+  [super onBeforeViewControllerPushed];
   [NotificationCenter disableNotifications];
 }
 
 
-- (void) viewWillDisappear:(BOOL) animated {
-  [super viewWillDisappear:animated];
+- (void) onAfterViewControllerPopped {
+  [super onAfterViewControllerPopped];
   [NotificationCenter enableNotifications];
 }
 
