@@ -45,7 +45,7 @@ import java.util.Map;
 public class SettingsActivity extends AbstractNowPlayingListActivity {
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
-  private boolean isFirst;
+  private boolean loadedFromMenu;
 
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
@@ -66,7 +66,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
   };
 
   @Override public void onCreateAfterServiceConnected() {
-    getUserLocation();
+	skipSettingsIfLocationSet();
     populateSettingsItems();
     settingsAdapter = new SettingsAdapter();
     setListAdapter(settingsAdapter);
@@ -77,9 +77,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
 
-    if (getIntent().getStringExtra("from_menu") == null) {
-      isFirst = true;
-    }
+    loadedFromMenu = getIntent().getStringExtra("from_menu") != null;
 
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
@@ -90,24 +88,31 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
         if (StringUtilities.isNullOrEmpty(searchLocation)) {
           Toast.makeText(SettingsActivity.this, getResources().getString(R.string.please_enter_your_location), Toast.LENGTH_LONG).show();
         } else {
-          final Intent intent = new Intent();
-          intent.setClass(SettingsActivity.this, NowPlayingActivity.class);
-          startActivity(intent);
+          if (loadedFromMenu) {
+            finish();
+          } else {
+            final Intent intent = new Intent();
+            intent.setClass(SettingsActivity.this, NowPlayingActivity.class);
+            startActivity(intent);
+          }
         }
       }
     });
     setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
   }
 
+  private boolean firstTime = true;
   @Override
   protected void onResume() {
     LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
 
-    if (!isFirst && getIntent().getStringExtra("from_menu") == null) {
-      finish();
+    if (!firstTime) {
+      if (!loadedFromMenu) {
+        finish();
+      }
     }
-    isFirst = false;
+    firstTime = false;
 
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(updateLocationStartReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
@@ -123,13 +128,17 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
     super.onPause();
   }
 
-  private void getUserLocation() {
-    final String userLocation = getService().getUserAddress();
-    if (!StringUtilities.isNullOrEmpty(userLocation)) {
-      final Intent localIntent = new Intent();
-      localIntent.setClass(this, NowPlayingActivity.class);
-      startActivity(localIntent);
+  private void skipSettingsIfLocationSet() {
+    if (loadedFromMenu) {
+      return;
     }
+    
+      final String userLocation = getService().getUserAddress();
+      if (!StringUtilities.isNullOrEmpty(userLocation)) {
+        final Intent localIntent = new Intent();
+        localIntent.setClass(this, NowPlayingActivity.class);
+        startActivity(localIntent);
+      }
   }
 
   @Override
@@ -346,10 +355,6 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
         this.icon = icon;
         this.data2 = data2;
       }
-    }
-
-    public long getEntryId(final int position) {
-      return position;
     }
 
     public Object getItem(final int position) {

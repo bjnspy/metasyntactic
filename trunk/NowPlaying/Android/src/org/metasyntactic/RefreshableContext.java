@@ -9,6 +9,9 @@ public interface RefreshableContext {
    */
   void refresh();
 
+  void onCreateAfterServiceConnected();
+  void onResumeAfterServiceConnected();
+  
   Context getContext();
   NowPlayingServiceWrapper getService();
 }

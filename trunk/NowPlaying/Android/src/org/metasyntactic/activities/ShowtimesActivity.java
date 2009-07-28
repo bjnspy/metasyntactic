@@ -234,20 +234,12 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
       }
     }
 
-    public long getEntryId(final int position) {
-      return position;
-    }
-
     public Object getItem(final int position) {
       return theaterWrapperList.get(position);
     }
 
     public long getItemId(final int position) {
       return position;
-    }
-
-    public void refresh() {
-      notifyDataSetChanged();
     }
   }
 

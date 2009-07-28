@@ -15,7 +15,7 @@ package org.metasyntactic.utilities;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
