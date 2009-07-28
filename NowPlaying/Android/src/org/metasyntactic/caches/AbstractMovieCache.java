@@ -72,7 +72,7 @@ public abstract class AbstractMovieCache extends AbstractCache {
     }
   }
 
-  protected void updateMovieDetails(final Movie movie, @SuppressWarnings("unused") final boolean priority) {
+  protected void updateMovieDetails(final Movie movie, final boolean priority) {
     updateMovieDetails(movie);
   }
 

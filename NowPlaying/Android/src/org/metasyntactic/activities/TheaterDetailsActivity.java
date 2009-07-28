@@ -197,10 +197,6 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       inflater = LayoutInflater.from(TheaterDetailsActivity.this);
     }
 
-    public Object getEntry(final int i) {
-      return i;
-    }
-
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       final TheaterDetailEntry entry = theaterDetailEntries.get(position);
       switch (entry.type) {
@@ -256,20 +252,12 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       return theaterDetailEntries.size();
     }
 
-    public long getEntryId(final int position) {
-      return position;
-    }
-
     public Object getItem(final int position) {
       return theaterDetailEntries.get(position);
     }
 
     public long getItemId(final int position) {
       return position;
-    }
-
-    public void refresh() {
-      notifyDataSetChanged();
     }
   }
 

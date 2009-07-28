@@ -231,7 +231,6 @@ public class NowPlayingServiceWrapper {
     }
   }
 
-  @SuppressWarnings({"TypeMayBeWeakened"})
   public void setScoreType(final ScoreType scoreType) {
     try {
       service.setScoreType(scoreType.toString());

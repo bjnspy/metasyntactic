@@ -273,6 +273,7 @@ public class NowPlayingService extends Service {
 
   public void setAutoUpdateEnabled(final boolean enabled) {
     model.setAutoUpdateEnabled(enabled);
+    restartLocationTracker();
   }
 
   public Date getSearchDate() {

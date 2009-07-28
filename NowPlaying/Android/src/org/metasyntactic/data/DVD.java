@@ -50,7 +50,7 @@ public class DVD extends AbstractPersistable implements Parcelable {
     }
   };
 
-  private DVD(final String canonicalTitle, final String price, final String format, final String discs, final String url, @SuppressWarnings("unused") final boolean ignored) {
+  private DVD(final String canonicalTitle, final String price, final String format, final String discs, final String url, final boolean ignored) {
     this.canonicalTitle = canonicalTitle;
     this.price = price;
     this.format = format;
