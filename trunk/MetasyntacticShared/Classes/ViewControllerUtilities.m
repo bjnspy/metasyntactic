@@ -98,10 +98,10 @@ static UIFont* minimumTitleFont = nil;
   NSInteger maxWidth = 320;
   const BOOL hasLeftBarItem = [self hasLeftBarItem:controller];
   if (hasLeftBarItem) {
-    maxWidth -= 80;
+    maxWidth -= 85;
   }
   if (controller.navigationItem.rightBarButtonItem != nil) {
-    maxWidth -= 80;
+    maxWidth -= 85;
   }
 
   CGSize size = [title sizeWithFont:regularTitleFont];
