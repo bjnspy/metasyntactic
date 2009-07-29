@@ -1,1 +1,1 @@
-Zip files are password protected.
+KeyStore alias is: cyrus
