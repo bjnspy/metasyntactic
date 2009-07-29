@@ -1,5 +1,23 @@
 package org.metasyntactic.activities;
 
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.services.NowPlayingServiceWrapper;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,27 +30,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -153,7 +156,11 @@ public class NowPlayingActivity extends MoviesActivity {
    */
   @Override public void refresh() {
     if (search == null) {
-      movies = new ArrayList<Movie>(getService().getMovies());
+      NowPlayingServiceWrapper service = getService();
+      if (service == null) {
+        return;
+      }
+      movies = new ArrayList<Movie>(service.getMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getAllMoviesSelectedSortIndex());

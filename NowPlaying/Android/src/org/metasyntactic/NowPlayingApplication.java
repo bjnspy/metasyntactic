@@ -234,7 +234,7 @@ public class NowPlayingApplication extends Application {
   public static void refresh() {
     refresh(false);
   }
-
+  
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
       final Runnable runnable = new Runnable() {

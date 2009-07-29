@@ -75,11 +75,12 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
   @Override
   public void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
+    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
     super.onCreate(bundle);
 
     loadedFromMenu = getIntent().getStringExtra("from_menu") != null;
 
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
     final View next = findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
