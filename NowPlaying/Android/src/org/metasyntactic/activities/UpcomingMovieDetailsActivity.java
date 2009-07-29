@@ -60,6 +60,10 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
     getService().prioritizeMovie(movie, false/*now*/);
     final Resources res = getResources();
     final TextView title = (TextView)findViewById(R.id.title);
+    if (title == null || movie == null) {
+      finish();
+      return;
+    }
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
     final TextView ratingLengthLabel = (TextView)findViewById(R.id.ratingLength);
