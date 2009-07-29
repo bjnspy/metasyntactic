@@ -33,6 +33,7 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
 
 import android.app.Service;
 import android.content.Intent;
@@ -51,6 +52,11 @@ public class NowPlayingService extends Service {
     update();
 
     deleteTrash();
+  }
+  
+  @Override public void onCreate() {
+    super.onCreate();
+    ExceptionUtilities.registerExceptionHandler(this);
   }
 
   private void deleteTrash() {

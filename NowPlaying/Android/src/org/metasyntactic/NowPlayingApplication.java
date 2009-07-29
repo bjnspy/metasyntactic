@@ -22,6 +22,7 @@ import java.util.Random;
 
 import org.metasyntactic.activities.R;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
@@ -43,9 +44,9 @@ public class NowPlayingApplication extends Application {
   public static final String NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT = "NOW_PLAYING_COULD_NOT_FIND_LOCATION_INTENT";
 
   public static final String host =
-    /*
-     * "metaboxoffice6"; /
-     */
+    /*/
+     "metaboxoffice6";
+    /*/
     "metaboxoffice2";
   // */
   public static final File root = new File("/sdcard");
