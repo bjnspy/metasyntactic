@@ -58,7 +58,7 @@ public class NowPlayingService extends Service {
     super.onCreate();
     ExceptionUtilities.registerExceptionHandler(this);
   }
-
+ 
   private void deleteTrash() {
     final Runnable runnable = new Runnable() {
       public void run() {
@@ -73,7 +73,14 @@ public class NowPlayingService extends Service {
   }
 
   private void emptyTrash(final File directory, final boolean deleteDirectory) throws InterruptedException {
-    for (final File child : directory.listFiles()) {
+    if (directory == null) {
+      return;
+    }
+    File[] files = directory.listFiles();
+    if (files == null) {
+      return;
+    }
+    for (final File child : files) {
       if (shutdown) {
         return;
       }

@@ -55,7 +55,7 @@ interface INowPlayingService {
   String getPosterFile_safeToCallFromBackground(in Movie movie);
 
   String getSynopsis(in Movie movie);
-
+  
   void prioritizeMovie(in Movie movie, in boolean now);
 
   boolean isAutoUpdateEnabled();
