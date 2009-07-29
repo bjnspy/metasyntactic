@@ -687,7 +687,9 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error {
+- (NSArray*) movieSearch:(NSString*) query
+              maxResults:(NSInteger) maxResults
+                   error:(NSString**) error {
   if (error != NULL) {
     *error = nil;
   }
@@ -697,7 +699,7 @@ static NSDictionary* availabilityMap = nil;
   NSArray* parameters = [NSArray arrayWithObjects:
                          [OARequestParameter parameterWithName:@"expand" value:@"formats"],
                          [OARequestParameter parameterWithName:@"term" value:query],
-                         [OARequestParameter parameterWithName:@"max_results" value:@"30"],
+                         [OARequestParameter parameterWithName:@"max_results" value:[NSString stringWithFormat:@"%d", maxResults]],
                          nil];
 
   [NSMutableURLRequestAdditions setParameters:parameters
@@ -709,7 +711,9 @@ static NSDictionary* availabilityMap = nil;
   [self checkApiResult:element];
 
   if (element == nil) {
-    *error = [self extractErrorMessage:element];
+    if (error != NULL) {
+      *error = [self extractErrorMessage:element];
+    }
     return nil;
   }
 
@@ -719,13 +723,16 @@ static NSDictionary* availabilityMap = nil;
 
   [movies addObjectsFromArray:saved];
 
+  return movies;
+}
+
+
+- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error {
+  NSArray* movies = [self movieSearch:query maxResults:30 error:error];
   if (movies.count > 0) {
-
-
-    // download the andetails for these movies in teh background.
+    // download the details for these movies in teh background.
     [[CacheUpdater cacheUpdater] addSearchMovies:movies];
   }
-
   return movies;
 }
 
@@ -1632,63 +1639,32 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (Movie*) lookupMovieWorker:(Movie*) movie {
-  OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
-
-  NSArray* parameters = [NSArray arrayWithObjects:
-                         [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
-                         [OARequestParameter parameterWithName:@"max_results" value:@"1"],
-                         nil];
-
-  [NSMutableURLRequestAdditions setParameters:parameters
-                                   forRequest:request];
-  [request prepare];
-
-  XmlElement* element =
-  [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
-  NSMutableArray* movies = [NSMutableArray array];
-  NSMutableArray* saved = [NSMutableArray array];
-  [NetflixCache processMovieItemList:element movies:movies saved:saved];
-
-  [movies addObjectsFromArray:saved];
-
-  if (movies.count > 0) {
-    Movie* netflixMovie = [movies objectAtIndex:0];
-    if ([DifferenceEngine areSimilar:movie.canonicalTitle other:netflixMovie.canonicalTitle]) {
-      return netflixMovie;
-    }
-  }
-
-  return nil;
-}
-
-
 - (NSString*) netflixFile:(Movie*) movie {
   return [[[Application netflixSearchDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
-- (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie {
+- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie {
+  NSAssert(![NSThread isMainThread], @"");
+
   if (![self hasAccount]) {
     return;
   }
 
-  NSAssert(![NSThread isMainThread], @"");
-
   if ([movie isNetflix]) {
     return;
   }
-
+  
   NSString* file = [self netflixFile:movie];
   if (![FileUtilities fileExists:file]) {
-    Movie* netflixMovie = [self lookupMovieWorker:movie];
-    if (netflixMovie != nil) {
-      [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-      [[CacheUpdater cacheUpdater] addMovie:movie];
-      [MetasyntacticSharedApplication minorRefresh];
+    NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 error:NULL];
+    if (movies.count > 0) {
+      Movie* netflixMovie = [movies objectAtIndex:0];
+      if (netflixMovie != nil) {
+        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+        [[CacheUpdater cacheUpdater] addMovie:netflixMovie];
+        [MetasyntacticSharedApplication minorRefresh];
+      }
     }
   }
 }

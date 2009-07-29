@@ -129,7 +129,7 @@ static CacheUpdater* cacheUpdater = nil;
   [model.imdbCache         processMovie:movie force:force];
   [model.amazonCache       processMovie:movie force:force];
   [model.wikipediaCache    processMovie:movie force:force];
-  [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
+  [model.netflixCache lookupNetflixMovieForLocalMovie:movie];
   [MetasyntacticSharedApplication minorRefresh];
 
   if (force) {
