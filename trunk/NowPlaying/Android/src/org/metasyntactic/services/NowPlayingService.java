@@ -269,8 +269,8 @@ public class NowPlayingService extends Service {
     return model.getSynopsis(movie);
   }
 
-  public void prioritizeMovie(final Movie movie) {
-    model.prioritizeMovie(movie);
+  public void prioritizeMovie(final Movie movie, boolean now) {
+    model.prioritizeMovie(movie, now);
   }
 
   public boolean isAutoUpdateEnabled() {

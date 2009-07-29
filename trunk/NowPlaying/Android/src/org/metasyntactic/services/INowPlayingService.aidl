@@ -56,7 +56,7 @@ interface INowPlayingService {
 
   String getSynopsis(in Movie movie);
 
-  void prioritizeMovie(in Movie movie);
+  void prioritizeMovie(in Movie movie, in boolean now);
 
   boolean isAutoUpdateEnabled();
   void setAutoUpdateEnabled(boolean enabled);

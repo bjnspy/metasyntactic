@@ -39,15 +39,8 @@ public class WikipediaCache extends AbstractMovieCache {
     return new File(NowPlayingApplication.wikipediaDirectory, movieFileName(movie));
   }
 
-  public void update(final List<Movie> movies) {
-    addPrimaryMovies(movies);
-  }
-
-  public void update(final Movie movie) {
-    addPrimaryMovie(movie);
-  }
-
-  @Override protected void updateMovieDetails(final Movie movie) {
+  @Override
+  public void updateMovieDetailsWorker(final Movie movie) {
     if (movie == null) {
       return;
     }

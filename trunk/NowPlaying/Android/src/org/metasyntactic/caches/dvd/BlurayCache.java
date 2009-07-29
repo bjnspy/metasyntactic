@@ -13,10 +13,10 @@
 // limitations under the License.
 package org.metasyntactic.caches.dvd;
 
+import java.io.File;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
-
-import java.io.File;
 
 public class BlurayCache extends AbstractDVDBlurayCache {
   public BlurayCache(final NowPlayingModel model) {

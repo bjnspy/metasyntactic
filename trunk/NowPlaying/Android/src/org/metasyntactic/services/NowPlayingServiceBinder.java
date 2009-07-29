@@ -155,8 +155,8 @@ public class NowPlayingServiceBinder extends INowPlayingService.Stub {
     return service.getSynopsis(movie);
   }
 
-  public void prioritizeMovie(final Movie movie) throws RemoteException {
-    service.prioritizeMovie(movie);
+  public void prioritizeMovie(final Movie movie, boolean now) throws RemoteException {
+    service.prioritizeMovie(movie, now);
   }
 
   public boolean isAutoUpdateEnabled() throws RemoteException {

@@ -13,70 +13,27 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.collections.BoundedPrioritySet;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
-
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
 
 public abstract class AbstractMovieCache extends AbstractCache {
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-  private final BoundedPrioritySet<Movie> primaryMovies = new BoundedPrioritySet<Movie>();
-  private final BoundedPrioritySet<Movie> secondaryMovies = new BoundedPrioritySet<Movie>();
-
   private final Collection<Movie> updatedMovies = new HashSet<Movie>();
 
   protected AbstractMovieCache(final NowPlayingModel model) {
     super(model);
-
-
-    final String name = getClass().getSimpleName() + "-UpdateMovieDetails";
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        try {
-          updateMovieDetailsBackgroundEntryPoint();
-        } catch (final InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
-
-    ThreadingUtilities.performOnBackgroundThread(name, runnable, null, false);
   }
 
-  private void updateMovieDetailsBackgroundEntryPoint() throws InterruptedException {
-    while (!shutdown) {
-      Movie movie = null;
-      boolean isPriority = false;
-
-      synchronized (lock) {
-        final int count = prioritizedMovies.size();
-        while (!shutdown && (movie = prioritizedMovies.removeAny()) == null && (movie = primaryMovies.removeAny()) == null && (movie = secondaryMovies
-            .removeAny()) == null) {
-          lock.wait();
-        }
-        isPriority = count != prioritizedMovies.size();
-      }
-
-      if (movie != null) {
-        if (!updateMoviesContains(movie)) {
-          updatedMoviesAdd(movie);
-          updateMovieDetails(movie, isPriority);
-        }
-      }
-
-      Thread.sleep(1000);
+  public final void updateMovieDetails(Movie movie) {
+    if (!updateMoviesContains(movie)) {
+      updatedMoviesAdd(movie);
+      updateMovieDetailsWorker(movie);
     }
   }
-
-  protected void updateMovieDetails(final Movie movie, final boolean priority) {
-    updateMovieDetails(movie);
-  }
-
-  protected abstract void updateMovieDetails(Movie movie);
+  
+  protected abstract void updateMovieDetailsWorker(Movie movie);
 
   @Override public void onLowMemory() {
     super.onLowMemory();
@@ -98,36 +55,6 @@ public abstract class AbstractMovieCache extends AbstractCache {
   private void updatedMoviesAdd(final Movie movie) {
     synchronized (lock) {
       updatedMovies.add(movie);
-    }
-  }
-
-  public void prioritizeMovie(final Movie movie) {
-    addMovie(movie, prioritizedMovies);
-  }
-
-  protected void addPrimaryMovie(final Movie movie) {
-    addMovie(movie, primaryMovies);
-  }
-
-  protected void addPrimaryMovies(final List<Movie> movies) {
-    addMovies(movies, primaryMovies);
-  }
-
-  protected void addSecondaryMovies(final List<Movie> movies) {
-    addMovies(movies, secondaryMovies);
-  }
-
-  private void addMovie(final Movie movie, final BoundedPrioritySet<Movie> set) {
-    synchronized (lock) {
-      set.add(movie);
-      lock.notifyAll();
-    }
-  }
-
-  private void addMovies(final List<Movie> movies, final BoundedPrioritySet<Movie> set) {
-    synchronized (lock) {
-      set.addAll(movies);
-      lock.notifyAll();
     }
   }
 }
