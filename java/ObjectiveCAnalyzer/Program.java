@@ -58,16 +58,18 @@ public class Program {
 
     private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
-        //checkImports(child);
-        //generateForwardDeclarations(child);
-        //checkDealloc(child);
+        /*
         removeUnusedImports(child);
-        //insertCopyright(child);
-        //trimRight(child);
+        /*/
+        checkImports(child);
+        checkDealloc(child);
+        insertCopyright(child);
+        trimRight(child);
         //organizeStringsFile(child);
         //formatCode(child);
         //normalizeProjectFile(child);
-        //trim(child);
+        trim(child);
+        //*/
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
@@ -127,8 +129,7 @@ public class Program {
     private static String getLanguage(final String path) {
         final int end = path.indexOf(".lproj");
         final int start = path.lastIndexOf('/', end);
-        final String language = path.substring(start + 1, end);
-        return language;
+        return path.substring(start + 1, end);
     }
 
     private static String makeAndroidValue(String value) {
@@ -365,12 +366,6 @@ public class Program {
         return getLocalizableEntries(file).keySet();
     }
 
-    private static void printForwardDeclaration() {
-        for (final String s : classes) {
-            System.out.println("@class " + s + ';');
-        }
-    }
-
     private static void processDirectory(
             final File directory) throws IOException, InterruptedException, NoSuchAlgorithmException {
         List<File> children = new ArrayList<File>(Arrays.asList(directory.listFiles()));
@@ -409,7 +404,7 @@ public class Program {
     }
 
     private static void organizeStringsFile(
-            final File child) throws IOException, UnsupportedEncodingException {
+            final File child) throws IOException {
         if (!child.getName().endsWith(".strings") || !child.getPath().contains(
                 "Resources")) {
             return;
@@ -794,6 +789,7 @@ public class Program {
         if (child.getName().equals("ComiXologyShared.h") ||
                 child.getName().equals("MetasyntacticShared.h") ||
                 child.getName().equals("BoxOfficeShared.h") ||
+                child.getName().equals("BookReader.h") ||
                 isRestricted(child)) {
             return;
         }
@@ -827,20 +823,15 @@ public class Program {
         removeImportWorker(child, i);
 
         final boolean canRemove1 = compile();
-        final boolean canRemove2 = compile();
 
-        if (canRemove1 && canRemove2) {
+        if (canRemove1) {
             System.out.println("\nCan remove import: " + child.getPath());
         } else {
             writeFile(child, contents);
             System.out.print("");
         }
 
-        if (canRemove1 != canRemove2) {
-            System.out.println("Compilations disagreed!");
-        }
-
-        return canRemove1 && canRemove2;
+        return canRemove1;
     }
 
     private static void removeImportWorker(final File child,
@@ -1015,29 +1006,6 @@ public class Program {
 
         out.flush();
         out.close();
-    }
-
-    private static void generateForwardDeclarations(
-            final File child) throws IOException {
-        if (!child.getName().endsWith(".h")) {
-            return;
-        }
-
-        final LineNumberReader in = new LineNumberReader(new FileReader(child));
-        String line;
-        while ((line = in.readLine()) != null) {
-            line = line.trim();
-            if (line.startsWith("@interface ")) {
-                final StringBuilder sb = new StringBuilder();
-
-                for (int i = "@interface ".length();
-                     Character.isLetterOrDigit(line.charAt(i)); i++) {
-                    sb.append(line.charAt(i));
-                }
-
-                classes.add(sb.toString());
-            }
-        }
     }
 
     private static void checkDealloc(final File child) throws IOException {
