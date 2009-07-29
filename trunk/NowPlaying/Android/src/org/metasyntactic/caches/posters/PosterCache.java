@@ -13,8 +13,6 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
@@ -22,8 +20,6 @@ import java.util.List;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractMovieCache;
-import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
@@ -69,7 +65,7 @@ public class PosterCache extends AbstractMovieCache {
     }
 
     if (shutdown) { return null; }
-    data = downloadPosterFromFandango(movie);
+    data = FandangoPosterDownloader.download(movie);
     if (data != null) {
       return data;
     }
@@ -83,19 +79,6 @@ public class PosterCache extends AbstractMovieCache {
     model.getLargePosterCache().downloadFirstPoster(movie);
 
     return null;
-  }
-
-  private byte[] downloadPosterFromFandango(final Movie movie) {
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(model.getUserAddress());
-
-    final String country = location == null ? "" : location.getCountry();
-    String postalCode = location == null ? "10009" : location.getPostalCode();
-
-    if (isNullOrEmpty(postalCode) || !"US".equals(country)) {
-      postalCode = "10009";
-    }
-
-    return FandangoPosterDownloader.download(movie, postalCode);
   }
 
   @Override
