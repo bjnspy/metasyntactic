@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.metasyntactic.Constants;
@@ -46,7 +47,7 @@ import org.w3c.dom.Node;
 
 public class UpcomingCache extends AbstractMovieCache {
   private static int identifier;
-  private final DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+  private final DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US);
 
   private String hash;
   private List<Movie> movies;

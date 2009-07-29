@@ -87,7 +87,7 @@ public class DataProvider {
     movies = null;
     theaters = null;
     synchronizationData = null;
-    performances = null;
+    performances = new HashMap<String, Map<String, List<Performance>>>();
   }
 
   public void update() {
