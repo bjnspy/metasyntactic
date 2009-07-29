@@ -32,56 +32,56 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FandangoPosterDownloader {
-  private static String lastPostalCode;
+  private static Object lock = new Object();
   private static Map<String, String> movieNameToPosterMap;
 
   private FandangoPosterDownloader() {
-
   }
 
-  public static byte[] download(final Movie movie, final String postalCode) {
-    createMovieMap(postalCode);
+  public static byte[] download(final Movie movie) {
+    Map<String, String> map = createMovieMap();
 
-    if (movieNameToPosterMap == null) {
+    if (map == null) {
       return null;
     }
 
-    final String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
+    final String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(),
+        map.keySet());
     if (key == null) {
       return null;
     }
 
-    String posterUrl = movieNameToPosterMap.get(key);
+    String posterUrl = map.get(key);
     final int lastSlashIndex = posterUrl.lastIndexOf('/');
     if (lastSlashIndex > 0) {
-      posterUrl = posterUrl.substring(0, lastSlashIndex) + '/' + StringUtilities.urlEncode(posterUrl.substring(lastSlashIndex + 1));
+      posterUrl = posterUrl.substring(0, lastSlashIndex) + '/'
+          + StringUtilities.urlEncode(posterUrl.substring(lastSlashIndex + 1));
     }
 
     return NetworkUtilities.download(posterUrl, false);
   }
 
-  private static void createMovieMap(final String postalCode) {
-    if (isNullOrEmpty(postalCode)) {
-      return;
+  private static Map<String, String> createMovieMap() {
+    synchronized (lock) {
+      if (movieNameToPosterMap != null) {
+        return movieNameToPosterMap;
+      }
+
+      final Calendar calendar = Calendar.getInstance();
+      calendar.setTime(new Date());
+
+      final String url = "http://" + NowPlayingApplication.host
+          + ".appspot.com/LookupTheaterListings?q=10036"
+          + "&date=" + calendar.get(Calendar.YEAR)
+          + '-' + (calendar.get(Calendar.MONTH) + 1) + '-'
+          + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
+
+      final Element element = NetworkUtilities.downloadXml(url, false);
+      return processFandangoElement(element);
     }
-
-    if (postalCode.equals(lastPostalCode)) {
-      return;
-    }
-    lastPostalCode = postalCode;
-
-    final Calendar calendar = Calendar.getInstance();
-    calendar.setTime(new Date());
-
-    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
-      postalCode) + "&date=" + calendar.get(Calendar.YEAR) + '-' + (calendar.get(Calendar.MONTH) + 1) + '-' + calendar
-      .get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
-
-    final Element element = NetworkUtilities.downloadXml(url, false);
-    processFandangoElement(element);
   }
 
-  private static void processFandangoElement(final Node element) {
+  private static Map<String, String> processFandangoElement(final Node element) {
     final Map<String, String> result = new HashMap<String, String>();
 
     final Element dataElement = XmlUtilities.element(element, "data");
@@ -89,7 +89,8 @@ public class FandangoPosterDownloader {
 
     for (final Element movieElement : children(moviesElement)) {
       final String poster = movieElement.getAttribute("posterhref");
-      final String title = Movie.makeCanonical(text(element(movieElement, "title")));
+      final String title = Movie.makeCanonical(text(element(movieElement,
+          "title")));
 
       if (isNullOrEmpty(poster) || isNullOrEmpty(title)) {
         continue;
@@ -99,24 +100,16 @@ public class FandangoPosterDownloader {
     }
 
     if (result.isEmpty()) {
-      return;
+      return null;
     }
 
     movieNameToPosterMap = result;
-  }
-
-  private static String trimPostalCode(final String postalCode) {
-    final StringBuilder buffer = new StringBuilder(postalCode.length());
-    for (final char c : postalCode.toCharArray()) {
-      if (Character.isLetterOrDigit(c)) {
-        buffer.append(c);
-      }
-    }
-    return buffer.toString();
+    return movieNameToPosterMap;
   }
 
   public static void onLowMemory() {
-    lastPostalCode = null;
-    movieNameToPosterMap = null;
+    synchronized (lock) {
+      movieNameToPosterMap = null;
+    }
   }
 }

@@ -23,54 +23,62 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplePosterDownloader {
+  private static Object lock = new Object();
   private static Map<String, String> movieNameToPosterMap;
 
   private ApplePosterDownloader() {
-
   }
 
   public static byte[] download(final Movie movie) {
-    createMap();
+    Map<String, String> map = createMap();
 
-    if (movieNameToPosterMap == null) {
+    if (map == null) {
       return null;
     }
 
-    final String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
+    final String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(),
+        map.keySet());
     if (key == null) {
       return null;
     }
 
-    final String address = movieNameToPosterMap.get(key);
+    final String address = map.get(key);
     return NetworkUtilities.download(address, false);
   }
 
-  private static void createMap() {
-    if (movieNameToPosterMap != null) {
-      return;
-    }
-
-    final String index = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host + ".appspot.com/LookupPosterListings", false);
-    if (isNullOrEmpty(index)) {
-      return;
-    }
-
-    final Map<String, String> result = new HashMap<String, String>();
-
-    for (final String row : index.split("\n")) {
-      final String[] columns = row.split("\t");
-      if (columns.length >= 2) {
-        final String movieName = Movie.makeCanonical(columns[0]);
-        final String posterUrl = columns[1];
-
-        result.put(movieName, posterUrl);
+  private static Map<String,String> createMap() {
+    synchronized (lock) {
+      if (movieNameToPosterMap != null) {
+        return movieNameToPosterMap;
       }
-    }
 
-    movieNameToPosterMap = result;
+      final String index = NetworkUtilities.downloadString("http://"
+          + NowPlayingApplication.host + ".appspot.com/LookupPosterListings",
+          false);
+      if (isNullOrEmpty(index)) {
+        return null;
+      }
+
+      final Map<String, String> result = new HashMap<String, String>();
+
+      for (final String row : index.split("\n")) {
+        final String[] columns = row.split("\t");
+        if (columns.length >= 2) {
+          final String movieName = Movie.makeCanonical(columns[0]);
+          final String posterUrl = columns[1];
+
+          result.put(movieName, posterUrl);
+        }
+      }
+
+      movieNameToPosterMap = result;
+      return movieNameToPosterMap;
+    }
   }
 
   public static void onLowMemory() {
-    movieNameToPosterMap = null;
+    synchronized (lock) {
+      movieNameToPosterMap = null;
+    }
   }
 }
