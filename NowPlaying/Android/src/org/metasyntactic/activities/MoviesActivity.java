@@ -52,11 +52,13 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   protected PostersAdapter postersAdapter;
   protected static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   protected boolean scrolling;
+  
   protected final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
+  
   protected final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOW_PLAYING_SCROLLING_INTENT.equals(intent.getAction())) {
@@ -156,7 +158,9 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
     super.onNewIntent(intent);
     search = intent.getStringExtra("movie");
     if (search != null) {
-      bottomBar.setVisibility(View.VISIBLE);
+      if (bottomBar != null) {
+        bottomBar.setVisibility(View.VISIBLE);
+      }
     }
     getSearchResults();
   }
