@@ -410,7 +410,9 @@ _arg0 = org.metasyntactic.data.Movie.CREATOR.createFromParcel(data);
 else {
 _arg0 = null;
 }
-this.prioritizeMovie(_arg0);
+boolean _arg1;
+_arg1 = (0!=data.readInt());
+this.prioritizeMovie(_arg0, _arg1);
 reply.writeNoException();
 return true;
 }
@@ -1136,7 +1138,7 @@ _data.recycle();
 }
 return _result;
 }
-public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException
+public void prioritizeMovie(org.metasyntactic.data.Movie movie, boolean now) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
@@ -1149,6 +1151,7 @@ movie.writeToParcel(_data, 0);
 else {
 _data.writeInt(0);
 }
+_data.writeInt(((now)?(1):(0)));
 mRemote.transact(Stub.TRANSACTION_prioritizeMovie, _data, _reply, 0);
 _reply.readException();
 }
@@ -1441,7 +1444,7 @@ public org.metasyntactic.data.Score getScore(org.metasyntactic.data.Movie movie)
 public byte[] getPoster(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.lang.String getPosterFile_safeToCallFromBackground(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
-public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+public void prioritizeMovie(org.metasyntactic.data.Movie movie, boolean now) throws android.os.RemoteException;
 public boolean isAutoUpdateEnabled() throws android.os.RemoteException;
 public void setAutoUpdateEnabled(boolean enabled) throws android.os.RemoteException;
 public long getSearchDate() throws android.os.RemoteException;

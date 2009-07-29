@@ -27,7 +27,7 @@ import java.util.Map;
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class UpcomingMoviesActivity extends MoviesActivity {
-  @Override public void onCreateAfterServiceConnected() {
+  @Override public void onResumeAfterServiceConnected() {
     // check for sdcard mounted properly
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       getUserLocation();
