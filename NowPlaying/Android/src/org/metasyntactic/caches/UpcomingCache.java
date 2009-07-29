@@ -155,7 +155,7 @@ public class UpcomingCache extends AbstractMovieCache {
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
 
     updatedMoviesClear();
-    addPrimaryMovies(getMovies());
+    model.getCacheUpdater().addMovies(getMovies());
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
@@ -279,7 +279,7 @@ public class UpcomingCache extends AbstractMovieCache {
     return result;
   }
 
-  @Override protected void updateMovieDetails(final Movie movie) {
+  @Override protected void updateMovieDetailsWorker(final Movie movie) {
     if (movie == null) {
       return;
     }
@@ -290,14 +290,10 @@ public class UpcomingCache extends AbstractMovieCache {
   }
 
   private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
-    updatePoster(movie);
     if (!isNullOrEmpty(studioKey) && !isNullOrEmpty(titleKey)) {
       updateSynopsisAndCast(movie, studioKey, titleKey);
       updateTrailers(movie, studioKey, titleKey);
     }
-    updateImdb(movie);
-    updateAmazon(movie);
-    updateWikipedia(movie);
   }
 
   private static File getCastFile(final Movie movie) {
@@ -374,22 +370,6 @@ public class UpcomingCache extends AbstractMovieCache {
     if (refresh) {
       NowPlayingApplication.refresh();
     }
-  }
-
-  private void updatePoster(final Movie movie) {
-    model.getPosterCache().update(movie);
-  }
-
-  private void updateAmazon(final Movie movie) {
-    model.getAmazonCache().update(movie);
-  }
-
-  private void updateImdb(final Movie movie) {
-    model.getIMDbCache().update(movie);
-  }
-
-  private void updateWikipedia(final Movie movie) {
-    model.getWikipediaCache().update(movie);
   }
 
   public static String getTrailer(final Movie movie) {

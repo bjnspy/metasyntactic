@@ -276,9 +276,9 @@ public class NowPlayingServiceWrapper {
     }
   }
 
-  public void prioritizeMovie(final Movie movie) {
+  public void prioritizeMovie(final Movie movie, final boolean now) {
     try {
-      service.prioritizeMovie(movie);
+      service.prioritizeMovie(movie, now);
     } catch (final RemoteException e) {
       throw new RuntimeException(e);
     }

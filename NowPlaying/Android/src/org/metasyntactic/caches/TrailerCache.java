@@ -24,7 +24,6 @@ import java.util.Map;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
@@ -47,35 +46,6 @@ public class TrailerCache extends AbstractMovieCache {
     return Collections.singletonList(NowPlayingApplication.trailersDirectory);
   }
 
-  public void update(final Iterable<Movie> movies) {
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        addMovies(movies);
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, lock, false/* visible */);
-  }
-
-  private void addMovies(final Iterable<Movie> movies) {
-    final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
-    final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
-
-    for (final Movie movie : movies) {
-      if (shutdown) { return; }
-      final File file = trailerFilePath(movie);
-      if (file.exists()) {
-        if (FileUtilities.daysSinceNow(file) > 3) {
-          moviesWithTrailers.add(movie);
-        }
-      } else {
-        moviesWithoutTrailers.add(movie);
-      }
-    }
-
-    addPrimaryMovies(moviesWithoutTrailers);
-    addSecondaryMovies(moviesWithTrailers);
-  }
-
   private static Map<String, List<String>> index;
 
   private static Map<String, List<String>> getIndex() {
@@ -93,7 +63,7 @@ public class TrailerCache extends AbstractMovieCache {
     return result;
   }
 
-  @Override protected void updateMovieDetails(final Movie movie) {
+  @Override protected void updateMovieDetailsWorker(final Movie movie) {
     if (movie == null) {
       return;
     }

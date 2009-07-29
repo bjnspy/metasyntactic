@@ -26,6 +26,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.metasyntactic.activities.R;
+import org.metasyntactic.caches.CacheUpdater;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
@@ -80,6 +81,7 @@ public class NowPlayingModel {
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
 
+  private final CacheUpdater cacheUpdater;
   private final DataProvider dataProvider;
   private final ScoreCache scoreCache;
   private final UserLocationCache userLocationCache;
@@ -100,6 +102,7 @@ public class NowPlayingModel {
     preferences = NowPlayingApplication.getApplication().getSharedPreferences(getClass().getName(), 0);
     loadData();
 
+    cacheUpdater = new CacheUpdater(this);
     dataProvider = new DataProvider(this);
     scoreCache = new ScoreCache(this);
     userLocationCache = new UserLocationCache();
@@ -212,6 +215,7 @@ public class NowPlayingModel {
   }
 
   public void onLowMemory() {
+    cacheUpdater.onLowMemory();
     dataProvider.onLowMemory();
     largePosterCache.onLowMemory();
     upcomingCache.onLowMemory();
@@ -226,6 +230,7 @@ public class NowPlayingModel {
   }
 
   public void shutdown() {
+    cacheUpdater.shutdown();
     dataProvider.shutdown();
     largePosterCache.shutdown();
     upcomingCache.shutdown();
@@ -249,14 +254,10 @@ public class NowPlayingModel {
 
   public void updateSecondaryCaches() {
     final List<Movie> movies = getMovies();
+    cacheUpdater.addMovies(movies);
 
     scoreCache.update();
-    trailerCache.update(movies);
-    posterCache.update(movies);
     upcomingCache.update();
-    amazonCache.update(movies);
-    imdbCache.update(movies);
-    wikipediaCache.update(movies);
     //dvdCache.update();
     //blurayCache.update();
   }
@@ -571,14 +572,12 @@ public class NowPlayingModel {
     return WikipediaCache.getAddress(movie);
   }
 
-  public void prioritizeMovie(final Movie movie) {
+  public void prioritizeMovie(final Movie movie, boolean now) {
     if (movie == null) {
       return;
     }
-    posterCache.prioritizeMovie(movie);
+    cacheUpdater.prioritizeMovie(movie, now);
     scoreCache.prioritizeMovie(getMovies(), movie);
-    trailerCache.prioritizeMovie(movie);
-    upcomingCache.prioritizeMovie(movie);
   }
 
   public List<Theater> getTheatersShowingMovie(final Movie movie) {
@@ -653,5 +652,21 @@ public class NowPlayingModel {
 
   public WikipediaCache getWikipediaCache() {
     return wikipediaCache;
+  }
+
+  public CacheUpdater getCacheUpdater() {
+    return cacheUpdater;
+  }
+
+  public TrailerCache getTrailerCache() {
+    return trailerCache;
+  }
+
+  public UpcomingCache getUpcomingCache() {
+    return upcomingCache;
+  }
+
+  public ScoreCache getScoreCache() {
+    return scoreCache;
   }
 }

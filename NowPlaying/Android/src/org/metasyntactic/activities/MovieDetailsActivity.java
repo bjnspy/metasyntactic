@@ -60,7 +60,7 @@ public class MovieDetailsActivity extends AbstractNowPlayingListActivity {
   @Override public void onResumeAfterServiceConnected() {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
-    getService().prioritizeMovie(movie);
+    getService().prioritizeMovie(movie, true/*now*/);
     final Resources res = getResources();
     final TextView title = (TextView)findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());

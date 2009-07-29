@@ -16,7 +16,6 @@ package org.metasyntactic.caches.posters;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,27 +37,8 @@ public class PosterCache extends AbstractMovieCache {
     return new File(NowPlayingApplication.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()) + ".jpg");
   }
 
-  public void update(final Iterable<Movie> movies) {
-    final List<Movie> moviesWithoutLinks = new ArrayList<Movie>();
-    final List<Movie> moviesWithLinks = new ArrayList<Movie>();
-
-    for (final Movie movie : movies) {
-      if (isNullOrEmpty(movie.getPoster())) {
-        moviesWithoutLinks.add(movie);
-      } else {
-        moviesWithLinks.add(movie);
-      }
-    }
-
-    addPrimaryMovies(moviesWithLinks);
-    addSecondaryMovies(moviesWithoutLinks);
-  }
-
-  public void update(final Movie movie) {
-    addPrimaryMovie(movie);
-  }
-
-  @Override protected void updateMovieDetails(final Movie movie) {
+  @Override
+  public void updateMovieDetailsWorker(final Movie movie) {
     if (movie == null) {
       return;
     }

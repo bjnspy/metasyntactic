@@ -244,7 +244,7 @@ public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
       localMovies = loadMovies();
     }
 
-    addPrimaryMovies(localMovies);
+    model.getCacheUpdater().addMovies(localMovies);
   }
 
   private void reportResults(final Map<Movie, DVD> map) {
@@ -252,42 +252,11 @@ public abstract class AbstractDVDBlurayCache extends AbstractMovieCache {
     NowPlayingApplication.refresh();
   }
 
-  private void updatePoster(final Movie movie) {
-    model.getPosterCache().update(movie);
-  }
-
-  private void updateIMDb(final Movie movie) {
-    model.getIMDbCache().update(movie);
-  }
-
-  /*
-  private void updateAmazon(final Movie movie) {
-
-  }
-
-  private void updateWikipedia(final Movie movie) {
-
-  }
-   */
-
-  @Override public void prioritizeMovie(final Movie movie) {
-    if (!getMoviesSet().contains(movie)) {
-      return;
-    }
-
-    super.prioritizeMovie(movie);
-  }
-
-  @Override protected void updateMovieDetails(final Movie movie) {
-    if (shutdown) { return; }
-    updatePoster(movie);
-    if (shutdown) { return; }
-    updateIMDb(movie);
-    //updateWikipedia(movie);
-    //updateAmazon(movie);
-  }
-
   public DVD detailsForMovie(final Movie movie) {
     return FileUtilities.readPersistable(DVD.reader, getDetailsFile(movie));
+  }
+  
+  @Override
+  protected void updateMovieDetailsWorker(Movie movie) {
   }
 }

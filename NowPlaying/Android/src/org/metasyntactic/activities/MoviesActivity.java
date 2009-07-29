@@ -346,7 +346,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
           }
         }
       } else {
-        getService().prioritizeMovie(movie);
+        getService().prioritizeMovie(movie, false/*now*/);
         // ok. we've stopped scrolling. either we're reusing this view for a
         // new movie, or we haven't loaded the image for this movie yet. in
         // either case try to load it. if we can, then we're done and don't

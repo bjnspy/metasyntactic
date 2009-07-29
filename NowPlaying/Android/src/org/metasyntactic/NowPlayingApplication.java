@@ -22,7 +22,6 @@ import java.util.Random;
 
 import org.metasyntactic.activities.R;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
