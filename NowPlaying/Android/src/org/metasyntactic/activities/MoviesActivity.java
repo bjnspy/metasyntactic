@@ -22,6 +22,7 @@ import android.widget.Toast;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.services.NowPlayingServiceWrapper;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -166,7 +167,11 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   }
 
   protected void getUserLocation() {
-    final String userAddress = getService().getUserAddress();
+    NowPlayingServiceWrapper service = getService();
+    if (service == null) {
+      return;
+    }
+    final String userAddress = service.getUserAddress();
     if (StringUtilities.isNullOrEmpty(userAddress)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, SettingsActivity.class);
