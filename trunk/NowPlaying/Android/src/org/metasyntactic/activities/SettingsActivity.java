@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.services.NowPlayingServiceWrapper;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -74,18 +75,7 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
     populateSettingsItems();
     settingsAdapter = new SettingsAdapter();
     setListAdapter(settingsAdapter);
-  }
 
-  @Override
-  public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
-    super.onCreate(bundle);
-
-    loadedFromMenu = getIntent().getStringExtra("from_menu") != null;
-
-    setContentView(R.layout.settings);
     final View next = findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
@@ -105,6 +95,18 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
         }
       }
     });
+  }
+
+  @Override
+  public void onCreate(final Bundle bundle) {
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
+    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+    super.onCreate(bundle);
+
+    loadedFromMenu = getIntent().getStringExtra("from_menu") != null;
+
+    setContentView(R.layout.settings);
     setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
   }
 
@@ -144,7 +146,12 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
       return;
     }
 
-    final String userLocation = getService().getUserAddress();
+    NowPlayingServiceWrapper service = getService();
+    if (service == null) {
+      return;
+    }
+    
+    final String userLocation = service.getUserAddress();
     if (!StringUtilities.isNullOrEmpty(userLocation)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, NowPlayingActivity.class);
@@ -282,7 +289,13 @@ public class SettingsActivity extends AbstractNowPlayingListActivity {
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.autoupdate_location));
-    final boolean isAutoUpdate = getService().isAutoUpdateEnabled();
+    NowPlayingServiceWrapper service = getService();
+    if (service == null) {
+      finish();
+      return;
+    }
+
+    final boolean isAutoUpdate = service.isAutoUpdateEnabled();
     if (isAutoUpdate) {
       settings.setData(res.getString(R.string.on));
     } else {

@@ -31,7 +31,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 
 public class ActivityCore<T extends Activity & RefreshableContext> {
   private static final String SERVICE_KEY = AbstractNowPlayingActivity.class.getSimpleName() + ".service";
@@ -52,6 +54,7 @@ public class ActivityCore<T extends Activity & RefreshableContext> {
     new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialogInterface, final int i) {
+        //dialogInterface.dismiss()
       }
     }).show();
   }
@@ -64,8 +67,8 @@ public class ActivityCore<T extends Activity & RefreshableContext> {
     connection = new ServiceConnection() {
       public void onServiceConnected(final ComponentName componentName, final IBinder binder) {
         service = new NowPlayingServiceWrapper(INowPlayingService.Stub.asInterface(binder));
-        context.onCreateAfterServiceConnected();
-        context.onResumeAfterServiceConnected();
+        postOnCreateAfterServiceConnected();
+        postOnResumeAfterServiceConnected();
       }
 
       public void onServiceDisconnected(final ComponentName componentName) {
@@ -82,18 +85,34 @@ public class ActivityCore<T extends Activity & RefreshableContext> {
     if (state != null) {
       connection = (ServiceConnection)state.get(CONNECTION_KEY);
       service = (NowPlayingServiceWrapper) state.get(SERVICE_KEY);
-      context.onCreateAfterServiceConnected();
+      postOnCreateAfterServiceConnected();
     } else {
       bindNowPlayingService();
     }
+  }
+
+  private void postOnCreateAfterServiceConnected() {
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      public void run() {
+        context.onCreateAfterServiceConnected();
+      }
+    });
   }
 
   public void onResume() {
     context.registerReceiver(locationNotFoundBroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT));
 
     if (service != null) {
-      context.onResumeAfterServiceConnected();
+      postOnResumeAfterServiceConnected();
     }
+  }
+
+  private void postOnResumeAfterServiceConnected() {
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      public void run() {
+        context.onResumeAfterServiceConnected();
+      }
+    });
   }
 
   public void onPause() {

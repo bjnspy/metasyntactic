@@ -34,9 +34,7 @@ public class UpcomingMoviesActivity extends MoviesActivity {
       refresh();
 
       populateSections();
-      postersAdapter = new UpcomingPostersAdapter();
       isGridSetup = true;
-      grid.setAdapter(postersAdapter);
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int whichButton) {
@@ -72,6 +70,8 @@ public class UpcomingMoviesActivity extends MoviesActivity {
         setupRotationAnimation(view);
       }
     });
+    postersAdapter = new UpcomingPostersAdapter();
+    grid.setAdapter(postersAdapter);
     intent = new Intent();
     intent.setClass(this, UpcomingMovieDetailsActivity.class);
   }

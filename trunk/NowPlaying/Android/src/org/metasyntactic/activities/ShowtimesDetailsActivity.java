@@ -55,6 +55,11 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
   @Override public void onCreateAfterServiceConnected() {
     movie = getIntent().getExtras().getParcelable("movie");
     theater = getIntent().getExtras().getParcelable("theater");
+    if (movie == null || theater == null) {
+      finish();
+      return;
+    }
+    
     performances = getService().getPerformancesForMovieAtTheater(movie, theater);
     for (final Performance per : performances) {
       if (per != null && !StringUtilities.isNullOrEmpty(per.getUrl())) {
