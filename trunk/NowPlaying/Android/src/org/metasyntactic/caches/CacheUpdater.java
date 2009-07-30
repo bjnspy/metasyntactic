@@ -96,7 +96,7 @@ public class CacheUpdater extends AbstractCache {
         model.getPosterCache().updateMovieDetails(movie);
       }
 
-      Thread.sleep(250);
+      Thread.sleep(1000);
     }
   }
 

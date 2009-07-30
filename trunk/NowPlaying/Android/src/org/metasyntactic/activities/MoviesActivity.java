@@ -1,5 +1,24 @@
 package org.metasyntactic.activities;
 
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.services.NowPlayingService;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.Rotate3dAnimation;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,25 +38,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.services.NowPlayingServiceWrapper;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.Rotate3dAnimation;
-
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   protected CustomGridView grid;
@@ -79,7 +79,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
       bitmap = reference.get();
     }
     if (bitmap == null) {
-      final File file = getService().getPosterFile_safeToCallFromBackground(movie);
+      final File file = NowPlayingService.getPosterFile_safeToCallFromBackground(movie);
       if (file != null) {
         final byte[] bytes = FileUtilities.readBytes(file);
         if (bytes != null && bytes.length > 0) {
@@ -122,7 +122,6 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
 
   @Override
   protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
     scrolling = false;
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
@@ -136,22 +135,9 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
 
   @Override
   protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     unregisterReceiver(scrollStatebroadcastReceiver);
     super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    super.onDestroy();
-  }
-
-  @Override
-  public Map<String, Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    return super.onRetainNonConfigurationInstance();
   }
 
   @Override
@@ -167,11 +153,7 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
   }
 
   protected void getUserLocation() {
-    NowPlayingServiceWrapper service = getService();
-    if (service == null) {
-      return;
-    }
-    final String userAddress = service.getUserAddress();
+    final String userAddress = getService().getUserAddress();
     if (StringUtilities.isNullOrEmpty(userAddress)) {
       final Intent localIntent = new Intent();
       localIntent.setClass(this, SettingsActivity.class);

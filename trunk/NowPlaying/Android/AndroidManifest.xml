@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.metasyntactic.activities"
-    android:versionCode="22"
-    android:versionName="1.22">
+    android:versionCode="23"
+    android:versionName="1.23">
     <uses-sdk android:minSdkVersion="3" />
     <application
         android:icon="@drawable/launcher"
@@ -11,9 +11,6 @@
         android:theme="@android:style/Theme.Black"
         android:name="org.metasyntactic.NowPlayingApplication">
         >
-        <service
-            android:name="org.metasyntactic.services.NowPlayingService">
-        </service>
         <activity
             android:label="@string/application_name_and_version"
             android:name="NowPlayingActivity"

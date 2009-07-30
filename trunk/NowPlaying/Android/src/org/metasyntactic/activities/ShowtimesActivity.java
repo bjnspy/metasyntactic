@@ -1,5 +1,21 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.services.NowPlayingService;
+import org.metasyntactic.utilities.CollectionUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -13,22 +29,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -56,7 +56,6 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
 
   @Override
   public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
 
     setContentView(R.layout.theaters_movie);
@@ -65,34 +64,16 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
 
   @Override
   protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
-  }
-
-  @Override public void onResumeAfterServiceConnected() {
-    LogUtilities.i(getClass().getSimpleName(), "onResumeAfterServiceConnected");
     bindView();
     final ListAdapter theaterAdapter = new TheaterListAdapter();
     setListAdapter(theaterAdapter);
   }
 
   @Override
-  protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-    super.onPause();
-  }
-
-  @Override
   protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
-  }
-
-  @Override
-  public Map<String,Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    return super.onRetainNonConfigurationInstance();
   }
 
   private void bindView() {
@@ -123,7 +104,7 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
 
     ratingLengthLabel.setText(ratingAndLength);
 
-    userLocation = getService().getLocationForAddress(getService().getUserAddress());
+    userLocation = NowPlayingService.getLocationForAddress(getService().getUserAddress());
     final List<Theater> localTheaters = getService().getTheatersShowingMovie(movie);
     theaterWrapperList.clear();
 
@@ -216,7 +197,7 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
         final View warningView = convertView.findViewById(R.id.warning);
         warningView.setVisibility(View.VISIBLE);
         final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
-        warningText.setText(getService().getShowtimesRetrievedOnString(theater));
+        warningText.setText(getService().getShowtimesRetrievedOnString(theater, getResources()));
       }
     }
 

@@ -21,7 +21,9 @@ import java.util.Collection;
 import java.util.Random;
 
 import org.metasyntactic.activities.R;
+import org.metasyntactic.services.NowPlayingService;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
@@ -43,10 +45,10 @@ public class NowPlayingApplication extends Application {
   public static final String NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT = "NOW_PLAYING_COULD_NOT_FIND_LOCATION_INTENT";
 
   public static final String host =
-    /*/
-     "metaboxoffice6";
-    /*/
-    "metaboxoffice2";
+  /*
+   * / "metaboxoffice6"; /
+   */
+  "metaboxoffice2";
   // */
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
@@ -73,6 +75,8 @@ public class NowPlayingApplication extends Application {
 
   private static NowPlayingApplication application;
 
+  private NowPlayingService service;
+  
   static {
     if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
@@ -92,6 +96,7 @@ public class NowPlayingApplication extends Application {
 
   public NowPlayingApplication() {
     application = this;
+    service = new NowPlayingService();
   }
 
   public static Application getApplication() {
@@ -130,16 +135,24 @@ public class NowPlayingApplication extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
+    ExceptionUtilities.registerExceptionHandler(this);
     registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
     registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
     registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
+    service.onCreate();
   }
-
 
   @Override
   public void onLowMemory() {
     super.onLowMemory();
     FileUtilities.onLowMemory();
+    service.onLowMemory();
+  }
+
+  @Override
+  public void onTerminate() {
+    super.onTerminate();
+    service.onTerminate();
   }
 
   public static void initialize() {
@@ -152,7 +165,7 @@ public class NowPlayingApplication extends Application {
         if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;
         }
-        directories.add((File)field.get(null));
+        directories.add((File) field.get(null));
       }
       return directories;
     } catch (final IllegalAccessException e) {
@@ -181,7 +194,7 @@ public class NowPlayingApplication extends Application {
 
   private static void deleteDirectories() {
     final long start = System.currentTimeMillis();
-    //deleteDirectory(applicationDirectory);
+    // deleteDirectory(applicationDirectory);
     trashDirectory.mkdirs();
     for (final File directory : directories()) {
       if (directory != trashDirectory) {
@@ -202,10 +215,11 @@ public class NowPlayingApplication extends Application {
   }
 
   private static final Random random = new Random();
+
   private static String randomString() {
     final StringBuilder buffer = new StringBuilder(8);
     for (int i = 0; i < 8; i++) {
-      buffer.append((char)('a' + random.nextInt(26)));
+      buffer.append((char) ('a' + random.nextInt(26)));
     }
     return buffer.toString();
   }
@@ -234,7 +248,7 @@ public class NowPlayingApplication extends Application {
   public static void refresh() {
     refresh(false);
   }
-  
+
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
       final Runnable runnable = new Runnable() {
@@ -254,5 +268,9 @@ public class NowPlayingApplication extends Application {
     } else {
       pulser.tryPulse();
     }
+  }
+
+  public static NowPlayingService getService() {
+    return application.service;
   }
 }

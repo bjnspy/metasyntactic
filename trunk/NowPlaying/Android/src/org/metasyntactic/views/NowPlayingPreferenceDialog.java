@@ -3,10 +3,11 @@ package org.metasyntactic.views;
 import java.util.Arrays;
 import java.util.List;
 
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.RefreshableContext;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.services.NowPlayingServiceWrapper;
+import org.metasyntactic.services.NowPlayingService;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,13 +23,11 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private TextView textView;
   private final RefreshableContext refreshableContext;
   private OnClickListener positiveButtonListener;
-  private final NowPlayingServiceWrapper service;
 
   public NowPlayingPreferenceDialog(final RefreshableContext refreshableContext) {
     super(refreshableContext.getContext());
     builder = new Builder(refreshableContext.getContext());
     this.refreshableContext = refreshableContext;
-    service = refreshableContext.getService();
   }
 
   public Dialog create() {
@@ -97,21 +96,25 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   public void show() {
     builder.show();
   }
+  
+  private NowPlayingService getService() {
+    return NowPlayingApplication.getService();
+  }
 
   private int getIntPreferenceValue() {
     switch (prefKey) {
     case MOVIES_SORT:
-      return service.getAllMoviesSelectedSortIndex();
+      return getService().getAllMoviesSelectedSortIndex();
     case UPCOMING_MOVIES_SORT:
-      return service.getUpcomingMoviesSelectedSortIndex();
+      return getService().getUpcomingMoviesSelectedSortIndex();
     case THEATERS_SORT:
-      return service.getAllTheatersSelectedSortIndex();
+      return getService().getAllTheatersSelectedSortIndex();
     case SEARCH_DISTANCE:
-      return service.getSearchDistance();
+      return getService().getSearchDistance();
     case REVIEWS_PROVIDER:
-      return scoreTypes.indexOf(service.getScoreType());
+      return scoreTypes.indexOf(getService().getScoreType());
     case AUTO_UPDATE_LOCATION:
-      return autoUpdate.indexOf(service.isAutoUpdateEnabled());
+      return autoUpdate.indexOf(getService().isAutoUpdateEnabled());
     }
     return 0;
   }
@@ -119,7 +122,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private CharSequence getStringPreferenceValue() {
     switch (prefKey) {
     case LOCATION:
-      return service.getUserAddress();
+      return getService().getUserAddress();
     }
     return null;
   }
@@ -127,22 +130,22 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private void setIntPreferenceValue(final int prefValue) {
     switch (prefKey) {
     case MOVIES_SORT:
-      service.setAllMoviesSelectedSortIndex(prefValue);
+      getService().setAllMoviesSelectedSortIndex(prefValue);
       break;
     case UPCOMING_MOVIES_SORT:
-      service.setUpcomingMoviesSelectedSortIndex(prefValue);
+      getService().setUpcomingMoviesSelectedSortIndex(prefValue);
       break;
     case THEATERS_SORT:
-      service.setAllTheatersSelectedSortIndex(prefValue);
+      getService().setAllTheatersSelectedSortIndex(prefValue);
       break;
     case SEARCH_DISTANCE:
-      service.setSearchDistance(prefValue);
+      getService().setSearchDistance(prefValue);
       break;
     case REVIEWS_PROVIDER:
-      service.setScoreType(scoreTypes.get(prefValue));
+      getService().setScoreType(scoreTypes.get(prefValue));
       break;
     case AUTO_UPDATE_LOCATION:
-      service.setAutoUpdateEnabled(autoUpdate.get(prefValue));
+      getService().setAutoUpdateEnabled(autoUpdate.get(prefValue));
       break;
     }
   }
@@ -150,7 +153,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   private void setStringPreferenceValue(final String prefValue) {
     switch (prefKey) {
     case LOCATION:
-      service.setUserAddress(prefValue);
+      getService().setUserAddress(prefValue);
       break;
     }
   }

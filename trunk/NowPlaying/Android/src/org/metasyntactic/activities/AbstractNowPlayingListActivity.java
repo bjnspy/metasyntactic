@@ -15,8 +15,9 @@ package org.metasyntactic.activities;
 
 import java.util.Map;
 
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.RefreshableContext;
-import org.metasyntactic.services.NowPlayingServiceWrapper;
+import org.metasyntactic.services.NowPlayingService;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -61,16 +62,10 @@ public abstract class AbstractNowPlayingListActivity extends ListActivity implem
     return core.getContext();
   }
 
-  public NowPlayingServiceWrapper getService() {
-    return core.getService();
-  }
-
-  public void onCreateAfterServiceConnected() {
-  }
-
-  public void onResumeAfterServiceConnected() {
-  }
-
   public void refresh() {
+  }
+  
+  protected NowPlayingService getService() {
+    return NowPlayingApplication.getService();
   }
 }

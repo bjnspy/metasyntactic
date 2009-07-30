@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class FileUtilities {
   private static final boolean USE_PERSISTABLE = true;
-  private static final Object lock = new Object();
+  private static final Object gate = new Object();
   private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
 
   private static boolean sdcardAccessible = true;
@@ -56,7 +56,7 @@ public class FileUtilities {
   }
 
   public static void setSDCardAccessible(final boolean sdcardAccessible) {
-    synchronized (lock) {
+    synchronized (gate) {
       FileUtilities.sdcardAccessible = sdcardAccessible;
     }
   }
@@ -90,7 +90,7 @@ public class FileUtilities {
   }
 
   public static String sanitizeFileName(final String name) {
-    synchronized (lock) {
+    synchronized (gate) {
       String result = sanitizedNameMap.get(name);
       if (result == null) {
         result = sanitizeFileNameWorker(name);
@@ -101,7 +101,7 @@ public class FileUtilities {
   }
 
   public static void onLowMemory() {
-    synchronized (lock) {
+    synchronized (gate) {
       sanitizedNameMap.clear();
     }
   }
@@ -577,51 +577,29 @@ public class FileUtilities {
   }
 
   public static byte[] readBytes(final File file) {
-    synchronized (lock) {
-      return readBytesWorker(file);
-    }
-  }
-
-  private static byte[] readBytesWorker(final File file) {
     if (file == null || !file.exists() || !sdcardAccessible) {
       return EMPTY_BYTE_ARRAY;
     }
 
     try {
-      final int length = (int)file.length();
-
-      final byte[] bytes = new byte[length];
       final FileInputStream in = new FileInputStream(file);
+      final ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
 
-      int start = 0;
-      while (true) {
-        final int read = in.read(bytes, start, length - start);
-        if (read < 0) {
-          return EMPTY_BYTE_ARRAY;
-        }
-
-        if (read + start == length) {
-          break;
-        }
-
-        start += read;
+      final byte[] bytes = new byte[1 << 13];
+      int read;
+      while ((read = in.read(bytes)) >= 0) {
+        byteStream.write(bytes, 0, read);
       }
       in.close();
 
-      return bytes;
+      return byteStream.toByteArray();
     } catch (final IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "readBytes", e);
       return null;
     }
   }
 
-  public static void writeBytes(final byte[] data, final File file) {
-    synchronized (lock) {
-      writeBytesWorker(data, file);
-    }
-  }
-
-  public static void writeBytesWorker(byte[] data, final File file) {
+  public static void writeBytes(byte[] data, final File file) {
     try {
       if (!sdcardAccessible) {
         return;

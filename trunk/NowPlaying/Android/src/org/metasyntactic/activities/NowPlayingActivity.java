@@ -11,7 +11,6 @@ import java.util.Map;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.services.NowPlayingServiceWrapper;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
@@ -75,15 +74,7 @@ public class NowPlayingActivity extends MoviesActivity {
     }
   }
 
-  @Override public void onCreateAfterServiceConnected() {
-    // check for sdcard mounted properly
-    if (FileUtilities.isSDCardAccessible()) {
-      getUserLocation();
-      refresh();
-    }
-  }
-
-  @Override public void onResumeAfterServiceConnected() {
+  private void onResumeWorker() {
     if (!FileUtilities.isSDCardAccessible()) {
       return;
     }
@@ -113,15 +104,13 @@ public class NowPlayingActivity extends MoviesActivity {
 
   @Override
   protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
+    onResumeWorker();
   }
 
   @Override
   protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
     if (FileUtilities.isSDCardAccessible()) {
-
       if (dataBroadcastReceiver != null) {
         unregisterReceiver(dataBroadcastReceiver);
       }
@@ -135,7 +124,6 @@ public class NowPlayingActivity extends MoviesActivity {
 
   @Override
   protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     if (FileUtilities.isSDCardAccessible()) {
       clearBitmaps();
     }
@@ -144,8 +132,6 @@ public class NowPlayingActivity extends MoviesActivity {
 
   @Override
   public Map<String, Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-
     final Map<String, Object> state = super.onRetainNonConfigurationInstance();
     state.put(SEARCH_KEY, search);
     return state;
@@ -156,11 +142,7 @@ public class NowPlayingActivity extends MoviesActivity {
    */
   @Override public void refresh() {
     if (search == null) {
-      NowPlayingServiceWrapper service = getService();
-      if (service == null) {
-        return;
-      }
-      movies = new ArrayList<Movie>(service.getMovies());
+      movies = new ArrayList<Movie>(getService().getMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getAllMoviesSelectedSortIndex());
@@ -171,7 +153,6 @@ public class NowPlayingActivity extends MoviesActivity {
   @Override
   public void onCreate(final Bundle bundle) {
     super.onCreate(bundle);
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
 
     if (FileUtilities.isSDCardAccessible()) {
       // Request the progress bar to be shown in the title
@@ -189,6 +170,12 @@ public class NowPlayingActivity extends MoviesActivity {
     final Map<String, Object> state = getLastNonConfigurationInstance();
     if (state != null) {
       search = (String)state.get(SEARCH_KEY);
+    }
+    
+    // check for sdcard mounted properly
+    if (FileUtilities.isSDCardAccessible()) {
+      getUserLocation();
+      refresh();
     }
   }
 

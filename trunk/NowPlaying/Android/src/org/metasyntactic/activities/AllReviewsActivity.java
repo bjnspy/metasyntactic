@@ -1,10 +1,8 @@
 package org.metasyntactic.activities;
 
 import java.util.List;
-import java.util.Map;
 
 import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 
 import android.content.Context;
@@ -26,46 +24,20 @@ import android.widget.TextView;
 public class AllReviewsActivity extends AbstractNowPlayingListActivity {
   private List<Review> reviews;
 
-  @Override public void onCreateAfterServiceConnected() {
-  }
-
-  @Override public void onResumeAfterServiceConnected() {
-  }
-
   @Override public void refresh() {
   }
 
   @Override
   protected void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
     reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
   }
 
   @Override
-  protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
-    super.onResume();
-  }
-
-  @Override
-  protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-    super.onPause();
-  }
-
-  @Override
   protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
-  }
-
-  @Override
-  public Map<String,Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    return super.onRetainNonConfigurationInstance();
   }
 
   @Override

@@ -1,5 +1,15 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,43 +20,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class UpcomingMoviesActivity extends MoviesActivity {
-  @Override public void onResumeAfterServiceConnected() {
-    // check for sdcard mounted properly
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-      getUserLocation();
-      refresh();
-
-      populateSections();
-      isGridSetup = true;
-    } else {
-      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-        public void onClick(final DialogInterface dialog, final int whichButton) {
-          finish();
-        }
-      }).show();
-    }
-  }
-
   @Override
   public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
 
     setContentView(R.layout.moviegrid_anim);
@@ -98,27 +80,27 @@ public class UpcomingMoviesActivity extends MoviesActivity {
 
   @Override
   protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
-  }
+    // check for sdcard mounted properly
+    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      getUserLocation();
+      refresh();
 
-  @Override
-  protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-    super.onPause();
+      populateSections();
+      isGridSetup = true;
+    } else {
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        public void onClick(final DialogInterface dialog, final int whichButton) {
+          finish();
+        }
+      }).show();
+    }
   }
 
   @Override
   protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     clearBitmaps();
     super.onDestroy();
-  }
-
-  @Override
-  public Map<String, Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    return super.onRetainNonConfigurationInstance();
   }
 
   protected class UpcomingPostersAdapter extends PostersAdapter {
