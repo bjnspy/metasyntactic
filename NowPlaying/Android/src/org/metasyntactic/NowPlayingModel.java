@@ -79,19 +79,19 @@ public class NowPlayingModel {
 
   // SharedPreferences is not thread-safe. so we need to lock when using it
   private final Object preferencesLock = new Object();
-  private final SharedPreferences preferences;
+  private SharedPreferences preferences;
 
-  private final CacheUpdater cacheUpdater;
-  private final DataProvider dataProvider;
-  private final ScoreCache scoreCache;
-  private final UserLocationCache userLocationCache;
-  private final TrailerCache trailerCache;
-  private final UpcomingCache upcomingCache;
-  private final PosterCache posterCache;
-  private final LargePosterCache largePosterCache;
-  private final AmazonCache amazonCache;
-  private final IMDbCache imdbCache;
-  private final WikipediaCache wikipediaCache;
+  private CacheUpdater cacheUpdater;
+  private DataProvider dataProvider;
+  private ScoreCache scoreCache;
+  private UserLocationCache userLocationCache;
+  private TrailerCache trailerCache;
+  private UpcomingCache upcomingCache;
+  private PosterCache posterCache;
+  private LargePosterCache largePosterCache;
+  private AmazonCache amazonCache;
+  private IMDbCache imdbCache;
+  private WikipediaCache wikipediaCache;
   //private final DVDCache dvdCache;
   //private final BlurayCache blurayCache;
 
@@ -99,6 +99,9 @@ public class NowPlayingModel {
 
   public NowPlayingModel(final NowPlayingService service) {
     this.service = service;
+  }
+  
+  public void onCreate() {
     preferences = NowPlayingApplication.getApplication().getSharedPreferences(getClass().getName(), 0);
     loadData();
 

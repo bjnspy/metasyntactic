@@ -1,5 +1,22 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.services.NowPlayingService;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.FastScrollView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,27 +27,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.FastScrollView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -76,47 +77,26 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
   @SuppressWarnings("unchecked")
   private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
-  @Override public void onCreateAfterServiceConnected() {
+  @Override
+  protected void onCreate(final Bundle bundle) {
+    super.onCreate(bundle);
     setupView();
   }
 
-  @Override public void onResumeAfterServiceConnected() {
+  @Override
+  protected void onResume() {
+    super.onResume();
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    
     if (adapter != null) {
       adapter.refreshTheaters();
     }
   }
 
   @Override
-  protected void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
-    super.onCreate(bundle);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-  }
-
-  @Override
   protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    super.onDestroy();
-  }
-
-  @Override
-  public Map<String,Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-
-    return super.onRetainNonConfigurationInstance();
   }
 
   private final Comparator<Theater> RATING_ORDER = new Comparator<Theater>() {
@@ -137,7 +117,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
     theaters = new ArrayList<Theater>(getService().getTheaters());
     setContentView(R.layout.theaterlist);
     final ListView list = getListView();
-    userLocation = getService().getLocationForAddress(getService().getUserAddress());
+    userLocation = NowPlayingService.getLocationForAddress(getService().getUserAddress());
     Collections.sort(theaters, SEARCH_DISTANCE_ORDER);
     // Set up Movies adapter
     adapter = new TheatersAdapter();

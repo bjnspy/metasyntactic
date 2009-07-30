@@ -24,6 +24,7 @@ import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
+import org.metasyntactic.services.NowPlayingService;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -54,7 +55,7 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
     }
   };
 
-  @Override public void onCreateAfterServiceConnected() {
+  private void onCreateWorker() {
     final Bundle extras = getIntent().getExtras();
     movie = extras.getParcelable("movie");
     getService().prioritizeMovie(movie, false/*now*/);
@@ -77,32 +78,21 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
 
   @Override
   public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
     setContentView(R.layout.upcomingmoviedetails);
+    onCreateWorker();
   }
 
   @Override
   protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
     super.onResume();
-
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override
   protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-
     unregisterReceiver(broadcastReceiver);
-
     super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    super.onDestroy();
   }
 
   @Override
@@ -159,8 +149,9 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options), null, MovieDetailItemType.HEADER, null, false);
         movieDetailEntries.add(entry);
       }
+      
       // Add trailer
-      final String trailer_url = getService().getTrailer(movie);
+      final String trailer_url = NowPlayingService.getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.parse(trailer_url), "video/*");
@@ -183,9 +174,9 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
 
       // Add website links
       final Map<String, String> nameToUrl = new LinkedHashMap<String, String>();
-      nameToUrl.put("IMDb", getService().getIMDbAddress(movie));
-      nameToUrl.put("Wikipedia", getService().getWikipediaAddress(movie));
-      nameToUrl.put("Amazon", getService().getAmazonAddress(movie));
+      nameToUrl.put("IMDb", NowPlayingService.getIMDbAddress(movie));
+      nameToUrl.put("Wikipedia", NowPlayingService.getWikipediaAddress(movie));
+      nameToUrl.put("Amazon", NowPlayingService.getAmazonAddress(movie));
 
       for (final Map.Entry<String, String> entry : nameToUrl.entrySet()) {
         final String url = entry.getValue();
@@ -251,7 +242,7 @@ public class UpcomingMovieDetailsActivity extends AbstractNowPlayingListActivity
       final ImageView posterImage = (ImageView)convertView.findViewById(R.id.poster);
       final TextView text1 = (TextView)convertView.findViewById(R.id.value1);
       final TextView text2 = (TextView)convertView.findViewById(R.id.value2);
-      final byte[] bytes = getService().getPoster(movie);
+      final byte[] bytes = NowPlayingService.getPoster(movie);
       if (bytes.length > 0) {
         posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         posterImage.setBackgroundResource(R.drawable.image_frame);

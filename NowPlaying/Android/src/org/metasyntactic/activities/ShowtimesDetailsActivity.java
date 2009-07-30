@@ -1,5 +1,15 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -16,17 +26,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -52,14 +51,14 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
-  @Override public void onCreateAfterServiceConnected() {
+  private void onCreateWorker() {
     movie = getIntent().getExtras().getParcelable("movie");
     theater = getIntent().getExtras().getParcelable("theater");
     if (movie == null || theater == null) {
       finish();
       return;
     }
-    
+
     performances = getService().getPerformancesForMovieAtTheater(movie, theater);
     for (final Performance per : performances) {
       if (per != null && !StringUtilities.isNullOrEmpty(per.getUrl())) {
@@ -70,10 +69,10 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     populateTheaterDetailItem();
     final ListAdapter theaterAdapter = new TheaterAdapter();
     setListAdapter(theaterAdapter);
-    final TextView theaterTxt = (TextView)findViewById(R.id.theater);
+    final TextView theaterTxt = (TextView) findViewById(R.id.theater);
     theaterTxt.setText(theater.getName());
     final View linearLayout = findViewById(R.id.header);
-    final ImageView ratingImage = (ImageView)findViewById(R.id.ratingImage);
+    final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
     final Resources res = getResources();
     if (getService().isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
@@ -105,33 +104,9 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
 
   @Override
   public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
     setContentView(R.layout.showtimedetails);
-  }
-
-  @Override
-  protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
-    super.onResume();
-  }
-
-  @Override
-  protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-    super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    super.onDestroy();
-  }
-
-  @Override
-  public Map<String, Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    return super.onRetainNonConfigurationInstance();
+    onCreateWorker();
   }
 
   private void populateTheaterDetailItem() {
@@ -160,19 +135,20 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.showtimes_item, null);
       final Resources res = getResources();
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView)convertView.findViewById(R.id.label),
-        (ImageView)convertView.findViewById(R.id.icon), (TextView)convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
+          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView
+          .findViewById(R.id.data));
 
       switch (detailItems.get(position).getType()) {
-        case NAME_SHOWTIMES:
-          getShowtimesView(position, res, holder);
-          break;
-        case PHONE:
-          getPhoneView(position, res, holder);
-          break;
-        case ADDRESS:
-          getAddressView(position, res, holder);
-          break;
+      case NAME_SHOWTIMES:
+        getShowtimesView(position, res, holder);
+        break;
+      case PHONE:
+        getPhoneView(position, res, holder);
+        break;
+      case ADDRESS:
+        getAddressView(position, res, holder);
+        break;
       }
       return convertView;
     }
@@ -258,10 +234,10 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-      .setIntent(new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
+        new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+        .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -269,12 +245,13 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
   protected Dialog onCreateDialog(final int id) {
     final String[] criteria = new String[showtimes.size()];
     showtimes.toArray(criteria);
-    return new AlertDialog.Builder(this).setTitle(R.string.order_tickets).setItems(criteria, new DialogInterface.OnClickListener() {
-      public void onClick(final DialogInterface dialog, final int which) {
-        final String order_url = showtimes_url.get(which);
-        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
-        startActivity(intent);
-      }
-    }).create();
+    return new AlertDialog.Builder(this).setTitle(R.string.order_tickets).setItems(criteria,
+        new DialogInterface.OnClickListener() {
+          public void onClick(final DialogInterface dialog, final int which) {
+            final String order_url = showtimes_url.get(which);
+            final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
+            startActivity(intent);
+          }
+        }).create();
   }
 }

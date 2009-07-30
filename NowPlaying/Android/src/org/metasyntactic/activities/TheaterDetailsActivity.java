@@ -1,5 +1,14 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -14,15 +23,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -37,14 +37,14 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
   private Iterable<Movie> movies = new ArrayList<Movie>();
   private List<TheaterDetailEntry> theaterDetailEntries = new ArrayList<TheaterDetailEntry>();
 
-  @Override public void onCreateAfterServiceConnected() {
+  private void onCreateWorker() {
     theater = getIntent().getExtras().getParcelable("theater");
     movies = getService().getMoviesAtTheater(theater);
     populateTheaterDetailEntries();
-    final TextView titleView = (TextView)findViewById(R.id.theater);
+    final TextView titleView = (TextView) findViewById(R.id.theater);
     titleView.setText(theater.getName());
     final View linearLayout = findViewById(R.id.header);
-    final ImageView ratingImage = (ImageView)findViewById(R.id.ratingImage);
+    final ImageView ratingImage = (ImageView) findViewById(R.id.ratingImage);
     final Resources res = getResources();
     if (getService().isFavoriteTheater(theater)) {
       ratingImage.setImageDrawable(res.getDrawable(R.drawable.rate_star_big_on));
@@ -68,32 +68,13 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
 
   @Override
   public void onCreate(final Bundle bundle) {
-    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
     setContentView(R.layout.theaterdetails);
-  }
-
-  @Override
-  protected void onResume() {
-    LogUtilities.i(getClass().getSimpleName(), "onResume");
-    super.onResume();
-  }
-
-  @Override
-  protected void onPause() {
-    LogUtilities.i(getClass().getSimpleName(), "onPause");
-    super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
-    super.onDestroy();
+    onCreateWorker();
   }
 
   @Override
   public Map<String, Object> onRetainNonConfigurationInstance() {
-    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Map<String, Object> state = super.onRetainNonConfigurationInstance();
     state.put(THEATER_DETAIL_ENTRIES_KEY, theaterDetailEntries);
     return state;
@@ -114,7 +95,7 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
     if (state == null) {
       return null;
     }
-    return (List<TheaterDetailEntry>)state.get(THEATER_DETAIL_ENTRIES_KEY);
+    return (List<TheaterDetailEntry>) state.get(THEATER_DETAIL_ENTRIES_KEY);
   }
 
   private void populateTheaterDetailEntries() {
@@ -125,7 +106,8 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       final Resources res = getResources();
       {
         // Add map header
-        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.map), null, TheaterDetailItemType.HEADER, null, null, false);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.map), null,
+            TheaterDetailItemType.HEADER, null, null, false);
         theaterDetailEntries.add(entry);
       }
       {
@@ -133,32 +115,36 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
         final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
         final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + address));
         final Drawable mapIcon = res.getDrawable(R.drawable.sym_action_map);
-        final TheaterDetailEntry entry = new TheaterDetailEntry(address, null, TheaterDetailItemType.ACTION, mapIcon, mapIntent, true);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(address, null, TheaterDetailItemType.ACTION, mapIcon,
+            mapIntent, true);
         theaterDetailEntries.add(entry);
       }
       {
         // Add phone header
-        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.call), null, TheaterDetailItemType.HEADER, null, null, false);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.call), null,
+            TheaterDetailItemType.HEADER, null, null, false);
         theaterDetailEntries.add(entry);
       }
       {
         // Add phone
         final String phone = theater.getPhoneNumber();
-        final Intent phoneIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:" + theater.getPhoneNumber()));
+        final Intent phoneIntent = new Intent("android.intent.action.DIAL", Uri
+            .parse("tel:" + theater.getPhoneNumber()));
         final Drawable phoneIcon = res.getDrawable(R.drawable.sym_action_call);
-        final TheaterDetailEntry entry = new TheaterDetailEntry(phone, null, TheaterDetailItemType.ACTION, phoneIcon, phoneIntent, true);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(phone, null, TheaterDetailItemType.ACTION, phoneIcon,
+            phoneIntent, true);
         theaterDetailEntries.add(entry);
       }
       {
         // Add warning
         if (getService().isStale(theater)) {
-          final TheaterDetailEntry entry = new TheaterDetailEntry(getService().getShowtimesRetrievedOnString(theater), null, TheaterDetailItemType.WARNING,
-            null, null, false);
+          final TheaterDetailEntry entry = new TheaterDetailEntry(getService().getShowtimesRetrievedOnString(theater, getResources()),
+              null, TheaterDetailItemType.WARNING, null, null, false);
           theaterDetailEntries.add(entry);
         }
         // Add showtimes header
-        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.now_showing), null, TheaterDetailItemType.HEADER, null, null,
-          false);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.now_showing), null,
+            TheaterDetailItemType.HEADER, null, null, false);
         theaterDetailEntries.add(entry);
       }
       // Add movies
@@ -172,8 +158,9 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
         performance = performance.substring(0, performance.length() - 2);
         final Intent movieIntent = new Intent();
         movieIntent.setClass(this, MovieDetailsActivity.class);
-        movieIntent.putExtra("movie", (Parcelable)movie);
-        final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance, TheaterDetailItemType.DATA, null, movieIntent, true);
+        movieIntent.putExtra("movie", (Parcelable) movie);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance, TheaterDetailItemType.DATA,
+            null, movieIntent, true);
         theaterDetailEntries.add(entry);
       }
     }
@@ -200,50 +187,50 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       final TheaterDetailEntry entry = theaterDetailEntries.get(position);
       switch (entry.type) {
-        case DATA:
-          convertView = getDataView(entry);
-          break;
-        case HEADER:
-          convertView = getHeaderView(entry);
-          break;
-        case ACTION:
-          convertView = getActionView(entry);
-          break;
-        case WARNING:
-          convertView = getWarningView(entry);
-          break;
+      case DATA:
+        convertView = getDataView(entry);
+        break;
+      case HEADER:
+        convertView = getHeaderView(entry);
+        break;
+      case ACTION:
+        convertView = getActionView(entry);
+        break;
+      case WARNING:
+        convertView = getWarningView(entry);
+        break;
       }
       return convertView;
     }
 
     private View getWarningView(final TheaterDetailEntry entry) {
       final View convertView = inflater.inflate(R.layout.warning_item, null);
-      final TextView warningText = (TextView)convertView.findViewById(R.id.warningText);
+      final TextView warningText = (TextView) convertView.findViewById(R.id.warningText);
       warningText.setText(entry.data);
       return convertView;
     }
 
     private View getActionView(final TheaterDetailEntry entry) {
       final View convertView = inflater.inflate(R.layout.theaterdetails_icon_item, null);
-      final TextView actionView = (TextView)convertView.findViewById(R.id.data);
+      final TextView actionView = (TextView) convertView.findViewById(R.id.data);
       actionView.setText(entry.data);
-      final ImageView actionIcon = (ImageView)convertView.findViewById(R.id.icon);
+      final ImageView actionIcon = (ImageView) convertView.findViewById(R.id.icon);
       actionIcon.setImageDrawable(entry.icon);
       return convertView;
     }
 
     private View getHeaderView(final TheaterDetailEntry entry) {
       final View convertView = inflater.inflate(R.layout.headerview, null);
-      final TextView headerView = (TextView)convertView.findViewById(R.id.name);
+      final TextView headerView = (TextView) convertView.findViewById(R.id.name);
       headerView.setText(entry.data);
       return convertView;
     }
 
     private View getDataView(final TheaterDetailEntry entry) {
       final View convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-      final TextView movieView = (TextView)convertView.findViewById(R.id.label);
+      final TextView movieView = (TextView) convertView.findViewById(R.id.label);
       movieView.setText(entry.data);
-      final TextView showtimesView = (TextView)convertView.findViewById(R.id.data);
+      final TextView showtimesView = (TextView) convertView.findViewById(R.id.data);
       showtimesView.setText(entry.data2);
       return convertView;
     }
@@ -263,10 +250,10 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home)
-      .setIntent(new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
+        new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-      .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
+        .setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -282,8 +269,8 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
     private final Intent intent;
     private final String data2;
 
-    private TheaterDetailEntry(final String data, final String data2, final TheaterDetailItemType type, final Drawable icon, final Intent intent,
-      final boolean selectable) {
+    private TheaterDetailEntry(final String data, final String data2, final TheaterDetailItemType type,
+        final Drawable icon, final Intent intent, final boolean selectable) {
       this.data = data;
       this.data2 = data2;
       this.type = type;

@@ -33,30 +33,32 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
 
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
+import android.content.res.Resources;
 
-public class NowPlayingService extends Service {
+public class NowPlayingService /*extends Service*/ {
   private LocationTracker locationTracker;
   private final NowPlayingModel model;
   private final Object lock = new Object();
-  private final NowPlayingServiceBinder binder = new NowPlayingServiceBinder(this);
   private volatile boolean shutdown;
 
   public NowPlayingService() {
     model = new NowPlayingModel(this);
-    restartLocationTracker();
-    update();
 
     deleteTrash();
   }
   
-  @Override public void onCreate() {
-    super.onCreate();
-    ExceptionUtilities.registerExceptionHandler(this);
+  public void onCreate() {
+    model.onCreate();
+    restartLocationTracker();
+    update();
+  }
+
+  public void onTerminate() {
+    shutdown = true;
+    shutdownLocationTracker();
+    model.shutdown();
   }
  
   private void deleteTrash() {
@@ -110,21 +112,6 @@ public class NowPlayingService extends Service {
     locationTracker = new LocationTracker(this);
   }
 
-  @Override public IBinder onBind(final Intent intent) {
-    return binder;
-  }
-
-  @Override public void onDestroy() {
-    shutdown();
-    stopSelf();
-  }
-
-  public void shutdown() {
-    shutdown = true;
-    shutdownLocationTracker();
-    model.shutdown();
-  }
-
   private void update() {
     final Runnable runnable = new Runnable() {
       public void run() {
@@ -151,7 +138,7 @@ public class NowPlayingService extends Service {
   }
 
   private void reportUnknownLocation() {
-    sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT));
+    NowPlayingApplication.getApplication().sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT));
   }
 
   public String getUserAddress() {
@@ -306,8 +293,7 @@ public class NowPlayingService extends Service {
     return model.getUpcomingMovies();
   }
 
-  @Override public void onLowMemory() {
-    super.onLowMemory();
+  public void onLowMemory() {
     model.onLowMemory();
   }
 
@@ -319,8 +305,8 @@ public class NowPlayingService extends Service {
     return model.isStale(theater);
   }
 
-  public String getShowtimesRetrievedOnString(final Theater theater) {
-    return model.getShowtimesRetrievedOnString(theater, getResources());
+  public String getShowtimesRetrievedOnString(final Theater theater, Resources resources) {
+    return model.getShowtimesRetrievedOnString(theater, resources);
   }
 
   public void addFavoriteTheater(final Theater theater) {

@@ -18,31 +18,18 @@ import java.util.Map;
 
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.RefreshableContext;
-import org.metasyntactic.services.INowPlayingService;
 import org.metasyntactic.services.NowPlayingService;
-import org.metasyntactic.services.NowPlayingServiceWrapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Looper;
 
 public class ActivityCore<T extends Activity & RefreshableContext> {
-  private static final String SERVICE_KEY = AbstractNowPlayingActivity.class.getSimpleName() + ".service";
-  private static final String CONNECTION_KEY = AbstractNowPlayingActivity.class.getSimpleName() + ".connection";
-
   private final T context;
-  protected NowPlayingServiceWrapper service;
-  private ServiceConnection connection;
-  private boolean dontUnbindServiceInDestroy;
 
   private final BroadcastReceiver locationNotFoundBroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
@@ -63,80 +50,27 @@ public class ActivityCore<T extends Activity & RefreshableContext> {
     this.context = context;
   }
 
-  private void bindNowPlayingService() {
-    connection = new ServiceConnection() {
-      public void onServiceConnected(final ComponentName componentName, final IBinder binder) {
-        service = new NowPlayingServiceWrapper(INowPlayingService.Stub.asInterface(binder));
-        postOnCreateAfterServiceConnected();
-        postOnResumeAfterServiceConnected();
-      }
-
-      public void onServiceDisconnected(final ComponentName componentName) {
-        service = null;
-      }
-    };
-
-    NowPlayingApplication.getApplication().bindService(new Intent(context.getContext(), NowPlayingService.class), connection, Context.BIND_AUTO_CREATE);
-  }
-
-  public void onCreate() {
-    @SuppressWarnings({"unchecked"})
-    final Map<String, Object> state = (Map<String, Object>)context.getLastNonConfigurationInstance();
-    if (state != null) {
-      connection = (ServiceConnection)state.get(CONNECTION_KEY);
-      service = (NowPlayingServiceWrapper) state.get(SERVICE_KEY);
-      postOnCreateAfterServiceConnected();
-    } else {
-      bindNowPlayingService();
-    }
-  }
-
-  private void postOnCreateAfterServiceConnected() {
-    new Handler(Looper.getMainLooper()).post(new Runnable() {
-      public void run() {
-        context.onCreateAfterServiceConnected();
-      }
-    });
+  public void onCreate() {    
   }
 
   public void onResume() {
     context.registerReceiver(locationNotFoundBroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_COULD_COULD_NOT_FIND_LOCATION_INTENT));
-
-    if (service != null) {
-      postOnResumeAfterServiceConnected();
-    }
-  }
-
-  private void postOnResumeAfterServiceConnected() {
-    new Handler(Looper.getMainLooper()).post(new Runnable() {
-      public void run() {
-        context.onResumeAfterServiceConnected();
-      }
-    });
   }
 
   public void onPause() {
     context.unregisterReceiver(locationNotFoundBroadcastReceiver);
   }
-
-  protected void onDestroy() {
-    if (!dontUnbindServiceInDestroy) {
-      NowPlayingApplication.getApplication().unbindService(connection);
-    }
-    dontUnbindServiceInDestroy = false;
+  
+  public void onDestroy() {
+    
   }
 
   public Map<String, Object> onRetainNonConfigurationInstance() {
-    dontUnbindServiceInDestroy = true;
-
-    final Map<String, Object> state = new LinkedHashMap<String, Object>();
-    state.put(SERVICE_KEY, service);
-    state.put(CONNECTION_KEY, connection);
-    return state;
+    return new LinkedHashMap<String, Object>();
   }
 
-  public NowPlayingServiceWrapper getService() {
-    return service;
+  public NowPlayingService getService() {
+    return NowPlayingApplication.getService();
   }
 
   public Context getContext() {
