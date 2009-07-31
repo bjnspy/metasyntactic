@@ -3,7 +3,6 @@ package org.metasyntactic.views;
 import java.util.Arrays;
 import java.util.List;
 
-import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.RefreshableContext;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -98,7 +97,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   }
   
   private NowPlayingService getService() {
-    return NowPlayingApplication.getService();
+    return refreshableContext.getService();
   }
 
   private int getIntPreferenceValue() {

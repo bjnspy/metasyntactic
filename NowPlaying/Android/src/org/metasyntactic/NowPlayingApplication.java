@@ -27,6 +27,7 @@ import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -75,8 +76,6 @@ public class NowPlayingApplication extends Application {
 
   private static NowPlayingApplication application;
 
-  private NowPlayingService service;
-  
   static {
     if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
@@ -96,7 +95,6 @@ public class NowPlayingApplication extends Application {
 
   public NowPlayingApplication() {
     application = this;
-    service = new NowPlayingService();
   }
 
   public static Application getApplication() {
@@ -139,23 +137,17 @@ public class NowPlayingApplication extends Application {
     registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
     registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
     registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
-    service.onCreate();
   }
 
   @Override
   public void onLowMemory() {
     super.onLowMemory();
     FileUtilities.onLowMemory();
-    service.onLowMemory();
-  }
 
-  @Override
-  public void onTerminate() {
-    super.onTerminate();
-    service.onTerminate();
-  }
-
-  public static void initialize() {
+    NowPlayingService localService = service;
+    if (localService != null) {
+      localService.onLowMemory();
+    }
   }
 
   private static Iterable<File> directories() {
@@ -270,7 +262,52 @@ public class NowPlayingApplication extends Application {
     }
   }
 
-  public static NowPlayingService getService() {
-    return application.service;
+  private Object lock = new Object();
+  private int activityCount;
+  private NowPlayingService service;
+
+  public static NowPlayingService registerActivity(Activity activity) {
+    return application.registerActivityWorker(activity);
+  }
+
+  public static void unregisterActivity(Activity activity) {
+    application.unregisterActivityWorker(activity);
+  }
+
+  private NowPlayingService registerActivityWorker(Activity activity) {
+    synchronized (lock) {
+      activityCount++;
+      if (activityCount == 1) {
+        if (service == null) {
+          service = new NowPlayingService();
+          service.onCreate();
+        }
+      }
+      return service;
+    }
+  }
+
+  private void unregisterActivityWorker(Activity activity) {
+    synchronized (lock) {
+      activityCount--;
+      if (activityCount == 0) {
+        ThreadingUtilities.performOnMainThread(5000, new Runnable() {
+          public void run() {
+            shutdownService();
+          }
+        });
+      }
+    }
+  }
+
+  private void shutdownService() {
+    synchronized (lock) {
+      if (activityCount == 0) {
+        if (service != null) {
+          service.onTerminate();
+          service = null;
+        }
+      }
+    }
   }
 }

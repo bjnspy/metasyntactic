@@ -13,13 +13,15 @@ import android.os.Bundle;
 
 public abstract class AbstractNowPlayingActivity extends Activity implements RefreshableContext {
   private final ActivityCore<AbstractNowPlayingActivity> core = new ActivityCore<AbstractNowPlayingActivity>(this);
-
+  private NowPlayingService service;
+  
   protected AbstractNowPlayingActivity() {
   }
 
   @Override protected void onCreate(final Bundle bundle) {
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     super.onCreate(bundle);
+    service = NowPlayingApplication.registerActivity(this);
     core.onCreate();
   }
 
@@ -38,6 +40,7 @@ public abstract class AbstractNowPlayingActivity extends Activity implements Ref
   @Override protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     core.onDestroy();
+    NowPlayingApplication.unregisterActivity(this);
     super.onDestroy();
   }
 
@@ -58,7 +61,7 @@ public abstract class AbstractNowPlayingActivity extends Activity implements Ref
   public void refresh() {
   }
   
-  protected NowPlayingService getService() {
-    return NowPlayingApplication.getService();
+  public NowPlayingService getService() {
+    return service;
   }
 }

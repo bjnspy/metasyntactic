@@ -109,6 +109,7 @@ public class LargePosterCache extends AbstractCache {
 
     final Map<String, List<String>> index = new HashMap<String, List<String>>();
     for (final String row : result.split("\n")) {
+      if (shutdown) { return; }
       final String[] columns = row.split("\t");
       if (columns.length < 2) {
         continue;

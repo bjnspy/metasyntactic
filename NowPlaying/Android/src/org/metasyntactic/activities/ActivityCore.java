@@ -18,7 +18,6 @@ import java.util.Map;
 
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.RefreshableContext;
-import org.metasyntactic.services.NowPlayingService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -67,10 +66,6 @@ public class ActivityCore<T extends Activity & RefreshableContext> {
 
   public Map<String, Object> onRetainNonConfigurationInstance() {
     return new LinkedHashMap<String, Object>();
-  }
-
-  public NowPlayingService getService() {
-    return NowPlayingApplication.getService();
   }
 
   public Context getContext() {

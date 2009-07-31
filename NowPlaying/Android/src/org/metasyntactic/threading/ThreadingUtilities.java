@@ -66,4 +66,8 @@ public class ThreadingUtilities {
 
     t.start();
   }
+
+  public static void performOnMainThread(int wait, Runnable runnable) {
+    new Handler(Looper.getMainLooper()).postDelayed(runnable, wait);
+  }
 }

@@ -138,8 +138,8 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       {
         // Add warning
         if (getService().isStale(theater)) {
-          final TheaterDetailEntry entry = new TheaterDetailEntry(getService().getShowtimesRetrievedOnString(theater, getResources()),
-              null, TheaterDetailItemType.WARNING, null, null, false);
+          final TheaterDetailEntry entry = new TheaterDetailEntry(getService().getShowtimesRetrievedOnString(theater,
+              getResources()), null, TheaterDetailItemType.WARNING, null, null, false);
           theaterDetailEntries.add(entry);
         }
         // Add showtimes header
@@ -151,11 +151,7 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
       for (final Movie movie : movies) {
         final String movieTitle = movie.getDisplayTitle();
         final List<Performance> list = getService().getPerformancesForMovieAtTheater(movie, theater);
-        String performance = "";
-        for (final Performance aList : list) {
-          performance += aList.getTime() + ", ";
-        }
-        performance = performance.substring(0, performance.length() - 2);
+        String performance = performanceString(list);
         final Intent movieIntent = new Intent();
         movieIntent.setClass(this, MovieDetailsActivity.class);
         movieIntent.putExtra("movie", (Parcelable) movie);
@@ -164,6 +160,17 @@ public class TheaterDetailsActivity extends AbstractNowPlayingListActivity {
         theaterDetailEntries.add(entry);
       }
     }
+  }
+
+  private String performanceString(final List<Performance> list) {
+    String performance = "";
+    if (!list.isEmpty()) {
+      for (final Performance aList : list) {
+        performance += aList.getTime() + ", ";
+      }
+      performance = performance.substring(0, performance.length() - 2);
+    }
+    return performance;
   }
 
   private class TheaterDetailsAdapter extends BaseAdapter {

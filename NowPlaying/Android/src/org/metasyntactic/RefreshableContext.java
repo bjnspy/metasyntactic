@@ -1,5 +1,7 @@
 package org.metasyntactic;
 
+import org.metasyntactic.services.NowPlayingService;
+
 import android.content.Context;
 
 public interface RefreshableContext {
@@ -9,4 +11,5 @@ public interface RefreshableContext {
   void refresh();
   
   Context getContext();
+  NowPlayingService getService();
 }
