@@ -97,6 +97,13 @@ enum ViewControllerType {
 - (void) setUpcomingCacheEnabled:(BOOL) value;
 - (void) setNetflixCacheEnabled:(BOOL) value;
 
+/*
+- (NSArray*) netflixAccounts;
+- (void) setNetflixAccounts:(NSArray*) accounts;
+- (NetflixAccount*) currentNetflixAccount; 
+- (void) setCurrentNetflixAccount:(NetflixAccount*) account;
+*/
+
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;
@@ -106,7 +113,7 @@ enum ViewControllerType {
 - (NSArray*) netflixPreferredFormats;
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 - (void) setNetflixFirstName:(NSString*) firstName lastName:(NSString*) lastName canInstantWatch:(BOOL) canInstantWatch preferredFormats:(NSArray*) preferredFormats;
-
+ 
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;
