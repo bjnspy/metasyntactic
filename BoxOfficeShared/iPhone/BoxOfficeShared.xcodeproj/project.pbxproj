@@ -1059,6 +1059,7 @@
 				741648FE0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.h */,
 				74E14A660F96510F00FB7BDA /* NetflixSettingsViewController.h */,
 				7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */,
+				74FB7FFB1017B5AB001B5CB9 /* PocketFlicksViewController.h */,
 				7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */,
 				7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */,
 				7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */,
@@ -1069,7 +1070,6 @@
 				741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */,
 				74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */,
 				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
-				74FB7FFB1017B5AB001B5CB9 /* PocketFlicksViewController.h */,
 				74FB7FFC1017B5AB001B5CB9 /* PocketFlicksViewController.m */,
 			);
 			name = Netflix;

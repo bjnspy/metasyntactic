@@ -106,7 +106,11 @@ typedef enum {
       return 1;
     }
   } else if (section == NetflixSection) {
-    return 1;
+    if (self.model.netflixCacheEnabled) {
+      return 2;
+    } else {
+      return 1;
+    }
   } else if (section == RefreshSection) {
     if (self.model.userAddress.length == 0 || refreshed) {
       return 0;
@@ -281,9 +285,15 @@ typedef enum {
 
 
 - (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
-  return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
+  if (row == 0) {
+    return [self createSwitchCellWithText:LocalizedString(@"Enabled", nil)
                                      on:self.model.netflixCacheEnabled
                                selector:@selector(onNetflixEnabledChanged:)];
+  } else {
+    return [self createSwitchCellWithText:LocalizedString(@"Category Notifications", nil)
+                                       on:self.model.netflixNotificationsEnabled
+                                 selector:@selector(onNetflixNotificationsChanged:)];
+  }
 }
 
 
@@ -322,6 +332,16 @@ typedef enum {
 
 - (void) onNetflixEnabledChanged:(UISwitch*) sender {
   [self.controller setNetflixEnabled:sender.on];
+  [self.tableView beginUpdates];
+  {
+    NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:NetflixSection]];
+    if (sender.on) {
+      [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+    } else {
+      [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+    }
+  }
+  [self.tableView endUpdates];
 }
 
 
@@ -332,7 +352,16 @@ typedef enum {
 
 - (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
   [self.controller setDvdBlurayEnabled:sender.on];
-  [MetasyntacticSharedApplication majorRefresh:YES];
+  [self.tableView beginUpdates];
+  {
+    NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
+    if (sender.on) {
+      [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+    } else {
+      [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+    }
+  }
+  [self.tableView endUpdates];
 }
 
 
@@ -358,6 +387,11 @@ typedef enum {
 
 - (void) onShowNotificationsChanged:(UISwitch*) sender {
   [self.model setNotificationsEnabled:sender.on];
+}
+
+
+- (void) onNetflixNotificationsChanged:(UISwitch*) sender {
+  [self.model setNetflixNotificationsEnabled:sender.on];
 }
 
 
