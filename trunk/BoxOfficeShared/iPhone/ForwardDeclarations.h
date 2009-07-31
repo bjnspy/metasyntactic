@@ -84,6 +84,7 @@
 @class SearchDatePickerViewController;
 @class LocalizableStringsCache;
 @class LocalSearchEngine;
+@class NetflixAccount;
 @class SearchRequest;
 @class SearchResult;
 @class NowPlayingSettingsViewController;

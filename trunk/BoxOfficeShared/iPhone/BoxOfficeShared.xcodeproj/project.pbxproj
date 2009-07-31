@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */; };
 		7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */; };
+		7478549D102399F8004124F3 /* NetflixAccountsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7478549B102399F8004124F3 /* NetflixAccountsViewController.h */; };
+		7478549E102399F8004124F3 /* NetflixAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7478549C102399F8004124F3 /* NetflixAccountsViewController.m */; };
+		747854A210239BE5004124F3 /* NetflixAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 747854A010239BE5004124F3 /* NetflixAccount.h */; };
+		747854A310239BE5004124F3 /* NetflixAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 747854A110239BE5004124F3 /* NetflixAccount.m */; };
+		747854A610239CB4004124F3 /* NetflixUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 747854A410239CB4004124F3 /* NetflixUser.h */; };
+		747854A710239CB4004124F3 /* NetflixUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 747854A510239CB4004124F3 /* NetflixUser.m */; };
 		74FB7D251017A2DE001B5CB9 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		74FB7D261017A2DE001B5CB9 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		74FB7D271017A2DE001B5CB9 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
@@ -365,6 +371,12 @@
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
+		7478549B102399F8004124F3 /* NetflixAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountsViewController.h; sourceTree = "<group>"; };
+		7478549C102399F8004124F3 /* NetflixAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountsViewController.m; sourceTree = "<group>"; };
+		747854A010239BE5004124F3 /* NetflixAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccount.h; sourceTree = "<group>"; };
+		747854A110239BE5004124F3 /* NetflixAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccount.m; sourceTree = "<group>"; };
+		747854A410239CB4004124F3 /* NetflixUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUser.h; sourceTree = "<group>"; };
+		747854A510239CB4004124F3 /* NetflixUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUser.m; sourceTree = "<group>"; };
 		74798CFF0F74B7C80057E111 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
 		74798D000F74B7C80057E111 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
@@ -1071,6 +1083,8 @@
 				74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */,
 				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
 				74FB7FFC1017B5AB001B5CB9 /* PocketFlicksViewController.m */,
+				7478549B102399F8004124F3 /* NetflixAccountsViewController.h */,
+				7478549C102399F8004124F3 /* NetflixAccountsViewController.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -1090,6 +1104,8 @@
 				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
 				7400EFD00EF5935700058CDD /* Feed.h */,
 				746A01410DC819270079D89B /* Movie.h */,
+				747854A010239BE5004124F3 /* NetflixAccount.h */,
+				747854A410239CB4004124F3 /* NetflixUser.h */,
 				7457FE900E21A41A00929D3E /* Performance.h */,
 				74D3CC720F2DB73E0007C783 /* Person.h */,
 				747DA10D0EF835A50066B881 /* Queue.h */,
@@ -1100,6 +1116,8 @@
 				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
 				7400EFD10EF5935700058CDD /* Feed.m */,
 				746A01420DC819270079D89B /* Movie.m */,
+				747854A110239BE5004124F3 /* NetflixAccount.m */,
+				747854A510239CB4004124F3 /* NetflixUser.m */,
 				7457FE910E21A41A00929D3E /* Performance.m */,
 				74D3CC730F2DB73E0007C783 /* Person.m */,
 				747DA10E0EF835A50066B881 /* Queue.m */,
@@ -1165,6 +1183,9 @@
 				74FB7FFD1017B5AB001B5CB9 /* PocketFlicksViewController.h in Headers */,
 				74FB80021017B64A001B5CB9 /* PocketFlicksCreditsViewController.h in Headers */,
 				7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */,
+				7478549D102399F8004124F3 /* NetflixAccountsViewController.h in Headers */,
+				747854A210239BE5004124F3 /* NetflixAccount.h in Headers */,
+				747854A610239CB4004124F3 /* NetflixUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,6 +1439,9 @@
 				74FB7FFE1017B5AB001B5CB9 /* PocketFlicksViewController.m in Sources */,
 				74FB80031017B64A001B5CB9 /* PocketFlicksCreditsViewController.m in Sources */,
 				7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */,
+				7478549E102399F8004124F3 /* NetflixAccountsViewController.m in Sources */,
+				747854A310239BE5004124F3 /* NetflixAccount.m in Sources */,
+				747854A710239CB4004124F3 /* NetflixUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
