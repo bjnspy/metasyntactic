@@ -325,7 +325,6 @@ static NSDictionary* availabilityMap = nil;
     self.queuesData = nil;
   }
   [dataGate unlock];
-  [MetasyntacticSharedApplication majorRefresh:YES];
 }
 
 
@@ -1072,6 +1071,18 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (void) addCategoryNotification:(NSString*) notification {
+  if (self.model.netflixNotificationsEnabled) {
+    [NotificationCenter addNotification:notification];
+  }
+}
+
+
+- (void) removeCategoryNotification:(NSString*) notification {
+  [NotificationCenter removeNotification:notification];
+}
+
+
 - (void) downloadRSSFeedWorker:(NSString*) address {
   NSString* file = [self rssFile:address];
   if ([FileUtilities fileExists:file]) {
@@ -1084,7 +1095,7 @@ static NSDictionary* availabilityMap = nil;
   }
 
   NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
-  [NotificationCenter addNotification:notification];
+  [self addCategoryNotification:notification];
   {
     NSLog(@"Downlading RSS Feed: %@", address);
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address];
@@ -1104,7 +1115,7 @@ static NSDictionary* availabilityMap = nil;
       [FileUtilities writeObject:items toFile:file];
     }
   }
-  [NotificationCenter removeNotification:notification];
+  [self removeCategoryNotification:notification];
 }
 
 
@@ -1118,8 +1129,8 @@ static NSDictionary* availabilityMap = nil;
 
   NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", [mostPopularAddressesToTitles objectForKey:address]];
 
-  [[OperationQueue operationQueue] performSelector:@selector(addNotification:)
-                                          onTarget:[NotificationCenter class]
+  [[OperationQueue operationQueue] performSelector:@selector(addCategoryNotification:)
+                                          onTarget:self
                                         withObject:notification
                                               gate:nil
                                           priority:Normal];
@@ -1134,8 +1145,8 @@ static NSDictionary* availabilityMap = nil;
                                             priority:Normal];
   }
 
-  [[OperationQueue operationQueue] performSelector:@selector(removeNotification:)
-                                          onTarget:[NotificationCenter class]
+  [[OperationQueue operationQueue] performSelector:@selector(removeCategoryNotification:)
+                                          onTarget:self
                                         withObject:notification
                                               gate:nil
                                           priority:Normal];

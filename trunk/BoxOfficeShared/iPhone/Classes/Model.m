@@ -98,6 +98,7 @@ static NSString* NETFLIX_FIRST_NAME                         = @"netflixFirstName
 static NSString* NETFLIX_KEY                                = @"netflixKey";
 static NSString* NETFLIX_LAST_NAME                          = @"netflixLastName";
 static NSString* NETFLIX_PREFERRED_FORMATS                  = @"netflixPreferredFormats";
+static NSString* NETFLIX_NOTIFICATIONS_DISABLED             = @"netflixNotificationsDisabled";
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
@@ -145,6 +146,7 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_KEY,
 &NETFLIX_LAST_NAME,
 &NETFLIX_PREFERRED_FORMATS,
+&NETFLIX_NOTIFICATIONS_DISABLED,
 &NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID,
@@ -190,21 +192,22 @@ static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &AUTO_UPDATE_LOCATION,
-&DVD_MOVIES_HIDE_DVDS,
-&DVD_MOVIES_HIDE_BLURAY,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
-&PRIORITIZE_BOOKMARKS,
-&USE_NORMAL_FONTS,
-&LOADING_INDIACTORS_DISABLED,
-&NETFLIX_DISABLED,
-&NETFLIX_CAN_INSTANT_WATCH,
-&NOTIFICATIONS_DISABLED,
-&SCREEN_ROTATION_DISABLED,
-&HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &DVD_BLURAY_DISABLED,
-&UPCOMING_DISABLED,
-&VOTED_FOR_ICON,
+&DVD_MOVIES_HIDE_BLURAY,
+&DVD_MOVIES_HIDE_DVDS,
+&HAS_SHOWN_WRITE_REVIEW_REQUEST,
+&LOADING_INDIACTORS_DISABLED,
+&NETFLIX_CAN_INSTANT_WATCH,
+&NETFLIX_DISABLED,
+&NETFLIX_NOTIFICATIONS_DISABLED,
 &NETFLIX_UPDATED_APPLICATION_KEYS,
+&NOTIFICATIONS_DISABLED,
+&PRIORITIZE_BOOKMARKS,
+&SCREEN_ROTATION_DISABLED,
+&UPCOMING_AND_DVD_HIDE_UPCOMING,
+&UPCOMING_DISABLED,
+&USE_NORMAL_FONTS,
+&VOTED_FOR_ICON,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -545,6 +548,16 @@ static Model* model = nil;
 
 - (void) setNotificationsEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NOTIFICATIONS_DISABLED];
+}
+
+
+- (BOOL) netflixNotificationsEnabled {
+  return ![[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_NOTIFICATIONS_DISABLED];
+}
+
+
+- (void) setNetflixNotificationsEnabled:(BOOL) value {
+  [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_NOTIFICATIONS_DISABLED];
 }
 
 
