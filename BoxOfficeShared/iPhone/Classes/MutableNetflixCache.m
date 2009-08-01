@@ -15,6 +15,7 @@
 #import "MutableNetflixCache.h"
 
 #import "Model.h"
+#import "MoveMovieArguments.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
 #import "NetflixAddMovieDelegate.h"
@@ -63,12 +64,10 @@
 }
 
 
-- (void) reportChangeRatingFailure:(NSArray*) arguments {
+- (void) reportChangeRatingFailure:(Movie*) movie
+                        toDelegate:(id<NetflixChangeRatingDelegate>) delegate
+                           message:(NSString*) message {
   NSAssert([NSThread isMainThread], nil);
-
-  Movie* movie = [arguments objectAtIndex:0];
-  id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
-  NSString* message = [arguments objectAtIndex:2];
 
   [self removePresubmitRatingsForMovie:movie];
 
@@ -76,11 +75,10 @@
 }
 
 
-- (void) reportChangeRatingSuccess:(NSArray*) arguments {
+- (void) reportChangeRatingSuccess:(Movie*) movie
+                        toDelegate:(id<NetflixChangeRatingDelegate>) delegate {
   NSAssert([NSThread isMainThread], nil);
 
-  Movie* movie = [arguments objectAtIndex:1];
-  id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
   [self removePresubmitRatingsForMovie:movie];
 
   [delegate changeSucceeded];
@@ -168,42 +166,37 @@
 }
 
 
-- (void) moveMovieToTopOfQueueBackgroundEntryPointWorker:(NSArray*) arguments {
-  Queue* queue = [arguments objectAtIndex:0];
-  Movie* movie = [arguments objectAtIndex:1];
-  id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
-  NetflixAccount* account = [arguments objectAtIndex:3];
-
-  NSLog(@"Moving '%@' to top of queue.", movie.canonicalTitle);
+- (void) moveMovieToTopOfQueueBackgroundEntryPointWorker:(MoveMovieArguments*) moveArguments {
+  NSLog(@"Moving '%@' to top of queue.", moveArguments.movie.canonicalTitle);
 
   NSString* error;
-  Queue* finalQueue = [self moveMovie:movie
+  Queue* finalQueue = [self moveMovie:moveArguments.movie
                            toPosition:0
-                              inQueue:queue
-                              account:account
+                              inQueue:moveArguments.queue
+                              account:moveArguments.account
                                 error:&error];
   if (finalQueue == nil) {
-    NSLog(@"Moving '%@' failed: %@", movie.canonicalTitle, error);
+    NSLog(@"Moving '%@' failed: %@", moveArguments.movie.canonicalTitle, error);
     [ThreadingUtilities foregroundSelector:@selector(moveFailedWithError:)
-                                  onTarget:delegate
+                                  onTarget:moveArguments.delegate
                                 withObject:error];
     return;
   }
 
-  NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
-  [self saveQueue:finalQueue account:account];
+  NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", moveArguments.movie.canonicalTitle, finalQueue.etag);
+  [self saveQueue:finalQueue account:moveArguments.account];
 
   [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
-                                onTarget:delegate
-                              withObject:movie];
+                                onTarget:moveArguments.delegate
+                              withObject:moveArguments.movie];
 }
 
 
-- (void) moveMovieToTopOfQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) moveMovieToTopOfQueueBackgroundEntryPoint:(MoveMovieArguments*) moveArguments {
   NSString* notification = LocalizedString(@"moving movie", nil);
   [NotificationCenter addNotification:notification];
   {
-    [self moveMovieToTopOfQueueBackgroundEntryPointWorker:arguments];
+    [self moveMovieToTopOfQueueBackgroundEntryPointWorker:moveArguments];
   }
   [NotificationCenter removeNotification:notification];
 }
@@ -213,7 +206,10 @@
   byMovingMovieToTop:(Movie*) movie
             delegate:(id<NetflixMoveMovieDelegate>) delegate
           account:(NetflixAccount*) account {
-  NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, account, nil];
+  MoveMovieArguments* arguments = [MoveMovieArguments argumentsWithQueue:queue
+                                                                   movie:movie
+                                                                delegate:delegate
+                                                                 account:account];
 
   [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -397,14 +393,21 @@ andReorderingMovies:[IdentitySet set]
   NSString* message = [self changeRatingTo:rating forMovieWorker:movie account:account];
   if (message.length > 0) {
     NSLog(@"Changing rating failed. Restoring existing rating.", nil);
-    NSArray* failureArguments = [NSArray arrayWithObjects:movie, delegate, message, nil];
-    [self performSelectorOnMainThread:@selector(reportChangeRatingFailure:) withObject:failureArguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingFailure:toDelegate:message:)
+                                  onTarget:self
+                                withObject:movie
+                                withObject:delegate
+                                withObject:message];
     return;
   }
 
   NSLog(@"Changing rating succeeded.", nil);
   [FileUtilities writeObject:rating toFile:userRatingsFile];
-  [self performSelectorOnMainThread:@selector(reportChangeRatingSuccess:) withObject:arguments waitUntilDone:NO];
+  
+  [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingSuccess:toDelegate:)
+                                onTarget:self
+                              withObject:movie
+                              withObject:delegate];
 }
 
 
