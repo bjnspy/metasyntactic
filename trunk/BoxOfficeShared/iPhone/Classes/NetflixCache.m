@@ -232,7 +232,7 @@ static NSDictionary* availabilityMap = nil;
   if (feeds != nil) {
     return feeds;
   }
-  
+
   NSArray* array = [self loadAccountToFeeds:account];
   if (array != nil) {
     [self.accountToFeeds setObject:array forKey:account.userId];
@@ -747,7 +747,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSRange range = [feed.url rangeOfString:@"&output=atom"];
   NSString* address = feed.url;
   if (range.length > 0) {
@@ -790,7 +790,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
 
   // first download and check the feed's current etag against the current one.
@@ -823,7 +823,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSLog(@"NetflixCache:downloadUserData");
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", account.userId];
@@ -890,7 +890,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return nil;
   }
-  
+
   OAMutableURLRequest* request = [self createURLRequest:seriesKey account:account];
   [request prepare];
 
@@ -906,7 +906,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return nil;
   }
-  
+
   //NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
   NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats", identifier];
   return [self downloadMovieWithSeriesKey:seriesKey account:account];
@@ -917,7 +917,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSString* seriesKey = [movie.additionalFields objectForKey:series_key];
   if (seriesKey.length == 0) {
     return;
@@ -1007,7 +1007,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSString* userRatingsFile = [self userRatingsFile:movie account:account];
   NSString* predictedRatingsFile = [self predictedRatingsFile:movie account:account];
 
@@ -1172,7 +1172,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   NSString* file = [self rssFile:address];
   NSArray* identifiers = [FileUtilities readObject:file];
 
@@ -1211,7 +1211,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
   }
-  
+
   [self downloadRSSFeedWorker:address];
   [self downloadRSSFeedMovies:address account:account];
 }
@@ -1239,7 +1239,7 @@ static NSDictionary* availabilityMap = nil;
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return nil;
   }
-  
+
   //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
 
@@ -1376,7 +1376,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadRSSMovie:(NSString*) identifier
-                  address:(NSString*) address 
+                  address:(NSString*) address
                   account:(NetflixAccount*) account {
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;
@@ -1749,7 +1749,7 @@ static NSDictionary* availabilityMap = nil;
   if ([movie isNetflix]) {
     return;
   }
-  
+
   NSString* file = [self netflixFile:movie];
   if (![FileUtilities fileExists:file]) {
     NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];

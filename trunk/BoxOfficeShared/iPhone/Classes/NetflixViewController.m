@@ -148,7 +148,7 @@ typedef enum {
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   self.account = self.model.currentNetflixAccount;
-  
+
   if (self.hasAccount) {
     self.tableView.tableHeaderView = searchBar;
   } else {

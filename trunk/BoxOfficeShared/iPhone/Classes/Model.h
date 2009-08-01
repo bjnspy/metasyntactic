@@ -49,7 +49,7 @@ enum ViewControllerType {
 
   NSInteger cachedScoreProviderIndex;
   NSInteger cachedAllMoviesSelectedSegmentIndex;
-  
+
   NSArray* netflixAccountsData;
 }
 
@@ -100,7 +100,7 @@ enum ViewControllerType {
 - (void) setNetflixCacheEnabled:(BOOL) value;
 
 - (NSArray*) netflixAccounts;
-- (NetflixAccount*) currentNetflixAccount; 
+- (NetflixAccount*) currentNetflixAccount;
 - (void) addNetflixAccount:(NetflixAccount*) account;
 - (void) removeNetflixAccount:(NetflixAccount*) account;
 

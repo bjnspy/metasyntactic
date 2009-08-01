@@ -165,7 +165,7 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
-  
+
   self.netflixAccountsData = nil;
 
   [super dealloc];
@@ -287,7 +287,7 @@ static Model* model = nil;
       NetflixAccount* account = [NetflixAccount accountWithKey:key secret:secret userId:userId];
       [self addNetflixAccount:account];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_USER_ID];
@@ -304,7 +304,7 @@ static Model* model = nil;
     [self checkCountry];
     [self checkDate];
     [self migrateNetflixAccount];
-    
+
     self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
@@ -445,7 +445,7 @@ static Model* model = nil;
   if (result.count == 0) {
     return [NSArray array];
   }
-  
+
   return [NetflixAccount decodeArray:result];
 }
 
@@ -461,13 +461,13 @@ static Model* model = nil;
 - (void) setNetflixAccounts:(NSArray*) accounts {
   self.netflixAccountsData = accounts;
   [[NSUserDefaults standardUserDefaults] setObject:[NetflixAccount encodeArray:accounts] forKey:NETFLIX_ACCOUNTS];
-  
+
   NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
   if (index < 0 || index >= accounts.count) {
     index = 0;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
   }
-  
+
   [self synchronize];
 }
 

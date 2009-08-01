@@ -133,7 +133,7 @@
 
 - (void)          saveQueue:(Queue*) queue
              andReportError:(NSString*) error
-      toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate 
+      toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
                  account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
   [self saveQueue:queue account:account];
@@ -258,7 +258,7 @@
 
 - (void) updateQueue:(Queue*) queue
   byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixMoveMovieDelegate>) delegate 
+            delegate:(id<NetflixMoveMovieDelegate>) delegate
           account:(NetflixAccount*) account {
   NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, account, nil];
 
@@ -322,7 +322,7 @@ andReorderingMovies:[IdentitySet set]
 
 - (NSString*) putChangeRatingTo:(NSString*) rating
                        forMovie:(Movie*) movie
-                 withIdentifier:(NSString*) identifier 
+                 withIdentifier:(NSString*) identifier
                         account:(NetflixAccount*) account {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
   OAMutableURLRequest* request = [self createURLRequest:address account:account];
