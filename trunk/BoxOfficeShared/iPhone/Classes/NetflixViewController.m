@@ -332,11 +332,11 @@ typedef enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
   NetflixUser* user = [self.model.netflixCache userForAccount:account];
-  
+
   if (self.model.netflixAccounts.count <= 1 || user == nil) {
     return nil;
   }
-  
+
   return [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
 }
 
