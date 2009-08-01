@@ -15,6 +15,8 @@
 		747854A310239BE5004124F3 /* NetflixAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 747854A110239BE5004124F3 /* NetflixAccount.m */; };
 		747854A610239CB4004124F3 /* NetflixUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 747854A410239CB4004124F3 /* NetflixUser.h */; };
 		747854A710239CB4004124F3 /* NetflixUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 747854A510239CB4004124F3 /* NetflixUser.m */; };
+		74A01C1F1024319200299F25 /* MoveMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01C1D1024319200299F25 /* MoveMovieArguments.h */; };
+		74A01C201024319200299F25 /* MoveMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01C1E1024319200299F25 /* MoveMovieArguments.m */; };
 		74FB7D251017A2DE001B5CB9 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		74FB7D261017A2DE001B5CB9 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		74FB7D271017A2DE001B5CB9 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
@@ -427,6 +429,8 @@
 		7498506D0FDB7A6C003D91F0 /* AbstractWebsiteCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWebsiteCache.m; sourceTree = "<group>"; };
 		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
 		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
+		74A01C1D1024319200299F25 /* MoveMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMovieArguments.h; sourceTree = "<group>"; };
+		74A01C1E1024319200299F25 /* MoveMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMovieArguments.m; sourceTree = "<group>"; };
 		74A33E480F034B8100E5450A /* AbstractNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixCache.h; sourceTree = "<group>"; };
 		74A33E490F034B8100E5450A /* AbstractNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixCache.m; sourceTree = "<group>"; };
 		74A33E520F034C4100E5450A /* MutableNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableNetflixCache.h; sourceTree = "<group>"; };
@@ -961,6 +965,8 @@
 				74A33E530F034C4100E5450A /* MutableNetflixCache.m */,
 				7400EE8A0EF57C1100058CDD /* NetflixCache.m */,
 				7408FDC70F27C81100BD86B6 /* Status.m */,
+				74A01C1D1024319200299F25 /* MoveMovieArguments.h */,
+				74A01C1E1024319200299F25 /* MoveMovieArguments.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -1186,6 +1192,7 @@
 				7478549D102399F8004124F3 /* NetflixAccountsViewController.h in Headers */,
 				747854A210239BE5004124F3 /* NetflixAccount.h in Headers */,
 				747854A610239CB4004124F3 /* NetflixUser.h in Headers */,
+				74A01C1F1024319200299F25 /* MoveMovieArguments.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1442,6 +1449,7 @@
 				7478549E102399F8004124F3 /* NetflixAccountsViewController.m in Sources */,
 				747854A310239BE5004124F3 /* NetflixAccount.m in Sources */,
 				747854A710239CB4004124F3 /* NetflixUser.m in Sources */,
+				74A01C201024319200299F25 /* MoveMovieArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
