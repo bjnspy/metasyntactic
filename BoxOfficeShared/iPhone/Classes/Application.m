@@ -175,7 +175,9 @@ static NSString** directories[] = {
 
 
 + (NSArray*) directoriesToKeep {
-  return [NSArray arrayWithObject:userLocationsDirectory];
+  return [NSArray arrayWithObjects:
+          userLocationsDirectory,
+          netflixAccountsDirectory, nil];
 }
 
 
