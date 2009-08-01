@@ -34,13 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		742A64FE101B91C700E72C98 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 742A64F9101B91C700E72C98 /* MetasyntacticShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
-			remoteInfo = MetasyntacticShared;
-		};
 		74FB7DFD1017A5B0001B5CB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74FB7DF91017A5B0001B5CB9 /* BoxOfficeShared.xcodeproj */;
@@ -68,7 +61,6 @@
 		7402245B0E53F35A006C58A2 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = ../../BoxOfficeShared/iPhone/Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7406A7850F104D1D00795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		742A64F9101B91C700E72C98 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -95,6 +87,7 @@
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		74A01F39102467E200299F25 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
 		74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A60CB0100D3F9600806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -156,7 +149,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				742A64F9101B91C700E72C98 /* MetasyntacticShared.xcodeproj */,
 				74FB7DF91017A5B0001B5CB9 /* BoxOfficeShared.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				7463989A0F7EC9BB00B2F64C /* Frameworks */,
@@ -193,14 +185,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		742A64FA101B91C700E72C98 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742A64FF101B91C700E72C98 /* libMetasyntacticShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		7463989A0F7EC9BB00B2F64C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +209,7 @@
 			children = (
 				74FB7E031017A5E6001B5CB9 /* BoxOfficeShared.h */,
 				74E6FCEB0FD1B2950015D9F8 /* MetasyntacticShared.h */,
+				74A01F39102467E200299F25 /* NetflixShared.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -305,10 +290,6 @@
 					ProductGroup = 74FB7DFA1017A5B0001B5CB9 /* Products */;
 					ProjectRef = 74FB7DF91017A5B0001B5CB9 /* BoxOfficeShared.xcodeproj */;
 				},
-				{
-					ProductGroup = 742A64FA101B91C700E72C98 /* Products */;
-					ProjectRef = 742A64F9101B91C700E72C98 /* MetasyntacticShared.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -318,13 +299,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		742A64FF101B91C700E72C98 /* libMetasyntacticShared.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMetasyntacticShared.a;
-			remoteRef = 742A64FE101B91C700E72C98 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		74FB7DFE1017A5B0001B5CB9 /* libBoxOfficeShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

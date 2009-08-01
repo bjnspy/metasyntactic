@@ -15,5 +15,6 @@
 #ifdef __OBJC__
 #import "TargetConditionals.h"
 #import "MetasyntacticShared.h"
+#import "NetflixShared.h"
 #import "BoxOfficeShared.h"
 #endif
