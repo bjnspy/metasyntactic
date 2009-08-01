@@ -21,7 +21,6 @@
 #import "Movie.h"
 #import "NetflixAccount.h"
 #import "NetflixUser.h"
-#import "Person.h"
 #import "Queue.h"
 #import "Status.h"
 
@@ -40,7 +39,6 @@ static NSString* title_key = @"title";
 static NSString* series_key = @"series";
 static NSString* average_rating_key = @"average_rating";
 static NSString* link_key = @"link";
-static NSString* filmography_key = @"filmography";
 static NSString* availability_key = @"availability";
 
 static NSString* cast_key = @"cast";
@@ -609,85 +607,6 @@ static NSDictionary* availabilityMap = nil;
   [self processMovieItemList:element movies:movies
                        saved:saved
                     maxCount:-1];
-}
-
-
-- (Person*) processPersonItem:(XmlElement*) personElement {
-  NSString* identifier = [[personElement element:@"id"] text];
-  NSString* name = [[personElement element:@"name"] text];
-  NSString* bio = [[personElement element:@"bio"] text];
-
-  if (identifier.length == 0 || name.length == 0) {
-    return nil;
-  }
-
-  NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
-
-  for (XmlElement* linkElement in [personElement elements:@"link"]) {
-    NSString* rel = [linkElement attributeValue:@"rel"];
-
-    if ([@"http://schemas.netflix.com/catlog/person/filmography" isEqual:rel]) {
-      [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:filmography_key];
-    } else if ([@"alternate" isEqual:rel]) {
-      [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:link_key];
-    }
-  }
-
-  return [Person personWithIdentifier:identifier
-                                 name:name
-                            biography:bio
-                     additionalFields:additionalFields];
-}
-
-
-- (NSArray*) processPersonItemList:(XmlElement*) element {
-  NSMutableArray* people = [NSMutableArray array];
-
-  for (XmlElement* personElement in element.children) {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    {
-      Person* person = [self processPersonItem:personElement];
-      if (person != nil) {
-        [people addObject:person];
-      }
-    }
-    [pool release];
-  }
-
-  return people;
-}
-
-
-- (NSArray*) peopleSearch:(NSString*) query account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return [NSArray array];
-  }
-
-  return [NSArray array];
-  OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people" account:account];
-
-  NSArray* parameters = [NSArray arrayWithObjects:
-                         [OARequestParameter parameterWithName:@"term" value:query],
-                         [OARequestParameter parameterWithName:@"max_results" value:@"5"],
-                         nil];
-
-  [NSMutableURLRequestAdditions setParameters:parameters
-                                   forRequest:request];
-  [request prepare];
-
-  XmlElement* element =
-  [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
-  NSArray* people = [self processPersonItemList:element];
-
-  if (people.count > 0) {
-    // download the details for these movies in teh background.
-    //[self addSearchPeople:people];
-  }
-
-  return people;
 }
 
 
