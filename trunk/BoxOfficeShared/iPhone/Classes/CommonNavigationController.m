@@ -170,7 +170,7 @@
   UIViewController* controller = [[[NowPlayingSettingsViewController alloc] init] autorelease];
 
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
-  if (![Application isIPhone]) {
+  if (![Application isIPhone3G]) {
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   }
   [self presentModalViewController:navigationController animated:YES];

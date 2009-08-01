@@ -113,7 +113,7 @@ typedef enum {
   UIViewController* controller = [[[PocketFlicksSettingsViewController alloc] init] autorelease];
 
   UINavigationController* navigationController = [[[AbstractNavigationController alloc] initWithRootViewController:controller] autorelease];
-  if (![Application isIPhone]) {
+  if (![Application isIPhone3G]) {
     navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
   }
   [self presentModalViewController:navigationController animated:YES];
@@ -185,7 +185,7 @@ typedef enum {
 
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-  return 9;
+  return 8;
 }
 
 
