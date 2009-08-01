@@ -29,6 +29,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
+#import "NetflixUser.h"
 #import "NowPlayingCreditsViewController.h"
 
 @interface NetflixViewController()
@@ -326,6 +327,17 @@ typedef enum {
 
 - (void) onTabBarItemSelected {
   [searchDisplayController setActive:NO animated:YES];
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  NetflixUser* user = [self.model.netflixCache userForAccount:account];
+  
+  if (self.model.netflixAccounts.count <= 1 || user == nil) {
+    return nil;
+  }
+  
+  return [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
 }
 
 @end
