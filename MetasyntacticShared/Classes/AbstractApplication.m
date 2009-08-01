@@ -337,7 +337,7 @@ static BOOL shutdownCleanly = NO;
 + (NSString*) hardware {
   size_t size;
   sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-  char* machine = malloc(size); 
+  char* machine = malloc(size);
   sysctlbyname("hw.machine", machine, &size, NULL, 0);
   NSString* hardware = [NSString stringWithCString:machine encoding: NSUTF8StringEncoding];
   free(machine);
@@ -349,7 +349,7 @@ static BOOL shutdownCleanly = NO;
   if (![self isIPhone]) {
     return NO;
   }
-  
+
   NSString* hardware = [self hardware];
   return [hardware hasPrefix:@"iPhone1"];
 }
