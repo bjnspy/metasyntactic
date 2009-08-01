@@ -336,11 +336,12 @@ static Controller* controller = nil;
 
 
 - (void) setCurrentNetflixAccount:(NetflixAccount*) account {
+  NetflixAccount* currentAccount = self.model.currentNetflixAccount;
   [self.model setCurrentNetflixAccount:account];
 
   // We're setting the account to something different.
   // We need to update our information about that account.
-  if (![account isEqual:self.model.currentNetflixAccount]) {
+  if (![account isEqual:currentAccount]) {
     [self updateNetflixCache];
   }
 }
