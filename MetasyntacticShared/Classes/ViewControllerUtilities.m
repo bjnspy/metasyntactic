@@ -47,7 +47,9 @@ static UIFont* minimumTitleFont = nil;
 }
 
 
-+ (UILabel*) createTitleLabel:(NSString*) title maxWidth:(NSInteger) maxWidth {
++ (UILabel*) createTitleLabel:(NSString*) title
+                     maxWidth:(NSInteger) maxWidth
+               forceMultiLine:(BOOL) forceMultiLine {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
 
   label.opaque = NO;
@@ -60,7 +62,7 @@ static UIFont* minimumTitleFont = nil;
   label.text = title;
 
   CGSize size = [title sizeWithFont:minimumTitleFont];
-  if (size.width > maxWidth) {
+  if (size.width > maxWidth || forceMultiLine) {
     label.numberOfLines = 0;
     label.font = [UIFont boldSystemFontOfSize:14];
   } else {
@@ -74,7 +76,12 @@ static UIFont* minimumTitleFont = nil;
 
 
 + (UILabel*) createTitleLabel {
-  return [self createTitleLabel:@"" maxWidth:320];
+  return [self createTitleLabel:@"" maxWidth:320 forceMultiLine:NO];
+}
+
+
++ (UILabel*) createMultiLineTitleLabel {
+  return [self createTitleLabel:@"" maxWidth:320 forceMultiLine:YES];
 }
 
 
@@ -110,7 +117,7 @@ static UIFont* minimumTitleFont = nil;
     return;
   }
 
-  UILabel* label = [self createTitleLabel:title maxWidth:maxWidth];
+  UILabel* label = [self createTitleLabel:title maxWidth:maxWidth forceMultiLine:NO];
 
   controller.navigationItem.titleView = label;
 }

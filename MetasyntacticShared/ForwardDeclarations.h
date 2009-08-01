@@ -42,6 +42,7 @@
 @class Operation;
 @class Operation1;
 @class Operation2;
+@class Operation3;
 @class OperationQueue;
 @class PriorityMutex;
 @class Pulser;

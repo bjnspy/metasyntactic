@@ -14,7 +14,7 @@
 
 #import "OperationQueue.h"
 
-#import "Operation2.h"
+#import "Operation3.h"
 
 @interface OperationQueue()
 @property (retain) NSOperationQueue* queue;
@@ -140,6 +140,27 @@ static OperationQueue* operationQueue = nil;
                                                  selector:selector
                                                  argument:object1
                                                  argument:object2
+                                           operationQueue:self
+                                                isBounded:NO
+                                                     gate:gate
+                                                 priority:priority];
+  [self addOperation:operation];
+  return operation;
+}
+
+
+- (Operation3*) performSelector:(SEL) selector
+                       onTarget:(id) target
+                     withObject:(id) object1
+                     withObject:(id) object2
+                     withObject:(id) object3
+                           gate:(id<NSLocking>) gate
+                       priority:(QueuePriority) priority {
+  Operation3* operation = [Operation3 operationWithTarget:target
+                                                 selector:selector
+                                                 argument:object1
+                                                 argument:object2
+                                                 argument:object3
                                            operationQueue:self
                                                 isBounded:NO
                                                      gate:gate

@@ -38,6 +38,7 @@
 + (void) makeCall:(NSString*) phoneNumber;
 
 + (BOOL) isIPhone;
++ (BOOL) isIPhone3G;
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
 
