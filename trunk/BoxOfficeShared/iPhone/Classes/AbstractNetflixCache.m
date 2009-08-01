@@ -14,21 +14,10 @@
 
 #import "AbstractNetflixCache.h"
 
-#import "Model.h"
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
 
 @implementation AbstractNetflixCache
-
-- (void) dealloc {
-  [super dealloc];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
 
 + (NSString*) recommendationKey {
   return @"http://schemas.netflix.com/feed.recommendations";
