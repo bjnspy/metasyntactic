@@ -80,6 +80,12 @@
 
 
 + (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target {
+  [target performSelectorOnMainThread:selector withObject:nil waitUntilDone:NO];
+}
+
+
++ (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
                  withObject:(id) argument {
   [target performSelectorOnMainThread:selector withObject:argument waitUntilDone:NO];

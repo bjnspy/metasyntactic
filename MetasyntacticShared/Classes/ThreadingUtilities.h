@@ -42,6 +42,9 @@
                      daemon:(BOOL) daemon;
 
 + (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target;
+
++ (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target
                  withObject:(id) argument;
 

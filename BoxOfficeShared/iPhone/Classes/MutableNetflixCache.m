@@ -55,50 +55,6 @@
 }
 
 
-- (void) reportMoveMovieFailure:(NSArray*) arguments {
-  NSAssert([NSThread isMainThread], nil);
-
-  NSLog(@"Reporting failure to NetflixMoveMovieDelegate.", nil);
-
-  id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:0];
-  NSString* error = [arguments objectAtIndex:1];
-
-  [delegate moveFailedWithError:error];
-}
-
-
-- (void) reportMoveMovieSuccess:(Movie*) movie toDelegate:(id<NetflixMoveMovieDelegate>) delegate {
-  NSAssert([NSThread isMainThread], nil);
-
-  NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
-  [delegate moveSucceededForMovie:movie];
-}
-
-
-- (void) reportModifyQueueError:(NSString*) error
-                     toDelegate:(id<NetflixModifyQueueDelegate>) delegate {
-  NSAssert([NSThread isMainThread], nil);
-
-  NSLog(@"Reporting queue and failure to NetflixModifyQueueDelegate.", nil);
-  [delegate modifyFailedWithError:error];
-}
-
-
-- (void) reportModifyQueueSuccess:(id<NetflixModifyQueueDelegate>) delegate {
-  NSAssert([NSThread isMainThread], nil);
-  NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
-  [delegate modifySucceeded];
-}
-
-
-- (void) reportAddMovieSuccess:(id<NetflixAddMovieDelegate>) delegate {
-  NSAssert([NSThread isMainThread], nil);
-
-  NSLog(@"Reporting queue and success to NetflixAddMovieDelegate.", nil);
-  [delegate addSucceeded];
-}
-
-
 - (void) removePresubmitRatingsForMovie:(Movie*) movie {
   movie = [self promoteDiscToSeries:movie];
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:presubmitRatings];
@@ -138,10 +94,9 @@
   NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
   [self saveQueue:queue account:account];
 
-  [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
-                                onTarget:self
-                              withObject:error
-                              withObject:delegate];
+  [ThreadingUtilities foregroundSelector:@selector(modifyFailedWithError:)
+                                onTarget:delegate
+                              withObject:error];
 }
 
 
@@ -150,9 +105,8 @@
                                  account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
   [self saveQueue:queue account:account];
-  [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
-                                onTarget:self
-                              withObject:delegate];
+  [ThreadingUtilities foregroundSelector:@selector(modifySucceeded)
+                                onTarget:delegate];
 }
 
 
@@ -161,9 +115,8 @@
                               account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
   [self saveQueue:queue account:account];
-  [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
-                                onTarget:self
-                              withObject:delegate];
+  [ThreadingUtilities foregroundSelector:@selector(addSucceeded)
+                                onTarget:delegate];
 }
 
 
@@ -231,18 +184,18 @@
                                 error:&error];
   if (finalQueue == nil) {
     NSLog(@"Moving '%@' failed: %@", movie.canonicalTitle, error);
-    NSArray* errorArguments = [NSArray arrayWithObjects:delegate, error, nil];
-    [self performSelectorOnMainThread:@selector(reportMoveMovieFailure:) withObject:errorArguments waitUntilDone:NO];
+    [ThreadingUtilities foregroundSelector:@selector(moveFailedWithError:)
+                                  onTarget:delegate
+                                withObject:error];
     return;
   }
 
   NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
   [self saveQueue:finalQueue account:account];
 
-  [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:)
-                                onTarget:self
-                              withObject:movie
-                              withObject:delegate];
+  [ThreadingUtilities foregroundSelector:@selector(moveSucceededForMovie:)
+                                onTarget:delegate
+                              withObject:movie];
 }
 
 
