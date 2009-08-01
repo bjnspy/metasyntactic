@@ -14,6 +14,8 @@
 
 #import "AbstractApplication.h"
 
+#include <sys/sysctl.h>
+
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
 #import "StringUtilities.h"
@@ -327,7 +329,29 @@ static BOOL shutdownCleanly = NO;
 
 
 + (BOOL) isIPhone {
-  return [[[UIDevice currentDevice] model] isEqual:@"iPhone"];
+  UIDevice* device = [UIDevice currentDevice];
+  return [[device model] isEqual:@"iPhone"];
+}
+
+
++ (NSString*) hardware {
+  size_t size;
+  sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+  char* machine = malloc(size); 
+  sysctlbyname("hw.machine", machine, &size, NULL, 0);
+  NSString* hardware = [NSString stringWithCString:machine encoding: NSUTF8StringEncoding];
+  free(machine);
+  return hardware;
+}
+
+
++ (BOOL) isIPhone3G {
+  if (![self isIPhone]) {
+    return NO;
+  }
+  
+  NSString* hardware = [self hardware];
+  return [hardware hasPrefix:@"iPhone1"];
 }
 
 
