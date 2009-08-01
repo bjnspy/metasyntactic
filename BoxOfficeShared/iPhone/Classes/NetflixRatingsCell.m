@@ -16,7 +16,6 @@
 
 #import "BoxOfficeStockImages.h"
 #import "Model.h"
-#import "MutableNetflixCache.h"
 
 @interface NetflixRatingsCell()
 @property (retain) NetflixAccount* account;

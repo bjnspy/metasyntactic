@@ -19,8 +19,6 @@
 #import "DVDCache.h"
 #import "IMDbCache.h"
 #import "Model.h"
-#import "Movie.h"
-#import "MutableNetflixCache.h"
 #import "PosterCache.h"
 #import "ScoreCache.h"
 #import "TrailerCache.h"
@@ -129,7 +127,6 @@ static CacheUpdater* cacheUpdater = nil;
   [model.imdbCache         processMovie:movie force:force];
   [model.amazonCache       processMovie:movie force:force];
   [model.wikipediaCache    processMovie:movie force:force];
-  [model.netflixCache lookupNetflixMovieForLocalMovie:movie account:self.model.currentNetflixAccount];
   [MetasyntacticSharedApplication minorRefresh];
 
   if (force) {

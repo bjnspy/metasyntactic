@@ -16,8 +16,6 @@
 
 #import "BoxOfficeStockImages.h"
 #import "Model.h"
-#import "Movie.h"
-#import "NetflixCache.h"
 
 @interface NetflixCell()
 @property (retain) UILabel* directorTitleLabel;

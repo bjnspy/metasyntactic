@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "Model.h"
-#import "Movie.h"
 #import "Review.h"
 #import "Score.h"
 #import "UserLocationCache.h"

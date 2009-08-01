@@ -22,6 +22,7 @@ static id<BoxOfficeSharedApplicationDelegate> delegate = nil;
 
 + (void) setSharedApplicationDelegate:(id<BoxOfficeSharedApplicationDelegate>) delegate_ {
   [MetasyntacticSharedApplication setSharedApplicationDelegate:delegate_];
+  [NetflixSharedApplication setSharedApplicationDelegate:delegate_];
   delegate = delegate_;
 }
 

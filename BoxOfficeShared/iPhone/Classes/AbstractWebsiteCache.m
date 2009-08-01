@@ -14,8 +14,6 @@
 
 #import "AbstractWebsiteCache.h"
 
-#import "Movie.h"
-
 @interface AbstractWebsiteCache()
 @end
 

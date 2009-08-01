@@ -15,7 +15,6 @@
 #import "FandangoPosterDownloader.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @implementation FandangoPosterDownloader
 

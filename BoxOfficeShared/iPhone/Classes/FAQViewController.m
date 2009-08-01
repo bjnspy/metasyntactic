@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "HelpCache.h"
 #import "Model.h"
-#import "NetflixAccount.h"
 #import "QuestionCell.h"
 
 @interface FAQViewController()

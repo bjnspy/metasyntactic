@@ -18,8 +18,6 @@
 #import "BoxOfficeStockImages.h"
 #import "Controller.h"
 #import "Model.h"
-#import "MutableNetflixCache.h"
-#import "NetflixAccount.h"
 #import "NetflixAccountsViewController.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
@@ -28,7 +26,6 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
-#import "NetflixUser.h"
 #import "PocketFlicksCreditsViewController.h"
 #import "PocketFlicksSettingsViewController.h"
 
@@ -185,7 +182,11 @@ typedef enum {
 
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-  return 8;
+  if (self.hasAccount) {
+    return 8;
+  } else {
+    return 9;
+  }
 }
 
 

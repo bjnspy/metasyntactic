@@ -16,7 +16,6 @@
 
 #import "CommonNavigationController.h"
 #import "Model.h"
-#import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 
 @interface NetflixMostPopularMoviesViewController()

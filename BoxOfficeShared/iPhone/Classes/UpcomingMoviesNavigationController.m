@@ -16,7 +16,6 @@
 
 #import "BoxOfficeStockImages.h"
 #import "Model.h"
-#import "Movie.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 

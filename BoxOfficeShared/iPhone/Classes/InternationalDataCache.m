@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "Model.h"
-#import "Movie.h"
 
 @interface InternationalDataCache()
 @property (retain) DifferenceEngine* engine;

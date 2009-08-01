@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #import "AbstractMovieDetailsCell.h"
-#import "NetflixChangeRatingDelegate.h"
 
 @interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private

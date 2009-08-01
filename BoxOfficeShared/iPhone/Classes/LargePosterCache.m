@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "Model.h"
-#import "Movie.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieNames;

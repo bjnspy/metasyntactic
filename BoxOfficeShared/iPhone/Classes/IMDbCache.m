@@ -15,7 +15,6 @@
 #import "IMDbCache.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @implementation IMDbCache
 

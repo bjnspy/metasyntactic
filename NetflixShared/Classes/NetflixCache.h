@@ -27,6 +27,7 @@
 + (NSArray*) mostPopularTitles;
 
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
+- (Movie*) correspondingNetflixMovie:(Movie*) movie;
 
 - (BOOL) isEnqueued:(Movie*) movie account:(NetflixAccount*) account;
 - (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
@@ -54,10 +55,6 @@
 - (NSString*) availabilityForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
-
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie account:(NetflixAccount*) account;
-
-- (Movie*) netflixMovieForMovie:(Movie*) movie;
 
 - (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;

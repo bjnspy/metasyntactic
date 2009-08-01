@@ -15,7 +15,6 @@
 #import "UpcomingMovieCell.h"
 
 #import "Model.h"
-#import "Movie.h"
 #import "UpcomingMoviesViewController.h"
 
 @interface UpcomingMovieCell()

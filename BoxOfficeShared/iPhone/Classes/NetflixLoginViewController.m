@@ -17,9 +17,6 @@
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
 #import "Controller.h"
-#import "Model.h"
-#import "NetflixAccount.h"
-#import "NetflixAuthentication.h"
 
 @interface NetflixLoginViewController()
 @property (retain) UILabel* messageLabel;
@@ -53,11 +50,6 @@
   if ((self = [super initWithNibName:nil bundle:nil])) {
   }
   return self;
-}
-
-
-- (Model*) model {
-  return [Model model];
 }
 
 

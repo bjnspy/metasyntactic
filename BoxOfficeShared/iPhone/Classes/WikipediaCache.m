@@ -15,7 +15,6 @@
 #import "WikipediaCache.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @implementation WikipediaCache
 

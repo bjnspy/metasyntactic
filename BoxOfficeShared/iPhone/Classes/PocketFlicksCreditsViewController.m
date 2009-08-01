@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
 #import "Model.h"
-#import "NetflixAccount.h"
 
 @interface PocketFlicksCreditsViewController()
 @property (retain) NSArray* languages;

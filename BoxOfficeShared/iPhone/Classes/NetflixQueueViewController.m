@@ -16,9 +16,7 @@
 
 #import "CommonNavigationController.h"
 #import "Model.h"
-#import "MutableNetflixCache.h"
 #import "NetflixCell.h"
-#import "Queue.h"
 
 @interface NetflixQueueViewController()
 @property (retain) NetflixAccount* account;

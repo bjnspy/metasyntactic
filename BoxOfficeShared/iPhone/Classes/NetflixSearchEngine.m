@@ -15,7 +15,6 @@
 #import "NetflixSearchEngine.h"
 
 #import "Model.h"
-#import "NetflixCache.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 

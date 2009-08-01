@@ -30,4 +30,5 @@
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "MetasyntacticShared.h"
+#import "NetflixShared.h"
 #endif

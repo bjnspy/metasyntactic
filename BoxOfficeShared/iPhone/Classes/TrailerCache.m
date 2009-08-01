@@ -15,7 +15,6 @@
 #import "TrailerCache.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @interface TrailerCache()
 @property (retain) NSDictionary* index;
