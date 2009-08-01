@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "HelpCache.h"
 #import "Model.h"
+#import "NetflixAccount.h"
 #import "QuestionCell.h"
 
 @interface FAQViewController()
@@ -178,11 +179,12 @@
           [LocaleUtilities englishCountry],
           [LocaleUtilities englishLanguage]];
 
-  if (self.model.netflixCacheEnabled && self.model.netflixUserId.length > 0) {
+  NetflixAccount* account = self.model.currentNetflixAccount;
+  if (self.model.netflixCacheEnabled && account.userId.length > 0) {
     body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-            [StringUtilities nonNilString:self.model.netflixUserId],
-            [StringUtilities nonNilString:self.model.netflixKey],
-            [StringUtilities nonNilString:self.model.netflixSecret]];
+            [StringUtilities nonNilString:account.userId],
+            [StringUtilities nonNilString:account.key],
+            [StringUtilities nonNilString:account.secret]];
   }
 
   NSString* subject = LocalizedString(@"Now Playing Feedback", nil);

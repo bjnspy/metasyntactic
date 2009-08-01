@@ -24,29 +24,35 @@
 
 - (void) updateQueue:(Queue*) queue
   byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixMoveMovieDelegate>) delegate;
+            delegate:(id<NetflixMoveMovieDelegate>) delegate
+             account:(NetflixAccount*) account;
 
 - (void) updateQueue:(Queue*) queue
     byDeletingMovies:(NSSet*) deletedMovies
  andReorderingMovies:(NSSet*) reorderedMovies
                   to:(NSArray*) movies
-            delegate:(id<NetflixModifyQueueDelegate>) delegate;
+            delegate:(id<NetflixModifyQueueDelegate>) delegate
+             account:(NetflixAccount*) account;
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
           toPosition:(NSInteger) position
-            delegate:(id<NetflixAddMovieDelegate>) delegate;
+            delegate:(id<NetflixAddMovieDelegate>) delegate
+             account:(NetflixAccount*) account;
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
-            delegate:(id<NetflixAddMovieDelegate>) delegate;
+            delegate:(id<NetflixAddMovieDelegate>) delegate
+             account:(NetflixAccount*) account;
 
 - (void) updateQueue:(Queue*) queue
      byDeletingMovie:(Movie*) movie
-            delegate:(id<NetflixModifyQueueDelegate>) delegate;
+            delegate:(id<NetflixModifyQueueDelegate>) delegate
+             account:(NetflixAccount*) account;
 
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
-               delegate:(id<NetflixChangeRatingDelegate>) delegate;
+               delegate:(id<NetflixChangeRatingDelegate>) delegate
+                account:(NetflixAccount*) account;
 
 @end

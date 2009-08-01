@@ -17,11 +17,12 @@
 
 @interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private
-    NSArray* imageViews;
+  NetflixAccount* account;
+  NSArray* imageViews;
 }
 
-- (id) initWithMovie:(Movie*) movie;
+- (id) initWithMovie:(Movie*) movie account:(NetflixAccount*) account;
 
-- (void) refresh;
+- (void) refresh:(NetflixAccount*) account;
 
 @end

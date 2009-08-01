@@ -167,12 +167,12 @@
 
 - (void) setNetflixLabel {
   NSMutableString* result = [NSMutableString string];
-  NSString* rating = [self.model.netflixCache userRatingForMovie:movie];
+  NSString* rating = [self.model.netflixCache userRatingForMovie:movie account:self.model.currentNetflixAccount];
   if (rating.length > 0) {
     userRating = YES;
   } else {
     userRating = NO;
-    rating = [self.model.netflixCache netflixRatingForMovie:movie];
+    rating = [self.model.netflixCache netflixRatingForMovie:movie account:self.model.currentNetflixAccount];
   }
 
   if (rating.length == 0) {

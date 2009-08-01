@@ -41,6 +41,7 @@
 @property (retain) DVD* dvd;
 @property (retain) Movie* netflixMovie;
 @property (retain) NSArray* netflixStatusCells;
+@property (retain) NetflixAccount* netflixAccount;
 @property (retain) NetflixRatingsCell* netflixRatingsCell;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
@@ -66,6 +67,7 @@ const NSInteger POSTER_TAG = -1;
 
 @synthesize movie;
 @synthesize dvd;
+@synthesize netflixAccount;
 @synthesize netflixMovie;
 @synthesize netflixStatusCells;
 @synthesize netflixRatingsCell;
@@ -83,6 +85,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) dealloc {
   self.movie = nil;
   self.dvd = nil;
+  self.netflixAccount = nil;
   self.netflixMovie = nil;
   self.netflixStatusCells = nil;
   self.netflixRatingsCell = nil;
@@ -275,7 +278,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeNetflixStatusCells {
-  NSArray* statuses = [self.model.netflixCache statusesForMovie:netflixMovie];
+  NSArray* statuses = [self.model.netflixCache statusesForMovie:netflixMovie account:netflixAccount];
 
   NSMutableArray* cells = [NSMutableArray array];
   for (NSInteger i = 0; i < statuses.count; i++) {
@@ -299,6 +302,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeData {
+  self.netflixAccount = self.model.currentNetflixAccount;
   self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
   [self initializeNetflixStatusCells];
 
@@ -513,7 +517,7 @@ const NSInteger POSTER_TAG = -1;
   [super onBeforeReloadTableViewData];
 
   [self initializeData];
-  [netflixRatingsCell refresh];
+  [netflixRatingsCell refresh:netflixAccount];
 }
 
 
@@ -554,7 +558,7 @@ const NSInteger POSTER_TAG = -1;
 - (BOOL) hasNetflixRating {
   return
   netflixMovie != nil &&
-  [self.model.netflixCache netflixRatingForMovie:netflixMovie].length > 0;
+  [self.model.netflixCache netflixRatingForMovie:netflixMovie account:netflixAccount].length > 0;
 }
 
 
@@ -652,7 +656,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) createNetflixRatingsCell {
   if (netflixRatingsCell == nil) {
     self.netflixRatingsCell =
-    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie] autorelease];
+    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie account:netflixAccount] autorelease];
   }
 
   return netflixRatingsCell;
@@ -1092,23 +1096,23 @@ const NSInteger POSTER_TAG = -1;
                      withButtonIndex:(NSInteger) buttonIndex {
   [self enterReadonlyMode];
   if (buttonIndex % 2 == 0) {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
+    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self account:netflixAccount];
   } else {
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self];
+    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self account:netflixAccount];
   }
 }
 
 
 - (void) didDismissAddToNetflixDiscQueueActionSheet:(UIActionSheet*) actionSheet
                                     withButtonIndex:(NSInteger) buttonIndex {
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
+  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey] account:netflixAccount];
   [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
 }
 
 
 - (void) didDismissAddToNetflixInstantQueueActionSheet:(UIActionSheet*) actionSheet
                                        withButtonIndex:(NSInteger) buttonIndex {
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
+  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
   [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
 
 }
@@ -1118,9 +1122,9 @@ const NSInteger POSTER_TAG = -1;
                                              withButtonIndex:(NSInteger) buttonIndex {
   Queue* queue;
   if (buttonIndex <= 1) {
-    queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
+    queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey] account:netflixAccount];
   } else {
-    queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
+    queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey] account:netflixAccount];
   }
   [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
 }
@@ -1305,7 +1309,7 @@ const NSInteger POSTER_TAG = -1;
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.model.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self];
+  [self.model.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self account:netflixAccount];
 }
 
 
@@ -1314,7 +1318,7 @@ const NSInteger POSTER_TAG = -1;
 
   NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
   Status* status = [cell status];
-  [self.model.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self];
+  [self.model.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self account:netflixAccount];
 }
 
 

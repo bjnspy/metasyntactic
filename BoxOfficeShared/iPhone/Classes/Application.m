@@ -41,10 +41,8 @@ static NSString* blurayDirectory = nil;
 static NSString* blurayDetailsDirectory = nil;
 
 static NSString* netflixDirectory = nil;
+static NSString* netflixAccountsDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
-static NSString* netflixQueuesDirectory = nil;
-static NSString* netflixUserRatingsDirectory = nil;
-static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 static NSString* netflixDetailsDirectory = nil;
 static NSString* netflixRSSDirectory = nil;
@@ -71,10 +69,8 @@ static NSString** directories[] = {
 &internationalDirectory,
 &localizableStringsDirectory,
 &netflixDirectory,
-&netflixQueuesDirectory,
+&netflixAccountsDirectory,
 &netflixSeriesDirectory,
-&netflixUserRatingsDirectory,
-&netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
 &netflixDetailsDirectory,
 &netflixRSSDirectory,
@@ -148,11 +144,12 @@ static NSString** directories[] = {
     blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
 
     netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
-    netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
+    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
+    //netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
     netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
     netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
-    netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
-    netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
+    //netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
+    //netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
     netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
     netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
 
@@ -277,28 +274,17 @@ static NSString** directories[] = {
 }
 
 
++ (NSString*) netflixAccountsDirectory {
+  return netflixAccountsDirectory;
+}
+
+
 + (NSString*) netflixDetailsDirectory {
   return netflixDetailsDirectory;
 }
 
-
-+ (NSString*) netflixQueuesDirectory {
-  return netflixQueuesDirectory;
-}
-
-
 + (NSString*) netflixSeriesDirectory {
   return netflixSeriesDirectory;
-}
-
-
-+ (NSString*) netflixUserRatingsDirectory {
-  return netflixUserRatingsDirectory;
-}
-
-
-+ (NSString*) netflixPredictedRatingsDirectory {
-  return netflixPredictedRatingsDirectory;
 }
 
 
@@ -346,18 +332,6 @@ static NSString** directories[] = {
   [[self gate] lock];
   {
     [self deleteDirectories];
-    [self createDirectories];
-  }
-  [[self gate] unlock];
-}
-
-
-+ (void) resetNetflixDirectories {
-  [[self gate] lock];
-  {
-    [self moveItemToTrash:netflixUserRatingsDirectory];
-    [self moveItemToTrash:netflixPredictedRatingsDirectory];
-    [self moveItemToTrash:netflixQueuesDirectory];
     [self createDirectories];
   }
   [[self gate] unlock];

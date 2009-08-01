@@ -14,7 +14,8 @@
 
 @interface NetflixFeedsViewController : AbstractTableViewController {
 @private
-    NSArray* feedKeys;
+  NetflixAccount* account;
+  NSArray* feedKeys;
 }
 
 - (id) initWithFeedKeys:(NSArray*) feedKeys

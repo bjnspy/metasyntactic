@@ -21,98 +21,108 @@
 
 
 @interface NetflixFeedsViewController()
+@property (retain) NetflixAccount* account;
 @property (retain) NSArray* feedKeys;
 @end
 
 
 @implementation NetflixFeedsViewController
 
+@synthesize account;
 @synthesize feedKeys;
 
 - (void) dealloc {
-    self.feedKeys = nil;
-
-    [super dealloc];
+  self.account = nil;
+  self.feedKeys = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithFeedKeys:(NSArray*) feedKeys_
                   title:(NSString*) title_ {
-    if ((self = [super initWithStyle:UITableViewStylePlain])) {
-        self.title = title_;
-        self.feedKeys = feedKeys_;
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.title = title_;
+    self.feedKeys = feedKeys_;
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
+}
+
+
+- (void) onBeforeReloadTableViewData {
+  [super onBeforeReloadTableViewData];
+
+  self.account = self.model.currentNetflixAccount;
 }
 
 
 - (NSArray*) feeds {
-    NSArray* feeds = self.model.netflixCache.feeds;
-
-    NSMutableArray* result = [NSMutableArray array];
-    for (Feed* feed in feeds) {
-        if ([feedKeys containsObject:feed.key]) {
-            [result addObject:feed];
-        }
+  NSArray* feeds = [self.model.netflixCache feedsForAccount:account];
+  
+  NSMutableArray* result = [NSMutableArray array];
+  for (Feed* feed in feeds) {
+    if ([feedKeys containsObject:feed.key]) {
+      [result addObject:feed];
     }
-    return result;
+  }
+  return result;
 }
 
 
 - (BOOL) hasFeeds {
-    return self.feeds.count > 0;
+  return self.feeds.count > 0;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    return self.feeds.count;
+  return self.feeds.count;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (!self.hasFeeds) {
-        return self.model.netflixCache.noInformationFound;
-    }
-
-    return nil;
+  if (!self.hasFeeds) {
+    return self.model.netflixCache.noInformationFound;
+  }
+  
+  return nil;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-
-    NSArray* feeds = self.feeds;
-
-    Feed* feed = [feeds objectAtIndex:indexPath.row];
-
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    cell.textLabel.minimumFontSize = 12;
-    cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    return cell;
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  
+  NSArray* feeds = self.feeds;
+  
+  Feed* feed = [feeds objectAtIndex:indexPath.row];
+  
+  cell.textLabel.adjustsFontSizeToFitWidth = YES;
+  cell.textLabel.minimumFontSize = 12;
+  cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key account:account];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+  return cell;
 }
 
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSArray* feeds = self.feeds;
-
-    Feed* feed = [feeds objectAtIndex:indexPath.row];
-    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:feed.key] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+  NSArray* feeds = self.feeds;
+  
+  Feed* feed = [feeds objectAtIndex:indexPath.row];
+  NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:feed.key] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

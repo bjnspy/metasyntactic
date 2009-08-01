@@ -19,10 +19,10 @@
 #import "Controller.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
+#import "NetflixAccount.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
-//#import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
@@ -31,6 +31,7 @@
 #import "PocketFlicksSettingsViewController.h"
 
 @interface PocketFlicksViewController()
+@property (retain) NetflixAccount* account;
 @property (retain) UISearchBar* searchBar;
 @end
 
@@ -51,9 +52,11 @@ typedef enum {
   LastSection = LogOutSection
 } Sections;
 
+@synthesize account;
 @synthesize searchBar;
 
 - (void) dealloc {
+  self.account = nil;
   self.searchBar = nil;
 
   [super dealloc];
@@ -116,7 +119,7 @@ typedef enum {
 
 
 - (BOOL) hasAccount {
-  return self.model.netflixUserId.length > 0;
+  return account.userId.length > 0;
 }
 
 
@@ -159,6 +162,7 @@ typedef enum {
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
+  self.account = self.model.currentNetflixAccount;
   if (self.hasAccount) {
     self.tableView.tableHeaderView = searchBar;
   } else {
@@ -206,19 +210,19 @@ typedef enum {
         cell.imageView.image = BoxOfficeStockImage(@"NetflixMostPopular.png");
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixDVDQueue.png");
         break;
       case InstantSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixInstantQueue.png");
         break;
       case RecommendationsSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixRecommendations.png");
         break;
       case AtHomeSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey] account:account];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixHome.png");
         break;
       case RentalHistorySection:
@@ -283,9 +287,7 @@ typedef enum {
       clickedButtonAtIndex:(NSInteger) index {
   [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
   if (index != alertView.cancelButtonIndex) {
-    [self.controller setNetflixKey:nil secret:nil userId:nil];
-    [Application resetNetflixDirectories];
-
+    [self.controller removeNetflixAccount:self.model.currentNetflixAccount];
     [self majorRefresh];
   }
 }

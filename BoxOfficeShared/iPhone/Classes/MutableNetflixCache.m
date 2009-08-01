@@ -16,6 +16,7 @@
 
 #import "Model.h"
 #import "Movie.h"
+#import "NetflixAccount.h"
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixChangeRatingDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
@@ -132,9 +133,10 @@
 
 - (void)          saveQueue:(Queue*) queue
              andReportError:(NSString*) error
-      toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
+      toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate 
+                 account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
-  [self saveQueue:queue];
+  [self saveQueue:queue account:account];
 
   [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueError:toDelegate:)
                                 onTarget:self
@@ -144,9 +146,10 @@
 
 
 - (void)                          saveQueue:(Queue*) queue
-      andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
+      andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate
+                                 account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
-  [self saveQueue:queue];
+  [self saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(reportModifyQueueSuccess:)
                                 onTarget:self
                               withObject:delegate];
@@ -154,9 +157,10 @@
 
 
 - (void)                       saveQueue:(Queue*) queue
-      andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate {
+      andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate
+                              account:(NetflixAccount*) account {
   NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
-  [self saveQueue:queue];
+  [self saveQueue:queue account:account];
   [ThreadingUtilities foregroundSelector:@selector(reportAddMovieSuccess:)
                                 onTarget:self
                               withObject:delegate];
@@ -166,12 +170,13 @@
 - (Queue*) moveMovie:(Movie*) movie
           toPosition:(NSInteger) position
              inQueue:(Queue*) queue
+          account:(NetflixAccount*) account
                error:(NSString**) error {
   *error = nil;
   NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", self.model.netflixUserId, queueType];
+  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", account.userId, queueType];
 
-  OAMutableURLRequest* request = [self createURLRequest:address];
+  OAMutableURLRequest* request = [self createURLRequest:address account:account];
   [request setHTTPMethod:@"POST"];
 
   NSArray* parameters = [NSArray arrayWithObjects:
@@ -214,6 +219,7 @@
   Queue* queue = [arguments objectAtIndex:0];
   Movie* movie = [arguments objectAtIndex:1];
   id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
+  NetflixAccount* account = [arguments objectAtIndex:3];
 
   NSLog(@"Moving '%@' to top of queue.", movie.canonicalTitle);
 
@@ -221,6 +227,7 @@
   Queue* finalQueue = [self moveMovie:movie
                            toPosition:0
                               inQueue:queue
+                              account:account
                                 error:&error];
   if (finalQueue == nil) {
     NSLog(@"Moving '%@' failed: %@", movie.canonicalTitle, error);
@@ -230,7 +237,7 @@
   }
 
   NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
-  [self saveQueue:finalQueue];
+  [self saveQueue:finalQueue account:account];
 
   [ThreadingUtilities foregroundSelector:@selector(reportMoveMovieSuccess:toDelegate:)
                                 onTarget:self
@@ -251,8 +258,9 @@
 
 - (void) updateQueue:(Queue*) queue
   byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixMoveMovieDelegate>) delegate {
-  NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
+            delegate:(id<NetflixMoveMovieDelegate>) delegate 
+          account:(NetflixAccount*) account {
+  NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, account, nil];
 
   [[OperationQueue operationQueue] performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -267,8 +275,9 @@
     byDeletingMovies:(NSSet*) deletedMovies
  andReorderingMovies:(NSSet*) reorderedMovies
                   to:(NSArray*) movies
-            delegate:(id<NetflixModifyQueueDelegate>) delegate {
-  NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, nil];
+            delegate:(id<NetflixModifyQueueDelegate>) delegate
+             account:(NetflixAccount*) account {
+  NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, account, nil];
 
   [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -280,18 +289,21 @@
 
 - (void) updateQueue:(Queue*) queue
      byDeletingMovie:(Movie*) movie
-            delegate:(id<NetflixModifyQueueDelegate>) delegate {
+            delegate:(id<NetflixModifyQueueDelegate>) delegate
+             account:(NetflixAccount*) account {
   [self updateQueue:queue
    byDeletingMovies:[IdentitySet setWithObject:movie]
 andReorderingMovies:[IdentitySet set]
                  to:[NSArray array]
-           delegate:delegate];
+           delegate:delegate
+            account:account];
 }
 
 
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
-               delegate:(id<NetflixChangeRatingDelegate>) delegate {
+               delegate:(id<NetflixChangeRatingDelegate>) delegate
+                account:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], @"");
   movie = [self promoteDiscToSeries:movie];
 
@@ -299,7 +311,7 @@ andReorderingMovies:[IdentitySet set]
   [dictionary setObject:rating forKey:movie];
   self.presubmitRatings = dictionary;
 
-  NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
+  NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, account, nil];
   [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                           onTarget:self
                                         withObject:arguments
@@ -310,9 +322,10 @@ andReorderingMovies:[IdentitySet set]
 
 - (NSString*) putChangeRatingTo:(NSString*) rating
                        forMovie:(Movie*) movie
-                 withIdentifier:(NSString*) identifier {
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", self.model.netflixUserId, identifier];
-  OAMutableURLRequest* request = [self createURLRequest:address];
+                 withIdentifier:(NSString*) identifier 
+                        account:(NetflixAccount*) account {
+  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
+  OAMutableURLRequest* request = [self createURLRequest:address account:account];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
   OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"method" value:@"PUT"];
@@ -338,9 +351,10 @@ andReorderingMovies:[IdentitySet set]
 
 - (NSString*) postChangeRatingTo:(NSString*) rating
                         forMovie:(Movie*) movie
-                  withIdentifier:(NSString*) identifier {
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", self.model.netflixUserId, identifier];
-  OAMutableURLRequest* request = [self createURLRequest:address];
+                  withIdentifier:(NSString*) identifier
+                         account:(NetflixAccount*) account {
+  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
+  OAMutableURLRequest* request = [self createURLRequest:address account:account];
   [request setHTTPMethod:@"POST"];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
@@ -366,13 +380,14 @@ andReorderingMovies:[IdentitySet set]
 
 
 - (NSString*) changeRatingTo:(NSString*) rating
-              forMovieWorker:(Movie*) movie {
+              forMovieWorker:(Movie*) movie
+                     account:(NetflixAccount*) account {
   // I hate the netflix API.  In order to do this, we need to first
   // test if the user already has a rating set.  If so, we will 'PUT'
   // to that rating.  Otherwise we will 'POST' to it.
 
-  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", self.model.netflixUserId];
-  OAMutableURLRequest* request = [self createURLRequest:address];
+  NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
+  OAMutableURLRequest* request = [self createURLRequest:address account:account];
   OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
   [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
   [request prepare];
@@ -401,12 +416,14 @@ andReorderingMovies:[IdentitySet set]
     NSLog(@"No user rating.  Posting response.", nil);
     return [self postChangeRatingTo:rating
                            forMovie:movie
-                     withIdentifier:identifier];
+                     withIdentifier:identifier
+                            account:account];
   } else {
     NSLog(@"Existing user rating.  Putting response.", nil);
     return [self putChangeRatingTo:rating
                           forMovie:movie
-                    withIdentifier:identifier];
+                    withIdentifier:identifier
+                           account:account];
   }
 }
 
@@ -415,15 +432,16 @@ andReorderingMovies:[IdentitySet set]
   NSString* rating = [arguments objectAtIndex:0];
   Movie* movie = [arguments objectAtIndex:1];
   id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
+  NetflixAccount* account = [arguments objectAtIndex:3];
 
-  NSString* userRatingsFile = [self userRatingsFile:movie];
+  NSString* userRatingsFile = [self userRatingsFile:movie account:account];
   NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
   NSLog(@"Changing rating for '%@' from '%@' to '%@'.", movie.canonicalTitle, existingUserRating, rating);
 
   // First, persist the change so that the UI picks it up
 
-  NSString* message = [self changeRatingTo:rating forMovieWorker:movie];
+  NSString* message = [self changeRatingTo:rating forMovieWorker:movie account:account];
   if (message.length > 0) {
     NSLog(@"Changing rating failed. Restoring existing rating.", nil);
     NSArray* failureArguments = [NSArray arrayWithObjects:movie, delegate, message, nil];
@@ -450,9 +468,10 @@ andReorderingMovies:[IdentitySet set]
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
           toPosition:(NSInteger) position
-            delegate:(id<NetflixAddMovieDelegate>) delegate {
+            delegate:(id<NetflixAddMovieDelegate>) delegate
+             account:(NetflixAccount*) account {
   NSArray* arguments =
-  [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
+  [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, account, nil];
 
   [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -464,8 +483,9 @@ andReorderingMovies:[IdentitySet set]
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
-            delegate:(id<NetflixAddMovieDelegate>) delegate {
-  [self updateQueue:queue byAddingMovie:movie toPosition:-1 delegate:delegate];
+            delegate:(id<NetflixAddMovieDelegate>) delegate
+             account:(NetflixAccount*) account {
+  [self updateQueue:queue byAddingMovie:movie toPosition:-1 delegate:delegate account:account];
 }
 
 
@@ -512,17 +532,18 @@ andReorderingMovies:[IdentitySet set]
   Movie* movie = [arguments objectAtIndex:1];
   NSInteger position = [[arguments objectAtIndex:2] intValue];
   id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:3];
+  NetflixAccount* account = [arguments objectAtIndex:4];
 
   NSString* address;
   if ([queue isInstantQueue]) {
     NSLog(@"Adding '%@' to instant queue.", movie.canonicalTitle);
-    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", self.model.netflixUserId];
+    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", account.userId];
   } else {
     NSLog(@"Adding '%@' to DVD queue.", movie.canonicalTitle);
-    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", self.model.netflixUserId];
+    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", account.userId];
   }
 
-  OAMutableURLRequest* request = [self createURLRequest:address];
+  OAMutableURLRequest* request = [self createURLRequest:address account:account];
   [request setHTTPMethod:@"POST"];
 
   NSMutableArray* parameters = [NSMutableArray array];
@@ -551,7 +572,7 @@ andReorderingMovies:[IdentitySet set]
   }
 
   NSLog(@"Adding '%@' succeeded.", movie.canonicalTitle);
-  [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:delegate];
+  [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:delegate account:account];
 }
 
 
@@ -567,10 +588,11 @@ andReorderingMovies:[IdentitySet set]
 
 - (Queue*) deleteMovie:(Movie*) movie
                inQueue:(Queue*) queue
+               account:(NetflixAccount*) account
                  error:(NSString**) error {
   *error = nil;
 
-  OAMutableURLRequest* request = [self createURLRequest:movie.identifier];
+  OAMutableURLRequest* request = [self createURLRequest:movie.identifier account:account];
 
   [request setHTTPMethod:@"DELETE"];
   [request prepare];
@@ -624,6 +646,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
   NSSet* reorderedMovies = [arguments objectAtIndex:2];
   NSArray* moviesInOrder = [arguments objectAtIndex:3];
   id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:4];
+  NetflixAccount* account = [arguments objectAtIndex:5];
 
   Queue* finalQueue = queue;
   NSLog(@"Deleting:\n'%@'\nReordering:\n%@", deletedMovies, reorderedMovies);
@@ -632,13 +655,15 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     NSString* error;
     Queue* resultantQueue = [self deleteMovie:movie
                                       inQueue:finalQueue
+                                      account:account
                                         error:&error];
 
     if (resultantQueue == nil) {
       NSLog(@"Failed to delete '%@'. %@.", movie.canonicalTitle, error);
       [self saveQueue:finalQueue
        andReportError:error
-toModifyQueueDelegate:delegate];
+toModifyQueueDelegate:delegate
+              account:account];
       return;
     }
 
@@ -655,13 +680,15 @@ toModifyQueueDelegate:delegate];
     Queue* resultantQueue = [self moveMovie:movie
                                  toPosition:position
                                     inQueue:finalQueue
+                                    account:account
                                       error:&error];
 
     if (resultantQueue == nil) {
       NSLog(@"Failed to move'%@' to %d. %@", movie.canonicalTitle, position, error);
       [self saveQueue:finalQueue
        andReportError:error
-toModifyQueueDelegate:delegate];
+toModifyQueueDelegate:delegate
+              account:account];
       return;
     }
 
@@ -670,7 +697,7 @@ toModifyQueueDelegate:delegate];
   }
 
   NSLog(@"Delete/Reorder completed successfully.  Saving queue and reporting.", nil);
-  [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate];
+  [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate account:account];
 }
 
 
@@ -684,7 +711,7 @@ toModifyQueueDelegate:delegate];
 }
 
 
-- (NSString*) userRatingForMovie:(Movie*) movie {
+- (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], @"");
   movie = [self promoteDiscToSeries:movie];
 
@@ -693,7 +720,7 @@ toModifyQueueDelegate:delegate];
     return presubmitRating;
   }
 
-  return [super userRatingForMovie:movie];
+  return [super userRatingForMovie:movie account:account];
 }
 
 @end

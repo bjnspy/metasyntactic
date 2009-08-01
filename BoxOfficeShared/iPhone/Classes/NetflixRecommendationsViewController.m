@@ -21,6 +21,7 @@
 #import "Queue.h"
 
 @interface NetflixRecommendationsViewController()
+@property (retain) NetflixAccount* account;
 @property (retain) NSArray* genres;
 @property (retain) MultiDictionary* genreToMovies;
 @end
@@ -28,10 +29,12 @@
 
 @implementation NetflixRecommendationsViewController
 
+@synthesize account;
 @synthesize genres;
 @synthesize genreToMovies;
 
 - (void) dealloc {
+  self.account = nil;
   self.genres = nil;
   self.genreToMovies = nil;
 
@@ -55,10 +58,11 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
+  self.account = self.model.currentNetflixAccount;
   MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
 
   NSMutableSet* set = [NSMutableSet set];
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
+  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
   for (Movie* movie in queue.movies) {
     if (movie.genres.count > 0) {
       NSString* genre = [movie.genres objectAtIndex:0];

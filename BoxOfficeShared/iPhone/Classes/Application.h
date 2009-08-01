@@ -37,12 +37,10 @@
 + (NSString*) blurayDetailsDirectory;
 
 + (NSString*) netflixDirectory;
++ (NSString*) netflixAccountsDirectory;
 + (NSString*) netflixDetailsDirectory;
 + (NSString*) netflixSearchDirectory;
-+ (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
-+ (NSString*) netflixUserRatingsDirectory;
-+ (NSString*) netflixPredictedRatingsDirectory;
 + (NSString*) netflixRSSDirectory;
 
 + (NSString*) upcomingDirectory;
@@ -54,7 +52,6 @@
 + (NSString*) helpDirectory;
 
 + (void) resetDirectories;
-+ (void) resetNetflixDirectories;
 
 + (NSString*) host;
 + (BOOL) isInReviewPeriod;

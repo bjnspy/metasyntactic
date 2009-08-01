@@ -14,8 +14,9 @@
 
 @interface NetflixRecommendationsViewController : AbstractTableViewController {
 @private
-    NSArray* genres;
-    MultiDictionary* genreToMovies;
+  NetflixAccount* account;
+  NSArray* genres;
+  MultiDictionary* genreToMovies;
 }
 
 @end

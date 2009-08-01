@@ -22,6 +22,7 @@
 #import "Queue.h"
 
 @interface NetflixGenreRecommendationsViewController()
+@property (retain) NetflixAccount* account;
 @property (copy) NSString* genre;
 @property (retain) NSArray* movies;
 @end
@@ -29,10 +30,12 @@
 
 @implementation NetflixGenreRecommendationsViewController
 
+@synthesize account;
 @synthesize genre;
 @synthesize movies;
 
 - (void) dealloc {
+  self.account = nil;
   self.genre = nil;
   self.movies = nil;
 
@@ -57,10 +60,12 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
+  self.account = self.model.currentNetflixAccount;
+  
   self.tableView.rowHeight = 100;
   NSMutableArray* array = [NSMutableArray array];
 
-  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
+  Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
   for (Movie* movie in queue.movies) {
     NSArray* genres = movie.genres;
     if (genres.count > 0 && [genre isEqual:[genres objectAtIndex:0]]) {

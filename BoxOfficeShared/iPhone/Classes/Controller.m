@@ -308,13 +308,18 @@ static Controller* controller = nil;
 - (void) setNetflixEnabled:(BOOL) value {
   [self.model setNetflixCacheEnabled:value];
   [BoxOfficeSharedApplication resetTabs];
-  [Application resetNetflixDirectories];
   [self updateNetflixCache];
 }
 
 
-- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
-  [self.model setNetflixKey:key secret:secret userId:userId];
+- (void) addNetflixAccount:(NetflixAccount*) account {
+  [self.model addNetflixAccount:account];
+  [self updateNetflixCache];
+}
+
+
+- (void) removeNetflixAccount:(NetflixAccount*) account {
+  [self.model removeNetflixAccount:account];
   [self updateNetflixCache];
 }
 
