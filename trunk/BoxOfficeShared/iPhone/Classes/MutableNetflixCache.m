@@ -15,6 +15,7 @@
 #import "MutableNetflixCache.h"
 
 #import "Model.h"
+#import "ModifyQueueArguments.h"
 #import "MoveMovieArguments.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
@@ -226,7 +227,12 @@
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate
              account:(NetflixAccount*) account {
-  NSArray* arguments = [NSArray arrayWithObjects:queue, deletedMovies, reorderedMovies, movies, delegate, account, nil];
+  ModifyQueueArguments* arguments = [ModifyQueueArguments argumentsWithQueue:queue
+                                                               deletedMovies:deletedMovies
+                                                             reorderedMovies:reorderedMovies
+                                                               moviesInOrder:movies
+                                                                    delegate:delegate
+                                                                     account:account];
 
   [[OperationQueue operationQueue] performSelector:@selector(modifyQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -596,30 +602,23 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 }
 
 
-- (void) modifyQueueBackgroundEntryPointWorker:(NSArray*) arguments {
-  Queue* queue = [arguments objectAtIndex:0];
-  NSSet* deletedMovies = [arguments objectAtIndex:1];
-  NSSet* reorderedMovies = [arguments objectAtIndex:2];
-  NSArray* moviesInOrder = [arguments objectAtIndex:3];
-  id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:4];
-  NetflixAccount* account = [arguments objectAtIndex:5];
+- (void) modifyQueueBackgroundEntryPointWorker:(ModifyQueueArguments*) modifyArguments {
+  Queue* finalQueue = modifyArguments.queue;
+  NSLog(@"Deleting:\n'%@'\nReordering:\n%@", modifyArguments.deletedMovies, modifyArguments.reorderedMovies);
 
-  Queue* finalQueue = queue;
-  NSLog(@"Deleting:\n'%@'\nReordering:\n%@", deletedMovies, reorderedMovies);
-
-  for (Movie* movie in deletedMovies.allObjects) {
+  for (Movie* movie in modifyArguments.deletedMovies.allObjects) {
     NSString* error;
     Queue* resultantQueue = [self deleteMovie:movie
                                       inQueue:finalQueue
-                                      account:account
+                                      account:modifyArguments.account
                                         error:&error];
 
     if (resultantQueue == nil) {
       NSLog(@"Failed to delete '%@'. %@.", movie.canonicalTitle, error);
       [self saveQueue:finalQueue
        andReportError:error
-toModifyQueueDelegate:delegate
-              account:account];
+toModifyQueueDelegate:modifyArguments.delegate
+              account:modifyArguments.account];
       return;
     }
 
@@ -627,24 +626,24 @@ toModifyQueueDelegate:delegate
     finalQueue = resultantQueue;
   }
 
-  NSArray* orderedMoviesToReorder = [reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:moviesInOrder];
+  NSArray* orderedMoviesToReorder = [modifyArguments.reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:modifyArguments.moviesInOrder];
   for (Movie* movie in orderedMoviesToReorder) {
-    NSInteger position = [moviesInOrder indexOfObjectIdenticalTo:movie];
+    NSInteger position = [modifyArguments.moviesInOrder indexOfObjectIdenticalTo:movie];
     NSLog(@"Moving %@ to %d", movie.canonicalTitle, position);
 
     NSString* error = nil;
     Queue* resultantQueue = [self moveMovie:movie
                                  toPosition:position
                                     inQueue:finalQueue
-                                    account:account
+                                    account:modifyArguments.account
                                       error:&error];
 
     if (resultantQueue == nil) {
       NSLog(@"Failed to move'%@' to %d. %@", movie.canonicalTitle, position, error);
       [self saveQueue:finalQueue
        andReportError:error
-toModifyQueueDelegate:delegate
-              account:account];
+toModifyQueueDelegate:modifyArguments.delegate
+              account:modifyArguments.account];
       return;
     }
 
@@ -653,11 +652,11 @@ toModifyQueueDelegate:delegate
   }
 
   NSLog(@"Delete/Reorder completed successfully.  Saving queue and reporting.", nil);
-  [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate account:account];
+  [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:modifyArguments.delegate account:modifyArguments.account];
 }
 
 
-- (void) modifyQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) modifyQueueBackgroundEntryPoint:(ModifyQueueArguments*) arguments {
   NSString* notification = LocalizedString(@"updating queue", nil);
   [NotificationCenter addNotification:notification];
   {
