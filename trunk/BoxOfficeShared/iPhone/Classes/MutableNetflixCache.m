@@ -14,6 +14,7 @@
 
 #import "MutableNetflixCache.h"
 
+#import "ChangeRatingArguments.h"
 #import "Model.h"
 #import "ModifyQueueArguments.h"
 #import "MoveMovieArguments.h"
@@ -266,7 +267,7 @@ andReorderingMovies:[IdentitySet set]
   [dictionary setObject:rating forKey:movie];
   self.presubmitRatings = dictionary;
 
-  NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, account, nil];
+  ChangeRatingArguments* arguments = [ChangeRatingArguments argumentsWithRating:rating movie:movie delegate:delegate account:account];
   [[OperationQueue operationQueue] performSelector:@selector(changeRatingBackgroundEntryPoint:)
                                           onTarget:self
                                         withObject:arguments
@@ -383,45 +384,42 @@ andReorderingMovies:[IdentitySet set]
 }
 
 
-- (void) changeRatingBackgroundEntryPointWorker:(NSArray*) arguments {
-  NSString* rating = [arguments objectAtIndex:0];
-  Movie* movie = [arguments objectAtIndex:1];
-  id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
-  NetflixAccount* account = [arguments objectAtIndex:3];
-
-  NSString* userRatingsFile = [self userRatingsFile:movie account:account];
+- (void) changeRatingBackgroundEntryPointWorker:(ChangeRatingArguments*) changeArguments {
+  NSString* userRatingsFile = [self userRatingsFile:changeArguments.movie account:changeArguments.account];
   NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
-  NSLog(@"Changing rating for '%@' from '%@' to '%@'.", movie.canonicalTitle, existingUserRating, rating);
+  NSLog(@"Changing rating for '%@' from '%@' to '%@'.", changeArguments.movie.canonicalTitle, existingUserRating, changeArguments.rating);
 
   // First, persist the change so that the UI picks it up
 
-  NSString* message = [self changeRatingTo:rating forMovieWorker:movie account:account];
+  NSString* message = [self changeRatingTo:changeArguments.rating
+                            forMovieWorker:changeArguments.movie
+                                   account:changeArguments.account];
   if (message.length > 0) {
     NSLog(@"Changing rating failed. Restoring existing rating.", nil);
     [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingFailure:toDelegate:message:)
                                   onTarget:self
-                                withObject:movie
-                                withObject:delegate
+                                withObject:changeArguments.movie
+                                withObject:changeArguments.delegate
                                 withObject:message];
     return;
   }
 
   NSLog(@"Changing rating succeeded.", nil);
-  [FileUtilities writeObject:rating toFile:userRatingsFile];
+  [FileUtilities writeObject:changeArguments.rating toFile:userRatingsFile];
   
   [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingSuccess:toDelegate:)
                                 onTarget:self
-                              withObject:movie
-                              withObject:delegate];
+                              withObject:changeArguments.movie
+                              withObject:changeArguments.delegate];
 }
 
 
-- (void) changeRatingBackgroundEntryPoint:(NSArray*) arguments {
+- (void) changeRatingBackgroundEntryPoint:(ChangeRatingArguments*) changeArguments {
   NSString* notification = LocalizedString(@"movie rating", nil);
   [NotificationCenter addNotification:notification];
   {
-    [self changeRatingBackgroundEntryPointWorker:arguments];
+    [self changeRatingBackgroundEntryPointWorker:changeArguments];
   }
   [NotificationCenter removeNotification:notification];
 }
