@@ -21,6 +21,7 @@
 #import "Queue.h"
 
 @interface NetflixQueueViewController()
+@property (retain) NetflixAccount* account;
 @property (copy) NSString* feedKey;
 @property (retain) Feed* feed;
 @property (retain) Queue* queue;
@@ -34,6 +35,7 @@
 
 @implementation NetflixQueueViewController
 
+@synthesize account;
 @synthesize feedKey;
 @synthesize feed;
 @synthesize queue;
@@ -44,6 +46,7 @@
 @synthesize backButton;
 
 - (void) dealloc {
+  self.account = nil;
   self.feedKey = nil;
   self.feed = nil;
   self.queue = nil;
@@ -119,7 +122,7 @@
   if (readonlyMode) {
     text = LocalizedString(@"Please Wait", nil);
   } else {
-    text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
+    text = [self.model.netflixCache titleForKey:feedKey includeCount:NO account:account];
   }
 
   self.title = text;
@@ -128,9 +131,10 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
+  self.account = self.model.currentNetflixAccount;
   self.tableView.rowHeight = 100;
-  self.feed = [self.model.netflixCache feedForKey:feedKey];
-  self.queue = [self.model.netflixCache queueForFeed:feed];
+  self.feed = [self.model.netflixCache feedForKey:feedKey account:account];
+  self.queue = [self.model.netflixCache queueForFeed:feed account:account];
   self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
   self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
   [self setupTitle];
@@ -277,12 +281,12 @@
   cell.accessoryView = activityIndicator;
 
   Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-  [self.model.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self];
+  [self.model.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self account:account];
 }
 
 
 - (void) moveSucceededForMovie:(Movie*) movie {
-  self.queue = [self.model.netflixCache queueForFeed:feed];
+  self.queue = [self.model.netflixCache queueForFeed:feed account:account];
   NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
 
   [self.tableView beginUpdates];
@@ -421,7 +425,7 @@
     [self.tableView setEditing:NO animated:YES];
     [self enterReadonlyMode];
 
-    [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];
+    [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
   }
 }
 

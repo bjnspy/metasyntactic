@@ -19,14 +19,17 @@
 #import "MutableNetflixCache.h"
 
 @interface NetflixRatingsCell()
+@property (retain) NetflixAccount* account;
 @property (retain) NSArray* imageViews;
 @end
 
 @implementation NetflixRatingsCell
 
+@synthesize account;
 @synthesize imageViews;
 
 - (void) dealloc {
+  self.account = nil;
   self.imageViews = nil;
 
   [super dealloc];
@@ -49,7 +52,7 @@
 
 
 - (void) setupNetflixRating {
-  CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie] floatValue];
+  CGFloat rating = [[self.model.netflixCache netflixRatingForMovie:movie account:account] floatValue];
 
   NSMutableArray* array = [NSMutableArray array];
   for (NSInteger i = 0; i < 5; i++) {
@@ -142,7 +145,7 @@
 - (void) setupRating {
   [self clearRating];
 
-  NSString* userRating = [self.model.netflixCache userRatingForMovie:movie];
+  NSString* userRating = [self.model.netflixCache userRatingForMovie:movie account:account];
   if (userRating.length > 0) {
     [self setupUserRating:userRating];
   } else {
@@ -151,8 +154,10 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ {
+- (id) initWithMovie:(Movie*) movie_
+             account:(NetflixAccount*) account_ {
   if ((self = [super initWithMovie:movie_])) {
+    self.account = nil;
     self.imageViews = [NSMutableArray array];
     [self setupRating];
   }
@@ -165,7 +170,7 @@
         wasTouched:(UITouch*) touch
           tapCount:(NSInteger) tapCount {
   NSInteger value = imageView.tag;
-  NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie] floatValue];
+  NSInteger currentUserRating = (NSInteger)[[self.model.netflixCache userRatingForMovie:movie account:account] floatValue];
 
   if (value == currentUserRating) {
     return;
@@ -181,7 +186,7 @@
 
   // now, update in the background.
   NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
-  [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
+  [self.model.netflixCache changeRatingTo:rating forMovie:movie delegate:self account:account];
 }
 
 
@@ -198,7 +203,8 @@
 }
 
 
-- (void) refresh {
+- (void) refresh:(NetflixAccount*) account_ {
+  self.account = account_;
   [self setupRating];
 }
 

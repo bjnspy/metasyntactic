@@ -25,6 +25,7 @@
 @property (retain) NSArray* upcomingMovies;
 @property (retain) NSArray* dvds;
 @property (retain) NSArray* bluray;
+@property (retain) NetflixAccount* account;
 @end
 
 
@@ -35,6 +36,7 @@
 @synthesize upcomingMovies;
 @synthesize dvds;
 @synthesize bluray;
+@synthesize account;
 
 - (void) dealloc {
   self.movies = nil;
@@ -42,6 +44,7 @@
   self.upcomingMovies = nil;
   self.dvds = nil;
   self.bluray = nil;
+  self.account = nil;
 
   [super dealloc];
 }
@@ -56,6 +59,7 @@
     self.upcomingMovies = model.upcomingCache.movies;
     self.dvds = model.dvdCache.movies;
     self.bluray = model.blurayCache.movies;
+    self.account = model.currentNetflixAccount;
   }
 
   return self;

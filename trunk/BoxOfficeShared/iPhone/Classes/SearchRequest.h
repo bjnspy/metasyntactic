@@ -19,6 +19,7 @@
   NSArray* upcomingMovies;
   NSArray* dvds;
   NSArray* bluray;
+  NetflixAccount* account;
 }
 
 @property (readonly, retain) NSArray* movies;
@@ -26,6 +27,7 @@
 @property (readonly, retain) NSArray* upcomingMovies;
 @property (readonly, retain) NSArray* dvds;
 @property (readonly, retain) NSArray* bluray;
+@property (readonly, retain) NetflixAccount* account;
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value;

@@ -24,85 +24,85 @@
 @implementation NetflixSettingsViewController
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (Controller*) controller {
-    return [Controller controller];
+  return [Controller controller];
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+  return YES;
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+  return 2;
 }
 
 
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        return 0;
-        return self.model.netflixPreferredFormats.count;
-    }
-
-    return 0;
+//  if (section == 0) {
+//    return 1;
+//  } else if (section == 1) {
+//    return 0;
+//    return self.model.netflixPreferredFormats.count;
+//  }
+  
+  return 0;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  
+//  if (indexPath.section == 0) {
+//    cell.textLabel.text = LocalizedString(@"Instant Watch", nil);
+//    UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
+//    switch_.enabled = NO;
+//    switch_.on = self.model.netflixCanInstantWatch;
+//    cell.accessoryView = switch_;
+//  } else {
+//    cell.textLabel.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
+//  }
 
-    if (indexPath.section == 0) {
-        cell.textLabel.text = LocalizedString(@"Instant Watch", nil);
-        UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
-        switch_.enabled = NO;
-        switch_.on = self.model.netflixCanInstantWatch;
-        cell.accessoryView = switch_;
-    } else {
-        cell.textLabel.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
-    }
-
-    return cell;
+  return cell;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 1) {
-        return LocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
-    }
-
-    return nil;
+  if (section == 1) {
+    return LocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
+  }
+  
+  return nil;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 1) {
-        return LocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
-    }
-
-    return nil;
+  if (section == 1) {
+    return LocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
+  }
+  
+  return nil;
 }
 
 @end

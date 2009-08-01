@@ -16,9 +16,9 @@
 
 @interface NetflixCache : AbstractNetflixCache {
 @private
-  // accessed from multiple threads.  needs lock
-  ThreadsafeValue*/*NSArray*/ feedsData;
-  NSDictionary* queuesData;
+  // accessed from multiple threads.  Always access through property
+  NSMutableDictionary* accountToFeeds;
+  NSMutableDictionary* accountToFeedKeyToQueues;
   NSDate* lastQuotaErrorDate;
 }
 
@@ -26,28 +26,28 @@
 
 + (NSArray*) mostPopularTitles;
 
-- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
-- (NSArray*) peopleSearch:(NSString*) query;
+- (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
+//- (NSArray*) peopleSearch:(NSString*) query;
 
-- (BOOL) isEnqueued:(Movie*) movie;
-- (NSArray*) statusesForMovie:(Movie*) movie;
+- (BOOL) isEnqueued:(Movie*) movie account:(NetflixAccount*) account;
+- (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
 
 - (void) update;
 
-- (NSArray*) feeds;
-- (Queue*) queueForFeed:(Feed*) feed;
-- (Feed*) feedForKey:(NSString*) key;
-- (Queue*) queueForKey:(NSString*) key;
-- (NSString*) titleForKey:(NSString*) key;
-- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount;
+- (NSArray*) feedsForAccount:(NetflixAccount*) account;
+- (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account;
+- (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;
+- (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account;
+- (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account;
+- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account;
 - (NSArray*) moviesForRSSTitle:(NSString*) title;
 - (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
-- (NSString*) netflixRatingForMovie:(Movie*) movie;
-- (NSString*) userRatingForMovie:(Movie*) movie;
+- (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
+- (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
 - (NSArray*) formatsForMovie:(Movie*) movie;
 - (NSArray*) similarMoviesForMovie:(Movie*) movie;
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
@@ -55,13 +55,13 @@
 
 - (NSString*) noInformationFound;
 
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie;
+- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie account:(NetflixAccount*) account;
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
 
-- (void) saveQueue:(Queue*) queue;
+- (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
-- (NSString*) userRatingsFile:(Movie*) movie;
+- (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
 - (NSString*) downloadEtag:(Feed*) feed;
 
 - (void) checkApiResult:(XmlElement*) result;

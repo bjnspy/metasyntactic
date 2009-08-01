@@ -17,6 +17,7 @@
 
 @interface NetflixQueueViewController : AbstractTableViewController<NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
+  NetflixAccount* account;
   NSString* feedKey;
   Feed* feed;
   Queue* queue;

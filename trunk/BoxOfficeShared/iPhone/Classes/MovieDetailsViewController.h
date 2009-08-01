@@ -22,6 +22,7 @@
   Movie* movie;
   DVD* dvd;
 
+  NetflixAccount* netflixAccount;
   Movie* netflixMovie;
   NetflixRatingsCell* netflixRatingsCell;
   NSArray* netflixStatusCells;

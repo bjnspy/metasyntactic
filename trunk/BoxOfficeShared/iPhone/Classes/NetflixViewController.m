@@ -19,6 +19,7 @@
 #import "Controller.h"
 #import "Model.h"
 #import "MutableNetflixCache.h"
+#import "NetflixAccount.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
@@ -30,6 +31,7 @@
 #import "NowPlayingCreditsViewController.h"
 
 @interface NetflixViewController()
+@property (retain) NetflixAccount* account;
 @property (retain) UISearchBar* searchBar;
 @end
 
@@ -49,9 +51,11 @@ typedef enum {
   LastSection = LogOutSection
 } Sections;
 
+@synthesize account;
 @synthesize searchBar;
 
 - (void) dealloc {
+  self.account = nil;
   self.searchBar = nil;
 
   [super dealloc];
@@ -100,7 +104,7 @@ typedef enum {
 
 
 - (BOOL) hasAccount {
-  return self.model.netflixUserId.length > 0;
+  return self.account.userId.length > 0;
 }
 
 
@@ -143,6 +147,8 @@ typedef enum {
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
+  self.account = self.model.currentNetflixAccount;
+  
   if (self.hasAccount) {
     self.tableView.tableHeaderView = searchBar;
   } else {
@@ -192,16 +198,16 @@ typedef enum {
         }
         break;
       case DVDSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey] account:account];
         break;
       case InstantSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey] account:account];
         break;
       case RecommendationsSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey] account:account];
         break;
       case AtHomeSection:
-        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+        cell.textLabel.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey] account:account];
         break;
       case RentalHistorySection:
         cell.textLabel.text = LocalizedString(@"Rental History", nil);
@@ -245,8 +251,7 @@ typedef enum {
       clickedButtonAtIndex:(NSInteger) index {
   [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
   if (index != alertView.cancelButtonIndex) {
-    [self.controller setNetflixKey:nil secret:nil userId:nil];
-    [Application resetNetflixDirectories];
+    [self.controller removeNetflixAccount:self.model.currentNetflixAccount];
 
     [self majorRefresh];
   }
@@ -254,8 +259,7 @@ typedef enum {
 
 
 - (void) didSelectQueueRow:(NSString*) key {
-  NetflixQueueViewController* controller =
-  [[[NetflixQueueViewController alloc] initWithFeedKey:key] autorelease];
+  UIViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:key] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -268,7 +272,7 @@ typedef enum {
    [NetflixCache rentalHistoryReturnedKey],
    nil];
 
-  NetflixFeedsViewController* controller =
+  UIViewController* controller =
   [[[NetflixFeedsViewController alloc] initWithFeedKeys:keys
                                                   title:LocalizedString(@"Rental History", nil)] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
@@ -276,25 +280,25 @@ typedef enum {
 
 
 - (void) didSelectRecomendationsRow {
-  NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixRecommendationsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectAboutSendFeedbackRow {
-  CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[CreditsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectSettingsRow {
-  NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixSettingsViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 - (void) didSelectMostPopularSection {
-  NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] init] autorelease];
+  UIViewController* controller = [[[NetflixMostPopularViewController alloc] init] autorelease];
   [self.navigationController pushViewController:controller animated:YES];
 }
 

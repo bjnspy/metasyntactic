@@ -39,6 +39,7 @@
 - (void) setDvdMoviesShowDVDs:(BOOL) value;
 - (void) setDvdMoviesShowBluray:(BOOL) value;
 
-- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
+- (void) addNetflixAccount:(NetflixAccount*) account;
+- (void) removeNetflixAccount:(NetflixAccount*) account;
 
 @end

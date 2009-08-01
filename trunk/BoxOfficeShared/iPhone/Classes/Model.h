@@ -49,6 +49,8 @@ enum ViewControllerType {
 
   NSInteger cachedScoreProviderIndex;
   NSInteger cachedAllMoviesSelectedSegmentIndex;
+  
+  NSArray* netflixAccountsData;
 }
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
@@ -97,23 +99,11 @@ enum ViewControllerType {
 - (void) setUpcomingCacheEnabled:(BOOL) value;
 - (void) setNetflixCacheEnabled:(BOOL) value;
 
-/*
 - (NSArray*) netflixAccounts;
-- (void) setNetflixAccounts:(NSArray*) accounts;
 - (NetflixAccount*) currentNetflixAccount; 
-- (void) setCurrentNetflixAccount:(NetflixAccount*) account;
-*/
+- (void) addNetflixAccount:(NetflixAccount*) account;
+- (void) removeNetflixAccount:(NetflixAccount*) account;
 
-- (NSString*) netflixKey;
-- (NSString*) netflixSecret;
-- (NSString*) netflixUserId;
-- (NSString*) netflixFirstName;
-- (NSString*) netflixLastName;
-- (BOOL) netflixCanInstantWatch;
-- (NSArray*) netflixPreferredFormats;
-- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
-- (void) setNetflixFirstName:(NSString*) firstName lastName:(NSString*) lastName canInstantWatch:(BOOL) canInstantWatch preferredFormats:(NSArray*) preferredFormats;
- 
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;

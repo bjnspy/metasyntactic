@@ -58,4 +58,16 @@ property_definition(userId);
   return dictionary;
 }
 
+
+- (BOOL) isEqual:(id) object {
+  if (object == nil) {
+    return NO;
+  }
+  if (self == object) {
+    return YES;
+  }
+  
+  return [userId isEqual:[object userId]];
+}
+
 @end

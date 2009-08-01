@@ -31,6 +31,7 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "MutableNetflixCache.h"
+#import "NetflixAccount.h"
 #import "PosterCache.h"
 #import "ReviewsViewController.h"
 #import "Score.h"
@@ -67,11 +68,10 @@
 @property (retain) NSNumber* isSearchDateTodayData;
 @property NSInteger cachedScoreProviderIndex;
 @property NSInteger searchRadiusData;
+@property (retain) NSArray* netflixAccountsData;
 @end
 
 @implementation Model
-
-static NSString* persistenceVersion = @"105";
 
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX          = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX        = @"allTheatersSelectedSegmentIndex";
@@ -92,17 +92,14 @@ static NSString* LOADING_INDIACTORS_DISABLED                = @"loadingIndicator
 static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelectedScopeButtonIndex";
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                    = @"navigationStackValues";
-static NSString* NETFLIX_CAN_INSTANT_WATCH                  = @"netflixCanInstantWatch";
+static NSString* NETFLIX_ACCOUNTS                           = @"netflixAccounts";
+static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX              = @"netflixCurrentAccountIndex";
 static NSString* NETFLIX_DISABLED                           = @"netflixDisabled";
-static NSString* NETFLIX_FIRST_NAME                         = @"netflixFirstName";
 static NSString* NETFLIX_KEY                                = @"netflixKey";
-static NSString* NETFLIX_LAST_NAME                          = @"netflixLastName";
-static NSString* NETFLIX_PREFERRED_FORMATS                  = @"netflixPreferredFormats";
 static NSString* NETFLIX_NOTIFICATIONS_DISABLED             = @"netflixNotificationsDisabled";
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
-static NSString* NETFLIX_UPDATED_APPLICATION_KEYS           = @"netflixUpdatedApplicationKeys";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                                  = @"runCount";
@@ -117,115 +114,6 @@ static NSString* UPCOMING_DISABLED                          = @"upcomingDisabled
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX     = @"upcomingMoviesSelectedSegmentIndex";
 static NSString* USE_NORMAL_FONTS                           = @"useNormalFonts";
 static NSString* USER_ADDRESS                               = @"userLocation";
-static NSString* VERSION                                    = @"version";
-static NSString* VOTED_FOR_ICON                             = @"votedForIcon";
-
-static NSString** ALL_KEYS[] = {
-&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
-&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
-&AUTO_UPDATE_LOCATION,
-&BOOKMARKED_BLURAY,
-&BOOKMARKED_DVD,
-&BOOKMARKED_MOVIES,
-&BOOKMARKED_TITLES,
-&BOOKMARKED_UPCOMING,
-&DVD_BLURAY_DISABLED,
-&DVD_MOVIES_HIDE_BLURAY,
-&DVD_MOVIES_HIDE_DVDS,
-&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-&FAVORITE_THEATERS,
-&FIRST_LAUNCH_DATE,
-&HAS_SHOWN_WRITE_REVIEW_REQUEST,
-&LOADING_INDIACTORS_DISABLED,
-&LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
-&NAVIGATION_STACK_TYPES,
-&NAVIGATION_STACK_VALUES,
-&NETFLIX_CAN_INSTANT_WATCH,
-&NETFLIX_DISABLED,
-&NETFLIX_FIRST_NAME,
-&NETFLIX_KEY,
-&NETFLIX_LAST_NAME,
-&NETFLIX_PREFERRED_FORMATS,
-&NETFLIX_NOTIFICATIONS_DISABLED,
-&NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
-&NETFLIX_SECRET,
-&NETFLIX_USER_ID,
-&NOTIFICATIONS_DISABLED,
-&PRIORITIZE_BOOKMARKS,
-&RUN_COUNT,
-&SCORE_PROVIDER_INDEX,
-&SCREEN_ROTATION_DISABLED,
-&SEARCH_DATE,
-&SEARCH_RADIUS,
-&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&UNSUPPORTED_COUNTRY,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
-&UPCOMING_DISABLED,
-&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-&USE_NORMAL_FONTS,
-&USER_ADDRESS,
-&VERSION,
-&VOTED_FOR_ICON,
-};
-
-
-static NSString** STRING_KEYS_TO_MIGRATE[] = {
-&USER_ADDRESS,
-&NETFLIX_KEY,
-&NETFLIX_SECRET,
-&NETFLIX_USER_ID,
-&NETFLIX_FIRST_NAME,
-&NETFLIX_LAST_NAME,
-};
-
-static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
-&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
-&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
-&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-&LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
-&NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX,
-&SCORE_PROVIDER_INDEX,
-&SEARCH_RADIUS,
-&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX
-};
-
-static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
-&AUTO_UPDATE_LOCATION,
-&DVD_BLURAY_DISABLED,
-&DVD_MOVIES_HIDE_BLURAY,
-&DVD_MOVIES_HIDE_DVDS,
-&HAS_SHOWN_WRITE_REVIEW_REQUEST,
-&LOADING_INDIACTORS_DISABLED,
-&NETFLIX_CAN_INSTANT_WATCH,
-&NETFLIX_DISABLED,
-&NETFLIX_NOTIFICATIONS_DISABLED,
-&NETFLIX_UPDATED_APPLICATION_KEYS,
-&NOTIFICATIONS_DISABLED,
-&PRIORITIZE_BOOKMARKS,
-&SCREEN_ROTATION_DISABLED,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
-&UPCOMING_DISABLED,
-&USE_NORMAL_FONTS,
-&VOTED_FOR_ICON,
-};
-
-static NSString** DATE_KEYS_TO_MIGRATE[] = {
-&FIRST_LAUNCH_DATE,
-};
-
-static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
-&BOOKMARKED_TITLES,
-&NETFLIX_PREFERRED_FORMATS,
-};
-
-static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
-&BOOKMARKED_MOVIES,
-&BOOKMARKED_UPCOMING,
-&BOOKMARKED_DVD,
-&BOOKMARKED_BLURAY
-};
-
 
 @synthesize dataProvider;
 
@@ -251,6 +139,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize helpCache;
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
+@synthesize netflixAccountsData;
 
 - (void) dealloc {
   self.dataProvider = nil;
@@ -276,6 +165,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
+  
+  self.netflixAccountsData = nil;
 
   [super dealloc];
 }
@@ -304,116 +195,8 @@ static Model* model = nil;
 }
 
 
-- (NSDictionary*) valuesToMigrate {
-  NSMutableDictionary* result = [NSMutableDictionary dictionary];
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-
-  for (NSInteger i = 0; i < ArrayLength(STRING_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *STRING_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSString class]]) {
-      [result setObject:previousValue forKey:key];
-    }
-  }
-
-  for (NSInteger i = 0; i < ArrayLength(DATE_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *DATE_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSDate class]]) {
-      [result setObject:previousValue forKey:key];
-    }
-  }
-
-  for (NSInteger i = 0; i < ArrayLength(BOOLEAN_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *BOOLEAN_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSNumber class]]) {
-      [result setObject:previousValue forKey:key];
-    }
-  }
-
-  for (NSInteger i = 0; i < ArrayLength(INTEGER_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *INTEGER_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSNumber class]]) {
-      [result setObject:previousValue forKey:key];
-    }
-  }
-
-  for (NSInteger i = 0; i < ArrayLength(STRING_ARRAY_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *STRING_ARRAY_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSArray class]]) {
-      NSMutableArray* elements = [NSMutableArray array];
-      for (id element in previousValue) {
-        if ([element isKindOfClass:[NSString class]]) {
-          [elements addObject:element];
-        }
-      }
-
-      [result setObject:elements forKey:key];
-    }
-  }
-
-  for (NSInteger i = 0; i < ArrayLength(MOVIE_ARRAY_KEYS_TO_MIGRATE); i++) {
-    NSString* key = *MOVIE_ARRAY_KEYS_TO_MIGRATE[i];
-    id previousValue = [defaults objectForKey:key];
-    if ([previousValue isKindOfClass:[NSArray class]]) {
-      NSMutableArray* elements = [NSMutableArray array];
-      for (id element in previousValue) {
-        if ([element isKindOfClass:[NSDictionary class]] &&
-            [Movie canReadDictionary:element]) {
-          [elements addObject:element];
-        }
-      }
-
-      [result setObject:elements forKey:key];
-    }
-  }
-
-  {
-    id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
-    if (previousValue != nil) {
-      [result setObject:previousValue forKey:FAVORITE_THEATERS];
-    }
-  }
-
-  return result;
-}
-
-
 - (void) synchronize {
   [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-- (void) loadData {
-  self.dataProvider = [GoogleDataProvider provider];
-
-  NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
-  if (version == nil || ![persistenceVersion isEqual:version]) {
-    // First, capture any preferences that we can safely migrate
-    NSDictionary* currentValues = [self valuesToMigrate];
-
-    // Now, wipe out all keys
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    for (int i = 0; i < ArrayLength(ALL_KEYS); i++) {
-      NSString* key = *ALL_KEYS[i];
-      [defaults removeObjectForKey:key];
-    }
-
-    // And delete any stored state
-    [Application resetDirectories];
-
-    // Now restore the saved preferences.
-    for (NSString* key in currentValues) {
-      [defaults setObject:[currentValues objectForKey:key] forKey:key];
-    }
-
-    // Mark that we updated successfully, and flush to disc.
-    [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
-    [self synchronize];
-  }
 }
 
 
@@ -495,15 +278,34 @@ static Model* model = nil;
 }
 
 
+- (void) migrateNetflixAccount {
+  if (self.netflixAccounts.count == 0) {
+    NSString* key = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
+    NSString* secret = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
+    NSString* userId = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
+    if (key.length > 0 && secret.length > 0 && userId.length > 0) {
+      NetflixAccount* account = [NetflixAccount accountWithKey:key secret:secret userId:userId];
+      [self addNetflixAccount:account];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_SECRET];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NETFLIX_USER_ID];
+    [self synchronize];
+  }
+}
+
+
 - (id) init {
   if ((self = [super init])) {
     self.bookmarkedTitlesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarkedTitles) saveSelector:@selector(saveBookmarkedTitles:)];
     self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
 
     [self checkCountry];
-    [self loadData];
     [self checkDate];
-
+    [self migrateNetflixAccount];
+    
+    self.dataProvider = [GoogleDataProvider provider];
     self.userLocationCache = [UserLocationCache cache];
     self.largePosterCache = [LargePosterCache cache];
     self.imageCache = [ImageCache cache];
@@ -635,64 +437,72 @@ static Model* model = nil;
 
 - (void) setNetflixCacheEnabled:(BOOL) value {
   [[NSUserDefaults standardUserDefaults] setBool:!value forKey:NETFLIX_DISABLED];
+}
 
-  if (!value) {
-    [self setNetflixKey:nil secret:nil userId:nil];
+
+- (NSArray*) loadNetflixAccounts {
+  NSArray* result = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_ACCOUNTS];
+  if (result.count == 0) {
+    return [NSArray array];
   }
+  
+  return [NetflixAccount decodeArray:result];
 }
 
 
-- (NSString*) netflixKey {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
+- (NSArray*) netflixAccounts {
+  if (netflixAccountsData == nil) {
+    self.netflixAccountsData = [self loadNetflixAccounts];
+  }
+  return self.netflixAccountsData;
 }
 
 
-- (NSString*) netflixSecret {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
-}
-
-
--(NSString*) netflixUserId {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
-}
-
-
--(NSString*) netflixFirstName {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_FIRST_NAME];
-}
-
-
--(NSString*) netflixLastName {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_LAST_NAME];
-}
-
-
-- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
-  [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
-  [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
-  [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
+- (void) setNetflixAccounts:(NSArray*) accounts {
+  self.netflixAccountsData = accounts;
+  [[NSUserDefaults standardUserDefaults] setObject:[NetflixAccount encodeArray:accounts] forKey:NETFLIX_ACCOUNTS];
+  
+  NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
+  if (index < 0 || index >= accounts.count) {
+    index = 0;
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
+  }
+  
   [self synchronize];
 }
 
 
-- (void) setNetflixFirstName:(NSString*) firstName
-                    lastName:(NSString*) lastName
-             canInstantWatch:(BOOL) canInstantWatch
-            preferredFormats:(NSArray*) preferredFormats {
-  [[NSUserDefaults standardUserDefaults] setObject:firstName forKey:NETFLIX_FIRST_NAME];
-  [[NSUserDefaults standardUserDefaults] setObject:lastName forKey:NETFLIX_LAST_NAME];
-  [[NSUserDefaults standardUserDefaults] setBool:canInstantWatch forKey:NETFLIX_CAN_INSTANT_WATCH];
-  [[NSUserDefaults standardUserDefaults] setObject:preferredFormats forKey:NETFLIX_PREFERRED_FORMATS];
+- (NetflixAccount*) currentNetflixAccount {
+  NSArray* accounts = self.netflixAccounts;
+  NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
+  if (index < 0 || index >= accounts.count) {
+    return nil;
+  }
+  return [accounts objectAtIndex:index];
 }
 
 
-- (BOOL) netflixCanInstantWatch {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_CAN_INSTANT_WATCH];
+- (void) addNetflixAccount:(NetflixAccount*) account {
+  if (account == nil) {
+    return;
+  }
+
+  NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
+  if (![accounts containsObject:account]) {
+    [accounts addObject:account];
+  }
+  [self setNetflixAccounts:accounts];
 }
 
 
-- (NSArray*) netflixPreferredFormats {
-  return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_PREFERRED_FORMATS];
+- (void) removeNetflixAccount:(NetflixAccount*) account {
+  if (account == nil) {
+    return;
+  }
+
+  NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
+  [accounts removeObject:account];
+  [self setNetflixAccounts:accounts];
 }
 
 

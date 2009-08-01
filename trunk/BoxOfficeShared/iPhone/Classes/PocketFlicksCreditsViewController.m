@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "BoxOfficeStockImages.h"
 #import "Model.h"
+#import "NetflixAccount.h"
 
 @interface PocketFlicksCreditsViewController()
 @property (retain) NSArray* languages;
@@ -282,14 +283,17 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
                     [LocaleUtilities englishCountry],
                     [LocaleUtilities englishLanguage]];
 
-  body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
-          [StringUtilities nonNilString:self.model.netflixUserId],
-          [StringUtilities nonNilString:self.model.netflixKey],
-          [StringUtilities nonNilString:self.model.netflixSecret]];
+  NetflixAccount* account = self.model.currentNetflixAccount;
+  if (account.userId.length > 0) {
+    body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+            [StringUtilities nonNilString:account.userId],
+            [StringUtilities nonNilString:account.key],
+            [StringUtilities nonNilString:account.secret]];
+  }
 
   NSString* subject;
   if ([LocaleUtilities isJapanese]) {
-    subject = [StringUtilities stringByAddingPercentEscapes:@"PocketFlicksのフィードバック"];
+    subject = @"PocketFlicksのフィードバック";
   } else {
     subject = @"PocketFlicks Feedback";
   }
