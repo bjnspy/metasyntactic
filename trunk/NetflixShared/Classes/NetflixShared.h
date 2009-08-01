@@ -16,6 +16,7 @@
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixAuthentication.h"
 #import "NetflixChangeRatingDelegate.h"
+#import "NetflixLoginViewController.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixSharedApplication.h"

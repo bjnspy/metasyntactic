@@ -43,4 +43,9 @@ static id<NetflixSharedApplicationDelegate> delegate = nil;
   [delegate reportNetflixMovie:movie];
 }
 
+
++ (void) addNetflixAccount:(NetflixAccount*) account {
+  [delegate addNetflixAccount:account];
+}
+
 @end

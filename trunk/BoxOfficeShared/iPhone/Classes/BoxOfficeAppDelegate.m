@@ -58,11 +58,21 @@
 }
 
 
+- (Model*) model {
+  return [Model model];
+}
+
+
+- (Controller*) controller {
+  return [Controller controller];
+}
+
+
 - (void) onSplashScreenFinished {
   [NotificationCenter attachToViewController:self.viewController];
 
   // Ok.  We've set up all our global state.  Now get the ball rolling.
-  [[Controller controller] start];
+  [self.controller start];
 }
 
 
@@ -89,11 +99,6 @@
 
 - (NSString*) localizedString:(NSString*) key {
   return [LocalizableStringsCache localizedString:key];
-}
-
-
-- (Model*) model {
-  return [Model model];
 }
 
 
@@ -144,6 +149,11 @@
 
 - (void) reportNetflixMovie:(Movie*) movie {
   [[CacheUpdater cacheUpdater] addMovie:movie];
+}
+
+
+- (void) addNetflixAccount:(NetflixAccount*) account {
+  [self.controller addNetflixAccount:account];
 }
 
 @end

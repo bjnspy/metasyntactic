@@ -20,7 +20,6 @@
 #import "Model.h"
 #import "NetflixAccountsViewController.h"
 #import "NetflixFeedsViewController.h"
-#import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixRecommendationsViewController.h"

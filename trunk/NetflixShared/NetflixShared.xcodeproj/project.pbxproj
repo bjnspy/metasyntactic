@@ -48,6 +48,10 @@
 		74A01D8B1024555000299F25 /* NetflixAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D891024555000299F25 /* NetflixAuthentication.h */; };
 		74A01D8C1024555000299F25 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D8A1024555000299F25 /* NetflixAuthentication.m */; };
 		74A01D901024557E00299F25 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D8E1024557E00299F25 /* Macros.h */; };
+		74A01F40102468D600299F25 /* NetflixLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01F3E102468D600299F25 /* NetflixLoginViewController.h */; };
+		74A01F41102468D600299F25 /* NetflixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01F3F102468D600299F25 /* NetflixLoginViewController.m */; };
+		74A01F4E10246BA500299F25 /* NetflixStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01F4C10246BA500299F25 /* NetflixStockImages.h */; };
+		74A01F4F10246BA500299F25 /* NetflixStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01F4D10246BA500299F25 /* NetflixStockImages.m */; };
 		AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +109,11 @@
 		74A01D891024555000299F25 /* NetflixAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAuthentication.h; sourceTree = "<group>"; };
 		74A01D8A1024555000299F25 /* NetflixAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAuthentication.m; sourceTree = "<group>"; };
 		74A01D8E1024557E00299F25 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74A01F3E102468D600299F25 /* NetflixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixLoginViewController.h; sourceTree = "<group>"; };
+		74A01F3F102468D600299F25 /* NetflixLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixLoginViewController.m; sourceTree = "<group>"; };
+		74A01F4910246B7D00299F25 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NetflixResources.bundle; sourceTree = "<group>"; };
+		74A01F4C10246BA500299F25 /* NetflixStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStockImages.h; sourceTree = "<group>"; };
+		74A01F4D10246BA500299F25 /* NetflixStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStockImages.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libNetflixShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetflixShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,11 +142,12 @@
 		0867D691FE84028FC02AAC07 /* NetflixShared */ = {
 			isa = PBXGroup;
 			children = (
-				74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
-				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				74A01F4810246B6C00299F25 /* Resources */,
+				74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */,
 			);
 			name = NetflixShared;
 			sourceTree = "<group>";
@@ -209,6 +219,9 @@
 		74A01D161024517D00299F25 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				74A01F3D102468C200299F25 /* ViewControllers */,
+				74A01F4C10246BA500299F25 /* NetflixStockImages.h */,
+				74A01F4D10246BA500299F25 /* NetflixStockImages.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -254,6 +267,23 @@
 			name = Netflix;
 			sourceTree = "<group>";
 		};
+		74A01F3D102468C200299F25 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				74A01F3E102468D600299F25 /* NetflixLoginViewController.h */,
+				74A01F3F102468D600299F25 /* NetflixLoginViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		74A01F4810246B6C00299F25 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74A01F4910246B7D00299F25 /* NetflixResources.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -287,6 +317,8 @@
 				74A01D85102454C600299F25 /* AbstractMovieCache.h in Headers */,
 				74A01D8B1024555000299F25 /* NetflixAuthentication.h in Headers */,
 				74A01D901024557E00299F25 /* Macros.h in Headers */,
+				74A01F40102468D600299F25 /* NetflixLoginViewController.h in Headers */,
+				74A01F4E10246BA500299F25 /* NetflixStockImages.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +397,8 @@
 				74A01D731024538400299F25 /* Status.m in Sources */,
 				74A01D86102454C600299F25 /* AbstractMovieCache.m in Sources */,
 				74A01D8C1024555000299F25 /* NetflixAuthentication.m in Sources */,
+				74A01F41102468D600299F25 /* NetflixLoginViewController.m in Sources */,
+				74A01F4F10246BA500299F25 /* NetflixStockImages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

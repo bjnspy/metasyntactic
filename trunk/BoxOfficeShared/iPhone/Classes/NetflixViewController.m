@@ -20,7 +20,6 @@
 #import "Model.h"
 #import "NetflixAccountsViewController.h"
 #import "NetflixFeedsViewController.h"
-#import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
 #import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
@@ -310,7 +309,7 @@ typedef enum {
       NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
       [self.commonNavigationController pushBrowser:address animated:YES];
     } else if (indexPath.row == 1) {
-      NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
+      UIViewController* controller = [[[NetflixLoginViewController alloc] init] autorelease];
       [self.navigationController pushViewController:controller animated:YES];
     }
   }

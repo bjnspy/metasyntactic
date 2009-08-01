@@ -19,4 +19,6 @@
 + (void) reportNetflixMovies:(NSArray*) movies;
 + (void) reportNetflixMovie:(Movie*) movie;
 
++ (void) addNetflixAccount:(NetflixAccount*) account;
+
 @end
