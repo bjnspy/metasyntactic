@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74A01D291024519500299F25 /* NetflixShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D271024519500299F25 /* NetflixShared.h */; };
+		74A01D2D102451B300299F25 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D2B102451B300299F25 /* ForwardDeclarations.h */; };
+		74A01D31102451D800299F25 /* NetflixSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D2F102451D800299F25 /* NetflixSharedApplication.h */; };
+		74A01D32102451D800299F25 /* NetflixSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D30102451D800299F25 /* NetflixSharedApplication.m */; };
+		74A01D35102451E400299F25 /* NetflixSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D33102451E400299F25 /* NetflixSharedApplicationDelegate.h */; };
+		74A01D4A102452FF00299F25 /* AbstractNetflixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D38102452FF00299F25 /* AbstractNetflixCache.h */; };
+		74A01D4B102452FF00299F25 /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D39102452FF00299F25 /* AbstractNetflixCache.m */; };
+		74A01D4C102452FF00299F25 /* AddMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D3A102452FF00299F25 /* AddMovieArguments.h */; };
+		74A01D4D102452FF00299F25 /* AddMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D3B102452FF00299F25 /* AddMovieArguments.m */; };
+		74A01D4E102452FF00299F25 /* ChangeRatingArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D3C102452FF00299F25 /* ChangeRatingArguments.h */; };
+		74A01D4F102452FF00299F25 /* ChangeRatingArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D3D102452FF00299F25 /* ChangeRatingArguments.m */; };
+		74A01D50102452FF00299F25 /* ModifyQueueArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D3E102452FF00299F25 /* ModifyQueueArguments.h */; };
+		74A01D51102452FF00299F25 /* ModifyQueueArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D3F102452FF00299F25 /* ModifyQueueArguments.m */; };
+		74A01D52102452FF00299F25 /* MoveMovieArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D40102452FF00299F25 /* MoveMovieArguments.h */; };
+		74A01D53102452FF00299F25 /* MoveMovieArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D41102452FF00299F25 /* MoveMovieArguments.m */; };
+		74A01D54102452FF00299F25 /* MutableNetflixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D42102452FF00299F25 /* MutableNetflixCache.h */; };
+		74A01D55102452FF00299F25 /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D43102452FF00299F25 /* MutableNetflixCache.m */; };
+		74A01D56102452FF00299F25 /* NetflixAddMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D44102452FF00299F25 /* NetflixAddMovieDelegate.h */; };
+		74A01D57102452FF00299F25 /* NetflixCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D45102452FF00299F25 /* NetflixCache.h */; };
+		74A01D58102452FF00299F25 /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D46102452FF00299F25 /* NetflixCache.m */; };
+		74A01D591024530000299F25 /* NetflixChangeRatingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D47102452FF00299F25 /* NetflixChangeRatingDelegate.h */; };
+		74A01D5A1024530000299F25 /* NetflixModifyQueueDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D48102452FF00299F25 /* NetflixModifyQueueDelegate.h */; };
+		74A01D5B1024530000299F25 /* NetflixMoveMovieDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D49102452FF00299F25 /* NetflixMoveMovieDelegate.h */; };
+		74A01D681024538400299F25 /* Feed.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D5C1024538400299F25 /* Feed.h */; };
+		74A01D691024538400299F25 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D5D1024538400299F25 /* Feed.m */; };
+		74A01D6A1024538400299F25 /* Movie.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D5E1024538400299F25 /* Movie.h */; };
+		74A01D6B1024538400299F25 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D5F1024538400299F25 /* Movie.m */; };
+		74A01D6C1024538400299F25 /* NetflixAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D601024538400299F25 /* NetflixAccount.h */; };
+		74A01D6D1024538400299F25 /* NetflixAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D611024538400299F25 /* NetflixAccount.m */; };
+		74A01D6E1024538400299F25 /* NetflixUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D621024538400299F25 /* NetflixUser.h */; };
+		74A01D6F1024538400299F25 /* NetflixUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D631024538400299F25 /* NetflixUser.m */; };
+		74A01D701024538400299F25 /* Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D641024538400299F25 /* Queue.h */; };
+		74A01D711024538400299F25 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D651024538400299F25 /* Queue.m */; };
+		74A01D721024538400299F25 /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D661024538400299F25 /* Status.h */; };
+		74A01D731024538400299F25 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D671024538400299F25 /* Status.m */; };
+		74A01D7E102453B700299F25 /* MetasyntacticShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D7D102453B700299F25 /* MetasyntacticShared.h */; };
+		74A01D85102454C600299F25 /* AbstractMovieCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D83102454C600299F25 /* AbstractMovieCache.h */; };
+		74A01D86102454C600299F25 /* AbstractMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D84102454C600299F25 /* AbstractMovieCache.m */; };
+		74A01D8B1024555000299F25 /* NetflixAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D891024555000299F25 /* NetflixAuthentication.h */; };
+		74A01D8C1024555000299F25 /* NetflixAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A01D8A1024555000299F25 /* NetflixAuthentication.m */; };
+		74A01D901024557E00299F25 /* Macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01D8E1024557E00299F25 /* Macros.h */; };
+		AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Prefix.pch */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74A01D7A1024539800299F25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74E602340FD1C7990015D9F8 /* libMetasyntacticShared.a */;
+			remoteInfo = MetasyntacticShared;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		74A01D271024519500299F25 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixShared.h; sourceTree = "<group>"; };
+		74A01D2B102451B300299F25 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		74A01D2F102451D800299F25 /* NetflixSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplication.h; sourceTree = "<group>"; };
+		74A01D30102451D800299F25 /* NetflixSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSharedApplication.m; sourceTree = "<group>"; };
+		74A01D33102451E400299F25 /* NetflixSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSharedApplicationDelegate.h; sourceTree = "<group>"; };
+		74A01D38102452FF00299F25 /* AbstractNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixCache.h; sourceTree = "<group>"; };
+		74A01D39102452FF00299F25 /* AbstractNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixCache.m; sourceTree = "<group>"; };
+		74A01D3A102452FF00299F25 /* AddMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieArguments.h; sourceTree = "<group>"; };
+		74A01D3B102452FF00299F25 /* AddMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieArguments.m; sourceTree = "<group>"; };
+		74A01D3C102452FF00299F25 /* ChangeRatingArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeRatingArguments.h; sourceTree = "<group>"; };
+		74A01D3D102452FF00299F25 /* ChangeRatingArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeRatingArguments.m; sourceTree = "<group>"; };
+		74A01D3E102452FF00299F25 /* ModifyQueueArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyQueueArguments.h; sourceTree = "<group>"; };
+		74A01D3F102452FF00299F25 /* ModifyQueueArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyQueueArguments.m; sourceTree = "<group>"; };
+		74A01D40102452FF00299F25 /* MoveMovieArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMovieArguments.h; sourceTree = "<group>"; };
+		74A01D41102452FF00299F25 /* MoveMovieArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMovieArguments.m; sourceTree = "<group>"; };
+		74A01D42102452FF00299F25 /* MutableNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableNetflixCache.h; sourceTree = "<group>"; };
+		74A01D43102452FF00299F25 /* MutableNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableNetflixCache.m; sourceTree = "<group>"; };
+		74A01D44102452FF00299F25 /* NetflixAddMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAddMovieDelegate.h; sourceTree = "<group>"; };
+		74A01D45102452FF00299F25 /* NetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCache.h; sourceTree = "<group>"; };
+		74A01D46102452FF00299F25 /* NetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCache.m; sourceTree = "<group>"; };
+		74A01D47102452FF00299F25 /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
+		74A01D48102452FF00299F25 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
+		74A01D49102452FF00299F25 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
+		74A01D5C1024538400299F25 /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		74A01D5D1024538400299F25 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		74A01D5E1024538400299F25 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		74A01D5F1024538400299F25 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		74A01D601024538400299F25 /* NetflixAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccount.h; sourceTree = "<group>"; };
+		74A01D611024538400299F25 /* NetflixAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccount.m; sourceTree = "<group>"; };
+		74A01D621024538400299F25 /* NetflixUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixUser.h; sourceTree = "<group>"; };
+		74A01D631024538400299F25 /* NetflixUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixUser.m; sourceTree = "<group>"; };
+		74A01D641024538400299F25 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		74A01D651024538400299F25 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		74A01D661024538400299F25 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		74A01D671024538400299F25 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		74A01D7D102453B700299F25 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		74A01D83102454C600299F25 /* AbstractMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieCache.h; sourceTree = "<group>"; };
+		74A01D84102454C600299F25 /* AbstractMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieCache.m; sourceTree = "<group>"; };
+		74A01D891024555000299F25 /* NetflixAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAuthentication.h; sourceTree = "<group>"; };
+		74A01D8A1024555000299F25 /* NetflixAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAuthentication.m; sourceTree = "<group>"; };
+		74A01D8E1024557E00299F25 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		AA747D9E0F9514B9006C5449 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libNetflixShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetflixShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libNetflixShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* NetflixShared */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */,
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = NetflixShared;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D141024516A00299F25 /* Caches */,
+				74A01D151024517000299F25 /* Data */,
+				74A01D7C1024539C00299F25 /* Shared */,
+				74A01D161024517D00299F25 /* UI */,
+				74A01D891024555000299F25 /* NetflixAuthentication.h */,
+				74A01D271024519500299F25 /* NetflixShared.h */,
+				74A01D2F102451D800299F25 /* NetflixSharedApplication.h */,
+				74A01D33102451E400299F25 /* NetflixSharedApplicationDelegate.h */,
+				74A01D8A1024555000299F25 /* NetflixAuthentication.m */,
+				74A01D30102451D800299F25 /* NetflixSharedApplication.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA747D9E0F9514B9006C5449 /* Prefix.pch */,
+				74A01D2B102451B300299F25 /* ForwardDeclarations.h */,
+				74A01D8E1024557E00299F25 /* Macros.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		74A01D141024516A00299F25 /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D821024545900299F25 /* Netflix */,
+				74A01D83102454C600299F25 /* AbstractMovieCache.h */,
+				74A01D84102454C600299F25 /* AbstractMovieCache.m */,
+			);
+			name = Caches;
+			sourceTree = "<group>";
+		};
+		74A01D151024517000299F25 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D5C1024538400299F25 /* Feed.h */,
+				74A01D5E1024538400299F25 /* Movie.h */,
+				74A01D601024538400299F25 /* NetflixAccount.h */,
+				74A01D621024538400299F25 /* NetflixUser.h */,
+				74A01D641024538400299F25 /* Queue.h */,
+				74A01D661024538400299F25 /* Status.h */,
+				74A01D5D1024538400299F25 /* Feed.m */,
+				74A01D5F1024538400299F25 /* Movie.m */,
+				74A01D611024538400299F25 /* NetflixAccount.m */,
+				74A01D631024538400299F25 /* NetflixUser.m */,
+				74A01D651024538400299F25 /* Queue.m */,
+				74A01D671024538400299F25 /* Status.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		74A01D161024517D00299F25 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		74A01D771024539800299F25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D7B1024539800299F25 /* libMetasyntacticShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74A01D7C1024539C00299F25 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D7D102453B700299F25 /* MetasyntacticShared.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		74A01D821024545900299F25 /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				74A01D38102452FF00299F25 /* AbstractNetflixCache.h */,
+				74A01D3A102452FF00299F25 /* AddMovieArguments.h */,
+				74A01D3C102452FF00299F25 /* ChangeRatingArguments.h */,
+				74A01D3E102452FF00299F25 /* ModifyQueueArguments.h */,
+				74A01D40102452FF00299F25 /* MoveMovieArguments.h */,
+				74A01D42102452FF00299F25 /* MutableNetflixCache.h */,
+				74A01D44102452FF00299F25 /* NetflixAddMovieDelegate.h */,
+				74A01D45102452FF00299F25 /* NetflixCache.h */,
+				74A01D47102452FF00299F25 /* NetflixChangeRatingDelegate.h */,
+				74A01D48102452FF00299F25 /* NetflixModifyQueueDelegate.h */,
+				74A01D49102452FF00299F25 /* NetflixMoveMovieDelegate.h */,
+				74A01D39102452FF00299F25 /* AbstractNetflixCache.m */,
+				74A01D3B102452FF00299F25 /* AddMovieArguments.m */,
+				74A01D3D102452FF00299F25 /* ChangeRatingArguments.m */,
+				74A01D3F102452FF00299F25 /* ModifyQueueArguments.m */,
+				74A01D41102452FF00299F25 /* MoveMovieArguments.m */,
+				74A01D43102452FF00299F25 /* MutableNetflixCache.m */,
+				74A01D46102452FF00299F25 /* NetflixCache.m */,
+			);
+			name = Netflix;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA747D9F0F9514B9006C5449 /* Prefix.pch in Headers */,
+				74A01D291024519500299F25 /* NetflixShared.h in Headers */,
+				74A01D2D102451B300299F25 /* ForwardDeclarations.h in Headers */,
+				74A01D31102451D800299F25 /* NetflixSharedApplication.h in Headers */,
+				74A01D35102451E400299F25 /* NetflixSharedApplicationDelegate.h in Headers */,
+				74A01D4A102452FF00299F25 /* AbstractNetflixCache.h in Headers */,
+				74A01D4C102452FF00299F25 /* AddMovieArguments.h in Headers */,
+				74A01D4E102452FF00299F25 /* ChangeRatingArguments.h in Headers */,
+				74A01D50102452FF00299F25 /* ModifyQueueArguments.h in Headers */,
+				74A01D52102452FF00299F25 /* MoveMovieArguments.h in Headers */,
+				74A01D54102452FF00299F25 /* MutableNetflixCache.h in Headers */,
+				74A01D56102452FF00299F25 /* NetflixAddMovieDelegate.h in Headers */,
+				74A01D57102452FF00299F25 /* NetflixCache.h in Headers */,
+				74A01D591024530000299F25 /* NetflixChangeRatingDelegate.h in Headers */,
+				74A01D5A1024530000299F25 /* NetflixModifyQueueDelegate.h in Headers */,
+				74A01D5B1024530000299F25 /* NetflixMoveMovieDelegate.h in Headers */,
+				74A01D681024538400299F25 /* Feed.h in Headers */,
+				74A01D6A1024538400299F25 /* Movie.h in Headers */,
+				74A01D6C1024538400299F25 /* NetflixAccount.h in Headers */,
+				74A01D6E1024538400299F25 /* NetflixUser.h in Headers */,
+				74A01D701024538400299F25 /* Queue.h in Headers */,
+				74A01D721024538400299F25 /* Status.h in Headers */,
+				74A01D7E102453B700299F25 /* MetasyntacticShared.h in Headers */,
+				74A01D85102454C600299F25 /* AbstractMovieCache.h in Headers */,
+				74A01D8B1024555000299F25 /* NetflixAuthentication.h in Headers */,
+				74A01D901024557E00299F25 /* Macros.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* NetflixShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NetflixShared" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetflixShared;
+			productName = NetflixShared;
+			productReference = D2AAC07E0554694100DB518D /* libNetflixShared.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NetflixShared" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* NetflixShared */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 74A01D771024539800299F25 /* Products */;
+					ProjectRef = 74A01D761024539800299F25 /* MetasyntacticShared.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* NetflixShared */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		74A01D7B1024539800299F25 /* libMetasyntacticShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMetasyntacticShared.a;
+			remoteRef = 74A01D7A1024539800299F25 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74A01D32102451D800299F25 /* NetflixSharedApplication.m in Sources */,
+				74A01D4B102452FF00299F25 /* AbstractNetflixCache.m in Sources */,
+				74A01D4D102452FF00299F25 /* AddMovieArguments.m in Sources */,
+				74A01D4F102452FF00299F25 /* ChangeRatingArguments.m in Sources */,
+				74A01D51102452FF00299F25 /* ModifyQueueArguments.m in Sources */,
+				74A01D53102452FF00299F25 /* MoveMovieArguments.m in Sources */,
+				74A01D55102452FF00299F25 /* MutableNetflixCache.m in Sources */,
+				74A01D58102452FF00299F25 /* NetflixCache.m in Sources */,
+				74A01D691024538400299F25 /* Feed.m in Sources */,
+				74A01D6B1024538400299F25 /* Movie.m in Sources */,
+				74A01D6D1024538400299F25 /* NetflixAccount.m in Sources */,
+				74A01D6F1024538400299F25 /* NetflixUser.m in Sources */,
+				74A01D711024538400299F25 /* Queue.m in Sources */,
+				74A01D731024538400299F25 /* Status.m in Sources */,
+				74A01D86102454C600299F25 /* AbstractMovieCache.m in Sources */,
+				74A01D8C1024555000299F25 /* NetflixAuthentication.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/NetflixShared.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NetflixShared;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/NetflixShared.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = NetflixShared;
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NetflixShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NetflixShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
