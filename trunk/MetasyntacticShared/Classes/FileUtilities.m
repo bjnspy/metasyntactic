@@ -31,9 +31,9 @@ static MainThreadGate* gate = nil;
 // create a new instance that they can use.
 + (NSFileManager*) localFileManager {
   static NSString* key = @"FileManager";
-  
+
   NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
-  
+
   NSFileManager* manager = [threadDictionary objectForKey:key];
   if (manager == nil) {
     manager = [[[NSFileManager alloc] init] autorelease];
