@@ -20,6 +20,7 @@
 #import "Model.h"
 #import "MutableNetflixCache.h"
 #import "NetflixAccount.h"
+#import "NetflixAccountsViewController.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixMostPopularViewController.h"
@@ -48,8 +49,8 @@ typedef enum {
   AtHomeSection,
   RentalHistorySection,
   AboutSendFeedbackSection,
-  LogOutSection,
-  LastSection = LogOutSection
+  AccountsSection,
+  LastSection
 } Sections;
 
 @synthesize account;
@@ -233,11 +234,9 @@ typedef enum {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Send Feedback", nil), LocalizedString(@"Write Review", nil)];
         cell.imageView.image = BoxOfficeStockImage(@"NetflixCredits.png");
         break;
-      case LogOutSection:
-        cell.textLabel.text = LocalizedString(@"Log Out of Netflix", nil);
+      case AccountsSection:
+        cell.textLabel.text = LocalizedString(@"Accounts", nil);
         cell.imageView.image = BoxOfficeStockImage(@"NetflixLogOff.png");
-        cell.accessoryView = nil;
-        cell.accessoryType = UITableViewCellAccessoryNone;
         break;
     }
   } else {
@@ -271,25 +270,9 @@ typedef enum {
 }
 
 
-- (void) didSelectLogoutRow {
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                   message:LocalizedString(@"Really log out of Netflix?", nil)
-                                                  delegate:nil
-                                         cancelButtonTitle:LocalizedString(@"No", nil)
-                                         otherButtonTitles:LocalizedString(@"Yes", nil), nil] autorelease];
-
-  alert.delegate = self;
-  [alert show];
-}
-
-
-- (void)         alertView:(UIAlertView*) alertView
-      clickedButtonAtIndex:(NSInteger) index {
-  [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-  if (index != alertView.cancelButtonIndex) {
-    [self.controller removeNetflixAccount:self.model.currentNetflixAccount];
-    [self majorRefresh];
-  }
+- (void) didSelectAccountsRow {
+  UIViewController* controller = [[[NetflixAccountsViewController alloc] init] autorelease];
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -347,7 +330,7 @@ typedef enum {
     case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];
     case RentalHistorySection:      return [self didSelectRentalHistoryRow];
     case AboutSendFeedbackSection:  return [self didSelectAboutSendFeedbackRow];
-    case LogOutSection:             return [self didSelectLogoutRow];
+    case AccountsSection:           return [self didSelectAccountsRow];
   }
 }
 

@@ -460,14 +460,8 @@ static Model* model = nil;
 
 - (void) setNetflixAccounts:(NSArray*) accounts {
   self.netflixAccountsData = accounts;
-  [[NSUserDefaults standardUserDefaults] setObject:[NetflixAccount encodeArray:accounts] forKey:NETFLIX_ACCOUNTS];
-
-  NSInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
-  if (index < 0 || index >= accounts.count) {
-    index = 0;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
-  }
-
+  [[NSUserDefaults standardUserDefaults] setObject:[NetflixAccount encodeArray:accounts]
+                                            forKey:NETFLIX_ACCOUNTS];
   [self synchronize];
 }
 
@@ -478,7 +472,21 @@ static Model* model = nil;
   if (index < 0 || index >= accounts.count) {
     return nil;
   }
-  return [accounts objectAtIndex:index];
+  return [[[accounts objectAtIndex:index] retain] autorelease];
+}
+
+
+- (void) setCurrentNetflixAccount:(NetflixAccount*) account {
+  if (account == nil) {
+    return;
+  }
+
+  NSArray* accounts = self.netflixAccounts;
+  NSInteger index = [accounts indexOfObject:account];
+  if (index >= 0 && index < accounts.count) {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_CURRENT_ACCOUNT_INDEX];
+    [self synchronize];
+  }
 }
 
 
@@ -500,9 +508,23 @@ static Model* model = nil;
     return;
   }
 
+  [[account retain] autorelease];
+  
+  NetflixAccount* currentAccount = self.currentNetflixAccount;
+  
   NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
   [accounts removeObject:account];
   [self setNetflixAccounts:accounts];
+  
+  if ([account isEqual:currentAccount]) {
+    if (accounts.count > 0) {
+      // they removed the active account.  switch the active account to the first account.
+      [self setCurrentNetflixAccount:[accounts objectAtIndex:0]];
+    }
+  } else {
+    // reset the current account unless the index changed
+    [self setCurrentNetflixAccount:currentAccount];
+  }
 }
 
 

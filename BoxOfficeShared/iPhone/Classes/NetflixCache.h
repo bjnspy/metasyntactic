@@ -34,6 +34,7 @@
 
 - (void) update;
 
+- (NetflixUser*) userForAccount:(NetflixAccount*) account;
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;
 - (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account;
 - (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;

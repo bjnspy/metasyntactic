@@ -85,6 +85,7 @@
 @class LocalizableStringsCache;
 @class LocalSearchEngine;
 @class NetflixAccount;
+@class NetflixUser;
 @class SearchRequest;
 @class SearchResult;
 @class NowPlayingSettingsViewController;
