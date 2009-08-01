@@ -14,6 +14,7 @@
 
 #import "MutableNetflixCache.h"
 
+#import "AddMovieArguments.h"
 #import "ChangeRatingArguments.h"
 #import "Model.h"
 #import "ModifyQueueArguments.h"
@@ -430,8 +431,7 @@ andReorderingMovies:[IdentitySet set]
           toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate
              account:(NetflixAccount*) account {
-  NSArray* arguments =
-  [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, account, nil];
+  AddMovieArguments* arguments = [AddMovieArguments argumentsWithQueue:queue movie:movie position:position delegate:delegate account:account];
 
   [[OperationQueue operationQueue] performSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                           onTarget:self
@@ -487,30 +487,24 @@ andReorderingMovies:[IdentitySet set]
 }
 
 
-- (void) addMovieToQueueBackgroundEntryPointWorker:(NSArray*) arguments {
-  Queue* queue = [arguments objectAtIndex:0];
-  Movie* movie = [arguments objectAtIndex:1];
-  NSInteger position = [[arguments objectAtIndex:2] intValue];
-  id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:3];
-  NetflixAccount* account = [arguments objectAtIndex:4];
-
+- (void) addMovieToQueueBackgroundEntryPointWorker:(AddMovieArguments*) addArguments {
   NSString* address;
-  if ([queue isInstantQueue]) {
-    NSLog(@"Adding '%@' to instant queue.", movie.canonicalTitle);
-    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", account.userId];
+  if ([addArguments.queue isInstantQueue]) {
+    NSLog(@"Adding '%@' to instant queue.", addArguments.movie.canonicalTitle);
+    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", addArguments.account.userId];
   } else {
-    NSLog(@"Adding '%@' to DVD queue.", movie.canonicalTitle);
-    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", account.userId];
+    NSLog(@"Adding '%@' to DVD queue.", addArguments.movie.canonicalTitle);
+    address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", addArguments.account.userId];
   }
 
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [self createURLRequest:address account:addArguments.account];
   [request setHTTPMethod:@"POST"];
 
   NSMutableArray* parameters = [NSMutableArray array];
-  [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:movie.identifier]];
-  [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:queue.etag]];
-  if (position >= 0) {
-    [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]]];
+  [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:addArguments.movie.identifier]];
+  [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:addArguments.queue.etag]];
+  if (addArguments.position >= 0) {
+    [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", addArguments.position + 1]]];
   }
 
   [NSMutableURLRequestAdditions setParameters:parameters forRequest:request];
@@ -522,21 +516,21 @@ andReorderingMovies:[IdentitySet set]
 
   NSString* error;
   Queue* finalQueue = [self processAddMovieResult:element
-                                            queue:queue
-                                         position:position
+                                            queue:addArguments.queue
+                                         position:addArguments.position
                                             error:&error];
   if (finalQueue == nil) {
-    NSLog(@"Adding '%@' failed: %@", movie.canonicalTitle, error);
-    [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
+    NSLog(@"Adding '%@' failed: %@", addArguments.movie.canonicalTitle, error);
+    [ThreadingUtilities foregroundSelector:@selector(addFailedWithError:) onTarget:addArguments.delegate withObject:error];
     return;
   }
 
-  NSLog(@"Adding '%@' succeeded.", movie.canonicalTitle);
-  [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:delegate account:account];
+  NSLog(@"Adding '%@' succeeded.", addArguments.movie.canonicalTitle);
+  [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:addArguments.delegate account:addArguments.account];
 }
 
 
-- (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
+- (void) addMovieToQueueBackgroundEntryPoint:(AddMovieArguments*) arguments {
   NSString* notification = LocalizedString(@"adding movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue");
   [NotificationCenter addNotification:notification];
   {
