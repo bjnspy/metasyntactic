@@ -16,7 +16,6 @@
 
 #import "AddMovieArguments.h"
 #import "ChangeRatingArguments.h"
-#import "Model.h"
 #import "ModifyQueueArguments.h"
 #import "MoveMovieArguments.h"
 #import "Movie.h"
@@ -51,11 +50,6 @@
 
 + (MutableNetflixCache*) cache {
   return [[[MutableNetflixCache alloc] init] autorelease];
-}
-
-
-- (Model*) model {
-  return [Model model];
 }
 
 
