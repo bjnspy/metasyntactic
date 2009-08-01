@@ -27,7 +27,6 @@
 + (NSArray*) mostPopularTitles;
 
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
-//- (NSArray*) peopleSearch:(NSString*) query;
 
 - (BOOL) isEnqueued:(Movie*) movie account:(NetflixAccount*) account;
 - (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
