@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74305B4C102F45580086AA7D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74305B4B102F45580086AA7D /* MapKit.framework */; };
-		74305B4E102F45580086AA7D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74305B4D102F45580086AA7D /* MessageUI.framework */; };
+		74A018771023FA0800299F25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A018761023FA0800299F25 /* MapKit.framework */; };
+		74A018791023FA0800299F25 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A018781023FA0800299F25 /* MessageUI.framework */; };
 		74A5312E101D13C2004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5312D101D13C2004F9C9B /* MetasyntacticResources.bundle */; };
 		74A53130101D13CC004F9C9B /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5312F101D13CC004F9C9B /* BoxOfficeResources.bundle */; };
 		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
@@ -62,8 +62,6 @@
 		7406A7620F104C2200795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7406A7630F104C2200795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		74305B4B102F45580086AA7D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		74305B4D102F45580086AA7D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -84,6 +82,8 @@
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74A018761023FA0800299F25 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74A018781023FA0800299F25 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		74A5312D101D13C2004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A5312F101D13CC004F9C9B /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
 		74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
 				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
 				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
-				74305B4C102F45580086AA7D /* MapKit.framework in Frameworks */,
-				74305B4E102F45580086AA7D /* MessageUI.framework in Frameworks */,
+				74A018771023FA0800299F25 /* MapKit.framework in Frameworks */,
+				74A018791023FA0800299F25 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,9 +188,9 @@
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
 				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				74305B4B102F45580086AA7D /* MapKit.framework */,
+				74A018761023FA0800299F25 /* MapKit.framework */,
 				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
-				74305B4D102F45580086AA7D /* MessageUI.framework */,
+				74A018781023FA0800299F25 /* MessageUI.framework */,
 				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
@@ -399,7 +399,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
 		};
@@ -430,7 +430,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
 		};
@@ -528,7 +528,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -562,7 +562,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
