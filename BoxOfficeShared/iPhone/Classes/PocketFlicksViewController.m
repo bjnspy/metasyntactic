@@ -367,13 +367,13 @@ typedef enum {
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   NetflixUser* user = [self.model.netflixCache userForAccount:account];
-  
+
   if (self.model.netflixAccounts.count <= 1 || user == nil) {
     return nil;
   }
-  
+
   CGRect frame = CGRectMake(12, -1, 480, 23);
-  
+
   UILabel* label = [[[UILabel alloc] initWithFrame:frame] autorelease];
   label.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
   label.font = [UIFont boldSystemFontOfSize:18];
@@ -408,7 +408,7 @@ typedef enum {
   if (view == nil) {
     return 0;
   }
-  
+
   return view.frame.size.height;
 }
 
