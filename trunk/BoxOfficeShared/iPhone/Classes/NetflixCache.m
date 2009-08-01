@@ -819,6 +819,15 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (NetflixUser*) userForAccount:(NetflixAccount*) account {
+  NSDictionary* dictionary = [FileUtilities readObject:[self userFile:account]];
+  if (dictionary.count == 0) {
+    return nil;
+  }
+  return [NetflixUser newWithDictionary:dictionary];
+}
+
+
 - (void) downloadUserData:(NetflixAccount*) account {
   if (![account isEqual:self.model.currentNetflixAccount]) {
     return;

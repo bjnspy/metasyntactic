@@ -13,7 +13,8 @@
 // limitations under the License.
 
 @interface NetflixAccountsViewController : AbstractTableViewController {
-
+@private
+  NSMutableArray* accounts;
 }
 
 @end

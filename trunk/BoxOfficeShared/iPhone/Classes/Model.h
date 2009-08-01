@@ -103,6 +103,7 @@ enum ViewControllerType {
 - (NetflixAccount*) currentNetflixAccount;
 - (void) addNetflixAccount:(NetflixAccount*) account;
 - (void) removeNetflixAccount:(NetflixAccount*) account;
+- (void) setCurrentNetflixAccount:(NetflixAccount*) account;
 
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
