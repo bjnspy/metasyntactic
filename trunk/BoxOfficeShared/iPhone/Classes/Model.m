@@ -454,6 +454,8 @@ static Model* model = nil;
   if (netflixAccountsData == nil) {
     self.netflixAccountsData = [self loadNetflixAccounts];
   }
+  
+  // return through pointer so that it is retain/autoreleased
   return self.netflixAccountsData;
 }
 
