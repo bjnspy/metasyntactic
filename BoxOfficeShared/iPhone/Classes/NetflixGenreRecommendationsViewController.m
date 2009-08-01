@@ -61,7 +61,7 @@
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
   self.account = self.model.currentNetflixAccount;
-  
+
   self.tableView.rowHeight = 100;
   NSMutableArray* array = [NSMutableArray array];
 

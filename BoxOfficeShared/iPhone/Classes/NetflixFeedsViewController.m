@@ -34,7 +34,7 @@
 - (void) dealloc {
   self.account = nil;
   self.feedKeys = nil;
-  
+
   [super dealloc];
 }
 
@@ -45,7 +45,7 @@
     self.title = title_;
     self.feedKeys = feedKeys_;
   }
-  
+
   return self;
 }
 
@@ -69,7 +69,7 @@
 
 - (NSArray*) feeds {
   NSArray* feeds = [self.model.netflixCache feedsForAccount:account];
-  
+
   NSMutableArray* result = [NSMutableArray array];
   for (Feed* feed in feeds) {
     if ([feedKeys containsObject:feed.key]) {
@@ -96,30 +96,30 @@
   if (!self.hasFeeds) {
     return self.model.netflixCache.noInformationFound;
   }
-  
+
   return nil;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-  
+
   NSArray* feeds = self.feeds;
-  
+
   Feed* feed = [feeds objectAtIndex:indexPath.row];
-  
+
   cell.textLabel.adjustsFontSizeToFitWidth = YES;
   cell.textLabel.minimumFontSize = 12;
   cell.textLabel.text = [self.model.netflixCache titleForKey:feed.key account:account];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   return cell;
 }
 
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   NSArray* feeds = self.feeds;
-  
+
   Feed* feed = [feeds objectAtIndex:indexPath.row];
   NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithFeedKey:feed.key] autorelease];
   [self.navigationController pushViewController:controller animated:YES];

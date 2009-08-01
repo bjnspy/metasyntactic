@@ -31,7 +31,7 @@
 - (id) init {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
   }
-  
+
   return self;
 }
 
@@ -63,7 +63,7 @@
 //    return 0;
 //    return self.model.netflixPreferredFormats.count;
 //  }
-  
+
   return 0;
 }
 
@@ -71,7 +71,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  
+
 //  if (indexPath.section == 0) {
 //    cell.textLabel.text = LocalizedString(@"Instant Watch", nil);
 //    UISwitch* switch_ = [[[UISwitch alloc] init] autorelease];
@@ -91,7 +91,7 @@
   if (section == 1) {
     return LocalizedString(@"Preferred Formats", @"The preferred movie format that the user has.  i.e. DVD or Bluray");
   }
-  
+
   return nil;
 }
 
@@ -101,7 +101,7 @@
   if (section == 1) {
     return LocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
   }
-  
+
   return nil;
 }
 
