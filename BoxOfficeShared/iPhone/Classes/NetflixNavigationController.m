@@ -27,28 +27,28 @@
 @synthesize netflixViewController;
 
 - (void) dealloc {
-    self.netflixViewController = nil;
-    [super dealloc];
+  self.netflixViewController = nil;
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.tabBarItem.image = BoxOfficeStockImage(@"Netflix.png");
-        self.title = LocalizedString(@"Netflix", nil);
-    }
+  if ((self = [super init])) {
+    self.tabBarItem.image = BoxOfficeStockImage(@"Netflix.png");
+    self.title = LocalizedString(@"Netflix", nil);
+  }
 
-    return self;
+  return self;
 }
 
 
 - (void) loadView {
-    [super loadView];
+  [super loadView];
 
-    if (netflixViewController == nil) {
-        self.netflixViewController = [[[NetflixViewController alloc] init] autorelease];
-        [self pushViewController:netflixViewController animated:NO];
-    }
+  if (netflixViewController == nil) {
+    self.netflixViewController = [[[NetflixViewController alloc] init] autorelease];
+    [self pushViewController:netflixViewController animated:NO];
+  }
 }
 
 @end
