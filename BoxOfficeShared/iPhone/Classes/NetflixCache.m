@@ -22,7 +22,6 @@
 #import "NetflixAccount.h"
 #import "NetflixUser.h"
 #import "Person.h"
-#import "PersonPosterCache.h"
 #import "Queue.h"
 #import "Status.h"
 
@@ -868,11 +867,6 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) updatePersonPoster:(Person*) person {
-  [self.model.personPosterCache update:person];
-}
-
-
 + (NSArray*) extractPeople:(XmlElement*) element {
   NSMutableArray* cast = [NSMutableArray array];
 
@@ -1376,15 +1370,6 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
   [self updateMovieDetails:movie force:force account:self.model.currentNetflixAccount];
-}
-
-
-- (void) updatePersonDetails:(Person*) person {
-  if (person == nil) {
-    return;
-  }
-
-  [self updatePersonPoster:person];
 }
 
 
