@@ -28,6 +28,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixSearchDisplayController.h"
 #import "NetflixSettingsViewController.h"
+#import "NetflixUser.h"
 #import "PocketFlicksCreditsViewController.h"
 #import "PocketFlicksSettingsViewController.h"
 
@@ -127,6 +128,7 @@ typedef enum {
 - (void) setupTitle {
   if (self.model.netflixCache.lastQuotaErrorDate != nil &&
       self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
+    self.navigationItem.titleView = nil;
     self.title = LocalizedString(@"Over Quota - Try Again Later", nil);
   } else {
     self.title = [Application name];
@@ -360,6 +362,54 @@ typedef enum {
 
 - (void) onTabBarItemSelected {
   [searchDisplayController setActive:NO animated:YES];
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  NetflixUser* user = [self.model.netflixCache userForAccount:account];
+  
+  if (self.model.netflixAccounts.count <= 1 || user == nil) {
+    return nil;
+  }
+  
+  CGRect frame = CGRectMake(12, -1, 480, 23);
+  
+  UILabel* label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+  label.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
+  label.font = [UIFont boldSystemFontOfSize:18];
+  label.textColor = [UIColor whiteColor];
+  label.shadowOffset = CGSizeMake(0, 1);
+  label.shadowColor = [UIColor darkGrayColor];
+  label.opaque = NO;
+  label.backgroundColor = [UIColor clearColor];
+  label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+  frame.origin.x = 0;
+  frame.origin.y = 0;
+  UIImage* image = BoxOfficeStockImage(@"PocketflicksHeader.png");
+  UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+  imageView.alpha = 0.9;
+  imageView.frame = frame;
+  imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+  UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
+  view.autoresizesSubviews = YES;
+  view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+  [view addSubview:imageView];
+  [view addSubview:label];
+
+  return view;
+}
+
+
+- (CGFloat) tableView:(UITableView*) tableView heightForHeaderInSection:(NSInteger) section {
+  UIView* view = [self tableView:tableView viewForHeaderInSection:section];
+  if (view == nil) {
+    return 0;
+  }
+  
+  return view.frame.size.height;
 }
 
 @end

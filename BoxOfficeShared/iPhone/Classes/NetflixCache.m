@@ -820,6 +820,10 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NetflixUser*) userForAccount:(NetflixAccount*) account {
+  if (account == nil) {
+    return nil;
+  }
+
   NSDictionary* dictionary = [FileUtilities readObject:[self userFile:account]];
   if (dictionary.count == 0) {
     return nil;
