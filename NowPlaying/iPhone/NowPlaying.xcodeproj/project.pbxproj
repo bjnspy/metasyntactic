@@ -26,6 +26,7 @@
 		743EA8A0101BB44E002D7D86 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74FB84001017C496001B5CB9 /* License.txt */; };
 		743EA8A2101BB44E002D7D86 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		7461C2980FB2CE7700F4EE0E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F265BB0F7DE28E00EECA23 /* MessageUI.framework */; };
+		74A01FA010246CCA00299F25 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A01F9F10246CCA00299F25 /* NetflixResources.bundle */; };
 		74A5306F101D1322004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */; };
 		74A530D9101D138F004F9C9B /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */; };
 		74A60CB1100D3F9600806BBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A60CB0100D3F9600806BBC /* MapKit.framework */; };
@@ -88,6 +89,7 @@
 		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		74A01F39102467E200299F25 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
+		74A01F9F10246CCA00299F25 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
 		74A60CB0100D3F9600806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -174,6 +176,7 @@
 			children = (
 				74A530D8101D138F004F9C9B /* BoxOfficeResources.bundle */,
 				74A5306E101D1322004F9C9B /* MetasyntacticResources.bundle */,
+				74A01F9F10246CCA00299F25 /* NetflixResources.bundle */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				74DD89C30F0ECF10009DC326 /* Default.png */,
 				74DD89CE0F0ECF10009DC326 /* Icon.png */,
@@ -322,6 +325,7 @@
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
 				74A5306F101D1322004F9C9B /* MetasyntacticResources.bundle in Resources */,
 				74A530D9101D138F004F9C9B /* BoxOfficeResources.bundle in Resources */,
+				74A01FA010246CCA00299F25 /* NetflixResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

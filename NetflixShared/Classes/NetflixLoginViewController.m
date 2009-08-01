@@ -14,9 +14,10 @@
 
 #import "NetflixLoginViewController.h"
 
-#import "Application.h"
-#import "BoxOfficeStockImages.h"
-#import "Controller.h"
+#import "NetflixAccount.h"
+#import "NetflixAuthentication.h"
+#import "NetflixSharedApplication.h"
+#import "NetflixStockImages.h"
 
 @interface NetflixLoginViewController()
 @property (retain) UILabel* messageLabel;
@@ -53,17 +54,12 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
 - (void) setupMessage {
   self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
   messageLabel.backgroundColor = [UIColor clearColor];
   messageLabel.text =
   [NSString stringWithFormat:
-   LocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", @"The %@'s will be replaced with the program name.  i.e. 'Now Playing'"), [Application name], [Application name]];
+   LocalizedString(@"%@ does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.", @"The %@ will be replaced with the program name.  i.e. 'Now Playing'"), [AbstractApplication name]];
 
   messageLabel.numberOfLines = 0;
   messageLabel.textColor = [UIColor whiteColor];
@@ -114,7 +110,7 @@
 
   [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
-  UIImage* image = [BoxOfficeStockImage(@"BlackButton.png") stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+  UIImage* image = [NetflixStockImage(@"BlackButton.png") stretchableImageWithLeftCapWidth:10 topCapHeight:0];
   [button setBackgroundImage:image forState:UIControlStateNormal];
   [button setBackgroundImage:image forState:UIControlStateDisabled];
 
@@ -313,12 +309,12 @@
   statusLabel.text = @"";
   messageLabel.text =
   [NSString stringWithFormat:
-   LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [Application name]];
+   LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [AbstractApplication name]];
 
   NetflixAccount* account = [NetflixAccount accountWithKey:token.key
                                                     secret:token.secret
                                                     userId:[token.fields objectForKey:@"user_id"]];
-  [self.controller addNetflixAccount:account];
+  [NetflixSharedApplication addNetflixAccount:account];
 }
 
 @end

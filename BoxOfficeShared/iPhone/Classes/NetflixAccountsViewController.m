@@ -16,7 +16,6 @@
 
 #import "Controller.h"
 #import "Model.h"
-#import "NetflixLoginViewController.h"
 
 @interface NetflixAccountsViewController()
 @property (retain) NSMutableArray* accounts;
