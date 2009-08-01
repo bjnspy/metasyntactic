@@ -14,12 +14,10 @@
 
 #import "NetflixCache.h"
 
-#import "Application.h"
-#import "CacheUpdater.h"
 #import "Feed.h"
-#import "Model.h"
 #import "Movie.h"
 #import "NetflixAccount.h"
+#import "NetflixSharedApplication.h"
 #import "NetflixUser.h"
 #import "Queue.h"
 #import "Status.h"
@@ -52,13 +50,42 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 static NSDictionary* mostPopularAddressesToTitles = nil;
 static NSDictionary* availabilityMap = nil;
 
-+ (NSArray*) mostPopularTitles {
-  return mostPopularTitles;
+static NSString* netflixDirectory = nil;
+static NSString* netflixAccountsDirectory = nil;
+static NSString* netflixSeriesDirectory = nil;
+static NSString* netflixSearchDirectory = nil;
+static NSString* netflixDetailsDirectory = nil;
+static NSString* netflixRSSDirectory = nil;
+
+static NSString** directories[] = {
+&netflixDirectory,
+&netflixAccountsDirectory,
+&netflixSeriesDirectory,
+&netflixSearchDirectory,
+&netflixDetailsDirectory,
+&netflixRSSDirectory,
+};
+
+
++ (void) createDirectories {
+  for (int i = 0; i < ArrayLength(directories); i++) {
+    NSString* directory = *directories[i];
+    
+    [FileUtilities createDirectory:directory];
+  }
 }
 
 
 + (void) initialize {
   if (self == [NetflixCache class]) {
+    netflixDirectory = [[[AbstractApplication cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
+    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
+    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
+    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
+    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
+    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
+    [self createDirectories];
+    
     mostPopularTitles =
     [[NSArray arrayWithObjects:
       LocalizedString(@"Top DVDs", @"Movie category"),
@@ -159,6 +186,11 @@ static NSDictionary* availabilityMap = nil;
   }
 }
 
+
++ (NSArray*) mostPopularTitles {
+  return mostPopularTitles;
+}
+
 @synthesize accountToFeeds;
 @synthesize accountToFeedKeyToQueues;
 @synthesize lastQuotaErrorDate;
@@ -182,11 +214,6 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (NSString*) noInformationFound {
   if ([[OperationQueue operationQueue] hasPriorityOperations]) {
     return LocalizedString(@"Downloading data", nil);
@@ -199,7 +226,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) accountDirectory:(NetflixAccount*) account {
-  return [[Application netflixAccountsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:account.userId]];
+  return [netflixAccountsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:account.userId]];
 }
 
 
@@ -322,8 +349,8 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) update {
-  NetflixAccount* account = self.model.currentNetflixAccount;
-  if (self.model.netflixCacheEnabled &&
+  NetflixAccount* account = [NetflixSharedApplication currentNetflixAccount];
+  if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
     [FileUtilities createDirectory:[self accountDirectory:account]];
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
@@ -335,10 +362,14 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
+- (BOOL) canContinue:(NetflixAccount*) account {
+  return [NetflixSharedApplication netflixEnabled] &&
+  [account isEqual:[NetflixSharedApplication currentNetflixAccount]];
+}
+
+
 - (NSArray*) downloadFeeds:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return nil;
-  }
+  if (![self canContinue:account]) { return nil; }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", account.userId];
   OAMutableURLRequest* request = [self createURLRequest:address account:account];
@@ -652,19 +683,12 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error {
-  NSArray* movies = [self movieSearch:query maxResults:30 account:account error:error];
-  if (movies.count > 0) {
-    // download the details for these movies in teh background.
-    [[CacheUpdater cacheUpdater] addSearchMovies:movies];
-  }
-  return movies;
+  return [self movieSearch:query maxResults:30 account:account error:error];
 }
 
 
 - (void) downloadQueueWorker:(Feed*) feed account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSRange range = [feed.url rangeOfString:@"&output=atom"];
   NSString* address = feed.url;
@@ -705,9 +729,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadQueue:(Feed*) feed account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
 
@@ -727,8 +749,8 @@ static NSDictionary* availabilityMap = nil;
 
   Queue* queue = [self queueForFeed:feed account:account];
 
-  [[CacheUpdater cacheUpdater] addMovies:queue.movies];
-  [[CacheUpdater cacheUpdater] addMovies:queue.saved];
+  [NetflixSharedApplication reportNetflixMovies:queue.movies];
+  [NetflixSharedApplication reportNetflixMovies:queue.saved];
 }
 
 
@@ -751,9 +773,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadUserData:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSLog(@"NetflixCache:downloadUserData");
 
@@ -807,15 +827,13 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSString*) seriesFile:(NSString*) seriesKey {
   return
-  [[[Application netflixSeriesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
+  [[netflixSeriesDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
    stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (Movie*) downloadMovieWithSeriesKey:(NSString*) seriesKey account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return nil;
-  }
+  if (![self canContinue:account]) { return nil; }
 
   OAMutableURLRequest* request = [self createURLRequest:seriesKey account:account];
   [request prepare];
@@ -829,9 +847,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (Movie*) downloadRSSMovieWithSeriesIdentifier:(NSString*) identifier account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return nil;
-  }
+  if (![self canContinue:account]) { return nil; }
 
   //NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
   NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats", identifier];
@@ -840,9 +856,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) updateSeriesDetails:(Movie*) movie account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSString* seriesKey = [movie.additionalFields objectForKey:series_key];
   if (seriesKey.length == 0) {
@@ -930,9 +944,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) updateRatings:(Movie*) movie account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSString* userRatingsFile = [self userRatingsFile:movie account:account];
   NSString* predictedRatingsFile = [self predictedRatingsFile:movie account:account];
@@ -1041,12 +1053,12 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) rssFile:(NSString*) address {
-  return [[[Application netflixRSSDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]] stringByAppendingPathExtension:@"plist"];
+  return [[netflixRSSDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (void) addCategoryNotification:(NSString*) notification {
-  if (self.model.netflixNotificationsEnabled) {
+  if ([NetflixSharedApplication netflixNotificationsEnabled]) {
     [NotificationCenter addNotification:notification];
   }
 }
@@ -1095,9 +1107,7 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) downloadRSSFeedMovies:(NSString*) address
                        account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSString* file = [self rssFile:address];
   NSArray* identifiers = [FileUtilities readObject:file];
@@ -1134,9 +1144,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) downloadRSSFeed:(NSString*) address account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   [self downloadRSSFeedWorker:address];
   [self downloadRSSFeedMovies:address account:account];
@@ -1144,7 +1152,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) rssFeedDirectory:(NSString*) address {
-  return [[Application netflixRSSDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
+  return [netflixRSSDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]];
 }
 
 
@@ -1156,15 +1164,13 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (NSString*) detailsFile:(Movie*) movie {
-  return [[[Application netflixDetailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+  return [[netflixDetailsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (Movie*) downloadRSSMovieWithIdentifier:(NSString*) identifier
                                   account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return nil;
-  }
+  if (![self canContinue:account]) { return nil; }
 
   //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
@@ -1214,9 +1220,7 @@ static NSDictionary* availabilityMap = nil;
 - (void) updateSpecificDiscDetails:(Movie*) movie
                             expand:(NSString*) expand
                            account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSString* address = [movie.additionalFields objectForKey:title_key];
   if (address.length == 0) {
@@ -1247,9 +1251,7 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) updateAllDiscDetails:(Movie*) movie
                       account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   // we don't download this stuff on a per disc basis.  only for a series.
   //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
@@ -1258,46 +1260,75 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
+- (NSString*) netflixFile:(Movie*) movie {
+  return [[netflixSearchDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (void) lookupCorrespondingNetflixMovie:(Movie*) movie account:(NetflixAccount*) account {
+  NSAssert(![NSThread isMainThread], @"");
+  
+  if (account.userId.length == 0) {
     return;
   }
-
-  if (![movie isNetflix]) {
+  
+  if ([movie isNetflix]) {
     return;
   }
-
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-  {
-    if ([self isMemberOfSeries:movie]) {
-      // first, if this disc is a member of a series, update the
-      // details of that series.
-      [self updateSeriesDetails:movie account:account];
-
-      // for a disc that's a member of a series, we only need a couple
-      // of bits of data.
-      [self updateSpecificDiscDetails:movie expand:@"synopsis,formats" account:account];
-    } else {
-      // Otherwise, update all the details.
-      [self updateAllDiscDetails:movie account:account];
+  
+  NSString* file = [self netflixFile:movie];
+  if (![FileUtilities fileExists:file]) {
+    NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];
+    if (movies.count > 0) {
+      Movie* netflixMovie = [movies objectAtIndex:0];
+      if (netflixMovie != nil) {
+        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+        [NetflixSharedApplication reportNetflixMovie:netflixMovie];
+        [MetasyntacticSharedApplication minorRefresh];
+      }
     }
-
   }
-  [pool release];
+}
+
+
+- (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
+  if (![self canContinue:account]) { return; }
+
+  if ([movie isNetflix]) {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+      if ([self isMemberOfSeries:movie]) {
+        // first, if this disc is a member of a series, update the
+        // details of that series.
+        [self updateSeriesDetails:movie account:account];
+        
+        // for a disc that's a member of a series, we only need a couple
+        // of bits of data.
+        [self updateSpecificDiscDetails:movie expand:@"synopsis,formats" account:account];
+      } else {
+        // Otherwise, update all the details.
+        [self updateAllDiscDetails:movie account:account];
+      }
+      
+    }
+    [pool release];
+  } else {
+    [self lookupCorrespondingNetflixMovie:movie account:account];
+  }
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force {
-  [self updateMovieDetails:movie force:force account:self.model.currentNetflixAccount];
+  [self updateMovieDetails:movie
+                     force:force
+                   account:[NetflixSharedApplication currentNetflixAccount]];
 }
 
 
 - (void) downloadRSSMovie:(NSString*) identifier
                   address:(NSString*) address
                   account:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSString* file = [self rssMovieFile:identifier address:address];
 
@@ -1316,14 +1347,12 @@ static NSDictionary* availabilityMap = nil;
     }
   }
 
-  [[CacheUpdater cacheUpdater] addMovie:movie];
+  [NetflixSharedApplication reportNetflixMovie:movie];
 }
 
 
 - (void) downloadRSS:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   NSLog(@"NetflixCache:downloadRSS");
 
@@ -1353,9 +1382,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) updateBackgroundEntryPointWorker:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
 
   [self downloadUserData:account];
 
@@ -1391,9 +1418,7 @@ static NSDictionary* availabilityMap = nil;
 
 
 - (void) updateBackgroundEntryPoint:(NetflixAccount*) account {
-  if (![account isEqual:self.model.currentNetflixAccount]) {
-    return;
-  }
+  if (![self canContinue:account]) { return; }
   [self clearUpdatedMovies];
 
   NSString* notification = LocalizedString(@"Netflix", nil);
@@ -1651,38 +1676,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSString*) netflixFile:(Movie*) movie {
-  return [[[Application netflixSearchDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie account:(NetflixAccount*) account {
-  NSAssert(![NSThread isMainThread], @"");
-
-  if (account.userId.length == 0) {
-    return;
-  }
-
-  if ([movie isNetflix]) {
-    return;
-  }
-
-  NSString* file = [self netflixFile:movie];
-  if (![FileUtilities fileExists:file]) {
-    NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];
-    if (movies.count > 0) {
-      Movie* netflixMovie = [movies objectAtIndex:0];
-      if (netflixMovie != nil) {
-        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-        [[CacheUpdater cacheUpdater] addMovie:netflixMovie];
-        [MetasyntacticSharedApplication minorRefresh];
-      }
-    }
-  }
-}
-
-
-- (Movie*) netflixMovieForMovie:(Movie*) movie {
+- (Movie*) correspondingNetflixMovie:(Movie*) movie {
   if (movie.isNetflix) {
     return movie;
   }

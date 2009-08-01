@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "CacheUpdater.h"
 #import "Model.h"
-#import "Movie.h"
 
 @interface UpcomingCache()
 @property (retain) ThreadsafeValue* hashData;

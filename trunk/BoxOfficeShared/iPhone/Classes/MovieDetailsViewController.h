@@ -13,9 +13,6 @@
 // limitations under the License.
 
 #import "AbstractDetailsViewController.h"
-#import "NetflixAddMovieDelegate.h"
-#import "NetflixModifyQueueDelegate.h"
-#import "NetflixMoveMovieDelegate.h"
 
 @interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate, MapViewControllerDelegate> {
 @private

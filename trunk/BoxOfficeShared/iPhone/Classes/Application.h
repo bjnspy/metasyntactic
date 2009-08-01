@@ -36,12 +36,12 @@
 + (NSString*) blurayDirectory;
 + (NSString*) blurayDetailsDirectory;
 
-+ (NSString*) netflixDirectory;
-+ (NSString*) netflixAccountsDirectory;
-+ (NSString*) netflixDetailsDirectory;
-+ (NSString*) netflixSearchDirectory;
-+ (NSString*) netflixSeriesDirectory;
-+ (NSString*) netflixRSSDirectory;
+//+ (NSString*) netflixDirectory;
+//+ (NSString*) netflixAccountsDirectory;
+//+ (NSString*) netflixDetailsDirectory;
+//+ (NSString*) netflixSearchDirectory;
+//+ (NSString*) netflixSeriesDirectory;
+//+ (NSString*) netflixRSSDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;

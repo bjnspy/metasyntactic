@@ -16,7 +16,6 @@
 
 #import "LocalSearchDisplayController.h"
 #import "Model.h"
-#import "Movie.h"
 #import "MoviesNavigationController.h"
 
 @interface AbstractMovieListViewController()

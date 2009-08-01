@@ -16,10 +16,7 @@
 
 #import "CommonNavigationController.h"
 #import "Model.h"
-#import "Movie.h"
-#import "MutableNetflixCache.h"
 #import "NetflixCell.h"
-#import "Queue.h"
 
 @interface NetflixGenreRecommendationsViewController()
 @property (retain) NetflixAccount* account;

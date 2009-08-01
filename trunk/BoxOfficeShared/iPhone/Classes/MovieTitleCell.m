@@ -16,7 +16,6 @@
 
 #import "GreenMovieTitleCell.h"
 #import "Model.h"
-#import "Movie.h"
 #import "NoScoreMovieTitleCell.h"
 #import "PerfectGreenMovieTitleCell.h"
 #import "RedMovieTitleCell.h"

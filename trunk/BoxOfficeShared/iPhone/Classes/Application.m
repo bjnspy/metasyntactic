@@ -40,12 +40,12 @@ static NSString* dvdDetailsDirectory = nil;
 static NSString* blurayDirectory = nil;
 static NSString* blurayDetailsDirectory = nil;
 
-static NSString* netflixDirectory = nil;
-static NSString* netflixAccountsDirectory = nil;
-static NSString* netflixSeriesDirectory = nil;
-static NSString* netflixSearchDirectory = nil;
-static NSString* netflixDetailsDirectory = nil;
-static NSString* netflixRSSDirectory = nil;
+//static NSString* netflixDirectory = nil;
+//static NSString* netflixAccountsDirectory = nil;
+//static NSString* netflixSeriesDirectory = nil;
+//static NSString* netflixSearchDirectory = nil;
+//static NSString* netflixDetailsDirectory = nil;
+//static NSString* netflixRSSDirectory = nil;
 
 static NSString* upcomingDirectory = nil;
 static NSString* upcomingCastDirectory = nil;
@@ -68,12 +68,12 @@ static NSString** directories[] = {
 &helpDirectory,
 &internationalDirectory,
 &localizableStringsDirectory,
-&netflixDirectory,
-&netflixAccountsDirectory,
-&netflixSeriesDirectory,
-&netflixSearchDirectory,
-&netflixDetailsDirectory,
-&netflixRSSDirectory,
+//&netflixDirectory,
+//&netflixAccountsDirectory,
+//&netflixSeriesDirectory,
+//&netflixSearchDirectory,
+//&netflixDetailsDirectory,
+//&netflixRSSDirectory,
 &scoresDirectory,
 &reviewsDirectory,
 &trailersDirectory,
@@ -143,15 +143,12 @@ static NSString** directories[] = {
     blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
     blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
 
-    netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
-    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
-    //netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
-    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
-    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
-    //netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
-    //netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
-    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
-    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
+//    netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
+//    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
+//    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
+//    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
+//    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
+//    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
 
     upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
     upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
@@ -176,8 +173,7 @@ static NSString** directories[] = {
 
 + (NSArray*) directoriesToKeep {
   return [NSArray arrayWithObjects:
-          userLocationsDirectory,
-          netflixAccountsDirectory, nil];
+          userLocationsDirectory, nil];
 }
 
 
@@ -268,35 +264,6 @@ static NSString** directories[] = {
 
 + (NSString*) blurayDetailsDirectory {
   return blurayDetailsDirectory;
-}
-
-
-+ (NSString*) netflixDirectory {
-  return netflixDirectory;
-}
-
-
-+ (NSString*) netflixAccountsDirectory {
-  return netflixAccountsDirectory;
-}
-
-
-+ (NSString*) netflixDetailsDirectory {
-  return netflixDetailsDirectory;
-}
-
-+ (NSString*) netflixSeriesDirectory {
-  return netflixSeriesDirectory;
-}
-
-
-+ (NSString*) netflixSearchDirectory {
-  return netflixSearchDirectory;
-}
-
-
-+ (NSString*) netflixRSSDirectory {
-  return netflixRSSDirectory;
 }
 
 

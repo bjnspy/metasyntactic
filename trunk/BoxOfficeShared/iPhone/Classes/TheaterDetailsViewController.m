@@ -18,7 +18,6 @@
 #import "BoxOfficeStockImages.h"
 #import "LookupResult.h"
 #import "Model.h"
-#import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
 #import "Theater.h"

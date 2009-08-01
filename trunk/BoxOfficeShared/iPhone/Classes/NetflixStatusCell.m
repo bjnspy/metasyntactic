@@ -15,8 +15,6 @@
 #import "NetflixStatusCell.h"
 
 #import "BoxOfficeStockImages.h"
-#import "Queue.h"
-#import "Status.h"
 
 @interface NetflixStatusCell()
 @property (retain) TappableImageView* deleteImageView;

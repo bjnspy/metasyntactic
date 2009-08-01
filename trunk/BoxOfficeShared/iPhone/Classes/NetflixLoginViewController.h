@@ -14,13 +14,13 @@
 
 @interface NetflixLoginViewController : UIViewController {
 @private
-    UILabel* messageLabel;
-    UILabel* statusLabel;
-    UIActivityIndicatorView* activityIndicator;
-    UIButton* button;
-
-    OAToken* authorizationToken;
-    BOOL didShowBrowser;
+  UILabel* messageLabel;
+  UILabel* statusLabel;
+  UIActivityIndicatorView* activityIndicator;
+  UIButton* button;
+  
+  OAToken* authorizationToken;
+  BOOL didShowBrowser;
 }
 
 @end

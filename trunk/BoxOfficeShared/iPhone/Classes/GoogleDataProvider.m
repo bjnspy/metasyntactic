@@ -16,7 +16,6 @@
 
 #import "Application.h"
 #import "LookupResult.h"
-#import "Movie.h"
 #import "NowPlaying.pb.h"
 #import "Performance.h"
 #import "Theater.h"

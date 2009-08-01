@@ -16,10 +16,6 @@
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
 @protocol InfoViewControllerDelegate;
-@protocol NetflixChangeRatingDelegate;
-@protocol NetflixAddMovieDelegate;
-@protocol NetflixMoveMovieDelegate;
-@protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
 @protocol SearchEngineDelegate;
 
@@ -42,7 +38,6 @@
 @class ExpandedMovieDetailsCell;
 @class FandangoPosterDownloader;
 @class FavoriteTheater;
-@class Feed;
 @class HelpCache;
 @class IMDbCache;
 @class ImdbPosterDownloader;
@@ -51,14 +46,11 @@
 @class LocationManager;
 @class LookupResult;
 @class MetacriticScoreProvider;
-@class Movie;
 @class MovieDetailsViewController;
-@class MutableNetflixCache;
 @class Score;
 @class MovieShowtimesCell;
 @class MoviesNavigationController;
 @class MovieTitleCell;
-@class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
 @class NetflixSearchEngine;
@@ -73,7 +65,6 @@
 @class PosterCache;
 @class PostersViewController;
 @class PreviewNetworksPosterDownloader;
-@class Queue;
 @class Review;
 @class ReviewBodyCell;
 @class ReviewsViewController;
@@ -84,13 +75,10 @@
 @class SearchDatePickerViewController;
 @class LocalizableStringsCache;
 @class LocalSearchEngine;
-@class NetflixAccount;
-@class NetflixUser;
 @class SearchRequest;
 @class SearchResult;
 @class NowPlayingSettingsViewController;
 @class PocketFlicksSettingsViewController;
-@class Status;
 @class Theater;
 @class TheaterDetailsViewController;
 @class TheaterNameCell;

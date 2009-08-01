@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #import "ScoreProvider.h"
-#import "AbstractMovieCache.h"
 
 @interface AbstractScoreProvider : AbstractMovieCache<ScoreProvider> {
 @private

@@ -15,7 +15,6 @@
 #import "AmazonCache.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @implementation AmazonCache
 

@@ -17,7 +17,6 @@
 #import "Application.h"
 #import "Controller.h"
 #import "Model.h"
-#import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "NowPlayingSettingsViewController.h"
 #import "PostersViewController.h"

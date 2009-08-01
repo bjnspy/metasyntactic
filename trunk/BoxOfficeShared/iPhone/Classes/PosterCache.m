@@ -20,7 +20,6 @@
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
 #import "Model.h"
-#import "Movie.h"
 #import "PreviewNetworksPosterDownloader.h"
 
 @interface PosterCache()

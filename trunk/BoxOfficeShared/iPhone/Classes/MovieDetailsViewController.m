@@ -23,13 +23,10 @@
 #import "LargePosterCache.h"
 #import "LookupResult.h"
 #import "Model.h"
-#import "Movie.h"
 #import "MovieShowtimesCell.h"
-#import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
 #import "NetflixStatusCell.h"
 #import "Score.h"
-#import "Status.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -303,7 +300,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeData {
   self.netflixAccount = self.model.currentNetflixAccount;
-  self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
+  self.netflixMovie = [self.model.netflixCache correspondingNetflixMovie:movie];
   [self initializeNetflixStatusCells];
 
   NSArray* trailers = [self.model trailersForMovie:movie];

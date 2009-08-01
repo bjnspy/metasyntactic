@@ -15,6 +15,7 @@
 #import "BoxOfficeAppDelegate.h"
 
 #import "BoxOfficeSharedApplication.h"
+#import "CacheUpdater.h"
 #import "Controller.h"
 #import "Model.h"
 
@@ -91,18 +92,23 @@
 }
 
 
+- (Model*) model {
+  return [Model model];
+}
+
+
 - (void) saveNavigationStack:(UINavigationController*) controller {
-  [[Model model] saveNavigationStack:controller];
+  [self.model saveNavigationStack:controller];
 }
 
 
 - (BOOL) notificationsEnabled {
-  return [[Model model] notificationsEnabled];
+  return self.model.notificationsEnabled;
 }
 
 
 - (BOOL) screenRotationEnabled {
-  return [[Model model] screenRotationEnabled];
+  return self.model.screenRotationEnabled;
 }
 
 
@@ -113,6 +119,31 @@
 
 - (BOOL) netflixCacheAlwaysEnabled {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) netflixEnabled {
+  return self.model.netflixCacheEnabled;
+}
+
+
+- (BOOL) netflixNotificationsEnabled {
+  return self.model.netflixNotificationsEnabled;
+}
+
+
+- (NetflixAccount*) currentNetflixAccount {
+  return self.model.currentNetflixAccount;
+}
+
+
+- (void) reportNetflixMovies:(NSArray*) movies {
+  [[CacheUpdater cacheUpdater] addMovies:movies];  
+}
+
+
+- (void) reportNetflixMovie:(Movie*) movie {
+  [[CacheUpdater cacheUpdater] addMovie:movie];
 }
 
 @end

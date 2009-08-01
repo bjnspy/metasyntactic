@@ -15,7 +15,6 @@
 #import "ImdbPosterDownloader.h"
 
 #import "Application.h"
-#import "Movie.h"
 
 @implementation ImdbPosterDownloader
 

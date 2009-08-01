@@ -14,9 +14,9 @@
 
 #import "NetflixSearchDisplayController.h"
 
+#import "CacheUpdater.h"
 #import "CommonNavigationController.h"
 #import "Model.h"
-#import "NetflixCache.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
@@ -233,6 +233,11 @@
 - (void) reportResult:(SearchResult*) result {
   [self initializeData:result];
   [super reportResult:result];
+  
+  if (result.movies.count > 0) {
+    // download the details for these movies in teh background.
+    [[CacheUpdater cacheUpdater] addSearchMovies:result.movies];
+  }
 }
 
 @end
