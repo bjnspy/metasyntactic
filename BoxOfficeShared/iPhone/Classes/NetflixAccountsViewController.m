@@ -30,7 +30,7 @@
 
 @synthesize accounts;
 
-- (void)dealloc {
+- (void) dealloc {
   self.accounts = nil;
   [super dealloc];
 }
@@ -108,7 +108,7 @@
   if (indexPath.section == 0) {
     NetflixAccount* account = [accounts objectAtIndex:indexPath.row];
     NetflixUser* user = [self.model.netflixCache userForAccount:account];
-    
+
     if (user == nil) {
       cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"Account #%d", nil), indexPath.row + 1];
     } else {
@@ -126,14 +126,14 @@
       cell.textLabel.text = LocalizedString(@"Remove Account", nil);
     }
   }
-  
+
   return cell;
 }
 
 
 - (void) didSelectAccountRow:(NSInteger) row {
   NetflixAccount* account = [accounts objectAtIndex:row];
-  
+
   [self.controller setCurrentNetflixAccount:account];
 
   for (NSInteger i = 0; i < accounts.count; i++) {
@@ -164,7 +164,7 @@
 
 - (void) onButtonTapped:(UITableViewRowAnimation) animation {
   [self setupButton];
-  
+
   [self.tableView beginUpdates];
   {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]
@@ -214,10 +214,10 @@
     NetflixAccount* account = [accounts objectAtIndex:row];
     [self.controller removeNetflixAccount:account];
     [accounts removeObjectAtIndex:row];
-    
+
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                      withRowAnimation:UITableViewRowAnimationRight];
-    
+
     if (accounts.count == 0) {
       [self onDone:nil];
     }

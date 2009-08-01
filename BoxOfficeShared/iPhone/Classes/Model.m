@@ -509,13 +509,13 @@ static Model* model = nil;
   }
 
   [[account retain] autorelease];
-  
+
   NetflixAccount* currentAccount = self.currentNetflixAccount;
-  
+
   NSMutableArray* accounts = [NSMutableArray arrayWithArray:self.netflixAccounts];
   [accounts removeObject:account];
   [self setNetflixAccounts:accounts];
-  
+
   if ([account isEqual:currentAccount]) {
     if (accounts.count > 0) {
       // they removed the active account.  switch the active account to the first account.
