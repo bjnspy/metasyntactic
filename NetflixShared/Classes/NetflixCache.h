@@ -26,46 +26,35 @@
 
 + (NSArray*) mostPopularTitles;
 
-- (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
-- (Movie*) correspondingNetflixMovie:(Movie*) movie;
-
-- (BOOL) isEnqueued:(Movie*) movie account:(NetflixAccount*) account;
-- (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
-
 - (void) update;
 
 - (NetflixUser*) userForAccount:(NetflixAccount*) account;
+
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;
-- (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account;
 - (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;
+- (Queue*) queueForFeed:(Feed*) feed account:(NetflixAccount*) account;
 - (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account;
+
 - (NSArray*) moviesForRSSTitle:(NSString*) title;
 - (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
+- (Movie*) correspondingNetflixMovie:(Movie*) movie;
+
+- (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
+
+- (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
+
+- (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
+- (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
+- (NSString*) availabilityForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
-- (NSString*) synopsisForMovie:(Movie*) movie;
-- (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
-- (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
 - (NSArray*) formatsForMovie:(Movie*) movie;
-- (NSArray*) similarMoviesForMovie:(Movie*) movie;
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
-- (NSString*) availabilityForMovie:(Movie*) movie;
+- (NSString*) synopsisForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
-
-- (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
-- (Movie*) promoteDiscToSeries:(Movie*) disc;
-- (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
-- (NSString*) downloadEtag:(Feed*) feed;
-
-- (void) checkApiResult:(XmlElement*) result;
-- (NSString*) extractErrorMessage:(XmlElement*) element;
-
-+ (void) processMovieItemList:(XmlElement*) element
-                       movies:(NSMutableArray*) movies
-                        saved:(NSMutableArray*) saved;
 
 @end

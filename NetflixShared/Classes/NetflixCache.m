@@ -368,6 +368,15 @@ static NSString** directories[] = {
 }
 
 
+- (void) checkApiResult:(XmlElement*) element {
+  NSString* message = [[element element:@"message"] text];
+  if ([@"Over queries per day limit" isEqual:message]) {
+    self.lastQuotaErrorDate = [NSDate date];
+    [MetasyntacticSharedApplication minorRefresh];
+  }
+}
+
+
 - (NSArray*) downloadFeeds:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
 
@@ -641,6 +650,20 @@ static NSString** directories[] = {
 }
 
 
+- (NSString*) extractErrorMessage:(XmlElement*) element {
+  NSString* message = [[element element:@"message"] text];
+  if (message.length > 0) {
+    return message;
+  } else if (element == nil) {
+    NSLog(@"Could not parse Netflix result.", nil);
+    return LocalizedString(@"Could not connect to Netflix.", nil);
+  } else {
+    NSLog(@"Netflix response had no 'message' element", nil);
+    return LocalizedString(@"An unknown error occurred.", nil);
+  }
+}
+
+
 - (NSArray*) movieSearch:(NSString*) query
               maxResults:(NSInteger) maxResults
                  account:(NetflixAccount*) account
@@ -725,6 +748,56 @@ static NSString** directories[] = {
                                   saved:saved];
     [self saveQueue:queue account:account];
   }
+}
+
+
+- (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account {
+  for (Feed* feed in [self feedsForAccount:account]) {
+    if ([key isEqual:feed.key]) {
+      return feed;
+    }
+  }
+  
+  return nil;
+}
+
+
+- (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account {
+  return [self queueForFeed:[self feedForKey:key account:account] account:account];
+}
+
+
+- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account {
+  NSString* title = nil;
+  if ([key isEqual:[NetflixCache dvdQueueKey]]) {
+    title = LocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
+  } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
+    title = LocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
+  } else if ([key isEqual:[NetflixCache atHomeKey]]) {
+    title = LocalizedString(@"At Home", @"The list of Netflix movies currently at the user's house");
+  } else if ([key isEqual:[NetflixCache rentalHistoryWatchedKey]]) {
+    title = LocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
+  } else if ([key isEqual:[NetflixCache rentalHistoryReturnedKey]]) {
+    title = LocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
+  } else if ([key isEqual:[NetflixCache rentalHistoryKey]]) {
+    title = LocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
+  } else if ([key isEqual:[NetflixCache recommendationKey]]) {
+    title = LocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
+  }
+  
+  Queue* queue;
+  if (!includeCount || ((queue = [self queueForKey:key account:account]) == nil)) {
+    return title;
+  }
+  
+  NSString* number = [NSString stringWithFormat:@"%d", queue.movies.count + queue.saved.count];
+  return [NSString stringWithFormat:LocalizedString(@"%@ (%@)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
+          title, number];
+}
+
+
+- (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account {
+  return [self titleForKey:key includeCount:YES account:account];
 }
 
 
@@ -1563,56 +1636,6 @@ static NSString** directories[] = {
 }
 
 
-- (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account {
-  for (Feed* feed in [self feedsForAccount:account]) {
-    if ([key isEqual:feed.key]) {
-      return feed;
-    }
-  }
-
-  return nil;
-}
-
-
-- (Queue*) queueForKey:(NSString*) key account:(NetflixAccount*) account {
-  return [self queueForFeed:[self feedForKey:key account:account] account:account];
-}
-
-
-- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount account:(NetflixAccount*) account {
-  NSString* title = nil;
-  if ([key isEqual:[NetflixCache dvdQueueKey]]) {
-    title = LocalizedString(@"Disc Queue", @"The Netflix queue containing the user's DVDs");
-  } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
-    title = LocalizedString(@"Instant Queue", @"The Netflix queue containing the user's streaming movies");
-  } else if ([key isEqual:[NetflixCache atHomeKey]]) {
-    title = LocalizedString(@"At Home", @"The list of Netflix movies currently at the user's house");
-  } else if ([key isEqual:[NetflixCache rentalHistoryWatchedKey]]) {
-    title = LocalizedString(@"Recently Watched", @"The list of Netflix movies the user recently watched");
-  } else if ([key isEqual:[NetflixCache rentalHistoryReturnedKey]]) {
-    title = LocalizedString(@"Recently Returned", @"The list of Netflix movies the user recently returned");
-  } else if ([key isEqual:[NetflixCache rentalHistoryKey]]) {
-    title = LocalizedString(@"Entire History", @"The entire list of Netflix movies the user has seen");
-  } else if ([key isEqual:[NetflixCache recommendationKey]]) {
-    title = LocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
-  }
-
-  Queue* queue;
-  if (!includeCount || ((queue = [self queueForKey:key account:account]) == nil)) {
-    return title;
-  }
-
-  NSString* number = [NSString stringWithFormat:@"%d", queue.movies.count + queue.saved.count];
-  return [NSString stringWithFormat:LocalizedString(@"%@ (%@)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
-          title, number];
-}
-
-
-- (NSString*) titleForKey:(NSString*) key account:(NetflixAccount*) account {
-  return [self titleForKey:key includeCount:YES account:account];
-}
-
-
 - (Status*) statusForMovie:(Movie*) movie inQueue:(Queue*) queue account:(NetflixAccount*) account {
   BOOL saved = NO;
   NSInteger position = NSNotFound;
@@ -1688,29 +1711,6 @@ static NSString** directories[] = {
   }
 
   return [Movie newWithDictionary:dictionary];
-}
-
-
-- (void) checkApiResult:(XmlElement*) element {
-  NSString* message = [[element element:@"message"] text];
-  if ([@"Over queries per day limit" isEqual:message]) {
-    self.lastQuotaErrorDate = [NSDate date];
-    [MetasyntacticSharedApplication minorRefresh];
-  }
-}
-
-
-- (NSString*) extractErrorMessage:(XmlElement*) element {
-  NSString* message = [[element element:@"message"] text];
-  if (message.length > 0) {
-    return message;
-  } else if (element == nil) {
-    NSLog(@"Could not parse Netflix result.", nil);
-    return LocalizedString(@"Could not connect to Netflix.", nil);
-  } else {
-    NSLog(@"Netflix response had no 'message' element", nil);
-    return LocalizedString(@"An unknown error occurred.", nil);
-  }
 }
 
 @end

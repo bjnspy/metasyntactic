@@ -26,6 +26,21 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "Queue.h"
 
+@interface NetflixCache()
+- (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
+- (Movie*) promoteDiscToSeries:(Movie*) disc;
+
+- (void) checkApiResult:(XmlElement*) result;
+- (NSString*) extractErrorMessage:(XmlElement*) element;
+
+- (NSString*) downloadEtag:(Feed*) feed;
+- (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
+
++ (void) processMovieItemList:(XmlElement*) element
+                       movies:(NSMutableArray*) movies
+                        saved:(NSMutableArray*) saved;
+@end
+
 @interface MutableNetflixCache()
 @property (retain) NSDictionary* presubmitRatings;
 @end
