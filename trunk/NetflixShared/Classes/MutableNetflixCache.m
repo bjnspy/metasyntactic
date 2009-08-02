@@ -402,7 +402,7 @@ andReorderingMovies:[IdentitySet set]
 
   NSLog(@"Changing rating succeeded.", nil);
   [FileUtilities writeObject:changeArguments.rating toFile:userRatingsFile];
-  
+
   [ThreadingUtilities foregroundSelector:@selector(reportChangeRatingSuccess:toDelegate:)
                                 onTarget:self
                               withObject:changeArguments.movie

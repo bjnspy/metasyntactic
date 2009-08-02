@@ -233,7 +233,7 @@
 - (void) reportResult:(SearchResult*) result {
   [self initializeData:result];
   [super reportResult:result];
-  
+
   if (result.movies.count > 0) {
     // download the details for these movies in teh background.
     [[CacheUpdater cacheUpdater] addSearchMovies:result.movies];
