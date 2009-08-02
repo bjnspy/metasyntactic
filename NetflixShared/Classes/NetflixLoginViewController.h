@@ -18,7 +18,7 @@
   UILabel* statusLabel;
   UIActivityIndicatorView* activityIndicator;
   UIButton* button;
-  
+
   OAToken* authorizationToken;
   BOOL didShowBrowser;
 }

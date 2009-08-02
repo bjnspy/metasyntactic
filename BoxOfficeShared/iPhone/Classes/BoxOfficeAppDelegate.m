@@ -143,7 +143,7 @@
 
 
 - (void) reportNetflixMovies:(NSArray*) movies {
-  [[CacheUpdater cacheUpdater] addMovies:movies];  
+  [[CacheUpdater cacheUpdater] addMovies:movies];
 }
 
 

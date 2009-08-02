@@ -70,7 +70,7 @@ static NSString** directories[] = {
 + (void) createDirectories {
   for (int i = 0; i < ArrayLength(directories); i++) {
     NSString* directory = *directories[i];
-    
+
     [FileUtilities createDirectory:directory];
   }
 }
@@ -85,7 +85,7 @@ static NSString** directories[] = {
     netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
     netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
     [self createDirectories];
-    
+
     mostPopularTitles =
     [[NSArray arrayWithObjects:
       LocalizedString(@"Top DVDs", @"Movie category"),
@@ -1267,15 +1267,15 @@ static NSString** directories[] = {
 
 - (void) lookupCorrespondingNetflixMovie:(Movie*) movie account:(NetflixAccount*) account {
   NSAssert(![NSThread isMainThread], @"");
-  
+
   if (account.userId.length == 0) {
     return;
   }
-  
+
   if ([movie isNetflix]) {
     return;
   }
-  
+
   NSString* file = [self netflixFile:movie];
   if (![FileUtilities fileExists:file]) {
     NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];
@@ -1301,7 +1301,7 @@ static NSString** directories[] = {
         // first, if this disc is a member of a series, update the
         // details of that series.
         [self updateSeriesDetails:movie account:account];
-        
+
         // for a disc that's a member of a series, we only need a couple
         // of bits of data.
         [self updateSpecificDiscDetails:movie expand:@"synopsis,formats" account:account];
@@ -1309,7 +1309,7 @@ static NSString** directories[] = {
         // Otherwise, update all the details.
         [self updateAllDiscDetails:movie account:account];
       }
-      
+
     }
     [pool release];
   } else {
