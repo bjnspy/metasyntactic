@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */; };
 		7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */; };
-		7478549D102399F8004124F3 /* NetflixAccountsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7478549B102399F8004124F3 /* NetflixAccountsViewController.h */; };
-		7478549E102399F8004124F3 /* NetflixAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7478549C102399F8004124F3 /* NetflixAccountsViewController.m */; };
 		74A01DED10245CD700299F25 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A01DEC10245CC200299F25 /* libNetflixShared.a */; };
 		74A01DF110245D0A00299F25 /* NetflixShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01DF010245D0A00299F25 /* NetflixShared.h */; };
 		74FB7D251017A2DE001B5CB9 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
@@ -136,8 +134,8 @@
 		74FB7DBC1017A457001B5CB9 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */; };
 		74FB7E0D1017A7A3001B5CB9 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
 		74FB7E0E1017A7A8001B5CB9 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */; };
-		74FB7E1E1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */; };
-		74FB7E1F1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */; };
+		74FB7E1E1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7E1C1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h */; };
+		74FB7E1F1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7E1D1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m */; };
 		74FB7FF91017B52D001B5CB9 /* PocketFlicksNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7FF71017B52D001B5CB9 /* PocketFlicksNavigationController.h */; };
 		74FB7FFA1017B52D001B5CB9 /* PocketFlicksNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7FF81017B52D001B5CB9 /* PocketFlicksNavigationController.m */; };
 		74FB7FFD1017B5AB001B5CB9 /* PocketFlicksViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7FFB1017B5AB001B5CB9 /* PocketFlicksViewController.h */; };
@@ -172,14 +170,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 74A01DE710245CC200299F25 /* NetflixShared.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libNetflixShared.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = NetflixShared;
 		};
 		74A01DEE10245CE400299F25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74A01DE710245CC200299F25 /* NetflixShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* NetflixShared */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = NetflixShared;
 		};
 		74E6FCC80FD1B1CE0015D9F8 /* PBXContainerItemProxy */ = {
@@ -359,8 +357,6 @@
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
-		7478549B102399F8004124F3 /* NetflixAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAccountsViewController.h; sourceTree = "<group>"; };
-		7478549C102399F8004124F3 /* NetflixAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixAccountsViewController.m; sourceTree = "<group>"; };
 		74798CFF0F74B7C80057E111 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
 		74798D000F74B7C80057E111 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
@@ -494,8 +490,8 @@
 		74FB7DB31017A43F001B5CB9 /* BoxOfficeSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeSharedApplication.m; sourceTree = "<group>"; };
 		74FB7DB61017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeSharedApplicationDelegate.h; sourceTree = "<group>"; };
 		74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeShared.h; sourceTree = "<group>"; };
-		74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeAppDelegate.h; sourceTree = "<group>"; };
-		74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeAppDelegate.m; sourceTree = "<group>"; };
+		74FB7E1C1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBoxOfficeAppDelegate.h; sourceTree = "<group>"; };
+		74FB7E1D1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBoxOfficeAppDelegate.m; sourceTree = "<group>"; };
 		74FB7FF71017B52D001B5CB9 /* PocketFlicksNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksNavigationController.h; sourceTree = "<group>"; };
 		74FB7FF81017B52D001B5CB9 /* PocketFlicksNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketFlicksNavigationController.m; sourceTree = "<group>"; };
 		74FB7FFB1017B5AB001B5CB9 /* PocketFlicksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlicksViewController.h; sourceTree = "<group>"; };
@@ -531,14 +527,14 @@
 				74447D550DC8474A00CC146C /* UI */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
 				746A02140DC81A1A0079D89B /* Application.h */,
-				74FB7E1C1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h */,
+				74FB7E1C1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h */,
 				74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */,
 				74FB7DB21017A43F001B5CB9 /* BoxOfficeSharedApplication.h */,
 				74FB7DB61017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h */,
 				7406A7870F104D1D00795555 /* Controller.h */,
 				7406A7890F104D1D00795555 /* Model.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
-				74FB7E1D1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m */,
+				74FB7E1D1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m */,
 				74FB7DB31017A43F001B5CB9 /* BoxOfficeSharedApplication.m */,
 				7406A7880F104D1D00795555 /* Controller.m */,
 				7406A78A0F104D1D00795555 /* Model.m */,
@@ -1029,8 +1025,6 @@
 				74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */,
 				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
 				74FB7FFC1017B5AB001B5CB9 /* PocketFlicksViewController.m */,
-				7478549B102399F8004124F3 /* NetflixAccountsViewController.h */,
-				7478549C102399F8004124F3 /* NetflixAccountsViewController.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -1105,12 +1099,11 @@
 				74FB7DB41017A43F001B5CB9 /* BoxOfficeSharedApplication.h in Headers */,
 				74FB7DB81017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h in Headers */,
 				74FB7DBC1017A457001B5CB9 /* BoxOfficeShared.h in Headers */,
-				74FB7E1E1017A7CE001B5CB9 /* BoxOfficeAppDelegate.h in Headers */,
+				74FB7E1E1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h in Headers */,
 				74FB7FF91017B52D001B5CB9 /* PocketFlicksNavigationController.h in Headers */,
 				74FB7FFD1017B5AB001B5CB9 /* PocketFlicksViewController.h in Headers */,
 				74FB80021017B64A001B5CB9 /* PocketFlicksCreditsViewController.h in Headers */,
 				7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */,
-				7478549D102399F8004124F3 /* NetflixAccountsViewController.h in Headers */,
 				74A01DF110245D0A00299F25 /* NetflixShared.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1362,12 +1355,11 @@
 				74FB7DA21017A2DE001B5CB9 /* Controller.m in Sources */,
 				74FB7DA31017A2DE001B5CB9 /* Model.m in Sources */,
 				74FB7DB51017A43F001B5CB9 /* BoxOfficeSharedApplication.m in Sources */,
-				74FB7E1F1017A7CE001B5CB9 /* BoxOfficeAppDelegate.m in Sources */,
+				74FB7E1F1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m in Sources */,
 				74FB7FFA1017B52D001B5CB9 /* PocketFlicksNavigationController.m in Sources */,
 				74FB7FFE1017B5AB001B5CB9 /* PocketFlicksViewController.m in Sources */,
 				74FB80031017B64A001B5CB9 /* PocketFlicksCreditsViewController.m in Sources */,
 				7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */,
-				7478549E102399F8004124F3 /* NetflixAccountsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

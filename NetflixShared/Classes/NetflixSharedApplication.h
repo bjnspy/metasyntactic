@@ -20,11 +20,16 @@
 
 + (BOOL) netflixEnabled;
 + (BOOL) netflixNotificationsEnabled;
+
++ (NSArray*) netflixAccounts;
 + (NetflixAccount*) currentNetflixAccount;
++ (void) setCurrentNetflixAccount:(NetflixAccount*) account;
++ (void) addNetflixAccount:(NetflixAccount*) account;
++ (void) removeNetflixAccount:(NetflixAccount*) account;
+
++ (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account;
 
 + (void) reportNetflixMovies:(NSArray*) movies;
 + (void) reportNetflixMovie:(Movie*) movie;
-
-+ (void) addNetflixAccount:(NetflixAccount*) account;
 
 @end

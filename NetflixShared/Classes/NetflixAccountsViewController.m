@@ -14,8 +14,10 @@
 
 #import "NetflixAccountsViewController.h"
 
-#import "Controller.h"
-#import "Model.h"
+#import "NetflixAccount.h"
+#import "NetflixLoginViewController.h"
+#import "NetflixSharedApplication.h"
+#import "NetflixUser.h"
 
 @interface NetflixAccountsViewController()
 @property (retain) NSMutableArray* accounts;
@@ -40,16 +42,6 @@
 }
 
 
-- (Controller*) controller {
-  return [Controller controller];
-}
-
-
-- (Model*) model {
-  return [Model model];
-}
-
-
 - (void) majorRefresh {
   // do *NOT* remove this.  It prevents us from refreshing while the user is
   // typeing and causing nasty crashes.
@@ -64,7 +56,7 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  self.accounts = [NSMutableArray arrayWithArray:self.model.netflixAccounts];
+  self.accounts = [NSMutableArray arrayWithArray:[NetflixSharedApplication netflixAccounts]];
 }
 
 
@@ -103,14 +95,14 @@
 
   if (indexPath.section == 0) {
     NetflixAccount* account = [accounts objectAtIndex:indexPath.row];
-    NetflixUser* user = [self.model.netflixCache userForAccount:account];
+    NetflixUser* user = [NetflixSharedApplication netflixUserForAccount:account];
 
     if (user == nil) {
       cell.textLabel.text = [NSString stringWithFormat:LocalizedString(@"Account #%d", nil), indexPath.row + 1];
     } else {
       cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     }
-    if ([account isEqual:self.model.currentNetflixAccount]) {
+    if ([account isEqual:[NetflixSharedApplication currentNetflixAccount]]) {
       cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
   } else {
@@ -130,7 +122,7 @@
 - (void) didSelectAccountRow:(NSInteger) row {
   NetflixAccount* account = [accounts objectAtIndex:row];
 
-  [self.controller setCurrentNetflixAccount:account];
+  [NetflixSharedApplication setCurrentNetflixAccount:account];
 
   for (NSInteger i = 0; i < accounts.count; i++) {
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -208,7 +200,7 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     NSInteger row = indexPath.row;
     NetflixAccount* account = [accounts objectAtIndex:row];
-    [self.controller removeNetflixAccount:account];
+    [NetflixSharedApplication removeNetflixAccount:account];
     [accounts removeObjectAtIndex:row];
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

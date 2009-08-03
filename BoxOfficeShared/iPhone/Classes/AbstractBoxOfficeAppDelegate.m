@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "BoxOfficeAppDelegate.h"
+#import "AbstractBoxOfficeAppDelegate.h"
 
 #import "BoxOfficeSharedApplication.h"
 #import "CacheUpdater.h"
@@ -142,6 +142,31 @@
 }
 
 
+- (NSArray*) netflixAccounts {
+  return self.model.netflixAccounts;
+}
+
+
+- (void) setCurrentNetflixAccount:(NetflixAccount*) account {
+  [self.controller setCurrentNetflixAccount:account];
+}
+
+
+- (void) addNetflixAccount:(NetflixAccount*) account {
+  [self.controller addNetflixAccount:account];
+}
+
+
+- (NetflixUser*) netflixUserForAccount:(NetflixAccount*) account {
+  return [self.model.netflixCache userForAccount:account];
+}
+
+
+- (void) removeNetflixAccount:(NetflixAccount*) account {
+  [self.controller removeNetflixAccount:account];
+}
+
+
 - (void) reportNetflixMovies:(NSArray*) movies {
   [[CacheUpdater cacheUpdater] addMovies:movies];
 }
@@ -149,11 +174,6 @@
 
 - (void) reportNetflixMovie:(Movie*) movie {
   [[CacheUpdater cacheUpdater] addMovie:movie];
-}
-
-
-- (void) addNetflixAccount:(NetflixAccount*) account {
-  [self.controller addNetflixAccount:account];
 }
 
 @end
