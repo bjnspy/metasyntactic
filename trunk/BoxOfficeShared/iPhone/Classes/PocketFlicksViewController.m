@@ -18,7 +18,6 @@
 #import "BoxOfficeStockImages.h"
 #import "Controller.h"
 #import "Model.h"
-#import "NetflixAccountsViewController.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixMostPopularViewController.h"
 #import "NetflixQueueViewController.h"
