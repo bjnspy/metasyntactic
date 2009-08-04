@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.metasyntactic.activities"
-    android:versionCode="25"
-    android:versionName="1.25">
+    android:versionCode="26"
+    android:versionName="1.26">
     <uses-sdk android:minSdkVersion="3" />
     <application
         android:icon="@drawable/launcher"
