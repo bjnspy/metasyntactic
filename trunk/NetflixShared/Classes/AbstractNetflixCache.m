@@ -54,7 +54,7 @@
 }
 
 
-- (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) acccount {
++ (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) acccount {
   OAConsumer* consumer = [OAConsumer consumerWithKey:[NetflixAuthentication key]
                                               secret:[NetflixAuthentication secret]];
 
