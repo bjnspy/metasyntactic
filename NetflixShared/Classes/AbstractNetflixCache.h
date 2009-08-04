@@ -26,6 +26,6 @@
 + (NSString*) rentalHistoryReturnedKey;
 
 // @protected
-- (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) account;
++ (OAMutableURLRequest*) createURLRequest:(NSString*) address account:(NetflixAccount*) account;
 
 @end

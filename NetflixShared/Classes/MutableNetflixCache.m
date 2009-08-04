@@ -139,7 +139,7 @@
   NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", account.userId, queueType];
 
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   [request setHTTPMethod:@"POST"];
 
   NSArray* parameters = [NSArray arrayWithObjects:
@@ -291,7 +291,7 @@ andReorderingMovies:[IdentitySet set]
                  withIdentifier:(NSString*) identifier
                         account:(NetflixAccount*) account {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
   OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"method" value:@"PUT"];
@@ -320,7 +320,7 @@ andReorderingMovies:[IdentitySet set]
                   withIdentifier:(NSString*) identifier
                          account:(NetflixAccount*) account {
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", account.userId, identifier];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   [request setHTTPMethod:@"POST"];
 
   NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
@@ -353,7 +353,7 @@ andReorderingMovies:[IdentitySet set]
   // to that rating.  Otherwise we will 'POST' to it.
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
   [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
   [request prepare];
@@ -506,7 +506,7 @@ andReorderingMovies:[IdentitySet set]
     address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", addArguments.account.userId];
   }
 
-  OAMutableURLRequest* request = [self createURLRequest:address account:addArguments.account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:addArguments.account];
   [request setHTTPMethod:@"POST"];
 
   NSMutableArray* parameters = [NSMutableArray array];
@@ -555,7 +555,7 @@ andReorderingMovies:[IdentitySet set]
                  error:(NSString**) error {
   *error = nil;
 
-  OAMutableURLRequest* request = [self createURLRequest:movie.identifier account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:movie.identifier account:account];
 
   [request setHTTPMethod:@"DELETE"];
   [request prepare];

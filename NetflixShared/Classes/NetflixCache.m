@@ -381,7 +381,7 @@ static NSString** directories[] = {
   if (![self canContinue:account]) { return nil; }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", account.userId];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
 
   [request prepare];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
@@ -672,7 +672,7 @@ static NSString** directories[] = {
     *error = nil;
   }
 
-  OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles" account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:@"http://api.netflix.com/catalog/titles" account:account];
 
   NSArray* parameters = [NSArray arrayWithObjects:
                          [OARequestParameter parameterWithName:@"expand" value:@"formats"],
@@ -851,7 +851,7 @@ static NSString** directories[] = {
   NSLog(@"NetflixCache:downloadUserData");
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", account.userId];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
 
   [request prepare];
 
@@ -908,7 +908,7 @@ static NSString** directories[] = {
 - (Movie*) downloadMovieWithSeriesKey:(NSString*) seriesKey account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
 
-  OAMutableURLRequest* request = [self createURLRequest:seriesKey account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:seriesKey account:account];
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
@@ -1028,7 +1028,7 @@ static NSString** directories[] = {
   }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
   [NSMutableURLRequestAdditions setParameters:[NSArray arrayWithObject:parameter] forRequest:request];
   [request prepare];
@@ -1248,7 +1248,7 @@ static NSString** directories[] = {
   //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
 
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
@@ -1310,7 +1310,7 @@ static NSString** directories[] = {
 
   address = [NSString stringWithFormat:@"%@?expand=%@", address, expand];
 
-  OAMutableURLRequest* request = [self createURLRequest:address account:account];
+  OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:address account:account];
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
@@ -1493,6 +1493,9 @@ static NSString** directories[] = {
 - (void) updateBackgroundEntryPoint:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
   [self clearUpdatedMovies];
+  
+  [FileUtilities createDirectory:[self userRatingsDirectory:account]];
+  [FileUtilities createDirectory:[self predictedRatingsDirectory:account]];
 
   NSString* notification = LocalizedString(@"Netflix", nil);
   [NotificationCenter addNotification:notification];
