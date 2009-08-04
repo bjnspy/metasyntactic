@@ -60,6 +60,9 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
   };
   private final Comparator<Theater> SEARCH_DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
+      if (userLocation == null) {
+        return TITLE_ORDER.compare(m1, m2);
+      }
       final Double dist_m1 = userLocation.distanceTo(m1.getLocation());
       final Double dist_m2 = userLocation.distanceTo(m2.getLocation());
       return dist_m1.compareTo(dist_m2);

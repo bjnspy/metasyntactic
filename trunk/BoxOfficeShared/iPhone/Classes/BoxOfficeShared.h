@@ -14,4 +14,4 @@
 
 #import "../ForwardDeclarations.h"
 
-#import "BoxOfficeAppDelegate.h"
+#import "AbstractBoxOfficeAppDelegate.h"
