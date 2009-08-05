@@ -112,7 +112,8 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
     Collections.sort(localTheaters, RATING_ORDER);
     boolean isHeaderAdded = false;
     for (final Theater theater : localTheaters) {
-      if (userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance() &&
+      if (userLocation != null &&
+          userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance() &&
           !getService().isFavoriteTheater(theater) &&
           !isHeaderAdded) {
         theaterWrapperList.add(new TheaterWrapper(null, 2));
@@ -124,6 +125,9 @@ public class ShowtimesActivity extends AbstractNowPlayingListActivity {
 
   private final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
+      if (userLocation == null) {
+        return Theater.TITLE_ORDER.compare(m1, m2);
+      }
       final Double dist_m1 = userLocation.distanceTo(m1.getLocation());
       final Double dist_m2 = userLocation.distanceTo(m2.getLocation());
       return dist_m1.compareTo(dist_m2);

@@ -43,11 +43,18 @@ public abstract class AbstractCache {
   protected abstract List<File> getCacheDirectories();
 
   protected static void clearDirectory(final File directory) {
+    if (directory == null) {
+      return;
+    }
     final long now = new Date().getTime();
 
     final Random random = new Random();
 
-    for (final File child : directory.listFiles()) {
+    File[] files = directory.listFiles();
+    if (files == null) {
+      return;
+    }
+    for (final File child : files) {
       if (random.nextInt(100) < 20) {
         if (child.exists() && child.isFile()) {
           final long writeTime = child.lastModified();
