@@ -87,13 +87,6 @@
 - (void) main {
   [NSThread setThreadPriority:0];
 
-  NSString* className = NSStringFromClass([target class]);
-  NSString* selectorName = NSStringFromSelector(selector);
-  NSString* name = [NSString stringWithFormat:@"%@:%@", className, selectorName];
-  [[NSThread currentThread] setName:name];
-
-  NSLog(@"Starting: %@", name);
-
   [gate lock];
   {
     if (!self.isCancelled) {
@@ -101,8 +94,6 @@
     }
   }
   [gate unlock];
-
-  NSLog(@"Stopping: %@", name);
 
   if (isBounded) {
     [operationQueue onAfterBoundedOperationCompleted:self];
