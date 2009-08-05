@@ -255,7 +255,6 @@
 				74A01D3E102452FF00299F25 /* ModifyQueueArguments.h */,
 				74A01D40102452FF00299F25 /* MoveMovieArguments.h */,
 				74A01D42102452FF00299F25 /* MutableNetflixCache.h */,
-				74DA28C11026D0080076B48C /* NetflixAccountsViewController.h */,
 				74A01D44102452FF00299F25 /* NetflixAddMovieDelegate.h */,
 				74A01D45102452FF00299F25 /* NetflixCache.h */,
 				74A01D47102452FF00299F25 /* NetflixChangeRatingDelegate.h */,
@@ -267,7 +266,6 @@
 				74A01D3F102452FF00299F25 /* ModifyQueueArguments.m */,
 				74A01D41102452FF00299F25 /* MoveMovieArguments.m */,
 				74A01D43102452FF00299F25 /* MutableNetflixCache.m */,
-				74DA28C21026D0080076B48C /* NetflixAccountsViewController.m */,
 				74A01D46102452FF00299F25 /* NetflixCache.m */,
 			);
 			name = Netflix;
@@ -276,7 +274,9 @@
 		74A01F3D102468C200299F25 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				74DA28C11026D0080076B48C /* NetflixAccountsViewController.h */,
 				74A01F3E102468D600299F25 /* NetflixLoginViewController.h */,
+				74DA28C21026D0080076B48C /* NetflixAccountsViewController.m */,
 				74A01F3F102468D600299F25 /* NetflixLoginViewController.m */,
 			);
 			name = ViewControllers;

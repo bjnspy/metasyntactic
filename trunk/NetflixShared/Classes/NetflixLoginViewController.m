@@ -289,10 +289,21 @@
     NSString* responseBody = [[[NSString alloc] initWithData:data
                                                     encoding:NSUTF8StringEncoding] autorelease];
     OAToken* accessToken = [OAToken tokenWithHTTPResponseBody:responseBody];
-    [self performSelectorOnMainThread:@selector(reportAccessToken:) withObject:accessToken waitUntilDone:NO];
-  } else {
-    [self performSelectorOnMainThread:@selector(reportError:) withObject:nil waitUntilDone:NO];
+    
+    if (accessToken.key.length > 0 && accessToken.secret.length > 0) {
+      NetflixAccount* account = [NetflixAccount accountWithKey:accessToken.key
+                                                        secret:accessToken.secret
+                                                        userId:[accessToken.fields objectForKey:@"user_id"]];
+      
+      // Download information about the user before we proceed.
+      [NetflixCache downloadUserInformation:account];
+      
+      [self performSelectorOnMainThread:@selector(reportAccount:) withObject:account waitUntilDone:NO];
+      return;
+    }
   }
+
+  [self performSelectorOnMainThread:@selector(reportError:) withObject:nil waitUntilDone:NO];
 }
 
 
@@ -302,7 +313,7 @@
 }
 
 
-- (void) reportAccessToken:(OAToken*) token {
+- (void) reportAccount:(NetflixAccount*) account {
   NSAssert([NSThread isMainThread], nil);
   [activityIndicator stopAnimating];
   [button removeFromSuperview];
@@ -311,10 +322,6 @@
   [NSString stringWithFormat:
    LocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [AbstractApplication name]];
 
-  NetflixAccount* account = [NetflixAccount accountWithKey:token.key
-                                                    secret:token.secret
-                                                    userId:[token.fields objectForKey:@"user_id"]];
-  [NetflixCache downloadUserInformation:account];
   [NetflixSharedApplication addNetflixAccount:account];
 }
 
