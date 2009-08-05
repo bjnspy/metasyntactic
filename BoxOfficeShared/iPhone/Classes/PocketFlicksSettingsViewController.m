@@ -16,6 +16,7 @@
 
 #import "Controller.h"
 #import "Model.h"
+#import "PocketFlicksCreditsViewController.h"
 #import "SwitchCell.h"
 
 @interface PocketFlicksSettingsViewController()
@@ -66,13 +67,17 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return 1;
+  return 2;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-  return 3;
+  if (section == 0) {
+    return 1;
+  } else {
+    return 3;
+  }
 }
 
 
@@ -91,6 +96,16 @@
   cell.switchControl.on = on;
   cell.textLabel.text = text;
 
+  return cell;
+}
+
+
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+  NSString* text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), LocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
+  cell.textLabel.text = text;
   return cell;
 }
 
@@ -119,7 +134,11 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  return [self cellForSettingsRow:indexPath.row];
+  if (indexPath.section == 0) {
+    return [self cellForHeaderRow:indexPath.row];
+  } else {
+    return [self cellForSettingsRow:indexPath.row];
+  }
 }
 
 
@@ -141,6 +160,10 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+  if (indexPath.section == 0) {
+    UIViewController* controller = [[[PocketFlicksCreditsViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+  }
 }
 
 @end
