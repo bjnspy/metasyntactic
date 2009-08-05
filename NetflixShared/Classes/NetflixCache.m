@@ -887,6 +887,7 @@ static NSString** directories[] = {
     return nil;
   }
   
+  [FileUtilities createDirectory:[NetflixCache accountDirectory:account]];
   NetflixUser* user = [NetflixUser userWithFirstName:firstName lastName:lastName canInstantWatch:canInstantWatch preferredFormats:preferredFormats];
   [FileUtilities writeObject:user.dictionary toFile:[self userFile:account]];
   return user;
