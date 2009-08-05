@@ -314,6 +314,7 @@
   NetflixAccount* account = [NetflixAccount accountWithKey:token.key
                                                     secret:token.secret
                                                     userId:[token.fields objectForKey:@"user_id"]];
+  [NetflixCache downloadUserInformation:account];
   [NetflixSharedApplication addNetflixAccount:account];
 }
 
