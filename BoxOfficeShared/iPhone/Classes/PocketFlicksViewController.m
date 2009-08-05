@@ -374,7 +374,7 @@ typedef enum {
   CGRect frame = CGRectMake(12, -1, 480, 23);
 
   UILabel* label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-  label.text = [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
+  label.text = [NSString stringWithFormat:LocalizedString(@"Account: %@ %@", "<first name> <last name>"), user.firstName, user.lastName];
   label.font = [UIFont boldSystemFontOfSize:18];
   label.textColor = [UIColor whiteColor];
   label.shadowOffset = CGSizeMake(0, 1);
