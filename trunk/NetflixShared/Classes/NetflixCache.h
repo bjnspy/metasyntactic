@@ -26,6 +26,8 @@
 
 + (NSArray*) mostPopularTitles;
 
++ (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
+
 - (void) update;
 
 - (NetflixUser*) userForAccount:(NetflixAccount*) account;
