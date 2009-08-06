@@ -201,7 +201,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
     }
   } else if (section == MyOtherApplicationsSection) {
-    if ([Application isInReviewPeriod]) {
+    if (self.model.isInReviewPeriod) {
       if (row == 0) {
         cell.textLabel.text = @"Now Playing";
       } else if (row == 1) {

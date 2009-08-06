@@ -226,41 +226,43 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeWebsites {
   NSMutableDictionary* map = [NSMutableDictionary dictionary];
-  NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
-  if (imdbAddress.length > 0) {
-    [map setObject:imdbAddress forKey:@"IMDb"];
-  }
-
-  if (![Application isInReviewPeriod]) {
+  
+  if (!self.model.isInReviewPeriod) {
+    NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
+    if (imdbAddress.length > 0) {
+      [map setObject:imdbAddress forKey:@"IMDb"];
+    }
+    
     NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
     if (amazonAddress.length > 0) {
       [map setObject:amazonAddress forKey:@"Amazon"];
     }
-
+    
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
       [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
-
+    
     NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
     if (netflixAddress.length > 0) {
       [map setObject:netflixAddress forKey:LocalizedString(@"Netflix", nil)];
     }
+    
+    Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+      [map setObject:score.identifier forKey:@"RottenTomatoes"];
+    }
+    
+    score = [self.model metacriticScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+      [map setObject:score.identifier forKey:@"Metacritic"];
+    }
+    
+    if (dvd != nil) {
+      [map setObject:dvd.url forKey:@"VideoETA"];
+    }
   }
 
-  Score* score = [self.model rottenTomatoesScoreForMovie:movie];
-  if (score.identifier.length > 0) {
-    [map setObject:score.identifier forKey:@"RottenTomatoes"];
-  }
-
-  score = [self.model metacriticScoreForMovie:movie];
-  if (score.identifier.length > 0) {
-    [map setObject:score.identifier forKey:@"Metacritic"];
-  }
-
-  if (dvd != nil) {
-    [map setObject:dvd.url forKey:@"VideoETA"];
-  }
   self.websites = map;
 }
 

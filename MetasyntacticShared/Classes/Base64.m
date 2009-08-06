@@ -84,7 +84,7 @@ static char decodingTable[128];
 
     output[outputPoint++] = (decodingTable[i0] << 2) | (decodingTable[i1] >> 4);
     if (outputPoint < outputLength) {
-      output[outputPoint++] = ((decodingTable[i1] & 0xf) << 4) | (decodingTable[i2] >> 2);
+      output[outputPoint++] = ((decodingTable[i1] & 0xF) << 4) | (decodingTable[i2] >> 2);
     }
     if (outputPoint < outputLength) {
       output[outputPoint++] = ((decodingTable[i2] & 0x3) << 6) | decodingTable[i3];

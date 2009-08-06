@@ -63,6 +63,7 @@
 @property (retain) ThreadsafeValue* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
+@property (retain) NSNumber* isInReviewPeriodData;
 @property NSInteger cachedScoreProviderIndex;
 @property NSInteger searchRadiusData;
 @property (retain) NSArray* netflixAccountsData;
@@ -111,6 +112,7 @@ static NSString* UPCOMING_DISABLED                          = @"upcomingDisabled
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX     = @"upcomingMoviesSelectedSegmentIndex";
 static NSString* USE_NORMAL_FONTS                           = @"useNormalFonts";
 static NSString* USER_ADDRESS                               = @"userLocation";
+static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComplete";
 
 @synthesize dataProvider;
 
@@ -137,6 +139,7 @@ static NSString* USER_ADDRESS                               = @"userLocation";
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 @synthesize netflixAccountsData;
+@synthesize isInReviewPeriodData;
 
 - (void) dealloc {
   self.dataProvider = nil;
@@ -162,6 +165,7 @@ static NSString* USER_ADDRESS                               = @"userLocation";
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
+  self.isInReviewPeriodData = nil;
 
   self.netflixAccountsData = nil;
 
@@ -1620,6 +1624,32 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 - (void) clearNavigationStack {
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_TYPES];
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_VALUES];
+  [self synchronize];
+}
+
+
+- (BOOL) isInReviewPeriodWorker {
+  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
+  id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+  
+  return value == nil;
+}
+
+
+- (BOOL) isInReviewPeriod {
+  if (isInReviewPeriodData == nil) {
+    self.isInReviewPeriodData = [NSNumber numberWithBool:[self isInReviewPeriodWorker]];
+  }
+  
+  return isInReviewPeriodData.boolValue;
+}
+
+
+- (void) clearInReviewPeriod {
+  self.isInReviewPeriodData = [NSNumber numberWithBool:NO];
+  
+  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
   [self synchronize];
 }
 

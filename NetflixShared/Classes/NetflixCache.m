@@ -89,7 +89,6 @@ static NSString** directories[] = {
     mostPopularTitles =
     [[NSArray arrayWithObjects:
       LocalizedString(@"Top DVDs", @"Movie category"),
-      LocalizedString(@"Top 'Instant Watch'", @"Movie category"),
       LocalizedString(@"New DVDs", @"Movie category"),
       LocalizedString(@"New 'Instant Watch'", @"Movie category"),
       LocalizedString(@"Action & Adventure", @"Movie category"),
@@ -118,7 +117,6 @@ static NSString** directories[] = {
     [[NSDictionary dictionaryWithObjects:
       [NSArray arrayWithObjects:
        @"http://rss.netflix.com/Top100RSS",
-       @"http://www.netflix.com/TopWatchInstantlyRSS",
        @"http://rss.netflix.com/NewReleasesRSS",
        @"http://www.netflix.com/NewWatchInstantlyRSS",
        @"http://rss.netflix.com/Top25RSS?gid=296",
@@ -377,6 +375,7 @@ static NSString** directories[] = {
 
 - (BOOL) canContinue:(NetflixAccount*) account {
   return [NetflixSharedApplication netflixEnabled] &&
+  account.userId.length > 0 &&
   [account isEqual:[NetflixSharedApplication currentNetflixAccount]];
 }
 
@@ -1021,15 +1020,17 @@ static NSString** directories[] = {
 }
 
 
-- (void) updateRatings:(Movie*) movie account:(NetflixAccount*) account {
+- (void) updateRatings:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
   NSString* userRatingsFile = [NetflixCache userRatingsFile:movie account:account];
   NSString* predictedRatingsFile = [NetflixCache predictedRatingsFile:movie account:account];
 
-  if ([self tooSoon:predictedRatingsFile] &&
-      [self tooSoon:userRatingsFile]) {
-    return;
+  if (!force) {
+    if ([self tooSoon:predictedRatingsFile] &&
+        [self tooSoon:userRatingsFile]) {
+      return;
+    }
   }
 
   NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", account.userId];
@@ -1328,13 +1329,14 @@ static NSString** directories[] = {
 
 
 - (void) updateAllDiscDetails:(Movie*) movie
+                        force:(BOOL) force
                       account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
   // we don't download this stuff on a per disc basis.  only for a series.
   //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
   [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats" account:account];
-  [self updateRatings:movie account:account];
+  [self updateRatings:movie force:force account:account];
 }
 
 
@@ -1385,7 +1387,7 @@ static NSString** directories[] = {
         [self updateSpecificDiscDetails:movie expand:@"synopsis,formats" account:account];
       } else {
         // Otherwise, update all the details.
-        [self updateAllDiscDetails:movie account:account];
+        [self updateAllDiscDetails:movie force:force account:account];
       }
 
     }
@@ -1677,6 +1679,8 @@ static NSString** directories[] = {
 
 
 - (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account {
+  if (![self canContinue:account]) { return; }
+
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:
                            [self queueForKey:[NetflixCache dvdQueueKey] account:account],

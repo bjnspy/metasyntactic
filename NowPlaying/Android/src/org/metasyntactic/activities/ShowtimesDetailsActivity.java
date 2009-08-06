@@ -34,7 +34,7 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
   private Theater theater;
   private Movie movie;
   private final List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
-  private Iterable<Performance> performances = new ArrayList<Performance>();
+  private List<Performance> performances = new ArrayList<Performance>();
   private final Collection<String> showtimes = new ArrayList<String>();
   private final List<String> showtimes_url = new ArrayList<String>();
 
@@ -174,10 +174,12 @@ public class ShowtimesDetailsActivity extends AbstractNowPlayingListActivity {
       holder.label.setText(res.getString(R.string.showtimes_for, movie.getCanonicalTitle(), theater.getName()));
       holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_email));
       String performance = "";
-      for (final Performance per : performances) {
-        performance += per.getTime() + ", ";
+      if (!performances.isEmpty()) {
+        for (final Performance per : performances) {
+          performance += per.getTime() + ", ";
+        }
+        performance = performance.substring(0, performance.length() - 2);
       }
-      performance = performance.substring(0, performance.length() - 2);
       holder.data.setText(performance);
       final String addr = "user@example.com";
       final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
