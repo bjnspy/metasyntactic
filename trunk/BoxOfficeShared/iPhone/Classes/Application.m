@@ -313,25 +313,10 @@ static NSString** directories[] = {
 #else
   /*
    return @"metaboxoffice6";
-   /*/
+  /*/
   return @"metaboxoffice2";
   //*/
 #endif
-}
-
-
-+ (BOOL) isInReviewPeriod {
-  NSNumber* shipTimeNumber = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ShipTime"];
-  if (shipTimeNumber == nil) {
-    return NO;
-  }
-
-  double shipTime = [shipTimeNumber intValue];
-  double reviewPeriod = TWO_WEEKS;
-
-  NSDate* reviewPeriodEnd = [NSDate dateWithTimeIntervalSince1970:shipTime + reviewPeriod];
-  NSDate* now = [NSDate date];
-  return [now compare:reviewPeriodEnd] == NSOrderedAscending;
 }
 
 @end

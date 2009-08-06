@@ -32,101 +32,97 @@
 @synthesize reviews;
 
 - (void) dealloc {
-    self.movie = nil;
-    self.reviews = nil;
-
-    [super dealloc];
+  self.movie = nil;
+  self.reviews = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithMovie:(Movie*) movie__ {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-        self.movie = movie__;
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    self.movie = movie__;
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) loadView {
-    [super loadView];
-
-    self.title = LocalizedString(@"Reviews", nil);
-
-    self.reviews = [self.model reviewsForMovie:movie];
+  [super loadView];
+  
+  self.title = LocalizedString(@"Reviews", nil);
+  
+  self.reviews = [self.model reviewsForMovie:movie];
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
-    [super didReceiveMemoryWarningWorker];
-    self.reviews = nil;
+  [super didReceiveMemoryWarningWorker];
+  self.reviews = nil;
 }
 
 
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
-    Review* review = [reviews objectAtIndex:section];
-
-    if (row == 0) {
-        static NSString* reuseIdentifier = @"titleReuseIdentifier";
-
-        ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[ReviewTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-        }
-
-        [cell setReview:review];
-
-        return cell;
-    } else {
-        static NSString* reuseIdentifier = @"bodyReuseIdentifier";
-
-        ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-        }
-
-        if (review.link.length != 0) {
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        }
-
-        [cell setReview:review];
-
-        return cell;
+  Review* review = [reviews objectAtIndex:section];
+  
+  if (row == 0) {
+    static NSString* reuseIdentifier = @"titleReuseIdentifier";
+    
+    ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+      cell = [[[ReviewTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
+    
+    [cell setReview:review];
+    
+    return cell;
+  } else {
+    static NSString* reuseIdentifier = @"bodyReuseIdentifier";
+    
+    ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+      cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    }
+    
+    [cell setReview:review];
+    
+    return cell;
+  }
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
-        return [self reviewCellForRow:indexPath.row section:indexPath.section];
-    } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
-            cell.textLabel.text = @"Metacritic.com";
-        } else if (self.model.googleScores) {
-            cell.textLabel.text = @"Google.com";
-        }
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        return cell;
+  if (indexPath.section < reviews.count) {
+    return [self reviewCellForRow:indexPath.row section:indexPath.section];
+  } else {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
+      cell.textLabel.text = @"Metacritic.com";
+    } else if (self.model.googleScores) {
+      cell.textLabel.text = @"Google.com";
     }
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    return cell;
+  }
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == reviews.count) {
-        return @"For movie reviews and more, visit";
-    }
-
-    return nil;
+  if (section == reviews.count) {
+    return @"For movie reviews and more, visit";
+  }
+  
+  return nil;
 }
 
 
@@ -137,49 +133,49 @@
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
-        Review* review = [reviews objectAtIndex:indexPath.section];
-        if (review.link) {
-            [self.commonNavigationController pushBrowser:review.link animated:YES];
-        }
-    } else {
-        if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
-            Score* score = [self.model metacriticScoreForMovie:movie];
-            NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
-            [self.commonNavigationController pushBrowser:address animated:YES];
-        } else if (self.model.googleScores) {
-            [self.commonNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
-        }
+  if (indexPath.section < reviews.count) {
+    Review* review = [reviews objectAtIndex:indexPath.section];
+    if (review.link) {
+      [self.commonNavigationController pushBrowser:review.link animated:YES];
     }
+  } else {
+    if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
+      Score* score = [self.model metacriticScoreForMovie:movie];
+      NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
+      [self.commonNavigationController pushBrowser:address animated:YES];
+    } else if (self.model.googleScores) {
+      [self.commonNavigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
+    }
+  }
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return reviews.count + 1;
+  return reviews.count + 1;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section < reviews.count) {
-        return 2;
-    } else {
-        return 1;
-    }
+  if (section < reviews.count) {
+    return 2;
+  } else {
+    return 1;
+  }
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section < reviews.count) {
-        if (indexPath.row == 1) {
-            Review* review = [reviews objectAtIndex:indexPath.section];
-
-            return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
-        }
+  if (indexPath.section < reviews.count) {
+    if (indexPath.row == 1) {
+      Review* review = [reviews objectAtIndex:indexPath.section];
+      
+      return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
     }
-
-    return tableView.rowHeight;
+  }
+  
+  return tableView.rowHeight;
 }
 
 @end

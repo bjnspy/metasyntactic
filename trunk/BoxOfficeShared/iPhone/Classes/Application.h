@@ -54,6 +54,5 @@
 + (void) resetDirectories;
 
 + (NSString*) host;
-+ (BOOL) isInReviewPeriod;
 
 @end

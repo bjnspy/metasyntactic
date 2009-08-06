@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.8</string>
+	<string>1.9</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>RootViewControllerClass</key>
@@ -38,7 +38,5 @@
 	<string>PocketFlicks</string>
 	<key>iTunesApplicationUrl</key>
 	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
-	<key>ShipTime</key>
-	<integer>1249497209</integer>
 </dict>
 </plist>

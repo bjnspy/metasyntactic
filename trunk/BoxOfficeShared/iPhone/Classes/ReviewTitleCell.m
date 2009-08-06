@@ -27,107 +27,107 @@
 @synthesize scoreLabel;
 
 - (void) dealloc {
-    self.scoreLabel = nil;
-
-    [super dealloc];
+  self.scoreLabel = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
-                    reuseIdentifier:reuseIdentifier])) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        self.scoreLabel  = [[[UILabel alloc] init] autorelease];
-
-        scoreLabel.backgroundColor = [UIColor clearColor];
-        scoreLabel.textAlignment = UITextAlignmentCenter;
-
-        [self.contentView addSubview:scoreLabel];
-
-        // Hack.  For some reason, we can see the edge of this label peeking
-        // beyond the edge of the cell.  So make it clear.
-        self.textLabel.backgroundColor = [UIColor clearColor];
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
+                   reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.scoreLabel  = [[[UILabel alloc] init] autorelease];
+    
+    scoreLabel.backgroundColor = [UIColor clearColor];
+    scoreLabel.textAlignment = UITextAlignmentCenter;
+    
+    [self.contentView addSubview:scoreLabel];
+    
+    // Hack.  For some reason, we can see the edge of this label peeking
+    // beyond the edge of the cell.  So make it clear.
+    self.textLabel.backgroundColor = [UIColor clearColor];
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (void) setImageWorker:(UIImage*) image {
-    if (self.imageView.image != image) {
-      self.imageView.image = image;
-    }
+  if (self.imageView.image != image) {
+    self.imageView.image = image;
+  }
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-    [self.contentView bringSubviewToFront:scoreLabel];
+  [super layoutSubviews];
+  [self.contentView bringSubviewToFront:scoreLabel];
 }
 
 
 - (void) clearScoreLabel {
-    scoreLabel.text = nil;
-    scoreLabel.frame = CGRectZero;
+  scoreLabel.text = nil;
+  scoreLabel.frame = CGRectZero;
 }
 
 
 - (void) setBasicSquareImage:(NSInteger) score {
-    if (score >= 0 && score <= 40) {
-      [self setImageWorker:[BoxOfficeStockImages redRatingImage]];
-    } else if (score > 40 && score <= 60) {
-      [self setImageWorker:[BoxOfficeStockImages yellowRatingImage]];
-    } else if (score > 60 && score <= 100) {
-      [self setImageWorker:[BoxOfficeStockImages greenRatingImage]];
+  if (score >= 0 && score <= 40) {
+    [self setImageWorker:[BoxOfficeStockImages redRatingImage]];
+  } else if (score > 40 && score <= 60) {
+    [self setImageWorker:[BoxOfficeStockImages yellowRatingImage]];
+  } else if (score > 60 && score <= 100) {
+    [self setImageWorker:[BoxOfficeStockImages greenRatingImage]];
+  } else {
+    [self clearScoreLabel];
+    [self setImageWorker:[BoxOfficeStockImages unknownRatingImage]];
+  }
+  
+  if (score >= 0 && score <= 100) {
+    CGRect frame = CGRectMake(6, 6, 30, 30);
+    if (score == 100) {
+      scoreLabel.font = [UIFont boldSystemFontOfSize:15];
     } else {
-        [self clearScoreLabel];
-      [self setImageWorker:[BoxOfficeStockImages unknownRatingImage]];
+      scoreLabel.font = [FontCache boldSystem19];
     }
-
-    if (score >= 0 && score <= 100) {
-        CGRect frame = CGRectMake(6, 6, 30, 30);
-        if (score == 100) {
-            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-        } else {
-            scoreLabel.font = [FontCache boldSystem19];
-        }
-
-        scoreLabel.textColor = [ColorCache darkDarkGray];
-        scoreLabel.frame = frame;
-        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
-    }
+    
+    scoreLabel.textColor = [ColorCache darkDarkGray];
+    scoreLabel.frame = frame;
+    scoreLabel.text = [NSString stringWithFormat:@"%d", score];
+  }
 }
 
 
 - (void) setGoogleImage:(NSInteger) score {
-    [self setBasicSquareImage:(score == 0 ? -1 : score)];
+  [self setBasicSquareImage:(score == 0 ? -1 : score)];
 }
 
 
 - (void) setReviewImage:(Review*) review {
-    int score = review.score;
-
-    if (self.model.rottenTomatoesScores) {
-        [self setBasicSquareImage:score];
-    } else if (self.model.metacriticScores) {
-        [self setBasicSquareImage:score];
-    } else if (self.model.googleScores) {
-        [self setGoogleImage:score];
-    }
+  int score = review.score;
+  
+  if (self.model.rottenTomatoesScores) {
+    [self setBasicSquareImage:score];
+  } else if (self.model.metacriticScores) {
+    [self setBasicSquareImage:score];
+  } else if (self.model.googleScores) {
+    [self setGoogleImage:score];
+  }
 }
 
 
 - (void) setReview:(Review*) review {
-    [self setReviewImage:review];
-
-    self.textLabel.text = review.author;
-    self.detailTextLabel.text = review.source;
+  [self setReviewImage:review];
+  
+  self.textLabel.text = review.author;
+  self.detailTextLabel.text = review.source;
 }
 
 @end

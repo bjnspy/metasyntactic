@@ -195,8 +195,22 @@ static Controller* controller = nil;
 }
 
 
+- (void) spawnCheckIfInReviewPeriodThread {
+  if (!self.model.isInReviewPeriod) {
+    // no need to do anything.
+    return;
+  }
+
+  [[OperationQueue operationQueue] performSelector:@selector(checkIfInReviewPeriodBackgroundEntryPoint)
+                                          onTarget:self
+                                              gate:nil
+                                          priority:Now];
+}
+
+
 - (void) start:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
+  [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
 }
 
@@ -343,6 +357,18 @@ static Controller* controller = nil;
   // We need to update our information about that account.
   if (![account isEqual:currentAccount]) {
     [self updateNetflixCache];
+  }
+}
+
+
+- (void) checkIfInReviewPeriodBackgroundEntryPoint {
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/InReviewPeriod?name=%@&version=%@",
+                       [Application host],
+                       [[NSBundle mainBundle] bundleIdentifier],
+                       [Application version]];
+  NSString* result = [NetworkUtilities stringWithContentsOfAddress:address];
+  if ([@"0" isEqual:result]) {
+    [ThreadingUtilities foregroundSelector:@selector(clearInReviewPeriod) onTarget:self.model];
   }
 }
 

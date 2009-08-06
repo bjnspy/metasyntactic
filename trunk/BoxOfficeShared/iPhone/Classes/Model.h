@@ -42,6 +42,7 @@ enum ViewControllerType {
 
   NSInteger searchRadiusData;
   NSNumber* isSearchDateTodayData;
+  NSNumber* isInReviewPeriodData;
 
   // Accessed from multiple threads.  Needs lock.
   ThreadsafeValue*/*NSSet*/ bookmarkedTitlesData;
@@ -72,6 +73,9 @@ enum ViewControllerType {
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (Model*) model;
+
+- (BOOL) isInReviewPeriod;
+- (void) clearInReviewPeriod;
 
 - (BOOL) loadingIndicatorsEnabled;
 - (void) setLoadingIndicatorsEnabled:(BOOL) value;
