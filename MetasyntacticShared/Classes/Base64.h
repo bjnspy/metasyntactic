@@ -19,4 +19,7 @@
 + (NSString*) encode:(NSData*) rawBytes;
 + (NSString*) encode:(const uint8_t*) rawBytes length:(NSInteger) length;
 
++ (NSData*) decode:(NSString*) string;
++ (NSData*) decode:(const char*) string length:(NSInteger) inputLength;
+
 @end
