@@ -57,17 +57,13 @@ static char decodingTable[128];
 
 
 + (NSString*) encode:(NSData*) rawBytes {
-    return [Base64 encode:(const uint8_t*) rawBytes.bytes length:rawBytes.length];
+    return [self encode:(const uint8_t*) rawBytes.bytes length:rawBytes.length];
 }
 
 
 + (NSData*) decode:(const char*) string length:(NSInteger) inputLength {
-  if (string == NULL) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
-  }
-
-  if (inputLength % 4 != 0) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+  if ((string == NULL) || (inputLength % 4 != 0)) {
+    return nil;
   }
   
   while (inputLength > 0 && string[inputLength - 1] == '=') {
@@ -83,14 +79,14 @@ static char decodingTable[128];
   while (inputPoint < inputLength) {
     char i0 = string[inputPoint++];
     char i1 = string[inputPoint++];
-    char i2 = inputPoint < inputLength ? string[inputPoint++] : 'A';
+    char i2 = inputPoint < inputLength ? string[inputPoint++] : 'A'; /* 'A' will decode to \0 */
     char i3 = inputPoint < inputLength ? string[inputPoint++] : 'A';
 
     output[outputPoint++] = (decodingTable[i0] << 2) | (decodingTable[i1] >> 4);
     if (outputPoint < outputLength) {
       output[outputPoint++] = ((decodingTable[i1] & 0xf) << 4) | (decodingTable[i2] >> 2);
     }
-    if (outputPoint<outputLength) {
+    if (outputPoint < outputLength) {
       output[outputPoint++] = ((decodingTable[i2] & 0x3) << 6) | decodingTable[i3];
     }
   }
