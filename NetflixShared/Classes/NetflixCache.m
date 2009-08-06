@@ -363,7 +363,7 @@ static NSString** directories[] = {
     [FileUtilities createDirectory:[NetflixCache accountDirectory:account]];
     [FileUtilities createDirectory:[NetflixCache userRatingsDirectory:account]];
     [FileUtilities createDirectory:[NetflixCache predictedRatingsDirectory:account]];
-    
+
     [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
                                             onTarget:self
                                           withObject:account
@@ -769,7 +769,7 @@ static NSString** directories[] = {
       return feed;
     }
   }
-  
+
   return nil;
 }
 
@@ -796,12 +796,12 @@ static NSString** directories[] = {
   } else if ([key isEqual:[NetflixCache recommendationKey]]) {
     title = LocalizedString(@"Recommendations", @"Movie recommendations from Netflix");
   }
-  
+
   Queue* queue;
   if (!includeCount || ((queue = [self queueForKey:key account:account]) == nil)) {
     return title;
   }
-  
+
   NSString* number = [NSString stringWithFormat:@"%d", queue.movies.count + queue.saved.count];
   return [NSString stringWithFormat:LocalizedString(@"%@ (%@)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
           title, number];
@@ -885,7 +885,7 @@ static NSString** directories[] = {
   if (firstName.length == 0 && lastName.length == 0) {
     return nil;
   }
-  
+
   [FileUtilities createDirectory:[NetflixCache accountDirectory:account]];
   NetflixUser* user = [NetflixUser userWithFirstName:firstName lastName:lastName canInstantWatch:canInstantWatch preferredFormats:preferredFormats];
   [FileUtilities writeObject:user.dictionary toFile:[self userFile:account]];
@@ -1679,7 +1679,7 @@ static NSString** directories[] = {
 
 
 - (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account {
-  if (![self canContinue:account]) { return; }
+  if (![self canContinue:account]) { return [NSArray array]; }
 
   NSMutableArray* array = nil;
   NSArray* searchQueues = [NSArray arrayWithObjects:

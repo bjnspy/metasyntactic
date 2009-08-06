@@ -16,6 +16,7 @@
 
 #import "NetflixAccount.h"
 #import "NetflixAuthentication.h"
+#import "NetflixCache.h"
 #import "NetflixSharedApplication.h"
 #import "NetflixStockImages.h"
 
@@ -289,15 +290,15 @@
     NSString* responseBody = [[[NSString alloc] initWithData:data
                                                     encoding:NSUTF8StringEncoding] autorelease];
     OAToken* accessToken = [OAToken tokenWithHTTPResponseBody:responseBody];
-    
+
     if (accessToken.key.length > 0 && accessToken.secret.length > 0) {
       NetflixAccount* account = [NetflixAccount accountWithKey:accessToken.key
                                                         secret:accessToken.secret
                                                         userId:[accessToken.fields objectForKey:@"user_id"]];
-      
+
       // Download information about the user before we proceed.
       [NetflixCache downloadUserInformation:account];
-      
+
       [self performSelectorOnMainThread:@selector(reportAccount:) withObject:account waitUntilDone:NO];
       return;
     }

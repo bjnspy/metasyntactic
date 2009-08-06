@@ -31,7 +31,7 @@
 - (void) dealloc {
   self.reviewData = nil;
   self.label = nil;
-  
+
   [super dealloc];
 }
 
@@ -39,15 +39,15 @@
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.font = [FontCache helvetica14];
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;
-    
+
     [self.contentView addSubview:label];
   }
-  
+
   return self;
 }
 
@@ -59,15 +59,15 @@
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   label.text = reviewData.text;
-  
+
   double width = self.frame.size.width;
   width -= 40;
   if ([ReviewBodyCell hasReview:reviewData]) {
     width -= 25;
   }
-  
+
   CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:reviewData] - 10);
   label.frame = rect;
 }
@@ -81,23 +81,23 @@
     width = [UIScreen mainScreen].bounds.size.width;
   }
   width -= 40;
-  
+
   if ([ReviewBodyCell hasReview:review]) {
     width -= 25;
   }
-  
+
   CGSize size = CGSizeMake(width, 2000);
   size = [review.text sizeWithFont:[FontCache helvetica14]
           constrainedToSize:size
           lineBreakMode:UILineBreakModeWordWrap];
-  
+
   return size.height + 10;
 }
 
 
 - (void) setReview:(Review*) review {
   self.reviewData = review;
-  
+
   if ([ReviewBodyCell hasReview:review]) {
     self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   } else {

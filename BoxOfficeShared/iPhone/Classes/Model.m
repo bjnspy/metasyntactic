@@ -165,9 +165,9 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   self.helpCache = nil;
   self.cachedScoreProviderIndex = 0;
   self.searchRadiusData = 0;
-  self.isInReviewPeriodData = nil;
 
   self.netflixAccountsData = nil;
+  self.isInReviewPeriodData = nil;
 
   [super dealloc];
 }
@@ -1631,7 +1631,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 - (BOOL) isInReviewPeriodWorker {
   NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
   id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-  
+
   return value == nil;
 }
 
@@ -1640,14 +1640,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (isInReviewPeriodData == nil) {
     self.isInReviewPeriodData = [NSNumber numberWithBool:[self isInReviewPeriodWorker]];
   }
-  
+
   return isInReviewPeriodData.boolValue;
 }
 
 
 - (void) clearInReviewPeriod {
   self.isInReviewPeriodData = [NSNumber numberWithBool:NO];
-  
+
   NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
   [self synchronize];

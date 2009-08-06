@@ -103,7 +103,7 @@
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
   UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   NSString* text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"About", @"Title for the 'About' page (where we list who was involved in making the program and who supplied the data)"), LocalizedString(@"Send Feedback", @"Title for a button that a user can click on to send a feedback email to the developers")];
   cell.textLabel.text = text;
   return cell;
