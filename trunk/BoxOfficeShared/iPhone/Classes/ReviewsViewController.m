@@ -34,7 +34,7 @@
 - (void) dealloc {
   self.movie = nil;
   self.reviews = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.movie = movie__;
   }
-  
+
   return self;
 }
 
@@ -55,9 +55,9 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   self.title = LocalizedString(@"Reviews", nil);
-  
+
   self.reviews = [self.model reviewsForMovie:movie];
 }
 
@@ -71,28 +71,28 @@
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
   Review* review = [reviews objectAtIndex:section];
-  
+
   if (row == 0) {
     static NSString* reuseIdentifier = @"titleReuseIdentifier";
-    
+
     ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
       cell = [[[ReviewTitleCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     [cell setReview:review];
-    
+
     return cell;
   } else {
     static NSString* reuseIdentifier = @"bodyReuseIdentifier";
-    
+
     ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
       cell = [[[ReviewBodyCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     [cell setReview:review];
-    
+
     return cell;
   }
 }
@@ -121,7 +121,7 @@
   if (section == reviews.count) {
     return @"For movie reviews and more, visit";
   }
-  
+
   return nil;
 }
 
@@ -170,11 +170,11 @@
   if (indexPath.section < reviews.count) {
     if (indexPath.row == 1) {
       Review* review = [reviews objectAtIndex:indexPath.section];
-      
+
       return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
     }
   }
-  
+
   return tableView.rowHeight;
 }
 

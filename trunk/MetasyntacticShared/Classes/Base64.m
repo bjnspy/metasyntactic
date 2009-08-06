@@ -65,7 +65,7 @@ static char decodingTable[128];
   if ((string == NULL) || (inputLength % 4 != 0)) {
     return nil;
   }
-  
+
   while (inputLength > 0 && string[inputLength - 1] == '=') {
     inputLength--;
   }
@@ -73,7 +73,7 @@ static char decodingTable[128];
   NSInteger outputLength = inputLength * 3 / 4;
   NSMutableData* data = [NSMutableData dataWithLength:outputLength];
   uint8_t* output = data.mutableBytes;
-  
+
   NSInteger inputPoint = 0;
   NSInteger outputPoint = 0;
   while (inputPoint < inputLength) {
@@ -90,7 +90,7 @@ static char decodingTable[128];
       output[outputPoint++] = ((decodingTable[i2] & 0x3) << 6) | decodingTable[i3];
     }
   }
-  
+
   return data;
 }
 

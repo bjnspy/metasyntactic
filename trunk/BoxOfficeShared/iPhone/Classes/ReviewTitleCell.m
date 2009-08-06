@@ -28,7 +28,7 @@
 
 - (void) dealloc {
   self.scoreLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -37,19 +37,19 @@
   if ((self = [super initWithStyle:UITableViewCellStyleSubtitle
                    reuseIdentifier:reuseIdentifier])) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     self.scoreLabel  = [[[UILabel alloc] init] autorelease];
-    
+
     scoreLabel.backgroundColor = [UIColor clearColor];
     scoreLabel.textAlignment = UITextAlignmentCenter;
-    
+
     [self.contentView addSubview:scoreLabel];
-    
+
     // Hack.  For some reason, we can see the edge of this label peeking
     // beyond the edge of the cell.  So make it clear.
     self.textLabel.backgroundColor = [UIColor clearColor];
   }
-  
+
   return self;
 }
 
@@ -89,7 +89,7 @@
     [self clearScoreLabel];
     [self setImageWorker:[BoxOfficeStockImages unknownRatingImage]];
   }
-  
+
   if (score >= 0 && score <= 100) {
     CGRect frame = CGRectMake(6, 6, 30, 30);
     if (score == 100) {
@@ -97,7 +97,7 @@
     } else {
       scoreLabel.font = [FontCache boldSystem19];
     }
-    
+
     scoreLabel.textColor = [ColorCache darkDarkGray];
     scoreLabel.frame = frame;
     scoreLabel.text = [NSString stringWithFormat:@"%d", score];
@@ -112,7 +112,7 @@
 
 - (void) setReviewImage:(Review*) review {
   int score = review.score;
-  
+
   if (self.model.rottenTomatoesScores) {
     [self setBasicSquareImage:score];
   } else if (self.model.metacriticScores) {
@@ -125,7 +125,7 @@
 
 - (void) setReview:(Review*) review {
   [self setReviewImage:review];
-  
+
   self.textLabel.text = review.author;
   self.detailTextLabel.text = review.source;
 }

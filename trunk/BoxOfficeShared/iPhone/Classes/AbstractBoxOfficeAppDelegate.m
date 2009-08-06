@@ -38,7 +38,7 @@
   if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
-  
+
   //NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
 
   [Beacon initAndStartBeaconWithApplicationCode:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"]
