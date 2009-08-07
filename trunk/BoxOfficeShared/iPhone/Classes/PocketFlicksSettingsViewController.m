@@ -17,7 +17,6 @@
 #import "Controller.h"
 #import "Model.h"
 #import "PocketFlicksCreditsViewController.h"
-#import "SwitchCell.h"
 
 @interface PocketFlicksSettingsViewController()
 @end

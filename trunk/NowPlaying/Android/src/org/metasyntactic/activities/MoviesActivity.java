@@ -66,7 +66,9 @@ public abstract class MoviesActivity extends AbstractNowPlayingActivity {
         scrolling = true;
       } else if (NowPlayingApplication.NOW_PLAYING_NOT_SCROLLING_INTENT.equals(intent.getAction())) {
         scrolling = false;
-        postersAdapter.notifyDataSetChanged();
+        if (postersAdapter != null) {
+          postersAdapter.notifyDataSetChanged();
+        }
       }
     }
   };
