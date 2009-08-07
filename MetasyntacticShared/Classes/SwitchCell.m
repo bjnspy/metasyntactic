@@ -24,19 +24,19 @@
 @synthesize switchControl;
 
 - (void) dealloc {
-    self.switchControl = nil;
-    [super dealloc];
+  self.switchControl = nil;
+  [super dealloc];
 }
 
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier {
-    if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.switchControl = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        self.accessoryView = switchControl;
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.switchControl = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    self.accessoryView = switchControl;
+  }
+  
+  return self;
 }
 
 @end

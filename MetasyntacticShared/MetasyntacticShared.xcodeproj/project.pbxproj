@@ -75,6 +75,8 @@
 		74D3A6180FEC03130083298A /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */; };
 		74D3A61D0FEC04140083298A /* MetasyntacticStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */; };
 		74D3A61E0FEC04140083298A /* MetasyntacticStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */; };
+		74DBE243102B894E001E6B23 /* SwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DBE241102B894E001E6B23 /* SwitchCell.h */; };
+		74DBE244102B894E001E6B23 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DBE242102B894E001E6B23 /* SwitchCell.m */; };
 		74E164301006D22D003D852F /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642D1006D22D003D852F /* Beacon+FBConnect.h */; };
 		74E164311006D22D003D852F /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642E1006D22D003D852F /* Beacon.h */; };
 		74E164321006D22D003D852F /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */; };
@@ -437,6 +439,8 @@
 		74D3A6160FEC03130083298A /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
 		74D3A61B0FEC04140083298A /* MetasyntacticStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticStockImages.h; sourceTree = "<group>"; };
 		74D3A61C0FEC04140083298A /* MetasyntacticStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticStockImages.m; sourceTree = "<group>"; };
+		74DBE241102B894E001E6B23 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		74DBE242102B894E001E6B23 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		74E1642D1006D22D003D852F /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		74E1642E1006D22D003D852F /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
@@ -913,10 +917,12 @@
 				74E601A20FD1C7700015D9F8 /* AttributeCell.h */,
 				74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */,
 				74FEEAD40FF9CF0E0021F472 /* SettingCell.h */,
+				74DBE241102B894E001E6B23 /* SwitchCell.h */,
 				74AD39EF100139E200D6BDAA /* SynopsisCell.h */,
 				74E601A30FD1C7700015D9F8 /* AttributeCell.m */,
 				74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */,
 				74FEEAD50FF9CF0E0021F472 /* SettingCell.m */,
+				74DBE242102B894E001E6B23 /* SwitchCell.m */,
 				74AD39F0100139E200D6BDAA /* SynopsisCell.m */,
 			);
 			name = TableViewCells;
@@ -1067,6 +1073,7 @@
 				7406D88E1016FE96004374C2 /* SplashScreen.h in Headers */,
 				7406D8901016FE96004374C2 /* SplashScreenDelegate.h in Headers */,
 				74B47E141019065A00F17131 /* MemoryUtilities.h in Headers */,
+				74DBE243102B894E001E6B23 /* SwitchCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1220,7 @@
 				74A60D11100D424300806BBC /* MapViewController.m in Sources */,
 				7406D88F1016FE96004374C2 /* SplashScreen.m in Sources */,
 				74B47E151019065A00F17131 /* MemoryUtilities.m in Sources */,
+				74DBE244102B894E001E6B23 /* SwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,6 @@
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SearchDistancePickerViewController.h"
-#import "SwitchCell.h"
 #import "UserLocationCache.h"
 
 @interface NowPlayingSettingsViewController()

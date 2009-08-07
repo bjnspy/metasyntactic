@@ -14,7 +14,7 @@
 
 @interface SwitchCell : UITableViewCell {
 @private
-    UISwitch* switchControl;
+  UISwitch* switchControl;
 }
 
 @property (readonly, retain) UISwitch* switchControl;

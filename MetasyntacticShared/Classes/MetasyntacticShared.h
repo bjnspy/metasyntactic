@@ -85,6 +85,7 @@
 #import "SplashScreen.h"
 #import "SplashScreenDelegate.h"
 #import "StringUtilities.h"
+#import "SwitchCell.h"
 #import "SynopsisCell.h"
 #import "TappableImageView.h"
 #import "TappableImageViewDelegate.h"
