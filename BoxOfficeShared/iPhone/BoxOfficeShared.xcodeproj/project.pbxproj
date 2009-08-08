@@ -262,8 +262,8 @@
 		742C07B20F08B0890087F4E0 /* AmazonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonCache.m; sourceTree = "<group>"; };
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		742F45D8102D2D7300AAC152 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = Resources/ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
 		743EA625101BAF90002D7D86 /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoxOfficeResources.bundle; sourceTree = "<group>"; };
@@ -578,7 +578,6 @@
 			children = (
 				743EA625101BAF90002D7D86 /* BoxOfficeResources.bundle */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
-				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1165,6 +1164,7 @@
 				no,
 				pl,
 				hi,
+				ca,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1381,6 +1381,7 @@
 		740224540E53F323006C58A2 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				742F45D8102D2D7300AAC152 /* ca */,
 				745E213C0E5962D100105751 /* cs */,
 				745E213D0E5962DE00105751 /* da */,
 				7402245A0E53F353006C58A2 /* de */,
@@ -1389,6 +1390,8 @@
 				743398430E62615300D285F0 /* fi */,
 				740224590E53F351006C58A2 /* fr */,
 				745E213E0E59630200105751 /* he */,
+				747D9DF80EF714960066B881 /* hi */,
+				744292EC0EF5C98500BE2B67 /* hu */,
 				745E21400E59632400105751 /* it */,
 				740224570E53F342006C58A2 /* ja */,
 				745E21410E59633500105751 /* nl */,
@@ -1398,10 +1401,8 @@
 				745E21420E59634900105751 /* ro */,
 				745E21430E59637300105751 /* ru */,
 				745E21440E59638200105751 /* sk */,
-				745E21470E5963A200105751 /* tr */,
-				744292EC0EF5C98500BE2B67 /* hu */,
-				747D9DF80EF714960066B881 /* hi */,
 				747D9E3E0EF724240066B881 /* sv */,
+				745E21470E5963A200105751 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
