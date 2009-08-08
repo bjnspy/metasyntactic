@@ -332,7 +332,7 @@ typedef enum {
     return nil;
   }
 
-  return [NSString stringWithFormat:LocalizedString(@"%@ %@", "<first name> <last name>"), user.firstName, user.lastName];
+  return [NSString stringWithFormat:LocalizedString(@"Account: %@ %@", "<first name> <last name>"), user.firstName, user.lastName];
 }
 
 @end
