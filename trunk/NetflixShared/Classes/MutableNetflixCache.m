@@ -205,7 +205,7 @@
 
 
 - (void) moveMovieToTopOfQueueBackgroundEntryPoint:(MoveMovieArguments*) moveArguments {
-  NSString* notification = LocalizedString(@"moving movie", nil);
+  NSString* notification = [LocalizedString(@"Moving Movie", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {
     [self moveMovieToTopOfQueueBackgroundEntryPointWorker:moveArguments];
@@ -426,7 +426,7 @@ andReorderingMovies:[IdentitySet set]
 
 
 - (void) changeRatingBackgroundEntryPoint:(ChangeRatingArguments*) changeArguments {
-  NSString* notification = LocalizedString(@"movie rating", nil);
+  NSString* notification = [LocalizedString(@"Movie Rating", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {
     [self changeRatingBackgroundEntryPointWorker:changeArguments];
@@ -540,7 +540,7 @@ andReorderingMovies:[IdentitySet set]
 
 
 - (void) addMovieToQueueBackgroundEntryPoint:(AddMovieArguments*) arguments {
-  NSString* notification = LocalizedString(@"adding movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue");
+  NSString* notification = [LocalizedString(@"Adding Movie", @"Notification shown to the user when we are in the process of adding a movie to their Netflix queue") lowercaseString];
   [NotificationCenter addNotification:notification];
   {
     [self addMovieToQueueBackgroundEntryPointWorker:arguments];
@@ -658,7 +658,7 @@ toModifyQueueDelegate:modifyArguments.delegate
 
 
 - (void) modifyQueueBackgroundEntryPoint:(ModifyQueueArguments*) arguments {
-  NSString* notification = LocalizedString(@"updating queue", nil);
+  NSString* notification = [LocalizedString(@"Updating Queue", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {
     [self modifyQueueBackgroundEntryPointWorker:arguments];
