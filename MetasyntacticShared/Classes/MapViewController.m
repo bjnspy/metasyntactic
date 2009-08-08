@@ -18,6 +18,7 @@
 #import "Location.h"
 #import "MapPoint.h"
 #import "MapViewControllerDelegate.h"
+#import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 
@@ -178,7 +179,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
   }
   [self.view addSubview:mapView];
 
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Google Maps", nil) style:UIBarButtonItemStyleDone target:self action:@selector(openGoogleMaps)] autorelease];
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:LocalizedString(@"Google Maps", nil) style:UIBarButtonItemStyleDone target:self action:@selector(openGoogleMaps)] autorelease];
 
   [mapView addAnnotation:center];
   for (id<MKAnnotation> location in nearby) {

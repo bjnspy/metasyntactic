@@ -146,7 +146,7 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
     for (final Theater theater : theaters) {
       if (!getService().isFavoriteTheater(theater)) {
         if (filterTheatersByDistance) {
-          if (userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance()) {
+          if (userLocation != null && userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance()) {
             continue;
           }
         }
