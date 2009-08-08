@@ -34,7 +34,7 @@ public class Program {
             findStringsFiles(new File(arg));
             processDirectory(new File(arg));
         }
-        //processStringsFiles();
+        processStringsFiles();
         //generateAndroidFiles();
         //printForwardDeclaration();
     }
@@ -56,7 +56,7 @@ public class Program {
         }
     }
 
-    private static void processFile(
+    private static void processFile1(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
         /*
         removeUnusedImports(child);
@@ -70,6 +70,15 @@ public class Program {
         //normalizeProjectFile(child);
         trim(child);
         //*/
+    }
+
+
+    private static void processFile(
+            final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
+        insertCopyright(child);
+        trimRight(child);
+        organizeStringsFile(child);
+        trim(child);
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
@@ -235,7 +244,7 @@ public class Program {
                         "You will provide the translation on the *right hand side* of the equals (=) sign.\n" +
                         "i.e. if we were translating this to french we would end up with:\n" +
                         '\n' +
-                        "    \"1 kilometer\" = \"1 kilomètre\";\n" +
+                        "    \"1 kilometer\" = \"1 kilom\u00e8tre\";\n" +
                         '\n' +
                         "Most cases should be fairly simple, however there can be slight complications.\n" +
                         "Sometimes we will not know a value at this moment, but it will instead be \n" +
@@ -249,7 +258,7 @@ public class Program {
                         "languages:\n" +
                         '\n' +
                         "French: \"%d hours\" = \"%d heures\";\n" +
-                        "Hebrew: \"%d hours\" = \"שעות %d\";\n" +
+                        "Hebrew: \"%d hours\" = \"\u05e9\u05e2\u05d5\u05ea %d\";\n" +
                         '\n' +
                         "Note that Hebrew switched the order of the order of the words here.\n" +
                         '\n' +
@@ -263,8 +272,8 @@ public class Program {
                         "other languages:\n" +
                         '\n' +
                         "French: \"Order tickets for %@\" = \"Commander un billet pour %@\";\n" +
-                        "German: \"Order tickets for %@\" = \"für %@ bestellen\";\n" +
-                        "Hebrew: \"Order tickets for %@\" = \"%@ הזמן כרטיסים עבור\";\n" +
+                        "German: \"Order tickets for %@\" = \"f\u00fcr %@ bestellen\";\n" +
+                        "Hebrew: \"Order tickets for %@\" = \"%@ \u05d4\u05d6\u05de\u05df \u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05dd \u05e2\u05d1\u05d5\u05e8\";\n" +
                         '\n' +
                         "Again note that the replacement text can occur wherever you think is appropriate\n" +
                         "for your language.  In cases of replacements i have tried to provide helpful text\n" +
@@ -275,6 +284,7 @@ public class Program {
                         '\n' +
                         "Thanks very much!";
 
+                
                 text = commentText("// ", text);
 
                 for (final String s : missingStrings) {
@@ -287,7 +297,12 @@ public class Program {
                     text += "\"" + s + "\" = \"\";";
                 }
 
-                writeFile(locFile, text);
+                final Writer out = new PrintWriter(locFile, "UTF-8");
+
+                out.write(text.trim() + '\n');
+
+                out.flush();
+                out.close();
             }
         }
     }
@@ -790,6 +805,7 @@ public class Program {
                 child.getName().equals("MetasyntacticShared.h") ||
                 child.getName().equals("BoxOfficeShared.h") ||
                 child.getName().equals("BookReader.h") ||
+                child.getName().equals("NetflixShared.h") ||
                 isRestricted(child)) {
             return;
         }
