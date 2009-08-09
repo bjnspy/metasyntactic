@@ -21,7 +21,6 @@
 @interface NetflixGenreRecommendationsViewController()
 @property (retain) NetflixAccount* account;
 @property (copy) NSString* genre;
-@property (retain) NSArray* movies;
 @end
 
 
@@ -29,12 +28,10 @@
 
 @synthesize account;
 @synthesize genre;
-@synthesize movies;
 
 - (void) dealloc {
   self.account = nil;
   self.genre = nil;
-  self.movies = nil;
 
   [super dealloc];
 }
@@ -55,78 +52,20 @@
 }
 
 
-- (void) onBeforeReloadTableViewData {
-  [super onBeforeReloadTableViewData];
+- (NSArray*) determineMovies {
   self.account = self.model.currentNetflixAccount;
-
-  self.tableView.rowHeight = 100;
-  NSMutableArray* array = [NSMutableArray array];
-
   Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
+  
+  NSMutableArray* array = [NSMutableArray array];
+  
   for (Movie* movie in queue.movies) {
     NSArray* genres = movie.genres;
     if (genres.count > 0 && [genre isEqual:[genres objectAtIndex:0]]) {
       [array addObject:movie];
     }
   }
-
-  self.movies = array;
-}
-
-
-- (void) didReceiveMemoryWarningWorker {
-  [super didReceiveMemoryWarningWorker];
-  self.movies = [NSArray array];
-}
-
-
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return 1;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section {
-  return movies.count;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView_
-         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  static NSString* reuseIdentifier = @"reuseIdentifier";
-  NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-  if (cell == nil) {
-    cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  }
-
-  Movie* movie = [movies objectAtIndex:indexPath.row];
-  [cell setMovie:movie owner:self];
-
-  return cell;
-}
-
-
-- (CommonNavigationController*) commonNavigationController {
-  return (id) self.navigationController;
-}
-
-
-- (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-  Movie* movie = [movies objectAtIndex:indexPath.row];
-  [self.commonNavigationController pushMovieDetails:movie animated:YES];
-}
-
-
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-  if (movies.count == 0) {
-    return self.model.netflixCache.noInformationFound;
-  }
-
-  return nil;
+  
+  return array;
 }
 
 @end

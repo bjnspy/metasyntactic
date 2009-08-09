@@ -144,6 +144,10 @@ public class NowPlayingActivity extends MoviesActivity {
     if (search == null) {
       movies = new ArrayList<Movie>(getService().getMovies());
     }
+    
+    if (movies == null) {
+      movies = new ArrayList<Movie>();
+    }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);

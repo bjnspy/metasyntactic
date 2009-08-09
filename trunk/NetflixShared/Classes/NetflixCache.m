@@ -732,6 +732,9 @@ static NSString** directories[] = {
   }
 
   address = [NSString stringWithFormat:@"%@&max_results=500", address];
+  if ([feed.key isEqual:[NetflixCache recommendationKey]]) {
+    address = [NSString stringWithFormat:@"%@&expand=formats", address];
+  }
 
   NSHTTPURLResponse* response;
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address

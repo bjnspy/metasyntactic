@@ -105,7 +105,9 @@
   } else {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
+    if (self.model.rottenTomatoesScores) {
+      cell.textLabel.text = @"RottenTomatoes.com";
+    } else if (self.model.metacriticScores) {
       cell.textLabel.text = @"Metacritic.com";
     } else if (self.model.googleScores) {
       cell.textLabel.text = @"Google.com";
@@ -139,7 +141,11 @@
       [self.commonNavigationController pushBrowser:review.link animated:YES];
     }
   } else {
-    if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
+    if (self.model.rottenTomatoesScores) {
+      Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+      NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.rottentomatoes.com";
+      [self.commonNavigationController pushBrowser:address animated:YES];      
+    } else if (self.model.metacriticScores) {
       Score* score = [self.model metacriticScoreForMovie:movie];
       NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
       [self.commonNavigationController pushBrowser:address animated:YES];
