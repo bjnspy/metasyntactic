@@ -395,7 +395,7 @@ andReorderingMovies:[IdentitySet set]
 
 
 - (void) changeRatingBackgroundEntryPointWorker:(ChangeRatingArguments*) changeArguments {
-  NSString* userRatingsFile = [self userRatingsFile:changeArguments.movie account:changeArguments.account];
+  NSString* userRatingsFile = [NetflixCache userRatingsFile:changeArguments.movie account:changeArguments.account];
   NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
   NSLog(@"Changing rating for '%@' from '%@' to '%@'.", changeArguments.movie.canonicalTitle, existingUserRating, changeArguments.rating);
