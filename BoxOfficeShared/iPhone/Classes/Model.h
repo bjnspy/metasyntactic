@@ -139,6 +139,9 @@ enum ViewControllerType {
 - (NSInteger) netflixSearchSelectedScopeButtonIndex;
 - (void) setNetflixSearchSelectedScopeButtonIndex:(NSInteger) index;
 
+- (NSInteger) netflixFilterSelectedSegmentIndex;
+- (void) setNetflixFilterSelectedSegmentIndex:(NSInteger) index;
+
 - (BOOL) allMoviesSortingByTitle;
 - (BOOL) allMoviesSortingByScore;
 - (BOOL) allMoviesSortingByReleaseDate;

@@ -93,6 +93,7 @@ static NSString* NAVIGATION_STACK_VALUES                    = @"navigationStackV
 static NSString* NETFLIX_ACCOUNTS                           = @"netflixAccounts";
 static NSString* NETFLIX_CURRENT_ACCOUNT_INDEX              = @"netflixCurrentAccountIndex";
 static NSString* NETFLIX_DISABLED                           = @"netflixDisabled";
+static NSString* NETFLIX_FILTER_SELECTED_SEGMENT_INDEX      = @"netflixFilterSelectedSegmentIndex";
 static NSString* NETFLIX_KEY                                = @"netflixKey";
 static NSString* NETFLIX_NOTIFICATIONS_DISABLED             = @"netflixNotificationsDisabled";
 static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSelectedScopeButtonIndex";
@@ -674,6 +675,16 @@ static Model* model = nil;
 
 - (void) setNetflixSearchSelectedScopeButtonIndex:(NSInteger) index {
   [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX];
+}
+
+
+- (NSInteger) netflixFilterSelectedSegmentIndex {
+  return [[NSUserDefaults standardUserDefaults] integerForKey:NETFLIX_FILTER_SELECTED_SEGMENT_INDEX];
+}
+
+
+- (void) setNetflixFilterSelectedSegmentIndex:(NSInteger) index {
+  [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NETFLIX_FILTER_SELECTED_SEGMENT_INDEX];
 }
 
 

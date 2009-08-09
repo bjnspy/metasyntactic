@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixGenreRecommendationsViewController : AbstractTableViewController {
+#import "AbstractNetflixFilterableViewController.h"
+
+@interface NetflixGenreRecommendationsViewController : AbstractNetflixFilterableViewController {
 @private
   NetflixAccount* account;
   NSString* genre;
-  NSArray* movies;
 }
 
 - (id) initWithGenre:(NSString*) genre;

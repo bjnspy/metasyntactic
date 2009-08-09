@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */; };
 		7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */; };
+		742F48D0102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F48CE102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h */; };
+		742F48D1102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F48CF102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m */; };
 		74A01DED10245CD700299F25 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A01DEC10245CC200299F25 /* libNetflixShared.a */; };
 		74A01DF110245D0A00299F25 /* NetflixShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A01DF010245D0A00299F25 /* NetflixShared.h */; };
 		74FB7D251017A2DE001B5CB9 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
@@ -100,7 +102,6 @@
 		74FB7D841017A2DE001B5CB9 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
 		74FB7D861017A2DE001B5CB9 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */; };
 		74FB7D871017A2DE001B5CB9 /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F70F1414B2003163B3 /* NetflixMostPopularViewController.m */; };
-		74FB7D881017A2DE001B5CB9 /* NetflixMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */; };
 		74FB7D891017A2DE001B5CB9 /* NetflixQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */; };
 		74FB7D8A1017A2DE001B5CB9 /* NetflixRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */; };
 		74FB7D8B1017A2DE001B5CB9 /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */; };
@@ -263,6 +264,8 @@
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		742F45D8102D2D7300AAC152 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = Resources/ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		742F48CE102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixFilterableViewController.h; sourceTree = "<group>"; };
+		742F48CF102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixFilterableViewController.m; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
@@ -379,8 +382,6 @@
 		747CA1C00E8594C300A09E89 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		747D9F200F3369A7000B5A68 /* NetflixMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMovieListViewController.h; sourceTree = "<group>"; };
-		747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMovieListViewController.m; sourceTree = "<group>"; };
 		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
 		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
@@ -999,21 +1000,21 @@
 		74E031770EF4C5D000B2D2BA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				742F48CE102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h */,
 				7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */,
 				7416496B0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.h */,
 				7414A5F40F1414B2003163B3 /* NetflixMostPopularMoviesViewController.h */,
 				7414A5F60F1414B2003163B3 /* NetflixMostPopularViewController.h */,
-				747D9F200F3369A7000B5A68 /* NetflixMovieListViewController.h */,
 				7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */,
 				741648FE0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.h */,
 				74E14A660F96510F00FB7BDA /* NetflixSettingsViewController.h */,
 				7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */,
 				74FB7FFB1017B5AB001B5CB9 /* PocketFlicksViewController.h */,
+				742F48CF102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m */,
 				7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */,
 				7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */,
 				7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */,
 				7414A5F70F1414B2003163B3 /* NetflixMostPopularViewController.m */,
-				747D9F210F3369A7000B5A68 /* NetflixMovieListViewController.m */,
 				7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */,
 				741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */,
 				74E14A670F96510F00FB7BDA /* NetflixSettingsViewController.m */,
@@ -1099,6 +1100,7 @@
 				74FB80021017B64A001B5CB9 /* PocketFlicksCreditsViewController.h in Headers */,
 				7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */,
 				74A01DF110245D0A00299F25 /* NetflixShared.h in Headers */,
+				742F48D0102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,7 +1323,6 @@
 				74FB7D841017A2DE001B5CB9 /* NetflixGenreRecommendationsViewController.m in Sources */,
 				74FB7D861017A2DE001B5CB9 /* NetflixMostPopularMoviesViewController.m in Sources */,
 				74FB7D871017A2DE001B5CB9 /* NetflixMostPopularViewController.m in Sources */,
-				74FB7D881017A2DE001B5CB9 /* NetflixMovieListViewController.m in Sources */,
 				74FB7D891017A2DE001B5CB9 /* NetflixQueueViewController.m in Sources */,
 				74FB7D8A1017A2DE001B5CB9 /* NetflixRecommendationsViewController.m in Sources */,
 				74FB7D8B1017A2DE001B5CB9 /* NetflixSettingsViewController.m in Sources */,
@@ -1354,6 +1355,7 @@
 				74FB7FFE1017B5AB001B5CB9 /* PocketFlicksViewController.m in Sources */,
 				74FB80031017B64A001B5CB9 /* PocketFlicksCreditsViewController.m in Sources */,
 				7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */,
+				742F48D1102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
