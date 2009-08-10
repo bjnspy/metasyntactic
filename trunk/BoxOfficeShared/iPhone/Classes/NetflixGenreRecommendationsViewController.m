@@ -55,16 +55,16 @@
 - (NSArray*) determineMovies {
   self.account = self.model.currentNetflixAccount;
   Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey] account:account];
-  
+
   NSMutableArray* array = [NSMutableArray array];
-  
+
   for (Movie* movie in queue.movies) {
     NSArray* genres = movie.genres;
     if (genres.count > 0 && [genre isEqual:[genres objectAtIndex:0]]) {
       [array addObject:movie];
     }
   }
-  
+
   return array;
 }
 
