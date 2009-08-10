@@ -83,11 +83,11 @@
     UIBarButtonItem* left;
     UIBarButtonItem* right;
     if (self.tableView.editing) {
-      left = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel:)] autorelease];
-      right = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(onSave:)] autorelease];
+      left = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel)] autorelease];
+      right = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(onSave)] autorelease];
     } else if (self.isEditable) {
       left = backButton;
-      right = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onEdit:)] autorelease];
+      right = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(onEdit)] autorelease];
     } else {
       left = backButton;
       right = nil;
@@ -350,13 +350,42 @@
 
 - (BOOL)          tableView:(UITableView*) tableView
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
-  return tableView.editing;
+  return YES;
 }
 
 
 - (BOOL)          tableView:(UITableView*) tableView
       canMoveRowAtIndexPath:(NSIndexPath*) indexPath {
   return indexPath.section == 0;
+}
+
+
+- (void) onEdit {
+  self.reorderedMovies = [IdentitySet mutableSet];
+  self.deletedMovies = [IdentitySet mutableSet];
+  [self.tableView setEditing:YES animated:YES];
+  [self setupButtons];
+}
+
+
+- (void) onCancel {
+  self.reorderedMovies = [IdentitySet mutableSet];
+  self.deletedMovies = [IdentitySet mutableSet];
+  [self.tableView setEditing:NO animated:YES];
+  [self majorRefresh];
+}
+
+
+- (void) onSave {
+  if (deletedMovies.count == 0 && reorderedMovies.count == 0) {
+    // user didn't do anything.  same as a cancel.
+    [self onCancel];
+  } else {
+    [self.tableView setEditing:NO animated:YES];
+    [self enterReadonlyMode];
+    
+    [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
+  }
 }
 
 
@@ -379,6 +408,24 @@
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
   }
+  
+  // here's the problem.  The user may have done a 'swipe to delete' action, or
+  // they might just be making a bulk edit.  We want to commit the swipe to 
+  // delete immediately.  But we want to commit a bulk edit when the user taps 'save'
+  // However, at this point there's no way to know what type of action it was.
+  // "tableView.editing" is true for both cases.  I could add an extra piece of state,
+  // but i really don't want to do that.  So, instead we just try to save on the next
+  // run loop.  If it was a swipe, then "tableView.editing" won't be true anymore and
+  // we can proceed.  However, if the user is in the middle of a bulk edit, then
+  // "tableView.editing" will still be true and we'll hold off on saving the changes.
+  [self performSelector:@selector(commitSwipeDelete) withObject:nil afterDelay:0];
+}
+
+
+- (void) commitSwipeDelete {
+  if (!self.tableView.editing) {
+    [self onSave];
+  }
 }
 
 
@@ -398,33 +445,6 @@
   [mutableMovies insertObject:movie atIndex:to];
 
   [reorderedMovies addObject:movie];
-}
-
-
-- (void) onEdit:(id) sender {
-  self.reorderedMovies = [IdentitySet mutableSet];
-  self.deletedMovies = [IdentitySet mutableSet];
-  [self.tableView setEditing:YES animated:YES];
-  [self setupButtons];
-}
-
-
-- (void) onCancel:(id) sender {
-  [self.tableView setEditing:NO animated:YES];
-  [self majorRefresh];
-}
-
-
-- (void) onSave:(id) sender {
-  if (deletedMovies.count == 0 && reorderedMovies.count == 0) {
-    // user didn't do anything.  same as a cancel.
-    [self onCancel:sender];
-  } else {
-    [self.tableView setEditing:NO animated:YES];
-    [self enterReadonlyMode];
-
-    [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
-  }
 }
 
 
