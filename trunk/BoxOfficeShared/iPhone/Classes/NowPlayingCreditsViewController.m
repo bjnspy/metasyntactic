@@ -234,7 +234,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
     cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@", LocalizedString(@"Help", nil), LocalizedString(@"Send Feedback", nil), nil];
   } else if (section == WrittenBySection) {
     if (row == 0) {
-      cell.textLabel.text = LocalizedString(@"Project website", @"Takes the user to the website for this application");
+      cell.textLabel.text = LocalizedString(@"Project Website", @"Takes the user to the website for this application");
     } else {
       cell.textLabel.text = LocalizedString(@"Write Review", nil);
     }
