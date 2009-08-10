@@ -32,7 +32,7 @@
 - (void) dealloc {
   self.movies = nil;
   self.filteredMovies = nil;
-  
+
   [super dealloc];
 }
 
@@ -52,24 +52,24 @@
   segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
   segmentedControl.tintColor = self.navigationController.navigationBar.tintColor;
   segmentedControl.selectedSegmentIndex = self.model.netflixFilterSelectedSegmentIndex;
-  
+
   [segmentedControl addTarget:self
                        action:@selector(onFilterChanged:)
              forControlEvents:UIControlEventValueChanged];
-  
+
   UINavigationBar* navBar = [[[UINavigationBar alloc] init] autorelease];
   navBar.tintColor = self.navigationController.navigationBar.tintColor;
-  
+
   UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
   item.titleView = segmentedControl;
   [navBar setItems:[NSArray arrayWithObject:item]];
-  
+
   [navBar sizeToFit];
-  
+
   CGRect frame = segmentedControl.frame;
   frame.size.width = 310;
   segmentedControl.frame = frame;
-  
+
   return navBar;
 }
 
@@ -84,19 +84,19 @@
   if (filter == 0) {
     return YES;
   }
-  
+
   if (filter == 1) {
     return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"DVD"];
   }
-  
+
   if (filter == 2) {
     return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"Blu-ray"];
   }
-  
+
   if (filter == 3) {
     return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"instant"];
   }
-  
+
   return NO;
 }
 
@@ -108,14 +108,14 @@
 
 - (void) onBeforeReloadTableViewData {
   [super onBeforeReloadTableViewData];
-  
+
   self.tableView.tableHeaderView = [self createHeaderView];
-  
+
   self.tableView.rowHeight = 100;
-  
+
   NSArray* array = [self determineMovies];
   NSMutableArray* filteredArray = [NSMutableArray array];
-  
+
   NSInteger filter = self.model.netflixFilterSelectedSegmentIndex;
   for (Movie* movie in array) {
     if ([self filter:filter movie:movie]) {
@@ -155,10 +155,10 @@
     cell = [[[NetflixCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   Movie* movie = [filteredMovies objectAtIndex:indexPath.row];
   [cell setMovie:movie owner:self];
-  
+
   return cell;
 }
 
@@ -184,7 +184,7 @@
       return LocalizedString(@"No information found", nil);
     }
   }
-  
+
   return nil;
 }
 

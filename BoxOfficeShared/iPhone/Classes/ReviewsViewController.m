@@ -144,7 +144,7 @@
     if (self.model.rottenTomatoesScores) {
       Score* score = [self.model rottenTomatoesScoreForMovie:movie];
       NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.rottentomatoes.com";
-      [self.commonNavigationController pushBrowser:address animated:YES];      
+      [self.commonNavigationController pushBrowser:address animated:YES];
     } else if (self.model.metacriticScores) {
       Score* score = [self.model metacriticScoreForMovie:movie];
       NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
