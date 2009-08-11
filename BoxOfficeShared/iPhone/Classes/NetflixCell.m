@@ -208,7 +208,19 @@
   directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
   castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
   genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
-  formatsLabel.text   = [[[[self.model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
+  
+  NSMutableArray* formats = [NSMutableArray array];
+  if ([self.model.netflixCache isInstantWatch:movie]) {
+    [formats addObject:LocalizedString(@"Instant", nil)];
+  }
+  if ([self.model.netflixCache isDvd:movie]) {
+    [formats addObject:LocalizedString(@"DVD", nil)];
+  }
+  if ([self.model.netflixCache isBluray:movie]) {
+    [formats addObject:LocalizedString(@"Blu-ray", nil)];
+  }
+  
+  formatsLabel.text   = [formats componentsJoinedByString:@"/"];
   availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
 
   NSString* rating = [self.model ratingForMovie:movie];

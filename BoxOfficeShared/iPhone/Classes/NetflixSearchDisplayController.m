@@ -210,8 +210,7 @@
   NSMutableArray* instant = [NSMutableArray array];
 
   for (Movie* movie in result.movies) {
-    NSArray* formats = [self.model.netflixCache formatsForMovie:movie];
-    if ([formats containsObject:@"instant"]) {
+    if ([self.model.netflixCache isInstantWatch:movie]) {
       [instant addObject:movie];
     } else {
       [discs addObject:movie];

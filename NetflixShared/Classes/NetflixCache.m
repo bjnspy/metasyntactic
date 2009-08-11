@@ -1725,4 +1725,24 @@ static NSString** directories[] = {
   return [Movie newWithDictionary:dictionary];
 }
 
+
+- (BOOL) isInstantWatch:(Movie*) movie {
+  return [[self formatsForMovie:movie] containsObject:@"instant"];
+}
+
+
+- (BOOL) isInstantWatchOnly:(Movie*) movie {
+  return [self isInstantWatch:movie] && ![self isDvd:movie] && ![self isBluray:movie];
+}
+
+
+- (BOOL) isDvd:(Movie*) movie {
+  return [[self formatsForMovie:movie] containsObject:@"DVD"];
+}
+
+
+- (BOOL) isBluray:(Movie*) movie {
+  return [[self formatsForMovie:movie] containsObject:@"Blu-ray"];
+}
+
 @end

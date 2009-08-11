@@ -383,7 +383,7 @@
   } else {
     [self.tableView setEditing:NO animated:YES];
     [self enterReadonlyMode];
-    
+
     [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self account:account];
   }
 }
@@ -408,9 +408,9 @@
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
   }
-  
+
   // here's the problem.  The user may have done a 'swipe to delete' action, or
-  // they might just be making a bulk edit.  We want to commit the swipe to 
+  // they might just be making a bulk edit.  We want to commit the swipe to
   // delete immediately.  But we want to commit a bulk edit when the user taps 'save'
   // However, at this point there's no way to know what type of action it was.
   // "tableView.editing" is true for both cases.  I could add an extra piece of state,

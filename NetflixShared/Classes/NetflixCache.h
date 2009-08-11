@@ -27,6 +27,7 @@
 + (NSArray*) mostPopularTitles;
 
 + (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
++ (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
 
 - (void) update;
 
@@ -53,10 +54,15 @@
 - (NSString*) availabilityForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
-- (NSArray*) formatsForMovie:(Movie*) movie;
+//- (NSArray*) formatsForMovie:(Movie*) movie;
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
+
+- (BOOL) isInstantWatch:(Movie*) movie;
+- (BOOL) isInstantWatchOnly:(Movie*) movie;
+- (BOOL) isDvd:(Movie*) movie;
+- (BOOL) isBluray:(Movie*) movie;
 
 @end
