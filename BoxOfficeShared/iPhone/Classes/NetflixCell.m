@@ -208,7 +208,7 @@
   directorLabel.text  = [[self.model directorsForMovie:movie]  componentsJoinedByString:@", "];
   castLabel.text      = [[self.model castForMovie:movie]       componentsJoinedByString:@", "];
   genreLabel.text     = [[self.model genresForMovie:movie]     componentsJoinedByString:@", "];
-  
+
   NSMutableArray* formats = [NSMutableArray array];
   if ([self.model.netflixCache isInstantWatch:movie]) {
     [formats addObject:LocalizedString(@"Instant", nil)];
@@ -219,7 +219,7 @@
   if ([self.model.netflixCache isBluray:movie]) {
     [formats addObject:LocalizedString(@"Blu-ray", nil)];
   }
-  
+
   formatsLabel.text   = [formats componentsJoinedByString:@"/"];
   availabilityLabel.text = [self.model.netflixCache availabilityForMovie:movie];
 
