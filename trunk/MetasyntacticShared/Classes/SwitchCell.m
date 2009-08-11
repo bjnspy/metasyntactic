@@ -35,7 +35,7 @@
     self.switchControl = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     self.accessoryView = switchControl;
   }
-  
+
   return self;
 }
 

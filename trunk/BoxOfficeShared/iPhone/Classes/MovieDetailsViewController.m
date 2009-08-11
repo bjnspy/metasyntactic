@@ -1064,7 +1064,7 @@ const NSInteger POSTER_TAG = -1;
                       otherButtonTitles:nil] autorelease];
 
   NetflixUser* user = [self.model.netflixCache userForAccount:netflixAccount];
-  
+
   if ([self.model.netflixCache isInstantWatchOnly:movie]) {
     actionSheet.tag = ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
   } else if ([self.model.netflixCache isInstantWatch:movie] && user.canInstantWatch) {
