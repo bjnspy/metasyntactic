@@ -86,15 +86,15 @@
   }
 
   if (filter == 1) {
-    return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"DVD"];
+    return [self.model.netflixCache isDvd:movie];
   }
 
   if (filter == 2) {
-    return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"Blu-ray"];
+    return [self.model.netflixCache isBluray:movie];
   }
 
   if (filter == 3) {
-    return [[self.model.netflixCache formatsForMovie:movie] containsObject:@"instant"];
+    return [self.model.netflixCache isInstantWatch:movie];
   }
 
   return NO;
