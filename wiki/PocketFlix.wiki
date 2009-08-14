@@ -24,3 +24,6 @@ Note:
 [http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image2-Small.png] 
 
 For help/suggestions email me: [mailto:cyrusn@stwing.upenn.edu cyrusn@stwing.upenn.edu]
+
+Privacy Notice:
+In order to provide you with your Netflix data, you must enter into a trust relationship with !PocketFlicks and !Netflix.  By confirming this trust relationship, you accept to your Netflix data being accessed, shared and updated. This data will include you queue, rental history, and ratings. In order to provide a smooth running service, data will be kept for 24 hours.  This data will not be accessed unless it is necessary to diagnose any errors.  After that time has passed, the data will be purged.
