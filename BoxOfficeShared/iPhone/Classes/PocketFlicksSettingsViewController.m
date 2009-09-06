@@ -110,9 +110,9 @@
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-    NSString* text;
-    BOOL on;
-    SEL selector;
+    NSString* text = @"";
+    BOOL on = NO;
+    SEL selector = nil;
     if (row == 0) {
       text = LocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
       on = [MetasyntacticSharedApplication screenRotationEnabled];

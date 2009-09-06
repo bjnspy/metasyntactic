@@ -280,7 +280,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
   NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
-  textView.text = [NSString stringWithContentsOfFile:licensePath];
+  textView.text = [NSString stringWithContentsOfFile:licensePath encoding:NSUTF8StringEncoding error:NULL];
   textView.font = [UIFont boldSystemFontOfSize:12];
   textView.textColor = [UIColor grayColor];
 
