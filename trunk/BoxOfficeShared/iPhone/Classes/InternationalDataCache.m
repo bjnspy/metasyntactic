@@ -99,7 +99,7 @@ static NSDictionary* countryToCode = nil;
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSString* title in dictionary) {
-    [result setObject:[Movie newWithDictionary:[dictionary objectForKey:title]] forKey:title];
+    [result setObject:[Movie createWithDictionary:[dictionary objectForKey:title]] forKey:title];
   }
   return result;
 }

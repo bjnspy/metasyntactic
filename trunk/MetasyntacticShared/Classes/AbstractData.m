@@ -36,7 +36,7 @@
 }
 
 
-+ (id) newWithDictionary:(NSDictionary*) dictionary {
++ (id) createWithDictionary:(NSDictionary*) dictionary {
   return nil;
 }
 
@@ -48,7 +48,7 @@
 
   NSMutableArray* result = [NSMutableArray array];
   for (NSDictionary* dictionary in values) {
-    id value = [self newWithDictionary:dictionary];
+    id value = [self createWithDictionary:dictionary];
     if (value != nil) {
       [result addObject:value];
     }

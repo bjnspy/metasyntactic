@@ -910,7 +910,7 @@ static Model* model = nil;
 
   NSMutableArray* result = [NSMutableArray array];
   for (NSDictionary* dictionary in array) {
-    [result addObject:[Movie newWithDictionary:dictionary]];
+    [result addObject:[Movie createWithDictionary:dictionary]];
   }
   return result;
 }
@@ -964,7 +964,7 @@ static Model* model = nil;
 
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
   for (NSDictionary* dictionary in array) {
-    FavoriteTheater* theater = [FavoriteTheater newWithDictionary:dictionary];
+    FavoriteTheater* theater = [FavoriteTheater createWithDictionary:dictionary];
     [result setObject:theater forKey:theater.name];
   }
 

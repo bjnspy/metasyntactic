@@ -23,7 +23,7 @@
 @property (readonly, copy) NSString* key;
 @property (readonly, copy) NSString* name;
 
-+ (Feed*) newWithDictionary:(NSDictionary*) dictionary;
++ (Feed*) createWithDictionary:(NSDictionary*) dictionary;
 + (Feed*) feedWithUrl:(NSString*) url
                   key:(NSString*) key
                  name:(NSString*) name;

@@ -94,7 +94,7 @@ property_definition(url);
 }
 
 
-+ (DVD*) newWithDictionary:(NSDictionary*) dictionary {
++ (DVD*) createWithDictionary:(NSDictionary*) dictionary {
   return [DVD dvdWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                               price:[dictionary objectForKey:price_key]
                              format:[dictionary objectForKey:format_key]

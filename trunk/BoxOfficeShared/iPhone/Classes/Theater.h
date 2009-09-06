@@ -40,7 +40,7 @@
                originatingLocation:(Location*) originatingLocation
                        movieTitles:(NSArray*) movieTitles;
 
-+ (Theater*) newWithDictionary:(NSDictionary*) dictionary;
++ (Theater*) createWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
 - (NSString*) simpleAddress;

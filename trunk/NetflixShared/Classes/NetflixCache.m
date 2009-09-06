@@ -856,7 +856,7 @@ static NSString** directories[] = {
   if (dictionary.count == 0) {
     return nil;
   }
-  return [NetflixUser newWithDictionary:dictionary];
+  return [NetflixUser createWithDictionary:dictionary];
 }
 
 
@@ -956,7 +956,7 @@ static NSString** directories[] = {
   NSString* file = [self seriesFile:seriesKey];
   Movie* series;
   if ([FileUtilities fileExists:file]) {
-    series = [Movie newWithDictionary:[FileUtilities readObject:file]];
+    series = [Movie createWithDictionary:[FileUtilities readObject:file]];
   } else {
     series = [self downloadMovieWithSeriesKey:seriesKey account:account];
     if (series != nil) {
@@ -983,7 +983,7 @@ static NSString** directories[] = {
     return nil;
   }
 
-  return [Movie newWithDictionary:dictionary];
+  return [Movie createWithDictionary:dictionary];
 }
 
 
@@ -1278,7 +1278,7 @@ static NSString** directories[] = {
     for (NSString* path in paths) {
       NSDictionary* dictionary = [FileUtilities readObject:path];
       if (dictionary != nil) {
-        Movie* movie = [Movie newWithDictionary:dictionary];
+        Movie* movie = [Movie createWithDictionary:dictionary];
         [array addObject:movie];
       }
     }
@@ -1417,7 +1417,7 @@ static NSString** directories[] = {
 
   Movie* movie;
   if ([FileUtilities fileExists:file]) {
-    movie = [Movie newWithDictionary:[FileUtilities readObject:file]];
+    movie = [Movie createWithDictionary:[FileUtilities readObject:file]];
   } else {
     movie = [self downloadRSSMovieWithIdentifier:identifier account:account];
     if (movie.canonicalTitle.length == 0) {
@@ -1722,7 +1722,7 @@ static NSString** directories[] = {
     return nil;
   }
 
-  return [Movie newWithDictionary:dictionary];
+  return [Movie createWithDictionary:dictionary];
 }
 
 
