@@ -152,7 +152,7 @@
   // walk backwards from the end.  switch the time when we see an AM/PM marker
   NSMutableArray* reverseArray = [NSMutableArray array];
 
-  BOOL isPM;
+  BOOL isPM = YES;
   for (NSInteger i = times.count - 1; i >= 0; i--) {
     NSString* time = [times objectAtIndex:i];
 
