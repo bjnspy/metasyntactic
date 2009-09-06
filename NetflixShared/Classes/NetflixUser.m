@@ -64,7 +64,7 @@ property_definition(preferredFormats);
 }
 
 
-+ (NetflixUser*) newWithDictionary:(NSDictionary*) dictionary {
++ (NetflixUser*) createWithDictionary:(NSDictionary*) dictionary {
   return [self userWithFirstName:[dictionary objectForKey:firstName_key]
                         lastName:[dictionary objectForKey:lastName_key]
                  canInstantWatch:[[dictionary objectForKey:canInstantWatch_key] boolValue]

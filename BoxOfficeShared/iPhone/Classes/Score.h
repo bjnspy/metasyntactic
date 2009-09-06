@@ -28,7 +28,7 @@
 @property (readonly, copy) NSString* provider;
 @property (readonly, copy) NSString* identifier;
 
-+ (Score*) newWithDictionary:(NSDictionary*) dictionary;
++ (Score*) createWithDictionary:(NSDictionary*) dictionary;
 + (Score*) scoreWithTitle:(NSString*) title
                  synopsis:(NSString*) synopsis
                     score:(NSString*) score

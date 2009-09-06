@@ -21,7 +21,7 @@
 @property (readonly, copy) NSString* name;
 @property (readonly, retain) Location* originatingLocation;
 
-+ (FavoriteTheater*) newWithDictionary:(NSDictionary*) dictionary;
++ (FavoriteTheater*) createWithDictionary:(NSDictionary*) dictionary;
 + (FavoriteTheater*) theaterWithName:(NSString*) name
                  originatingLocation:(Location*) originatingLocation;
 

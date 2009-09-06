@@ -25,7 +25,7 @@
 @property (readonly) BOOL canInstantWatch;
 @property (readonly, retain) NSArray* preferredFormats;
 
-+ (NetflixUser*) newWithDictionary:(NSDictionary*) dictionary;
++ (NetflixUser*) createWithDictionary:(NSDictionary*) dictionary;
 + (NetflixUser*) userWithFirstName:(NSString*) firstName
                           lastName:(NSString*) lastName
                    canInstantWatch:(BOOL) canInstantWatch
