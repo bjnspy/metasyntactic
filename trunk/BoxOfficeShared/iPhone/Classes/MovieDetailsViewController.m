@@ -410,12 +410,12 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) setupButtons {
   if (readonlyMode) {
-    UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIActivityIndicatorView* activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     CGRect frame = activityIndicatorView.frame;
     frame.size.width += 4;
     [activityIndicatorView startAnimating];
 
-    UIView* activityView = [[UIView alloc] initWithFrame:frame];
+    UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
     [activityView addSubview:activityIndicatorView];
 
     UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
