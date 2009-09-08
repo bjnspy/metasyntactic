@@ -34,7 +34,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1045" class="Program" package="">
+      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="1061" class="Program" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -108,7 +108,25 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="29" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.17603911">
+            <state line="193" column="24" selection-start="6682" selection-end="6682" vertical-scroll-proportion="-0.513382">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileWriter.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/FileWriter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="49" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OutputStreamWriter.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/OutputStreamWriter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -218,7 +236,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="options.lastSelected" value="preferences.sourceCode.JavaDoc" />
+    <property name="options.lastSelected" value="File.Encoding" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
   </component>
@@ -230,7 +248,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.YourRights">
+  <component name="RunManager" selected="Application.BoxOfficeShared">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -366,7 +384,7 @@
     <configuration default="false" name="MetasyntacticShared" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/MetasyntacticShared" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk/MetasyntacticShared /Projects/metasyntactic/trunk/NetflixShared" />
       <option name="WORKING_DIRECTORY" value="file:///Projects/metasyntactic/trunk/MetasyntacticShared" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -501,12 +519,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="22" width="1192" height="874" extended-state="0" />
+    <frame x="235" y="23" width="1192" height="874" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23972602" sideWeight="0.60186416" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23972602" sideWeight="0.6045273" order="0" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958813" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
@@ -515,7 +533,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33377483" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38881493" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3861518" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -604,6 +622,20 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/FileWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="49" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/OutputStreamWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/lang/String.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="7" selection-start="1084" selection-end="1087" vertical-scroll-proportion="0.0">
@@ -620,7 +652,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="29" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.17603911">
+        <state line="193" column="24" selection-start="6682" selection-end="6682" vertical-scroll-proportion="-0.513382">
           <folding />
         </state>
       </provider>
