@@ -433,6 +433,7 @@
 		74AE6B450FD8D76200E5CAFF /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
 		74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
 		74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
+		74B118521055895300780B36 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Resources/fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74BEB8460F7D739800B8DD32 /* SquareMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMovieTitleCell.h; sourceTree = "<group>"; };
@@ -1167,6 +1168,7 @@
 				pl,
 				hi,
 				ca,
+				fa,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1389,6 +1391,7 @@
 				7402245A0E53F353006C58A2 /* de */,
 				7402245B0E53F35A006C58A2 /* en */,
 				745E213A0E5961F700105751 /* es */,
+				74B118521055895300780B36 /* fa */,
 				743398430E62615300D285F0 /* fi */,
 				740224590E53F351006C58A2 /* fr */,
 				745E213E0E59630200105751 /* he */,
