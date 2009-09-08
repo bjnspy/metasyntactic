@@ -297,12 +297,17 @@ public class Program {
                     text += "\"" + s + "\" = \"\";";
                 }
 
-                final Writer out = new PrintWriter(locFile, "UTF-8");
+                final OutputStream output = new FileOutputStream(locFile);
+                output.write(new byte[] { (byte)0xEF, (byte)0xBB, (byte)0xBF });
+                final Writer writer = new OutputStreamWriter(output, "UTF-8");
 
-                out.write(text.trim() + '\n');
+                writer.write(text.trim() + '\n');
 
-                out.flush();
-                out.close();
+                writer.flush();
+                writer.close();
+
+                output.flush();
+                output.close();
             }
         }
     }
