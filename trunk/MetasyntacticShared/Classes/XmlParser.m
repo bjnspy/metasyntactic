@@ -136,7 +136,8 @@ void characterDataHandler(void* userData,
     error = XML_GetErrorCode(parser);
     int line = XML_GetCurrentLineNumber(parser);
     int column = XML_GetCurrentColumnNumber(parser);
-    NSLog(@"Error at: %d, %d", line, column);
+    NSString* xmlText = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSLog(@"Error at: %d, %d. Text:\n%@", line, column, xmlText);
   }
   XML_ParserFree(parser);
 
