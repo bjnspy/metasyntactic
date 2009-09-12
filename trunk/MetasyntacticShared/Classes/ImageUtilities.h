@@ -22,6 +22,7 @@
 + (UIImage*) cropImage:(UIImage*) image toRect:(CGRect) rect;
 + (UIImage*) roundUpperLeftCornerOfImage:(UIImage*) image;
 + (UIImage*) roundLowerLeftCornerOfImage:(UIImage*) image;
++ (UIImage*) roundCornersOfImage:(UIImage*) image;
 
 + (NSData*) scaleImageData:(NSData*) image toHeight:(CGFloat) height;
 
