@@ -101,6 +101,8 @@
 		74E0347E105EB577002E5125 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E03451105EB577002E5125 /* NSData+Base64.m */; };
 		74E0347F105EB577002E5125 /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E03452105EB577002E5125 /* NSString+UUID.h */; };
 		74E03480105EB577002E5125 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E03453105EB577002E5125 /* NSString+UUID.m */; };
+		74E0354F105EC5EF002E5125 /* AbstractTwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E0354D105EC5EF002E5125 /* AbstractTwitterAccount.h */; };
+		74E03550105EC5EF002E5125 /* AbstractTwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E0354E105EC5EF002E5125 /* AbstractTwitterAccount.m */; };
 		74E164301006D22D003D852F /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642D1006D22D003D852F /* Beacon+FBConnect.h */; };
 		74E164311006D22D003D852F /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E1642E1006D22D003D852F /* Beacon.h */; };
 		74E164321006D22D003D852F /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */; };
@@ -489,6 +491,8 @@
 		74E03451105EB577002E5125 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "External/MGTwitterEngine/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		74E03452105EB577002E5125 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "External/MGTwitterEngine/NSString+UUID.h"; sourceTree = SOURCE_ROOT; };
 		74E03453105EB577002E5125 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "External/MGTwitterEngine/NSString+UUID.m"; sourceTree = SOURCE_ROOT; };
+		74E0354D105EC5EF002E5125 /* AbstractTwitterAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTwitterAccount.h; sourceTree = "<group>"; };
+		74E0354E105EC5EF002E5125 /* AbstractTwitterAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTwitterAccount.m; sourceTree = "<group>"; };
 		74E1642D1006D22D003D852F /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		74E1642E1006D22D003D852F /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		74E1642F1006D22D003D852F /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
@@ -557,6 +561,7 @@
 				74A6137A100DBA4E00806BBC /* Mapping */,
 				74200D740FD25A4F00DEE16B /* Search */,
 				74616D820F15D8910004B610 /* Threading */,
+				74E0354C105EC5E4002E5125 /* Twitter */,
 				74616E620F15DCA60004B610 /* UI */,
 				74616C780F15D21F0004B610 /* Utilities */,
 				74616DF20F15DAA80004B610 /* Xml */,
@@ -968,6 +973,15 @@
 			name = Twitter;
 			sourceTree = "<group>";
 		};
+		74E0354C105EC5E4002E5125 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				74E0354D105EC5EF002E5125 /* AbstractTwitterAccount.h */,
+				74E0354E105EC5EF002E5125 /* AbstractTwitterAccount.m */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
 		74E1642C1006D22D003D852F /* PinchMedia */ = {
 			isa = PBXGroup;
 			children = (
@@ -1168,6 +1182,7 @@
 				74E03479105EB577002E5125 /* MGTwitterXMLParser.h in Headers */,
 				74E0347D105EB577002E5125 /* NSData+Base64.h in Headers */,
 				74E0347F105EB577002E5125 /* NSString+UUID.h in Headers */,
+				74E0354F105EC5EF002E5125 /* AbstractTwitterAccount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,6 +1340,7 @@
 				74E0347A105EB577002E5125 /* MGTwitterXMLParser.m in Sources */,
 				74E0347E105EB577002E5125 /* NSData+Base64.m in Sources */,
 				74E03480105EB577002E5125 /* NSString+UUID.m in Sources */,
+				74E03550105EC5EF002E5125 /* AbstractTwitterAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

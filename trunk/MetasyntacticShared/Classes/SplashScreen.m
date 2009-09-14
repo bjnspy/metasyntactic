@@ -129,7 +129,7 @@
 
 + (void) presentSplashScreen:(id<SplashScreenDelegate>) delegate {
   // Will autorelease this in onFadeComplete
-  SplashScreen* controller = [[SplashScreen alloc] initWithDelegate:delegate];
+  SplashScreen* controller = [(SplashScreen*)[SplashScreen alloc] initWithDelegate:delegate];
 
   UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
   [window addSubview:controller.view];

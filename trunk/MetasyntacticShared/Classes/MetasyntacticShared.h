@@ -17,6 +17,7 @@
 #import <MapKit/MapKit.h>
 #import "../External/OAuth/OAuthConsumer.h"
 #import "../External/PinchMedia/Beacon.h"
+#import "../External/MGTwitterEngine/MGTwitterEngine.h"
 #import "../ForwardDeclarations.h"
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
@@ -34,6 +35,7 @@
 #import "AbstractSlidableTableViewController.h"
 #import "AbstractStackableTableViewController.h"
 #import "AbstractTableViewController.h"
+#import "AbstractTwitterAccount.h"
 #import "ActionsView.h"
 #import "AlertUtilities.h"
 #import "AttributeCell.h"
