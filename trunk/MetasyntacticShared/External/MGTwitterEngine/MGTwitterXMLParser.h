@@ -23,19 +23,19 @@
   NSString* lastOpenedElement;
 }
 
-+ (id)   parserWithXML:(NSData *)theXML
-              delegate:(NSObject *)theDelegate 
-  connectionIdentifier:(NSString *)identifier
++ (id)   parserWithXML:(NSData*) theXML
+              delegate:(NSObject*) theDelegate 
+  connectionIdentifier:(NSString*) identifier
            requestType:(MGTwitterRequestType)reqType 
           responseType:(MGTwitterResponseType)respType;
-- (id)     initWithXML:(NSData *)theXML
-              delegate:(NSObject *)theDelegate 
-  connectionIdentifier:(NSString *)identifier
+- (id)     initWithXML:(NSData*) theXML
+              delegate:(NSObject*) theDelegate 
+  connectionIdentifier:(NSString*) identifier
            requestType:(MGTwitterRequestType)reqType 
           responseType:(MGTwitterResponseType)respType;
 
-- (NSString *)lastOpenedElement;
-- (void)setLastOpenedElement:(NSString *)value;
+- (NSString*) lastOpenedElement;
+- (void)setLastOpenedElement:(NSString*) value;
 
 - (void)addSource;
 

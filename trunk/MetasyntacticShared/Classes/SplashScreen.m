@@ -58,8 +58,8 @@
 }
 
 
-- (void) onFadeComplete:(NSString *)animationID
-               finished:(NSNumber *)finished
+- (void) onFadeComplete:(NSString*) animationID
+               finished:(NSNumber*) finished
                 context:(UIView*) previousView {
   [self.view removeFromSuperview];
   [delegate onSplashScreenFinished];
