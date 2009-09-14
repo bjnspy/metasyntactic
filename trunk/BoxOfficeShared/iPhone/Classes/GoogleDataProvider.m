@@ -390,9 +390,7 @@
     return nil;
   }
 
-  NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
-  : location.country;
-
+  NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry] : location.country;
 
   NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                  fromDate:[DateUtilities today]

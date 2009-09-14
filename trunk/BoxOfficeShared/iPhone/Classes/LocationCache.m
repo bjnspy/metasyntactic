@@ -139,6 +139,7 @@
         [addressToLocation setObject:result forKey:address];
       }
     }
+    [[result retain] autorelease];
   }
   [dataGate unlock];
 

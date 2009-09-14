@@ -78,13 +78,10 @@
     return nil;
   }
 
-  //NSLog(@"UserLocationCache:locationForUserAddress - Loading massaged address");
   Location* location = [self loadLocation:[self massageAddress:userAddress]];
   if (location != nil) {
-    //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address found");
     return location;
   }
-  //NSLog(@"UserLocationCache:locationForUserAddress - Massaged address not found.  Loading normal address");
 
   return [self loadLocation:userAddress];
 }
@@ -134,6 +131,7 @@
   [runGate lock];
   {
     result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
+    [[result retain] autorelease];
   }
   [runGate unlock];
   return result;
