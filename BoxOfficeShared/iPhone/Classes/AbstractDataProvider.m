@@ -523,24 +523,14 @@
 }
 
 
-- (NSNumber*) isStaleWorker:(Theater*) theater {
-#if 0
-  NSDate* globalSyncDate = [self lastLookupDate];
-  NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-  if (globalSyncDate == nil || theaterSyncDate == nil) {
-    return NO;
-  }
-
-  return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
-#else
+- (BOOL) isStaleWorker:(Theater*) theater {
   NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
   if (theaterSyncDate == nil) {
     return NO;
   }
 
   BOOL result = ![DateUtilities isToday:theaterSyncDate];
-  return [NSNumber numberWithBool:result];
-#endif
+  return result;
 }
 
 
@@ -554,7 +544,7 @@
   {
     NSNumber* number = [self.cachedIsStale objectForKey:theater.name];
     if (number == nil) {
-      number = [self isStaleWorker:theater];
+      number = [NSNumber numberWithBool:[self isStaleWorker:theater]];
       [self.cachedIsStale setObject:number forKey:theater.name];
     }
     result = number.boolValue;
