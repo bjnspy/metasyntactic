@@ -26,6 +26,7 @@
 
 @class AbstractData;
 @class AbstractFullScreenImageListViewController;
+@class AbstractModel;
 @class AbstractNavigationController;
 @class AbstractSearchEngine;
 @class AbstractSearchRequest;

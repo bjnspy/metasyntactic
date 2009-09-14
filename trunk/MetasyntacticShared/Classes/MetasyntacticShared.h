@@ -26,6 +26,7 @@
 #import "AbstractFullScreenImageListViewController.h"
 #import "AbstractFullScreenTableViewController.h"
 #import "AbstractFullScreenViewController.h"
+#import "AbstractModel.h"
 #import "AbstractNavigationController.h"
 #import "AbstractSearchEngine.h"
 #import "AbstractSearchRequest.h"

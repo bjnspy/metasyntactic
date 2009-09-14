@@ -51,6 +51,8 @@
 		749374391008F32500749299 /* Invocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 749374371008F32500749299 /* Invocation3.m */; };
 		7493743D1008F3BE00749299 /* BackgroundInvocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 7493743B1008F3BE00749299 /* BackgroundInvocation3.h */; };
 		7493743E1008F3BE00749299 /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7493743C1008F3BE00749299 /* BackgroundInvocation3.m */; };
+		749B72A7105D90A300ECAA6C /* AbstractModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 749B72A5105D90A300ECAA6C /* AbstractModel.h */; };
+		749B72A8105D90A300ECAA6C /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 749B72A6105D90A300ECAA6C /* AbstractModel.m */; };
 		74A60D10100D424300806BBC /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A60D0E100D424300806BBC /* MapViewController.h */; };
 		74A60D11100D424300806BBC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A60D0F100D424300806BBC /* MapViewController.m */; };
 		74A60D1C100D426200806BBC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A60D1B100D426200806BBC /* MapKit.framework */; };
@@ -415,6 +417,8 @@
 		749374371008F32500749299 /* Invocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation3.m; sourceTree = "<group>"; };
 		7493743B1008F3BE00749299 /* BackgroundInvocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation3.h; sourceTree = "<group>"; };
 		7493743C1008F3BE00749299 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
+		749B72A5105D90A300ECAA6C /* AbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModel.h; sourceTree = "<group>"; };
+		749B72A6105D90A300ECAA6C /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
 		74A60D0E100D424300806BBC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		74A60D0F100D424300806BBC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		74A60D1B100D426200806BBC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -513,10 +517,12 @@
 				74616C780F15D21F0004B610 /* Utilities */,
 				74616DF20F15DAA80004B610 /* Xml */,
 				747C33140FD0710D00411801 /* AbstractApplication.h */,
+				749B72A5105D90A300ECAA6C /* AbstractModel.h */,
 				74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */,
 				74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */,
 				74E6FC670FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h */,
 				747C33150FD0710D00411801 /* AbstractApplication.m */,
+				749B72A6105D90A300ECAA6C /* AbstractModel.m */,
 				74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */,
 			);
 			path = Classes;
@@ -1074,6 +1080,7 @@
 				7406D8901016FE96004374C2 /* SplashScreenDelegate.h in Headers */,
 				74B47E141019065A00F17131 /* MemoryUtilities.h in Headers */,
 				74DBE243102B894E001E6B23 /* SwitchCell.h in Headers */,
+				749B72A7105D90A300ECAA6C /* AbstractModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1228,7 @@
 				7406D88F1016FE96004374C2 /* SplashScreen.m in Sources */,
 				74B47E151019065A00F17131 /* MemoryUtilities.m in Sources */,
 				74DBE244102B894E001E6B23 /* SwitchCell.m in Sources */,
+				749B72A8105D90A300ECAA6C /* AbstractModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
