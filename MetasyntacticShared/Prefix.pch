@@ -15,4 +15,5 @@
 #import "Macros.h"
 #import "expat.h"
 #import "MemoryUtilities.h"
+#import "MGTwitterEngine.h"
 #endif

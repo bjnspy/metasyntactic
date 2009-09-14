@@ -9,6 +9,8 @@
 #import "MGTwitterEngine.h"
 #import "MGTwitterHTTPURLConnection.h"
 
+#import "AbstractApplication.h"
+
 #import "NSData+Base64.h"
 
 #define USE_LIBXML 0
@@ -49,11 +51,13 @@
 #define MAX_LOCATION_LENGTH		30
 #define MAX_DESCRIPTION_LENGTH	160
 
+/*
 #define DEFAULT_CLIENT_NAME     @"MGTwitterEngine"
 #define DEFAULT_CLIENT_VERSION  @"1.0"
 #define DEFAULT_CLIENT_URL      @"http://mattgemmell.com/source"
 #define DEFAULT_CLIENT_TOKEN	@"mgtwitterengine"
-
+*/
+ 
 #define URL_REQUEST_TIMEOUT     25.0 // Twitter usually fails quickly if it's going to fail at all.
 
 
@@ -100,10 +104,10 @@
   if ((self = [super init])) {
     _delegate = newDelegate; // deliberately weak reference
     _connections = [[NSMutableDictionary alloc] initWithCapacity:0];
-    _clientName = [DEFAULT_CLIENT_NAME retain];
-    _clientVersion = [DEFAULT_CLIENT_VERSION retain];
-    _clientURL = [DEFAULT_CLIENT_URL retain];
-		_clientSourceToken = [DEFAULT_CLIENT_TOKEN retain];
+    _clientName = [[AbstractApplication name] retain];
+    _clientVersion = [[AbstractApplication version] retain];
+    _clientURL = [@"http://www.comixology.com" retain];
+		_clientSourceToken = [[[NSBundle mainBundle] bundleIdentifier] retain];
 		_APIDomain = [TWITTER_DOMAIN retain];
 #if YAJL_AVAILABLE
 		_searchDomain = [TWITTER_SEARCH_DOMAIN retain];
