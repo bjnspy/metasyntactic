@@ -16,27 +16,27 @@
 
 @implementation PointerSet
 
-static const void * PointerSetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+static const void * PointerSetRetainCallBack(CFAllocatorRef allocator, const void* value) {
   return value;
 }
 
 
-static void PointerSetReleaseCallBack(CFAllocatorRef allocator, const void *value) {
+static void PointerSetReleaseCallBack(CFAllocatorRef allocator, const void* value) {
 }
 
 
-static CFStringRef PointerSetCopyDescriptionCallBack(const void *value) {
+static CFStringRef PointerSetCopyDescriptionCallBack(const void* value) {
   id v = (id)value;
   return (CFStringRef)[[v description] retain];
 }
 
 
-static Boolean PointerSetEqualCallBack(const void *value1, const void *value2) {
+static Boolean PointerSetEqualCallBack(const void* value1, const void* value2) {
   return value1 == value2;
 }
 
 
-static CFHashCode PointerSetHashCallBack(const void *value) {
+static CFHashCode PointerSetHashCallBack(const void* value) {
   return (CFHashCode)value;
 }
 

@@ -13,14 +13,14 @@
 @interface MGTwitterXMLParser : NSObject {
 @protected
   __weak NSObject <MGTwitterParserDelegate> *delegate; // weak ref
-  NSString *identifier;
+  NSString* identifier;
   MGTwitterRequestType requestType;
   MGTwitterResponseType responseType;
-  NSData *xml;
-  NSMutableArray *parsedObjects;
-  NSXMLParser *parser;
-  __weak NSMutableDictionary *currentNode;
-  NSString *lastOpenedElement;
+  NSData* xml;
+  NSMutableArray* parsedObjects;
+  NSXMLParser* parser;
+  __weak NSMutableDictionary* currentNode;
+  NSString* lastOpenedElement;
 }
 
 + (id)   parserWithXML:(NSData *)theXML

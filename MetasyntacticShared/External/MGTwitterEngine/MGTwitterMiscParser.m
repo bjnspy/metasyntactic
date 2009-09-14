@@ -23,7 +23,7 @@
     [self setLastOpenedElement:elementName];
     
 	if (!currentNode) {
-		NSMutableDictionary *newNode = [NSMutableDictionary dictionaryWithCapacity:0];
+		NSMutableDictionary* newNode = [NSMutableDictionary dictionaryWithCapacity:0];
         [parsedObjects addObject:newNode];
         currentNode = newNode;
 	}
@@ -39,7 +39,7 @@
     [super parser:theParser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
     
     if ([elementName isEqualToString:@"remaining_hits"]) {
-        NSNumber *hits = [NSNumber numberWithInt:[[currentNode objectForKey:elementName] intValue]];
+        NSNumber* hits = [NSNumber numberWithInt:[[currentNode objectForKey:elementName] intValue]];
         [currentNode setObject:hits forKey:elementName];
     }
 }

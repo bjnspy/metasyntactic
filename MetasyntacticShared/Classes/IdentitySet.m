@@ -17,31 +17,31 @@
 
 @implementation IdentitySet
 
-static const void * IdentitySetRetainCallBack(CFAllocatorRef allocator, const void *value) {
+static const void * IdentitySetRetainCallBack(CFAllocatorRef allocator, const void* value) {
   id v = (id)value;
   [v retain];
   return value;
 }
 
 
-static void IdentitySetReleaseCallBack(CFAllocatorRef allocator, const void *value) {
+static void IdentitySetReleaseCallBack(CFAllocatorRef allocator, const void* value) {
   id v = (id)value;
   [v release];
 }
 
 
-static CFStringRef IdentitySetCopyDescriptionCallBack(const void *value) {
+static CFStringRef IdentitySetCopyDescriptionCallBack(const void* value) {
   id v = (id)value;
   return (CFStringRef)[[v description] retain];
 }
 
 
-static Boolean IdentitySetEqualCallBack(const void *value1, const void *value2) {
+static Boolean IdentitySetEqualCallBack(const void* value1, const void* value2) {
   return value1 == value2;
 }
 
 
-static CFHashCode IdentitySetHashCallBack(const void *value) {
+static CFHashCode IdentitySetHashCallBack(const void* value) {
   return (CFHashCode)value;
 }
 

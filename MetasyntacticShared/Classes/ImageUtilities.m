@@ -118,7 +118,7 @@
   CGContextDrawImage(currentContext, drawRect, image.CGImage);
 
   //pull the image from our cropped context
-  UIImage *cropped = UIGraphicsGetImageFromCurrentImageContext();
+  UIImage* cropped = UIGraphicsGetImageFromCurrentImageContext();
 
   //pop the context to get back to the default
   UIGraphicsEndImageContext();

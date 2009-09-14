@@ -108,11 +108,11 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
         || [elementName isEqualToString:@"truncated"] 
         || [elementName isEqualToString:@"following"]) {
         // Change "true"/"false" into an NSNumber with a BOOL value.
-        NSNumber *boolNumber = [NSNumber numberWithBool:[[currentNode objectForKey:elementName] isEqualToString:@"true"]];
+        NSNumber* boolNumber = [NSNumber numberWithBool:[[currentNode objectForKey:elementName] isEqualToString:@"true"]];
         [currentNode setObject:boolNumber forKey:elementName];
     } else if ([elementName isEqualToString:@"created_at"]) {
         // Change date-string into an NSDate.
-        NSDate *creationDate = [DateUtilities dateWithNaturalLanguageString:[currentNode objectForKey:elementName]];
+        NSDate* creationDate = [DateUtilities dateWithNaturalLanguageString:[currentNode objectForKey:elementName]];
         if (creationDate) {
             [currentNode setObject:creationDate forKey:elementName];
         }
