@@ -16,7 +16,7 @@
 #pragma mark Initializer
 
 
-- (id)initWithRequest:(NSURLRequest*) request delegate:(id)delegate 
+- (id) initWithRequest:(NSURLRequest*) request delegate:(id)delegate 
           requestType:(MGTwitterRequestType)requestType responseType:(MGTwitterResponseType)responseType
 {
   if ((self = [super initWithRequest:request delegate:delegate])) {
@@ -31,7 +31,7 @@
 }
 
 
-- (void)dealloc
+- (void) dealloc
 {
   [_data release];
   [_identifier release];
@@ -43,13 +43,13 @@
 #pragma mark Data helper methods
 
 
-- (void)resetDataLength
+- (void) resetDataLength
 {
   [_data setLength:0];
 }
 
 
-- (void)appendData:(NSData*) data
+- (void) appendData:(NSData*) data
 {
   [_data appendData:data];
 }
@@ -76,13 +76,13 @@
 }
 
 
-- (MGTwitterRequestType)requestType
+- (MGTwitterRequestType) requestType
 {
   return _requestType;
 }
 
 
-- (MGTwitterResponseType)responseType
+- (MGTwitterResponseType) responseType
 {
   return _responseType;
 }

@@ -234,7 +234,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (void)mapView:(MKMapView*) mapView_ didAddAnnotationViews:(NSArray*) views {
+- (void) mapView:(MKMapView*) mapView_ didAddAnnotationViews:(NSArray*) views {
   [mapView selectAnnotation:center animated:YES];
 }
 
@@ -258,7 +258,7 @@ NSComparisonResult comapreByDistance(id l1, id l2, void* context) {
 }
 
 
-- (void)mapView:(MKMapView*) mapView_ annotationView:(MKAnnotationView*) view calloutAccessoryControlTapped:(UIButton*) button {
+- (void) mapView:(MKMapView*) mapView_ annotationView:(MKAnnotationView*) view calloutAccessoryControlTapped:(UIButton*) button {
   if (button.tag == DIRECTIONS_TAG) {
     [self onDirectionsTappedForView:view];
   } else {

@@ -42,32 +42,32 @@
 + (NSString*) version; // returns the version of MGTwitterEngine
 - (NSString*) username;
 - (NSString*) password;
-- (void)setUsername:(NSString*) username password:(NSString*) password;
+- (void) setUsername:(NSString*) username password:(NSString*) password;
 - (NSString*) clientName; // see README.txt for info on clientName/Version/URL/SourceToken
 - (NSString*) clientVersion;
 - (NSString*) clientURL;
 - (NSString*) clientSourceToken;
-- (void)setClientName:(NSString*) name version:(NSString*) version URL:(NSString*) url token:(NSString*) token;
+- (void) setClientName:(NSString*) name version:(NSString*) version URL:(NSString*) url token:(NSString*) token;
 - (NSString*) APIDomain;
-- (void)setAPIDomain:(NSString*) domain;
+- (void) setAPIDomain:(NSString*) domain;
 #if YAJL_AVAILABLE
 - (NSString*) searchDomain;
-- (void)setSearchDomain:(NSString*) domain;
+- (void) setSearchDomain:(NSString*) domain;
 #endif
-- (BOOL)usesSecureConnection; // YES = uses HTTPS, default is YES
-- (void)setUsesSecureConnection:(BOOL)flag;
-- (BOOL)clearsCookies; // YES = deletes twitter.com cookies when setting username/password, default is NO (see README.txt)
-- (void)setClearsCookies:(BOOL)flag;
+- (BOOL) usesSecureConnection; // YES = uses HTTPS, default is YES
+- (void) setUsesSecureConnection:(BOOL)flag;
+- (BOOL) clearsCookies; // YES = deletes twitter.com cookies when setting username/password, default is NO (see README.txt)
+- (void) setClearsCookies:(BOOL)flag;
 #if YAJL_AVAILABLE
-- (MGTwitterEngineDeliveryOptions)deliveryOptions;
-- (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
+- (MGTwitterEngineDeliveryOptions) deliveryOptions;
+- (void) setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions;
 #endif
 
 // Connection methods
-- (int)numberOfConnections;
+- (int) numberOfConnections;
 - (NSArray*) connectionIdentifiers;
-- (void)closeConnection:(NSString*) identifier;
-- (void)closeAllConnections;
+- (void) closeConnection:(NSString*) identifier;
+- (void) closeAllConnections;
 
 // Utility methods
 /// Note: the -getImageAtURL: method works for any image URL, not just Twitter images.

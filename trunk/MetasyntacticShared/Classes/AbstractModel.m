@@ -89,7 +89,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 }
 
 
-- (void)alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex != alertView.cancelButtonIndex) {
     NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
     [AbstractApplication openBrowser:url];

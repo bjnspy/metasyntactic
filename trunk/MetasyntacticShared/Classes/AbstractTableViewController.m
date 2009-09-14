@@ -186,7 +186,7 @@
 }
 
 
-- (void)scrollViewDidEndDragging:(UIScrollView*) scrollView
+- (void) scrollViewDidEndDragging:(UIScrollView*) scrollView
                   willDecelerate:(BOOL) willDecelerate {
   if (willDecelerate) {
     [[OperationQueue operationQueue] temporarilySuspend];

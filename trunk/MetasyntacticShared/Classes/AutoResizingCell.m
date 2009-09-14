@@ -25,7 +25,7 @@
 }
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*) reuseIdentifier {
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*) reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.minimumFontSize = self.textLabel.font.pointSize - 4;

@@ -20,19 +20,19 @@
 }
 
 // Initializer
-- (id)initWithRequest:(NSURLRequest*) request delegate:(id)delegate 
+- (id) initWithRequest:(NSURLRequest*) request delegate:(id)delegate 
           requestType:(MGTwitterRequestType)requestType responseType:(MGTwitterResponseType)responseType;
 
 // Data helper methods
-- (void)resetDataLength;
-- (void)appendData:(NSData*) data;
+- (void) resetDataLength;
+- (void) appendData:(NSData*) data;
 
 // Accessors
 - (NSString*) identifier;
 - (NSData*) data;
 - (NSURL*) URL;
-- (MGTwitterRequestType)requestType;
-- (MGTwitterResponseType)responseType;
+- (MGTwitterRequestType) requestType;
+- (MGTwitterResponseType) responseType;
 - (NSString*) description;
 
 @end

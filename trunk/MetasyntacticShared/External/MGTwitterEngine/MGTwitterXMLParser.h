@@ -35,8 +35,8 @@
           responseType:(MGTwitterResponseType)respType;
 
 - (NSString*) lastOpenedElement;
-- (void)setLastOpenedElement:(NSString*) value;
+- (void) setLastOpenedElement:(NSString*) value;
 
-- (void)addSource;
+- (void) addSource;
 
 @end

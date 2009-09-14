@@ -15,12 +15,12 @@
 + (void)endBeacon;
 + (id)shared;
 
-- (void)startBeacon;
-- (void)endBeacon;
+- (void) startBeacon;
+- (void) endBeacon;
 
-- (void)startSubBeaconWithName:(NSString*) beaconName timeSession:(BOOL)trackSession;
-- (void)endSubBeaconWithName:(NSString*) beaconName;
+- (void) startSubBeaconWithName:(NSString*) beaconName timeSession:(BOOL)trackSession;
+- (void) endSubBeaconWithName:(NSString*) beaconName;
 
-- (void)setBeaconLocation:(CLLocation*) newLocation;
+- (void) setBeaconLocation:(CLLocation*) newLocation;
 
 @end

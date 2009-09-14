@@ -75,7 +75,7 @@
                         responseType:(MGTwitterResponseType)responseType;
 
 // Parsing methods
-- (void)_parseDataForConnection:(MGTwitterHTTPURLConnection*) connection;
+- (void) _parseDataForConnection:(MGTwitterHTTPURLConnection*) connection;
 
 // Delegate methods
 - (BOOL) _isValidDelegateForSelector:(SEL)selector;
@@ -120,7 +120,7 @@
 }
 
 
-- (void)dealloc
+- (void) dealloc
 {
   _delegate = nil;
   
@@ -172,7 +172,7 @@
 }
 
 
-- (void)setUsername:(NSString*) newUsername password:(NSString*) newPassword
+- (void) setUsername:(NSString*) newUsername password:(NSString*) newPassword
 {
   // Set new credentials.
   [_username release];
@@ -221,7 +221,7 @@
 }
 
 
-- (void)setClientName:(NSString*) name version:(NSString*) version URL:(NSString*) url token:(NSString*) token;
+- (void) setClientName:(NSString*) name version:(NSString*) version URL:(NSString*) url token:(NSString*) token;
 {
   [_clientName release];
   _clientName = [name retain];
@@ -240,7 +240,7 @@
 }
 
 
-- (void)setAPIDomain:(NSString*) domain
+- (void) setAPIDomain:(NSString*) domain
 {
 	[_APIDomain release];
 	if (!domain || [domain length] == 0) {
@@ -259,7 +259,7 @@
 }
 
 
-- (void)setSearchDomain:(NSString*) domain
+- (void) setSearchDomain:(NSString*) domain
 {
 	[_searchDomain release];
 	if (!domain || [domain length] == 0) {
@@ -272,37 +272,37 @@
 #endif
 
 
-- (BOOL)usesSecureConnection
+- (BOOL) usesSecureConnection
 {
   return _secureConnection;
 }
 
 
-- (void)setUsesSecureConnection:(BOOL)flag
+- (void) setUsesSecureConnection:(BOOL)flag
 {
   _secureConnection = flag;
 }
 
 
-- (BOOL)clearsCookies
+- (BOOL) clearsCookies
 {
 	return _clearsCookies;
 }
 
 
-- (void)setClearsCookies:(BOOL)flag
+- (void) setClearsCookies:(BOOL)flag
 {
 	_clearsCookies = flag;
 }
 
 #if YAJL_AVAILABLE
 
-- (MGTwitterEngineDeliveryOptions)deliveryOptions
+- (MGTwitterEngineDeliveryOptions) deliveryOptions
 {
 	return _deliveryOptions;
 }
 
-- (void)setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions
+- (void) setDeliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions
 {
 	_deliveryOptions = deliveryOptions;
 }
@@ -312,7 +312,7 @@
 #pragma mark Connection methods
 
 
-- (int)numberOfConnections
+- (int) numberOfConnections
 {
   return [_connections count];
 }
@@ -324,7 +324,7 @@
 }
 
 
-- (void)closeConnection:(NSString*) connectionIdentifier
+- (void) closeConnection:(NSString*) connectionIdentifier
 {
   MGTwitterHTTPURLConnection* connection = [_connections objectForKey:connectionIdentifier];
   if (connection) {
@@ -336,7 +336,7 @@
 }
 
 
-- (void)closeAllConnections
+- (void) closeAllConnections
 {
   [[_connections allValues] makeObjectsPerformSelector:@selector(cancel)];
   [_connections removeAllObjects];
@@ -588,7 +588,7 @@
 #pragma mark Parsing methods
 
 #if YAJL_AVAILABLE
-- (void)_parseDataForConnection:(MGTwitterHTTPURLConnection*) connection
+- (void) _parseDataForConnection:(MGTwitterHTTPURLConnection*) connection
 {
   NSString* identifier = [[[connection identifier] copy] autorelease];
   NSData* jsonData = [[[connection data] copy] autorelease];
@@ -637,7 +637,7 @@
   }
 }
 #else
-- (void)_parseDataForConnection:(MGTwitterHTTPURLConnection*) connection
+- (void) _parseDataForConnection:(MGTwitterHTTPURLConnection*) connection
 {
   NSString* identifier = [[[connection identifier] copy] autorelease];
   NSData* xmlData = [[[connection data] copy] autorelease];
@@ -716,7 +716,7 @@
 
 #pragma mark MGTwitterParserDelegate methods
 
-- (void)parsingSucceededForRequest:(NSString*) identifier 
+- (void) parsingSucceededForRequest:(NSString*) identifier 
                     ofResponseType:(MGTwitterResponseType)responseType 
                  withParsedObjects:(NSArray*) parsedObjects
 {
@@ -752,7 +752,7 @@
   }
 }
 
-- (void)parsingFailedForRequest:(NSString*) requestIdentifier 
+- (void) parsingFailedForRequest:(NSString*) requestIdentifier 
                  ofResponseType:(MGTwitterResponseType)responseType 
                       withError:(NSError*) error
 {
@@ -762,7 +762,7 @@
 
 #if YAJL_AVAILABLE
 
-- (void)parsedObject:(NSDictionary*) dictionary forRequest:(NSString*) requestIdentifier 
+- (void) parsedObject:(NSDictionary*) dictionary forRequest:(NSString*) requestIdentifier 
       ofResponseType:(MGTwitterResponseType)responseType
 {
 	if ([self _isValidDelegateForSelector:@selector(receivedObject:forRequest:)])
@@ -774,7 +774,7 @@
 #pragma mark NSURLConnection delegate methods
 
 
-- (void)connection:(NSURLConnection*) connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*) challenge
+- (void) connection:(NSURLConnection*) connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*) challenge
 {
 	if (_username && _password && [challenge previousFailureCount] == 0 && ![challenge proposedCredential]) {
 		NSURLCredential* credential = [NSURLCredential credentialWithUser:_username password:_password 
@@ -786,7 +786,7 @@
 }
 
 
-- (void)connection:(MGTwitterHTTPURLConnection*) connection didReceiveResponse:(NSURLResponse*) response
+- (void) connection:(MGTwitterHTTPURLConnection*) connection didReceiveResponse:(NSURLResponse*) response
 {
   // This method is called when the server has determined that it has enough information to create the NSURLResponse.
   // it can be called multiple times, for example in the case of a redirect, so each time we reset the data.
@@ -840,14 +840,14 @@
 }
 
 
-- (void)connection:(MGTwitterHTTPURLConnection*) connection didReceiveData:(NSData*) data
+- (void) connection:(MGTwitterHTTPURLConnection*) connection didReceiveData:(NSData*) data
 {
   // Append the new data to the receivedData.
   [connection appendData:data];
 }
 
 
-- (void)connection:(MGTwitterHTTPURLConnection*) connection didFailWithError:(NSError*) error
+- (void) connection:(MGTwitterHTTPURLConnection*) connection didFailWithError:(NSError*) error
 {
   // Inform delegate.
 	if ([self _isValidDelegateForSelector:@selector(requestFailed:withError:)])
@@ -861,7 +861,7 @@
 }
 
 
-- (void)connectionDidFinishLoading:(MGTwitterHTTPURLConnection*) connection
+- (void) connectionDidFinishLoading:(MGTwitterHTTPURLConnection*) connection
 {
   // Inform delegate.
 	if ([self _isValidDelegateForSelector:@selector(requestSucceeded:)])
