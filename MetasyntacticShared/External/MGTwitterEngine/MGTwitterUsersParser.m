@@ -15,7 +15,7 @@
 #pragma mark NSXMLParser delegate methods
 
 
-- (void)parser:(NSXMLParser*) theParser didStartElement:(NSString*) elementName 
+- (void) parser:(NSXMLParser*) theParser didStartElement:(NSString*) elementName 
   namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName 
     attributes:(NSDictionary*) attributeDict
 {
@@ -39,7 +39,7 @@
 }
 
 
-- (void)parser:(NSXMLParser*) theParser didEndElement:(NSString*) elementName 
+- (void) parser:(NSXMLParser*) theParser didEndElement:(NSString*) elementName 
   namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qName
 {
     [super parser:theParser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];

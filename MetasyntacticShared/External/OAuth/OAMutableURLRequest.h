@@ -41,6 +41,6 @@
                                   token:(OAToken*) token
                                   realm:(NSString*) realm;
 
-- (void)prepare;
+- (void) prepare;
 
 @end
