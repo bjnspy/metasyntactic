@@ -16,8 +16,8 @@
 #pragma mark Creation and Destruction
 
 
-+ (id)parserWithXML:(NSData *)theXML delegate:(NSObject *)theDelegate 
-connectionIdentifier:(NSString *)identifier requestType:(MGTwitterRequestType)reqType 
++ (id)parserWithXML:(NSData*) theXML delegate:(NSObject*) theDelegate 
+connectionIdentifier:(NSString*) identifier requestType:(MGTwitterRequestType)reqType 
        responseType:(MGTwitterResponseType)respType
 {
     id parser = [[self alloc] initWithXML:theXML 
@@ -29,8 +29,8 @@ connectionIdentifier:(NSString *)identifier requestType:(MGTwitterRequestType)re
 }
 
 
-- (id)initWithXML:(NSData *)theXML delegate:(NSObject *)theDelegate 
-connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType)reqType 
+- (id)initWithXML:(NSData*) theXML delegate:(NSObject*) theDelegate 
+connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType)reqType 
      responseType:(MGTwitterResponseType)respType
 {
     if ((self = [super init])) {
@@ -70,13 +70,13 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 #pragma mark NSXMLParser delegate methods
 
 
-- (void)parserDidStartDocument:(NSXMLParser *)theParser
+- (void)parserDidStartDocument:(NSXMLParser*) theParser
 {
     //NSLog(@"Parsing begun");
 }
 
 
-- (void)parserDidEndDocument:(NSXMLParser *)theParser
+- (void)parserDidEndDocument:(NSXMLParser*) theParser
 {
     //NSLog(@"Parsing complete: %@", parsedObjects);
     [delegate parsingSucceededForRequest:identifier ofResponseType:responseType 
@@ -84,22 +84,22 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 }
 
 
-- (void)parser:(NSXMLParser *)theParser didStartElement:(NSString *)elementName 
-  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 
-    attributes:(NSDictionary *)attributeDict
+- (void)parser:(NSXMLParser*) theParser didStartElement:(NSString*) elementName 
+  namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName 
+    attributes:(NSDictionary*) attributeDict
 {
     //NSLog(@"Started element: %@ (%@)", elementName, attributeDict);
 }
 
 
-- (void)parser:(NSXMLParser *)theParser foundCharacters:(NSString *)characters
+- (void)parser:(NSXMLParser*) theParser foundCharacters:(NSString*) characters
 {
     //NSLog(@"Found characters: %@", characters);
 }
 
 
-- (void)parser:(NSXMLParser *)theParser didEndElement:(NSString *)elementName 
-  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+- (void)parser:(NSXMLParser*) theParser didEndElement:(NSString*) elementName 
+  namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qName
 {
     //NSLog(@"Ended element: %@", elementName);
     [self setLastOpenedElement:nil];
@@ -120,20 +120,20 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 }
 
 
-- (void)parser:(NSXMLParser *)theParser foundAttributeDeclarationWithName:(NSString *)attributeName 
-    forElement:(NSString *)elementName type:(NSString *)type defaultValue:(NSString *)defaultValue
+- (void)parser:(NSXMLParser*) theParser foundAttributeDeclarationWithName:(NSString*) attributeName 
+    forElement:(NSString*) elementName type:(NSString*) type defaultValue:(NSString*) defaultValue
 {
     //NSLog(@"Found attribute: %@ (%@) [%@] {%@}", attributeName, elementName, type, defaultValue);
 }
 
 
-- (void)parser:(NSXMLParser *)theParser foundIgnorableWhitespace:(NSString *)whitespaceString
+- (void)parser:(NSXMLParser*) theParser foundIgnorableWhitespace:(NSString*) whitespaceString
 {
     //NSLog(@"Found ignorable whitespace: %@", whitespaceString);
 }
 
 
-- (void)parser:(NSXMLParser *)theParser parseErrorOccurred:(NSError *)parseError
+- (void)parser:(NSXMLParser*) theParser parseErrorOccurred:(NSError*) parseError
 {
     //NSLog(@"Parsing error occurred: %@", parseError);
     [delegate parsingFailedForRequest:identifier ofResponseType:responseType 
@@ -144,12 +144,12 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 #pragma mark Accessors
 
 
-- (NSString *)lastOpenedElement {
+- (NSString*) lastOpenedElement {
     return [[lastOpenedElement retain] autorelease];
 }
 
 
-- (void)setLastOpenedElement:(NSString *)value {
+- (void)setLastOpenedElement:(NSString*) value {
     if (lastOpenedElement != value) {
         [lastOpenedElement release];
         lastOpenedElement = [value copy];

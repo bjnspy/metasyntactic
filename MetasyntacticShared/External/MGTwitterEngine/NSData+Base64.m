@@ -20,12 +20,12 @@ static char encodingTable[64] = {
 
 @implementation NSData (Base64)
 
-+ (NSData *) dataWithBase64EncodedString:(NSString *) string {
++ (NSData*)  dataWithBase64EncodedString:(NSString*)  string {
 	NSData* result = [[NSData alloc] initWithBase64EncodedString:string];
 	return [result autorelease];
 }
 
-- (id) initWithBase64EncodedString:(NSString *) string {
+- (id) initWithBase64EncodedString:(NSString*)  string {
 	NSMutableData* mutableData = nil;
 
 	if( string ) {
@@ -91,7 +91,7 @@ static char encodingTable[64] = {
 	return self;
 }
 
-- (NSString *) base64EncodingWithLineLength:(unsigned int) lineLength {
+- (NSString*)  base64EncodingWithLineLength:(unsigned int) lineLength {
 	const unsigned char	*bytes = [self bytes];
 	NSMutableString* result = [NSMutableString stringWithCapacity:[self length]];
 	unsigned long ixtext = 0;

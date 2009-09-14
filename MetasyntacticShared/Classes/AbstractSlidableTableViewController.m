@@ -52,7 +52,7 @@
 }
 
 
-- (void) animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+- (void) animationDidStop:(NSString*) animationID finished:(NSNumber*) finished context:(void*) context {
   UITableView* newTableView = context;
   CGRect frame = newTableView.frame;
   self.tableView = newTableView;

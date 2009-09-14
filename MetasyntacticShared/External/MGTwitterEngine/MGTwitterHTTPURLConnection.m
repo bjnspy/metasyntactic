@@ -16,7 +16,7 @@
 #pragma mark Initializer
 
 
-- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate 
+- (id)initWithRequest:(NSURLRequest*) request delegate:(id)delegate 
           requestType:(MGTwitterRequestType)requestType responseType:(MGTwitterResponseType)responseType
 {
   if ((self = [super initWithRequest:request delegate:delegate])) {
@@ -49,7 +49,7 @@
 }
 
 
-- (void)appendData:(NSData *)data
+- (void)appendData:(NSData*) data
 {
   [_data appendData:data];
 }
@@ -58,19 +58,19 @@
 #pragma mark Accessors
 
 
-- (NSString *)identifier
+- (NSString*) identifier
 {
   return [[_identifier retain] autorelease];
 }
 
 
-- (NSData *)data
+- (NSData*) data
 {
   return [[_data retain] autorelease];
 }
 
 
-- (NSURL *)URL
+- (NSURL*) URL
 {
   return [[_URL retain] autorelease];
 }
@@ -88,7 +88,7 @@
 }
 
 
-- (NSString *)description
+- (NSString*) description
 {
   NSString* description = [super description];
   
