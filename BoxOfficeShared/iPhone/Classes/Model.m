@@ -63,7 +63,6 @@
 @property (retain) ThreadsafeValue* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @property (retain) NSNumber* isSearchDateTodayData;
-@property (retain) NSNumber* isInReviewPeriodData;
 @property NSInteger cachedScoreProviderIndex;
 @property NSInteger searchRadiusData;
 @property (retain) NSArray* netflixAccountsData;
@@ -84,8 +83,6 @@ static NSString* DVD_MOVIES_HIDE_BLURAY                     = @"dvdMoviesHideBlu
 static NSString* DVD_MOVIES_HIDE_DVDS                       = @"dvdMoviesHideDVDs";
 static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX          = @"dvdMoviesSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                          = @"favoriteTheaters";
-static NSString* FIRST_LAUNCH_DATE                          = @"firstLaunchDate";
-static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST             = @"hasShownWriteReviewRequest";
 static NSString* LOADING_INDIACTORS_DISABLED                = @"loadingIndicatorsDisabled";
 static NSString* LOCAL_SEARCH_SELECTED_SCOPE_BUTTON_INDEX   = @"localSearchSelectedScopeButtonIndex";
 static NSString* NAVIGATION_STACK_TYPES                     = @"navigationStackTypes";
@@ -101,7 +98,6 @@ static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
 static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
-static NSString* RUN_COUNT                                  = @"runCount";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
 static NSString* SCREEN_ROTATION_DISABLED                   = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                                = @"searchDate";
@@ -113,7 +109,6 @@ static NSString* UPCOMING_DISABLED                          = @"upcomingDisabled
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX     = @"upcomingMoviesSelectedSegmentIndex";
 static NSString* USE_NORMAL_FONTS                           = @"useNormalFonts";
 static NSString* USER_ADDRESS                               = @"userLocation";
-static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComplete";
 
 @synthesize dataProvider;
 
@@ -140,7 +135,6 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 @synthesize cachedScoreProviderIndex;
 @synthesize searchRadiusData;
 @synthesize netflixAccountsData;
-@synthesize isInReviewPeriodData;
 
 - (void) dealloc {
   self.dataProvider = nil;
@@ -168,7 +162,6 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   self.searchRadiusData = 0;
 
   self.netflixAccountsData = nil;
-  self.isInReviewPeriodData = nil;
 
   [super dealloc];
 }
@@ -203,9 +196,7 @@ static Model* model = nil;
 
 
 - (void) clearCaches {
-  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
-  [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:RUN_COUNT];
-  [self synchronize];
+  NSInteger runCount = self.runCount;
 
   if ((runCount % 5) == 0) {
     [Application clearStaleData];
@@ -237,49 +228,6 @@ static Model* model = nil;
 }
 
 
-- (void) checkDate {
-  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
-  if (firstLaunchDate == nil) {
-    firstLaunchDate = [NSDate date];
-    [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:FIRST_LAUNCH_DATE];
-    [self synchronize];
-  }
-
-  NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
-  if (interval < ONE_MONTH) {
-    return;
-  }
-
-  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
-  if (runCount < 50) {
-    return;
-  }
-
-  BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
-  if (hasShown) {
-    return;
-  }
-
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
-  [self synchronize];
-
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
-                                                   message:LocalizedString(@"Please rate it in the App Store!", nil)
-                                                  delegate:self
-                                         cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
-                                         otherButtonTitles:LocalizedString(@"Rate It!", @"Must be short. 1-2 words max. Label for a button a user can tap to rate this app"), nil] autorelease];
-  [alert show];
-}
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex != alertView.cancelButtonIndex) {
-    NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
-    [Application openBrowser:url];
-  }
-}
-
-
 - (void) migrateNetflixAccount {
   if (self.netflixAccounts.count == 0) {
     NSString* key = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
@@ -304,7 +252,6 @@ static Model* model = nil;
     self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
 
     [self checkCountry];
-    [self checkDate];
     [self migrateNetflixAccount];
 
     self.dataProvider = [GoogleDataProvider provider];
@@ -1635,32 +1582,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 - (void) clearNavigationStack {
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_TYPES];
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:NAVIGATION_STACK_VALUES];
-  [self synchronize];
-}
-
-
-- (BOOL) isInReviewPeriodWorker {
-  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
-  id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-
-  return value == nil;
-}
-
-
-- (BOOL) isInReviewPeriod {
-  if (isInReviewPeriodData == nil) {
-    self.isInReviewPeriodData = [NSNumber numberWithBool:[self isInReviewPeriodWorker]];
-  }
-
-  return isInReviewPeriodData.boolValue;
-}
-
-
-- (void) clearInReviewPeriod {
-  self.isInReviewPeriodData = [NSNumber numberWithBool:NO];
-
-  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [Application version]];
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
   [self synchronize];
 }
 
