@@ -24,12 +24,12 @@
     
     if ([elementName isEqualToString:@"direct_message"]) {
         // Make new entry in parsedObjects.
-        NSMutableDictionary *newNode = [NSMutableDictionary dictionaryWithCapacity:0];
+        NSMutableDictionary* newNode = [NSMutableDictionary dictionaryWithCapacity:0];
         [parsedObjects addObject:newNode];
         currentNode = newNode;
     } else if ([elementName isEqualToString:@"sender"] || [elementName isEqualToString:@"recipient"]) {
         // Add an appropriate dictionary to current node.
-        NSMutableDictionary *newNode = [NSMutableDictionary dictionaryWithCapacity:0];
+        NSMutableDictionary* newNode = [NSMutableDictionary dictionaryWithCapacity:0];
         [currentNode setObject:newNode forKey:elementName];
         currentNode = newNode;
     } else if (currentNode) {

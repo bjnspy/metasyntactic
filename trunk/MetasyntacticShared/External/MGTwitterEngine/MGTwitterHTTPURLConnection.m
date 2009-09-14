@@ -90,7 +90,7 @@
 
 - (NSString *)description
 {
-  NSString *description = [super description];
+  NSString* description = [super description];
   
   return [description stringByAppendingFormat:@" (requestType = %d, identifier = %@)", _requestType, _identifier];
 }
