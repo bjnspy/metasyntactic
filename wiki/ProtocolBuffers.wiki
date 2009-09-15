@@ -97,6 +97,15 @@ In order to more seamlessly integrate with Objective-C code, this library also e
 
 By using these options, you can integrate existing protobuf definitions, while still producing Objective-C code that meets expected styling standards.  For example, this library uses those options above to emit the core protobuf Descriptor types into a "ProtocolBuffers" directory with a common "PB" prefix on all classes.  Thus, while you would say the following in java:
 
+To use these extensions you will need to add the following to your proto file:
+
+{{{
+import "google/protobuf/objectivec-descriptor.proto";
+
+option (google.protobuf.objectivec_file_options).objectivec_package = "<your package>"
+option (google.protobuf.objectivec_file_options).objectivec_class_prefix = "<your class prefix>";
+}}}
+
 {{{import google.protobuf.Descriptor;}}}
 
 in Objective-C you would say:
