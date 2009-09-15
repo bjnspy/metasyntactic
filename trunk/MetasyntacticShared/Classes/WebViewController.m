@@ -108,6 +108,9 @@
 
 
 - (void) setupToolbarItems {
+  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+  self.navigationController.toolbar.translucent = YES;
+  
   NSMutableArray* items = [NSMutableArray array];
   
   [items addObject:[self createFlexibleWidth]];
@@ -147,7 +150,6 @@
   }
   
   [self setupTitleView];
-  [self setupToolbarItems];
   
   [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
 }
@@ -174,14 +176,18 @@
 
 
 - (void) updateToolBarItems {
+  BOOL visible = webView.canGoBack || webView.canGoForward;
+  [self.navigationController setToolbarHidden:!visible animated:YES];
+  
+  if (self.navigationController.toolbar.items.count == 0) {
+    [self setupToolbarItems];
+  }
+
   UIBarButtonItem* navigateBackItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_BACK_ITEM];
   UIBarButtonItem* navigateForwardItem = [self.navigationController.toolbar.items objectAtIndex:NAVIGATE_FORWARD_ITEM];
-  
+
   navigateBackItem.enabled = webView.canGoBack;
   navigateForwardItem.enabled = webView.canGoForward;
-  
-  BOOL visible = navigateBackItem.enabled || navigateForwardItem.enabled;
-  [self.navigationController setToolbarHidden:!visible animated:YES];
 }
 
 
@@ -239,18 +245,10 @@
 }
 
 
-- (void) onBeforeViewControllerPushed {
-  [super onBeforeViewControllerPushed];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.translucent = YES;
-  [self.abstractNavigationController setToolbarHidden:NO animated:NO];
-}
-
-
 - (void) onBeforeViewControllerPopped {
   [super onBeforeViewControllerPopped];
   webView.delegate = nil;
-  [self.abstractNavigationController setToolbarHidden:YES animated:NO];
+  [self.abstractNavigationController setToolbarHidden:YES animated:YES];
 }
 
 
