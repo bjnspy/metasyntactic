@@ -14,7 +14,7 @@
 
 @interface Model : NSObject {
 @private
-    RSSCache* rssCache;
+  RSSCache* rssCache;
 }
 
 @property (readonly, retain) RSSCache* rssCache;
