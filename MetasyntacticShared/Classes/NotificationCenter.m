@@ -215,11 +215,19 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 
 - (void) addNotification:(NSString*) notification {
+  if (notification.length == 0) {
+    return;
+  }
+
   [self addNotifications:[NSArray arrayWithObject:notification]];
 }
 
 
 - (void) removeNotification:(NSString*) notification {
+  if (notification.length == 0) {
+    return;
+  }
+
   [self removeNotifications:[NSArray arrayWithObject:notification]];
 }
 

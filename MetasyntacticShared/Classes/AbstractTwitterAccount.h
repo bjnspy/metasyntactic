@@ -9,8 +9,9 @@
 @interface AbstractTwitterAccount : NSObject<MGTwitterEngineDelegate> {
 @private
   MGTwitterEngine* engine;
-  NSError* lastError;
   NSString* lastCheckCredentialsIdentifier;
+  
+  NSMutableDictionary* requestsInProgress;
 }
 
 - (void) login;

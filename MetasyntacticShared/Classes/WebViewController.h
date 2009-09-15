@@ -16,12 +16,12 @@
 
 @interface WebViewController : AbstractFullScreenViewController<UIWebViewDelegate> {
 @private
-    UIWebView* webView;
-    UIActivityIndicatorView* activityView;
-    UILabel* label;
-    NSString* address;
-    BOOL showSafariButton;
-    BOOL errorReported;
+  UIWebView* webView;
+  UIActivityIndicatorView* activityView;
+  UILabel* label;
+  NSString* address;
+  BOOL showSafariButton;
+  BOOL errorReported;
 }
 
 - (id) initWithAddress:(NSString*) address
