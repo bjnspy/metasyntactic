@@ -112,6 +112,11 @@ setting_definition(TWITTER_PASSWORD);
 }
 
 
+- (NSString*) defaultUpdateSuffix {
+  return @"";
+}
+
+
 - (void) sendUpdate:(NSString*) message {
   if (!self.twitterReady) {
     return;
@@ -119,12 +124,12 @@ setting_definition(TWITTER_PASSWORD);
 
 #define MAX_MESSAGE_LENGTH 140
   
-  NSString* jmpLink = @" http://j.mp/PdTSW";
+  NSString* suffix = self.defaultUpdateSuffix;
   
-  if (message.length + jmpLink.length > MAX_MESSAGE_LENGTH) {
-    message = [message substringToIndex:MAX_MESSAGE_LENGTH - jmpLink.length];
+  if (message.length + suffix.length > MAX_MESSAGE_LENGTH) {
+    message = [message substringToIndex:MAX_MESSAGE_LENGTH - suffix.length];
   }
-  message = [NSString stringWithFormat:@"%@%@", message, jmpLink];
+  message = [NSString stringWithFormat:@"%@%@", message, suffix];
 
   NSString* notification = NSLocalizedString(@"Tweeting", nil);
   [NotificationCenter addNotification:notification];
