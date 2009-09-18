@@ -56,7 +56,7 @@ public class Program {
         }
     }
 
-    private static void processFile1(
+    private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
         /*
         removeUnusedImports(child);
@@ -73,7 +73,7 @@ public class Program {
     }
 
 
-    private static void processFile(
+    private static void processFile1(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
         insertCopyright(child);
         trimRight(child);
@@ -689,6 +689,9 @@ public class Program {
         }
 
         if (child.getParentFile().getPath().contains("PinchMedia")) {
+            return true;
+        }
+        if (child.getParentFile().getPath().contains("MGTwitterEngine")) {
             return true;
         }
 
