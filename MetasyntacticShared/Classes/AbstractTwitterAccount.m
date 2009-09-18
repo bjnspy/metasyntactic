@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  TwitterAccount.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 9/14/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "AbstractTwitterAccount.h"
 
@@ -40,7 +46,7 @@ setting_definition(TWITTER_PASSWORD);
     self.engine = [MGTwitterEngine twitterEngineWithDelegate:self];
     self.requestsInProgress = [NSMutableDictionary dictionary];
   }
-  
+
   return self;
 }
 
@@ -49,22 +55,22 @@ setting_definition(TWITTER_PASSWORD);
   if (self.username.length == 0) {
     return;
   }
-  
+
   self.lastCheckCredentialsIdentifier = [engine checkUserCredentials];
-  
+
   NSString* notification = NSLocalizedString(@"Logging in to Twitter", nil);
   [requestsInProgress setObject:notification forKey:lastCheckCredentialsIdentifier];
-  
+
   [NotificationCenter addNotification:notification];
 }
 
 
 - (void) login {
   [engine closeAllConnections];
-  
+
   BOOL credentialsChanged = ![self.username isEqual:engine.username] || ![self.password isEqual:engine.password];
   [engine setUsername:self.username password:self.password];
-  
+
   if (credentialsChanged) {
     [self checkCredentials];
   }
@@ -83,7 +89,7 @@ setting_definition(TWITTER_PASSWORD);
   if (!value) {
     [self setUserName:@"" password:@""];
   }
-  
+
   [self login];
 }
 
@@ -123,9 +129,9 @@ setting_definition(TWITTER_PASSWORD);
   }
 
 #define MAX_MESSAGE_LENGTH 140
-  
+
   NSString* suffix = self.defaultUpdateSuffix;
-  
+
   if (message.length + suffix.length > MAX_MESSAGE_LENGTH) {
     message = [message substringToIndex:MAX_MESSAGE_LENGTH - suffix.length];
   }
@@ -133,10 +139,10 @@ setting_definition(TWITTER_PASSWORD);
 
   NSString* notification = NSLocalizedString(@"Tweeting", nil);
   [NotificationCenter addNotification:notification];
-  
+
   NSString* key = [engine sendUpdate:message];
-  
-  [requestsInProgress setObject:notification forKey:key];  
+
+  [requestsInProgress setObject:notification forKey:key];
 }
 
 

@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  AbstractModel.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 9/13/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "AbstractModel.h"
 
@@ -61,25 +67,25 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
   if (firstLaunchDate == nil) {
   }
-  
+
   NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
   if (interval < ONE_MONTH) {
     return;
   }
-  
+
   NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
   if (runCount < 50) {
     return;
   }
-  
+
   BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   if (hasShown) {
     return;
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
   [self synchronize];
-  
+
   UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
                                                    message:LocalizedString(@"Please rate it in the App Store!", nil)
                                                   delegate:self
@@ -103,7 +109,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
     [self incrementRunCount];
     [self tryShowWriteReviewRequest];
   }
-  
+
   return self;
 }
 
@@ -111,7 +117,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 - (BOOL) isInReviewPeriodWorker {
   NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [AbstractApplication version]];
   id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-  
+
   return value == nil;
 }
 
@@ -120,14 +126,14 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   if (isInReviewPeriodData == nil) {
     self.isInReviewPeriodData = [NSNumber numberWithBool:[self isInReviewPeriodWorker]];
   }
-  
+
   return isInReviewPeriodData.boolValue;
 }
 
 
 - (void) clearInReviewPeriod {
   self.isInReviewPeriodData = [NSNumber numberWithBool:NO];
-  
+
   NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [AbstractApplication version]];
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
   [self synchronize];

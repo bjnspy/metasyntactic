@@ -49,7 +49,7 @@
   self.address = nil;
   self.showSafariButton = NO;
   self.errorReported = NO;
-  
+
   [super dealloc];
 }
 
@@ -60,7 +60,7 @@
     self.address = address__;
     self.showSafariButton = showSafariButton__;
   }
-  
+
   return self;
 }
 
@@ -68,24 +68,24 @@
 - (void) setupTitleView {
   self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
   [activityView startAnimating];
-  
+
   CGRect frame = activityView.frame;
   frame.origin.y += 2;
   activityView.frame = frame;
-  
+
   self.label = [ViewControllerUtilities createTitleLabel];
   label.text = LocalizedString(@"Loading", nil);
   [label sizeToFit];
-  
+
   frame = label.frame;
   frame.origin.x += (activityView.frame.size.width + 5);
   label.frame = frame;
-  
+
   frame = CGRectMake(0, 0, label.frame.size.width + activityView.frame.size.width + 5, label.frame.size.height);
   UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
   [view addSubview:activityView];
   [view addSubview:label];
-  
+
   self.navigationItem.titleView = view;
 }
 
@@ -97,7 +97,7 @@
   webView.delegate = self;
   webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   webView.scalesPageToFit = YES;
-  
+
   [self.view addSubview:webView];
 }
 
@@ -110,25 +110,25 @@
 - (void) setupToolbarItems {
   self.navigationController.toolbar.barStyle = UIBarStyleBlack;
   self.navigationController.toolbar.translucent = YES;
-  
+
   NSMutableArray* items = [NSMutableArray array];
-  
+
   [items addObject:[self createFlexibleWidth]];
-  
+
   UIBarButtonItem* navigateBackItem = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages navigateBack]
                                                                         style:UIBarButtonItemStylePlain
                                                                        target:self
                                                                        action:@selector(onNavigateBackTapped:)] autorelease];
   [items addObject:navigateBackItem];
-  
+
   [items addObject:[self createFlexibleWidth]];
-  
+
   UIBarButtonItem* navigateForwardItem = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages navigateForward]
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(onNavigateForwardTapped:)] autorelease];
   [items addObject:navigateForwardItem];
-  
+
   [items addObject:[self createFlexibleWidth]];
 
   [self setToolbarItems:items animated:NO];
@@ -138,9 +138,9 @@
 
 - (void) loadView {
   [super loadView];
-  
+
   [self setupWebView];
-  
+
   if (showSafariButton) {
     self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:LocalizedString(@"Safari", nil)
@@ -148,9 +148,9 @@
                                      target:self
                                      action:@selector(open:)] autorelease];
   }
-  
+
   [self setupTitleView];
-  
+
   [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:address]]];
 }
 
@@ -160,7 +160,7 @@
   if (url.length == 0) {
     url = address;
   }
-  
+
   [AbstractApplication openBrowser:url];
 }
 
@@ -178,7 +178,7 @@
 - (void) updateToolBarItems {
   BOOL visible = webView.canGoBack || webView.canGoForward;
   [self.navigationController setToolbarHidden:!visible animated:YES];
-  
+
   if (self.navigationController.toolbar.items.count == 0) {
     [self setupToolbarItems];
   }
@@ -195,7 +195,7 @@
   if (webView.canGoBack) {
     [webView goBack];
   }
-  
+
   [self updateToolBarItems];
 }
 
@@ -204,7 +204,7 @@
   if (webView.canGoForward) {
     [webView goForward];
   }
-  
+
   [self updateToolBarItems];
 }
 
@@ -212,23 +212,23 @@
 - (void) webViewDidFinishLoad:(UIWebView*) webView_ {
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(clearTitle) object:nil];
   [self performSelector:@selector(clearTitle) withObject:nil afterDelay:4];
-  
+
   [self updateToolBarItems];
 }
 
 
 - (void) webView:(UIWebView*) view didFailLoadWithError:(NSError*) error {
   [self webViewDidFinishLoad:view];
-  
+
   if (errorReported) {
     return;
   }
-  
+
   if (error.domain == NSURLErrorDomain && error.code == -1009) {
     NSString* title = LocalizedString(@"Cannot Open Page", nil);
     NSString* message =
     [NSString stringWithFormat:LocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [AbstractApplication name]];
-    
+
     [AlertUtilities showOkAlert:message withTitle:title];
     self.errorReported = YES;
   }
@@ -237,10 +237,10 @@
 
 - (void) webViewDidStartLoad:(UIWebView*) webView {
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(clearTitle) object:nil];
-  
+
   label.alpha = 1;
   activityView.alpha = 1;
-  
+
   [self updateToolBarItems];
 }
 
@@ -262,12 +262,12 @@
   if ([[NSURLRequest class] respondsToSelector:@selector(setAllowsAnyHTTPSCertificate:forHost:)]) {
     [(id)[NSURLRequest class] setAllowsAnyHTTPSCertificate:YES forHost:request.URL.host];
   }
-  
+
   if ([request.URL.absoluteString hasPrefix:@"iphone://popviewcontroller"]) {
     [self.abstractNavigationController popViewControllerAnimated:YES];
     return NO;
   }
-  
+
   return YES;
 }
 
