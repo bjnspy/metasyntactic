@@ -796,6 +796,7 @@
 				74616E450F15DC800004B610 /* ImageUtilities.h */,
 				74616E470F15DC800004B610 /* LocaleUtilities.h */,
 				747C32FB0FD0706F00411801 /* LocationUtilities.h */,
+				74B47E121019065A00F17131 /* MemoryUtilities.h */,
 				74616E490F15DC800004B610 /* NetworkUtilities.h */,
 				74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */,
 				740102270F26EF7800258353 /* NSMutableArray+Utilities.h */,
@@ -810,13 +811,12 @@
 				74616E460F15DC800004B610 /* ImageUtilities.m */,
 				74616E480F15DC800004B610 /* LocaleUtilities.m */,
 				747C32FC0FD0706F00411801 /* LocationUtilities.m */,
+				74B47E131019065A00F17131 /* MemoryUtilities.m */,
 				74616E4A0F15DC800004B610 /* NetworkUtilities.m */,
 				74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */,
 				740102280F26EF7800258353 /* NSMutableArray+Utilities.m */,
 				74616E7F0F15DD0F0004B610 /* Pulser.m */,
 				74616D6B0F15D42A0004B610 /* StringUtilities.m */,
-				74B47E121019065A00F17131 /* MemoryUtilities.h */,
-				74B47E131019065A00F17131 /* MemoryUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
