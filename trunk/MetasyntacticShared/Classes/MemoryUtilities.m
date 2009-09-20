@@ -16,3 +16,24 @@ void* CFAutoRelease(CFTypeRef val) {
   [NSAutoreleasePool addObject:(NSObject*)val];
   return (void*)val;
 }
+
+@implementation NSAutoreleasePool(Utilities)
+
+#if 0
++ (void) run:(void(^)()) block {
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  id savedException = nil;
+  
+  @try {
+    block();
+  } @catch (id exception) {
+    savedException = [exception retain];
+    @throw;
+  } @finally {
+    [pool release];
+    [savedException autorelease];
+  }
+}
+#endif
+
+@end
