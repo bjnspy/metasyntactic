@@ -79,14 +79,17 @@ connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType
 - (void) parserDidEndDocument:(NSXMLParser*) theParser
 {
   //NSLog(@"Parsing complete: %@", parsedObjects);
-  [delegate parsingSucceededForRequest:identifier ofResponseType:responseType 
-                     withParsedObjects:parsedObjects];
+  [(id)delegate parsingSucceededForRequest:identifier
+		    				ofResponseType:responseType 
+                         withParsedObjects:parsedObjects];
 }
 
 
-- (void) parser:(NSXMLParser*) theParser didStartElement:(NSString*) elementName 
-   namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName 
-     attributes:(NSDictionary*) attributeDict
+- (void)     parser:(NSXMLParser*) theParser
+    didStartElement:(NSString*) elementName 
+       namespaceURI:(NSString*) namespaceURI
+	  qualifiedName:(NSString*) qualifiedName 
+         attributes:(NSDictionary*) attributeDict
 {
   //NSLog(@"Started element: %@ (%@)", elementName, attributeDict);
 }
@@ -98,8 +101,10 @@ connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType
 }
 
 
-- (void) parser:(NSXMLParser*) theParser didEndElement:(NSString*) elementName 
-   namespaceURI:(NSString*) namespaceURI qualifiedName:(NSString*) qName
+- (void) parser:(NSXMLParser*) theParser
+  didEndElement:(NSString*) elementName 
+   namespaceURI:(NSString*) namespaceURI
+  qualifiedName:(NSString*) qName
 {
   //NSLog(@"Ended element: %@", elementName);
   [self setLastOpenedElement:nil];
@@ -136,8 +141,9 @@ connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType
 - (void) parser:(NSXMLParser*) theParser parseErrorOccurred:(NSError*) parseError
 {
   //NSLog(@"Parsing error occurred: %@", parseError);
-  [delegate parsingFailedForRequest:identifier ofResponseType:responseType 
-                          withError:parseError];
+  [(id)delegate parsingFailedForRequest:identifier
+						 ofResponseType:responseType 
+                              withError:parseError];
 }
 
 
