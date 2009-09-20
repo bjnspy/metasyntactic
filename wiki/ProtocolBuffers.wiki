@@ -45,6 +45,7 @@ In order to compiler and use `protoc` you must first have installed XCode and th
 
   # Download and unzip the latest `ProtocolBuffers-*.*-Source.tar.gz` file in the [http://code.google.com/p/metasyntactic/downloads/list download] section to `<install_directory>` on your computer.
   # Navigate to `<install_directory>` and type the following commands
+  # `./autogen.sh`
   # `./configure`
   # `make`
 
@@ -85,14 +86,14 @@ In order to more seamlessly integrate with Objective-C code, this library also e
   // will be placed.  This is typically used since Objective C libraries output
   // all their headers into a single directory.  i.e.  Foundation\*
   // AddressBook\*   UIKit\*   etc. etc.
-  optional string objectivec_package = 1;
+  optional string package = 1;
   
   // The string to be prefixed in front of all classes in order to make them
   // 'cocoa-y'.  i.e. 'NS/AB/CF/PB' for the
   // NextStep/AddressBook/CoreFoundation/ProtocolBuffer libraries respectively.
   // This will commonly be the capitalized letters from the above defined
   // 'objectivec_directory'
-  optional string objectivec_class_prefix = 2;
+  optional string class_prefix = 2;
 }}}
 
 To use these extensions you will need to add the following to your proto file:
@@ -100,8 +101,8 @@ To use these extensions you will need to add the following to your proto file:
 {{{
 import "google/protobuf/objectivec-descriptor.proto";
 
-option (google.protobuf.objectivec_file_options).objectivec_package = "<your package>"
-option (google.protobuf.objectivec_file_options).objectivec_class_prefix = "<your class prefix>";
+option (google.protobuf.objectivec_file_options).package = "<your package>"
+option (google.protobuf.objectivec_file_options).class_prefix = "<your class prefix>";
 }}}
 
 (note that the parent folder to 'google/protobuf/objectivec-descriptor.proto' must be in your include path when compiling your protocol buffer).
