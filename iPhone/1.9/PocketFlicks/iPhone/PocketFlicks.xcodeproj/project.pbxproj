@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74A018771023FA0800299F25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A018761023FA0800299F25 /* MapKit.framework */; };
+		74A018791023FA0800299F25 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A018781023FA0800299F25 /* MessageUI.framework */; };
+		74A01F9A10246C8800299F25 /* NetflixResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A01F9910246C8800299F25 /* NetflixResources.bundle */; };
+		74A5312E101D13C2004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5312D101D13C2004F9C9B /* MetasyntacticResources.bundle */; };
+		74A53130101D13CC004F9C9B /* BoxOfficeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A5312F101D13CC004F9C9B /* BoxOfficeResources.bundle */; };
+		74CCCD86102A0A1600033A2F /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74CCCD85102A0A1600033A2F /* License.txt */; };
+		74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
+		74E148110F95949500FB7BDA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
+		74E148170F95949500FB7BDA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAB0E6BC98800075068 /* Icon.png */; };
+		74E148390F95949500FB7BDA /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
+		74E148730F95949500FB7BDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		74E148AC0F95949500FB7BDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7630F104C2200795555 /* AppDelegate.m */; };
+		74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */; };
+		74E1496C0F95949500FB7BDA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
+		74E1496D0F95949500FB7BDA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
+		74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
+		74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
+		74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E164B41006D88D003D852F /* libsqlite3.dylib */; };
+		74FB7F421017B25E001B5CB9 /* libBoxOfficeShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FB7F2B1017B248001B5CB9 /* libBoxOfficeShared.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74FB7F2A1017B248001B5CB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74FB7F261017B248001B5CB9 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74FB7D1F1017A2B3001B5CB9;
+			remoteInfo = BoxOfficeShared;
+		};
+		74FB7F401017B258001B5CB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74FB7F261017B248001B5CB9 /* BoxOfficeShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 74FB7D1E1017A2B3001B5CB9;
+			remoteInfo = BoxOfficeShared;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		740224570E53F342006C58A2 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = ../../BoxOfficeShared/iPhone/Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		740224580E53F346006C58A2 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = ../../BoxOfficeShared/iPhone/Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		740224590E53F351006C58A2 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = ../../BoxOfficeShared/iPhone/Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7402245A0E53F353006C58A2 /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = ../../BoxOfficeShared/iPhone/Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7402245B0E53F35A006C58A2 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = ../../BoxOfficeShared/iPhone/Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7406A7620F104C2200795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7406A7630F104C2200795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = ../../BoxOfficeShared/iPhone/Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = ../../BoxOfficeShared/iPhone/Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = ../../BoxOfficeShared/iPhone/Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213C0E5962D100105751 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = ../../BoxOfficeShared/iPhone/Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213D0E5962DE00105751 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = ../../BoxOfficeShared/iPhone/Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213E0E59630200105751 /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = ../../BoxOfficeShared/iPhone/Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21400E59632400105751 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = ../../BoxOfficeShared/iPhone/Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21410E59633500105751 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = ../../BoxOfficeShared/iPhone/Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21420E59634900105751 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = ../../BoxOfficeShared/iPhone/Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21430E59637300105751 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = ../../BoxOfficeShared/iPhone/Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21440E59638200105751 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = ../../BoxOfficeShared/iPhone/Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = ../../BoxOfficeShared/iPhone/Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = ../../BoxOfficeShared/iPhone/Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = ../../BoxOfficeShared/iPhone/Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = ../../BoxOfficeShared/iPhone/Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = ../../BoxOfficeShared/iPhone/Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74A018761023FA0800299F25 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		74A018781023FA0800299F25 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		74A01E83102464A400299F25 /* NetflixShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetflixShared.h; path = ../../NetflixShared/Classes/NetflixShared.h; sourceTree = SOURCE_ROOT; };
+		74A01F9910246C8800299F25 /* NetflixResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NetflixResources.bundle; path = ../../NetflixShared/NetflixResources.bundle; sourceTree = SOURCE_ROOT; };
+		74A5312D101D13C2004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
+		74A5312F101D13CC004F9C9B /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BoxOfficeResources.bundle; path = ../../BoxOfficeShared/iPhone/BoxOfficeResources.bundle; sourceTree = SOURCE_ROOT; };
+		74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74CCCD85102A0A1600033A2F /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = License.txt; path = ../../License.txt; sourceTree = SOURCE_ROOT; };
+		74E149770F95949500FB7BDA /* PocketFlicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E164B41006D88D003D852F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		74E6FD080FD1B2F90015D9F8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		74F94FA50E6BC98800075068 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		74F94FAB0E6BC98800075068 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		74FB7F261017B248001B5CB9 /* BoxOfficeShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoxOfficeShared.xcodeproj; path = ../../BoxOfficeShared/iPhone/BoxOfficeShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		74FB7FF31017B401001B5CB9 /* BoxOfficeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoxOfficeShared.h; path = ../../BoxOfficeShared/iPhone/Classes/BoxOfficeShared.h; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74E149680F95949500FB7BDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74FB7F421017B25E001B5CB9 /* libBoxOfficeShared.a in Frameworks */,
+				74E164B51006D88E003D852F /* libsqlite3.dylib in Frameworks */,
+				74E1496F0F95949500FB7BDA /* AddressBook.framework in Frameworks */,
+				74E1496C0F95949500FB7BDA /* CFNetwork.framework in Frameworks */,
+				74E1496D0F95949500FB7BDA /* CoreFoundation.framework in Frameworks */,
+				74E1496E0F95949500FB7BDA /* CoreLocation.framework in Frameworks */,
+				74E1496B0F95949500FB7BDA /* CoreGraphics.framework in Frameworks */,
+				74E149690F95949500FB7BDA /* Foundation.framework in Frameworks */,
+				74E149700F95949500FB7BDA /* MediaPlayer.framework in Frameworks */,
+				74E1496A0F95949500FB7BDA /* UIKit.framework in Frameworks */,
+				74E149710F95949500FB7BDA /* SystemConfiguration.framework in Frameworks */,
+				74A018771023FA0800299F25 /* MapKit.framework in Frameworks */,
+				74A018791023FA0800299F25 /* MessageUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				747C36430FD07B5A00411801 /* Shared */,
+				7406A7620F104C2200795555 /* AppDelegate.h */,
+				7406A7630F104C2200795555 /* AppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74E149770F95949500FB7BDA /* PocketFlicks.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				74FB7F261017B248001B5CB9 /* BoxOfficeShared.xcodeproj */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				748B23570E843AFE00322E25 /* Entitlements.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				74C2AEE40F0DF3B700EFAF74 /* Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74A5312F101D13CC004F9C9B /* BoxOfficeResources.bundle */,
+				74A5312D101D13C2004F9C9B /* MetasyntacticResources.bundle */,
+				74A01F9910246C8800299F25 /* NetflixResources.bundle */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				74F94FA50E6BC98800075068 /* Default.png */,
+				74F94FAB0E6BC98800075068 /* Icon.png */,
+				740224540E53F323006C58A2 /* Localizable.strings */,
+				74CCCD85102A0A1600033A2F /* License.txt */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74E164B41006D88D003D852F /* libsqlite3.dylib */,
+				74CA20B60DD0F93D0046D1CE /* AddressBook.framework */,
+				749DF3250DC9838F00A551D9 /* CFNetwork.framework */,
+				749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */,
+				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
+				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				74A018761023FA0800299F25 /* MapKit.framework */,
+				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
+				74A018781023FA0800299F25 /* MessageUI.framework */,
+				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		747C36430FD07B5A00411801 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				74FB7FF31017B401001B5CB9 /* BoxOfficeShared.h */,
+				74E6FD080FD1B2F90015D9F8 /* MetasyntacticShared.h */,
+				74A01E83102464A400299F25 /* NetflixShared.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		74FB7F271017B248001B5CB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74FB7F2B1017B248001B5CB9 /* libBoxOfficeShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74E1480B0F95949500FB7BDA /* PocketFlicks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks" */;
+			buildPhases = (
+				74E1480C0F95949500FB7BDA /* Resources */,
+				74E148720F95949500FB7BDA /* Sources */,
+				74E149680F95949500FB7BDA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74FB7F411017B258001B5CB9 /* PBXTargetDependency */,
+			);
+			name = PocketFlicks;
+			productName = PocketFlicks;
+			productReference = 74E149770F95949500FB7BDA /* PocketFlicks.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlicks" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+				pt,
+				jp,
+				ja,
+				fr,
+				de,
+				es,
+				ar,
+				cs,
+				da,
+				he,
+				hu,
+				it,
+				nl,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				en_GB,
+				fi,
+				en_AU,
+				no,
+				pl,
+				hi,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 74FB7F271017B248001B5CB9 /* Products */;
+					ProjectRef = 74FB7F261017B248001B5CB9 /* BoxOfficeShared.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				74E1480B0F95949500FB7BDA /* PocketFlicks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		74FB7F2B1017B248001B5CB9 /* libBoxOfficeShared.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBoxOfficeShared.a;
+			remoteRef = 74FB7F2A1017B248001B5CB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74E1480C0F95949500FB7BDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E1480D0F95949500FB7BDA /* MainWindow.xib in Resources */,
+				74E1480F0F95949500FB7BDA /* Localizable.strings in Resources */,
+				74E148110F95949500FB7BDA /* Default.png in Resources */,
+				74E148170F95949500FB7BDA /* Icon.png in Resources */,
+				74E148390F95949500FB7BDA /* Entitlements.plist in Resources */,
+				74A5312E101D13C2004F9C9B /* MetasyntacticResources.bundle in Resources */,
+				74A53130101D13CC004F9C9B /* BoxOfficeResources.bundle in Resources */,
+				74A01F9A10246C8800299F25 /* NetflixResources.bundle in Resources */,
+				74CCCD86102A0A1600033A2F /* License.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74E148720F95949500FB7BDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E148730F95949500FB7BDA /* main.m in Sources */,
+				74E148AC0F95949500FB7BDA /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74FB7F411017B258001B5CB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoxOfficeShared;
+			targetProxy = 74FB7F401017B258001B5CB9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		740224540E53F323006C58A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				745E213C0E5962D100105751 /* cs */,
+				745E213D0E5962DE00105751 /* da */,
+				7402245A0E53F353006C58A2 /* de */,
+				7402245B0E53F35A006C58A2 /* en */,
+				745E213A0E5961F700105751 /* es */,
+				743398430E62615300D285F0 /* fi */,
+				740224590E53F351006C58A2 /* fr */,
+				745E213E0E59630200105751 /* he */,
+				745E21400E59632400105751 /* it */,
+				740224570E53F342006C58A2 /* ja */,
+				745E21410E59633500105751 /* nl */,
+				748AB4EF0EB77F37004918A6 /* no */,
+				747ABAF80EBA3DA3002438D0 /* pl */,
+				740224580E53F346006C58A2 /* pt */,
+				745E21420E59634900105751 /* ro */,
+				745E21430E59637300105751 /* ru */,
+				745E21440E59638200105751 /* sk */,
+				745E21470E5963A200105751 /* tr */,
+				744292EC0EF5C98500BE2B67 /* hu */,
+				747D9DF80EF714960066B881 /* hi */,
+				747D9E3E0EF724240066B881 /* sv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		749862260E8439DA00AE718F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = AdHoc;
+		};
+		74BB1B130E21493D0066328E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Distribution;
+		};
+		74E149730F95949500FB7BDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Debug;
+		};
+		74E149740F95949500FB7BDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Release;
+		};
+		74E149750F95949500FB7BDA /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = AdHoc;
+		};
+		74E149760F95949500FB7BDA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Distribution;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74E149720F95949500FB7BDA /* Build configuration list for PBXNativeTarget "PocketFlicks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74E149730F95949500FB7BDA /* Debug */,
+				74E149740F95949500FB7BDA /* Release */,
+				74E149750F95949500FB7BDA /* AdHoc */,
+				74E149760F95949500FB7BDA /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlicks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				749862260E8439DA00AE718F /* AdHoc */,
+				74BB1B130E21493D0066328E /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
