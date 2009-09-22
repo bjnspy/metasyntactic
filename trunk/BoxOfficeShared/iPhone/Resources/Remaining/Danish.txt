@@ -1,0 +1,502 @@
+﻿// Localizers, please read the following instructions before proceeding.
+// 
+// All text starting with // (including this line) should not be translated.  It is
+// purely for providing instructions and hints
+// 
+// Text that needs to be translated comes in the form:
+// 
+//     "1 kilometer" = "";
+// 
+// You will provide the translation on the *right hand side* of the equals (=) sign.
+// i.e. if we were translating this to french we would end up with:
+// 
+//     "1 kilometer" = "1 kilomètre";
+// 
+// Most cases should be fairly simple, however there can be slight complications.
+// Sometimes we will not know a value at this moment, but it will instead be 
+// supplied when the program runs.  i.e.:
+// 
+//     /* i.e.: 2 hours */
+//     "%d hours" = "";
+// 
+// In this case the '%d' will be replaced with a number.  This entity *must* appear
+// in your localized text.  Here are some examples of that translated into other
+// languages:
+// 
+// French: "%d hours" = "%d heures";
+// Hebrew: "%d hours" = "שעות %d";
+// 
+// Note that Hebrew switched the order of the order of the words here.
+// 
+// Finally, you will also see strings of the form:
+// 
+//     /* %@ will be replaced with a movie showtime.  i.e.: Order tickets for 3:15pm */
+//     "Order tickets for %@" = ""
+// 
+// As with before, the %@ will be replaced by the program when it is running and
+// *must* appear in your localized text.  Here is an example of that translated into
+// other languages:
+// 
+// French: "Order tickets for %@" = "Commander un billet pour %@";
+// German: "Order tickets for %@" = "für %@ bestellen";
+// Hebrew: "Order tickets for %@" = "%@ הזמן כרטיסים עבור";
+// 
+// Again note that the replacement text can occur wherever you think is appropriate
+// for your language.  In cases of replacements i have tried to provide helpful text
+// to explain how the values will be replaced.
+// 
+// If you have any questions, please feel free to email me at:
+// cyrus.najmabadi@gmail.com
+// 
+// Thanks very much!
+
+// #15 in Instant Queue
+"#%d in %@" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"%@ aggressively caches all data locally on your device so that it will be usable even without a network connection.  The only data not cached are movie trailers." = "";
+
+"%@ cannot open the page because it is not connected to the Internet." = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"%@ contains missing/incorrect translations. Can you fix it?" = "";
+
+// The %@ will be replaced with the program name.  i.e. 'Now Playing'
+"%@ does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix." = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"%@ doesn't list my favorite theater. Can you add it?" = "";
+
+// %@ will be replaced with the score provider.  i.e. Google, Rottentomatoes or Metacritic
+"%@ scores" = "";
+
+// i.e.: 20 Questions & Answers
+"%d Questions & Answers" = "";
+
+// i.e.: 5 of 15.  Used when scrolling through a list of posters
+"%d of %d" = "";
+
+// i.e.: 10 theaters outside search area
+"%d theaters outside search area" = "";
+
+"1 theater outside search area" = "";
+
+"Account #%d" = "";
+
+// <first name> <last name>
+"Account: %@ %@" = "";
+
+"Accounts" = "";
+
+// Movie category
+"Action & Adventure" = "";
+
+"Add New Account" = "";
+
+// Title for a button that the user can use to request that a theater be added to the program
+"Add Theater" = "";
+
+// Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to add this movie to their Netflix queue
+"Add to Netflix" = "";
+
+// Notification shown to the user when we are in the process of adding a movie to their Netflix queue
+"Adding Movie" = "";
+
+// Option to show 'All' (i.e. non-filtered) results from a search
+"All" = "";
+
+// Used to display the count of all search results.  i.e.: All (15)
+"All (%d)" = "";
+
+"An unknown error occurred." = "";
+
+// Movie category
+"Anime & Animation" = "";
+
+"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability." = "";
+
+// The list of Netflix movies currently at the user's house
+"At Home" = "";
+
+// Movie is available to be shipped now
+"Available Now" = "";
+
+// Movie will be released soon
+"Available Soon" = "";
+
+// Movie can't be shipped because it hasn't been released yet
+"Awaiting Release" = "";
+
+"Bio:" = "";
+
+"Blu-ray" = "";
+
+// When the user wants to see only Bluray items and not DVD
+"Blu-ray Only" = "";
+
+"Bookmarks" = "";
+
+"Can you increase the maximum search distance for theaters?" = "";
+
+"Cancel" = "";
+
+"Cannot Open Page" = "";
+
+"Category Notifications" = "";
+
+// Movie category
+"Children & Family" = "";
+
+// Movie category
+"Classics" = "";
+
+// Movie category
+"Comedy" = "";
+
+// %@ is the underlying error.  i.e. 'Could not connect to server'
+"Could not change rating:\n\n%@" = "";
+
+"Could not connect to Netflix." = "";
+
+"Could not find location.\nUser denied use of the location service." = "";
+
+"Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Could you provide an option to let me choose the icon I want for the %@?" = "";
+
+"Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals." = "";
+
+"Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range." = "";
+
+"Currently, settings can only be modified from Netflix's website" = "";
+
+"DVD" = "";
+
+// When the user wants to see only DVD items and not Bluray
+"DVD Only" = "";
+
+"DVD/Blu-ray" = "";
+
+"DVD/Blu-ray details:" = "";
+
+"Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version." = "";
+
+// i.e. DVD or Bluray movie that comes on a 'Disc'
+"Disc" = "";
+
+// Used to display the count of all dvd search results.  i.e.: Disc (15)
+"Disc (%d)" = "";
+
+// The Netflix queue containing the user's DVDs
+"Disc Queue" = "";
+
+// Movie category
+"Documentary" = "";
+
+"Downloading image" = "";
+
+"Downloading information." = "";
+
+// Movie category
+"Drama" = "";
+
+"Due to licensing restrictions, reviews and ratings may not be available for all movies." = "";
+
+"Enabled" = "";
+
+// The entire list of Netflix movies the user has seen
+"Entire History" = "";
+
+"Error occurred" = "";
+
+"Error occurred talking to Netflix. Please try again later." = "";
+
+// Movie category
+"Faith & Spirituality" = "";
+
+"Film trailers provided by:" = "";
+
+"Force Refresh" = "";
+
+// Movie category
+"Foreign" = "";
+
+// Label for the format of a movie.  i.e.:  Format: Widescreen
+"Format:" = "";
+
+// Movie category
+"Gay & Lesbian" = "";
+
+"Google Maps" = "";
+
+"Graphics by David Steinberger" = "";
+
+"Help" = "";
+
+// Movie category
+"Horror" = "";
+
+"I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!" = "";
+
+"IMDb's licensing fees are unfortunately too high for me to afford. Sorry!" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"If %@ caches data, why do I always see the 'loading spinner' even on posters that were already loaded?" = "";
+
+"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!" = "";
+
+"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!" = "";
+
+// Movie category
+"Independent" = "";
+
+// i.e. a streamable movie that can be watched 'Instant'ly
+"Instant" = "";
+
+// Used to display the count of all instant watch search results.  i.e.: Instant (15)
+"Instant (%d)" = "";
+
+// The Netflix queue containing the user's streaming movies
+"Instant Queue" = "";
+
+"Instant Watch" = "";
+
+"International Data" = "";
+
+"Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!" = "";
+
+"Like This App?" = "";
+
+"Loading" = "";
+
+// This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'
+"Loading Indicators" = "";
+
+"Loading image" = "";
+
+"Local results unavailable" = "";
+
+"Log In to Existing Account" = "";
+
+// There will be a long wait before the movie is released
+"Long Wait" = "";
+
+"Map Theaters" = "";
+
+// The most popular movies currently
+"Most Popular" = "";
+
+"Movie Rating" = "";
+
+// Used to display the count of all movie search results.  i.e.: Movies (15)
+"Movies (%d)" = "";
+
+"Moving Movie" = "";
+
+// Movie category
+"Music & Musicals" = "";
+
+"My other applications" = "";
+
+"Netflix" = "";
+
+// Movie category
+"New 'Instant Watch'" = "";
+
+// Movie category
+"New DVDs" = "";
+
+// Must be short. 1-2 words max. Label for a button when a user does not want to write a review
+"No Thanks" = "";
+
+"No biography available." = "";
+
+// No listings found at 'Regal Meridian 6' on 5/18/2008
+"No listings found at '%@' on %@" = "";
+
+// No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008
+"No listings found for '%@' at '%@' on %@" = "";
+
+// No listings found for 'The Dark Knight' on 5/18/2008
+"No listings found for '%@' on %@" = "";
+
+// Message shown when the user searches for something and we find no results
+"No results found for '%@'" = "";
+
+// Movie is not currently rentable
+"Not Rentable" = "";
+
+"Now Playing Feedback" = "";
+
+"Open and Authorize" = "";
+
+// Button to change the visibility options for DVD or Bluray.
+"Options" = "";
+
+"Over Quota - Try Again Later" = "";
+
+"Please Wait" = "";
+
+"Please rate it in the App Store!" = "";
+
+"Please wait..." = "";
+
+// The preferred movie format that the user has.  i.e. DVD or Bluray
+"Preferred Formats" = "";
+
+// This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'
+"Prioritize Bookmarks" = "";
+
+// Must be short. 1-2 words max. Label for a button a user can tap to rate this app
+"Rate It!" = "";
+
+// The list of Netflix movies the user recently returned
+"Recently Returned" = "";
+
+// The list of Netflix movies the user recently watched
+"Recently Watched" = "";
+
+// Movie recommendations from Netflix
+"Recommendations" = "";
+
+"Remove Account" = "";
+
+"Rental History" = "";
+
+// Error shown when we tried to reorder a user's movie queue on the server but failed.  %@ is replaced with the actual error.  i.e.: Could not connect to server
+"Reordering queue failed:\n\n%@" = "";
+
+"Requesting access" = "";
+
+"Requesting authorization" = "";
+
+// Movie category
+"Romance" = "";
+
+"Safari" = "";
+
+// Button to let the user save all the posters to their photo library
+"Save All to Photo Library" = "";
+
+// Button to let the user save a poster to their photo library
+"Save to Photo Library" = "";
+
+// Movie is the user's 'Saved to watch later' queue
+"Saved" = "";
+
+// Saved in Instant Queue
+"Saved in %@" = "";
+
+"Saving" = "";
+
+// i.e.: Saving 5 of 15.  Used when saving a list of posters
+"Saving %d of %d" = "";
+
+// Movie category
+"Sci-Fi & Fantasy" = "";
+
+// This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'
+"Screen Rotation" = "";
+
+"Search Netflix" = "";
+
+"Searching" = "";
+
+"See the section on IMDb." = "";
+
+// Title for a button that a user can click on to send a feedback email to the developers
+"Send Feedback" = "";
+
+// There will be a short wait before the movie is released
+"Short Wait" = "";
+
+// When the user wants to see 'Both' DVD and Bluray items
+"Show Both" = "";
+
+// When the user does not want to see Bluray or DVD items
+"Show Neither" = "";
+
+// This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'
+"Show Notifications" = "";
+
+"Sign Up for New Account" = "";
+
+// Movie category
+"Special Interest" = "";
+
+// Movie category
+"Sports & Fitness" = "";
+
+"Studio:" = "";
+
+"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!" = "";
+
+"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)" = "";
+
+"Tap to enter location" = "";
+
+// Movie category
+"Television" = "";
+
+// Used to display the count of all theater search results.  i.e.: Theaters (15)
+"Theaters (%d)" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@." = "";
+
+// Movie category
+"Thrillers" = "";
+
+"To make scrolling as fast and as smooth as possible, %@ does not show the poster until scrolling has stopped." = "";
+
+// Movie category
+"Top DVDs" = "";
+
+"Top of Disc Queue" = "";
+
+"Top of Instant Queue" = "";
+
+"Translations" = "";
+
+"Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with." = "";
+
+"Updating" = "";
+
+"Updating Listings" = "";
+
+"Updating Queue" = "";
+
+"Updating: %@" = "";
+
+// There will be a very long wait before the movie is released
+"Very Long Wait" = "";
+
+// Title for a button. Needs to be very short. 2-3 words *max*. When tapped, will show the user a list of websites with additional information about the movie
+"Websites" = "";
+
+"What can I do if I have a question that hasn't been answered?" = "";
+
+"Why did my theater disappear?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Why doesn't %@ offer ticketing through Movietickets.com as well as Fandango.com?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Why doesn't %@ provide IMDb user ratings and reviews?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Why doesn't %@ provide Yahoo ratings and reviews?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Why don't I see ratings and reviews for all movies in %@?" = "";
+
+// %@ is replaced with the name of the program.  i.e. 'Now Playing'
+"Why is %@ always downloading data? Why doesn't it store the data locally?" = "";
+
+"Write Review" = "";
+
+"You must first set up an email account on your device before you can send feedback." = "";
+
+// The first %@ will be replaced with the device the user is on (i.e.: iPhone), the second %@ is replaced with the program name (i.e.: Now playing)
+"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates." = "";
