@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416E2A0101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h */; };
 		7416E2A3101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416E2A1101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.m */; };
+		741C7D57106709B5004ED30E /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 741C7D56106709B5004ED30E /* ProtocolBuffers.h */; };
+		741C7DD510670C40004ED30E /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7DD010670C39004ED30E /* libProtocolBuffers.a */; };
 		742F48D0102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F48CE102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h */; };
 		742F48D1102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F48CF102F83DF00AAC152 /* AbstractNetflixFilterableViewController.m */; };
 		74A01DED10245CD700299F25 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A01DEC10245CC200299F25 /* libNetflixShared.a */; };
@@ -132,7 +134,6 @@
 		74FB7DB51017A43F001B5CB9 /* BoxOfficeSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7DB31017A43F001B5CB9 /* BoxOfficeSharedApplication.m */; };
 		74FB7DB81017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7DB61017A44A001B5CB9 /* BoxOfficeSharedApplicationDelegate.h */; };
 		74FB7DBC1017A457001B5CB9 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7DBA1017A457001B5CB9 /* BoxOfficeShared.h */; };
-		74FB7E0D1017A7A3001B5CB9 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 747179430FDC59FA00B24ECD /* libProtocolBuffers.a */; };
 		74FB7E0E1017A7A8001B5CB9 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E6FCC90FD1B1CE0015D9F8 /* libMetasyntacticShared.a */; };
 		74FB7E1E1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FB7E1C1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.h */; };
 		74FB7E1F1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB7E1D1017A7CE001B5CB9 /* AbstractBoxOfficeAppDelegate.m */; };
@@ -145,26 +146,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		747179420FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
+		741C7DCF10670C39004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
 			remoteInfo = ProtocolBuffers;
 		};
-		747179440FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
+		741C7DD110670C39004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281;
+			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
 			remoteInfo = UnitTests;
 		};
-		747179460FDC59FA00B24ECD /* PBXContainerItemProxy */ = {
+		741C7DD310670C39004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
 			remoteInfo = CommandLineTests;
+		};
+		741C7DD610670C4A004ED30E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteInfo = ProtocolBuffers;
 		};
 		74A01DEB10245CC200299F25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -193,13 +201,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared;
-		};
-		74FB7DA91017A348001B5CB9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
-			remoteInfo = ProtocolBuffers;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -255,6 +256,8 @@
 		741C73900F8D8C6A003747AD /* PreviewNetworksPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewNetworksPosterDownloader.m; sourceTree = "<group>"; };
 		741C73930F8D8D75003747AD /* AbstractPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterDownloader.h; sourceTree = "<group>"; };
 		741C73940F8D8D75003747AD /* AbstractPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterDownloader.m; sourceTree = "<group>"; };
+		741C7D56106709B5004ED30E /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.2.0/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
+		741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.2.0/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		741F4EAC0FD21B9B00244D37 /* BoxOfficeStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeStockImages.h; sourceTree = "<group>"; };
 		741F4EAD0FD21B9B00244D37 /* BoxOfficeStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeStockImages.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
@@ -353,8 +356,6 @@
 		746A02040DC819430079D89B /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../protobuf-2.0.3/objectivec/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		747179660FDC5A8700B24ECD /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = "../../protobuf-2.0.3/objectivec/Classes/ProtocolBuffers.h"; sourceTree = SOURCE_ROOT; };
 		747413870EC7F2EC00625001 /* AbstractPosterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCell.h; sourceTree = "<group>"; };
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
@@ -506,9 +507,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				741C7DD510670C40004ED30E /* libProtocolBuffers.a in Frameworks */,
 				74A01DED10245CD700299F25 /* libNetflixShared.a in Frameworks */,
 				74FB7E0E1017A7A8001B5CB9 /* libMetasyntacticShared.a in Frameworks */,
-				74FB7E0D1017A7A3001B5CB9 /* libProtocolBuffers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +561,7 @@
 				748B23570E843AFE00322E25 /* Entitlements.plist */,
 				74E6FCC40FD1B1CE0015D9F8 /* MetasyntacticShared.xcodeproj */,
 				74A01DE710245CC200299F25 /* NetflixShared.xcodeproj */,
-				7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */,
+				741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -630,6 +631,16 @@
 				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
 			);
 			name = Websites;
+			sourceTree = "<group>";
+		};
+		741C7DCA10670C39004ED30E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741C7DD010670C39004ED30E /* libProtocolBuffers.a */,
+				741C7DD210670C39004ED30E /* UnitTests.octest */,
+				741C7DD410670C39004ED30E /* CommandLineTests.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		744245BA0E89DA0F00ACDBCF /* Search */ = {
@@ -809,16 +820,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7471793D0FDC59FA00B24ECD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				747179430FDC59FA00B24ECD /* libProtocolBuffers.a */,
-				747179450FDC59FA00B24ECD /* UnitTests.octest */,
-				747179470FDC59FA00B24ECD /* CommandLineTests.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		7474FE8F0E63595400BAA43D /* Posters */ = {
 			isa = PBXGroup;
 			children = (
@@ -901,7 +902,7 @@
 			children = (
 				74E6FCEB0FD1B2950015D9F8 /* MetasyntacticShared.h */,
 				74A01DF010245D0A00299F25 /* NetflixShared.h */,
-				747179660FDC5A8700B24ECD /* ProtocolBuffers.h */,
+				741C7D56106709B5004ED30E /* ProtocolBuffers.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -1102,6 +1103,7 @@
 				7416E2A2101C0DA700C3A1D0 /* PocketFlicksSettingsViewController.h in Headers */,
 				74A01DF110245D0A00299F25 /* NetflixShared.h in Headers */,
 				742F48D0102F83DF00AAC152 /* AbstractNetflixFilterableViewController.h in Headers */,
+				741C7D57106709B5004ED30E /* ProtocolBuffers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,8 +1122,8 @@
 			);
 			dependencies = (
 				74FB7DA81017A348001B5CB9 /* PBXTargetDependency */,
-				74FB7DAA1017A348001B5CB9 /* PBXTargetDependency */,
 				74A01DEF10245CE400299F25 /* PBXTargetDependency */,
+				741C7DD710670C4A004ED30E /* PBXTargetDependency */,
 			);
 			name = BoxOfficeShared;
 			productName = BoxOfficeShared;
@@ -1182,8 +1184,8 @@
 					ProjectRef = 74A01DE710245CC200299F25 /* NetflixShared.xcodeproj */;
 				},
 				{
-					ProductGroup = 7471793D0FDC59FA00B24ECD /* Products */;
-					ProjectRef = 7471793C0FDC59FA00B24ECD /* ProtocolBuffers.xcodeproj */;
+					ProductGroup = 741C7DCA10670C39004ED30E /* Products */;
+					ProjectRef = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1194,25 +1196,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		747179430FDC59FA00B24ECD /* libProtocolBuffers.a */ = {
+		741C7DD010670C39004ED30E /* libProtocolBuffers.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libProtocolBuffers.a;
-			remoteRef = 747179420FDC59FA00B24ECD /* PBXContainerItemProxy */;
+			remoteRef = 741C7DCF10670C39004ED30E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		747179450FDC59FA00B24ECD /* UnitTests.octest */ = {
+		741C7DD210670C39004ED30E /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
-			remoteRef = 747179440FDC59FA00B24ECD /* PBXContainerItemProxy */;
+			remoteRef = 741C7DD110670C39004ED30E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		747179470FDC59FA00B24ECD /* CommandLineTests.app */ = {
+		741C7DD410670C39004ED30E /* CommandLineTests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CommandLineTests.app;
-			remoteRef = 747179460FDC59FA00B24ECD /* PBXContainerItemProxy */;
+			remoteRef = 741C7DD310670C39004ED30E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		74A01DEC10245CC200299F25 /* libNetflixShared.a */ = {
@@ -1364,6 +1366,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		741C7DD710670C4A004ED30E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 741C7DD610670C4A004ED30E /* PBXContainerItemProxy */;
+		};
 		74A01DEF10245CE400299F25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NetflixShared;
@@ -1373,11 +1380,6 @@
 			isa = PBXTargetDependency;
 			name = MetasyntacticShared;
 			targetProxy = 74FB7DA71017A348001B5CB9 /* PBXContainerItemProxy */;
-		};
-		74FB7DAA1017A348001B5CB9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ProtocolBuffers;
-			targetProxy = 74FB7DA91017A348001B5CB9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
