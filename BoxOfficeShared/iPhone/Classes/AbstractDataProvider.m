@@ -489,12 +489,12 @@
   NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
   NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
 
-  // same day, check if they're at least 8 hours apart.
-  if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
+  // same day, check if they're at least 2 hours apart.
+  if (nowDateComponents.hour >= (lastDateComponents.hour + 2)) {
     return NO;
   }
 
-  // it's been less than 8 hours. it's too soon to refresh
+  // it's been less than 2 hours. it's too soon to refresh
   return YES;
 }
 
