@@ -66,6 +66,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 
   NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
   if (firstLaunchDate == nil) {
+    return;
   }
 
   NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
