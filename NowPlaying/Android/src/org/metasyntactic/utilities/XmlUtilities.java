@@ -51,6 +51,8 @@ public class XmlUtilities {
       return null;
     } catch (final ParserConfigurationException e) {
       throw new RuntimeException(e);
+    } catch (StringIndexOutOfBoundsException e) {
+      return null;
     }
   }
 
