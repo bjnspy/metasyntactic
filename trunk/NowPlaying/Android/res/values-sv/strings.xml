@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
-    Copyright 2008 Cyrus Najmabadi
-
+Copyright 2008 Cyrus Najmabadi
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+    
         http://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
-    limitations under the License.
--->
+    limitations under the License.-->
 <resources>
   <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s skivor.</string>
   <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 skiva.</string>
   <string name="string_string">%s och %s</string>
+  <string name="string_paren_string_paren">%s (%s)</string>
   <string name="string_paren_no_online_ticketing_paren">%s (Ej möjligt att köpa biljett online)</string>
   <string name="string_dot_string">%s. %s</string>
   <string name="number_string">%d %s</string>
@@ -40,7 +40,6 @@
   <string name="autoupdate_location">Auto-uppdatera position</string>
   <string name="bluray">Blu-ray</string>
   <string name="bookmarks">Bokmärken</string>
-  <string name="both">Båda</string>
   <string name="call">Ring</string>
   <string name="cancel">Avbryt</string>
   <string name="cast_colon">Rollbesättning:</string>
@@ -49,13 +48,13 @@
   <string name="could_not_find_location_dot">Det gick inte att hitta positionen.</string>
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
-  <string name="dvdbluray_details_provided_by_colon">Informationen om DVD/Blu-ray kommer från:</string>
+  <string name="dvdbluray_details_colon">Informationen om DVD/Blu-ray kommer från:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informationen om kommande datum kan var ofullständig. Ställ tillbaka sökdatumet till dagens datum för att se den kompletta listan.</string>
   <string name="director_colon">Regissör:</string>
   <string name="directors_colon">Regissörer:</string>
   <string name="distance">Avstånd</string>
   <string name="downloading_data">Laddar ned data</string>
-  <string name="downloading_poster">Laddar ned bild</string>
+  <string name="downloading_image">Laddar ned bild</string>
   <string name="email_listings">E-posta listan</string>
   <string name="favorites">Favoriter</string>
   <string name="format_colon">Format:</string>
@@ -73,7 +72,7 @@
   <string name="less_than_one_string_away">Mindre än 1 %s bort</string>
   <string name="license">Licens</string>
   <string name="loading">Laddar</string>
-  <string name="loading_poster">Laddar bild</string>
+  <string name="loading_image">Laddar bild</string>
   <string name="local_results_unavailable">Lokala resultat ej tillgängliga</string>
   <string name="localized_by_colon">Anpassad av:</string>
   <string name="location">Position</string>
@@ -88,7 +87,6 @@
   <string name="no_listings_found_at_string_on_string">Kunde inte hitta någon information om '%s' den %s</string>
   <string name="no_listings_found_for_string_at_string_on_string">Kunde inte hitta någon information om '%s' på '%s' den %s</string>
   <string name="no_listings_found_for_string_on_string">Kunde inte hitta någon information om '%s' den %s</string>
-  <string name="no_more_show_times_available_today_dot">Det finns inga fler visningar tillgängliga idag.</string>
   <string name="no_results_found_for_string">Kunde inte hitta någon information om '%s'</string>
   <string name="no_synopsis_available_dot">Det finns ingen sammanfattning.</string>
   <string name="none">Inga</string>
@@ -117,6 +115,7 @@
   <string name="settings">Inställningar</string>
   <string name="show_number_hidden_theaters">Visa %d dolda biografer</string>
   <string name="show_one_hidden_theater">Visa 1 dold biograf</string>
+  <string name="show_both">Båda</string>
   <string name="show_times_retrieved_on_string_dot">Visningstider hämtade den %s.</string>
   <string name="studio_colon">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Biografen rapporterade visningstider senast den \n%s.</string>
@@ -132,7 +131,6 @@
   <string name="upcoming">Kommande</string>
   <string name="updating_listings">Uppdaterar lista</string>
   <string name="use_small_fonts">Liten text</string>
-  <string name="visit_imdb">Besök IMDb</string>
   <string name="website">Websajt</string>
   <string name="written_by_cyrus_najmabadi">Skriven av Cyrus Najmabadi</string>
   <string name="yesterday">Igår</string>
@@ -141,4 +139,157 @@
   <string name="kilometers">kilometer</string>
   <string name="mile">mile</string>
   <string name="miles">miles</string>
+  <string name="number_in_string">#%d in %s</string>
+  <string name="string_aggressively_caches_all_data_locally_on">%s aggressively caches all data locally on your device so that it will be usable even without a network connection.  The only data not cached are movie trailers.</string>
+  <string name="string_cannot_open_the_page_because_it_is_not">%s cannot open the page because it is not connected to the Internet.</string>
+  <string name="string_contains_missingincorrect_translations_dot">%s contains missing/incorrect translations. Can you fix it?</string>
+  <string name="string_does_not_store_your_netflix_username_and">%s does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.</string>
+  <string name="string_doesnt_list_my_favorite_theater_dot_can_you">%s doesn't list my favorite theater. Can you add it?</string>
+  <string name="string_scores">%s scores</string>
+  <string name="number_questions_answers">%d Questions &amp; Answers</string>
+  <string name="account_number">Account #%d</string>
+  <string name="account_colon_string_string">Account: %s %s</string>
+  <string name="accounts">Accounts</string>
+  <string name="action_adventure">Action &amp; Adventure</string>
+  <string name="add_new_account">Add New Account</string>
+  <string name="add_theater">Add Theater</string>
+  <string name="add_to_netflix">Add to Netflix</string>
+  <string name="adding_movie">Adding Movie</string>
+  <string name="all">All</string>
+  <string name="all_paren_number_paren">All (%d)</string>
+  <string name="an_unknown_error_occurred_dot">An unknown error occurred.</string>
+  <string name="anime_animation">Anime &amp; Animation</string>
+  <string name="apple_does_not_provide_a_mechanism_for_3rd_party">Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.</string>
+  <string name="at_home">At Home</string>
+  <string name="available_now">Available Now</string>
+  <string name="available_soon">Available Soon</string>
+  <string name="awaiting_release">Awaiting Release</string>
+  <string name="bio_colon">Bio:</string>
+  <string name="bluray_only">Blu-ray Only</string>
+  <string name="can_you_increase_the_maximum_search_distance_for">Can you increase the maximum search distance for theaters?</string>
+  <string name="cannot_open_page">Cannot Open Page</string>
+  <string name="category_notifications">Category Notifications</string>
+  <string name="children_family">Children &amp; Family</string>
+  <string name="classics">Classics</string>
+  <string name="comedy">Comedy</string>
+  <string name="could_not_change_rating_colon_string">Could not change rating:\n\n%s</string>
+  <string name="could_not_connect_to_netflix_dot">Could not connect to Netflix.</string>
+  <string name="could_not_find_location_dot_user_denied_use_of_the">Could not find location.\nUser denied use of the location service.</string>
+  <string name="could_you_add_support_for_blockbuster_movie">Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?</string>
+  <string name="could_you_provide_an_option_to_let_me_choose_the">Could you provide an option to let me choose the icon I want for the %s?</string>
+  <string name="currently_blockbuster_does_not_provided_a">Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.</string>
+  <string name="currently_no_dot_however_simply_mark_the_theater">Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.</string>
+  <string name="currently_settings_can_only_be_modified_from">Currently, settings can only be modified from Netflix's website</string>
+  <string name="dvd_only">DVD Only</string>
+  <string name="definitely_use_the_send_feedback_button_above_to">Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.</string>
+  <string name="disc">Disc</string>
+  <string name="disc_paren_number_paren">Disc (%d)</string>
+  <string name="disc_queue">Disc Queue</string>
+  <string name="documentary">Documentary</string>
+  <string name="downloading_information_dot">Downloading information.</string>
+  <string name="drama">Drama</string>
+  <string name="due_to_licensing_restrictions_reviews_and_ratings">Due to licensing restrictions, reviews and ratings may not be available for all movies.</string>
+  <string name="enabled">Enabled</string>
+  <string name="entire_history">Entire History</string>
+  <string name="error_occurred">Error occurred</string>
+  <string name="error_occurred_talking_to_netflix_dot_please_try">Error occurred talking to Netflix. Please try again later.</string>
+  <string name="faith_spirituality">Faith &amp; Spirituality</string>
+  <string name="film_trailers_provided_by_colon">Film trailers provided by:</string>
+  <string name="force_refresh">Force Refresh</string>
+  <string name="foreign">Foreign</string>
+  <string name="gay_lesbian">Gay &amp; Lesbian</string>
+  <string name="google_maps">Google Maps</string>
+  <string name="graphics_by_david_steinberger">Graphics by David Steinberger</string>
+  <string name="help">Help</string>
+  <string name="horror">Horror</string>
+  <string name="i_will_absolutely_try_dot_please_tap_the_add">I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!</string>
+  <string name="imdbs_licensing_fees_are_unfortunately_too_high">IMDb's licensing fees are unfortunately too high for me to afford. Sorry!</string>
+  <string name="if_string_caches_data_why_do_i_always_see_the">If %s caches data, why do I always see the 'loading spinner' even on posters that were already loaded?</string>
+  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!</string>
+  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!</string>
+  <string name="independent">Independent</string>
+  <string name="instant">Instant</string>
+  <string name="instant_paren_number_paren">Instant (%d)</string>
+  <string name="instant_queue">Instant Queue</string>
+  <string name="instant_watch">Instant Watch</string>
+  <string name="international_data">International Data</string>
+  <string name="licensing_restrictions_with_certain_data_providers">Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!</string>
+  <string name="like_this_app">Like This App?</string>
+  <string name="loading_indicators">Loading Indicators</string>
+  <string name="log_in_to_existing_account">Log In to Existing Account</string>
+  <string name="long_wait">Long Wait</string>
+  <string name="map_theaters">Map Theaters</string>
+  <string name="most_popular">Most Popular</string>
+  <string name="movie_rating">Movie Rating</string>
+  <string name="movies_paren_number_paren">Movies (%d)</string>
+  <string name="moving_movie">Moving Movie</string>
+  <string name="music_musicals">Music &amp; Musicals</string>
+  <string name="netflix">Netflix</string>
+  <string name="new_instant_watch">New 'Instant Watch'</string>
+  <string name="new_dvds">New DVDs</string>
+  <string name="no_thanks">No Thanks</string>
+  <string name="no_biography_available_dot">No biography available.</string>
+  <string name="not_rentable">Not Rentable</string>
+  <string name="now_playing_feedback">Now Playing Feedback</string>
+  <string name="open_and_authorize">Open and Authorize</string>
+  <string name="options">Options</string>
+  <string name="over_quota_try_again_later">Over Quota - Try Again Later</string>
+  <string name="please_wait">Please Wait</string>
+  <string name="please_rate_it_in_the_app_store">Please rate it in the App Store!</string>
+  <string name="please_wait_dot_dot_dot">Please wait...</string>
+  <string name="preferred_formats">Preferred Formats</string>
+  <string name="rate_it">Rate It!</string>
+  <string name="recently_returned">Recently Returned</string>
+  <string name="recently_watched">Recently Watched</string>
+  <string name="recommendations">Recommendations</string>
+  <string name="remove_account">Remove Account</string>
+  <string name="rental_history">Rental History</string>
+  <string name="reordering_queue_failed_colon_string">Reordering queue failed:\n\n%s</string>
+  <string name="requesting_access">Requesting access</string>
+  <string name="requesting_authorization">Requesting authorization</string>
+  <string name="romance">Romance</string>
+  <string name="save_all_to_photo_library">Save All to Photo Library</string>
+  <string name="save_to_photo_library">Save to Photo Library</string>
+  <string name="saved">Saved</string>
+  <string name="saved_in_string">Saved in %s</string>
+  <string name="saving">Saving</string>
+  <string name="saving_number_of_number">Saving %d of %d</string>
+  <string name="scifi_fantasy">Sci-Fi &amp; Fantasy</string>
+  <string name="screen_rotation">Screen Rotation</string>
+  <string name="search_netflix">Search Netflix</string>
+  <string name="searching">Searching</string>
+  <string name="see_the_section_on_imdb_dot">See the section on IMDb.</string>
+  <string name="short_wait">Short Wait</string>
+  <string name="show_neither">Show Neither</string>
+  <string name="show_notifications">Show Notifications</string>
+  <string name="sign_up_for_new_account">Sign Up for New Account</string>
+  <string name="special_interest">Special Interest</string>
+  <string name="sports_fitness">Sports &amp; Fitness</string>
+  <string name="success_string_was_granted_access_to_your_netflix">Success! %s was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!</string>
+  <string name="tap_the_send_feedback_button_above_to_contact_me">Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)</string>
+  <string name="tap_to_enter_location">Tap to enter location</string>
+  <string name="television">Television</string>
+  <string name="theaters_paren_number_paren">Theaters (%d)</string>
+  <string name="theaters_are_removed_when_they_do_not_provide">Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %s.</string>
+  <string name="thrillers">Thrillers</string>
+  <string name="to_make_scrolling_as_fast_and_as_smooth_as">To make scrolling as fast and as smooth as possible, %s does not show the poster until scrolling has stopped.</string>
+  <string name="top_dvds">Top DVDs</string>
+  <string name="top_of_disc_queue">Top of Disc Queue</string>
+  <string name="top_of_instant_queue">Top of Instant Queue</string>
+  <string name="translations">Translations</string>
+  <string name="unfortunately_movietickets_dot_com_will_not">Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with.</string>
+  <string name="updating">Updating</string>
+  <string name="updating_queue">Updating Queue</string>
+  <string name="updating_colon_string">Updating: %s</string>
+  <string name="very_long_wait">Very Long Wait</string>
+  <string name="websites">Websites</string>
+  <string name="what_can_i_do_if_i_have_a_question_that_hasnt_been">What can I do if I have a question that hasn't been answered?</string>
+  <string name="why_did_my_theater_disappear">Why did my theater disappear?</string>
+  <string name="why_doesnt_string_offer_ticketing_through">Why doesn't %s offer ticketing through Movietickets.com as well as Fandango.com?</string>
+  <string name="why_doesnt_string_provide_imdb_user_ratings_and">Why doesn't %s provide IMDb user ratings and reviews?</string>
+  <string name="why_doesnt_string_provide_yahoo_ratings_and">Why doesn't %s provide Yahoo ratings and reviews?</string>
+  <string name="why_dont_i_see_ratings_and_reviews_for_all_movies">Why don't I see ratings and reviews for all movies in %s?</string>
+  <string name="why_is_string_always_downloading_data_why_doesnt">Why is %s always downloading data? Why doesn't it store the data locally?</string>
+  <string name="write_review">Write Review</string>
+  <string name="you_must_first_set_up_an_email_account_on_your">You must first set up an email account on your device before you can send feedback.</string>
 </resources>
