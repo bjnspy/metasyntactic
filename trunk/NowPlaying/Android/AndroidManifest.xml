@@ -2,9 +2,9 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.metasyntactic.activities"
-    android:versionCode="29"
-    android:versionName="1.29">
-    <uses-sdk android:minSdkVersion="3" />
+    android:versionCode="30"
+    android:versionName="1.30">
+    <uses-sdk android:minSdkVersion="4" />
     <application
         android:icon="@drawable/launcher"
         android:label="@string/application_name"

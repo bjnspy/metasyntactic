@@ -150,7 +150,9 @@ public class NowPlayingActivity extends MoviesActivity {
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(getService().getAllMoviesSelectedSortIndex());
-    Collections.sort(movies, comparator);
+    if (movies != null && comparator != null) {
+      Collections.sort(movies, comparator);
+    }
     super.refresh();
   }
 
