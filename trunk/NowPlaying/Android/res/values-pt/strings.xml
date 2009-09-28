@@ -190,7 +190,6 @@ Copyright 2008 Cyrus Najmabadi
   <string name="imdbs_licensing_fees_are_unfortunately_too_high">IMDb's licensing fees are unfortunately too high for me to afford. Sorry!</string>
   <string name="if_string_caches_data_why_do_i_always_see_the">If %s caches data, why do I always see the 'loading spinner' even on posters that were already loaded?</string>
   <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!</string>
-  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!</string>
   <string name="independent">Independent</string>
   <string name="instant">Instant</string>
   <string name="instant_paren_number_paren">Instant (%d)</string>

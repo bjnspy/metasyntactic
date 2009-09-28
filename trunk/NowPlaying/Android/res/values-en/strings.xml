@@ -242,8 +242,6 @@ Copyright 2008 Cyrus Najmabadi
   <string name="if_string_caches_data_why_do_i_always_see_the">If %s caches data, why do I always see the 'loading spinner' even on posters that were already loaded?</string>
   <!--If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!-->
   <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!</string>
-  <!--If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!-->
-  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!</string>
   <!--Independent-->
   <string name="independent">Independent</string>
   <!--Instant-->
