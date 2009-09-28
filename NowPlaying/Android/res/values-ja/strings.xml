@@ -241,7 +241,6 @@ Copyright 2008 Cyrus Najmabadi
   <string name="definitely_use_the_send_feedback_button_above_to">Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.</string>
   <string name="if_string_caches_data_why_do_i_always_see_the">If %s caches data, why do I always see the 'loading spinner' even on posters that were already loaded?</string>
   <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!</string>
-  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!</string>
   <string name="international_data">International Data</string>
   <string name="like_this_app">Like This App?</string>
   <string name="loading_indicators">Loading Indicators</string>

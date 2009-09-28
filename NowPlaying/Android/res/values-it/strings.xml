@@ -128,7 +128,6 @@ Copyright 2008 Cyrus Najmabadi
   <string name="imdbs_licensing_fees_are_unfortunately_too_high">Mi dispiace ma i diritti per IMDb sono troppo onerosi per me da sostenere</string>
   <string name="if_string_caches_data_why_do_i_always_see_the">Se %s registra i dati, perchè vedo sempre l'icona del caricamento anche su locandine che ho già caricato?</string>
   <string name="if_you_like_string_please_consider_writing_a_small">Se ti è piaciuto %s, considera di scrivere una recensione per l'iTunes store. Aiuterà nuovi utenti a scoprire questa applicazione, mi permetterà di aggiungere magnifiche nuove caratteristiche, lasciare tutto senza pubblicità, e mi farai sentire allegro. Grazie!</string>
-  <string name="if_you_like_string_please_consider_writing_a_small">Se ti è piaciuto %s, considera di scrivere una recensione per l'iTunes store. Aiuterà nuovi utenti a scoprire questa applicazione, aumenterà la possibilità di aggiungere nuove caratteristiche, e mi farà sentire bene e allegro. Grazie!</string>
   <string name="independent">Indipendenti</string>
   <string name="instant">Pronto</string>
   <string name="instant_paren_number_paren">Pronti (%d)</string>

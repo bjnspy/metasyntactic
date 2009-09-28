@@ -128,7 +128,6 @@ Copyright 2008 Cyrus Najmabadi
   <string name="imdbs_licensing_fees_are_unfortunately_too_high">Desafortunadamente no puedo costear las licencias de la IMDb. ¡Lo siento!</string>
   <string name="if_string_caches_data_why_do_i_always_see_the">Si %s almacena datos, ¿por qué veo la animación de descarga sobre todos los afiches, incluso sobre los que ya fueron descargados anteriormente?</string>
   <string name="if_you_like_string_please_consider_writing_a_small">Si le gusta %s, por favor considere escribir una pequeña reseña para la tienda iTunes Store. Así ayudaría a nuevos usuarios a descubrir la aplicación, me permitiría agregar nuevas prestaciones y mantener el programa libre de publicidad, y, además, me haría sentir muy bien. ¡Gracias!</string>
-  <string name="if_you_like_string_please_consider_writing_a_small"> Si le gusta %s, por favor considere escribir una pequeña reseña para la tienda iTunes Store. Así ayudaría a nuevos usuarios a descubrir la aplicación, contribuiría a mi capacidad de presentar nuevas prestaciones y, además, me haría sentir muy bien. ¡Gracias!</string>
   <string name="independent">Independiente</string>
   <string name="instant">En directo</string>
   <string name="instant_paren_number_paren">En directo (%d)</string>
