@@ -218,145 +218,168 @@ public final class R {
         public static final int warning_item=0x7f03001f;
     }
     public static final class string {
-        /** A message from Cyrus
-         */
-        public static final int a_message_from_cyrus=0x7f07003c;
         /** About
          */
-        public static final int about=0x7f07003d;
+        public static final int about=0x7f070041;
+        /** Account: %@ %@
+         */
+        public static final int account_colon_string_string=0x7f070043;
+        /** Account #%d
+         */
+        public static final int account_number=0x7f070042;
+        /** Accounts
+         */
+        public static final int accounts=0x7f070044;
         /** Action & Adventure
          */
-        public static final int action_adventure=0x7f07003e;
+        public static final int action_adventure=0x7f070045;
+        /** Add New Account
+         */
+        public static final int add_new_account=0x7f070046;
         /** Add Theater
          */
-        public static final int add_theater=0x7f0700f9;
+        public static final int add_theater=0x7f070047;
         /** Add to Netflix
          */
-        public static final int add_to_netflix=0x7f07003f;
-        /** adding movie
+        public static final int add_to_netflix=0x7f070048;
+        /** Adding Movie
          */
-        public static final int adding_movie=0x7f070128;
+        public static final int adding_movie=0x7f070049;
         /** All
          */
-        public static final int all=0x7f0700fa;
+        public static final int all=0x7f07004a;
         public static final int all_movies=0x7f07000e;
         /** All (%d)
          */
-        public static final int all_paren_number_paren=0x7f0700fb;
+        public static final int all_paren_number_paren=0x7f07004b;
         /** An unknown error occurred.
          */
-        public static final int an_unknown_error_occurred_dot=0x7f070040;
+        public static final int an_unknown_error_occurred_dot=0x7f07004c;
         /** Anime & Animation
          */
-        public static final int anime_animation=0x7f070041;
+        public static final int anime_animation=0x7f07004d;
         /** Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.
          */
-        public static final int apple_does_not_provide_a_mechanism_for_3rd_party=0x7f0700fc;
+        public static final int apple_does_not_provide_a_mechanism_for_3rd_party=0x7f07004e;
         public static final int application_name=0x7f070000;
         public static final int application_name_and_version=0x7f070001;
         /** At Home
          */
-        public static final int at_home=0x7f070042;
+        public static final int at_home=0x7f07004f;
         /** Auto-Update Location
          */
-        public static final int autoupdate_location=0x7f070043;
+        public static final int autoupdate_location=0x7f070050;
         /** Available Now
          */
-        public static final int available_now=0x7f070044;
+        public static final int available_now=0x7f070051;
         /** Available Soon
          */
-        public static final int available_soon=0x7f070045;
+        public static final int available_soon=0x7f070052;
         /** Awaiting Release
          */
-        public static final int awaiting_release=0x7f070046;
+        public static final int awaiting_release=0x7f070053;
+        /** Bio:
+         */
+        public static final int bio_colon=0x7f070054;
         /** Blu-ray
          */
-        public static final int bluray=0x7f070047;
+        public static final int bluray=0x7f070055;
         /** Blu-ray Only
          */
-        public static final int bluray_only=0x7f070048;
+        public static final int bluray_only=0x7f070056;
         /** Bookmarks
          */
-        public static final int bookmarks=0x7f070049;
-        /** Both
-         */
-        public static final int both=0x7f07004a;
+        public static final int bookmarks=0x7f070057;
         public static final int buy_tickets=0x7f07000f;
         /** Call
          */
-        public static final int call=0x7f07004b;
+        public static final int call=0x7f070058;
         /** Can you increase the maximum search distance for theaters?
          */
-        public static final int can_you_increase_the_maximum_search_distance_for=0x7f0700fd;
+        public static final int can_you_increase_the_maximum_search_distance_for=0x7f070059;
         /** Cancel
          */
-        public static final int cancel=0x7f07004c;
-        public static final int cannot_open_page=0x7f07004d;
+        public static final int cancel=0x7f07005a;
+        /** Cannot Open Page
+         */
+        public static final int cannot_open_page=0x7f07005b;
         /** Cast:
          */
-        public static final int cast_colon=0x7f07004e;
+        public static final int cast_colon=0x7f07005c;
+        /** Category Notifications
+         */
+        public static final int category_notifications=0x7f07005d;
         /** Change date
          */
-        public static final int change_date=0x7f07004f;
+        public static final int change_date=0x7f07005e;
         /** Children & Family
          */
-        public static final int children_family=0x7f070050;
+        public static final int children_family=0x7f07005f;
         /** City/State or Postal Code
          */
-        public static final int citystate_or_postal_code=0x7f070051;
+        public static final int citystate_or_postal_code=0x7f070060;
         /** Classics
          */
-        public static final int classics=0x7f070052;
+        public static final int classics=0x7f070061;
         /** Comedy
          */
-        public static final int comedy=0x7f070053;
+        public static final int comedy=0x7f070062;
         public static final int connecting_to_server=0x7f070018;
         /** Could not change rating:\n\n%@
          */
-        public static final int could_not_change_rating_colon_string=0x7f070054;
+        public static final int could_not_change_rating_colon_string=0x7f070063;
         /** Could not connect to Netflix.
          */
-        public static final int could_not_connect_to_netflix_dot=0x7f070055;
+        public static final int could_not_connect_to_netflix_dot=0x7f070064;
         /** Could not find location.
          */
-        public static final int could_not_find_location_dot=0x7f070056;
+        public static final int could_not_find_location_dot=0x7f070065;
+        /** Could not find location.\nUser denied use of the location service.
+         */
+        public static final int could_not_find_location_dot_user_denied_use_of_the=0x7f070066;
         /** Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?
          */
-        public static final int could_you_add_support_for_blockbuster_movie=0x7f0700fe;
+        public static final int could_you_add_support_for_blockbuster_movie=0x7f070067;
         /** Could you provide an option to let me choose the icon I want for the %@?
          */
-        public static final int could_you_provide_an_option_to_let_me_choose_the=0x7f0700ff;
+        public static final int could_you_provide_an_option_to_let_me_choose_the=0x7f070068;
         public static final int credits=0x7f070022;
         /** Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.
          */
-        public static final int currently_blockbuster_does_not_provided_a=0x7f070100;
+        public static final int currently_blockbuster_does_not_provided_a=0x7f070069;
         /** Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.
          */
-        public static final int currently_no_dot_however_simply_mark_the_theater=0x7f070101;
+        public static final int currently_no_dot_however_simply_mark_the_theater=0x7f07006a;
+        /** Currently, settings can only be modified from Netflix's website
+         */
+        public static final int currently_settings_can_only_be_modified_from=0x7f07006b;
         /** Data for future dates may be incomplete. Reset the search date to the current date to see full listings.
          */
-        public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f07005c;
+        public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f070070;
+        /** Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.
+         */
+        public static final int definitely_use_the_send_feedback_button_above_to=0x7f070071;
         /** Director:
          */
-        public static final int director_colon=0x7f07005d;
+        public static final int director_colon=0x7f070072;
         /** Directors:
          */
-        public static final int directors_colon=0x7f07005e;
+        public static final int directors_colon=0x7f070073;
         /** Disc
          */
-        public static final int disc=0x7f070103;
+        public static final int disc=0x7f070074;
         /** Disc (%d)
          */
-        public static final int disc_paren_number_paren=0x7f070104;
+        public static final int disc_paren_number_paren=0x7f070075;
         /** Disc Queue
          */
-        public static final int disc_queue=0x7f07005f;
+        public static final int disc_queue=0x7f070076;
         /** Distance
          */
-        public static final int distance=0x7f070060;
+        public static final int distance=0x7f070077;
         /** Documentary
          */
-        public static final int documentary=0x7f070061;
+        public static final int documentary=0x7f070078;
         /** $%@. %@ - 1 disc.
          */
         public static final int dollarstring_dot_string_one_disc_dot=0x7f070025;
@@ -365,495 +388,554 @@ public final class R {
         public static final int dollarstring_dot_string_string_discs_dot=0x7f070024;
         /** Downloading data
          */
-        public static final int downloading_data=0x7f070062;
+        public static final int downloading_data=0x7f070079;
+        /** Downloading image
+         */
+        public static final int downloading_image=0x7f07007a;
         /** Downloading information.
          */
-        public static final int downloading_information_dot=0x7f070063;
+        public static final int downloading_information_dot=0x7f07007b;
         public static final int downloading_local_performances=0x7f07001d;
         public static final int downloading_movie_information=0x7f07001b;
-        /** Downloading poster
-         */
-        public static final int downloading_poster=0x7f070064;
         public static final int downloading_theater_information=0x7f07001c;
         /** Drama
          */
-        public static final int drama=0x7f070065;
+        public static final int drama=0x7f07007c;
+        /** Due to licensing restrictions, reviews and ratings may not be available for all movies.
+         */
+        public static final int due_to_licensing_restrictions_reviews_and_ratings=0x7f07007d;
         /** DVD
          */
-        public static final int dvd=0x7f070057;
+        public static final int dvd=0x7f07006c;
         /** DVD Only
          */
-        public static final int dvd_only=0x7f070058;
-        public static final int dvd_queue=0x7f070059;
+        public static final int dvd_only=0x7f07006d;
         /** DVD/Blu-ray
          */
-        public static final int dvdbluray=0x7f07005a;
+        public static final int dvdbluray=0x7f07006e;
         /** DVD/Blu-ray details:
          */
-        public static final int dvdbluray_details_colon=0x7f070102;
-        public static final int dvdbluray_details_provided_by_colon=0x7f07005b;
-        public static final int email=0x7f070066;
+        public static final int dvdbluray_details_colon=0x7f07006f;
         /** E-mail listings
          */
-        public static final int email_listings=0x7f070067;
+        public static final int email_listings=0x7f07007e;
         /** Enabled
          */
-        public static final int enabled=0x7f070068;
+        public static final int enabled=0x7f07007f;
         public static final int enter_feedback=0x7f070017;
         /** Entire History
          */
-        public static final int entire_history=0x7f070069;
+        public static final int entire_history=0x7f070080;
         /** Error occurred
          */
-        public static final int error_occurred=0x7f07006a;
+        public static final int error_occurred=0x7f070081;
         /** Error occurred talking to Netflix. Please try again later.
          */
-        public static final int error_occurred_talking_to_netflix_dot_please_try=0x7f07006b;
+        public static final int error_occurred_talking_to_netflix_dot_please_try=0x7f070082;
         /** Faith & Spirituality
          */
-        public static final int faith_spirituality=0x7f07006c;
+        public static final int faith_spirituality=0x7f070083;
         /** Favorites
          */
-        public static final int favorites=0x7f07006d;
+        public static final int favorites=0x7f070084;
         public static final int feedback=0x7f070015;
+        /** Film trailers provided by:
+         */
+        public static final int film_trailers_provided_by_colon=0x7f070085;
         public static final int find_location_automatically=0x7f07000d;
         public static final int finding_favorites=0x7f07001e;
         public static final int finding_location=0x7f070019;
+        /** Force Refresh
+         */
+        public static final int force_refresh=0x7f070086;
         /** Foreign
          */
-        public static final int foreign=0x7f07006e;
+        public static final int foreign=0x7f070087;
         /** Format:
          */
-        public static final int format_colon=0x7f07006f;
+        public static final int format_colon=0x7f070088;
         /** Gay & Lesbian
          */
-        public static final int gay_lesbian=0x7f070070;
+        public static final int gay_lesbian=0x7f070089;
         /** Genre:
          */
-        public static final int genre_colon=0x7f070071;
+        public static final int genre_colon=0x7f07008a;
         /** Geolocation services provided by:
          */
-        public static final int geolocation_services_provided_by_colon=0x7f070072;
+        public static final int geolocation_services_provided_by_colon=0x7f07008b;
         public static final int get_showtimes=0x7f070010;
+        /** Google Maps
+         */
+        public static final int google_maps=0x7f07008c;
+        /** Graphics by David Steinberger
+         */
+        public static final int graphics_by_david_steinberger=0x7f07008d;
         /** Graphics by Jeffrey Nee
          */
-        public static final int graphics_by_jeffrey_nee=0x7f070073;
+        public static final int graphics_by_jeffrey_nee=0x7f07008e;
         /** Help
          */
-        public static final int help=0x7f070105;
-        /** Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)
-         */
-        public static final int help_keep_now_playing_free_as_a_longtime_now=0x7f070106;
+        public static final int help=0x7f07008f;
         /** Horror
          */
-        public static final int horror=0x7f070074;
-        /** How do I get to my alternative queues for my Netflix account?
-         */
-        public static final int how_do_i_get_to_my_alternative_queues_for_my=0x7f070107;
+        public static final int horror=0x7f070090;
         /** I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!
          */
-        public static final int i_will_absolutely_try_dot_please_tap_the_add=0x7f070108;
+        public static final int i_will_absolutely_try_dot_please_tap_the_add=0x7f070091;
         /** If %@ caches data, why do I always see the 'loading spinner' even on posters that were already loaded?
          */
-        public static final int if_string_caches_data_why_do_i_always_see_the=0x7f07010a;
+        public static final int if_string_caches_data_why_do_i_always_see_the=0x7f070093;
         /** If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!
          */
-        public static final int if_you_like_string_please_consider_writing_a_small=0x7f07010b;
+        public static final int if_you_like_string_please_consider_writing_a_small=0x7f070094;
         /** IMDb's licensing fees are unfortunately too high for me to afford. Sorry!
          */
-        public static final int imdbs_licensing_fees_are_unfortunately_too_high=0x7f070109;
+        public static final int imdbs_licensing_fees_are_unfortunately_too_high=0x7f070092;
         /** Independent
          */
-        public static final int independent=0x7f070075;
+        public static final int independent=0x7f070095;
         public static final int insert_sdcard=0x7f070013;
         /** Instant
          */
-        public static final int instant=0x7f07010c;
+        public static final int instant=0x7f070096;
         /** Instant (%d)
          */
-        public static final int instant_paren_number_paren=0x7f07010d;
+        public static final int instant_paren_number_paren=0x7f070097;
         /** Instant Queue
          */
-        public static final int instant_queue=0x7f070076;
+        public static final int instant_queue=0x7f070098;
+        /** Instant Watch
+         */
+        public static final int instant_watch=0x7f070099;
+        /** International Data
+         */
+        public static final int international_data=0x7f07009a;
         /** kilometer
          */
-        public static final int kilometer=0x7f0700f2;
+        public static final int kilometer=0x7f070134;
         /** kilometers
          */
-        public static final int kilometers=0x7f0700f3;
-        public static final int last_friday=0x7f070077;
-        public static final int last_monday=0x7f070078;
-        public static final int last_saturday=0x7f070079;
-        public static final int last_sunday=0x7f07007a;
-        public static final int last_thursday=0x7f07007b;
-        public static final int last_tuesday=0x7f07007c;
-        public static final int last_wednesday=0x7f07007d;
+        public static final int kilometers=0x7f070135;
+        /** Last Friday
+         */
+        public static final int last_friday=0x7f07009b;
+        /** Last Monday
+         */
+        public static final int last_monday=0x7f07009c;
+        /** Last Saturday
+         */
+        public static final int last_saturday=0x7f07009d;
+        /** Last Sunday
+         */
+        public static final int last_sunday=0x7f07009e;
+        /** Last Thursday
+         */
+        public static final int last_thursday=0x7f07009f;
+        /** Last Tuesday
+         */
+        public static final int last_tuesday=0x7f0700a0;
+        /** Last Wednesday
+         */
+        public static final int last_wednesday=0x7f0700a1;
         /** Less than %d %@ away
          */
-        public static final int less_than_number_string_away=0x7f07007e;
+        public static final int less_than_number_string_away=0x7f0700a2;
         /** Less than 1 %@ away
          */
-        public static final int less_than_one_string_away=0x7f07007f;
+        public static final int less_than_one_string_away=0x7f0700a3;
         /** License
          */
-        public static final int license=0x7f070080;
+        public static final int license=0x7f0700a4;
         /** Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!
          */
-        public static final int licensing_restrictions_with_certain_data_providers=0x7f07010e;
-        public static final int loading=0x7f070081;
-        /** Loading poster
+        public static final int licensing_restrictions_with_certain_data_providers=0x7f0700a5;
+        /** Like This App?
          */
-        public static final int loading_poster=0x7f070082;
+        public static final int like_this_app=0x7f0700a6;
+        /** Loading
+         */
+        public static final int loading=0x7f0700a7;
+        /** Loading image
+         */
+        public static final int loading_image=0x7f0700a9;
+        /** Loading Indicators
+         */
+        public static final int loading_indicators=0x7f0700a8;
         /** Local results unavailable
          */
-        public static final int local_results_unavailable=0x7f070083;
+        public static final int local_results_unavailable=0x7f0700aa;
         /** Localized by:
          */
-        public static final int localized_by_colon=0x7f070084;
+        public static final int localized_by_colon=0x7f0700ab;
         /** Location
          */
-        public static final int location=0x7f070085;
+        public static final int location=0x7f0700ac;
         /** Log In to Existing Account
          */
-        public static final int log_in_to_existing_account=0x7f070086;
-        /** Log Out of Netflix
-         */
-        public static final int log_out_of_netflix=0x7f070087;
-        /** Log out of Netflix and log back in with the user name and password for your alternative queue.
-         */
-        public static final int log_out_of_netflix_and_log_back_in_with_the_user=0x7f07010f;
+        public static final int log_in_to_existing_account=0x7f0700ad;
         /** Long Wait
          */
-        public static final int long_wait=0x7f070088;
+        public static final int long_wait=0x7f0700ae;
         /** Map
          */
-        public static final int map=0x7f070089;
+        public static final int map=0x7f0700af;
+        /** Map Theaters
+         */
+        public static final int map_theaters=0x7f0700b0;
         public static final int menu_movies=0x7f070004;
         /** mile
          */
-        public static final int mile=0x7f0700f4;
+        public static final int mile=0x7f070136;
         /** miles
          */
-        public static final int miles=0x7f0700f5;
+        public static final int miles=0x7f070137;
         public static final int more_options=0x7f070006;
         /** Most Popular
          */
-        public static final int most_popular=0x7f07008a;
+        public static final int most_popular=0x7f0700b1;
         /** Movie details provided by:
          */
-        public static final int movie_details_provided_by_colon=0x7f07008b;
-        /** movie rating
+        public static final int movie_details_provided_by_colon=0x7f0700b3;
+        /** Movie Rating
          */
-        public static final int movie_rating=0x7f070129;
+        public static final int movie_rating=0x7f0700b2;
         /** Movie reviews provided by:
          */
-        public static final int movie_reviews_provided_by_colon=0x7f07008c;
+        public static final int movie_reviews_provided_by_colon=0x7f0700b4;
         /** Movies
          */
-        public static final int movies=0x7f07008d;
+        public static final int movies=0x7f0700b5;
         /** Movies (%d)
          */
-        public static final int movies_paren_number_paren=0x7f070110;
-        /** moving movie
+        public static final int movies_paren_number_paren=0x7f0700b6;
+        /** Moving Movie
          */
-        public static final int moving_movie=0x7f07012a;
+        public static final int moving_movie=0x7f0700b7;
         /** Music & Musicals
          */
-        public static final int music_musicals=0x7f07008e;
+        public static final int music_musicals=0x7f0700b8;
         /** My other applications
          */
-        public static final int my_other_applications=0x7f07008f;
+        public static final int my_other_applications=0x7f0700b9;
         /** Name
          */
-        public static final int name=0x7f070090;
-        /** Neither
-         */
-        public static final int neither=0x7f070091;
+        public static final int name=0x7f0700ba;
         /** Netflix
          */
-        public static final int netflix=0x7f070092;
-        /** Netflix:
-         */
-        public static final int netflix_colon=0x7f070093;
-        /** Netflix '%@'
-         */
-        public static final int netflix_string=0x7f070111;
+        public static final int netflix=0x7f0700bb;
         /** Network unavailable
          */
-        public static final int network_unavailable=0x7f070094;
+        public static final int network_unavailable=0x7f0700bc;
         /** New DVDs
          */
-        public static final int new_dvds=0x7f070096;
+        public static final int new_dvds=0x7f0700be;
         /** New 'Instant Watch'
          */
-        public static final int new_instant_watch=0x7f070095;
-        /** No
+        public static final int new_instant_watch=0x7f0700bd;
+        /** No biography available.
          */
-        public static final int no=0x7f070097;
+        public static final int no_biography_available_dot=0x7f0700c0;
         public static final int no_information=0x7f070012;
         /** No information found
          */
-        public static final int no_information_found=0x7f070099;
+        public static final int no_information_found=0x7f0700c1;
         /** No listings found at '%@' on %@
          */
-        public static final int no_listings_found_at_string_on_string=0x7f07009a;
+        public static final int no_listings_found_at_string_on_string=0x7f0700c2;
         /** No listings found for '%@' at '%@' on %@
          */
-        public static final int no_listings_found_for_string_at_string_on_string=0x7f07009b;
+        public static final int no_listings_found_for_string_at_string_on_string=0x7f0700c3;
         /** No listings found for '%@' on %@
          */
-        public static final int no_listings_found_for_string_on_string=0x7f07009c;
-        public static final int no_more_show_times_available_today_dot=0x7f07009d;
+        public static final int no_listings_found_for_string_on_string=0x7f0700c4;
         public static final int no_results_found_for=0x7f070014;
         /** No results found for '%@'
          */
-        public static final int no_results_found_for_string=0x7f07009e;
+        public static final int no_results_found_for_string=0x7f0700c5;
         /** No synopsis available.
          */
-        public static final int no_synopsis_available_dot=0x7f07009f;
+        public static final int no_synopsis_available_dot=0x7f0700c6;
         /** No Thanks
          */
-        public static final int no_thanks=0x7f070098;
+        public static final int no_thanks=0x7f0700bf;
         /** None
          */
-        public static final int none=0x7f0700a0;
+        public static final int none=0x7f0700c7;
         /** Not Rentable
          */
-        public static final int not_rentable=0x7f0700a1;
+        public static final int not_rentable=0x7f0700c8;
         /** Not yet rated
          */
-        public static final int not_yet_rated=0x7f0700a2;
+        public static final int not_yet_rated=0x7f0700c9;
+        /** Now Playing Feedback
+         */
+        public static final int now_playing_feedback=0x7f0700ca;
         public static final int now_showing=0x7f070011;
         /** %d hours
          */
-        public static final int number_hours=0x7f07002d;
+        public static final int number_hours=0x7f070032;
         /** #%d in %@
          */
         public static final int number_in_string=0x7f070023;
         /** %d minutes
          */
-        public static final int number_minutes=0x7f07002e;
-        public static final int number_months_ago=0x7f07002f;
+        public static final int number_minutes=0x7f070033;
+        /** %d months ago
+         */
+        public static final int number_months_ago=0x7f070034;
         /** %d of %d
          */
-        public static final int number_of_number=0x7f070030;
+        public static final int number_of_number=0x7f070035;
+        /** %d Questions & Answers
+         */
+        public static final int number_questions_answers=0x7f070031;
         /** %d %@
          */
-        public static final int number_string=0x7f07002c;
+        public static final int number_string=0x7f070030;
         /** %d theaters outside search area
          */
-        public static final int number_theaters_outside_search_area=0x7f070031;
-        public static final int number_weeks_ago=0x7f070032;
-        public static final int number_years_ago=0x7f070033;
+        public static final int number_theaters_outside_search_area=0x7f070036;
+        /** %d weeks ago
+         */
+        public static final int number_weeks_ago=0x7f070037;
+        /** %d years ago
+         */
+        public static final int number_years_ago=0x7f070038;
         public static final int off=0x7f07000a;
         /** OK
          */
-        public static final int ok=0x7f0700a3;
+        public static final int ok=0x7f0700cb;
         public static final int on=0x7f070009;
         /** 1 hour
          */
-        public static final int one_hour=0x7f070034;
+        public static final int one_hour=0x7f070039;
         /** 1 kilometer
          */
-        public static final int one_kilometer=0x7f070035;
+        public static final int one_kilometer=0x7f07003a;
         /** 1 mile
          */
-        public static final int one_mile=0x7f070036;
+        public static final int one_mile=0x7f07003b;
         /** 1 minute
          */
-        public static final int one_minute=0x7f070037;
-        public static final int one_month_ago=0x7f070038;
+        public static final int one_minute=0x7f07003c;
+        /** 1 month ago
+         */
+        public static final int one_month_ago=0x7f07003d;
         /** 1 theater outside search area
          */
-        public static final int one_theater_outside_search_area=0x7f070039;
-        public static final int one_week_ago=0x7f07003a;
-        public static final int one_year_ago=0x7f07003b;
+        public static final int one_theater_outside_search_area=0x7f07003e;
+        /** 1 week ago
+         */
+        public static final int one_week_ago=0x7f07003f;
+        /** 1 year ago
+         */
+        public static final int one_year_ago=0x7f070040;
         /** Open and Authorize
          */
-        public static final int open_and_authorize=0x7f0700a4;
+        public static final int open_and_authorize=0x7f0700cc;
+        /** Options
+         */
+        public static final int options=0x7f0700cd;
         public static final int order_tickets=0x7f07000c;
         /** Order tickets for %@
          */
-        public static final int order_tickets_for_string=0x7f0700a5;
+        public static final int order_tickets_for_string=0x7f0700ce;
         /** Over Quota - Try Again Later
          */
-        public static final int over_quota_try_again_later=0x7f0700a6;
-        /** People
-         */
-        public static final int people=0x7f0700a7;
+        public static final int over_quota_try_again_later=0x7f0700cf;
         /** Play trailer
          */
-        public static final int play_trailer=0x7f0700a8;
+        public static final int play_trailer=0x7f0700d0;
         /** Please enter your location
          */
-        public static final int please_enter_your_location=0x7f0700aa;
+        public static final int please_enter_your_location=0x7f0700d2;
+        /** Please rate it in the App Store!
+         */
+        public static final int please_rate_it_in_the_app_store=0x7f0700d3;
         /** Please Wait
          */
-        public static final int please_wait=0x7f0700a9;
+        public static final int please_wait=0x7f0700d1;
         /** Please wait...
          */
-        public static final int please_wait_dot_dot_dot=0x7f0700ab;
+        public static final int please_wait_dot_dot_dot=0x7f0700d4;
+        /** Preferred Formats
+         */
+        public static final int preferred_formats=0x7f0700d5;
         /** Prioritize Bookmarks
          */
-        public static final int prioritize_bookmarks=0x7f0700ac;
-        /** Project website
+        public static final int prioritize_bookmarks=0x7f0700d6;
+        /** Project Website
          */
-        public static final int project_website=0x7f0700ad;
+        public static final int project_website=0x7f0700d7;
+        /** Rate It!
+         */
+        public static final int rate_it=0x7f0700d8;
         /** Rated:
          */
-        public static final int rated_colon=0x7f0700af;
+        public static final int rated_colon=0x7f0700da;
         /** Rated %@
          */
-        public static final int rated_string=0x7f0700ae;
+        public static final int rated_string=0x7f0700d9;
         /** Read reviews
          */
-        public static final int read_reviews=0x7f0700b0;
+        public static final int read_reviews=0x7f0700db;
         /** Really close by
          */
-        public static final int really_close_by=0x7f0700b1;
+        public static final int really_close_by=0x7f0700dc;
         /** Really far away
          */
-        public static final int really_far_away=0x7f0700b2;
-        /** Really log out of Netflix?
-         */
-        public static final int really_log_out_of_netflix=0x7f0700b3;
+        public static final int really_far_away=0x7f0700dd;
         /** Recently Returned
          */
-        public static final int recently_returned=0x7f0700b4;
+        public static final int recently_returned=0x7f0700de;
         /** Recently Watched
          */
-        public static final int recently_watched=0x7f0700b5;
+        public static final int recently_watched=0x7f0700df;
         /** Recommendations
          */
-        public static final int recommendations=0x7f0700b6;
+        public static final int recommendations=0x7f0700e0;
         /** Release
          */
-        public static final int release=0x7f0700b7;
+        public static final int release=0x7f0700e1;
         /** Release: %@
          */
-        public static final int release_colon_string=0x7f0700b9;
+        public static final int release_colon_string=0x7f0700e3;
         /** Release date:
          */
-        public static final int release_date_colon=0x7f0700b8;
+        public static final int release_date_colon=0x7f0700e2;
+        /** Remove Account
+         */
+        public static final int remove_account=0x7f0700e4;
         /** Rental History
          */
-        public static final int rental_history=0x7f0700ba;
+        public static final int rental_history=0x7f0700e5;
         /** Reordering queue failed:\n\n%@
          */
-        public static final int reordering_queue_failed_colon_string=0x7f0700bb;
+        public static final int reordering_queue_failed_colon_string=0x7f0700e6;
         /** Requesting access
          */
-        public static final int requesting_access=0x7f0700bc;
+        public static final int requesting_access=0x7f0700e7;
         /** Requesting authorization
          */
-        public static final int requesting_authorization=0x7f0700bd;
+        public static final int requesting_authorization=0x7f0700e8;
         /** Reviews
          */
-        public static final int reviews=0x7f0700be;
+        public static final int reviews=0x7f0700e9;
         /** Romance
          */
-        public static final int romance=0x7f0700bf;
+        public static final int romance=0x7f0700ea;
         public static final int rotten_tomatoes_text=0x7f070016;
         /** Running time:
          */
-        public static final int running_time_colon=0x7f0700c0;
-        public static final int safari=0x7f0700c1;
+        public static final int running_time_colon=0x7f0700eb;
+        /** Safari
+         */
+        public static final int safari=0x7f0700ec;
         /** Save All to Photo Library
          */
-        public static final int save_all_to_photo_library=0x7f070112;
+        public static final int save_all_to_photo_library=0x7f0700ed;
         /** Save to Photo Library
          */
-        public static final int save_to_photo_library=0x7f070113;
+        public static final int save_to_photo_library=0x7f0700ee;
         /** Saved
          */
-        public static final int saved=0x7f0700c2;
+        public static final int saved=0x7f0700ef;
         /** Saved in %@
          */
-        public static final int saved_in_string=0x7f0700c3;
+        public static final int saved_in_string=0x7f0700f0;
         /** Saving
          */
-        public static final int saving=0x7f070114;
+        public static final int saving=0x7f0700f1;
         /** Saving %d of %d
          */
-        public static final int saving_number_of_number=0x7f070115;
+        public static final int saving_number_of_number=0x7f0700f2;
         /** Sci-Fi & Fantasy
          */
-        public static final int scifi_fantasy=0x7f0700c4;
+        public static final int scifi_fantasy=0x7f0700f3;
         /** Score
          */
-        public static final int score=0x7f0700c5;
+        public static final int score=0x7f0700f4;
         /** Screen Rotation
          */
-        public static final int screen_rotation=0x7f0700c6;
-        /** Search
-         */
+        public static final int screen_rotation=0x7f0700f5;
         public static final int search=0x7f070007;
         /** Search Date
          */
-        public static final int search_date=0x7f0700c7;
+        public static final int search_date=0x7f0700f6;
         /** Search Distance
          */
-        public static final int search_distance=0x7f0700c8;
+        public static final int search_distance=0x7f0700f7;
         /** Search Netflix
          */
-        public static final int search_netflix=0x7f070116;
-        /** searching
+        public static final int search_netflix=0x7f0700f8;
+        /** Searching
          */
-        public static final int searching=0x7f07012b;
+        public static final int searching=0x7f0700f9;
         public static final int searching_location=0x7f07001a;
         /** See the section on IMDb.
          */
-        public static final int see_the_section_on_imdb_dot=0x7f070117;
+        public static final int see_the_section_on_imdb_dot=0x7f0700fa;
         /** Send Feedback
          */
-        public static final int send_feedback=0x7f0700c9;
+        public static final int send_feedback=0x7f0700fb;
         /** Settings
          */
-        public static final int settings=0x7f0700ca;
+        public static final int settings=0x7f0700fc;
         /** Short Wait
          */
-        public static final int short_wait=0x7f0700cb;
-        /** Show
+        public static final int short_wait=0x7f0700fd;
+        /** Show Both
          */
-        public static final int show=0x7f0700cc;
+        public static final int show_both=0x7f070100;
+        /** Show Neither
+         */
+        public static final int show_neither=0x7f070101;
+        /** Show Notifications
+         */
+        public static final int show_notifications=0x7f070102;
         /** Show %d hidden theaters
          */
-        public static final int show_number_hidden_theaters=0x7f0700cd;
+        public static final int show_number_hidden_theaters=0x7f0700fe;
         /** Show 1 hidden theater
          */
-        public static final int show_one_hidden_theater=0x7f0700ce;
+        public static final int show_one_hidden_theater=0x7f0700ff;
         public static final int show_theaters_in_range=0x7f070021;
         public static final int show_theaters_out_of_range=0x7f070020;
         /** Show times retrieved on %@.
          */
-        public static final int show_times_retrieved_on_string_dot=0x7f0700cf;
+        public static final int show_times_retrieved_on_string_dot=0x7f070103;
         /** $%@. %@ - Showtimes for Bolt at Century 16.
          */
         public static final int showtimes_for=0x7f07000b;
         /** Sign Up for New Account
          */
-        public static final int sign_up_for_new_account=0x7f0700d0;
+        public static final int sign_up_for_new_account=0x7f070104;
         public static final int sort_movies=0x7f070002;
         public static final int sort_theaters=0x7f070003;
         /** Special Interest
          */
-        public static final int special_interest=0x7f0700d1;
+        public static final int special_interest=0x7f070105;
         /** Sports & Fitness
          */
-        public static final int sports_fitness=0x7f0700d2;
-        /** %@ aggressively caches all data locally on your %@ so that it will be usable even without a network connection.  The only data not cached are movie trailers.
+        public static final int sports_fitness=0x7f070106;
+        /** %@ aggressively caches all data locally on your device so that it will be usable even without a network connection.  The only data not cached are movie trailers.
          */
-        public static final int string_aggressively_caches_all_data_locally_on=0x7f0700f6;
-        public static final int string_cannot_open_the_page_because_it_is_not=0x7f070029;
-        /** %@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.
+        public static final int string_aggressively_caches_all_data_locally_on=0x7f070029;
+        /** %@ cannot open the page because it is not connected to the Internet.
          */
-        public static final int string_does_not_store_your_netflix_username_and=0x7f07002a;
+        public static final int string_cannot_open_the_page_because_it_is_not=0x7f07002a;
+        /** %@ contains missing/incorrect translations. Can you fix it?
+         */
+        public static final int string_contains_missingincorrect_translations_dot=0x7f07002b;
+        /** %@ does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.
+         */
+        public static final int string_does_not_store_your_netflix_username_and=0x7f07002c;
         /** %@ doesn't list my favorite theater. Can you add it?
          */
-        public static final int string_doesnt_list_my_favorite_theater_dot_can_you=0x7f0700f7;
+        public static final int string_doesnt_list_my_favorite_theater_dot_can_you=0x7f07002d;
         /** %@. %@
          */
-        public static final int string_dot_string=0x7f07002b;
+        public static final int string_dot_string=0x7f07002f;
         /** %@ (No Online Ticketing)
          */
         public static final int string_paren_no_online_ticketing_paren=0x7f070028;
@@ -862,152 +944,147 @@ public final class R {
         public static final int string_paren_string_paren=0x7f070027;
         /** %@ scores
          */
-        public static final int string_scores=0x7f0700f8;
+        public static final int string_scores=0x7f07002e;
         /** %@ %@
          */
         public static final int string_string=0x7f070026;
         /** Studio:
          */
-        public static final int studio_colon=0x7f0700d3;
+        public static final int studio_colon=0x7f070107;
         /** Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!
          */
-        public static final int success_string_was_granted_access_to_your_netflix=0x7f0700d4;
+        public static final int success_string_was_granted_access_to_your_netflix=0x7f070108;
         public static final int synopsis=0x7f070005;
         public static final int tap_here_to_enter_your_search_location=0x7f070008;
         /** Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)
          */
-        public static final int tap_the_send_feedback_button_above_to_contact_me=0x7f070118;
+        public static final int tap_the_send_feedback_button_above_to_contact_me=0x7f070109;
         /** Tap to enter location
          */
-        public static final int tap_to_enter_location=0x7f0700d5;
+        public static final int tap_to_enter_location=0x7f07010a;
         /** Television
          */
-        public static final int television=0x7f0700d6;
+        public static final int television=0x7f07010b;
         /** Theater last reported show times on\n%@.
          */
-        public static final int theater_last_reported_show_times_on_string_dot=0x7f0700d7;
+        public static final int theater_last_reported_show_times_on_string_dot=0x7f07010c;
         /** Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.
          */
-        public static final int theater_providers_often_limit_the_maximum_search=0x7f0700d8;
+        public static final int theater_providers_often_limit_the_maximum_search=0x7f07010d;
         /** Theaters
          */
-        public static final int theaters=0x7f0700d9;
+        public static final int theaters=0x7f07010e;
         /** Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.
          */
-        public static final int theaters_are_removed_when_they_do_not_provide=0x7f07011a;
+        public static final int theaters_are_removed_when_they_do_not_provide=0x7f070110;
         public static final int theaters_out_of_range=0x7f07001f;
         /** Theaters (%d)
          */
-        public static final int theaters_paren_number_paren=0x7f070119;
-        public static final int theme=0x7f0700da;
-        public static final int this_is_the_first_release_of_netflix_support_in=0x7f07012e;
+        public static final int theaters_paren_number_paren=0x7f07010f;
         /** This theater has not yet reported its show times. When they become available, %@ will retrieve them automatically.
          */
-        public static final int this_theater_has_not_yet_reported_its_show_times=0x7f0700db;
+        public static final int this_theater_has_not_yet_reported_its_show_times=0x7f070111;
         /** Thrillers
          */
-        public static final int thrillers=0x7f0700dc;
+        public static final int thrillers=0x7f070112;
         /** Ticket sales provided by:
          */
-        public static final int ticket_sales_provided_by_colon=0x7f0700dd;
+        public static final int ticket_sales_provided_by_colon=0x7f070113;
         /** Title
          */
-        public static final int title=0x7f0700de;
+        public static final int title=0x7f070114;
         /** To make scrolling as fast and as smooth as possible, %@ does not show the poster until scrolling has stopped.
          */
-        public static final int to_make_scrolling_as_fast_and_as_smooth_as=0x7f07011b;
+        public static final int to_make_scrolling_as_fast_and_as_smooth_as=0x7f070115;
         /** Today
          */
-        public static final int today=0x7f0700df;
+        public static final int today=0x7f070116;
         /** Top DVDs
          */
-        public static final int top_dvds=0x7f0700e1;
-        /** Top 'Instant Watch'
-         */
-        public static final int top_instant_watch=0x7f0700e0;
+        public static final int top_dvds=0x7f070117;
         /** Top of Disc Queue
          */
-        public static final int top_of_disc_queue=0x7f07011c;
-        public static final int top_of_dvd_queue=0x7f0700e2;
+        public static final int top_of_disc_queue=0x7f070118;
         /** Top of Instant Queue
          */
-        public static final int top_of_instant_queue=0x7f0700e3;
+        public static final int top_of_instant_queue=0x7f070119;
+        /** Translations
+         */
+        public static final int translations=0x7f07011a;
         /** Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with.
          */
-        public static final int unfortunately_movietickets_dot_com_will_not=0x7f07011d;
+        public static final int unfortunately_movietickets_dot_com_will_not=0x7f07011b;
         /** Unknown Distance
          */
-        public static final int unknown_distance=0x7f0700e4;
+        public static final int unknown_distance=0x7f07011c;
         /** Unknown Release Date
          */
-        public static final int unknown_release_date=0x7f0700e5;
-        /** Unknown Release Ddate
-         */
-        public static final int unknown_release_ddate=0x7f07011e;
+        public static final int unknown_release_date=0x7f07011d;
         /** Unrated
          */
-        public static final int unrated=0x7f0700e6;
+        public static final int unrated=0x7f07011e;
         /** Upcoming
          */
-        public static final int upcoming=0x7f0700e7;
+        public static final int upcoming=0x7f07011f;
         /** Updating
          */
-        public static final int updating=0x7f0700e8;
+        public static final int updating=0x7f070120;
         /** Updating: %@
          */
-        public static final int updating_colon_string=0x7f07011f;
+        public static final int updating_colon_string=0x7f070123;
         /** Updating Listings
          */
-        public static final int updating_listings=0x7f0700e9;
-        /** updating queue
+        public static final int updating_listings=0x7f070121;
+        /** Updating Queue
          */
-        public static final int updating_queue=0x7f07012c;
+        public static final int updating_queue=0x7f070122;
         /** Use Small Fonts
          */
-        public static final int use_small_fonts=0x7f0700ea;
+        public static final int use_small_fonts=0x7f070124;
         /** Very Long Wait
          */
-        public static final int very_long_wait=0x7f070120;
-        public static final int visit_imdb=0x7f07012d;
+        public static final int very_long_wait=0x7f070125;
         /** Website
          */
-        public static final int website=0x7f0700eb;
+        public static final int website=0x7f070126;
         /** Websites
          */
-        public static final int websites=0x7f0700ec;
+        public static final int websites=0x7f070127;
         /** What can I do if I have a question that hasn't been answered?
          */
-        public static final int what_can_i_do_if_i_have_a_question_that_hasnt_been=0x7f070121;
+        public static final int what_can_i_do_if_i_have_a_question_that_hasnt_been=0x7f070128;
         /** Why did my theater disappear?
          */
-        public static final int why_did_my_theater_disappear=0x7f070122;
+        public static final int why_did_my_theater_disappear=0x7f070129;
         /** Why doesn't %@ offer ticketing through Movietickets.com as well as Fandango.com?
          */
-        public static final int why_doesnt_string_offer_ticketing_through=0x7f070123;
+        public static final int why_doesnt_string_offer_ticketing_through=0x7f07012a;
         /** Why doesn't %@ provide IMDb user ratings and reviews?
          */
-        public static final int why_doesnt_string_provide_imdb_user_ratings_and=0x7f070124;
+        public static final int why_doesnt_string_provide_imdb_user_ratings_and=0x7f07012b;
         /** Why doesn't %@ provide Yahoo ratings and reviews?
          */
-        public static final int why_doesnt_string_provide_yahoo_ratings_and=0x7f070125;
+        public static final int why_doesnt_string_provide_yahoo_ratings_and=0x7f07012c;
         /** Why don't I see ratings and reviews for all movies in %@?
          */
-        public static final int why_dont_i_see_ratings_and_reviews_for_all_movies=0x7f070126;
+        public static final int why_dont_i_see_ratings_and_reviews_for_all_movies=0x7f07012d;
         /** Why is %@ always downloading data? Why doesn't it store the data locally?
          */
-        public static final int why_is_string_always_downloading_data_why_doesnt=0x7f070127;
+        public static final int why_is_string_always_downloading_data_why_doesnt=0x7f07012e;
         /** Write Review
          */
-        public static final int write_review=0x7f0700ed;
+        public static final int write_review=0x7f07012f;
         /** Written by Cyrus Najmabadi
          */
-        public static final int written_by_cyrus_najmabadi=0x7f0700ee;
-        /** Yes
+        public static final int written_by_cyrus_najmabadi=0x7f070130;
+        /** Yesterday
          */
-        public static final int yes=0x7f0700ef;
-        public static final int yesterday=0x7f0700f0;
+        public static final int yesterday=0x7f070131;
+        /** You must first set up an email account on your device before you can send feedback.
+         */
+        public static final int you_must_first_set_up_an_email_account_on_your=0x7f070132;
         /** Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.
          */
-        public static final int your_strings_country_is_set_to_colon_string_full=0x7f0700f1;
+        public static final int your_strings_country_is_set_to_colon_string_full=0x7f070133;
     }
 }
