@@ -35,7 +35,7 @@ public class Program {
             processDirectory(new File(arg));
         }
         processStringsFiles();
-        //generateAndroidFiles();
+        generateAndroidFiles();
         //printForwardDeclaration();
     }
 
@@ -56,7 +56,7 @@ public class Program {
         }
     }
 
-    private static void processFile(
+    private static void processFile1(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
         /*
         removeUnusedImports(child);
@@ -73,7 +73,7 @@ public class Program {
     }
 
 
-    private static void processFile1(
+    private static void processFile(
             final File child) throws IOException, InterruptedException, NoSuchAlgorithmException {
         insertCopyright(child);
         trimRight(child);
@@ -82,6 +82,14 @@ public class Program {
     }
 
     private static void generateAndroidFiles() throws IOException, ParserConfigurationException, TransformerException {
+        Map<String, Pair> englishEntries = null;
+        for (final File file : stringsFiles) {
+            if (file.getPath().contains("en.lproj")) {
+                englishEntries = getLocalizableEntries(file);
+                break;
+            }
+        }
+
         for (final File file : stringsFiles) {
             final Map<String, Pair> entries = getLocalizableEntries(file);
 
@@ -112,18 +120,13 @@ public class Program {
             document.appendChild(resourcesElement);
 
             for (final Map.Entry<String, Pair> e : entries.entrySet()) {
-                final Element stringElement = document.createElement("string");
+                addAndroidElement(language, document, resourcesElement, e);
+            }
 
-                final String key = makeAndroidKey(e.getKey());
-                final String value = makeAndroidValue(e.getValue().first);
-
-                stringElement.setAttribute("name", key);
-                stringElement.setTextContent(value);
-
-                if ("en".equals(language)) {
-                    resourcesElement.appendChild(document.createComment(e.getKey()));
+            for (final Map.Entry<String, Pair> e : englishEntries.entrySet()) {
+                if (!entries.containsKey(e.getKey())) {
+                    addAndroidElement(language, document, resourcesElement, e);
                 }
-                resourcesElement.appendChild(stringElement);
             }
 
             final Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -133,6 +136,21 @@ public class Program {
 
             transformer.transform(new DOMSource(document), new StreamResult(outfile));
         }
+    }
+
+    private static void addAndroidElement(String language, Document document, Element resourcesElement, Map.Entry<String, Pair> e) {
+        final Element stringElement = document.createElement("string");
+
+        final String key = makeAndroidKey(e.getKey());
+        final String value = makeAndroidValue(e.getValue().first);
+
+        stringElement.setAttribute("name", key);
+        stringElement.setTextContent(value);
+
+        if ("en".equals(language)) {
+            resourcesElement.appendChild(document.createComment(e.getKey()));
+        }
+        resourcesElement.appendChild(stringElement);
     }
 
     private static String getLanguage(final String path) {
@@ -284,7 +302,7 @@ public class Program {
                         '\n' +
                         "Thanks very much!";
 
-                
+
                 text = commentText("// ", text);
 
                 for (final String s : missingStrings) {
@@ -298,7 +316,7 @@ public class Program {
                 }
 
                 final OutputStream output = new FileOutputStream(locFile);
-                output.write(new byte[] { (byte)0xEF, (byte)0xBB, (byte)0xBF });
+                output.write(new byte[]{(byte) 0xEF, (byte) 0xBB, (byte) 0xBF});
                 final Writer writer = new OutputStreamWriter(output, "UTF-8");
 
                 writer.write(text.trim() + '\n');
@@ -374,7 +392,9 @@ public class Program {
                 final String key = line.substring(1, secondQuote);
                 final String value = line.substring(thirdQuote + 1, fourthQuote);
 
-                entries.put(key, new Pair(value, comment));
+                if (value.length() > 0) {
+                    entries.put(key, new Pair(value, comment));
+                }
             }
         }
 
