@@ -261,7 +261,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
   if (section == WrittenBySection) {
-    return [NSString stringWithFormat:LocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!", nil), [Application name]];
+    return [NSString stringWithFormat:LocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!", nil), [Application name]];
   } else if (section == MyOtherApplicationsSection) {
   } else if (section == GraphicsBySection) {
   } else if (section == LocalizedBySection) {
