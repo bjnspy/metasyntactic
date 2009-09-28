@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
-    Copyright 2008 Cyrus Najmabadi
-
+Copyright 2008 Cyrus Najmabadi
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+    
         http://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
-    limitations under the License.
--->
+    limitations under the License.-->
 <resources>
   <!--#%d in %@-->
   <string name="number_in_string">#%d in %s</string>
@@ -27,10 +26,14 @@
   <string name="string_paren_string_paren">%s (%s)</string>
   <!--%@ (No Online Ticketing)-->
   <string name="string_paren_no_online_ticketing_paren">%s (No Online Ticketing)</string>
-  <!--%@ aggressively caches all data locally on your %@ so that it will be usable even without a network connection.  The only data not cached are movie trailers.-->
-  <string name="string_aggressively_caches_all_data_locally_on">%s aggressively caches all data locally on your %s so that it will be usable even without a network connection.  The only data not cached are movie trailers.</string>
-  <!--%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.-->
-  <string name="string_does_not_store_your_netflix_username_and">%s does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %s.</string>
+  <!--%@ aggressively caches all data locally on your device so that it will be usable even without a network connection.  The only data not cached are movie trailers.-->
+  <string name="string_aggressively_caches_all_data_locally_on">%s aggressively caches all data locally on your device so that it will be usable even without a network connection.  The only data not cached are movie trailers.</string>
+  <!--%@ cannot open the page because it is not connected to the Internet.-->
+  <string name="string_cannot_open_the_page_because_it_is_not">%s cannot open the page because it is not connected to the Internet.</string>
+  <!--%@ contains missing/incorrect translations. Can you fix it?-->
+  <string name="string_contains_missingincorrect_translations_dot">%s contains missing/incorrect translations. Can you fix it?</string>
+  <!--%@ does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.-->
+  <string name="string_does_not_store_your_netflix_username_and">%s does not store your Netflix username and password.\n\nAn official Netflix.com webpage will be opened so you can authorize this app to access your account.\n\nA Wi-fi connection is recommended the first time you use Netflix.</string>
   <!--%@ doesn't list my favorite theater. Can you add it?-->
   <string name="string_doesnt_list_my_favorite_theater_dot_can_you">%s doesn't list my favorite theater. Can you add it?</string>
   <!--%@ scores-->
@@ -39,14 +42,22 @@
   <string name="string_dot_string">%s. %s</string>
   <!--%d %@-->
   <string name="number_string">%d %s</string>
+  <!--%d Questions & Answers-->
+  <string name="number_questions_answers">%d Questions &amp; Answers</string>
   <!--%d hours-->
   <string name="number_hours">%d hours</string>
   <!--%d minutes-->
   <string name="number_minutes">%d minutes</string>
+  <!--%d months ago-->
+  <string name="number_months_ago">%d months ago</string>
   <!--%d of %d-->
   <string name="number_of_number">%d of %d</string>
   <!--%d theaters outside search area-->
   <string name="number_theaters_outside_search_area">%d theaters outside search area</string>
+  <!--%d weeks ago-->
+  <string name="number_weeks_ago">%d weeks ago</string>
+  <!--%d years ago-->
+  <string name="number_years_ago">%d years ago</string>
   <!--1 hour-->
   <string name="one_hour">1 hour</string>
   <!--1 kilometer-->
@@ -55,18 +66,32 @@
   <string name="one_mile">1 mile</string>
   <!--1 minute-->
   <string name="one_minute">1 minute</string>
+  <!--1 month ago-->
+  <string name="one_month_ago">1 month ago</string>
   <!--1 theater outside search area-->
   <string name="one_theater_outside_search_area">1 theater outside search area</string>
-  <!--A message from Cyrus-->
-  <string name="a_message_from_cyrus">A message from Cyrus</string>
+  <!--1 week ago-->
+  <string name="one_week_ago">1 week ago</string>
+  <!--1 year ago-->
+  <string name="one_year_ago">1 year ago</string>
   <!--About-->
   <string name="about">About</string>
+  <!--Account #%d-->
+  <string name="account_number">Account #%d</string>
+  <!--Account: %@ %@-->
+  <string name="account_colon_string_string">Account: %s %s</string>
+  <!--Accounts-->
+  <string name="accounts">Accounts</string>
   <!--Action & Adventure-->
   <string name="action_adventure">Action &amp; Adventure</string>
+  <!--Add New Account-->
+  <string name="add_new_account">Add New Account</string>
   <!--Add Theater-->
   <string name="add_theater">Add Theater</string>
   <!--Add to Netflix-->
   <string name="add_to_netflix">Add to Netflix</string>
+  <!--Adding Movie-->
+  <string name="adding_movie">Adding Movie</string>
   <!--All-->
   <string name="all">All</string>
   <!--All (%d)-->
@@ -87,22 +112,26 @@
   <string name="available_soon">Available Soon</string>
   <!--Awaiting Release-->
   <string name="awaiting_release">Awaiting Release</string>
+  <!--Bio:-->
+  <string name="bio_colon">Bio:</string>
   <!--Blu-ray-->
   <string name="bluray">Blu-ray</string>
   <!--Blu-ray Only-->
   <string name="bluray_only">Blu-ray Only</string>
   <!--Bookmarks-->
   <string name="bookmarks">Bookmarks</string>
-  <!--Both-->
-  <string name="both">Both</string>
   <!--Call-->
   <string name="call">Call</string>
   <!--Can you increase the maximum search distance for theaters?-->
   <string name="can_you_increase_the_maximum_search_distance_for">Can you increase the maximum search distance for theaters?</string>
   <!--Cancel-->
   <string name="cancel">Cancel</string>
+  <!--Cannot Open Page-->
+  <string name="cannot_open_page">Cannot Open Page</string>
   <!--Cast:-->
   <string name="cast_colon">Cast:</string>
+  <!--Category Notifications-->
+  <string name="category_notifications">Category Notifications</string>
   <!--Change date-->
   <string name="change_date">Change date</string>
   <!--Children & Family-->
@@ -119,6 +148,8 @@
   <string name="could_not_connect_to_netflix_dot">Could not connect to Netflix.</string>
   <!--Could not find location.-->
   <string name="could_not_find_location_dot">Could not find location.</string>
+  <!--Could not find location.\nUser denied use of the location service.-->
+  <string name="could_not_find_location_dot_user_denied_use_of_the">Could not find location.\nUser denied use of the location service.</string>
   <!--Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?-->
   <string name="could_you_add_support_for_blockbuster_movie">Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?</string>
   <!--Could you provide an option to let me choose the icon I want for the %@?-->
@@ -127,6 +158,8 @@
   <string name="currently_blockbuster_does_not_provided_a">Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.</string>
   <!--Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.-->
   <string name="currently_no_dot_however_simply_mark_the_theater">Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range.</string>
+  <!--Currently, settings can only be modified from Netflix's website-->
+  <string name="currently_settings_can_only_be_modified_from">Currently, settings can only be modified from Netflix's website</string>
   <!--DVD-->
   <string name="dvd">DVD</string>
   <!--DVD Only-->
@@ -137,6 +170,8 @@
   <string name="dvdbluray_details_colon">DVD/Blu-ray details:</string>
   <!--Data for future dates may be incomplete. Reset the search date to the current date to see full listings.-->
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data for future dates may be incomplete. Reset the search date to the current date to see full listings.</string>
+  <!--Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.-->
+  <string name="definitely_use_the_send_feedback_button_above_to">Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.</string>
   <!--Director:-->
   <string name="director_colon">Director:</string>
   <!--Directors:-->
@@ -153,12 +188,14 @@
   <string name="documentary">Documentary</string>
   <!--Downloading data-->
   <string name="downloading_data">Downloading data</string>
+  <!--Downloading image-->
+  <string name="downloading_image">Downloading image</string>
   <!--Downloading information.-->
   <string name="downloading_information_dot">Downloading information.</string>
-  <!--Downloading poster-->
-  <string name="downloading_poster">Downloading poster</string>
   <!--Drama-->
   <string name="drama">Drama</string>
+  <!--Due to licensing restrictions, reviews and ratings may not be available for all movies.-->
+  <string name="due_to_licensing_restrictions_reviews_and_ratings">Due to licensing restrictions, reviews and ratings may not be available for all movies.</string>
   <!--E-mail listings-->
   <string name="email_listings">E-mail listings</string>
   <!--Enabled-->
@@ -173,6 +210,10 @@
   <string name="faith_spirituality">Faith &amp; Spirituality</string>
   <!--Favorites-->
   <string name="favorites">Favorites</string>
+  <!--Film trailers provided by:-->
+  <string name="film_trailers_provided_by_colon">Film trailers provided by:</string>
+  <!--Force Refresh-->
+  <string name="force_refresh">Force Refresh</string>
   <!--Foreign-->
   <string name="foreign">Foreign</string>
   <!--Format:-->
@@ -183,16 +224,16 @@
   <string name="genre_colon">Genre:</string>
   <!--Geolocation services provided by:-->
   <string name="geolocation_services_provided_by_colon">Geolocation services provided by:</string>
+  <!--Google Maps-->
+  <string name="google_maps">Google Maps</string>
+  <!--Graphics by David Steinberger-->
+  <string name="graphics_by_david_steinberger">Graphics by David Steinberger</string>
   <!--Graphics by Jeffrey Nee-->
   <string name="graphics_by_jeffrey_nee">Graphics by Jeffrey Nee</string>
   <!--Help-->
   <string name="help">Help</string>
-  <!--Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)-->
-  <string name="help_keep_now_playing_free_as_a_longtime_now">Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)</string>
   <!--Horror-->
   <string name="horror">Horror</string>
-  <!--How do I get to my alternative queues for my Netflix account?-->
-  <string name="how_do_i_get_to_my_alternative_queues_for_my">How do I get to my alternative queues for my Netflix account?</string>
   <!--I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!-->
   <string name="i_will_absolutely_try_dot_please_tap_the_add">I will absolutely try. Please tap the 'Add Theater' button above to contact me. I'll need the theater's name and its telephone number. Thanks!</string>
   <!--IMDb's licensing fees are unfortunately too high for me to afford. Sorry!-->
@@ -201,6 +242,8 @@
   <string name="if_string_caches_data_why_do_i_always_see_the">If %s caches data, why do I always see the 'loading spinner' even on posters that were already loaded?</string>
   <!--If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!-->
   <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!</string>
+  <!--If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!-->
+  <string name="if_you_like_string_please_consider_writing_a_small">If you like %s, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!</string>
   <!--Independent-->
   <string name="independent">Independent</string>
   <!--Instant-->
@@ -209,6 +252,24 @@
   <string name="instant_paren_number_paren">Instant (%d)</string>
   <!--Instant Queue-->
   <string name="instant_queue">Instant Queue</string>
+  <!--Instant Watch-->
+  <string name="instant_watch">Instant Watch</string>
+  <!--International Data-->
+  <string name="international_data">International Data</string>
+  <!--Last Friday-->
+  <string name="last_friday">Last Friday</string>
+  <!--Last Monday-->
+  <string name="last_monday">Last Monday</string>
+  <!--Last Saturday-->
+  <string name="last_saturday">Last Saturday</string>
+  <!--Last Sunday-->
+  <string name="last_sunday">Last Sunday</string>
+  <!--Last Thursday-->
+  <string name="last_thursday">Last Thursday</string>
+  <!--Last Tuesday-->
+  <string name="last_tuesday">Last Tuesday</string>
+  <!--Last Wednesday-->
+  <string name="last_wednesday">Last Wednesday</string>
   <!--Less than %d %@ away-->
   <string name="less_than_number_string_away">Less than %d %s away</string>
   <!--Less than 1 %@ away-->
@@ -217,8 +278,14 @@
   <string name="license">License</string>
   <!--Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!-->
   <string name="licensing_restrictions_with_certain_data_providers">Licensing restrictions with certain data providers only allow for a subset of all movie ratings and reviews. Sorry!</string>
-  <!--Loading poster-->
-  <string name="loading_poster">Loading poster</string>
+  <!--Like This App?-->
+  <string name="like_this_app">Like This App?</string>
+  <!--Loading-->
+  <string name="loading">Loading</string>
+  <!--Loading Indicators-->
+  <string name="loading_indicators">Loading Indicators</string>
+  <!--Loading image-->
+  <string name="loading_image">Loading image</string>
   <!--Local results unavailable-->
   <string name="local_results_unavailable">Local results unavailable</string>
   <!--Localized by:-->
@@ -227,16 +294,16 @@
   <string name="location">Location</string>
   <!--Log In to Existing Account-->
   <string name="log_in_to_existing_account">Log In to Existing Account</string>
-  <!--Log Out of Netflix-->
-  <string name="log_out_of_netflix">Log Out of Netflix</string>
-  <!--Log out of Netflix and log back in with the user name and password for your alternative queue.-->
-  <string name="log_out_of_netflix_and_log_back_in_with_the_user">Log out of Netflix and log back in with the user name and password for your alternative queue.</string>
   <!--Long Wait-->
   <string name="long_wait">Long Wait</string>
   <!--Map-->
   <string name="map">Map</string>
+  <!--Map Theaters-->
+  <string name="map_theaters">Map Theaters</string>
   <!--Most Popular-->
   <string name="most_popular">Most Popular</string>
+  <!--Movie Rating-->
+  <string name="movie_rating">Movie Rating</string>
   <!--Movie details provided by:-->
   <string name="movie_details_provided_by_colon">Movie details provided by:</string>
   <!--Movie reviews provided by:-->
@@ -245,30 +312,26 @@
   <string name="movies">Movies</string>
   <!--Movies (%d)-->
   <string name="movies_paren_number_paren">Movies (%d)</string>
+  <!--Moving Movie-->
+  <string name="moving_movie">Moving Movie</string>
   <!--Music & Musicals-->
   <string name="music_musicals">Music &amp; Musicals</string>
   <!--My other applications-->
   <string name="my_other_applications">My other applications</string>
   <!--Name-->
   <string name="name">Name</string>
-  <!--Neither-->
-  <string name="neither">Neither</string>
   <!--Netflix-->
   <string name="netflix">Netflix</string>
-  <!--Netflix '%@'-->
-  <string name="netflix_string">Netflix '%s'</string>
-  <!--Netflix:-->
-  <string name="netflix_colon">Netflix:</string>
   <!--Network unavailable-->
   <string name="network_unavailable">Network unavailable</string>
   <!--New 'Instant Watch'-->
   <string name="new_instant_watch">New 'Instant Watch'</string>
   <!--New DVDs-->
   <string name="new_dvds">New DVDs</string>
-  <!--No-->
-  <string name="no">No</string>
   <!--No Thanks-->
   <string name="no_thanks">No Thanks</string>
+  <!--No biography available.-->
+  <string name="no_biography_available_dot">No biography available.</string>
   <!--No information found-->
   <string name="no_information_found">No information found</string>
   <!--No listings found at '%@' on %@-->
@@ -287,28 +350,36 @@
   <string name="not_rentable">Not Rentable</string>
   <!--Not yet rated-->
   <string name="not_yet_rated">Not yet rated</string>
+  <!--Now Playing Feedback-->
+  <string name="now_playing_feedback">Now Playing Feedback</string>
   <!--OK-->
   <string name="ok">OK</string>
   <!--Open and Authorize-->
   <string name="open_and_authorize">Open and Authorize</string>
+  <!--Options-->
+  <string name="options">Options</string>
   <!--Order tickets for %@-->
   <string name="order_tickets_for_string">Order tickets for %s</string>
   <!--Over Quota - Try Again Later-->
   <string name="over_quota_try_again_later">Over Quota - Try Again Later</string>
-  <!--People-->
-  <string name="people">People</string>
   <!--Play trailer-->
   <string name="play_trailer">Play trailer</string>
   <!--Please Wait-->
   <string name="please_wait">Please Wait</string>
   <!--Please enter your location-->
   <string name="please_enter_your_location">Please enter your location</string>
+  <!--Please rate it in the App Store!-->
+  <string name="please_rate_it_in_the_app_store">Please rate it in the App Store!</string>
   <!--Please wait...-->
   <string name="please_wait_dot_dot_dot">Please wait...</string>
+  <!--Preferred Formats-->
+  <string name="preferred_formats">Preferred Formats</string>
   <!--Prioritize Bookmarks-->
   <string name="prioritize_bookmarks">Prioritize Bookmarks</string>
-  <!--Project website-->
-  <string name="project_website">Project website</string>
+  <!--Project Website-->
+  <string name="project_website">Project Website</string>
+  <!--Rate It!-->
+  <string name="rate_it">Rate It!</string>
   <!--Rated %@-->
   <string name="rated_string">Rated %s</string>
   <!--Rated:-->
@@ -319,8 +390,6 @@
   <string name="really_close_by">Really close by</string>
   <!--Really far away-->
   <string name="really_far_away">Really far away</string>
-  <!--Really log out of Netflix?-->
-  <string name="really_log_out_of_netflix">Really log out of Netflix?</string>
   <!--Recently Returned-->
   <string name="recently_returned">Recently Returned</string>
   <!--Recently Watched-->
@@ -333,6 +402,8 @@
   <string name="release_date_colon">Release date:</string>
   <!--Release: %@-->
   <string name="release_colon_string">Release: %s</string>
+  <!--Remove Account-->
+  <string name="remove_account">Remove Account</string>
   <!--Rental History-->
   <string name="rental_history">Rental History</string>
   <!--Reordering queue failed:\n\n%@-->
@@ -347,6 +418,8 @@
   <string name="romance">Romance</string>
   <!--Running time:-->
   <string name="running_time_colon">Running time:</string>
+  <!--Safari-->
+  <string name="safari">Safari</string>
   <!--Save All to Photo Library-->
   <string name="save_all_to_photo_library">Save All to Photo Library</string>
   <!--Save to Photo Library-->
@@ -365,14 +438,14 @@
   <string name="score">Score</string>
   <!--Screen Rotation-->
   <string name="screen_rotation">Screen Rotation</string>
-  <!--Search-->
-  <string name="search">Search</string>
   <!--Search Date-->
   <string name="search_date">Search Date</string>
   <!--Search Distance-->
   <string name="search_distance">Search Distance</string>
   <!--Search Netflix-->
   <string name="search_netflix">Search Netflix</string>
+  <!--Searching-->
+  <string name="searching">Searching</string>
   <!--See the section on IMDb.-->
   <string name="see_the_section_on_imdb_dot">See the section on IMDb.</string>
   <!--Send Feedback-->
@@ -381,12 +454,16 @@
   <string name="settings">Settings</string>
   <!--Short Wait-->
   <string name="short_wait">Short Wait</string>
-  <!--Show-->
-  <string name="show">Show</string>
   <!--Show %d hidden theaters-->
   <string name="show_number_hidden_theaters">Show %d hidden theaters</string>
   <!--Show 1 hidden theater-->
   <string name="show_one_hidden_theater">Show 1 hidden theater</string>
+  <!--Show Both-->
+  <string name="show_both">Show Both</string>
+  <!--Show Neither-->
+  <string name="show_neither">Show Neither</string>
+  <!--Show Notifications-->
+  <string name="show_notifications">Show Notifications</string>
   <!--Show times retrieved on %@.-->
   <string name="show_times_retrieved_on_string_dot">Show times retrieved on %s.</string>
   <!--Sign Up for New Account-->
@@ -427,22 +504,20 @@
   <string name="to_make_scrolling_as_fast_and_as_smooth_as">To make scrolling as fast and as smooth as possible, %s does not show the poster until scrolling has stopped.</string>
   <!--Today-->
   <string name="today">Today</string>
-  <!--Top 'Instant Watch'-->
-  <string name="top_instant_watch">Top 'Instant Watch'</string>
   <!--Top DVDs-->
   <string name="top_dvds">Top DVDs</string>
   <!--Top of Disc Queue-->
   <string name="top_of_disc_queue">Top of Disc Queue</string>
   <!--Top of Instant Queue-->
   <string name="top_of_instant_queue">Top of Instant Queue</string>
+  <!--Translations-->
+  <string name="translations">Translations</string>
   <!--Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with.-->
   <string name="unfortunately_movietickets_dot_com_will_not">Unfortunately, Movietickets.com will not provide ticketing support if I also provide ticketing through Fandango.com. I go to Fandango.com theaters, and so that's the provider I'm sticking with.</string>
   <!--Unknown Distance-->
   <string name="unknown_distance">Unknown Distance</string>
   <!--Unknown Release Date-->
   <string name="unknown_release_date">Unknown Release Date</string>
-  <!--Unknown Release Ddate-->
-  <string name="unknown_release_ddate">Unknown Release Ddate</string>
   <!--Unrated-->
   <string name="unrated">Unrated</string>
   <!--Upcoming-->
@@ -451,6 +526,8 @@
   <string name="updating">Updating</string>
   <!--Updating Listings-->
   <string name="updating_listings">Updating Listings</string>
+  <!--Updating Queue-->
+  <string name="updating_queue">Updating Queue</string>
   <!--Updating: %@-->
   <string name="updating_colon_string">Updating: %s</string>
   <!--Use Small Fonts-->
@@ -479,12 +556,12 @@
   <string name="write_review">Write Review</string>
   <!--Written by Cyrus Najmabadi-->
   <string name="written_by_cyrus_najmabadi">Written by Cyrus Najmabadi</string>
-  <!--Yes-->
-  <string name="yes">Yes</string>
+  <!--Yesterday-->
+  <string name="yesterday">Yesterday</string>
+  <!--You must first set up an email account on your device before you can send feedback.-->
+  <string name="you_must_first_set_up_an_email_account_on_your">You must first set up an email account on your device before you can send feedback.</string>
   <!--Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.-->
   <string name="your_strings_country_is_set_to_colon_string_full">Your %s's country is set to: %s\n\nFull support for %s is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
-  <!--adding movie-->
-  <string name="adding_movie">adding movie</string>
   <!--kilometer-->
   <string name="kilometer">kilometer</string>
   <!--kilometers-->
@@ -493,12 +570,4 @@
   <string name="mile">mile</string>
   <!--miles-->
   <string name="miles">miles</string>
-  <!--movie rating-->
-  <string name="movie_rating">movie rating</string>
-  <!--moving movie-->
-  <string name="moving_movie">moving movie</string>
-  <!--searching-->
-  <string name="searching">searching</string>
-  <!--updating queue-->
-  <string name="updating_queue">updating queue</string>
 </resources>
