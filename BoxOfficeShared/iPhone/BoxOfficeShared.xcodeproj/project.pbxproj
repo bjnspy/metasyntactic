@@ -150,28 +150,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7461B52E0F94FAF800A0C422 /* libProtocolBuffers.a */;
+			remoteGlobalIDString = 7461B52E0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		741C7DD110670C39004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 7401C1A80F950347006D8281 /* UnitTests.octest */;
+			remoteGlobalIDString = 7401C1A80F950347006D8281;
 			remoteInfo = UnitTests;
 		};
 		741C7DD310670C39004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 748F14580FD75E3B000858A9 /* CommandLineTests.app */;
+			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
 		};
 		741C7DD610670C4A004ED30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 741C7DC910670C39004ED30E /* ProtocolBuffers.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7461B52D0F94FAF800A0C422 /* ProtocolBuffers */;
+			remoteGlobalIDString = 7461B52D0F94FAF800A0C422;
 			remoteInfo = ProtocolBuffers;
 		};
 		74A01DEB10245CC200299F25 /* PBXContainerItemProxy */ = {
