@@ -222,7 +222,7 @@ public class NowPlayingApplication extends Application {
     deleteItem(directory);
   }
 
-  private static void deleteItem(final File item) {
+  public static void deleteItem(final File item) {
     if (!item.exists()) {
       return;
     }

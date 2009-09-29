@@ -570,6 +570,8 @@ public class FileUtilities {
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
         ExceptionUtilities.log(FileUtilities.class, "writeStringToListOfStrings", e);
+      } catch (InternalError e) {
+        NowPlayingApplication.deleteItem(file);
       }
     } else {
       writeObject(map, file);

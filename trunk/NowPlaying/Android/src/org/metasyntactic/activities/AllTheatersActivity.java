@@ -143,10 +143,12 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
 
   private void populateFilteredTheaters() {
     filteredTheaters.clear();
+    double searchDistance = getService().getSearchDistance();
     for (final Theater theater : theaters) {
       if (!getService().isFavoriteTheater(theater)) {
         if (filterTheatersByDistance) {
-          if (userLocation != null && userLocation.distanceTo(theater.getLocation()) > getService().getSearchDistance()) {
+          Location theaterLocation = theater.getLocation();
+          if (userLocation != null && userLocation.distanceTo(theaterLocation) > searchDistance) {
             continue;
           }
         }
