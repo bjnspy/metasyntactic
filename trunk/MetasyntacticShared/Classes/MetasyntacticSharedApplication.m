@@ -14,6 +14,7 @@
 
 #import "MetasyntacticSharedApplication.h"
 
+#import "../External/PinchMedia/Beacon.h"
 #import "Pulser.h"
 
 @implementation MetasyntacticSharedApplication
@@ -30,6 +31,13 @@ static Pulser* majorRefreshPulser = nil;
   [minorRefreshPulser release];
   majorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(majorRefresh) pulseInterval:5] retain];
   minorRefreshPulser = [[Pulser pulserWithTarget:delegate action:@selector(minorRefresh) pulseInterval:3] retain];
+  
+  NSString* pinchCode = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"];
+  if (pinchCode.length > 0) {
+    [Beacon initAndStartBeaconWithApplicationCode:pinchCode
+                                  useCoreLocation:NO
+                                      useOnlyWiFi:NO];
+  }
 }
 
 

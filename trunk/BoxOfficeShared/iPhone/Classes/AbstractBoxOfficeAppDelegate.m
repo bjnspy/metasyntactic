@@ -41,10 +41,6 @@
 
   //NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
 
-  [Beacon initAndStartBeaconWithApplicationCode:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"PinchMediaApplicationCode"]
-                                useCoreLocation:NO
-                                    useOnlyWiFi:NO];
-
   [BoxOfficeSharedApplication setSharedApplicationDelegate:self];
 
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
