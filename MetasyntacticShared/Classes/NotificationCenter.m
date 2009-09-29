@@ -20,7 +20,7 @@
 @interface NotificationCenter()
 @property (retain) UIViewController* viewController;
 @property (retain) UILabel* notificationLabel;
-@property (retain) UILabel* blackLabel;
+@property (retain) UILabel* trimLabel;
 @property (retain) NSMutableArray* notifications;
 @property (retain) Pulser* pulser;
 @property NSInteger disabledCount;
@@ -38,7 +38,7 @@ static NotificationCenter* notificationCenter;
 
 @synthesize viewController;
 @synthesize notificationLabel;
-@synthesize blackLabel;
+@synthesize trimLabel;
 @synthesize notifications;
 @synthesize pulser;
 @synthesize disabledCount;
@@ -46,7 +46,7 @@ static NotificationCenter* notificationCenter;
 - (void) dealloc {
   self.viewController = nil;
   self.notificationLabel = nil;
-  self.blackLabel = nil;
+  self.trimLabel = nil;
   self.notifications = nil;
   self.pulser = nil;
   self.disabledCount = 0;
@@ -70,7 +70,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 - (void) attachToViewController:(UIViewController*) viewController_ {
   self.viewController = viewController_;
-
+ 
   CGRect viewFrame = self.view.frame;
 
   NSInteger labelHeight = LABEL_HEIGHT;
@@ -86,10 +86,10 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
   notificationLabel.frame = frame;
   frame.size.height = 1;
-  blackLabel.frame = frame;
+  trimLabel.frame = frame;
 
   [self.view addSubview:notificationLabel];
-  [self.view addSubview:blackLabel];
+  [self.view addSubview:trimLabel];
 }
 
 
@@ -103,7 +103,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     self.notifications = [NSMutableArray array];
 
     self.notificationLabel = [[[UILabel alloc] init] autorelease];
-    self.blackLabel = [[[UILabel alloc] init] autorelease];
+    self.trimLabel = [[[UILabel alloc] init] autorelease];
 
     notificationLabel.font = [UIFont boldSystemFontOfSize:12];
     notificationLabel.textAlignment = UITextAlignmentCenter;
@@ -115,9 +115,9 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
     notificationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
 
-    blackLabel.backgroundColor = [UIColor blackColor];
-    blackLabel.alpha = 0;
-    blackLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    trimLabel.backgroundColor = [UIColor blackColor];
+    trimLabel.alpha = 0;
+    trimLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
     self.pulser = [Pulser pulserWithTarget:self
                                     action:@selector(update)
@@ -131,11 +131,11 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 - (void) showNotifications {
   if (disabledCount == 0 && [MetasyntacticSharedApplication notificationsEnabled]) {
     [self.view bringSubviewToFront:notificationLabel];
-    [self.view bringSubviewToFront:blackLabel];
+    [self.view bringSubviewToFront:trimLabel];
 
     [UIView beginAnimations:nil context:NULL];
     {
-      notificationLabel.alpha = blackLabel.alpha = 1;
+      notificationLabel.alpha = trimLabel.alpha = 1;
     }
     [UIView commitAnimations];
   }
@@ -145,7 +145,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 - (void) hideNotifications {
   [UIView beginAnimations:nil context:NULL];
   {
-    notificationLabel.alpha = blackLabel.alpha = 0;
+    notificationLabel.alpha = trimLabel.alpha = 0;
   }
   [UIView commitAnimations];
 }
@@ -178,7 +178,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 
 - (void) willChangeInterfaceOrientation {
-  notificationLabel.alpha = blackLabel.alpha = 0;
+  notificationLabel.alpha = trimLabel.alpha = 0;
 }
 
 
