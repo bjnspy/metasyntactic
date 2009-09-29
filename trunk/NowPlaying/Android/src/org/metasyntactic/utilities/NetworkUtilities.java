@@ -30,6 +30,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -49,7 +50,7 @@ public class NetworkUtilities {
     }
   }
 
-  private static final String[] charsets = {"UTF-8", "ISO-8859-1",};
+  private static final String[] charsets = {"UTF-8", "ISO-8859-1"};
 
   public static String downloadString(final URL url, final boolean important) {
     final byte[] bytes = download(url, important);
@@ -77,6 +78,8 @@ public class NetworkUtilities {
       final CharsetDecoder decoder = utfCharset.newDecoder();
       return decoder.decode(ByteBuffer.wrap(bytes)).toString();
     } catch (final CharacterCodingException ignored) {
+      return null;
+    } catch (final IllegalCharsetNameException ignored) {
       return null;
     }
   }
