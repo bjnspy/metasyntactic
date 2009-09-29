@@ -64,7 +64,6 @@ static NotificationCenter* notificationCenter;
   return viewController.view;
 }
 
-const NSInteger TAB_BAR_HEIGHT = 47;
 const NSInteger LABEL_HEIGHT = 16;
 const NSInteger STATUS_BAR_HEIGHT = 20;
 
@@ -76,7 +75,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
   NSInteger labelHeight = LABEL_HEIGHT;
   NSInteger top = viewFrame.size.height;
   if ([viewController isKindOfClass:[UITabBarController class]]) {
-    top -= TAB_BAR_HEIGHT;
+    top -= ([[(id)viewController tabBar] frame].size.height - 2);
   } else {
     labelHeight += 2;
   }
