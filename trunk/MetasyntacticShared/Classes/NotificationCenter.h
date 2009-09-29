@@ -27,6 +27,11 @@
 + (NotificationCenter*) notificationCenter;
 
 + (void) attachToViewController:(UIViewController*) viewController;
++ (void) attachToViewController:(UIViewController*) viewController
+                backgroundColor:(UIColor*) backgroundColor 
+                      trimColor:(UIColor*) trimColor 
+                      textColor:(UIColor*) textColor
+                    labelOffset:(NSInteger) labelOffset;
 
 + (void) disableNotifications;
 + (void) enableNotifications;
