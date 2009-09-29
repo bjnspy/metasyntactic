@@ -16,7 +16,7 @@
 @private
   UIViewController* viewController;
   UILabel* notificationLabel;
-  UILabel* blackLabel;
+  UILabel* trimLabel;
 
   NSMutableArray* notifications;
   Pulser* pulser;
