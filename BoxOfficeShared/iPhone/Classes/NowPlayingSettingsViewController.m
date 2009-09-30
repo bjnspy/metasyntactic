@@ -331,16 +331,13 @@ typedef enum {
 
 - (void) onNetflixEnabledChanged:(UISwitch*) sender {
   [self.controller setNetflixEnabled:sender.on];
-  [self.tableView beginUpdates];
-  {
-    NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:NetflixSection]];
-    if (sender.on) {
-      [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-    } else {
-      [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-    }
+
+  NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:NetflixSection]];
+  if (sender.on) {
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  } else {
+    [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
   }
-  [self.tableView endUpdates];
 }
 
 
@@ -351,16 +348,13 @@ typedef enum {
 
 - (void) onDvdBlurayEnabledChanged:(UISwitch*) sender {
   [self.controller setDvdBlurayEnabled:sender.on];
-  [self.tableView beginUpdates];
-  {
-    NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
-    if (sender.on) {
-      [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-    } else {
-      [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-    }
+
+  NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:DVDBluraySection]];
+  if (sender.on) {
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+  } else {
+    [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
   }
-  [self.tableView endUpdates];
 }
 
 
@@ -501,12 +495,8 @@ typedef enum {
   }
   refreshed = YES;
 
-  [self.tableView beginUpdates];
-  {
-    NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:RefreshSection]];
-    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-  }
-  [self.tableView endUpdates];
+  NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:RefreshSection]];
+  [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 
   [[Controller controller] start:YES];
 }
