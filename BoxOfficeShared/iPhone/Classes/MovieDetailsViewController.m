@@ -930,7 +930,6 @@ const NSInteger POSTER_TAG = -1;
 
   [[OperationQueue operationQueue] temporarilySuspend:90];
   MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-  moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(movieFinishedPlaying:)
