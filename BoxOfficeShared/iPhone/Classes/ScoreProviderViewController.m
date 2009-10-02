@@ -24,77 +24,77 @@
 @implementation ScoreProviderViewController
 
 - (void) dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-        self.title = LocalizedString(@"Reviews", nil);
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    self.title = LocalizedString(@"Reviews", nil);
+  }
+  
+  return self;
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (Controller*) controller {
-    return [Controller controller];
+  return [Controller controller];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section {
-    return self.model.scoreProviders.count;
+  return self.model.scoreProviders.count;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-    }
-    // Configure the cell
-    if (indexPath.row == self.model.scoreProviderIndex) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    cell.textLabel.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
-    return cell;
+  static NSString* reuseIdentifier = @"reuseIdentifier";
+  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
+  }
+  // Configure the cell
+  if (indexPath.row == self.model.scoreProviderIndex) {
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+  } else {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  }
+  cell.textLabel.text = [self.model.scoreProviders objectAtIndex:indexPath.row];
+  return cell;
 }
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    for (UITableViewCell* cell in tableView.visibleCells) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-
-    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
-    [self.controller setScoreProviderIndex:indexPath.row];
-    [self.navigationController popViewControllerAnimated:YES];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  for (UITableViewCell* cell in tableView.visibleCells) {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  }
+  
+  UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+  cell.accessoryType = UITableViewCellAccessoryCheckmark;
+  
+  [self.controller setScoreProviderIndex:indexPath.row];
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    return LocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
+  return LocalizedString(@"Due to licensing restrictions, reviews and ratings may not be available for all movies.", nil);
 }
 
 @end
