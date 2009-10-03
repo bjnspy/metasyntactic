@@ -28,8 +28,8 @@
 
 + (void) attachToViewController:(UIViewController*) viewController;
 + (void) attachToViewController:(UIViewController*) viewController
-                backgroundColor:(UIColor*) backgroundColor 
-                      trimColor:(UIColor*) trimColor 
+                backgroundColor:(UIColor*) backgroundColor
+                      trimColor:(UIColor*) trimColor
                       textColor:(UIColor*) textColor
                     labelOffset:(NSInteger) labelOffset;
 

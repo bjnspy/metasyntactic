@@ -68,16 +68,16 @@ const NSInteger LABEL_HEIGHT = 16;
 const NSInteger STATUS_BAR_HEIGHT = 20;
 
 - (void) attachToViewController:(UIViewController*) viewController_
-                backgroundColor:(UIColor*) backgroundColor 
-                      trimColor:(UIColor*) trimColor 
+                backgroundColor:(UIColor*) backgroundColor
+                      trimColor:(UIColor*) trimColor
                       textColor:(UIColor*) textColor
                     labelOffset:(NSInteger) labelOffset  {
   self.viewController = viewController_;
- 
+
   notificationLabel.textColor = textColor;
   notificationLabel.backgroundColor = backgroundColor;
   trimLabel.backgroundColor = trimColor;
-  
+
   CGRect viewFrame = self.view.frame;
 
   NSInteger labelHeight = LABEL_HEIGHT;
@@ -98,20 +98,20 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
   [self.view addSubview:notificationLabel];
   [self.view addSubview:trimLabel];
-  
+
   [self.view bringSubviewToFront:notificationLabel];
   [self.view bringSubviewToFront:trimLabel];
 }
 
 
 + (void) attachToViewController:(UIViewController*) viewController_
-                backgroundColor:(UIColor*) backgroundColor 
-                      trimColor:(UIColor*) trimColor 
+                backgroundColor:(UIColor*) backgroundColor
+                      trimColor:(UIColor*) trimColor
                       textColor:(UIColor*) textColor
                     labelOffset:(NSInteger) labelOffset {
   [[self notificationCenter] attachToViewController:viewController_
-                                    backgroundColor:backgroundColor 
-                                          trimColor:trimColor 
+                                    backgroundColor:backgroundColor
+                                          trimColor:trimColor
                                           textColor:textColor
                                         labelOffset:labelOffset];
 }
