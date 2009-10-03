@@ -134,8 +134,6 @@
 // %@ is replaced with the name of the program.  i.e. 'Now Playing'
 "If %@ caches data, why do I always see the 'loading spinner' even on posters that were already loaded?" = "";
 
-"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!" = "";
-
 // i.e. a streamable movie that can be watched 'Instant'ly
 "Instant" = "";
 
