@@ -23,7 +23,7 @@ void* CFAutoRelease(CFTypeRef val) {
 + (void) run:(void(^)()) block {
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   id savedException = nil;
-  
+
   @try {
     block();
   } @catch (id exception) {
