@@ -32,7 +32,7 @@
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = LocalizedString(@"Reviews", nil);
   }
-  
+
   return self;
 }
 
@@ -79,14 +79,14 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
+
   for (UITableViewCell* cell in tableView.visibleCells) {
     cell.accessoryType = UITableViewCellAccessoryNone;
   }
-  
+
   UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
   cell.accessoryType = UITableViewCellAccessoryCheckmark;
-  
+
   [self.controller setScoreProviderIndex:indexPath.row];
   [self.navigationController popViewControllerAnimated:YES];
 }
