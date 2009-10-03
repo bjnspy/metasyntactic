@@ -69,18 +69,18 @@
                                    LocalizedString(@"Title", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on their title."),
                                    LocalizedString(@"Score", @"Must be very short. 1 word max. This is on a button that allows users to sort movies by how well they were rated."),
                                    nil]] autorelease];
-  
+
   control.segmentedControlStyle = UISegmentedControlStyleBar;
   control.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-  
+
   [control addTarget:self
               action:@selector(onSortOrderChanged:)
     forControlEvents:UIControlEventValueChanged];
-  
+
   CGRect rect = control.frame;
   rect.size.width = 310;
   control.frame = rect;
-  
+
   return control;
 }
 
@@ -95,14 +95,14 @@
   if ((self = [super init])) {
     self.title = LocalizedString(@"Movies", nil);
   }
-  
+
   return self;
 }
 
 
 - (void) loadView {
   [super loadView];
-  
+
   self.segmentedControl = [self setupSegmentedControl];
   self.navigationItem.titleView = segmentedControl;
 }

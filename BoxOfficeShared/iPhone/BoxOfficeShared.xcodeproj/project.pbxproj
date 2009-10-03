@@ -222,6 +222,7 @@
 		7406A78A0F104D1D00795555 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
+		7408A3621077C6100099A23E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStatusCell.h; sourceTree = "<group>"; };
 		7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStatusCell.m; sourceTree = "<group>"; };
 		740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
@@ -1171,6 +1172,8 @@
 				hi,
 				ca,
 				fa,
+				ua,
+				uk,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1410,6 +1413,7 @@
 				745E21440E59638200105751 /* sk */,
 				747D9E3E0EF724240066B881 /* sv */,
 				745E21470E5963A200105751 /* tr */,
+				7408A3621077C6100099A23E /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
