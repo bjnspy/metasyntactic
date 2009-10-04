@@ -106,7 +106,7 @@
                       [NSString stringWithFormat:LocalizedString(@"To make scrolling as fast and as smooth as possible, %@ does not show the poster until scrolling has stopped.", nil), [Application name]],
                       LocalizedString(@"IMDb's licensing fees are unfortunately too high for me to afford. Sorry!", nil),
                       LocalizedString(@"See the section on IMDb.", nil),
-                      LocalizedString(@"Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.", nil),
+                      LocalizedString(@"Currently Blockbuster does not provide a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.", nil),
                       LocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
                       LocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
 
