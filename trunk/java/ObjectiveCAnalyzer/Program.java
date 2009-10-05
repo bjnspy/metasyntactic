@@ -35,7 +35,7 @@ public class Program {
             processDirectory(new File(arg));
         }
         processStringsFiles();
-        generateAndroidFiles();
+        //generateAndroidFiles();
         //printForwardDeclaration();
     }
 
@@ -480,6 +480,12 @@ public class Program {
 
             printer.println(comment);
             printer.println("\"" + english + "\" = \"" + translated + "\";");
+
+            if (entry.getValue().first.length() == 0) {
+                throw new RuntimeException("Empty translated string");
+            }
+
+            checkTranslatedString(child, english, translated);
         }
 
         final Writer out = new OutputStreamWriter(new FileOutputStream(child),
@@ -489,6 +495,76 @@ public class Program {
 
         out.flush();
         out.close();
+    }
+
+    private static void checkTranslatedString(File child, String english, String translated) {
+        if (english.length() == 0 || translated.length() == 0) {
+            throw new RuntimeException();
+        }
+
+        if (child.getParentFile().getName().equals("he.lproj")) {
+            if (lastChar(english) == ':' &&
+                translated.charAt(0) == ':') {
+                return;
+            }
+                       if (lastChar(english) == '.' &&
+                translated.charAt(0) == '.') {
+                return;
+            }
+        }
+
+        if (child.getParentFile().getName().equals("ja.lproj")) {
+            if (lastChar(english) == '.' &&
+                    lastChar(translated) == '。') {
+                return;
+            }
+            if (lastChar(english) == ')' &&
+                    lastChar(translated) == '）') {
+                return;
+            }
+            if (lastChar(english) == ':' &&
+                lastChar(translated) == '：') {
+                return;
+            }
+            if (lastChar(english) == '?' &&
+                    lastChar(translated) == '？') {
+                return;
+            }
+            if (lastChar(english) == '!' &&
+                    lastChar(translated) == '！') {
+                return;
+            }
+        }
+
+        if (!Character.isLetterOrDigit(english.charAt(english.length() - 1)) &&
+            lastChar(english) != '@' &&
+            lastChar(english) != '\'') {
+            if (lastChar(english) != lastChar(translated)) {
+                System.out.println("Bad last char: " + child.getParentFile().getName() + ": " + english);
+            }
+        }
+
+        Pattern pattern = Pattern.compile("@");
+
+        int count1 = matchCount(pattern, english);
+        int count2 = matchCount(pattern, translated);
+
+        if (count1 != count2) {
+            System.out.println("Mismatched '%@': " + child.getParentFile().getName() + ": " + english);
+        }
+    }
+
+    private static int matchCount(Pattern pattern, String string) {
+        int count = 0;
+        for (Matcher m = pattern.matcher(string); m.find(); count++) {
+
+        }
+
+        return count;
+    }
+
+    private static char lastChar(String string) {
+        return string.charAt(string.length() - 1);
     }
 
     private static Map<String, String> getLinesAndComments(
