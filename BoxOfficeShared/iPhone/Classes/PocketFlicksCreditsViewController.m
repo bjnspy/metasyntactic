@@ -61,7 +61,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:@"Michal Štoppl"       forKey:@"cs"];
-    [dictionary setObject:@"Allan Lund Jensen"   forKey:@"da"];
+    [dictionary setObject:@"Jens Rex"            forKey:@"da"];
     [dictionary setObject:@"Patrick Boch"        forKey:@"de"];
     [dictionary setObject:@"Jorge Herskovic"     forKey:@"es"];
     [dictionary setObject:@"J-P. Helisten"       forKey:@"fi"];
