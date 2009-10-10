@@ -155,7 +155,7 @@
 // %@ is replaced with the name of the program.  i.e. 'Now Playing'
 "Could you provide an option to let me choose the icon I want for the %@?" = "";
 
-"Currently Blockbuster does not provided a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals." = "";
+"Currently Blockbuster does not provide a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals." = "";
 
 "Currently no. However, simply mark the theater as a 'favorite' (by tapping the 'star' in the theater details pane) and it will show up even if it is outside your search range." = "";
 
