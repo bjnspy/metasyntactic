@@ -106,11 +106,13 @@ typedef enum {
 
 
 - (void) setupTitle {
+  self.title = LocalizedString(@"Netflix", nil);
+  
   if (self.model.netflixCache.lastQuotaErrorDate != nil &&
       self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
-    self.title = LocalizedString(@"Over Quota - Try Again Later", nil);
-  } else {
-    self.title = LocalizedString(@"Netflix", nil);
+    UILabel* label = [ViewControllerUtilities createTitleLabel];
+    label.text = LocalizedString(@"Over Quota - Try Again Later", nil);
+    self.navigationItem.titleView = label;
   }
 }
 

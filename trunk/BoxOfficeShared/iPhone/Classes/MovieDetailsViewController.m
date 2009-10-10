@@ -40,13 +40,13 @@
 @property (retain) NSArray* netflixStatusCells;
 @property (retain) NetflixAccount* netflixAccount;
 @property (retain) NetflixRatingsCell* netflixRatingsCell;
-@property (retain) NSMutableArray* theatersArray;
+@property (retain) NSMutableArray* filteredTheatersArray;
+@property (retain) NSMutableArray* allTheatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
 @property (retain) NSArray* reviewsArray;
 @property (retain) NSDictionary* websites;
 @property (retain) ActionsView* actionsView;
-@property NSInteger hiddenTheaterCount;
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) UIButton* bookmarkButton;
@@ -68,13 +68,13 @@ const NSInteger POSTER_TAG = -1;
 @synthesize netflixMovie;
 @synthesize netflixStatusCells;
 @synthesize netflixRatingsCell;
-@synthesize theatersArray;
+@synthesize filteredTheatersArray;
+@synthesize allTheatersArray;
 @synthesize showtimesArray;
 @synthesize trailer;
 @synthesize reviewsArray;
 @synthesize websites;
 @synthesize actionsView;
-@synthesize hiddenTheaterCount;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
@@ -86,13 +86,13 @@ const NSInteger POSTER_TAG = -1;
   self.netflixMovie = nil;
   self.netflixStatusCells = nil;
   self.netflixRatingsCell = nil;
-  self.theatersArray = nil;
+  self.filteredTheatersArray = nil;
+  self.allTheatersArray = nil;
   self.showtimesArray = nil;
   self.trailer = nil;
   self.reviewsArray = nil;
   self.websites = nil;
   self.actionsView = nil;
-  self.hiddenTheaterCount = 0;
   self.posterImage = nil;
   self.posterImageView = nil;
   self.bookmarkButton = nil;
@@ -106,13 +106,13 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) orderTheaters {
+- (NSMutableArray*) orderTheaters:(NSMutableArray*) theatersArray {
   [theatersArray sortUsingFunction:compareTheatersByDistance
                            context:self.model.theaterDistanceMap];
-
+  
   NSMutableArray* favorites = [NSMutableArray array];
   NSMutableArray* nonFavorites = [NSMutableArray array];
-
+  
   for (Theater* theater in theatersArray) {
     if ([self.model isFavoriteTheater:theater]) {
       [favorites addObject:theater];
@@ -120,12 +120,18 @@ const NSInteger POSTER_TAG = -1;
       [nonFavorites addObject:theater];
     }
   }
-
+  
   NSMutableArray* result = [NSMutableArray array];
   [result addObjectsFromArray:favorites];
   [result addObjectsFromArray:nonFavorites];
+  
+  return result;
+}
 
-  self.theatersArray = result;
+
+- (void) orderTheaters {
+  self.allTheatersArray = [self orderTheaters:allTheatersArray];
+  self.filteredTheatersArray = [self orderTheaters:filteredTheatersArray];
 }
 
 
@@ -167,7 +173,7 @@ const NSInteger POSTER_TAG = -1;
     [arguments addObject:[NSNull null]];
   }
 
-  if (theatersArray.count > 0) {
+  if (filteredTheatersArray.count > 0) {
     [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
     [titles addObject:LocalizedString(@"E-mail listings", nil)];
     [arguments addObject:[NSNull null]];
@@ -303,6 +309,25 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) initializeTheaterArrays {
+  self.allTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersShowingMovie:movie]];
+  
+  if (filterTheatersByDistance) {
+    self.filteredTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:self.allTheatersArray]];
+  } else {
+    self.filteredTheatersArray = self.allTheatersArray;
+  }
+  
+  [self orderTheaters];
+  
+  self.showtimesArray = [NSMutableArray array];
+  
+  for (Theater* theater in filteredTheatersArray) {
+    [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
+  }
+}
+
+
 - (void) initializeData {
   self.netflixAccount = self.model.currentNetflixAccount;
   self.netflixMovie = [self.model.netflixCache correspondingNetflixMovie:movie];
@@ -317,23 +342,7 @@ const NSInteger POSTER_TAG = -1;
     self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
   }
 
-  NSArray* theatersShowingMovie = [self.model theatersShowingMovie:movie];
-
-  if (filterTheatersByDistance) {
-    self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
-    self.hiddenTheaterCount = theatersShowingMovie.count - theatersArray.count;
-  } else {
-    self.theatersArray = [NSMutableArray arrayWithArray:theatersShowingMovie];
-    self.hiddenTheaterCount = 0;
-  }
-
-  [self orderTheaters];
-
-  self.showtimesArray = [NSMutableArray array];
-
-  for (Theater* theater in theatersArray) {
-    [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
-  }
+  [self initializeTheaterArrays];
 
   [self initializeWebsites];
   [self updateImage];
@@ -447,12 +456,12 @@ const NSInteger POSTER_TAG = -1;
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
   self.dvd = nil;
-  self.theatersArray = nil;
+  self.allTheatersArray = nil;
+  self.filteredTheatersArray = nil;
   self.showtimesArray = nil;
   self.trailer = nil;
   self.reviewsArray = nil;
   self.websites = nil;
-  self.hiddenTheaterCount = 0;
   self.actionsView = nil;
   self.posterImage = nil;
   self.posterImageView = nil;
@@ -528,6 +537,11 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (NSInteger) hiddenTheaterCount {
+  return allTheatersArray.count - filteredTheatersArray.count;
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
   // Header
   NSInteger sections = 1;
@@ -536,15 +550,15 @@ const NSInteger POSTER_TAG = -1;
   sections += 1;
 
   // theaters
-  if (theatersArray.count > 0) {
+  if (filteredTheatersArray.count > 0) {
     // Map button
     sections += 1;
   }
 
-  sections += theatersArray.count;
+  sections += filteredTheatersArray.count;
 
   // show hidden theaters
-  if (hiddenTheaterCount > 0) {
+  if (self.hiddenTheaterCount > 0) {
     sections += 1;
   }
 
@@ -570,7 +584,7 @@ const NSInteger POSTER_TAG = -1;
     if ([self hasNetflixRating] || netflixStatusCells.count > 0) {
       return LocalizedString(@"Netflix", nil);
     }
-  } else if (section == 2 && theatersArray.count > 0) {
+  } else if (section == 2 && filteredTheatersArray.count > 0) {
     if (self.model.isSearchDateToday) {
       //[DateUtilities isToday:self.model.searchDate]) {
       return LocalizedString(@"Today", nil);
@@ -590,7 +604,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (NSInteger) isTheaterSection:(NSInteger) section {
   NSInteger theaterIndex = [self getTheaterIndex:section];
-  return theaterIndex >= 0 && theaterIndex < theatersArray.count;
+  return theaterIndex >= 0 && theaterIndex < filteredTheatersArray.count;
 }
 
 
@@ -613,7 +627,7 @@ const NSInteger POSTER_TAG = -1;
     return [self numberOfRowsInNetflixSection];
   }
 
-  if (section == 2 && theatersArray.count > 0) {
+  if (section == 2 && filteredTheatersArray.count > 0) {
     return 1;
   }
 
@@ -748,7 +762,7 @@ const NSInteger POSTER_TAG = -1;
       return tableView.rowHeight;
     } else {
       NSInteger theaterIndex = [self getTheaterIndex:indexPath.section];
-      Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+      Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
 
       return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
                                               stale:[self.model isStale:theater]] + 18;
@@ -770,7 +784,7 @@ const NSInteger POSTER_TAG = -1;
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+    Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
     [cell setTheater:theater];
 
     return cell;
@@ -782,7 +796,7 @@ const NSInteger POSTER_TAG = -1;
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    Theater* theater = [theatersArray objectAtIndex:theaterIndex];
+    Theater* theater = [filteredTheatersArray objectAtIndex:theaterIndex];
     BOOL stale = [self.model isStale:theater];
     [cell setStale:stale];
     [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
@@ -819,7 +833,7 @@ const NSInteger POSTER_TAG = -1;
     return nil;
   }
 
-  Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:section]];
+  Theater* theater = [filteredTheatersArray objectAtIndex:[self getTheaterIndex:section]];
   if (![self.model isStale:theater]) {
     return nil;
   }
@@ -866,7 +880,7 @@ const NSInteger POSTER_TAG = -1;
     return [self cellForNetflixRow:indexPath.row];
   }
 
-  if (indexPath.section == 2 && theatersArray.count > 0) {
+  if (indexPath.section == 2 && filteredTheatersArray.count > 0) {
     return [self mapTheatersCell];
   }
 
@@ -884,40 +898,42 @@ const NSInteger POSTER_TAG = -1;
   [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
   filterTheatersByDistance = NO;
-  [self majorRefresh];
-
-  // this animates showing the theaters.  but it's unfortunately too slow
-  /*
-   NSInteger currentTheaterCount = self.theatersArray.count;
-   filterTheatersByDistance = NO;
-
-   [self initializeData];
-
-   NSInteger newTheaterCount = self.theatersArray.count;
-
-   if (currentTheaterCount >= newTheaterCount) {
-   return;
-   }
-
-   NSInteger startSection = startPath.section;
-   [self.tableView beginUpdates];
-   {
-   [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:startSection] withRowAnimation:UITableViewRowAnimationBottom];
-
-   NSMutableIndexSet* sectionsToAdd = [NSMutableIndexSet indexSet];
-
-   for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
-   [sectionsToAdd addIndex:startSection + i];
-   }
-
-   [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationBottom];
-   }
-   [self.tableView endUpdates];
-
-   [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
-   atScrollPosition:UITableViewScrollPositionMiddle
-   animated:YES];
-   */
+  if ([Application isIPhone3G]) {
+    // the 3g is too slow for this animation.  so we just do a full refresh.
+    [self majorRefresh];
+    return;
+  }
+  NSInteger oldTheaterCount = self.filteredTheatersArray.count;
+  [self initializeTheaterArrays];
+  
+  NSInteger newTheaterCount = self.filteredTheatersArray.count;    
+  if (oldTheaterCount >= newTheaterCount) {
+    return;
+  }
+  
+  NSInteger startSection = startPath.section;
+  [self.tableView beginUpdates];
+  {    
+    NSIndexSet* startIndexSet = [NSIndexSet indexSetWithIndex:startSection];
+    if (oldTheaterCount == 0) {
+      // Replace the 'Show Hidden Theaters' with the 'Map Theaters' button.
+      [self.tableView reloadSections:startIndexSet withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+      // Remove the 'Show Hidden Theaters' button.
+      [self.tableView deleteSections:startIndexSet withRowAnimation:UITableViewRowAnimationFade];      
+    }
+    
+    // Now add in the new theaters.
+    NSIndexSet* sectionsToAdd = 
+      [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startSection, newTheaterCount - oldTheaterCount)];
+        
+    [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationFade];
+  }
+  [self.tableView endUpdates];
+  
+  [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
+                        atScrollPosition:UITableViewScrollPositionMiddle
+                                animated:YES];
 }
 
 
@@ -978,7 +994,11 @@ const NSInteger POSTER_TAG = -1;
   actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:LocalizedString(@"Cancel", nil)];
   //actionSheet.cancelButtonIndex = keys.count;
 
-  [actionSheet showInView:self.view];
+  if ([self tabBarController] != nil) {
+    [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
+  } else {
+    [actionSheet showInView:self.view];
+  }
 }
 
 
@@ -1190,10 +1210,10 @@ const NSInteger POSTER_TAG = -1;
 
   NSMutableString* body = [NSMutableString string];
 
-  for (int i = 0; i < theatersArray.count; i++) {
+  for (int i = 0; i < filteredTheatersArray.count; i++) {
     [body appendString:@"<p>"];
 
-    Theater* theater = [theatersArray objectAtIndex:i];
+    Theater* theater = [filteredTheatersArray objectAtIndex:i];
     NSArray* performances = [showtimesArray objectAtIndex:i];
 
     [body appendString:theater.name];
@@ -1249,8 +1269,10 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) didSelectMapTheatersRow {
-  Theater* theater = [theatersArray objectAtIndex:0];
-  [self.abstractNavigationController pushMapWithCenter:theater locations:theatersArray delegate:self animated:YES];
+  Theater* theater = [filteredTheatersArray objectAtIndex:0];
+  [self.abstractNavigationController pushMapWithCenter:theater
+                                             locations:filteredTheatersArray
+                                              delegate:self animated:YES];
 }
 
 
@@ -1264,13 +1286,13 @@ const NSInteger POSTER_TAG = -1;
     return;
   }
 
-  if (indexPath.section == 2 && theatersArray.count > 0) {
+  if (indexPath.section == 2 && filteredTheatersArray.count > 0) {
     return [self didSelectMapTheatersRow];
   }
 
   if ([self isTheaterSection:indexPath.section]) {
     // theater section
-    Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
+    Theater* theater = [filteredTheatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
     if (indexPath.row == 0) {
       [self.commonNavigationController pushTheaterDetails:theater animated:YES];
