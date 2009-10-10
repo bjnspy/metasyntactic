@@ -130,7 +130,7 @@
 
 - (void) generateOnlineHelpFiles:(NSArray*) questions
                          answers:(NSArray*) answers {
-  //return;
+  return;
   NSMutableString* result = [NSMutableString string];
   
   [result appendString:@"@SuppressWarnings(\"serial\")\n"];

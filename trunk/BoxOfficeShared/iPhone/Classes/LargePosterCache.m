@@ -151,7 +151,10 @@ const int START_YEAR = 1912;
     
     NSMutableArray* posters = [NSMutableArray array];
     for (XmlElement* locElement in itemElement.children) {
-      [posters addObject:[locElement text]];
+      NSString* poster = [locElement text];
+      if (poster.length > 0) {
+        [posters addObject:poster];
+      }
     }
     
     if (posters.count > 0) {

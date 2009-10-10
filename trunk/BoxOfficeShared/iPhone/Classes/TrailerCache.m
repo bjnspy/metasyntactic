@@ -104,13 +104,15 @@
 - (void) generateIndexWorker:(XmlElement*) element {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
-  for (XmlElement* itemElmenet in element.children) {
-    NSString* fullTitle = [element attributeValue:@"title"];
-    NSString* studioKey = [element attributeValue:@"studio_key"];
-    NSString* titleKey = [element attributeValue:@"title_key"];
+  for (XmlElement* itemElement in element.children) {
+    NSString* fullTitle = [itemElement attributeValue:@"title"];
+    NSString* studioKey = [itemElement attributeValue:@"studio_key"];
+    NSString* titleKey = [itemElement attributeValue:@"title_key"];
 
-    [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
-               forKey:fullTitle.lowercaseString];
+    if (fullTitle.length > 0 && studioKey.length > 0 && titleKey.length > 0) {
+      [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
+                 forKey:fullTitle.lowercaseString];
+    }
   }
 
   self.index = result;
