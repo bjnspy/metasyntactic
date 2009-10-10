@@ -66,7 +66,7 @@
   if (data == nil) {
     return;
   }
-  
+
   XmlElement* element = [XmlParser parse:data];
   NSString* addressValue = [element text];
   if (addressValue == nil) {

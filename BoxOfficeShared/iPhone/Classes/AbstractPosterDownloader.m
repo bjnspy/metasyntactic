@@ -105,7 +105,7 @@
   if (posterUrls.count == 0) {
     return nil;
   }
-  
+
   NSString* url = [posterUrls objectAtIndex:0];
   return [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
 }

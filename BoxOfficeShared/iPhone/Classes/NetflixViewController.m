@@ -107,7 +107,7 @@ typedef enum {
 
 - (void) setupTitle {
   self.title = LocalizedString(@"Netflix", nil);
-  
+
   if (self.model.netflixCache.lastQuotaErrorDate != nil &&
       self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
     UILabel* label = [ViewControllerUtilities createTitleLabel];
