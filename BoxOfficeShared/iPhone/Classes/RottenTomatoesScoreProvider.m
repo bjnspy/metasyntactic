@@ -45,7 +45,7 @@
 
 - (NSDictionary*) lookupServerScores {
   NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieScores%@?q=rottentomates",
-                       [Application apiHost], [Application apiVersion]]];
+                       [Application apiHost], [Application apiVersion]];
   XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                    pause:NO];
 
