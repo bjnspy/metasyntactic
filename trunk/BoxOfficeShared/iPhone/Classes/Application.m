@@ -311,7 +311,7 @@ static NSString** directories[] = {
 #if !TARGET_IPHONE_SIMULATOR
   return @"metaboxoffice2";
 #else
-  /*
+  //*
    return @"metaboxoffice6";
   /*/
   return @"metaboxoffice2";
