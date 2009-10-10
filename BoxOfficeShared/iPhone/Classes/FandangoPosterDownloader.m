@@ -43,7 +43,6 @@
 
 
 - (NSDictionary*) createMapWorker {
-
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=fandango",
                    [Application apiHost], [Application apiVersion]];
   
