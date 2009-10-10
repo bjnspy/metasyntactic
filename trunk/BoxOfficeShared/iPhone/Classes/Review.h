@@ -14,11 +14,11 @@
 
 @interface Review : AbstractData<NSCopying, NSCoding> {
 @private
-    NSInteger score;
-    NSString* link;
-    NSString* text;
-    NSString* author;
-    NSString* source;
+  NSInteger score;
+  NSString* link;
+  NSString* text;
+  NSString* author;
+  NSString* source;
 }
 
 @property (readonly) NSInteger score;

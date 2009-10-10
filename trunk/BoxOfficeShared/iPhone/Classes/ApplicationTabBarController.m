@@ -133,23 +133,7 @@
 
     self.selectedViewController = controller;
     [controller navigateToLastViewedPage];
-    /*
-     if ([NetworkUtilities isNetworkAvailable]) {
-     if (!self.model.votedForIcon) {
-     [self.model setVotedForIcon];
-
-     [self performSelector:@selector(pushVoteBrowser) withObject:nil afterDelay:0];
-     }
-     }
-     */
   }
-}
-
-
-- (void) pushVoteBrowser {
-  CommonNavigationController* controller = self.selectedNavigationController;
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/IconVote?q=start", [Application host]];
-  [controller pushBrowser:url showSafariButton:NO animated:YES];
 }
 
 

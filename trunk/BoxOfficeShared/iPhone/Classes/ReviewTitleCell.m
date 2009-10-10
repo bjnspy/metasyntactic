@@ -126,8 +126,13 @@
 - (void) setReview:(Review*) review {
   [self setReviewImage:review];
 
-  self.textLabel.text = review.author;
-  self.detailTextLabel.text = review.source;
+  if (review.author.length == 0) {
+    self.textLabel.text = review.source;
+    self.detailTextLabel.text = @"";
+  } else {
+    self.textLabel.text = review.author;
+    self.detailTextLabel.text = review.source;
+  }
 }
 
 @end

@@ -362,12 +362,12 @@ static Controller* controller = nil;
 
 
 - (void) checkIfInReviewPeriodBackgroundEntryPoint {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/InReviewPeriod?name=%@&version=%@",
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupApplicationInformation3?name=%@&version=%@",
                        [Application host],
                        [[NSBundle mainBundle] bundleIdentifier],
                        [Application version]];
-  NSString* result = [NetworkUtilities stringWithContentsOfAddress:address];
-  if ([@"0" isEqual:result]) {
+  XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address];
+  if ([@"false" isEqual:[result attributeValue:@"in_review"]]) {
     [ThreadingUtilities foregroundSelector:@selector(clearInReviewPeriod) onTarget:self.model];
   }
 }

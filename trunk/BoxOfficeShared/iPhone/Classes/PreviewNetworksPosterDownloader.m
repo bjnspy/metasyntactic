@@ -44,7 +44,7 @@
   }
 
   NSString* address = [NSString stringWithFormat:@"http://%@.iphone.filmtrailer.com/v2.0/cinema/AllCinemaMovies/?channel_user_id=391100099-1&format=mov&size=xlarge", [[LocaleUtilities isoCountry] lowercaseString]];
-  NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
+  NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@",
                            [Application host],
                            [StringUtilities stringByAddingPercentEscapes:address]];
 
