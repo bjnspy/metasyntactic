@@ -217,8 +217,8 @@
 
 
 - (void) updateBackgroundEntryPointWorker {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings3?id=%@&language=%@",
-                       [Application host],
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupHelpListings%@?id=%@&language=%@",
+                       [Application apiHost], [Application apiVersion],
                        [[NSBundle mainBundle] bundleIdentifier],
                        [LocaleUtilities preferredLanguage]];
   

@@ -29,7 +29,9 @@
 
 
 - (NSString*) serverUrl:(Movie*) movie {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings3?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings%@?q=%@",
+          [Application apiHost], [Application apiVersion],
+          [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
 }
 
 

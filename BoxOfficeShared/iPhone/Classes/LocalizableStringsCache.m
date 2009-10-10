@@ -60,8 +60,8 @@ static BOOL updated = NO;
 
 
 + (void) updateBackgroundEntryPointWorker {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocalizableStrings3?id=%@&language=%@",
-                       [Application host],
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocalizableStrings%@?id=%@&language=%@",
+                       [Application apiHost], [Application apiVersion],
                        [[NSBundle mainBundle] bundleIdentifier],
                        [LocaleUtilities preferredLanguage]];
   NSString* hashAddress = [address stringByAppendingString:@"&hash=true"];

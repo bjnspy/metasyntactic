@@ -259,7 +259,9 @@
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex3?hash=true", [Application host]]
+  
+  NSString* address1 = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex%@?hash=true", [Application apiHost], [Application apiVersion]];
+  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address1
                                                                  pause:NO];
   if (serverHash.length == 0) {
     serverHash = @"0";
@@ -271,7 +273,8 @@
     return;
   }
 
-  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex3", [Application host]]
+  NSString* address2 = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex%@", [Application apiHost], [Application apiVersion]];
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address2
                                                                    pause:NO];
 
   NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
@@ -386,7 +389,8 @@
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings3?studio=%@&name=%@", [Application host], studio, title];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings%@?studio=%@&name=%@",
+                   [Application apiHost], [Application apiVersion], studio, title];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
 
   if (element == nil) {
@@ -431,7 +435,8 @@
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings3?studio=%@&name=%@", [Application host], studio, title];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings%@?studio=%@&name=%@",
+                   [Application apiHost], [Application apiVersion], studio, title];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
   if (element == nil) {
     return;

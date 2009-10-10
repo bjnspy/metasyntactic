@@ -44,8 +44,8 @@
 
 - (NSDictionary*) createMapWorker {
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=fandango",
-                   [Application host]];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=fandango",
+                   [Application apiHost], [Application apiVersion]];
   
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
   return [LargePosterCache processPosterListings:element];

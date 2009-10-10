@@ -29,7 +29,9 @@
 
 
 - (NSString*) serverUrl:(Movie*) movie {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings3?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings%@?q=%@",
+          [Application apiHost], [Application apiVersion],
+          [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
 }
 
 @end

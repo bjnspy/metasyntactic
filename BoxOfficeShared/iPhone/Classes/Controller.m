@@ -362,8 +362,8 @@ static Controller* controller = nil;
 
 
 - (void) checkIfInReviewPeriodBackgroundEntryPoint {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupApplicationInformation3?name=%@&version=%@",
-                       [Application host],
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupApplicationInformation%@?name=%@&version=%@",
+                       [Application apiHost], [Application apiVersion],
                        [[NSBundle mainBundle] bundleIdentifier],
                        [Application version]];
   XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address];

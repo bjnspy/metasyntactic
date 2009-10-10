@@ -77,7 +77,8 @@
   NSString* studio = [studioAndLocation objectAtIndex:0];
   NSString* location = [studioAndLocation objectAtIndex:1];
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings3?studio=%@&name=%@", [Application host], studio, location];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings%@?studio=%@&name=%@",
+                   [Application apiHost], [Application apiVersion], studio, location];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
   if (element == nil) {
     // didn't get any data.  ignore this for now.
@@ -122,7 +123,8 @@
   [dataGate lock];
   {
     if (index == nil) {
-      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerIndex3", [Application host]];
+      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerIndex%@",
+                       [Application apiHost], [Application apiVersion]];
       XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
       if (element != nil) {
         [self generateIndexWorker:element];

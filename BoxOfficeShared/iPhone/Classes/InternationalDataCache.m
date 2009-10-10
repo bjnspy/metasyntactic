@@ -397,8 +397,8 @@ static NSDictionary* countryToCode = nil;
 - (void) downloadIndex {
   NSString* code = [countryToCode objectForKey:[LocaleUtilities isoCountry]];
   NSString* address = [NSString stringWithFormat:@"http://%@.iphone.filmtrailer.com/v2.0/cinema/AllCinemaMovies/?channel_user_id=%@&format=mov&size=xlarge", [[LocaleUtilities isoCountry] lowercaseString], code];
-  NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@",
-                           [Application host],
+  NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@",
+                           [Application apiHost], [Application apiVersion],
                            [StringUtilities stringByAddingPercentEscapes:address]];
 
   XmlElement* element;
