@@ -49,7 +49,8 @@
 
 
 - (NSString*) serverAddress {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings3?q=dvd", [Application host]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings%@?q=dvd",
+          [Application apiHost], [Application apiVersion]];
 }
 
 

@@ -86,7 +86,9 @@
 
 
 - (NSData*) downloadPosterWorker:(Person*) person {
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings3?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:person.name]];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings%@?q=%@",
+                   [Application apiHost], [Application apiVersion],
+                   [StringUtilities stringByAddingPercentEscapes:person.name]];
   return nil;
   NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url];
 

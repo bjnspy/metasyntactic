@@ -53,6 +53,7 @@
 
 + (void) resetDirectories;
 
-+ (NSString*) host;
++ (NSString*) apiHost;
++ (NSString*) apiVersion;
 
 @end

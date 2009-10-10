@@ -307,7 +307,7 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) host {
++ (NSString*) apiHost {
 #if !TARGET_IPHONE_SIMULATOR
   return @"metaboxoffice2";
 #else
@@ -317,6 +317,11 @@ static NSString** directories[] = {
   return @"metaboxoffice2";
   //*/
 #endif
+}
+
+
++ (NSString*) apiVersion {
+  return @"3";
 }
 
 @end

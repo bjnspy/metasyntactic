@@ -68,7 +68,8 @@
 - (Location*) downloadAddressLocationFromWebServiceWorker:(NSString*) address {
   NSString* escapedAddress = [StringUtilities stringByAddingPercentEscapes:address];
   if (escapedAddress != nil) {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation3?q=%@", [Application host], escapedAddress];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation%@?q=%@",
+                     [Application apiHost], [Application apiVersion], escapedAddress];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
     return [self processResult:element];

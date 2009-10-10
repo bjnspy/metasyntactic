@@ -20,7 +20,8 @@
 @implementation ApplePosterDownloader
 
 - (NSDictionary*) createMapWorker {
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=apple", [Application host]];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=apple",
+                   [Application apiHost], [Application apiVersion]];
   XmlElement* index = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
   return [LargePosterCache processPosterListings:index];
 }

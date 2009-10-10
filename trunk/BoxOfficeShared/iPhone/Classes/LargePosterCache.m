@@ -183,7 +183,8 @@ const int START_YEAR = 1912;
     }
   }
 
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=imp&year=%d", [Application host], year];
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=imp&year=%d",
+                       [Application apiHost], [Application apiVersion], year];
   XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
   NSDictionary *titleToPosters = [LargePosterCache processPosterListings: result];
@@ -392,7 +393,8 @@ const int START_YEAR = 1912;
     return nil;
   }
 
-  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3", [Application host]];
+  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@", 
+                        [Application apiHost], [Application apiVersion]];
 
   NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];
   [request setHTTPMethod:@"POST"];
@@ -416,7 +418,9 @@ const int START_YEAR = 1912;
 
 
 - (NSData*) downloadUrlData:(NSString*) url {
-  NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
+  NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@?q=%@&lookup_only=true",
+                               [Application apiHost], [Application apiVersion],
+                               [StringUtilities stringByAddingPercentEscapes:url]];
 
   // Try first from the cache.
   NSHTTPURLResponse* response = nil;
