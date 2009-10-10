@@ -259,7 +259,7 @@
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-  
+
   NSString* address1 = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex%@?hash=true", [Application apiHost], [Application apiVersion]];
   NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address1
                                                                  pause:NO];

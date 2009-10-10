@@ -36,7 +36,7 @@
   if ((self = [super init])) {
     self.questionsAndAnswersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadQuestionsAndAnswers) saveSelector:@selector(saveQuestionsAndAnswers:)];
   }
-  
+
   return self;
 }
 
@@ -55,12 +55,12 @@
   if (!self.model.helpCacheEnabled) {
     return;
   }
-  
+
   if (updated) {
     return;
   }
   updated = YES;
-  
+
   [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint)
                                           onTarget:self
                                               gate:nil
@@ -76,13 +76,13 @@
 
 - (NSMutableArray*) makeReplacements:(NSArray*) array {
   NSMutableArray* result = [NSMutableArray array];
-  
+
   for (NSInteger i = 0; i < array.count; i++) {
     NSString* value = [array objectAtIndex:i];
     value = [value stringByReplacingOccurrencesOfString:@"%@" withString:[Application name]];
     [result addObject:value];
   }
-  
+
   return result;
 }
 
@@ -108,7 +108,7 @@
       loc = value;
     }
     loc = [self convertToJavaString:loc];
-    [result appendFormat:@"    \"%@\",\n", loc]; 
+    [result appendFormat:@"    \"%@\",\n", loc];
   }
 }
 
@@ -121,7 +121,7 @@
     [result appendFormat:@"      if (\"%@\".equals(language)) {\n", language];
     [result appendFormat:@"        return org_metasyntactic_BoxOffice_%@_%@;\n", language, [type lowercaseString]];
     [result appendString:@"      }\n"];
-  }  
+  }
   [result appendString:@"    }\n"];
   [result appendString:@"    return null;\n"];
   [result appendString:@"  }\n"];
@@ -132,31 +132,31 @@
                          answers:(NSArray*) answers {
   return;
   NSMutableString* result = [NSMutableString string];
-  
+
   [result appendString:@"@SuppressWarnings(\"serial\")\n"];
   [result appendString:@"public class LookupHelpListingsServlet2 extends AbstractLookupHelpListingsServlet2 {\n"];
-  
+
   for (NSString* language in [[NSBundle mainBundle] localizations]) {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Localizable.strings" ofType:nil inDirectory:nil forLocalization:language];
     NSDictionary* dictionary = [FileUtilities readObject:path];
-    
+
     [result appendFormat:@"  private static final String[] org_metasyntactic_BoxOffice_%@_questions = new String[] {\n", language];
     [self generateLocLine: result dictionary: dictionary values:questions];
     [result appendFormat:@"  };\n"];
-    
+
     [result appendFormat:@"  private static final String[] org_metasyntactic_BoxOffice_%@_answers = new String[] {\n", language];
     [self generateLocLine:result dictionary:dictionary values:answers];
     [result appendFormat:@"  };\n"];
   }
-  
+
   [self appendLookupMethod: result type:@"Questions"];
   [self appendLookupMethod: result type:@"Answers"];
-  
-  
-  
+
+
+
   [result appendString:@"}\n"];
   [result appendString:@"\n"];
-  
+
   NSLog(@"%@", result);
 }
 
@@ -176,7 +176,7 @@
                         LocalizedString(@"Could you add support for Blockbuster movie rentals in addition to Netflix movie rentals?", nil),
                         LocalizedString(@"Could you provide an option to let me choose the icon I want for the %@?", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"),
                         LocalizedString(@"What can I do if I have a question that hasn't been answered?", nil), nil];
-  
+
   NSArray* answers = [NSArray arrayWithObjects:
                       LocalizedString(@"Definitely! Use the 'Send Feedback' button above to contact me. Let me know what needs to be corrected and I will get the issue resolved for the next version.", nil),
                       LocalizedString(@"Theaters are removed when they do not provide up-to-date listings. When up-to-date listing are provided, the theater will reappear automatically in %@.", @"%@ is replaced with the name of the program.  i.e. 'Now Playing'"),
@@ -191,17 +191,17 @@
                       LocalizedString(@"Currently Blockbuster does not provide a supported API for 3rd party applications to plug into. When they do, I will add support for Blockbuster rentals.", nil),
                       LocalizedString(@"Apple does not provide a mechanism for 3rd party applications to change their icon. When they do, I will provide this capability.", nil),
                       LocalizedString(@"Tap the 'Send Feedback' button above to contact me directly about anything else you need. Cheers! :-)", nil), nil];
-  
+
   [self generateOnlineHelpFiles:questions answers:answers];
-  
+
   NSArray* result = [FileUtilities readObject:self.questionsAndAnswersFile];
   if (result.count > 0) {
     return result;
   }
-  
+
   questions = [self makeReplacements:questions];
   answers = [self makeReplacements:answers];
-  
+
   return [NSArray arrayWithObjects:questions, answers, nil];
 }
 
@@ -221,29 +221,29 @@
                        [Application apiHost], [Application apiVersion],
                        [[NSBundle mainBundle] bundleIdentifier],
                        [LocaleUtilities preferredLanguage]];
-  
+
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
-  
+
   NSMutableArray* questions = [NSMutableArray array];
   NSMutableArray* answers = [NSMutableArray array];
-  
+
   for (XmlElement* child in element.children) {
     NSString* question = [child attributeValue:@"question"];
     NSString* answer = [child attributeValue:@"answer"];
-    
+
     if (question.length > 0 && answer.length > 0) {
       [questions addObject:question];
       [answers addObject:answer];
     }
   }
-  
+
   questions = [self makeReplacements:questions];
   answers = [self makeReplacements:answers];
-  
+
   if (questions.count == 0 || answers.count == 0) {
     return;
   }
-  
+
   NSArray* result = [NSArray arrayWithObjects:questions, answers, nil];
   questionsAndAnswersData.value = result;
 }
@@ -256,7 +256,7 @@
       return;
     }
   }
-  
+
   NSString* notification = [LocalizedString(@"Help", nil) lowercaseString];
   [NotificationCenter addNotification:notification];
   {

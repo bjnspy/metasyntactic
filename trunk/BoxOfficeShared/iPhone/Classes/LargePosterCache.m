@@ -140,7 +140,7 @@ const int START_YEAR = 1912;
   if (posterListingsElement == nil) {
     return nil;
   }
-  
+
   NSMutableDictionary* titleToPosters = [NSMutableDictionary dictionary];
 
   for (XmlElement* itemElement in posterListingsElement.children) {
@@ -148,7 +148,7 @@ const int START_YEAR = 1912;
     if (title.length == 0) {
       continue;
     }
-    
+
     NSMutableArray* posters = [NSMutableArray array];
     for (XmlElement* locElement in itemElement.children) {
       NSString* poster = [locElement text];
@@ -156,16 +156,16 @@ const int START_YEAR = 1912;
         [posters addObject:poster];
       }
     }
-    
+
     if (posters.count > 0) {
       [titleToPosters setObject:posters forKey:title];
     }
   }
-  
+
   if (titleToPosters.count == 0) {
     return nil;
   }
-  
+
   return titleToPosters;
 }
 
@@ -396,7 +396,7 @@ const int START_YEAR = 1912;
     return nil;
   }
 
-  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@", 
+  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource%@",
                         [Application apiHost], [Application apiVersion]];
 
   NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];

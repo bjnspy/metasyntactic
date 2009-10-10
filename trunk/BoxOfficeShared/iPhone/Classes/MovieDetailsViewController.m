@@ -109,10 +109,10 @@ const NSInteger POSTER_TAG = -1;
 - (NSMutableArray*) orderTheaters:(NSMutableArray*) theatersArray {
   [theatersArray sortUsingFunction:compareTheatersByDistance
                            context:self.model.theaterDistanceMap];
-  
+
   NSMutableArray* favorites = [NSMutableArray array];
   NSMutableArray* nonFavorites = [NSMutableArray array];
-  
+
   for (Theater* theater in theatersArray) {
     if ([self.model isFavoriteTheater:theater]) {
       [favorites addObject:theater];
@@ -120,11 +120,11 @@ const NSInteger POSTER_TAG = -1;
       [nonFavorites addObject:theater];
     }
   }
-  
+
   NSMutableArray* result = [NSMutableArray array];
   [result addObjectsFromArray:favorites];
   [result addObjectsFromArray:nonFavorites];
-  
+
   return result;
 }
 
@@ -311,17 +311,17 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeTheaterArrays {
   self.allTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersShowingMovie:movie]];
-  
+
   if (filterTheatersByDistance) {
     self.filteredTheatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:self.allTheatersArray]];
   } else {
     self.filteredTheatersArray = self.allTheatersArray;
   }
-  
+
   [self orderTheaters];
-  
+
   self.showtimesArray = [NSMutableArray array];
-  
+
   for (Theater* theater in filteredTheatersArray) {
     [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
   }
@@ -898,42 +898,41 @@ const NSInteger POSTER_TAG = -1;
   [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
   filterTheatersByDistance = NO;
-  if ([Application isIPhone3G]) {
-    // the 3g is too slow for this animation.  so we just do a full refresh.
-    [self majorRefresh];
-    return;
-  }
+  [self majorRefresh];
+
+/*
   NSInteger oldTheaterCount = self.filteredTheatersArray.count;
   [self initializeTheaterArrays];
-  
-  NSInteger newTheaterCount = self.filteredTheatersArray.count;    
+
+  NSInteger newTheaterCount = self.filteredTheatersArray.count;
   if (oldTheaterCount >= newTheaterCount) {
     return;
   }
-  
+
   NSInteger startSection = startPath.section;
   [self.tableView beginUpdates];
-  {    
+  {
     NSIndexSet* startIndexSet = [NSIndexSet indexSetWithIndex:startSection];
     if (oldTheaterCount == 0) {
       // Replace the 'Show Hidden Theaters' with the 'Map Theaters' button.
       [self.tableView reloadSections:startIndexSet withRowAnimation:UITableViewRowAnimationFade];
     } else {
       // Remove the 'Show Hidden Theaters' button.
-      [self.tableView deleteSections:startIndexSet withRowAnimation:UITableViewRowAnimationFade];      
+      [self.tableView deleteSections:startIndexSet withRowAnimation:UITableViewRowAnimationFade];
     }
-    
+
     // Now add in the new theaters.
-    NSIndexSet* sectionsToAdd = 
+    NSIndexSet* sectionsToAdd =
       [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startSection, newTheaterCount - oldTheaterCount)];
-        
+
     [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationFade];
   }
   [self.tableView endUpdates];
-  
+
   [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
                         atScrollPosition:UITableViewScrollPositionMiddle
                                 animated:YES];
+ */
 }
 
 
