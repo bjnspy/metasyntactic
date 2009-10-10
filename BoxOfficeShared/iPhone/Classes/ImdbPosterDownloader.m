@@ -22,7 +22,7 @@
     NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
         NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
-        NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
+        NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@",
                                  [Application host],
                                  [StringUtilities stringByAddingPercentEscapes:address]];
 
@@ -44,7 +44,7 @@
     }
 
     NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
-    NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
+    NSString* fullAddress = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@",
                              [Application host],
                              [StringUtilities stringByAddingPercentEscapes:address]];
 

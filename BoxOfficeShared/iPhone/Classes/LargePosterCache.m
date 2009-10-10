@@ -136,6 +136,37 @@ const int START_YEAR = 1912;
 }
 
 
++ (NSDictionary*) processPosterListings:(XmlElement *) posterListingsElement  {
+  if (posterListingsElement == nil) {
+    return nil;
+  }
+  
+  NSMutableDictionary* titleToPosters = [NSMutableDictionary dictionary];
+
+  for (XmlElement* itemElement in posterListingsElement.children) {
+    NSString* title = [itemElement attributeValue:@"title"];
+    if (title.length == 0) {
+      continue;
+    }
+    
+    NSMutableArray* posters = [NSMutableArray array];
+    for (XmlElement* locElement in itemElement.children) {
+      [posters addObject:[locElement text]];
+    }
+    
+    if (posters.count > 0) {
+      [titleToPosters setObject:posters forKey:title];
+    }
+  }
+  
+  if (titleToPosters.count == 0) {
+    return nil;
+  }
+  
+  return titleToPosters;
+}
+
+
 - (void) ensureIndexWorker:(NSInteger) year
              updateIfStale:(BOOL) updateIfStale {
   NSString* indexFile = [self indexFile:year];
@@ -152,30 +183,11 @@ const int START_YEAR = 1912;
     }
   }
 
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp&year=%d", [Application host], year];
-  NSString* result = [NetworkUtilities stringWithContentsOfAddress:address pause:NO];
-  if (result.length == 0) {
-    return;
-  }
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=imp&year=%d", [Application host], year];
+  XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
-  NSMutableDictionary* titleToPosters = [NSMutableDictionary dictionary];
+  NSDictionary *titleToPosters = [LargePosterCache processPosterListings: result];
 
-  for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
-    NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
-    if (columns.count < 2) {
-      continue;
-    }
-
-    NSString* title = [[Movie makeDisplay:[columns objectAtIndex:0]] lowercaseString];
-    NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
-
-    if (title.length == 0) {
-      continue;
-    }
-
-    [titleToPosters setObject:posters forKey:title];
-  }
 
   if (titleToPosters.count > 0) {
     [FileUtilities writeObject:titleToPosters.allKeys toFile:indexFile];
@@ -380,7 +392,7 @@ const int START_YEAR = 1912;
     return nil;
   }
 
-  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource", [Application host]];
+  NSString* cacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3", [Application host]];
 
   NSMutableURLRequest* request = [NetworkUtilities createRequest:[NSURL URLWithString:cacheUrl]];
   [request setHTTPMethod:@"POST"];
@@ -404,7 +416,7 @@ const int START_YEAR = 1912;
 
 
 - (NSData*) downloadUrlData:(NSString*) url {
-  NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
+  NSString* noFetchCacheUrl = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource3?q=%@&lookup_only=true", [Application host], [StringUtilities stringByAddingPercentEscapes:url]];
 
   // Try first from the cache.
   NSHTTPURLResponse* response = nil;

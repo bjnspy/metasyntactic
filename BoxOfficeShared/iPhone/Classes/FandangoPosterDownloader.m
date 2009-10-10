@@ -15,6 +15,7 @@
 #import "FandangoPosterDownloader.h"
 
 #import "Application.h"
+#import "LargePosterCache.h"
 
 @implementation FandangoPosterDownloader
 
@@ -42,23 +43,12 @@
 
 
 - (NSDictionary*) createMapWorker {
-  NSString* postalCode = @"10009";
-  NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                                 fromDate:[DateUtilities today]];
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
-                   [Application host],
-                   postalCode,
-                   components.year,
-                   components.month,
-                   components.day];
-
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=fandango",
+                   [Application host]];
+  
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
-  if (element == nil) {
-    return nil;
-  }
-
-  return [self processFandangoElement:element];
+  return [LargePosterCache processPosterListings:element];
 }
 
 @end

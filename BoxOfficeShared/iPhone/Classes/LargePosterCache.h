@@ -22,6 +22,8 @@
 
 + (LargePosterCache*) cache;
 
++ (NSDictionary*) processPosterListings:(XmlElement *) posterListingsElement;
+
 - (void) update;
 
 - (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk;

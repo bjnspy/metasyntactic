@@ -15,31 +15,14 @@
 #import "ApplePosterDownloader.h"
 
 #import "Application.h"
+#import "LargePosterCache.h"
 
 @implementation ApplePosterDownloader
 
 - (NSDictionary*) createMapWorker {
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
-  NSString* index = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-  if (index == nil) {
-    return nil;
-  }
-
-  NSMutableDictionary* result = [NSMutableDictionary dictionary];
-
-  NSArray* rows = [index componentsSeparatedByString:@"\n"];
-  for (NSString* row in rows) {
-    NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
-    if (columns.count >= 2) {
-      NSString* movieName = [[Movie makeCanonical:[columns objectAtIndex:0]] lowercaseString];
-      NSString* posterUrl = [columns objectAtIndex:1];
-
-      [result setObject:posterUrl forKey:movieName];
-    }
-  }
-
-  return result;
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings3?provider=apple", [Application host]];
+  XmlElement* index = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  return [LargePosterCache processPosterListings:index];
 }
 
 @end

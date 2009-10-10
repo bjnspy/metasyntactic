@@ -62,9 +62,15 @@
 
 
   NSString* url = [self serverUrl:movie];
-  NSString* addressValue = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-  if (addressValue == nil) {
+  NSData* data = [NetworkUtilities dataWithContentsOfAddress:url pause:NO];
+  if (data == nil) {
     return;
+  }
+  
+  XmlElement* element = [XmlParser parse:data];
+  NSString* addressValue = [element text];
+  if (addressValue == nil) {
+    addressValue = @"";
   }
 
   // write down the response (even if it is empty).  An empty value will

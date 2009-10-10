@@ -336,7 +336,7 @@
   location.country;
 
   NSString* url =
-  [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
+  [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews3?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
    [Application host],
    country,
    [LocaleUtilities preferredLanguage],

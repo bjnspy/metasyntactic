@@ -75,7 +75,7 @@ property_definition(identifier);
                  provider:(NSString*) provider
                identifier:(NSString*) identifier {
   return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                       synopsis:[StringUtilities stripHtmlCodes:synopsis]
+                                       synopsis:synopsis
                                           score:score
                                        provider:provider
                                      identifier:identifier] autorelease];

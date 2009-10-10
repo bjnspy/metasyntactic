@@ -92,11 +92,11 @@
 }
 
 
-- (NSArray*) processArray:(XmlElement*) element {
+- (NSArray*) processArray:(XmlElement*) element attribute:(NSString*) attribute {
   NSMutableArray* array = [NSMutableArray array];
 
   for (XmlElement* child in element.children) {
-    [array addObject:[child attributeValue:@"value"]];
+    [array addObject:[child attributeValue:attribute]];
   }
 
   return array;
@@ -117,12 +117,15 @@
   NSString* studio = [movieElement attributeValue:@"studio"];
   NSString* title = [movieElement attributeValue:@"title"];
   title = [self massageTitle:title];
-  NSArray* directors = [self processArray:[movieElement element:@"directors"]];
-  NSArray* cast = [self processArray:[movieElement element:@"actors"]];
-  NSArray* genres = [self processArray:[movieElement element:@"genres"]];
+  NSArray* directors = [self processArray:[movieElement element:@"Directors"] attribute:@"name"];
+  NSArray* cast = [self processArray:[movieElement element:@"Cast"] attribute:@"name"];
+  NSArray* genres = [self processArray:[movieElement element:@"Genres"] attribute:@"value"];
 
-  NSString* studioKey = [movieElement attributeValue:@"studioKey"];
-  NSString* titleKey = [movieElement attributeValue:@"titleKey"];
+  NSString* studioKey = [movieElement attributeValue:@"studio_key"];
+  NSString* titleKey = [movieElement attributeValue:@"title_key"];
+  if (studioKey.length == 0 || titleKey.length == 0) {
+    return nil;
+  }
 
   Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", movieElement]
                                       title:title
@@ -256,7 +259,7 @@
 
 - (void) updateIndexBackgroundEntryPointWorker {
   NSString* localHash = self.hashValue;
-  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
+  NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex3?hash=true", [Application host]]
                                                                  pause:NO];
   if (serverHash.length == 0) {
     serverHash = @"0";
@@ -268,7 +271,7 @@
     return;
   }
 
-  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
+  XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingIndex3", [Application host]]
                                                                    pause:NO];
 
   NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
@@ -383,26 +386,19 @@
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@&format=2", [Application host], studio, title];
-  NSString* result = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings3?studio=%@&name=%@", [Application host], studio, title];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
 
-  if (result == nil) {
+  if (element == nil) {
     return;
   }
 
-  if ([result rangeOfString:@"403 Over Quota"].length > 0) {
+  NSString* synopsis = [element attributeValue:@"synopsis"];
+  if (synopsis.length == 0) {
     return;
   }
 
-  NSString* synopsis = @"";
-  NSMutableArray* cast = [NSMutableArray array];
-
-  NSArray* components = [result componentsSeparatedByString:@"\n"];
-  if (components.count > 0) {
-    synopsis = [components objectAtIndex:0];
-    cast = [NSMutableArray arrayWithArray:components];
-    [cast removeObjectAtIndex:0];
-  }
+  NSArray* cast = [self processArray:[element element:@"Cast"] attribute:@"name"];
 
   [FileUtilities writeObject:cast toFile:[self castFile:movie]];
   [FileUtilities writeObject:synopsis toFile:synopsisFile];
@@ -435,15 +431,15 @@
     }
   }
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
-  NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-  if (trailersString == nil) {
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings3?studio=%@&name=%@", [Application host], studio, title];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  if (element == nil) {
     return;
   }
 
-  NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
   NSMutableArray* final = [NSMutableArray array];
-  for (NSString* trailer in trailers) {
+  for (XmlElement* urlElement in element.children) {
+    NSString* trailer = [urlElement text];
     if (trailer.length > 0) {
       [final addObject:trailer];
     }

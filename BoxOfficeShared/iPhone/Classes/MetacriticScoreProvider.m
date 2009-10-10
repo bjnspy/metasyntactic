@@ -35,21 +35,21 @@
 
 
 - (NSString*) lookupServerHash {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true", [Application host]];
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieScores3?q=metacritic&hash=true", [Application host]];
   NSString* value = [NetworkUtilities stringWithContentsOfAddress:address pause:NO];
   return value;
 }
 
 
 - (NSDictionary*) lookupServerScores {
-  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
+  NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieScores3?q=metacritic", [Application host]];
   XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];
 
   if (resultElement != nil) {
     NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in resultElement.children) {
-      NSString* title =    [[movieElement attributeValue:@"title"] stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+      NSString* title =    [movieElement attributeValue:@"title"];
       NSString* link =     [movieElement attributeValue:@"link"];
       NSString* synopsis = [movieElement attributeValue:@"synopsis"];
       NSString* score =    [movieElement attributeValue:@"score"];

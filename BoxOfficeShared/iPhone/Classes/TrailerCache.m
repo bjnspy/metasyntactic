@@ -77,16 +77,16 @@
   NSString* studio = [studioAndLocation objectAtIndex:0];
   NSString* location = [studioAndLocation objectAtIndex:1];
 
-  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
-  NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-  if (trailersString == nil) {
+  NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings3?studio=%@&name=%@", [Application host], studio, location];
+  XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+  if (element == nil) {
     // didn't get any data.  ignore this for now.
     return;
   }
 
-  NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
   NSMutableArray* final = [NSMutableArray array];
-  for (NSString* trailer in trailers) {
+  for (XmlElement* urlElement in element.children) {
+    NSString* trailer = [urlElement text];
     if (trailer.length > 0) {
       [final addObject:trailer];
     }
@@ -100,21 +100,15 @@
 }
 
 
-- (void) generateIndexWorker:(NSString*) indexText {
+- (void) generateIndexWorker:(XmlElement*) element {
   NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
-  NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
-  for (NSString* row in rows) {
-    NSArray* values = [row componentsSeparatedByString:@"\t"];
-    if (values.count != 3) {
-      continue;
-    }
+  for (XmlElement* itemElmenet in element.children) {
+    NSString* fullTitle = [element attributeValue:@"title"];
+    NSString* studioKey = [element attributeValue:@"studio_key"];
+    NSString* titleKey = [element attributeValue:@"title_key"];
 
-    NSString* fullTitle = [values objectAtIndex:0];
-    NSString* studio = [values objectAtIndex:1];
-    NSString* location = [values objectAtIndex:2];
-
-    [result setObject:[NSArray arrayWithObjects:studio, location, nil]
+    [result setObject:[NSArray arrayWithObjects:studioKey, titleKey, nil]
                forKey:fullTitle.lowercaseString];
   }
 
@@ -128,10 +122,10 @@
   [dataGate lock];
   {
     if (index == nil) {
-      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-      NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url pause:NO];
-      if (indexText != nil) {
-        [self generateIndexWorker:indexText];
+      NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerIndex3", [Application host]];
+      XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url pause:NO];
+      if (element != nil) {
+        [self generateIndexWorker:element];
         [self clearUpdatedMovies];
       }
     }

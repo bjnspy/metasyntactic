@@ -29,7 +29,7 @@
 
 
 - (NSString*) serverUrl:(Movie*) movie {
-  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+  return [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings3?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
 }
 
 @end
