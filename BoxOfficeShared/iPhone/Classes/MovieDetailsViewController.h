@@ -24,13 +24,12 @@
   NetflixRatingsCell* netflixRatingsCell;
   NSArray* netflixStatusCells;
 
-  NSMutableArray* theatersArray;
+  NSMutableArray* filteredTheatersArray;
+  NSMutableArray* allTheatersArray;
   NSMutableArray* showtimesArray;
   NSString* trailer;
   NSArray* reviewsArray;
   NSDictionary* websites;
-
-  NSInteger hiddenTheaterCount;
 
   ActionsView* actionsView;
   UIButton* bookmarkButton;
