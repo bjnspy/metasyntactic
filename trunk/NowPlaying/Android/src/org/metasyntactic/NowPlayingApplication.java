@@ -179,7 +179,7 @@ public class NowPlayingApplication extends Application {
         try {
           nomediaFile.createNewFile();
         } catch (final IOException e) {
-          throw new RuntimeException(e);
+          ExceptionUtilities.DEFAULT_EXCEPTION_HANDLER.uncaughtException(Thread.currentThread(), e);
         }
       }
     }
