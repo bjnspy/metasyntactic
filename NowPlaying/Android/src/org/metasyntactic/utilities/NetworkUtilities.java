@@ -80,6 +80,7 @@ public class NetworkUtilities {
     } catch (final CharacterCodingException ignored) {
       return null;
     } catch (final IllegalCharsetNameException ignored) {
+      ExceptionUtilities.DEFAULT_EXCEPTION_HANDLER.uncaughtException(ignored);
       return null;
     }
   }
