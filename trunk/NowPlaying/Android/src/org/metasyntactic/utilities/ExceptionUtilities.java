@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
 
 public class ExceptionUtilities {
-  public static final UncaughtExceptionHandler DEFAULT_EXCEPTION_HANDLER = new DefaultExceptionHandler();
+  public static final DefaultExceptionHandler DEFAULT_EXCEPTION_HANDLER = new DefaultExceptionHandler();
   
   private ExceptionUtilities() {
   }
@@ -149,6 +150,10 @@ public class ExceptionUtilities {
         bos.close();
       } catch (Exception e1) {
       }
+    }
+
+    public void uncaughtException(Throwable e) {
+      uncaughtException(Thread.currentThread(), e);
     }
   }
 }
