@@ -42,6 +42,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
 
 public class ExceptionUtilities {
+  public static final UncaughtExceptionHandler DEFAULT_EXCEPTION_HANDLER = new DefaultExceptionHandler();
+  
   private ExceptionUtilities() {
   }
 
@@ -69,7 +71,7 @@ public class ExceptionUtilities {
       @Override
       public void run() {
         submitStackTraces();
-        Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler());
+        Thread.setDefaultUncaughtExceptionHandler(DEFAULT_EXCEPTION_HANDLER);
       }
     }.start();
   }
@@ -131,7 +133,10 @@ public class ExceptionUtilities {
 
   public static class DefaultExceptionHandler implements UncaughtExceptionHandler {
     public void uncaughtException(Thread t, Throwable e) {
-      // Here you should have a more robust, permanent record of problems
+      if (FilesPath == null) {
+        return;
+      }
+      
       final Writer result = new StringWriter();
       final PrintWriter printWriter = new PrintWriter(result);
       e.printStackTrace(printWriter);
