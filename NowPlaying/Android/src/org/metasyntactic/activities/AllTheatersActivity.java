@@ -238,9 +238,12 @@ public class AllTheatersActivity extends AbstractNowPlayingListActivity {
       final String sectionTitle;
 
       if (getService().isFavoriteTheater(theater)) {
-        sectionTitle = "★";
+        sectionTitle = getResources().getString(R.string.favorites);
       } else {
-        final double distance = userLocation.distanceTo(theater.getLocation());
+        double distance = 0;
+        if (userLocation != null) {
+          distance = userLocation.distanceTo(theater.getLocation());
+        }
         sectionTitle = getDistances().get(getDistanceLevel(distance));
       }
 
