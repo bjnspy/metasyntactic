@@ -139,6 +139,7 @@
 - (void) loadView {
   [super loadView];
 
+  [self setToolbarItems:[NSArray array] animated:NO];
   [self setupWebView];
 
   if (showSafariButton) {
@@ -248,7 +249,7 @@
 - (void) onBeforeViewControllerPopped {
   [super onBeforeViewControllerPopped];
   webView.delegate = nil;
-  [self.abstractNavigationController setToolbarHidden:YES animated:YES];
+  [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 
