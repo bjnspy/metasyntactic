@@ -89,20 +89,6 @@ static NSString** directories[] = {
 &upcomingTrailersDirectory,
 };
 
-+ (void) deleteDirectories {
-  [[self gate] lock];
-  {
-    for (int i = 0; i < ArrayLength(directories); i++) {
-      NSString* directory = *directories[i];
-
-      if (directory != nil) {
-        [self moveItemToTrash:directory];
-      }
-    }
-  }
-  [[self gate] unlock];
-}
-
 
 + (void) createDirectories {
   [[self gate] lock];
@@ -294,16 +280,6 @@ static NSString** directories[] = {
 
 + (NSString*) helpDirectory {
   return helpDirectory;
-}
-
-
-+ (void) resetDirectories {
-  [[self gate] lock];
-  {
-    [self deleteDirectories];
-    [self createDirectories];
-  }
-  [[self gate] unlock];
 }
 
 

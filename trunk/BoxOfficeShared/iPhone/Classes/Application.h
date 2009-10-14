@@ -51,8 +51,6 @@
 + (NSString*) internationalDirectory;
 + (NSString*) helpDirectory;
 
-+ (void) resetDirectories;
-
 + (NSString*) apiHost;
 + (NSString*) apiVersion;
 
