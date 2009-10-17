@@ -131,9 +131,7 @@ void characterDataHandler(void* userData,
   XML_SetUserData(parser, self);
 
   int result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
-  enum XML_Error error = XML_ERROR_NONE;
   if (result == 0) {
-    error = XML_GetErrorCode(parser);
     int line = XML_GetCurrentLineNumber(parser);
     int column = XML_GetCurrentColumnNumber(parser);
     NSString* xmlText = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
