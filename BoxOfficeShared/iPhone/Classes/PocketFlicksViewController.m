@@ -368,7 +368,7 @@ typedef enum {
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   NetflixUser* user = [self.model.netflixCache userForAccount:account];
 
-  if (tableView != self.tableView || 
+  if (searchDisplayController.isActive || 
       self.model.netflixAccounts.count <= 1 ||
       user == nil) {
     return nil;

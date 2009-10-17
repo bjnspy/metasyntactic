@@ -16,16 +16,45 @@
 
 #import "FileUtilities.h"
 
+static NSString* bundleName = @"MetasyntacticResources.bundle";
+
 NSString* MetasyntacticResourcePath(NSString* name) {
-  static NSString* bundleName = @"MetasyntacticResources.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
 }
 
+NSMutableDictionary* GetThreadLocalDictionary(NSString* key) {
+  NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
+  NSMutableDictionary* dictionary = [threadDictionary objectForKey:key];
+  if (dictionary == nil) {
+    dictionary = [NSMutableDictionary dictionary];
+    [threadDictionary setObject:dictionary forKey:key];
+  }
+  
+  return dictionary;
+}
+
+
+NSString* StockImagePathForName(NSString* name, NSString* bundle, NSString*(pathForName)(NSString*)) {
+  NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
+  
+  NSString* key = [NSString stringWithFormat:@"%@-%@", name, bundle];
+  id result = [threadDictionary objectForKey:key];
+  if (result == [NSNull null]) {
+    return nil;
+  }
+  
+  if (result == nil) {
+    result = pathForName(name);
+    [threadDictionary setObject:result forKey:key];
+  }
+  return result;  
+}
+
 
 UIImage* MetasyntacticStockImage(NSString* name) {
-  NSString* path = MetasyntacticResourcePath(name);
+  NSString* path = StockImagePathForName(name, bundleName, MetasyntacticResourcePath);
   return [MetasyntacticStockImages imageForPath:path];
 }
 
@@ -37,16 +66,9 @@ UIImage* MetasyntacticStockImage(NSString* name) {
     return nil;
   }
 
-  static NSString* key = @"StockImages";
+  NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImages");
 
-  NSMutableDictionary* threadDictionary = [[NSThread currentThread] threadDictionary];
-  NSMutableDictionary* dictionary = [threadDictionary objectForKey:key];
-  if (dictionary == nil) {
-    dictionary = [NSMutableDictionary dictionary];
-    [threadDictionary setObject:dictionary forKey:key];
-  }
-
-  id result = [dictionary objectForKey:path];
+  id result = [threadDictionary objectForKey:path];
   if (result == [NSNull null]) {
     return nil;
   }
@@ -57,7 +79,7 @@ UIImage* MetasyntacticStockImage(NSString* name) {
     } else {
       result = [NSNull null];
     }
-    [dictionary setObject:result forKey:path];
+    [threadDictionary setObject:result forKey:path];
   }
   return result;
 }
