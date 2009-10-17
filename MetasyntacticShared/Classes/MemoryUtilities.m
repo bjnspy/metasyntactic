@@ -12,11 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-void* CFAutoRelease(CFTypeRef val) {
-  [NSAutoreleasePool addObject:(NSObject*)val];
-  return (void*)val;
-}
-
 @implementation NSAutoreleasePool(Utilities)
 
 #if 0
