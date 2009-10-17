@@ -1728,16 +1728,20 @@ static NSString** directories[] = {
 
 
 - (Movie*) correspondingNetflixMovie:(Movie*) movie {
+  if (movie == nil) {
+    return nil;
+  }
+
   if (movie.isNetflix) {
     return movie;
   }
-
+  
   NSString* file = [self netflixFile:movie];
   NSDictionary* dictionary = [FileUtilities readObject:file];
   if (dictionary.count == 0) {
     return nil;
   }
-
+  
   return [Movie createWithDictionary:dictionary];
 }
 
