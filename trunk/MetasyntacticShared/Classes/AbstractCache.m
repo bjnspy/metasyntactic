@@ -26,25 +26,25 @@
 @synthesize runGate;
 
 - (void) dealloc {
-    self.dataGate = nil;
-    self.runGate = nil;
-
-    [super dealloc];
+  self.dataGate = nil;
+  self.runGate = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) init {
-    if ((self = [super init])) {
-        self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
-        self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
+    self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
+  }
+  
+  return self;
 }
 
 
 - (void) didReceiveMemoryWarning {
-
+  
 }
 
 @end

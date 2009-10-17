@@ -24,15 +24,13 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
++ (NSString*) noInformationFound;
 + (NSArray*) mostPopularTitles;
 
 + (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
-+ (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
-+ (NSString*) simpleNetflixIdentifier:(Movie*) movie;
+- (NetflixUser*) userForAccount:(NetflixAccount*) account;
 
 - (void) update;
-
-- (NetflixUser*) userForAccount:(NetflixAccount*) account;
 
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;
 - (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;
@@ -46,8 +44,6 @@
 
 - (Movie*) correspondingNetflixMovie:(Movie*) movie;
 
-- (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
-
 - (NSArray*) statusesForMovie:(Movie*) movie account:(NetflixAccount*) account;
 
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
@@ -59,11 +55,12 @@
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 
-- (NSString*) noInformationFound;
-
 - (BOOL) isInstantWatch:(Movie*) movie;
 - (BOOL) isInstantWatchOnly:(Movie*) movie;
 - (BOOL) isDvd:(Movie*) movie;
 - (BOOL) isBluray:(Movie*) movie;
+
+// Searching
+- (NSArray*) movieSearch:(NSString*) query account:(NetflixAccount*) account error:(NSString**) error;
 
 @end

@@ -179,7 +179,7 @@
       titleForHeaderInSection:(NSInteger) section {
   if (filteredMovies.count == 0) {
     if (movies.count == 0) {
-      return self.model.netflixCache.noInformationFound;
+      return [NetflixCache noInformationFound];
     } else {
       return LocalizedString(@"No information found", nil);
     }

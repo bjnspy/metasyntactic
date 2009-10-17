@@ -84,5 +84,6 @@
 + (NSString*) makeDisplay:(NSString*) title;
 
 - (BOOL) isNetflix;
+- (NSString*) simpleNetflixIdentifier;
 
 @end

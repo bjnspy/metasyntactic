@@ -72,7 +72,7 @@
 - (NSString*) posterFilePath:(Movie*) movie {
   NSString* sanitizedTitle;
   if (movie.isNetflix) {
-    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier];
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
@@ -83,7 +83,7 @@
 - (NSString*) smallPosterFilePath:(Movie*) movie {
   NSString* sanitizedTitle;
   if (movie.isNetflix) {
-    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier];
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
