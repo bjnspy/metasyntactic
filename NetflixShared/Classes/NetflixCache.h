@@ -28,6 +28,7 @@
 
 + (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
 + (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
++ (NSString*) simpleNetflixIdentifier:(Movie*) movie;
 
 - (void) update;
 
@@ -52,9 +53,9 @@
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
 - (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account;
 - (NSString*) availabilityForMovie:(Movie*) movie;
+
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
-//- (NSArray*) formatsForMovie:(Movie*) movie;
 - (NSString*) netflixAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 

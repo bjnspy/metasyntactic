@@ -1018,6 +1018,11 @@ static Model* model = nil;
   if (directors.count > 0) {
     return directors;
   }
+  
+  directors = [netflixCache directorsForMovie:movie];
+  if (directors.count > 0 || movie.isNetflix) {
+    return directors;
+  }
 
   directors = [internationalDataCache directorsForMovie:movie];
   if (directors.count > 0) {
@@ -1025,11 +1030,6 @@ static Model* model = nil;
   }
 
   directors = [upcomingCache directorsForMovie:movie];
-  if (directors.count > 0) {
-    return directors;
-  }
-
-  directors = [netflixCache directorsForMovie:movie];
   if (directors.count > 0) {
     return directors;
   }
@@ -1043,6 +1043,11 @@ static Model* model = nil;
   if (cast.count > 0) {
     return cast;
   }
+  
+  cast = [netflixCache castForMovie:movie];
+  if (cast.count > 0 || movie.isNetflix) {
+    return cast;
+  }
 
   cast = [internationalDataCache castForMovie:movie];
   if (cast.count > 0) {
@@ -1050,11 +1055,6 @@ static Model* model = nil;
   }
 
   cast = [upcomingCache castForMovie:movie];
-  if (cast.count > 0) {
-    return cast;
-  }
-
-  cast = [netflixCache castForMovie:movie];
   if (cast.count > 0) {
     return cast;
   }
@@ -1428,9 +1428,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
   NSMutableArray* options = [NSMutableArray array];
+
   NSString* synopsis = movie.synopsis;
   if (synopsis.length > 0) {
     [options addObject:synopsis];
+  }
+  
+  if (movie.isNetflix) {
+    return [netflixCache synopsisForMovie:movie];
   }
 
   synopsis = [internationalDataCache synopsisForMovie:movie];

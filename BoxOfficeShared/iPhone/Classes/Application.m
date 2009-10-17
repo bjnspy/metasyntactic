@@ -29,6 +29,7 @@ static NSString* localizableStringsDirectory = nil;
 
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
+static NSString* netflixMoviePostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
 static NSString* largeMoviesPostersIndexDirectory = nil;
 static NSString* peoplePostersDirectory = nil;
@@ -39,13 +40,6 @@ static NSString* dvdDetailsDirectory = nil;
 
 static NSString* blurayDirectory = nil;
 static NSString* blurayDetailsDirectory = nil;
-
-//static NSString* netflixDirectory = nil;
-//static NSString* netflixAccountsDirectory = nil;
-//static NSString* netflixSeriesDirectory = nil;
-//static NSString* netflixSearchDirectory = nil;
-//static NSString* netflixDetailsDirectory = nil;
-//static NSString* netflixRSSDirectory = nil;
 
 static NSString* upcomingDirectory = nil;
 static NSString* upcomingCastDirectory = nil;
@@ -68,17 +62,12 @@ static NSString** directories[] = {
 &helpDirectory,
 &internationalDirectory,
 &localizableStringsDirectory,
-//&netflixDirectory,
-//&netflixAccountsDirectory,
-//&netflixSeriesDirectory,
-//&netflixSearchDirectory,
-//&netflixDetailsDirectory,
-//&netflixRSSDirectory,
 &scoresDirectory,
 &reviewsDirectory,
 &trailersDirectory,
 &postersDirectory,
 &moviesPostersDirectory,
+&netflixMoviePostersDirectory,
 &largeMoviesPostersDirectory,
 &largeMoviesPostersIndexDirectory,
 &peoplePostersDirectory,
@@ -118,6 +107,7 @@ static NSString** directories[] = {
 
     postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
     moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
+    netflixMoviePostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Netflix"] retain];
     largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
     largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
     peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
@@ -128,13 +118,6 @@ static NSString** directories[] = {
 
     blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
     blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
-
-//    netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
-//    netflixAccountsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Accounts"] retain];
-//    netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
-//    netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
-//    netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
-//    netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
 
     upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
     upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
@@ -190,6 +173,11 @@ static NSString** directories[] = {
 
 + (NSString*) moviesPostersDirectory {
   return moviesPostersDirectory;
+}
+
+
++ (NSString*) netflixMoviePostersDirectory {
+  return netflixMoviePostersDirectory;
 }
 
 
@@ -284,14 +272,14 @@ static NSString** directories[] = {
 
 
 + (NSString*) apiHost {
-#if !TARGET_IPHONE_SIMULATOR
-  return @"metaboxoffice2";
-#else
+#if TARGET_IPHONE_SIMULATOR
   /*
    return @"metaboxoffice6";
-  /*/
+   /*/
   return @"metaboxoffice2";
   //*/
+#else
+  return @"metaboxoffice2";
 #endif
 }
 
