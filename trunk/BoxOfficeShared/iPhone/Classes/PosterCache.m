@@ -71,7 +71,7 @@
 
 - (NSString*) standardPosterPath:(Movie*) movie {
   NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];  
+  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
@@ -163,16 +163,16 @@
   if (data != nil) {
     [FileUtilities writeData:data toFile:path];
 
-    // If we don't have a poster for this movie, store the netflix poster in the 
+    // If we don't have a poster for this movie, store the netflix poster in the
     // standard poster location as well.
     if (movie.isNetflix &&
         data.length > 0 &&
         ![FileUtilities fileExists:[self standardPosterPath:movie]]) {
       [FileUtilities writeData:data toFile:[self standardPosterPath:movie]];
     }
-        
-    
-    if (data.length > 0) {      
+
+
+    if (data.length > 0) {
       [MetasyntacticSharedApplication minorRefresh];
     }
   }
@@ -202,14 +202,14 @@
                                             toHeight:SMALL_POSTER_HEIGHT];
 
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-    // If we don't have a poster for this movie, store the netflix poster in the 
+    // If we don't have a poster for this movie, store the netflix poster in the
     // standard poster location as well.
     if (movie.isNetflix &&
         smallPosterData.length > 0 &&
         ![FileUtilities fileExists:[self smallPosterPath:movie]]) {
       [FileUtilities writeData:smallPosterData toFile:[self smallPosterPath:movie]];
     }
-    
+
     UIImage* image = [UIImage imageWithData:smallPosterData];
     [self.model.imageCache setImage:image forPath:smallPosterPath];
     return image;
