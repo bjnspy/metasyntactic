@@ -21,7 +21,6 @@
 + (NSString*) wikipediaDirectory;
 + (NSString*) userLocationsDirectory;
 + (NSString*) moviesPostersDirectory;
-+ (NSString*) netflixMoviePostersDirectory;
 + (NSString*) largeMoviesPostersDirectory;
 + (NSString*) largeMoviesPostersIndexDirectory;
 + (NSString*) peoplePostersDirectory;

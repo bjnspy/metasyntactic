@@ -63,22 +63,45 @@ const int START_YEAR = 1912;
 
 - (NSString*) posterFilePath:(Movie*) movie
                        index:(NSInteger) index {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.displayTitle];
+  NSString* sanitizedTitle;
+  if (movie.isNetflix) {
+    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+  } else {
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+  }
+  
   sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
   return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (NSString*) smallPosterFilePath:(Movie*) movie {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.displayTitle];
+  NSString* sanitizedTitle;
+  if (movie.isNetflix) {
+    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+  } else {
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+  }
+  
   sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-0-small", index];
   return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
+}
+
+
+- (Movie*) appropriateMovie:(Movie*) movie {
+  Movie* possible = [self.model.netflixCache correspondingNetflixMovie:movie];
+  if (possible != nil) {
+    return possible;
+  }
+  
+  return movie;
 }
 
 
 - (UIImage*) posterForMovie:(Movie*) movie
                       index:(NSInteger) index
                loadFromDisk:(BOOL) loadFromDisk {
+  movie = [self appropriateMovie:movie];
   NSString* path = [self posterFilePath:movie index:index];
   return [self.model.imageCache imageForPath:path loadFromDisk:loadFromDisk];
 }
@@ -87,6 +110,7 @@ const int START_YEAR = 1912;
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
   NSAssert([NSThread isMainThread], @"");
+  movie = [self appropriateMovie:movie];
 
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
@@ -113,12 +137,15 @@ const int START_YEAR = 1912;
 
 - (BOOL) posterExistsForMovie:(Movie*) movie
                         index:(NSInteger) index {
+  movie = [self appropriateMovie:movie];
   NSString* path = [self posterFilePath:movie index:index];
   return [FileUtilities fileExists:path];
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie loadFromDisk:(BOOL) loadFromDisk {
+- (UIImage*) posterForMovie:(Movie*) movie
+               loadFromDisk:(BOOL) loadFromDisk {
+  movie = [self appropriateMovie:movie];
   NSAssert([NSThread isMainThread], @"");
   return [self posterForMovie:movie index:0 loadFromDisk:loadFromDisk];
 }
@@ -479,12 +506,14 @@ const int START_YEAR = 1912;
 
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie {
+  movie = [self appropriateMovie:movie];
   NSArray* urls = [self posterUrls:movie];
   [self downloadPosterForMovie:movie urls:urls index:0];
 }
 
 
 - (void) downloadAllPostersForMovie:(Movie*) movie {
+  movie = [self appropriateMovie:movie];
   NSArray* urls = [self posterUrls:movie];
   for (int i = 0; i < urls.count; i++) {
     [self downloadPosterForMovie:movie urls:urls index:i];
@@ -493,11 +522,13 @@ const int START_YEAR = 1912;
 
 
 - (NSInteger) posterCountForMovie:(Movie*) movie {
+  movie = [self appropriateMovie:movie];
   return [[self posterUrls:movie] count];
 }
 
 
 - (BOOL) allPostersDownloadedForMovie:(Movie*) movie {
+  movie = [self appropriateMovie:movie];
   NSInteger posterCount = [self posterCountForMovie:movie];
 
   for (NSInteger i = 0; i < posterCount; i++) {
