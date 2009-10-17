@@ -16,7 +16,7 @@
 
 @interface MutableNetflixCache : NetflixCache {
 @private
-    NSDictionary* presubmitRatings;
+  NSDictionary* presubmitRatings;
 }
 
 

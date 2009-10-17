@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MoveMovieArguments : NSObject {
+#import "AbstractNetflixArguments.h"
+
+@interface MoveMovieArguments : AbstractNetflixArguments {
 @private
   Queue* queue;
   Movie* movie;
   id<NetflixMoveMovieDelegate> delegate;
-  NetflixAccount* account;
 }
 
 @property (readonly, retain) Queue* queue;
 @property (readonly, retain) Movie* movie;
 @property (readonly, retain) id<NetflixMoveMovieDelegate> delegate;
-@property (readonly, retain) NetflixAccount* account;
 
 + (MoveMovieArguments*) argumentsWithQueue:(Queue*) queue
                                      movie:(Movie*) movie

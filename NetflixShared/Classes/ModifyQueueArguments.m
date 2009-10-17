@@ -20,7 +20,6 @@
 @property (retain) NSSet* reorderedMovies;
 @property (retain) NSArray* moviesInOrder;
 @property (retain) id<NetflixModifyQueueDelegate> delegate;
-@property (retain) NetflixAccount* account;
 @end
 
 
@@ -31,7 +30,6 @@
 @synthesize reorderedMovies;
 @synthesize moviesInOrder;
 @synthesize delegate;
-@synthesize account;
 
 - (void) dealloc {
   self.queue = nil;
@@ -39,7 +37,6 @@
   self.reorderedMovies = nil;
   self.moviesInOrder = nil;
   self.delegate = nil;
-  self.account = nil;
   [super dealloc];
 }
 
@@ -50,13 +47,12 @@
                moviesInOrder:(NSArray*) moviesInOrder_
             delegate:(id<NetflixModifyQueueDelegate>) delegate_
              account:(NetflixAccount*) account_ {
-  if ((self = [super init])) {
+  if ((self = [super initWithAccount:account_])) {
     self.queue = queue_;
     self.deletedMovies = deletedMovies_;
     self.reorderedMovies = reorderedMovies_;
     self.moviesInOrder = moviesInOrder_;
     self.delegate = delegate_;
-    self.account = account_;
   }
   return self;
 }
