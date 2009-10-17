@@ -12,14 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ModifyQueueArguments : NSObject {
+#import "AbstractNetflixArguments.h"
+
+@interface ModifyQueueArguments : AbstractNetflixArguments {
 @private
   Queue* queue;
   NSSet* deletedMovies;
   NSSet* reorderedMovies;
   NSArray* moviesInOrder;
   id<NetflixModifyQueueDelegate> delegate;
-  NetflixAccount* account;
 }
 
 @property (readonly, retain) Queue* queue;
@@ -27,7 +28,6 @@
 @property (readonly, retain) NSSet* reorderedMovies;
 @property (readonly, retain) NSArray* moviesInOrder;
 @property (readonly, retain) id<NetflixModifyQueueDelegate> delegate;
-@property (readonly, retain) NetflixAccount* account;
 
 + (ModifyQueueArguments*) argumentsWithQueue:(Queue*) queue
                              deletedMovies:(NSSet*) deletedMovies

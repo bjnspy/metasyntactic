@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ChangeRatingArguments : NSObject {
+#import "AbstractNetflixArguments.h"
+
+@interface ChangeRatingArguments : AbstractNetflixArguments {
 @private
   NSString* rating;
   Movie* movie;
   id<NetflixChangeRatingDelegate> delegate;
-  NetflixAccount* account;
 }
 
 @property (readonly, copy) NSString* rating;
 @property (readonly, retain) Movie* movie;
 @property (readonly, retain) id<NetflixChangeRatingDelegate> delegate;
-@property (readonly, retain) NetflixAccount* account;
 
 + (ChangeRatingArguments*) argumentsWithRating:(NSString*) rating
                                      movie:(Movie*) movie

@@ -19,7 +19,6 @@
 @property (retain) Movie* movie;
 @property NSInteger position;
 @property (retain) id<NetflixAddMovieDelegate> delegate;
-@property (retain) NetflixAccount* account;
 @end
 
 
@@ -29,14 +28,12 @@
 @synthesize movie;
 @synthesize position;
 @synthesize delegate;
-@synthesize account;
 
 - (void) dealloc {
   self.queue = nil;
   self.movie = nil;
   self.position = 0;
   self.delegate = nil;
-  self.account = nil;
   [super dealloc];
 }
 
@@ -46,12 +43,11 @@
             position:(NSInteger) position_
             delegate:(id<NetflixAddMovieDelegate>) delegate_
              account:(NetflixAccount*) account_ {
-  if ((self = [super init])) {
+  if ((self = [super initWithAccount:account_])) {
     self.queue = queue_;
     self.movie = movie_;
     self.position = position_;
     self.delegate = delegate_;
-    self.account = account_;
   }
   return self;
 }

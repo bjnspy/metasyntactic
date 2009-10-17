@@ -18,7 +18,6 @@
 @property (copy) NSString* rating;
 @property (retain) Movie* movie;
 @property (retain) id<NetflixChangeRatingDelegate> delegate;
-@property (retain) NetflixAccount* account;
 @end
 
 
@@ -27,13 +26,11 @@
 @synthesize rating;
 @synthesize movie;
 @synthesize delegate;
-@synthesize account;
 
 - (void) dealloc {
   self.rating = nil;
   self.movie = nil;
   self.delegate = nil;
-  self.account = nil;
   [super dealloc];
 }
 
@@ -42,11 +39,10 @@
                movie:(Movie*) movie_
             delegate:(id<NetflixChangeRatingDelegate>) delegate_
              account:(NetflixAccount*) account_ {
-  if ((self = [super init])) {
+  if ((self = [super initWithAccount:account_])) {
     self.rating = rating_;
     self.movie = movie_;
     self.delegate = delegate_;
-    self.account = account_;
   }
   return self;
 }
