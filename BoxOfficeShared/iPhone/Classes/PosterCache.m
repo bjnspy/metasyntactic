@@ -42,7 +42,7 @@
   self.applePosterDownloader = nil;
   self.fandangoPosterDownloader = nil;
   self.previewNetworksPosterDownloader = nil;
-
+  
   [super dealloc];
 }
 
@@ -54,7 +54,7 @@
     self.fandangoPosterDownloader = [[[FandangoPosterDownloader alloc] init] autorelease];
     self.previewNetworksPosterDownloader = [[[PreviewNetworksPosterDownloader alloc] init] autorelease];
   }
-
+  
   return self;
 }
 
@@ -69,37 +69,25 @@
 }
 
 
-- (NSString*) standardPosterPath:(Movie*) movie {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+- (NSString*) posterFilePath:(Movie*) movie {
+  NSString* sanitizedTitle;
+  if (movie.isNetflix) {
+    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+  } else {
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+  }
   return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
-- (NSString*) smallPosterPath:(Movie*) movie {
-  NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
-}
-
-
-- (NSString*) posterFilePath:(Movie*) movie {
-  if (movie.isNetflix) {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
-    return [[[Application netflixMoviePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
-  } else {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
-  }
-}
-
-
 - (NSString*) smallPosterFilePath:(Movie*) movie {
+  NSString* sanitizedTitle;
   if (movie.isNetflix) {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
-    return [[[Application netflixMoviePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"-small.png"];
+    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
   } else {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
+  return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"-small.png"];
 }
 
 
@@ -108,49 +96,49 @@
   if (data != nil) {
     return data;
   }
-
+  
   data = [previewNetworksPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-
+  
   data = [applePosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-
+  
   data = [fandangoPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-
+  
   data = [imdbPosterDownloader download:movie];
   if (data != nil) {
     return data;
   }
-
+  
   [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-
+  
   // if we had a network connection, then it means we don't know of any
   // posters for this movie.  record that fact and try again another time
   if ([NetworkUtilities isNetworkAvailable]) {
     return [NSData data];
   }
-
+  
   return nil;
 }
 
 
 - (void) updateMovieDetails:(Movie*) movie force:force {
   NSString* path = [self posterFilePath:movie];
-
+  
   NSDate* modificationDate = [FileUtilities modificationDate:path];
   if (modificationDate != nil) {
     if ([FileUtilities size:path] > 0) {
       // already have a real poster.
       return;
     }
-
+    
     if (!force) {
       // sentinel value.  only update if it's been long enough.
       if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
@@ -158,20 +146,12 @@
       }
     }
   }
-
+  
   NSData* data = [self downloadPosterWorker:movie];
   if (data != nil) {
     [FileUtilities writeData:data toFile:path];
-
-    // If we don't have a poster for this movie, store the netflix poster in the
-    // standard poster location as well.
-    if (movie.isNetflix &&
-        data.length > 0 &&
-        ![FileUtilities fileExists:[self standardPosterPath:movie]]) {
-      [FileUtilities writeData:data toFile:[self standardPosterPath:movie]];
-    }
-
-
+    
+    
     if (data.length > 0) {
       [MetasyntacticSharedApplication minorRefresh];
     }
@@ -179,8 +159,19 @@
 }
 
 
+- (Movie*) appropriateMovie:(Movie*) movie {
+  Movie* possible = [self.model.netflixCache correspondingNetflixMovie:movie];
+  if (possible != nil) {
+    return possible;
+  }
+  
+  return movie;
+}
+
+
 - (UIImage*) posterForMovie:(Movie*) movie
-               loadFromDisk:(BOOL) loadFromDisk{
+               loadFromDisk:(BOOL) loadFromDisk {
+  movie = [self appropriateMovie:movie];
   NSString* path = [self posterFilePath:movie];
   return [self.model.imageCache imageForPath:path loadFromDisk:loadFromDisk];
 }
@@ -188,33 +179,27 @@
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
+  movie = [self appropriateMovie:movie];
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
-
+  
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
   if (image != nil || !loadFromDisk) {
     return image;
   }
-
+  
   NSData* smallPosterData;
   if ([FileUtilities size:smallPosterPath] == 0) {
     NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
     smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                             toHeight:SMALL_POSTER_HEIGHT];
-
+    
     [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
-    // If we don't have a poster for this movie, store the netflix poster in the
-    // standard poster location as well.
-    if (movie.isNetflix &&
-        smallPosterData.length > 0 &&
-        ![FileUtilities fileExists:[self smallPosterPath:movie]]) {
-      [FileUtilities writeData:smallPosterData toFile:[self smallPosterPath:movie]];
-    }
-
+    
     UIImage* image = [UIImage imageWithData:smallPosterData];
     [self.model.imageCache setImage:image forPath:smallPosterPath];
     return image;
   }
-
+  
   return nil;
 }
 
