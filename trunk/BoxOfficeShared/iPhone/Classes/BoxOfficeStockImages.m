@@ -14,16 +14,16 @@
 
 #import "BoxOfficeStockImages.h"
 
+static NSString* bundleName = @"BoxOfficeResources.bundle";
+
 NSString* BoxOfficeResourcePath(NSString* name) {
-  static NSString* bundleName = @"BoxOfficeResources.bundle";
   NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
 }
 
-
 UIImage* BoxOfficeStockImage(NSString* name) {
-  NSString* path = BoxOfficeResourcePath(name);
+  NSString* path = StockImagePathForName(name, bundleName, BoxOfficeResourcePath);
   return [MetasyntacticStockImages imageForPath:path];
 }
 
