@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-void* CFAutoRelease(CFTypeRef val);
-
 @interface NSAutoreleasePool(Utilities)
 #if 0
 + (void) run:(void(^)()) block;
