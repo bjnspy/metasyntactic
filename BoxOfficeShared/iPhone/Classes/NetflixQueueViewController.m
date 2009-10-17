@@ -177,7 +177,7 @@
       titleForHeaderInSection:(NSInteger) section {
   if (mutableMovies.count == 0 && mutableSaved.count == 0) {
     if (section == 0) {
-      return [self.model.netflixCache noInformationFound];
+      return [NetflixCache noInformationFound];
     }
   } else if (mutableSaved.count > 0 && section == 1) {
     return LocalizedString(@"Saved", nil);

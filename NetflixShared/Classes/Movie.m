@@ -377,4 +377,14 @@ static NSString* articles[] = {
   return [identifier hasPrefix:@"http://"];
 }
 
+
+- (NSString*) simpleNetflixIdentifier {
+  NSRange range = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
+  if (range.length == 0 || range.location == (identifier.length - 1)) {
+    return identifier;
+  } else {
+    return [identifier substringFromIndex:range.location + 1];
+  }
+}
+
 @end

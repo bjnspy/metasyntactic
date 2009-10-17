@@ -117,7 +117,7 @@
       return LocalizedString(@"Downloading data", nil);
     }
 
-    return self.model.netflixCache.noInformationFound;
+    return [NetflixCache noInformationFound];
   }
 
   return nil;

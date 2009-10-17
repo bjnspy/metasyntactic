@@ -92,7 +92,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
   if (!self.hasFeeds) {
-    return self.model.netflixCache.noInformationFound;
+    return [NetflixCache noInformationFound];
   }
 
   return nil;

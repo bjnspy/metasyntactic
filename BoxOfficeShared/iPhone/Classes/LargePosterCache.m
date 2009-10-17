@@ -65,7 +65,7 @@ const int START_YEAR = 1912;
                        index:(NSInteger) index {
   NSString* sanitizedTitle;
   if (movie.isNetflix) {
-    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier];
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
@@ -78,7 +78,7 @@ const int START_YEAR = 1912;
 - (NSString*) smallPosterFilePath:(Movie*) movie {
   NSString* sanitizedTitle;
   if (movie.isNetflix) {
-    sanitizedTitle = [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]];
+    sanitizedTitle = [FileUtilities sanitizeFileName:movie.simpleNetflixIdentifier];
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
