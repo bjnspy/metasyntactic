@@ -1018,7 +1018,7 @@ static Model* model = nil;
   if (directors.count > 0) {
     return directors;
   }
-  
+
   directors = [netflixCache directorsForMovie:movie];
   if (directors.count > 0 || movie.isNetflix) {
     return directors;
@@ -1043,7 +1043,7 @@ static Model* model = nil;
   if (cast.count > 0) {
     return cast;
   }
-  
+
   cast = [netflixCache castForMovie:movie];
   if (cast.count > 0 || movie.isNetflix) {
     return cast;
@@ -1433,7 +1433,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
   if (synopsis.length > 0) {
     [options addObject:synopsis];
   }
-  
+
   if (movie.isNetflix) {
     return [netflixCache synopsisForMovie:movie];
   }

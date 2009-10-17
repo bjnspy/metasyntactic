@@ -74,7 +74,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
     return;
   }
 
-  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
+  NSInteger runCount = self.runCount;
   if (runCount < 50) {
     return;
   }
