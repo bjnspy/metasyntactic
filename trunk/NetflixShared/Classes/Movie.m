@@ -326,12 +326,20 @@ static NSString* articles[] = {
 - (BOOL) isEqual:(id) anObject {
   Movie* other = anObject;
 
-  return [canonicalTitle isEqual:other.canonicalTitle];
+  if (self.isNetflix) {
+    return [identifier isEqual:other.identifier];
+  } else {
+    return [canonicalTitle isEqual:other.canonicalTitle];
+  }
 }
 
 
 - (NSUInteger) hash {
-  return canonicalTitle.hash;
+  if (self.isNetflix) {
+    return identifier.hash;
+  } else {
+    return canonicalTitle.hash;
+  }
 }
 
 

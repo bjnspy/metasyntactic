@@ -223,6 +223,16 @@ static NSString** directories[] = {
 }
 
 
++ (NSString*) simpleNetflixIdentifier:(Movie*) movie {
+  NSRange range = [movie.identifier rangeOfString:@"/" options:NSBackwardsSearch];
+  if (range.length == 0 || range.location == (movie.identifier.length - 1)) {
+    return movie.identifier;
+  } else {
+    return [movie.identifier substringFromIndex:range.location + 1];
+  }
+}
+
+
 + (NSString*) accountDirectory:(NetflixAccount*) account {
   return [netflixAccountsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:account.userId]];
 }
@@ -997,14 +1007,14 @@ static NSString** directories[] = {
 
 
 + (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account {
-  return [[[self userRatingsDirectory:account] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+  return [[[self userRatingsDirectory:account] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]]]
           stringByAppendingPathExtension:@"plist"];
 
 }
 
 
 + (NSString*) predictedRatingsFile:(Movie*) movie account:(NetflixAccount*) account {
-  return [[[self predictedRatingsDirectory:account] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+  return [[[self predictedRatingsDirectory:account] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]]]
           stringByAppendingPathExtension:@"plist"];
 }
 
@@ -1246,7 +1256,8 @@ static NSString** directories[] = {
 
 
 - (NSString*) detailsFile:(Movie*) movie {
-  return [[netflixDetailsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+  return [[netflixDetailsDirectory stringByAppendingPathComponent:
+           [FileUtilities sanitizeFileName:[NetflixCache simpleNetflixIdentifier:movie]]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -1518,6 +1529,7 @@ static NSString** directories[] = {
 
 
 - (NSArray*) castForMovie:(Movie*) movie {
+  movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
   return [details objectForKey:cast_key];
@@ -1525,6 +1537,7 @@ static NSString** directories[] = {
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
+  movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
   NSDictionary* details = [self detailsForMovie:movie];
   return [details objectForKey:directors_key];
@@ -1532,6 +1545,7 @@ static NSString** directories[] = {
 
 
 - (NSString*) netflixRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
+  movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
   NSString* rating = [FileUtilities readObject:[NetflixCache predictedRatingsFile:movie account:account]];
@@ -1544,6 +1558,7 @@ static NSString** directories[] = {
 
 
 - (NSString*) userRatingForMovie:(Movie*) movie account:(NetflixAccount*) account {
+  movie = [self correspondingNetflixMovie:movie];
   movie = [self promoteDiscToSeries:movie];
 
   return [FileUtilities readObject:[NetflixCache userRatingsFile:movie account:account]];
@@ -1572,6 +1587,7 @@ static NSString** directories[] = {
 
 
 - (NSString*) netflixAddressForMovie:(Movie*) movie {
+  movie = [self correspondingNetflixMovie:movie];
   NSString* address = [movie.additionalFields objectForKey:link_key];
   if (address.length == 0) {
     return @"";
