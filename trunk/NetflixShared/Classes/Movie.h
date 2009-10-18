@@ -30,6 +30,9 @@
   NSString* displayTitle;
 
   NSDictionary* additionalFields;
+  
+  // accessed on multiple threads.  Always access through property.
+  NSString* simpleNetflixIdentifierData;
 }
 
 @property (readonly, copy) NSString* identifier;
