@@ -28,6 +28,7 @@
 
 #import "NSMutableURLRequest+Parameters.h"
 #import "NSString+URLEncoding.h"
+#import "NSString+UUID.h"
 #import "NSURL+Base.h"
 #import "OAConsumer.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
@@ -78,9 +79,7 @@
     self.realm = realm_.length == 0 ? @"" : realm_;
     self.timestamp = [NSString stringWithFormat:@"%d", time(NULL)];
     
-    CFUUIDRef uuid = CFAutoRelease(CFUUIDCreate(NULL));
-    CFStringRef uuidString = CFAutoRelease(CFUUIDCreateString(NULL, uuid));
-    self.nonce = (NSString*)uuidString;
+    self.nonce = [NSString stringWithNewUUID];
     
     [self setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [self setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
