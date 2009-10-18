@@ -395,7 +395,7 @@ static NSString* articles[] = {
   if (self.simpleNetflixIdentifierData == nil) {
     self.simpleNetflixIdentifierData = [self simpleNetflixIdentifierWorker];
   }
-  
+
   return self.simpleNetflixIdentifierData;
 }
 

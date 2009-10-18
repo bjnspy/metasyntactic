@@ -199,7 +199,7 @@
   for (Movie* movie in sortedMovies) {
     NSString* title = LocalizedString(@"Unknown Release Date", nil);
     NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-    
+
     if (releaseDate != nil) {
       if ([releaseDate compare:today] == NSOrderedDescending) {
         title = [DateUtilities formatFullDate:releaseDate];
@@ -207,9 +207,9 @@
         title = [DateUtilities timeSinceNow:releaseDate];
       }
     }
-    
+
     [map addObject:movie forKey:title];
-    
+
     if (![array containsObject:title]) {
       [array addObject:title];
     }
@@ -229,15 +229,15 @@
 
 - (void) sortMoviesByFavorite {
   NSArray* sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
-  
+
   MutableMultiDictionary* map = [MutableMultiDictionary dictionary];
-  
+
   for (Movie* movie in sortedMovies) {
     if ([self.model isBookmarked:movie]) {
       [map addObject:movie forKey:[StringUtilities starString]];
     }
   }
-  
+
   self.sectionTitles = [NSArray arrayWithObject:[StringUtilities starString]];
   self.sectionTitleToContentsMap = map;
 }
@@ -316,7 +316,7 @@
 
   [self initializeSearchDisplay];
   [self initializeInfoButton];
-  
+
   self.segmentedControl = [self createSegmentedControl];
   self.navigationItem.titleView = segmentedControl;
 }
