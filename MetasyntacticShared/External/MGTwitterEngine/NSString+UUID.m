@@ -8,20 +8,12 @@
 
 #import "NSString+UUID.h"
 
-
-@implementation NSString (UUID)
-
+@implementation NSString(UUID)
 
 + (NSString*)stringWithNewUUID
 {
-  // Create a new UUID
-  CFUUIDRef uuidObj = CFAutoRelease(CFUUIDCreate(nil));
-
-  // Get the string representation of the UUID
-  NSString* newUUID = CFAutoRelease(CFUUIDCreateString(nil, uuidObj));
-  
-  return newUUID;
+  return CFAutoRelease(CFUUIDCreateString(nil,
+           CFAutoRelease(CFUUIDCreate(nil))));
 }
-
 
 @end
