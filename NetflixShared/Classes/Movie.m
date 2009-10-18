@@ -29,6 +29,7 @@
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
 @property (retain) NSDictionary* additionalFields;
+@property (retain) NSString* simpleNetflixIdentifierData;
 @end
 
 
@@ -48,6 +49,7 @@ property_definition(directors);
 property_definition(cast);
 property_definition(genres);
 property_definition(additionalFields);
+@synthesize simpleNetflixIdentifierData;
 
 - (void) dealloc {
   self.identifier = nil;
@@ -64,6 +66,7 @@ property_definition(additionalFields);
   self.cast = nil;
   self.genres = nil;
   self.additionalFields = nil;
+  self.simpleNetflixIdentifierData = nil;
 
   [super dealloc];
 }
@@ -327,7 +330,7 @@ static NSString* articles[] = {
   Movie* other = anObject;
 
   if (self.isNetflix) {
-    return [identifier isEqual:other.identifier];
+    return [self.simpleNetflixIdentifier isEqual:other.simpleNetflixIdentifier];
   } else {
     return [canonicalTitle isEqual:other.canonicalTitle];
   }
@@ -336,7 +339,7 @@ static NSString* articles[] = {
 
 - (NSUInteger) hash {
   if (self.isNetflix) {
-    return identifier.hash;
+    return self.simpleNetflixIdentifier.hash;
   } else {
     return canonicalTitle.hash;
   }
@@ -378,13 +381,22 @@ static NSString* articles[] = {
 }
 
 
-- (NSString*) simpleNetflixIdentifier {
+- (NSString*) simpleNetflixIdentifierWorker {
   NSRange range = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
   if (range.length == 0 || range.location == (identifier.length - 1)) {
     return identifier;
   } else {
     return [identifier substringFromIndex:range.location + 1];
   }
+}
+
+
+- (NSString*) simpleNetflixIdentifier {
+  if (self.simpleNetflixIdentifierData == nil) {
+    self.simpleNetflixIdentifierData = [self simpleNetflixIdentifierWorker];
+  }
+  
+  return self.simpleNetflixIdentifierData;
 }
 
 @end
