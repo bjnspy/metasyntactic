@@ -16,7 +16,6 @@
 
 @interface UpcomingMoviesViewController : AbstractMovieListViewController {
 @private
-    UISegmentedControl* segmentedControl;
 }
 
 - (BOOL) sortingByTitle;

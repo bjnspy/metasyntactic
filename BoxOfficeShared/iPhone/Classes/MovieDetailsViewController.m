@@ -43,7 +43,7 @@
 @property (retain) NSMutableArray* filteredTheatersArray;
 @property (retain) NSMutableArray* allTheatersArray;
 @property (retain) NSMutableArray* showtimesArray;
-@property (copy) NSString* trailer;
+@property (retain) NSArray* trailersArray;
 @property (retain) NSArray* reviewsArray;
 @property (retain) NSDictionary* websites;
 @property (retain) ActionsView* actionsView;
@@ -71,7 +71,7 @@ const NSInteger POSTER_TAG = -1;
 @synthesize filteredTheatersArray;
 @synthesize allTheatersArray;
 @synthesize showtimesArray;
-@synthesize trailer;
+@synthesize trailersArray;
 @synthesize reviewsArray;
 @synthesize websites;
 @synthesize actionsView;
@@ -89,7 +89,7 @@ const NSInteger POSTER_TAG = -1;
   self.filteredTheatersArray = nil;
   self.allTheatersArray = nil;
   self.showtimesArray = nil;
-  self.trailer = nil;
+  self.trailersArray = nil;
   self.reviewsArray = nil;
   self.websites = nil;
   self.actionsView = nil;
@@ -161,7 +161,7 @@ const NSInteger POSTER_TAG = -1;
   NSMutableArray* titles = [NSMutableArray array];
   NSMutableArray* arguments = [NSMutableArray array];
 
-  if (trailer.length > 0) {
+  if (trailersArray.count > 0) {
     [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
     [titles addObject:LocalizedString(@"Play trailer", @"Title for a button. Needs to be very short. 2-3 words *max*. User taps it when they want to watch the trailer for a movie")];
     [arguments addObject:[NSNull null]];
@@ -326,6 +326,21 @@ const NSInteger POSTER_TAG = -1;
     [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
   }
 }
+ 
+
+- (void) setupTrailersArray {
+  NSArray* array = [self.model trailersForMovie:movie];
+  NSMutableArray* result = [NSMutableArray array];
+  
+  for (NSString* trailer in array) {
+    trailer = [trailer stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trailer.length > 0) {
+      [result addObject:trailer];
+    }
+  }
+  
+  self.trailersArray = result;
+}
 
 
 - (void) initializeData {
@@ -333,14 +348,9 @@ const NSInteger POSTER_TAG = -1;
   self.netflixMovie = [self.model.netflixCache correspondingNetflixMovie:movie];
   [self initializeNetflixStatusCells];
 
-  NSArray* trailers = [self.model trailersForMovie:movie];
-  if (trailers.count > 0) {
-    self.trailer = [trailers objectAtIndex:0];
-  }
+  [self setupTrailersArray];
 
-  if (!self.model.noScores) {
-    self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
-  }
+  self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
 
   [self initializeTheaterArrays];
 
@@ -459,7 +469,7 @@ const NSInteger POSTER_TAG = -1;
   self.allTheatersArray = nil;
   self.filteredTheatersArray = nil;
   self.showtimesArray = nil;
-  self.trailer = nil;
+  self.trailersArray = nil;
   self.reviewsArray = nil;
   self.websites = nil;
   self.actionsView = nil;
@@ -937,7 +947,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) playTrailer {
-  NSString* urlString = trailer;
+  NSString* urlString = [trailersArray objectAtIndex:0];
   NSURL* url = [NSURL URLWithString:urlString];
   if (url == nil) {
     return;

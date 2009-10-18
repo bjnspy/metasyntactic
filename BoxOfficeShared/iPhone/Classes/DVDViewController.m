@@ -15,22 +15,18 @@
 #import "DVDViewController.h"
 
 #import "BlurayCache.h"
+#import "BoxOfficeStockImages.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
 #import "Model.h"
 
 @interface DVDViewController()
-@property (retain) UISegmentedControl* segmentedControl;
 @end
 
 
 @implementation DVDViewController
 
-@synthesize segmentedControl;
-
 - (void) dealloc {
-  self.segmentedControl = nil;
-
   [super dealloc];
 }
 
@@ -70,6 +66,11 @@
 }
 
 
+- (BOOL) sortingByFavorite {
+  return self.model.dvdMoviesSortingByFavorite;
+}
+
+
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
   return compareMoviesByReleaseDateAscending;
 }
@@ -105,6 +106,7 @@
                                   [NSArray arrayWithObjects:
                                    LocalizedString(@"Release", nil),
                                    LocalizedString(@"Title", nil),
+                                   [BoxOfficeStockImages whiteStar],
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -126,16 +128,8 @@
   [super loadView];
 
   scrollToCurrentDateOnRefresh = YES;
-  self.segmentedControl = [self createSegmentedControl];
-  self.navigationItem.titleView = segmentedControl;
 
   self.tableView.rowHeight = 100;
-}
-
-
-- (void) didReceiveMemoryWarningWorker {
-  [super didReceiveMemoryWarningWorker];
-  self.segmentedControl = nil;
 }
 
 

@@ -95,7 +95,7 @@ typedef enum {
   if (section == SendFeedbackSection) {
     return 1;
   } else if (section == StandardSettingsSection) {
-    return 10;
+    return 9;
   } else if (section == UpcomingSection) {
     return 1;
   } else if (section == DVDBluraySection) {
@@ -224,22 +224,18 @@ typedef enum {
       on = self.model.autoUpdateLocation;
       selector = @selector(onAutoUpdateChanged:);
     } else if (row == 5) {
-      text = LocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
-      on = self.model.prioritizeBookmarks;
-      selector = @selector(onPrioritizeBookmarksChanged:);
-    } else if (row == 6) {
       text = LocalizedString(@"Screen Rotation", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't turn the screen automatically when i rotate my phone'");
       on = [MetasyntacticSharedApplication screenRotationEnabled];
       selector = @selector(onScreenRotationEnabledChanged:);
-    } else if (row == 7) {
+    } else if (row == 6) {
       text = LocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'don't shrink the fonts when you have lots of stuff to display'");
       on = self.model.useSmallFonts;
       selector = @selector(onUseSmallFontsChanged:);
-    } else if (row == 8) {
+    } else if (row == 7) {
       text = LocalizedString(@"Show Notifications", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update notifications in the UI to let me know what's happening'");
       on = self.model.notificationsEnabled;
       selector = @selector(onShowNotificationsChanged:);
-    } else if (row == 9) {
+    } else if (row == 8) {
       text = LocalizedString(@"Loading Indicators", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'show update spinners in the UI when loading content'");
       on = self.model.loadingIndicatorsEnabled;
       selector = @selector(onLoadingIndicatorsChanged:);
@@ -365,11 +361,6 @@ typedef enum {
 
 - (void) onUseSmallFontsChanged:(UISwitch*) sender {
   [self.model setUseSmallFonts:sender.on];
-}
-
-
-- (void) onPrioritizeBookmarksChanged:(UISwitch*) sender {
-  [self.model setPrioritizeBookmarks:sender.on];
 }
 
 

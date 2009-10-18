@@ -15,8 +15,8 @@
 @interface AbstractMovieListViewController : AbstractTableViewController {
 @protected
   UISearchBar* searchBar;
+  UISegmentedControl* segmentedControl;
 
-  NSArray* sortedMovies;
   NSArray* sectionTitles;
   MultiDictionary* sectionTitleToContentsMap;
 

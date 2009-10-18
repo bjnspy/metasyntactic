@@ -97,7 +97,6 @@ static NSString* NETFLIX_SEARCH_SELECTED_SCOPE_BUTTON_INDEX = @"netflixSearchSel
 static NSString* NETFLIX_SECRET                             = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                            = @"netflixUserId";
 static NSString* NOTIFICATIONS_DISABLED                     = @"notificationsDisabled";
-static NSString* PRIORITIZE_BOOKMARKS                       = @"prioritizeBookmarks";
 static NSString* SCORE_PROVIDER_INDEX                       = @"scoreProviderIndex";
 static NSString* SCREEN_ROTATION_DISABLED                   = @"screenRotationDisabled";
 static NSString* SEARCH_DATE                                = @"searchDate";
@@ -509,10 +508,6 @@ static Model* model = nil;
 - (void) setScoreProviderIndex:(NSInteger) index {
   self.cachedScoreProviderIndex = index;
   [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SCORE_PROVIDER_INDEX];
-
-  if (self.noScores && self.allMoviesSortingByScore) {
-    [self setAllMoviesSelectedSegmentIndex:0];
-  }
 }
 
 
@@ -695,6 +690,11 @@ static Model* model = nil;
 }
 
 
+- (BOOL) allMoviesSortingByFavorite {
+  return self.allMoviesSelectedSegmentIndex == 3;
+}
+
+
 - (BOOL) upcomingMoviesSortingByReleaseDate {
   return self.upcomingMoviesSelectedSegmentIndex == 0;
 }
@@ -702,6 +702,11 @@ static Model* model = nil;
 
 - (BOOL) upcomingMoviesSortingByTitle {
   return self.upcomingMoviesSelectedSegmentIndex == 1;
+}
+
+
+- (BOOL) upcomingMoviesSortingByFavorite {
+  return self.upcomingMoviesSelectedSegmentIndex == 2;
 }
 
 
@@ -715,13 +720,8 @@ static Model* model = nil;
 }
 
 
-- (BOOL) prioritizeBookmarks {
-  return [[NSUserDefaults standardUserDefaults] boolForKey:PRIORITIZE_BOOKMARKS];
-}
-
-
-- (void) setPrioritizeBookmarks:(BOOL) value {
-  [[NSUserDefaults standardUserDefaults] setBool:value forKey:PRIORITIZE_BOOKMARKS];
+- (BOOL) dvdMoviesSortingByFavorite {
+  return self.dvdMoviesSelectedSegmentIndex == 2;
 }
 
 

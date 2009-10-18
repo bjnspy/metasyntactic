@@ -29,6 +29,12 @@ UIImage* BoxOfficeStockImage(NSString* name) {
 
 @implementation BoxOfficeStockImages
 
+
++ (UIImage*) whiteStar {
+  return BoxOfficeStockImage(@"WhiteStar.png");
+}
+
+
 + (UIImage*) freshImage {
   return BoxOfficeStockImage(@"Fresh.png");
 }

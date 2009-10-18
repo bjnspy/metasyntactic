@@ -21,6 +21,8 @@ UIImage* BoxOfficeStockImage(NSString* name);
 + (UIImage*) rottenFadedImage;
 + (UIImage*) rottenFullImage;
 
++ (UIImage*) whiteStar;
+
 + (UIImage*) emptyStarImage;
 + (UIImage*) filledYellowStarImage;
 + (UIImage*) redStar_0_5_Image;

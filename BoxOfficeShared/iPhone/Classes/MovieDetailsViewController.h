@@ -27,7 +27,7 @@
   NSMutableArray* filteredTheatersArray;
   NSMutableArray* allTheatersArray;
   NSMutableArray* showtimesArray;
-  NSString* trailer;
+  NSArray* trailersArray;
   NSArray* reviewsArray;
   NSDictionary* websites;
 

@@ -14,21 +14,18 @@
 
 #import "UpcomingMoviesViewController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"
 
 @interface UpcomingMoviesViewController()
-@property (retain) UISegmentedControl* segmentedControl;
 @end
 
 
 @implementation UpcomingMoviesViewController
 
-@synthesize segmentedControl;
-
 - (void) dealloc {
-  self.segmentedControl = nil;
   [super dealloc];
 }
 
@@ -58,16 +55,22 @@
 }
 
 
+- (BOOL) sortingByFavorite {
+  return self.model.upcomingMoviesSortingByFavorite;
+}
+
+
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
   return compareMoviesByReleaseDateAscending;
 }
 
 
-- (UISegmentedControl*) setupSegmentedControl {
+- (UISegmentedControl*) createSegmentedControl {
   UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:
                                    LocalizedString(@"Release", nil),
                                    LocalizedString(@"Title", nil),
+                                   [BoxOfficeStockImages whiteStar],
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -105,8 +108,6 @@
   [super loadView];
 
   scrollToCurrentDateOnRefresh = YES;
-  self.segmentedControl = [self setupSegmentedControl];
-  self.navigationItem.titleView = segmentedControl;
 
   self.title = LocalizedString(@"Upcoming", nil);
   self.tableView.rowHeight = 100;
@@ -115,7 +116,6 @@
 
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
-  self.segmentedControl = nil;
 }
 
 

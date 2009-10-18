@@ -141,12 +141,16 @@ enum ViewControllerType {
 - (BOOL) allMoviesSortingByTitle;
 - (BOOL) allMoviesSortingByScore;
 - (BOOL) allMoviesSortingByReleaseDate;
+- (BOOL) allMoviesSortingByFavorite;
 
 - (BOOL) upcomingMoviesSortingByTitle;
 - (BOOL) upcomingMoviesSortingByReleaseDate;
+- (BOOL) upcomingMoviesSortingByFavorite;
 
 - (BOOL) dvdMoviesSortingByTitle;
 - (BOOL) dvdMoviesSortingByReleaseDate;
+- (BOOL) dvdMoviesSortingByFavorite;
+
 - (BOOL) dvdMoviesShowDVDs;
 - (BOOL) dvdMoviesShowBluray;
 - (BOOL) dvdMoviesShowBoth;
@@ -162,9 +166,6 @@ enum ViewControllerType {
 - (NSArray*) navigationStackTypes;
 - (NSArray*) navigationStackValues;
 - (void) clearNavigationStack;
-
-- (BOOL) prioritizeBookmarks;
-- (void) setPrioritizeBookmarks:(BOOL) value;
 
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
