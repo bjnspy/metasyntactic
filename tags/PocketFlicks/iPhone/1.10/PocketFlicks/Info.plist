@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>PocketFlicks</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon.png</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.metasyntactic.PocketFlix</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>PocketFlix</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.10</string>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+	<key>RootViewControllerClass</key>
+	<string>PocketFlicksNavigationController</string>
+	<key>PinchMediaApplicationCode</key>
+	<string>f529b846faa3f9498254e10e5b0f49d8</string>
+	<key>NetflixKey</key>
+	<string>szqxavgvm6s3ywed2cnwmt69</string>
+	<key>NetflixSecret</key>
+	<string>52EWSSQFrJ</string>
+	<key>NetflixApplicationName</key>
+	<string>PocketFlicks</string>
+	<key>iTunesApplicationUrl</key>
+	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
+</dict>
+</plist>
