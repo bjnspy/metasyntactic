@@ -36,8 +36,8 @@
 }
 
 
-- (NSDictionary*) lookupServerScores {
-  return [NSDictionary dictionary];
+- (NSMutableDictionary*) lookupServerScores {
+  return [NSMutableDictionary dictionary];
 }
 
 @end

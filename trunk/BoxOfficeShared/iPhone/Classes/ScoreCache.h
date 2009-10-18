@@ -14,12 +14,12 @@
 
 @interface ScoreCache : AbstractCache {
 @private
-    id<ScoreProvider> rottenTomatoesScoreProvider;
-    id<ScoreProvider> metacriticScoreProvider;
-    id<ScoreProvider> googleScoreProvider;
-    id<ScoreProvider> noneScoreProvider;
-
-    BOOL updated;
+  id<ScoreProvider> rottenTomatoesScoreProvider;
+  id<ScoreProvider> metacriticScoreProvider;
+  id<ScoreProvider> googleScoreProvider;
+  id<ScoreProvider> noneScoreProvider;
+  
+  BOOL updated;
 }
 
 + (ScoreCache*) cache;

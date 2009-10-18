@@ -82,7 +82,7 @@
 }
 
 
-- (NSDictionary*) lookupServerScores {
+- (NSMutableDictionary*) lookupServerScores {
   NSString* address = [self serverUrl];
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
   if (data != nil) {
