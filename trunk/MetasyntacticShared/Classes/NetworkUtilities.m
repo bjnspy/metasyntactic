@@ -375,16 +375,10 @@ static Pulser* pulser = nil;
   zeroAddress.sin_len = sizeof(zeroAddress);
   zeroAddress.sin_family = AF_INET;
 
-  BOOL result;
-
   SCNetworkReachabilityRef networkReachability =
-    SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
-  {
-    result = [self isNetworkAvailableWorker:networkReachability];
-  }
-  CFRelease(networkReachability);
+    CFAutoRelease(SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress));
 
-  return result;
+  return [self isNetworkAvailableWorker:networkReachability];
 }
 
 @end

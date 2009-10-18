@@ -31,3 +31,5 @@
 #define CACHE_LIMIT (30.0 * ONE_DAY)
 
 #define LocalizedString(key,comment) ([MetasyntacticSharedApplication localizedString:(key)])
+
+#define CFAutoRelease(typeRef) ((void*)[NSMakeCollectable(typeRef) autorelease])
