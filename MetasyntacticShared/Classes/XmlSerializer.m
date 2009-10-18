@@ -44,7 +44,7 @@
   if (node == nil) {
     return;
   }
-  
+
   [buffer appendString:@"<"];
   [buffer appendString:node.name];
   if (node.attributes.count > 0) {
@@ -54,21 +54,21 @@
                              withBuffer:buffer];
     }
   }
-  
+
   if (node.children.count == 0 && node.text == nil) {
     [buffer appendString:@"/>"];
     return;
   }
-  
+
   [buffer appendString:@">"];
   if (node.text != nil)  {
     [buffer appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
   }
-  
+
   for (XmlElement* child in node.children) {
     [XmlSerializer serializeElement:child withBuffer:buffer];
   }
-  
+
   [buffer appendString:@"</"];
   [buffer appendString:node.name];
   [buffer appendString:@">"];
@@ -85,21 +85,21 @@
 + (NSString*) serializeDocument:(XmlDocument*) document {
   NSMutableString* serialized = [NSMutableString string];
   [serialized appendString:@"<?xml"];
-  
+
   if (document.version != nil) {
     [XmlSerializer serializeAttribute:@"version" value:document.version withBuffer:serialized];
   }
-  
+
   if (document.encoding != nil) {
     [XmlSerializer serializeAttribute:@"encoding" value:document.encoding withBuffer:serialized];
   }
-  
+
   [serialized appendString:@"?>"];
-  
+
   if (document.root != nil) {
     [XmlSerializer serializeElement:document.root withBuffer:serialized];
   }
-  
+
   return serialized;
 }
 

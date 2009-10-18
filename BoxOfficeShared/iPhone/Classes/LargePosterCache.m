@@ -69,7 +69,7 @@ const int START_YEAR = 1912;
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
-  
+
   sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
   return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
@@ -82,7 +82,7 @@ const int START_YEAR = 1912;
   } else {
     sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
   }
-  
+
   sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-0-small", index];
   return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
 }
@@ -93,7 +93,7 @@ const int START_YEAR = 1912;
   if (possible != nil) {
     return possible;
   }
-  
+
   return movie;
 }
 

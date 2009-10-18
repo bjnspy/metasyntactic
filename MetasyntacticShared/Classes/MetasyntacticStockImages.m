@@ -31,25 +31,25 @@ NSMutableDictionary* GetThreadLocalDictionary(NSString* key) {
     dictionary = [NSMutableDictionary dictionary];
     [threadDictionary setObject:dictionary forKey:key];
   }
-  
+
   return dictionary;
 }
 
 
 NSString* StockImagePathForName(NSString* name, NSString* bundle, NSString*(pathForName)(NSString*)) {
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
-  
+
   NSString* key = [NSString stringWithFormat:@"%@-%@", name, bundle];
   id result = [threadDictionary objectForKey:key];
   if (result == [NSNull null]) {
     return nil;
   }
-  
+
   if (result == nil) {
     result = pathForName(name);
     [threadDictionary setObject:result forKey:key];
   }
-  return result;  
+  return result;
 }
 
 
