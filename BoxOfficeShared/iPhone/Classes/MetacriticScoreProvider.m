@@ -42,7 +42,7 @@
 }
 
 
-- (NSDictionary*) lookupServerScores {
+- (NSMutableDictionary*) lookupServerScores {
   NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieScores%@?q=metacritic",
                        [Application apiHost], [Application apiVersion]];
   XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address pause:NO];

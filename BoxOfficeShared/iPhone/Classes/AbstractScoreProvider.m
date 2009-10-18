@@ -61,7 +61,7 @@
 }
 
 
-- (NSDictionary*) lookupServerScores {
+- (NSMutableDictionary*) lookupServerScores {
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -238,6 +238,7 @@
   [MetasyntacticSharedApplication majorRefresh];
 }
 
+
 - (void) updateScoresWorker {
   NSString* localHash = self.hashValue;
   NSString* serverHash = [self lookupServerHash];
@@ -253,18 +254,22 @@
     return;
   }
 
-  NSDictionary* scores = [self lookupServerScores];
-  if (scores.count == 0) {
+  NSDictionary* currentScores = self.scores;
+  NSMutableDictionary* newScores = [self lookupServerScores];
+  if (newScores.count == 0) {
     return;
   }
+  
+  NSMutableDictionary* finalScores = [NSMutableDictionary dictionaryWithDictionary:currentScores];
+  [finalScores addEntriesFromDictionary:newScores];
 
   NSArray* movies = [self.model movies];
 
-  NSDictionary* map = [self regenerateMapWorker:scores forMovies:movies];
+  NSDictionary* map = [self regenerateMapWorker:finalScores forMovies:movies];
 
   [dataGate lock];
   {
-    scoresData.value = scores;
+    scoresData.value = finalScores;
     hashData.value = serverHash;
 
     movieMapData.value = map;
