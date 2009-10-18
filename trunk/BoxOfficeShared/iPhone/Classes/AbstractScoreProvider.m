@@ -259,7 +259,7 @@
   if (newScores.count == 0) {
     return;
   }
-  
+
   NSMutableDictionary* finalScores = [NSMutableDictionary dictionaryWithDictionary:currentScores];
   [finalScores addEntriesFromDictionary:newScores];
 

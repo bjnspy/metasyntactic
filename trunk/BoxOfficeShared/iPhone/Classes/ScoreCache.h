@@ -18,7 +18,7 @@
   id<ScoreProvider> metacriticScoreProvider;
   id<ScoreProvider> googleScoreProvider;
   id<ScoreProvider> noneScoreProvider;
-  
+
   BOOL updated;
 }
 

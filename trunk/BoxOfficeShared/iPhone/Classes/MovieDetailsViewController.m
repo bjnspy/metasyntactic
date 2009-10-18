@@ -326,19 +326,19 @@ const NSInteger POSTER_TAG = -1;
     [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
   }
 }
- 
+
 
 - (void) setupTrailersArray {
   NSArray* array = [self.model trailersForMovie:movie];
   NSMutableArray* result = [NSMutableArray array];
-  
+
   for (NSString* trailer in array) {
     trailer = [trailer stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (trailer.length > 0) {
       [result addObject:trailer];
     }
   }
-  
+
   self.trailersArray = result;
 }
 
