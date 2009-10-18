@@ -28,7 +28,7 @@
 - (void) dealloc {
   self.dataGate = nil;
   self.runGate = nil;
-  
+
   [super dealloc];
 }
 
@@ -38,13 +38,13 @@
     self.dataGate = [[[NSRecursiveLock alloc] init] autorelease];
     self.runGate = [[[NSRecursiveLock alloc] init] autorelease];
   }
-  
+
   return self;
 }
 
 
 - (void) didReceiveMemoryWarning {
-  
+
 }
 
 @end
