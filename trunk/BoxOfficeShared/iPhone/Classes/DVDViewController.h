@@ -16,7 +16,6 @@
 
 @interface DVDViewController : AbstractMovieListViewController {
 @private
-    UISegmentedControl* segmentedControl;
 }
 
 - (BOOL) sortingByTitle;

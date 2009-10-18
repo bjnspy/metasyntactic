@@ -166,7 +166,7 @@
     body = [body stringByAppendingFormat:@"\n\nPlease provide the following:\nTheater Name: \nPhone Number: "];
   }
 
-  body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
+  body = [body stringByAppendingFormat:@"\n\nVersion: %@\nDevice: %@ v%@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
           [Application version],
           [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion],
           self.model.userAddress,
@@ -174,7 +174,6 @@
           [DateUtilities formatShortDate:self.model.searchDate],
           self.model.currentScoreProvider,
           (self.model.autoUpdateLocation ? @"yes" : @"no"),
-          (self.model.prioritizeBookmarks ? @"yes" : @"no"),
           [LocaleUtilities englishCountry],
           [LocaleUtilities englishLanguage]];
 

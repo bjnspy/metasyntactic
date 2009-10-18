@@ -14,20 +14,17 @@
 
 #import "AllMoviesViewController.h"
 
+#import "BoxOfficeStockImages.h"
 #import "Model.h"
 #import "MovieTitleCell.h"
 
 @interface AllMoviesViewController()
-@property (retain) UISegmentedControl* segmentedControl;
 @end
 
 
 @implementation AllMoviesViewController
 
-@synthesize segmentedControl;
-
 - (void) dealloc {
-  self.segmentedControl = nil;
   [super dealloc];
 }
 
@@ -57,17 +54,23 @@
 }
 
 
+- (BOOL) sortingByFavorite {
+  return self.model.allMoviesSortingByFavorite;
+}
+
+
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
   return compareMoviesByReleaseDateDescending;
 }
 
 
-- (UISegmentedControl*) setupSegmentedControl {
+- (UISegmentedControl*) createSegmentedControl {
   UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:
                                    LocalizedString(@"Release", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on how recently they were released."),
                                    LocalizedString(@"Title", @"Must be very short. 1 word max. This is on a button that allows the user to sort movies based on their title."),
                                    LocalizedString(@"Score", @"Must be very short. 1 word max. This is on a button that allows users to sort movies by how well they were rated."),
+                                   [BoxOfficeStockImages whiteStar],
                                    nil]] autorelease];
 
   control.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -102,37 +105,11 @@
 
 - (void) loadView {
   [super loadView];
-
-  self.segmentedControl = [self setupSegmentedControl];
-  self.navigationItem.titleView = segmentedControl;
 }
 
 
 - (void) didReceiveMemoryWarningWorker {
   [super didReceiveMemoryWarningWorker];
-  self.segmentedControl = nil;
-}
-
-
-- (void) setupSegments {
-  if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
-    segmentedControl.selectedSegmentIndex = MIN(MAX(0, self.model.allMoviesSelectedSegmentIndex), 1);
-    [segmentedControl removeSegmentAtIndex:2 animated:NO];
-  } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
-    [segmentedControl insertSegmentWithTitle:LocalizedString(@"Score", nil) atIndex:2 animated:NO];
-  }
-}
-
-
-- (void) onBeforeReloadTableViewData {
-  [super onBeforeReloadTableViewData];
-  [self setupSegments];
-}
-
-
-- (void) majorRefresh {
-  [self setupSegments];
-  [super majorRefresh];
 }
 
 
