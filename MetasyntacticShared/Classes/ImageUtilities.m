@@ -16,21 +16,16 @@
 
 @implementation ImageUtilities
 
-+ (CGContextRef) newBitmapContext:(CGSize) size {
-  CGContextRef context;
++ (CGContextRef) getBitmapContext:(CGSize) size {
+  CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
 
-  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-  {
-    context = CGBitmapContextCreate(NULL,
+  return CFAutoRelease(CGBitmapContextCreate(NULL,
                                     round(size.width),
                                     round(size.height),
                                     8,
                                     4 * round(size.width),
                                     colorSpace,
-                                    kCGImageAlphaPremultipliedFirst);
-  }
-  CGColorSpaceRelease(colorSpace);
-  return context;
+                                    kCGImageAlphaPremultipliedFirst));
 }
 
 
@@ -44,21 +39,11 @@
     return nil;
   }
 
-  UIImage* scaledImage;
-
-  CGContextRef context = [self newBitmapContext:size];
-  {
-    CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
-
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-    {
-      scaledImage = [UIImage imageWithCGImage:imageRef];
-    }
-    CGImageRelease(imageRef);
-  }
-  CGContextRelease(context);
-
-  return scaledImage;
+  CGContextRef context = [self getBitmapContext:size];
+  CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
+  CGImageRef imageRef = CFAutoRelease(CGBitmapContextCreateImage(context));
+  
+  return [UIImage imageWithCGImage:imageRef];
 }
 
 
@@ -203,28 +188,20 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
     return image;
   }
 
-  UIImage* result;
-
   CGSize size = image.size;
-  CGContextRef context = [self newBitmapContext:size];
-  {
-    CGContextBeginPath(context);
-    CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    roundingFunction(context, rect);
-    CGContextClosePath(context);
-    CGContextClip(context);
+  CGContextRef context = [self getBitmapContext:size];
+  
+  CGContextBeginPath(context);
+  CGRect rect = CGRectMake(0, 0, size.width, size.height);
+  roundingFunction(context, rect);
+  CGContextClosePath(context);
+  CGContextClip(context);
+  
+  CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
+  
+  CGImageRef imageMasked = CFAutoRelease(CGBitmapContextCreateImage(context));
 
-    CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
-
-    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-    {
-      result = [UIImage imageWithCGImage:imageMasked];
-    }
-    CGImageRelease(imageMasked);
-  }
-  CGContextRelease(context);
-
-  return result;
+  return [UIImage imageWithCGImage:imageMasked];
 }
 
 
@@ -251,8 +228,6 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
     return nil;
   }
 
-  UIImage* result = image;
-
   CGSize size = image.size;
   CGFloat height = round(size.height);
   CGFloat width = round(size.width);
@@ -260,50 +235,38 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
   size_t length = 4 * height * width;
   void* rawData = malloc(length);
 
-  if (rawData != NULL) {
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    {
-      CGContextRef context = CGBitmapContextCreate(rawData,
-                                                   width,
-                                                   height,
-                                                   8,
-                                                   4 * width,
-                                                   colorSpace,
-                                                   kCGImageAlphaPremultipliedFirst);
-      {
-        CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
-
-        CFDataRef data = CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc);
-        {
-          CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(data);
-          {
-
-            CGImageRef imageRef = CGImageCreate(width,
-                                                height,
-                                                8,
-                                                8 * 4,
-                                                4 * width,
-                                                colorSpace,
-                                                CGBitmapContextGetBitmapInfo(context),
-                                                dataProvider,
-                                                NULL,
-                                                YES,
-                                                kCGRenderingIntentDefault);
-            {
-              result = [UIImage imageWithCGImage:imageRef];
-            }
-            CGImageRelease(imageRef);
-          }
-          CGDataProviderRelease(dataProvider);
-        }
-        CFRelease(data);
-      }
-      CGContextRelease(context);
-    }
-    CGColorSpaceRelease(colorSpace);
+  if (rawData == NULL) {
+    return image;
   }
-
-  return result;
+  
+  CGColorSpaceRef colorSpace = CFAutoRelease(CGColorSpaceCreateDeviceRGB());
+  
+  CGContextRef context = CFAutoRelease(CGBitmapContextCreate(rawData,
+                                                             width,
+                                                             height,
+                                                             8,
+                                                             4 * width,
+                                                             colorSpace,
+                                                             kCGImageAlphaPremultipliedFirst));
+  
+  CGContextDrawImage(context, CGRectMake(0, 0, width, height), image.CGImage);
+  
+  CFDataRef data = CFAutoRelease(CFDataCreateWithBytesNoCopy(NULL, rawData, length, kCFAllocatorMalloc));
+  CGDataProviderRef dataProvider = CFAutoRelease(CGDataProviderCreateWithCFData(data));
+  
+  CGImageRef imageRef = CFAutoRelease(CGImageCreate(width,
+                                                    height,
+                                                    8,
+                                                    8 * 4,
+                                                    4 * width,
+                                                    colorSpace,
+                                                    CGBitmapContextGetBitmapInfo(context),
+                                                    dataProvider,
+                                                    NULL,
+                                                    YES,
+                                                    kCGRenderingIntentDefault));
+  
+  return [UIImage imageWithCGImage:imageRef];
 }
 
 @end

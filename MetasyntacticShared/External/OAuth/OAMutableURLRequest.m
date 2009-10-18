@@ -78,11 +78,9 @@
     self.realm = realm_.length == 0 ? @"" : realm_;
     self.timestamp = [NSString stringWithFormat:@"%d", time(NULL)];
     
-    CFUUIDRef uuid = CFUUIDCreate(NULL);
-    CFStringRef uuidString = CFUUIDCreateString(NULL, uuid);
+    CFUUIDRef uuid = CFAutoRelease(CFUUIDCreate(NULL));
+    CFStringRef uuidString = CFAutoRelease(CFUUIDCreateString(NULL, uuid));
     self.nonce = (NSString*)uuidString;
-    CFRelease(uuidString);
-    CFRelease(uuid);
     
     [self setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [self setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
