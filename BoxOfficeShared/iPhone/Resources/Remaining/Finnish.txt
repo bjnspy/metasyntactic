@@ -310,8 +310,6 @@
 
 "Please rate it in the App Store!" = "";
 
-"Please wait..." = "";
-
 // The preferred movie format that the user has.  i.e. DVD or Bluray
 "Preferred Formats" = "";
 
