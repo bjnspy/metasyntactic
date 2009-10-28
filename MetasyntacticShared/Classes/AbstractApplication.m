@@ -387,4 +387,13 @@ static BOOL shutdownCleanly = NO;
   return [MFMailComposeViewController canSendMail];
 }
 
+
++ (UIBarStyle) navigationBarStyle {
+  if ([@"UIBarStyleBlack" isEqual:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarStyle"]]) {
+    return UIBarStyleBlack;
+  } else {
+    return UIBarStyleDefault;
+  }
+}
+
 @end
