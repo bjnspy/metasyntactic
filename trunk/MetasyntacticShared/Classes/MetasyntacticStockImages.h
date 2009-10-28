@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-NSString* StockImagePathForName(NSString* name, NSString* bundle, NSString*(pathForName)(NSString*));
-
+UIImage* StockImage(NSString* bundle, NSString* name);
 UIImage* MetasyntacticStockImage(NSString* name);
 
 @interface MetasyntacticStockImages : NSObject {
