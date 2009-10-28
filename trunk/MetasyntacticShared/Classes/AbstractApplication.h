@@ -43,6 +43,7 @@
 + (BOOL) canSendMail;
 
 + (UIBarStyle) navigationBarStyle;
++ (UIBarStyle) searchBarStyle;
 
 /* @protected */
 + (NSLock*) gate;

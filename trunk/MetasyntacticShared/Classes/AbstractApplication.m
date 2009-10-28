@@ -388,12 +388,22 @@ static BOOL shutdownCleanly = NO;
 }
 
 
-+ (UIBarStyle) navigationBarStyle {
-  if ([@"UIBarStyleBlack" isEqual:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarStyle"]]) {
++ (UIBarStyle) barStyleFromString:(NSString*) string {
+  if ([@"UIBarStyleBlack" isEqual:string]) {
     return UIBarStyleBlack;
   } else {
     return UIBarStyleDefault;
-  }
+  }  
+}
+
+
++ (UIBarStyle) navigationBarStyle {
+  return [self barStyleFromString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarStyle"]];
+}
+
+
++ (UIBarStyle) searchBarStyle {
+  return [self barStyleFromString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarStyle"]];
 }
 
 @end
