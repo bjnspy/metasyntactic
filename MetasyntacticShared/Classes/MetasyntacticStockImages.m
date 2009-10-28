@@ -16,10 +16,8 @@
 
 #import "FileUtilities.h"
 
-static NSString* bundleName = @"MetasyntacticResources.bundle";
-
-NSString* MetasyntacticResourcePath(NSString* name) {
-  NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:nil];
+NSString* PathForName(NSString* bundle, NSString* name) {
+  NSString* bundlePath = [[NSBundle mainBundle] pathForResource:bundle ofType:nil];
 
   return [NSBundle pathForResource:name ofType:nil inDirectory:bundlePath];
 }
@@ -36,26 +34,47 @@ NSMutableDictionary* GetThreadLocalDictionary(NSString* key) {
 }
 
 
-NSString* StockImagePathForName(NSString* name, NSString* bundle, NSString*(pathForName)(NSString*)) {
+NSString* StockImagePathForName(NSString* bundle, NSString* name) {
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
 
-  NSString* key = [NSString stringWithFormat:@"%@-%@", name, bundle];
+  NSString* key = [NSString stringWithFormat:@"%@-%@", bundle, name];
+  
   id result = [threadDictionary objectForKey:key];
+  if (result == nil) {
+    result = PathForName(bundle, name);
+    if (result == nil) {
+      result = [NSNull null];
+    }
+    [threadDictionary setObject:result forKey:key];
+  }
+
   if (result == [NSNull null]) {
     return nil;
   }
-
-  if (result == nil) {
-    result = pathForName(name);
-    [threadDictionary setObject:result forKey:key];
-  }
+  
   return result;
 }
 
 
+UIImage* StockImage(NSString* bundle, NSString* name) {
+  NSString* overrideBundle = [NSString stringWithFormat:@"%@-Override.bundle", bundle];
+  NSString* normalBundle = [NSString stringWithFormat:@"%@.bundle", bundle];
+  NSString* bundles[] = { overrideBundle, normalBundle };
+  
+  for (NSInteger i = 0; i < ArrayLength(bundles); i++) {
+    NSString* path = StockImagePathForName(bundles[i], name);
+    UIImage* result = [MetasyntacticStockImages imageForPath:path];
+    if (result != nil) {
+      return result;
+    }
+  }
+  
+  return nil;
+}
+
+
 UIImage* MetasyntacticStockImage(NSString* name) {
-  NSString* path = StockImagePathForName(name, bundleName, MetasyntacticResourcePath);
-  return [MetasyntacticStockImages imageForPath:path];
+  return StockImage(@"MetasyntacticResources", name);
 }
 
 
@@ -69,18 +88,18 @@ UIImage* MetasyntacticStockImage(NSString* name) {
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImages");
 
   id result = [threadDictionary objectForKey:path];
-  if (result == [NSNull null]) {
-    return nil;
-  }
-
   if (result == nil) {
-    if ([FileUtilities fileExists:path]) {
-      result = [UIImage imageWithContentsOfFile:path];
-    } else {
+    result = [UIImage imageWithContentsOfFile:path];
+    if (result == nil) {
       result = [NSNull null];
     }
     [threadDictionary setObject:result forKey:path];
   }
+  
+  if (result == [NSNull null]) {
+    return nil;
+  }
+  
   return result;
 }
 
