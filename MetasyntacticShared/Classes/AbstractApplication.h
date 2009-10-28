@@ -42,8 +42,11 @@
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
 
+// UI customization points for subclasses.
 + (UIBarStyle) navigationBarStyle;
 + (UIBarStyle) searchBarStyle;
++ (UIBarStyle) toolBarStyle;
++ (BOOL) toolBarTranslucent;
 
 /* @protected */
 + (NSLock*) gate;
