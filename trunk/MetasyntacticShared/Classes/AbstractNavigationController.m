@@ -14,6 +14,7 @@
 
 #import "AbstractNavigationController.h"
 
+#import "AbstractApplication.h"
 #import "AbstractFullScreenImageListViewController.h"
 #import "MapViewController.h"
 #import "NotificationCenter.h"
@@ -42,6 +43,7 @@
   [super loadView];
 
   self.view.autoresizesSubviews = YES;
+  self.navigationBar.barStyle = [AbstractApplication navigationBarStyle];
 }
 
 

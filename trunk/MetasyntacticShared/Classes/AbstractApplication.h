@@ -42,6 +42,8 @@
 + (BOOL) useKilometers;
 + (BOOL) canSendMail;
 
++ (UIBarStyle) navigationBarStyle;
+
 /* @protected */
 + (NSLock*) gate;
 + (void) clearStaleData;
