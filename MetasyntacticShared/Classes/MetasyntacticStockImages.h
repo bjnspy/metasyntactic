@@ -14,6 +14,8 @@
 
 NSString* StockImagePathForName(NSString* name, NSString* bundle, NSString*(pathForName)(NSString*));
 
+UIImage* MetasyntacticStockImage(NSString* name);
+
 @interface MetasyntacticStockImages : NSObject {
 
 }

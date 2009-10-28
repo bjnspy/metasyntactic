@@ -16,6 +16,7 @@
 
 #import "FontCache.h"
 #import "MetasyntacticSharedApplication.h"
+#import "MetasyntacticStockImages.h"
 
 @interface SynopsisCell()
 @property (copy) NSString* synopsis;
@@ -63,6 +64,8 @@
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.synopsis = synopsis_;
     self.limitLength = limitLength_;
+    UIImage* backgroundImage = [MetasyntacticStockImage(@"SynopsisBackground.png") stretchableImageWithLeftCapWidth:1 topCapHeight:1];
+    self.backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     imageSize = [self calculatePreferredImageSize:imageView.image];
