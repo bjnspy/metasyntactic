@@ -14,6 +14,7 @@
 
 #import "AbstractMultiPageTableViewController.h"
 
+#import "AbstractApplication.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
 
@@ -111,8 +112,8 @@
 
 - (UIView*) createToolbar {
   UIToolbar* toolbar = [[[UIToolbar alloc] init] autorelease];
-  toolbar.barStyle = UIBarStyleBlack;
-  toolbar.translucent = YES;
+  toolbar.barStyle = [AbstractApplication toolBarStyle];
+  toolbar.translucent = [AbstractApplication toolBarTranslucent];
   [toolbar sizeToFit];
   CGRect frame = toolbar.frame;
   frame.origin.y = -1;

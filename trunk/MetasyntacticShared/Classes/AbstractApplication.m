@@ -406,4 +406,14 @@ static BOOL shutdownCleanly = NO;
   return [self barStyleFromString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarStyle"]];
 }
 
+
++ (UIBarStyle) toolBarStyle {
+  return [self barStyleFromString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIToolBarStyle"]];
+}
+
+
++ (BOOL) toolBarTranslucent {
+  return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIToolBarTranslucent"] boolValue];
+}
+
 @end
