@@ -110,37 +110,39 @@
   
   NSMutableArray* items = [NSMutableArray array];
 
-  UIImage* leftImage = [MetasyntacticStockImages leftArrow];
-  UIImage* rightImage = [MetasyntacticStockImages rightArrow];
+  UIBarButtonItem* leftArrow;
+  UIBarButtonItem* rightArrow;
   
-  UIButton* leftButton = [[[UIButton alloc] init] autorelease];
-  CGRect frame = leftButton.frame;
-  frame.size = leftImage.size;
-  leftButton.frame = frame;
-  [leftButton setImage:leftImage forState:UIControlStateNormal];
-  
-  UIButton* rightButton = [[[UIButton alloc] init] autorelease];
-  frame = rightButton.frame;
-  frame.size = rightImage.size;
-  rightButton.frame = frame;
-  [rightButton setImage:rightImage forState:UIControlStateNormal];
-  
-  UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithCustomView:leftButton] autorelease];
-  UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithCustomView:rightButton] autorelease];
-
-  [leftButton addTarget:self action:@selector(onLeftTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside]; 
-  [rightButton addTarget:self action:@selector(onRightTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
-  
-  /*
-  UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
-                                                     style:UIBarButtonItemStylePlain
-                                                    target:self
-                                                    action:@selector(onLeftTapped:)] autorelease];
-  UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:self
-                                                     action:@selector(onRightTapped:)] autorelease];
-   */
+  if ([MetasyntacticStockImages leftArrow] == [MetasyntacticStockImages standardLeftArrow]) {
+    leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(onLeftTapped)] autorelease];
+    rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(onRightTapped)] autorelease];    
+  } else {
+    UIImage* leftImage = [MetasyntacticStockImages leftArrow];
+    UIImage* rightImage = [MetasyntacticStockImages rightArrow];
+    
+    UIButton* leftButton = [[[UIButton alloc] init] autorelease];
+    CGRect frame = leftButton.frame;
+    frame.size = leftImage.size;
+    leftButton.frame = frame;
+    [leftButton setImage:leftImage forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(onLeftTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside]; 
+    
+    UIButton* rightButton = [[[UIButton alloc] init] autorelease];
+    frame = rightButton.frame;
+    frame.size = rightImage.size;
+    rightButton.frame = frame;
+    [rightButton setImage:rightImage forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(onRightTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+    
+    leftArrow = [[[UIBarButtonItem alloc] initWithCustomView:leftButton] autorelease];
+    rightArrow = [[[UIBarButtonItem alloc] initWithCustomView:rightButton] autorelease];
+  }  
 
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];

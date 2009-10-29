@@ -34,10 +34,10 @@ NSMutableDictionary* GetThreadLocalDictionary(NSString* key) {
 }
 
 
-NSString* StockImagePathForName(NSString* bundle, NSString* name) {
+NSString* StockImagePathForName(NSString* bundle, NSString* name, BOOL allowOverride) {
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
 
-  NSString* key = [NSString stringWithFormat:@"%@-%@", bundle, name];
+  NSString* key = [NSString stringWithFormat:@"%@-%@-%d", bundle, name, allowOverride];
   
   id result = [threadDictionary objectForKey:key];
   if (result == nil) {
@@ -56,13 +56,17 @@ NSString* StockImagePathForName(NSString* bundle, NSString* name) {
 }
 
 
-UIImage* StockImage(NSString* bundle, NSString* name) {
-  NSString* overrideBundle = [NSString stringWithFormat:@"%@-Override.bundle", bundle];
+UIImage* StockImage1(NSString* bundle, NSString* name, BOOL allowOverride) {
+  NSString* overrideBundle = allowOverride ? [NSString stringWithFormat:@"%@-Override.bundle", bundle] : nil;
   NSString* normalBundle = [NSString stringWithFormat:@"%@.bundle", bundle];
   NSString* bundles[] = { overrideBundle, normalBundle };
   
   for (NSInteger i = 0; i < ArrayLength(bundles); i++) {
-    NSString* path = StockImagePathForName(bundles[i], name);
+    NSString* currentBundle = bundles[i];
+    if (currentBundle == nil) {
+      continue;
+    }
+    NSString* path = StockImagePathForName(currentBundle, name, allowOverride);
     UIImage* result = [MetasyntacticStockImages imageForPath:path];
     if (result != nil) {
       return result;
@@ -73,8 +77,18 @@ UIImage* StockImage(NSString* bundle, NSString* name) {
 }
 
 
+UIImage* StockImage(NSString* bundle, NSString* name) {
+  return StockImage1(bundle, name, YES);
+}
+
+
+UIImage* MetasyntacticStockImage1(NSString* name, BOOL allowOverride) {
+  return StockImage1(@"MetasyntacticResources", name, allowOverride);
+}
+
+
 UIImage* MetasyntacticStockImage(NSString* name) {
-  return StockImage(@"MetasyntacticResources", name);
+  return MetasyntacticStockImage1(name, YES);
 }
 
 
@@ -101,6 +115,16 @@ UIImage* MetasyntacticStockImage(NSString* name) {
   }
   
   return result;
+}
+
+
++ (UIImage*) standardLeftArrow {
+  return MetasyntacticStockImage1(@"LeftArrow.png", NO);
+}
+
+
++ (UIImage*) standardRightArrow {
+  return MetasyntacticStockImage1(@"RightArrow.png", NO);
 }
 
 
@@ -156,7 +180,6 @@ UIImage* MetasyntacticStockImage(NSString* name) {
 
 + (UIImage*) collapseArrow {
   return MetasyntacticStockImage(@"CollapseArrow.png");
-  
 }
 
 @end
