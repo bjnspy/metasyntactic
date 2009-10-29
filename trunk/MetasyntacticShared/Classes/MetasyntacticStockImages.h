@@ -31,6 +31,9 @@ UIImage* MetasyntacticStockImage(NSString* name);
 + (UIImage*) smallActivityBackground;
 + (UIImage*) largeActivityBackground;
 
++ (UIImage*) expandArrow;
++ (UIImage*) collapseArrow;
+
 /* @protected */
 + (UIImage*) imageForPath:(NSString*) path;
 
