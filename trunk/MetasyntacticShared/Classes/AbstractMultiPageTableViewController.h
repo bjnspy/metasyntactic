@@ -23,7 +23,7 @@
 }
 
 /* protected */
-- (void) onLeftTapped:(id) sender;
-- (void) onRightTapped:(id) sender;
+- (void) onLeftTapped;
+- (void) onRightTapped;
 
 @end
