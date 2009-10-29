@@ -51,8 +51,13 @@ setting_definition(TWITTER_PASSWORD);
 }
 
 
+- (BOOL) twitterReady {
+  return self.enabled && self.username.length > 0 && self.password.length > 0;
+}
+
+
 - (void) checkCredentials {
-  if (self.username.length == 0) {
+  if (!self.twitterReady) {
     return;
   }
 
@@ -110,11 +115,6 @@ setting_definition(TWITTER_PASSWORD);
   [[NSUserDefaults standardUserDefaults] synchronize];
 
   [self login];
-}
-
-
-- (BOOL) twitterReady {
-  return self.enabled && self.username.length > 0 && self.password.length > 0;
 }
 
 
