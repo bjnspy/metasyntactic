@@ -25,7 +25,7 @@
 
 - (void) dealloc {
   self.movie = nil;
-  
+
   [super dealloc];
 }
 
@@ -35,7 +35,7 @@
     self.movie = movie_;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
-  
+
   return self;
 }
 

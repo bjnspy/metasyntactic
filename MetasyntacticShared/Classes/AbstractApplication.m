@@ -393,7 +393,7 @@ static BOOL shutdownCleanly = NO;
     return UIBarStyleBlack;
   } else {
     return UIBarStyleDefault;
-  }  
+  }
 }
 
 

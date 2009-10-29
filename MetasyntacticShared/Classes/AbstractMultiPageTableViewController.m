@@ -71,7 +71,7 @@
   NSString* title =
   [NSString stringWithFormat:
    LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPageIndex + 1), pageCount];
-  
+
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
   label.font = [UIFont boldSystemFontOfSize:18];
@@ -80,23 +80,23 @@
   label.opaque = NO;
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
-  
+
   UIImage* backgroundImage = [MetasyntacticStockImage(@"MultiPageLabelBackground.png") stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   if (backgroundImage == nil) {
     return label;
   }
-  
+
   CGRect labelFrame = label.frame;
   CGRect imageFrame = labelFrame;
   const NSInteger buffer = 20;
   imageFrame.size.width += buffer * 2;
-  
+
   labelFrame.origin.x += buffer;
   label.frame = labelFrame;
-  
+
   UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
   backgroundView.frame = imageFrame;
-  
+
   UIView* labelView = [[[UIView alloc] initWithFrame:imageFrame] autorelease];
   [labelView addSubview:backgroundView];
   [labelView addSubview:label];
@@ -107,12 +107,12 @@
 
 - (void) setupToolbarItems:(UIToolbar*) toolbar {
   UIView* labelView = [self createLabelView];
-  
+
   NSMutableArray* items = [NSMutableArray array];
 
   UIBarButtonItem* leftArrow;
   UIBarButtonItem* rightArrow;
-  
+
   if ([MetasyntacticStockImages leftArrow] == [MetasyntacticStockImages standardLeftArrow]) {
     leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
                                                                    style:UIBarButtonItemStylePlain
@@ -121,28 +121,28 @@
     rightArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages rightArrow]
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
-                                                                   action:@selector(onRightTapped)] autorelease];    
+                                                                   action:@selector(onRightTapped)] autorelease];
   } else {
     UIImage* leftImage = [MetasyntacticStockImages leftArrow];
     UIImage* rightImage = [MetasyntacticStockImages rightArrow];
-    
+
     UIButton* leftButton = [[[UIButton alloc] init] autorelease];
     CGRect frame = leftButton.frame;
     frame.size = leftImage.size;
     leftButton.frame = frame;
     [leftButton setImage:leftImage forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(onLeftTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside]; 
-    
+    [leftButton addTarget:self action:@selector(onLeftTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+
     UIButton* rightButton = [[[UIButton alloc] init] autorelease];
     frame = rightButton.frame;
     frame.size = rightImage.size;
     rightButton.frame = frame;
     [rightButton setImage:rightImage forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(onRightTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
-    
+
     leftArrow = [[[UIBarButtonItem alloc] initWithCustomView:leftButton] autorelease];
     rightArrow = [[[UIBarButtonItem alloc] initWithCustomView:rightButton] autorelease];
-  }  
+  }
 
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];

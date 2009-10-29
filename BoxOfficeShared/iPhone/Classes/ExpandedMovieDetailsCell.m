@@ -34,7 +34,7 @@
   self.titles = nil;
   self.titleToLabel = nil;
   self.titleToValueLabels = nil;
-  
+
   [super dealloc];
 }
 
@@ -46,14 +46,14 @@
 
 - (UILabel*) createTitleLabel:(NSString*) title {
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-  
+
   label.font = [UIFont systemFontOfSize:14];
   label.textColor = [UIColor darkGrayColor];
   label.backgroundColor = [UIColor clearColor];
   label.text = title;
   label.textAlignment = UITextAlignmentRight;
   [label sizeToFit];
-  
+
   return label;
 }
 
@@ -72,7 +72,7 @@
   frame.origin.x = 10;
   frame.origin.y = 10;
   imageView.frame = frame;
-  
+
   [self.contentView addSubview:imageView];
 }
 
@@ -83,17 +83,17 @@
   UILabel* titleLabel = [self createTitleLabel:title];
   [titleLabel sizeToFit];
   [self.contentView addSubview:titleLabel];
-  
+
   for (NSString* value in values) {
     UILabel* valueLabel = [self createValueLabel];
     valueLabel.text = value;
-    
+
     [dictionary addObject:valueLabel forKey:title];
-    
+
     [valueLabel sizeToFit];
     [self.contentView addSubview:valueLabel];
   }
-  
+
   [titles addObject:title];
   [titleToLabel setObject:titleLabel forKey:title];
 }
@@ -114,7 +114,7 @@
   if (value.length == 0) {
     value = LocalizedString(@"Unrated", nil);
   }
-  
+
   [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -124,10 +124,10 @@
   if (length <= 0) {
     return;
   }
-  
+
   NSString* title = LocalizedString(@"Running time:", nil);
   NSString* value = [Movie runtimeString:length];
-  
+
   [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -136,16 +136,16 @@
   if (movie.releaseDate == nil) {
     return;
   }
-  
+
   NSString* title = LocalizedString(@"Release date:", nil);
-  
+
   NSString* value;
   if (movie.isNetflix) {
     value = [DateUtilities formatYear:movie.releaseDate];
   } else {
     value = [DateUtilities formatMediumDate:movie.releaseDate];
   }
-  
+
   [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -155,13 +155,13 @@
   if (genres.count == 0) {
     return;
   }
-  
+
   NSString* title = LocalizedString(@"Genre:", nil);
   NSString* value = [genres componentsJoinedByString:@", "];
   if (value.length == 0) {
     return;
   }
-  
+
   [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -170,10 +170,10 @@
   if (movie.studio.length == 0) {
     return;
   }
-  
+
   NSString* title = LocalizedString(@"Studio:", nil);
   NSString* value = movie.studio;
-  
+
   [self addTitle:title andValue:value to:dictionary];
 }
 
@@ -183,14 +183,14 @@
   if (directors.count == 0) {
     return;
   }
-  
+
   NSString* title;
   if (directors.count == 1) {
     title = LocalizedString(@"Director:", nil);
   } else {
     title = LocalizedString(@"Directors:", nil);
   }
-  
+
   [self addTitle:title andValues:directors to:dictionary];
 }
 
@@ -200,7 +200,7 @@
   if (cast.count == 0) {
     return;
   }
-  
+
   NSString* title = LocalizedString(@"Cast:", nil);
   [self addTitle:title andValues:cast to:dictionary];
 }
@@ -213,9 +213,9 @@
   }
   UILabel* firstLabel = [titleToLabel objectForKey:[titles objectAtIndex:0]];
   CGFloat firstTitleWidth = [firstLabel.text sizeWithFont:firstLabel.font].width;
-  
+
   titleWidth = MAX(titleWidth + 20, firstTitleWidth + 40);
-  
+
   for (UILabel* label in titleToLabel.allValues) {
     CGRect frame = label.frame;
     frame.size.width = titleWidth;
@@ -236,14 +236,14 @@
   for (NSString* title in titles) {
     UILabel* titleLabel = [titleToLabel objectForKey:title];
     CGRect titleFrame = titleLabel.frame;
-    
+
     titleFrame.origin.y = yPosition;
     titleLabel.frame = titleFrame;
-    
+
     for (UILabel* valueLabel in [titleToValueLabels objectsForKey:title]) {
       CGRect valueFrame = valueLabel.frame;
       valueFrame.origin.y = yPosition;
-      
+
       yPosition += valueLabel.font.pointSize + 10;
       valueLabel.frame = valueFrame;
     }
@@ -255,9 +255,9 @@
   if ((self = [super initWithMovie:movie_])) {
     self.titles = [NSMutableArray array];
     self.titleToLabel = [NSMutableDictionary dictionary];
-    
+
     MutableMultiDictionary* dictionary = [MutableMultiDictionary dictionary];
-    
+
     [self addRating:dictionary];
     [self addRunningTime:dictionary];
     [self addReleaseDate:dictionary];
@@ -265,22 +265,22 @@
     [self addStudio:dictionary];
     [self addDirectors:dictionary];
     [self addCast:dictionary];
-    
+
     self.titleToValueLabels = dictionary;
-    
+
     [self setLabelPositions];
     [self setLabelWidths];
-    
+
     [self addDisclosureTriangle];
   }
-  
+
   return self;
 }
 
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   for (NSArray* labels in titleToValueLabels.allValues) {
     for (UILabel* label in labels) {
       CGRect frame = label.frame;
@@ -295,7 +295,7 @@
   NSString* lastTitle = titles.lastObject;
   NSArray* labels = [titleToValueLabels objectsForKey:lastTitle];
   UILabel* lastLabel = labels.lastObject;
-  
+
   NSInteger y = lastLabel.frame.origin.y;
   NSInteger height = lastLabel.frame.size.height;
   return y + height + 7;
