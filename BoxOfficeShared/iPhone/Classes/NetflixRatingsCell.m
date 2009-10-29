@@ -159,6 +159,7 @@
 - (id) initWithMovie:(Movie*) movie_ {
   if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.movie = movie_;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.imageViews = [NSMutableArray array];
     [self setupRating];
   }
