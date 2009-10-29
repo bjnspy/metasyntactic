@@ -27,52 +27,52 @@
 @synthesize ratingAndRuntimeLabel;
 
 - (void) dealloc {
-    self.ratingAndRuntimeLabel = nil;
-
-    [super dealloc];
+  self.ratingAndRuntimeLabel = nil;
+  
+  [super dealloc];
 }
 
 
 - (Model*) model {
-    return [Model model];
+  return [Model model];
 }
 
 
 - (id) initWithMovie:(Movie*) movie_ {
-    if ((self = [super initWithMovie:movie_])) {
-        self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
-
-        if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
-            ratingAndRuntimeLabel.text = [self.model ratingForMovie:movie];
-        } else {
-            ratingAndRuntimeLabel.text = [self.model ratingAndRuntimeForMovie:movie];
-        }
-
-        ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
-        [ratingAndRuntimeLabel sizeToFit];
-
-        [self.contentView addSubview:ratingAndRuntimeLabel];
-
-        self.imageView.image = BoxOfficeStockImage(@"RightDisclosureTriangle.png");
+  if ((self = [super initWithMovie:movie_])) {
+    self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
+    
+    if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
+      ratingAndRuntimeLabel.text = [self.model ratingForMovie:movie];
+    } else {
+      ratingAndRuntimeLabel.text = [self.model ratingAndRuntimeForMovie:movie];
     }
-
-    return self;
+    
+    ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
+    [ratingAndRuntimeLabel sizeToFit];
+    
+    [self.contentView addSubview:ratingAndRuntimeLabel];
+    
+    self.imageView.image = [MetasyntacticStockImages expandArrow];
+  }
+  
+  return self;
 }
 
 
 - (CGFloat) height:(UITableView*) tableView {
-    return tableView.rowHeight - 14;
+  return tableView.rowHeight - 14;
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-
-    CGRect frame = ratingAndRuntimeLabel.frame;
-    frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
-    frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
-    ratingAndRuntimeLabel.frame = frame;
+  [super layoutSubviews];
+  
+  CGRect frame = ratingAndRuntimeLabel.frame;
+  frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
+  frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
+  ratingAndRuntimeLabel.frame = frame;
 }
 
 @end
