@@ -12,13 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieDetailsCell.h"
-
-@interface ExpandedMovieDetailsCell : AbstractMovieDetailsCell {
+@interface ExpandedMovieDetailsCell : AbstractExpandedDetailsCell {
 @private
-    NSMutableArray* titles;
-    NSMutableDictionary* titleToLabel;
-    MultiDictionary* titleToValueLabels;
 }
 
 @end
