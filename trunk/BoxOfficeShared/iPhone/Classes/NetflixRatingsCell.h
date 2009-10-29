@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieDetailsCell.h"
-
-@interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
+@interface NetflixRatingsCell : UITableViewCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 @private
+  Movie* movie;
   NetflixAccount* account;
   NSArray* imageViews;
 }
 
-- (id) initWithMovie:(Movie*) movie account:(NetflixAccount*) account;
+- (id) initWithMovie:(Movie*) movie;
 
 - (void) refresh:(NetflixAccount*) account;
 
