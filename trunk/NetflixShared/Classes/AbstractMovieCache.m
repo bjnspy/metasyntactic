@@ -14,6 +14,8 @@
 
 #import "AbstractMovieCache.h"
 
+#import "Movie.h"
+
 @interface AbstractMovieCache()
 @property (retain) NSMutableSet* updatedMovies;
 @end
@@ -58,8 +60,8 @@
   BOOL result;
   [dataGate lock];
   {
-    if (![updatedMovies containsObject:movie]) {
-      [updatedMovies addObject:movie];
+    if (![updatedMovies containsObject:movie.identifier]) {
+      [updatedMovies addObject:movie.identifier];
       result = NO;
     } else {
       result = YES;
