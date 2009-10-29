@@ -67,11 +67,11 @@
 }
 
 
-- (void) setupToolbarItems:(UIToolbar*) toolbar {
+- (UIView*) createLabelView {
   NSString* title =
   [NSString stringWithFormat:
    LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPageIndex + 1), pageCount];
-
+  
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
   label.font = [UIFont boldSystemFontOfSize:18];
@@ -80,7 +80,30 @@
   label.opaque = NO;
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
+  
+  CGRect labelFrame = label.frame;
+  CGRect imageFrame = labelFrame;
+  const NSInteger buffer = 20;
+  imageFrame.size.width += buffer * 2;
+  
+  labelFrame.origin.x += buffer;
+  label.frame = labelFrame;
+  
+  UIImage* backgroundImage = [MetasyntacticStockImage(@"MultiPageLabelBackground.png") stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+  UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+  backgroundView.frame = imageFrame;
+  
+  UIView* labelView = [[[UIView alloc] initWithFrame:imageFrame] autorelease];
+  [labelView addSubview:backgroundView];
+  [labelView addSubview:label];
 
+  return labelView;
+}
+
+
+- (void) setupToolbarItems:(UIToolbar*) toolbar {
+  UIView* labelView = [self createLabelView];
+  
   NSMutableArray* items = [NSMutableArray array];
 
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
@@ -96,7 +119,7 @@
   [items addObject:self.createFlexibleSpace];
   [items addObject:leftArrow];
   [items addObject:self.createFlexibleSpace];
-  [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:label] autorelease]];
+  [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:labelView] autorelease]];
   [items addObject:self.createFlexibleSpace];
   [items addObject:rightArrow];
   [items addObject:self.createFlexibleSpace];
