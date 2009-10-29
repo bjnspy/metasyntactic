@@ -110,6 +110,28 @@
   
   NSMutableArray* items = [NSMutableArray array];
 
+  UIImage* leftImage = [MetasyntacticStockImages leftArrow];
+  UIImage* rightImage = [MetasyntacticStockImages rightArrow];
+  
+  UIButton* leftButton = [[[UIButton alloc] init] autorelease];
+  CGRect frame = leftButton.frame;
+  frame.size = leftImage.size;
+  leftButton.frame = frame;
+  [leftButton setImage:leftImage forState:UIControlStateNormal];
+  
+  UIButton* rightButton = [[[UIButton alloc] init] autorelease];
+  frame = rightButton.frame;
+  frame.size = rightImage.size;
+  rightButton.frame = frame;
+  [rightButton setImage:rightImage forState:UIControlStateNormal];
+  
+  UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithCustomView:leftButton] autorelease];
+  UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithCustomView:rightButton] autorelease];
+
+  [leftButton addTarget:self action:@selector(onLeftTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside]; 
+  [rightButton addTarget:self action:@selector(onRightTapped) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
+  
+  /*
   UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[MetasyntacticStockImages leftArrow]
                                                      style:UIBarButtonItemStylePlain
                                                     target:self
@@ -118,6 +140,7 @@
                                                       style:UIBarButtonItemStylePlain
                                                      target:self
                                                      action:@selector(onRightTapped:)] autorelease];
+   */
 
   [items addObject:self.createFlexibleSpace];
   [items addObject:self.createFlexibleSpace];
@@ -213,7 +236,7 @@
 }
 
 
-- (void) onLeftTapped:(id) sender {
+- (void) onLeftTapped {
   currentPageIndex--;
   UITableView* previousTableView = [self findOrCreateTableView:currentPageIndex];
   [self moveBackward:previousTableView];
@@ -221,7 +244,7 @@
 }
 
 
-- (void) onRightTapped:(id) sender {
+- (void) onRightTapped {
   currentPageIndex++;
   UITableView* nextTableView = [self findOrCreateTableView:currentPageIndex];
   [self moveForward:nextTableView];
