@@ -84,7 +84,7 @@ public class NetworkUtilities {
       return null;
     }
   }
-
+  
   public static Element downloadXml(final String url, final boolean important) {
     try {
       return downloadXml(new URL(url), important);
