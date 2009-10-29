@@ -29,7 +29,7 @@
 
 
 + (void) addRating:(Movie*) movie
-             items:(MutableMultiDictionary*) items 
+             items:(MutableMultiDictionary*) items
         itemsArray:(NSMutableArray*) itemsArray {
   NSString* title = LocalizedString(@"Rated:", nil);
   NSString* value = [[Model model] ratingForMovie:movie];
@@ -42,7 +42,7 @@
 
 
 + (void) addRunningTime:(Movie*) movie
-                  items:(MutableMultiDictionary*) items 
+                  items:(MutableMultiDictionary*) items
              itemsArray:(NSMutableArray*) itemsArray {
   NSInteger length = [[Model model] lengthForMovie:movie];
   if (length <= 0) {
@@ -57,7 +57,7 @@
 
 
 + (void) addReleaseDate:(Movie*) movie
-                  items:(MutableMultiDictionary*) items 
+                  items:(MutableMultiDictionary*) items
              itemsArray:(NSMutableArray*) itemsArray {
   if (movie.releaseDate == nil) {
     return;
@@ -77,7 +77,7 @@
 
 
 + (void) addGenres:(Movie*) movie
-             items:(MutableMultiDictionary*) items 
+             items:(MutableMultiDictionary*) items
         itemsArray:(NSMutableArray*) itemsArray {
   NSArray* genres = [[Model model] genresForMovie:movie];
   if (genres.count == 0) {
@@ -95,7 +95,7 @@
 
 
 + (void) addStudio:(Movie*) movie
-             items:(MutableMultiDictionary*) items 
+             items:(MutableMultiDictionary*) items
         itemsArray:(NSMutableArray*) itemsArray {
   if (movie.studio.length == 0) {
     return;
@@ -109,7 +109,7 @@
 
 
 + (void) addDirectors:(Movie*) movie
-                items:(MutableMultiDictionary*) items 
+                items:(MutableMultiDictionary*) items
            itemsArray:(NSMutableArray*) itemsArray {
   NSArray* directors = [[Model model] directorsForMovie:movie];
   if (directors.count == 0) {
@@ -128,7 +128,7 @@
 
 
 + (void) addCast:(Movie*) movie
-           items:(MutableMultiDictionary*) items 
+           items:(MutableMultiDictionary*) items
       itemsArray:(NSMutableArray*) itemsArray {
   NSArray* cast = [[Model model] castForMovie:movie];
   if (cast.count == 0) {
@@ -149,7 +149,7 @@
   [self addGenres:movie items:items itemsArray:itemsArray];
   [self addStudio:movie items:items itemsArray:itemsArray];
   [self addDirectors:movie items:items itemsArray:itemsArray];
-  [self addCast:movie items:items itemsArray:itemsArray];  
+  [self addCast:movie items:items itemsArray:itemsArray];
 }
 
 
@@ -158,7 +158,7 @@
   NSMutableArray* itemsArray = [NSMutableArray array];
 
   [ExpandedMovieDetailsCell initializeData:movie items:items itemsArray:itemsArray];
-  
+
   if ((self = [super initWithItems:items itemsArray:itemsArray])) {
   }
 
