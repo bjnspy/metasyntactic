@@ -41,7 +41,7 @@
       self.textLabel.text = [self.model ratingAndRuntimeForMovie:movie];
     }
   }
-  
+
   return self;
 }
 

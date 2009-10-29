@@ -38,7 +38,7 @@ NSString* StockImagePathForName(NSString* bundle, NSString* name, BOOL allowOver
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
 
   NSString* key = [NSString stringWithFormat:@"%@-%@-%d", bundle, name, allowOverride];
-  
+
   id result = [threadDictionary objectForKey:key];
   if (result == nil) {
     result = PathForName(bundle, name);
@@ -51,7 +51,7 @@ NSString* StockImagePathForName(NSString* bundle, NSString* name, BOOL allowOver
   if (result == [NSNull null]) {
     return nil;
   }
-  
+
   return result;
 }
 
@@ -60,7 +60,7 @@ UIImage* StockImage1(NSString* bundle, NSString* name, BOOL allowOverride) {
   NSString* overrideBundle = allowOverride ? [NSString stringWithFormat:@"%@-Override.bundle", bundle] : nil;
   NSString* normalBundle = [NSString stringWithFormat:@"%@.bundle", bundle];
   NSString* bundles[] = { overrideBundle, normalBundle };
-  
+
   for (NSInteger i = 0; i < ArrayLength(bundles); i++) {
     NSString* currentBundle = bundles[i];
     if (currentBundle == nil) {
@@ -72,7 +72,7 @@ UIImage* StockImage1(NSString* bundle, NSString* name, BOOL allowOverride) {
       return result;
     }
   }
-  
+
   return nil;
 }
 
@@ -109,11 +109,11 @@ UIImage* MetasyntacticStockImage(NSString* name) {
     }
     [threadDictionary setObject:result forKey:path];
   }
-  
+
   if (result == [NSNull null]) {
     return nil;
   }
-  
+
   return result;
 }
 
