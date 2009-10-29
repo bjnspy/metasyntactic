@@ -24,24 +24,24 @@
 @synthesize movie;
 
 - (void) dealloc {
-    self.movie = nil;
-
-    [super dealloc];
+  self.movie = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithMovie:(Movie*) movie_ {
-    if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
-        self.movie = movie_;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+    self.movie = movie_;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+  
+  return self;
 }
 
 
 - (CGFloat) height:(UITableView*) tableView {
-    return tableView.rowHeight;
+  return tableView.rowHeight;
 }
 
 @end

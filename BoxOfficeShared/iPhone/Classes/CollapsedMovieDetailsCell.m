@@ -18,17 +18,12 @@
 #import "Model.h"
 
 @interface CollapsedMovieDetailsCell()
-@property (retain) UILabel* ratingAndRuntimeLabel;
 @end
 
 
 @implementation CollapsedMovieDetailsCell
 
-@synthesize ratingAndRuntimeLabel;
-
 - (void) dealloc {
-  self.ratingAndRuntimeLabel = nil;
-  
   [super dealloc];
 }
 
@@ -38,41 +33,16 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ {
-  if ((self = [super initWithMovie:movie_])) {
-    self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
-    
+- (id) initWithMovie:(Movie*) movie {
+  if ((self = [super init])) {
     if ([@"de" isEqual:[LocaleUtilities preferredLanguage]]) {
-      ratingAndRuntimeLabel.text = [self.model ratingForMovie:movie];
+      self.textLabel.text = [self.model ratingForMovie:movie];
     } else {
-      ratingAndRuntimeLabel.text = [self.model ratingAndRuntimeForMovie:movie];
+      self.textLabel.text = [self.model ratingAndRuntimeForMovie:movie];
     }
-    
-    ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
-    [ratingAndRuntimeLabel sizeToFit];
-    
-    [self.contentView addSubview:ratingAndRuntimeLabel];
-    
-    self.imageView.image = [MetasyntacticStockImages expandArrow];
   }
   
   return self;
-}
-
-
-- (CGFloat) height:(UITableView*) tableView {
-  return tableView.rowHeight - 14;
-}
-
-
-- (void) layoutSubviews {
-  [super layoutSubviews];
-  
-  CGRect frame = ratingAndRuntimeLabel.frame;
-  frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
-  frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
-  ratingAndRuntimeLabel.frame = frame;
 }
 
 @end

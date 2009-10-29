@@ -12,6 +12,10 @@
 		7406D8901016FE96004374C2 /* SplashScreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7406D88D1016FE96004374C2 /* SplashScreenDelegate.h */; };
 		7415775F0FD5A5C00060E73E /* AbstractData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415775B0FD5A5C00060E73E /* AbstractData.h */; };
 		741577600FD5A5C00060E73E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7415775C0FD5A5C00060E73E /* AbstractData.m */; };
+		741B09261099252F003F6B11 /* AbstractCollapsedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */; };
+		741B09271099252F003F6B11 /* AbstractCollapsedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */; };
+		741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B092810992558003F6B11 /* AbstractDetailsCell.h */; };
+		741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B092910992558003F6B11 /* AbstractDetailsCell.m */; };
 		741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
 		741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
 		741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
@@ -272,6 +276,10 @@
 		7406D88D1016FE96004374C2 /* SplashScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenDelegate.h; sourceTree = "<group>"; };
 		7415775B0FD5A5C00060E73E /* AbstractData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractData.h; sourceTree = "<group>"; };
 		7415775C0FD5A5C00060E73E /* AbstractData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
+		741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCollapsedDetailsCell.h; sourceTree = "<group>"; };
+		741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCollapsedDetailsCell.m; sourceTree = "<group>"; };
+		741B092810992558003F6B11 /* AbstractDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsCell.h; sourceTree = "<group>"; };
+		741B092910992558003F6B11 /* AbstractDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsCell.m; sourceTree = "<group>"; };
 		741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -892,8 +900,8 @@
 		74616E620F15DCA60004B610 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7406D88A1016FE89004374C2 /* SplashScreen */,
 				74E604B90FD1F10C0015D9F8 /* NavigationControllers */,
+				7406D88A1016FE89004374C2 /* SplashScreen */,
 				74E601A10FD1C7630015D9F8 /* TableViewCells */,
 				741C759E0F8DCAF0003747AD /* ViewControllers */,
 				741F4C2A0FD2093F00244D37 /* Views */,
@@ -1008,11 +1016,15 @@
 		74E601A10FD1C7630015D9F8 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */,
+				741B092810992558003F6B11 /* AbstractDetailsCell.h */,
 				74E601A20FD1C7700015D9F8 /* AttributeCell.h */,
 				74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */,
 				74FEEAD40FF9CF0E0021F472 /* SettingCell.h */,
 				74DBE241102B894E001E6B23 /* SwitchCell.h */,
 				74AD39EF100139E200D6BDAA /* SynopsisCell.h */,
+				741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */,
+				741B092910992558003F6B11 /* AbstractDetailsCell.m */,
 				74E601A30FD1C7700015D9F8 /* AttributeCell.m */,
 				74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */,
 				74FEEAD50FF9CF0E0021F472 /* SettingCell.m */,
@@ -1183,6 +1195,8 @@
 				74E0347D105EB577002E5125 /* NSData+Base64.h in Headers */,
 				74E0347F105EB577002E5125 /* NSString+UUID.h in Headers */,
 				74E0354F105EC5EF002E5125 /* AbstractTwitterAccount.h in Headers */,
+				741B09261099252F003F6B11 /* AbstractCollapsedDetailsCell.h in Headers */,
+				741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1355,8 @@
 				74E0347E105EB577002E5125 /* NSData+Base64.m in Sources */,
 				74E03480105EB577002E5125 /* NSString+UUID.m in Sources */,
 				74E03550105EC5EF002E5125 /* AbstractTwitterAccount.m in Sources */,
+				741B09271099252F003F6B11 /* AbstractCollapsedDetailsCell.m in Sources */,
+				741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieDetailsCell.h"
-
-@interface CollapsedMovieDetailsCell : AbstractMovieDetailsCell {
-@private
-    UILabel* ratingAndRuntimeLabel;
+@interface CollapsedMovieDetailsCell : AbstractCollapsedDetailsCell {
 }
+
+- (id) initWithMovie:(Movie*) movie;
 
 @end

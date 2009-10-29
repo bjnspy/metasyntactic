@@ -21,6 +21,7 @@
 #import "../ForwardDeclarations.h"
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
+#import "AbstractCollapsedDetailsCell.h"
 #import "AbstractCurlableTableViewController.h"
 #import "AbstractData.h"
 #import "AbstractFlippableTableViewController.h"
