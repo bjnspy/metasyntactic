@@ -18,16 +18,19 @@
 #import "Model.h"
 
 @interface NetflixRatingsCell()
+@property (retain) Movie* movie;
 @property (retain) NetflixAccount* account;
 @property (retain) NSArray* imageViews;
 @end
 
 @implementation NetflixRatingsCell
 
+@synthesize movie;
 @synthesize account;
 @synthesize imageViews;
 
 - (void) dealloc {
+  self.movie = nil;
   self.account = nil;
   self.imageViews = nil;
 
@@ -153,10 +156,9 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_
-             account:(NetflixAccount*) account_ {
-  if ((self = [super initWithMovie:movie_])) {
-    self.account = nil;
+- (id) initWithMovie:(Movie*) movie_ {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
+    self.movie = movie_;
     self.imageViews = [NSMutableArray array];
     [self setupRating];
   }

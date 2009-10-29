@@ -682,7 +682,7 @@ const NSInteger POSTER_TAG = -1;
 - (UITableViewCell*) createNetflixRatingsCell {
   if (netflixRatingsCell == nil) {
     self.netflixRatingsCell =
-    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie account:netflixAccount] autorelease];
+    [[[NetflixRatingsCell alloc] initWithMovie:netflixMovie] autorelease];
   }
 
   return netflixRatingsCell;

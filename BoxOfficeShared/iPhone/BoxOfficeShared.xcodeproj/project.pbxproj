@@ -86,7 +86,6 @@
 		74FB7D711017A2DE001B5CB9 /* UnknownMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B44D0F7D650500864071 /* UnknownMovieTitleCell.m */; };
 		74FB7D721017A2DE001B5CB9 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7445B4530F7D651C00864071 /* YellowMovieTitleCell.m */; };
 		74FB7D731017A2DE001B5CB9 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745380620F89D87400D457CB /* QuestionCell.m */; };
-		74FB7D741017A2DE001B5CB9 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
 		74FB7D751017A2DE001B5CB9 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
 		74FB7D761017A2DE001B5CB9 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		74FB7D771017A2DE001B5CB9 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
@@ -396,8 +395,6 @@
 		749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
 		749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
 		749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
-		749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieDetailsCell.h; sourceTree = "<group>"; };
-		749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieDetailsCell.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		7498506C0FDB7A6C003D91F0 /* AbstractWebsiteCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWebsiteCache.h; sourceTree = "<group>"; };
@@ -771,7 +768,6 @@
 				74798DCB0F74BE590057E111 /* ImageCells */,
 				7445B4450F7D64CA00864071 /* MovieTitleCells */,
 				745380600F89D85800D457CB /* SettingCells */,
-				749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */,
 				749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
@@ -780,7 +776,6 @@
 				740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */,
 				740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */,
 				741377AF0E64765000404519 /* TheaterNameCell.h */,
-				749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */,
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
@@ -1312,7 +1307,6 @@
 				74FB7D711017A2DE001B5CB9 /* UnknownMovieTitleCell.m in Sources */,
 				74FB7D721017A2DE001B5CB9 /* YellowMovieTitleCell.m in Sources */,
 				74FB7D731017A2DE001B5CB9 /* QuestionCell.m in Sources */,
-				74FB7D741017A2DE001B5CB9 /* AbstractMovieDetailsCell.m in Sources */,
 				74FB7D751017A2DE001B5CB9 /* CollapsedMovieDetailsCell.m in Sources */,
 				74FB7D761017A2DE001B5CB9 /* ExpandedMovieDetailsCell.m in Sources */,
 				74FB7D771017A2DE001B5CB9 /* MovieShowtimesCell.m in Sources */,
