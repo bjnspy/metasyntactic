@@ -13,7 +13,9 @@
 // limitations under the License.
 
 UIImage* StockImage(NSString* bundle, NSString* name);
+UIImage* StockImage1(NSString* bundle, NSString* name, BOOL allowOverride);
 UIImage* MetasyntacticStockImage(NSString* name);
+UIImage* MetasyntacticStockImage1(NSString* name, BOOL allowOverride);
 
 @interface MetasyntacticStockImages : NSObject {
 
@@ -21,6 +23,9 @@ UIImage* MetasyntacticStockImage(NSString* name);
 
 + (UIImage*) leftArrow;
 + (UIImage*) rightArrow;
++ (UIImage*) standardLeftArrow;
++ (UIImage*) standardRightArrow;
+
 + (UIImage*) navigateBack;
 + (UIImage*) navigateForward;
 + (UIImage*) directions;
