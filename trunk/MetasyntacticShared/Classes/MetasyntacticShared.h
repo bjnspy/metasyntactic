@@ -24,6 +24,7 @@
 #import "AbstractCollapsedDetailsCell.h"
 #import "AbstractCurlableTableViewController.h"
 #import "AbstractData.h"
+#import "AbstractExpandedDetailsCell.h"
 #import "AbstractFlippableTableViewController.h"
 #import "AbstractFullScreenImageListViewController.h"
 #import "AbstractFullScreenTableViewController.h"
