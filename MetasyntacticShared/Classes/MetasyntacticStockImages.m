@@ -148,4 +148,15 @@ UIImage* MetasyntacticStockImage(NSString* name) {
   return MetasyntacticStockImage(@"LargeActivityBackground.png");
 }
 
+
++ (UIImage*) expandArrow {
+  return MetasyntacticStockImage(@"ExpandArrow.png");
+}
+
+
++ (UIImage*) collapseArrow {
+  return MetasyntacticStockImage(@"CollapseArrow.png");
+  
+}
+
 @end
