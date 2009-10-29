@@ -22,6 +22,8 @@
   NSArray* buttons;
 
   CGFloat height;
+  
+  UIImageView* backgroundImageView;
 }
 
 @property (readonly) CGFloat height;
