@@ -149,8 +149,13 @@
 
   NSData* data = [self downloadPosterWorker:movie];
   if (data != nil) {
+    if (data.length == 0) {
+      if ([FileUtilities size:path] > 0) {
+        // already have a real poster.
+        return;
+      }
+    }
     [FileUtilities writeData:data toFile:path];
-
 
     if (data.length > 0) {
       [MetasyntacticSharedApplication minorRefresh];

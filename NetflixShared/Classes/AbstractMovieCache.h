@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface AbstractMovieCache : AbstractCache {
-@private
+@protected
   // Accessed from different threads.  needs gate.
   NSMutableSet* updatedMovies;
 }
