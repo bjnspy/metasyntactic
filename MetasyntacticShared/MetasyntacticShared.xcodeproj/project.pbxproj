@@ -16,6 +16,8 @@
 		741B09271099252F003F6B11 /* AbstractCollapsedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */; };
 		741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B092810992558003F6B11 /* AbstractDetailsCell.h */; };
 		741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B092910992558003F6B11 /* AbstractDetailsCell.m */; };
+		741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B09E710992A13003F6B11 /* AbstractExpandedDetailsCell.h */; };
+		741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B09E810992A13003F6B11 /* AbstractExpandedDetailsCell.m */; };
 		741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
 		741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
 		741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
@@ -280,6 +282,8 @@
 		741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCollapsedDetailsCell.m; sourceTree = "<group>"; };
 		741B092810992558003F6B11 /* AbstractDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsCell.h; sourceTree = "<group>"; };
 		741B092910992558003F6B11 /* AbstractDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsCell.m; sourceTree = "<group>"; };
+		741B09E710992A13003F6B11 /* AbstractExpandedDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractExpandedDetailsCell.h; sourceTree = "<group>"; };
+		741B09E810992A13003F6B11 /* AbstractExpandedDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractExpandedDetailsCell.m; sourceTree = "<group>"; };
 		741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -1018,6 +1022,7 @@
 			children = (
 				741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */,
 				741B092810992558003F6B11 /* AbstractDetailsCell.h */,
+				741B09E710992A13003F6B11 /* AbstractExpandedDetailsCell.h */,
 				74E601A20FD1C7700015D9F8 /* AttributeCell.h */,
 				74AD3D06100191CE00D6BDAA /* AutoResizingCell.h */,
 				74FEEAD40FF9CF0E0021F472 /* SettingCell.h */,
@@ -1025,6 +1030,7 @@
 				74AD39EF100139E200D6BDAA /* SynopsisCell.h */,
 				741B09251099252F003F6B11 /* AbstractCollapsedDetailsCell.m */,
 				741B092910992558003F6B11 /* AbstractDetailsCell.m */,
+				741B09E810992A13003F6B11 /* AbstractExpandedDetailsCell.m */,
 				74E601A30FD1C7700015D9F8 /* AttributeCell.m */,
 				74AD3D07100191CE00D6BDAA /* AutoResizingCell.m */,
 				74FEEAD50FF9CF0E0021F472 /* SettingCell.m */,
@@ -1197,6 +1203,7 @@
 				74E0354F105EC5EF002E5125 /* AbstractTwitterAccount.h in Headers */,
 				741B09261099252F003F6B11 /* AbstractCollapsedDetailsCell.h in Headers */,
 				741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */,
+				741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,6 +1364,7 @@
 				74E03550105EC5EF002E5125 /* AbstractTwitterAccount.m in Sources */,
 				741B09271099252F003F6B11 /* AbstractCollapsedDetailsCell.m in Sources */,
 				741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */,
+				741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
