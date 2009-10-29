@@ -20,13 +20,13 @@
 
 
 
-- (void) addTitle:(NSString*) title
++ (void) addTitle:(NSString*) title
         andValues:(NSArray*) values
                to:(MutableMultiDictionary*) items 
               and:(NSMutableArray*) itemsArray;
 
 
-- (void) addTitle:(NSString*) title
++ (void) addTitle:(NSString*) title
          andValue:(NSString*) value
                to:(MutableMultiDictionary*) items 
               and:(NSMutableArray*) itemsArray;

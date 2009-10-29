@@ -270,10 +270,9 @@
 }
 
 
-- (CGFloat) height {
+- (CGFloat) height:(UITableViewController*) controller {
   double width;
-  if ([MetasyntacticSharedApplication screenRotationEnabled] &&
-      UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+  if (UIInterfaceOrientationIsLandscape(controller.interfaceOrientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
     width = [UIScreen mainScreen].bounds.size.width;

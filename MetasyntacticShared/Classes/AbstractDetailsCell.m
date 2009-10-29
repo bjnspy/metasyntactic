@@ -26,8 +26,8 @@
 }
 
 
-- (CGFloat) height:(UITableView*) tableView {
-  return tableView.rowHeight;
+- (CGFloat) height:(UITableViewController*) controller {
+  return controller.tableView.rowHeight;
 }
 
 @end
