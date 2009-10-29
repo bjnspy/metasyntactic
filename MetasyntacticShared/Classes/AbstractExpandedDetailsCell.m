@@ -34,6 +34,24 @@
 }
 
 
+- (void) addTitle:(NSString*) title
+        andValues:(NSArray*) values
+               to:(MutableMultiDictionary*) items 
+              and:(NSMutableArray*) itemsArray {
+  [itemsArray addObject:title];
+  [items addObjects:values forKey:title];
+}
+
+
+- (void) addTitle:(NSString*) title
+         andValue:(NSString*) value
+               to:(MutableMultiDictionary*) items 
+              and:(NSMutableArray*) itemsArray {
+  [itemsArray addObject:title];
+  [items addObject:value forKey:title];
+}
+
+
 - (void) setLabelWidths {
   CGFloat titleWidth = 0;
   for (UILabel* label in titleToLabel.allValues) {

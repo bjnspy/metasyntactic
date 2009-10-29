@@ -38,6 +38,7 @@
 @class ImageCache;
 @class Invocation;
 @class MultiDictionary;
+@class MutableMultiDictionary;
 @class NetworkUtilities;
 @class Location;
 @class Operation;
