@@ -721,10 +721,6 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
-  if (row == 0) {
-    return [(id)[self cellForHeaderRow:row] height];
-  }
-
   if (row == 1) {
     if (dvd != nil) {
       return self.tableView.rowHeight - 14;
@@ -733,8 +729,8 @@ const NSInteger POSTER_TAG = -1;
     }
   }
 
-  AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
-  return [cell height:self.tableView];
+  id cell = [self cellForHeaderRow:row];
+  return [cell height:self];
 }
 
 

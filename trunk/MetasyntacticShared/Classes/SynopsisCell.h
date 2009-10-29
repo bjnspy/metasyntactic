@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SynopsisCell : UITableViewCell {
+#import "AbstractDetailsCell.h"
+
+@interface SynopsisCell : AbstractDetailsCell {
 @private
   NSString* synopsis;
   BOOL limitLength;
@@ -27,6 +29,5 @@
 + (SynopsisCell*) cellWithSynopsis:(NSString*) synopsis
                          imageView:(UIImageView*) imageView
                        limitLength:(BOOL) limitLength;
-- (CGFloat) height;
 
 @end

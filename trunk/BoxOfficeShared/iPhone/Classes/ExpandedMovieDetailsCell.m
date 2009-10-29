@@ -28,16 +28,11 @@
 }
 
 
-- (Model*) model {
-  return [Model model];
-}
-
-
-- (void) addRating:(Movie*) movie
++ (void) addRating:(Movie*) movie
              items:(MutableMultiDictionary*) items 
         itemsArray:(NSMutableArray*) itemsArray {
   NSString* title = LocalizedString(@"Rated:", nil);
-  NSString* value = [self.model ratingForMovie:movie];
+  NSString* value = [[Model model] ratingForMovie:movie];
   if (value.length == 0) {
     value = LocalizedString(@"Unrated", nil);
   }
@@ -46,10 +41,10 @@
 }
 
 
-- (void) addRunningTime:(Movie*) movie
++ (void) addRunningTime:(Movie*) movie
                   items:(MutableMultiDictionary*) items 
              itemsArray:(NSMutableArray*) itemsArray {
-  NSInteger length = [self.model lengthForMovie:movie];
+  NSInteger length = [[Model model] lengthForMovie:movie];
   if (length <= 0) {
     return;
   }
@@ -61,7 +56,7 @@
 }
 
 
-- (void) addReleaseDate:(Movie*) movie
++ (void) addReleaseDate:(Movie*) movie
                   items:(MutableMultiDictionary*) items 
              itemsArray:(NSMutableArray*) itemsArray {
   if (movie.releaseDate == nil) {
@@ -81,10 +76,10 @@
 }
 
 
-- (void) addGenres:(Movie*) movie
++ (void) addGenres:(Movie*) movie
              items:(MutableMultiDictionary*) items 
         itemsArray:(NSMutableArray*) itemsArray {
-  NSArray* genres = [self.model genresForMovie:movie];
+  NSArray* genres = [[Model model] genresForMovie:movie];
   if (genres.count == 0) {
     return;
   }
@@ -99,7 +94,7 @@
 }
 
 
-- (void) addStudio:(Movie*) movie
++ (void) addStudio:(Movie*) movie
              items:(MutableMultiDictionary*) items 
         itemsArray:(NSMutableArray*) itemsArray {
   if (movie.studio.length == 0) {
@@ -113,10 +108,10 @@
 }
 
 
-- (void) addDirectors:(Movie*) movie
++ (void) addDirectors:(Movie*) movie
                 items:(MutableMultiDictionary*) items 
            itemsArray:(NSMutableArray*) itemsArray {
-  NSArray* directors = [self.model directorsForMovie:movie];
+  NSArray* directors = [[Model model] directorsForMovie:movie];
   if (directors.count == 0) {
     return;
   }
@@ -132,10 +127,10 @@
 }
 
 
-- (void) addCast:(Movie*) movie
++ (void) addCast:(Movie*) movie
            items:(MutableMultiDictionary*) items 
       itemsArray:(NSMutableArray*) itemsArray {
-  NSArray* cast = [self.model castForMovie:movie];
+  NSArray* cast = [[Model model] castForMovie:movie];
   if (cast.count == 0) {
     return;
   }
@@ -145,10 +140,9 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie {
-  MutableMultiDictionary* items = [MutableMultiDictionary dictionary];
-  NSMutableArray* itemsArray = [NSMutableArray array];
-
++ (void) initializeData:(Movie*) movie
+                  items:(MutableMultiDictionary*) items
+             itemsArray:(NSMutableArray*) itemsArray {
   [self addRating:movie items:items itemsArray:itemsArray];
   [self addRunningTime:movie items:items itemsArray:itemsArray];
   [self addReleaseDate:movie items:items itemsArray:itemsArray];
@@ -156,6 +150,14 @@
   [self addStudio:movie items:items itemsArray:itemsArray];
   [self addDirectors:movie items:items itemsArray:itemsArray];
   [self addCast:movie items:items itemsArray:itemsArray];  
+}
+
+
+- (id) initWithMovie:(Movie*) movie {
+  MutableMultiDictionary* items = [MutableMultiDictionary dictionary];
+  NSMutableArray* itemsArray = [NSMutableArray array];
+
+  [ExpandedMovieDetailsCell initializeData:movie items:items itemsArray:itemsArray];
   
   if ((self = [super initWithItems:items itemsArray:itemsArray])) {
   }
