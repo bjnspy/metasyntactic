@@ -15,6 +15,7 @@
 #import "ActionsView.h"
 
 #import "MetasyntacticSharedApplication.h"
+#import "MetasyntacticStockImages.h"
 
 @interface ActionsView()
 @property (assign) id target;
@@ -22,6 +23,7 @@
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
 @property (retain) NSArray* arguments;
+@property (retain) UIImageView* backgroundImageView;
 @property CGFloat height;
 @end
 
@@ -34,6 +36,7 @@
 @synthesize buttons;
 @synthesize arguments;
 @synthesize height;
+@synthesize backgroundImageView;
 
 - (void) dealloc {
   self.target = nil;
@@ -42,6 +45,7 @@
   self.buttons = nil;
   self.arguments = nil;
   self.height = 0;
+  self.backgroundImageView = nil;
 
   [super dealloc];
 }
@@ -58,6 +62,12 @@
     self.arguments = arguments_;
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
+    UIImage* backgroundImage = MetasyntacticStockImage(@"ActionsViewBackground.png");
+    if (backgroundImage != nil) {
+      self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
+      [self addSubview:backgroundImageView];
+    }
+    
     NSMutableArray* array = [NSMutableArray array];
     for (NSString* title in titles) {
       UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -150,6 +160,8 @@
 - (void) layoutSubviews {
   [super layoutSubviews];
 
+  backgroundImageView.frame = CGRectMake(10, 4, self.frame.size.width - 20, self.frame.size.height + 1);
+  
   BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
   for (int i = 0; i < buttons.count; i++) {
@@ -168,13 +180,23 @@
     CGRect frame = button.frame;
     frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
     frame.origin.y = (8 + frame.size.height) * row + 8;
-
+    
+    if (backgroundImageView != nil) {
+      if (column == 0) {
+        frame.origin.x += 5;
+      }
+    }
+    
     if (i == 0 && oddNumberOfButtons) {
       frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
     } else {
       frame.size.width = (self.frame.size.width / 2) - 14;
+    
+      if (backgroundImageView != nil) {
+        frame.size.width -= 5;
+      }      
     }
-
+    
     button.frame = frame;
   }
 }
