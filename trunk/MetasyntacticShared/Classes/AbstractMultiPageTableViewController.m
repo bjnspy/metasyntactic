@@ -81,6 +81,11 @@
   label.shadowColor = [UIColor darkGrayColor];
   [label sizeToFit];
   
+  UIImage* backgroundImage = [MetasyntacticStockImage(@"MultiPageLabelBackground.png") stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+  if (backgroundImage == nil) {
+    return label;
+  }
+  
   CGRect labelFrame = label.frame;
   CGRect imageFrame = labelFrame;
   const NSInteger buffer = 20;
@@ -89,7 +94,6 @@
   labelFrame.origin.x += buffer;
   label.frame = labelFrame;
   
-  UIImage* backgroundImage = [MetasyntacticStockImage(@"MultiPageLabelBackground.png") stretchableImageWithLeftCapWidth:10 topCapHeight:10];
   UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
   backgroundView.frame = imageFrame;
   
