@@ -51,6 +51,7 @@
 
   self.view.autoresizesSubviews = YES;
   self.navigationBar.barStyle = [StyleSheet navigationBarStyle];
+  self.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
 
   UIImage* image = self.backgroundImage;
   if (image != nil) {
