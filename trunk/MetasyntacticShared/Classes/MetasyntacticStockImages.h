@@ -33,9 +33,6 @@ UIImage* MetasyntacticStockImage1(NSString* name, BOOL allowOverride);
 + (UIImage*) actionButton;
 + (UIImage*) actionButtonRoundLowerRight;
 
-+ (UIImage*) standardActionButton;
-+ (UIImage*) standardActionButtonRoundLowerRight;
-
 + (UIImage*) smallActivityBackground;
 + (UIImage*) largeActivityBackground;
 

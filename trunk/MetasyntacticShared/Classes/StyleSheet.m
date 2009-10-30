@@ -65,4 +65,9 @@
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarTintColor"]]; 
 }
 
+
++ (UIColor*) actionButtonTextColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ActionButtonTextColor"]]; 
+}
+
 @end

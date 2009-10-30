@@ -26,4 +26,6 @@
 + (UIColor*) tableViewGroupedHeaderColor;
 + (UIColor*) tableViewGroupedFooterColor;
 
++ (UIColor*) actionButtonTextColor;
+
 @end
