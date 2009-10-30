@@ -16,6 +16,7 @@
 
 #import "MetasyntacticSharedApplication.h"
 #import "Pulser.h"
+#import "UIColor+Utilities.h"
 
 @interface NotificationCenter()
 @property (retain) UIViewController* viewController;
@@ -119,7 +120,7 @@ const NSInteger STATUS_BAR_HEIGHT = 20;
 
 + (void) attachToViewController:(UIViewController*) viewController_ {
   [self attachToViewController:viewController_
-               backgroundColor:[UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1]
+               backgroundColor:RGBUIColor(46, 46, 46)
                      trimColor:[UIColor blackColor]
                      textColor:[UIColor whiteColor]
                    labelOffset:0];
