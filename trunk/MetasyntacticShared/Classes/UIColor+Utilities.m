@@ -16,12 +16,6 @@
 }
 
 
-- (BOOL) canProvideRGBComponents {
-	return (([self colorSpaceModel] == kCGColorSpaceModelRGB) || 
-          ([self colorSpaceModel] == kCGColorSpaceModelMonochrome));
-}
-
-
 - (CGFloat) red {
   const CGFloat* c = CGColorGetComponents(self.CGColor);
 	return c[0];
@@ -30,7 +24,7 @@
 
 - (CGFloat) green {
   const CGFloat* c = CGColorGetComponents(self.CGColor);
-	if ([self colorSpaceModel] == kCGColorSpaceModelMonochrome) {
+	if (self.colorSpaceModel == kCGColorSpaceModelMonochrome) {
     return c[0];
   } else {
     return c[1];
@@ -40,7 +34,7 @@
 
 - (CGFloat) blue {
   const CGFloat* c = CGColorGetComponents(self.CGColor);
-	if ([self colorSpaceModel] == kCGColorSpaceModelMonochrome) {
+	if (self.colorSpaceModel == kCGColorSpaceModelMonochrome) {
     return c[0];
   } else {
     return c[2];
