@@ -50,7 +50,7 @@
                     NSLocalizedString(@"Instant", nil), nil];
   UISegmentedControl* segmentedControl = [[[UISegmentedControl alloc] initWithItems:items] autorelease];
   segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-  segmentedControl.tintColor = self.navigationController.navigationBar.tintColor;
+  segmentedControl.tintColor = [StyleSheet segmentedControlTintColor];
   segmentedControl.selectedSegmentIndex = self.model.netflixFilterSelectedSegmentIndex;
 
   [segmentedControl addTarget:self
@@ -58,7 +58,7 @@
              forControlEvents:UIControlEventValueChanged];
 
   UINavigationBar* navBar = [[[UINavigationBar alloc] init] autorelease];
-  navBar.tintColor = self.navigationController.navigationBar.tintColor;
+  navBar.tintColor = [StyleSheet navigationBarTintColor];
 
   UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
   item.titleView = segmentedControl;
