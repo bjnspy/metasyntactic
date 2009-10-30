@@ -236,7 +236,8 @@
   [super loadView];
   [self setupTitleLabel];
   
-  if (self.abstractNavigationController.backgroundImage != nil) {
+  if (self.abstractNavigationController.backgroundImage != nil &&
+      self.tableView.style == UITableViewStyleGrouped) {
     self.view.backgroundColor = [UIColor clearColor];
   }
 }
