@@ -56,7 +56,6 @@
 - (void) onBeforeViewControllerPushed {
   [super onBeforeViewControllerPushed];
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDone)] autorelease];
-  self.navigationController.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
 }
 
 

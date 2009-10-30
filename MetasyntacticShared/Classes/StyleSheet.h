@@ -22,6 +22,8 @@
 + (UIColor*) searchBarTintColor;
 
 + (BOOL) toolBarTranslucent;
+
 + (UIColor*) tableViewGroupedHeaderColor;
++ (UIColor*) tableViewGroupedFooterColor;
 
 @end

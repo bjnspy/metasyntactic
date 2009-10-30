@@ -46,6 +46,11 @@
 }
 
 
++ (UIColor*) tableViewGroupedFooterColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UITableViewGroupedFooterColor"]];
+}
+
+
 + (UIColor*) navigationBarTintColor {
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarTintColor"]]; 
 }
