@@ -20,6 +20,7 @@
 #import "LocaleUtilities.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
+#import "UIColor+Utilities.h"
 
 @implementation AbstractApplication
 
@@ -414,6 +415,11 @@ static BOOL shutdownCleanly = NO;
 
 + (BOOL) toolBarTranslucent {
   return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIToolBarTranslucent"] boolValue];
+}
+
+
++ (UIColor*) tableViewGroupedHeaderColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UITableViewGroupedHeaderColor"]];
 }
 
 @end

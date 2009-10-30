@@ -26,6 +26,4 @@
 + (UIColor*) starYellow;
 + (UIColor*) lightPurple;
 
-+ (UIColor*) fromString:(NSString*) string;
-
 @end

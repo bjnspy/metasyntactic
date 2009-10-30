@@ -53,6 +53,8 @@
 		74549ED3100DCA72006CC816 /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74549ED1100DCA72006CC816 /* MapViewControllerDelegate.h */; };
 		7458A1FB0FF204A3000CD194 /* AbstractCurlableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7458A1F90FF204A3000CD194 /* AbstractCurlableTableViewController.h */; };
 		7458A1FC0FF204A3000CD194 /* AbstractCurlableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */; };
+		7477DCC4109B93B40068C724 /* UIColor+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7477DCC2109B93B40068C724 /* UIColor+Utilities.h */; };
+		7477DCC5109B93B40068C724 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477DCC3109B93B40068C724 /* UIColor+Utilities.m */; };
 		749374051008F11800749299 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374031008F11800749299 /* Operation3.h */; };
 		749374061008F11800749299 /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 749374041008F11800749299 /* Operation3.m */; };
 		749374381008F32500749299 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374361008F32500749299 /* Invocation3.h */; };
@@ -417,6 +419,8 @@
 		74616E7E0F15DD0F0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
 		74616E7F0F15DD0F0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
 		74616E880F15DD300004B610 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7477DCC2109B93B40068C724 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
+		7477DCC3109B93B40068C724 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		747C314D0FD067D900411801 /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
 		747C314E0FD067D900411801 /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
 		747C31580FD0683600411801 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
@@ -835,6 +839,8 @@
 				741B102A109B70BA003F6B11 /* NSSet+Utilities.m */,
 				74616E7F0F15DD0F0004B610 /* Pulser.m */,
 				74616D6B0F15D42A0004B610 /* StringUtilities.m */,
+				7477DCC2109B93B40068C724 /* UIColor+Utilities.h */,
+				7477DCC3109B93B40068C724 /* UIColor+Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1211,6 +1217,7 @@
 				741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */,
 				741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */,
 				741B102B109B70BA003F6B11 /* NSSet+Utilities.h in Headers */,
+				7477DCC4109B93B40068C724 /* UIColor+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1380,7 @@
 				741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */,
 				741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */,
 				741B102C109B70BA003F6B11 /* NSSet+Utilities.m in Sources */,
+				7477DCC5109B93B40068C724 /* UIColor+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
