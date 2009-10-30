@@ -67,10 +67,24 @@
       self.backgroundImageView = [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
       [self addSubview:backgroundImageView];
     }
-    
+
     NSMutableArray* array = [NSMutableArray array];
-    for (NSString* title in titles) {
-      UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    for (NSInteger i = 0; i < titles.count; i++) {
+      NSString* title = [titles objectAtIndex:i];
+      UIImage* image = [MetasyntacticStockImage([NSString stringWithFormat:@"ActionsViewButton%d.png", ((i + 1) % 4) / 2])
+                        stretchableImageWithLeftCapWidth:9 topCapHeight:9];
+      
+      UIButton* button;
+      
+      if (image == nil) {
+        button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      } else {
+        button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
+      }
+    
       [button setTitle:title forState:UIControlStateNormal];
       [button sizeToFit];
 
