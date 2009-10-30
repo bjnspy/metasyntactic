@@ -67,4 +67,15 @@
   return mutableArray;
 }
 
+
+- (NSArray*) filteredArrayUsingFunction:(BOOL(*)(id)) predicate {
+  NSMutableArray* result = [NSMutableArray array];
+  for (id value in self) {
+    if (predicate(value)) {
+      [result addObject:value];
+    }
+  }
+  return result;
+}
+
 @end
