@@ -48,8 +48,6 @@
     self.pocketFlicksViewController = [[[PocketFlicksViewController alloc] init] autorelease];
     [self pushViewController:pocketFlicksViewController animated:NO];
   }
-
-  self.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
 }
 
 @end

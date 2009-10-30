@@ -19,7 +19,7 @@
 + (UILabel*) createTitleLabel;
 + (UILabel*) createMultiLineTitleLabel;
 
-+ (UILabel*) footerLabel;
-+ (UILabel*) footerLabel:(NSString*) text;
++ (UILabel*) groupedFooterLabel;
++ (UILabel*) groupedFooterLabel:(NSString*) text;
 
 @end
