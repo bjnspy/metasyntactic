@@ -91,6 +91,7 @@
 #import "SplashScreen.h"
 #import "SplashScreenDelegate.h"
 #import "StringUtilities.h"
+#import "StyleSheet.h"
 #import "SwitchCell.h"
 #import "SynopsisCell.h"
 #import "TappableImageView.h"

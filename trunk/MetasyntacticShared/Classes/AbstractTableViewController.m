@@ -19,6 +19,7 @@
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
 #import "OperationQueue.h"
+#import "StyleSheet.h"
 #import "ViewControllerUtilities.h"
 
 @interface AbstractTableViewController()
@@ -280,7 +281,7 @@
 
 - (UIView*)       tableView:(UITableView*) tableView
      viewForHeaderInSection:(NSInteger) section {
-  UIColor* groupedHeaderColor = [AbstractApplication tableViewGroupedHeaderColor];
+  UIColor* groupedHeaderColor = [StyleSheet tableViewGroupedHeaderColor];
   if (groupedHeaderColor != nil) {
     NSString* text = [self tableView:tableView titleForHeaderInSection:section];
     if (text.length > 0) {

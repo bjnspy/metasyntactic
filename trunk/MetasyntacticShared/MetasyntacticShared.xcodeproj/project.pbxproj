@@ -55,6 +55,8 @@
 		7458A1FC0FF204A3000CD194 /* AbstractCurlableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7458A1FA0FF204A3000CD194 /* AbstractCurlableTableViewController.m */; };
 		7477DCC4109B93B40068C724 /* UIColor+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7477DCC2109B93B40068C724 /* UIColor+Utilities.h */; };
 		7477DCC5109B93B40068C724 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477DCC3109B93B40068C724 /* UIColor+Utilities.m */; };
+		7477DE23109B983C0068C724 /* StyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7477DE21109B983C0068C724 /* StyleSheet.h */; };
+		7477DE24109B983C0068C724 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477DE22109B983C0068C724 /* StyleSheet.m */; };
 		749374051008F11800749299 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374031008F11800749299 /* Operation3.h */; };
 		749374061008F11800749299 /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 749374041008F11800749299 /* Operation3.m */; };
 		749374381008F32500749299 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 749374361008F32500749299 /* Invocation3.h */; };
@@ -421,6 +423,8 @@
 		74616E880F15DD300004B610 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7477DCC2109B93B40068C724 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		7477DCC3109B93B40068C724 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
+		7477DE21109B983C0068C724 /* StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheet.h; sourceTree = "<group>"; };
+		7477DE22109B983C0068C724 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
 		747C314D0FD067D900411801 /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
 		747C314E0FD067D900411801 /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
 		747C31580FD0683600411801 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
@@ -593,6 +597,8 @@
 				747C33150FD0710D00411801 /* AbstractApplication.m */,
 				749B72A6105D90A300ECAA6C /* AbstractModel.m */,
 				74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */,
+				7477DE21109B983C0068C724 /* StyleSheet.h */,
+				7477DE22109B983C0068C724 /* StyleSheet.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1218,6 +1224,7 @@
 				741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */,
 				741B102B109B70BA003F6B11 /* NSSet+Utilities.h in Headers */,
 				7477DCC4109B93B40068C724 /* UIColor+Utilities.h in Headers */,
+				7477DE23109B983C0068C724 /* StyleSheet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1388,7 @@
 				741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */,
 				741B102C109B70BA003F6B11 /* NSSet+Utilities.m in Sources */,
 				7477DCC5109B93B40068C724 /* UIColor+Utilities.m in Sources */,
+				7477DE24109B983C0068C724 /* StyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

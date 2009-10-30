@@ -17,6 +17,7 @@
 #import "AbstractApplication.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
+#import "StyleSheet.h"
 
 @interface AbstractMultiPageTableViewController()
 @property (retain) NSMutableDictionary* pageToTableView;
@@ -164,8 +165,8 @@
 
 - (UIView*) createToolbar {
   UIToolbar* toolbar = [[[UIToolbar alloc] init] autorelease];
-  toolbar.barStyle = [AbstractApplication toolBarStyle];
-  toolbar.translucent = [AbstractApplication toolBarTranslucent];
+  toolbar.barStyle = [StyleSheet toolBarStyle];
+  toolbar.translucent = [StyleSheet toolBarTranslucent];
   [toolbar sizeToFit];
   CGRect frame = toolbar.frame;
   frame.origin.y = -1;
