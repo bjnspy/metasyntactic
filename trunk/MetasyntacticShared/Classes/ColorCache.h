@@ -22,7 +22,6 @@
 + (UIColor*) footerColor;
 + (UIColor*) commandColor;
 + (UIColor*) darkDarkGray;
-+ (UIColor*) netflixYellow;
 + (UIColor*) starYellow;
 + (UIColor*) lightPurple;
 

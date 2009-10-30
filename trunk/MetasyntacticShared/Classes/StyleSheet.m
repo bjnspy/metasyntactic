@@ -45,4 +45,19 @@
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UITableViewGroupedHeaderColor"]];
 }
 
+
++ (UIColor*) navigationBarTintColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UINavigationBarTintColor"]]; 
+}
+
+
++ (UIColor*) segmentedControlTintColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISegmentedControlTintColor"]]; 
+}
+
+
++ (UIColor*) searchBarTintColor {
+  return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISearchBarTintColor"]]; 
+}
+
 @end

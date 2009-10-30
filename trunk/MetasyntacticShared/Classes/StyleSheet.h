@@ -16,6 +16,11 @@
 + (UIBarStyle) navigationBarStyle;
 + (UIBarStyle) searchBarStyle;
 + (UIBarStyle) toolBarStyle;
+
++ (UIColor*) navigationBarTintColor;
++ (UIColor*) segmentedControlTintColor;
++ (UIColor*) searchBarTintColor;
+
 + (BOOL) toolBarTranslucent;
 + (UIColor*) tableViewGroupedHeaderColor;
 
