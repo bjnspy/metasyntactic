@@ -60,7 +60,7 @@
     self.selectors = selectors_;
     self.titles = titles_;
     self.arguments = arguments_;
-    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.backgroundColor = [UIColor clearColor];// [UIColor groupTableViewBackgroundColor];
 
     UIImage* backgroundImage = MetasyntacticStockImage(@"ActionsViewBackground.png");
     if (backgroundImage != nil) {
