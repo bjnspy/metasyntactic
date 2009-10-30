@@ -18,6 +18,8 @@
   AbstractFullScreenImageListViewController* fullScreenImageListController;
 }
 
+- (UIImage*) backgroundImage;
+
 - (void) majorRefresh;
 - (void) minorRefresh;
 - (void) onRotate;

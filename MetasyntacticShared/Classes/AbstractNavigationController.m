@@ -17,6 +17,7 @@
 #import "AbstractApplication.h"
 #import "AbstractFullScreenImageListViewController.h"
 #import "MapViewController.h"
+#import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
 #import "WebViewController.h"
 
@@ -39,11 +40,21 @@
 }
 
 
+- (UIImage*) backgroundImage {
+  return MetasyntacticStockImage(@"UINavigationControllerBackgroundPattern.png");
+}
+
+
 - (void) loadView {
   [super loadView];
 
   self.view.autoresizesSubviews = YES;
   self.navigationBar.barStyle = [AbstractApplication navigationBarStyle];
+
+  UIImage* image = self.backgroundImage;
+  if (image != nil) {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+  }
 }
 
 
