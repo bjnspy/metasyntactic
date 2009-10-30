@@ -19,6 +19,7 @@
 #import "MapViewController.h"
 #import "MetasyntacticStockImages.h"
 #import "NotificationCenter.h"
+#import "StyleSheet.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
@@ -49,7 +50,7 @@
   [super loadView];
 
   self.view.autoresizesSubviews = YES;
-  self.navigationBar.barStyle = [AbstractApplication navigationBarStyle];
+  self.navigationBar.barStyle = [StyleSheet navigationBarStyle];
 
   UIImage* image = self.backgroundImage;
   if (image != nil) {
