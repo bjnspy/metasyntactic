@@ -17,7 +17,6 @@
 
 @implementation ColorCache
 
-static UIColor* netflixYellow = nil;
 static UIColor* darkDarkGray = nil;
 static UIColor* commandColor = nil;
 static UIColor* footerColor = nil;
@@ -34,7 +33,6 @@ static UIColor* lightPurple = nil;
     footerColor     = [[UIColor colorWithRed:76.0 / 255.0 green:86.0 / 255.0 blue:107.0 / 255.0 alpha:1] retain];
     tintColor       = [[UIColor colorWithRed:27.0/255.0 green:55.0/255.0 blue:89.0/255.0 alpha:1] retain];
     netflixRed      = [[UIColor colorWithRed:44./255.5 green:13.0/255.0 blue:14.0/255.0 alpha:1] retain];
-    netflixYellow   = [[UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1] retain];
     starYellow      = [[UIColor colorWithRed:255.0/255.0 green:220.0/255.0 blue:40.0/255.0 alpha:1] retain];
     helpBlue        = [[UIColor colorWithRed:219.0/256.0 green:226.0/256.0 blue:237.0/256.0 alpha:1] retain];
     lightPurple     = [[UIColor colorWithRed:154.0/255.0 green:125.0/255.0 blue:125.0/255.0 alpha:1.0] retain];
@@ -64,11 +62,6 @@ static UIColor* lightPurple = nil;
 
 + (UIColor*) netflixRed {
   return netflixRed;
-}
-
-
-+ (UIColor*) netflixYellow {
-  return netflixYellow;
 }
 
 
