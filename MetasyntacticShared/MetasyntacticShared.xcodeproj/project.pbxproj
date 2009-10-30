@@ -18,6 +18,8 @@
 		741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B092910992558003F6B11 /* AbstractDetailsCell.m */; };
 		741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B09E710992A13003F6B11 /* AbstractExpandedDetailsCell.h */; };
 		741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B09E810992A13003F6B11 /* AbstractExpandedDetailsCell.m */; };
+		741B102B109B70BA003F6B11 /* NSSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B1029109B70BA003F6B11 /* NSSet+Utilities.h */; };
+		741B102C109B70BA003F6B11 /* NSSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B102A109B70BA003F6B11 /* NSSet+Utilities.m */; };
 		741F4C330FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */; };
 		741F4C340FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */; };
 		741F4C350FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */; };
@@ -284,6 +286,8 @@
 		741B092910992558003F6B11 /* AbstractDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsCell.m; sourceTree = "<group>"; };
 		741B09E710992A13003F6B11 /* AbstractExpandedDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractExpandedDetailsCell.h; sourceTree = "<group>"; };
 		741B09E810992A13003F6B11 /* AbstractExpandedDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractExpandedDetailsCell.m; sourceTree = "<group>"; };
+		741B1029109B70BA003F6B11 /* NSSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+Utilities.h"; sourceTree = "<group>"; };
+		741B102A109B70BA003F6B11 /* NSSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Utilities.m"; sourceTree = "<group>"; };
 		741F4C2B0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		741F4C2C0FD2095500244D37 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		741F4C2D0FD2095500244D37 /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
@@ -812,6 +816,7 @@
 				74616E490F15DC800004B610 /* NetworkUtilities.h */,
 				74537D4C0F86AAE600D457CB /* NSArray+Utilities.h */,
 				740102270F26EF7800258353 /* NSMutableArray+Utilities.h */,
+				741B1029109B70BA003F6B11 /* NSSet+Utilities.h */,
 				74616E7E0F15DD0F0004B610 /* Pulser.h */,
 				74616D6A0F15D42A0004B610 /* StringUtilities.h */,
 				74616E400F15DC800004B610 /* AlertUtilities.m */,
@@ -827,6 +832,7 @@
 				74616E4A0F15DC800004B610 /* NetworkUtilities.m */,
 				74537D4D0F86AAE600D457CB /* NSArray+Utilities.m */,
 				740102280F26EF7800258353 /* NSMutableArray+Utilities.m */,
+				741B102A109B70BA003F6B11 /* NSSet+Utilities.m */,
 				74616E7F0F15DD0F0004B610 /* Pulser.m */,
 				74616D6B0F15D42A0004B610 /* StringUtilities.m */,
 			);
@@ -1204,6 +1210,7 @@
 				741B09261099252F003F6B11 /* AbstractCollapsedDetailsCell.h in Headers */,
 				741B092A10992558003F6B11 /* AbstractDetailsCell.h in Headers */,
 				741B09E910992A13003F6B11 /* AbstractExpandedDetailsCell.h in Headers */,
+				741B102B109B70BA003F6B11 /* NSSet+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1372,7 @@
 				741B09271099252F003F6B11 /* AbstractCollapsedDetailsCell.m in Sources */,
 				741B092B10992558003F6B11 /* AbstractDetailsCell.m in Sources */,
 				741B09EA10992A13003F6B11 /* AbstractExpandedDetailsCell.m in Sources */,
+				741B102C109B70BA003F6B11 /* NSSet+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

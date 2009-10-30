@@ -20,4 +20,5 @@
                          context1:(void*) context1
                          context2:(void*) context2;
 - (NSArray*) shuffledArray;
+- (NSArray*) filteredArrayUsingFunction:(BOOL(*)(id)) predicate;
 @end
