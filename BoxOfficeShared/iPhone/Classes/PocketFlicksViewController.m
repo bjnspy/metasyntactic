@@ -89,7 +89,7 @@ typedef enum {
 
 - (void) initializeSearchDisplay {
   self.searchBar = [[[UISearchBar alloc] init] autorelease];
-  searchBar.tintColor = [ColorCache netflixYellow];
+  searchBar.tintColor = [StyleSheet searchBarTintColor];
   [searchBar sizeToFit];
 
   self.searchDisplayController = [[[NetflixSearchDisplayController alloc] initWithSearchBar:searchBar
@@ -402,16 +402,6 @@ typedef enum {
   [view addSubview:label];
 
   return view;
-}
-
-
-- (CGFloat) tableView:(UITableView*) tableView heightForHeaderInSection:(NSInteger) section {
-  UIView* view = [self tableView:tableView viewForHeaderInSection:section];
-  if (view == nil) {
-    return 0;
-  }
-
-  return view.frame.size.height;
 }
 
 @end

@@ -49,7 +49,7 @@
     [self pushViewController:pocketFlicksViewController animated:NO];
   }
 
-  self.navigationBar.tintColor = [ColorCache netflixYellow];
+  self.navigationBar.tintColor = [StyleSheet navigationBarTintColor];
 }
 
 @end

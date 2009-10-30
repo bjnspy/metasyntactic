@@ -38,5 +38,11 @@
 	<string>PocketFlicks</string>
 	<key>iTunesApplicationUrl</key>
 	<string>http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=301386724&amp;pageNumber=0&amp;sortOrdering=1&amp;type=Purple+Software</string>
+	<key>UINavigationBarTintColor</key>
+	<string>0xC3AF69</string>
+	<key>UISegmentedControlTintColor</key>
+	<string>0xC3AF69</string>
+	<key>UISearchBarTintColor</key>
+	<string>0xC3AF69</string>
 </dict>
 </plist>
