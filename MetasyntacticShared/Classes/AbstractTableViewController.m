@@ -281,27 +281,29 @@
 
 - (UIView*)       tableView:(UITableView*) tableView
      viewForHeaderInSection:(NSInteger) section {
-  UIColor* groupedHeaderColor = [StyleSheet tableViewGroupedHeaderColor];
-  if (groupedHeaderColor != nil) {
-    NSString* text = [self tableView:tableView titleForHeaderInSection:section];
-    if (text.length > 0) {
-      UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(19, 7, 0, 0)] autorelease];
-      label.text = text;
-      label.font = [UIFont boldSystemFontOfSize:17];
-      label.textColor = groupedHeaderColor;
-      label.opaque = NO;
-      label.backgroundColor = [UIColor clearColor];
-      [label sizeToFit];
-      
-      
-      UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 36)] autorelease];
-      view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-      view.backgroundColor = [UIColor clearColor];
-      
-      [view addSubview:label];
-      [view sizeToFit];
-      
-      return view;
+  if (self.isGroupedStyle) {
+    UIColor* groupedHeaderColor = [StyleSheet tableViewGroupedHeaderColor];
+    if (groupedHeaderColor != nil) {
+      NSString* text = [self tableView:tableView titleForHeaderInSection:section];
+      if (text.length > 0) {
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(19, 7, 0, 0)] autorelease];
+        label.text = text;
+        label.font = [UIFont boldSystemFontOfSize:17];
+        label.textColor = groupedHeaderColor;
+        label.opaque = NO;
+        label.backgroundColor = [UIColor clearColor];
+        [label sizeToFit];
+        
+        
+        UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 36)] autorelease];
+        view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        view.backgroundColor = [UIColor clearColor];
+        
+        [view addSubview:label];
+        [view sizeToFit];
+        
+        return view;
+      }
     }
   }
   
