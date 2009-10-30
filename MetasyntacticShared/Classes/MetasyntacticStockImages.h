@@ -30,7 +30,7 @@ UIImage* MetasyntacticStockImage1(NSString* name, BOOL allowOverride);
 + (UIImage*) navigateForward;
 + (UIImage*) directions;
 
-+ (UIImage*) actionButtonStandard;
++ (UIImage*) actionButton;
 + (UIImage*) actionButtonRoundLowerRight;
 
 + (UIImage*) smallActivityBackground;
