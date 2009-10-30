@@ -153,8 +153,8 @@ UIImage* MetasyntacticStockImage(NSString* name) {
 }
 
 
-+ (UIImage*) actionButtonStandard {
-  return MetasyntacticStockImage(@"ActionButton-Standard.png");
++ (UIImage*) actionButton {
+  return MetasyntacticStockImage(@"ActionButton.png");
 }
 
 
