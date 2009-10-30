@@ -47,6 +47,7 @@
 + (UIBarStyle) searchBarStyle;
 + (UIBarStyle) toolBarStyle;
 + (BOOL) toolBarTranslucent;
++ (UIColor*) tableViewGroupedHeaderColor;
 
 /* @protected */
 + (NSLock*) gate;

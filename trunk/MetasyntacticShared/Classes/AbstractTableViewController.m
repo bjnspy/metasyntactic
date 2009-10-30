@@ -14,6 +14,7 @@
 
 #import "AbstractTableViewController.h"
 
+#import "AbstractApplication.h"
 #import "AbstractNavigationController.h"
 #import "MetasyntacticSharedApplication.h"
 #import "MetasyntacticStockImages.h"
@@ -232,12 +233,26 @@
 }
 
 
+- (BOOL) isGroupedStyle {
+  return self.tableView.style == UITableViewStyleGrouped;
+}
+
+
+- (BOOL) isPlainStyle {
+  return self.tableView.style == UITableViewStylePlain;
+}
+
+
+- (BOOL) hasOverriddenBackground {
+  return self.abstractNavigationController.backgroundImage != nil && self.isGroupedStyle;
+}
+
+
 - (void) loadView {
   [super loadView];
   [self setupTitleLabel];
   
-  if (self.abstractNavigationController.backgroundImage != nil &&
-      self.tableView.style == UITableViewStyleGrouped) {
+  if (self.hasOverriddenBackground) {
     self.view.backgroundColor = [UIColor clearColor];
   }
 }
@@ -260,6 +275,48 @@
 
 - (void) tableView:(UITableView*) tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
   [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+
+- (UIView*)       tableView:(UITableView*) tableView
+     viewForHeaderInSection:(NSInteger) section {
+  UIColor* groupedHeaderColor = [AbstractApplication tableViewGroupedHeaderColor];
+  if (groupedHeaderColor != nil) {
+    NSString* text = [self tableView:tableView titleForHeaderInSection:section];
+    if (text.length > 0) {
+      UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(19, 7, 0, 0)] autorelease];
+      label.text = text;
+      label.font = [UIFont boldSystemFontOfSize:17];
+      label.textColor = groupedHeaderColor;
+      label.opaque = NO;
+      label.backgroundColor = [UIColor clearColor];
+      [label sizeToFit];
+      
+      
+      UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 36)] autorelease];
+      view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+      view.backgroundColor = [UIColor clearColor];
+      
+      [view addSubview:label];
+      [view sizeToFit];
+      
+      return view;
+    }
+  }
+  
+  return nil;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  if ([self respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
+    UIView* view = [self tableView:tableView viewForHeaderInSection:section];
+    if (view != nil) {
+      return view.frame.size.height;
+    }
+  }
+  
+  return -1;
 }
 
 @end
