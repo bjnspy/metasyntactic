@@ -163,16 +163,6 @@ UIImage* MetasyntacticStockImage(NSString* name) {
 }
 
 
-+ (UIImage*) standardActionButton {
-  return MetasyntacticStockImage1(@"ActionButton.png", NO);
-}
-
-
-+ (UIImage*) standardActionButtonRoundLowerRight {
-  return MetasyntacticStockImage1(@"ActionButton-RoundLowerRight.png", NO);
-}
-
-
 + (UIImage*) smallActivityBackground {
   return MetasyntacticStockImage(@"SmallActivityBackground.png");
 }
