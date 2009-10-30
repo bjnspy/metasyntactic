@@ -15,6 +15,7 @@
 #import "AbstractTableViewController.h"
 
 #import "MetasyntacticSharedApplication.h"
+#import "MetasyntacticStockImages.h"
 #import "OperationQueue.h"
 #import "ViewControllerUtilities.h"
 
@@ -233,6 +234,11 @@
 - (void) loadView {
   [super loadView];
   [self setupTitleLabel];
+  
+  UIImage* image = MetasyntacticStockImage(@"UITableViewBackgroundPattern.png");
+  if (image != nil) {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+  }
 }
 
 
