@@ -216,9 +216,9 @@ typedef enum {
 
     return [self createSettingCellWithKey:key value:value placeholder:placeholder];
   } else if (row >= 4 && row <= 9) {
-    NSString* text;
-    BOOL on;
-    SEL selector;
+    NSString* text = @"";
+    BOOL on = NO;
+    SEL selector = nil;
     if (row == 4) {
       text = LocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
       on = self.model.autoUpdateLocation;

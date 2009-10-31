@@ -29,6 +29,7 @@ static NSString* localizableStringsDirectory = nil;
 
 static NSString* postersDirectory = nil;
 static NSString* moviesPostersDirectory = nil;
+static NSString* sentinelsPostersDirectory = nil;
 static NSString* largeMoviesPostersDirectory = nil;
 static NSString* largeMoviesPostersIndexDirectory = nil;
 static NSString* peoplePostersDirectory = nil;
@@ -66,6 +67,7 @@ static NSString** directories[] = {
 &trailersDirectory,
 &postersDirectory,
 &moviesPostersDirectory,
+&sentinelsPostersDirectory,
 &largeMoviesPostersDirectory,
 &largeMoviesPostersIndexDirectory,
 &peoplePostersDirectory,
@@ -105,6 +107,7 @@ static NSString** directories[] = {
 
     postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
     moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
+    sentinelsPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Sentinels"] retain];
     largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
     largeMoviesPostersIndexDirectory = [[largeMoviesPostersDirectory stringByAppendingPathComponent:@"Index"] retain];
     peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
@@ -165,6 +168,11 @@ static NSString** directories[] = {
 
 + (NSString*) userLocationsDirectory {
   return userLocationsDirectory;
+}
+
+
++ (NSString*) sentinelsPostersDirectory {
+  return sentinelsPostersDirectory;
 }
 
 
