@@ -1380,7 +1380,7 @@ static NSString** directories[] = {
       }
     }
   }
-  
+
   if (netflixMovie != nil) {
     [NetflixSharedApplication reportNetflixMovie:netflixMovie];
   }

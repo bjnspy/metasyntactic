@@ -14,11 +14,11 @@
 
 #import "MetasyntacticSharedApplication.h"
 
-#import "ViewControllerUtilities.h"
-
 #import "ColorCache.h"
 #import "StyleSheet.h"
 #import "UIColor+Utilities.h"
+#import "ViewControllerUtilities.h"
+
 
 @implementation ViewControllerUtilities
 
@@ -132,9 +132,9 @@ static UIFont* minimumTitleFont = nil;
   UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 25)] autorelease];
   label.backgroundColor = [UIColor clearColor];
   label.font = [UIFont systemFontOfSize:15];
-  
+
   UIColor* textColor = [StyleSheet tableViewGroupedFooterColor];
-  
+
   if (textColor == nil) {
     label.textColor = [ColorCache footerColor];
     label.shadowColor = [UIColor whiteColor];
@@ -142,7 +142,7 @@ static UIFont* minimumTitleFont = nil;
   } else {
     label.textColor = textColor;
   }
-  
+
   label.textAlignment = UITextAlignmentCenter;
   label.text = text;
   return label;

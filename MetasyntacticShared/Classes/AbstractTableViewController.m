@@ -252,7 +252,7 @@
 - (void) loadView {
   [super loadView];
   [self setupTitleLabel];
-  
+
   if (self.hasOverriddenBackground) {
     self.view.backgroundColor = [UIColor clearColor];
   }
@@ -295,19 +295,19 @@
         label.backgroundColor = [UIColor clearColor];
         label.numberOfLines = 0;
         [label sizeToFit];
-        
-        
+
+
         UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, label.frame.size.height + 15)] autorelease];
         view.backgroundColor = [UIColor clearColor];
-        
+
         [view addSubview:label];
         [view sizeToFit];
-        
+
         return view;
       }
     }
   }
-  
+
   return nil;
 }
 
@@ -319,7 +319,7 @@
       return view.frame.size.height;
     }
   }
-  
+
   return -1;
 }
 
@@ -341,23 +341,23 @@
         label.backgroundColor = [UIColor clearColor];
         label.numberOfLines = 0;
         [label sizeToFit];
-        
+
         UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, label.frame.size.height + 6 + 11)] autorelease];
         view.backgroundColor = [UIColor clearColor];
-        
+
         CGRect frame = label.frame;
         frame.origin.y = 6;
         frame.size.width = 320;
         label.frame = frame;
-        
+
         [view addSubview:label];
         [view sizeToFit];
-        
+
         return view;
       }
     }
   }
-  
+
   return nil;
 }
 
@@ -369,7 +369,7 @@
       return view.frame.size.height;
     }
   }
-  
+
   return -1;
 }
 
