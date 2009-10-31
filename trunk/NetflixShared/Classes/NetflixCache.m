@@ -1367,16 +1367,22 @@ static NSString** directories[] = {
   }
 
   NSString* file = [self netflixFile:movie];
-  if (![FileUtilities fileExists:file]) {
+  Movie* netflixMovie = nil;
+  if ([FileUtilities fileExists:file]) {
+    netflixMovie = [self correspondingNetflixMovie:movie];
+  } else {
     NSArray* movies = [self movieSearch:movie.canonicalTitle maxResults:1 account:account error:NULL];
     if (movies.count > 0) {
-      Movie* netflixMovie = [movies objectAtIndex:0];
+      netflixMovie = [movies objectAtIndex:0];
       if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-        [NetflixSharedApplication reportNetflixMovie:netflixMovie];
         [MetasyntacticSharedApplication minorRefresh];
       }
     }
+  }
+  
+  if (netflixMovie != nil) {
+    [NetflixSharedApplication reportNetflixMovie:netflixMovie];
   }
 }
 
