@@ -20,7 +20,6 @@
 
 static UIColor* darkDarkGray = nil;
 static UIColor* commandColor = nil;
-static UIColor* footerColor = nil;
 static UIColor* netflixRed = nil;
 static UIColor* starYellow = nil;
 static UIColor* tintColor = nil;
@@ -31,7 +30,6 @@ static UIColor* lightPurple = nil;
   if (self == [ColorCache class]) {
     commandColor    = [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
     darkDarkGray    = [[UIColor colorWithWhite:0.1666666666666 alpha:1] retain];
-    footerColor     = [RGBUIColor(76, 86, 107) retain];
     tintColor       = [RGBUIColor(27, 55, 89) retain];
     netflixRed      = [RGBUIColor(44, 13, 14) retain];
     starYellow      = [RGBUIColor(255, 220, 40) retain];
@@ -48,11 +46,6 @@ static UIColor* lightPurple = nil;
 
 + (UIColor*) darkDarkGray {
   return darkDarkGray;
-}
-
-
-+ (UIColor*) footerColor {
-  return footerColor;
 }
 
 
