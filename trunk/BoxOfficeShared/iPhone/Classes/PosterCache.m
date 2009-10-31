@@ -140,19 +140,19 @@
     // already have a real poster.
     return;
   }
-  
+
   NSString* sentinelPath = [self sentinelPath:movie];
   if (!force) {
-    // check if we have a sentinel    
+    // check if we have a sentinel
     NSDate* modificationDate = [FileUtilities modificationDate:sentinelPath];
     if (modificationDate != nil) {
       // sentinel value.  only update if it's been long enough.
       if (ABS(modificationDate.timeIntervalSinceNow) < THREE_DAYS) {
         return;
-      }    
+      }
     }
   }
-    
+
   NSData* data = [self downloadPosterWorker:movie];
   if (data != nil) {
     if (data.length == 0) {
@@ -171,7 +171,7 @@
   if (possible != nil) {
     return possible;
   }
-  
+
   return movie;
 }
 
