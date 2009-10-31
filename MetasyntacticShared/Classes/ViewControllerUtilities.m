@@ -16,6 +16,7 @@
 
 #import "ViewControllerUtilities.h"
 
+#import "ColorCache.h"
 #import "StyleSheet.h"
 #import "UIColor+Utilities.h"
 
@@ -135,7 +136,7 @@ static UIFont* minimumTitleFont = nil;
   UIColor* textColor = [StyleSheet tableViewGroupedFooterColor];
   
   if (textColor == nil) {
-    label.textColor = RGBUIColor(76, 86, 107);
+    label.textColor = [ColorCache footerColor];
     label.shadowColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(0, 1);
   } else {
