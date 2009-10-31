@@ -58,15 +58,6 @@
 }
 
 
-- (void) onFadeComplete:(NSString*) animationID
-               finished:(NSNumber*) finished
-                context:(UIView*) previousView {
-  [self.view removeFromSuperview];
-  [delegate onSplashScreenFinished];
-  [self autorelease];
-}
-
-
 - (void) loadImage:(NSNumber*) value {
   NSInteger index = [value intValue];
   if (index >= imagePaths.count) {
@@ -134,6 +125,16 @@
   UIWindow* window = [UIApplication sharedApplication].windows.lastObject;
   [window addSubview:controller.view];
   [window makeKeyAndVisible];
+}
+
+
+- (void) onFadeComplete:(NSString*) animationID
+               finished:(NSNumber*) finished
+                context:(UIView*) previousView {
+  [self.view removeFromSuperview];
+  [delegate onSplashScreenFinished];
+  // here we release ourselves.  After this we should be gone.
+  [self autorelease];
 }
 
 @end
