@@ -19,7 +19,6 @@
 + (UIColor*) tintColor;
 + (UIColor*) netflixRed;
 + (UIColor*) helpBlue;
-+ (UIColor*) footerColor;
 + (UIColor*) commandColor;
 + (UIColor*) darkDarkGray;
 + (UIColor*) starYellow;
