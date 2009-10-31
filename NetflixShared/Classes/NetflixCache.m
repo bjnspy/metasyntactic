@@ -673,7 +673,7 @@ static NSString** directories[] = {
     NSLog(@"Could not parse Netflix result.", nil);
     return LocalizedString(@"Could not connect to Netflix.", nil);
   } else {
-    NSLog(@"Netflix response had no 'message' element", nil);
+    NSLog(@"Netflix response had no 'message' element.\n%@", element);
     return LocalizedString(@"An unknown error occurred.", nil);
   }
 }
