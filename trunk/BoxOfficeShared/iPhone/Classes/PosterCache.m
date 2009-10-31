@@ -202,7 +202,6 @@
 
 - (UIImage*) smallPosterForMovieWorker:(Movie*) movie
                     loadFromDisk:(BOOL) loadFromDisk {
-  movie = [self appropriateMovie:movie];
   NSString* smallPosterPath = [self smallPosterFilePath:movie];
 
   UIImage* image = [self.model.imageCache imageForPath:smallPosterPath loadFromDisk:loadFromDisk];
