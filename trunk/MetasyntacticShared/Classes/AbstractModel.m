@@ -48,11 +48,31 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 }
 
 
+- (NSString*) createVersionedKey:(NSString*) base {
+  return [NSString stringWithFormat:@"%@-%@", base, [AbstractApplication version]];
+}
+
+
+- (NSString*) reviewPeriodKey {
+  return [self createVersionedKey:REVIEW_PERIOD_COMPLETE];
+}
+
+
+- (NSString*) firstLaunchKey {
+  return [self createVersionedKey:FIRST_LAUNCH_DATE];
+}
+
+
+- (NSString*) writeReviewKey {
+  return [self createVersionedKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
+}
+
+
 - (void) trySetFirstLaunchDate {
-  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
+  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
   if (firstLaunchDate == nil) {
     firstLaunchDate = [NSDate date];
-    [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:FIRST_LAUNCH_DATE];
+    [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:self.firstLaunchKey];
     [self synchronize];
   }
 }
@@ -64,7 +84,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
     return;
   }
 
-  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
+  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
   if (firstLaunchDate == nil) {
     return;
   }
@@ -75,16 +95,16 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   }
 
   NSInteger runCount = self.runCount;
-  if (runCount < 50) {
+  if (runCount < 20) {
     return;
   }
 
-  BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
+  BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:self.writeReviewKey];
   if (hasShown) {
     return;
   }
 
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.writeReviewKey];
   [self synchronize];
 
   UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
@@ -116,8 +136,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 
 
 - (BOOL) isInReviewPeriodWorker {
-  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [AbstractApplication version]];
-  id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+  id value = [[NSUserDefaults standardUserDefaults] objectForKey:self.reviewPeriodKey];
 
   return value == nil;
 }
@@ -135,8 +154,7 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 - (void) clearInReviewPeriod {
   self.isInReviewPeriodData = [NSNumber numberWithBool:NO];
 
-  NSString* key = [NSString stringWithFormat:@"%@-%@", REVIEW_PERIOD_COMPLETE, [AbstractApplication version]];
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.reviewPeriodKey];
   [self synchronize];
 }
 
