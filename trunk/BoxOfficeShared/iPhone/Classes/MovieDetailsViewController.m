@@ -1259,7 +1259,7 @@ const NSInteger POSTER_TAG = -1;
     {
       NSArray* paths = [NSArray arrayWithObject:path];
       [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+      [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
     }
     [tableView endUpdates];
 
