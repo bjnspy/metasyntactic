@@ -127,7 +127,7 @@
     return nil;
   }
 
-  Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", movieElement]
+  Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-Upcoming", title]
                                       title:title
                                      rating:rating
                                      length:0

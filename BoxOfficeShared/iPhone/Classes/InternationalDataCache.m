@@ -311,8 +311,6 @@ static NSDictionary* countryToCode = nil;
 - (Movie*) processMovieElement:(XmlElement*) element
                    ratingCache:(NSMutableDictionary*) ratingCache
                mapRatingWorker:(SEL) mapRatingWorker {
-  static NSInteger identifier = 1;
-
   NSString* imdbId = [element attributeValue:@"imdb"];
   NSString* imdbAddress = imdbId.length == 0 ? @"" : [NSString stringWithFormat:@"http://www.imdb.com/title/%@", imdbId];
 
@@ -340,7 +338,7 @@ static NSDictionary* countryToCode = nil;
   NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
   [additionalFields setObject:trailers forKey:trailers_key];
 
-  return [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", identifier++]
+  return [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-International", title]
                               title:title
                              rating:rating
                              length:length

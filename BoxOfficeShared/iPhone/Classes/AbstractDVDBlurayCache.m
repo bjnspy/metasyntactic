@@ -238,7 +238,7 @@
                          discs:discs
                            url:url];
 
-  Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", dvd]
+  Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-%@", title, NSStringFromClass([self class])]
                                       title:title
                                      rating:rating
                                      length:[length intValue]
