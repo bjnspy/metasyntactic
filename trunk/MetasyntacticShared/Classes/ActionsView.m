@@ -73,9 +73,9 @@
       NSString* title = [titles objectAtIndex:i];
       UIImage* image = [MetasyntacticStockImage([NSString stringWithFormat:@"ActionsViewButton%d.png", ((i + 1) % 4) / 2])
                         stretchableImageWithLeftCapWidth:9 topCapHeight:9];
-      
+
       UIButton* button;
-      
+
       if (image == nil) {
         button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       } else {
@@ -84,7 +84,7 @@
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
       }
-    
+
       [button setTitle:title forState:UIControlStateNormal];
       [button sizeToFit];
 
@@ -175,7 +175,7 @@
   [super layoutSubviews];
 
   backgroundImageView.frame = CGRectMake(10, 4, self.frame.size.width - 20, self.frame.size.height + 1);
-  
+
   BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
   for (int i = 0; i < buttons.count; i++) {
@@ -194,23 +194,23 @@
     CGRect frame = button.frame;
     frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
     frame.origin.y = (8 + frame.size.height) * row + 8;
-    
+
     if (backgroundImageView != nil) {
       if (column == 0) {
         frame.origin.x += 5;
       }
     }
-    
+
     if (i == 0 && oddNumberOfButtons) {
       frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
     } else {
       frame.size.width = (self.frame.size.width / 2) - 14;
-    
+
       if (backgroundImageView != nil) {
         frame.size.width -= 5;
-      }      
+      }
     }
-    
+
     button.frame = frame;
   }
 }
