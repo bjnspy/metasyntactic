@@ -513,7 +513,7 @@
       [NotificationCenter removeNotifications:notifications];
     }
   }
-  
+
   [ThreadingUtilities foregroundSelector:@selector(onDataProviderUpdateComplete:force:)
                                 onTarget:self
                               withObject:request.delegate
@@ -522,7 +522,7 @@
 
 
 - (void) onDataProviderUpdateComplete:(id<DataProviderUpdateDelegate>) delegate force:(NSNumber*) value {
-  [delegate onDataProviderUpdateComplete:value.boolValue]; 
+  [delegate onDataProviderUpdateComplete:value.boolValue];
 }
 
 
