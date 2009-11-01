@@ -30,7 +30,7 @@
 + (NetflixUser*) downloadUserInformation:(NetflixAccount*) account;
 - (NetflixUser*) userForAccount:(NetflixAccount*) account;
 
-- (void) update;
+- (void) update:(BOOL) force;
 
 - (NSArray*) feedsForAccount:(NetflixAccount*) account;
 - (Feed*) feedForKey:(NSString*) key account:(NetflixAccount*) account;
