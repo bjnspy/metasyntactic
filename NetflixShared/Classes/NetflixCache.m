@@ -828,7 +828,7 @@ static NSString** directories[] = {
 
   NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
   BOOL force = forceValue.boolValue;
-  
+
   // first download and check the feed's current etag against the current one.
   if (force || [self etagChanged:feed account:account]) {
     if (force) {
@@ -842,7 +842,7 @@ static NSString** directories[] = {
     {
       [self downloadQueueWorker:feed account:account];
     }
-    [NotificationCenter removeNotification:notification];    
+    [NotificationCenter removeNotification:notification];
   } else {
     NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
   }
