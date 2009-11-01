@@ -157,7 +157,7 @@ typedef enum {
   } else {
     cell.textLabel.textColor = [ColorCache commandColor];
   }
-  
+
   return cell;
 }
 
@@ -195,10 +195,10 @@ typedef enum {
     return;
   }
   refreshed = YES;
-  
+
   NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:2]];
   [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-  
+
   [[Controller controller] start:YES];
 }
 
