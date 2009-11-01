@@ -359,7 +359,7 @@ static NSString** directories[] = {
 }
 
 
-- (void) update {
+- (void) update:(BOOL) force {
   NetflixAccount* account = [NetflixSharedApplication currentNetflixAccount];
   if ([NetflixSharedApplication netflixEnabled] &&
       account.userId.length > 0) {
@@ -367,9 +367,10 @@ static NSString** directories[] = {
     [FileUtilities createDirectory:[NetflixCache userRatingsDirectory:account]];
     [FileUtilities createDirectory:[NetflixCache predictedRatingsDirectory:account]];
 
-    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:)
+    [[OperationQueue operationQueue] performSelector:@selector(updateBackgroundEntryPoint:force:)
                                             onTarget:self
                                           withObject:account
+                                          withObject:[NSNumber numberWithBool:force]
                                                 gate:runGate
                                             priority:Priority];
   }
@@ -725,7 +726,8 @@ static NSString** directories[] = {
 }
 
 
-- (void) downloadQueueWorker:(Feed*) feed account:(NetflixAccount*) account {
+- (void) downloadQueueWorker:(Feed*) feed
+                     account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return; }
 
   NSRange range = [feed.url rangeOfString:@"&output=atom"];
@@ -819,23 +821,30 @@ static NSString** directories[] = {
 }
 
 
-- (void) downloadQueue:(Feed*) feed account:(NetflixAccount*) account {
+- (void) downloadQueue:(Feed*) feed
+               account:(NetflixAccount*) account
+                 force:(NSNumber*) forceValue {
   if (![self canContinue:account]) { return; }
 
   NSLog(@"NetflixCache:downloadQueue - %@", feed.name);
-
+  BOOL force = forceValue.boolValue;
+  
   // first download and check the feed's current etag against the current one.
-  if (![self etagChanged:feed account:account]) {
-    NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
-  } else {
-    NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
+  if (force || [self etagChanged:feed account:account]) {
+    if (force) {
+      NSLog(@"Forcing update of '%@'.", feed.name);
+    } else {
+      NSLog(@"Etag changed for '%@'.  Downloading.", feed.name);
+    }
     NSString* title = [self titleForKey:feed.key includeCount:NO account:account];
     NSString* notification = [NSString stringWithFormat:@"Netflix '%@'", title];
     [NotificationCenter addNotification:notification];
     {
       [self downloadQueueWorker:feed account:account];
     }
-    [NotificationCenter removeNotification:notification];
+    [NotificationCenter removeNotification:notification];    
+  } else {
+    NSLog(@"Etag unchanged for '%@'.  Skipping download.", feed.name);
   }
 
   Queue* queue = [self queueForFeed:feed account:account];
@@ -1477,7 +1486,8 @@ static NSString** directories[] = {
 }
 
 
-- (void) updateBackgroundEntryPointWorker:(NetflixAccount*) account {
+- (void) updateBackgroundEntryPointWorker:(NetflixAccount*) account
+                                    force:(BOOL) force {
   if (![self canContinue:account]) { return; }
 
   [NetflixCache downloadUserInformation:account];
@@ -1497,10 +1507,11 @@ static NSString** directories[] = {
   }
 
   for (Feed* feed in feeds) {
-    [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:)
+    [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
                                             onTarget:self
                                           withObject:feed
                                           withObject:account
+                                          withObject:[NSNumber numberWithBool:force]
                                                 gate:runGate
                                             priority:Priority];
   }
@@ -1513,14 +1524,14 @@ static NSString** directories[] = {
 }
 
 
-- (void) updateBackgroundEntryPoint:(NetflixAccount*) account {
+- (void) updateBackgroundEntryPoint:(NetflixAccount*) account force:(NSNumber*) forceValue {
   if (![self canContinue:account]) { return; }
   [self clearUpdatedMovies];
 
   NSString* notification = LocalizedString(@"Netflix", nil);
   [NotificationCenter addNotification:notification];
   {
-    [self updateBackgroundEntryPointWorker:account];
+    [self updateBackgroundEntryPointWorker:account force:forceValue.boolValue];
   }
   [NotificationCenter removeNotification:notification];
 }
