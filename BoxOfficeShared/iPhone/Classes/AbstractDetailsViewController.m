@@ -226,7 +226,7 @@
 }
 
 
-- (void) onDataProviderUpdateComplete {
+- (void) onDataProviderUpdateComplete:(BOOL) force {
 }
 
 

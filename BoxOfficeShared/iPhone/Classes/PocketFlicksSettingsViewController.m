@@ -24,6 +24,15 @@
 
 @implementation PocketFlicksSettingsViewController
 
+static BOOL refreshed = NO;
+
+typedef enum {
+  SendFeedbackSection,
+  StandardSettingsSection,
+  RefreshSection,
+  LastSection
+} SettingsSection;
+
 - (void) dealloc {
   [super dealloc];
 }
@@ -65,16 +74,24 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return 2;
+  return LastSection;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-  if (section == 0) {
+  if (section == SendFeedbackSection) {
     return 1;
-  } else {
+  } else if (section == StandardSettingsSection) {
     return 3;
+  } else if (section == RefreshSection) {
+    if (refreshed) {
+      return 0;
+    } else {
+      return 1;
+    }
+  } else {
+    return 0;
   }
 }
 
@@ -130,12 +147,29 @@
 }
 
 
+- (UITableViewCell*) cellForRefreshRow:(NSInteger) row {
+  UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+  cell.textLabel.textAlignment = UITextAlignmentCenter;
+  cell.textLabel.text = LocalizedString(@"Force Refresh", nil);
+  if (refreshed) {
+    cell.textLabel.textColor = [UIColor grayColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  } else {
+    cell.textLabel.textColor = [ColorCache commandColor];
+  }
+  
+  return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section == 0) {
+  if (indexPath.section == SendFeedbackSection) {
     return [self cellForHeaderRow:indexPath.row];
-  } else {
+  } else if (indexPath.section == StandardSettingsSection) {
     return [self cellForSettingsRow:indexPath.row];
+  } else {
+    return [self cellForRefreshRow:indexPath.row];
   }
 }
 
@@ -156,11 +190,26 @@
 }
 
 
+- (void) didSelectRefreshRow:(NSInteger) row {
+  if (refreshed) {
+    return;
+  }
+  refreshed = YES;
+  
+  NSArray* indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:2]];
+  [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+  
+  [[Controller controller] start:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-  if (indexPath.section == 0) {
+  if (indexPath.section == SendFeedbackSection) {
     UIViewController* controller = [[[PocketFlicksCreditsViewController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
+  } else if (indexPath.section == RefreshSection) {
+    [self didSelectRefreshRow:indexPath.row];
   }
 }
 
