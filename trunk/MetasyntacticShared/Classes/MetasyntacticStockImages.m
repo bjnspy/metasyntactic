@@ -37,7 +37,7 @@ NSMutableDictionary* GetThreadLocalDictionary(NSString* key) {
 NSString* StockImagePathForName(NSString* bundle, NSString* name, BOOL allowOverride) {
   NSMutableDictionary* threadDictionary = GetThreadLocalDictionary(@"StockImagePaths");
 
-  NSString* key = [NSString stringWithFormat:@"%@-%@-%d", bundle, name, allowOverride];
+  NSString* key = [NSString stringWithFormat:@"%@-%@-%d", bundle, name, (allowOverride ? 1 : 0)];
 
   id result = [threadDictionary objectForKey:key];
   if (result == nil) {
