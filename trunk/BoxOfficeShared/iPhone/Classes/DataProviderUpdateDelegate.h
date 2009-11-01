@@ -15,5 +15,5 @@
 @protocol DataProviderUpdateDelegate<NSObject>
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context;
 - (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context;
-- (void) onDataProviderUpdateComplete;
+- (void) onDataProviderUpdateComplete:(BOOL) force;
 @end

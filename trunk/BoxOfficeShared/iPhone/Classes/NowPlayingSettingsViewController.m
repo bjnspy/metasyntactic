@@ -40,7 +40,7 @@ typedef enum {
   DVDBluraySection,
   NetflixSection,
   RefreshSection,
-  LastSection = RefreshSection
+  LastSection
 } SettingsSection;
 
 
@@ -86,7 +86,7 @@ typedef enum {
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-  return LastSection + 1;
+  return LastSection;
 }
 
 

@@ -148,8 +148,8 @@ static Controller* controller = nil;
 }
 
 
-- (void) updateNetflixCache {
-  [self.model.netflixCache update];
+- (void) updateNetflixCache:(BOOL) force {
+  [self.model.netflixCache update:force];
 }
 
 
@@ -173,14 +173,14 @@ static Controller* controller = nil;
 }
 
 
-- (void) updateAllCaches {
+- (void) updateAllCaches:(BOOL) force {
   [self updateLocalizableStringsCache];
   [self updateScoreCache];
   [self updateLargePosterCache];
   [self updateInternationalDataCache];
   [self updateUpcomingCache];
   [self updateDVDCache];
-  [self updateNetflixCache];
+  [self updateNetflixCache:force];
   [self updateHelpCache];
 
   NSArray* movies = self.model.movies;
@@ -188,9 +188,9 @@ static Controller* controller = nil;
 }
 
 
-- (void) onDataProviderUpdateComplete {
+- (void) onDataProviderUpdateComplete:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
-  [self updateAllCaches];
+  [self updateAllCaches:force];
   //[self.model.largePosterCache updateIndices];
 }
 
@@ -322,7 +322,7 @@ static Controller* controller = nil;
 - (void) setNetflixEnabled:(BOOL) value {
   [self.model setNetflixCacheEnabled:value];
   [BoxOfficeSharedApplication resetTabs];
-  [self updateNetflixCache];
+  [self updateNetflixCache:NO];
 }
 
 
@@ -332,7 +332,7 @@ static Controller* controller = nil;
 
   // Update this account if it's the first account we're adding.
   if (currentAccount == nil) {
-    [self updateNetflixCache];
+    [self updateNetflixCache:NO];
   }
 }
 
@@ -344,7 +344,7 @@ static Controller* controller = nil;
   // We're removing the current netflix account.
   // We need to update our information about the new account we're switching to.
   if ([account isEqual:currentAccount]) {
-    [self updateNetflixCache];
+    [self updateNetflixCache:NO];
   }
 }
 
@@ -356,7 +356,7 @@ static Controller* controller = nil;
   // We're setting the account to something different.
   // We need to update our information about that account.
   if (![account isEqual:currentAccount]) {
-    [self updateNetflixCache];
+    [self updateNetflixCache:NO];
   }
 }
 
