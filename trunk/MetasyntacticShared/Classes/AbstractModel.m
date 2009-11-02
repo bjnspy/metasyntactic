@@ -41,13 +41,6 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 }
 
 
-- (void) incrementRunCount {
-  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
-  [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:RUN_COUNT];
-  [self synchronize];
-}
-
-
 - (NSString*) createVersionedKey:(NSString*) base {
   return [NSString stringWithFormat:@"%@-%@", base, [AbstractApplication version]];
 }
@@ -68,6 +61,18 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 }
 
 
+- (NSString*) runCountKey {
+  return [self createVersionedKey:RUN_COUNT];
+}
+
+
+- (void) incrementRunCount {
+  NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:self.runCountKey];
+  [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:self.runCountKey];
+  [self synchronize];
+}
+
+
 - (void) trySetFirstLaunchDate {
   NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
   if (firstLaunchDate == nil) {
@@ -78,57 +83,10 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 }
 
 
-- (void) tryShowWriteReviewRequest {
-  NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
-  if (url.length == 0) {
-    return;
-  }
-
-  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
-  if (firstLaunchDate == nil) {
-    return;
-  }
-
-  NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
-  if (interval < ONE_MONTH) {
-    return;
-  }
-
-  NSInteger runCount = self.runCount;
-  if (runCount < 20) {
-    return;
-  }
-
-  BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:self.writeReviewKey];
-  if (hasShown) {
-    return;
-  }
-
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.writeReviewKey];
-  [self synchronize];
-
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
-                                                   message:LocalizedString(@"Please rate it in the App Store!", nil)
-                                                  delegate:self
-                                         cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
-                                         otherButtonTitles:LocalizedString(@"Rate It!", @"Must be short. 1-2 words max. Label for a button a user can tap to rate this app"), nil] autorelease];
-  [alert show];
-}
-
-
-- (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex != alertView.cancelButtonIndex) {
-    NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
-    [AbstractApplication openBrowser:url];
-  }
-}
-
-
 - (id) init {
   if ((self = [super init])) {
     [self trySetFirstLaunchDate];
     [self incrementRunCount];
-    [self tryShowWriteReviewRequest];
   }
 
   return self;
@@ -160,7 +118,54 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
 
 
 - (NSInteger) runCount {
-  return [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
+  return [[NSUserDefaults standardUserDefaults] integerForKey:self.runCountKey];
+}
+
+
+- (void) tryShowWriteReviewRequest {
+  NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
+  if (url.length == 0) {
+    return;
+  }
+  
+  NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
+  if (firstLaunchDate == nil) {
+    return;
+  }
+  
+  NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
+  if (interval < ONE_MONTH) {
+    return;
+  }
+  
+  NSInteger runCount = self.runCount;
+  if (runCount < 20) {
+    return;
+  }
+  
+  BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:self.writeReviewKey];
+  if (hasShown) {
+    return;
+  }
+  
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.writeReviewKey];
+  [self synchronize];
+  
+  NSString* message = [NSString stringWithFormat:LocalizedString(@"Please rate it in the App Store.\n\nAlready rated a previous version? Please update the rating to count against the current version.", nil), [AbstractApplication name]];
+  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
+                                                   message:message
+                                                  delegate:self
+                                         cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
+                                         otherButtonTitles:LocalizedString(@"Rate It!", @"Must be short. 1-2 words max. Label for a button a user can tap to rate this app"), nil] autorelease];
+  [alert show];
+}
+
+
+- (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex != alertView.cancelButtonIndex) {
+    NSString* url = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"iTunesApplicationUrl"];
+    [AbstractApplication openBrowser:url];
+  }
 }
 
 @end

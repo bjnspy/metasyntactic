@@ -22,6 +22,8 @@
 - (BOOL) isInReviewPeriod;
 - (void) clearInReviewPeriod;
 
+- (void) tryShowWriteReviewRequest;
+
 /* @protected */
 - (void) synchronize;
 - (NSInteger) runCount;

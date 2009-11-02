@@ -22,6 +22,7 @@
 #import "AbstractApplication.h"
 #import "AbstractCache.h"
 #import "AbstractCollapsedDetailsCell.h"
+#import "AbstractController.h"
 #import "AbstractCurlableTableViewController.h"
 #import "AbstractData.h"
 #import "AbstractExpandedDetailsCell.h"
