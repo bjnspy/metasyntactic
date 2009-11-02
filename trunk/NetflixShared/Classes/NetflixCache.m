@@ -482,6 +482,7 @@ static NSString** directories[] = {
   NSString* year = nil;
   NSMutableArray* genres = [NSMutableArray array];
   BOOL save = NO;
+  NSInteger length = 0;
 
   for (XmlElement* child in element.children) {
     if ([@"id" isEqual:child.name]) {
@@ -533,6 +534,8 @@ static NSString** directories[] = {
       year = child.text;
     } else if ([average_rating_key isEqual:child.name]) {
       [additionalFields setObject:child.text forKey:average_rating_key];
+    } else if ([@"runtime" isEqual:child.name]) {
+      length = ([child.text intValue] / 60);
     }
   }
 
@@ -547,7 +550,7 @@ static NSString** directories[] = {
   Movie* movie = [Movie movieWithIdentifier:identifier
                                       title:title
                                      rating:rating
-                                     length:0
+                                     length:length
                                 releaseDate:date
                                 imdbAddress:nil
                                      poster:poster
@@ -760,6 +763,8 @@ static NSString** directories[] = {
   NSHTTPURLResponse* response;
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                           response:&response];
+  
+  [self checkApiResult:account element:element];
 
   NSString* etag = [self extractEtagFromElement:element andResponse:response];
 
