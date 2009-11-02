@@ -18,6 +18,4 @@
 
 + (Controller*) controller;
 
-- (void) start;
-
 @end
