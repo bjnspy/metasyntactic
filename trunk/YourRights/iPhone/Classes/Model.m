@@ -258,9 +258,12 @@ static DeclarationOfIndependence* declarationOfIndependence;
   declarationOfIndependence = [[DeclarationOfIndependence declarationWithText:text signers:signers date:date] retain];
 }
 
+static Model* model = nil;
 
 + (void) initialize {
   if (self == [Model class]) {
+    model = [[Model alloc] init];
+    
     [self setupToughQuestions];
     [self setupDeclarationOfIndependence];
 
@@ -955,13 +958,8 @@ static DeclarationOfIndependence* declarationOfIndependence;
   return self;
 }
 
-static Model* model = nil;
 
 + (Model*) model {
-  if (model == nil) {
-    model = [[Model alloc] init];
-  }
-
   return model;
 }
 

@@ -21,16 +21,25 @@
 
 static Controller* controller = nil;
 
-+ (Controller*) controller {
-    if (controller == nil) {
-        controller = [[Controller alloc] init];
-    }
-
-    return controller;
++ (void) initialize {
+  if (self == [Controller class]) {
+    controller = [[Controller alloc] init];
+  }
 }
 
++ (Controller*) controller {
+  return controller;
+}
+
+
+- (Model*) model {
+  return [Model model];
+}
+
+
 - (void) start {
-    [[Model model].rssCache update];
+  [super start:self.model];
+  [self.model.rssCache update];
 }
 
 @end
