@@ -71,7 +71,7 @@
 - (UIView*) createLabelView {
   NSString* title =
   [NSString stringWithFormat:
-   LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPageIndex + 1), pageCount];
+   LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of items"), (currentPageIndex + 1), pageCount];
 
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
