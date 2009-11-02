@@ -32,8 +32,8 @@
 - (void) saveQueue:(Queue*) queue account:(NetflixAccount*) account;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 
-- (void) checkApiResult:(XmlElement*) result;
-- (NSString*) extractErrorMessage:(XmlElement*) element;
+- (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element;
+- (NSString*) extractErrorMessage:(XmlElement*) result;
 
 - (NSString*) downloadEtag:(Feed*) feed;
 - (NSString*) userRatingsFile:(Movie*) movie account:(NetflixAccount*) account;
@@ -157,11 +157,11 @@
   NSHTTPURLResponse* response;
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                              response:&response];
-
-  [self checkApiResult:element];
-
-  NSInteger status = [[[element element:@"status_code"] text] intValue];
-  if (status < 200 || status >= 300) {
+  
+  [self checkApiResult:account element:element];
+  
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
     return nil;
   }
@@ -304,11 +304,11 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
-  NSInteger status = [[[element element:@"status_code"] text] intValue];
-  if (status < 200 || status >= 300) {
+  
+  [self checkApiResult:account element:element];
+  
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
     return [self extractErrorMessage:element];
   }
@@ -334,11 +334,11 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
-  NSInteger status = [[[element element:@"status_code"] text] intValue];
-  if (status < 200 || status >= 300) {
+  
+  [self checkApiResult:account element:element];
+  
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
     return [self extractErrorMessage:element];
   }
@@ -522,9 +522,9 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
+  
+  [self checkApiResult:addArguments.account element:element];
+  
   NSString* error;
   Queue* finalQueue = [self processAddMovieResult:element
                                             queue:addArguments.queue
@@ -563,11 +563,11 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-
-  [self checkApiResult:element];
-
-  NSInteger status = [[[element element:@"status_code"] text] intValue];
-  if (status < 200 || status >= 300) {
+  
+  [self checkApiResult:account element:element];
+  
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
     return nil;
   }
