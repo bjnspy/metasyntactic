@@ -205,9 +205,9 @@ static Model* model = nil;
 
 - (BOOL) isSupportedCountry {
   NSSet* supportedCountries = [NSSet setWithObjects:
-                               @"AU", // Australia
                                @"AR", // Argentina
                                @"AT", // Austria
+                               @"AU", // Australia
                                @"BE", // Belgium
                                @"BR", // Brazil
                                @"CA", // Canada
@@ -216,6 +216,7 @@ static Model* model = nil;
                                @"DE", // Germany
                                @"DK", // Denmark
                                @"ES", // Spain
+                               @"FI", // Finland
                                @"FR", // France
                                @"HU", // Hungary
                                @"JP", // Japan
@@ -224,12 +225,15 @@ static Model* model = nil;
                                @"IT", // Italy
                                @"MY", // Malaysia
                                @"NL", // The Netherlands
+                               @"NO", // Norway
+                               @"NZ", // New Zealand
                                @"PL", // Poland
                                @"PT", // Portugal
-                               @"US", // United States
                                @"SG", // Singapore
                                @"SK", // Slovakia
+                               @"SE", // Sweden
                                @"TR", // Turkey
+                               @"US", // United States
                                nil];
   
   NSString* userCountry = [LocaleUtilities isoCountry];
