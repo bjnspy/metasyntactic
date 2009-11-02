@@ -594,17 +594,17 @@
 				74616C780F15D21F0004B610 /* Utilities */,
 				74616DF20F15DAA80004B610 /* Xml */,
 				747C33140FD0710D00411801 /* AbstractApplication.h */,
+				740CF2C7109E794F00133AD6 /* AbstractController.h */,
 				749B72A5105D90A300ECAA6C /* AbstractModel.h */,
 				74E6FC640FD1B0DA0015D9F8 /* MetasyntacticShared.h */,
 				74E6FC650FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.h */,
 				74E6FC670FD1B0DA0015D9F8 /* MetasyntacticSharedApplicationDelegate.h */,
+				7477DE21109B983C0068C724 /* StyleSheet.h */,
 				747C33150FD0710D00411801 /* AbstractApplication.m */,
+				740CF2C8109E794F00133AD6 /* AbstractController.m */,
 				749B72A6105D90A300ECAA6C /* AbstractModel.m */,
 				74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */,
-				7477DE21109B983C0068C724 /* StyleSheet.h */,
 				7477DE22109B983C0068C724 /* StyleSheet.m */,
-				740CF2C7109E794F00133AD6 /* AbstractController.h */,
-				740CF2C8109E794F00133AD6 /* AbstractController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -621,10 +621,10 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
