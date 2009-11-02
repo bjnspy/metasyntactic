@@ -184,7 +184,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 100000000000000000000104 /* NetflixShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 10000000000000000000005C /* NetflixShared */;
+			remoteGlobalIDString = 10000000000000000000005C;
 			remoteInfo = NetflixShared;
 		};
 		100000000000000000000121 /* PBXContainerItemProxy */ = {
@@ -198,7 +198,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1000000000000000000000CA /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000126 /* MetasyntacticShared */;
+			remoteGlobalIDString = 100000000000000000000126;
 			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */

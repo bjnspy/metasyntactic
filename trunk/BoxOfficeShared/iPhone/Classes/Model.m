@@ -203,8 +203,42 @@ static Model* model = nil;
 }
 
 
+- (BOOL) isSupportedCountry {
+  NSSet* supportedCountries = [NSSet setWithObjects:
+                               @"AU", // Australia
+                               @"AR", // Argentina
+                               @"AT", // Austria
+                               @"BE", // Belgium
+                               @"BR", // Brazil
+                               @"CA", // Canada
+                               @"CH", // Switzerland
+                               @"CZ", // Czech Republic
+                               @"DE", // Germany
+                               @"DK", // Denmark
+                               @"ES", // Spain
+                               @"FR", // France
+                               @"HU", // Hungary
+                               @"JP", // Japan
+                               @"GB", // Great Britain
+                               @"IE", // Ireland
+                               @"IT", // Italy
+                               @"MY", // Malaysia
+                               @"NL", // The Netherlands
+                               @"PL", // Poland
+                               @"PT", // Portugal
+                               @"US", // United States
+                               @"SG", // Singapore
+                               @"SK", // Slovakia
+                               @"TR", // Turkey
+                               nil];
+  
+  NSString* userCountry = [LocaleUtilities isoCountry];
+  return [supportedCountries containsObject:userCountry];
+}
+
+
 - (void) checkCountry {
-  if ([LocaleUtilities isSupportedCountry]) {
+  if ([self isSupportedCountry]) {
     return;
   }
 
@@ -250,7 +284,6 @@ static Model* model = nil;
     self.bookmarkedTitlesData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadBookmarkedTitles) saveSelector:@selector(saveBookmarkedTitles:)];
     self.favoriteTheatersData = [ThreadsafeValue valueWithGate:dataGate delegate:self loadSelector:@selector(loadFavoriteTheaters) saveSelector:@selector(saveFavoriteTheaters:)];
 
-    [self checkCountry];
     [self migrateNetflixAccount];
 
     self.dataProvider = [GoogleDataProvider provider];
@@ -1503,7 +1536,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     return LocalizedString(@"Downloading data", nil);
   } else if (![NetworkUtilities isNetworkAvailable]) {
     return LocalizedString(@"Network unavailable", nil);
-  } else if (![LocaleUtilities isSupportedCountry]) {
+  } else if (![self isSupportedCountry]) {
     return [NSString stringWithFormat:
             LocalizedString(@"Local results unavailable", nil),
             [LocaleUtilities displayCountry]];

@@ -106,38 +106,4 @@ static NSString* preferredLanguage = nil;
   return [@"ja" isEqual:[self preferredLanguage]];
 }
 
-
-+ (BOOL) isSupportedCountry {
-  NSSet* supportedCountries = [NSSet setWithObjects:
-                               @"AU", // Australia
-                               @"AR", // Argentina
-                               @"AT", // Austria
-                               @"BE", // Belgium
-                               @"BR", // Brazil
-                               @"CA", // Canada
-                               @"CH", // Switzerland
-                               @"CZ", // Czech Republic
-                               @"DE", // Germany
-                               @"DK", // Denmark
-                               @"ES", // Spain
-                               @"FR", // France
-                               @"HU", // Hungary
-                               @"JP", // Japan
-                               @"GB", // Great Britain
-                               @"IE", // Ireland
-                               @"IT", // Italy
-                               @"MY", // Malaysia
-                               @"NL", // The Netherlands
-                               @"PL", // Poland
-                               @"PT", // Portugal
-                               @"US", // United States
-                               @"SG", // Singapore
-                               @"SK", // Slovakia
-                               @"TR", // Turkey
-                               nil];
-
-  NSString* userCountry = [LocaleUtilities isoCountry];
-  return [supportedCountries containsObject:userCountry];
-}
-
 @end
