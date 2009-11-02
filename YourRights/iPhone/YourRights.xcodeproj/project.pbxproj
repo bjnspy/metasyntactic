@@ -602,7 +602,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
 				SDKROOT = iphoneos3.0;
 			};
@@ -616,7 +615,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
 				SDKROOT = iphoneos3.0;
 			};
@@ -652,7 +650,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
 				SDKROOT = iphoneos3.0;
 			};
@@ -687,7 +684,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = YourRights;
 				SDKROOT = iphoneos3.0;
 			};
