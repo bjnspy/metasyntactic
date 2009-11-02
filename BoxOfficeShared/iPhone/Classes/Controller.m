@@ -210,6 +210,7 @@ static Controller* controller = nil;
 
 - (void) start:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
+  [super start:self.model];
   [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
 }
