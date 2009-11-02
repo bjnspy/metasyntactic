@@ -150,10 +150,9 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.writeReviewKey];
   [self synchronize];
-  
-  NSString* message = [NSString stringWithFormat:LocalizedString(@"Please rate it in the App Store.\n\nAlready rated a previous version? Please update the rating to count against the current version.", nil), [AbstractApplication name]];
+
   UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:LocalizedString(@"Like This App?", nil)
-                                                   message:message
+                                                   message:LocalizedString(@"Please rate it in the App Store.\n\nAlready rated a previous version? Please update the rating to count against the current version.", nil)
                                                   delegate:self
                                          cancelButtonTitle:LocalizedString(@"No Thanks", @"Must be short. 1-2 words max. Label for a button when a user does not want to write a review")
                                          otherButtonTitles:LocalizedString(@"Rate It!", @"Must be short. 1-2 words max. Label for a button a user can tap to rate this app"), nil] autorelease];
