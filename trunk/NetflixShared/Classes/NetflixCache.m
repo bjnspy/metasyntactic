@@ -387,14 +387,14 @@ static NSString** directories[] = {
 
 - (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element {
   NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
-  
+
   if (statusCode == 412) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
     NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
     [self downloadQueues:account force:YES];
     return;
   }
-  
+
   NSString* message = [[element element:@"message"] text];
   if ([@"Over queries per day limit" isEqual:message]) {
     self.lastQuotaErrorDate = [NSDate date];
@@ -682,7 +682,7 @@ static NSString** directories[] = {
     // override this error message since the netflix message is very confusing.
     return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
   }
-  
+
   NSString* message = [[element element:@"message"] text];
   if (message.length > 0) {
     return message;
@@ -1505,7 +1505,7 @@ static NSString** directories[] = {
 
 - (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force {
   NSArray* feeds = [self feedsForAccount:account];
-  
+
   for (Feed* feed in feeds) {
     [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
                                             onTarget:self
@@ -1537,7 +1537,7 @@ static NSString** directories[] = {
 
     [MetasyntacticSharedApplication majorRefresh];
   }
-  
+
   [self downloadQueues:account force:force];
 
   [[OperationQueue operationQueue] performSelector:@selector(downloadRSS:)
