@@ -7,75 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740101C00F26EB8300258353 /* CFNetwork.framework */; };
-		7401029E0F276D2700258353 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401029D0F276D2700258353 /* Application.m */; };
-		7406D33F1016D753004374C2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D33E1016D753004374C2 /* libsqlite3.dylib */; };
-		7406D3421016D763004374C2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D3411016D763004374C2 /* CoreLocation.framework */; };
-		7406D3441016D763004374C2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7406D3431016D763004374C2 /* MapKit.framework */; };
-		7406DA5910170988004374C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406DA5810170988004374C2 /* Default.png */; };
-		740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */; };
-		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
-		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
-		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
-		7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */; };
-		742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742372A70FD249D200E19B63 /* MessageUI.framework */; };
-		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
-		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
-		742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7800F1209540079E6B0 /* QuestionsViewController.m */; };
-		742DB7840F12095C0079E6B0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7830F12095C0079E6B0 /* Model.m */; };
-		742DB84D0F129F070079E6B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 742DB84C0F129F070079E6B0 /* Icon.png */; };
-		742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB87F0F12A6650079E6B0 /* WrappableCell.m */; };
-		742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8B20F12A7190079E6B0 /* AnswerViewController.m */; };
-		742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */; };
-		742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */; };
-		742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB860F12D4AC0079E6B0 /* Decision.m */; };
-		742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */; };
-		742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */; };
-		742DBF1A0F132AD50079E6B0 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */; };
-		742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC05E0F1336510079E6B0 /* CreditsViewController.m */; };
-		743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96F70F3FAB5400BA0784 /* Constitution.m */; };
-		743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FB0F3FAC1B00BA0784 /* Article.m */; };
-		743D96FF0F3FADB800BA0784 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FE0F3FADB800BA0784 /* Section.m */; };
-		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
-		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
-		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
-		748BA54D0F816A8600D79388 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA54C0F816A8600D79388 /* AppDelegate.m */; };
-		74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */; };
-		74954DF60F38D9C000E79E24 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954DF50F38D9C000E79E24 /* Item.m */; };
-		74954E4D0F38DECA00E79E24 /* ACLUNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */; };
-		74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */; };
-		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
-		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
-		74A53144101D13E4004F9C9B /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */; };
-		74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */; };
-		74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */; };
-		74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */; };
-		74CF64B60F5896DA00417ED5 /* FederalistPapersSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF64B50F5896DA00417ED5 /* FederalistPapersSectionViewController.m */; };
-		74CF65470F58A08A00417ED5 /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */; };
-		74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74CF65580F58A0EA00417ED5 /* Localizable.strings */; };
-		74CF656C0F58A17F00417ED5 /* FederalistPapers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF656B0F58A17F00417ED5 /* FederalistPapers.m */; };
-		74CF657A0F58A29500417ED5 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */; };
-		74CF65B60F58A44800417ED5 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */; };
-		74D3892B0F58608A00B7A51C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3892A0F58608A00B7A51C /* Person.m */; };
-		74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */; };
+		100000000000000000000002 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000001 /* ACLUArticlesViewController.m */; };
+		100000000000000000000005 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000004 /* ACLUInfoViewController.m */; };
+		100000000000000000000008 /* ACLUNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000007 /* ACLUNewsViewController.m */; };
+		10000000000000000000000D /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000000C /* Amendment.m */; };
+		100000000000000000000010 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000000F /* AnswerViewController.m */; };
+		100000000000000000000013 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000012 /* AppDelegate.m */; };
+		100000000000000000000016 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000015 /* Application.m */; };
+		100000000000000000000019 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000018 /* Article.m */; };
+		10000000000000000000001C /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000001B /* ArticleBodyCell.m */; };
+		10000000000000000000001F /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000001E /* ArticleTitleCell.m */; };
+		100000000000000000000022 /* ArticlesOfConfederation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000021 /* ArticlesOfConfederation.m */; };
+		100000000000000000000026 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000025 /* CFNetwork.framework */; };
+		10000000000000000000002C /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000002B /* Constitution.m */; };
+		10000000000000000000002F /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000002E /* ConstitutionAmendmentViewController.m */; };
+		100000000000000000000032 /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000031 /* ConstitutionArticleViewController.m */; };
+		100000000000000000000035 /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000034 /* ConstitutionSignersViewController.m */; };
+		100000000000000000000038 /* ConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000037 /* ConstitutionViewController.m */; };
+		10000000000000000000003B /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000003A /* Controller.m */; };
+		10000000000000000000003D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000003C /* CoreGraphics.framework */; };
+		10000000000000000000003F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000003E /* CoreLocation.framework */; };
+		100000000000000000000042 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000041 /* CreditsViewController.m */; };
+		100000000000000000000049 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000048 /* Decision.m */; };
+		10000000000000000000004C /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000004B /* DecisionCell.m */; };
+		10000000000000000000004F /* DeclarationOfIndependence.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000004E /* DeclarationOfIndependence.m */; };
+		100000000000000000000052 /* DeclarationOfIndependenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000051 /* DeclarationOfIndependenceViewController.m */; };
+		100000000000000000000054 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000053 /* Default.png */; };
+		10000000000000000000005B /* FederalistPapers.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000005A /* FederalistPapers.m */; };
+		10000000000000000000005E /* FederalistPapersArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000005D /* FederalistPapersArticleViewController.m */; };
+		100000000000000000000061 /* FederalistPapersSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000060 /* FederalistPapersSectionViewController.m */; };
+		100000000000000000000064 /* FederalistPapersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000063 /* FederalistPapersViewController.m */; };
+		100000000000000000000067 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000066 /* Foundation.framework */; };
+		10000000000000000000006C /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006B /* GreatestHitsViewController.m */; };
+		10000000000000000000006E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000006D /* Icon.png */; };
+		100000000000000000000072 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000071 /* Item.m */; };
+		100000000000000000000074 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000073 /* License.txt */; };
+		100000000000000000000076 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000075 /* Localizable.strings */; };
+		100000000000000000000079 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000078 /* MainWindow.xib */; };
+		10000000000000000000007B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000007A /* MapKit.framework */; };
+		10000000000000000000007D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000007C /* MessageUI.framework */; };
+		10000000000000000000007F /* MetasyntacticResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000007E /* MetasyntacticResources.bundle */; };
+		100000000000000000000084 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000083 /* Model.m */; };
+		10000000000000000000008C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000008B /* Person.m */; };
+		100000000000000000000092 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000091 /* QuestionsViewController.m */; };
+		100000000000000000000095 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000094 /* RSSCache.m */; };
+		10000000000000000000009C /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000009B /* Section.m */; };
+		10000000000000000000009F /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000009E /* SectionViewController.m */; };
+		1000000000000000000000A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000A2 /* SystemConfiguration.framework */; };
+		1000000000000000000000A8 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000A7 /* ToughAnswerViewController.m */; };
+		1000000000000000000000AB /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000AA /* ToughQuestionsViewController.m */; };
+		1000000000000000000000AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000AD /* UIKit.framework */; };
+		1000000000000000000000B1 /* UnitedStatesConstitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000B0 /* UnitedStatesConstitution.m */; };
+		1000000000000000000000B5 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000B4 /* WrappableCell.m */; };
+		1000000000000000000000BA /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000B9 /* YourRightsNavigationController.m */; };
+		1000000000000000000000BE /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000BD /* libMetasyntacticShared.a */; };
+		1000000000000000000000C0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000BF /* libsqlite3.dylib */; };
+		1000000000000000000000C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000000C1 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		742371D70FD2476D00E19B63 /* PBXContainerItemProxy */ = {
+		100000000000000000000087 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 100000000000000000000081 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared3;
 		};
-		7423723A0FD2487D00E19B63 /* PBXContainerItemProxy */ = {
+		100000000000000000000088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
+			containerPortal = 100000000000000000000081 /* MetasyntacticShared.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 74E601A60FD1C7990015D9F8;
 			remoteInfo = MetasyntacticShared3;
@@ -83,395 +83,395 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* YourRights_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRights_Prefix.pch; sourceTree = "<group>"; };
-		740101C00F26EB8300258353 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		7401029C0F276D2700258353 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
-		7401029D0F276D2700258353 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		7406D33E1016D753004374C2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		7406D3411016D763004374C2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		7406D3431016D763004374C2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		7406DA5810170988004374C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
-		740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
-		740E8D690F3FE93A00798E0C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
-		740E8D6A0F3FE93A00798E0C /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
-		740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
-		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
-		740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
-		740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
-		742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
-		742371ED0FD247CE00E19B63 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		742372A70FD249D200E19B63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
-		742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
-		742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
-		742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
-		742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		742DB77F0F1209540079E6B0 /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsViewController.h; sourceTree = "<group>"; };
-		742DB7800F1209540079E6B0 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
-		742DB7820F12095C0079E6B0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		742DB7830F12095C0079E6B0 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		742DB84C0F129F070079E6B0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
-		742DB87E0F12A6650079E6B0 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
-		742DB87F0F12A6650079E6B0 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
-		742DB8B10F12A7190079E6B0 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
-		742DB8B20F12A7190079E6B0 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
-		742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
-		742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
-		742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
-		742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
-		742DBB850F12D4AC0079E6B0 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
-		742DBB860F12D4AC0079E6B0 /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
-		742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatestHitsViewController.h; sourceTree = "<group>"; };
-		742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
-		742DBCE90F1309BE0079E6B0 /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
-		742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
-		742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUInfoViewController.h; sourceTree = "<group>"; };
-		742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
-		742DC05D0F1336510079E6B0 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
-		742DC05E0F1336510079E6B0 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
-		743C01DF0F44CEAC001BBBBA /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		743D96F60F3FAB5400BA0784 /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
-		743D96F70F3FAB5400BA0784 /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
-		743D96FA0F3FAC1B00BA0784 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
-		743D96FB0F3FAC1B00BA0784 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
-		743D96FD0F3FADB800BA0784 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		743D96FE0F3FADB800BA0784 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
-		745A09DD0F2EE190002F64C6 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
-		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		748BA54B0F816A8600D79388 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		748BA54C0F816A8600D79388 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		74954D040F38CD2700E79E24 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		74954DF40F38D9C000E79E24 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		74954DF50F38D9C000E79E24 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		74954E4B0F38DECA00E79E24 /* ACLUNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsViewController.h; sourceTree = "<group>"; };
-		74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsViewController.m; sourceTree = "<group>"; };
-		74954E950F38E14600E79E24 /* ACLUArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUArticlesViewController.h; sourceTree = "<group>"; };
-		74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUArticlesViewController.m; sourceTree = "<group>"; };
-		74954F320F38E5F400E79E24 /* ArticleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTitleCell.h; sourceTree = "<group>"; };
-		74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
-		74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
-		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
-		74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
-		74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
-		74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
-		74CF63F60F5890CC00417ED5 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
-		74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersViewController.m; sourceTree = "<group>"; };
-		74CF64850F5893FA00417ED5 /* FederalistPapersArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersArticleViewController.h; sourceTree = "<group>"; };
-		74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersArticleViewController.m; sourceTree = "<group>"; };
-		74CF64B40F5896DA00417ED5 /* FederalistPapersSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersSectionViewController.h; sourceTree = "<group>"; };
-		74CF64B50F5896DA00417ED5 /* FederalistPapersSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersSectionViewController.m; sourceTree = "<group>"; };
-		74CF65450F58A08A00417ED5 /* ConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionViewController.h; sourceTree = "<group>"; };
-		74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionViewController.m; sourceTree = "<group>"; };
-		74CF65590F58A0EA00417ED5 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74CF656A0F58A17F00417ED5 /* FederalistPapers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapers.h; sourceTree = "<group>"; };
-		74CF656B0F58A17F00417ED5 /* FederalistPapers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapers.m; sourceTree = "<group>"; };
-		74CF65780F58A29500417ED5 /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
-		74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
-		74CF65B40F58A44800417ED5 /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
-		74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
-		74D389290F58608A00B7A51C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		74D3892A0F58608A00B7A51C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
-		74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000000000000 /* ACLUArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUArticlesViewController.h; sourceTree = "<group>"; };
+		100000000000000000000001 /* ACLUArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUArticlesViewController.m; sourceTree = "<group>"; };
+		100000000000000000000003 /* ACLUInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUInfoViewController.h; sourceTree = "<group>"; };
+		100000000000000000000004 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
+		100000000000000000000006 /* ACLUNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsViewController.h; sourceTree = "<group>"; };
+		100000000000000000000007 /* ACLUNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsViewController.m; sourceTree = "<group>"; };
+		10000000000000000000000B /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
+		10000000000000000000000C /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
+		10000000000000000000000E /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		10000000000000000000000F /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
+		100000000000000000000011 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		100000000000000000000012 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		100000000000000000000014 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		100000000000000000000015 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		100000000000000000000017 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		100000000000000000000018 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		10000000000000000000001A /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
+		10000000000000000000001B /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
+		10000000000000000000001D /* ArticleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTitleCell.h; sourceTree = "<group>"; };
+		10000000000000000000001E /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
+		100000000000000000000020 /* ArticlesOfConfederation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesOfConfederation.h; sourceTree = "<group>"; };
+		100000000000000000000021 /* ArticlesOfConfederation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesOfConfederation.m; sourceTree = "<group>"; };
+		100000000000000000000025 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		10000000000000000000002A /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
+		10000000000000000000002B /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
+		10000000000000000000002D /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
+		10000000000000000000002E /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
+		100000000000000000000030 /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
+		100000000000000000000031 /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
+		100000000000000000000033 /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
+		100000000000000000000034 /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
+		100000000000000000000036 /* ConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionViewController.h; sourceTree = "<group>"; };
+		100000000000000000000037 /* ConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionViewController.m; sourceTree = "<group>"; };
+		100000000000000000000039 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		10000000000000000000003A /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		10000000000000000000003C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		10000000000000000000003E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		100000000000000000000040 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		100000000000000000000041 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		100000000000000000000047 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
+		100000000000000000000048 /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
+		10000000000000000000004A /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
+		10000000000000000000004B /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
+		10000000000000000000004D /* DeclarationOfIndependence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependence.h; sourceTree = "<group>"; };
+		10000000000000000000004E /* DeclarationOfIndependence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependence.m; sourceTree = "<group>"; };
+		100000000000000000000050 /* DeclarationOfIndependenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclarationOfIndependenceViewController.h; sourceTree = "<group>"; };
+		100000000000000000000051 /* DeclarationOfIndependenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclarationOfIndependenceViewController.m; sourceTree = "<group>"; };
+		100000000000000000000053 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		100000000000000000000057 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		100000000000000000000059 /* FederalistPapers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapers.h; sourceTree = "<group>"; };
+		10000000000000000000005A /* FederalistPapers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapers.m; sourceTree = "<group>"; };
+		10000000000000000000005C /* FederalistPapersArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersArticleViewController.h; sourceTree = "<group>"; };
+		10000000000000000000005D /* FederalistPapersArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersArticleViewController.m; sourceTree = "<group>"; };
+		10000000000000000000005F /* FederalistPapersSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersSectionViewController.h; sourceTree = "<group>"; };
+		100000000000000000000060 /* FederalistPapersSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersSectionViewController.m; sourceTree = "<group>"; };
+		100000000000000000000062 /* FederalistPapersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalistPapersViewController.h; sourceTree = "<group>"; };
+		100000000000000000000063 /* FederalistPapersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalistPapersViewController.m; sourceTree = "<group>"; };
+		100000000000000000000065 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		100000000000000000000066 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		10000000000000000000006A /* GreatestHitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatestHitsViewController.h; sourceTree = "<group>"; };
+		10000000000000000000006B /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
+		10000000000000000000006D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		10000000000000000000006F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100000000000000000000070 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		100000000000000000000071 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		100000000000000000000073 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		100000000000000000000077 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		100000000000000000000078 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		10000000000000000000007A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		10000000000000000000007C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		10000000000000000000007E /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetasyntacticResources.bundle; path = ../../MetasyntacticShared/MetasyntacticResources.bundle; sourceTree = SOURCE_ROOT; };
+		100000000000000000000080 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000000081 /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
+		100000000000000000000082 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		100000000000000000000083 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		10000000000000000000008A /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		10000000000000000000008B /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		100000000000000000000090 /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsViewController.h; sourceTree = "<group>"; };
+		100000000000000000000091 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
+		100000000000000000000093 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
+		100000000000000000000094 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
+		10000000000000000000009A /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		10000000000000000000009B /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		10000000000000000000009D /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
+		10000000000000000000009E /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
+		1000000000000000000000A2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1000000000000000000000A6 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
+		1000000000000000000000A7 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
+		1000000000000000000000A9 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
+		1000000000000000000000AA /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
+		1000000000000000000000AD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1000000000000000000000AF /* UnitedStatesConstitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitution.h; sourceTree = "<group>"; };
+		1000000000000000000000B0 /* UnitedStatesConstitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitution.m; sourceTree = "<group>"; };
+		1000000000000000000000B3 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
+		1000000000000000000000B4 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
+		1000000000000000000000B7 /* YourRights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1000000000000000000000B8 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
+		1000000000000000000000B9 /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
+		1000000000000000000000BB /* YourRights_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRights_Prefix.pch; sourceTree = "<group>"; };
+		1000000000000000000000BC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1000000000000000000000BF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1000000000000000000000C1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+		100000000000000000000068 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7423723C0FD2488600E19B63 /* libMetasyntacticShared.a in Frameworks */,
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */,
-				74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */,
-				742372A80FD249D200E19B63 /* MessageUI.framework in Frameworks */,
-				7406D33F1016D753004374C2 /* libsqlite3.dylib in Frameworks */,
-				7406D3421016D763004374C2 /* CoreLocation.framework in Frameworks */,
-				7406D3441016D763004374C2 /* MapKit.framework in Frameworks */,
+				1000000000000000000000BE /* libMetasyntacticShared.a in Frameworks */,
+				100000000000000000000067 /* Foundation.framework in Frameworks */,
+				1000000000000000000000AE /* UIKit.framework in Frameworks */,
+				10000000000000000000003D /* CoreGraphics.framework in Frameworks */,
+				100000000000000000000026 /* CFNetwork.framework in Frameworks */,
+				1000000000000000000000A3 /* SystemConfiguration.framework in Frameworks */,
+				10000000000000000000007D /* MessageUI.framework in Frameworks */,
+				1000000000000000000000C0 /* libsqlite3.dylib in Frameworks */,
+				10000000000000000000003F /* CoreLocation.framework in Frameworks */,
+				10000000000000000000007B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		100000000000000000000027 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
-				745A09390F2ED8ED002F64C6 /* Caches */,
-				74954DEF0F38D9A300E79E24 /* Data */,
-				748BA6210F816D5200D79388 /* Shared */,
-				74CF65690F58A17100417ED5 /* Text */,
-				742DB8150F120DC30079E6B0 /* UI */,
-				748BA54B0F816A8600D79388 /* AppDelegate.h */,
-				7401029C0F276D2700258353 /* Application.h */,
-				745A09210F2ED55A002F64C6 /* Controller.h */,
-				742DB7820F12095C0079E6B0 /* Model.h */,
-				748BA54C0F816A8600D79388 /* AppDelegate.m */,
-				7401029D0F276D2700258353 /* Application.m */,
-				745A09220F2ED55A002F64C6 /* Controller.m */,
-				742DB7830F12095C0079E6B0 /* Model.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		19C28FACFE9D520D11CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1D6058910D05DD3D006BFB54 /* YourRights.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
-			isa = PBXGroup;
-			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				743C01DF0F44CEAC001BBBBA /* Entitlements.plist */,
-				742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */,
-			);
-			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				74954D040F38CD2700E79E24 /* Macros.h */,
-				32CA4F630368D1EE00C91783 /* YourRights_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				74A53143101D13E4004F9C9B /* MetasyntacticResources.bundle */,
-				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				7406DA5810170988004374C2 /* Default.png */,
-				742DB84C0F129F070079E6B0 /* Icon.png */,
-				74CF65580F58A0EA00417ED5 /* Localizable.strings */,
-				746295390F135CF90073F830 /* License.txt */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7406D33E1016D753004374C2 /* libsqlite3.dylib */,
-				740101C00F26EB8300258353 /* CFNetwork.framework */,
-				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
-				7406D3411016D763004374C2 /* CoreLocation.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				7406D3431016D763004374C2 /* MapKit.framework */,
-				742372A70FD249D200E19B63 /* MessageUI.framework */,
-				74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		742371D10FD2476D00E19B63 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		742DB8150F120DC30079E6B0 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				74954D2A0F38CE3F00E79E24 /* NavigationControllers */,
-				74954D2C0F38CE5E00E79E24 /* TableViewCells */,
-				74954D2B0F38CE4A00E79E24 /* ViewControllers */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		745A09390F2ED8ED002F64C6 /* Caches */ = {
-			isa = PBXGroup;
-			children = (
-				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
-				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
+				100000000000000000000093 /* RSSCache.h */,
+				100000000000000000000094 /* RSSCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
 		};
-		748BA6210F816D5200D79388 /* Shared */ = {
+		100000000000000000000028 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				742371ED0FD247CE00E19B63 /* MetasyntacticShared.h */,
+				100000000000000000000027 /* Caches */,
+				100000000000000000000044 /* Data */,
+				1000000000000000000000A0 /* Shared */,
+				1000000000000000000000A5 /* Text */,
+				1000000000000000000000AC /* UI */,
+				100000000000000000000011 /* AppDelegate.h */,
+				100000000000000000000014 /* Application.h */,
+				100000000000000000000039 /* Controller.h */,
+				100000000000000000000082 /* Model.h */,
+				100000000000000000000012 /* AppDelegate.m */,
+				100000000000000000000015 /* Application.m */,
+				10000000000000000000003A /* Controller.m */,
+				100000000000000000000083 /* Model.m */,
 			);
-			name = Shared;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		74954D2A0F38CE3F00E79E24 /* NavigationControllers */ = {
+		100000000000000000000029 /* Constitution */ = {
 			isa = PBXGroup;
 			children = (
-				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
-				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
-			);
-			name = NavigationControllers;
-			sourceTree = "<group>";
-		};
-		74954D2B0F38CE4A00E79E24 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				74CF647B0F58939100417ED5 /* Constitution */,
-				74CF647C0F58939D00417ED5 /* FederalistPapers */,
-				74954E950F38E14600E79E24 /* ACLUArticlesViewController.h */,
-				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
-				74954E4B0F38DECA00E79E24 /* ACLUNewsViewController.h */,
-				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
-				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
-				74CF62DB0F58706400417ED5 /* DeclarationOfIndependenceViewController.h */,
-				742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */,
-				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
-				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
-				742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */,
-				742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */,
-				74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */,
-				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
-				74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */,
-				742DB8B20F12A7190079E6B0 /* AnswerViewController.m */,
-				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
-				74CF62DC0F58706400417ED5 /* DeclarationOfIndependenceViewController.m */,
-				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
-				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
-				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
-				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
-				742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		74954D2C0F38CE5E00E79E24 /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */,
-				74954F320F38E5F400E79E24 /* ArticleTitleCell.h */,
-				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
-				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
-				74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */,
-				74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */,
-				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
-				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
-			);
-			name = TableViewCells;
-			sourceTree = "<group>";
-		};
-		74954DEF0F38D9A300E79E24 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				740E8D690F3FE93A00798E0C /* Amendment.h */,
-				743D96FA0F3FAC1B00BA0784 /* Article.h */,
-				743D96F60F3FAB5400BA0784 /* Constitution.h */,
-				742DBB850F12D4AC0079E6B0 /* Decision.h */,
-				74D3897E0F58681200B7A51C /* DeclarationOfIndependence.h */,
-				74954DF40F38D9C000E79E24 /* Item.h */,
-				74D389290F58608A00B7A51C /* Person.h */,
-				743D96FD0F3FADB800BA0784 /* Section.h */,
-				740E8D6A0F3FE93A00798E0C /* Amendment.m */,
-				743D96FB0F3FAC1B00BA0784 /* Article.m */,
-				743D96F70F3FAB5400BA0784 /* Constitution.m */,
-				742DBB860F12D4AC0079E6B0 /* Decision.m */,
-				74D3897F0F58681200B7A51C /* DeclarationOfIndependence.m */,
-				74954DF50F38D9C000E79E24 /* Item.m */,
-				74D3892A0F58608A00B7A51C /* Person.m */,
-				743D96FE0F3FADB800BA0784 /* Section.m */,
-			);
-			name = Data;
-			sourceTree = "<group>";
-		};
-		74CF647B0F58939100417ED5 /* Constitution */ = {
-			isa = PBXGroup;
-			children = (
-				740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */,
-				740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */,
-				740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */,
-				74CF65450F58A08A00417ED5 /* ConstitutionViewController.h */,
-				740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */,
-				740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */,
-				740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */,
-				74CF65460F58A08A00417ED5 /* ConstitutionViewController.m */,
+				10000000000000000000002D /* ConstitutionAmendmentViewController.h */,
+				100000000000000000000030 /* ConstitutionArticleViewController.h */,
+				100000000000000000000033 /* ConstitutionSignersViewController.h */,
+				100000000000000000000036 /* ConstitutionViewController.h */,
+				10000000000000000000002E /* ConstitutionAmendmentViewController.m */,
+				100000000000000000000031 /* ConstitutionArticleViewController.m */,
+				100000000000000000000034 /* ConstitutionSignersViewController.m */,
+				100000000000000000000037 /* ConstitutionViewController.m */,
 			);
 			name = Constitution;
 			sourceTree = "<group>";
 		};
-		74CF647C0F58939D00417ED5 /* FederalistPapers */ = {
+		100000000000000000000043 /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				74CF64850F5893FA00417ED5 /* FederalistPapersArticleViewController.h */,
-				74CF64B40F5896DA00417ED5 /* FederalistPapersSectionViewController.h */,
-				74CF63F60F5890CC00417ED5 /* FederalistPapersViewController.h */,
-				74CF64860F5893FA00417ED5 /* FederalistPapersArticleViewController.m */,
-				74CF64B50F5896DA00417ED5 /* FederalistPapersSectionViewController.m */,
-				74CF63F70F5890CC00417ED5 /* FederalistPapersViewController.m */,
+				100000000000000000000028 /* Classes */,
+				100000000000000000000069 /* Frameworks */,
+				100000000000000000000086 /* Other Sources */,
+				10000000000000000000008D /* Products */,
+				100000000000000000000099 /* Resources */,
+				100000000000000000000057 /* Entitlements.plist */,
+				100000000000000000000081 /* MetasyntacticShared.xcodeproj */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		100000000000000000000044 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000000B /* Amendment.h */,
+				100000000000000000000017 /* Article.h */,
+				10000000000000000000002A /* Constitution.h */,
+				100000000000000000000047 /* Decision.h */,
+				10000000000000000000004D /* DeclarationOfIndependence.h */,
+				100000000000000000000070 /* Item.h */,
+				10000000000000000000008A /* Person.h */,
+				10000000000000000000009A /* Section.h */,
+				10000000000000000000000C /* Amendment.m */,
+				100000000000000000000018 /* Article.m */,
+				10000000000000000000002B /* Constitution.m */,
+				100000000000000000000048 /* Decision.m */,
+				10000000000000000000004E /* DeclarationOfIndependence.m */,
+				100000000000000000000071 /* Item.m */,
+				10000000000000000000008B /* Person.m */,
+				10000000000000000000009B /* Section.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		100000000000000000000058 /* FederalistPapers */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000005C /* FederalistPapersArticleViewController.h */,
+				10000000000000000000005F /* FederalistPapersSectionViewController.h */,
+				100000000000000000000062 /* FederalistPapersViewController.h */,
+				10000000000000000000005D /* FederalistPapersArticleViewController.m */,
+				100000000000000000000060 /* FederalistPapersSectionViewController.m */,
+				100000000000000000000063 /* FederalistPapersViewController.m */,
 			);
 			name = FederalistPapers;
 			sourceTree = "<group>";
 		};
-		74CF65690F58A17100417ED5 /* Text */ = {
+		100000000000000000000069 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				74CF65780F58A29500417ED5 /* ArticlesOfConfederation.h */,
-				74CF656A0F58A17F00417ED5 /* FederalistPapers.h */,
-				74CF65B40F58A44800417ED5 /* UnitedStatesConstitution.h */,
-				74CF65790F58A29500417ED5 /* ArticlesOfConfederation.m */,
-				74CF656B0F58A17F00417ED5 /* FederalistPapers.m */,
-				74CF65B50F58A44800417ED5 /* UnitedStatesConstitution.m */,
+				1000000000000000000000BF /* libsqlite3.dylib */,
+				100000000000000000000025 /* CFNetwork.framework */,
+				10000000000000000000003C /* CoreGraphics.framework */,
+				10000000000000000000003E /* CoreLocation.framework */,
+				100000000000000000000066 /* Foundation.framework */,
+				10000000000000000000007A /* MapKit.framework */,
+				10000000000000000000007C /* MessageUI.framework */,
+				1000000000000000000000A2 /* SystemConfiguration.framework */,
+				1000000000000000000000AD /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		100000000000000000000085 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000000B8 /* YourRightsNavigationController.h */,
+				1000000000000000000000B9 /* YourRightsNavigationController.m */,
+			);
+			name = NavigationControllers;
+			sourceTree = "<group>";
+		};
+		100000000000000000000086 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000077 /* Macros.h */,
+				1000000000000000000000BB /* YourRights_Prefix.pch */,
+				1000000000000000000000C1 /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		10000000000000000000008D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000000B7 /* YourRights.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10000000000000000000008E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000000BD /* libMetasyntacticShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		100000000000000000000099 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000007E /* MetasyntacticResources.bundle */,
+				100000000000000000000065 /* ForwardDeclarations.h */,
+				10000000000000000000006F /* Info.plist */,
+				100000000000000000000053 /* Default.png */,
+				10000000000000000000006D /* Icon.png */,
+				100000000000000000000075 /* Localizable.strings */,
+				100000000000000000000073 /* License.txt */,
+				100000000000000000000078 /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1000000000000000000000A0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000080 /* MetasyntacticShared.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		1000000000000000000000A4 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000001A /* ArticleBodyCell.h */,
+				10000000000000000000001D /* ArticleTitleCell.h */,
+				10000000000000000000004A /* DecisionCell.h */,
+				1000000000000000000000B3 /* WrappableCell.h */,
+				10000000000000000000001B /* ArticleBodyCell.m */,
+				10000000000000000000001E /* ArticleTitleCell.m */,
+				10000000000000000000004B /* DecisionCell.m */,
+				1000000000000000000000B4 /* WrappableCell.m */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		1000000000000000000000A5 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000020 /* ArticlesOfConfederation.h */,
+				100000000000000000000059 /* FederalistPapers.h */,
+				1000000000000000000000AF /* UnitedStatesConstitution.h */,
+				100000000000000000000021 /* ArticlesOfConfederation.m */,
+				10000000000000000000005A /* FederalistPapers.m */,
+				1000000000000000000000B0 /* UnitedStatesConstitution.m */,
 			);
 			name = Text;
+			sourceTree = "<group>";
+		};
+		1000000000000000000000AC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000085 /* NavigationControllers */,
+				1000000000000000000000A4 /* TableViewCells */,
+				1000000000000000000000B2 /* ViewControllers */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		1000000000000000000000B2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000029 /* Constitution */,
+				100000000000000000000058 /* FederalistPapers */,
+				100000000000000000000000 /* ACLUArticlesViewController.h */,
+				100000000000000000000003 /* ACLUInfoViewController.h */,
+				100000000000000000000006 /* ACLUNewsViewController.h */,
+				10000000000000000000000E /* AnswerViewController.h */,
+				100000000000000000000040 /* CreditsViewController.h */,
+				100000000000000000000050 /* DeclarationOfIndependenceViewController.h */,
+				10000000000000000000006A /* GreatestHitsViewController.h */,
+				100000000000000000000090 /* QuestionsViewController.h */,
+				10000000000000000000009D /* SectionViewController.h */,
+				1000000000000000000000A6 /* ToughAnswerViewController.h */,
+				1000000000000000000000A9 /* ToughQuestionsViewController.h */,
+				100000000000000000000001 /* ACLUArticlesViewController.m */,
+				100000000000000000000004 /* ACLUInfoViewController.m */,
+				100000000000000000000007 /* ACLUNewsViewController.m */,
+				10000000000000000000000F /* AnswerViewController.m */,
+				100000000000000000000041 /* CreditsViewController.m */,
+				100000000000000000000051 /* DeclarationOfIndependenceViewController.m */,
+				10000000000000000000006B /* GreatestHitsViewController.m */,
+				100000000000000000000091 /* QuestionsViewController.m */,
+				10000000000000000000009E /* SectionViewController.m */,
+				1000000000000000000000A7 /* ToughAnswerViewController.m */,
+				1000000000000000000000AA /* ToughQuestionsViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* YourRights */ = {
+		1000000000000000000000B6 /* YourRights */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "YourRights" */;
+			buildConfigurationList = 100000000000000000000023 /* Build configuration list for PBXNativeTarget "YourRights" */;
 			buildPhases = (
-				1D60588D0D05DD3D006BFB54 /* Resources */,
-				1D60588E0D05DD3D006BFB54 /* Sources */,
-				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				100000000000000000000098 /* Resources */,
+				1000000000000000000000A1 /* Sources */,
+				100000000000000000000068 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7423723B0FD2487D00E19B63 /* PBXTargetDependency */,
+				100000000000000000000089 /* PBXTargetDependency */,
 			);
 			name = YourRights;
 			productName = YourRights;
-			productReference = 1D6058910D05DD3D006BFB54 /* YourRights.app */;
+			productReference = 1000000000000000000000B7 /* YourRights.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		29B97313FDCFA39411CA2CEA /* Project object */ = {
+		10000000000000000000008F /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "YourRights" */;
+			buildConfigurationList = 100000000000000000000024 /* Build configuration list for PBXProject "YourRights" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -481,110 +481,110 @@
 				German,
 				en,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 100000000000000000000043 /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 742371D10FD2476D00E19B63 /* Products */;
-					ProjectRef = 742371D00FD2476D00E19B63 /* MetasyntacticShared.xcodeproj */;
+					ProductGroup = 10000000000000000000008E /* Products */;
+					ProjectRef = 100000000000000000000081 /* MetasyntacticShared.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* YourRights */,
+				1000000000000000000000B6 /* YourRights */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		742371D80FD2476D00E19B63 /* libMetasyntacticShared.a */ = {
+		1000000000000000000000BD /* libMetasyntacticShared.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMetasyntacticShared.a;
-			remoteRef = 742371D70FD2476D00E19B63 /* PBXContainerItemProxy */;
+			remoteRef = 100000000000000000000087 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+		100000000000000000000098 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
-				7462953A0F135CF90073F830 /* License.txt in Resources */,
-				74CF655A0F58A0EA00417ED5 /* Localizable.strings in Resources */,
-				7406DA5910170988004374C2 /* Default.png in Resources */,
-				74A53144101D13E4004F9C9B /* MetasyntacticResources.bundle in Resources */,
+				100000000000000000000079 /* MainWindow.xib in Resources */,
+				10000000000000000000006E /* Icon.png in Resources */,
+				100000000000000000000074 /* License.txt in Resources */,
+				100000000000000000000076 /* Localizable.strings in Resources */,
+				100000000000000000000054 /* Default.png in Resources */,
+				10000000000000000000007F /* MetasyntacticResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+		1000000000000000000000A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */,
-				742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */,
-				742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */,
-				742DB7840F12095C0079E6B0 /* Model.m in Sources */,
-				742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */,
-				742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */,
-				742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */,
-				742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */,
-				742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */,
-				742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */,
-				742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */,
-				742DBF1A0F132AD50079E6B0 /* ACLUInfoViewController.m in Sources */,
-				742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */,
-				7401029E0F276D2700258353 /* Application.m in Sources */,
-				745A09230F2ED55A002F64C6 /* Controller.m in Sources */,
-				745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */,
-				74954DF60F38D9C000E79E24 /* Item.m in Sources */,
-				74954E4D0F38DECA00E79E24 /* ACLUNewsViewController.m in Sources */,
-				74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */,
-				74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */,
-				74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */,
-				743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */,
-				743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */,
-				743D96FF0F3FADB800BA0784 /* Section.m in Sources */,
-				740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */,
-				740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */,
-				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
-				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
-				74D3892B0F58608A00B7A51C /* Person.m in Sources */,
-				74D389800F58681200B7A51C /* DeclarationOfIndependence.m in Sources */,
-				74CF62DD0F58706400417ED5 /* DeclarationOfIndependenceViewController.m in Sources */,
-				74CF63F80F5890CC00417ED5 /* FederalistPapersViewController.m in Sources */,
-				74CF64870F5893FA00417ED5 /* FederalistPapersArticleViewController.m in Sources */,
-				74CF64B60F5896DA00417ED5 /* FederalistPapersSectionViewController.m in Sources */,
-				74CF65470F58A08A00417ED5 /* ConstitutionViewController.m in Sources */,
-				74CF656C0F58A17F00417ED5 /* FederalistPapers.m in Sources */,
-				74CF657A0F58A29500417ED5 /* ArticlesOfConfederation.m in Sources */,
-				74CF65B60F58A44800417ED5 /* UnitedStatesConstitution.m in Sources */,
-				748BA54D0F816A8600D79388 /* AppDelegate.m in Sources */,
+				1000000000000000000000C2 /* main.m in Sources */,
+				10000000000000000000009F /* SectionViewController.m in Sources */,
+				1000000000000000000000BA /* YourRightsNavigationController.m in Sources */,
+				100000000000000000000092 /* QuestionsViewController.m in Sources */,
+				100000000000000000000084 /* Model.m in Sources */,
+				1000000000000000000000B5 /* WrappableCell.m in Sources */,
+				100000000000000000000010 /* AnswerViewController.m in Sources */,
+				1000000000000000000000AB /* ToughQuestionsViewController.m in Sources */,
+				1000000000000000000000A8 /* ToughAnswerViewController.m in Sources */,
+				100000000000000000000049 /* Decision.m in Sources */,
+				10000000000000000000006C /* GreatestHitsViewController.m in Sources */,
+				10000000000000000000004C /* DecisionCell.m in Sources */,
+				100000000000000000000005 /* ACLUInfoViewController.m in Sources */,
+				100000000000000000000042 /* CreditsViewController.m in Sources */,
+				100000000000000000000016 /* Application.m in Sources */,
+				10000000000000000000003B /* Controller.m in Sources */,
+				100000000000000000000095 /* RSSCache.m in Sources */,
+				100000000000000000000072 /* Item.m in Sources */,
+				100000000000000000000008 /* ACLUNewsViewController.m in Sources */,
+				100000000000000000000002 /* ACLUArticlesViewController.m in Sources */,
+				10000000000000000000001F /* ArticleTitleCell.m in Sources */,
+				10000000000000000000001C /* ArticleBodyCell.m in Sources */,
+				10000000000000000000002C /* Constitution.m in Sources */,
+				100000000000000000000019 /* Article.m in Sources */,
+				10000000000000000000009C /* Section.m in Sources */,
+				100000000000000000000032 /* ConstitutionArticleViewController.m in Sources */,
+				10000000000000000000000D /* Amendment.m in Sources */,
+				10000000000000000000002F /* ConstitutionAmendmentViewController.m in Sources */,
+				100000000000000000000035 /* ConstitutionSignersViewController.m in Sources */,
+				10000000000000000000008C /* Person.m in Sources */,
+				10000000000000000000004F /* DeclarationOfIndependence.m in Sources */,
+				100000000000000000000052 /* DeclarationOfIndependenceViewController.m in Sources */,
+				100000000000000000000064 /* FederalistPapersViewController.m in Sources */,
+				10000000000000000000005E /* FederalistPapersArticleViewController.m in Sources */,
+				100000000000000000000061 /* FederalistPapersSectionViewController.m in Sources */,
+				100000000000000000000038 /* ConstitutionViewController.m in Sources */,
+				10000000000000000000005B /* FederalistPapers.m in Sources */,
+				100000000000000000000022 /* ArticlesOfConfederation.m in Sources */,
+				1000000000000000000000B1 /* UnitedStatesConstitution.m in Sources */,
+				100000000000000000000013 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7423723B0FD2487D00E19B63 /* PBXTargetDependency */ = {
+		100000000000000000000089 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MetasyntacticShared3;
-			targetProxy = 7423723A0FD2487D00E19B63 /* PBXContainerItemProxy */;
+			targetProxy = 100000000000000000000088 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		74CF65580F58A0EA00417ED5 /* Localizable.strings */ = {
+		100000000000000000000075 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				74CF65590F58A0EA00417ED5 /* en */,
+				1000000000000000000000BC /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -592,19 +592,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		742DC1700F13427B0079E6B0 /* AdHoc */ = {
+		100000000000000000000009 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -630,44 +618,19 @@
 			};
 			name = AdHoc;
 		};
-		742DC1710F13427B0079E6B0 /* AdHoc */ = {
+		10000000000000000000000A /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = AdHoc;
 		};
-		742DC1720F13427F0079E6B0 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
-				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
-				SDKROOT = iphonesimulator3.0;
-			};
-			name = Distribution;
-		};
-		742DC1730F13427F0079E6B0 /* Distribution */ = {
+		100000000000000000000045 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
-			name = Distribution;
+			name = Debug;
 		};
-		C01FCF4F08A954540054247B /* Debug */ = {
+		100000000000000000000046 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -692,7 +655,44 @@
 			};
 			name = Debug;
 		};
-		C01FCF5008A954540054247B /* Release */ = {
+		100000000000000000000055 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = YourRights_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Distribution;
+		};
+		100000000000000000000056 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Distribution;
+		};
+		100000000000000000000096 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		100000000000000000000097 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -717,29 +717,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "YourRights" */ = {
+		100000000000000000000023 /* Build configuration list for PBXNativeTarget "YourRights" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
-				742DC1730F13427F0079E6B0 /* Distribution */,
-				742DC1710F13427B0079E6B0 /* AdHoc */,
+				100000000000000000000045 /* Debug */,
+				100000000000000000000096 /* Release */,
+				100000000000000000000056 /* Distribution */,
+				10000000000000000000000A /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "YourRights" */ = {
+		100000000000000000000024 /* Build configuration list for PBXProject "YourRights" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug */,
-				C01FCF5008A954540054247B /* Release */,
-				742DC1720F13427F0079E6B0 /* Distribution */,
-				742DC1700F13427B0079E6B0 /* AdHoc */,
+				100000000000000000000046 /* Debug */,
+				100000000000000000000097 /* Release */,
+				100000000000000000000055 /* Distribution */,
+				100000000000000000000009 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+	rootObject = 10000000000000000000008F /* Project object */;
 }
