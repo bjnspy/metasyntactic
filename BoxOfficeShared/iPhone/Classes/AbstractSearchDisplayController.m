@@ -46,9 +46,7 @@
 }
 
 
-- (void) setupDefaultScopeButtonTitles {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) setupDefaultScopeButtonTitles AbstractMethod;
 
 
 - (id) initWithSearchBar:(UISearchBar*) searchBar__
@@ -83,9 +81,7 @@
 }
 
 
-- (AbstractSearchEngine*) createSearchEngine {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (AbstractSearchEngine*) createSearchEngine AbstractMethod;
 
 
 - (AbstractSearchEngine*) searchEngine {

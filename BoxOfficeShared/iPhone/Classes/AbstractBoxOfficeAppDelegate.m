@@ -115,14 +115,10 @@
 }
 
 
-- (BOOL) largePosterCacheAlwaysEnabled {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) largePosterCacheAlwaysEnabled AbstractMethod;
 
 
-- (BOOL) netflixCacheAlwaysEnabled {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) netflixCacheAlwaysEnabled AbstractMethod;
 
 
 - (BOOL) netflixEnabled {

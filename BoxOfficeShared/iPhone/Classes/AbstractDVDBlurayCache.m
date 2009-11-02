@@ -59,14 +59,10 @@
 }
 
 
-- (NSString*) serverAddress {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) serverAddress AbstractMethod;
 
 
-- (NSString*) directory {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) directory AbstractMethod;
 
 
 - (NSString*) detailsDirectory {
@@ -111,9 +107,7 @@
 }
 
 
-- (NSArray*) loadBookmarksArray {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) loadBookmarksArray AbstractMethod;
 
 
 - (NSDictionary*) loadBookmarks {
@@ -338,9 +332,7 @@
 }
 
 
-- (NSString*) notificationString {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) notificationString AbstractMethod;
 
 
 - (BOOL) tooSoon {

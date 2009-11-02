@@ -25,14 +25,10 @@
 }
 
 
-- (NSString*) cacheDirectory {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) cacheDirectory AbstractMethod;
 
 
-- (NSString*) serverUrl:(Movie*) movie {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) serverUrl:(Movie*) movie AbstractMethod;
 
 
 - (NSString*) addressFile:(Movie*) movie {

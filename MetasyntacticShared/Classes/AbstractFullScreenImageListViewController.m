@@ -62,24 +62,16 @@ const NSInteger PAGE_RANGE = 2;
 }
 
 
-- (BOOL) allImagesDownloaded {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) allImagesDownloaded AbstractMethod;
 
 
-- (BOOL) imageExistsForPage:(NSInteger) page {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) imageExistsForPage:(NSInteger) page AbstractMethod;
 
 
-- (UIImage*) imageForPage:(NSInteger) page {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (UIImage*) imageForPage:(NSInteger) page AbstractMethod;
 
 
-- (BOOL) allowsSaving {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) allowsSaving AbstractMethod;
 
 
 - (void) onBeforeViewControllerPushed {

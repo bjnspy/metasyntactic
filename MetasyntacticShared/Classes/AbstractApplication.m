@@ -226,9 +226,7 @@ static BOOL shutdownCleanly = NO;
 }
 
 
-+ (NSArray*) directoriesToKeep {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
++ (NSArray*) directoriesToKeep AbstractMethod;
 
 
 + (void) clearStaleDataBackgroundEntryPoint {

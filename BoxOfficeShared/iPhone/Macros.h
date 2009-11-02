@@ -34,3 +34,5 @@
 #define CACHE_LIMIT (30.0 * ONE_DAY)
 
 #define LocalizedString(key, comment) [MetasyntacticSharedApplication localizedString:key]
+
+#define AbstractMethod { @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil]; }

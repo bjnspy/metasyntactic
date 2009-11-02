@@ -33,3 +33,5 @@
 #define LocalizedString(key,comment) ([MetasyntacticSharedApplication localizedString:(key)])
 
 #define CFAutoRelease(typeRef) ((void*)[NSMakeCollectable(typeRef) autorelease])
+
+#define AbstractMethod { @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil]; }

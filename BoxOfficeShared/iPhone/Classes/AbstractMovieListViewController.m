@@ -51,49 +51,31 @@
 }
 
 
-- (NSArray*) movies {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) movies AbstractMethod;
 
 
-- (BOOL) sortingByTitle {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) sortingByTitle AbstractMethod;
 
 
-- (BOOL) sortingByReleaseDate {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) sortingByReleaseDate AbstractMethod;
 
 
-- (BOOL) sortingByScore {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) sortingByScore AbstractMethod;;
 
 
-- (BOOL) sortingByFavorite {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (BOOL) sortingByFavorite AbstractMethod;
 
 
-- (void) onSortOrderChanged:(id) sender {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) onSortOrderChanged:(id) sender AbstractMethod;
 
 
-- (UITableViewCell*) createCell:(Movie*) movie {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (UITableViewCell*) createCell:(Movie*) movie AbstractMethod;
 
 
-- (int(*)(id,id,void*)) sortByReleaseDateFunction {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (int(*)(id,id,void*)) sortByReleaseDateFunction AbstractMethod;
 
 
-- (UISegmentedControl*) createSegmentedControl {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (UISegmentedControl*) createSegmentedControl AbstractMethod;
 
 
 - (void) removeUnusedSectionTitles {

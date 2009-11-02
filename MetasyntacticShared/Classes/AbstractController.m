@@ -45,10 +45,7 @@
 }
 
 
-- (void) startWorker:(BOOL) force {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
+- (void) startWorker:(BOOL) force AbstractMethod;
 
 - (void) start:(BOOL) force {
   [abstractModel tryShowWriteReviewRequest];

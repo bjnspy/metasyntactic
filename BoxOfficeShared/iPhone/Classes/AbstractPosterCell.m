@@ -103,9 +103,7 @@
 }
 
 
-- (void) loadMovieWorker:(id) owner {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) loadMovieWorker:(id) owner AbstractMethod;
 
 
 - (void) loadMovie:(id) owner {

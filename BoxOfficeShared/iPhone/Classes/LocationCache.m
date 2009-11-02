@@ -106,9 +106,7 @@
 }
 
 
-- (NSString*) locationDirectory {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) locationDirectory AbstractMethod;
 
 
 - (NSString*) locationFile:(NSString*) address {

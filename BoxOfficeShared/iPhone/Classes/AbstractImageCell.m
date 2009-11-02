@@ -92,14 +92,10 @@
 }
 
 
-- (UIImage*) loadImageWorker {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (UIImage*) loadImageWorker AbstractMethod;
 
 
-- (void) prioritizeImage {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) prioritizeImage AbstractMethod;
 
 
 - (void) prepareForReuse {
@@ -186,19 +182,13 @@
 }
 
 
-- (NSArray*) allLabels {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) allLabels AbstractMethod;
 
 
-- (NSArray*) titleLabels {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) titleLabels AbstractMethod;
 
 
-- (NSArray*) valueLabels {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) valueLabels AbstractMethod;
 
 
 - (void) layoutSubviews {
