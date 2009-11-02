@@ -763,7 +763,7 @@ static NSString** directories[] = {
   NSHTTPURLResponse* response;
   XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                           response:&response];
-  
+
   [self checkApiResult:account element:element];
 
   NSString* etag = [self extractEtagFromElement:element andResponse:response];
