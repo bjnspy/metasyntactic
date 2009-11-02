@@ -18,10 +18,47 @@
 #import "AbstractModel.h"
 #import "MetasyntacticSharedApplication.h"
 
+@interface AbstractController()
+@property (retain) AbstractModel* abstractModel;
+@end
+
 @implementation AbstractController
 
-- (void) start:(AbstractModel*) model {
-  [model tryShowWriteReviewRequest];
+@synthesize abstractModel;
+
+- (void) dealloc {
+  self.abstractModel = nil;
+  [super dealloc];
+}
+
+
+- (id) initWithModel:(AbstractModel*) abstractModel_ {
+  if ((self = [super init])) {
+    self.abstractModel = abstractModel_;
+  }
+  return self;
+}
+
+
+- (id) init {
+  @throw [NSException exceptionWithName:@"UnsupportedOperation" reason:@"" userInfo:nil];
+}
+
+
+- (void) startWorker:(BOOL) force {
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) start:(BOOL) force {
+  [abstractModel tryShowWriteReviewRequest];
+
+  [self startWorker:force];
+}
+
+
+- (void) start {
+  [self start:NO];
 }
 
 @end
