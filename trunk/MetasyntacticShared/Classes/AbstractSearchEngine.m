@@ -57,15 +57,11 @@
 }
 
 
-- (void) searchWorker:(AbstractSearchRequest*) request {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) searchWorker:(AbstractSearchRequest*) request AbstractMethod;
 
 
 - (AbstractSearchRequest*) createSearchRequest:(NSInteger) requestId
-                                         value:(NSString*) value {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+                                         value:(NSString*) value AbstractMethod;
 
 
 - (BOOL) abortEarly:(AbstractSearchRequest*) currentlyExecutingRequest {

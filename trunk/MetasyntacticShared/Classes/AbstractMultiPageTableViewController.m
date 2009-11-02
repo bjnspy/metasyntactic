@@ -43,24 +43,16 @@
 }
 
 
-- (void) initializeData {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) initializeData AbstractMethod;
 
 
-- (void) moveBackward:(UITableView*) previousTableView {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) moveBackward:(UITableView*) previousTableView AbstractMethod;
 
 
-- (void) moveForward:(UITableView*) nextTableView {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (void) moveForward:(UITableView*) nextTableView AbstractMethod;
 
 
-- (NSInteger) cacheTableViews {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSInteger) cacheTableViews AbstractMethod;
 
 
 - (UIBarButtonItem*) createFlexibleSpace {

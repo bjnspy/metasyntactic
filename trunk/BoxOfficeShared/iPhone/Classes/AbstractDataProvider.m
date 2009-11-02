@@ -285,9 +285,7 @@
 
 - (LookupResult*) lookupLocation:(Location*) location
                       searchDate:(NSDate*) searchDate
-                    theaterNames:(NSArray*) theaterNames {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+                    theaterNames:(NSArray*) theaterNames AbstractMethod;
 
 
 - (BOOL)        results:(LookupResult*) lookupResult

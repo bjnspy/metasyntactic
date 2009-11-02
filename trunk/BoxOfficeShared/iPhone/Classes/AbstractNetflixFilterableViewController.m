@@ -101,9 +101,7 @@
 }
 
 
-- (NSArray*) determineMovies {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSArray*) determineMovies AbstractMethod;
 
 
 - (void) onBeforeReloadTableViewData {

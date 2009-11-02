@@ -43,9 +43,7 @@
 }
 
 
-- (NSDictionary*) createMapWorker {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSDictionary*) createMapWorker AbstractMethod;
 
 
 - (NSString*) indexFile {

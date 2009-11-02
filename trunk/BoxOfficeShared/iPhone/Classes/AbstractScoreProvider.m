@@ -51,19 +51,13 @@
 }
 
 
-- (NSString*) providerName {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) providerName AbstractMethod;
 
 
-- (NSString*) lookupServerHash {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSString*) lookupServerHash AbstractMethod;
 
 
-- (NSMutableDictionary*) lookupServerScores {
-  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
+- (NSMutableDictionary*) lookupServerScores AbstractMethod;
 
 
 - (NSString*) hashFile {
