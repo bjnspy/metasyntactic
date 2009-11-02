@@ -406,7 +406,7 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
 
     [Application openBrowser:url];
   } else if (indexPath.section == LocalizedBySection) {
-    //[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
   } else if (indexPath.section == LicenseSection) {
     [self licenseCellTapped];
   }
