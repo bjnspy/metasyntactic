@@ -10,6 +10,8 @@
 		7406D88E1016FE96004374C2 /* SplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 7406D88B1016FE96004374C2 /* SplashScreen.h */; };
 		7406D88F1016FE96004374C2 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406D88C1016FE96004374C2 /* SplashScreen.m */; };
 		7406D8901016FE96004374C2 /* SplashScreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7406D88D1016FE96004374C2 /* SplashScreenDelegate.h */; };
+		740CF2C9109E794F00133AD6 /* AbstractController.h in Headers */ = {isa = PBXBuildFile; fileRef = 740CF2C7109E794F00133AD6 /* AbstractController.h */; };
+		740CF2CA109E794F00133AD6 /* AbstractController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CF2C8109E794F00133AD6 /* AbstractController.m */; };
 		7415775F0FD5A5C00060E73E /* AbstractData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415775B0FD5A5C00060E73E /* AbstractData.h */; };
 		741577600FD5A5C00060E73E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7415775C0FD5A5C00060E73E /* AbstractData.m */; };
 		741B09261099252F003F6B11 /* AbstractCollapsedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */; };
@@ -282,6 +284,8 @@
 		7406D88B1016FE96004374C2 /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
 		7406D88C1016FE96004374C2 /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
 		7406D88D1016FE96004374C2 /* SplashScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenDelegate.h; sourceTree = "<group>"; };
+		740CF2C7109E794F00133AD6 /* AbstractController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractController.h; sourceTree = "<group>"; };
+		740CF2C8109E794F00133AD6 /* AbstractController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractController.m; sourceTree = "<group>"; };
 		7415775B0FD5A5C00060E73E /* AbstractData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractData.h; sourceTree = "<group>"; };
 		7415775C0FD5A5C00060E73E /* AbstractData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
 		741B09241099252F003F6B11 /* AbstractCollapsedDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCollapsedDetailsCell.h; sourceTree = "<group>"; };
@@ -599,6 +603,8 @@
 				74E6FC660FD1B0DA0015D9F8 /* MetasyntacticSharedApplication.m */,
 				7477DE21109B983C0068C724 /* StyleSheet.h */,
 				7477DE22109B983C0068C724 /* StyleSheet.m */,
+				740CF2C7109E794F00133AD6 /* AbstractController.h */,
+				740CF2C8109E794F00133AD6 /* AbstractController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				741B102B109B70BA003F6B11 /* NSSet+Utilities.h in Headers */,
 				7477DCC4109B93B40068C724 /* UIColor+Utilities.h in Headers */,
 				7477DE23109B983C0068C724 /* StyleSheet.h in Headers */,
+				740CF2C9109E794F00133AD6 /* AbstractController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,6 +1396,7 @@
 				741B102C109B70BA003F6B11 /* NSSet+Utilities.m in Sources */,
 				7477DCC5109B93B40068C724 /* UIColor+Utilities.m in Sources */,
 				7477DE24109B983C0068C724 /* StyleSheet.m in Sources */,
+				740CF2CA109E794F00133AD6 /* AbstractController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,7 +1457,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -1473,7 +1481,7 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8061A567-D592-4E95-A964-C81EA473B76B";
-				SDKROOT = iphonesimulator3.1;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
