@@ -14,7 +14,7 @@
 
 #import "DataProviderUpdateDelegate.h"
 
-@interface Controller : NSObject<DataProviderUpdateDelegate> {
+@interface Controller : AbstractController<DataProviderUpdateDelegate> {
 @private
   LocationManager* locationManager;
   NSLock* determineLocationGate;
