@@ -127,27 +127,27 @@ static NSString* REVIEW_PERIOD_COMPLETE                     = @"reviewPeriodComp
   if (url.length == 0) {
     return;
   }
-  
+
   NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:self.firstLaunchKey];
   if (firstLaunchDate == nil) {
     return;
   }
-  
+
   NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
   if (interval < ONE_MONTH) {
     return;
   }
-  
+
   NSInteger runCount = self.runCount;
   if (runCount < 20) {
     return;
   }
-  
+
   BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:self.writeReviewKey];
   if (hasShown) {
     return;
   }
-  
+
   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.writeReviewKey];
   [self synchronize];
 

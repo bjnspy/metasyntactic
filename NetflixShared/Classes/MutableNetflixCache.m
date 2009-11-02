@@ -157,9 +157,9 @@
   NSHTTPURLResponse* response;
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                              response:&response];
-  
+
   [self checkApiResult:account element:element];
-  
+
   NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
   if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
@@ -304,9 +304,9 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  
+
   [self checkApiResult:account element:element];
-  
+
   NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
@@ -334,9 +334,9 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  
+
   [self checkApiResult:account element:element];
-  
+
   NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
@@ -522,9 +522,9 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  
+
   [self checkApiResult:addArguments.account element:element];
-  
+
   NSString* error;
   Queue* finalQueue = [self processAddMovieResult:element
                                             queue:addArguments.queue
@@ -563,9 +563,9 @@ andReorderingMovies:[IdentitySet set]
   [request prepare];
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
-  
+
   [self checkApiResult:account element:element];
-  
+
   NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
   if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
