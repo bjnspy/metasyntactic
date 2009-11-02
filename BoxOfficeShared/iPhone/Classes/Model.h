@@ -73,6 +73,8 @@ enum ViewControllerType {
 
 + (Model*) model;
 
+- (void) checkCountry;
+
 - (BOOL) loadingIndicatorsEnabled;
 - (void) setLoadingIndicatorsEnabled:(BOOL) value;
 
