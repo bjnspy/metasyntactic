@@ -369,7 +369,7 @@ const NSInteger PAGE_RANGE = 2;
 - (void) setupNormalToolbar {
   NSString* title =
   [NSString stringWithFormat:
-   LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of posters"), (currentPage + 1), imageCount];
+   LocalizedString(@"%d of %d", @"i.e.: 5 of 15.  Used when scrolling through a list of items"), (currentPage + 1), imageCount];
 
   UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = title;
@@ -503,7 +503,7 @@ const NSInteger PAGE_RANGE = 2;
                         cancelButtonTitle:LocalizedString(@"Cancel", nil)
                    destructiveButtonTitle:nil
                         otherButtonTitles:LocalizedString(@"Save to Photo Library", @"Button to let the user save a poster to their photo library"),
-      LocalizedString(@"Save All to Photo Library", @"Button to let the user save all the posters to their photo library"), nil] autorelease];
+      LocalizedString(@"Save All to Photo Library", @"Button to let the user save all the images to their photo library"), nil] autorelease];
   } else {
     actionSheet =
     [[[UIActionSheet alloc] initWithTitle:nil
@@ -518,7 +518,7 @@ const NSInteger PAGE_RANGE = 2;
 
 
 - (void) reportSingleSave:(NSNumber*) number {
-  NSString* text = [NSString stringWithFormat:LocalizedString(@"Saving %d of %d", @"i.e.: Saving 5 of 15.  Used when saving a list of posters"), number.integerValue + 1, imageCount];
+  NSString* text = [NSString stringWithFormat:LocalizedString(@"Saving %d of %d", @"i.e.: Saving 5 of 15.  Used when saving a list of images"), number.integerValue + 1, imageCount];
   [self updateSavingToolbar:text];
 }
 
