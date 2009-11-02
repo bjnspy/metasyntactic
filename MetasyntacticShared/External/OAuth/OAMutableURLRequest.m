@@ -122,8 +122,8 @@
   // OAuth Spec, Section 9.1.2 "Concatenate Request Elements"
   return [NSString stringWithFormat:@"%@&%@&%@",
           self.HTTPMethod,
-          [NSStringAdditions encodedURLParameterString:[NSURLAdditions URLStringWithoutQuery:self.URL]],
-          [NSStringAdditions encodedURLString:normalizedRequestParameters]];
+          self.URL.URLStringWithoutQuery.encodedURLParameterString,
+          normalizedRequestParameters.encodedURLString];
 }
 
 
@@ -138,15 +138,15 @@
   // set OAuth headers
   NSString* oauthToken = @"";
   if (token.key.length > 0) {
-    oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [NSStringAdditions encodedURLParameterString:token.key]];
+    oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", token.key.encodedURLParameterString];
   }
   
   NSString* oauthHeader = [NSString stringWithFormat:@"OAuth realm=\"%@\", oauth_consumer_key=\"%@\", %@oauth_signature_method=\"%@\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",
-                           [NSStringAdditions encodedURLParameterString:realm],
-                           [NSStringAdditions encodedURLParameterString:consumer.key],
+                           realm.encodedURLParameterString,
+                           consumer.key.encodedURLParameterString,
                            oauthToken,
-                           [NSStringAdditions encodedURLParameterString:@"HMAC-SHA1"],
-                           [NSStringAdditions encodedURLParameterString:signature],
+                           [@"HMAC-SHA1" encodedURLParameterString],
+                           signature.encodedURLParameterString,
                            timestamp,
                            nonce];
   

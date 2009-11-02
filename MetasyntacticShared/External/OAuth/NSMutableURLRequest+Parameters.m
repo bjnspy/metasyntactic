@@ -132,7 +132,7 @@
   
   if ([request.HTTPMethod isEqualToString:@"GET"] ||
       [request.HTTPMethod isEqualToString:@"DELETE"]) {
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [NSURLAdditions URLStringWithoutQuery:request.URL], encodedParameterPairs]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", request.URL.URLStringWithoutQuery, encodedParameterPairs]]];
   } else {
     // POST, PUT
     NSData* postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
