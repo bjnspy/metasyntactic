@@ -23,17 +23,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if 0
 @interface NSURL (OABaseAdditions)
 
 - (NSString*) URLStringWithoutQuery;
 
 @end
-#else
-@interface NSURLAdditions : NSObject {
-}
-
-+ (NSString*) URLStringWithoutQuery:(NSURL*) value;
-
-@end
-#endif
