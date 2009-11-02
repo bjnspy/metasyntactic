@@ -263,7 +263,7 @@ static Model* model = nil;
 + (void) initialize {
   if (self == [Model class]) {
     model = [[Model alloc] init];
-    
+
     [self setupToughQuestions];
     [self setupDeclarationOfIndependence];
 
