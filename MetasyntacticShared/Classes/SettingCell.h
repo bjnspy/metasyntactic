@@ -14,10 +14,10 @@
 
 @interface SettingCell : UITableViewCell {
 @private
-    UILabel* separatorLine;
-
-    NSString* value;
-    NSString* placeholder;
+  UILabel* separatorLine;
+  
+  NSString* value;
+  NSString* placeholder;
 }
 
 @property (copy) NSString* placeholder;
