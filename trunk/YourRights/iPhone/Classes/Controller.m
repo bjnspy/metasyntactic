@@ -23,9 +23,10 @@ static Controller* controller = nil;
 
 + (void) initialize {
   if (self == [Controller class]) {
-    controller = [[Controller alloc] init];
+    controller = [[Controller alloc] initWithModel:[Model model]];
   }
 }
+
 
 + (Controller*) controller {
   return controller;
@@ -37,8 +38,7 @@ static Controller* controller = nil;
 }
 
 
-- (void) start {
-  [super start:self.model];
+- (void) startWorker:(BOOL) force {
   [self.model.rssCache update];
 }
 
