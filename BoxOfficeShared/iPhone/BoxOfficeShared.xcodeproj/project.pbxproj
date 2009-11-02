@@ -1075,8 +1075,8 @@
 			isa = PBXGroup;
 			children = (
 				741111520DFCF61900B94FB5 /* NowPlayingCreditsViewController.h */,
-				741111530DFCF61900B94FB5 /* NowPlayingCreditsViewController.m */,
 				74FB80001017B64A001B5CB9 /* PocketFlicksCreditsViewController.h */,
+				741111530DFCF61900B94FB5 /* NowPlayingCreditsViewController.m */,
 				74FB80011017B64A001B5CB9 /* PocketFlicksCreditsViewController.m */,
 			);
 			name = Credits;

@@ -359,9 +359,11 @@ static NSComparisonResult compareLanguageCodes(id code1, id code2, void* context
   } else if (section == GraphicsBySection) {
     url = @"http://www.comixology.com";
   } else if (section == LocalizedBySection) {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     return;
   } else if (section == LicenseSection) {
     [self licenseCellTapped];
+    return;
   }
 
   [Application openBrowser:url];
