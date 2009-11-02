@@ -15,7 +15,7 @@
 @interface SettingCell : UITableViewCell {
 @private
   UILabel* separatorLine;
-  
+
   NSString* value;
   NSString* placeholder;
 }
