@@ -16,9 +16,14 @@
 
 
 @interface AbstractController : NSObject {
-
+@private
+  AbstractModel* abstractModel;
 }
 
-- (void) start:(AbstractModel*) model;
+/* @protected */
+- (id) initWithModel:(AbstractModel*) model;
+
+- (void) start;
+- (void) start:(BOOL) force;
 
 @end

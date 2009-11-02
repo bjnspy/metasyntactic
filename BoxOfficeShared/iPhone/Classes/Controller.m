@@ -34,7 +34,7 @@ static Controller* controller = nil;
 
 + (void) initialize {
   if (self == [Controller class]) {
-    controller = [[Controller alloc] init];
+    controller = [[Controller alloc] initWithModel:[Model model]];
   }
 }
 
@@ -208,16 +208,10 @@ static Controller* controller = nil;
 }
 
 
-- (void) start:(BOOL) force {
+- (void) startWorker:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
-  [super start:self.model];
   [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
-}
-
-
-- (void) start {
-  [self start:NO];
 }
 
 

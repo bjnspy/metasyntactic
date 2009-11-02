@@ -24,9 +24,6 @@
 
 + (Controller*) controller;
 
-- (void) start;
-- (void) start:(BOOL) force;
-
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setUserAddress:(NSString*) userAddress;
 - (void) setSearchRadius:(NSInteger) radius;
