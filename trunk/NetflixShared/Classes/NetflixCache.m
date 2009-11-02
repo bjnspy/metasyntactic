@@ -28,6 +28,7 @@
 @property (retain) NSDate* lastQuotaErrorDate;
 
 - (void) updateMovieDetails:(Movie*) movie force:(BOOL) force account:(NetflixAccount*) account;
+- (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force;
 @end
 
 
@@ -384,7 +385,15 @@ static NSString** directories[] = {
 }
 
 
-- (void) checkApiResult:(XmlElement*) element {
+- (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element {
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  
+  if (statusCode == 412) {
+    // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
+    [self downloadQueues:account force:YES];
+    return;
+  }
+  
   NSString* message = [[element element:@"message"] text];
   if ([@"Over queries per day limit" isEqual:message]) {
     self.lastQuotaErrorDate = [NSDate date];
@@ -402,7 +411,7 @@ static NSString** directories[] = {
   [request prepare];
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
-  [self checkApiResult:element];
+  [self checkApiResult:account element:element];
 
   NSSet* allowableFeeds = [NSSet setWithObjects:
                            [NetflixCache dvdQueueKey],
@@ -667,6 +676,12 @@ static NSString** directories[] = {
 
 
 - (NSString*) extractErrorMessage:(XmlElement*) element {
+  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  if (statusCode == 412) {
+    // override this error message since the netflix message is very confusing.
+    return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];
+  }
+  
   NSString* message = [[element element:@"message"] text];
   if (message.length > 0) {
     return message;
@@ -702,7 +717,7 @@ static NSString** directories[] = {
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
-  [self checkApiResult:element];
+  [self checkApiResult:account element:element];
 
   if (element == nil) {
     if (error != NULL) {
@@ -934,7 +949,8 @@ static NSString** directories[] = {
 }
 
 
-- (Movie*) downloadMovieWithSeriesKey:(NSString*) seriesKey account:(NetflixAccount*) account {
+- (Movie*) downloadMovieWithSeriesKey:(NSString*) seriesKey
+                              account:(NetflixAccount*) account {
   if (![self canContinue:account]) { return nil; }
 
   OAMutableURLRequest* request = [AbstractNetflixCache createURLRequest:seriesKey account:account];
@@ -942,7 +958,7 @@ static NSString** directories[] = {
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
-  [self checkApiResult:element];
+  [self checkApiResult:account element:element];
 
   return [NetflixCache processMovieItem:element saved:NULL];
 }
@@ -1058,7 +1074,7 @@ static NSString** directories[] = {
 
   XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request];
 
-  [self checkApiResult:element];
+  [self checkApiResult:account element:element];
 
   XmlElement* ratingsItemElment = [element element:@"ratings_item"];
   if (ratingsItemElment == nil) {
@@ -1486,6 +1502,21 @@ static NSString** directories[] = {
 }
 
 
+- (void) downloadQueues:(NetflixAccount*) account force:(BOOL) force {
+  NSArray* feeds = [self feedsForAccount:account];
+  
+  for (Feed* feed in feeds) {
+    [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
+                                            onTarget:self
+                                          withObject:feed
+                                          withObject:account
+                                          withObject:[NSNumber numberWithBool:force]
+                                                gate:runGate
+                                            priority:Priority];
+  }
+}
+
+
 - (void) updateBackgroundEntryPointWorker:(NetflixAccount*) account
                                     force:(BOOL) force {
   if (![self canContinue:account]) { return; }
@@ -1505,16 +1536,8 @@ static NSString** directories[] = {
 
     [MetasyntacticSharedApplication majorRefresh];
   }
-
-  for (Feed* feed in feeds) {
-    [[OperationQueue operationQueue] performSelector:@selector(downloadQueue:account:force:)
-                                            onTarget:self
-                                          withObject:feed
-                                          withObject:account
-                                          withObject:[NSNumber numberWithBool:force]
-                                                gate:runGate
-                                            priority:Priority];
-  }
+  
+  [self downloadQueues:account force:force];
 
   [[OperationQueue operationQueue] performSelector:@selector(downloadRSS:)
                                           onTarget:self
