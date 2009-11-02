@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Model : NSObject {
+@interface Model : AbstractModel {
 @private
   RSSCache* rssCache;
 }
