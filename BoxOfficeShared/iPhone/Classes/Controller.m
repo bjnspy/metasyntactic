@@ -54,8 +54,8 @@ static Controller* controller = nil;
 }
 
 
-- (id) init {
-  if ((self = [super init])) {
+- (id) initWithModel:(Model*) model {
+  if ((self = [super initWithModel:model])) {
     self.locationManager = [LocationManager manager];
     self.determineLocationGate = [[[NSRecursiveLock alloc] init] autorelease];
 
