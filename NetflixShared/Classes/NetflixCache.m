@@ -390,6 +390,7 @@ static NSString** directories[] = {
   
   if (statusCode == 412) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
+    NSLog(@"Etag mismatch error. Force a redownload of the user's queues.");
     [self downloadQueues:account force:YES];
     return;
   }
