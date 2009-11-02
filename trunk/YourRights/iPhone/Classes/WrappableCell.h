@@ -14,8 +14,8 @@
 
 @interface WrappableCell : UITableViewCell {
 @private
-    NSString* title;
-    UILabel* label;
+  NSString* title;
+  UILabel* label;
 }
 
 - (id) initWithTitle:(NSString*) title;
