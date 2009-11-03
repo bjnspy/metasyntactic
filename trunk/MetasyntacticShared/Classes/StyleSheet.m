@@ -76,4 +76,16 @@
   return [UIColor fromHexString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ActionButtonTextColor"]];
 }
 
+
++ (UIStatusBarStyle) statusBarStyle {
+  id value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIStatusBarStyle"];
+  if ([@"UIStatusBarStyleBlackOpaque" isEqual:value]) {
+    return UIStatusBarStyleBlackOpaque;
+  } else if ([@"UIStatusBarStyleBlackTranslucent" isEqual:value]) {
+    return UIStatusBarStyleBlackTranslucent;
+  } else {
+    return UIStatusBarStyleDefault;
+  }
+}
+
 @end

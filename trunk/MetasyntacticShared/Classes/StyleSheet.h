@@ -19,6 +19,8 @@
 
 }
 
++ (UIStatusBarStyle) statusBarStyle;
+
 + (UIBarStyle) navigationBarStyle;
 + (UIBarStyle) searchBarStyle;
 + (UIBarStyle) toolBarStyle;
