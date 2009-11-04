@@ -77,7 +77,7 @@
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     UIFont* font = [MovieShowtimesCell showtimesFont:[[Model model] useSmallFonts]];
 
-    double width;
+    CGFloat width;
     if ([MetasyntacticSharedApplication screenRotationEnabled] &&
         UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
@@ -141,7 +141,7 @@
     }
     showtimesFrame.origin.y = 9;
 
-    double width = self.frame.size.width;
+    CGFloat width = self.frame.size.width;
     width -= 20; // outer margin
     width -= showtimesFrame.origin.x; // image
     width -= 18; // accessory

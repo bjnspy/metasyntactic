@@ -34,8 +34,8 @@
 
 
 - (CGRect) growFrame:(CGRect) finalFrame {
-  CGFloat newHeight = finalFrame.size.height * 1.5;
-  CGFloat newWidth = finalFrame.size.width * 1.5;
+  CGFloat newHeight = finalFrame.size.height * 1.5f;
+  CGFloat newWidth = finalFrame.size.width * 1.5f;
   finalFrame.origin.x = (finalFrame.size.width - newWidth) / 2;
   finalFrame.origin.y = (finalFrame.size.height - newHeight) / 2;
   finalFrame.size.height = newHeight;

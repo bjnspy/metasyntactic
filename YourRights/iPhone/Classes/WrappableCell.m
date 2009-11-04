@@ -85,7 +85,7 @@ static UIFont* defaultFont;
 + (CGFloat)  height:(NSString*) text
       accessoryType:(UITableViewCellAccessoryType) accessoryType
                font:(UIFont*) font {
-  double width;
+  CGFloat width;
   if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {

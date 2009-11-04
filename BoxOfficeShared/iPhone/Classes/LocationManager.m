@@ -138,7 +138,7 @@
 }
 
 
-- (void) enqueueUpdateRequest:(NSInteger) delay {
+- (void) enqueueUpdateRequest:(NSTimeInterval) delay {
   [self performSelector:@selector(autoUpdateLocation)
              withObject:nil
              afterDelay:delay];
@@ -165,7 +165,6 @@
 
   [self stopAll];
 
-  // intermittent failures are not uncommon. retry in a minute.
   [self enqueueUpdateRequest:ONE_MINUTE];
 
   if (userDenied && self.model.autoUpdateLocation) {
