@@ -62,7 +62,7 @@
 
   label.text = reviewData.text;
 
-  double width = self.frame.size.width;
+  CGFloat width = self.frame.size.width;
   width -= 40;
   if ([ReviewBodyCell hasReview:reviewData]) {
     width -= 25;
@@ -74,7 +74,7 @@
 
 
 + (CGFloat) height:(Review*) review {
-  double width;
+  CGFloat width;
   if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {

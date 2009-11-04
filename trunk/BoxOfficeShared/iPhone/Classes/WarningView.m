@@ -95,9 +95,9 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 - (CGFloat) height {
-  double imageHeight = [BoxOfficeStockImages warning32x32].size.height;
+  CGFloat imageHeight = [BoxOfficeStockImages warning32x32].size.height;
 
-  double width;
+  CGFloat width;
   if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
@@ -108,7 +108,7 @@ const NSInteger TOP_BUFFER = 5;
   NSInteger labelX = LABEL_X;
   NSInteger labelWidth = width - 10 - labelX;
   NSString* text = label.text;
-  double labelHeight = [text sizeWithFont:[FontCache footerFont]
+  CGFloat labelHeight = [text sizeWithFont:[FontCache footerFont]
                         constrainedToSize:CGSizeMake(labelWidth, 2000)
                             lineBreakMode:UILineBreakModeWordWrap].height;
 

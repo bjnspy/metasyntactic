@@ -47,12 +47,12 @@
   CGSize actualSize = synopsisImage.size;
 
   if (actualSize.width > 140) {
-    actualSize.height *= 140.0 / actualSize.width;
+    actualSize.height *= 140.0f / actualSize.width;
     actualSize.width = 140;
   }
 
   NSInteger adjustedHeight = 18 * (MIN(145, (NSInteger) actualSize.height) / 18);
-  CGFloat ratio = (double)adjustedHeight / actualSize.height;
+  CGFloat ratio = (CGFloat)adjustedHeight / actualSize.height;
 
   return CGSizeMake((NSInteger)(actualSize.width * ratio), adjustedHeight);
 }
@@ -152,7 +152,7 @@
 }
 
 
-- (NSInteger) calculateSynopsisSplit:(double) cellWidth {
+- (NSInteger) calculateSynopsisSplit:(float) cellWidth {
   if (synopsis.length == 0) {
     return 0;
   }
@@ -222,7 +222,7 @@
 
 - (void) calculateSynopsisSplit:(NSInteger*) synopsisSplit
                     synopsisMax:(NSInteger*) synopsisMax
-                       forWidth:(double) width {
+                       forWidth:(float) width {
   *synopsisSplit = [self calculateSynopsisSplit:width];
   if (limitLength) {
     *synopsisMax = [self calculateSynopsisMax:*synopsisSplit];
@@ -271,7 +271,7 @@
 
 
 - (CGFloat) height:(UITableViewController*) controller {
-  double width;
+  CGFloat width;
   if (UIInterfaceOrientationIsLandscape(controller.interfaceOrientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
@@ -281,7 +281,7 @@
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:width - 20];
 
-  double h1 = imageSize.height;
+  CGFloat h1 = imageSize.height;
 
   if (synopsisSplit == synopsis.length) {
     return h1 + 10;
@@ -292,7 +292,7 @@
 
   NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
 
-  double h2 = [self computeTextHeight:remainder forWidth:width - 30];
+  CGFloat h2 = [self computeTextHeight:remainder forWidth:width - 30];
 
   return h1 + h2 + 10;
 }

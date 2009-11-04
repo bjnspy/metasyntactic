@@ -21,88 +21,31 @@
 		10000000000000000000064A /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000649 /* AbstractData.m */; };
 		100000000000000000000832 /* AbstractDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000064E /* AbstractDetailsCell.h */; };
 		100000000000000000000853 /* AbstractDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000852 /* AbstractDetailsCell.m */; };
+		10000000000000000000091C /* CollectionUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000185A /* CollectionUtilities.h */; };
 		10000000000000000000094E /* AbstractExpandedDetailsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000008B3 /* AbstractExpandedDetailsCell.h */; };
 		100000000000000000000950 /* AbstractExpandedDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000094F /* AbstractExpandedDetailsCell.m */; };
 		10000000000000000000097F /* AbstractFlippableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000951 /* AbstractFlippableTableViewController.h */; };
 		10000000000000000000098F /* AbstractFlippableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000098B /* AbstractFlippableTableViewController.m */; };
 		1000000000000000000009AA /* AbstractFullScreenImageListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000999 /* AbstractFullScreenImageListViewController.h */; };
 		100000000000000000000A24 /* AbstractFullScreenImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000009AB /* AbstractFullScreenImageListViewController.m */; };
+		100000000000000000000A4F /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A4E /* HtmlUtilities.h */; };
+		100000000000000000000A51 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A50 /* HtmlUtilities.m */; };
+		100000000000000000000C1A /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016DB /* IdentitySet.m */; };
 		100000000000000000000C55 /* AbstractFullScreenTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C4A /* AbstractFullScreenTableViewController.h */; };
+		100000000000000000000C73 /* ImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001874 /* ImageUtilities.h */; };
+		100000000000000000000CA5 /* MemoryUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CA4 /* MemoryUtilities.h */; };
+		100000000000000000000CBD /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C9A /* ImageUtilities.m */; };
+		100000000000000000000CD8 /* InteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD7 /* InteractiveView.h */; };
+		100000000000000000000CF7 /* InteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD9 /* InteractiveView.m */; };
 		100000000000000000000D05 /* AbstractFullScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CF4 /* AbstractFullScreenTableViewController.m */; };
+		100000000000000000000D23 /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AE6 /* Invocation.h */; };
+		100000000000000000000D2C /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D28 /* Invocation.m */; };
 		100000000000000000000D30 /* AbstractFullScreenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D0A /* AbstractFullScreenViewController.h */; };
 		100000000000000000000D32 /* AbstractFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D31 /* AbstractFullScreenViewController.m */; };
 		100000000000000000000D34 /* AbstractModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D33 /* AbstractModel.h */; };
 		100000000000000000000D36 /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D35 /* AbstractModel.m */; };
 		100000000000000000000D38 /* AbstractMultiPageTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D37 /* AbstractMultiPageTableViewController.h */; };
 		100000000000000000000D3A /* AbstractMultiPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D39 /* AbstractMultiPageTableViewController.m */; };
-		100000000000000000000E38 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E37 /* AbstractNavigationController.h */; };
-		100000000000000000000D60 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E39 /* AbstractNavigationController.m */; };
-		100000000000000000000DA7 /* AbstractPersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D61 /* AbstractPersistentThreadsafeValue.h */; };
-		100000000000000000000DAA /* AbstractPersistentThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DA9 /* AbstractPersistentThreadsafeValue.m */; };
-		100000000000000000000DAC /* AbstractSearchEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAB /* AbstractSearchEngine.h */; };
-		100000000000000000000DAE /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAD /* AbstractSearchEngine.m */; };
-		100000000000000000000DB0 /* AbstractSearchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAF /* AbstractSearchRequest.h */; };
-		100000000000000000000DB2 /* AbstractSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB1 /* AbstractSearchRequest.m */; };
-		100000000000000000000DB4 /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB3 /* AbstractSearchResult.h */; };
-		100000000000000000000E9C /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB5 /* AbstractSearchResult.m */; };
-		100000000000000000000DB8 /* AbstractSlidableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EA5 /* AbstractSlidableTableViewController.h */; };
-		100000000000000000000DBA /* AbstractSlidableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EA6 /* AbstractSlidableTableViewController.m */; };
-		100000000000000000000FBA /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FB9 /* AbstractStackableTableViewController.h */; };
-		100000000000000000000FBC /* AbstractStackableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBB /* AbstractStackableTableViewController.m */; };
-		100000000000000000000FBE /* AbstractTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBD /* AbstractTableViewController.h */; };
-		100000000000000000000FC0 /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBF /* AbstractTableViewController.m */; };
-		100000000000000000000FC2 /* AbstractTwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC1 /* AbstractTwitterAccount.h */; };
-		100000000000000000000FC4 /* AbstractTwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC3 /* AbstractTwitterAccount.m */; };
-		100000000000000000000FC6 /* AbstractViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC5 /* AbstractViewController.h */; };
-		100000000000000000000FC8 /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC7 /* AbstractViewController.m */; };
-		100000000000000000000FCA /* ActionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC9 /* ActionsView.h */; };
-		100000000000000000000FCC /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCB /* ActionsView.m */; };
-		100000000000000000000FCE /* AlertUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCD /* AlertUtilities.h */; };
-		100000000000000000000FD0 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCF /* AlertUtilities.m */; };
-		100000000000000000000FD2 /* AttributeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD1 /* AttributeCell.h */; };
-		100000000000000000000FD4 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD3 /* AttributeCell.m */; };
-		100000000000000000000FD6 /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD5 /* AutoResizingCell.h */; };
-		10000000000000000000105D /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001050 /* AutoResizingCell.m */; };
-		100000000000000000001078 /* BackgroundInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001077 /* BackgroundInvocation.h */; };
-		10000000000000000000109C /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001079 /* BackgroundInvocation.m */; };
-		10000000000000000000110B /* BackgroundInvocation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F6 /* BackgroundInvocation2.h */; };
-		100000000000000000001214 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110C /* BackgroundInvocation2.m */; };
-		100000000000000000001284 /* BackgroundInvocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001223 /* BackgroundInvocation3.h */; };
-		10000000000000000000159A /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001597 /* BackgroundInvocation3.m */; };
-		1000000000000000000015CB /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000159C /* Base64.h */; };
-		1000000000000000000015CD /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015CC /* Base64.m */; };
-		1000000000000000000015D9 /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015CE /* Beacon+FBConnect.h */; };
-		100000000000000000001841 /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001677 /* Beacon.h */; };
-		10000000000000000000091C /* CollectionUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000185A /* CollectionUtilities.h */; };
-		100000000000000000000FEF /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FED /* CollectionUtilities.m */; };
-		10000000000000000000107B /* ColorCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000107A /* ColorCache.h */; };
-		1000000000000000000010E6 /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000109D /* ColorCache.m */; };
-		1000000000000000000010E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010E7 /* CoreGraphics.framework */; };
-		10000000000000000000110F /* DatePickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F1 /* DatePickerDelegate.h */; };
-		100000000000000000001152 /* DatePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001110 /* DatePickerViewController.h */; };
-		1000000000000000000011F9 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001153 /* DatePickerViewController.m */; };
-		1000000000000000000011FE /* DateUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011FC /* DateUtilities.h */; };
-		100000000000000000001201 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001200 /* DateUtilities.m */; };
-		1000000000000000000013B1 /* DifferenceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001286 /* DifferenceEngine.h */; };
-		1000000000000000000014DC /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013B8 /* DifferenceEngine.m */; };
-		1000000000000000000015C2 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014FD /* EditorViewController.h */; };
-		1000000000000000000015C4 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C3 /* EditorViewController.m */; };
-		1000000000000000000015DA /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C7 /* FileUtilities.h */; };
-		1000000000000000000015F8 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015F1 /* FileUtilities.m */; };
-		100000000000000000001622 /* FontCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001621 /* FontCache.h */; };
-		100000000000000000001678 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001623 /* FontCache.m */; };
-		10000000000000000000169B /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169A /* ForwardDeclarations.h */; };
-		1000000000000000000016BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169C /* Foundation.framework */; };
-		100000000000000000001052 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016C1 /* IdentitySet.h */; };
-		100000000000000000000C1A /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016DB /* IdentitySet.m */; };
-		100000000000000000001862 /* ImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C1B /* ImageCache.h */; };
-		10000000000000000000186D /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001867 /* ImageCache.m */; };
-		100000000000000000000C73 /* ImageUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001874 /* ImageUtilities.h */; };
-		100000000000000000000CBD /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C9A /* ImageUtilities.m */; };
-		100000000000000000000CD8 /* InteractiveView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD7 /* InteractiveView.h */; };
-		100000000000000000000CF7 /* InteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CD9 /* InteractiveView.m */; };
-		100000000000000000000D23 /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000AE6 /* Invocation.h */; };
-		100000000000000000000D2C /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D28 /* Invocation.m */; };
 		100000000000000000000D3D /* Invocation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D3C /* Invocation2.h */; };
 		100000000000000000000D3F /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D3E /* Invocation2.m */; };
 		100000000000000000000D41 /* Invocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D40 /* Invocation3.h */; };
@@ -110,7 +53,17 @@
 		100000000000000000000D45 /* LargeActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D44 /* LargeActivityIndicatorViewWithBackground.h */; };
 		100000000000000000000D47 /* LargeActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D46 /* LargeActivityIndicatorViewWithBackground.m */; };
 		100000000000000000000D49 /* ListPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D48 /* ListPickerDelegate.h */; };
+		100000000000000000000D60 /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E39 /* AbstractNavigationController.m */; };
+		100000000000000000000DA7 /* AbstractPersistentThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D61 /* AbstractPersistentThreadsafeValue.h */; };
 		100000000000000000000DA8 /* ListPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DA3 /* ListPickerViewController.h */; };
+		100000000000000000000DAA /* AbstractPersistentThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DA9 /* AbstractPersistentThreadsafeValue.m */; };
+		100000000000000000000DAC /* AbstractSearchEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAB /* AbstractSearchEngine.h */; };
+		100000000000000000000DAE /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAD /* AbstractSearchEngine.m */; };
+		100000000000000000000DB0 /* AbstractSearchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DAF /* AbstractSearchRequest.h */; };
+		100000000000000000000DB2 /* AbstractSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB1 /* AbstractSearchRequest.m */; };
+		100000000000000000000DB4 /* AbstractSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB3 /* AbstractSearchResult.h */; };
+		100000000000000000000DB8 /* AbstractSlidableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EA5 /* AbstractSlidableTableViewController.h */; };
+		100000000000000000000DBA /* AbstractSlidableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EA6 /* AbstractSlidableTableViewController.m */; };
 		100000000000000000000DBC /* ListPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DBB /* ListPickerViewController.m */; };
 		100000000000000000000DC0 /* LocaleUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DBD /* LocaleUtilities.h */; };
 		100000000000000000000DC2 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DC1 /* LocaleUtilities.m */; };
@@ -141,14 +94,31 @@
 		100000000000000000000E32 /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E31 /* MainThreadGate.m */; };
 		100000000000000000000E34 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E33 /* MapKit.framework */; };
 		100000000000000000000E36 /* MapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E35 /* MapPoint.h */; };
+		100000000000000000000E38 /* AbstractNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E37 /* AbstractNavigationController.h */; };
+		100000000000000000000E9C /* AbstractSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000DB5 /* AbstractSearchResult.m */; };
 		100000000000000000000EA8 /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000E9F /* MapViewController.h */; };
 		100000000000000000000EAA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EA9 /* MapViewController.m */; };
 		100000000000000000000EAC /* MapViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000EAB /* MapViewControllerDelegate.h */; };
-		100000000000000000000CA5 /* MemoryUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000CA4 /* MemoryUtilities.h */; };
 		100000000000000000000F3D /* MemoryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000F3C /* MemoryUtilities.m */; };
+		100000000000000000000FBA /* AbstractStackableTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FB9 /* AbstractStackableTableViewController.h */; };
+		100000000000000000000FBC /* AbstractStackableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBB /* AbstractStackableTableViewController.m */; };
+		100000000000000000000FBE /* AbstractTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBD /* AbstractTableViewController.h */; };
+		100000000000000000000FC0 /* AbstractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FBF /* AbstractTableViewController.m */; };
+		100000000000000000000FC2 /* AbstractTwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC1 /* AbstractTwitterAccount.h */; };
+		100000000000000000000FC4 /* AbstractTwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC3 /* AbstractTwitterAccount.m */; };
+		100000000000000000000FC6 /* AbstractViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC5 /* AbstractViewController.h */; };
+		100000000000000000000FC8 /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC7 /* AbstractViewController.m */; };
+		100000000000000000000FCA /* ActionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FC9 /* ActionsView.h */; };
+		100000000000000000000FCC /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCB /* ActionsView.m */; };
+		100000000000000000000FCE /* AlertUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCD /* AlertUtilities.h */; };
+		100000000000000000000FD0 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FCF /* AlertUtilities.m */; };
+		100000000000000000000FD2 /* AttributeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD1 /* AttributeCell.h */; };
+		100000000000000000000FD4 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD3 /* AttributeCell.m */; };
+		100000000000000000000FD6 /* AutoResizingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD5 /* AutoResizingCell.h */; };
 		100000000000000000000FD9 /* MetasyntacticShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FD8 /* MetasyntacticShared.h */; };
 		100000000000000000000FDB /* MetasyntacticSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FDA /* MetasyntacticSharedApplication.h */; };
 		100000000000000000000FEE /* MetasyntacticSharedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FDC /* MetasyntacticSharedApplication.m */; };
+		100000000000000000000FEF /* CollectionUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FED /* CollectionUtilities.m */; };
 		100000000000000000000FF2 /* MetasyntacticSharedApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FF0 /* MetasyntacticSharedApplicationDelegate.h */; };
 		100000000000000000000FF4 /* MetasyntacticStockImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FF3 /* MetasyntacticStockImages.h */; };
 		100000000000000000000FF6 /* MetasyntacticStockImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000FF5 /* MetasyntacticStockImages.m */; };
@@ -164,16 +134,26 @@
 		10000000000000000000104A /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001049 /* NSMutableArray+Utilities.m */; };
 		10000000000000000000104C /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000104B /* NSMutableURLRequest+Parameters.h */; };
 		10000000000000000000104E /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000104D /* NSMutableURLRequest+Parameters.m */; };
+		100000000000000000001052 /* IdentitySet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016C1 /* IdentitySet.h */; };
 		100000000000000000001053 /* NSSet+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000104F /* NSSet+Utilities.h */; };
+		10000000000000000000105D /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001050 /* AutoResizingCell.m */; };
 		100000000000000000001061 /* NSSet+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001060 /* NSSet+Utilities.m */; };
+		100000000000000000001078 /* BackgroundInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001077 /* BackgroundInvocation.h */; };
+		10000000000000000000107B /* ColorCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000107A /* ColorCache.h */; };
 		10000000000000000000107C /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001062 /* NSString+URLEncoding.h */; };
 		10000000000000000000107E /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000107D /* NSString+URLEncoding.m */; };
+		10000000000000000000109C /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001079 /* BackgroundInvocation.m */; };
 		10000000000000000000109E /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000D8E /* NSString+UUID.h */; };
 		1000000000000000000010A7 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A5 /* NSString+UUID.m */; };
 		1000000000000000000010E3 /* NSURL+Base.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010A8 /* NSURL+Base.h */; };
 		1000000000000000000010E5 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010E4 /* NSURL+Base.m */; };
+		1000000000000000000010E6 /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000109D /* ColorCache.m */; };
+		1000000000000000000010E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010E7 /* CoreGraphics.framework */; };
 		1000000000000000000010F9 /* NetworkUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F8 /* NetworkUtilities.h */; };
+		10000000000000000000110B /* BackgroundInvocation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F6 /* BackgroundInvocation2.h */; };
+		10000000000000000000110F /* DatePickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000010F1 /* DatePickerDelegate.h */; };
 		100000000000000000001112 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001111 /* NetworkUtilities.m */; };
+		100000000000000000001152 /* DatePickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001110 /* DatePickerViewController.h */; };
 		100000000000000000001165 /* NotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001154 /* NotificationCenter.h */; };
 		100000000000000000001167 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001166 /* NotificationCenter.m */; };
 		100000000000000000001169 /* OAConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001168 /* OAConsumer.h */; };
@@ -195,23 +175,54 @@
 		1000000000000000000011E5 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011E4 /* OAToken.m */; };
 		1000000000000000000011ED /* OAuthConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011EB /* OAuthConsumer.h */; };
 		1000000000000000000011F2 /* Operation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011EF /* Operation.h */; };
+		1000000000000000000011F9 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001153 /* DatePickerViewController.m */; };
+		1000000000000000000011FE /* DateUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011FC /* DateUtilities.h */; };
+		100000000000000000001201 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001200 /* DateUtilities.m */; };
 		100000000000000000001213 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000011F4 /* Operation.m */; };
+		100000000000000000001214 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000110C /* BackgroundInvocation2.m */; };
 		100000000000000000001226 /* Operation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001215 /* Operation1.h */; };
+		100000000000000000001284 /* BackgroundInvocation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001223 /* BackgroundInvocation3.h */; };
 		100000000000000000001346 /* Operation1.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001287 /* Operation1.m */; };
 		100000000000000000001348 /* Operation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001347 /* Operation2.h */; };
+		1000000000000000000013AA /* SwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001824 /* SwitchCell.h */; };
+		1000000000000000000013B1 /* DifferenceEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001286 /* DifferenceEngine.h */; };
 		1000000000000000000014CB /* Operation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013B2 /* Operation2.m */; };
+		1000000000000000000014DC /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013B8 /* DifferenceEngine.m */; };
+		1000000000000000000014EC /* TappableScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019AB /* TappableScrollView.h */; };
+		1000000000000000000014EF /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014ED /* TappableScrollView.m */; };
+		1000000000000000000014F3 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014F1 /* TappableScrollViewDelegate.h */; };
+		1000000000000000000014F5 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014F4 /* TappableViewDelegate.h */; };
+		100000000000000000001500 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014FF /* TextFieldEditorViewController.h */; };
+		100000000000000000001502 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001501 /* TextFieldEditorViewController.m */; };
 		100000000000000000001570 /* Operation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014DD /* Operation3.h */; };
 		100000000000000000001572 /* Operation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001571 /* Operation3.m */; };
 		100000000000000000001575 /* OperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001574 /* OperationQueue.h */; };
 		100000000000000000001577 /* OperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001576 /* OperationQueue.m */; };
 		10000000000000000000157A /* PersistentArrayThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001579 /* PersistentArrayThreadsafeValue.h */; };
 		10000000000000000000157C /* PersistentArrayThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000157B /* PersistentArrayThreadsafeValue.m */; };
+		100000000000000000001581 /* ThreadingUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000157F /* ThreadingUtilities.h */; };
+		100000000000000000001584 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001582 /* ThreadingUtilities.m */; };
+		100000000000000000001587 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001586 /* ThreadsafeValue.h */; };
+		100000000000000000001589 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001588 /* ThreadsafeValue.m */; };
+		10000000000000000000159A /* BackgroundInvocation3.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001597 /* BackgroundInvocation3.m */; };
 		10000000000000000000159F /* PersistentDictionaryThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000159E /* PersistentDictionaryThreadsafeValue.h */; };
 		1000000000000000000015A6 /* PersistentDictionaryThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015A0 /* PersistentDictionaryThreadsafeValue.m */; };
 		1000000000000000000015A8 /* PersistentSetThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015A7 /* PersistentSetThreadsafeValue.h */; };
+		1000000000000000000015C1 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C0 /* TouchableViewDelegate.h */; };
+		1000000000000000000015C2 /* EditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014FD /* EditorViewController.h */; };
+		1000000000000000000015C4 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C3 /* EditorViewController.m */; };
 		1000000000000000000015C9 /* PersistentSetThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C8 /* PersistentSetThreadsafeValue.m */; };
+		1000000000000000000015CB /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000159C /* Base64.h */; };
+		1000000000000000000015CD /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015CC /* Base64.m */; };
+		1000000000000000000015D9 /* Beacon+FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015CE /* Beacon+FBConnect.h */; };
+		1000000000000000000015DA /* FileUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C7 /* FileUtilities.h */; };
 		1000000000000000000015DB /* PersistentStringThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015CA /* PersistentStringThreadsafeValue.h */; };
+		1000000000000000000015E2 /* UIColor+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015E1 /* UIColor+Utilities.h */; };
+		1000000000000000000015E4 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015E3 /* UIColor+Utilities.m */; };
+		1000000000000000000015F8 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015F1 /* FileUtilities.m */; };
+		1000000000000000000015F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015F3 /* UIKit.framework */; };
 		10000000000000000000161F /* PersistentStringThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015F2 /* PersistentStringThreadsafeValue.m */; };
+		100000000000000000001622 /* FontCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001621 /* FontCache.h */; };
 		100000000000000000001643 /* PinchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001642 /* PinchableViewDelegate.h */; };
 		10000000000000000000164D /* PointerSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000164C /* PointerSet.h */; };
 		10000000000000000000164F /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000164E /* PointerSet.m */; };
@@ -220,44 +231,16 @@
 		100000000000000000001655 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001654 /* PriorityMutex.m */; };
 		10000000000000000000165B /* Pulser.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001658 /* Pulser.h */; };
 		10000000000000000000165D /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000165C /* Pulser.m */; };
-		10000000000000000000167E /* SearchEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001679 /* SearchEngineDelegate.h */; };
-		100000000000000000001683 /* SettingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001682 /* SettingCell.h */; };
-		100000000000000000001689 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001684 /* SettingCell.m */; };
-		100000000000000000001690 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000168F /* SmallActivityIndicatorViewWithBackground.h */; };
-		1000000000000000000016B7 /* SmallActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001691 /* SmallActivityIndicatorViewWithBackground.m */; };
-		1000000000000000000016CF /* SplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CC /* SplashScreen.h */; };
-		1000000000000000000016D3 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016D1 /* SplashScreen.m */; };
-		1000000000000000000016DE /* SplashScreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016DC /* SplashScreenDelegate.h */; };
-		1000000000000000000016E5 /* StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E4 /* StringUtilities.h */; };
-		1000000000000000000017E1 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E7 /* StringUtilities.m */; };
-		1000000000000000000017E5 /* StyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E3 /* StyleSheet.h */; };
-		100000000000000000001816 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001814 /* StyleSheet.m */; };
-		1000000000000000000013AA /* SwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001824 /* SwitchCell.h */; };
-		100000000000000000001849 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013AB /* SwitchCell.m */; };
-		10000000000000000000184D /* SynopsisCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000184A /* SynopsisCell.h */; };
-		100000000000000000001863 /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000184F /* SynopsisCell.m */; };
-		1000000000000000000018FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000018FC /* SystemConfiguration.framework */; };
-		100000000000000000001966 /* TappableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001964 /* TappableImageView.h */; };
-		10000000000000000000199D /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001968 /* TappableImageView.m */; };
-		1000000000000000000019A9 /* TappableImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019A2 /* TappableImageViewDelegate.h */; };
-		1000000000000000000014EC /* TappableScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019AB /* TappableScrollView.h */; };
-		1000000000000000000014EF /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014ED /* TappableScrollView.m */; };
-		1000000000000000000014F3 /* TappableScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014F1 /* TappableScrollViewDelegate.h */; };
-		1000000000000000000014F5 /* TappableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014F4 /* TappableViewDelegate.h */; };
-		100000000000000000001500 /* TextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000014FF /* TextFieldEditorViewController.h */; };
-		100000000000000000001502 /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001501 /* TextFieldEditorViewController.m */; };
-		100000000000000000001581 /* ThreadingUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000157F /* ThreadingUtilities.h */; };
-		100000000000000000001584 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001582 /* ThreadingUtilities.m */; };
-		100000000000000000001587 /* ThreadsafeValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001586 /* ThreadsafeValue.h */; };
-		100000000000000000001589 /* ThreadsafeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001588 /* ThreadsafeValue.m */; };
-		1000000000000000000015C1 /* TouchableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015C0 /* TouchableViewDelegate.h */; };
-		1000000000000000000015E2 /* UIColor+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015E1 /* UIColor+Utilities.h */; };
-		1000000000000000000015E4 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015E3 /* UIColor+Utilities.m */; };
-		1000000000000000000015F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000015F3 /* UIKit.framework */; };
 		100000000000000000001672 /* ViewControllerUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001670 /* ViewControllerUtilities.h */; };
 		100000000000000000001675 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001673 /* ViewControllerUtilities.m */; };
+		100000000000000000001678 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001623 /* FontCache.m */; };
+		10000000000000000000167E /* SearchEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001679 /* SearchEngineDelegate.h */; };
+		100000000000000000001683 /* SettingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001682 /* SettingCell.h */; };
 		100000000000000000001686 /* WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001685 /* WebViewController.h */; };
 		100000000000000000001688 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001687 /* WebViewController.m */; };
+		100000000000000000001689 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001684 /* SettingCell.m */; };
+		100000000000000000001690 /* SmallActivityIndicatorViewWithBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000168F /* SmallActivityIndicatorViewWithBackground.h */; };
+		10000000000000000000169B /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169A /* ForwardDeclarations.h */; };
 		1000000000000000000016A2 /* XmlDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016A1 /* XmlDocument.h */; };
 		1000000000000000000016A4 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016A3 /* XmlDocument.m */; };
 		1000000000000000000016A7 /* XmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016A5 /* XmlElement.h */; };
@@ -266,15 +249,32 @@
 		1000000000000000000016B1 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016AF /* XmlParser.m */; };
 		1000000000000000000016B4 /* XmlSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016B3 /* XmlSerializer.h */; };
 		1000000000000000000016B6 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016B5 /* XmlSerializer.m */; };
+		1000000000000000000016B7 /* SmallActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001691 /* SmallActivityIndicatorViewWithBackground.m */; };
+		1000000000000000000016BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000169C /* Foundation.framework */; };
+		1000000000000000000016CF /* SplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016CC /* SplashScreen.h */; };
+		1000000000000000000016D3 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016D1 /* SplashScreen.m */; };
+		1000000000000000000016DE /* SplashScreenDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016DC /* SplashScreenDelegate.h */; };
+		1000000000000000000016E5 /* StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E4 /* StringUtilities.h */; };
+		1000000000000000000017E1 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000016E7 /* StringUtilities.m */; };
+		1000000000000000000017E5 /* StyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000017E3 /* StyleSheet.h */; };
+		100000000000000000001816 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001814 /* StyleSheet.m */; };
+		100000000000000000001841 /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001677 /* Beacon.h */; };
+		100000000000000000001849 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000013AB /* SwitchCell.m */; };
 		10000000000000000000184C /* libPMAnalytics-r64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10000000000000000000184B /* libPMAnalytics-r64.a */; };
+		10000000000000000000184D /* SynopsisCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000184A /* SynopsisCell.h */; };
+		100000000000000000001862 /* ImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000C1B /* ImageCache.h */; };
+		100000000000000000001863 /* SynopsisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000184F /* SynopsisCell.m */; };
 		100000000000000000001868 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000001864 /* libsqlite3.dylib */; };
+		10000000000000000000186D /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001867 /* ImageCache.m */; };
+		1000000000000000000018FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000018FC /* SystemConfiguration.framework */; };
+		100000000000000000001966 /* TappableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000001964 /* TappableImageView.h */; };
+		10000000000000000000199D /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000001968 /* TappableImageView.m */; };
+		1000000000000000000019A9 /* TappableImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019A2 /* TappableImageViewDelegate.h */; };
 		1000000000000000000019BB /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019B9 /* xmlparse.c */; };
 		1000000000000000000019BF /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019BD /* xmlrole.c */; };
 		1000000000000000000019C5 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C3 /* xmltok.c */; };
 		1000000000000000000019CC /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C9 /* xmltok_impl.c */; };
 		1000000000000000000019D1 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019CF /* xmltok_ns.c */; };
-		100000000000000000000A4F /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A4E /* HtmlUtilities.h */; };
-		100000000000000000000A51 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000A50 /* HtmlUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,82 +298,24 @@
 		10000000000000000000098B /* AbstractFlippableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFlippableTableViewController.m; sourceTree = "<group>"; };
 		100000000000000000000999 /* AbstractFullScreenImageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenImageListViewController.h; sourceTree = "<group>"; };
 		1000000000000000000009AB /* AbstractFullScreenImageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenImageListViewController.m; sourceTree = "<group>"; };
+		100000000000000000000A4E /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
+		100000000000000000000A50 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000AE6 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		100000000000000000000C1B /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		100000000000000000000C4A /* AbstractFullScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenTableViewController.h; sourceTree = "<group>"; };
+		100000000000000000000C9A /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000CA4 /* MemoryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryUtilities.h; sourceTree = "<group>"; };
+		100000000000000000000CD7 /* InteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveView.h; sourceTree = "<group>"; };
+		100000000000000000000CD9 /* InteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveView.m; sourceTree = "<group>"; };
+		100000000000000000000CDF /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MetasyntacticResources.bundle; sourceTree = "<group>"; };
 		100000000000000000000CF4 /* AbstractFullScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenTableViewController.m; sourceTree = "<group>"; };
 		100000000000000000000D0A /* AbstractFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFullScreenViewController.h; sourceTree = "<group>"; };
+		100000000000000000000D28 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		100000000000000000000D31 /* AbstractFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFullScreenViewController.m; sourceTree = "<group>"; };
 		100000000000000000000D33 /* AbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModel.h; sourceTree = "<group>"; };
 		100000000000000000000D35 /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
 		100000000000000000000D37 /* AbstractMultiPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMultiPageTableViewController.h; sourceTree = "<group>"; };
 		100000000000000000000D39 /* AbstractMultiPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMultiPageTableViewController.m; sourceTree = "<group>"; };
-		100000000000000000000E37 /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
-		100000000000000000000E39 /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
-		100000000000000000000D61 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000000000000DA9 /* AbstractPersistentThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPersistentThreadsafeValue.m; sourceTree = "<group>"; };
-		100000000000000000000DAB /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
-		100000000000000000000DAD /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
-		100000000000000000000DAF /* AbstractSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchRequest.h; sourceTree = "<group>"; };
-		100000000000000000000DB1 /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
-		100000000000000000000DB3 /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
-		100000000000000000000DB5 /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
-		100000000000000000000EA5 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
-		100000000000000000000EA6 /* AbstractSlidableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidableTableViewController.m; sourceTree = "<group>"; };
-		100000000000000000000FB9 /* AbstractStackableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractStackableTableViewController.h; sourceTree = "<group>"; };
-		100000000000000000000FBB /* AbstractStackableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractStackableTableViewController.m; sourceTree = "<group>"; };
-		100000000000000000000FBD /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
-		100000000000000000000FBF /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
-		100000000000000000000FC1 /* AbstractTwitterAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTwitterAccount.h; sourceTree = "<group>"; };
-		100000000000000000000FC3 /* AbstractTwitterAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTwitterAccount.m; sourceTree = "<group>"; };
-		100000000000000000000FC5 /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
-		100000000000000000000FC7 /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
-		100000000000000000000FC9 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
-		100000000000000000000FCB /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
-		100000000000000000000FCD /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
-		100000000000000000000FCF /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
-		100000000000000000000FD1 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
-		100000000000000000000FD3 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
-		100000000000000000000FD5 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
-		100000000000000000001050 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
-		100000000000000000001077 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
-		100000000000000000001079 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
-		1000000000000000000010F6 /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
-		10000000000000000000110C /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
-		100000000000000000001223 /* BackgroundInvocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation3.h; sourceTree = "<group>"; };
-		100000000000000000001597 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
-		10000000000000000000159C /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		1000000000000000000015CC /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		1000000000000000000015CE /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
-		100000000000000000001677 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		10000000000000000000185A /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
-		100000000000000000000FED /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
-		10000000000000000000107A /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
-		10000000000000000000109D /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
-		1000000000000000000010E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1000000000000000000010F1 /* DatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDelegate.h; sourceTree = "<group>"; };
-		100000000000000000001110 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
-		100000000000000000001153 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
-		1000000000000000000011FC /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
-		100000000000000000001200 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
-		100000000000000000001286 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
-		1000000000000000000013B8 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
-		1000000000000000000014FD /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
-		1000000000000000000015C3 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
-		1000000000000000000015C7 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
-		1000000000000000000015F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
-		100000000000000000001621 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
-		100000000000000000001623 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
-		10000000000000000000169A /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		10000000000000000000169C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1000000000000000000016C1 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
-		1000000000000000000016DB /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
-		100000000000000000000C1B /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
-		100000000000000000001867 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
-		100000000000000000001874 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
-		100000000000000000000C9A /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
-		100000000000000000000CD7 /* InteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveView.h; sourceTree = "<group>"; };
-		100000000000000000000CD9 /* InteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveView.m; sourceTree = "<group>"; };
-		100000000000000000000AE6 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
-		100000000000000000000D28 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		100000000000000000000D3C /* Invocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation2.h; sourceTree = "<group>"; };
 		100000000000000000000D3E /* Invocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation2.m; sourceTree = "<group>"; };
 		100000000000000000000D40 /* Invocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation3.h; sourceTree = "<group>"; };
@@ -381,7 +323,16 @@
 		100000000000000000000D44 /* LargeActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		100000000000000000000D46 /* LargeActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		100000000000000000000D48 /* ListPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerDelegate.h; sourceTree = "<group>"; };
+		100000000000000000000D61 /* AbstractPersistentThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPersistentThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000000000000D8E /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "External/MGTwitterEngine/NSString+UUID.h"; sourceTree = SOURCE_ROOT; };
 		100000000000000000000DA3 /* ListPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPickerViewController.h; sourceTree = "<group>"; };
+		100000000000000000000DA9 /* AbstractPersistentThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPersistentThreadsafeValue.m; sourceTree = "<group>"; };
+		100000000000000000000DAB /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
+		100000000000000000000DAD /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
+		100000000000000000000DAF /* AbstractSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchRequest.h; sourceTree = "<group>"; };
+		100000000000000000000DB1 /* AbstractSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchRequest.m; sourceTree = "<group>"; };
+		100000000000000000000DB3 /* AbstractSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchResult.h; sourceTree = "<group>"; };
+		100000000000000000000DB5 /* AbstractSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchResult.m; sourceTree = "<group>"; };
 		100000000000000000000DBB /* ListPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPickerViewController.m; sourceTree = "<group>"; };
 		100000000000000000000DBD /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000DC1 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
@@ -412,15 +363,33 @@
 		100000000000000000000E31 /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
 		100000000000000000000E33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		100000000000000000000E35 /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		100000000000000000000E37 /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
+		100000000000000000000E39 /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		100000000000000000000E9F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		100000000000000000000EA5 /* AbstractSlidableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidableTableViewController.h; sourceTree = "<group>"; };
+		100000000000000000000EA6 /* AbstractSlidableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidableTableViewController.m; sourceTree = "<group>"; };
 		100000000000000000000EA9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		100000000000000000000EAB /* MapViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewControllerDelegate.h; sourceTree = "<group>"; };
-		100000000000000000000CA4 /* MemoryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryUtilities.h; sourceTree = "<group>"; };
 		100000000000000000000F3C /* MemoryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryUtilities.m; sourceTree = "<group>"; };
-		100000000000000000000CDF /* MetasyntacticResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MetasyntacticResources.bundle; sourceTree = "<group>"; };
+		100000000000000000000FB9 /* AbstractStackableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractStackableTableViewController.h; sourceTree = "<group>"; };
+		100000000000000000000FBB /* AbstractStackableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractStackableTableViewController.m; sourceTree = "<group>"; };
+		100000000000000000000FBD /* AbstractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTableViewController.h; sourceTree = "<group>"; };
+		100000000000000000000FBF /* AbstractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTableViewController.m; sourceTree = "<group>"; };
+		100000000000000000000FC1 /* AbstractTwitterAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTwitterAccount.h; sourceTree = "<group>"; };
+		100000000000000000000FC3 /* AbstractTwitterAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTwitterAccount.m; sourceTree = "<group>"; };
+		100000000000000000000FC5 /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
+		100000000000000000000FC7 /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
+		100000000000000000000FC9 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
+		100000000000000000000FCB /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
+		100000000000000000000FCD /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
+		100000000000000000000FCF /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
+		100000000000000000000FD1 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
+		100000000000000000000FD3 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
+		100000000000000000000FD5 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
 		100000000000000000000FD8 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticShared.h; sourceTree = "<group>"; };
 		100000000000000000000FDA /* MetasyntacticSharedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticSharedApplication.h; sourceTree = "<group>"; };
 		100000000000000000000FDC /* MetasyntacticSharedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticSharedApplication.m; sourceTree = "<group>"; };
+		100000000000000000000FED /* CollectionUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtilities.m; sourceTree = "<group>"; };
 		100000000000000000000FF0 /* MetasyntacticSharedApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticSharedApplicationDelegate.h; sourceTree = "<group>"; };
 		100000000000000000000FF3 /* MetasyntacticStockImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetasyntacticStockImages.h; sourceTree = "<group>"; };
 		100000000000000000000FF5 /* MetasyntacticStockImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetasyntacticStockImages.m; sourceTree = "<group>"; };
@@ -437,15 +406,25 @@
 		10000000000000000000104B /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+Parameters.h"; path = "External/OAuth/NSMutableURLRequest+Parameters.h"; sourceTree = SOURCE_ROOT; };
 		10000000000000000000104D /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+Parameters.m"; path = "External/OAuth/NSMutableURLRequest+Parameters.m"; sourceTree = SOURCE_ROOT; };
 		10000000000000000000104F /* NSSet+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+Utilities.h"; sourceTree = "<group>"; };
+		100000000000000000001050 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
 		100000000000000000001060 /* NSSet+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Utilities.m"; sourceTree = "<group>"; };
 		100000000000000000001062 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "External/OAuth/NSString+URLEncoding.h"; sourceTree = SOURCE_ROOT; };
+		100000000000000000001077 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
+		100000000000000000001079 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
+		10000000000000000000107A /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
 		10000000000000000000107D /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "External/OAuth/NSString+URLEncoding.m"; sourceTree = SOURCE_ROOT; };
-		100000000000000000000D8E /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UUID.h"; path = "External/MGTwitterEngine/NSString+UUID.h"; sourceTree = SOURCE_ROOT; };
+		10000000000000000000109D /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
 		1000000000000000000010A5 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+UUID.m"; path = "External/MGTwitterEngine/NSString+UUID.m"; sourceTree = SOURCE_ROOT; };
 		1000000000000000000010A8 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+Base.h"; path = "External/OAuth/NSURL+Base.h"; sourceTree = SOURCE_ROOT; };
 		1000000000000000000010E4 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+Base.m"; path = "External/OAuth/NSURL+Base.m"; sourceTree = SOURCE_ROOT; };
+		1000000000000000000010E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1000000000000000000010F1 /* DatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000010F6 /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
 		1000000000000000000010F8 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
+		10000000000000000000110C /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
+		100000000000000000001110 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		100000000000000000001111 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
+		100000000000000000001153 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		100000000000000000001154 /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
 		100000000000000000001166 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
 		100000000000000000001168 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAConsumer.h; path = External/OAuth/OAConsumer.h; sourceTree = SOURCE_ROOT; };
@@ -468,22 +447,51 @@
 		1000000000000000000011EB /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = External/OAuth/OAuthConsumer.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000011EF /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
 		1000000000000000000011F4 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
+		1000000000000000000011FC /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
+		100000000000000000001200 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		100000000000000000001215 /* Operation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation1.h; sourceTree = "<group>"; };
+		100000000000000000001223 /* BackgroundInvocation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation3.h; sourceTree = "<group>"; };
+		100000000000000000001286 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		100000000000000000001287 /* Operation1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation1.m; sourceTree = "<group>"; };
 		100000000000000000001347 /* Operation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation2.h; sourceTree = "<group>"; };
+		1000000000000000000013AB /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		1000000000000000000013B2 /* Operation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation2.m; sourceTree = "<group>"; };
+		1000000000000000000013B8 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
 		1000000000000000000014DD /* Operation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation3.h; sourceTree = "<group>"; };
+		1000000000000000000014ED /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
+		1000000000000000000014F1 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000014F4 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000014FD /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		1000000000000000000014FF /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		100000000000000000001501 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		100000000000000000001571 /* Operation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation3.m; sourceTree = "<group>"; };
 		100000000000000000001574 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
 		100000000000000000001576 /* OperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationQueue.m; sourceTree = "<group>"; };
 		100000000000000000001579 /* PersistentArrayThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentArrayThreadsafeValue.h; sourceTree = "<group>"; };
 		10000000000000000000157B /* PersistentArrayThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentArrayThreadsafeValue.m; sourceTree = "<group>"; };
+		10000000000000000000157F /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
+		100000000000000000001582 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
+		100000000000000000001586 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
+		100000000000000000001588 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
+		100000000000000000001597 /* BackgroundInvocation3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation3.m; sourceTree = "<group>"; };
+		10000000000000000000159C /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		10000000000000000000159E /* PersistentDictionaryThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentDictionaryThreadsafeValue.h; sourceTree = "<group>"; };
 		1000000000000000000015A0 /* PersistentDictionaryThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionaryThreadsafeValue.m; sourceTree = "<group>"; };
 		1000000000000000000015A7 /* PersistentSetThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentSetThreadsafeValue.h; sourceTree = "<group>"; };
+		1000000000000000000015C0 /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000015C3 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		1000000000000000000015C7 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		1000000000000000000015C8 /* PersistentSetThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentSetThreadsafeValue.m; sourceTree = "<group>"; };
 		1000000000000000000015CA /* PersistentStringThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStringThreadsafeValue.h; sourceTree = "<group>"; };
+		1000000000000000000015CC /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		1000000000000000000015CE /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
+		1000000000000000000015E1 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
+		1000000000000000000015E3 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
+		1000000000000000000015F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
 		1000000000000000000015F2 /* PersistentStringThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStringThreadsafeValue.m; sourceTree = "<group>"; };
+		1000000000000000000015F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		100000000000000000001621 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
+		100000000000000000001623 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		100000000000000000001642 /* PinchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinchableViewDelegate.h; sourceTree = "<group>"; };
 		10000000000000000000164C /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
 		10000000000000000000164E /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
@@ -492,44 +500,18 @@
 		100000000000000000001654 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		100000000000000000001658 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
 		10000000000000000000165C /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
+		100000000000000000001670 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
+		100000000000000000001673 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		100000000000000000001677 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		100000000000000000001679 /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
 		100000000000000000001682 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		100000000000000000001684 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
-		10000000000000000000168F /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
-		100000000000000000001691 /* SmallActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
-		1000000000000000000016CC /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
-		1000000000000000000016D1 /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
-		1000000000000000000016DC /* SplashScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000016E4 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
-		1000000000000000000016E7 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
-		1000000000000000000017E3 /* StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheet.h; sourceTree = "<group>"; };
-		100000000000000000001814 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
-		100000000000000000001824 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
-		1000000000000000000013AB /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
-		10000000000000000000184A /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
-		10000000000000000000184F /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
-		1000000000000000000018FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		100000000000000000001964 /* TappableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageView.h; sourceTree = "<group>"; };
-		100000000000000000001968 /* TappableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableImageView.m; sourceTree = "<group>"; };
-		1000000000000000000019A2 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000019AB /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
-		1000000000000000000014ED /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
-		1000000000000000000014F1 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000014F4 /* TappableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableViewDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000014FF /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
-		100000000000000000001501 /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
-		10000000000000000000157F /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
-		100000000000000000001582 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
-		100000000000000000001586 /* ThreadsafeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsafeValue.h; sourceTree = "<group>"; };
-		100000000000000000001588 /* ThreadsafeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsafeValue.m; sourceTree = "<group>"; };
-		1000000000000000000015C0 /* TouchableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableViewDelegate.h; sourceTree = "<group>"; };
-		1000000000000000000015E1 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
-		1000000000000000000015E3 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
-		1000000000000000000015F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		100000000000000000001670 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
-		100000000000000000001673 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		100000000000000000001685 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		100000000000000000001687 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		10000000000000000000168F /* SmallActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
+		100000000000000000001691 /* SmallActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		10000000000000000000169A /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		10000000000000000000169C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1000000000000000000016A1 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
 		1000000000000000000016A3 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
 		1000000000000000000016A5 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
@@ -538,19 +520,39 @@
 		1000000000000000000016AF /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		1000000000000000000016B3 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		1000000000000000000016B5 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
+		1000000000000000000016C1 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
 		1000000000000000000016C4 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000016C6 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000016C8 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
+		1000000000000000000016CC /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
+		1000000000000000000016D1 /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
+		1000000000000000000016DB /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
+		1000000000000000000016DC /* SplashScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenDelegate.h; sourceTree = "<group>"; };
 		1000000000000000000016E1 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000016E2 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		1000000000000000000016E4 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
+		1000000000000000000016E7 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
+		1000000000000000000017E3 /* StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheet.h; sourceTree = "<group>"; };
 		1000000000000000000017E7 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = External/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
 		10000000000000000000180E /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000001814 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
 		100000000000000000001818 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000001824 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
 		100000000000000000001843 /* libMetasyntacticShared.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetasyntacticShared.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		10000000000000000000184A /* SynopsisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynopsisCell.h; sourceTree = "<group>"; };
 		10000000000000000000184B /* libPMAnalytics-r64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r64.a"; sourceTree = "<group>"; };
+		10000000000000000000184F /* SynopsisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynopsisCell.m; sourceTree = "<group>"; };
+		10000000000000000000185A /* CollectionUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtilities.h; sourceTree = "<group>"; };
 		100000000000000000001864 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		100000000000000000001867 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		10000000000000000000186B /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
+		100000000000000000001874 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
 		1000000000000000000018FA /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
+		1000000000000000000018FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		100000000000000000001964 /* TappableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageView.h; sourceTree = "<group>"; };
+		100000000000000000001968 /* TappableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableImageView.m; sourceTree = "<group>"; };
+		1000000000000000000019A2 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
+		1000000000000000000019AB /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
 		1000000000000000000019AC /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = External/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019B7 /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = External/Expat/winconfig.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019B9 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = External/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
@@ -561,8 +563,6 @@
 		1000000000000000000019C9 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CD /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CF /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
-		100000000000000000000A4E /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
-		100000000000000000000A50 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,46 +583,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		100000000000000000001851 /* Caches */ = {
+		100000000000000000000EAD /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
-				1000000000000000000015DD /* UI */,
-				1000000000000000000003E0 /* AbstractCache.h */,
-				100000000000000000000C1B /* ImageCache.h */,
-				1000000000000000000003E2 /* AbstractCache.m */,
-				100000000000000000001867 /* ImageCache.m */,
+				100000000000000000000E9F /* MapViewController.h */,
+				100000000000000000000EA9 /* MapViewController.m */,
+				100000000000000000000E35 /* MapPoint.h */,
+				100000000000000000000EAB /* MapViewControllerDelegate.h */,
 			);
-			name = Caches;
-			sourceTree = "<group>";
-		};
-		100000000000000000001856 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001851 /* Caches */,
-				100000000000000000000FF1 /* Collections */,
-				1000000000000000000010F0 /* Data */,
-				1000000000000000000015C6 /* External */,
-				100000000000000000000EAD /* Mapping */,
-				100000000000000000001667 /* Search */,
-				10000000000000000000157D /* Threading */,
-				1000000000000000000015D0 /* Twitter */,
-				1000000000000000000015DC /* UI */,
-				10000000000000000000165F /* Utilities */,
-				10000000000000000000169F /* Xml */,
-				1000000000000000000003D1 /* AbstractApplication.h */,
-				100000000000000000000536 /* AbstractController.h */,
-				100000000000000000000D33 /* AbstractModel.h */,
-				100000000000000000000FD8 /* MetasyntacticShared.h */,
-				100000000000000000000FDA /* MetasyntacticSharedApplication.h */,
-				100000000000000000000FF0 /* MetasyntacticSharedApplicationDelegate.h */,
-				1000000000000000000017E3 /* StyleSheet.h */,
-				1000000000000000000003D3 /* AbstractApplication.m */,
-				100000000000000000000539 /* AbstractController.m */,
-				100000000000000000000D35 /* AbstractModel.m */,
-				100000000000000000000FDC /* MetasyntacticSharedApplication.m */,
-				100000000000000000001814 /* StyleSheet.m */,
-			);
-			path = Classes;
+			name = Mapping;
 			sourceTree = "<group>";
 		};
 		100000000000000000000FF1 /* Collections */ = {
@@ -661,68 +630,6 @@
 				100000000000000000000DC5 /* Location.m */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		1000000000000000000015C5 /* Expat */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000019B9 /* xmlparse.c */,
-				1000000000000000000019BD /* xmlrole.c */,
-				1000000000000000000019C3 /* xmltok.c */,
-				1000000000000000000019C9 /* xmltok_impl.c */,
-				1000000000000000000019CF /* xmltok_ns.c */,
-				1000000000000000000016C4 /* amigaconfig.h */,
-				1000000000000000000016C6 /* ascii.h */,
-				1000000000000000000016C8 /* asciitab.h */,
-				1000000000000000000016E1 /* expat.h */,
-				1000000000000000000016E2 /* expat_external.h */,
-				1000000000000000000017E7 /* iasciitab.h */,
-				10000000000000000000180E /* internal.h */,
-				100000000000000000001818 /* latin1tab.h */,
-				10000000000000000000186B /* macconfig.h */,
-				1000000000000000000018FA /* nametab.h */,
-				1000000000000000000019AC /* utf8tab.h */,
-				1000000000000000000019B7 /* winconfig.h */,
-				1000000000000000000019C1 /* xmlrole.h */,
-				1000000000000000000019C7 /* xmltok.h */,
-				1000000000000000000019CD /* xmltok_impl.h */,
-			);
-			name = Expat;
-			sourceTree = "<group>";
-		};
-		1000000000000000000015C6 /* External */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000015CF /* Twitter */,
-				1000000000000000000015C5 /* Expat */,
-				1000000000000000000011E8 /* OAuth */,
-				100000000000000000001641 /* PinchMedia */,
-			);
-			name = External;
-			sourceTree = "<group>";
-		};
-		1000000000000000000016BE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001864 /* libsqlite3.dylib */,
-				1000000000000000000010E7 /* CoreGraphics.framework */,
-				10000000000000000000169C /* Foundation.framework */,
-				100000000000000000000E33 /* MapKit.framework */,
-				1000000000000000000018FC /* SystemConfiguration.framework */,
-				1000000000000000000015F3 /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		100000000000000000000EAD /* Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000000E9F /* MapViewController.h */,
-				100000000000000000000EA9 /* MapViewController.m */,
-				100000000000000000000E35 /* MapPoint.h */,
-				100000000000000000000EAB /* MapViewControllerDelegate.h */,
-			);
-			name = Mapping;
 			sourceTree = "<group>";
 		};
 		1000000000000000000010F7 /* NavigationControllers */ = {
@@ -792,80 +699,6 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		100000000000000000001641 /* PinchMedia */ = {
-			isa = PBXGroup;
-			children = (
-				10000000000000000000184B /* libPMAnalytics-r64.a */,
-				1000000000000000000015CE /* Beacon+FBConnect.h */,
-				100000000000000000001677 /* Beacon.h */,
-			);
-			name = PinchMedia;
-			path = External/PinchMedia;
-			sourceTree = SOURCE_ROOT;
-		};
-		100000000000000000001656 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000001843 /* libMetasyntacticShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		100000000000000000001664 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000000CDF /* MetasyntacticResources.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		100000000000000000001667 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				100000000000000000000DAB /* AbstractSearchEngine.h */,
-				100000000000000000000DAF /* AbstractSearchRequest.h */,
-				100000000000000000000DB3 /* AbstractSearchResult.h */,
-				100000000000000000001679 /* SearchEngineDelegate.h */,
-				100000000000000000000DAD /* AbstractSearchEngine.m */,
-				100000000000000000000DB1 /* AbstractSearchRequest.m */,
-				100000000000000000000DB5 /* AbstractSearchResult.m */,
-			);
-			name = Search;
-			sourceTree = "<group>";
-		};
-		1000000000000000000016B9 /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000016CC /* SplashScreen.h */,
-				1000000000000000000016D1 /* SplashScreen.m */,
-				1000000000000000000016DC /* SplashScreenDelegate.h */,
-			);
-			name = SplashScreen;
-			sourceTree = "<group>";
-		};
-		10000000000000000000195E /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				10000000000000000000052F /* AbstractCollapsedDetailsCell.h */,
-				10000000000000000000064E /* AbstractDetailsCell.h */,
-				1000000000000000000008B3 /* AbstractExpandedDetailsCell.h */,
-				100000000000000000000FD1 /* AttributeCell.h */,
-				100000000000000000000FD5 /* AutoResizingCell.h */,
-				100000000000000000001682 /* SettingCell.h */,
-				100000000000000000001824 /* SwitchCell.h */,
-				10000000000000000000184A /* SynopsisCell.h */,
-				100000000000000000000531 /* AbstractCollapsedDetailsCell.m */,
-				100000000000000000000852 /* AbstractDetailsCell.m */,
-				10000000000000000000094F /* AbstractExpandedDetailsCell.m */,
-				100000000000000000000FD3 /* AttributeCell.m */,
-				100000000000000000001050 /* AutoResizingCell.m */,
-				100000000000000000001684 /* SettingCell.m */,
-				1000000000000000000013AB /* SwitchCell.m */,
-				10000000000000000000184F /* SynopsisCell.m */,
-			);
-			name = TableViewCells;
-			sourceTree = "<group>";
-		};
 		10000000000000000000157D /* Threading */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +735,44 @@
 				100000000000000000001588 /* ThreadsafeValue.m */,
 			);
 			name = Threading;
+			sourceTree = "<group>";
+		};
+		1000000000000000000015C5 /* Expat */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000019B9 /* xmlparse.c */,
+				1000000000000000000019BD /* xmlrole.c */,
+				1000000000000000000019C3 /* xmltok.c */,
+				1000000000000000000019C9 /* xmltok_impl.c */,
+				1000000000000000000019CF /* xmltok_ns.c */,
+				1000000000000000000016C4 /* amigaconfig.h */,
+				1000000000000000000016C6 /* ascii.h */,
+				1000000000000000000016C8 /* asciitab.h */,
+				1000000000000000000016E1 /* expat.h */,
+				1000000000000000000016E2 /* expat_external.h */,
+				1000000000000000000017E7 /* iasciitab.h */,
+				10000000000000000000180E /* internal.h */,
+				100000000000000000001818 /* latin1tab.h */,
+				10000000000000000000186B /* macconfig.h */,
+				1000000000000000000018FA /* nametab.h */,
+				1000000000000000000019AC /* utf8tab.h */,
+				1000000000000000000019B7 /* winconfig.h */,
+				1000000000000000000019C1 /* xmlrole.h */,
+				1000000000000000000019C7 /* xmltok.h */,
+				1000000000000000000019CD /* xmltok_impl.h */,
+			);
+			name = Expat;
+			sourceTree = "<group>";
+		};
+		1000000000000000000015C6 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000015CF /* Twitter */,
+				1000000000000000000015C5 /* Expat */,
+				1000000000000000000011E8 /* OAuth */,
+				100000000000000000001641 /* PinchMedia */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 		1000000000000000000015CF /* Twitter */ = {
@@ -971,6 +842,25 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		100000000000000000001641 /* PinchMedia */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000184B /* libPMAnalytics-r64.a */,
+				1000000000000000000015CE /* Beacon+FBConnect.h */,
+				100000000000000000001677 /* Beacon.h */,
+			);
+			name = PinchMedia;
+			path = External/PinchMedia;
+			sourceTree = SOURCE_ROOT;
+		};
+		100000000000000000001656 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001843 /* libMetasyntacticShared.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		10000000000000000000165F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,6 +902,28 @@
 				1000000000000000000015E3 /* UIColor+Utilities.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		100000000000000000001664 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000CDF /* MetasyntacticResources.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		100000000000000000001667 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000DAB /* AbstractSearchEngine.h */,
+				100000000000000000000DAF /* AbstractSearchRequest.h */,
+				100000000000000000000DB3 /* AbstractSearchResult.h */,
+				100000000000000000001679 /* SearchEngineDelegate.h */,
+				100000000000000000000DAD /* AbstractSearchEngine.m */,
+				100000000000000000000DB1 /* AbstractSearchRequest.m */,
+				100000000000000000000DB5 /* AbstractSearchResult.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		10000000000000000000167A /* ViewControllers */ = {
@@ -1090,6 +1002,94 @@
 				1000000000000000000016B5 /* XmlSerializer.m */,
 			);
 			name = Xml;
+			sourceTree = "<group>";
+		};
+		1000000000000000000016B9 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000016CC /* SplashScreen.h */,
+				1000000000000000000016D1 /* SplashScreen.m */,
+				1000000000000000000016DC /* SplashScreenDelegate.h */,
+			);
+			name = SplashScreen;
+			sourceTree = "<group>";
+		};
+		1000000000000000000016BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001864 /* libsqlite3.dylib */,
+				1000000000000000000010E7 /* CoreGraphics.framework */,
+				10000000000000000000169C /* Foundation.framework */,
+				100000000000000000000E33 /* MapKit.framework */,
+				1000000000000000000018FC /* SystemConfiguration.framework */,
+				1000000000000000000015F3 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		100000000000000000001851 /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				1000000000000000000015DD /* UI */,
+				1000000000000000000003E0 /* AbstractCache.h */,
+				100000000000000000000C1B /* ImageCache.h */,
+				1000000000000000000003E2 /* AbstractCache.m */,
+				100000000000000000001867 /* ImageCache.m */,
+			);
+			name = Caches;
+			sourceTree = "<group>";
+		};
+		100000000000000000001856 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000001851 /* Caches */,
+				100000000000000000000FF1 /* Collections */,
+				1000000000000000000010F0 /* Data */,
+				1000000000000000000015C6 /* External */,
+				100000000000000000000EAD /* Mapping */,
+				100000000000000000001667 /* Search */,
+				10000000000000000000157D /* Threading */,
+				1000000000000000000015D0 /* Twitter */,
+				1000000000000000000015DC /* UI */,
+				10000000000000000000165F /* Utilities */,
+				10000000000000000000169F /* Xml */,
+				1000000000000000000003D1 /* AbstractApplication.h */,
+				100000000000000000000536 /* AbstractController.h */,
+				100000000000000000000D33 /* AbstractModel.h */,
+				100000000000000000000FD8 /* MetasyntacticShared.h */,
+				100000000000000000000FDA /* MetasyntacticSharedApplication.h */,
+				100000000000000000000FF0 /* MetasyntacticSharedApplicationDelegate.h */,
+				1000000000000000000017E3 /* StyleSheet.h */,
+				1000000000000000000003D3 /* AbstractApplication.m */,
+				100000000000000000000539 /* AbstractController.m */,
+				100000000000000000000D35 /* AbstractModel.m */,
+				100000000000000000000FDC /* MetasyntacticSharedApplication.m */,
+				100000000000000000001814 /* StyleSheet.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		10000000000000000000195E /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				10000000000000000000052F /* AbstractCollapsedDetailsCell.h */,
+				10000000000000000000064E /* AbstractDetailsCell.h */,
+				1000000000000000000008B3 /* AbstractExpandedDetailsCell.h */,
+				100000000000000000000FD1 /* AttributeCell.h */,
+				100000000000000000000FD5 /* AutoResizingCell.h */,
+				100000000000000000001682 /* SettingCell.h */,
+				100000000000000000001824 /* SwitchCell.h */,
+				10000000000000000000184A /* SynopsisCell.h */,
+				100000000000000000000531 /* AbstractCollapsedDetailsCell.m */,
+				100000000000000000000852 /* AbstractDetailsCell.m */,
+				10000000000000000000094F /* AbstractExpandedDetailsCell.m */,
+				100000000000000000000FD3 /* AttributeCell.m */,
+				100000000000000000001050 /* AutoResizingCell.m */,
+				100000000000000000001684 /* SettingCell.m */,
+				1000000000000000000013AB /* SwitchCell.m */,
+				10000000000000000000184F /* SynopsisCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1421,7 +1421,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1429,16 +1428,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/External/PinchMedia\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1460,16 +1461,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1489,20 +1492,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000000001848 /* Build configuration list for PBXNativeTarget "MetasyntacticShared" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				100000000000000000001202 /* Debug */,
-				10000000000000000000165E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		100000000000000000001845 /* Build configuration list for PBXProject "MetasyntacticShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000000000000000001225 /* Debug */,
 				100000000000000000001661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		100000000000000000001848 /* Build configuration list for PBXNativeTarget "MetasyntacticShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000000000000000001202 /* Debug */,
+				10000000000000000000165E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

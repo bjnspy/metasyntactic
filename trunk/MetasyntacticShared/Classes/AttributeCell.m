@@ -25,7 +25,7 @@
 }
 
 + (UIFont*) keyFont {
-    return [UIFont boldSystemFontOfSize:12.0];
+    return [UIFont boldSystemFontOfSize:12.0f];
 }
 
 

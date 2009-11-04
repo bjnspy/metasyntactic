@@ -27,7 +27,7 @@
 #define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
 
 
-#define SMALL_POSTER_HEIGHT 99.0
+#define SMALL_POSTER_HEIGHT 99.0f
 #define FULL_SCREEN_POSTER_HEIGHT 460
 #define FULL_SCREEN_POSTER_WIDTH 310
 

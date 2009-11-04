@@ -171,7 +171,7 @@ const NSInteger PAGE_RANGE = 2;
     CGRect imageFrame = CGRectMake(-offset, offset + 5, frame.size.height, frame.size.width - 10);
 
     imageView.frame = imageFrame;
-    imageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
+    imageView.transform = CGAffineTransformMakeRotation((CGFloat)M_PI / 2);
   } else {
     CGRect imageFrame = CGRectMake(5, 0, frame.size.width - 10, frame.size.height);
     imageView.frame = imageFrame;

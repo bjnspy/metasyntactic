@@ -56,7 +56,7 @@
 
   label.text = item.description;
 
-  double width = self.frame.size.width;
+  CGFloat width = self.frame.size.width;
   width -= 40;
   if (item.link.length != 0) {
     width -= 25;
@@ -68,7 +68,7 @@
 
 
 + (CGFloat) height:(Item*) item {
-  double width;
+  CGFloat width;
   if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {

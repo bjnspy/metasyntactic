@@ -159,7 +159,7 @@
     return CGSizeZero;
   }
 
-  double width;
+  CGFloat width;
   if ([MetasyntacticSharedApplication screenRotationEnabled] &&
       UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;

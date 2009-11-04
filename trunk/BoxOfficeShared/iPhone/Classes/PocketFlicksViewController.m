@@ -390,7 +390,7 @@ typedef enum {
   frame.origin.y = 0;
   UIImage* image = BoxOfficeStockImage(@"PocketflicksHeader.png");
   UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-  imageView.alpha = 0.9;
+  imageView.alpha = 0.9f;
   imageView.frame = frame;
   imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 

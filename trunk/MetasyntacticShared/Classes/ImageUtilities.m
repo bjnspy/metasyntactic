@@ -18,10 +18,10 @@
 
 + (CGContextRef) getBitmapContext:(CGSize) size {
   return CFAutoRelease(CGBitmapContextCreate(NULL,
-                                             round(size.width),
-                                             round(size.height),
+                                             roundf(size.width),
+                                             roundf(size.height),
                                              8,
-                                             4 * round(size.width),
+                                             4 * roundf(size.width),
                                              CFAutoRelease(CGColorSpaceCreateDeviceRGB()),
                                              kCGImageAlphaPremultipliedFirst));
 }
@@ -77,7 +77,7 @@
     return nil;
   }
 
-  return UIImageJPEGRepresentation(result, 0.75);
+  return UIImageJPEGRepresentation(result, 0.75f);
 }
 
 
@@ -106,11 +106,11 @@
                                  image.size.width,
                                  image.size.height);
 
-    CGContextSetRGBFillColor(currentContext, 0.75, 0.75, 0.75, 1);
+    CGContextSetRGBFillColor(currentContext, 0.75f, 0.75f, 0.75f, 1.f);
     CGContextFillRect(currentContext, clippedRect);
 
-    CGContextTranslateCTM(currentContext, 0.0, drawRect.size.height);
-    CGContextScaleCTM(currentContext, 1.0, -1.0);
+    CGContextTranslateCTM(currentContext, 0.0f, drawRect.size.height);
+    CGContextScaleCTM(currentContext, 1.0f, -1.0f);
 
     //draw the image to our clipped context using our offset rect
     CGContextDrawImage(currentContext, drawRect, image.CGImage);
@@ -227,8 +227,8 @@ void cornerRoundingFunction(CGContextRef context, CGRect rect) {
   }
 
   CGSize size = image.size;
-  CGFloat height = round(size.height);
-  CGFloat width = round(size.width);
+  CGFloat height = roundf(size.height);
+  CGFloat width = roundf(size.width);
 
   size_t length = 4 * height * width;
   void* rawData = malloc(length);

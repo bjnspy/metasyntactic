@@ -86,9 +86,8 @@
 
   [UIView beginAnimations:nil context:NULL];
   {
-    backgroundView.alpha = 0.75;
-    //backgroundView.alpha = 1;
-    activityIndicator.alpha = 1;
+    backgroundView.alpha = 0.75f;
+    activityIndicator.alpha = 1.f;
   }
   [UIView commitAnimations];
 }

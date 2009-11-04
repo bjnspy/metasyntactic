@@ -67,7 +67,7 @@
 
 
 + (CGFloat) width:(Decision*) decision {
-  double width;
+  CGFloat width;
   if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
     width = [UIScreen mainScreen].bounds.size.height;
   } else {
