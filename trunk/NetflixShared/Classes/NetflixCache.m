@@ -69,7 +69,7 @@ static NSString** directories[] = {
 
 
 + (void) createDirectories {
-  for (int i = 0; i < ArrayLength(directories); i++) {
+  for (NSInteger i = 0; i < ArrayLength(directories); i++) {
     NSString* directory = *directories[i];
 
     [FileUtilities createDirectory:directory];
@@ -386,7 +386,7 @@ static NSString** directories[] = {
 
 
 - (void) checkApiResult:(NetflixAccount*) account element:(XmlElement*) element {
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
 
   if (statusCode == 412) {
     // Ok, we're out of date with the netflix servers.  Force a redownload of the users' queues.
@@ -535,7 +535,7 @@ static NSString** directories[] = {
     } else if ([average_rating_key isEqual:child.name]) {
       [additionalFields setObject:child.text forKey:average_rating_key];
     } else if ([@"runtime" isEqual:child.name]) {
-      length = ([child.text intValue] / 60);
+      length = ([child.text integerValue] / 60);
     }
   }
 
@@ -680,7 +680,7 @@ static NSString** directories[] = {
 
 
 - (NSString*) extractErrorMessage:(XmlElement*) element {
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode == 412) {
     // override this error message since the netflix message is very confusing.
     return [NSString stringWithFormat:LocalizedString(@"%@ must first update your local movie queue before it can process your change. Please try your change again shortly.", nil), [AbstractApplication name]];

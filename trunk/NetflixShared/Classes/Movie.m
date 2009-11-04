@@ -84,7 +84,7 @@ static NSString* articles[] = {
 + (NSString*) makeCanonical:(NSString*) title {
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-  for (int i = 0; i < ArrayLength(articles); i++) {
+  for (NSInteger i = 0; i < ArrayLength(articles); i++) {
     NSString* article = articles[i];
     if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
       return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
@@ -98,7 +98,7 @@ static NSString* articles[] = {
 + (NSString*) makeDisplay:(NSString*) title {
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-  for (int i = 0; i < ArrayLength(articles); i++) {
+  for (NSInteger i = 0; i < ArrayLength(articles); i++) {
     NSString* article = articles[i];
     if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
       return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
@@ -270,7 +270,7 @@ static NSString* articles[] = {
                              canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                displayTitle:[dictionary objectForKey:displayTitle_key]
                                      rating:[dictionary objectForKey:rating_key]
-                                     length:[[dictionary objectForKey:length_key] intValue]
+                                     length:[[dictionary objectForKey:length_key] integerValue]
                                 releaseDate:[dictionary objectForKey:releaseDate_key]
                                 imdbAddress:[dictionary objectForKey:imdbAddress_key]
                                      poster:[dictionary objectForKey:poster_key]
@@ -289,7 +289,7 @@ static NSString* articles[] = {
   [dictionary setValue:canonicalTitle                     forKey:canonicalTitle_key];
   [dictionary setValue:displayTitle                       forKey:displayTitle_key];
   [dictionary setValue:rating                             forKey:rating_key];
-  [dictionary setValue:[NSNumber numberWithInt:length]    forKey:length_key];
+  [dictionary setValue:[NSNumber numberWithInteger:length]    forKey:length_key];
   [dictionary setValue:releaseDate                        forKey:releaseDate_key];
   [dictionary setValue:imdbAddress                        forKey:imdbAddress_key];
   [dictionary setValue:poster                             forKey:poster_key];
