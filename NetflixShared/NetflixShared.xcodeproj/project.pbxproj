@@ -58,6 +58,7 @@
 		100000000000000000000077 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000076 /* Queue.m */; };
 		10000000000000000000007E /* Status.h in Headers */ = {isa = PBXBuildFile; fileRef = 10000000000000000000007D /* Status.h */; };
 		100000000000000000000080 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000007F /* Status.m */; };
+		74DB7EB410A10B6F00FFB52B /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 100000000000000000000083 /* libMetasyntacticShared.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,13 @@
 			containerPortal = 10000000000000000000002C /* MetasyntacticShared.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 74E602340FD1C7990015D9F8;
+			remoteInfo = MetasyntacticShared;
+		};
+		74DB7EB510A10B7400FFB52B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10000000000000000000002C /* MetasyntacticShared.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000000000000000000126 /* MetasyntacticShared */;
 			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */
@@ -132,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74DB7EB410A10B6F00FFB52B /* libMetasyntacticShared.a in Frameworks */,
 				100000000000000000000024 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +375,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				74DB7EB610A10B7400FFB52B /* PBXTargetDependency */,
 			);
 			name = NetflixShared;
 			productName = NetflixShared;
@@ -435,6 +445,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74DB7EB610A10B7400FFB52B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MetasyntacticShared;
+			targetProxy = 74DB7EB510A10B7400FFB52B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		10000000000000000000001A /* Debug */ = {
