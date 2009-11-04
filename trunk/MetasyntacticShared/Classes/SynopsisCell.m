@@ -51,10 +51,10 @@
     actualSize.width = 140;
   }
 
-  NSInteger adjustedHeight = 18 * (MIN(145, (int) actualSize.height) / 18);
+  NSInteger adjustedHeight = 18 * (MIN(145, (NSInteger) actualSize.height) / 18);
   CGFloat ratio = (double)adjustedHeight / actualSize.height;
 
-  return CGSizeMake((int)(actualSize.width * ratio), adjustedHeight);
+  return CGSizeMake((NSInteger)(actualSize.width * ratio), adjustedHeight);
 }
 
 
@@ -158,8 +158,8 @@
   }
 
   CGFloat chunk1Height = imageSize.height;
-  int chunk1X = 5 + imageSize.width + 5;
-  int chunk1Width = cellWidth - 5 - chunk1X;
+  NSInteger chunk1X = 5 + imageSize.width + 5;
+  NSInteger chunk1Width = cellWidth - 5 - chunk1X;
   CGSize chunk1Size = CGSizeMake(chunk1Width, chunk1Height);
 
   CGFloat entireSynopsisHeight = [self computeTextHeight:synopsis forWidth:chunk1Width];
@@ -167,7 +167,7 @@
     return synopsis.length;
   }
 
-  NSInteger guess = (int)((double)synopsis.length * chunk1Height / entireSynopsisHeight);
+  NSInteger guess = (NSInteger)((double)synopsis.length * chunk1Height / entireSynopsisHeight);
   guess = MIN(guess, synopsis.length);
 
   NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]
@@ -238,8 +238,8 @@
   NSInteger synopsisSplit, synopsisMax;
   [self calculateSynopsisSplit:&synopsisSplit synopsisMax:&synopsisMax forWidth:self.contentView.frame.size.width];
 
-  int chunk1X = 5 + imageSize.width + 5;
-  int chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
+  NSInteger chunk1X = 5 + imageSize.width + 5;
+  NSInteger chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
 
   CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, imageSize.height);
   synopsisChunk1Label.frame = chunk1Frame;

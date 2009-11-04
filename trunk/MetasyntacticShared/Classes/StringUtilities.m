@@ -53,7 +53,7 @@ static NSString* prefixes[] = {
 
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-  for (int i = 0; i < ArrayLength(articles); i++) {
+  for (NSInteger i = 0; i < ArrayLength(articles); i++) {
     NSString* suffix = suffixes[i];
     if ([title hasSuffix:suffix]) {
       return [NSString stringWithFormat:@"%@%@", prefixes[i], [title substringToIndex:(title.length - suffix.length)]];
@@ -71,7 +71,7 @@ static NSString* prefixes[] = {
 
   title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-  for (int i = 0; i < ArrayLength(articles); i++) {
+  for (NSInteger i = 0; i < ArrayLength(articles); i++) {
     NSString* prefix = prefixes[i];
     if ([title hasPrefix:prefix]) {
       return [NSString stringWithFormat:@"%@%@", [title substringFromIndex:prefix.length], suffixes[i]];
@@ -231,8 +231,8 @@ static NSString* prefixes[] = {
         return 0;
     }
 
-    int result = [string characterAtIndex:0];
-    for (int i = 1; i < string.length; i++) {
+    NSInteger result = [string characterAtIndex:0];
+    for (NSInteger i = 1; i < string.length; i++) {
         result = 31 * result + [string characterAtIndex:i];
     }
 
@@ -262,7 +262,7 @@ static NSString* prefixes[] = {
 
 + (NSString*) randomString:(NSInteger) length {
   NSMutableString* string = [NSMutableString string];
-  for (int i = 0; i < length; i++) {
+  for (NSInteger i = 0; i < length; i++) {
     [string appendFormat:@"%c", ((rand() % 26) + 'a')];
   }
   return string;

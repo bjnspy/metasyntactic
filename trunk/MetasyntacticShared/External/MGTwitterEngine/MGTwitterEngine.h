@@ -64,7 +64,7 @@
 #endif
 
 // Connection methods
-- (int) numberOfConnections;
+- (NSInteger) numberOfConnections;
 - (NSArray*) connectionIdentifiers;
 - (void) closeConnection:(NSString*) identifier;
 - (void) closeAllConnections;
@@ -88,19 +88,19 @@
 
 - (NSString*) getPublicTimeline; // statuses/public_timeline
 
-- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID startingAtPage:(int)pageNum count:(int)count; // statuses/friends_timeline
-- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // statuses/friends_timeline
+- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/friends_timeline
+- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/friends_timeline
 
-- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID startingAtPage:(int)pageNum count:(int)count; // statuses/user_timeline & statuses/user_timeline/user
-- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // statuses/user_timeline & statuses/user_timeline/user
+- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/user_timeline & statuses/user_timeline/user
+- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/user_timeline & statuses/user_timeline/user
 
 - (NSString*) getUpdate:(unsigned long)updateID; // statuses/show
 - (NSString*) sendUpdate:(NSString*) status; // statuses/update
 - (NSString*) sendUpdate:(NSString*) status inReplyTo:(unsigned long)updateID; // statuses/update
 
-- (NSString*) getRepliesStartingAtPage:(int)pageNum; // statuses/mentions
-- (NSString*) getRepliesSinceID:(unsigned long)sinceID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
-- (NSString*) getRepliesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
+- (NSString*) getRepliesStartingAtPage:(NSInteger)pageNum; // statuses/mentions
+- (NSString*) getRepliesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/mentions
+- (NSString*) getRepliesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // statuses/mentions
 
 - (NSString*) deleteUpdate:(unsigned long)updateID; // statuses/destroy
 
@@ -109,7 +109,7 @@
 
 // User methods
 
-- (NSString*) getRecentlyUpdatedFriendsFor:(NSString*) username startingAtPage:(int)pageNum; // statuses/friends & statuses/friends/user
+- (NSString*) getRecentlyUpdatedFriendsFor:(NSString*) username startingAtPage:(NSInteger)pageNum; // statuses/friends & statuses/friends/user
 
 - (NSString*) getFollowersIncludingCurrentStatus:(BOOL)flag; // statuses/followers
 
@@ -119,11 +119,11 @@
 
 // Direct Message methods
 
-- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)pageNum; // direct_messages
-- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // direct_messages
+- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum; // direct_messages
+- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // direct_messages
 
-- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)pageNum; // direct_messages/sent
-- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // direct_messages/sent
+- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum; // direct_messages/sent
+- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // direct_messages/sent
 
 - (NSString*) sendDirectMessage:(NSString*) message to:(NSString*) username; // direct_messages/new
 - (NSString*) deleteDirectMessage:(unsigned long)updateID;// direct_messages/destroy
@@ -153,12 +153,12 @@
 
 // TODO: Add: account/update_profile
 
-// - (NSString*) getUserUpdatesArchiveStartingAtPage:(int)pageNum; // account/archive (removed, use /statuses/user_timeline instead)
+// - (NSString*) getUserUpdatesArchiveStartingAtPage:(NSInteger)pageNum; // account/archive (removed, use /statuses/user_timeline instead)
 
 
 // Favorite methods
 
-- (NSString*) getFavoriteUpdatesFor:(NSString*) username startingAtPage:(int)pageNum; // favorites
+- (NSString*) getFavoriteUpdatesFor:(NSString*) username startingAtPage:(NSInteger)pageNum; // favorites
 
 - (NSString*) markUpdate:(unsigned long)updateID asFavorite:(BOOL)flag; // favorites/create, favorites/destroy
 
@@ -195,8 +195,8 @@
 // Search method
 
 - (NSString*) getSearchResultsForQuery:(NSString*) query;
-- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(int)pageNum count:(int)count; // search
-- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(int)pageNum count:(int)count geocode:(NSString*) geocode;
+- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum count:(NSInteger)count; // search
+- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)pageNum count:(NSInteger)count geocode:(NSString*) geocode;
 
 // Trends method
 

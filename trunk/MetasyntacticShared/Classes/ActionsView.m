@@ -99,7 +99,7 @@
     if (buttons.count == 0) {
       self.height = 0;
     } else {
-      int lastRow = (buttons.count - 1) / 2;
+      NSInteger lastRow = (buttons.count - 1) / 2;
 
       UIButton* button = [buttons lastObject];
       CGRect frame = button.frame;
@@ -178,7 +178,7 @@
 
   BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
-  for (int i = 0; i < buttons.count; i++) {
+  for (NSInteger i = 0; i < buttons.count; i++) {
     UIButton* button = [buttons objectAtIndex:i];
 
     NSInteger column;

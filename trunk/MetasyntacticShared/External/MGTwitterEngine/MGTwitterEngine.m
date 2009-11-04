@@ -316,7 +316,7 @@
 #pragma mark Connection methods
 
 
-- (int) numberOfConnections
+- (NSInteger) numberOfConnections
 {
   return [_connections count];
 }
@@ -372,7 +372,7 @@
   
   // Append each name-value pair.
   if (params) {
-    int i;
+    NSInteger i;
     NSArray* names = [params allKeys];
     for (i = 0; i < [names count]; i++) {
       if (i == 0 && prefixed) {
@@ -798,7 +798,7 @@
   
   // Get response code.
   NSHTTPURLResponse* resp = (NSHTTPURLResponse*) response;
-  int statusCode = [resp statusCode];
+  NSInteger statusCode = [resp statusCode];
   
   if (statusCode >= 400) {
     // Assume failure, and report to delegate.
@@ -933,12 +933,12 @@
 #pragma mark -
 
 
-- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   return [self getFollowedTimelineSinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
 }
 
-- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString*) getFollowedTimelineSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
 	NSString* path = [NSString stringWithFormat:@"statuses/friends_timeline.%@", API_FORMAT];
   
@@ -965,12 +965,12 @@
 #pragma mark -
 
 
-- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   return [self getUserTimelineFor:username sinceID:sinceID withMaximumID:0 startingAtPage:0 count:count];
 }
 
-- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString*) getUserTimelineFor:(NSString*) username sinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
 	NSString* path = [NSString stringWithFormat:@"statuses/user_timeline.%@", API_FORMAT];
   MGTwitterRequestType requestType = MGTwitterUserTimelineRequest;
@@ -1048,17 +1048,17 @@
 #pragma mark -
 
 
-- (NSString*) getRepliesStartingAtPage:(int)page
+- (NSString*) getRepliesStartingAtPage:(NSInteger)page
 {
   return [self getRepliesSinceID:0 startingAtPage:page count:0]; // zero means default
 }
 
-- (NSString*) getRepliesSinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString*) getRepliesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   return [self getRepliesSinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
 }
 
-- (NSString*) getRepliesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString*) getRepliesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   // NOTE: identi.ca can't handle mentions URL yet...
   //	NSString* path = [NSString stringWithFormat:@"statuses/mentions.%@", API_FORMAT];
@@ -1113,7 +1113,7 @@
 #pragma mark User methods
 
 
-- (NSString*) getRecentlyUpdatedFriendsFor:(NSString*) username startingAtPage:(int)page
+- (NSString*) getRecentlyUpdatedFriendsFor:(NSString*) username startingAtPage:(NSInteger)page
 {
   NSString* path = [NSString stringWithFormat:@"statuses/friends.%@", API_FORMAT];
   MGTwitterRequestType requestType = MGTwitterFriendUpdatesRequest;
@@ -1186,12 +1186,12 @@
 #pragma mark Direct Message methods
 
 
-- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)page
+- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page
 {
   return [self getDirectMessagesSinceID:sinceID withMaximumID:0 startingAtPage:page count:0];
 }
 
-- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString*) getDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   NSString* path = [NSString stringWithFormat:@"direct_messages.%@", API_FORMAT];
   
@@ -1217,12 +1217,12 @@
 
 #pragma mark -
 
-- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)page
+- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page
 {
   return [self getSentDirectMessagesSinceID:sinceID withMaximumID:0 startingAtPage:page count:0];
 }
 
-- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString*) getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   NSString* path = [NSString stringWithFormat:@"direct_messages/sent.%@", API_FORMAT];
   
@@ -1422,7 +1422,7 @@
 #pragma mark Favorite methods
 
 
-- (NSString*) getFavoriteUpdatesFor:(NSString*) username startingAtPage:(int)page
+- (NSString*) getFavoriteUpdatesFor:(NSString*) username startingAtPage:(NSInteger)page
 {
   NSString* path = [NSString stringWithFormat:@"favorites.%@", API_FORMAT];
   MGTwitterRequestType requestType = MGTwitterFavoritesRequest;
@@ -1563,12 +1563,12 @@
 }
 
 
-- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
+- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page count:(NSInteger)count
 {
   return [self getSearchResultsForQuery:query sinceID:sinceID startingAtPage:0 count:0 geocode:nil]; // zero means default
 }
 
-- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString*) geocode
+- (NSString*) getSearchResultsForQuery:(NSString*) query sinceID:(unsigned long)sinceID startingAtPage:(NSInteger)page count:(NSInteger)count geocode:(NSString*) geocode
 {
   NSString* path = [NSString stringWithFormat:@"search.%@", API_FORMAT];
   

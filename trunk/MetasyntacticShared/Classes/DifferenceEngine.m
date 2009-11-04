@@ -220,7 +220,7 @@
 
   {
     if (string.length > 4) {
-      for (int i = 0; i < array.count; i++) {
+      for (NSInteger i = 0; i < array.count; i++) {
         NSString* other = [array objectAtIndex:i];
         if (other.length > 4) {
           if (([string rangeOfString:other options:NSCaseInsensitiveSearch].length > 0) ||
@@ -236,10 +236,10 @@
   NSInteger bestDistance = INT_MAX;
   NSInteger bestIndex = -1;
 
-  for (int i = 0; i < array.count; i++) {
+  for (NSInteger i = 0; i < array.count; i++) {
     NSString* value = [array objectAtIndex:i];
 
-    int distance = [self editDistanceFrom:string
+    NSInteger distance = [self editDistanceFrom:string
                                        to:value
                             withThreshold:[self threshold:string]];
 

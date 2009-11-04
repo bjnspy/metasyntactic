@@ -59,7 +59,7 @@
 
 
 - (void) loadImage:(NSNumber*) value {
-  NSInteger index = [value intValue];
+  NSInteger index = [value integerValue];
   if (index >= imagePaths.count) {
     [self dismiss];
     return;
@@ -80,7 +80,7 @@
   [UIView commitAnimations];
 
   [self performSelector:@selector(loadImage:)
-             withObject:[NSNumber numberWithInt:index + 1]
+             withObject:[NSNumber numberWithInteger:index + 1]
              afterDelay:1];
 }
 
@@ -114,7 +114,7 @@
 
 - (void) viewDidAppear:(BOOL) animated {
   [super viewDidAppear:animated];
-  [self loadImage:[NSNumber numberWithInt:0]];
+  [self loadImage:[NSNumber numberWithInteger:0]];
 }
 
 

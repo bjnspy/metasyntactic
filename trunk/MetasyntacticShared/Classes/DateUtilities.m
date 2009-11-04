@@ -109,7 +109,7 @@ static BOOL use24HourTime;
   if (time == 1) {
     return singular;
   } else {
-    NSNumber* number = [NSNumber numberWithInt:time];
+    NSNumber* number = [NSNumber numberWithInteger:time];
     NSString* result = [map objectForKey:number];
     if (result == nil) {
       result = [NSString stringWithFormat:plural, time];
@@ -147,11 +147,11 @@ static BOOL use24HourTime;
 + (NSString*) timeSinceNowWorker:(NSDate*) date {
   NSTimeInterval interval = [today timeIntervalSinceDate:date];
   if (interval > ONE_YEAR) {
-    return [self yearsAgoString:(int)(interval / ONE_YEAR)];
+    return [self yearsAgoString:(NSInteger)(interval / ONE_YEAR)];
   } else if (interval > ONE_MONTH) {
-    return [self monthsAgoString:(int)(interval / ONE_MONTH)];
+    return [self monthsAgoString:(NSInteger)(interval / ONE_MONTH)];
   } else if (interval > ONE_WEEK) {
-    return [self weeksAgoString:(int)(interval / ONE_WEEK)];
+    return [self weeksAgoString:(NSInteger)(interval / ONE_WEEK)];
   }
 
   NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -302,9 +302,9 @@ static BOOL use24HourTime;
 + (NSDate*) parseISO8601DateWorker:(NSString*) string {
   if (string.length == 10) {
     NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-    components.year = [[string substringWithRange:NSMakeRange(0, 4)] intValue];
-    components.month = [[string substringWithRange:NSMakeRange(5, 2)] intValue];
-    components.day = [[string substringWithRange:NSMakeRange(8, 2)] intValue];
+    components.year = [[string substringWithRange:NSMakeRange(0, 4)] integerValue];
+    components.month = [[string substringWithRange:NSMakeRange(5, 2)] integerValue];
+    components.day = [[string substringWithRange:NSMakeRange(8, 2)] integerValue];
 
     return [[NSCalendar currentCalendar] dateFromComponents:components];
   }

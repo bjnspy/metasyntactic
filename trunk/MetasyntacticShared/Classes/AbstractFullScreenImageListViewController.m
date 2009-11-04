@@ -30,9 +30,9 @@
 @implementation AbstractFullScreenImageListViewController
 
 const double TRANSLUCENCY_LEVEL = 0.9;
-const int ACTIVITY_INDICATOR_TAG = -1;
-const int LABEL_TAG = -2;
-const int IMAGE_TAG = -3;
+const NSInteger ACTIVITY_INDICATOR_TAG = -1;
+const NSInteger LABEL_TAG = -2;
+const NSInteger IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 const NSInteger PAGE_RANGE = 2;
 
@@ -108,8 +108,8 @@ const NSInteger PAGE_RANGE = 2;
 
   CGRect frame = [UIScreen mainScreen].bounds;
   CGRect labelFrame = downloadingLabel.frame;
-  labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
-  labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
+  labelFrame.origin.x = (NSInteger)((frame.size.width - labelFrame.size.width) / 2.0);
+  labelFrame.origin.y = (NSInteger)((frame.size.height - labelFrame.size.height) / 2.0);
   downloadingLabel.frame = labelFrame;
 
   return downloadingLabel;
@@ -125,8 +125,8 @@ const NSInteger PAGE_RANGE = 2;
   CGRect labelFrame = label.frame;
   CGRect activityFrame = activityIndicator.frame;
 
-  activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
-  activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
+  activityFrame.origin.x = (NSInteger)(labelFrame.origin.x - activityFrame.size.width) - 5;
+  activityFrame.origin.y = (NSInteger)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
   activityIndicator.frame = activityFrame;
 
   [activityIndicator startAnimating];
@@ -147,11 +147,11 @@ const NSInteger PAGE_RANGE = 2;
 
   CGRect frame = activityIndicator.frame;
   double width = frame.size.width;
-  frame.origin.x = (int)(frame.origin.x + width / 2);
+  frame.origin.x = (NSInteger)(frame.origin.x + width / 2);
   activityIndicator.frame = frame;
 
   frame = downloadingLabel.frame;
-  frame.origin.x = (int)(frame.origin.x + width / 2);
+  frame.origin.x = (NSInteger)(frame.origin.x + width / 2);
   downloadingLabel.frame = frame;
 
   [pageView addSubview:activityIndicator];
@@ -167,7 +167,7 @@ const NSInteger PAGE_RANGE = 2;
   CGRect frame = [UIScreen mainScreen].bounds;
 
   if (image.size.width > image.size.height) {
-    int offset = (int)((frame.size.height - frame.size.width) / 2.0);
+    NSInteger offset = (NSInteger)((frame.size.height - frame.size.width) / 2.0);
     CGRect imageFrame = CGRectMake(-offset, offset + 5, frame.size.height, frame.size.width - 10);
 
     imageView.frame = imageFrame;
@@ -231,8 +231,8 @@ const NSInteger PAGE_RANGE = 2;
 
 - (void) addImageToView:(NSArray*) arguments {
   NSNumber* index = [arguments objectAtIndex:0];
-  if (index.intValue < (currentPage - PAGE_RANGE) ||
-      index.intValue > (currentPage + PAGE_RANGE)) {
+  if (index.integerValue < (currentPage - PAGE_RANGE) ||
+      index.integerValue > (currentPage + PAGE_RANGE)) {
     return;
   }
 
@@ -259,7 +259,7 @@ const NSInteger PAGE_RANGE = 2;
     return;
   }
 
-  NSNumber* pageNumber = [NSNumber numberWithInt:page];
+  NSNumber* pageNumber = [NSNumber numberWithInteger:page];
   if ([pageNumberToView objectForKey:pageNumber] != nil) {
     return;
   }
@@ -281,7 +281,7 @@ const NSInteger PAGE_RANGE = 2;
     [self addImage:image toView:pageView];
   } else {
     [self createDownloadViews:pageView page:page];
-    NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
+    NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInteger:page], pageView, nil];
     [self performSelector:@selector(loadPoster:)
                withObject:indexAndPageView
                afterDelay:delay];
@@ -299,8 +299,8 @@ const NSInteger PAGE_RANGE = 2;
 
   NSNumber* index = [indexAndPageView objectAtIndex:0];
 
-  if (index.intValue < (currentPage - PAGE_RANGE) ||
-      index.intValue > (currentPage + PAGE_RANGE)) {
+  if (index.integerValue < (currentPage - PAGE_RANGE) ||
+      index.integerValue > (currentPage + PAGE_RANGE)) {
     return;
   }
 
@@ -309,7 +309,7 @@ const NSInteger PAGE_RANGE = 2;
     return;
   }
 
-  UIImage* image = [self imageForPage:index.intValue];
+  UIImage* image = [self imageForPage:index.integerValue];
   if (image == nil) {
     [self performSelector:@selector(loadPoster:)
                withObject:indexAndPageView
@@ -429,7 +429,7 @@ const NSInteger PAGE_RANGE = 2;
 
 - (void) clearAndLoadPages {
   for (NSNumber* pageNumber in pageNumberToView.allKeys) {
-    if (pageNumber.intValue < (currentPage - PAGE_RANGE) || pageNumber.intValue > (currentPage + PAGE_RANGE)) {
+    if (pageNumber.integerValue < (currentPage - PAGE_RANGE) || pageNumber.integerValue > (currentPage + PAGE_RANGE)) {
       UIView* pageView = [pageNumberToView objectForKey:pageNumber];
       [self disableActivityIndicator:pageView];
 
