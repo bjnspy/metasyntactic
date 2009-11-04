@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ApplicationTabBarController.h"
+#import "NowPlayingTabBarController.h"
 
 #import "Application.h"
 #import "Controller.h"
@@ -23,7 +23,7 @@
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 
-@interface ApplicationTabBarController()
+@interface NowPlayingTabBarController()
 @property (retain) MoviesNavigationController* moviesNavigationControllerData;
 @property (retain) TheatersNavigationController* theatersNavigationControllerData;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationControllerData;
@@ -32,7 +32,7 @@
 @end
 
 
-@implementation ApplicationTabBarController
+@implementation NowPlayingTabBarController
 
 @synthesize moviesNavigationControllerData;
 @synthesize theatersNavigationControllerData;

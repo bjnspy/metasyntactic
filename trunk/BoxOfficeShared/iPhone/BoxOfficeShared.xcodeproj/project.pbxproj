@@ -26,7 +26,7 @@
 		100000000000000000000031 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000030 /* AmazonCache.m */; };
 		100000000000000000000034 /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000033 /* ApplePosterDownloader.m */; };
 		100000000000000000000037 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000036 /* Application.m */; };
-		10000000000000000000003A /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000039 /* ApplicationTabBarController.m */; };
+		10000000000000000000003A /* NowPlayingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000039 /* NowPlayingTabBarController.m */; };
 		10000000000000000000003D /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000003C /* BlurayCache.m */; };
 		100000000000000000000041 /* BoxOfficeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000040 /* BoxOfficeShared.h */; };
 		100000000000000000000043 /* BoxOfficeSharedApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 100000000000000000000042 /* BoxOfficeSharedApplication.h */; };
@@ -224,8 +224,8 @@
 		100000000000000000000033 /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
 		100000000000000000000035 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		100000000000000000000036 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		100000000000000000000038 /* ApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTabBarController.h; sourceTree = "<group>"; };
-		100000000000000000000039 /* ApplicationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTabBarController.m; sourceTree = "<group>"; };
+		100000000000000000000038 /* NowPlayingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingTabBarController.h; sourceTree = "<group>"; };
+		100000000000000000000039 /* NowPlayingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingTabBarController.m; sourceTree = "<group>"; };
 		10000000000000000000003B /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
 		10000000000000000000003C /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
 		10000000000000000000003E /* BoxOfficeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BoxOfficeResources.bundle; sourceTree = "<group>"; };
@@ -933,8 +933,8 @@
 		100000000000000000000194 /* TabBarControllers */ = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000038 /* ApplicationTabBarController.h */,
-				100000000000000000000039 /* ApplicationTabBarController.m */,
+				100000000000000000000038 /* NowPlayingTabBarController.h */,
+				100000000000000000000039 /* NowPlayingTabBarController.m */,
 			);
 			name = TabBarControllers;
 			sourceTree = "<group>";
@@ -1251,7 +1251,7 @@
 				1000000000000000000000EF /* NetflixNavigationController.m in Sources */,
 				1000000000000000000001A2 /* TheatersNavigationController.m in Sources */,
 				1000000000000000000001BB /* UpcomingMoviesNavigationController.m in Sources */,
-				10000000000000000000003A /* ApplicationTabBarController.m in Sources */,
+				10000000000000000000003A /* NowPlayingTabBarController.m in Sources */,
 				10000000000000000000000F /* AbstractImageCell.m in Sources */,
 				100000000000000000000019 /* AbstractPosterCell.m in Sources */,
 				10000000000000000000006C /* DVDCell.m in Sources */,

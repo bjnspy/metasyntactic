@@ -39,8 +39,6 @@
     [AlertUtilities showOkAlert:@"Zombies enabled!"];
   }
 
-  //NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
-
   [BoxOfficeSharedApplication setSharedApplicationDelegate:self];
 
   Class rootViewControllerClass = NSClassFromString([[[NSBundle mainBundle] infoDictionary] objectForKey:@"RootViewControllerClass"]);
