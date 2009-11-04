@@ -23,9 +23,7 @@
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-+ (NSString*) stripHtmlCodes:(NSString*) string;
-+ (NSString*) stripHtmlLinks:(NSString*) string;
-+ (NSString*) convertHtmlEncodings:(NSString*) string;
++ (NSString*) removeHtml:(NSString*) string;
 
 + (NSString*) asciiString:(NSString*) string;
 + (NSString*) stringFromUnichar:(unichar) c;
