@@ -31,7 +31,7 @@
 
 - (void) dealloc {
   self.article = nil;
-  
+
   [super dealloc];
 }
 
@@ -41,7 +41,7 @@
     self.article = article_;
     self.title = article.title;
   }
-  
+
   return self;
 }
 
@@ -85,7 +85,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   Section* section = [article.sections objectAtIndex:indexPath.row];
-  
+
   return [WrappableCell height:section.title
                  accessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }

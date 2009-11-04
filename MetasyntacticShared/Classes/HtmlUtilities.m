@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  HtmlUtilities.m
-//  MetasyntacticShared
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 11/4/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "HtmlUtilities.h"
 
@@ -16,7 +22,7 @@
   NSDictionary* dictionary =
   [NSDictionary dictionaryWithObjectsAndKeys:
    @" ", @"&nbsp;",
-   @"\"", @"&quot;", 
+   @"\"", @"&quot;",
    @"-", @"&ndash;",
    @"&", @"&amp;",
    @"\"", @"&ldquo;",
@@ -24,11 +30,11 @@
    @"'", @"&lsquo;",
    @"'", @"&rsquo;",
    nil];
-  
+
   for (NSString* key in dictionary) {
     string = [string stringByReplacingOccurrencesOfString:key withString:[dictionary objectForKey:key]];
   }
-  
+
   return string;
 }
 
@@ -36,22 +42,22 @@
   if (string.length == 0) {
     return @"";
   }
-  
+
   NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", @"br ", @"strong", @"tbody", @"tr", @"td", @"span", @"table", nil];
-  
+
   for (NSString* code in htmlCodes) {
     string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
     string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"</%@>", code] withString:@""];
     string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@/>", code] withString:@""];
   }
-  
+
   return string;
 }
 
 
 + (NSString*) stripHtmlLinks:(NSString*) string {
   NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"p", @"table", @"span", nil];
-  
+
   for (NSString* code in htmlCodes) {
     NSString* startTag = [NSString stringWithFormat:@"<%@ ", code];
     NSInteger index = 0;
@@ -68,7 +74,7 @@
       }
     }
   }
-  
+
   return string;
 }
 
@@ -80,7 +86,7 @@
                                 options:0
                                   range:NSMakeRange(index, string.length - index)]).length > 0) {
     NSRange semiColonRange = [string rangeOfString:@";" options:0 range:NSMakeRange(range.location, string.length - range.location)];
-    
+
     index = range.location + 1;
     if (semiColonRange.length > 0) {
       NSScanner* scanner = [NSScanner scannerWithString:string];

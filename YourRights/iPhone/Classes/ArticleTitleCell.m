@@ -26,7 +26,7 @@
 
 - (void) dealloc {
   self.titleLabel = nil;
-  
+
   [super dealloc];
 }
 
@@ -35,11 +35,11 @@
      reuseIdentifier:(NSString*) reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     self.titleLabel = [[[UILabel alloc] init] autorelease];
     titleLabel.font = [UIFont boldSystemFontOfSize:14];
     titleLabel.numberOfLines = 0;
-    
+
     [self.contentView addSubview:titleLabel];
   }
   return self;
@@ -48,11 +48,11 @@
 
 - (void) layoutSubviews {
   [super layoutSubviews];
-  
+
   CGRect contentFrame = self.contentView.frame;
-  
+
   CGRect frame;
-  
+
   frame = titleLabel.frame;
   frame.size.width = contentFrame.size.width - 16;
   frame.size.height = contentFrame.size.height - 10;
@@ -62,9 +62,9 @@
 
 - (void) setItem:(Item*) item {
   titleLabel.text = item.title;
-  
+
   CGRect frame;
-  
+
   frame = titleLabel.frame;
   frame.origin.y = 7;
   frame.origin.x = 8;

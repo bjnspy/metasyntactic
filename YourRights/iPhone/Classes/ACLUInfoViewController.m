@@ -29,7 +29,7 @@
 - (void) dealloc {
   self.isArray = nil;
   self.isNotArray = nil;
-  
+
   [super dealloc];
 }
 
@@ -67,7 +67,7 @@
      NSLocalizedString(@"A representatively-run organization. "
                        @"The members elect board member "
                        @"representatives who vote on policy.", nil), nil];
-    
+
     self.isNotArray =
     [NSArray arrayWithObjects:
      NSLocalizedString(@"A government agency.", nil),
@@ -99,7 +99,7 @@
      NSLocalizedString(@"An organization that has members who "
                        @"vote directly on ACLU policy.", nil), nil];
   }
-  
+
   return self;
 }
 
@@ -131,14 +131,14 @@
   } else {
     text = [isNotArray objectAtIndex:indexPath.row];
   }
-  
+
   return text;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString* text = [self textForIndexPath:indexPath];
-  
+
   WrappableCell* cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
   return cell;
 }
@@ -147,7 +147,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
   NSString* text = [self textForIndexPath:indexPath];
-  
+
   return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
 }
 

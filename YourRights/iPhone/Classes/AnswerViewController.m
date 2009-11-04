@@ -55,7 +55,7 @@
     self.answer = answer_;
     self.links = [self.model linksForQuestion:question withSectionTitle:sectionTitle];
   }
-  
+
   return self;
 }
 
@@ -86,16 +86,16 @@
   if (indexPath.section == 0) {
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:question] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
   } else if (indexPath.section == 1) {
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:answer] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     return cell;
   } else {
     NSString* link = [links objectAtIndex:indexPath.row];
-    
+
     UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
     cell.textLabel.textColor = [UIColor blueColor];
     cell.textLabel.text = link;
@@ -120,7 +120,7 @@
     NSString* link = [links objectAtIndex:indexPath.row];
     if ([link rangeOfString:@"@"].length > 0) {
       link = [NSString stringWithFormat:@"mailto:%@", link];
-      
+
       NSURL* url = [NSURL URLWithString:link];
       [[UIApplication sharedApplication] openURL:url];
     } else {
@@ -151,7 +151,7 @@
   } else if (section == 2 && links.count > 0) {
     return NSLocalizedString(@"Useful Links", nil);
   }
-  
+
   return nil;
 }
 
