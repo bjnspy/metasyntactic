@@ -235,7 +235,7 @@ static Model* model = nil;
                                @"TR", // Turkey
                                @"US", // United States
                                nil];
-  
+
   NSString* userCountry = [LocaleUtilities isoCountry];
   return [supportedCountries containsObject:userCountry];
 }

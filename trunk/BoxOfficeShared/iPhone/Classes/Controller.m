@@ -211,7 +211,7 @@ static Controller* controller = nil;
 - (void) startWorker:(BOOL) force {
   NSAssert([NSThread isMainThread], nil);
   [self.model checkCountry];
-  
+
   [self spawnCheckIfInReviewPeriodThread];
   [self spawnDetermineLocationThread:force];
 }
