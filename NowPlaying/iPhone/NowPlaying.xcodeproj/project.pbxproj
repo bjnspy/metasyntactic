@@ -386,7 +386,6 @@
 		100000000000000000000458 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -407,9 +406,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B96C8C5-2CC2-455E-BC4C-6A2B9F277596";
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = AdHoc;
 		};
@@ -428,7 +427,6 @@
 		100000000000000000000893 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -450,15 +448,14 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
 		1000000000000000000008D2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -478,9 +475,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E2C47F87-1EDC-45C9-879D-07CAE171ACBA";
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Distribution;
 		};
@@ -499,7 +496,6 @@
 		10000000000000000000114D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -519,8 +515,8 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
