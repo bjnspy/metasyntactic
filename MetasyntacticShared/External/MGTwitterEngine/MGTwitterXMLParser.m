@@ -169,7 +169,7 @@ connectionIdentifier:(NSString*) theIdentifier requestType:(MGTwitterRequestType
 - (void) addSource
 {
   if (![currentNode objectForKey:TWITTER_SOURCE_REQUEST_TYPE]) {
-    [currentNode setObject:[NSNumber numberWithInt:requestType] 
+    [currentNode setObject:[NSNumber numberWithInteger:requestType] 
                     forKey:TWITTER_SOURCE_REQUEST_TYPE];
   }
 }

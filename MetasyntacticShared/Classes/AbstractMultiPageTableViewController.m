@@ -180,7 +180,7 @@
   if (pageCount > 1) {
     self.tableView.tableHeaderView = [self createToolbar];
     if (self.cacheTableViews) {
-      [pageToTableView setObject:self.tableView forKey:[NSNumber numberWithInt:currentPageIndex]];
+      [pageToTableView setObject:self.tableView forKey:[NSNumber numberWithInteger:currentPageIndex]];
     }
   }
 }
@@ -195,7 +195,7 @@
   NSInteger pageToRemove = -1;
 
   for (NSNumber* number in pageToTableView) {
-    NSInteger page = number.intValue;
+    NSInteger page = number.integerValue;
     if (page == currentPageIndex) {
       continue;
     }
@@ -207,7 +207,7 @@
   }
 
   if (pageToRemove != -1) {
-    [pageToTableView removeObjectForKey:[NSNumber numberWithInt:pageToRemove]];
+    [pageToTableView removeObjectForKey:[NSNumber numberWithInteger:pageToRemove]];
   }
 }
 
@@ -215,7 +215,7 @@
 - (UITableView*) findOrCreateTableView:(NSInteger) page {
   [self initializeData];
 
-  NSNumber* pageNumber = [NSNumber numberWithInt:page];
+  NSNumber* pageNumber = [NSNumber numberWithInteger:page];
   UITableView* newTableView = [pageToTableView objectForKey:pageNumber];
   if (newTableView == nil) {
     newTableView = [[[UITableView alloc] initWithFrame:self.tableView.frame style:self.tableView.style] autorelease];

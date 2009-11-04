@@ -73,7 +73,7 @@ void startElementHandler(void* userData,
   [parser.stringBufferStack addObject:[NSMutableString string]];
 
   NSMutableDictionary* attributes = [NSMutableDictionary dictionary];
-  for (int i = 0; atts[i] != NULL; i += 2) {
+  for (NSInteger i = 0; atts[i] != NULL; i += 2) {
     NSString* key = makeString(atts[i]);
     NSString* value = makeString(atts[i + 1]);
     [attributes setObject:value forKey:key];
@@ -107,7 +107,7 @@ void endElementHandler(void* userData,
 
 void characterDataHandler(void* userData,
                           const XML_Char* s,
-                          int len) {
+                          NSInteger len) {
   XmlParser* parser = userData;
   if (s != NULL) {
     NSString* string = [[[NSString alloc] initWithBytes:s length:len encoding:NSUTF8StringEncoding] autorelease];
@@ -130,10 +130,10 @@ void characterDataHandler(void* userData,
   XML_SetCharacterDataHandler(parser, characterDataHandler);
   XML_SetUserData(parser, self);
 
-  int result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
+  NSInteger result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
   if (result == 0) {
-    int line = XML_GetCurrentLineNumber(parser);
-    int column = XML_GetCurrentColumnNumber(parser);
+    NSInteger line = XML_GetCurrentLineNumber(parser);
+    NSInteger column = XML_GetCurrentColumnNumber(parser);
     NSString* xmlText = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     NSLog(@"Error at: %d, %d. Text:\n%@", line, column, xmlText);
   }

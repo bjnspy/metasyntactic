@@ -63,7 +63,7 @@
 - (void) setParameters:(NSArray*) parameters {
   NSMutableString* encodedParameterPairs = [NSMutableString string];
   
-  int position = 1;
+  NSInteger position = 1;
   for (OARequestParameter* requestParameter in parameters) {
     [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
     if (position < parameters.count) {
@@ -121,7 +121,7 @@
 + (void) setParameters:(NSArray*) parameters forRequest:(NSMutableURLRequest*) request {
   NSMutableString* encodedParameterPairs = [NSMutableString string];
   
-  int position = 1;
+  NSInteger position = 1;
   for (OARequestParameter* requestParameter in parameters) {
     [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
     if (position < parameters.count) {

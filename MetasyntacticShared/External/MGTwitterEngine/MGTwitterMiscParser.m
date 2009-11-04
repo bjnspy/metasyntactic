@@ -39,7 +39,7 @@
   [super parser:theParser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
   
   if ([elementName isEqualToString:@"remaining_hits"]) {
-    NSNumber* hits = [NSNumber numberWithInt:[[currentNode objectForKey:elementName] intValue]];
+    NSNumber* hits = [NSNumber numberWithInteger:[[currentNode objectForKey:elementName] integerValue]];
     [currentNode setObject:hits forKey:elementName];
   }
 }

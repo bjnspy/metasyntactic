@@ -33,11 +33,11 @@
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
         CGPoint point = [touch locationInView:self];
-        NSValue* pointValue = [NSValue valueWithCGPoint:point];
-        NSNumber* tapCount = [NSNumber numberWithInt:touch.tapCount];
+        NSValue* pointegerValue = [NSValue valueWithCGPoint:point];
+        NSNumber* tapCount = [NSNumber numberWithInteger:touch.tapCount];
 
         [self performSelector:@selector(reportTap:)
-                   withObject:[NSArray arrayWithObjects:pointValue, tapCount, nil]
+                   withObject:[NSArray arrayWithObjects:pointegerValue, tapCount, nil]
                    afterDelay:0.4];
         return;
     }
@@ -48,7 +48,7 @@
 
 - (void) reportTap:(NSArray*) pointAndCount {
     CGPoint point = [[pointAndCount objectAtIndex:0] CGPointValue];
-    NSInteger tapCount = [[pointAndCount objectAtIndex:1] intValue];
+    NSInteger tapCount = [[pointAndCount objectAtIndex:1] integerValue];
 
     [tapDelegate scrollView:self wasTapped:tapCount atPoint:point];
 }

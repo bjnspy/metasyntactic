@@ -62,7 +62,7 @@
 
 	// Convert to hex string between 0x00 and 0xFF
 	return [NSString stringWithFormat:@"0x%02X%02X%02X%02X",
-          (int)(a * 255), (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+          (NSInteger)(a * 255), (NSInteger)(r * 255), (NSInteger)(g * 255), (NSInteger)(b * 255)];
 }
 
 
@@ -71,7 +71,7 @@ BOOL validChar(unichar c) {
 }
 
 
-NSInteger intValue(unichar c) {
+NSInteger integerValue(unichar c) {
   if (c >= '0' && c <= '9') {
     return c - '0';
   } else if (c >= 'A' && c <= 'F') {
@@ -87,7 +87,7 @@ NSInteger getColor(NSString* string, NSInteger start) {
   unichar c2 = [string characterAtIndex:start + 1];
 
   if (validChar(c1) && validChar(c2)) {
-    return intValue(c1) << 4 | intValue(c2);
+    return integerValue(c1) << 4 | integerValue(c2);
   }
 
   return -1;
