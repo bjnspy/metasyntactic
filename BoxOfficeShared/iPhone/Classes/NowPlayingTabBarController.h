@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
+@interface NowPlayingTabBarController : UITabBarController<UITabBarControllerDelegate> {
 @private
   MoviesNavigationController* moviesNavigationControllerData;
   TheatersNavigationController* theatersNavigationControllerData;
