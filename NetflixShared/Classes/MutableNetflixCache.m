@@ -160,7 +160,7 @@
 
   [self checkApiResult:account element:element];
 
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
     return nil;
@@ -307,7 +307,7 @@ andReorderingMovies:[IdentitySet set]
 
   [self checkApiResult:account element:element];
 
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
     return [self extractErrorMessage:element];
@@ -337,7 +337,7 @@ andReorderingMovies:[IdentitySet set]
 
   [self checkApiResult:account element:element];
 
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     // we failed.  restore the rating to its original value
     return [self extractErrorMessage:element];
@@ -466,7 +466,7 @@ andReorderingMovies:[IdentitySet set]
                            error:(NSString**) error {
   *error = nil;
 
-  NSInteger status = [[[element element:@"status_code"] text] intValue];
+  NSInteger status = [[[element element:@"status_code"] text] integerValue];
   if (status < 200 || status >= 300) {
     *error = [self extractErrorMessage:element];
     return nil;
@@ -566,7 +566,7 @@ andReorderingMovies:[IdentitySet set]
 
   [self checkApiResult:account element:element];
 
-  NSInteger statusCode = [[[element element:@"status_code"] text] intValue];
+  NSInteger statusCode = [[[element element:@"status_code"] text] integerValue];
   if (statusCode < 200 || statusCode >= 300) {
     *error = [self extractErrorMessage:element];
     return nil;
