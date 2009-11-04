@@ -139,7 +139,6 @@
 		1000000000000000000001CA /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001C9 /* WarningView.m */; };
 		1000000000000000000001CE /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001CD /* WikipediaCache.m */; };
 		1000000000000000000001D1 /* YellowMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001D0 /* YellowMovieTitleCell.m */; };
-		1000000000000000000001E2 /* libMetasyntacticShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001E1 /* libMetasyntacticShared.a */; };
 		1000000000000000000001E4 /* libNetflixShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001E3 /* libNetflixShared.a */; };
 		1000000000000000000001E6 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1000000000000000000001E5 /* libProtocolBuffers.a */; };
 /* End PBXBuildFile section */
@@ -186,20 +185,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 10000000000000000000005C;
 			remoteInfo = NetflixShared;
-		};
-		100000000000000000000121 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000000CA /* MetasyntacticShared.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 747C2FCC0FD0648D00411801;
-			remoteInfo = MetasyntacticShared;
-		};
-		100000000000000000000122 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1000000000000000000000CA /* MetasyntacticShared.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000126;
-			remoteInfo = MetasyntacticShared;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -325,7 +310,6 @@
 		1000000000000000000000C6 /* MetacriticScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticScoreProvider.h; sourceTree = "<group>"; };
 		1000000000000000000000C7 /* MetacriticScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticScoreProvider.m; sourceTree = "<group>"; };
 		1000000000000000000000C9 /* MetasyntacticShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetasyntacticShared.h; path = ../../MetasyntacticShared/Classes/MetasyntacticShared.h; sourceTree = SOURCE_ROOT; };
-		1000000000000000000000CA /* MetasyntacticShared.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetasyntacticShared.xcodeproj; path = ../../MetasyntacticShared/MetasyntacticShared.xcodeproj; sourceTree = SOURCE_ROOT; };
 		1000000000000000000000CB /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		1000000000000000000000CC /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		1000000000000000000000CE /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
@@ -507,7 +491,6 @@
 			files = (
 				1000000000000000000001E6 /* libProtocolBuffers.a in Frameworks */,
 				1000000000000000000001E4 /* libNetflixShared.a in Frameworks */,
-				1000000000000000000001E2 /* libMetasyntacticShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +567,6 @@
 				100000000000000000000150 /* Products */,
 				100000000000000000000160 /* Resources */,
 				100000000000000000000080 /* Entitlements.plist */,
-				1000000000000000000000CA /* MetasyntacticShared.xcodeproj */,
 				100000000000000000000104 /* NetflixShared.xcodeproj */,
 				100000000000000000000157 /* ProtocolBuffers.xcodeproj */,
 			);
@@ -852,14 +834,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100000000000000000000153 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1000000000000000000001E1 /* libMetasyntacticShared.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		100000000000000000000160 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1117,7 +1091,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				100000000000000000000125 /* PBXTargetDependency */,
 				100000000000000000000124 /* PBXTargetDependency */,
 				100000000000000000000123 /* PBXTargetDependency */,
 			);
@@ -1174,10 +1147,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 100000000000000000000153 /* Products */;
-					ProjectRef = 1000000000000000000000CA /* MetasyntacticShared.xcodeproj */;
-				},
-				{
 					ProductGroup = 100000000000000000000152 /* Products */;
 					ProjectRef = 100000000000000000000104 /* NetflixShared.xcodeproj */;
 				},
@@ -1206,13 +1175,6 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 10000000000000000000011C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1000000000000000000001E1 /* libMetasyntacticShared.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMetasyntacticShared.a;
-			remoteRef = 100000000000000000000121 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1000000000000000000001E3 /* libNetflixShared.a */ = {
@@ -1372,11 +1334,6 @@
 			isa = PBXTargetDependency;
 			name = NetflixShared;
 			targetProxy = 100000000000000000000120 /* PBXContainerItemProxy */;
-		};
-		100000000000000000000125 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MetasyntacticShared;
-			targetProxy = 100000000000000000000122 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
