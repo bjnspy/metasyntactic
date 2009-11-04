@@ -273,6 +273,8 @@
 		100000000000000000000245 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000244 /* xmltok.c */; };
 		100000000000000000000248 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000247 /* xmltok_impl.c */; };
 		10000000000000000000024B /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 10000000000000000000024A /* xmltok_ns.c */; };
+		74D362BB10A15030005BEF61 /* HtmlUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D362B910A15030005BEF61 /* HtmlUtilities.h */; };
+		74D362BC10A15030005BEF61 /* HtmlUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D362BA10A15030005BEF61 /* HtmlUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -559,6 +561,8 @@
 		100000000000000000000247 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		100000000000000000000249 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		10000000000000000000024A /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74D362B910A15030005BEF61 /* HtmlUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlUtilities.h; sourceTree = "<group>"; };
+		74D362BA10A15030005BEF61 /* HtmlUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -976,6 +980,7 @@
 				10000000000000000000009B /* DateUtilities.h */,
 				1000000000000000000000A1 /* DifferenceEngine.h */,
 				1000000000000000000000AB /* FileUtilities.h */,
+				74D362B910A15030005BEF61 /* HtmlUtilities.h */,
 				1000000000000000000000C2 /* ImageUtilities.h */,
 				1000000000000000000000E0 /* LocaleUtilities.h */,
 				1000000000000000000000E8 /* LocationUtilities.h */,
@@ -986,12 +991,14 @@
 				10000000000000000000014B /* NSSet+Utilities.h */,
 				1000000000000000000001BE /* Pulser.h */,
 				1000000000000000000001D8 /* StringUtilities.h */,
+				10000000000000000000020C /* UIColor+Utilities.h */,
 				100000000000000000000066 /* AlertUtilities.m */,
 				10000000000000000000007E /* Base64.m */,
 				10000000000000000000008A /* CollectionUtilities.m */,
 				10000000000000000000009D /* DateUtilities.m */,
 				1000000000000000000000A3 /* DifferenceEngine.m */,
 				1000000000000000000000AD /* FileUtilities.m */,
+				74D362BA10A15030005BEF61 /* HtmlUtilities.m */,
 				1000000000000000000000C4 /* ImageUtilities.m */,
 				1000000000000000000000E2 /* LocaleUtilities.m */,
 				1000000000000000000000EA /* LocationUtilities.m */,
@@ -1002,7 +1009,6 @@
 				10000000000000000000014D /* NSSet+Utilities.m */,
 				1000000000000000000001C0 /* Pulser.m */,
 				1000000000000000000001DA /* StringUtilities.m */,
-				10000000000000000000020C /* UIColor+Utilities.h */,
 				10000000000000000000020E /* UIColor+Utilities.m */,
 			);
 			name = Utilities;
@@ -1232,6 +1238,7 @@
 				10000000000000000000020D /* UIColor+Utilities.h in Headers */,
 				1000000000000000000001DD /* StyleSheet.h in Headers */,
 				10000000000000000000000D /* AbstractController.h in Headers */,
+				74D362BB10A15030005BEF61 /* HtmlUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1397,6 +1404,7 @@
 				10000000000000000000020F /* UIColor+Utilities.m in Sources */,
 				1000000000000000000001DF /* StyleSheet.m in Sources */,
 				10000000000000000000000F /* AbstractController.m in Sources */,
+				74D362BC10A15030005BEF61 /* HtmlUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
