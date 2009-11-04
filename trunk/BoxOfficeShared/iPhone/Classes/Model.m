@@ -518,7 +518,7 @@ static Model* model = nil;
 - (NSInteger) scoreProviderIndexWorker {
   NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
   if (result != nil) {
-    return [result intValue];
+    return [result integerValue];
   }
 
   // by default, chose 'rottentomatoes' if they're an english speaking
@@ -782,7 +782,7 @@ static Model* model = nil;
 }
 
 
-- (int) searchRadius {
+- (NSInteger) searchRadius {
   if (self.searchRadiusData == -1) {
     self.searchRadiusData = [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS];
     if (self.searchRadiusData == 0) {
@@ -1330,8 +1330,8 @@ NSInteger compareMoviesByScore(id t1, id t2, void* context) {
   Movie* movie2 = t2;
   Model* model = context;
 
-  int movieRating1 = [model scoreValueForMovie:movie1];
-  int movieRating2 = [model scoreValueForMovie:movie2];
+  NSInteger movieRating1 = [model scoreValueForMovie:movie1];
+  NSInteger movieRating2 = [model scoreValueForMovie:movie2];
 
   if (movieRating1 < movieRating2) {
     return NSOrderedDescending;
@@ -1592,7 +1592,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
       continue;
     }
 
-    [types addObject:[NSNumber numberWithInt:type]];
+    [types addObject:[NSNumber numberWithInteger:type]];
     [values addObject:value];
   }
 

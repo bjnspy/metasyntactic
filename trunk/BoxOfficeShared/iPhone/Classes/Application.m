@@ -82,7 +82,7 @@ static NSString** directories[] = {
 + (void) createDirectories {
   [[self gate] lock];
   {
-    for (int i = 0; i < ArrayLength(directories); i++) {
+    for (NSInteger i = 0; i < ArrayLength(directories); i++) {
       NSString* directory = *directories[i];
 
       [FileUtilities createDirectory:directory];

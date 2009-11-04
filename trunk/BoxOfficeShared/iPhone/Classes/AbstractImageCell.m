@@ -69,8 +69,8 @@
     //imageView.alpha = 0;
 
     CGRect imageFrame = imageLoadingView.frame;
-    imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
-    imageFrame.size.height = (int) SMALL_POSTER_HEIGHT;
+    imageFrame.size.width = (NSInteger)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
+    imageFrame.size.height = (NSInteger) SMALL_POSTER_HEIGHT;
     imageView.frame = imageLoadingView.frame = imageFrame;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
@@ -197,13 +197,13 @@
   CGRect imageFrame = imageView.frame;
 
   CGRect titleFrame = titleLabel.frame;
-  titleFrame.origin.x = (int)(imageFrame.size.width + 2);
+  titleFrame.origin.x = (NSInteger)(imageFrame.size.width + 2);
   titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
   titleLabel.frame = titleFrame;
 
   for (UILabel* label in self.valueLabels) {
     CGRect frame = label.frame;
-    frame.origin.x = (int)(imageFrame.size.width + 2 + titleWidth + 5);
+    frame.origin.x = (NSInteger)(imageFrame.size.width + 2 + titleWidth + 5);
     frame.size.width = self.contentView.frame.size.width - frame.origin.x;
     label.frame = frame;
   }

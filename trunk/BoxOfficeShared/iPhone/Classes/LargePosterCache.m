@@ -29,8 +29,8 @@
 @synthesize yearToTitleToPosterUrls;
 @synthesize updated;
 
-const int UNKNOWN_YEAR = 0;
-const int START_YEAR = 1912;
+const NSInteger UNKNOWN_YEAR = 0;
+const NSInteger START_YEAR = 1912;
 
 - (void) dealloc {
   self.yearToMovieNames = nil;
@@ -235,7 +235,7 @@ const int START_YEAR = 1912;
   if (array.count > 0) {
     [dataGate lock];
     {
-      [yearToMovieNames setObject:array forKey:[NSNumber numberWithInt:year]];
+      [yearToMovieNames setObject:array forKey:[NSNumber numberWithInteger:year]];
     }
     [dataGate unlock];
     [self clearUpdatedMovies];
@@ -289,7 +289,7 @@ const int START_YEAR = 1912;
   NSArray* movieNames;
   [dataGate lock];
   {
-    movieNames = [[[yearToMovieNames objectForKey:[NSNumber numberWithInt:year]] retain] autorelease];
+    movieNames = [[[yearToMovieNames objectForKey:[NSNumber numberWithInteger:year]] retain] autorelease];
   }
   [dataGate unlock];
 
@@ -356,7 +356,7 @@ const int START_YEAR = 1912;
   NSMutableDictionary* titleToPosterUrls;
   [dataGate lock];
   {
-    NSNumber* yearNumber = [NSNumber numberWithInt:year];
+    NSNumber* yearNumber = [NSNumber numberWithInteger:year];
     titleToPosterUrls = [yearToTitleToPosterUrls objectForKey:yearNumber];
     if (titleToPosterUrls == nil) {
       titleToPosterUrls = [NSMutableDictionary dictionary];
@@ -515,7 +515,7 @@ const int START_YEAR = 1912;
 - (void) downloadAllPostersForMovie:(Movie*) movie {
   movie = [self appropriateMovie:movie];
   NSArray* urls = [self posterUrls:movie];
-  for (int i = 0; i < urls.count; i++) {
+  for (NSInteger i = 0; i < urls.count; i++) {
     [self downloadPosterForMovie:movie urls:urls index:i];
   }
 }

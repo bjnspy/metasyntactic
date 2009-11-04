@@ -41,7 +41,7 @@
 
 
 - (BOOL) containsNumber:(NSString*) string {
-  for (int i = 0; i < string.length; i++) {
+  for (NSInteger i = 0; i < string.length; i++) {
     unichar c = [string characterAtIndex:i];
     if (c >= '0' && c <= '9') {
       return YES;

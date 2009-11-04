@@ -144,13 +144,13 @@
   NSString* pluralUnit = ([Application useKilometers] ? LocalizedString(@"kilometers", nil) :
                           LocalizedString(@"miles", nil));
 
-  int distances[] = {
+  NSInteger distances[] = {
     1, 2, 5, 10, 15, 20, 30, 40, 50
   };
 
   NSMutableArray* distancesArray = [NSMutableArray array];
-  for (int i = 0; i < ArrayLength(distances); i++) {
-    int distance = distances[i];
+  for (NSInteger i = 0; i < ArrayLength(distances); i++) {
+    NSInteger distance = distances[i];
     if (distance == 1) {
       [distancesArray addObject:[NSString stringWithFormat:LocalizedString(@"Less than 1 %@ away", @"singular. refers to a distance like 'Less than 1 mile away'"), singularUnit]];
     } else {
@@ -182,7 +182,7 @@
       continue;
     }
 
-    for (int i = 0; i < ArrayLength(distances); i++) {
+    for (NSInteger i = 0; i < ArrayLength(distances); i++) {
       if (distance <= distances[i]) {
         [map addObject:theater forKey:[distancesArray objectAtIndex:i]];
         goto outer;

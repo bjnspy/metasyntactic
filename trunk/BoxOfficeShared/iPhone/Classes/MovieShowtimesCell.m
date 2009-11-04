@@ -53,7 +53,7 @@
 
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] timeString]];
 
-    for (int i = 1; i < showtimes.count; i++) {
+    for (NSInteger i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
         [text appendString:performance.timeString];
@@ -155,7 +155,7 @@
     CGRect cellFrame = self.contentView.frame;
     CGRect imageFrame = warningImageView.frame;
     imageFrame.origin.x = 8;
-    imageFrame.origin.y = (int)((cellFrame.size.height - imageFrame.size.height) / 2);
+    imageFrame.origin.y = (NSInteger)((cellFrame.size.height - imageFrame.size.height) / 2);
     warningImageView.frame = imageFrame;
 }
 

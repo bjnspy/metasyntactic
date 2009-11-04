@@ -67,8 +67,8 @@
                        [LocaleUtilities preferredLanguage],
                        [StringUtilities stringByAddingPercentEscapes:location.postalCode],
                        day,
-                       (int)(location.latitude * 1000000),
-                       (int)(location.longitude * 1000000)];
+                       (NSInteger)(location.latitude * 1000000),
+                       (NSInteger)(location.longitude * 1000000)];
 
   return address;
 }

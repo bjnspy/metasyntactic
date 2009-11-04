@@ -316,7 +316,7 @@
       continue;
     }
 
-    NSInteger scoreValue = [score intValue];
+    NSInteger scoreValue = [score integerValue];
 
     [result addObject:[Review reviewWithText:text
                                        score:scoreValue
@@ -341,8 +341,8 @@
    [LocaleUtilities preferredLanguage],
    score.identifier,
    score.provider,
-   (int)(location.latitude * 1000000),
-   (int)(location.longitude * 1000000)];
+   (NSInteger)(location.latitude * 1000000),
+   (NSInteger)(location.longitude * 1000000)];
 
   return url;
 }

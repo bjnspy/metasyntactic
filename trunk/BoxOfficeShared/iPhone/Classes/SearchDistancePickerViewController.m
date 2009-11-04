@@ -109,7 +109,7 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
     NSString* radius = [values objectAtIndex:indexPath.row];
-    [self.controller setSearchRadius:radius.intValue];
+    [self.controller setSearchRadius:radius.integerValue];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -146,7 +146,7 @@
 
     for (UILabel* label in self.titleLabels) {
       CGRect frame = label.frame;
-      frame.origin.x = (int)(imageView.frame.size.width + 2);
+      frame.origin.x = (NSInteger)(imageView.frame.size.width + 2);
       frame.size.width = titleWidth;
       label.frame = frame;
     }
@@ -180,7 +180,7 @@
 
   CGFloat score = [rating floatValue];
 
-  for (int i = 0; i < 5; i++) {
+  for (NSInteger i = 0; i < 5; i++) {
     CGFloat value = score - i;
     if (value <= 0) {
       [result appendString:[StringUtilities emptyStarString]];

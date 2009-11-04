@@ -60,7 +60,7 @@
 }
 
 
-- (int(*)(id,id,void*)) sortByReleaseDateFunction {
+- (NSInteger(*)(id,id,void*)) sortByReleaseDateFunction {
   return compareMoviesByReleaseDateAscending;
 }
 

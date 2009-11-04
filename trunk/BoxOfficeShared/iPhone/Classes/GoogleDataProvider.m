@@ -119,8 +119,8 @@
   NSMutableArray* result = [NSMutableArray array];
 
   for (NSString* time in times) {
-    NSInteger hour = [[time substringToIndex:2] intValue];
-    NSInteger minute = [[time substringFromIndex:3] intValue];
+    NSInteger hour = [[time substringToIndex:2] integerValue];
+    NSInteger minute = [[time substringFromIndex:3] integerValue];
 
     [dateComponents setHour:hour];
     [dateComponents setMinute:minute];
@@ -165,8 +165,8 @@
 
     NSRange range = [time rangeOfString:@":"];
 
-    NSInteger hour = [[time substringToIndex:range.location] intValue];
-    NSInteger minute = [[time substringFromIndex:range.location + 1] intValue];
+    NSInteger hour = [[time substringToIndex:range.location] integerValue];
+    NSInteger minute = [[time substringFromIndex:range.location + 1] integerValue];
 
     if (isPM && hour < 12) {
       hour += 12;
@@ -406,8 +406,8 @@
                        [LocaleUtilities preferredLanguage],
                        [StringUtilities stringByAddingPercentEscapes:location.postalCode],
                        day,
-                       (int)(location.latitude * 1000000),
-                       (int)(location.longitude * 1000000)];
+                       (NSInteger)(location.latitude * 1000000),
+                       (NSInteger)(location.longitude * 1000000)];
 
   NSData* data = [NetworkUtilities dataWithContentsOfAddress:address pause:NO];
   if (data == nil) {
