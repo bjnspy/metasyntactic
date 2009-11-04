@@ -34,7 +34,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="560" class="Program" package="">
+      <breakpoint url="file://$PROJECT_DIR$/Program.java" line="582" class="Program" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -108,7 +108,7 @@
       <file leaf-file-name="Program.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="310" column="35" selection-start="11029" selection-end="11029" vertical-scroll-proportion="-4.957895">
+            <state line="626" column="0" selection-start="19999" selection-end="19999" vertical-scroll-proportion="-0.45789474">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -286,7 +286,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.YourRights">
+  <component name="RunManager" selected="Application.AllProject">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -475,13 +475,36 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <list size="6">
+    <configuration default="false" name="AllProject" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
+      <option name="MAIN_CLASS_NAME" value="Program" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="/Projects/metasyntactic/trunk /Projects/comixology/trunk" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ObjectiveCAnalyzer" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51236" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.BookReader" />
       <item index="1" class="java.lang.String" itemvalue="Application.BoxOfficeShared" />
       <item index="2" class="java.lang.String" itemvalue="Application.ComiXologyShared" />
       <item index="3" class="java.lang.String" itemvalue="Application.MetasyntacticShared" />
       <item index="4" class="java.lang.String" itemvalue="Application.ProtocolBuffers" />
       <item index="5" class="java.lang.String" itemvalue="Application.YourRights" />
+      <item index="6" class="java.lang.String" itemvalue="Application.AllProject" />
     </list>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <module name="" />
@@ -558,13 +581,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="104" y="44" width="1287" height="851" extended-state="0" />
-    <editor active="true" />
+    <frame x="112" y="22" width="1287" height="851" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38324177" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38324177" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847682" sideWeight="0.5" order="8" side_tool="false" />
@@ -719,7 +742,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="310" column="35" selection-start="11029" selection-end="11029" vertical-scroll-proportion="-4.957895">
+        <state line="626" column="0" selection-start="19999" selection-end="19999" vertical-scroll-proportion="-0.45789474">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
