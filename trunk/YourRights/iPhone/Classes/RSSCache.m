@@ -138,7 +138,7 @@ static NSDictionary* titleToIdentifier;
   return [Item itemWithTitle:[HtmlUtilities removeHtml:title]
                         link:link
                  description:[HtmlUtilities removeHtml:description]
-                        date:date 
+                        date:date
                       author:author];
 }
 

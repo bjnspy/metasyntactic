@@ -36,7 +36,7 @@
   self.year = 0;
   self.link = nil;
   self.sections = nil;
-  
+
   [super dealloc];
 }
 
@@ -51,7 +51,7 @@
     self.link = link_;
     self.sections = sections_;
   }
-  
+
   return self;
 }
 

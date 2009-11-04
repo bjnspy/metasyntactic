@@ -32,7 +32,7 @@ Person* person(NSString* name, NSString* link) {
 - (void) dealloc {
   self.name = nil;
   self.link = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@ Person* person(NSString* name, NSString* link) {
     self.name = name_;
     self.link = link_;
   }
-  
+
   return self;
 }
 

@@ -495,7 +495,7 @@ static NSArray* greatestHits;
     self.synopsis = synopsis_;
     self.link = link_;
   }
-  
+
   return self;
 }
 
@@ -525,7 +525,7 @@ static NSArray* greatestHits;
     case SeparationOfChurchAndState: return NSLocalizedString(@"Separation of Church and State", nil);
     case FreeExerciseOfReligion: return NSLocalizedString(@"Free Exercise of Religion", nil);
   }
-  
+
   return @"";
 }
 

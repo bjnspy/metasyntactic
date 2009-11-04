@@ -30,7 +30,7 @@
   self.text = nil;
   self.signers = nil;
   self.date = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,7 +43,7 @@
     self.signers = signers_;
     self.date = date_;
   }
-  
+
   return self;
 }
 

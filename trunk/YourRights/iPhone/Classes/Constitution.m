@@ -39,7 +39,7 @@
   self.amendments = nil;
   self.conclusion = nil;
   self.signers = nil;
-  
+
   [super dealloc];
 }
 
@@ -58,7 +58,7 @@
     self.conclusion = conclusion_;
     self.signers = signers_;
   }
-  
+
   return self;
 }
 

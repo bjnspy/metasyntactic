@@ -33,7 +33,7 @@
 - (void) dealloc {
   self.section = nil;
   self.chunks = nil;
-  
+
   [super dealloc];
 }
 
@@ -43,10 +43,10 @@
     self.section = section_;
     self.title = section.title;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
     self.chunks = [StringUtilities splitIntoChunks:section.text];
   }
-  
+
   return self;
 }
 
@@ -71,7 +71,7 @@
   WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
   cell.accessoryType = UITableViewCellAccessoryNone;
   cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-  
+
   return cell;
 }
 
