@@ -33,14 +33,14 @@
 @synthesize signers;
 
 - (void) dealloc {
-    self.country = nil;
-    self.preamble = nil;
-    self.articles = nil;
-    self.amendments = nil;
-    self.conclusion = nil;
-    self.signers = nil;
-
-    [super dealloc];
+  self.country = nil;
+  self.preamble = nil;
+  self.articles = nil;
+  self.amendments = nil;
+  self.conclusion = nil;
+  self.signers = nil;
+  
+  [super dealloc];
 }
 
 
@@ -50,16 +50,16 @@
             amendments:(NSArray*) amendments_
             conclusion:(NSString*) conclusion_
                signers:(MultiDictionary*) signers_ {
-    if (self = [super init]) {
-        self.country = country_;
-        self.preamble = preamble_;
-        self.articles = articles_;
-        self.amendments = amendments_;
-        self.conclusion = conclusion_;
-        self.signers = signers_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.country = country_;
+    self.preamble = preamble_;
+    self.articles = articles_;
+    self.amendments = amendments_;
+    self.conclusion = conclusion_;
+    self.signers = signers_;
+  }
+  
+  return self;
 }
 
 
@@ -69,12 +69,12 @@
                                amendments:(NSArray*) amendments_
                                conclusion:(NSString*) conclusion_
                                   signers:(MultiDictionary*) signers_ {
-    return [[[Constitution alloc] initWithCountry:country_
-                                         preamble:preamble_
-                                         articles:articles_
-                                       amendments:amendments_
-                                       conclusion:conclusion_
-                                          signers:signers_] autorelease];
+  return [[[Constitution alloc] initWithCountry:country_
+                                       preamble:preamble_
+                                       articles:articles_
+                                     amendments:amendments_
+                                     conclusion:conclusion_
+                                        signers:signers_] autorelease];
 }
 
 @end

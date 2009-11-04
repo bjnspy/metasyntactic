@@ -23,7 +23,7 @@
 @implementation YourRightsNavigationController
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     SectionViewController* controller = [[[SectionViewController alloc] init] autorelease];
     [self pushViewController:controller animated:NO];
   }

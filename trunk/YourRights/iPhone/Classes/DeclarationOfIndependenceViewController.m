@@ -37,7 +37,7 @@
 
 
 - (id) initWithDeclaration:(DeclarationOfIndependence*) declaration_ {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.declaration = declaration_;
     self.title = NSLocalizedString(@"Declaration of Independence", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

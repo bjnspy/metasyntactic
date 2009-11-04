@@ -15,7 +15,7 @@
 #import "Person.h"
 
 Person* person(NSString* name, NSString* link) {
-    return [Person personWithName:name link:link];
+  return [Person personWithName:name link:link];
 }
 
 @interface Person()
@@ -30,26 +30,26 @@ Person* person(NSString* name, NSString* link) {
 @synthesize link;
 
 - (void) dealloc {
-    self.name = nil;
-    self.link = nil;
-
-    [super dealloc];
+  self.name = nil;
+  self.link = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithName:(NSString*) name_
                link:(NSString*) link_ {
-    if (self = [super init]) {
-        self.name = name_;
-        self.link = link_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.name = name_;
+    self.link = link_;
+  }
+  
+  return self;
 }
 
 
 + (Person*) personWithName:(NSString*) name link:(NSString*) link {
-    return [[[Person alloc] initWithName:name link:link] autorelease];
+  return [[[Person alloc] initWithName:name link:link] autorelease];
 }
 
 @end

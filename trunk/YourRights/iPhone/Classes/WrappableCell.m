@@ -41,7 +41,7 @@ static UIFont* defaultFont;
 
 
 - (id) initWithTitle:(NSString*) title_ {
-  if (self = [super initWithFrame:[[UIScreen mainScreen] bounds] reuseIdentifier:nil]) {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil])) {
     self.title = title_;
 
     self.label = [[[UILabel alloc] init] autorelease];

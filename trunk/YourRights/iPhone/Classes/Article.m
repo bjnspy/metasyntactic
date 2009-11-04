@@ -28,46 +28,46 @@
 @synthesize sections;
 
 - (void) dealloc {
-    self.title = nil;
-    self.link = nil;
-    self.sections = nil;
-
-    [super dealloc];
+  self.title = nil;
+  self.link = nil;
+  self.sections = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithTitle:(NSString*) title_
                 link:(NSString*) link_
             sections:(NSArray*) sections_ {
-    if (self = [super init]) {
-        self.title = title_;
-        self.link = link_;
-        self.sections = sections_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.title = title_;
+    self.link = link_;
+    self.sections = sections_;
+  }
+  
+  return self;
 }
 
 
 + (Article*) articleWithTitle:(NSString*) title
                          link:(NSString*) link
                      sections:(NSArray*) sections {
-    return [[[Article alloc] initWithTitle:title
-                                      link:link
-                                  sections:sections] autorelease];
+  return [[[Article alloc] initWithTitle:title
+                                    link:link
+                                sections:sections] autorelease];
 }
 
 
 + (Article*) articleWithTitle:(NSString*) title
                          link:(NSString*) link
                       section:(Section*) section {
-    return [Article articleWithTitle:title link:link sections:[NSArray arrayWithObject:section]];
+  return [Article articleWithTitle:title link:link sections:[NSArray arrayWithObject:section]];
 }
 
 
 + (Article*) articleWithTitle:(NSString*) title
                       section:(Section*) section {
-    return [Article articleWithTitle:title link:@"" section:section];
+  return [Article articleWithTitle:title link:@"" section:section];
 }
 
 @end

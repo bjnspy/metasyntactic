@@ -38,7 +38,7 @@
 
 
 - (id) initWithConstitution:(Constitution*) constitution_ {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.constitution = constitution_;
     self.title = NSLocalizedString(@"Federalist Papers", nil);
   }

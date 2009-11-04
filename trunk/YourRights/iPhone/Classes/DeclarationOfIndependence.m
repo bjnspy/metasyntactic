@@ -27,33 +27,33 @@
 @synthesize date;
 
 - (void) dealloc {
-    self.text = nil;
-    self.signers = nil;
-    self.date = nil;
-
-    [super dealloc];
+  self.text = nil;
+  self.signers = nil;
+  self.date = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithText:(NSString*) text_
             signers:(MultiDictionary*) signers_
                date:(NSDate*) date_ {
-    if (self = [super init]) {
-        self.text = text_;
-        self.signers = signers_;
-        self.date = date_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.text = text_;
+    self.signers = signers_;
+    self.date = date_;
+  }
+  
+  return self;
 }
 
 
 + (DeclarationOfIndependence*) declarationWithText:(NSString*) text_
                                            signers:(MultiDictionary*) signers_
                                               date:(NSDate*) date_ {
-    return [[[DeclarationOfIndependence alloc] initWithText:text_
-                                                    signers:signers_
-                                                       date:date_] autorelease];
+  return [[[DeclarationOfIndependence alloc] initWithText:text_
+                                                  signers:signers_
+                                                     date:date_] autorelease];
 }
 
 @end

@@ -53,7 +53,7 @@
 
 
 - (id) initWithSectionTitle:(NSString*) sectionTitle_ {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.sectionTitle = sectionTitle_;
     self.preamble = [self.model preambleForSectionTitle:sectionTitle];
     self.questions = [self.model questionsForSectionTitle:sectionTitle];

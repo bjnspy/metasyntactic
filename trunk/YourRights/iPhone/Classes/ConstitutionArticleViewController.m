@@ -39,7 +39,7 @@
 
 
 - (id) initWithArticle:(Article*) article_ {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.article = article_;
 
     NSMutableArray* array = [NSMutableArray array];

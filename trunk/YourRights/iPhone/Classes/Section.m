@@ -26,32 +26,32 @@
 @synthesize text;
 
 - (void) dealloc {
-    self.title = nil;
-    self.text = nil;
-
-    [super dealloc];
+  self.title = nil;
+  self.text = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithTitle:(NSString*) title_
                 text:(NSString*) text_ {
-    if (self = [super init]) {
-        self.title = title_;
-        self.text = text_;
-    }
-
-    return self;
+  if ((self = [super init])) {
+    self.title = title_;
+    self.text = text_;
+  }
+  
+  return self;
 }
 
 
 + (Section*) sectionWithTitle:(NSString*) title
                          text:(NSString*) text {
-    return [[[Section alloc] initWithTitle:title text:text] autorelease];
+  return [[[Section alloc] initWithTitle:title text:text] autorelease];
 }
 
 
 + (Section*) sectionWithText:(NSString*) text {
-    return [[[Section alloc] initWithTitle:@"" text:text] autorelease];
+  return [[[Section alloc] initWithTitle:@"" text:text] autorelease];
 }
 
 @end
