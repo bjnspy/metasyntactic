@@ -23,11 +23,12 @@ import java.util.regex.Pattern;
 public class Program {
   private static final Collection<String> classes = new TreeSet<String>();
   private static List<File> stringsFiles = new ArrayList<File>();
+  private static List<File> projectFiles = new ArrayList<File>();
 
   private Program() {
   }
 
-  public static void main(final String... args)
+  public static void main1(final String... args)
       throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
     for (String arg : args) {
       stringsFiles = new ArrayList<File>();
@@ -37,6 +38,30 @@ public class Program {
     processStringsFiles();
     //generateAndroidFiles();
     //printForwardDeclaration();
+  }
+
+  public static void main(final String... args)
+      throws IOException, InterruptedException, ParserConfigurationException, TransformerException, NoSuchAlgorithmException {
+    for (String arg : args) {
+      findProjectFiles(new File(arg));
+    }
+    processProjectFiles();
+  }
+
+  private static void findProjectFiles(final File directory) {
+    for (final File child : directory.listFiles()) {
+      if (".svn".equals(child.getName())) {
+        continue;
+      }
+
+      if (child.isDirectory()) {
+        findProjectFiles(child);
+      }
+
+      if (child.getPath().endsWith(".pbxproj")) {
+        projectFiles.add(child);
+      }
+    }
   }
 
   private static void findStringsFiles(final File directory) {
@@ -65,9 +90,6 @@ public class Program {
     checkDealloc(child);
     insertCopyright(child);
     trimRight(child);
-    //organizeStringsFile(child);
-    //formatCode(child);
-    //normalizeProjectFile(child);
     trim(child);
     //*/
   }
@@ -598,19 +620,12 @@ public class Program {
     return map;
   }
 
-  private static void normalizeProjectFile(
-      final File child) throws IOException, NoSuchAlgorithmException {
-    if (!child.getPath().endsWith(".pbxproj")) {
-      return;
-    }
-
-    final String fileText = readFile(child);
-
+  private static void processProjectFiles() throws IOException, NoSuchAlgorithmException {
     final Pattern pattern = Pattern.compile("([0-9A-F]{24}) /\\* (.*?) \\*/");
     final SortedSet<HashAndHint> values = new TreeSet<HashAndHint>();
-    final Map<String, String> hashingMap = new LinkedHashMap<String, String>();
 
-    {
+    for (File child : projectFiles) {
+      final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
 
       while (matcher.find()) {
@@ -620,19 +635,20 @@ public class Program {
       }
     }
 
-    {
-      BigInteger start = new BigInteger(new byte[]{
-          0x10, 0, 0, 0,
-          0, 0, 0, 0,
-          0, 0, 0, 0
-      });
-      for (final HashAndHint hah : values) {
-        final String hash = start.toString(16);
-        hashingMap.put(hah.hash, hash);
-        start = start.add(BigInteger.ONE);
-      }
+    final Map<String, String> hashingMap = new LinkedHashMap<String, String>();
+    BigInteger start = new BigInteger(new byte[]{
+        0x10, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0
+    });
+    for (final HashAndHint hah : values) {
+      final String hash = start.toString(16).toUpperCase();
+      hashingMap.put(hah.hash, hash);
+      start = start.add(BigInteger.ONE);
     }
-    {
+
+    for (File child : projectFiles) {
+      final String fileText = readFile(child);
       final Matcher matcher = pattern.matcher(fileText);
       final StringBuffer sb = new StringBuffer(fileText.length());
       while (matcher.find()) {
@@ -644,7 +660,6 @@ public class Program {
       matcher.appendTail(sb);
 
       final String result = sb.toString();
-      //System.out.println(result);
 
       if (!result.trim().equals(fileText.trim())) {
         writeFile(child, result);
@@ -693,66 +708,6 @@ public class Program {
       }
 
       return hash.compareTo(hashAndHint.hash);
-    }
-  }
-
-
-  private static void formatCode(final File child) throws IOException {
-    if (!child.getName().endsWith(".m") && !child.getName().endsWith(".h")) {
-      return;
-    }
-
-    final LineNumberReader in = new LineNumberReader(new FileReader(child));
-
-    final StringWriter stringWriter = new StringWriter();
-    final PrintWriter printer = new PrintWriter(stringWriter);
-
-    String line;
-    final int index = 0;
-    while ((line = in.readLine()) != null) {
-      printer.println(line);
-
-      final int firstColonIndex = line.indexOf(':');
-      if (firstColonIndex < 0 || line.trim().startsWith("case ")) {
-        continue;
-      }
-      if (line.contains(";") || line.contains("{") || line.contains("}")) {
-        continue;
-      }
-
-      while ((line = in.readLine()) != null) {
-        final int lineIndexColon = line.indexOf(':');
-        if (lineIndexColon < 0 || line.trim().startsWith("case ")) {
-          printer.println(line);
-          break;
-        }
-
-        if (lineIndexColon < firstColonIndex) {
-          printer.print(createWhitespate(firstColonIndex - lineIndexColon));
-          printer.println(line);
-        } else if (lineIndexColon > firstColonIndex) {
-          final int lengthToTrim = lineIndexColon - firstColonIndex;
-          final String trim = line.substring(0, lengthToTrim);
-          if (trim.trim().length() == 0) {
-            printer.println(line.substring(lengthToTrim));
-          } else {
-            printer.println(line.trim());
-          }
-        } else {
-          printer.println(line);
-        }
-
-        if (line.contains(";") || line.contains("{") || line.contains("}")) {
-          break;
-        }
-      }
-    }
-
-    printer.flush();
-    final String contents = stringWriter.toString().trim();
-    if (!contents.equals(readFile(child))) {
-      System.out.println("Formatting: " + child);
-      writeFile(child, contents);
     }
   }
 
