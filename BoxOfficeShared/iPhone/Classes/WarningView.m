@@ -89,7 +89,7 @@ const NSInteger TOP_BUFFER = 5;
   {
     CGRect frame = imageView.frame;
     frame.origin.x = 20;
-    frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [BoxOfficeStockImages warning32x32].size.height) / 2.0));
+    frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (NSInteger)((label.frame.size.height - [BoxOfficeStockImages warning32x32].size.height) / 2.0));
     imageView.frame = frame;
   }
 }

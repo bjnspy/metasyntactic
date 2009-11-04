@@ -83,7 +83,7 @@ property_definition(source);
 
 + (Review*) createWithDictionary:(NSDictionary*) dictionary {
   return [Review reviewWithText:[dictionary objectForKey:text_key]
-                          score:[[dictionary objectForKey:score_key] intValue]
+                          score:[[dictionary objectForKey:score_key] integerValue]
                            link:[dictionary objectForKey:link_key]
                          author:[dictionary objectForKey:author_key]
                          source:[dictionary objectForKey:source_key]];
@@ -92,7 +92,7 @@ property_definition(source);
 
 - (NSDictionary*) dictionary {
   NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-  [dict setObject:[NSNumber numberWithInt:score]  forKey:score_key];
+  [dict setObject:[NSNumber numberWithInteger:score]  forKey:score_key];
   [dict setObject:link                            forKey:link_key];
   [dict setObject:text                            forKey:text_key];
   [dict setObject:author                          forKey:author_key];

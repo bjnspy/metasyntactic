@@ -482,7 +482,7 @@ const NSInteger POSTER_TAG = -1;
   NSInteger count = [self.model.largePosterCache posterCountForMovie:movie];
 
   [self performSelectorOnMainThread:@selector(reportPosterCount:)
-                         withObject:[NSNumber numberWithInt:count]
+                         withObject:[NSNumber numberWithInteger:count]
                       waitUntilDone:NO];
 
   [self.model.largePosterCache downloadFirstPosterForMovie:movie];
@@ -496,7 +496,7 @@ const NSInteger POSTER_TAG = -1;
 - (void) reportPosterCount:(NSNumber*) posterNumber {
   NSAssert([NSThread isMainThread], nil);
   if (!visible) { return; }
-  posterCount = [posterNumber intValue];
+  posterCount = [posterNumber integerValue];
 }
 
 
@@ -1185,7 +1185,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] intValue]) {
+  if (updateId != [[array objectAtIndex:0] integerValue]) {
     return;
   }
 
@@ -1215,7 +1215,7 @@ const NSInteger POSTER_TAG = -1;
 
   NSMutableString* body = [NSMutableString string];
 
-  for (int i = 0; i < filteredTheatersArray.count; i++) {
+  for (NSInteger i = 0; i < filteredTheatersArray.count; i++) {
     [body appendString:@"<p>"];
 
     Theater* theater = [filteredTheatersArray objectAtIndex:i];

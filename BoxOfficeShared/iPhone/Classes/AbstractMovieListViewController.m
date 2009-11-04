@@ -72,7 +72,7 @@
 - (UITableViewCell*) createCell:(Movie*) movie AbstractMethod;
 
 
-- (int(*)(id,id,void*)) sortByReleaseDateFunction AbstractMethod;
+- (NSInteger(*)(id,id,void*)) sortByReleaseDateFunction AbstractMethod;
 
 
 - (UISegmentedControl*) createSegmentedControl AbstractMethod;

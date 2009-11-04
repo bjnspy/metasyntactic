@@ -277,7 +277,7 @@
   [body appendString:[self.model simpleAddressForTheater:theater]];
   [body appendString:@"</a>"];
 
-  for (int i = 0; i < movies.count; i++) {
+  for (NSInteger i = 0; i < movies.count; i++) {
     [body appendString:@"<p>"];
 
     Movie* movie = [movies objectAtIndex:i];
@@ -310,7 +310,7 @@
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] intValue]) {
+  if (updateId != [[array objectAtIndex:0] integerValue]) {
     return;
   }
 

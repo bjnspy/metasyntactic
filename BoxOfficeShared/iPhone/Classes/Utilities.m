@@ -56,7 +56,7 @@
                        performances:(NSArray*) performances {
     NSMutableString* body = [NSMutableString string];
 
-    for (int i = 0; i < performances.count; i++) {
+    for (NSInteger i = 0; i < performances.count; i++) {
         if (i != 0) {
             [body appendString:@", "];
         }

@@ -111,7 +111,7 @@
 
 
 - (void) setReviewImage:(Review*) review {
-  int score = review.score;
+  NSInteger score = review.score;
 
   if (self.model.rottenTomatoesScores) {
     [self setBasicSquareImage:score];

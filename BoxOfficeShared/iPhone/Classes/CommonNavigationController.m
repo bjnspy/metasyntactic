@@ -77,8 +77,8 @@
     return;
   }
 
-  for (int i = 0; i < types.count; i++) {
-    NSInteger type = [[types objectAtIndex:i] intValue];
+  for (NSInteger i = 0; i < types.count; i++) {
+    NSInteger type = [[types objectAtIndex:i] integerValue];
     id value = [values objectAtIndex:i];
 
     if (type == MovieDetails) {

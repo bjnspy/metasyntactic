@@ -104,7 +104,7 @@
         [self.controller setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
     }
 
-    for (int i = 0; i <= 1; i++) {
+    for (NSInteger i = 0; i <= 1; i++) {
         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
 

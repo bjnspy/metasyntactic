@@ -235,7 +235,7 @@
   Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%@-%@", title, NSStringFromClass([self class])]
                                       title:title
                                      rating:rating
-                                     length:[length intValue]
+                                     length:[length integerValue]
                                 releaseDate:releaseDate
                                 imdbAddress:@""
                                      poster:poster

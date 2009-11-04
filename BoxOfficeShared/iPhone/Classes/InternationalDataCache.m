@@ -152,7 +152,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_FR:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"U";
   }
@@ -166,7 +166,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_DK:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"A";
   }
@@ -180,7 +180,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_NL:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"AL";
   }
@@ -194,7 +194,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_SE:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"Btl";
   }
@@ -208,7 +208,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_DE:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"FSK 0";
   }
@@ -222,7 +222,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_IT:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"T";
   }
@@ -236,7 +236,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_ES:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"Todos los publicos";
   }
@@ -250,7 +250,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_CH:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"0";
   }
@@ -264,7 +264,7 @@ static NSDictionary* countryToCode = nil;
 
 
 - (NSString*) mapRating_FI:(NSString*) value {
-  NSInteger i = value.intValue;
+  NSInteger i = value.integerValue;
   if (i == 99) {
     return @"K-3";
   }
@@ -297,9 +297,9 @@ static NSDictionary* countryToCode = nil;
 - (NSDate*) parseDate:(NSString*) string {
   if (string.length == 10 && [string characterAtIndex:2] == '/' && [string characterAtIndex:5] == '/') {
     NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-    components.year = [[string substringWithRange:NSMakeRange(6, 4)] intValue];
-    components.month = [[string substringWithRange:NSMakeRange(3, 2)] intValue];
-    components.day = [[string substringWithRange:NSMakeRange(0, 2)] intValue];
+    components.year = [[string substringWithRange:NSMakeRange(6, 4)] integerValue];
+    components.month = [[string substringWithRange:NSMakeRange(3, 2)] integerValue];
+    components.day = [[string substringWithRange:NSMakeRange(0, 2)] integerValue];
 
     return [[NSCalendar currentCalendar] dateFromComponents:components];
   }
@@ -331,7 +331,7 @@ static NSDictionary* countryToCode = nil;
   NSArray* cast = [self extractArray:[element element:@"actors"]];
   NSArray* genres = [self extractArray:[element element:@"categories"]];
 
-  NSInteger length = [[[element element:@"duration"] text] intValue];
+  NSInteger length = [[[element element:@"duration"] text] integerValue];
   NSDate* releaseDate = [self parseDate:[[element element:@"release"] text]];
   NSString* rating = [self mapRating:[[element element:@"rating"] text] ratingCache:ratingCache mapRatingWorker:mapRatingWorker];
 

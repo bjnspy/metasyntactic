@@ -118,7 +118,7 @@ property_definition(identifier);
 
 - (NSInteger) scoreValue {
   if (scoreValue == -2) {
-    int value = score.intValue;
+    NSInteger value = score.integerValue;
     if (value >= 0 && value <= 100) {
       return scoreValue = value;
     } else {

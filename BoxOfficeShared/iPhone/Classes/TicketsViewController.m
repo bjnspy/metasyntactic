@@ -298,7 +298,7 @@
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] intValue]) {
+  if (updateId != [[array objectAtIndex:0] integerValue]) {
     return;
   }
 

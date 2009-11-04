@@ -138,7 +138,7 @@
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.size.width = titleWidth;
-            frame.origin.x = (int)(imageView.frame.size.width + 7);
+            frame.origin.x = (NSInteger)(imageView.frame.size.width + 7);
             label.frame = frame;
         }
 

@@ -71,8 +71,8 @@
 
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   CGRect labelFrame = label.frame;
-  labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
-  labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0) - 20;
+  labelFrame.origin.x = (NSInteger)((frame.size.width - labelFrame.size.width) / 2.0);
+  labelFrame.origin.y = (NSInteger)((frame.size.height - labelFrame.size.height) / 2.0) - 20;
   label.frame = labelFrame;
 
   return label;
@@ -87,8 +87,8 @@
   CGRect labelFrame = label.frame;
   CGRect activityFrame = activityIndicator.frame;
 
-  activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
-  activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
+  activityFrame.origin.x = (NSInteger)(labelFrame.origin.x - activityFrame.size.width) - 5;
+  activityFrame.origin.y = (NSInteger)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
   activityIndicator.frame = activityFrame;
 
   [activityIndicator startAnimating];
@@ -117,7 +117,7 @@
   frame.origin.x = 10;
   frame.origin.y = applicationFrame.size.height - frame.origin.x - image.size.height;
   frame.size.height = image.size.height;
-  frame.size.width = (int)(applicationFrame.size.width - 2 * frame.origin.x);
+  frame.size.width = (NSInteger)(applicationFrame.size.width - 2 * frame.origin.x);
   button.frame = frame;
 
   return button;
@@ -137,11 +137,11 @@
 
   CGRect frame = activityIndicator.frame;
   double width = frame.size.width;
-  frame.origin.x = (int)(frame.origin.x + width / 2);
+  frame.origin.x = (NSInteger)(frame.origin.x + width / 2);
   activityIndicator.frame = frame;
 
   frame = label.frame;
-  frame.origin.x = (int)(frame.origin.x + width / 2);
+  frame.origin.x = (NSInteger)(frame.origin.x + width / 2);
   label.frame = frame;
 
   [view addSubview:activityIndicator];
@@ -185,7 +185,7 @@
 
   self.updateId++;
   NSArray* array = [NSArray arrayWithObjects:
-                    [NSNumber numberWithInt:updateId],
+                    [NSNumber numberWithInteger:updateId],
                     searchDate,
                     nil];
   [self.model.dataProvider update:searchDate delegate:self context:array force:YES];
@@ -193,7 +193,7 @@
 
 
 - (void) onDataProviderUpdateFailure:(NSString*) error context:(id) array {
-  if (updateId != [[array objectAtIndex:0] intValue]) {
+  if (updateId != [[array objectAtIndex:0] integerValue]) {
     return;
   }
 
@@ -210,7 +210,7 @@
 
 
 - (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
-  if (updateId != [[array objectAtIndex:0] intValue]) {
+  if (updateId != [[array objectAtIndex:0] integerValue]) {
     return;
   }
 

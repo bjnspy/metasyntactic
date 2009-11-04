@@ -55,7 +55,7 @@
     {
       NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
       if (count > 0) {
-        [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+        [dictionary setObject:[NSNumber numberWithInteger:count] forKey:title];
       }
     }
     [pool release];

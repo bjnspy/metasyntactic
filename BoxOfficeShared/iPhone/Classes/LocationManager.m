@@ -92,12 +92,12 @@
     return;
   }
 
-  NSInteger i = number.intValue;
+  NSInteger i = number.integerValue;
   buttonItem.image =
   BoxOfficeStockImage([NSString stringWithFormat:@"Spinner%d.png", i]);
 
   [self performSelector:@selector(updateSpinnerImage:)
-             withObject:[NSNumber numberWithInt:((i + 1) % 10)]
+             withObject:[NSNumber numberWithInteger:((i + 1) % 10)]
              afterDelay:0.1];
 }
 
@@ -105,7 +105,7 @@
 - (void) startUpdatingSpinner:(BOOL) wasUserInvoked {
   self.userInvoked = wasUserInvoked;
   buttonItem.style = UIBarButtonItemStyleDone;
-  [self updateSpinnerImage:[NSNumber numberWithInt:1]];
+  [self updateSpinnerImage:[NSNumber numberWithInteger:1]];
 }
 
 
