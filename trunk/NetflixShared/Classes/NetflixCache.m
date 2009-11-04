@@ -1128,18 +1128,13 @@ static NSString** directories[] = {
 }
 
 
-+ (NSString*) cleanupSynopsis:(NSString*) synopsis {
-  return [StringUtilities removeHtml:synopsis];
-}
-
-
 + (NSDictionary*) extractMovieDetails:(XmlElement*) element {
   NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
   for (XmlElement* child in element.children) {
     if ([@"link" isEqual:child.name]) {
       NSString* rel = [child attributeValue:@"rel"];
       if ([@"http://schemas.netflix.com/catalog/titles/synopsis" isEqual:rel]) {
-        NSString* synopsis = [self cleanupSynopsis:[[child element:@"synopsis"] text]];
+        NSString* synopsis = [HtmlUtilities removeHtml:[[child element:@"synopsis"] text]];
         if (synopsis.length > 0) {
           [dictionary setObject:synopsis forKey:synopsis_key];
         }

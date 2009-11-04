@@ -135,9 +135,9 @@ static NSDictionary* titleToIdentifier;
     return nil;
   }
 
-  return [Item itemWithTitle:[StringUtilities removeHtml:title]
+  return [Item itemWithTitle:[HtmlUtilities removeHtml:title]
                         link:link
-                 description:[StringUtilities removeHtml:description]
+                 description:[HtmlUtilities removeHtml:description]
                         date:date 
                       author:author];
 }

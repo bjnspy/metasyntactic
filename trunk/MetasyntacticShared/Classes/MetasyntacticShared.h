@@ -53,6 +53,7 @@
 #import "EditorViewController.h"
 #import "FileUtilities.h"
 #import "FontCache.h"
+#import "HtmlUtilities.h"
 #import "IdentitySet.h"
 #import "ImageCache.h"
 #import "ImageUtilities.h"

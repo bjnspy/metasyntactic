@@ -23,8 +23,6 @@
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-+ (NSString*) removeHtml:(NSString*) string;
-
 + (NSString*) asciiString:(NSString*) string;
 + (NSString*) stringFromUnichar:(unichar) c;
 
