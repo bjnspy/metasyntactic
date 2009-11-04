@@ -228,7 +228,7 @@ static NSString* articles[] = {
                                 releaseDate:releaseDate
                                 imdbAddress:imdbAddress
                                      poster:poster
-                                   synopsis:[StringUtilities stripHtmlCodes:synopsis]
+                                   synopsis:[StringUtilities removeHtml:synopsis]
                                      studio:studio
                                   directors:directors
                                        cast:cast

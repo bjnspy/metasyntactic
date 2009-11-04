@@ -1129,7 +1129,7 @@ static NSString** directories[] = {
 
 
 + (NSString*) cleanupSynopsis:(NSString*) synopsis {
-  return [StringUtilities convertHtmlEncodings:[StringUtilities stripHtmlLinks:synopsis]];
+  return [StringUtilities removeHtml:synopsis];
 }
 
 
