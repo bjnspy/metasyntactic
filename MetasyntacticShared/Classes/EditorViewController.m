@@ -33,11 +33,11 @@
 }
 
 
-- (id) initWithObject:(id) object__
-             selector:(SEL) selector__ {
+- (id) initWithObject:(id) object_
+             selector:(SEL) selector_ {
     if ((self = [super init])) {
-        self.object = object__;
-        self.selector = selector__;
+        self.object = object_;
+        self.selector = selector_;
     }
 
     return self;

@@ -89,9 +89,9 @@
 }
 
 
-- (id) initWithTheater:(Theater*) theater__ {
+- (id) initWithTheater:(Theater*) theater_ {
   if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-    self.theater = theater__;
+    self.theater = theater_;
   }
 
   return self;
