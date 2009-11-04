@@ -19,6 +19,10 @@
 @implementation HtmlUtilities
 
 + (NSString*) convertHtmlEntities:(NSString*) string {
+  if (string.length == 0) {
+    return @"";
+  }
+
   NSDictionary* dictionary =
   [NSDictionary dictionaryWithObjectsAndKeys:
    @" ", @"&nbsp;",
@@ -56,6 +60,10 @@
 
 
 + (NSString*) stripHtmlLinks:(NSString*) string {
+  if (string.length == 0) {
+    return @"";
+  }
+
   NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"p", @"table", @"span", nil];
 
   for (NSString* code in htmlCodes) {
@@ -80,6 +88,10 @@
 
 
 + (NSString*) convertHtmlEncodings:(NSString*) string {
+  if (string.length == 0) {
+    return @"";
+  }
+  
   NSInteger index = 0;
   NSRange range;
   while ((range = [string rangeOfString:@"&#x"
@@ -106,6 +118,10 @@
 
 
 + (NSString*) removeHtml:(NSString*) string {
+  if (string.length == 0) {
+    return @"";
+  }
+
   string = [self convertHtmlEntities:[self stripHtmlCodes:[self stripHtmlLinks:[self convertHtmlEncodings:string]]]];
   return [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
