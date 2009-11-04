@@ -49,9 +49,9 @@
 - (void) setupDefaultScopeButtonTitles AbstractMethod;
 
 
-- (id) initWithSearchBar:(UISearchBar*) searchBar__
-     contentsController:(UIViewController*) viewController__ {
-  if ((self = [super initWithSearchBar:searchBar__ contentsController:viewController__])) {
+- (id) initWithSearchBar:(UISearchBar*) searchBar_
+     contentsController:(UIViewController*) viewController_ {
+  if ((self = [super initWithSearchBar:searchBar_ contentsController:viewController_])) {
     self.delegate = self;
     self.searchResultsDataSource = self;
     self.searchResultsDelegate = self;

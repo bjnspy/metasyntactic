@@ -39,13 +39,13 @@
 }
 
 
-- (id) initWithTarget:(id) target__
-               action:(SEL) action__
-        pulseInterval:(NSTimeInterval) pulseInterval__ {
+- (id) initWithTarget:(id) target_
+               action:(SEL) action_
+        pulseInterval:(NSTimeInterval) pulseInterval_ {
   if ((self = [super init])) {
-    self.target = target__;
-    self.action = action__;
-    self.pulseInterval = pulseInterval__;
+    self.target = target_;
+    self.action = action_;
+    self.pulseInterval = pulseInterval_;
     self.lastPulseTime = [NSDate dateWithTimeIntervalSince1970:1];
   }
 

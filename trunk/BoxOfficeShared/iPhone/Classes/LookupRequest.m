@@ -44,19 +44,19 @@
 }
 
 
-- (id) initWithSearchDate:(NSDate*) searchDate__
-                 delegate:(id<DataProviderUpdateDelegate>) delegate__
-                  context:(id) context__
-                    force:(BOOL) force__
-            currentMovies:(NSArray*) currentMovies__
-          currentTheaters:(NSArray*) currentTheaters__ {
+- (id) initWithSearchDate:(NSDate*) searchDate_
+                 delegate:(id<DataProviderUpdateDelegate>) delegate_
+                  context:(id) context_
+                    force:(BOOL) force_
+            currentMovies:(NSArray*) currentMovies_
+          currentTheaters:(NSArray*) currentTheaters_ {
   if ((self = [super init])) {
-    self.searchDate = searchDate__;
-    self.delegate = delegate__;
-    self.context = context__;
-    self.force = force__;
-    self.currentMovies = currentMovies__;
-    self.currentTheaters = currentTheaters__;
+    self.searchDate = searchDate_;
+    self.delegate = delegate_;
+    self.context = context_;
+    self.force = force_;
+    self.currentMovies = currentMovies_;
+    self.currentTheaters = currentTheaters_;
   }
 
   return self;
