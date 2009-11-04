@@ -41,7 +41,7 @@
 
 
 - (id) initWithTitle:(NSString*) title_ {
-  if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+  if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
     self.title = title_;
   }
 
@@ -116,7 +116,7 @@
 
     ArticleTitleCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[ArticleTitleCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[ArticleTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setItem:item];
@@ -126,7 +126,7 @@
 
     ArticleBodyCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-      cell = [[[ArticleBodyCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+      cell = [[[ArticleBodyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     [cell setItem:item];

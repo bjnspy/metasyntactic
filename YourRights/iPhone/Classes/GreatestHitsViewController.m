@@ -73,7 +73,7 @@
 
 
 - (id) init {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.segmentedControl = [self setupSegmentedControl];
 
     self.indexTitles =

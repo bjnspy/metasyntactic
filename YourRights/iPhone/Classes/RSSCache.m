@@ -97,7 +97,7 @@ static NSDictionary* titleToIdentifier;
 
 
 - (id) init {
-  if (self = [super init ]) {
+  if ((self = [super init])) {
     self.titleToItems = [NSMutableDictionary dictionary];
   }
 
@@ -135,7 +135,11 @@ static NSDictionary* titleToIdentifier;
     return nil;
   }
 
-  return [Item itemWithTitle:title link:link description:description date:date author:author];
+  return [Item itemWithTitle:[StringUtilities removeHtml:title]
+                        link:link
+                 description:[StringUtilities removeHtml:description]
+                        date:date 
+                      author:author];
 }
 
 

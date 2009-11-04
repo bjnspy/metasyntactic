@@ -31,61 +31,61 @@
 @synthesize chunks;
 
 - (void) dealloc {
-    self.section = nil;
-    self.chunks = nil;
-
-    [super dealloc];
+  self.section = nil;
+  self.chunks = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithSection:(Section*) section_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.section = section_;
-        self.title = section.title;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-        self.chunks = [StringUtilities splitIntoChunks:section.text];
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.section = section_;
+    self.title = section.title;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.chunks = [StringUtilities splitIntoChunks:section.text];
+  }
+  
+  return self;
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+  return YES;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return chunks.count;
+  return chunks.count;
 }
 
 
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
-    NSString* text = [chunks objectAtIndex:row];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-
-    return cell;
+  NSString* text = [chunks objectAtIndex:row];
+  WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
+  cell.accessoryType = UITableViewCellAccessoryNone;
+  cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+  
+  return cell;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self cellForSectionRow:indexPath.row];
+  return [self cellForSectionRow:indexPath.row];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* text = [chunks objectAtIndex:indexPath.row];
-    return [WrappableCell height:text
-                   accessoryType:UITableViewCellAccessoryNone];
+  NSString* text = [chunks objectAtIndex:indexPath.row];
+  return [WrappableCell height:text
+                 accessoryType:UITableViewCellAccessoryNone];
 }
 
 @end

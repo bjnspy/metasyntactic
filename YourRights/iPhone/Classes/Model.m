@@ -951,7 +951,7 @@ static Model* model = nil;
 
 
 - (id) init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.rssCache = [RSSCache cache];
   }
 

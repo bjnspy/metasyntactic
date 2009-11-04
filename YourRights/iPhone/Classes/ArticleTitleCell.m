@@ -25,50 +25,50 @@
 @synthesize titleLabel;
 
 - (void) dealloc {
-    self.titleLabel = nil;
-
-    [super dealloc];
+  self.titleLabel = nil;
+  
+  [super dealloc];
 }
 
 
-- (id) initWithFrame:(CGRect) frame
+- (id) initWithStyle:(UITableViewCellStyle) style
      reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        self.titleLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        titleLabel.numberOfLines = 0;
-
-        [self.contentView addSubview:titleLabel];
-    }
-    return self;
+  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.titleLabel = [[[UILabel alloc] init] autorelease];
+    titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    titleLabel.numberOfLines = 0;
+    
+    [self.contentView addSubview:titleLabel];
+  }
+  return self;
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];
-
-    CGRect contentFrame = self.contentView.frame;
-
-    CGRect frame;
-
-    frame = titleLabel.frame;
-    frame.size.width = contentFrame.size.width - 16;
-    frame.size.height = contentFrame.size.height - 10;
-    titleLabel.frame = frame;
+  [super layoutSubviews];
+  
+  CGRect contentFrame = self.contentView.frame;
+  
+  CGRect frame;
+  
+  frame = titleLabel.frame;
+  frame.size.width = contentFrame.size.width - 16;
+  frame.size.height = contentFrame.size.height - 10;
+  titleLabel.frame = frame;
 }
 
 
 - (void) setItem:(Item*) item {
-    titleLabel.text = item.title;
-
-    CGRect frame;
-
-    frame = titleLabel.frame;
-    frame.origin.y = 7;
-    frame.origin.x = 8;
-    titleLabel.frame = frame;
+  titleLabel.text = item.title;
+  
+  CGRect frame;
+  
+  frame = titleLabel.frame;
+  frame.origin.y = 7;
+  frame.origin.x = 8;
+  titleLabel.frame = frame;
 }
 
 @end

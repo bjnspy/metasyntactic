@@ -30,64 +30,64 @@
 @synthesize article;
 
 - (void) dealloc {
-    self.article = nil;
-
-    [super dealloc];
+  self.article = nil;
+  
+  [super dealloc];
 }
 
 
 - (id) initWithArticle:(Article*) article_ {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.article = article_;
-        self.title = article.title;
-    }
-
-    return self;
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.article = article_;
+    self.title = article.title;
+  }
+  
+  return self;
 }
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+  return YES;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return article.sections.count;
+  return article.sections.count;
 }
 
 
 - (UITableViewCell*) cellForSectionRow:(NSInteger) row {
-    Section* section = [article.sections objectAtIndex:row];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.title] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
+  Section* section = [article.sections objectAtIndex:row];
+  WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.title] autorelease];
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  return cell;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self cellForSectionRow:indexPath.row];
+  return [self cellForSectionRow:indexPath.row];
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Section* section = [article.sections objectAtIndex:indexPath.row];
-    FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithSection:section] autorelease];
-    [self.navigationController pushViewController:controller
-                                         animated:YES];
+  Section* section = [article.sections objectAtIndex:indexPath.row];
+  FederalistPapersSectionViewController* controller = [[[FederalistPapersSectionViewController alloc] initWithSection:section] autorelease];
+  [self.navigationController pushViewController:controller
+                                       animated:YES];
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Section* section = [article.sections objectAtIndex:indexPath.row];
-
-    return [WrappableCell height:section.title
-                   accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+  Section* section = [article.sections objectAtIndex:indexPath.row];
+  
+  return [WrappableCell height:section.title
+                 accessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 @end

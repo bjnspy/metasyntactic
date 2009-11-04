@@ -41,8 +41,8 @@
   [super dealloc];
 }
 
-- (id)initWithReuseIdentifier:(NSString*)reuseIdentifier {
-  if (self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier]) {
+- (id) initWithReuseIdentifier:(NSString*)reuseIdentifier {
+  if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
     self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 2, 0, 20)] autorelease];
     titleLabel.font = [UIFont boldSystemFontOfSize:20];
     titleLabel.adjustsFontSizeToFitWidth = YES;

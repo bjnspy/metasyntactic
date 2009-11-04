@@ -40,7 +40,7 @@
 
 
 - (id) initWithSigners:(MultiDictionary*) signers_ {
-  if (self = [super initWithStyle:UITableViewStylePlain]) {
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
     self.signers = signers_;
     self.title = NSLocalizedString(@"Signers", nil);
 
