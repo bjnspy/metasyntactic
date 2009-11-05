@@ -92,6 +92,7 @@ enum ViewControllerType {
 - (BOOL) scoreCacheEnabled;
 - (BOOL) helpCacheEnabled;
 - (BOOL) internationalDataCacheEnabled;
+- (BOOL) largePosterCacheEnabled;
 - (BOOL) dvdBlurayCacheEnabled;
 - (BOOL) upcomingCacheEnabled;
 - (BOOL) netflixCacheEnabled;
