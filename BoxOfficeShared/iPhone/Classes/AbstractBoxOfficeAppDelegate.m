@@ -113,9 +113,6 @@
 }
 
 
-- (BOOL) largePosterCacheAlwaysEnabled AbstractMethod;
-
-
 - (BOOL) netflixCacheAlwaysEnabled AbstractMethod;
 
 
