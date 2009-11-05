@@ -14,8 +14,8 @@
 
 @interface AbstractPosterDownloader : NSObject {
 @private
-    NSDictionary* movieNameToPosterMap;
-    NSLock* gate;
+  NSDictionary* movieNameToPosterMap;
+  NSLock* gate;
 }
 
 - (NSData*) download:(Movie*) movie;

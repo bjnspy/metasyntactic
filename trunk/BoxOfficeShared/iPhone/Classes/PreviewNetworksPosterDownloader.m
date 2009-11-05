@@ -28,7 +28,7 @@
       NSString* poster = [[child element:@"poster"] text];
 
       if (title.length > 0 && poster.length > 0) {
-        [map setObject:poster forKey:title];
+        [map setObject:[NSArray arrayWithObject:poster] forKey:title];
       }
     }
     [pool release];
