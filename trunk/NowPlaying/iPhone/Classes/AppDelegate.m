@@ -30,11 +30,6 @@
 }
 
 
-- (BOOL) largePosterCacheAlwaysEnabled {
-  return NO;
-}
-
-
 - (BOOL) netflixCacheAlwaysEnabled {
   return NO;
 }

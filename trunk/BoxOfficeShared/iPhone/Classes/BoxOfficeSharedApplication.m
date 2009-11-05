@@ -32,11 +32,6 @@ static id<BoxOfficeSharedApplicationDelegate> delegate = nil;
 }
 
 
-+ (BOOL) largePosterCacheAlwaysEnabled {
-  return [delegate largePosterCacheAlwaysEnabled];
-}
-
-
 + (BOOL) netflixCacheAlwaysEnabled {
   return [delegate netflixCacheAlwaysEnabled];
 }
