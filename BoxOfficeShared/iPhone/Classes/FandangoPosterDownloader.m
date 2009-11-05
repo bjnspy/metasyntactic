@@ -19,29 +19,6 @@
 
 @implementation FandangoPosterDownloader
 
-- (NSDictionary*) processFandangoElement:(XmlElement*) element {
-  NSMutableDictionary* map = [NSMutableDictionary dictionary];
-
-  XmlElement* dataElement = [element element:@"data"];
-  XmlElement* moviesElement = [dataElement element:@"movies"];
-
-  for (XmlElement* movieElement in moviesElement.children) {
-    NSString* poster = [movieElement attributeValue:@"posterhref"];
-    NSString* title = [movieElement element:@"title"].text;
-
-    if (poster.length == 0 || title.length == 0) {
-      continue;
-    }
-
-    title = [[Movie makeCanonical:title] lowercaseString];
-
-    [map setObject:poster forKey:title];
-  }
-
-  return map;
-}
-
-
 - (NSDictionary*) createMapWorker {
   NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings%@?provider=fandango",
                    [Application apiHost], [Application apiVersion]];
