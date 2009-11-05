@@ -358,6 +358,14 @@ static Model* model = nil;
 }
 
 
+- (BOOL) largePosterCacheEnabled {
+  if ([BoxOfficeSharedApplication largePosterCacheAlwaysEnabled]) {
+    return YES;
+  }
+  return self.userAddress.length > 0;
+}
+
+
 - (BOOL) helpCacheEnabled {
   return self.userAddress.length > 0;
 }
