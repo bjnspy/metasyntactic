@@ -47,4 +47,6 @@
 
 - (void) setupTitleLabel;
 
+- (BOOL) hasOverriddenBackground;
+
 @end
