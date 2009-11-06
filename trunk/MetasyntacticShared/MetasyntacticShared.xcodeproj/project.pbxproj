@@ -275,6 +275,8 @@
 		1000000000000000000019C5 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C3 /* xmltok.c */; };
 		1000000000000000000019CC /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019C9 /* xmltok_impl.c */; };
 		1000000000000000000019D1 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 1000000000000000000019CF /* xmltok_ns.c */; };
+		7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7495CEC110A4A1E000915BB2 /* InterceptingView.h */; };
+		7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495CEC210A4A1E000915BB2 /* InterceptingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -563,6 +565,8 @@
 		1000000000000000000019C9 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CD /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		1000000000000000000019CF /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		7495CEC110A4A1E000915BB2 /* InterceptingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptingView.h; sourceTree = "<group>"; };
+		7495CEC210A4A1E000915BB2 /* InterceptingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -970,6 +974,7 @@
 			children = (
 				100000000000000000000FC9 /* ActionsView.h */,
 				100000000000000000000CD7 /* InteractiveView.h */,
+				7495CEC110A4A1E000915BB2 /* InterceptingView.h */,
 				100000000000000000000D44 /* LargeActivityIndicatorViewWithBackground.h */,
 				100000000000000000001642 /* PinchableViewDelegate.h */,
 				10000000000000000000168F /* SmallActivityIndicatorViewWithBackground.h */,
@@ -981,6 +986,7 @@
 				1000000000000000000015C0 /* TouchableViewDelegate.h */,
 				100000000000000000000FCB /* ActionsView.m */,
 				100000000000000000000CD9 /* InteractiveView.m */,
+				7495CEC210A4A1E000915BB2 /* InterceptingView.m */,
 				100000000000000000000D46 /* LargeActivityIndicatorViewWithBackground.m */,
 				100000000000000000001691 /* SmallActivityIndicatorViewWithBackground.m */,
 				100000000000000000001968 /* TappableImageView.m */,
@@ -1239,6 +1245,7 @@
 				1000000000000000000017E5 /* StyleSheet.h in Headers */,
 				100000000000000000000538 /* AbstractController.h in Headers */,
 				100000000000000000000A4F /* HtmlUtilities.h in Headers */,
+				7495CEC310A4A1E000915BB2 /* InterceptingView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,6 +1412,7 @@
 				100000000000000000001816 /* StyleSheet.m in Sources */,
 				10000000000000000000053A /* AbstractController.m in Sources */,
 				100000000000000000000A51 /* HtmlUtilities.m in Sources */,
+				7495CEC410A4A1E000915BB2 /* InterceptingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

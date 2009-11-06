@@ -58,6 +58,7 @@
 #import "ImageCache.h"
 #import "ImageUtilities.h"
 #import "InteractiveView.h"
+#import "InterceptingView.h"
 #import "LargeActivityIndicatorViewWithBackground.h"
 #import "ListPickerDelegate.h"
 #import "ListPickerViewController.h"
