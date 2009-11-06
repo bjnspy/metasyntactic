@@ -15,6 +15,7 @@
 #import "AbstractTwitterAccount.h"
 
 #import "AlertUtilities.h"
+#import "MetasyntacticSharedApplication.h"
 #import "NotificationCenter.h"
 
 @interface AbstractTwitterAccount()
@@ -63,7 +64,7 @@ setting_definition(TWITTER_PASSWORD);
 
   self.lastCheckCredentialsIdentifier = [engine checkUserCredentials];
 
-  NSString* notification = NSLocalizedString(@"Logging in to Twitter", nil);
+  NSString* notification = LocalizedString(@"Logging in to Twitter", nil);
   [requestsInProgress setObject:notification forKey:lastCheckCredentialsIdentifier];
 
   [NotificationCenter addNotification:notification];
@@ -137,7 +138,7 @@ setting_definition(TWITTER_PASSWORD);
   }
   message = [NSString stringWithFormat:@"%@%@", message, suffix];
 
-  NSString* notification = NSLocalizedString(@"Tweeting", nil);
+  NSString* notification = LocalizedString(@"Tweeting", nil);
   [NotificationCenter addNotification:notification];
 
   NSString* key = [engine sendUpdate:message];
@@ -163,7 +164,7 @@ setting_definition(TWITTER_PASSWORD);
 
   if ([lastCheckCredentialsIdentifier isEqual:connectionIdentifier]) {
     if (error.code == 401) {
-      [AlertUtilities showOkAlert:NSLocalizedString(@"Incorrect Twitter user name or password.", nil)];
+      [AlertUtilities showOkAlert:LocalizedString(@"Incorrect Twitter user name or password.", nil)];
     }
   }
 }
