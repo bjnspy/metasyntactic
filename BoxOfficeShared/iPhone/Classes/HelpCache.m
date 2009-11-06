@@ -152,8 +152,6 @@
   [self appendLookupMethod: result type:@"Questions"];
   [self appendLookupMethod: result type:@"Answers"];
 
-
-
   [result appendString:@"}\n"];
   [result appendString:@"\n"];
 
