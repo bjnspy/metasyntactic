@@ -58,7 +58,7 @@
     return NO;
   }
 
-  return ABS([modificationDate timeIntervalSinceNow]) < THREE_DAYS;
+  return ABS([modificationDate timeIntervalSinceNow]) < ONE_DAY;
 }
 
 
