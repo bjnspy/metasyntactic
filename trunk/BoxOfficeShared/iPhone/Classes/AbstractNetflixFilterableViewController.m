@@ -44,10 +44,10 @@
 
 - (UIView*) createHeaderView {
   NSArray* items = [NSArray arrayWithObjects:
-                    NSLocalizedString(@"All", nil),
-                    NSLocalizedString(@"DVD", nil),
-                    NSLocalizedString(@"Blu-ray", nil),
-                    NSLocalizedString(@"Instant", nil), nil];
+                    LocalizedString(@"All", nil),
+                    LocalizedString(@"DVD", nil),
+                    LocalizedString(@"Blu-ray", nil),
+                    LocalizedString(@"Instant", nil), nil];
   UISegmentedControl* segmentedControl = [[[UISegmentedControl alloc] initWithItems:items] autorelease];
   segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
   segmentedControl.tintColor = [StyleSheet segmentedControlTintColor];
